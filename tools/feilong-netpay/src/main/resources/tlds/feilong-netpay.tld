@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee web-jsptaglibrary_2_1.xsd">
+	<tlib-version>1.0</tlib-version>
+	<short-name>feilongNetPay</short-name>
+	<description>飞龙java网络支付netpay标签</description>
+	<uri>http://java.feilong.com/tags-netpay</uri>
+
+	<!--"新华一城网"支付-->
+	<tag>
+		<name>yicheng</name>
+		<tag-class>com.feilong.commons.taglib.netpay.FeiLongYiChengPayTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>action</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>提交地址 不填则根据当前环境 采用FeiLongYiChengPay.post_url_test 或者FeiLongYiChengPay.post_url_formal</description>
+		</attribute>
+		<attribute>
+			<name>merchantNo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>商户号(一城卡提供)</description>
+		</attribute>
+		<attribute>
+			<name>orderId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>订单号 商户生成</description>
+		</attribute>
+		<attribute>
+			<name>amount</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>订单未付金额（必须为两位小数） 单位为元 必需，最低金额为0.1元</description>
+		</attribute>
+		<attribute>
+			<name>callBackUrl</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>回调地址，支付成功将向该地址发送支付结果等信息</description>
+		</attribute>
+		<attribute>
+			<name>isFull</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否全额支付（0为部分支付，1为全额支付）</description>
+		</attribute>
+		<attribute>
+			<name>terminalNo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>终端号 一城卡提供</description>
+		</attribute>
+		<attribute>
+			<name>key</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>一城网给商业客户密钥,用于拼接md5参数</description>
+		</attribute>
+		<attribute>
+			<name>createTime</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>创建时间,用于生成流水号</description>
+		</attribute>
+	</tag>
+</taglib>

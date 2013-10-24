@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.2</version>
+	</parent>
+	<artifactId>feilong-tools-jfreechart</artifactId>
+	<name>feilong-tools-jfreechart</name>
+	<description>jfreechart util</description>
+
+	<dependencies>
+		<!--	jfree 	-->
+		<dependency>
+			<artifactId>jfreechart</artifactId>
+			<groupId>org.jfree</groupId>
+			<version>${version.jfreechart}</version>
+		</dependency>
+
+<!-- 	-->	<dependency>
+			<groupId>org.eclipse.swt.win32.win32</groupId>
+			<artifactId>x86</artifactId>
+			<version>3.3.0-v3346</version>
+			<scope>test</scope>
+		</dependency> 
+	</dependencies>
+</project>

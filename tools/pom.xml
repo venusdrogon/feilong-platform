@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.2</version>
+	</parent>
+
+	<groupId>com.feilong.platform.tools</groupId>
+	<artifactId>parent</artifactId>
+
+	<packaging>pom</packaging>
+
+	<name>feilong-tools-parent</name>
+
+	<modules>
+		<module>feilong-struts1</module>
+		<module>feilong-office</module>
+		<module>feilong-netpay</module>
+		<module>feilong-ssh</module>
+		<module>feilong-spring</module>
+		<module>feilong-tools</module>
+		<module>feilong-tools-jfreechart</module>
+		<module>feilong-tools-jsoup</module>
+		<module>feilong-tools-velocity</module>
+		<module>feilong-tools-dom4j</module>
+		<module>feilong-tools-memcached</module>
+		<module>feilong-tools-ant</module>
+		<module>feilong-tools-middleware</module>
+		<module>feilong-tools-html</module>
+		<module>feilong-tools-net</module>
+		<module>feilong-application-taobao</module>
+		<module>feilong-application-weibo</module>
+		<module>feilong-tools-json</module>
+		<module>feilong-office-pdf</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${version.spring}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

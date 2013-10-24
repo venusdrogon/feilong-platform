@@ -1,0 +1,381 @@
+/*
+ *  Pager Tag Library
+ *
+ *  Copyright (C) 2002  James Klicman <james@jsptags.com>
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License as published by the Free Software Foundation; either
+ *  version 2.1 of the License, or (at your option) any later version.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+options {
+	STATIC = false;
+	JAVA_UNICODE_ESCAPE = true;
+}
+
+PARSER_BEGIN(TagExportParser)
+
+package com.jsptags.navigation.pager.parser;
+
+import java.util.Hashtable;
+import java.io.StringReader;
+
+public class TagExportParser {
+
+	private static Hashtable pagerTagExportCache = new Hashtable();
+	private static Hashtable indexTagExportCache = new Hashtable();
+	private static Hashtable pageTagExportCache = new Hashtable();
+
+	public static PagerTagExport parsePagerTagExport(String expression)
+		throws ParseException
+	{
+		synchronized (pagerTagExportCache) {
+			PagerTagExport pagerTagExport =
+				(PagerTagExport) pagerTagExportCache.get(expression);
+			if (pagerTagExport == null) {
+				StringReader reader = new StringReader(expression);
+				TagExportParser parser = new TagExportParser(reader);
+				pagerTagExport = parser.parsePagerTagExport();
+				pagerTagExportCache.put(expression, pagerTagExport);
+			}
+			return pagerTagExport;
+		}
+	}
+
+	public static IndexTagExport parseIndexTagExport(String expression)
+		throws ParseException
+	{
+		synchronized (indexTagExportCache) {
+			IndexTagExport indexTagExport =
+				(IndexTagExport) indexTagExportCache.get(expression);
+			if (indexTagExport == null) {
+				StringReader reader = new StringReader(expression);
+				TagExportParser parser = new TagExportParser(reader);
+				indexTagExport = parser.parseIndexTagExport();
+				indexTagExportCache.put(expression, indexTagExport);
+			}
+			return indexTagExport;
+		}
+	}
+
+	public static PageTagExport parsePageTagExport(String expression)
+		throws ParseException
+	{
+		synchronized (pageTagExportCache) {
+			PageTagExport pageTagExport =
+				(PageTagExport) pageTagExportCache.get(expression);
+			if (pageTagExport == null) {
+				StringReader reader = new StringReader(expression);
+				TagExportParser parser = new TagExportParser(reader);
+				pageTagExport = parser.parsePageTagExport();
+				pageTagExportCache.put(expression, pageTagExport);
+			}
+			return pageTagExport;
+		}
+	}
+}
+
+PARSER_END(TagExportParser)
+
+<DEFAULT,PAGER_STATE,INDEX_STATE,PAGE_STATE>
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| "\f"
+}
+
+/* SEPARATORS */
+<DEFAULT,PAGER_STATE,INDEX_STATE,PAGE_STATE>
+TOKEN :
+{
+  < EQUALS: "=" >
+| < COMMA: "," >
+| < SEMICOLON: ";" >
+}
+
+/* PAGE VARIABLES */
+<PAGER_STATE>
+TOKEN :
+{
+  < PAGER_NUMBER: "number" >
+| < PAGER_OFFSET: "offset" >
+| < PAGER_PAGE: "page" >
+| < PAGER_PAGENUMBER: "pageNumber" >
+| < PAGER_PAGEOFFSET: "pageOffset" >
+}
+
+/* INDEX VARIABLES */
+<INDEX_STATE>
+TOKEN :
+{
+  < INDEX_ITEMCOUNT: "itemCount" >
+| < INDEX_ITEMS: "items" >
+| < INDEX_PAGECOUNT: "pageCount" >
+| < INDEX_PAGES: "pages" >
+}
+
+/* PAGE VARIABLES */
+<PAGE_STATE>
+TOKEN :
+{
+  < PAGE_FIRST: "first" >
+| < PAGE_FIRSTITEM: "firstItem" >
+| < PAGE_LAST: "last" >
+| < PAGE_LASTITEM: "lastItem" >
+| < PAGE_NUMBER: "number" >
+| < PAGE_PAGE: "page" >
+| < PAGE_PAGENUMBER: "pageNumber" >
+| < PAGE_PAGEURL: "pageUrl" >
+| < PAGE_URL: "url" >
+}
+
+/* IDENTIFIERS */
+<DEFAULT,PAGER_STATE,INDEX_STATE,PAGE_STATE>
+TOKEN :
+{
+  < IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>)* >
+| < #LETTER:
+      [
+       "\u0024",
+       "\u0041"-"\u005a",
+       "\u005f",
+       "\u0061"-"\u007a",
+       "\u00c0"-"\u00d6",
+       "\u00d8"-"\u00f6",
+       "\u00f8"-"\u00ff",
+       "\u0100"-"\u1fff",
+       "\u3040"-"\u318f",
+       "\u3300"-"\u337f",
+       "\u3400"-"\u3d2d",
+       "\u4e00"-"\u9fff",
+       "\uf900"-"\ufaff"
+      ]
+  >
+| < #DIGIT:
+      [
+       "\u0030"-"\u0039",
+       "\u0660"-"\u0669",
+       "\u06f0"-"\u06f9",
+       "\u0966"-"\u096f",
+       "\u09e6"-"\u09ef",
+       "\u0a66"-"\u0a6f",
+       "\u0ae6"-"\u0aef",
+       "\u0b66"-"\u0b6f",
+       "\u0be7"-"\u0bef",
+       "\u0c66"-"\u0c6f",
+       "\u0ce6"-"\u0cef",
+       "\u0d66"-"\u0d6f",
+       "\u0e50"-"\u0e59",
+       "\u0ed0"-"\u0ed9",
+       "\u1040"-"\u1049"
+      ]
+  >
+}
+
+
+
+PagerTagExport parsePagerTagExport() :
+{
+	PagerTagExport pagerTagExport = new PagerTagExport();
+}
+{
+	{
+		token_source.SwitchTo(PAGER_STATE);
+	}
+	pagerExportDeclaration(pagerTagExport) <EOF>
+	{
+		return pagerTagExport;
+	}
+}
+
+void pagerExportDeclaration(PagerTagExport pagerTagExport) :
+{ }
+{
+	( pagerExportList(pagerTagExport) )+
+}
+
+void pagerExportList(PagerTagExport pagerTagExport) :
+{ }
+{
+	pagerExport(pagerTagExport)
+	( <COMMA> pagerExport(pagerTagExport) )*
+	( <SEMICOLON> )?
+}
+
+void pagerExport(PagerTagExport pagerTagExport) :
+{
+	Token t = null;
+}
+{
+	( t=<PAGER_OFFSET> | t=<PAGER_PAGEOFFSET> )
+	{
+		pagerTagExport.setPageOffset(t.image);
+	}
+|	( t=<PAGER_PAGE> | t=<PAGER_NUMBER> | t=<PAGER_PAGENUMBER> )
+	{
+		pagerTagExport.setPageNumber(t.image);
+	}
+|	t=<IDENTIFIER> <EQUALS> pagerVar(pagerTagExport, t)
+}
+
+void pagerVar(PagerTagExport pagerTagExport, Token id) :
+{ }
+{
+	( <PAGER_OFFSET> | <PAGER_PAGEOFFSET> )
+	{
+		pagerTagExport.setPageOffset(id.image);
+	}
+|	( <PAGER_PAGE> | <PAGER_NUMBER> | <PAGER_PAGENUMBER> )
+	{
+		pagerTagExport.setPageNumber(id.image);
+	}
+}
+
+
+
+IndexTagExport parseIndexTagExport() :
+{
+	IndexTagExport indexTagExport = new IndexTagExport();
+}
+{
+	{
+		token_source.SwitchTo(INDEX_STATE);
+	}
+	indexExportDeclaration(indexTagExport) <EOF>
+	{
+		return indexTagExport;
+	}
+}
+
+void indexExportDeclaration(IndexTagExport indexTagExport) :
+{ }
+{
+	( indexExportList(indexTagExport) )+
+}
+
+void indexExportList(IndexTagExport indexTagExport) :
+{ }
+{
+	indexExport(indexTagExport)
+	( <COMMA> indexExport(indexTagExport) )*
+	( <SEMICOLON> )?
+}
+
+void indexExport(IndexTagExport indexTagExport) :
+{
+	Token t = null;
+}
+{
+	( t=<INDEX_ITEMS> | t=<INDEX_ITEMCOUNT> )
+	{
+		indexTagExport.setItemCount(t.image);
+	}
+|	( t=<INDEX_PAGES> | t=<INDEX_PAGECOUNT> )
+	{
+		indexTagExport.setPageCount(t.image);
+	}
+|	t=<IDENTIFIER> <EQUALS> indexVar(indexTagExport, t)
+}
+
+void indexVar(IndexTagExport indexTagExport, Token id) :
+{ }
+{
+	( <INDEX_ITEMS> | <INDEX_ITEMCOUNT> )
+	{
+		indexTagExport.setItemCount(id.image);
+	}
+|	( <INDEX_PAGES> | <INDEX_PAGECOUNT> )
+	{
+		indexTagExport.setPageCount(id.image);
+	}
+}
+
+
+
+PageTagExport parsePageTagExport() :
+{
+	PageTagExport pageTagExport = new PageTagExport();
+}
+{
+	{
+		token_source.SwitchTo(PAGE_STATE);
+	}
+	pageExportDeclaration(pageTagExport) <EOF>
+	{
+		return pageTagExport;
+	}
+}
+
+void pageExportDeclaration(PageTagExport pageTagExport) :
+{ }
+{
+	( pageExportList(pageTagExport) )+
+}
+
+void pageExportList(PageTagExport pageTagExport) :
+{ }
+{
+	pageExport(pageTagExport)
+	( <COMMA> pageExport(pageTagExport) )*
+	( <SEMICOLON> )?
+}
+
+void pageExport(PageTagExport pageTagExport) :
+{
+	Token t = null;
+}
+{
+	( t=<PAGE_URL> | t=<PAGE_PAGEURL> )
+	{
+		pageTagExport.setPageUrl(t.image);
+	}
+|	( t=<PAGE_PAGE> | t=<PAGE_NUMBER> | t=<PAGE_PAGENUMBER> )
+	{
+		pageTagExport.setPageNumber(t.image);
+	}
+|	( t=<PAGE_FIRST> | t=<PAGE_FIRSTITEM> )
+	{
+		pageTagExport.setFirstItem(t.image);
+	}
+|	( t=<PAGE_LAST> | t=<PAGE_LASTITEM> )
+	{
+		pageTagExport.setLastItem(t.image);
+	}
+|	t=<IDENTIFIER> <EQUALS> pageVar(pageTagExport, t)
+}
+
+void pageVar(PageTagExport pageTagExport, Token id) :
+{ }
+{
+	( <PAGE_URL> | <PAGE_PAGEURL> )
+	{
+		pageTagExport.setPageUrl(id.image);
+	}
+|	( <PAGE_PAGE> | <PAGE_NUMBER> | <PAGE_PAGENUMBER> )
+	{
+		pageTagExport.setPageNumber(id.image);
+	}
+|	( <PAGE_FIRST> | <PAGE_FIRSTITEM> )
+	{
+		pageTagExport.setFirstItem(id.image);
+	}
+|	( <PAGE_LAST> | <PAGE_LASTITEM> )
+	{
+		pageTagExport.setLastItem(id.image);
+	}
+}
+
+/* vim:set ts=4 sw=4: */

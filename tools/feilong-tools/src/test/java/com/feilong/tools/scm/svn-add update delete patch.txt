@@ -1,0 +1,1965 @@
+### Eclipse Workspace Patch 1.0
+#P converse-sitemanager
+Index: src/main/webapp/scripts/test.js
+===================================================================
+Index: src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java	(working copy)
+@@ -1,34 +0,0 @@
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-import java.util.List;
+-
+-public class PageCacheCommand implements Serializable{
+-
+-	private static final long	serialVersionUID	= 59168831084794622L;
+-
+-	private List<Object[]>		skus				= null;
+-
+-	public PageCacheCommand(List<Object[]> skus, Long count){
+-		this.skus = skus;
+-		this.count = count;
+-	}
+-
+-	public List<Object[]> getPagination(){
+-		return this.skus;
+-	}
+-
+-	private Long	count	= 0L;
+-
+-	public Long getCount(){
+-		return count;
+-	}
+-
+-	public void setCount(Long count){
+-		this.count = count;
+-	}
+-
+-	public List<Object[]> getSkus(){
+-		return this.skus;
+-	}
+-}
+Index: src/main/resources/META-INF/tld/brandstore.tld
+===================================================================
+--- src/main/resources/META-INF/tld/brandstore.tld	(revision 47866)
++++ src/main/resources/META-INF/tld/brandstore.tld	(working copy)
+@@ -1,182 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee web-jsptaglibrary_2_1.xsd">
+-	<tlib-version>1.1</tlib-version>
+-	<short-name>brandstore</short-name>
+-	
+-	<uri>http://www.baozun.cn/brandstore</uri>
+-	
+-	<description>宝尊官方商城自定义标签</description>
+-	<!-- showPrice-->
+-	<tag>
+-		<name>showPrice</name>
+-		<tag-class>com.jumbo.shop.web.taglib.ShowPriceTag</tag-class>
+-		<body-content>empty</body-content>
+-		<description>显示价格</description>
+-		<attribute>
+-			<name>sku</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>sku,商品</description>
+-		</attribute>
+-		<attribute>
+-			<name>memberId</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>memberId,会员ID</description>
+-		</attribute>
+-		<attribute>
+-			<name>deprecatedPriceMarkClass</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>过时价钱金钱符号 样式</description>
+-		</attribute>
+-		<attribute>
+-			<name>deprecatedPriceClass</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>过时价钱样式</description>
+-		</attribute>
+-		<attribute>
+-			<name>finalPriceMarkClass</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>最终显示符号样式</description>
+-		</attribute>
+-		<attribute>
+-			<name>finalPriceClass</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>最终显示价钱样式</description>
+-		</attribute>
+-		<attribute>
+-			<name>finalPriceLoadurl</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>最终显示价钱标签,自定义Loadurl属性</description>
+-		</attribute>
+-	</tag>
+-
+-
+-	<!-- 判断一款sku,是否包含某个category code-->
+-	<tag>
+-		<name>isHasCategoryCode</name>
+-		<tag-class>com.jumbo.shop.web.taglib.IsHasCategoryCodeTag</tag-class>
+-		<body-content>jsp</body-content>
+-		<description>判断一款sku,是否包含某个category code,属性skuId和shoppingItemListCommand二选一, skuId,比shoppingItemListCommand 优先级高</description>
+-		<attribute>
+-			<name>skuId</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>skuId,比shoppingItemListCommand 优先级高</description>
+-		</attribute>
+-
+-		<attribute>
+-			<name>categoryCode</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>标签code</description>
+-		</attribute>
+-
+-		<attribute>
+-			<name>shoppingItemListCommand</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>购物车~~</description>
+-		</attribute>
+-	</tag>
+-
+-
+-
+-
+-	<!-- 判断一款sku,是否不包含某个category code-->
+-	<tag>
+-		<name>isNotHasCategoryCode</name>
+-		<tag-class>com.jumbo.shop.web.taglib.IsNotHasCategoryCodeTag</tag-class>
+-		<body-content>jsp</body-content>
+-		<description>判断一款sku,是否不包含某个category code</description>
+-		<attribute>
+-			<name>skuId</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>skuId,比shoppingItemListCommand 优先级高</description>
+-		</attribute>
+-
+-		<attribute>
+-			<name>categoryCode</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>标签code</description>
+-		</attribute>
+-
+-		<attribute>
+-			<name>shoppingItemListCommand</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>购物车~~</description>
+-		</attribute>
+-	</tag>
+-
+-
+-	<!-- 判断某个用户是否有预付卡-->
+-	<tag>
+-		<name>isHasPrepaidCard</name>
+-		<tag-class>com.jumbo.shop.web.taglib.IsHasPrepaidCardTag</tag-class>
+-		<body-content>jsp</body-content>
+-		<description>判断某个用户是否有预付卡</description>
+-		<attribute>
+-			<name>memberId</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>用户</description>
+-		</attribute>
+-
+-		<attribute>
+-			<name>status</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>用户拥有的预付卡状态 1 未激活,审批通过后,卡的状态为未激活;5 使用中 ,10 已使用 0 作废 2 未审批 4 审批不通过,不填,则默认是5</description>
+-		</attribute>
+-	</tag> 
+-
+-
+-	<!-- 订单信息中,是否可以显示去支付的按钮或者链接-->
+-	<tag>
+-		<name>isCanShowGoToPay</name>
+-		<tag-class>com.jumbo.shop.web.taglib.IsCanShowGoToPayTag</tag-class>
+-		<body-content>jsp</body-content>
+-		<description>订单信息中,是否可以显示去支付的按钮或者链接,当financeStatus==1 并且不是( 1货到付款且2 银行电汇) 返回true,其他情况false</description>
+-		<attribute>
+-			<name>salesOrder</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>salesOrder,订单</description>
+-		</attribute> 
+-	</tag>
+-	
+-	<!-- 将颜色编码转为中文颜色显示 -->
+-	<tag>
+-		<name>showChinaColor</name>
+-		<tag-class>com.jumbo.shop.web.taglib.ShowChinaColorTag</tag-class>
+-		<body-content>jsp</body-content>
+-		<description>将color编码转为中文color显示</description>
+-		<attribute>
+-			<name>color</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>SKU颜色编码</description>
+-		</attribute> 
+-	</tag>
+-	<!-- 将尺寸编码转为中文尺寸显示 -->
+-	<tag>
+-		<name>showChinaSize</name>
+-		<tag-class>com.jumbo.shop.web.taglib.ShowChinaSizeTag</tag-class>
+-		<body-content>jsp</body-content>
+-		<description>将尺寸编码转为中文尺寸显示</description>
+-		<attribute>
+-			<name>skuId</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-			<description>SKU ID</description>
+-		</attribute> 
+-	</tag>
+-</taglib>
+\ No newline at end of file
+Index: src/main/java/com/jumbo/shop/web/command/OrderDetailCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/OrderDetailCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/OrderDetailCommand.java	(working copy)
+@@ -1,52 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.math.BigDecimal;
+-
+-public class OrderDetailCommand{
+-
+-	private BigDecimal	totalTransferPrice;
+-
+-	private BigDecimal	totalUnitPrice;
+-
+-	private BigDecimal	totalPrice;
+-
+-	public BigDecimal getTotalTransferPrice(){
+-		return totalTransferPrice;
+-	}
+-
+-	public void setTotalTransferPrice(BigDecimal totalTransferPrice){
+-		this.totalTransferPrice = totalTransferPrice;
+-	}
+-
+-	public BigDecimal getTotalUnitPrice(){
+-		return totalUnitPrice;
+-	}
+-
+-	public void setTotalUnitPrice(BigDecimal totalUnitPrice){
+-		this.totalUnitPrice = totalUnitPrice;
+-	}
+-
+-	public BigDecimal getTotalPrice(){
+-		return totalPrice;
+-	}
+-
+-	public void setTotalPrice(BigDecimal totalPrice){
+-		this.totalPrice = totalPrice;
+-	}
+-}
+Index: src/main/webapp/main/error_404.jsp
+===================================================================
+--- src/main/webapp/main/error_404.jsp	(revision 47766)
++++ src/main/webapp/main/error_404.jsp	(working copy)
+@@ -1,4 +0,0 @@
+-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+-<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
+-<div class="article">404,你懂的</div>
+\ No newline at end of file
+Index: src/main/webapp/main/error_404.jsp
+===================================================================
+--- src/main/webapp/main/error_404.jsp	(revision 0)
++++ src/main/webapp/main/error_404.jsp	(revision 47766)
+@@ -0,0 +1,4 @@
++<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
++<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
++<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
++<div class="article">404,你懂的</div>
+\ No newline at end of file
+Index: src/main/java/com/jumbo/shop/web/command/ZoneCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/ZoneCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/ZoneCommand.java	(working copy)
+@@ -1,201 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-import java.util.LinkedHashMap;
+-import java.util.Map;
+-
+-import org.springframework.ui.Model;
+-
+-import com.jumbo.brandstore.dao.master.CategoryDao;
+-import com.jumbo.brandstore.util.CategoryUtil;
+-
+-public class ZoneCommand implements Serializable{
+-
+-	private static final long	serialVersionUID	= 1L;
+-
+-	private String				pn;
+-
+-	private String				sort;
+-
+-	private String				c1;
+-
+-	private String				c2;
+-
+-	private String				c3;
+-
+-	private String				c4;
+-
+-	public Map<String, String> createZoneForm(Model model,String code,CategoryDao skuCategoryDao){
+-		Map<String, String> zoneData = new LinkedHashMap<String, String>();
+-		zoneData.put("pn", getPn());
+-		zoneData.put("sort", getSort());
+-		zoneData.put("c1", getC1());
+-		zoneData.put("c2", getC2());
+-		zoneData.put("c3", getC3());
+-		zoneData.put("c4", getC4());
+-		model.addAttribute("url", "zone/" + code + "/list.htm");
+-		model.addAttribute("zoneData", zoneData);
+-		String categoryOneValue, categoryTwoValue;
+-		String categoryThreeValue = "";
+-		if (null == getC1() || "".equals(getC1())){
+-			categoryOneValue = "分类";
+-		}else{
+-			categoryOneValue = skuCategoryDao.findByCode(getC1()).getName();
+-			/** ======================= soliType ================================== **/
+-			Boolean boolShoe = false;
+-			Boolean boolApparel = false;
+-			Boolean boolEquipment = false;
+-			if (getC1().equals("shoe")){
+-				boolShoe = true;
+-				model.addAttribute("shoe", boolShoe);
+-			}else if (getC1().equals("apparel")){
+-				boolApparel = true;
+-				model.addAttribute("apparel", boolApparel);
+-			}else if (getC1().equals("equipment")){
+-				boolEquipment = true;
+-				model.addAttribute("equipment", boolEquipment);
+-			}
+-			/** ======================= ================================== **/
+-		}
+-		if (null == getC2() || "".equals(getC2())){
+-			categoryTwoValue = "性别";
+-		}else{
+-			categoryTwoValue = skuCategoryDao.findByCode(getC2()).getName();
+-		}
+-		if (null == getC3() || "".equals(getC3())){
+-			categoryThreeValue = "颜";
+-		}else{
+-			if (getC3().equals("black"))
+-				categoryThreeValue = "黑";
+-			if (getC3().equals("blue"))
+-				categoryThreeValue = "蓝";
+-			if (getC3().equals("green"))
+-				categoryThreeValue = "绿";
+-			if (getC3().equals("grey"))
+-				categoryThreeValue = "灰";
+-			if (getC3().equals("orange"))
+-				categoryThreeValue = "橙";
+-			if (getC3().equals("pink"))
+-				categoryThreeValue = "粉";
+-			if (getC3().equals("purple"))
+-				categoryThreeValue = "紫";
+-			if (getC3().equals("red"))
+-				categoryThreeValue = "红";
+-			if (getC3().equals("silver"))
+-				categoryThreeValue = "银";
+-			if (getC3().equals("white"))
+-				categoryThreeValue = "白";
+-			if (getC3().equals("yellow"))
+-				categoryThreeValue = "黄";
+-		}
+-		String categoryFourValue = "";
+-		if (null == getC4() || "".equals(getC4())){
+-			categoryFourValue = "类型";
+-		}else{
+-			categoryFourValue = CategoryUtil.getCatName(getC4());
+-		}
+-		model.addAttribute("categoryOneValue", categoryOneValue);
+-		model.addAttribute("categoryTwoValue", categoryTwoValue);
+-		model.addAttribute("categoryThreeValue", categoryThreeValue);
+-		model.addAttribute("categoryFourValue", categoryFourValue);
+-		model.addAttribute("sort", getSort());
+-		return zoneData;
+-	}
+-
+-	public String getPn(){
+-		return pn;
+-	}
+-
+-	public void setPn(String pn){
+-		this.pn = pn;
+-	}
+-
+-	public String getSort(){
+-		return sort;
+-	}
+-
+-	public void setSort(String sort){
+-		this.sort = sort;
+-	}
+-
+-	public String getC1(){
+-		if (null == c1 || "".equals(c1)){
+-			c1 = null;
+-		}
+-		return c1;
+-	}
+-
+-	public void setC1(String c1){
+-		this.c1 = c1;
+-	}
+-
+-	public String getC2(){
+-		if (null == c2 || "".equals(c2)){
+-			c2 = null;
+-		}
+-		return c2;
+-	}
+-
+-	public void setC2(String c2){
+-		this.c2 = c2;
+-	}
+-
+-	public String getC3(){
+-		if (null == c3 || "".equals(c3)){
+-			c3 = "";
+-		}
+-		return c3;
+-	}
+-
+-	public void setC3(String c3){
+-		this.c3 = c3;
+-	}
+-
+-	public String getC4(){
+-		return c4;
+-	}
+-
+-	public void setC4(String c4){
+-		this.c4 = c4;
+-	}
+-
+-	public String getCategoryOneValue(){
+-		if (null == getC1() || "".equals(getC1())){
+-			return "分类";
+-		}else{
+-			return getC1();
+-		}
+-	}
+-
+-	public String getCategoryTwoValue(){
+-		if (null == getC2() || "".equals(getC2())){
+-			return "性别";
+-		}else{
+-			return getC2();
+-		}
+-	}
+-
+-	public String getCategoryThreeValue(){
+-		if (null == getC3() || "".equals(getC3())){
+-			return "";
+-		}else{
+-			return "";
+-		}
+-	}
+-}
+Index: src/main/java/com/jumbo/shop/ScriptConstants.java
+===================================================================
+--- src/main/java/com/jumbo/shop/ScriptConstants.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/ScriptConstants.java	(working copy)
+@@ -2,4 +2,5 @@
+ 
+ public class ScriptConstants{
+ 	// public static final String SCRIPT_PRODUCT_COMMENT_LIST_JSP = "product_comment_list_jsp.vm";
++	
+ }
+Index: src/main/java/com/jumbo/shop/web/command/SkuSaleCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/SkuSaleCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/SkuSaleCommand.java	(working copy)
+@@ -1,72 +0,0 @@
+-package com.jumbo.shop.web.command;
+-
+-import java.util.List;
+-
+-import com.jumbo.brandstore.model.master.Sku;
+-
+-public class SkuSaleCommand{
+-
+-	private Sku					sku;
+-
+-	private List<ColorSaleRef>	colorSaleRefList;
+-
+-	public SkuSaleCommand(){}
+-
+-	public SkuSaleCommand(Sku sku){
+-		this.sku = sku;
+-	}
+-
+-	public SkuSaleCommand(Sku sku, List<ColorSaleRef> colorSaleRefList){
+-		this.sku = sku;
+-		this.colorSaleRefList = colorSaleRefList;
+-	}
+-
+-	public Sku getSku(){
+-		return this.sku;
+-	}
+-
+-	public void setSku(Sku sku){
+-		this.sku = sku;
+-	}
+-
+-	public List<ColorSaleRef> getColorSaleRefList(){
+-		return this.colorSaleRefList;
+-	}
+-
+-	public void setColorSaleRefList(List<ColorSaleRef> colorSaleRefList){
+-		this.colorSaleRefList = colorSaleRefList;
+-	}
+-
+-	public class ColorSaleRef{
+-
+-		private String	colorCode;
+-
+-		private String	chinaColor;
+-
+-		private boolean	isChecked;
+-
+-		public String getColorCode(){
+-			return colorCode;
+-		}
+-
+-		public void setColorCode(String colorCode){
+-			this.colorCode = colorCode;
+-		}
+-
+-		public String getChinaColor(){
+-			return chinaColor;
+-		}
+-
+-		public void setChinaColor(String chinaColor){
+-			this.chinaColor = chinaColor;
+-		}
+-
+-		public boolean getIsChecked(){
+-			return isChecked;
+-		}
+-
+-		public void setIsChecked(boolean isChecked){
+-			this.isChecked = isChecked;
+-		}
+-	}
+-}
+Index: src/main/webapp/test.jsp
+===================================================================
+Index: src/main/java/com/jumbo/shop/web/command/GuestOrderCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/GuestOrderCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/GuestOrderCommand.java	(working copy)
+@@ -1,54 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-
+-public class GuestOrderCommand implements Serializable{
+-
+-	private static final long	serialVersionUID	= -6713961867487325804L;
+-
+-	private String				contactor;
+-
+-	private String				phone;
+-
+-	private String				email;
+-
+-	public String getContactor(){
+-		return contactor;
+-	}
+-
+-	public String getPhone(){
+-		return phone;
+-	}
+-
+-	public void setPhone(String phone){
+-		this.phone = phone;
+-	}
+-
+-	public void setContactor(String contactor){
+-		this.contactor = contactor;
+-	}
+-
+-	public String getEmail(){
+-		return email;
+-	}
+-
+-	public void setEmail(String email){
+-		this.email = email;
+-	}
+-}
+Index: src/main/webapp/images/17.gif
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+
+Property changes on: src\main\webapp\images\17.gif
+___________________________________________________________________
+Added: svn:mime-type
+   + application/octet-stream
+
+Index: src/main/java/com/jumbo/shop/web/command/ShoppingCartCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/ShoppingCartCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/ShoppingCartCommand.java	(working copy)
+@@ -1,41 +0,0 @@
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-
+-public class ShoppingCartCommand implements Serializable{
+-
+-	/**
+-	 * 
+-	 */
+-	private static final long	serialVersionUID	= 8491475355586037027L;
+-
+-	private String				jmskuCode;
+-
+-	private String				size;
+-
+-	private String				color;
+-
+-	public String getSize(){
+-		return size;
+-	}
+-
+-	public void setSize(String size){
+-		this.size = size;
+-	}
+-
+-	public String getColor(){
+-		return color;
+-	}
+-
+-	public void setColor(String color){
+-		this.color = color;
+-	}
+-
+-	public void setJmskuCode(String jmskuCode){
+-		this.jmskuCode = jmskuCode;
+-	}
+-
+-	public String getJmskuCode(){
+-		return jmskuCode;
+-	}
+-}
+Index: src/main/webapp/css/test.css
+===================================================================
+Index: src/main/java/com/jumbo/shop/web/command/MemberPasswordCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/MemberPasswordCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/MemberPasswordCommand.java	(working copy)
+@@ -1,84 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-
+-public class MemberPasswordCommand implements Serializable{
+-
+-	private static final long	serialVersionUID	= -7404787619092638542L;
+-
+-	private long				memberId;
+-
+-	private String				rankName;
+-
+-	private String				userName;
+-
+-	private String				confirmPwd;
+-
+-	private String				newPwd;
+-
+-	private String				oldPwd;
+-
+-	public String getConfirmPwd(){
+-		return confirmPwd;
+-	}
+-
+-	public void setConfirmPwd(String confirmPwd){
+-		this.confirmPwd = confirmPwd;
+-	}
+-
+-	public String getNewPwd(){
+-		return newPwd;
+-	}
+-
+-	public void setNewPwd(String newPwd){
+-		this.newPwd = newPwd;
+-	}
+-
+-	public String getOldPwd(){
+-		return oldPwd;
+-	}
+-
+-	public void setOldPwd(String oldPwd){
+-		this.oldPwd = oldPwd;
+-	}
+-
+-	public long getMemberId(){
+-		return memberId;
+-	}
+-
+-	public void setMemberId(long memberId){
+-		this.memberId = memberId;
+-	}
+-
+-	public String getRankName(){
+-		return rankName;
+-	}
+-
+-	public void setRankName(String rankName){
+-		this.rankName = rankName;
+-	}
+-
+-	public String getUserName(){
+-		return userName;
+-	}
+-
+-	public void setUserName(String userName){
+-		this.userName = userName;
+-	}
+-}
+Index: src/main/java/com/jumbo/shop/web/command/SkuViewCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/SkuViewCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/SkuViewCommand.java	(working copy)
+@@ -1,55 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.util.List;
+-import java.util.Map;
+-
+-import com.jumbo.brandstore.model.master.Sku;
+-
+-public class SkuViewCommand{
+-
+-	private Sku								sku;
+-
+-	private List<SizeRefInventoryCommand>	sizeInvList;
+-
+-	private Map<String, String>				colorStrMap;
+-
+-	public Sku getSku(){
+-		return sku;
+-	}
+-
+-	public void setSku(Sku sku){
+-		this.sku = sku;
+-	}
+-
+-	public List<SizeRefInventoryCommand> getSizeInvList(){
+-		return sizeInvList;
+-	}
+-
+-	public void setSizeInvList(List<SizeRefInventoryCommand> sizeInvList){
+-		this.sizeInvList = sizeInvList;
+-	}
+-
+-	public Map<String, String> getColorStrMap(){
+-		return colorStrMap;
+-	}
+-
+-	public void setColorStrMap(Map<String, String> colorStrMap){
+-		this.colorStrMap = colorStrMap;
+-	}
+-}
+Index: src/main/java/com/jumbo/shop/web/command/SearchCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/SearchCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/SearchCommand.java	(working copy)
+@@ -1,229 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-import java.math.BigDecimal;
+-
+-import com.jumbo.brandstore.util.StringUtil;
+-
+-/**
+- * The Class SearchCommand.
+- */
+-public class SearchCommand implements Serializable{
+-
+-	/** The Constant serialVersionUID. */
+-	private static final long	serialVersionUID	= 1L;
+-
+-	/** 关键字. */
+-	private String				keyValues;
+-
+-	/** The category one. */
+-	private String				categoryOne;
+-
+-	/** The category two. */
+-	private String				categoryTwo;
+-
+-	/** The category three. */
+-	private String				categoryThree;
+-
+-	/** 价格区间 start. */
+-	private BigDecimal			priceStart;
+-
+-	/** 价格区间 end. */
+-	private BigDecimal			priceEnd;
+-
+-	/** The color. */
+-	private String				color;
+-
+-	/** The flag. */
+-	private Integer				flag;
+-
+-	/**
+-	 * Gets the 关键字.
+-	 * 
+-	 * @return the 关键字
+-	 */
+-	public String getKeyValues(){
+-		if (keyValues == null)
+-			return "";
+-		else
+-			return StringUtil.converStr(keyValues.trim());
+-	}
+-
+-	/**
+-	 * Gets the all keys.
+-	 * 
+-	 * @return the all keys
+-	 */
+-	public String getAllKeys(){
+-		if ("".equals(getKeyValues())){
+-			return "所有商品";
+-		}else{
+-			return getKeyValues();
+-		}
+-	}
+-
+-	/**
+-	 * Sets the 关键字.
+-	 * 
+-	 * @param keyValues
+-	 *            the new 关键字
+-	 */
+-	public void setKeyValues(String keyValues){
+-		this.keyValues = keyValues;
+-	}
+-
+-	/**
+-	 * Gets the category one.
+-	 * 
+-	 * @return the category one
+-	 */
+-	public String getCategoryOne(){
+-		return categoryOne;
+-	}
+-
+-	/**
+-	 * Sets the category one.
+-	 * 
+-	 * @param categoryOne
+-	 *            the new category one
+-	 */
+-	public void setCategoryOne(String categoryOne){
+-		this.categoryOne = categoryOne;
+-	}
+-
+-	/**
+-	 * Gets the category two.
+-	 * 
+-	 * @return the category two
+-	 */
+-	public String getCategoryTwo(){
+-		return categoryTwo;
+-	}
+-
+-	/**
+-	 * Sets the category two.
+-	 * 
+-	 * @param categoryTwo
+-	 *            the new category two
+-	 */
+-	public void setCategoryTwo(String categoryTwo){
+-		this.categoryTwo = categoryTwo;
+-	}
+-
+-	/**
+-	 * Gets the category three.
+-	 * 
+-	 * @return the category three
+-	 */
+-	public String getCategoryThree(){
+-		return categoryThree;
+-	}
+-
+-	/**
+-	 * Sets the category three.
+-	 * 
+-	 * @param categoryThree
+-	 *            the new category three
+-	 */
+-	public void setCategoryThree(String categoryThree){
+-		this.categoryThree = categoryThree;
+-	}
+-
+-	/**
+-	 * Gets the 价格区间 start.
+-	 * 
+-	 * @return the 价格区间 start
+-	 */
+-	public BigDecimal getPriceStart(){
+-		return priceStart;
+-	}
+-
+-	/**
+-	 * Sets the 价格区间 start.
+-	 * 
+-	 * @param priceStart
+-	 *            the new 价格区间 start
+-	 */
+-	public void setPriceStart(BigDecimal priceStart){
+-		this.priceStart = priceStart;
+-	}
+-
+-	/**
+-	 * Gets the 价格区间 end.
+-	 * 
+-	 * @return the 价格区间 end
+-	 */
+-	public BigDecimal getPriceEnd(){
+-		return priceEnd;
+-	}
+-
+-	/**
+-	 * Sets the 价格区间 end.
+-	 * 
+-	 * @param priceEnd
+-	 *            the new 价格区间 end
+-	 */
+-	public void setPriceEnd(BigDecimal priceEnd){
+-		this.priceEnd = priceEnd;
+-	}
+-
+-	/**
+-	 * Gets the color.
+-	 * 
+-	 * @return the color
+-	 */
+-	public String getColor(){
+-		if (color == null)
+-			return null;
+-		else
+-			return StringUtil.converStr(color.trim());
+-	}
+-
+-	/**
+-	 * Sets the color.
+-	 * 
+-	 * @param color
+-	 *            the new color
+-	 */
+-	public void setColor(String color){
+-		if (color == null || color.trim().length() < 1)
+-			this.color = null;
+-		else
+-			this.color = color.trim();
+-	}
+-
+-	/**
+-	 * Gets the flag.
+-	 * 
+-	 * @return the flag
+-	 */
+-	public Integer getFlag(){
+-		return flag;
+-	}
+-
+-	/**
+-	 * Sets the flag.
+-	 * 
+-	 * @param flag
+-	 *            the new flag
+-	 */
+-	public void setFlag(Integer flag){
+-		this.flag = flag;
+-	}
+-}
+Index: src/test/java/com/jumbo/shop/util/ImageZoomUtilTest.java
+===================================================================
+--- src/test/java/com/jumbo/shop/util/ImageZoomUtilTest.java	(revision 47866)
++++ src/test/java/com/jumbo/shop/util/ImageZoomUtilTest.java	(working copy)
+@@ -35,11 +35,6 @@
+ 
+ 	private static final String	RESOURCE_DIRECTORY	= "D:\\Develop\\Converse\\resources\\product7_test";
+ 
+-	@Test
+-	public void test(){
+-		fail("Not yet implemented");
+-	}
+-
+ 	public static void main(String[] args) throws IOException{
+ 		File resources = new File(RESOURCE_DIRECTORY);
+ 		ImageZoomUtil.zoomFolder(resources);
+Index: src/main/java/com/jumbo/shop/web/command/MemberCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/MemberCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/MemberCommand.java	(working copy)
+@@ -1,244 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-import java.util.Date;
+-
+-import com.jumbo.brandstore.model.member.Member;
+-import com.jumbo.brandstore.model.member.MemberInfo;
+-
+-public class MemberCommand implements Serializable{
+-
+-	/**
+-	 * 
+-	 */
+-	private static final long	serialVersionUID	= -6792708344778832466L;
+-
+-	private String				loginName;
+-
+-	private String				password;
+-
+-	private String				passwordAgain;
+-
+-	private String				email;
+-
+-	private String				emailAgain;
+-
+-	private String				sendemail;
+-
+-	private String				realName;										// 姓名
+-
+-	private String				nikeName;										// 姓名
+-
+-	private String				gender;										// 性别
+-
+-	private Date				birthday;										// 生日
+-
+-	private String				province;										// 省
+-
+-	private String				city;											// 市
+-
+-	private String				district;										// 区
+-
+-	private String				address;										// 详细地址
+-
+-	private String				mobile;										// 手机
+-
+-	private String				telephone;										// 电话
+-
+-	private String				zipCode;										// 邮编
+-
+-	private Boolean				isBookEmail;									// 邮编
+-
+-	public String getProvince(){
+-		return province;
+-	}
+-
+-	public void setProvince(String province){
+-		this.province = province;
+-	}
+-
+-	public String getCity(){
+-		return city;
+-	}
+-
+-	public void setCity(String city){
+-		this.city = city;
+-	}
+-
+-	public String getDistrict(){
+-		return district;
+-	}
+-
+-	public void setDistrict(String district){
+-		this.district = district;
+-	}
+-
+-	public String getRealName(){
+-		if (realName == null){
+-			return null;
+-		}else{
+-			return realName.replace("<", "&lt;").replace(">", "&gt;").replace("'", "&quot;").replace("\"", "&quot;").replace("&", "&amp;");
+-		}
+-	}
+-
+-	public void setRealName(String realName){
+-		this.realName = realName;
+-	}
+-
+-	public String getGender(){
+-		return gender;
+-	}
+-
+-	public void setGender(String gender){
+-		this.gender = gender;
+-	}
+-
+-	public Date getBirthday(){
+-		return birthday;
+-	}
+-
+-	public void setBirthday(Date birthday){
+-		this.birthday = birthday;
+-	}
+-
+-	public String getLoginName(){
+-		if (loginName == null)
+-			return null;
+-		else
+-			return loginName.replace("<", "&lt;").replace(">", "&gt;").replace("'", "&quot;").replace("\"", "&quot;").replace("&", "&amp;");
+-	}
+-
+-	public void setLoginName(String loginName){
+-		this.loginName = loginName;
+-	}
+-
+-	public String getPassword(){
+-		return password;
+-	}
+-
+-	public void setPassword(String password){
+-		this.password = password;
+-	}
+-
+-	public String getPasswordAgain(){
+-		return passwordAgain;
+-	}
+-
+-	public void setPasswordAgain(String passwordAgain){
+-		this.passwordAgain = passwordAgain;
+-	}
+-
+-	public String getEmail(){
+-		if (email == null)
+-			return null;
+-		else
+-			return email.replace("<", "&lt;").replace(">", "&gt;").replace("'", "&quot;").replace("\"", "&quot;").replace("&", "&amp;");
+-	}
+-
+-	public void setEmail(String email){
+-		this.email = email;
+-	}
+-
+-	public Member getMember(){
+-		Member member = new Member();
+-		member.setLoginName(loginName);
+-		member.setPassword(password);
+-		member.setEmail(email);
+-		member.setRealName(realName);
+-		member.setGender(gender);
+-		member.setIsBookEmail(isBookEmail);
+-		MemberInfo memberInfo = new MemberInfo();
+-		memberInfo.setAddress(address);
+-		memberInfo.setBirthday(birthday);
+-		memberInfo.setTelephone(telephone);
+-		memberInfo.setMobile(mobile);
+-		memberInfo.setProvince(province);
+-		memberInfo.setDistrict(district);
+-		memberInfo.setCity(city);
+-		member.setMemberInfo(memberInfo);
+-		return member;
+-	}
+-
+-	public String getSendemail(){
+-		return sendemail;
+-	}
+-
+-	public void setSendemail(String sendemail){
+-		this.sendemail = sendemail;
+-	}
+-
+-	public String getNikeName(){
+-		return nikeName;
+-	}
+-
+-	public void setNikeName(String nikeName){
+-		this.nikeName = nikeName;
+-	}
+-
+-	public String getEmailAgain(){
+-		if (emailAgain == null)
+-			return null;
+-		else
+-			return emailAgain.replace("<", "&lt;").replace(">", "&gt;").replace("'", "&quot;").replace("\"", "&quot;").replace("&", "&amp;");
+-	}
+-
+-	public void setEmailAgain(String emailAgain){
+-		this.emailAgain = emailAgain;
+-	}
+-
+-	public String getAddress(){
+-		return address;
+-	}
+-
+-	public void setAddress(String address){
+-		this.address = address;
+-	}
+-
+-	public String getMobile(){
+-		return mobile;
+-	}
+-
+-	public void setMobile(String mobile){
+-		this.mobile = mobile;
+-	}
+-
+-	public String getTelephone(){
+-		return telephone;
+-	}
+-
+-	public void setTelephone(String telephone){
+-		this.telephone = telephone;
+-	}
+-
+-	public String getZipCode(){
+-		return zipCode;
+-	}
+-
+-	public void setZipCode(String zipCode){
+-		this.zipCode = zipCode;
+-	}
+-
+-	public Boolean getIsBookEmail(){
+-		return isBookEmail;
+-	}
+-
+-	public void setIsBookEmail(Boolean isBookEmail){
+-		this.isBookEmail = isBookEmail;
+-	}
+-}
+Index: src/main/java/com/jumbo/shop/web/command/OrderConfirmCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/OrderConfirmCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/OrderConfirmCommand.java	(working copy)
+@@ -1,221 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-/**
+- * @author baizhixin
+- * 
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-
+-public class OrderConfirmCommand implements Serializable{
+-
+-	/**
+-	 * 
+-	 */
+-	private static final long	serialVersionUID	= 6898601221863739612L;
+-
+-	private String				receiverName;
+-
+-	private String				receilverAddr;
+-
+-	private String				province;
+-
+-	private String				city;
+-
+-	private String				area;
+-
+-	private String				zipCode;
+-
+-	private String				phoneNumber;
+-
+-	private Boolean				savToAddrBook;
+-
+-	private Boolean				saveToSocialNetwork;
+-
+-	private String				deliveryTime;
+-
+-	private String				caption;
+-
+-	/**
+-	 * @return the receiverName
+-	 */
+-	public String getReceiverName(){
+-		return receiverName;
+-	}
+-
+-	/**
+-	 * @param receiverName
+-	 *            the receiverName to set
+-	 */
+-	public void setReceiverName(String receiverName){
+-		this.receiverName = receiverName;
+-	}
+-
+-	/**
+-	 * @return the receilveraddr
+-	 */
+-	/**
+-	 * @return the province
+-	 */
+-	public String getProvince(){
+-		return province;
+-	}
+-
+-	/**
+-	 * @return the receilverAddr
+-	 */
+-	public String getReceilverAddr(){
+-		return receilverAddr;
+-	}
+-
+-	/**
+-	 * @param receilverAddr
+-	 *            the receilverAddr to set
+-	 */
+-	public void setReceilverAddr(String receilverAddr){
+-		this.receilverAddr = receilverAddr;
+-	}
+-
+-	/**
+-	 * @param province
+-	 *            the province to set
+-	 */
+-	public void setProvince(String province){
+-		this.province = province;
+-	}
+-
+-	/**
+-	 * @return the city
+-	 */
+-	public String getCity(){
+-		return city;
+-	}
+-
+-	/**
+-	 * @param city
+-	 *            the city to set
+-	 */
+-	public void setCity(String city){
+-		this.city = city;
+-	}
+-
+-	/**
+-	 * @return the area
+-	 */
+-	public String getArea(){
+-		return area;
+-	}
+-
+-	/**
+-	 * @param area
+-	 *            the area to set
+-	 */
+-	public void setArea(String area){
+-		this.area = area;
+-	}
+-
+-	/**
+-	 * @return the zipCode
+-	 */
+-	public String getZipCode(){
+-		return zipCode;
+-	}
+-
+-	/**
+-	 * @param zipCode
+-	 *            the zipCode to set
+-	 */
+-	public void setZipCode(String zipCode){
+-		this.zipCode = zipCode;
+-	}
+-
+-	/**
+-	 * @return the phoneNumber
+-	 */
+-	public String getPhoneNumber(){
+-		return phoneNumber;
+-	}
+-
+-	/**
+-	 * @param phoneNumber
+-	 *            the phoneNumber to set
+-	 */
+-	public void setPhoneNumber(String phoneNumber){
+-		this.phoneNumber = phoneNumber;
+-	}
+-
+-	/**
+-	 * @return the savToAddrBook
+-	 */
+-	public Boolean getSavToAddrBook(){
+-		return savToAddrBook;
+-	}
+-
+-	/**
+-	 * @param savToAddrBook
+-	 *            the savToAddrBook to set
+-	 */
+-	public void setSavToAddrBook(Boolean savToAddrBook){
+-		this.savToAddrBook = savToAddrBook;
+-	}
+-
+-	/**
+-	 * @return the saveToSocialNetwork
+-	 */
+-	public Boolean getSaveToSocialNetwork(){
+-		return saveToSocialNetwork;
+-	}
+-
+-	/**
+-	 * @param saveToSocialNetwork
+-	 *            the saveToSocialNetwork to set
+-	 */
+-	public void setSaveToSocialNetwork(Boolean saveToSocialNetwork){
+-		this.saveToSocialNetwork = saveToSocialNetwork;
+-	}
+-
+-	/**
+-	 * @return the deliveryTime
+-	 */
+-	public String getDeliveryTime(){
+-		return deliveryTime;
+-	}
+-
+-	/**
+-	 * @param deliveryTime
+-	 *            the deliveryTime to set
+-	 */
+-	public void setDeliveryTime(String deliveryTime){
+-		this.deliveryTime = deliveryTime;
+-	}
+-
+-	/**
+-	 * @return the caption
+-	 */
+-	public String getCaption(){
+-		return caption;
+-	}
+-
+-	/**
+-	 * @param caption
+-	 *            the caption to set
+-	 */
+-	public void setCaption(String caption){
+-		this.caption = caption;
+-	}
+-}
+Index: src/main/java/com/jumbo/shop/web/command/OrderCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/OrderCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/OrderCommand.java	(working copy)
+@@ -1,152 +0,0 @@
+-/**
+- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+- *
+- * This software is the confidential and proprietary information of Jumbomart.
+- * You shall not disclose such Confidential Information and shall use it only in
+- * accordance with the terms of the license agreement you entered into
+- * with Jumbo.
+- *
+- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+- * THIS SOFTWARE OR ITS DERIVATIVES.
+- *
+- */
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-import java.util.ArrayList;
+-import java.util.HashMap;
+-import java.util.List;
+-import java.util.Map;
+-
+-import org.springframework.ui.Model;
+-
+-import com.jumbo.brandstore.dao.master.CommentDao;
+-import com.jumbo.brandstore.dao.master.SkuInventoryDao;
+-import com.jumbo.brandstore.dao.member.MemberDao;
+-import com.jumbo.brandstore.dao.member.MemberFavoriteDao;
+-import com.jumbo.brandstore.dao.sales.SalesOrderDao;
+-import com.jumbo.brandstore.dao.system.SizeRefDao;
+-import com.jumbo.brandstore.model.member.Member;
+-import com.jumbo.brandstore.model.sales.SalesOrder;
+-import com.jumbo.brandstore.model.sales.SoLine;
+-import com.jumbo.brandstore.util.Md5Encrypt;
+-
+-public class OrderCommand implements Serializable{
+-
+-	private static final long	serialVersionUID			= 1L;
+-
+-	private String				timeType;
+-
+-	private String				statusValue;
+-
+-	private String				tabId;
+-
+-	private Map<String, String>	mdMap						= new HashMap<String, String>();
+-
+-	private List<Integer>		treatmenStatustList			= new ArrayList<Integer>();
+-
+-	private List<Integer>		historyStatusList			= new ArrayList<Integer>();
+-
+-	public final int			HISTORY_STATUS_COUNT		= 3;
+-
+-	public final int			TREARMENT_STATUS_COUNT		= 4;
+-
+-	public String				sOLogisticLifeCycleStatus	= "SOLogisticLifeCycleStatus";
+-
+-	public String				sOfinanceStatus				= "SOfinanceStatus";
+-
+-	public final String			PAID_TYPE					= "PAID";
+-
+-	public final String			ALL_TYPE					= "ALL";
+-
+-	public final String			TIME_TYPE					= "befor";
+-
+-	public void getOrderNum(SalesOrderDao salesOrderDao,MemberFavoriteDao memberFavoriteDao,CommentDao commentDao,MemberDao memberDao,Long memberId,Model model){
+-		// 未处理中的订单数量
+-		Map<String, Object> statusTreatListMap = new HashMap<String, Object>();
+-		statusTreatListMap.put("statusCount", TREARMENT_STATUS_COUNT);
+-		for (int i = 1; i <= TREARMENT_STATUS_COUNT; i++)
+-			statusTreatListMap.put("s" + i, getTreatmenStatustList().get(i - 1));
+-		int unDoNumber = salesOrderDao.findTreatmentNumber(memberId, statusTreatListMap);
+-		// 历史订单数量
+-		Map<String, Object> statusHistListMap = new HashMap<String, Object>();
+-		statusHistListMap.put("statusCount", HISTORY_STATUS_COUNT);
+-		for (int i = 1; i <= HISTORY_STATUS_COUNT; i++){
+-			statusHistListMap.put("s" + i, getHistoryStatusList().get(i - 1));
+-		}
+-		int hostNumber = salesOrderDao.findHostOrderNumber(memberId, statusHistListMap);
+-		int favorNumber = memberFavoriteDao.findFavoriteByMemberCount(memberId);
+-		long commentNumber = commentDao.findCommentByMemberCount(memberId);
+-		Member mem = memberDao.getByPrimaryKey(memberId);
+-		model.addAttribute("unDoNumber", unDoNumber);
+-		model.addAttribute("hostNumber", hostNumber);
+-		model.addAttribute("favorName", favorNumber);
+-		model.addAttribute("commentNumber", commentNumber);
+-	}
+-
+-	public List<String> getOrderSizeList(List<SoLine> soLineList,SkuInventoryDao skuInventoryDao,SizeRefDao sizeRefDao){
+-		List<String> sizeList = new ArrayList<String>();
+-		for (SoLine sl : soLineList){
+-			// Map<String, Long> map = SizeRefCompa.getCateAndGender(sl.getSku());
+-			// Long category = map.get("category"), gender = map.get("gender");
+-			// SizeRef sizeRef = sizeRefDao.findSizeRef(skuInventoryDao.findByUpc(sl.getUpc()).getSkuSize(), category, gender);
+-			// sizeList.add(sizeRef.getRef());
+-		}
+-		return sizeList;
+-	}
+-
+-	public String getTimeType(){
+-		return timeType;
+-	}
+-
+-	public void setTimeType(String timeType){
+-		this.timeType = timeType;
+-	}
+-
+-	public void setStatusType(String statusType){}
+-
+-	public String getStatusValue(){
+-		return statusValue;
+-	}
+-
+-	public void setStatusValue(String statusValue){
+-		this.statusValue = statusValue;
+-	}
+-
+-	public String getTabId(){
+-		return tabId;
+-	}
+-
+-	public void setTabId(String tabId){
+-		this.tabId = tabId;
+-	}
+-
+-	public List<Integer> getTreatmenStatustList(){
+-		treatmenStatustList.add(SalesOrder.SALES_ORDER_STATUS_NEW);
+-		treatmenStatustList.add(SalesOrder.SALES_ORDER_STATUS_CONFIRMED);
+-		treatmenStatustList.add(SalesOrder.SALES_ORDER_STATUS_WH_HANDLING);
+-		treatmenStatustList.add(SalesOrder.SALES_ORDER_STATUS_DELIVERIED);
+-		return treatmenStatustList;
+-	}
+-
+-	public List<Integer> getHistoryStatusList(){
+-		historyStatusList.add(SalesOrder.SALES_ORDER_STATUS_FINISHED);
+-		historyStatusList.add(SalesOrder.SALES_ORDER_STATUS_CANCELED);
+-		historyStatusList.add(SalesOrder.SALES_ORDER_STATUS_SYS_CANCELED);
+-		return historyStatusList;
+-	}
+-
+-	public Map<String, String> getMDMap(List<SalesOrder> salesOrderList,String loginName){
+-		for (SalesOrder so : salesOrderList){
+-			StringBuffer sb = new StringBuffer();
+-			sb.append(loginName).append(",").append(so.getId());
+-			String md5Str = Md5Encrypt.md5(sb.toString(), Md5Encrypt.MD5_ENCODEING);
+-			mdMap.put("digest" + so.getId(), md5Str);
+-		}
+-		return mdMap;
+-	}
+-}
+Index: src/main/webapp/images/lajidai.jpg
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+Index: src/main/java/com/jumbo/shop/util/Tree.java
+===================================================================
+--- src/main/java/com/jumbo/shop/util/Tree.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/util/Tree.java	(working copy)
+@@ -12,6 +12,7 @@
+ public abstract class Tree{
+ 
+ 	protected static final Logger	log				= LoggerFactory.getLogger(Tree.class);
++	
+ 
+ 	private Map						treeNodeMaps	= new Hashtable();
+ 
+Index: src/main/java/com/jumbo/shop/web/command/SkuInfoCommand.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/command/SkuInfoCommand.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/command/SkuInfoCommand.java	(working copy)
+@@ -1,62 +0,0 @@
+-package com.jumbo.shop.web.command;
+-
+-import java.io.Serializable;
+-import java.math.BigDecimal;
+-
+-public class SkuInfoCommand implements Serializable{
+-
+-	/**
+-	 * 
+-	 */
+-	private static final long	serialVersionUID	= -2886114684529094653L;
+-
+-	private String				code;
+-
+-	private String				name;
+-
+-	private String				size;
+-
+-	private BigDecimal			listPrice;
+-
+-	private Double				unitPrice;
+-
+-	public String getCode(){
+-		return code;
+-	}
+-
+-	public void setCode(String code){
+-		this.code = code;
+-	}
+-
+-	public String getName(){
+-		return name;
+-	}
+-
+-	public void setName(String name){
+-		this.name = name;
+-	}
+-
+-	public String getSize(){
+-		return size;
+-	}
+-
+-	public void setSize(String size){
+-		this.size = size;
+-	}
+-
+-	public BigDecimal getListPrice(){
+-		return listPrice;
+-	}
+-
+-	public void setListPrice(BigDecimal listPrice){
+-		this.listPrice = listPrice;
+-	}
+-
+-	public Double getUnitPrice(){
+-		return unitPrice;
+-	}
+-
+-	public void setUnitPrice(Double unitPrice){
+-		this.unitPrice = unitPrice;
+-	}
+-}
+Index: src/main/resources/META-INF/tld/widget.tld
+===================================================================
+--- src/main/resources/META-INF/tld/widget.tld	(revision 47866)
++++ src/main/resources/META-INF/tld/widget.tld	(working copy)
+@@ -1,102 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+-	
+-	<tlib-version>1.1</tlib-version>
+-	<short-name>widget</short-name>
+-	<uri>http://www.baozun.cn/taglibs/widget</uri>
+-	<description>官方商城组Widget组件</description>
+-	
+-	<tag>
+-		<name>ocs</name>
+-		<tag-class>com.jumbo.brandstore.web.taglib.OnlineCustomerServiceTag</tag-class>
+-		<body-content>empty</body-content>
+-		<description>在线客服组件</description>
+-		<attribute>
+-			<name>id</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>type</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>url</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-	</tag>
+-	
+-	<tag>
+-		<name>pagination</name>
+-		<tag-class>com.jumbo.brandstore.web.taglib.PaginationTag</tag-class>
+-		<body-content>empty</body-content>
+-		<description>分页组件</description>
+-		<attribute>
+-			<name>id</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>pageSize</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>page</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute>
+-		<attribute>
+-			<name>showPageNum</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute>
+-		<attribute>
+-			<name>url</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute>
+-		<attribute>
+-			<name>itmes</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute>
+-	</tag>
+-	
+-	<tag>
+-		<name>search</name>
+-		<tag-class>com.jumbo.brandstore.web.taglib.SearchTag</tag-class>
+-		<body-content>empty</body-content>
+-		<description>搜索条组件</description>
+-		<attribute>
+-			<name>id</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>maxlength</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>defaultValue</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>url</name>
+-			<required>true</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-		<attribute>
+-			<name>method</name>
+-			<required>false</required>
+-			<rtexprvalue>true</rtexprvalue>
+-		</attribute> 
+-	</tag>
+-	
+-</taglib>
+\ No newline at end of file
+Index: src/main/java/com/jumbo/shop/web/UserDetails.java
+===================================================================
+--- src/main/java/com/jumbo/shop/web/UserDetails.java	(revision 47866)
++++ src/main/java/com/jumbo/shop/web/UserDetails.java	(working copy)
+@@ -98,10 +98,18 @@
+ 		// return user.getIsPwdNonExpired() == null? false : true;
+ 		return true;
+ 	}
++	
++	
++	
++	
+ 
+ 	public boolean isEnabled(){
+ 		return user.getIsEnabled() == null ? false : true;
+ 	}
++	
++	
++	
++	
+ 
+ 	public boolean check(String[] acls){
+ 		if (this.authorities == null || this.authorities.size() == 0)

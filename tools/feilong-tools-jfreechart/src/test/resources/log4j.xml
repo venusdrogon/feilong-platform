@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<!-- The default target is System.out. -->
+		<!-- <param name="Target" value="System.out" /> -->
+		<param name="Threshold" value="debug" />
+		<!-- 设置监视器输出方式 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p (%F:%L) [%M()] %m%n" />
+		</layout>
+		<!--限制输出级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<appender name="htmlFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.html'" />
+		<param name="File" value="D:\\logs\\feilong\\feilong-core\\log.html" />
+		<layout class="org.apache.log4j.HTMLLayout">
+			<param name="LocationInfo" value="true" />
+			<param name="Title" value="feilong-common log" />
+		</layout>
+	</appender>
+
+	<appender name="logFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="File" value="D:\\logs\\feilong\\feilong-core\\log.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="logFile-security" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="File" value="D:\\logs\\feilong\\feilong-core\\log-security.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
+		</layout>
+	</appender>
+
+	<category name="org.hibernate">
+		<priority value="info" />
+	</category>
+	<category name="org.springframework">
+		<priority value="info" />
+	</category>
+
+	<category name="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<priority value="info" />
+	</category>
+
+	<category name="com.feilong">
+		<priority value="debug" />
+	</category>
+	
+	<category name="elsepackage">
+		<priority value="debug" />
+	</category>
+
+	<category name="com.feilong.commons.core.security" additivity="false">
+		<priority value="debug" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="logFile-security" />
+	</category>
+
+
+	<!-- 设置接收所有输出的通道 -->
+	<root>
+		<level value="debug" />
+		<appender-ref ref="htmlFile" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="logFile" />
+	</root>
+</log4j:configuration>

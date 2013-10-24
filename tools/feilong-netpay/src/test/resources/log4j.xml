@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<param name="Threshold" value="debug" />
+
+		<!-- 设置监视器输出方式 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p (%F:%L) [%M()] - %m%n" />
+		</layout>
+
+		<!--限制输出级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+
+	<!-- ******************loxia****************** -->
+	<category name="loxia">
+		<priority value="warn" />
+	</category>
+	<category name="loxia.aspect.ReadWriteDataSourceAspect">
+		<priority value="info" />
+	</category>
+	<category name="loxia.dao.ReadWriteDataSource">
+		<priority value="info" />
+	</category>
+	<category name="loxia.support.cache.CacheAspect">
+		<priority value="debug" />
+	</category>
+
+	<!-- ******************org.hibernate****************** -->
+	<category name="org.hibernate">
+		<priority value="info" />
+	</category>
+
+	<!-- ******************org.springframework****************** -->
+
+
+	<category name="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<priority value="warn" />
+	</category>
+
+	<!-- ******************com.feilong****************** -->
+
+	<category name="com.feilong">
+		<priority value="warn" />
+		<appender-ref ref="CONSOLE" />
+	</category>
+
+	<category name="com.feilong.servlet.http.RequestUtil">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.feilong.commons.core.security.SymmetricEncryption">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.feilong.commons.core.util.StringUtil">
+		<priority value="warn" />
+	</category>
+
+	<!-- ******************com.jumbo****************** -->
+	<category name="com.jumbo">
+		<priority value="info" />
+	</category>
+	<category name="com.jumbo.controller.common.ErrorController">
+		<priority value="warn" />
+	</category>
+	<category name="com.jumbo.manager.lucene.ProductResultTransformer">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.view">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.web.CacheService">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.util.CacheConfig">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.web.PageStaticTilesView">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.util.CookieUtil">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.manager.ScriptManager">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.jumbo.interceptor">
+		<priority value="warn" />
+	</category>
+
+
+	<!-- debug 验证码 -->
+	<category name="com.jumbo.servlet.SecurityImageServlet">
+		<priority value="debug" />
+	</category>
+
+	<category name="com.jumbo.controller.member.MemberLoginController">
+		<priority value="debug" />
+	</category>
+
+
+	<category name="com.jumbo.controller.common.ErrorController">
+		<priority value="debug" />
+	</category>
+	<category name="com.jumbo.web.interceptor.UserDetailsInterceptor">
+		<priority value="debug" />
+	</category>
+
+	<!-- 设置接收所有输出的通道 -->
+	<root>
+		<level value="debug" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>

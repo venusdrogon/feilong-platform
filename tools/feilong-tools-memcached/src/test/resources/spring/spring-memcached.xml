@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="com.jumbo.shop.manager.test" />
+
+	<util:properties id="p_memcached" location="classpath:config/memcached.properties"></util:properties>
+
+	<!--memcached client -->
+	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+		<property name="servers" value="#{p_memcached['memcachedClient.servers']}" />
+		<property name="protocol" value="#{p_memcached['memcachedClient.protocol']}" />
+		<property name="transcoder">
+			<bean class="net.spy.memcached.transcoders.SerializingTranscoder">
+				<property name="compressionThreshold" value="#{p_memcached['memcachedClient.transcoder.compressionThreshold']}" />
+			</bean>
+		</property>
+		<property name="opTimeout" value="#{p_memcached['memcachedClient.opTimeout']}" />
+		<property name="timeoutExceptionThreshold" value="#{p_memcached['memcachedClient.timeoutExceptionThreshold']}" />
+		<property name="hashAlg">
+			<value type="net.spy.memcached.DefaultHashAlgorithm">KETAMA_HASH</value>
+		</property>
+		<property name="locatorType" value="#{p_memcached['memcachedClient.locatorType']}" />
+		<property name="failureMode" value="#{p_memcached['memcachedClient.failureMode']}" />
+		<property name="useNagleAlgorithm" value="#{p_memcached['memcachedClient.useNagleAlgorithm']}" />
+	</bean>
+
+	<bean id="transcoder" class="loxia.support.cache.SerializingStringSetTranscoder">
+		<property name="compressionThreshold" value="#{p_memcached['transcoder.compressionThreshold']}" />
+	</bean>
+
+	<bean id="cacheAspect" class="loxia.support.cache.CacheAspect" />
+</beans>

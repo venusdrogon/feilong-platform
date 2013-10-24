@@ -1,0 +1,3220 @@
+### Eclipse Workspace Patch 1.0
+#P usercenter-frontend
+Index: build.properties
+===================================================================
+RCS file: /jumbo/usercenter/usercenter-frontend/build.properties,v
+retrieving revision 1.6
+diff -u -r1.6 build.properties
+--- build.properties	5 Dec 2011 07:21:56 -0000	1.6
++++ build.properties	11 Jul 2012 09:00:34 -0000
+@@ -1,4 +1,4 @@
+-appserver.home=/home/webuser/appserver/tomcat-usercenterfront
++appserver.home=D:/webApps
+ deploy.home=${appserver.home}/webapps/${ant.project.name}
+ 
+ messages.dir=${basedir}/messages
+\ No newline at end of file
+Index: pom.xml
+===================================================================
+RCS file: /jumbo/usercenter/usercenter-frontend/pom.xml,v
+retrieving revision 1.14
+diff -u -r1.14 pom.xml
+--- pom.xml	25 Nov 2011 09:28:06 -0000	1.14
++++ pom.xml	11 Jul 2012 09:00:34 -0000
+@@ -18,9 +18,9 @@
+ 
+ 	<build>
+ 		<finalName>usercenter-frontend</finalName>
+-
+-
+-
++		<!-- 璁惧畾Web搴旂敤涓紪璇戠粨鏋滆緭鍑哄埌WEB-INF/classes 涓? 涓庝娇鐢↖DE鏃剁浉鍚?-->
++		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
++		<testOutputDirectory>src/main/webapp/WEB-INF/classes</testOutputDirectory>
+ 	</build>
+ 
+ 
+Index: src/main/java/com/jumbo/dao/system/ApiTaskDao.java
+===================================================================
+RCS file: /jumbo/usercenter/usercenter-frontend/src/main/java/com/jumbo/dao/system/ApiTaskDao.java,v
+retrieving revision 1.3
+diff -u -r1.3 ApiTaskDao.java
+--- src/main/java/com/jumbo/dao/system/ApiTaskDao.java	7 Nov 2011 05:03:54 -0000	1.3
++++ src/main/java/com/jumbo/dao/system/ApiTaskDao.java	11 Jul 2012 09:00:34 -0000
+@@ -26,6 +26,7 @@
+ 
+ @Transactional
+ public interface ApiTaskDao extends GenericEntityDao<ApiTask, Long> {
++	
+ 	/**
+ 	 * 鏌ヨ璋冪敤鑰呯殑鎸囧畾浠诲姟璋冪敤缁撴灉
+ 	 * @param clientId
+Index: src/main/resources/log4j.xml
+===================================================================
+RCS file: /jumbo/usercenter/usercenter-frontend/src/main/resources/log4j.xml,v
+retrieving revision 1.5
+diff -u -r1.5 log4j.xml
+--- src/main/resources/log4j.xml	30 Nov 2011 09:15:45 -0000	1.5
++++ src/main/resources/log4j.xml	11 Jul 2012 09:00:34 -0000
+@@ -1,63 +1,38 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+-
+-	<!--
+-		| For more configuration infromation and examples see the Jakarta
+-		Log4j | owebsite: http://jakarta.apache.org/log4j
+-	-->
+-
+-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+-	debug="false">
+-
+-	<!-- ================================= -->
+-	<!-- Preserve messages in a local file -->
+-	<!-- ================================= -->
+-
+-	<!--
+-		A size based file rolling appender <appender name="FILE"
+-		class="org.jboss.logging.appender.RollingFileAppender"> <errorHandler
+-		class="org.jboss.logging.util.OnlyOnceErrorHandler"/> <param
+-		name="File" value="${jboss.server.log.dir}/server.log"/> <param
+-		name="Append" value="false"/> <param name="MaxFileSize"
+-		value="500KB"/> <param name="MaxBackupIndex" value="1"/> <layout
+-		class="org.apache.log4j.PatternLayout"> <param
+-		name="ConversionPattern" value="%d %-5p [%c] %m%n"/> </layout>
+-		</appender>
+-	-->
+-
+-	<!-- ============================== -->
+-	<!-- Append messages to the console -->
+-	<!-- ============================== -->
++<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
++	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
++		<param name="File" value="d:/logs/usercenter/log.log" />
++		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
++		<layout class="org.apache.log4j.PatternLayout">
++			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
++		</layout>
++	</appender>
+ 
+ 	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+-		<!--
+-			<errorHandler class="org.jboss.logging.util.OnlyOnceErrorHandler"/>
+-		-->
+ 		<param name="Target" value="System.out" />
+-		<param name="Threshold" value="info" />
+-
+ 		<!-- 璁剧疆鐩戣鍣ㄨ緭鍑烘柟寮?-->
+ 		<layout class="org.apache.log4j.PatternLayout">
+-			<!-- The default pattern: Date Priority [Category] Message\n -->
+-			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
++			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
+ 		</layout>
+-
+ 		<!--闄愬埗杈撳嚭绾у埆-->
+ 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+ 			<param name="LevelMax" value="ERROR" />
+-			<param name="LevelMin" value="info" />
++			<param name="LevelMin" value="debug" />
+ 		</filter>
+-
+ 	</appender>
+ 
+ 	<category name="loxia">
+ 		<priority value="error" />
+ 	</category>
+ 
+-	<!-- 璁剧疆鎺ユ敹鎵?湁杈撳嚭鐨勯?閬?-->
++	<category name="org.hibernate.tool.hbm2ddl">
++		<priority value="debug" />
++	</category>
++
+ 	<root>
+ 		<level value="info" />
+ 		<appender-ref ref="CONSOLE" />
++		<appender-ref ref="FILE" />
+ 	</root>
+-
+-</log4j:configuration>
++</log4j:configuration>
+\ No newline at end of file
+Index: src/main/webapp/css/main1.css
+===================================================================
+RCS file: src/main/webapp/css/main1.css
+diff -N src/main/webapp/css/main1.css
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ src/main/webapp/css/main1.css	1 Jan 1970 00:00:00 -0000
+@@ -0,0 +1,2451 @@
++锘?*login page*/
++html{
++
++}
++.login_bg_0{
++    background:#09506C;
++    height: 100%;
++    width: 100%;
++}
++.login_bg{
++    background:url(../images/login_bg_1.jpg) no-repeat center center #09506C;
++    width: 100%;
++	height: 100%;
++	margin:auto;
++}
++.login_link{
++	margin:0 auto;
++	width:252px;
++	height:275px;
++}
++.login_link a{
++	display:block;
++	width:252px;
++	height:45px;
++	/*margin-bottom:23px;*/
++}
++.login_link a em{
++	display:none;
++}
++/*login page end*/
++body {
++	background:url(../images/header_bg.jpg) no-repeat -100px top #fff;
++	margin: 0; 
++	padding: 0;
++	font-family: Geneva,Arial,Helvetica,sans-serif;
++    font-size: 12px;
++    line-height: 1.5;
++}
++div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, button, textarea, p, th, td, span {
++    margin: 0;
++    padding: 0;
++	text-transform:none;
++}
++table {
++    border-collapse: collapse;
++    border-spacing: 0;
++}
++fieldset {
++    border-style: none;
++}
++img {
++    border-style: none;
++}
++input, button, textarea, select {
++    font-family: inherit;
++    font-size: 12px;
++}
++li {
++    list-style-type: none;
++}
++a{
++	text-decoration:none;
++}
++a:link, a:visited {
++    color: #323232;
++}
++a:hover, a:active {
++    color: #019cbb;
++}
++em{
++	display:none;
++}
++.white a:link, .white a:visited {
++    color: #fff;
++}
++.white a:hover, .white a:active {
++    color: #323232;
++}
++.orange a:link, .orange a:visited {
++    color: #fb8a04;
++}
++.orange a:hover, .orange a:active {
++    color: #323232;
++}
++.blue a:link, .blue a:visited {
++    color: #009cbb;
++}
++.blue a:hover, .blue a:active {
++    color: #323232;
++}
++.blue2 a:link, .blue2 a:visited {
++    color: #166086;
++}
++.blue2 a:hover, .blue2 a:active {
++    color: #323232;
++}
++.grey a:link, .grey a:visited {
++    color: #9d9d9d;
++}
++.grey a:hover, .grey a:active {
++    color: #019cbb;
++}
++.clear {
++    clear: both;
++    height: 0;
++    line-height: 0;
++    overflow: hidden;
++}
++#scrollDiv {
++	width:190px;
++    height: 248px;
++	text-align:center;
++	clear:both;
++	overflow:hidden;
++	position:relative;
++}
++#scrollDiv ul {
++	margin:0;
++	padding:0;
++}
++#scrollDiv li {
++    height: 60px;
++}
++
++/*index page end*/
++.header{
++	width:1003px;
++	margin:0 auto;
++	position:relative;
++	overflow:hidden;
++	height:auto;
++}
++.nav{
++	text-align:right;
++	font-size:13px;
++	height:28px;
++	line-height:28px;
++}
++.nav a{
++	padding:0 15px 0 15px;
++}
++.nav .iframe_sina{
++	position:absolute;
++	right:250px;
++	top:3px;
++}
++.line1{
++	border-right:1px solid #b8f4f5;
++}
++.logo{
++	height:100px;
++	background:url(../images/logo_bg.jpg) no-repeat;
++	_background:url(../images/logo_bg.jpg) no-repeat left -1px;
++}
++.logo a{
++	width:233px;
++	height:50px;
++	display:block;
++	position:absolute;
++	top:55px;
++	left:0px;
++}
++/*index page--header end*/
++#page{
++    background-color: #FFFFFF;
++    clear: both;
++    height: auto;
++    margin: 0 auto;
++    overflow: hidden;
++    padding: 0;
++    position: relative;
++    width: 1003px;
++}
++.all_left{
++    float: left;
++    height: auto;
++    position: relative;
++    width: 200px;
++}
++.tree_top{
++    background:url(../images/tree_top.jpg) no-repeat;
++    height: 38px;
++    width: 200px;
++}
++.tree_top2{
++    background:url(../images/tree_top2.jpg) no-repeat;
++}
++.tree_top a{
++	display:block;
++    height: 38px;
++    width: 200px;
++}
++.tree_end{
++    background:url(../images/tree_end.jpg) no-repeat;
++    height: 2px;
++    width: 200px;
++}
++.tbox{
++	width:200px;
++	height:auto;
++	overflow:hidden;
++}
++.tbox dt{
++    background:url(../images/grey_skin.jpg) no-repeat;
++    height: 31px;
++    overflow: hidden;
++	width:200px;
++}
++.tbox dt span{
++	display:block;
++	color:#FFF;
++	font-weight:bold;
++	margin:6px 0 0 18px;
++	margin:8px 0 0 18px\9;
++}
++.tbox .dt2{
++	background:#EEE;
++	border-left:1px solid #CCC;
++	border-right:1px solid #CCC;
++	width:198px;
++    height: 31px;
++    overflow: hidden;
++}
++.tbox .dt2 span{
++	color:#009cb9;
++}
++.tbox dd{
++    background:#ececec;
++	border-left:1px solid #CCC;
++	border-right:1px solid #CCC;
++    overflow: hidden;
++}
++.tbox dd ul li{
++	height:29px;
++	line-height:29px;
++}
++/*index page--all_left end*/
++.all_right {
++    float:right;
++    height: auto;
++    margin: 0 0 0 12px;
++    overflow: hidden;
++    padding: 0;
++    position: relative;
++    width: 791px;
++}
++.dibox{
++	clear:both;
++
++	width:791px;
++	height:auto;
++	overflow:hidden;
++}
++.dibox .dibox_top{
++	background:url(../images/dibox_top.jpg) no-repeat;
++	height:3px;
++	width:791px;
++	overflow:hidden;
++}
++.dibox .dibox_top2{
++	background:url(../images/dibox_top2.jpg) no-repeat;
++	height:2px;
++	width:791px;
++	overflow:hidden;
++}
++.dibox .dibox_center{
++	border-left:1px solid #CCC;
++	border-right:1px solid #CCC;
++	overflow:hidden;
++}
++.dibox .dibox_end{
++	clear:both;
++	background:url(../images/dibox_end.jpg) no-repeat;
++	height:2px;
++	font-size:0;
++}
++.dibox .dibox_end2{
++	clear:both;
++	background:url(../images/dibox_end2.jpg) no-repeat;
++	height:3px;
++	font-size:0;
++}
++.dibox .h131{
++	height:131px;
++}
++.user_head{
++	float:left;
++	width:173px;
++	height:131px;
++	position:relative;
++}
++.user_head span{
++	width:94px;
++	height:94px;
++	background:url(../images/user_head_border.jpg) no-repeat;
++	position:absolute;
++	top:18px;
++	left:29px;
++}
++.user_head span img{
++	margin-top:3px;
++	margin-left:4px;
++	width:87px;
++	height:87px;
++	overflow:hidden;
++}
++.user_info{
++	float:left;
++	line-height:30px;
++	width:750px;
++	height:126px;
++	padding-top:5px;
++	overflow:hidden;
++	padding-left:20px;
++}
++.user_info a{
++	text-decoration:underline;
++}
++.user_info div ul li.blue a{
++	font-size:16px;
++}
++.user_info div{
++	float:left;
++	margin-right:20px;
++	overflow:hidden;
++}
++/*Solution than hidden*/
++.user_info div.div1{
++	height:122px;
++	width:220px;
++	overflow:hidden;
++}
++.user_info div.div1 ul li{
++	height:30px;
++	width:220px;
++	overflow:hidden;
++}
++.user_info div.div2{
++	height:122px;
++	width:400px;
++	overflow:hidden;
++}
++.user_info div.div2 ul li{
++	height:30px;
++	width:400px;
++	overflow:hidden;
++}
++/*Solution than hidden end*/
++.user_info div ul li{
++	clear:both;
++	position:relative;
++}
++.user_info div ul li img{
++	clear:both;
++	position:absolute;
++	top:2px;
++	left:115px;
++}
++.friendtips{
++	clear:both;
++	width:791px;
++	height:28px;
++	line-height:28px;
++	position:relative;
++	overflow:hidden;
++	margin-top:8px;
++}
++.friendtips span{
++	margin:0 10px 0 20px;
++}
++.friendtips img{
++	float:left;
++	margin-right:10px;
++}
++.recommend{
++	clear:both;
++	width:791px;
++	height:278px;
++	overflow:hidden;
++	margin-top:6px;
++}
++.recommend .rec_action{
++	float:left;
++	width:600px;
++	height:278px;
++	overflow:hidden;
++}
++.recommend .rec_action dt{
++	clear:both;
++	width:600px;
++	height:28px;
++	text-align:left;
++	overflow:hidden;
++}
++.recommend .rec_action dd{
++	border:1px solid #CCC;
++}
++/*banner cycle*/
++#ec-b1{
++	margin:0;
++	height:248px;
++	width:598px;
++	overflow:hidden;
++	position:relative;
++}
++#btn {
++    position: absolute;
++	right:36px;
++	bottom:8px;
++    z-index:10;
++}
++#btn a{
++	display:inline-block;
++	width:10px;
++	height:10px;
++	background:#d8d8d8;
++	margin:0 5px 0 0;
++	font-size:0;
++	line-height:0;
++}
++#btn a.activeSlide{
++	background:#28688a;
++}
++/*banner cycle end*/
++.recommend .rec_brand{
++	float:left;
++	width:191px;
++	height:278px;
++	overflow:hidden;
++}
++.recommend .rec_brand dt{
++	clear:both;
++	width:191px;
++	height:28px;
++	overflow:hidden;
++}
++.recommend .rec_brand dd{
++	border-right:1px solid #CCC;
++	border-top:1px solid #CCC;
++	border-bottom:1px solid #CCC;
++}
++/*beautify_scrollbar*/
++.recommend .rec_brand dd div#rec_brand_scorll{
++	width:190px;
++	height:248px;
++	overflow:hidden;
++	position:relative;
++	text-align:center;
++}
++/*beautify_scrollbar end*/
++.recentorders{
++	clear: both;
++	width: 791px;
++	height:auto;
++    margin-top: 12px;
++	position:relative;
++    overflow: hidden;
++}
++.recentorders dt{
++	width: 791px;
++	height:30px;
++	text-align:left;
++	overflow:hidden;
++}
++.recentorders dd{
++	width: 791px;
++	height:auto;
++	overflow:hidden;
++	position:relative;
++}
++.tab_header{
++	border-top:1px solid #CCC;
++	border-left:1px solid #CCC;
++	border-right:1px solid #CCC;
++	border-bottom:none;
++	overflow:hidden;
++}
++.tab_header table{
++	width:789px;
++	height:32px;
++	overflow:hidden;
++	line-height:32px;
++	text-align:center;
++	color:#525252;
++}
++.tab_cont{
++	border:1px solid #CCC;
++	margin-bottom:1px;
++}
++.tab_cont_1{
++	width:789px;
++	height:auto;
++	overflow:hidden;
++	position:relative;
++	color:#262626;
++}
++.tab_cont_1 th{
++	text-align:left;
++	font-weight:400;
++	height:27px;
++	line-height:27px;
++	color:#4c4c4c;
++	background:#ececec;
++}
++.tab_cont_1 th div{
++	width:789px;
++	height:27px;
++	overflow:hidden;
++	position:relative;
++}
++.tab_cont_1 th div span{
++	margin:0 40px 0 25px;
++}
++.tab_cont_1 td{
++	border-right:1px solid #CCC;
++	text-align:center;
++}
++.tab_cont_1 td div{
++	margin:5px;
++	overflow:hidden;
++}
++.tab_cont_2{
++	clear:both;
++	width:332px;
++	position:relative;
++	overflow:hidden;
++}
++.tab_cont_2 .tab2_sku{
++	clear:both;
++	width:221px;
++	/*height:70px;*/
++	position:relative;
++	overflow:hidden;
++	text-align:left;
++}
++.tab_cont_2 .tab2_sku .tab2_sku_img{
++	display:block;
++	border:1px solid #CCC;
++	position:absolute;
++	top:5px;
++	left:5px;
++}
++.tab_cont_2 .tab2_sku .tab2_sku_info{
++	margin:10px 0 10px 20px;
++}
++.tab_cont_2 .tab2_sku .tab2_sku_info span{
++	display:block;
++	height:18px;
++	overflow:hidden;
++}
++/*index sys_info*/
++.place{
++	clear:both;
++	width:791px;
++	height:38px;
++	line-height:38px;
++	position:relative;
++	overflow:hidden;
++}
++.place div{
++	float:left;
++	width:30px;
++	height:38px;
++	position:relative;
++}
++.place div img{
++	position:absolute;
++	top:12px;
++	left:3px;
++}
++.place span{
++	margin-right:10px;
++}
++.place span a{
++	text-decoration:underline;
++}
++.table_col3{
++	line-height:27px;
++	text-align:center;
++	width:789px;
++	height:auto;
++	position:relative;
++	overflow:hidden;
++	color:#262626;
++}
++.table_col3 th{
++	background:#ececec;
++	height:27px;
++	color:#525252;
++}
++.table_col3 td{
++	border-right:1px solid #CCC;
++	border-top:1px solid #CCC;
++}
++.table_col3 td div.sinfo_title{
++	height:27px;
++	overflow:hidden;
++}
++.table_col3 td div span{
++	margin:0 10px 0 0;
++}
++.table_col3 .sinfo_hid_tr{
++	display:none;
++}
++.table_col3 td.sinfo_hid{
++	height:auto;
++	border-right:none;
++}
++.table_col3 td.sinfo_hid div.div1{
++	width:741px;
++	margin:5px 24px 7px;
++	*margin:5px 22px 7px;
++	background:#ececec;
++}
++.table_col3 td.sinfo_hid div.div2{
++	width:721px;
++	padding:5px 10px;
++}
++.table_col3 td.sinfo_hid div.div3{
++	width:721px;
++	padding:5px 10px;
++}
++/*index sys_info end*/
++/*index page--all_right end*/
++.footer{
++	clear:both;
++	margin-top:20px;
++	height:152px;
++	overflow:hidden;
++	position:relative;
++}
++.footer .content{
++	background-color: #FFFFFF;
++    clear: both;
++    height: auto;
++    margin: 0 auto;
++    overflow: hidden;
++    padding: 0;
++    position: relative;
++    width: 1003px;
++}
++.footer p{
++	clear:both;
++	width:550px;
++	height:20px;
++	line-height:20px;
++	overflow:hidden;
++	position:relative;
++	text-align:center;
++	color: #166086;
++	font-family:"瀹嬩綋";
++	margin-bottom:2px;
++}
++.footer p a{
++	margin:0 8px;
++}
++.footer p .span_line{
++	display:inline-block;
++	border-right:1px solid #68afc4;
++}
++.footer .subscribe{
++	clear:both;
++	text-align:right;
++	position:absolute;
++	top:10px;
++	right:0;
++}
++.footer .subscribe div{
++	margin-bottom:5px;
++	float:left;
++	margin-right:2px;
++	_margin-right:0px;
++}
++
++
++/*footer end*/
++/*user_info*/
++label{
++	display:block;
++	float:left;
++	height:23px;
++	line-height:23px;
++	padding:5px;
++}
++label input,label select{
++	/*color:#9d9d9d;*/
++}
++.lab_left{
++    text-align: right;
++    width: 107px;
++}
++.lab_left2{
++    width: 77px;
++}
++.lab_left3{
++    width: 100px;
++}
++.lab_left span{
++	color:#FF6600;
++}
++.lab_right{
++	position:relative;
++}
++.region{
++	display:block;
++	float:left;
++	height:23px;
++	line-height:23px;
++	padding:5px;
++	position:relative;
++}
++.lab_right img{
++	position:absolute;
++	left:5px;
++	top:2px;
++}
++.lab_right a{
++	text-decoration:underline;
++	margin-left:20px;
++}
++.lab_right span{
++	padding:0 5px;
++}
++.lab_right select{
++	margin-right:5px;
++}
++.input279{
++	background:url(../images/input_279.jpg) no-repeat 2px 4px;
++	width:279px;
++	height:23px;
++}
++.input279 input{
++	width:270px;
++	height:18px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++}
++.input160{
++	background:url(../images/input_160.jpg) no-repeat 2px 4px;
++	width:160px;
++	height:23px;
++}
++.input160 input{
++	width:150px;
++	height:18px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++}
++.input100{
++	background:url(../images/input_100.jpg) no-repeat 2px 4px;
++	width:100px;
++	height:23px;
++}
++.input100 input{
++	width:90px;
++	height:18px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++}
++.input70{
++	background:url(../images/input_70.jpg) no-repeat 2px 4px;
++	width:70px;
++	height:23px;
++}
++.input70 input{
++	width:60px;
++	height:18px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++}
++.input80{
++	background:url(../images/input_80.jpg) no-repeat 2px 4px;
++	width:80px;
++	height:23px;
++}
++.input80 input{
++	width:80px;
++	height:18px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++}
++.input99{
++	background:url(../images/input_99.jpg) no-repeat 2px 4px;
++	width:99px;
++	height:23px;
++}
++.input99 input{
++	width:70px;
++	height:18px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++}
++.input164{
++	border:1px solid #134548;
++	width:162px;
++	height:22px;
++}
++.input164 input{
++	width:162px;
++	height:20px;
++	padding-top:3px;
++	padding-left:2px;
++	-moz-box-sizing: border-box;
++    background: none;
++    border-style: none;
++	color:#808080;
++	font-size:12px;
++}
++.select100 select{
++	width:100px;
++}
++.error{
++	display:none;
++    background:none;
++    height: auto;
++    padding-left: 20px;
++    padding-right: 10px;
++}
++.error_show{
++	display:block;
++    background:none;
++    height: auto;
++    padding-left: 20px;
++    padding-right: 10px;
++}
++/*user_info end*/
++/*user_level*/
++.dic_line
++{
++clear:both;
++position:relative;
++width:700px;
++color:#333333;
++padding:5px 0 0 0;
++margin:0 0 0 40px;
++line-height:1.3;
++}
++.do_left
++{
++position:relative;
++float:left;
++display:inline-block;
++width:auto;
++height:24px;
++line-height:1.9;
++}
++.do_right
++{
++position:relative;
++float:left;
++display:inline-block;
++width:auto;
++height:24px;
++color:#9d9d9d;
++line-height:1.9;
++margin:0 0 0 10px;
++}
++.tp_mem
++{
++position:relative;
++width:15px;
++height:24px;
++float:left;
++border:0;
++margin:0 0 0 10px;
++padding:0;
++}
++.clear_line_gray
++{
++clear:both;
++width:100%;
++height:1px;
++overflow:hidden;
++border-bottom:1px solid #e8e8e8;
++padding:10px 0 0 0;
++}
++.time_black
++{
++position:relative;
++float:left;
++display:inline-block;
++width:75px;
++height:auto;
++}
++.sgct
++{
++position:relative;
++float:left;
++}
++.table_area_bo
++{
++clear:both;
++position:relative;
++width:740px;
++margin:10px 0 0 25px;
++padding:0 0 20px 0;
++color:#333333;
++}
++.table_area_bo table
++{
++border-top:1px solid #dedede;
++border-left:1px solid #dedede;
++}
++.table_area_bo td
++{
++border-right:1px solid #dedede;
++border-bottom:1px solid #dedede;
++}
++/*user_level end*/
++/*user_address*/
++.addr_saved{
++	clear:both;
++	width:741px;
++	margin:0 auto;
++	overflow:hidden;
++	position:relative;
++}
++.addr_saved dt{
++	width:741px;
++	color:#fb8a04;
++	padding:12px 0 12px 10px;
++	overflow:hidden;
++}
++.addr_saved dd{
++	width:739px;
++	border:1px solid #CCC;
++	position:relative;
++	overflow:hidden;
++}
++.table_col6{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 739px;
++}
++.table_col6 th{
++	height:27px;
++	background:#ececec;
++	font-weight:400;
++}
++.table_col6 td {
++	border-top:1px solid #CCC;
++    height: 27px;
++	overflow:hidden;
++}
++.table_col6 td .setdef{
++	display:inline-block;
++	width:48px;
++	margin-right:10px;
++}
++.table_col6 td .setdef a{
++	display:none;
++}
++.table_col6 tr.tr_setdef {
++	background:#dff8fc;
++}
++/*user_address end*/
++/*points_detail*/
++.my_points{
++	clear:both;
++	width:791px;
++	height:27px;
++	line-height:27px;
++	background:#ececec;
++	overflow:hidden;
++	position:relative;
++}
++.my_points a{
++	text-decoration:underline;
++}
++.points_sel{
++	clear:both;
++	width:791px;
++	height:27px;
++	line-height:27px;
++	text-align:right;
++	overflow:hidden;
++	position:relative;
++	margin:12px 0 0 0;
++}
++.points_sel select{
++	color:#898989;
++	width:148px;
++	text-align:center;
++}
++.points_det{
++	border:1px solid #CCC;
++	margin-top:4px;
++}
++.tab_points{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.tab_points th {
++    background: none repeat scroll 0 0 #ECECEC;
++    font-weight: 400;
++    height: 27px;
++}
++.tab_points td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++/*points_detail end*/
++/*mem_guide*/
++.guide_left {
++    float: left;
++    height: auto;
++    position: relative;
++    width: 800px;
++}
++.gui_banner{
++	border:1px solid #CCC;
++}
++#ec-b2 {
++    height: 298px;
++    margin: 0;
++    overflow: hidden;
++    position: relative;
++    width: 798px;
++}
++#ec-b2 #btn {
++    position: absolute;
++    right: 10px;
++	bottom: 12px;
++    z-index: 10;
++}
++.gui_news{
++	clear:both;
++	width:800px;
++	height:29px;
++	background:#e5e5e5;
++	margin:11px 0 0 0;
++	overflow:hidden;
++	position:relative;
++}
++.gui_news .gui_news_img{
++	float:left;
++	width:25px;
++	height:29px;
++}
++.gui_news img{
++	width:18px;
++	height:17px;
++	position:absolute;
++	top:6px;
++	left:12px;
++}
++/*scrollNews end*/
++#scrollNews{
++	float:left;
++	height:29px;
++	line-height:29px;
++	width:750px;
++}
++#scrollNews a:hover, #scrollNews a:active {
++    color: #28688a;
++	text-decoration:underline;
++}
++#scrollNews ul li{
++	float:left;
++}
++/*scrollNews end*/
++.guide_right {
++    float: right;
++    height: auto;
++    margin: 0 0 0 10px;
++    overflow: hidden;
++    padding: 0;
++    position: relative;
++    width: 193px;
++}
++.guide_right .rec_brand{
++	width:193px;
++	height:230x;
++	overflow:hidden;
++}
++.guide_right .rec_brand dt{
++	clear:both;
++	width:193px;
++	height:31px;
++	overflow:hidden;
++}
++.guide_right .rec_brand dd{
++	border-right:1px solid #CCC;
++	border-left:1px solid #CCC;
++	border-bottom:1px solid #CCC;
++}
++.guide_right .rec_brand dd div img{
++	margin:3px 0;
++}
++/*mem_guide beautify_scrollbar*/
++.guide_right .rec_brand dd div#rec_brand_scorll{
++	width:191px;
++	height:198px;
++	overflow:hidden;
++	position:relative;
++	text-align:center;
++}
++/*mem_guide beautify_scrollbar end*/
++.guide_right .gui_two{
++	clear:both;
++	width:191px;
++	height:98px;
++	border:1px solid #CCC;
++	overflow:hidden;
++	position:relative;
++	margin-top:10px;
++}
++.guide_right .gui_two a{
++	display:block;
++	width:191px;
++	height:98px;
++}
++.guide_right .gui_two img{
++	display:block;
++	width:191px;
++	height:98px;
++}
++.gui_cate{
++	clear:both;
++	width:1003px;
++	height:auto;
++	overflow:hidden;
++	position:relative;
++	margin-top:16px;
++}
++.gui_cate dt{
++	clear:both;
++	width:1003px;
++	height:31px;
++	line-height:31px;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate dt img{
++	float:left;
++	width:192px;
++	height:31px;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate dt span{
++	float:right;
++	display:inline-block;
++	width:811px;
++	height:31px;
++	background:url(../images/guide/gui_cate_1_bg.jpg) repeat-x;
++	overflow:hidden;
++	position:relative;
++	line-height:31px;
++	text-align:right;
++}
++.gui_cate dt span a{
++	margin:0 10px;
++}
++.gui_cate .gui_seq{
++	clear:both;
++	width:1003px;
++	height:45px;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate .gui_seq span{
++	float:left;
++	display:inline-block;
++	height:45px;
++	line-height:45px;
++}
++.gui_cate .gui_seq span a{
++	margin-left:10px;
++}
++.gui_cate .gui_seq img{
++	float:right;
++	height:45px;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate .gui_pro{
++	clear:both;
++	width:1003px;
++	height:447px;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate .gui_pro .gui_pro_list{
++	float: left;
++	width: 640px;
++    height: 447px;
++    position: relative;
++	overflow:hidden;
++}
++.gui_cate .gui_pro_list .list-box{
++	float: left;
++    height: 228px;
++    width: 148px;
++	margin-right:16px;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate .list-box .img{
++	clear:both;
++    height: 146px;
++    width: 146px;
++	border:1px solid #CCC;
++	overflow:hidden;
++	position:relative;
++}
++.gui_cate .list-box .img a{
++	display:block;
++    height: 146px;
++    width: 146px;
++}
++.gui_cate .list-box .img a img{
++	display:block;
++    height: 146px;
++    width: 146px;
++}
++.gui_cate .list-box .skuname{
++	clear:both;
++    width: 148px;
++	height:29px;
++	overflow:hidden;
++	position:relative;
++	line-height:1.2;
++	margin:4px 0;
++}
++.gui_cate .list-box .price,.gui_cate .list-box .sales{
++	line-height:1.2;
++	width:148px;
++	height:17px;
++	overflow:hidden;
++}
++.gui_cate .list-box .price span{
++	font-weight:bold;
++	color:#fb8a04;
++	font-size:14px;
++}
++.gui_cate .list-box .price span.span1{
++	font-size:12px;
++}
++.gui_cate .list-box .sales span{
++	font-weight:bold;
++	color:#bac772;
++	font-size:14px;
++}
++/*gui_cate gui_pro_list end*/
++.gui_cate .gui_pro .gui_pro_ad{
++    float: right;
++    width: 350px;
++    height: 447px;
++    margin: 0 0 0 13px;
++    padding: 0;
++    overflow: hidden;
++    position: relative;
++}
++.gui_cate .gui_pro_ad .ad1{
++	clear:both;
++    width: 348px;
++    height: 305px;
++	border:1px solid #CCC;
++    overflow: hidden;
++    position: relative;
++}
++.gui_cate .ad1 li span{
++	display:block;
++	height:34px;
++	line-height:34px;
++	width:323px;
++	padding-left:25px;
++	overflow:hidden;
++	border-top:1px solid #CCC;
++	cursor:pointer;
++}
++.gui_cate .ad1 li div{
++	display:none;
++	height:200px;
++	width:348px;
++	overflow:hidden;
++	border-top:1px solid #CCC;
++}
++/*gui_cate ad1 end*/
++.gui_cate .gui_pro_ad .ad2{
++	clear:both;
++    width: 348px;
++    height: 128px;
++	border:1px solid #CCC;
++	margin-top:10px;
++    overflow: hidden;
++    position: relative;
++}
++.gui_cate .gui_pro_ad .ad2 a{
++	display:block;
++    width: 348px;
++    height: 128px;
++}
++.gui_cate .gui_pro_ad .ad2 img{
++	display:block;
++    width: 348px;
++    height: 128px;
++}
++/*gui_cate gui_pro_ad end*/
++.gui_cate .gui_pro .gui_pro_list_fr{
++	float:right;
++	margin-left:13px;
++}
++.gui_cate .gui_pro .gui_pro_ad_fl{
++    float: left;
++	margin:0;
++}
++.gui_cate dt span.gui_cate_2_bg{
++	background:url(../images/guide/gui_cate_2_bg.jpg) repeat-x;
++}
++.gui_cate dt span.gui_cate_3_bg{
++	background:url(../images/guide/gui_cate_3_bg.jpg) repeat-x;
++}
++.gui_cate dt span.gui_cate_4_bg{
++	background:url(../images/guide/gui_cate_4_bg.jpg) repeat-x;
++}
++.gui_cate dt span.gui_cate_5_bg{
++	background:url(../images/guide/gui_cate_5_bg.jpg) repeat-x;
++}
++.gui_cate .gui_pro_mt19{
++	margin-top:19px;
++}
++/*gui_cate end*/
++.center_banner{
++	clear:both;
++	width:1003px;
++	height:171px;
++	margin-top:25px;
++	overflow:hidden;
++	position:relative;
++}
++.center_banner a{
++	display:block;
++	width:1003px;
++	height:171px;
++}
++.center_banner img{
++	width:1003px;
++	height:171px;
++}
++/*mem_guide end*/
++/*order_sync*/
++.tab_syncorder{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.tab_syncorder th {
++    background: none repeat scroll 0 0 #ECECEC;
++    font-weight: 400;
++    height: 27px;
++}
++.tab_syncorder td {
++    border-top: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++/*order_sync end*/
++/*order_my*/
++.page_break{
++	clear:both;
++	width:791px;
++	height:22px;
++	overflow:hidden;
++	position:relative;
++	margin-top:11px;
++	line-height:22px;
++}
++.page_break .page_num{
++	float:left;
++	width:680px;
++	height:22px;
++	overflow:hidden;
++	position:relative;
++	text-align:right;
++}
++.page_num a,.page_num span{
++	display:inline-block;
++	border:1px solid #c6c6c6;
++	height:20px;
++	line-height:20px;
++	line-height:22px\9;
++	padding:0 6px;
++	margin:0 2px 0 0;
++	overflow:hidden;
++	background:#FFF;
++	*margin-bottom:4px;
++}
++.page_num .page_next{
++	background:url(../images/page_next.jpg) no-repeat 45px 6px;
++	padding-right:15px;
++	*margin-bottom:6px;
++	margin-right:5px;
++}
++.page_num .page_prev{
++	background:url(../images/page_prev.jpg) no-repeat 6px 6px;
++	padding-left:15px;
++	*margin-bottom:6px;
++}
++.page_num .current{
++	border:1px solid #018cc9;
++	color:#018cc9;
++	background:#ececec;
++}
++.page_break .page_to{
++	float:right;
++	width:111px;
++	height:22px;
++	overflow:hidden;
++	line-height:22px;
++}
++.page_break .page_to span{
++	float:left;
++	display:inline-block;
++	padding-top:1px\9;
++	margin:0 2px;
++}
++.page_break .page_to input{
++	float:left;
++}
++.page_break .page_to .input31{
++	width:31px;
++	border:1px solid #c6c6c6;
++	height:20px;
++	margin:0 2px;
++}
++/*order_my end*/
++/*order_detail*/
++.order_num{
++	clear:both;
++	width:789px;
++	height:25px;
++	line-height:25px;
++	overflow:hidden;
++	position:relative;
++	text-align:center;
++}
++.order_num span{
++	margin:0 30px;
++	color:#4c4c4c;
++}
++.order_process{
++	clear:both;
++	width:791px;
++	height:118px;
++	overflow:hidden;
++	position:relative;
++}
++.order_process img{
++	width:791px;
++	height:118px;
++	z-index:1;
++}
++.order_process div{
++	width:100px;
++	position:absolute;
++	z-index:2;
++	font-family:"瀹嬩綋";
++	line-height:12px;
++	text-align:center;
++	color:#909090;
++}
++.order_process div.div1{
++	left:86px;
++	bottom:22px;
++}
++.order_process div.div2{
++	left:254px;
++	bottom:22px;
++}
++.order_process div.div3{
++	right:268px;
++	bottom:22px;
++}
++.order_process div.div4{
++	right:97px;
++	bottom:22px;
++}
++
++.tab_orderpro {
++    color: #262626;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.tab_orderpro th {
++    background: #ECECEC;
++    height: 27px;
++}
++.tab_orderpro td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++.tab_orderpro tr.order_logistic td{
++	height:37px;
++	line-height:37px;
++	border-right:none;
++	text-align:left;
++}
++.tab_orderpro tr.order_logistic td div span{
++	margin:0 20px;
++}
++.order_detail{
++	clear:both;
++	width:789px;
++	background:#ededed;
++	overflow:hidden;
++	position:relative;
++}
++.order_detail dl{
++	clear:both;
++	margin:5px 5px;
++	width:779px;
++	overflow:hidden;
++	position:relative;
++}
++.order_detail dt{
++	clear:both;
++	font-size:14px;
++	font-weight:bold;
++	width:779px;
++	overflow:hidden;
++	position:relative;
++}
++.order_detail dl dd{
++	clear:both;
++	width:779px;
++	background:#FFF;
++	overflow:hidden;
++	position:relative;
++	line-height:25px;
++}
++.order_detail dl dd .div1{
++	margin:8px 20px;
++}
++.order_detail dl dd .div1 h4{
++	font-size:12px;
++}
++.order_sku{
++	width:749px;
++	border: 1px solid #CCC;
++	margin:0 auto;
++}
++.tab_ordersku {
++    color: #262626;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 749px;
++}
++.tab_ordersku th {
++    background: #ECECEC;
++    height: 27px;
++	font-weight:400;
++}
++.tab_ordersku td {
++	clear:both;
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++.tab_ordersku td.order_skuimg{
++	text-align:left;
++	line-height:18px;
++	*padding-bottom:10px;
++}
++.tab_ordersku td.order_skuimg span{
++	display:inline-block;
++	float:left;
++	margin-top:20px;
++}
++.tab_ordersku td.order_skuimg img{
++    border: 1px solid #CCCCCC;
++	width:57px;
++	height:57px;
++	float:left;
++	margin:10px;
++}
++.order_detail .order_total{
++	clear:both;
++	text-align:right;
++	font-size:14px;
++	margin:8px 0;
++	width:789px;
++	overflow:hidden;
++}
++.order_detail .order_total p{
++	margin-right:20px;
++}
++/*order_detail end*/
++/*coupon*/
++.coupon{
++	clear:both;
++	width:791px;
++	height:auto;
++	position:relative;
++	overflow:hidden;
++}
++.coupon ul{
++	clear:both;
++	width:791px;
++	height:27px;
++	line-height:27px;
++	_line-height:25px;
++	overflow:hidden;
++	position:relative;
++	margin-bottom:12px;
++}
++.coupon ul li{
++	float:left;
++	width:110px;
++	height:25px;
++	border-right:1px solid #dcdcdc;
++	border-top:1px solid #dcdcdc;
++	border-bottom:1px solid #dcdcdc;
++	text-align:center;
++	background:#FFF;
++	cursor:pointer;
++}
++.coupon ul li.grey{
++	background:#ececec;
++	color:#9d9d9d;
++}
++.coupon .coupon_remark{
++	position:absolute;
++	top:5px;
++	right:150px;
++}
++.tab_coupon1 {
++    color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.tab_coupon1 th {
++    background: #ECECEC;
++    font-weight: 400;
++    height: 27px;
++}
++.tab_coupon1 td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++/*coupon end*/
++/*points_gift*/
++.points_gift{
++	clear:both;
++	width:791px;
++	height:auto;
++	overflow:hidden;
++	position:relative;
++	margin-top:12px;
++}
++.points_gift ul{
++	clear:both;
++	width:791px;
++	height:25px;
++	line-height:25px;
++	line-height:28px\9;
++	overflow:hidden;
++	position:relative;
++	z-index:2;
++}
++.points_gift ul li{
++	float:left;
++	width:88px;
++	height:25px;
++	text-align:center;
++	background:url(../images/toggle_bg_1.jpg) no-repeat;
++	overflow:hidden;
++	margin-right:3px;
++	cursor:pointer;
++}
++.points_gift ul li.grey{
++	background:url(../images/toggle_bg_2.jpg) no-repeat;
++}
++.position_top1{
++	position:relative;
++	top:-1px;
++}
++.gift_shop{
++	clear:both;
++	overflow:hidden;
++	position:relative;
++	width:777px;
++	height:397px;
++	padding:16px 0 0 12px;
++}
++.gift_shop .sku{
++	float:left;
++	width:246px;
++	height:116px;
++	margin:0 12px 15px 0;
++	overflow:hidden;
++	position:relative;
++}
++.gift_shop .sku img{
++	border:1px solid #d5d5d5;
++	width:81px;
++	height:81px;
++	overflow:hidden;
++	position:absolute;
++	top:0;
++	left:0;
++}
++.gift_shop .sku input{
++	width:84px;
++	height:21px;
++	overflow:hidden;
++	position:absolute;
++	bottom:0;
++	left:0;
++}
++.gift_shop .sku span{
++	width:157px;
++	height:116px;
++	overflow:hidden;
++	position:absolute;
++	top:0;
++	left:89px;
++}
++.gift_goods{
++	clear:both;
++	overflow:hidden;
++	position:relative;
++	/*width:758px;
++	height:537px;
++	padding:7px 13px 0 18px;*/
++	width:760px;
++	height:537px;
++	padding:7px 13px 0 16px;
++}
++.gift_goods ul {
++    clear: both;
++    height: 27px;
++    line-height: 27px;
++    margin-bottom: 12px;
++    overflow: hidden;
++    position: relative;
++    /*width: 758px;*/
++	width:760px;
++}
++.gift_goods ul li {
++    background:#FFFFFF;
++    border-bottom: 1px solid #DCDCDC;
++    border-right: 1px solid #DCDCDC;
++    border-top: 1px solid #DCDCDC;
++    cursor: pointer;
++    float: left;
++    height: 25px;
++    text-align: center;
++    width: 110px;
++	margin:0;
++}
++.gift_goods ul li.grey {
++    background:#ECECEC;
++    color: #9D9D9D;
++}
++.gift_goods .goods {
++	clear:both;
++	/*width:758px;*/
++	width:760px;
++	height:498px;
++	overflow:hidden;
++	position:relative;
++}
++.gift_goods .goods .sku{
++	float:left;
++	width:149px;
++	height:236px;
++	overflow:hidden;
++	position:relative;
++	margin:0 3px 15px 0;
++	text-align:center;
++}
++.gift_goods .goods .sku img{
++	clear:both;
++	width:147px;
++	height:147px;
++	border:1px solid #e3e3e3;
++	overflow:hidden;
++	position:relative;
++}
++.gift_goods .goods .sku .p1{
++	clear:both;
++	width:149px;
++	height:36px;
++	overflow:hidden;
++	position:relative;
++	line-height:18px;
++	padding-top:4px;
++	*padding-top:2px;
++}
++.gift_goods .goods .sku .p2{
++	clear:both;
++	padding:3px 0;
++	width:149px;
++	height:18px;
++	text-align:left;
++	overflow:hidden;
++	position:relative;
++}
++/*dialog*/
++#mies1{
++	cursor:auto;
++	width:371px;
++	height:356px;
++	overflow:hidden;
++}
++#mies1 .top{
++	clear:both;
++	width:371px;
++	height:36px;
++	overflow:hidden;
++	position:relative;
++	line-height:36px;
++	background:url(../images/dialog/dialog_top_371.jpg) no-repeat;
++}
++#mies1 .top h3{
++	color:#FFF;
++	margin:2px 0 0 13px;
++	font-size:14px;
++}
++#mies1 .end{
++	clear:both;
++	width:371px;
++	height:10px;
++	overflow:hidden;
++	position:relative;
++	background:url(../images/dialog/dialog_end_371.jpg) no-repeat;
++}
++#mies1 .center{
++	clear:both;
++	line-height:20px;
++	overflow:hidden;
++	position:relative;
++	padding:12px 0;
++	background:#FFF;
++}
++#mies1 .center p{
++	margin-left:20px;
++}
++#mies1 .center span.modify{
++	position:absolute;
++	right:20px;
++	top:12px;
++}
++#mies1 .center .sku{
++	clear:both;
++	width:371px;
++	height:135px;
++	overflow:hidden;
++	position:relative;
++}
++#mies1 .center .sku img{
++	border:1px solid #dcdcdc;
++	width:127px;
++	height:127px;
++	overflow:hidden;
++	position:absolute;
++	top:0;
++	left:40px;
++}
++#mies1 .center .sku div{
++	width:140px;
++	height:119px;
++	overflow:hidden;
++	position:absolute;
++	top:10px;
++	right:50px;
++	text-align:center;
++}
++#mies1 .center .sku div p{
++	clear:both;
++	width:140px;
++	overflow:hidden;
++	margin:5px 0;
++}
++#mies1{
++	cursor:auto;
++	width:371px;
++	height:356px;
++	overflow:hidden;
++}
++#mies1 .top{
++	clear:both;
++	width:371px;
++	height:36px;
++	overflow:hidden;
++	position:relative;
++	line-height:36px;
++	background:url(../images/dialog/dialog_top_371.jpg) no-repeat;
++}
++#mies1 .top h3{
++	color:#FFF;
++	margin:2px 0 0 13px;
++	font-size:14px;
++}
++#mies1 .end{
++	clear:both;
++	width:371px;
++	height:10px;
++	overflow:hidden;
++	position:relative;
++	background:url(../images/dialog/dialog_end_371.jpg) no-repeat;
++}
++#mies1 .center{
++	clear:both;
++	line-height:20px;
++	overflow:hidden;
++	position:relative;
++	padding:12px 0;
++	background:#FFF;
++}
++/*mies1 end*/
++#mies2{
++	cursor:auto;
++	width:461px;
++	height:auto;
++	overflow:hidden;
++}
++#mies2 .top{
++	clear:both;
++	width:461px;
++	height:36px;
++	overflow:hidden;
++	position:relative;
++	line-height:36px;
++	background:url(../images/dialog/dialog_top_461.jpg) no-repeat;
++}
++#mies2 .top h3{
++	color:#FFF;
++	margin:2px 0 0 13px;
++	font-size:14px;
++}
++#mies2 .end{
++	clear:both;
++	width:461px;
++	height:10px;
++	overflow:hidden;
++	position:relative;
++	background:url(../images/dialog/dialog_end_461.jpg) no-repeat;
++}
++#mies2 .center{
++	clear:both;
++	line-height:20px;
++	overflow:hidden;
++	position:relative;
++	padding:12px 0;
++	background:#FFF;
++}
++#mies2 .center .address p{
++	margin:0 20px;
++	position:relative;
++	padding-left:20px;
++}
++#mies2 .center .address p input{
++	position:absolute;
++	top:4px;
++	left:0;
++	*top:-3px;
++	*left:-3px;
++	_left:-23px;
++}
++#mies2 .center form{
++	width:461px;
++	height:240px;
++	*padding-bottom:10px;
++	_padding-bottom:0px;
++}
++
++/*mies2 end*/
++.dialog-form {
++	background:none;
++    display: none;
++    width:371px;
++	height:356px;
++}
++.dialog-form .close {
++    cursor: pointer;
++    height: 22px;
++	width: 22px;
++    position: absolute;
++    right: 5px;
++    top: 5px;
++	background:url(../images/dialog/dialog_close.gif) no-repeat;
++}
++.dialog-form .div_line{
++	margin:15px auto;
++}
++/*dialgo end*/
++/*points_gift end*/
++/*refund*/
++.tab_refund{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.tab_refund th {
++    background:#ECECEC;
++    height: 27px;
++}
++.tab_refund td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++/*refund end*/
++/*returns*/
++.tab_returns{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.tab_returns th {
++    background:#ECECEC;
++    height: 27px;
++}
++.tab_returns td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++/*refund end*/
++/*rebate*/
++.rebate_header{
++	clear:both;
++	width:791px;
++	height:27px;
++	line-height:27px;
++	overflow:hidden;
++	position:relative;
++	background:#ececec;
++}
++.rebate_header .div1{
++	float:left;
++	width:561px;
++	height:27px;
++	overflow:hidden;
++}
++.rebate_header .div1 span{
++	margin:0 30px;
++}
++.rebate_header .div2{
++	float:left;
++}
++.rebate_header .div2 input{
++	margin-right:5px;
++}
++.rebate {
++    clear: both;
++    height: auto;
++    overflow: hidden;
++    position: relative;
++    width: 791px;
++}
++.rebate ul {
++    clear: both;
++    height: 27px;
++    line-height: 27px;
++    margin-bottom: 12px;
++    overflow: hidden;
++    position: relative;
++    width: 791px;
++	_line-height: 25px;
++}
++.rebate ul li {
++    background:#FFFFFF;
++    border-bottom: 1px solid #DCDCDC;
++    border-right: 1px solid #DCDCDC;
++    border-top: 1px solid #DCDCDC;
++    cursor: pointer;
++    float: left;
++    height: 25px;
++    text-align: center;
++    width: 110px;
++}
++.rebate ul li.grey {
++    background:#ECECEC;
++    color: #9D9D9D;
++}
++.rebate_order{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.rebate_order th {
++	font-weight:400;
++    background:#ECECEC;
++    height: 27px;
++}
++.rebate_order td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++.rebate_order td .div1{
++	line-height:16px;
++	margin:8px auto;
++	width:65px;
++	text-align:left;
++}
++.rebate_order td .div2{
++	line-height:16px;
++	margin:8px auto;
++	width:140px;
++	text-align:left;
++}
++.rebate_detail{
++	color: #333333;
++    height: auto;
++    line-height: 27px;
++    overflow: hidden;
++    position: relative;
++    text-align: center;
++    width: 789px;
++}
++.rebate_detail th {
++	font-weight:400;
++    background:#ECECEC;
++    height: 27px;
++}
++.rebate_detail td {
++    border-top: 1px solid #CCCCCC;
++	border-right: 1px solid #CCCCCC;
++    height: 27px;
++    overflow: hidden;
++}
++/*rebate end*/
++/*aboutus*/
++.aboutus{
++	clear:both;
++	width:736px;
++	position:relative;
++	overflow:hidden;
++	margin:0 27px;
++}
++.aboutus dt{
++	font-size:14px;
++	font-weight:bold;
++	color:#009cb9;
++	margin:5px 0 12px 0;
++	
++}
++.aboutus dd{
++	margin-bottom:7px;
++}
++.aboutus dd p{
++	text-indent:2em;
++	line-height:24px;
++}
++dl.aboutus_brand dd{
++	margin:0 auto;
++	width:690px;
++}
++/*dl.aboutus_brand dt{
++	cursor:pointer;
++}*/
++.aboutus .logo_list_tab {
++	clear:both;
++    height: 65px;
++    width: 690px;
++}
++.aboutus .logo_list_tab ul li {
++    float: left;
++    margin-left: 13px;
++}
++.aboutus .line_solid {
++    border-bottom: 1px solid #DDDDDD;
++    height: 1px;
++    margin: 0 auto;
++    width: 650px;
++}
++/*aboutus end*/
++/*contactus*/
++.contactus .img1{
++	float:left;
++}
++.contactus .div1{
++	float:left;
++	margin:20px 0 0 20px;
++}
++.contactus .div1 p{
++	clear:both;
++	font-weight:bold;
++	color:#3F3B3A;
++	margin:5px 0;
++	font-family:"瀹嬩綋";
++}
++/*contactus end*/
++/*sitemap*/
++.sitemap div{
++	clear:both;
++	height:27px;
++	line-height:27px;
++	overflow:hidden;
++	position:relative;
++	margin-bottom:18px;
++}
++.sitemap span.span1{
++	float:left;
++	font-weight:bold;
++	margin-right:20px;
++}
++.sitemap span.span2{
++	float:right;
++	display:inline-block;
++	width:650px;
++	height:27px;
++	line-height:27px;
++	background:#ececec;
++}
++.sitemap span.span2 a{
++	margin:0 50px 0 33px;
++}
++
++/*sitemap end*/
++.fLeft {
++    float: left;
++}
++.fRight {
++    float: right;
++}
++.innertube_mt12 {
++	margin-top:12px;
++}
++.innertube_mt20 {
++	margin-top:20px;
++}
++.innertube_mt30 {
++	margin-top:30px;
++}
++.innertube_mt1 {
++	margin-top:1px;
++}
++.innertube_ml28{
++	margin-left:28px;
++}
++.innertube_ml114{
++	margin-left:152px;
++	_margin-left:156px;
++}
++.innertube_mr10 {
++	margin-right:10px;
++}
++.innertube_pd12{
++	padding:12px 0 20px 0;
++}
++.font_uc{
++	text-transform:uppercase;
++}
++.font_grey{
++	color:#888888;
++}
++.font_grey2{
++	color:#9d9d9d;
++}
++.font_orange{
++	color:#fb8a04;
++}
++.font_blue{
++	color:#009cb9;
++}
++table tr.table_line td{
++	line-height:0;
++	font-size:0;
++	height:1px;
++	background:#CCC;
++}
++div.div_line{
++	line-height:0;
++	font-size:0;
++	height:1px;
++	background:#CCC;
++}
++div.div_line2{
++	line-height:0;
++	font-size:0;
++	height:4px;
++	background:#1583a4;
++}
++.btn_grey{
++	background:url(../images/btn_grey_104.jpg) no-repeat;
++	width:104px;
++	height:28px;
++	line-height:28px;
++	color:#4a4949;
++	cursor:pointer;
++	border:none;
++}
++.btn_grey_70{
++	background:url(../images/btn_grey_70.jpg) no-repeat;
++	width:70px;
++	height:23px;
++	line-height:23px;
++	color:#4a4949;
++	cursor:pointer;
++	border:none;
++}
++.btn_grey_84{
++	background:url(../images/btn_grey_84.jpg) no-repeat;
++	width:84px;
++	height:21px;
++	line-height:21px;
++	color:#4a4949;
++	cursor:pointer;
++	border:none;
++}
++.btn_grey_29{
++	background:url(../images/btn_grey_29.jpg) no-repeat;
++	width:29px;
++	height:22px;
++	line-height:22px;
++	color:#4a4949;
++	cursor:pointer;
++	border:none;
++	padding:1px 0 0 1px\9;
++}
++.btn_green{
++	background:url(../images/btn_green_104.jpg) no-repeat;
++	width:104px;
++	height:27px;
++	line-height:27px;
++	color:#4a4949;
++	cursor:pointer;
++	border:none;
++}
++.ico1 li{
++	background: url(../images/ico-1.jpg) no-repeat scroll 18px 12px transparent;
++    background: url(../images/ico-1.jpg) no-repeat scroll 18px 10px transparent\9;
++    padding-left: 30px;
++}
++.ico1 li.ico2{
++	background: url(../images/ico-2.jpg) no-repeat 18px 12px #FFF;
++    background: url(../images/ico-2.jpg) no-repeat 18px 10px #FFF\9;
++    padding-left: 30px;
++}
++.ico3 li{
++	background: url(../images/guide/ico-3.jpg) no-repeat 18px 14px #e5e5e5;
++    background: url(../images/guide/ico-3.jpg) no-repeat 18px 12px #e5e5e5\9;
++    padding-left: 30px;
++}
++.ico4 li{
++	background: url(../images/guide/ico-3.jpg) no-repeat 15px 17px #FFF;
++    background: url(../images/guide/ico-3.jpg) no-repeat 15px 16px #FFF\9;
++}
++/*alert dialog*/
++.modal {
++    display: none;
++    left: 484.5px;
++    position: fixed;
++    top: 38.5px;
++    z-index: auto;
++}
++.modal .dialog-bg {
++    background: url(../images/dialog/alert_dialog.jpg) no-repeat;
++    height: 143px;
++    padding: 6px 5px 10px 5px;
++    width: 231px;
++}
++.modal h2 {
++	display:block;
++	width:231px;
++	height:75px;
++	line-height:75px;
++	margin-top:10px;
++	text-align:center;
++	font-size:12px;
++	font-weight:400;
++}
++/*alert dialog end*/
++/*index page end*/
++/*error page*/
++.error_page{
++	clear:both;
++	padding:10px;
++	position:relative;
++}
++.error_page .error_top{
++	width:470px;
++	height:49px;
++	background:url(../images/error_top.jpg) no-repeat;
++}
++.error_page .error_top_500{
++	width:470px;
++	height:49px;
++	background:url(../images/error_top_500.jpg) no-repeat;
++}
++/*error page end*/
+\ No newline at end of file
+Index: src/main/webapp/images/btn_grey_104.jpg
+===================================================================
+RCS file: src/main/webapp/images/btn_grey_104.jpg
+diff -N src/main/webapp/images/btn_grey_104.jpg
+Binary files /tmp/cvsmdPHBC and /dev/null differ
+Index: src/main/webapp/js/home_content.js
+===================================================================
+RCS file: src/main/webapp/js/home_content.js
+diff -N src/main/webapp/js/home_content.js
+--- src/main/webapp/js/home_content.js	18 Oct 2011 08:11:34 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,369 +0,0 @@
+-//鍥剧墖婊氬姩鍒楄〃 mengjia 070816
+-var Speed = 90; //閫熷害(姣)
+-var Space = 50; //姣忔绉诲姩(px)
+-var PageWidth = 824; //缈婚〉瀹藉害
+-var fill = 0; //鏁翠綋绉讳綅
+-var MoveLock = false;
+-var MoveTimeObj;
+-var Comp = 0;
+-var AutoPlayObj = null;
+-
+-function GetObj(objName){return $j("#" + objName).get(0);}
+-function AutoPlay(){ //鑷姩婊氬姩
+-     clearInterval(AutoPlayObj);
+-     AutoPlayObj = setInterval('ISL_GoDown();ISL_StopDown();',3000); //闂撮殧鏃堕棿
+-}
+-function ISL_GoUp(){ //涓婄炕寮?
+-     if(MoveLock) return;
+-     clearInterval(AutoPlayObj);
+-     MoveLock = true;
+-     MoveTimeObj = setInterval('ISL_ScrUp();',Speed);
+-}
+-function ISL_StopUp(){ //涓婄炕鍋滄
+-     clearInterval(MoveTimeObj);
+-     if(GetObj('ISL_Cont').scrollLeft % PageWidth - fill != 0){
+-      Comp = fill - (GetObj('ISL_Cont').scrollLeft % PageWidth);
+-      CompScr();
+-     }else{
+-      MoveLock = false;
+-     }
+-     AutoPlay();
+-}
+-function ISL_ScrUp(){ //涓婄炕鍔ㄤ綔
+-     if(GetObj('ISL_Cont').scrollLeft <= 0){GetObj('ISL_Cont').scrollLeft = GetObj('ISL_Cont').scrollLeft + GetObj('List1').offsetWidth}
+-     GetObj('ISL_Cont').scrollLeft -= Space ;
+-}
+-function ISL_GoDown(){ //涓嬬炕
+-     clearInterval(MoveTimeObj);
+-     if(MoveLock) return;
+-     clearInterval(AutoPlayObj);
+-     MoveLock = true;
+-     ISL_ScrDown();
+-     MoveTimeObj = setInterval('ISL_ScrDown()',Speed);
+-}
+-function ISL_StopDown(){ //涓嬬炕鍋滄
+-     clearInterval(MoveTimeObj);
+-     if(GetObj('ISL_Cont').scrollLeft % PageWidth - fill != 0 ){
+-      Comp = PageWidth - GetObj('ISL_Cont').scrollLeft % PageWidth + fill;
+-      CompScr();
+-     }else{
+-      MoveLock = false;
+-     }
+-     AutoPlay();
+-}
+-function ISL_ScrDown(){ //涓嬬炕鍔ㄤ綔
+-     if(GetObj('ISL_Cont').scrollLeft >= GetObj('List1').scrollWidth){GetObj('ISL_Cont').scrollLeft = GetObj('ISL_Cont').scrollLeft - GetObj('List1').scrollWidth;}
+-     GetObj('ISL_Cont').scrollLeft += Space ;
+-}
+-function CompScr(){
+-     var num;
+-     if(Comp == 0){MoveLock = false;return;}
+-     if(Comp < 0){ //涓婄炕
+-      if(Comp < -Space){
+-       Comp += Space;
+-       num = Space;
+-      }else{
+-       num = -Comp;
+-       Comp = 0;
+-      }
+-      GetObj('ISL_Cont').scrollLeft -= num;
+-      setTimeout('CompScr()',Speed);
+-     }else{ //涓嬬炕
+-      if(Comp > Space){
+-       Comp -= Space;
+-       num = Space;
+-      }else{
+-       num = Comp;
+-       Comp = 0;
+-      }
+-      GetObj('ISL_Cont').scrollLeft += num;
+-      setTimeout('CompScr()',Speed);
+-     }
+-}
+-/*function loadBulletin(loadurl){
+-	loxia.asyncXhr(loadurl,{},{success: function(data, textStatus){
+-		if(data && data.list){
+-			var list = data.list;
+-			var html = "", contextPath=$j("#scrollDiv").attr("root");
+-			for(var i=0; i< list.length; i++){
+-				var b = list[i];
+-				if(b.contentType == 2){
+-					html += '<li><a href="' + contextPath + b.content + '" target="_blank">[' + b.bulletinTypeName + '] ' + b.bulletinTitle + '</a></li>';
+-				}else{
+-					html += '<li><a href="' + contextPath + '/bulletin/' + b.id + '/info.htm" target="_blank">[' + b.bulletinTypeName + '] ' + b.bulletinTitle + '</a></li>';
+-				}
+-			}
+-			$j("#scrollDiv ul").html(html);
+-		}
+-	}});
+-}*/
+-/*function loadHomeProductList(loadurl){
+-	var loadHtml = loxia.syncXhr(loadurl);
+-	if(loadHtml && loadHtml.html){
+-		$j("#List1").html(loadHtml.html);
+-		loxia.fixPng($j("#List1").get(0));
+-	}
+-}*/
+-/*----------------------------combine home_headline.js------------------------------*/
+-function search_result(searchName,id,count){//鑱旀兂缁撴灉
+-	var s_m_r_li=$j("<li/>").addClass("s_m_li").appendTo("#s_m .s_m_ul");
+-	var s_m_r_a=$j("<a/>").appendTo(s_m_r_li).html(searchName);	
+-	
+-	$j(s_m_r_li).click(function(){	 				
+-		var item=$j(this).find("a").html();
+-		 $j("#btn-search-field").val(item);
+-		 onClickSuggestItem(id);   
+-		 });
+-	 $j(".s_m_container ul li a").each(function(index,item){  
+-		 $j(this).hover( 
+-		   function(){
+-			   currentList=index; 
+-			   $j(".s_m_li a").removeClass();//鍏堟竻闄ゆ牱寮?閬垮厤鍐茬獊        
+-			   $j(this).addClass("hover");
+-		     }, function(){ $j(this).removeClass();});
+-	    });
+-	}
+-function onClickSuggestItem(sid){	//鐐瑰嚮浜嬩欢
+-	loxia.syncXhr($j(document.body).attr("root") + "/product/serchcount.json",{id:sid});
+-	select_empty();
+-	select_hide();
+-	}
+-function select_empty(){//娓呯┖
+-	$j(".s_m_ul").empty();}
+-function select_expand(){//灞曞紑
+-	$j("#s_m").css({"display":"block"});
+-	}
+-function select_hide(){//闅愯棌
+-	$j("#s_m").css({"display":"none"});
+-	}
+-
+-
+-function skuSuggestResult()
+-{
+-  var searchName=$j("#btn-search-field").val();   //alert("[searchName]"+searchName);
+-	  if($j.trim(searchName)=='')
+-	  {
+-		  select_hide();
+-		  return ;
+-	  }
+-	  searchNamevalue=searchName;
+-	  var data = loxia.syncXhr($j(document.body).attr("root") + "/product/searchName.json",{name:searchName,count:10});
+-	  // alert("[data]"+data.list);
+-		  if(typeof(data.list)!="undefined")
+-		  {
+-		  var count=data.list.length;
+-		 if(count>0)
+-			{
+-			  select_empty();
+-			  // alert("[count]"+data.list.length);
+-			 //var skuSuggest=data.list;
+-			// alert("[skuSuggest]"+skuSuggest);
+-		     $j.each(data.list,function(i,n){ 
+-			  search_result(n.name,n.id,n.searchCount);  
+-		     }); 
+-		     select_expand();
+-		     currentList=-1;
+-		     }else
+-		     {
+-		    	 select_hide();
+-		     }	
+-		}		     
+-}
+-
+-$j(document).ready(function(){
+-	//setInterval('$j("#scrollDiv").find("ul:first").animate({marginTop:"-25px"},500,function(){$j(this).css({marginTop:"0px"}).find("li:first").appendTo(this);});',1500)
+-	
+-	$j(".cat-more2").mouseover (
+-	  function(){$j(".cat-hover2").removeClass("cat-hidden").addClass("cat-show")}
+-	  );
+-	$j(".cat-hover2").mouseover (
+-	  function(){$j(this).addClass("cat-show")}
+-	  );
+-	$j(".cat-hover2").mouseout (
+-	  function(){$j(this).removeClass("cat-show").addClass("cat-hidden")}
+-	  );
+-	
+-	$j(".cat-more3").mouseover (
+-	  function(){$j(".cat-hover3").removeClass("cat-hidden").addClass("cat-show")}
+-	  );
+-	$j(".cat-hover3").mouseover (
+-	  function(){$j(this).addClass("cat-show")}
+-	  );
+-	$j(".cat-hover3").mouseout (
+-	  function(){$j(this).removeClass("cat-show").addClass("cat-hidden")}
+-	  );
+-	
+-	$j(".cat-more5").mouseover (
+-	  function(){$j(".cat-hover5").removeClass("cat-hidden").addClass("cat-show")}
+-	  );
+-	$j(".cat-hover5").mouseover (
+-	  function(){$j(this).addClass("cat-show")}
+-	  );
+-	$j(".cat-hover5").mouseout (
+-	  function(){$j(this).removeClass("cat-show").addClass("cat-hidden")}
+-	  );
+-	
+-	$j(".cat-more6").mouseover (
+-	  function(){$j(".cat-hover6").removeClass("cat-hidden").addClass("cat-show")}
+-	  );
+-	$j(".cat-hover6").mouseover (
+-	  function(){$j(this).addClass("cat-show")}
+-	  );
+-	$j(".cat-hover6").mouseout (
+-	  function(){$j(this).removeClass("cat-show").addClass("cat-hidden")}
+-	  );
+-	//loadBulletin($j("#scrollDiv").attr("loadurl"));
+-	//loadHomeProductList($j("#List1").attr("loadurl"));
+-	/*GetObj("List2").innerHTML = GetObj("List1").innerHTML;
+-	loxia.fixPng($j("#List1").get(0));
+-    GetObj('ISL_Cont').scrollLeft = fill;
+-    GetObj("ISL_Cont").onmouseover = function(){clearInterval(AutoPlayObj);}
+-    GetObj("ISL_Cont").onmouseout = function(){AutoPlay();}
+-    AutoPlay();
+-	$j(".LeftBotton").mousedown(ISL_GoUp).mouseup(ISL_StopUp).mouseout(ISL_StopUp);
+-	$j(".RightBotton").mousedown(ISL_GoDown).mouseup(ISL_StopDown).mouseout(ISL_StopDown);
+-	
+-	var _wrap=$j('#scrollDiv ul');
+-	var _interval=1500;
+-	var _moving;
+-	_wrap.hover(function(){
+-		clearInterval(_moving);
+-	},function(){
+-		_moving=setInterval(function(){
+-			var _field=_wrap.find('li:first');
+-			var _h=_field.height();
+-			_field.animate({marginTop:-_h+'px'},600,function(){
+-			_field.css('marginTop',0).appendTo(_wrap);
+-			})
+-		},_interval)
+-	}).trigger('mouseleave');*/
+-	
+-	
+-	
+-	$j("#mainContent div.cb a").click(function(){
+-		trackNavigationalClick(this,"middle tout");
+-		trackCreativeBannerClick(this,$j(this).attr("banner"));
+-	});
+-	
+-	$j("#Map area").click(function(){
+-		trackNavigationalClick(this,"top tout");
+-		trackCreativeBannerClick(this,$j(this).attr("banner"));
+-	});
+-	
+-	$j("#banner a").click(function(){
+-		trackNavigationalClick(this,"top tout");
+-		trackCreativeBannerClick(this,$j(this).attr("banner"));
+-	});
+-	
+-
+-	$j("#scrollDiv a").click(function(){
+-		//trackNavigationalClick(this,"bottom tout");
+-	});
+-	
+-	$j("#List1 a").click(function(){
+-		trackNavigationalClick(this,"gallery");
+-	});
+-	
+-	$j("#bottom-banner a.bb1").click(function(){
+-		trackNavigationalClick(this,"bottom tout");
+-	});
+-	
+-	$j("#bottom-banner a.bb2").click(function(){
+-		trackNavigationalClick(this,"bottom tout");
+-	});
+-	
+-	$j("#bottom-banner a.bb3").click(function(){
+-		trackNavigationalClick(this,"bottom tout");
+-	});
+-	
+-	$j("#bottom-banner a.bb4").click(function(){
+-		trackNavigationalClick(this,"bottom tout");
+-	});
+-	
+-	s.prop17="home";
+-	var s_code=s.t();if(s_code)document.write(s_code);
+-	
+-	
+-	/*--------------------------combine home_headline.js-----------------------------*/
+-	
+-	
+-	//棣栭〉KV寤舵椂鍔犺浇骞朵笖寤舵椂婊氬姩	
+-	
+-	$j('#banner').cycle({ //KV婊氬姩
+-			fx:'scrollLeft',
+-			pager:'#btn'
+-	});
+-	
+-	
+-  currentList=-1;
+-  
+-  var searchNamevalue;
+-var _txt="";
+-$j("#btn-search-field").val(_txt).click(function(){	
+-							 var _tt=$j(this).val();
+-							 if(_tt==_txt)$j(this).val("")
+-							//$j("#s_m").css({"display":"block"});
+-							}).blur(function(){
+-   var _tt=$j(this).val();if(_tt=="")$j(this).val(_txt) 
+-   });
+-	$j(".s_m_li").click(function(){								
+-		$j("#s_m").css({"display":"none"});
+-		var item=$j(this).find("a").html();
+-		 onClickSuggestItem(item);
+-		 $j("#btn-search-field").val(item);
+-		// $j(this).parent().empty();
+-		 });
+-   $j(document).click(function(event){
+-		 
+-		 if(event.target!=$j("#btn-search-field")){
+-			 select_hide();
+-		 }
+-		
+-	});
+-      timecount=0;  
+-	$j("#btn-search-field1").keyup(function(event)
+-	{
+-			clearTimeout(timecount);
+-		 if((event.keyCode!=16)&&(event.keyCode!=17)&&(event.keyCode!=37)&&(event.keyCode!=38)&&(event.keyCode!=39)&&(event.keyCode!=40)){    //鍒ゆ柇閿洏浜嬩欢,鎶涘純涓婁笅閿窡鍥炶溅閿?
+-			timecount= setTimeout("skuSuggestResult()","200");
+-		  }
+-		
+-	});
+-	$j(document).keydown(function(event){
+-	 var  liLength= $j(".s_m_container li").size();
+-	//alert("[liSize]"+liLength);
+-		if(liLength>0)
+-		{
+-		event = event || window.event;  //鍏煎澶氭祻瑙堝櫒
+-		 //alert("[code]"+event.keyCode);
+-		  if(event.keyCode==38){ //鐩戝惉鍚戜笂閿?
+-				if(currentList<1)
+-				{
+-					currentList=liLength;
+-				}
+-				currentList--;       
+-			 var val=$j(".s_m_li").eq(currentList).find("a").html();
+-			 $j("#btn-search-field").val(val);	
+-			 $j(".s_m_li a").removeClass();//鍏堟竻闄ゆ牱寮?閬垮厤鍐茬獊                             
+-			 $j(".s_m_li a").eq(currentList).addClass("hover");
+-			  
+-		  }
+-			 
+-		 if(event.keyCode==40){ //鐩戝惉鍚戜笅閿?
+-			 if(currentList>=liLength-1)
+-			 {
+-				currentList=-1; 
+-			 }
+-			 currentList++;
+-			  var val=$j(".s_m_li").eq(currentList).find("a").html();
+-			 $j("#btn-search-field").val(val);
+-			 $j(".s_m_li a").removeClass();//鍏堟竻闄ゆ牱寮?閬垮厤鍐茬獊                             
+-			 $j(".s_m_li a").eq(currentList).addClass("hover");
+-		  }
+-		 if(event.keyCode==13){ //鐩戝惉鍥炶溅閿?
+-			 
+-		  }	 
+-
+-		} 
+-   });
+-});
+\ No newline at end of file
+Index: src/main/webapp/js/index.js
+===================================================================
+RCS file: src/main/webapp/js/index.js
+diff -N src/main/webapp/js/index.js
+--- src/main/webapp/js/index.js	19 Oct 2011 08:02:57 -0000	1.1
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,9 +0,0 @@
+-$j(document).ready(function(){
+-	$j('#banner').cycle({ 
+-			fx:'scrollLeft',
+-			pager:'#btn'
+-	});
+-	$j("#banner").css("position","static");
+-	/*banner cycle end*/
+-	
+-});
+\ No newline at end of file
+Index: src/main/webapp/js/lazy_load.js
+===================================================================
+RCS file: /jumbo/usercenter/usercenter-frontend/src/main/webapp/js/lazy_load.js,v
+retrieving revision 1.1
+diff -u -r1.1 lazy_load.js
+--- src/main/webapp/js/lazy_load.js	18 Oct 2011 08:11:34 -0000	1.1
++++ src/main/webapp/js/lazy_load.js	11 Jul 2012 09:00:34 -0000
+@@ -22,6 +22,7 @@
+             effect       : "show",
+             container    : window
+         };
++        
+                 
+         if(options) {
+             $.extend(settings, options);
+Index: src/main/webapp/jsp/order/order_detail.jsp
+===================================================================
+RCS file: src/main/webapp/jsp/order/order_detail.jsp
+diff -N src/main/webapp/jsp/order/order_detail.jsp
+--- src/main/webapp/jsp/order/order_detail.jsp	26 Dec 2011 02:08:01 -0000	1.10
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,184 +0,0 @@
+-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+-<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
+-<%@ taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+-    	<div class="place">
+-        	<div><img src="${pageContext.request.contextPath}/images/place_bg.jpg" /></div>
+-            <span>鐢ㄦ埛涓績</span><span>&gt;</span>
+-            <span class="blue">璁㈠崟涓績</span><span>&gt;</span>
+-            <span>鎴戠殑璁㈠崟</span><span>&gt;</span>
+-            <span>璁㈠崟璇︽儏</span>
+-        </div>
+-        <c:forEach items="${orderDetailsInfo}" var="obj">
+-        <div class="dibox">
+-        	<div class="dibox_top"></div>
+-            <div class="dibox_center">
+-            	<div class="order_num">
+-                    <span>瀹濆皧璁㈠崟缂栧彿锛?{obj.code }</span>
+-                    <span>鎵?睘骞冲彴缂栧彿锛?{obj.outerOrderCode}</span> 
+-                    <span>鎵?睘骞冲彴锛?{obj.platfrom }</span>
+-                </div>
+-            </div>
+-            <div class="dibox_end"></div>
+-        </div>
+-        <div class="order_process">
+-        	<img src="${pageContext.request.contextPath}/images/order_process.jpg" alt="璁㈠崟娴佺▼鍥? />
+-            <div class="div1"><fmt:formatDate value="${obj.create_time}" pattern="yyyy-MM-dd" /><br/><fmt:formatDate value="${obj.create_time}" pattern="HH:mm:ss" /></div>
+-            <div class="div2"><fmt:formatDate value="${obj.outbound_time}" pattern="yyyy-MM-dd" /><br /><fmt:formatDate value="${obj.outbound_time}" pattern="HH:mm:ss" /></div>
+-            <div class="div3"><fmt:formatDate value="${obj.finish_time}" pattern="yyyy-MM-dd" /><br /><fmt:formatDate value="${obj.finish_time}" pattern="HH:mm:ss" /></div>
+-            <div class="div4"><fmt:formatDate value="${obj.finish_time}" pattern="yyyy-MM-dd" /><br /><fmt:formatDate value="${obj.finish_time}" pattern="HH:mm:ss" /></div>
+-        </div>
+-        <div class="dibox">
+-        	<div class="dibox_top2"></div>
+-            <div class="dibox_center">
+-            	<table class="tab_orderpro" border="0" cellspacing="0" cellpadding="0">
+-            	<c:if test="${not empty isReturn}">
+-                  <tr>
+-                    <th scope="col" width="30%">澶勭悊鏃堕棿</th>
+-                    <th scope="col" width="40%">澶勭悊淇℃伅</th>
+-                    <th scope="col" width="30%">鎿嶄綔浜?/th>
+-                  </tr>                  
+-                  <c:forEach items="${rolList}" var="rolList">
+-                      <tr>
+-                         <td class="font_grey2"><fmt:formatDate value="${rolList.time}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+-                         <td>${rolList.memo }</td>
+-                         <td style="border-right:none;">${rolList.operators }</td>
+-                      </tr>
+-                  </c:forEach>
+-                 </c:if>
+-
+-                  <!-- 
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>鎮ㄦ彁浜や簡璁㈠崟锛岃绛夊緟绯荤粺纭</td>
+-                    <td style="border-right:none;">瀹㈡埛</td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>鎮ㄧ殑璁㈠崟宸茬粡杩涘叆涓婃捣7鍙峰簱鍑嗗鍑哄簱</td>
+-                    <td style="border-right:none;">绯荤粺</td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>鎮ㄧ殑璁㈠崟宸茬粡鎵撳嵃瀹屾瘯</td>
+-                    <td style="border-right:none;">涓ョ粛鐞?/td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>鎮ㄧ殑璁㈠崟宸茬粡寮?鎷ｈ揣</td>
+-                    <td style="border-right:none;">鏉庨潤</td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>鎮ㄧ殑璁㈠崟宸茬粡鎵撳寘瀹屾瘯</td>
+-                    <td style="border-right:none;">鏉庨潤</td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>鎮ㄧ殑璁㈠崟宸查?杩囨壂鎻忕‘璁?/td>
+-                    <td style="border-right:none;">鏉庡渾鍦?/td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>璐х墿宸插垎閰嶅埌鍙戣揣鍖猴紝绛夊緟閫佸線榛勬郸绔?/td>
+-                    <td style="border-right:none;">钂嬪嚖濞?/td>
+-                  </tr>
+-                  <tr>
+-                    <td class="font_grey2">2011-09-11 10:07:27</td>
+-                    <td>涓婅溅鎵弿锛岄?寰?粍娴︾珯閫斾腑</td>
+-                    <td style="border-right:none;">钂嬪嚖濞?/td>
+-                  </tr>
+-                  <tr class="order_logistic">
+-                    <td colspan="2">
+-                    	<div>
+-                        	<span>鐗╂祦閰嶉?锛?font class="font_blue">XXXXXXXXXX</font></span>
+-                            <span>璐ц繍鍗曞彿锛?font class="font_blue">XXXXXXXXXX</font></span>
+-                        </div>
+-                    </td>
+-                    <td>鑱旂郴鏂瑰紡锛?span class="font_blue">XXXXXXXXXX</span></td>
+-                  </tr>
+-                   -->
+-                </table>
+-
+-      		</div>
+-            <div class="dibox_end"></div>
+-        </div>
+-        <div class="dibox innertube_mt12">
+-        	<div class="dibox_top2"></div>
+-            <div class="dibox_center">
+-            	<div class="order_detail">
+-                	<dl>
+-                    	<dt>璁㈠崟淇℃伅</dt>
+-                        <dd>
+-                        	<div class="div1">
+-                                <h4>鏀惰揣浜轰俊鎭?/h4>
+-                                <p>鏀?nbsp;&nbsp;璐?nbsp;&nbsp;浜猴細${obj.contact_name }</p>
+-                                <p>鍦?nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鍧?細${obj.province }${obj.city }${obj.district }${obj.area }${obj.detail }</p>
+-                                <p>鍥哄畾鐢佃瘽锛?{obj.phone }</p>
+-                                <p>鎵嬫満鍙风爜锛?{obj.mobile }</p>
+-                                <p>鐢靛瓙閭欢锛?{obj.email }</p>
+-                            </div>
+-                            <div class="div_line">&nbsp;</div>
+-                            <div class="div1">
+-                                <h4>鏀粯鍙婇厤閫佹柟寮?/h4>
+-                                <p>鏀粯鏂瑰紡锛?{obj.pay_type }</p>
+-                                <p>杩?nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;璐癸細锟?{obj.freight }</p>
+-                                <!-- 
+-                                <p>閫佽揣鏃ユ湡锛氬彧鏈夊弻浼戞棩銆佸亣鏃ラ?璐э紙宸ヤ綔鏃ヤ笉鐢ㄩ?锛?/p>
+-                                <p>閰嶉?鏃堕棿锛氫粎鐧藉ぉ閫佽揣锛?锛?0鑷?8锛?0锛?/p>
+-                                 -->
+-                                <p>澶?nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;娉細${obj.memo }</p>
+-                            </div>
+-                            <div class="div_line">&nbsp;</div>
+-                            <div class="div1">
+-                                <h4>鍙戠エ淇℃伅</h4>
+-                                <p>鍙戠エ绫诲瀷锛?{obj.invoice_type }</p>
+-                                <p>鍙戠エ鎶ご锛?{obj.invoice_title }</p>
+-                                <p>鍙戠エ鍐呭锛?{obj.invoice_detail }</p>
+-                            </div>
+-                            <div class="div_line">&nbsp;</div>
+-                            <div class="div1"><h4>鍟嗗搧淇℃伅</h4></div>
+-                            <div class="order_sku">
+-                                <table class="tab_ordersku" border="0" cellspacing="0" cellpadding="0">
+-                                  <tr>
+-                                    <th scope="col" width="15%">鍟嗗搧缂栧彿</th>
+-                                    <th scope="col" width="35%">鍟嗗搧鍚嶇О</th>
+-                                    <th scope="col">璐拱浠?/th>
+-                                    <!--<th scope="col">宸蹭紭鎯?/th>-->
+-                                    <th scope="col">璧犻?绉垎</th>
+-                                    <th scope="col">鍟嗗搧鏁?/th>
+-                                  </tr>
+-                                  <c:forEach items="${orderSkuInfo}" var="sku">
+-                                    <tr>
+-                                    <td>${sku.skuCode }</td>
+-                                    <td class="order_skuimg">
+-                                    	<div>
+-                                        	<!-- <a href="#" title="鍟嗗搧鍥剧墖"><img src="${pageContext.request.contextPath}/images/tab_cont_2_sku.jpg" /></a> -->
+-                                            <span>${sku.shopName}<br />${sku.skuName }</span>
+-                                        </div>
+-                                    </td>
+-                                    <td>${sku.actualPrice }</td>
+-                                    <!--<td>${sku.concessional }</td> -->                                    
+-                                    <td>${sku.pointGained }</td>
+-                                    <td style="border-right:none;">${sku.qty }</td>
+-                                  </tr>
+-                                  </c:forEach>                                  
+-                                </table>
+-                            </div>
+-                            <div class="innertube_mt12"></div>
+-                        </dd>
+-                    </dl>
+-                    <div class="order_total">
+-                    	<p>璁㈠崟鎬婚噾棰濓細锟?{obj.amount }</p>
+-                        <p>+鍚繍璐癸細锟?{obj.freight }</p>
+-                        <!-- 
+-                        <p>-浼樻儬锛氾骏${obj.concessional }</p>
+-                        <p>璁㈠崟瀹炰粯閲戦锛氾骏${obj.actual }</p>
+-                         -->
+-                    </div>
+-                </div>
+-      		</div>
+-            <div class="dibox_end2"></div>
+-        </div>
+-        </c:forEach>
+\ No newline at end of file
+Index: src/main/webapp/jsp/point/memberpoint_detail.jsp
+===================================================================
+RCS file: /jumbo/usercenter/usercenter-frontend/src/main/webapp/jsp/point/memberpoint_detail.jsp,v
+retrieving revision 1.6
+diff -u -r1.6 memberpoint_detail.jsp
+--- src/main/webapp/jsp/point/memberpoint_detail.jsp	15 Dec 2011 08:18:36 -0000	1.6
++++ src/main/webapp/jsp/point/memberpoint_detail.jsp	11 Jul 2012 09:00:34 -0000
+@@ -13,6 +13,8 @@
+ 				return i;
+ 			}
+ 		}
++		
++		
+ 	}
+    function gotoPage(){
+ 		var value = $j("#_page").val();

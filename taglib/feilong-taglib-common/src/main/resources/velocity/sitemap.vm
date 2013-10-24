@@ -1,0 +1,1 @@
+#foreach(${siteMapEntity} in ${siteMapEntityList})<a href="${request.getContextPath()}${siteMapEntity.requestMapping}" title="${siteMapEntity.title}">${siteMapEntity.name}</a> #if(${velocityCount}!=${siteMapEntityList.size()}) ${connector} #end#end

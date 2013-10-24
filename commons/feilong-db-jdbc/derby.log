@@ -1,0 +1,8 @@
+----------------------------------------------------------------
+Wed Mar 30 11:01:20 CST 2011:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.7.1.1 - (1040133): instance a816c00e-012f-04b5-48c4-000000ec3830 
+on database directory E:\Workspaces\feilong\feilong-platform\feilong-db-jdbc\myfeilongdb  with class loader sun.misc.Launcher$AppClassLoader@45a877 
+Loaded from file:/E:/dataFixed/.m2/repository/org/apache/derby/derby/10.7.1.1/derby-10.7.1.1.jar
+java.vendor=Sun Microsystems Inc.
+java.runtime.version=1.6.0_18-b07
+Database Class Loader started - derby.database.classpath=''

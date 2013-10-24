@@ -1,0 +1,55 @@
+<project name="feilong-tools-ant" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+	<description>feilong-tools-ant</description>
+	<property file="${basedir}/build.properties" />
+
+	<property file="E:/DataCommon/java/Taglib/Apache Ant/config/build-feilong.properties" />
+	<!-- 	 -->
+	<path id="ant-contrib.classpath" path="${path.config}/lib/ant/ant-contrib-1.0b3.jar" />
+	<taskdef classpathref="ant-contrib.classpath" resource="net/sf/antcontrib/antlib.xml" />
+
+	<path id="maven-ant-tasks.classpath" path="${path.config}/lib/ant/maven-ant-tasks-2.1.3.jar" />
+	<typedef classpathref="maven-ant-tasks.classpath" resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" />
+
+	<!--由于使用的是maven 架构项目, 下面javadoc 需要引用 classpath -->
+	<artifact:pom id="feilongMaven" file="pom.xml" />
+	<artifact:dependencies filesetId="feilong.maven.dependencies.fileset" pathid="feilong.maven.dependencies.runtime" useScope="runtime">
+		<pom refid="feilongMaven" />
+	</artifact:dependencies>
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: name    >${feilongMaven.settingsFile}</echo>                   
+         - - - - - - - - - - - - - - - - - -->
+	<target name="test">
+		<file id="a" name="${org.springframework:spring-beans:jar}" />
+		<echo>${org.springframework:spring-beans:jar}</echo>
+
+		<dirname property="spring-beans.dir" file="${org.springframework:spring-beans:jar}" />
+		<dirname property="spring-beans.dir.parent" file="${spring-beans.dir}" />
+		<dirname property="spring-beans.dir.grandparent" file="${spring-beans.dir.parent}" />
+		<echo>${spring-beans.dir}</echo>
+		<echo>${spring-beans.dir.parent}</echo>
+		<echo>${spring-beans.dir.grandparent}</echo>
+
+		<if>
+
+			<endswith string="D:\FeiLong Soft\Essential\Development\repository\org\springframework\spring-beans" with="spring-beans" />
+			<then>
+				<echo>equals</echo>
+			</then>
+			<else>
+				<echo>not equals</echo>
+			</else>
+		</if>
+
+		<condition property="ends.with.spring-beans" else="false">
+			<contains string="${spring-beans.dir.grandparent}" substring="springframework" />
+		</condition>
+
+		<echo>${ends.with.spring-beans}</echo>
+
+		<basename property="temp.dirname" file="${org.springframework:spring-beans:jar}" suffix="jar" />
+		<echo>${temp.dirname}</echo>
+
+		<antversion property="antversion" />
+		<echo>${antversion}</echo>
+	</target>
+</project>

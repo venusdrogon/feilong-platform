@@ -1,0 +1,666 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.feilong.platform</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.2</version>
+
+	<packaging>pom</packaging>
+
+	<name>feilong-platform-parent</name>
+	<inceptionYear>2008</inceptionYear>
+	<url>http://www.feilong.com</url>
+
+	<modules>
+		<module>commons</module>
+		<module>taglib</module>
+		<module>tools</module>
+	</modules>
+
+	<!--****************************定义属性 properties************************************* -->
+	<properties>
+		<version.feilong-platform>${project.version}</version.feilong-platform>
+
+		<native2ascii_pattern>**/*.properties</native2ascii_pattern>
+
+		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+		<encoding.compiler>utf-8</encoding.compiler>
+		<javadoc.charset>utf-8</javadoc.charset>
+		<javadoc.docencoding>utf-8</javadoc.docencoding>
+		<javadoc.encoding>utf-8</javadoc.encoding>
+
+		<!--****************************第三方************************************ -->
+		<version.ant>1.8.4</version.ant>
+
+		<version.commons-beanutils>1.8.3</version.commons-beanutils>
+		<version.commons-collections>3.2.1</version.commons-collections>
+		<version.commons-fileupload>1.2.2</version.commons-fileupload>
+		<version.commons-httpclient>3.1</version.commons-httpclient>
+		<version.commons-lang>3.1</version.commons-lang>
+		<version.commons-lang3>3.1</version.commons-lang3>
+
+		<version.commons-logging>1.1.1</version.commons-logging>
+		<version.commons-io>2.0</version.commons-io>
+		<version.commons-net>3.2</version.commons-net>
+		<version.commons-jexl>2.1.1</version.commons-jexl>
+
+		<version.cxf>2.2.9</version.cxf>
+
+		<version.derby>10.7.1.1</version.derby>
+		<version.dom4j>1.6.1</version.dom4j>
+
+		<version.easymock>3.1</version.easymock>
+
+		<version.hibernate>4.0.0.Final</version.hibernate>
+		<version.itext>2.1.7</version.itext>
+
+		<version.javamail>1.4</version.javamail>
+		<version.jacob>1.14.3</version.jacob>
+
+		<!-- org.json -->
+		<version.org.json>20090211</version.org.json>
+
+		<version.jsoup>1.6.1</version.jsoup>
+		<version.jfreechart>1.0.14</version.jfreechart>
+		<version.jsp-api>2.1</version.jsp-api>
+		<version.jstl>1.2</version.jstl>
+		<version.junit>4.10</version.junit>
+		<version.log4j>1.2.16</version.log4j>
+
+		<version.quartz>1.5.2</version.quartz>
+		<version.poi>3.6</version.poi>
+
+		<version.memcached>2.5.3</version.memcached>
+
+		<version.servlet-api>2.5</version.servlet-api>
+		<version.slf4j>1.6.4</version.slf4j>
+		<version.spring>3.2.3.RELEASE</version.spring>
+
+		<version.struts1>1.3.10</version.struts1>
+		<version.struts2>2.3.1</version.struts2>
+
+		<version.xfire>1.2.6</version.xfire>
+		<version.velocity>1.7</version.velocity>
+
+		<!--****************************plugin************************************ -->
+		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
+		<v.maven-clean-plugin>2.4.1</v.maven-clean-plugin>
+		<v.maven-compiler-plugin>2.3.2</v.maven-compiler-plugin>
+		<v.maven-deploy-plugin>2.7</v.maven-deploy-plugin>
+		<v.maven-javadoc-plugin>2.8.1</v.maven-javadoc-plugin>
+		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
+		<v.maven-install-plugin>2.3.1</v.maven-install-plugin>
+		<v.maven-source-plugin>2.1.2</v.maven-source-plugin>
+		<v.maven-surefire-plugin>2.12</v.maven-surefire-plugin>
+		<v.maven-resources-plugin>2.5</v.maven-resources-plugin>
+		<v.maven-war-plugin>2.2</v.maven-war-plugin>
+		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
+	</properties>
+
+	<!--*******************************junit******************************************* -->
+	<dependencies>
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>${version.easymock}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.test</groupId>
+			<artifactId>feilong-common-test</artifactId>
+			<version>1.0.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!--*******************************dependencyManagement******************************************* -->
+	<dependencyManagement>
+		<dependencies>
+
+			<!--*******************************feilong******************************************* -->
+			<dependency>
+				<groupId>com.feilong.platform.commons</groupId>
+				<artifactId>feilong-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.feilong.platform.commons</groupId>
+				<artifactId>feilong-servlet</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.feilong.platform.tools</groupId>
+				<artifactId>feilong-spring</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.feilong.platform.taglib</groupId>
+				<artifactId>feilong-taglib-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- commons-net -->
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${version.commons-net}</version>
+			</dependency>
+
+			<!-- commons-httpclient -->
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${version.commons-httpclient}</version>
+			</dependency>
+
+			<!-- org.json -->
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${version.org.json}</version>
+			</dependency>
+
+			<!-- memcached -->
+			<dependency>
+				<groupId>com.danga</groupId>
+				<artifactId>memcached</artifactId>
+				<version>${version.memcached}</version>
+			</dependency>
+
+			<!-- log4j -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${version.log4j}</version>
+			</dependency>
+
+			<!-- derby -->
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${version.derby}</version>
+			</dependency>
+
+			<!-- dom4j -->
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${version.dom4j}</version>
+			</dependency>
+
+			<!-- jstl -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${version.jstl}</version>
+			</dependency>
+
+			<!--********************************provided******************************** -->
+			<!-- jsp-api -->
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${version.jsp-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- servlet-api -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${version.servlet-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- velocity -->
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity</artifactId>
+				<version>${version.velocity}</version>
+			</dependency>
+
+			<!-- *******************spring********************************* -->
+			<!-- spring-orm -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-context -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-context-support -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-jdbc -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-web -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-webmvc -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- **************************************************** -->
+			<!-- java mail -->
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${version.javamail}</version>
+			</dependency>
+
+			<!-- hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${version.hibernate}</version>
+			</dependency>
+
+			<!-- jsoup -->
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${version.jsoup}</version>
+			</dependency>
+
+			<!-- commons-lang -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${version.commons-lang3}</version>
+			</dependency>
+
+			<!-- commons-beanutils -->
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${version.commons-beanutils}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-jexl</artifactId>
+				<version>${version.commons-jexl}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!--********************************build****************************************** -->
+	<build>
+		<directory>${basedir}/target</directory>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
+		<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+		<outputDirectory>${basedir}/target/classes</outputDirectory>
+		<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>native2ascii-maven-plugin</artifactId>
+				<version>${v.native2ascii-maven-plugin}</version>
+
+				<executions>
+					<execution>
+						<id>native2ascii</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>native2ascii</goal>
+						</goals>
+						<configuration>
+							<encoding>utf-8</encoding>
+							<includes>
+								<include>classes\${native2ascii_pattern}</include>
+								<include>test-classes\${native2ascii_pattern}</include>
+							</includes>
+							<workDir>${project.build.directory}</workDir>
+							<tempDir>${project.build.directory}</tempDir>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+						<configuration>
+							<detail>true</detail>
+						</configuration>
+					</execution>
+					<execution>
+						<id>default-testResources</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>testResources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- maven-compiler-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<!-- 指定高版本的源码和编译后的字节码文件 -->
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>${encoding.compiler}</encoding>
+					<verbose>true</verbose>
+					<detail>true</detail>
+				</configuration>
+			</plugin>
+
+			<!-- maven-jar-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- maven-source-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- maven-javadoc-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<reportOutputDirectory>${project.build.directory}\</reportOutputDirectory>
+					<destDir>apidocs</destDir>
+					<locale>zh</locale>
+					<charset>${javadoc.charset}</charset>
+					<docencoding>${javadoc.docencoding}</docencoding>
+					<encoding>${javadoc.encoding}</encoding>
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
+
+
+			<!-- maven-surefire-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- 跳过测试 -->
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-clean-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.code.maven-svn-wagon</groupId>
+						<artifactId>maven-svn-wagon</artifactId>
+						<version>1.4</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-install-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<!-- pluginManagement -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${v.maven-jar-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${v.maven-javadoc-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${v.maven-compiler-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${v.maven-source-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${v.maven-surefire-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${v.maven-deploy-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${v.maven-install-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${v.maven-antrun-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${v.maven-clean-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${v.maven-resources-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${v.maven-war-plugin}</version>
+				</plugin>
+
+
+				<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <version>2.2-beta-4</version> </plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId> 
+					<version>2.0</version> </plugin> <plugin> <artifactId>maven-ear-plugin</artifactId> <version>2.3.1</version> </plugin> <plugin> <artifactId>maven-ejb-plugin</artifactId> 
+					<version>2.1</version> </plugin> <plugin> <artifactId>maven-plugin-plugin</artifactId> <version>2.5.1</version> </plugin> <plugin> <artifactId>maven-rar-plugin</artifactId> 
+					<version>2.2</version> </plugin> <plugin> <artifactId>maven-release-plugin</artifactId> <version>2.0-beta-9</version> </plugin> <plugin> <artifactId>maven-site-plugin</artifactId> 
+					<version>2.0.1</version> </plugin> -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange>[1.7,)</versionRange>
+										<goals>
+											<goal>run</goal>
+											<goal>help</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>native2ascii-maven-plugin</artifactId>
+										<versionRange>[1.0-beta-1,)</versionRange>
+										<goals>
+											<goal>native2ascii</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- 指定这个项目的组织机构信息 -->
+	<organization>
+		<name>FeiLong</name>
+		<url>http://www.feilong.com</url>
+	</organization>
+
+	<!-- 项目提交者信息 -->
+	<developers>
+		<developer>
+			<id>venusdrogn</id>
+			<name>金鑫</name>
+			<email>venusdrogon@163.com</email>
+			<url>http://www.feilong.com</url>
+			<organization>feilong</organization>
+			<organizationUrl>http://www.feilong.com</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>8</timezone>
+			<properties>
+				<qq>190600641</qq>
+			</properties>
+		</developer>
+	</developers>
+
+
+
+
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 3.0</name>
+			<url>http://www.gnu.org/licenses/gpl.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<!-- 软件配置管理，如cvs 和svn -->
+	<scm>
+		<connection>scm:svn:https://feilong.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://feilong.googlecode.com/svn/trunk/</developerConnection>
+		<url>https://feilong.googlecode.com/svn/trunk/</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>feilong.googlecode.com</id>
+			<url>svn:https://feilong.googlecode.com/svn/repository</url>
+		</repository>
+	</distributionManagement>
+</project>

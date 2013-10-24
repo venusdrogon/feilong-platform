@@ -1,0 +1,248 @@
+/**
+ * Copyright (c) 2008-2013 FeiLong, Inc. All Rights Reserved.
+ * <p>
+ * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
+ * 	You shall not disclose such Confidential Information and shall use it 
+ *  only in accordance with the terms of the license agreement you entered into with FeiLong.
+ * </p>
+ * <p>
+ * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
+ * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
+ * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+ * 	THIS SOFTWARE OR ITS DERIVATIVES.
+ * </p>
+ */
+package com.feilong.commons.core.date;
+
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.PropertiesConstants;
+
+/**
+ * 阴历日期,农历日期
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 2010-2-8 下午04:59:32
+ * @since 1.0
+ */
+public final class LunarDateUtil{
+
+	private final static Logger	log	= LoggerFactory.getLogger(LunarDateUtil.class);
+
+	/**
+	 * 获得中文星期
+	 * 
+	 * @param week
+	 *            星期 日从0开始 1 2 --6
+	 * @return 如 星期一
+	 */
+	public static String getChineseWeek(int week){
+		return PropertiesConstants.config_date_week + DateDictionary.week_chineses[week];
+	}
+
+	/**
+	 * 农历转成阳历The lunar calendar is turned into the Solar calendar
+	 * 
+	 * @param year_lunar
+	 *            农历年份
+	 * @param month_lunar
+	 *            农历月份
+	 * @param day_lunar
+	 *            农历日期
+	 * @return 阳历
+	 */
+	public static String toSolar(int year_lunar,int month_lunar,int day_lunar){
+		int year;
+		int month;
+		int day;
+		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(year_lunar, month_lunar, day_lunar) + DateDictionary.solarAndLunarOffsetTable[year_lunar - 1901];
+		int yearDays = DateUtil.isLeapYear(year_lunar) ? 366 : 365;
+		if (offSetDays >= yearDays){
+			year = year_lunar + 1;
+			offSetDays -= yearDays;
+		}else{
+			year = year_lunar;
+		}
+		day = offSetDays + 1;
+		for (month = 1; offSetDays >= 0; ++month){
+			day = offSetDays + 1;
+			offSetDays -= CalendarUtil.getMaxDayOfMonth(year, month);
+		}
+		month--;
+		return "" + year + (month > 9 ? month + "" : "0" + month) + (day > 9 ? day + "" : "0" + day);
+	}
+
+	/**
+	 * date 转成农历
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static String getLunarDateString(Date date){
+		int year = DateUtil.getYear(date);
+		int month = DateUtil.getMonth(date);
+		int day = DateUtil.getDayOfMonth(date);
+
+		// *********************************
+		int lundar = Integer.parseInt(SolarDateUtil.toLundar(year, month, day));
+		int year_Lunar = lundar / 10000;
+		int month_Lunar = lundar % 10000 / 100;
+		int day_Lunar = lundar % 100;
+		return _getLunarDateString(year_Lunar, month_Lunar, day_Lunar);
+	}
+
+	/**
+	 * 获得某年某月农历最大的天数
+	 * 
+	 * @param iYear
+	 *            农历年
+	 * @param iMonth
+	 *            农历月
+	 * @return 获得某年某月农历最大的天数
+	 */
+	public static int getLunarMonthMaxDays(int iYear,int iMonth){
+		int iLeapMonth = _getLeapMonth(iYear);
+		if ((iMonth > 12) && (iMonth - 12 != iLeapMonth) || (iMonth < 0)){
+			log.error("Wrong month, ^_^ , i think you are want a -1, go to death!");
+			return -1;
+		}
+		if (iMonth - 12 == iLeapMonth){
+			if ((DateDictionary.lunarMonthDaysTable[iYear - 1901] & (0x8000 >> iLeapMonth)) == 0){
+				return 29;
+			}
+			return 30;
+		}
+		if ((iLeapMonth > 0) && (iMonth > iLeapMonth)){
+			iMonth++;
+		}
+		if ((DateDictionary.lunarMonthDaysTable[iYear - 1901] & (0x8000 >> (iMonth - 1))) == 0){
+			return 29;
+		}
+		return 30;
+	}
+
+	// *************************************************************************
+	/**
+	 * 获得农历字符串
+	 * 
+	 * @param year_Lunar
+	 *            农历年
+	 * @param month_Lunar
+	 *            农历月
+	 * @param day_Lunar
+	 *            农历日
+	 * @return 阳历年月日获得对应的阴历
+	 */
+	public static String _getLunarDateString(int year_Lunar,int month_Lunar,int day_Lunar){
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(convertYearToChineseYear(year_Lunar));
+		stringBuilder.append("(" + _getChineseGanZhi(year_Lunar) + ")");
+		stringBuilder.append("年");
+		// *******************月*****************************************
+		if (month_Lunar > 12){
+			month_Lunar -= 12;
+			stringBuilder.append("闰");
+		}
+		if (month_Lunar == 12){
+			stringBuilder.append("腊月");
+		}else if (month_Lunar == 11){
+			// 农历月份的别称
+			//
+			// 一月：正月、端月、征月、开岁、华岁、早春、孟春、新正；
+			// 二月：命月、如月、丽月、杏月、酣香、仲春；
+			// 三月：蚕月、桃月、桐月、季春、晓春、鸢时、桃良、樱笋时；
+			// 四月：余月、阴月、梅月、清和月、初夏、孟夏、正阳、朱明；
+			// 五月：皋月、榴月、蒲月、仲夏、郁蒸、天中；
+			// 六月：且月、焦月、荷月、暑月、伏月、精阳、季夏；
+			// 七月：相月、兰月、凉月、瓜月、巧月、孟秋、初秋、早秋；
+			// 八月：壮月、桂月、仲秋、中秋、正秋、仲商；
+			// 九月：玄月、菊月、青女月、季秋、穷秋、抄秋；
+			// 十月：阴月、良月、正阴月、小阳春、初冬、开冬、孟冬；
+			// 十一月：幸月、畅月、仲冬；
+			// 十二月：涂月、蜡月、腊月、季冬、暮冬、残冬、末冬、嘉平月。
+			stringBuilder.append("十一月");// 冬月
+		}else if (month_Lunar == 1){
+			stringBuilder.append("正月");
+		}else{
+			stringBuilder.append(DateDictionary.chinses_numbers[month_Lunar] + "月");
+		}
+		// **************day*************************************************
+		if (day_Lunar > 29){
+			stringBuilder.append("三十");
+		}else if (day_Lunar > 20){
+			stringBuilder.append("二十" + DateDictionary.chinses_numbers[day_Lunar % 20]);
+		}else if (day_Lunar == 20){
+			stringBuilder.append("二十");
+		}else if (day_Lunar > 10){
+			stringBuilder.append("十" + DateDictionary.chinses_numbers[day_Lunar % 10]);
+		}else{
+			stringBuilder.append("初" + DateDictionary.chinses_numbers[day_Lunar]);
+		}
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * 年份转成中文 2010--->二零一零
+	 * 
+	 * @param year
+	 *            年份 2010
+	 * @return 年份转成中文
+	 */
+	public static String convertYearToChineseYear(int year){
+		char[] cs = String.valueOf(year).toCharArray();
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < cs.length; ++i){
+			Object iObject = cs[i];
+			int index = Integer.parseInt(iObject.toString());
+			stringBuilder.append(DateDictionary.chinses_numbers[index]);
+		}
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * 获得闰月
+	 * 
+	 * @param year
+	 * @return
+	 */
+	public static int _getLeapMonth(int year){
+		char iMonth = DateDictionary.lunarLeapMonthTable[(year - 1901) / 2];
+		if (year % 2 == 0){
+			return (iMonth & 0x0f);
+		}
+		return (iMonth & 0xf0) >> 4;
+	}
+
+	/**
+	 * 根据年份获得干支记法
+	 * 
+	 * @param year
+	 *            年份
+	 * @return 干支
+	 */
+	private static String _getChineseGanZhi(int year){
+		int temp = Math.abs(year - 1924);
+		return DateDictionary.heavenlyStems[temp % 10] + DateDictionary.earthlyBranches[temp % 12];
+	}
+
+	private static int getLNewYearOffsetDays(int iYear,int iMonth,int iDay){
+		int iOffsetDays = 0;
+		int iLeapMonth = _getLeapMonth(iYear);
+		if ((iLeapMonth > 0) && (iLeapMonth == iMonth - 12)){
+			iMonth = iLeapMonth;
+			iOffsetDays += getLunarMonthMaxDays(iYear, iMonth);
+		}
+		for (int i = 1; i < iMonth; ++i){
+			iOffsetDays += getLunarMonthMaxDays(iYear, i);
+			if (i == iLeapMonth){
+				iOffsetDays += getLunarMonthMaxDays(iYear, iLeapMonth + 12);
+			}
+		}
+		iOffsetDays += iDay - 1;
+		return iOffsetDays;
+	}
+}
