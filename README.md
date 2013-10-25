@@ -1,7 +1,7 @@
 feilong-platform
 ================
 
-feilong-platform
+reduce development, release ideas
 
 
 #Welcome to feilong-platform.
