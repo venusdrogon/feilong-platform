@@ -43,16 +43,46 @@
 2.基于maven2.2.1构建,
 3.需要jdk1.5及以上环境</p>
 
-<h1>
+<hr><h1>
 <a name="%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96"><span class="octicon octicon-link"></span></a>项目依赖</h1>
 
-<p>`</p>
+<div class="highlight highlight-XML"><pre>
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>commons-lang3<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>commons-beanutils<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>commons-beanutils<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.8.3<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>4.10<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>slf4j-log4j12<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.6.4<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
 
-<p>javax.servletjstl1.2compileorg.apache.commonscommons-lang33.1compilecommons-beanutilscommons-beanutils1.8.3compilejunitjunit4.10testorg.slf4jslf4j-log4j121.6.4compile</p>
+</pre></div>
 
-<p>`</p>
-
-<p># 类和方法介绍: </p>
+<hr><p># 类和方法介绍: </p>
 
 <h2>
 <a name="comfeilongcommonscoredate-%E5%8C%85%E4%B8%8B%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E7%B1%BB" class="anchor" href="#comfeilongcommonscoredate-%E5%8C%85%E4%B8%8B%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E7%B1%BB"><span class="octicon octicon-link"></span></a>com.feilong.commons.core.date 包下有以下几个类:</h2>
@@ -65,7 +95,7 @@
 <li>ConstellationUtil 星座工具类</li>
 <li>LunarDateUtil 农历日期工具类</li>
 <li>SolarDateUtil 阳历日期工具类</li>
-</ul><h1>
+</ul><hr><h1>
 <a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h1>
 
 <ul>
