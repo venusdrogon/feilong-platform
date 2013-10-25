@@ -3,18 +3,18 @@ feilong-platform
 
 feilong-platform
 
-飞龙
-开源项目
 
-1.基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明,
+#Welcome to feilong-platform.
 
-2.基于maven2.2.1构建,
+1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明,
+1. 基于maven2.2.1构建,
+1. 需要jdk1.5及以上环境
 
-3.需要jdk1.5及以上环境
+***
+# 项目依赖
 
-项目依赖:
-feilong-core:
- <dependencies>
+```XML
+<dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
@@ -46,23 +46,24 @@ feilong-core:
       <scope>compile</scope>
     </dependency>
   </dependencies>
-类和方法介绍:
-com.feilong.commons.core.date 包下有以下几个类:
+```
 
-★ DateUtil 时间工具类
+***
 
-★ CalendarUtil 日历工具类
+# 类和方法介绍: 
 
-DatePattern 时间格式,用于formart
+## com.feilong.commons.core.date 包下有以下几个类:
 
-ConstellationType 星座枚举类
+* ★ DateUtil 时间工具类
+* ★ CalendarUtil 日历工具类
+* DatePattern 时间格式,用于formart
+* ConstellationType 星座枚举类
+* ConstellationUtil 星座工具类
+* LunarDateUtil 农历日期工具类
+* SolarDateUtil 阳历日期工具类
 
-ConstellationUtil 星座工具类
+***
 
-LunarDateUtil 农历日期工具类
-
-SolarDateUtil 阳历日期工具类
-
-
-我的新浪微博:http://weibo.com/venusdrogon
-我的ITeye博客:http://feitianbenyue.iteye.com/
+# About
+* 我的新浪微博:http://weibo.com/venusdrogon 
+* 我的ITeye博客:http://feitianbenyue.iteye.com/
