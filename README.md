@@ -63,16 +63,6 @@ LunarDateUtil 农历日期工具类
 
 SolarDateUtil 阳历日期工具类
 
-create by 金鑫
-
-JavaEE 系统架构师
-
-venusdrogon@163.com
-
-如果您对该项目感兴趣,可以联系我
-
-您还可以将该项目加入RSS订阅:http://code.google.com/p/feilong/feeds
 
 我的新浪微博:http://weibo.com/venusdrogon
-
 我的ITeye博客:http://feitianbenyue.iteye.com/
