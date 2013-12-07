@@ -23,10 +23,10 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.tools.mail.entity.FeiLongAttachMailEntity;
-import com.feilong.tools.mail.entity.FeiLongBaseMailEntity;
-import com.feilong.tools.mail.entity.FeiLongHtmlMailEntity;
-import com.feilong.tools.mail.entity.FeiLongTextMailEntity;
+import com.feilong.tools.mail.entity.AttachMailEntity;
+import com.feilong.tools.mail.entity.BaseMailEntity;
+import com.feilong.tools.mail.entity.HtmlMailEntity;
+import com.feilong.tools.mail.entity.TextMailEntity;
 
 /**
  * 简单邮件发送器
@@ -35,7 +35,7 @@ import com.feilong.tools.mail.entity.FeiLongTextMailEntity;
  * @author 金鑫 2010-1-23 下午04:22:24
  * @author 金鑫 2011-12-24 01:54
  */
-public class FeiLongMailSenderUtil{
+public class MailSenderUtil{
 
 	private Message	message	= null;
 
@@ -43,9 +43,9 @@ public class FeiLongMailSenderUtil{
 	 * 以纯文本格式发送邮件 （不带附件的邮件）
 	 * 
 	 * @param feiLongTextMailEntity
-	 *            {@link FeiLongTextMailEntity}
+	 *            {@link TextMailEntity}
 	 */
-	public boolean sendTextMail(FeiLongTextMailEntity feiLongTextMailEntity){
+	public boolean sendTextMail(TextMailEntity feiLongTextMailEntity){
 		// 根据session创建一个邮件消息
 		message = this.getMessageAndSetAttribute(feiLongTextMailEntity);
 		// 设置邮件消息的主要内容
@@ -68,7 +68,7 @@ public class FeiLongMailSenderUtil{
 	 *            mailSenderInfo
 	 * @return 成功返回true
 	 */
-	public boolean sendHtmlMail(FeiLongHtmlMailEntity feiLongHtmlMailEntity){
+	public boolean sendHtmlMail(HtmlMailEntity feiLongHtmlMailEntity){
 		// 根据session创建一个邮件消息
 		message = this.getMessageAndSetAttribute(feiLongHtmlMailEntity);
 		//******************************************************
@@ -98,7 +98,7 @@ public class FeiLongMailSenderUtil{
 	 *            mailInfo
 	 * @return 成功返回true
 	 */
-	public boolean sendHtmlMailWithFuJian(FeiLongAttachMailEntity feiLongAttachMailEntity){
+	public boolean sendHtmlMailWithFuJian(AttachMailEntity feiLongAttachMailEntity){
 		LinkedList<byte[]> linkedList = feiLongAttachMailEntity.getAttachList();
 		int size = linkedList.size();
 		String[] attachFileNames = feiLongAttachMailEntity.getAttachFileNames();
@@ -149,7 +149,7 @@ public class FeiLongMailSenderUtil{
 	 * @param feiLongBaseMailEntity
 	 * @return Message
 	 */
-	private Message getMessageAndSetAttribute(FeiLongBaseMailEntity feiLongBaseMailEntity){
+	private Message getMessageAndSetAttribute(BaseMailEntity feiLongBaseMailEntity){
 		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
 		Session session = createSession(feiLongBaseMailEntity);
 		// 根据session创建一个邮件消息
@@ -166,7 +166,7 @@ public class FeiLongMailSenderUtil{
 	 * @param feiLongBaseMailEntity
 	 *            属性
 	 */
-	private void setMessageAttribute(FeiLongBaseMailEntity feiLongBaseMailEntity){
+	private void setMessageAttribute(BaseMailEntity feiLongBaseMailEntity){
 		String fromAddress = feiLongBaseMailEntity.getFromAddress();
 		// 设置邮件消息的发送者
 		String charset = CharsetType.GB2312;
@@ -203,7 +203,7 @@ public class FeiLongMailSenderUtil{
 	 *            mailSenderInfo
 	 * @return Session
 	 */
-	private Session createSession(FeiLongBaseMailEntity feiLongBaseMailEntity){
+	private Session createSession(BaseMailEntity feiLongBaseMailEntity){
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", feiLongBaseMailEntity.getMailServerHost());
 		properties.put("mail.smtp.port", feiLongBaseMailEntity.getMailServerPort());

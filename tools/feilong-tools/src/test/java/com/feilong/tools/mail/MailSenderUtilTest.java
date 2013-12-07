@@ -24,26 +24,26 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
-import com.feilong.tools.mail.entity.FeiLongAttachMailEntity;
-import com.feilong.tools.mail.entity.FeiLongHtmlMailEntity;
-import com.feilong.tools.mail.entity.FeiLongTextMailEntity;
+import com.feilong.tools.mail.entity.AttachMailEntity;
+import com.feilong.tools.mail.entity.HtmlMailEntity;
+import com.feilong.tools.mail.entity.TextMailEntity;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2011 11:57:48 PM
  */
-public class FeiLongMailSenderUtilTest{
+public class MailSenderUtilTest{
 
 	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(FeiLongMailSenderUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(MailSenderUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.tools.mail.FeiLongMailSenderUtil#sendTextMail(com.feilong.tools.mail.entity.FeiLongMailEntity)}.
+	 * Test method for {@link com.feilong.tools.mail.MailSenderUtil#sendTextMail(com.feilong.tools.mail.entity.FeiLongMailEntity)}.
 	 */
 	@Test
 	public void testSendTextMail(){
-		FeiLongMailSenderUtil feiLongMailSenderUtil = new FeiLongMailSenderUtil();
-		FeiLongTextMailEntity feiLongTextMailEntity = new FeiLongTextMailEntity();
+		MailSenderUtil feiLongMailSenderUtil = new MailSenderUtil();
+		TextMailEntity feiLongTextMailEntity = new TextMailEntity();
 		String toAddress = "venusdrogon@163.com";
 		String textContent = "测试回执";
 		feiLongTextMailEntity.setMailServerHost("smtp.163.com");
@@ -59,12 +59,12 @@ public class FeiLongMailSenderUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.tools.mail.FeiLongMailSenderUtil#sendHtmlMail(com.feilong.tools.mail.entity.FeiLongMailEntity)}.
+	 * Test method for {@link com.feilong.tools.mail.MailSenderUtil#sendHtmlMail(com.feilong.tools.mail.entity.FeiLongMailEntity)}.
 	 */
 	@Test
 	public void testSendHtmlMail(){
-		FeiLongMailSenderUtil feiLongMailSenderUtil = new FeiLongMailSenderUtil();
-		FeiLongHtmlMailEntity feiLongHtmlMailEntity = new FeiLongHtmlMailEntity();
+		MailSenderUtil feiLongMailSenderUtil = new MailSenderUtil();
+		HtmlMailEntity feiLongHtmlMailEntity = new HtmlMailEntity();
 		String toAddress = "venusdrogon@163.com";
 		String textContent = "<html><body><hr/><div style='boder:1px #000 solid;color:red'>222222</div></body></html>";
 		feiLongHtmlMailEntity.setMailServerHost("smtp.163.com");
@@ -80,12 +80,12 @@ public class FeiLongMailSenderUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.tools.mail.FeiLongMailSenderUtil#sendHtmlMailWithFuJian(com.feilong.tools.mail.entity.FeiLongMailEntity)}.
+	 * Test method for {@link com.feilong.tools.mail.MailSenderUtil#sendHtmlMailWithFuJian(com.feilong.tools.mail.entity.FeiLongMailEntity)}.
 	 */
 	@Test
 	public void testSendHtmlMailWithFuJian(){
-		FeiLongMailSenderUtil feiLongMailSenderUtil = new FeiLongMailSenderUtil();
-		FeiLongAttachMailEntity feiLongAttachMailEntity = new FeiLongAttachMailEntity();
+		MailSenderUtil feiLongMailSenderUtil = new MailSenderUtil();
+		AttachMailEntity feiLongAttachMailEntity = new AttachMailEntity();
 		String toAddress = "venusdrogon@163.com";
 		String textContent = "<html><body><hr/><div style='boder:1px #000 solid;color:red'>222222</div></body></html>";
 		feiLongAttachMailEntity.setMailServerHost("smtp.163.com");
