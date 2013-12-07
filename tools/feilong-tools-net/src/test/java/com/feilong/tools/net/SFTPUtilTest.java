@@ -15,11 +15,16 @@
  */
 package com.feilong.tools.net;
 
+import java.util.Map;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import com.feilong.commons.core.entity.FileInfoEntity;
+import com.feilong.commons.core.util.JsonFormatUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -33,7 +38,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	@Qualifier("nikeSFTPUtil")
 	private FileTransfer		fileTransfer;
 
-	private String				remoteDirectory	= "/home/niketest/out/test";
+	private String				remoteDirectory	= "/home/appuser/test";
 
 	@Test
 	public void sendLocalFileToRemote() throws Exception{
@@ -46,7 +51,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	@Test
 	public void sendLocalFileToRemote_dir() throws Exception{
-		String singleLocalFileFullPath = "E:\\test";
+		String singleLocalFileFullPath = "F:\\2013-12-04-1938";
 		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
 	}
 
@@ -133,6 +138,15 @@ public class SFTPUtilTest extends FileTransferTest{
 		String remotePath = "/home/niketest/out/test";
 		String localAbsoluteDirectoryPath = "E:\\test\\1";
 		fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
+	}
+
+	@Test
+	public void getFileEntityMap() throws Exception{
+		String remoteAbsolutePath = "/home/appuser/test/2013-12-04-1938";
+		String[] fileNames = { "SportActivity.dat", "SubCategory.dat", "aaa" };
+		Map<String, FileInfoEntity> fileEntityMap = fileTransfer.getFileEntityMap(remoteAbsolutePath, fileNames);
+
+		log.info(JsonFormatUtil.format(fileEntityMap));
 	}
 
 }

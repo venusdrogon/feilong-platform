@@ -30,6 +30,9 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.entity.FileInfoEntity;
+import com.feilong.commons.core.enumeration.FileType;
+
 /**
  * ftp 相关的工具类, 注:依赖于 commons-net<br>
  * 包括
@@ -80,6 +83,8 @@ public class FTPUtil extends FileTransfer{
 	 */
 	@Override
 	protected boolean connect(){
+		// 是否连接成功, 默认不成功
+		boolean isSuccess = false;
 		try{
 			// 连接
 			ftpClient.connect(hostName);
@@ -90,7 +95,6 @@ public class FTPUtil extends FileTransfer{
 			log.debug("login:[{}] [{}], {}~~~", params);
 
 			if (isLoginSuccess){
-
 				int replyCode = ftpClient.getReplyCode();
 				if (!FTPReply.isPositiveCompletion(replyCode)){
 					log.error("FTP 服务拒绝连接！ReplyCode is:{},will ftpClient.disconnect()", replyCode);
@@ -114,7 +118,9 @@ public class FTPUtil extends FileTransfer{
 					// ftpClient.configure(ftpClientConfig);
 
 					// ftpClient.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
-					return true;
+
+					// 没有异常则 确定成功
+					isSuccess = true;
 				}
 			}
 		}catch (SocketException e){
@@ -124,7 +130,8 @@ public class FTPUtil extends FileTransfer{
 			e.printStackTrace();
 			disconnect();
 		}
-		return false;
+		log.info("connect :{}", isSuccess);
+		return isSuccess;
 	}
 
 	/*
@@ -196,14 +203,22 @@ public class FTPUtil extends FileTransfer{
 	 * (non-Javadoc)
 	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
 	 */
-	protected Map<String, Boolean> getLsFileMap(String remotePath) throws Exception{
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
+	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
+		Map<String, FileInfoEntity> map = new HashMap<String, FileInfoEntity>();
 		FTPFile[] ftpFiles = ftpClient.listFiles(remotePath);
 		for (FTPFile ftpFile : ftpFiles){
+
 			String filename = ftpFile.getName();
 
 			boolean isDirectory = ftpFile.isDirectory();
-			map.put(filename, isDirectory);
+
+			FileInfoEntity fileEntity = new FileInfoEntity();
+			fileEntity.setFileType(isDirectory ? FileType.DIRECTORY : FileType.FILE);
+			fileEntity.setName(filename);
+			fileEntity.setSize(ftpFile.getSize());
+			fileEntity.setLastModified(ftpFile.getTimestamp().getTimeInMillis());
+
+			map.put(filename, fileEntity);
 		}
 		return map;
 	}
@@ -358,5 +373,6 @@ public class FTPUtil extends FileTransfer{
 			bufferedOutputStream.close();
 		}
 		return success;
-	};
+	}
+
 }

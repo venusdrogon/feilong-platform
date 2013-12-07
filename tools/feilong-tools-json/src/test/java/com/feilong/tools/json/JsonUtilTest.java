@@ -17,6 +17,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.test.A;
 import com.feilong.test.MyBean;
 import com.feilong.test.Person;
 import com.feilong.test.User;
@@ -119,7 +121,8 @@ public class JsonUtilTest{
 
 		Object[] objArr = JsonUtil.toArray(json, MyBean.class, classMap);
 		for (int i = 0; i < objArr.length; i++){
-			System.out.println(((MyBean) objArr[i]).getData().get(0).getClass() + " name = " + ((Person) ((MyBean) objArr[i]).getData().get(0)).getName());
+			System.out.println(((MyBean) objArr[i]).getData().get(0).getClass() + " name = "
+					+ ((Person) ((MyBean) objArr[i]).getData().get(0)).getName());
 		}
 		/*
 		 * print: class comm.test.Person name = get class comm.test.Person name = set
@@ -163,7 +166,8 @@ public class JsonUtilTest{
 		classMap.put("data", Person.class);
 		List list = JsonUtil.toList(json, MyBean.class, classMap);
 		for (int i = 0; i < list.size(); i++){
-			System.out.println(((MyBean) list.get(i)).getData().get(0).getClass() + " name = " + ((Person) ((MyBean) list.get(i)).getData().get(0)).getName());
+			System.out.println(((MyBean) list.get(i)).getData().get(0).getClass() + " name = "
+					+ ((Person) ((MyBean) list.get(i)).getData().get(0)).getName());
 		}
 		/*
 		 * print: class comm.test.Person name = get class comm.test.Person name = set
@@ -194,6 +198,32 @@ public class JsonUtilTest{
 		String json = "{'data1':{'name':'get'},'data2':{'name':'set'}}";
 		Map<String, Person> map = JsonUtil.toMap(json, Person.class);
 		log.info(JsonUtil.toJSON(map).toString(4, 4));
+	}
+
+	@Test
+	public void toMap1(){
+		
+		log.info("status_deliveried".length()+"");
+
+		List<A> list = new ArrayList<A>();
+
+		A a = new A();
+		a.setCode("137214341849121");
+
+		a.setMemberID("325465");
+		a.setMerchant_order_code("216888");
+		A a1 = new A();
+		a1.setCode("137214341888888");
+
+		a1.setMemberID("3240088");
+		a1.setMerchant_order_code("288888");
+
+		list.add(a);
+		list.add(a1);
+		
+		
+		log.info(JsonFormatUtil.format(list));
+
 	}
 
 	/**
@@ -272,7 +302,8 @@ public class JsonUtilTest{
 	public void testGetXMLFromObj1(){
 		System.out.println(JsonUtil.objectToXML("{\"name\":\"json\",\"bool\":true,\"int\":1}"));
 		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <bool type="boolean">true</bool> <int type="number">1</int> <name type="string">json</name> </o>
+		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <bool type="boolean">true</bool> <int type="number">1</int> <name
+		 * type="string">json</name> </o>
 		 */
 	}
 
@@ -354,8 +385,8 @@ public class JsonUtilTest{
 
 		System.out.println(JsonUtil.objectToXML(map));
 		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <person1 class="object"> <dateAttr type="string">2009-09-12 07:08:35</dateAttr> <name
-		 * type="string">get</name> </person1> </o>
+		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <person1 class="object"> <dateAttr type="string">2009-09-12 07:08:35</dateAttr>
+		 * <name type="string">get</name> </person1> </o>
 		 */
 	}
 
@@ -369,7 +400,8 @@ public class JsonUtilTest{
 		ps.setName("get");
 		System.out.println(JsonUtil.objectToXML(ps));
 		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <dateAttr type="string">2009-09-12 07:13:02</dateAttr> <name type="string">get</name> </o>
+		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <dateAttr type="string">2009-09-12 07:13:02</dateAttr> <name
+		 * type="string">get</name> </o>
 		 */
 	}
 

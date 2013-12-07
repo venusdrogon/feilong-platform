@@ -88,5 +88,10 @@ public abstract class FileTransferTest extends AbstractJUnit4SpringContextTests{
 	public abstract void download_file() throws Exception;
 
 	public abstract void download_dir() throws Exception;
+
+	/**
+	 * 获得某特定文件夹下面 指定文件名相关信息
+	 */
+	public abstract void getFileEntityMap() throws Exception;
 	// E:\test\1
 }

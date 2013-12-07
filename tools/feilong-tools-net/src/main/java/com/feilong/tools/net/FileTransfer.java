@@ -17,12 +17,14 @@ package com.feilong.tools.net;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.Map;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.entity.FileInfoEntity;
+import com.feilong.commons.core.enumeration.FileType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
@@ -127,7 +129,6 @@ public abstract class FileTransfer{
 		}
 
 		boolean isSuccess = connect();
-		log.info("connect :{}", isSuccess);
 		if (isSuccess){
 			for (String remotePath : remotePaths){
 				isSuccess = _downloadDontClose(remotePath, localAbsoluteDirectoryPath);
@@ -136,7 +137,6 @@ public abstract class FileTransfer{
 				}
 			}
 			// 关闭连接
-			log.info("disconnect...");
 			disconnect();
 		}
 	}
@@ -164,8 +164,8 @@ public abstract class FileTransfer{
 			success = FileUtil.createDirectory(filePath);
 
 			if (success){
-				Map<String, Boolean> lsFileMap = getLsFileMap(remotePath);
-				for (Map.Entry<String, Boolean> entry : lsFileMap.entrySet()){
+				Map<String, FileInfoEntity> lsFileMap = getLsFileMap(remotePath);
+				for (Map.Entry<String, FileInfoEntity> entry : lsFileMap.entrySet()){
 					String key = entry.getKey();
 					// Boolean value = entry.getValue();
 
@@ -247,7 +247,6 @@ public abstract class FileTransfer{
 	 * @return 全部成功返回true,否则一旦有失败则返回false
 	 * @throws Exception
 	 */
-
 	public boolean sendLocalFileToRemote(String[] batchLocalFileFullPaths,String remoteDirectory) throws Exception{
 		if (Validator.isNullOrEmpty(batchLocalFileFullPaths)){
 			throw new IllegalArgumentException("batchLocalFileFullPaths can not NullOrEmpty");
@@ -266,7 +265,6 @@ public abstract class FileTransfer{
 		}
 
 		boolean isSuccess = connect();
-		log.info("connect :{}", isSuccess);
 		if (isSuccess){
 			for (String singleLocalFileFullPath : batchLocalFileFullPaths){
 				isSuccess = _sendLocalFileToRemoteDontClose(singleLocalFileFullPath, remoteDirectory);
@@ -275,7 +273,6 @@ public abstract class FileTransfer{
 				}
 			}
 			// 关闭连接
-			log.info("disconnect...");
 			disconnect();
 			return isSuccess;
 		}
@@ -385,8 +382,7 @@ public abstract class FileTransfer{
 	 */
 	protected boolean isExistsSameNameAndTypeFile(File file,String remotePath) throws Exception{
 		boolean flag = false;
-
-		Map<String, Boolean> map = getLsFileMap(remotePath);
+		Map<String, FileInfoEntity> map = getLsFileMap(remotePath);
 
 		if (log.isDebugEnabled()){
 			log.debug(JsonFormatUtil.format(map));
@@ -402,7 +398,8 @@ public abstract class FileTransfer{
 			// 判断同名
 			if (map.containsKey(fileName)){
 				// 远程是否是 文件夹
-				boolean _isDirectory = map.get(fileName);
+				FileInfoEntity fileEntity = map.get(fileName);
+				boolean _isDirectory = (fileEntity.getFileType() == FileType.DIRECTORY);
 				// 判断 同类型,isFile
 				if (isFile && !_isDirectory){
 					flag = true;
@@ -421,14 +418,66 @@ public abstract class FileTransfer{
 	/**
 	 * 获得 ls map <br>
 	 * key 为文件名称(不是全路径),<br>
-	 * value 该文件是否是文件夹,如果是文件夹 true,否则 false
+	 * value FileEntity
 	 * 
 	 * @param remotePath
 	 *            远程路径
 	 * @return
 	 * @throws Exception
 	 */
-	protected abstract Map<String, Boolean> getLsFileMap(String remotePath) throws Exception;
+	protected abstract Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception;
+
+	/**
+	 * 获得某特定文件夹下面 指定文件名相关信息
+	 * 
+	 * @param remotePath
+	 *            远程地址
+	 * @param fileNames
+	 *            文件名称组
+	 * @return 如果fileNames 有文件不在 remotePath 路径下面, 则返回的map中这条数据的value 是null
+	 * @throws Exception
+	 */
+	public Map<String, FileInfoEntity> getFileEntityMap(String remotePath,String[] fileNames) throws Exception{
+		if (Validator.isNullOrEmpty(remotePath)){
+			throw new IllegalArgumentException("remotePath can not NullOrEmpty");
+		}
+
+		if (Validator.isNullOrEmpty(fileNames)){
+			throw new IllegalArgumentException("fileNames can not NullOrEmpty");
+		}
+
+		boolean isSuccess = connect();
+		if (isSuccess){
+			Map<String, FileInfoEntity> _getFileEntityMap = _getFileEntityMap(remotePath, fileNames);
+			disconnect();
+			return _getFileEntityMap;
+		}
+		return null;
+	}
+
+	/**
+	 * 获得远程目录下面 文件信息map,<br>
+	 * 传过来几条,返回几条, 如果文件不存在 返回null
+	 * 
+	 * @param remotePath
+	 * @param childFile
+	 * @return
+	 * @throws Exception
+	 */
+	protected Map<String, FileInfoEntity> _getFileEntityMap(String remotePath,String[] fileNames) throws Exception{
+		Map<String, FileInfoEntity> map = getLsFileMap(remotePath);
+
+		// 返回的map
+		Map<String, FileInfoEntity> returnMap = new HashMap<String, FileInfoEntity>();
+		for (String fileName : fileNames){
+			if (map.containsKey(fileName)){
+				returnMap.put(fileName, map.get(fileName));
+			}else{
+				returnMap.put(fileName, null);
+			}
+		}
+		return returnMap;
+	};
 
 	/**
 	 * 关闭链接
@@ -459,7 +508,8 @@ public abstract class FileTransfer{
 	}
 
 	/**
-	 * 删除远程的一组文件
+	 * 删除远程的一组文件<br>
+	 * tips:不管是windows还是linux、unix，都不能在同一目录结构下创建同名的文件夹和文件
 	 * 
 	 * <pre>
 	 * String[] remoteAbsolutePaths={"/webstore/InlineSales_Test/2011-07-05/test","/webstore/InlineSales_Test/2011-07-05/1.cvs"};
@@ -479,7 +529,6 @@ public abstract class FileTransfer{
 	 *         不支持 删除全部 危险<br>
 	 *         一旦 有一个文件 null or empty 抛错
 	 */
-	// 不管是windows还是linux、unix，都不能在同一目录结构下创建同名的文件夹和文件
 	public boolean delete(String[] remoteAbsolutePaths){
 		if (Validator.isNullOrEmpty(remoteAbsolutePaths)){
 			throw new IllegalArgumentException("remotePaths can't be null/empty!");
@@ -540,10 +589,10 @@ public abstract class FileTransfer{
 
 				log.debug("remotePath :[{}] is [directory],removeDirectory.....", remotePath);
 
-				Map<String, Boolean> map = getLsFileMap(remotePath);
+				Map<String, FileInfoEntity> map = getLsFileMap(remotePath);
 
 				// 删除 子文件
-				for (Map.Entry<String, Boolean> entry : map.entrySet()){
+				for (Map.Entry<String, FileInfoEntity> entry : map.entrySet()){
 					String key = entry.getKey();
 					// 级联删除
 					_deleteSingleDontClose(joinPath(remotePath, key));

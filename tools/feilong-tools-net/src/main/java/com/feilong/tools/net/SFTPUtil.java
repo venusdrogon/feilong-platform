@@ -26,6 +26,8 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.entity.FileInfoEntity;
+import com.feilong.commons.core.enumeration.FileType;
 import com.feilong.commons.core.util.Validator;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
@@ -85,6 +87,10 @@ public class SFTPUtil extends FileTransfer{
 	 * @return true, if successful
 	 */
 	public boolean connect(){
+
+		// 是否连接成功, 默认不成功
+		boolean isSuccess = false;
+
 		// If the client is already connected, disconnect
 		if (channelSftp != null){
 			log.warn("channelSftp is not null,will disconnect first....");
@@ -116,13 +122,13 @@ public class SFTPUtil extends FileTransfer{
 			channel.connect();
 
 			channelSftp = (ChannelSftp) channel;
-			boolean connected = channelSftp.isConnected();
-			log.debug("channelSftp isConnected:[{}]", connected);
-			return connected;
+			isSuccess = channelSftp.isConnected();
+			log.debug("channelSftp isConnected:[{}]", isSuccess);
 		}catch (JSchException e){
 			e.printStackTrace();
 		}
-		return false;
+		log.info("connect :{}", isSuccess);
+		return isSuccess;
 	}
 
 	/**
@@ -144,8 +150,8 @@ public class SFTPUtil extends FileTransfer{
 	 * (non-Javadoc)
 	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
 	 */
-	protected Map<String, Boolean> getLsFileMap(String remotePath) throws Exception{
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
+	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
+		Map<String, FileInfoEntity> map = new HashMap<String, FileInfoEntity>();
 
 		@SuppressWarnings("unchecked")
 		Vector<LsEntry> rs = channelSftp.ls(remotePath);
@@ -166,7 +172,17 @@ public class SFTPUtil extends FileTransfer{
 			boolean isDirectory = isDirectory(path);
 
 			log.debug("fileName:{}", fileName);
-			map.put(fileName, isDirectory);
+
+			SftpATTRS attrs = lsEntry.getAttrs();
+
+			FileInfoEntity fileEntity = new FileInfoEntity();
+			fileEntity.setFileType(isDirectory ? FileType.DIRECTORY : FileType.FILE);
+			fileEntity.setName(fileName);
+			fileEntity.setSize(attrs.getSize());
+			// returns the last modification time.
+			fileEntity.setLastModified(Long.parseLong(attrs.getMTime() + ""));
+
+			map.put(fileName, fileEntity);
 		}
 
 		return map;
@@ -212,6 +228,7 @@ public class SFTPUtil extends FileTransfer{
 	 */
 	public boolean isDirectory(String path) throws Exception{
 		SftpATTRS sftpATTRS = channelSftp.stat(path);
+
 		boolean isDir = sftpATTRS.isDir();
 
 		log.debug("path:[{}] isDir:[{}]", path, isDir);
