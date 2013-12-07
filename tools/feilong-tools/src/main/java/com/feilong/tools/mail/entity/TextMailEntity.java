@@ -21,4 +21,4 @@ package com.feilong.tools.mail.entity;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 1:32:18 AM
  */
-public class FeiLongTextMailEntity extends FeiLongBaseMailEntity{}
+public class TextMailEntity extends BaseMailEntity{}

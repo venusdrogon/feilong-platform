@@ -15,10 +15,57 @@
  */
 package com.feilong.tools.mail.entity;
 
+import java.util.LinkedList;
+
 /**
- * 用于发送html格式的
- * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Dec 24, 2011 1:31:35 AM
+ * @version 1.0 Dec 24, 2011 1:07:09 AM
  */
-public class FeiLongHtmlMailEntity extends FeiLongBaseMailEntity{}
+public class AttachMailEntity extends BaseMailEntity{
+
+	/**
+	 * 邮件附件的文件名
+	 */
+	private String[]			attachFileNames;
+
+	/**
+	 * 获取图片的二进制
+	 */
+	private LinkedList<byte[]>	attachList;
+
+	/**
+	 * 邮件附件的文件名
+	 * 
+	 * @return attachFileNames
+	 */
+	public String[] getAttachFileNames(){
+		return attachFileNames;
+	}
+
+	/**
+	 * 邮件附件的文件名
+	 * 
+	 * @param fileNames
+	 */
+	public void setAttachFileNames(String[] fileNames){
+		this.attachFileNames = fileNames;
+	}
+
+	/**
+	 * 获取图片的二进制
+	 * 
+	 * @return
+	 */
+	public LinkedList<byte[]> getAttachList(){
+		return attachList;
+	}
+
+	/**
+	 * 获取图片的二进制
+	 * 
+	 * @param attachList
+	 */
+	public void setAttachList(LinkedList<byte[]> attachList){
+		this.attachList = attachList;
+	}
+}

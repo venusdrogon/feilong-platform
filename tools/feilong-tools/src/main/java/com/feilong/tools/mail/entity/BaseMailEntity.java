@@ -19,7 +19,7 @@ package com.feilong.tools.mail.entity;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 1:05:45 AM
  */
-public abstract class FeiLongBaseMailEntity{
+public abstract class BaseMailEntity{
 
 	/**
 	 * 发送邮件的服务器的IP <br>
