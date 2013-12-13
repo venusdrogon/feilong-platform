@@ -62,7 +62,7 @@ public class IOUtilTest{
 			URL url = new URL("http://www.jinbaowang.cn/images//20110722/096718c3d1c9b4a1.jpg");
 			URLConnection urlConnection = url.openConnection();
 			int contentLength = urlConnection.getContentLength();
-			System.out.println(IOUtil.formatFileSize(contentLength));
+			System.out.println(FileUtil.formatFileSize(contentLength));
 		}catch (IOException e){
 			e.printStackTrace();
 		}
@@ -124,14 +124,7 @@ public class IOUtilTest{
 		IOUtil.write(path, stringBuilder.toString());
 	}
 
-	/**
-	 * {@link com.feilong.commons.core.io.IOUtil#formatFileSize(long)} 的测试方法。
-	 */
-	@Test
-	public final void formatFileSize(){
-		//stats
-		log.info(IOUtil.formatFileSize(8981528));
-	}
+
 
 	@Test
 	public void getFileContent(){

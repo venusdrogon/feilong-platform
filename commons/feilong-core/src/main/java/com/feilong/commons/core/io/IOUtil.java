@@ -326,7 +326,7 @@ public final class IOUtil{
 			printWriter.close();
 
 			if (log.isInfoEnabled()){
-				Object[] params = { content.length(), IOUtil.formatFileSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
+				Object[] params = { content.length(), FileUtil.formatFileSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
 				log.info("contentLength:[{}],fileSize:[{}],write:[{}]", params);
 			}
 		}catch (UnsupportedEncodingException e){
@@ -426,37 +426,4 @@ public final class IOUtil{
 		return fileInputStream;
 	}
 
-	/**************************************************************************************/
-	/**
-	 * 文件大小格式化
-	 * 
-	 * @param fileSize
-	 *            文件大小 单位byte
-	 * @return 文件大小byte 转换
-	 */
-	public final static String formatFileSize(long fileSize){
-		String danwei = "Bytes";
-		// 除完之后的余数
-		String yushu = "";
-		// 除数
-		long chushu = 1;
-		if (fileSize >= IOConstants.GB){
-			danwei = "GB";
-			chushu = IOConstants.GB;
-		}else if (fileSize >= IOConstants.MB){
-			danwei = "MB";
-			chushu = IOConstants.MB;
-		}else if (fileSize >= IOConstants.KB){
-			danwei = "KB";
-			chushu = IOConstants.KB;
-		}
-		if (chushu == 1){
-			return fileSize + danwei;
-		}
-		yushu = 100 * (fileSize % chushu) / chushu + "";
-		if ("0".equals(yushu)){
-			return fileSize / chushu + danwei;
-		}
-		return fileSize / chushu + "." + yushu + danwei;
-	}
 }

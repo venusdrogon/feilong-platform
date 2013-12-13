@@ -319,4 +319,38 @@ public final class FileUtil{
 	// public final static boolean isExcel2007(String fileName){
 	// return "xlsx".equalsIgnoreCase(getFilePostfixName(fileName));
 	// }
+
+	/**************************************************************************************/
+	/**
+	 * 文件大小格式化
+	 * 
+	 * @param fileSize
+	 *            文件大小 单位byte
+	 * @return 文件大小byte 转换
+	 */
+	public final static String formatFileSize(long fileSize){
+		String danwei = "Bytes";
+		// 除完之后的余数
+		String yushu = "";
+		// 除数
+		long chushu = 1;
+		if (fileSize >= IOConstants.GB){
+			danwei = "GB";
+			chushu = IOConstants.GB;
+		}else if (fileSize >= IOConstants.MB){
+			danwei = "MB";
+			chushu = IOConstants.MB;
+		}else if (fileSize >= IOConstants.KB){
+			danwei = "KB";
+			chushu = IOConstants.KB;
+		}
+		if (chushu == 1){
+			return fileSize + danwei;
+		}
+		yushu = 100 * (fileSize % chushu) / chushu + "";
+		if ("0".equals(yushu)){
+			return fileSize / chushu + danwei;
+		}
+		return fileSize / chushu + "." + yushu + danwei;
+	}
 }

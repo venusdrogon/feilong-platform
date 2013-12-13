@@ -16,11 +16,15 @@
 package com.feilong.commons.core.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.FileType;
+import com.feilong.commons.core.io.FileUtil;
 
 /**
- * 文件信息 entity
+ * 文件信息 entity.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 7, 2013 8:13:34 PM
@@ -29,6 +33,8 @@ public class FileInfoEntity implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
+
+	private String				datePattern			= DatePattern.commonWithoutAndYearSecond;
 
 	/** 名称. */
 	private String				name;
@@ -39,11 +45,17 @@ public class FileInfoEntity implements Serializable{
 	/** 文件大小， 单位 字节,如果是文件夹 不显示size. */
 	private Long				size;
 
+	/** 格式化显示的size. */
+	private String				formatSize;
+
 	/**
 	 * 返回此抽象路径名表示的文件最后一次被修改的时间。 <br>
 	 * 表示文件最后一次被修改的时间的 long 值，用与时间点（1970 年 1 月 1 日，00:00:00 GMT）之间的毫秒数表示；如果该文件不存在，或者发生 I/O 错误，则返回 0L.
 	 */
 	private Long				lastModified;
+
+	/** 格式化显示的时间默认 yy-mm hh:ss. */
+	private String				formatLastModified;
 
 	/**
 	 * Gets the 名称.
@@ -121,6 +133,27 @@ public class FileInfoEntity implements Serializable{
 	 */
 	public void setLastModified(Long lastModified){
 		this.lastModified = lastModified;
+	}
+
+	/**
+	 * Gets the 格式化显示的size.
+	 * 
+	 * @return the formatSize
+	 */
+	public String getFormatSize(){
+		formatSize = FileUtil.formatFileSize(size);
+		return formatSize;
+	}
+
+	/**
+	 * Gets the 格式化显示的时间默认 yy-mm hh:ss.
+	 * 
+	 * @return the formatLastModified
+	 */
+	public String getFormatLastModified(){
+		Date date = new Date(lastModified);
+		formatLastModified = DateUtil.date2String(date, datePattern);
+		return formatLastModified;
 	}
 
 }

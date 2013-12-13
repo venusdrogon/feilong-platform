@@ -17,7 +17,7 @@ package com.feilong.commons.core.entity;
 
 import java.io.Serializable;
 
-import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.FileUtil;
 
 /**
  * 监视信息的JavaBean类.
@@ -216,7 +216,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the runtimeFormatTotalMemory
 	 */
 	public String getRuntimeFormatTotalMemory(){
-		runtimeFormatTotalMemory = IOUtil.formatFileSize(runtimeTotalMemory);
+		runtimeFormatTotalMemory = FileUtil.formatFileSize(runtimeTotalMemory);
 		return runtimeFormatTotalMemory;
 	}
 
@@ -226,7 +226,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the runtimeFormatFreeMemory
 	 */
 	public String getRuntimeFormatFreeMemory(){
-		runtimeFormatFreeMemory = IOUtil.formatFileSize(runtimeFreeMemory);
+		runtimeFormatFreeMemory = FileUtil.formatFileSize(runtimeFreeMemory);
 		return runtimeFormatFreeMemory;
 	}
 
@@ -236,7 +236,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the runtimeFormatMaxMemory
 	 */
 	public String getRuntimeFormatMaxMemory(){
-		runtimeFormatMaxMemory = IOUtil.formatFileSize(runtimeMaxMemory);
+		runtimeFormatMaxMemory = FileUtil.formatFileSize(runtimeMaxMemory);
 		return runtimeFormatMaxMemory;
 	}
 
@@ -246,7 +246,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the osFormatTotalMemorySize
 	 */
 	public String getOsFormatTotalMemorySize(){
-		osFormatTotalMemorySize = IOUtil.formatFileSize(osTotalMemorySize);
+		osFormatTotalMemorySize = FileUtil.formatFileSize(osTotalMemorySize);
 		return osFormatTotalMemorySize;
 	}
 
@@ -256,7 +256,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the osFormatFreePhysicalMemorySize
 	 */
 	public String getOsFormatFreePhysicalMemorySize(){
-		osFormatFreePhysicalMemorySize = IOUtil.formatFileSize(osFreePhysicalMemorySize);
+		osFormatFreePhysicalMemorySize = FileUtil.formatFileSize(osFreePhysicalMemorySize);
 		return osFormatFreePhysicalMemorySize;
 	}
 
@@ -266,7 +266,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the osFormatUsedMemory
 	 */
 	public String getOsFormatUsedMemory(){
-		osFormatUsedMemory = IOUtil.formatFileSize(osUsedMemory);
+		osFormatUsedMemory = FileUtil.formatFileSize(osUsedMemory);
 		return osFormatUsedMemory;
 	}
 

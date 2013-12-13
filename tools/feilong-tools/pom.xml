@@ -27,6 +27,13 @@
 			<version>${version.feilong-platform}</version>
 		</dependency>
 
+		<!-- velocity -->
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-velocity</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
 		<!-- pinyin4j -->
 		<dependency>
 			<groupId>net.sourceforge</groupId>
@@ -38,12 +45,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-		</dependency>
-
-		<!-- java mail -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
 		</dependency>
 
 		<!-- rsslibj -->
@@ -103,7 +104,6 @@
 			<version>3.5.0</version>
 		</dependency>
 		<!-- <dependency> <groupId>org.apache.solr</groupId> <artifactId>solr</artifactId> <version>3.5.0</version> <packaging>war</packaging> </dependency> -->
-
 
 		<dependency>
 			<groupId>org.apache.activemq</groupId>

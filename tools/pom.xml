@@ -33,6 +33,7 @@
 		<module>feilong-application-weibo</module>
 		<module>feilong-tools-json</module>
 		<module>feilong-office-pdf</module>
+		<module>feilong-tools-mail</module>
 	</modules>
 
 	<dependencies>

@@ -91,11 +91,11 @@ public class FeiLongBaseImportAction extends DispatchAction{
 		// 配置了文件的大小（），这样在上传的过程中，如果文件超过了配置的大小，就会终止文件的上传
 		Boolean maxLengthExceeded = (Boolean) request.getAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
 		if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue())){
-			returnValue = "文件不能超过" + IOUtil.formatFileSize(maxFileSize);
+			returnValue = "文件不能超过" + FileUtil.formatFileSize(maxFileSize);
 		}else{
 			int fileSize = formFile.getFileSize();
 			if (fileSize > maxFileSize){
-				returnValue = "文件不能超过" + IOUtil.formatFileSize(maxFileSize);
+				returnValue = "文件不能超过" + FileUtil.formatFileSize(maxFileSize);
 			}else{
 				// 允许的文件后缀,用逗号隔开
 				String allowFilePostfixs = importForm.getAllowFilePostfixs();

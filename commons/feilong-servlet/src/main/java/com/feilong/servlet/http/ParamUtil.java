@@ -18,6 +18,7 @@ package com.feilong.servlet.http;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -41,6 +42,37 @@ public final class ParamUtil{
 	private ParamUtil(){}
 
 	private static String	defaultCharsetType	= CharsetType.UTF8;
+	
+	/**
+	 * 生成待签名的字符串 <br>
+	 * 对数组里的每一个值从 a 到 z 的顺序排序，若遇到相同首字母，则看第二个字母， 以此类推。 排序完成之后，再把所有数组值以“&”字符连接起来 <br>
+	 * 没有值的参数无需传递，也无需包含到待签名数据中.
+	 * 
+	 * @param params
+	 *            用于凭借签名的参数
+	 * @return the to be signed string
+	 */
+	public static String getToBeSignedString(Map<String, String> params){
+		List<String> keys = new ArrayList<String>(params.keySet());
+
+		// key 排序
+		Collections.sort(keys);
+
+		StringBuilder builder = new StringBuilder();
+		int size = keys.size();
+		for (int i = 0; i < size; ++i){
+			String key = keys.get(i);
+			String value = params.get(key);
+
+			builder.append(key + "=" + value);
+			// 最后一个不要拼接 &
+			if (i != size - 1){
+				builder.append("&");
+			}
+		}
+		return builder.toString();
+	}
+ 
 
 	// *********************************获取值**************************************************
 	/**
