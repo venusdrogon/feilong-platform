@@ -12,6 +12,13 @@
 
 
 	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+
 		<!-- org.json -->
 		<dependency>
 			<groupId>org.json</groupId>

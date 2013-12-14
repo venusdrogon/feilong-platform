@@ -13,21 +13,21 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package loxia.support.json;
-
+package com.feilong.tools.chart;
 
 /**
+ * 指数
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 19, 2012 12:43:36 AM
  */
-public class Index{
+public class CopyOfChartIndex{
 
+	private String	minute;
 
-	private String				minute;
+	private Integer	createCount;
 
-	private Integer				createCount;
-
-	private Integer				cancelCount;
+	private Integer	cancelCount;
 
 	/**
 	 * @return the minute
@@ -40,7 +40,7 @@ public class Index{
 	 * @param minute
 	 * @param createCount
 	 */
-	public Index(String minute, Integer createCount){
+	public CopyOfChartIndex(String minute, Integer createCount){
 		super();
 		this.minute = minute;
 		this.createCount = createCount;
@@ -51,7 +51,7 @@ public class Index{
 	 * @param createCount
 	 * @param cancelCount
 	 */
-	public Index(String minute, Integer createCount, Integer cancelCount){
+	public CopyOfChartIndex(String minute, Integer createCount, Integer cancelCount){
 		super();
 		this.minute = minute;
 		this.createCount = createCount;
