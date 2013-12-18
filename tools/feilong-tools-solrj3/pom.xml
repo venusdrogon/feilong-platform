@@ -6,9 +6,9 @@
 		<version>1.0.2</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>feilong-tools-solrj</artifactId>
-	<name>feilong-tools-solrj</name>
-	<description>feilong-tools-solrj</description>
+	<artifactId>feilong-tools-solrj3</artifactId>
+	<name>feilong-tools-solrj3</name>
+	<description>feilong-tools-solrj3</description>
 
 	<dependencies>
 
