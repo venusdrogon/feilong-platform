@@ -80,7 +80,6 @@
 			<artifactId>spring-web</artifactId>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.dragonfly</groupId>
 			<artifactId>jsdocx</artifactId>
@@ -92,17 +91,6 @@
 			<artifactId>commons-jexl</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-core</artifactId>
-			<version>3.5.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.solr</groupId>
-			<artifactId>solr-solrj</artifactId>
-			<version>3.5.0</version>
-		</dependency>
 		<!-- <dependency> <groupId>org.apache.solr</groupId> <artifactId>solr</artifactId> <version>3.5.0</version> <packaging>war</packaging> </dependency> -->
 
 		<dependency>
@@ -116,14 +104,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-
-		<dependency>
-			<groupId>IKAnalyze</groupId>
-			<artifactId>IKAnalyze</artifactId>
-			<version>3.2.8</version>
-		</dependency>
-
 
 		<dependency>
 			<groupId>de.javakaffee.msm</groupId>

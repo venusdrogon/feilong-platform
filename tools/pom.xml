@@ -34,6 +34,7 @@
 		<module>feilong-tools-json</module>
 		<module>feilong-office-pdf</module>
 		<module>feilong-tools-mail</module>
+		<module>feilong-tools-solrj</module>
 	</modules>
 
 	<dependencies>

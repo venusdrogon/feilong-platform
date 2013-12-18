@@ -38,5 +38,6 @@ public class MD5UtilTest{
 	@Test
 	public void encode1(){
 		log.debug(MD5Util.encode("你好"));
+		log.debug(MD5Util.encode("521000"));
 	}
 }
