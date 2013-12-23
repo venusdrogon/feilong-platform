@@ -16,15 +16,21 @@
 package com.feilong.tools.net.om;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.date.TimeInterval;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.enumeration.FileWriteMode;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.commons.core.util.StringUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -34,21 +40,54 @@ public class NginxStubStatusUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(NginxStubStatusUtilTest.class);
 
-	@Test
-	public void getNginx_status() throws IOException{
+	public static void main(String[] args){
+		Timer timer = new Timer();
+
+		TimerTask task = new TimerTask(){
+
+			public void run(){
+				aaa();
+
+			}
+		};
+		timer.schedule(task, 2L, 1000);
+	}
+
+	/**
+	 * @throws IOException
+	 */
+	private static void aaa(){
 		String uri = "http://www.nikestore.com.cn/nginx_status";
 
 		String userName = "nginx_status";
 		String password = "baozun_nikestore_status";
 
-		NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil.getNginxStubStatusCommand(uri, userName, password);
-		String format = JsonFormatUtil.format(nginxStubStatusCommand);
-		log.info("\n{}", format);
+		String pattern = "%s	%s	%s	%s	%s	%s	%s	%s";
 
-		String filePath = "F:\\test.txt";
-		String content = format + "\n";
 		String encode = CharsetType.GBK;
-		IOWriteUtil.write(filePath, content, encode, FileWriteMode.APPEND);
 
+		try{
+			NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil.getNginxStubStatusCommand(uri, userName, password);
+			// String format = JsonFormatUtil.format(nginxStubStatusCommand);
+			// log.info("\n{}", format);
+
+			String filePath = "F:\\" + DateUtil.date2String(nginxStubStatusCommand.getCrawlDate(), DatePattern.monthAndDay)
+					+ " stubstatus.txt";
+			String content = StringUtil.format(
+					pattern,
+					DateUtil.date2String(nginxStubStatusCommand.getCrawlDate()),
+					nginxStubStatusCommand.getActiveConnections(),
+					nginxStubStatusCommand.getServerAccepts(),
+					nginxStubStatusCommand.getServerHandled(),
+					nginxStubStatusCommand.getServerRequests(),
+					nginxStubStatusCommand.getReading(),
+					nginxStubStatusCommand.getWriting(),
+					nginxStubStatusCommand.getWaiting())
+					+ "\n";
+
+			IOWriteUtil.write(filePath, content, encode, FileWriteMode.APPEND);
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 }
