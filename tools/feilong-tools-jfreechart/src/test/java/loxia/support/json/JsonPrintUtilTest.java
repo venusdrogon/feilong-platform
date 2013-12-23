@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.toolkit.ClipboardUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
-import com.feilong.tools.chart.ChartIndex;
+import com.feilong.tools.chart.index.ChartIndex;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

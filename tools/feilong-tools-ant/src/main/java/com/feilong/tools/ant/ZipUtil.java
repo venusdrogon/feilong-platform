@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.IOWriteUtil;
 
 /**
  * 飞龙压缩和解压缩工具类 <br>
@@ -87,7 +88,7 @@ public final class ZipUtil{
 			putNextEntry(zipOutputStream, base);
 			// *****************************************************************
 			FileInputStream fileInputStream = IOUtil.getFileInputStream(file);
-			IOUtil.write(fileInputStream, zipOutputStream);
+			IOWriteUtil.write(fileInputStream, zipOutputStream);
 		}
 	}
 
@@ -119,7 +120,7 @@ public final class ZipUtil{
 					log.info("解压文件 :" + zipEntry.getName());
 					InputStream inputStream = zipFile.getInputStream(zipEntry);
 					OutputStream outputStream = new FileOutputStream(file);
-					IOUtil.write(inputStream, outputStream);
+					IOWriteUtil.write(inputStream, outputStream);
 				}
 			}
 		}catch (ZipException e){

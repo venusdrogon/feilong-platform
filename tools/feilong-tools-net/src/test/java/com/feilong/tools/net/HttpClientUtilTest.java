@@ -25,7 +25,6 @@ public class HttpClientUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(HttpClientUtilTest.class);
 
 	@Test
-	// @Ignore
 	public void getHttpMethodWithExecute(){
 		String uri = "http://www.google.com.hk/search?client=aff-cs-360se&forid=1&ie=utf-8&oe=UTF-8&q=enumeration";
 		uri = "http://www.d9cn.org/d9cnbook/50/50537/10967924.html";

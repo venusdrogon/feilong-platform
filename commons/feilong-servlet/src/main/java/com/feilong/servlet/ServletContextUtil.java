@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.ExceptionConstants;
+import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -121,6 +122,6 @@ public final class ServletContextUtil{
 			filePathString = filePathString + directoryName + fileName;
 		}
 		// ServletContext servletContext = request.getSession().getServletContext();
-		return IOUtil.getFileContent(filePathString);
+		return IOReaderUtil.getFileContent(filePathString);
 	}
 }

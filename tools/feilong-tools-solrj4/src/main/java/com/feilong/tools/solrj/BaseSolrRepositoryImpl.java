@@ -114,7 +114,6 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], java.lang.String[])
 	 */
-	@Override
 	public SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,String[] facetFields){
 		FacetParamsCommand facetParamCommand = toFacetParamCommand(facetFields);
 		return findByQuery(solrQuery, pageNumber, rows, sorts, facetParamCommand);

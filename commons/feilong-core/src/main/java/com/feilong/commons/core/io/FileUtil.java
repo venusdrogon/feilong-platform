@@ -176,8 +176,8 @@ public final class FileUtil{
 	 * @return
 	 */
 	public final static boolean hasPostfixName(String fileName){
-		fileName = getFileName(fileName);
-		int lastIndexOf = fileName.lastIndexOf(".");
+		String _fileName = getFileName(fileName);
+		int lastIndexOf = _fileName.lastIndexOf(".");
 		if (-1 == lastIndexOf){
 			return false;
 		}

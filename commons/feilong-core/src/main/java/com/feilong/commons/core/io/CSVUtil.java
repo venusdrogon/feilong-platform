@@ -27,7 +27,7 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * 飞龙cvs工具类.
- *
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-26 上午01:26:47
  * @since 1.0
@@ -39,10 +39,13 @@ public final class CSVUtil{
 
 	/**
 	 * 写cvs文件(默认使用GBK编码).
-	 *
-	 * @param fileName 文件名称,全路径,自动生成不存在的父文件夹
-	 * @param columnTitles 列标题,可以为空
-	 * @param dataList 数据数组,可以带列名
+	 * 
+	 * @param fileName
+	 *            文件名称,全路径,自动生成不存在的父文件夹
+	 * @param columnTitles
+	 *            列标题,可以为空
+	 * @param dataList
+	 *            数据数组,可以带列名
 	 * @since 1.0
 	 */
 	public final static void write(String fileName,String[] columnTitles,List<Object[]> dataList){
@@ -51,11 +54,15 @@ public final class CSVUtil{
 
 	/**
 	 * 写cvs文件.
-	 *
-	 * @param fileName 文件名称,全路径,自动生成不存在的父文件夹
-	 * @param columnTitles 列标题,可以为空
-	 * @param dataList 数据数组,可以带列名
-	 * @param csvParams the csv params
+	 * 
+	 * @param fileName
+	 *            文件名称,全路径,自动生成不存在的父文件夹
+	 * @param columnTitles
+	 *            列标题,可以为空
+	 * @param dataList
+	 *            数据数组,可以带列名
+	 * @param csvParams
+	 *            the csv params
 	 */
 	public final static void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams){
 		// 标题和内容都是空,没有任何意义,不创建文件
@@ -69,16 +76,18 @@ public final class CSVUtil{
 				dataList.add(0, columnTitles);
 			}
 			log.info("begin write file:" + fileName);
-			IOUtil.write(fileName, getWriteContent(dataList, csvParams), csvParams.getEncode());
+			IOWriteUtil.write(fileName, getWriteContent(dataList, csvParams), csvParams.getEncode());
 		}
 	}
 
 	// *******************************************************************************
 	/**
 	 * Writes the entire list to a CSV file. The list is assumed to be a String[]
-	 *
-	 * @param allLines a List of String[], with each String[] representing a line of the file.
-	 * @param csvParams the csv params
+	 * 
+	 * @param allLines
+	 *            a List of String[], with each String[] representing a line of the file.
+	 * @param csvParams
+	 *            the csv params
 	 * @return the write content
 	 */
 	private final static String getWriteContent(List<Object[]> allLines,CSVParams csvParams){
@@ -94,9 +103,11 @@ public final class CSVUtil{
 
 	/**
 	 * Writes the next line to the file.
-	 *
-	 * @param line the line
-	 * @param csvParams the csv params
+	 * 
+	 * @param line
+	 *            the line
+	 * @param csvParams
+	 *            the csv params
 	 * @return the write content line
 	 */
 	private final static String getWriteContentLine(Object[] line,CSVParams csvParams){

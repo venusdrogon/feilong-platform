@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.chart;
+package com.feilong.tools.chart.index;
 
 /**
  * 商品下单指数.

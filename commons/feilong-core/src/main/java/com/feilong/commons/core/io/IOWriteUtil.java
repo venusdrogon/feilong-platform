@@ -1,0 +1,231 @@
+/**
+ * Copyright (c) 2008-2013 FeiLong, Inc. All Rights Reserved.
+ * <p>
+ * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
+ * 	You shall not disclose such Confidential Information and shall use it 
+ *  only in accordance with the terms of the license agreement you entered into with FeiLong.
+ * </p>
+ * <p>
+ * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
+ * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
+ * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+ * 	THIS SOFTWARE OR ITS DERIVATIVES.
+ * </p>
+ */
+package com.feilong.commons.core.io;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.FileWriteMode;
+import com.feilong.commons.core.util.Validator;
+
+/**
+ * 写文件
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 Dec 23, 2013 10:23:23 PM
+ */
+public final class IOWriteUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtil.class);
+
+	/**
+	 * 将inputStream 写到 某个文件夹,名字为fileName <br>
+	 * 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建(支持级联创建 文件夹)
+	 * 
+	 * @param inputStream
+	 *            上传得文件流
+	 * @param directoryName
+	 *            文件夹路径 最后不带"/"
+	 * @param fileName
+	 *            文件名称
+	 * @return 是否成功
+	 */
+	public static boolean write(InputStream inputStream,String directoryName,String fileName){
+		String fileAllName = directoryName + "/" + fileName;
+		// 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建
+		File file = new File(fileAllName);
+		File fileParent = file.getParentFile();
+		if (!fileParent.exists()){
+			fileParent.mkdirs();
+		}
+		try{
+			OutputStream outputStream = new FileOutputStream(fileAllName);
+			write(inputStream, outputStream);
+			return true;
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * 写资源,速度最快的方法,速度比较请看 电脑资料<<压缩解压性能探究>>
+	 * 
+	 * @param inputStream
+	 *            inputStream
+	 * @param outputStream
+	 *            outputStream
+	 */
+	public static void write(InputStream inputStream,OutputStream outputStream){
+		byte[] bytes = new byte[10240];
+		int j;
+		try{
+			while ((j = inputStream.read(bytes)) != -1){
+				outputStream.write(bytes, 0, j);
+			}
+			// 用完关闭流 是个好习惯,^_^
+			inputStream.close();
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	// *******************************************************************************************
+
+	/**
+	 * 将字符串写到文件中,如果文件存在则覆盖旧文件,<br>
+	 * 默认采用GBK 编码 (支持级联创建 文件夹)<br>
+	 * 
+	 * @param filePath
+	 *            文件路径
+	 *            <ul>
+	 *            <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
+	 *            <li>如果文件存在, 如果文件是isDirectory ,throw new IllegalArgumentException</li>
+	 *            <li>如果文件存在, 如果文件是!canWrite ,throw new IllegalArgumentException</li>
+	 *            </ul>
+	 * @param content
+	 *            字符串内容
+	 */
+	public static void write(String filePath,String content){
+		write(filePath, content, null);
+	}
+
+	/**
+	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹),默认 以覆盖的模式 write内容
+	 * 
+	 * @param filePath
+	 *            文件路径
+	 *            <ul>
+	 *            <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
+	 *            <li>如果文件存在, 如果文件是isDirectory ,throw new IllegalArgumentException</li>
+	 *            <li>如果文件存在, 如果文件是!canWrite ,throw new IllegalArgumentException</li>
+	 *            </ul>
+	 * @param content
+	 *            字符串内容
+	 * @param encode
+	 *            编码,如果isNullOrEmpty,则默认使用 GBK编码
+	 */
+	public static void write(String filePath,String content,String encode){
+		write(filePath, content, encode, FileWriteMode.COVER);
+	}
+
+	/**
+	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹),可以通过 指定fileWriteMode.append 来表示追加内容而非覆盖
+	 * 
+	 * @param filePath
+	 *            文件路径
+	 *            <ul>
+	 *            <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
+	 *            <li>如果文件存在, 如果文件是isDirectory ,throw new IllegalArgumentException</li>
+	 *            <li>如果文件存在, 如果文件是!canWrite ,throw new IllegalArgumentException</li>
+	 *            </ul>
+	 * @param content
+	 *            字符串内容
+	 * @param encode
+	 *            编码,如果isNullOrEmpty,则默认使用 GBK编码
+	 * @param fileWriteMode
+	 *            写模式
+	 */
+	public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode){
+		if (Validator.isNullOrEmpty(encode)){
+			encode = CharsetType.GBK;
+		}
+
+		Object[] logArgs = { filePath, encode, fileWriteMode };
+		log.debug("begin write: {},use encode : {},fileWriteMode:{}", logArgs);
+
+		// **************************************************************************8
+		File file = new File(filePath);
+		if (file.exists()){
+			// 文件夹
+			if (file.isDirectory()){
+				log.error("File '" + file + "' exists but is a directory");
+				throw new IllegalArgumentException("File '" + file + "' exists but is a directory");
+			}
+			// 不能写
+			else if (!file.canWrite()){
+				log.error("File '" + file + "' cannot be written to");
+				throw new IllegalArgumentException("File '" + file + "' cannot be written to");
+			}
+		}
+		// 文件不存在
+		else{
+			File parent = file.getParentFile();
+			if (parent != null && !parent.exists()){
+				// 级联创建 父级文件夹
+				if (parent.mkdirs() == false){
+					log.error("File '" + file + "' could not be created");
+					throw new IllegalArgumentException("File '" + file + "' could not be created");
+				}
+			}
+		}
+		_write(filePath, content, encode, fileWriteMode);
+	}
+
+	/**
+	 * 将字符串写到文件中,该方法一般给上面{@link #write(String, String, String)}调用
+	 * 
+	 * @param filePath
+	 *            文件路径 ,必须是存在的路径,且不是文件夹,且不是只读属性
+	 * @param content
+	 *            内容
+	 * @param encode
+	 *            编码
+	 * @param fileWriteMode
+	 *            write 模式
+	 */
+	private static void _write(String filePath,String content,String encode,FileWriteMode fileWriteMode){
+		// 向文本输出流打印对象的格式化表示形式
+		// 会自动创建文件,替换覆盖文字(非追加)
+		try{
+			// \ / : * ? " < > |
+			// 而且这些符号好像都是英文状态下的,换成中文状态下的就可以
+			String[] specialChars = { "*", "?" };
+			filePath = filePath.replace("?", "");
+			File file = new File(filePath);
+
+			boolean append = (fileWriteMode == FileWriteMode.APPEND);
+			FileOutputStream fileOutputStream = new FileOutputStream(file, append);
+			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, encode);
+			PrintWriter printWriter = new PrintWriter(outputStreamWriter);
+			printWriter.write(content);
+			printWriter.close();
+
+			if (log.isInfoEnabled()){
+				Object[] params = { content.length(), FileUtil.formatFileSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
+				log.info("contentLength:[{}],fileSize:[{}],write:[{}]", params);
+			}
+		}catch (UnsupportedEncodingException e){
+			e.printStackTrace();
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -30,6 +30,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.util.StringUtil;
+
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-19 下午4:17:03
@@ -77,6 +79,29 @@ public class DateUtilTest{
 		log.debug(DateUtil.date2String(now_3));
 	}
 
+	@Test
+	public void aaaa(){
+
+		Date beginDate = DateUtil.string2Date("2013-12-21 00:00:00", DatePattern.commonWithTime);
+		Date endDate = DateUtil.string2Date("2013-12-21 05:00:00", DatePattern.commonWithTime);
+
+		// 起始小时
+		int hour = DateUtil.getHourOfDay(beginDate);
+
+		// 相差小时
+		int ihour = DateUtil.getIntervalHour(beginDate, endDate);
+
+		for (int i = 0; i < ihour; ++i){
+
+			for (int j = 0; j < 60; ++j){
+
+				System.out.println("0" + i + ":" + StringUtil.format("%02d", j));
+			}
+
+		}
+
+	}
+
 	/**
 	 * 此时此刻 在今天的秒数
 	 */
@@ -95,7 +120,7 @@ public class DateUtilTest{
 		Date now = new Date();
 		log.info(DateUtil.getSecondOfDay(now) + "");
 	}
-	
+
 	@Test
 	public void getSecondOfHour(){
 		Date now = new Date();

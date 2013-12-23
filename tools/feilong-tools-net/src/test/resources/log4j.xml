@@ -40,6 +40,22 @@
 	<category name="com.feilong.tools.net.AbstractFileTransfer">
 		<priority value="info" />
 	</category>
+	<category name="org.apache.commons.httpclient.HttpMethodBase">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpParser">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpConnection">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpClient">
+		<priority value="info" />
+	</category>
+	
+	<category name="org.apache.commons.httpclient.params.DefaultHttpParams">
+		<priority value="info" />
+	</category>
 
 
 	<!-- 设置接收所有输出的通道 -->

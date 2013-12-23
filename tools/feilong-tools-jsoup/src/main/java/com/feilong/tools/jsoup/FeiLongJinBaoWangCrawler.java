@@ -22,12 +22,13 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.CSVUtil;
+import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- *进包网
+ * 进包网
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-22 下午06:45:18
@@ -101,7 +102,7 @@ public class FeiLongJinBaoWangCrawler{
 	 * @return
 	 */
 	public static List<String> getCodeList(String filePath){
-		String content = IOUtil.getFileContent(filePath);
+		String content = IOReaderUtil.getFileContent(filePath);
 		// 将内容以换行符转成数组
 		String[] codeRows = content.split("\r\n");
 		if (Validator.isNotNullOrEmpty(codeRows)){

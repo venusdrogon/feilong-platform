@@ -25,24 +25,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.util.Validator;
-
 /**
- * 输入输出,比如文字读写
+ * 一些流之间的转换
  * 
  * @author 金鑫 2009-10-26下午02:36:47
  */
@@ -80,7 +70,6 @@ public final class IOUtil{
 	 *         已经处理了 inputStream 的关闭
 	 * @since 1.0.2
 	 */
-
 	public static String inputStream2String(InputStream inputStream,String charsetName){
 		try{
 			// bufferedReader 缓冲 高效读取 ;
@@ -107,69 +96,6 @@ public final class IOUtil{
 		return null;
 	}
 
-	/***************************************************************************/
-	//
-	// 读取文件内容
-	//
-	/***************************************************************************/
-	/**
-	 * 读取文件内容
-	 * 
-	 * @param path
-	 *            路径
-	 * @return 文件内容string
-	 */
-	public static String getFileContent(String path){
-		File file = new File(path);
-		return getFileContent(file);
-	}
-
-	/**
-	 * 读取文件内容
-	 * 
-	 * @param file
-	 *            文件
-	 * @return 文件内容string
-	 */
-	private static String getFileContent(File file){
-		return getFileContent(file, CharsetType.GBK);
-	}
-
-	/**
-	 * 读取文件内容
-	 * 
-	 * @param file
-	 *            文件
-	 * @param charsetName
-	 *            字符编码
-	 * @return
-	 */
-	public static String getFileContent(File file,String charsetName){
-		// 分配新的直接字节缓冲区
-		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(186140);
-		StringBuffer stringBuffer = new StringBuffer(186140);
-		try{
-			FileInputStream fileInputStream = new FileInputStream(file);
-			// 用于读取、写入、映射和操作文件的通道。
-			FileChannel fileChannel = fileInputStream.getChannel();
-			// 编码字符集和字符编码方案的组合,用于处理中文,可以更改
-			Charset charset = Charset.forName(charsetName);
-			while (fileChannel.read(byteBuffer) != -1){
-				// 反转此缓冲区
-				byteBuffer.flip();
-				CharBuffer charBuffer = charset.decode(byteBuffer);
-				stringBuffer.append(charBuffer.toString());
-				byteBuffer.clear();
-			}
-			fileInputStream.close();
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		}catch (IOException e){
-			e.printStackTrace();
-		}
-		return stringBuffer.toString();
-	}
-
 	// ***********************************************************************
 	//
 	// 写文件
@@ -192,147 +118,9 @@ public final class IOUtil{
 			InputStream inputStream = _url.openStream();
 			File file = new File(url);
 			String fileName = file.getName();
-			IOUtil.write(inputStream, directoryName, fileName);
+			IOWriteUtil.write(inputStream, directoryName, fileName);
 		}catch (Exception e){
 			log.error("down url:" + url + " error,exception is " + e.getMessage());
-		}
-	}
-
-	/**
-	 * 将inputStream 写到 某个文件夹,名字为fileName <br>
-	 * 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建(支持级联创建 文件夹)
-	 * 
-	 * @param inputStream
-	 *            上传得文件流
-	 * @param directoryName
-	 *            文件夹路径 最后不带"/"
-	 * @param fileName
-	 *            文件名称
-	 * @return 是否成功
-	 */
-	public static boolean write(InputStream inputStream,String directoryName,String fileName){
-		String fileAllName = directoryName + "/" + fileName;
-		// 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建
-		File file = new File(fileAllName);
-		File fileParent = file.getParentFile();
-		if (!fileParent.exists()){
-			fileParent.mkdirs();
-		}
-		try{
-			OutputStream outputStream = new FileOutputStream(fileAllName);
-			write(inputStream, outputStream);
-			return true;
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	/**
-	 * 写资源,速度最快的方法,速度比较请看 电脑资料<<压缩解压性能探究>>
-	 * 
-	 * @param inputStream
-	 *            inputStream
-	 * @param outputStream
-	 *            outputStream
-	 */
-	public static void write(InputStream inputStream,OutputStream outputStream){
-		byte[] bytes = new byte[10240];
-		int j;
-		try{
-			while ((j = inputStream.read(bytes)) != -1){
-				outputStream.write(bytes, 0, j);
-			}
-			// 用完关闭流 是个好习惯,^_^
-			inputStream.close();
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		}catch (IOException e){
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 将字符串写到文件中,如果文件存在则覆盖旧文件,<br>
-	 * 默认采用GBK 编码 (支持级联创建 文件夹)
-	 * 
-	 * @param filePath
-	 *            文件路径,如果文件不存在,自动生成,包括其父文件夹(支持级联创建 文件夹)
-	 * @param content
-	 *            字符串内容
-	 */
-	public static void write(String filePath,String content){
-		write(filePath, content, null);
-	}
-
-	/**
-	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹)
-	 * 
-	 * @param filePath
-	 *            文件路径,如果文件不存在,自动生成,包括其父文件夹 (支持级联创建 文件夹)
-	 * @param content
-	 *            字符串内容
-	 * @param encode
-	 *            编码
-	 */
-	public static void write(String filePath,String content,String encode){
-		if (Validator.isNullOrEmpty(encode)){
-			encode = CharsetType.GBK;
-		}
-		log.debug("begin write {},use encode : {}", filePath, encode);
-		File file = new File(filePath);
-		if (file.exists()){
-			if (file.isDirectory()){
-				log.error("File '" + file + "' exists but is a directory");
-			}else if (file.canWrite() == false){
-				log.error("File '" + file + "' cannot be written to");
-			}else{
-				_write(filePath, content, encode);
-			}
-		}else{
-			File parent = file.getParentFile();
-			if (parent != null && !parent.exists()){
-				if (parent.mkdirs() == false){
-					log.error("File '" + file + "' could not be created");
-				}
-			}
-			_write(filePath, content, encode);
-		}
-	}
-
-	/**
-	 * 将字符串写到文件中,该方法一般给上面{@link #write(String, String, String)}调用
-	 * 
-	 * @param filePath
-	 *            文件路径 ,必须是存在的路径,且不是文件夹,且不是只读属性
-	 * @param content
-	 *            内容
-	 * @param encode
-	 *            编码
-	 */
-	private static void _write(String filePath,String content,String encode){
-		// 向文本输出流打印对象的格式化表示形式
-		// 会自动创建文件,替换覆盖文字(非追加)
-		try{
-			// \ / : * ? " < > |
-			// 而且这些符号好像都是英文状态下的,换成中文状态下的就可以
-			String[] specialChars = { "*", "?" };
-			filePath = filePath.replace("?", "");
-			File file = new File(filePath);
-			FileOutputStream fileOutputStream = new FileOutputStream(file);
-			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, encode);
-			PrintWriter printWriter = new PrintWriter(outputStreamWriter);
-			printWriter.write(content);
-			printWriter.close();
-
-			if (log.isInfoEnabled()){
-				Object[] params = { content.length(), FileUtil.formatFileSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
-				log.info("contentLength:[{}],fileSize:[{}],write:[{}]", params);
-			}
-		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
 		}
 	}
 
@@ -425,5 +213,4 @@ public final class IOUtil{
 		}
 		return fileInputStream;
 	}
-
 }
