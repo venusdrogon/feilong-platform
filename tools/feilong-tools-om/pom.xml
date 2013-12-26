@@ -14,7 +14,18 @@
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-net</artifactId>
 			<version>${version.feilong-platform}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>aspectjweaver</artifactId>
+					<groupId>org.aspectj</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		 
 	</dependencies>
 
 
