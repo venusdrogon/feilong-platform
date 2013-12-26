@@ -218,8 +218,12 @@ public final class IOWriteUtil{
 			printWriter.close();
 
 			if (log.isInfoEnabled()){
-				Object[] params = { content.length(), FileUtil.formatFileSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
-				log.info("contentLength:[{}],fileSize:[{}],write:[{}]", params);
+				Object[] params = {
+						fileWriteMode,
+						content.length(),
+						FileUtil.formatFileSize(FileUtil.getFileSize(file)),
+						file.getAbsolutePath() };
+				log.info("fileWriteMode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]", params);
 			}
 		}catch (UnsupportedEncodingException e){
 			e.printStackTrace();

@@ -15,7 +15,7 @@
 		</layout>
 		<!--限制输出级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="debug" />
+			<param name="LevelMin" value="info" />
 			<param name="LevelMax" value="ERROR" />
 		</filter>
 	</appender>
@@ -60,7 +60,7 @@
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>
-		<level value="debug" />
+		<level value="info" />
 		<appender-ref ref="stdout" />
 	</root>
 </log4j:configuration>

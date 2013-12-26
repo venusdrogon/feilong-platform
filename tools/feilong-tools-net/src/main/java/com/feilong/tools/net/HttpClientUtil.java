@@ -179,7 +179,7 @@ public final class HttpClientUtil{
 
 		if (Validator.isNotNullOrEmpty(userName) && Validator.isNotNullOrEmpty(password)){
 
-			log.info("userName:[{}],password:[{}]", userName, password);
+			log.debug("userName:[{}],password:[{}]", userName, password);
 
 			httpMethod.setDoAuthentication(true);
 
