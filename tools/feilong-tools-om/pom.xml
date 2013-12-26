@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>com.feilong.platform.tools</groupId>
+		<version>1.0.2</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>feilong-tools-om</artifactId>
+	<name>feilong-tools-om</name>
+	<description>feilong-tools-om</description>
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-net</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${v.maven-jar-plugin}</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/**</exclude>
+										<exclude>templates/**</exclude>
+										<!-- <exclude>META-INF/*.DSA</exclude> <exclude>META-INF/*.RSA</exclude> -->
+									</excludes>
+								</filter>
+
+								<filter>
+									<artifact>com.feilong.platform.commons:feilong-core</artifact>
+									<excludes>
+										<exclude>com/feilong/commons/core/aop/**</exclude>
+									</excludes>
+								</filter>
+							</filters>
+
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.feilong.tools.om.nginx.NginxStubStatusUtilMain</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

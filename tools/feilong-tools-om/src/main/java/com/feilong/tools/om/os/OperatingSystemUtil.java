@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.io;
+package com.feilong.tools.om.os;
 
 import java.io.File;
 import java.lang.management.ManagementFactory;
@@ -29,7 +29,7 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.entity.MonitorInfoEntity;
+import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.lang.ThreadUtil;
 import com.feilong.commons.core.net.InetAddressUtil;
 import com.feilong.commons.core.util.ByteUtil;

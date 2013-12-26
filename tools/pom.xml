@@ -36,6 +36,7 @@
 		<module>feilong-tools-mail</module>
 		<module>feilong-tools-solrj3</module>
 		<module>feilong-tools-solrj4</module>
+		<module>feilong-tools-om</module>
 	</modules>
 
 	<dependencies>

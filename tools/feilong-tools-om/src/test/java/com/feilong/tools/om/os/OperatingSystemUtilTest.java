@@ -15,15 +15,16 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  * <p/>
  */
-package com.feilong.commons.core.io;
+package com.feilong.tools.om.os;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.entity.MonitorInfoEntity;
 import com.feilong.commons.core.lang.ThreadUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.om.os.MonitorInfoEntity;
+import com.feilong.tools.om.os.OperatingSystemUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

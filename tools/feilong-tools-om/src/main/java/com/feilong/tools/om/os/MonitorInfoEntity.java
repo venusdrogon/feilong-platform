@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.entity;
+package com.feilong.tools.om.os;
 
 import java.io.Serializable;
 

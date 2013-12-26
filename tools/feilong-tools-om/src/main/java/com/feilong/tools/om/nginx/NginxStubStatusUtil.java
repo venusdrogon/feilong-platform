@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.net.om;
+package com.feilong.tools.om.nginx;
 
 import java.io.IOException;
 import java.io.LineNumberReader;

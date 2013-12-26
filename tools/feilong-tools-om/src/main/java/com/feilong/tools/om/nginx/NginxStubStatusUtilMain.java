@@ -13,40 +13,49 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.net.om;
+package com.feilong.tools.om.nginx;
 
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.date.TimeInterval;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.enumeration.FileWriteMode;
 import com.feilong.commons.core.io.IOWriteUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
+ * main
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 7:58:34 PM
  */
-public class NginxStubStatusUtilTest{
+public class NginxStubStatusUtilMain{
 
-	private static final Logger	log	= LoggerFactory.getLogger(NginxStubStatusUtilTest.class);
+	private static final Logger	log		= LoggerFactory.getLogger(NginxStubStatusUtilMain.class);
+
+	private static String		pattern	= "%s	%s	%s	%s	%s	%s	%s	%s";
+
+	private static String		encode	= CharsetType.GBK;
 
 	public static void main(String[] args){
+
+		final String uri = "http://www.nikestore.com.cn/nginx_status";
+
+		final String userName = "nginx_status";
+		final String password = "baozun_nikestore_status";
+
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask(){
 
 			public void run(){
-				aaa();
+				crawStubStatus(uri, userName, password);
 
 			}
 		};
@@ -54,20 +63,19 @@ public class NginxStubStatusUtilTest{
 	}
 
 	/**
-	 * @throws IOException
+	 * 爬取 StubStatus 信息
+	 * 
+	 * @param stubStatusURI
+	 *            stubStatusURI
+	 * @param userName
+	 *            bisic 用户名
+	 * @param password
+	 *            bisic 密码
 	 */
-	private static void aaa(){
-		String uri = "http://www.nikestore.com.cn/nginx_status";
-
-		String userName = "nginx_status";
-		String password = "baozun_nikestore_status";
-
-		String pattern = "%s	%s	%s	%s	%s	%s	%s	%s";
-
-		String encode = CharsetType.GBK;
-
+	private static void crawStubStatus(String stubStatusURI,String userName,String password){
 		try{
-			NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil.getNginxStubStatusCommand(uri, userName, password);
+			NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil
+					.getNginxStubStatusCommand(stubStatusURI, userName, password);
 			// String format = JsonFormatUtil.format(nginxStubStatusCommand);
 			// log.info("\n{}", format);
 
