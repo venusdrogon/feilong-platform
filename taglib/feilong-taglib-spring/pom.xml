@@ -9,7 +9,7 @@
 		<version>1.0.3</version>
 	</parent>
 
-	<groupId>${project.parent.groupId}</groupId>
+	
 	<artifactId>feilong-taglib-spring</artifactId>
 
 	<name>feilong-taglib-spring</name>

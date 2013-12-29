@@ -14,12 +14,18 @@
 	<name>feilong-tools-parent</name>
 
 	<modules>
+		<module>feilong-application-taobao</module>
+		<module>feilong-application-weibo</module>
 		<module>feilong-struts1</module>
 		<module>feilong-office</module>
+		<module>feilong-office-pdf</module>
 		<module>feilong-netpay</module>
 		<module>feilong-ssh</module>
 		<module>feilong-spring</module>
-		<module>feilong-tools</module>
+		<module>feilong-net-filetransfer</module>
+		<module>feilong-net-httpclient</module>
+		<module>feilong-net-httpcore</module>
+		<module>feilong-tools-incubator</module>
 		<module>feilong-tools-jfreechart</module>
 		<module>feilong-tools-jsoup</module>
 		<module>feilong-tools-velocity</module>
@@ -28,17 +34,11 @@
 		<module>feilong-tools-ant</module>
 		<module>feilong-tools-middleware</module>
 		<module>feilong-tools-html</module>
-		<module>feilong-application-taobao</module>
-		<module>feilong-application-weibo</module>
 		<module>feilong-tools-json</module>
-		<module>feilong-office-pdf</module>
 		<module>feilong-tools-mail</module>
 		<module>feilong-tools-solrj3</module>
 		<module>feilong-tools-solrj4</module>
 		<module>feilong-tools-om</module>
-		<module>feilong-net-filetransfer</module>
-		<module>feilong-net-httpclient</module>
-		<module>feilong-net-httpcore</module>
 		<module>feilong-tools-scm</module>
 	</modules>
 

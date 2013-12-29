@@ -7,7 +7,6 @@
 		<version>1.0.3</version>
 	</parent>
 
-	<groupId>${project.parent.groupId}</groupId>
 	<artifactId>feilong-db-jdbc</artifactId>
 	<name>feilong-db-jdbc</name>
 
