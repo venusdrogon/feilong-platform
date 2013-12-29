@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.feilong.platform.commons</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</parent>
 
 	<artifactId>feilong-core</artifactId>
@@ -78,14 +78,6 @@
 		<version>2.7</version> <configuration> </configuration> </plugin> </plugins> </reporting> -->
 
 	<dependencies>
-
-		<!-- org.slf4j -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${version.slf4j}</version>
-		</dependency>
-
 		<!-- commons-lang -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

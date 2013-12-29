@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.feilong.platform</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</parent>
 
 	<groupId>com.feilong.platform.tools</groupId>
@@ -28,7 +28,6 @@
 		<module>feilong-tools-ant</module>
 		<module>feilong-tools-middleware</module>
 		<module>feilong-tools-html</module>
-		<module>feilong-tools-net</module>
 		<module>feilong-application-taobao</module>
 		<module>feilong-application-weibo</module>
 		<module>feilong-tools-json</module>
@@ -37,6 +36,10 @@
 		<module>feilong-tools-solrj3</module>
 		<module>feilong-tools-solrj4</module>
 		<module>feilong-tools-om</module>
+		<module>feilong-net-filetransfer</module>
+		<module>feilong-net-httpclient</module>
+		<module>feilong-net-httpcore</module>
+		<module>feilong-tools-scm</module>
 	</modules>
 
 	<dependencies>
@@ -44,7 +47,5 @@
 			<groupId>com.feilong.platform.commons</groupId>
 			<artifactId>feilong-core</artifactId>
 		</dependency>
-
-	
 	</dependencies>
 </project>

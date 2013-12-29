@@ -3,7 +3,7 @@
   <parent>
     <artifactId>parent</artifactId>
     <groupId>com.feilong.platform.tools</groupId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>feilong-tools-om</artifactId>
@@ -41,7 +41,10 @@
                 <filter>
                   <artifact>com.feilong.platform.commons:feilong-core</artifact>
                   <excludes>
-                    <exclude>com/feilong/commons/core/aop/**</exclude>
+                    <exclude>com/feilong/commons/core/awt/**</exclude>
+                    <exclude>com/feilong/commons/core/configure/**</exclude>
+                    <exclude>com/feilong/commons/core/security/**</exclude>
+                    <exclude>com/feilong/commons/core/xml/**</exclude>
                   </excludes>
                 </filter>
               </filters>
@@ -88,7 +91,7 @@
     <dependency>
       <groupId>com.feilong.test</groupId>
       <artifactId>feilong-common-test</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

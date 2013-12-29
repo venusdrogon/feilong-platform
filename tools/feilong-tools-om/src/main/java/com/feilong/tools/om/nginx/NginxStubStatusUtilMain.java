@@ -15,7 +15,7 @@
  */
 package com.feilong.tools.om.nginx;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,13 +49,14 @@ public class NginxStubStatusUtilMain{
 
 		final String userName = "nginx_status";
 		final String password = "baozun_nikestore_status";
+		final String patch = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
 
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask(){
 
 			public void run(){
-				crawStubStatus(uri, userName, password);
+				crawStubStatus(uri, userName, password, patch);
 
 			}
 		};
@@ -72,30 +73,34 @@ public class NginxStubStatusUtilMain{
 	 * @param password
 	 *            bisic 密码
 	 */
-	private static void crawStubStatus(String stubStatusURI,String userName,String password){
-		try{
-			NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil
-					.getNginxStubStatusCommand(stubStatusURI, userName, password);
-			// String format = JsonFormatUtil.format(nginxStubStatusCommand);
-			// log.info("\n{}", format);
+	private static void crawStubStatus(String stubStatusURI,String userName,String password,String patch){
+		NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil.getNginxStubStatusCommand(stubStatusURI, userName, password);
+		// String format = JsonFormatUtil.format(nginxStubStatusCommand);
+		// log.info("\n{}", format);
 
-			String filePath = "F:\\" + DateUtil.date2String(nginxStubStatusCommand.getCrawlDate(), DatePattern.monthAndDay)
-					+ " stubstatus.txt";
-			String content = StringUtil.format(
-					pattern,
-					DateUtil.date2String(nginxStubStatusCommand.getCrawlDate()),
-					nginxStubStatusCommand.getActiveConnections(),
-					nginxStubStatusCommand.getServerAccepts(),
-					nginxStubStatusCommand.getServerHandled(),
-					nginxStubStatusCommand.getServerRequests(),
-					nginxStubStatusCommand.getReading(),
-					nginxStubStatusCommand.getWriting(),
-					nginxStubStatusCommand.getWaiting())
-					+ "\n";
+		Date crawlDate = nginxStubStatusCommand.getCrawlDate();
+		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.monthAndDay);
+		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
+		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 
-			IOWriteUtil.write(filePath, content, encode, FileWriteMode.APPEND);
-		}catch (IOException e){
-			e.printStackTrace();
-		}
+		String filePath = patch.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
+		String content = StringUtil.format(
+				pattern,
+				DateUtil.date2String(crawlDate),
+				nginxStubStatusCommand.getActiveConnections(),
+				nginxStubStatusCommand.getServerAccepts(),
+				nginxStubStatusCommand.getServerHandled(),
+				nginxStubStatusCommand.getServerRequests(),
+				nginxStubStatusCommand.getReading(),
+				nginxStubStatusCommand.getWriting(),
+				nginxStubStatusCommand.getWaiting()) + "\n";
+
+		IOWriteUtil.write(filePath, content, encode, FileWriteMode.APPEND);
+
+		// 一小时 最后一秒
+		// if (condition){
+		// sendMail(filePath);
+		// }
+
 	}
 }

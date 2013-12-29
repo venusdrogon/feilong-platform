@@ -6,7 +6,7 @@ package com.feilong.tools.itext;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.feilong.commons.office.pdf.PDFUtil;
+import com.feilong.tools.office.pdf.PDFUtil;
 import com.lowagie.text.Element;
 import com.lowagie.text.Paragraph;
 

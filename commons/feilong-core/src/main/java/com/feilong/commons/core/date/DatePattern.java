@@ -142,41 +142,53 @@ public final class DatePattern{
 	/** <code>{@value}</code> 月日带星期 example:01-22(星期四). */
 	public static final String	monthAndDayWithWeek			= "MM-dd(E)";
 
-	/** <code>{@value}</code> 不带秒. */
+	/** <code>{@value}</code> 不带秒 example:2013-12-27 22:13. */
 	public static final String	commonWithoutSecond			= "yyyy-MM-dd HH:mm";
 
-	/** <code>{@value}</code>. */
+	/** <code>{@value}</code> example:2013-12-27 22:13:55. */
 	public static final String	commonWithTime				= "yyyy-MM-dd HH:mm:ss";
 
-	/** <code>{@value}</code> 带毫秒的时间格式. */
+	/** <code>{@value}</code> 带毫秒的时间格式 example:2013-12-27 22:13:55.453. */
 	public static final String	commonWithMillisecond		= "yyyy-MM-dd HH:mm:ss.SSS";
 
-	/** <code>{@value}</code> 不带年 不带秒. */
+	/** <code>{@value}</code> 不带年 不带秒 example:12-27 22:13. */
 	public static final String	commonWithoutAndYearSecond	= "MM-dd HH:mm";
 
-	/** <code>{@value}</code>. */
+	// *******************************************************************
+
+	/** <code>{@value}</code> example:13. */
 	public static final String	yy							= "yy";
 
-	/** <code>{@value}</code>. */
+	/** <code>{@value}</code> example:2013. */
+	public static final String	yyyy						= "yyyy";
+
+	/** <code>{@value}</code> MM月份 example:12. */
+	public static final String	MM							= "MM";
+
+	/** <code>{@value}</code> example:20131227. */
 	public static final String	yyyyMMdd					= "yyyyMMdd";
 
-	/** <code>{@value}</code>. */
+	/** <code>{@value}</code> example:2156. */
 	public static final String	mmss						= "mmss";
 
-	/** <code>{@value}</code> 只有时间且不带秒. */
+	/** <code>{@value}</code> example:21. */
+	public static final String	HH							= "HH";
+
+	/** <code>{@value}</code> 只有时间且不带秒 example:21:57. */
 	public static final String	onlyTime_withoutSecond		= "HH:mm";
 
-	/** <code>{@value}</code> 只有时间. */
+	/** <code>{@value}</code> 只有时间 example:21:57:36. */
 	public static final String	onlyTime					= "HH:mm:ss";
 
-	/** 时间戳,<code>{@value}</code>,一般用于拼接文件名称. */
+	/** 时间戳,<code>{@value}</code>,一般用于拼接文件名称 example:20131227215816. */
 	public static final String	timestamp					= "yyyyMMddHHmmss";
 
-	/** 带毫秒的时间戳,<code>{@value}</code> . */
+	/** 带毫秒的时间戳,<code>{@value}</code> example:20131227215758437. */
 	public static final String	timestampWithMillisecond	= "yyyyMMddHHmmssSSS";
 
 	/**
 	 * 系统Date toString 使用的格式,并且 Locale.US,<br>
+	 * example: 星期五 十二月 27 22:13:55 CST 2013 <br>
 	 * 详见{@link Date#toString()} <code>{@value}</code> .
 	 */
 	public static final String	forToString					= "EEE MMM dd HH:mm:ss zzz yyyy";

@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 
 	<packaging>pom</packaging>
 
@@ -99,6 +99,14 @@
 
 	<!--*******************************junit******************************************* -->
 	<dependencies>
+
+		<!-- org.slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${version.slf4j}</version>
+		</dependency>
+
 		<!-- junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -117,7 +125,7 @@
 		<dependency>
 			<groupId>com.feilong.test</groupId>
 			<artifactId>feilong-common-test</artifactId>
-			<version>1.0.2</version>
+			<version>${version.feilong-platform}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -130,6 +138,12 @@
 			<dependency>
 				<groupId>com.feilong.platform.commons</groupId>
 				<artifactId>feilong-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.feilong.platform.commons</groupId>
+				<artifactId>feilong-commons-security</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -178,6 +192,7 @@
 				<artifactId>memcached</artifactId>
 				<version>${version.memcached}</version>
 			</dependency>
+
 
 			<!-- log4j -->
 			<dependency>
@@ -232,6 +247,13 @@
 			</dependency>
 
 			<!-- *******************spring********************************* -->
+			<!-- spring-beans -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
 			<!-- spring-orm -->
 			<dependency>
 				<groupId>org.springframework</groupId>

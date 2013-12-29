@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.feilong.platform</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</parent>
 
 	<groupId>com.feilong.platform.commons</groupId>
@@ -18,5 +18,6 @@
 		<module>feilong-core</module>
 		<module>feilong-servlet</module>
 		<module>feilong-db-jdbc</module>
+		<module>feilong-commons-security</module>
 	</modules>
 </project>

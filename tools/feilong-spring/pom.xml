@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>parent</artifactId>
 		<groupId>com.feilong.platform.tools</groupId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>feilong-spring</artifactId>
@@ -74,16 +74,12 @@
 			<artifactId>mail</artifactId>
 		</dependency>
 		
-		
-		
-		
 			<!-- -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.6.12</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework</groupId>

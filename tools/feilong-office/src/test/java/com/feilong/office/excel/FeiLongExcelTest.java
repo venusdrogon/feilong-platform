@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.office.excel.FeiLongExcel;
-import com.feilong.commons.office.excel.FeiLongExcelEntity;
+import com.feilong.tools.office.excel.FeiLongExcel;
+import com.feilong.tools.office.excel.FeiLongExcelEntity;
 
 /**
  * FeiLongExcelTest

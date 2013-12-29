@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>parent</artifactId>
 		<groupId>com.feilong.platform.tools</groupId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>feilong-tools-om</artifactId>
@@ -12,22 +12,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-tools-net</artifactId>
+			<artifactId>feilong-net-httpclient</artifactId>
 			<version>${version.feilong-platform}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-web</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>aspectjweaver</artifactId>
-					<groupId>org.aspectj</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-		 
-	</dependencies>
 
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-mail</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -59,14 +53,16 @@
 									<excludes>
 										<exclude>META-INF/**</exclude>
 										<exclude>templates/**</exclude>
-										<!-- <exclude>META-INF/*.DSA</exclude> <exclude>META-INF/*.RSA</exclude> -->
 									</excludes>
 								</filter>
 
 								<filter>
 									<artifact>com.feilong.platform.commons:feilong-core</artifact>
 									<excludes>
-										<exclude>com/feilong/commons/core/aop/**</exclude>
+										<exclude>com/feilong/commons/core/awt/**</exclude>
+										<exclude>com/feilong/commons/core/configure/**</exclude>
+										<exclude>com/feilong/commons/core/security/**</exclude>
+										<exclude>com/feilong/commons/core/xml/**</exclude>
 									</excludes>
 								</filter>
 							</filters>

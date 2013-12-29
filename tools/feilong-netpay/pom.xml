@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.feilong.platform.tools</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</parent>
 
 	<groupId>${project.parent.groupId}</groupId>
@@ -26,10 +26,14 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-commons-security</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>com.feilong.platform.taglib</groupId>
 			<artifactId>feilong-taglib-common</artifactId>
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
@@ -37,13 +41,11 @@
 			<version>${version.feilong-platform}</version>
 		</dependency>
 
-
 		<!-- commons-httpclient -->
 		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
 		</dependency>
-
 
 		<!-- 招商银行 -->
 		<dependency>
@@ -76,12 +78,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 		</dependency>
-		
-		
-		
-		
-		
-			<!-- -->
+
+
+
+
+
+		<!-- -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>

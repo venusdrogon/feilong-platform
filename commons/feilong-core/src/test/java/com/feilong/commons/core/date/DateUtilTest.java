@@ -238,6 +238,29 @@ public class DateUtilTest{
 	}
 
 	@Test
+	public void testDatePattern(){
+		log.debug("commonWithMillisecond:" + DateUtil.date2String(now, DatePattern.commonWithMillisecond));
+		log.debug("commonWithoutAndYearSecond:" + DateUtil.date2String(now, DatePattern.commonWithoutAndYearSecond));
+		log.debug("commonWithoutSecond:" + DateUtil.date2String(now, DatePattern.commonWithoutSecond));
+		log.debug("commonWithTime:" + DateUtil.date2String(now, DatePattern.commonWithTime));
+		log.debug("forToString:" + DateUtil.date2String(now, DatePattern.forToString));
+		log.debug("HH:" + DateUtil.date2String(now, DatePattern.HH));
+		log.debug("MM:" + DateUtil.date2String(now, DatePattern.MM));
+		log.debug("mmss:" + DateUtil.date2String(now, DatePattern.mmss));
+		log.debug("monthAndDay:" + DateUtil.date2String(now, DatePattern.monthAndDay));
+		log.debug("monthAndDayWithWeek:" + DateUtil.date2String(now, DatePattern.monthAndDayWithWeek));
+		log.debug("onlyDate:" + DateUtil.date2String(now, DatePattern.onlyDate));
+		log.debug("onlyTime:" + DateUtil.date2String(now, DatePattern.onlyTime));
+		log.debug("onlyTime_withoutSecond:" + DateUtil.date2String(now, DatePattern.onlyTime_withoutSecond));
+
+		log.debug("timestamp:" + DateUtil.date2String(now, DatePattern.timestamp));
+		log.debug("timestampWithMillisecond:" + DateUtil.date2String(now, DatePattern.timestampWithMillisecond));
+		log.debug("yearAndMonth:" + DateUtil.date2String(now, DatePattern.yearAndMonth));
+		log.debug("yy:" + DateUtil.date2String(now, DatePattern.yy));
+		log.debug("yyyyMMdd:" + DateUtil.date2String(now, DatePattern.yyyyMMdd));
+	}
+
+	@Test
 	public void testDate2String(){
 		String dateToString = DateUtil.date2String(new Date(), DatePattern.timestampWithMillisecond);
 		log.info(dateToString);

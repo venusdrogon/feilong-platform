@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.feilong.platform.taglib</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</parent>
 
 	<groupId>${project.parent.groupId}</groupId>
