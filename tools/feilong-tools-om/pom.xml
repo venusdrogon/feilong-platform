@@ -20,7 +20,10 @@
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-mail</artifactId>
 			<version>${version.feilong-platform}</version>
-		</dependency>
+		</dependency>				<dependency>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.5</version></dependency>
 	</dependencies>
 
 	<build>

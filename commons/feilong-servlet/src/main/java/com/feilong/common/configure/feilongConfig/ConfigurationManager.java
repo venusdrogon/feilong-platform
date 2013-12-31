@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008-2013 FeiLong, Inc. All Rights Reserved.
+ * Copyright © 2008-2014 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
  * 	You shall not disclose such Confidential Information and shall use it 

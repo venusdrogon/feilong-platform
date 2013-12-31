@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008-2012 FeiLong, Inc. All Rights Reserved.
+ * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
  * 	You shall not disclose such Confidential Information and shall use it 
@@ -13,6 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
+
 package com.feilong.tools.solrj.data;
 
 import java.io.Serializable;

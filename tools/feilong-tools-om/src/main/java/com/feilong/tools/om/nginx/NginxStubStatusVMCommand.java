@@ -13,43 +13,25 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.jfreechart.pie;
+package com.feilong.tools.om.nginx;
 
-import java.util.Map;
-
-import com.feilong.tools.jfreechart.BaseChartEntity;
+import java.io.Serializable;
 
 /**
+ * NginxStubStatusVMCommand
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2012 1 14 05:35:47
+ * @version 1.0 Jan 1, 2014 12:47:52 AM
  */
-public class PieChartEntity extends BaseChartEntity{
+public final class NginxStubStatusVMCommand implements Serializable{
 
-	private static final long		serialVersionUID	= -7723192818168964170L;
+	/** The Constant serialVersionUID. */
+	private static final long	serialVersionUID	= 288232184048495608L;
 
-	/**
-	 * 文字和 数据
-	 * 
-	 * <pre>
-	 * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;();
-	 * keyAndDataMap.put(&quot;失败率&quot;, 50);
-	 * keyAndDataMap.put(&quot;成功率&quot;, 250);
-	 * </pre>
-	 */
-	protected Map<String, Number>	keyAndDataMap;
+	/** The upstream_addr. */
+	private String				beginDate;
 
-	/**
-	 * @return the keyAndDataMap
-	 */
-	public Map<String, Number> getKeyAndDataMap(){
-		return keyAndDataMap;
-	}
+	/** The request_time. */
+	private String				endDate;
 
-	/**
-	 * @param keyAndDataMap
-	 *            the keyAndDataMap to set
-	 */
-	public void setKeyAndDataMap(Map<String, Number> keyAndDataMap){
-		this.keyAndDataMap = keyAndDataMap;
-	}
 }

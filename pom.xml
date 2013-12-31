@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 
 	<name>feilong-platform-parent</name>
+	<!-- 成立年份 -->
 	<inceptionYear>2008</inceptionYear>
 	<url>http://www.feilong.com</url>
 
