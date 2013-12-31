@@ -15,9 +15,12 @@
  */
 package com.feilong.tools.om.nginx;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.mail.MessagingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,41 +33,57 @@ import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
- * main
+ * main.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 7:58:34 PM
  */
 public class NginxStubStatusUtilMain{
 
-	private static final Logger	log		= LoggerFactory.getLogger(NginxStubStatusUtilMain.class);
+	/** The Constant log. */
+	private static final Logger	log					= LoggerFactory.getLogger(NginxStubStatusUtilMain.class);
 
-	private static String		pattern	= "%s	%s	%s	%s	%s	%s	%s	%s";
+	/** 中间使用tab键分隔. */
+	private static String		pattern				= "%s	%s	%s	%s	%s	%s	%s	%s";
 
-	private static String		encode	= CharsetType.GBK;
+	/** The encode. */
+	private static String		encode				= CharsetType.GBK;
 
+	public static String		pattern_crawlDate	= DatePattern.commonWithTime;
+
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the args
+	 */
 	public static void main(String[] args){
-
-		final String uri = "http://www.nikestore.com.cn/nginx_status";
-
-		final String userName = "nginx_status";
-		final String password = "baozun_nikestore_status";
-		final String patch = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
-
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask(){
 
 			public void run(){
-				crawStubStatus(uri, userName, password, patch);
-
+				crawStubStatusNike();
 			}
 		};
 		timer.schedule(task, 2L, 1000);
 	}
 
 	/**
-	 * 爬取 StubStatus 信息
+	 * nike爬取信息
+	 */
+	public static void crawStubStatusNike(){
+		final String uri = "http://www.nikestore.com.cn/nginx_status";
+
+		final String userName = "nginx_status";
+		final String password = "baozun_nikestore_status";
+		final String patch = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
+
+		crawStubStatus(uri, userName, password, patch);
+	}
+
+	/**
+	 * 爬取 StubStatus 信息.
 	 * 
 	 * @param stubStatusURI
 	 *            stubStatusURI
@@ -72,6 +91,8 @@ public class NginxStubStatusUtilMain{
 	 *            bisic 用户名
 	 * @param password
 	 *            bisic 密码
+	 * @param patch
+	 *            the patch
 	 */
 	private static void crawStubStatus(String stubStatusURI,String userName,String password,String patch){
 		NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil.getNginxStubStatusCommand(stubStatusURI, userName, password);
@@ -84,23 +105,33 @@ public class NginxStubStatusUtilMain{
 		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 
 		String filePath = patch.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
+
 		String content = StringUtil.format(
 				pattern,
-				DateUtil.date2String(crawlDate),
+				DateUtil.date2String(crawlDate, pattern_crawlDate),
 				nginxStubStatusCommand.getActiveConnections(),
 				nginxStubStatusCommand.getServerAccepts(),
 				nginxStubStatusCommand.getServerHandled(),
 				nginxStubStatusCommand.getServerRequests(),
 				nginxStubStatusCommand.getReading(),
 				nginxStubStatusCommand.getWriting(),
-				nginxStubStatusCommand.getWaiting()) + "\n";
+				nginxStubStatusCommand.getWaiting())
+				+ "\n";
 
 		IOWriteUtil.write(filePath, content, encode, FileWriteMode.APPEND);
 
-		// 一小时 最后一秒
-		// if (condition){
-		// sendMail(filePath);
-		// }
-
+		// 每小时 最后一秒
+		int minute = DateUtil.getMinute(crawlDate);
+		int second = DateUtil.getSecond(crawlDate);
+		boolean isLastSecondOfHour = (59 == minute && 59 == second);
+		if (isLastSecondOfHour){
+			try{
+				NginxStubStatusMailSender.sendMonitorMail(filePath);
+			}catch (MessagingException e){
+				e.printStackTrace();
+			}catch (IOException e){
+				e.printStackTrace();
+			}
+		}
 	}
 }

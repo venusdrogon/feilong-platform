@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<body>
+		<div>
+			XiaoK-monitor ${}-${} nginx status data
+    	</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr> 
+<td> 
+	<table style="border:1px solid #E3E197;background-color: #FFFFDD ;border-collapse:collapse;">
+		<tr>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">crawlDate</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">activeConnections</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">reading</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">writing</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">waiting</td>
+        </tr>
+		
+	#foreach($nginxStubStatusCommand in $nginxStubStatusCommandList)
+		<tr>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;">${DateUtil.date2String($nginxStubStatusCommand.crawlDate,"HH:mm:ss")}</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">$nginxStubStatusCommand.activeConnections</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">$nginxStubStatusCommand.reading</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">$nginxStubStatusCommand.writing</td>
+			<td style="border:1px solid #E3E197;background-color: #FFFFDD;text-align:center">$nginxStubStatusCommand.waiting</td>
+        </tr>
+	#end
+    </table> 
+ </td>
+</tr>
+ 
+</table>
+
+<br/>
+You can confirm in 
+<a href="http://www.nikestore.com.cn/nginx_status">http://www.nikestore.com.cn/nginx_status</a>
+				
+
+	</body>
+</html>

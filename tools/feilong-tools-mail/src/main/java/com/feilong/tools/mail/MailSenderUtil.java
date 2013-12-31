@@ -20,7 +20,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
 
+import javax.activation.CommandMap;
 import javax.activation.DataHandler;
+import javax.activation.MailcapCommandMap;
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
@@ -56,6 +58,11 @@ public final class MailSenderUtil{
 	private static final Logger	log					= LoggerFactory.getLogger(MailSenderUtil.class);
 
 	private Message				message				= null;
+
+	/**
+	 * 版本
+	 */
+	private static final String	VERSION				= "1.0.3";
 
 	/**
 	 * contentId前缀
@@ -148,6 +155,17 @@ public final class MailSenderUtil{
 		// ***********************************************************************
 		// 将MiniMultipart对象设置为邮件内容
 		message.setContent(mimeMultipart);
+
+		// 解决 bug
+		// **** javax.activation.UnsupportedDataTypeException: no object DCH for MIME type
+		// multipart/related;******************************************************
+		MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
+		mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
+		mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
+		mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
+		mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
+		mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
+		CommandMap.setDefaultCommandMap(mailcapCommandMap);
 
 		// ***********************************************************************
 		// 发送邮件
@@ -290,5 +308,4 @@ public final class MailSenderUtil{
 		return session;
 	}
 
-	private static final String	VERSION	= "1.0.2";
 }

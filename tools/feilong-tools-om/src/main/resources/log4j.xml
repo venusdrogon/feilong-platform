@@ -3,16 +3,16 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
 
-	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
-		<!-- The default target is System.out. -->
-		<!-- <param name="Target" value="System.out" /> -->
-		<param name="Threshold" value="debug" />
+	<appender name="logFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="info" />
 		<param name="encoding" value="UTF-8" />
 
-		<!-- 设置监视器输出方式 -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<param name="File" value="D:\\logs\\feilong\\feilong-tools-om\\log.log" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p (%F:%L) [%M()] %m%n" />
+			<param name="ConversionPattern" value="%d{MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
 		</layout>
+
 		<!--限制输出级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="LevelMin" value="info" />
@@ -21,24 +21,24 @@
 	</appender>
 
 	<category name="loxia.support.json">
-		<priority value="info" />
+		<priority value="warn" />
 	</category>
 	<category name="loxia.support.json.JsonPrintUtil">
-		<priority value="debug" />
+		<priority value="warn" />
 	</category>
 	<category name="org.springframework">
-		<priority value="info" />
+		<priority value="warn" />
 	</category>
 
 	<category name="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<priority value="info" />
+		<priority value="warn" />
 	</category>
 
 	<category name="com.feilong">
-		<priority value="debug" />
+		<priority value="warn" />
 	</category>
 	<category name="com.feilong.tools.net.AbstractFileTransfer">
-		<priority value="info" />
+		<priority value="warn" />
 	</category>
 	<category name="org.apache.commons.httpclient.HttpMethodBase">
 		<priority value="warn" />
@@ -50,17 +50,17 @@
 		<priority value="warn" />
 	</category>
 	<category name="org.apache.commons.httpclient.HttpClient">
-		<priority value="info" />
+		<priority value="warn" />
 	</category>
-	
+
 	<category name="org.apache.commons.httpclient.params.DefaultHttpParams">
-		<priority value="info" />
+		<priority value="warn" />
 	</category>
 
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>
-		<level value="info" />
-		<appender-ref ref="stdout" />
+		<level value="warn" />
+		<appender-ref ref="logFile" />
 	</root>
 </log4j:configuration>
