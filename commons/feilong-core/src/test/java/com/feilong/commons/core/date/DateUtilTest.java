@@ -580,4 +580,8 @@ public class DateUtilTest{
 	public final void testToCalendar(){
 		fail("Not yet implemented"); // TODO
 	}
+	@Test
+	public final void testToCalendar1(){
+		System.out.println((new Date().getTime()+"").length());
+	}
 }

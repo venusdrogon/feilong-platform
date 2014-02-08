@@ -250,11 +250,22 @@ public final class FileUtil{
 	 * 判断文件是否存在
 	 * 
 	 * @param filePath
-	 * @return
+	 * @return 如果文件存在,返回true
 	 */
 	public final static boolean isExistFile(String filePath){
 		File file = new File(filePath);
 		return file.exists();
+	}
+
+	/**
+	 * 判断文件不存在
+	 * 
+	 * @param filePath
+	 * @return 如果文件不存在,返回true
+	 * @since 1.0.3
+	 */
+	public final static boolean isNotExistFile(String filePath){
+		return !isExistFile(filePath);
 	}
 
 	/**

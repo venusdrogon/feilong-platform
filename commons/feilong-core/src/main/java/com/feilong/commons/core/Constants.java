@@ -42,9 +42,6 @@ public final class Constants{
 
 	/** 初始值空格 oracle空格需要空1个实在的空格 ""在oracle自动转换为null. <code>{@value}</code> */
 	public final static String	space			= " ";
-	
-	
-	
 
 	/** 生成换行标识 Line separator ("\n" on UNIX). */
 	public final static String	lineSeparator	= System.getProperty("line.separator");
