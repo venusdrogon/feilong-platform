@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
+ * Copyright (c) 2008-2013 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
  * 	You shall not disclose such Confidential Information and shall use it 
@@ -13,20 +13,18 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-
-package com.feilong.netpay;
+package com.feilong.netpay.command;
 
 /**
- * 支付结果
+ * 交易角色
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 15, 2013 10:51:46 PM
+ * @version 1.0 Mar 2, 2013 5:09:03 PM
  */
-public final class PaymentResultType{
+public enum TradeRole{
+	/** 买家 */
+	BUYER,
 
-	/** 支付成功 <code>{@value}</code> */
-	public static final String	SUCCESS	= "success";
-
-	/** 支付失败 <code>{@value}</code> */
-	public static final String	FAIL	= "fail";
+	/** 卖家 */
+	SELLER;
 }

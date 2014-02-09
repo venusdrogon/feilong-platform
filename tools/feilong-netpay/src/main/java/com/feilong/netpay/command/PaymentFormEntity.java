@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
+ * Copyright (c) 2008-2013 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
  * 	You shall not disclose such Confidential Information and shall use it 
@@ -13,12 +13,13 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.netpay;
+package com.feilong.netpay.command;
 
 import java.io.Serializable;
 import java.util.Map;
 
-import com.feilong.commons.core.util.Validator;
+import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.net.URIUtil;
 
 /**
  * 支付表单entity.
@@ -39,6 +40,15 @@ public class PaymentFormEntity implements Serializable{
 
 	/** 一堆的隐藏域 map key 为 hidden name,value 为 hidden value. */
 	private Map<String, String>	hiddenParamMap;
+
+	/**
+	 * 完整的请求路径.
+	 * 
+	 * @return the full encoded url
+	 */
+	public String getFullEncodedUrl(){
+		return URIUtil.getEncodedUrl(action, hiddenParamMap, CharsetType.UTF8);
+	}
 
 	/**
 	 * Gets the action.
@@ -95,30 +105,6 @@ public class PaymentFormEntity implements Serializable{
 	 */
 	public void setHiddenParamMap(Map<String, String> hiddenParamMap){
 		this.hiddenParamMap = hiddenParamMap;
-	}
-
-	/**
-	 * 完整的请求路径.
-	 * 
-	 * @return the fullRequestURL
-	 */
-	public String getFullRequestURL(){
-		StringBuilder builder = new StringBuilder("");
-		builder.append(action);
-		// map 不是空 表示 有参数
-		if (Validator.isNotNullOrEmpty(hiddenParamMap)){
-			builder.append("?");
-			for (Map.Entry<String, ?> entry : hiddenParamMap.entrySet()){
-				builder.append(entry.getKey());
-				builder.append("=");
-				builder.append(entry.getValue());
-				builder.append("&");
-			}
-			// 把最后一个多的& 截取掉
-			return builder.toString().substring(0, builder.toString().length() - 1);
-		}
-		return builder.toString();
-
 	}
 
 }

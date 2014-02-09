@@ -18,7 +18,7 @@ package com.feilong.netpay.taglib;
 import java.util.Date;
 
 import com.feilong.netpay.adaptor.YiChengPay;
-import com.feilong.netpay.entity.FeiLongYiChengPayEntity;
+import com.feilong.netpay.command.YiChengPayEntity;
 import com.feilong.taglib.base.AbstractCommonTag;
 
 /**
@@ -27,7 +27,7 @@ import com.feilong.taglib.base.AbstractCommonTag;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-10-27 上午11:57:49
  */
-public class FeiLongYiChengPayTag extends AbstractCommonTag{
+public class YiChengPayTag extends AbstractCommonTag{
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -89,7 +89,7 @@ public class FeiLongYiChengPayTag extends AbstractCommonTag{
 	 */
 	@Override
 	protected Object writeContent(){
-		FeiLongYiChengPayEntity feiLongYiChengPayEntity = new FeiLongYiChengPayEntity(
+		YiChengPayEntity feiLongYiChengPayEntity = new YiChengPayEntity(
 				merchantNo,
 				orderId,
 				amount,

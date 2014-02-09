@@ -23,7 +23,7 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.security.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.netpay.entity.FeiLongYiChengPayEntity;
+import com.feilong.netpay.command.YiChengPayEntity;
 import com.feilong.tools.html.HTMLInput;
 
 /**
@@ -55,7 +55,7 @@ public class YiChengPay{
 	 * @author 金鑫
 	 * @version 1.0 2010-11-4 上午11:29:41
 	 */
-	public static String getWriteContent(String action,FeiLongYiChengPayEntity feiLongYiChengPayEntity){
+	public static String getWriteContent(String action,YiChengPayEntity feiLongYiChengPayEntity){
 		// ***********************************************************************
 		StringBuilder stringBuilder = new StringBuilder();
 		if (Validator.isNullOrEmpty(action)){
@@ -121,7 +121,7 @@ public class YiChengPay{
 	 * @author 金鑫
 	 * @version 1.0 Oct 26, 2010 5:02:58 PM
 	 */
-	public static String getMerchantDecodedDataString(FeiLongYiChengPayEntity feiLongYiChengPayEntity){
+	public static String getMerchantDecodedDataString(YiChengPayEntity feiLongYiChengPayEntity){
 		StringBuilder md5_stringBuilder = new StringBuilder("");
 		// 商户号
 		md5_stringBuilder.append(feiLongYiChengPayEntity.getMerchantNo());
@@ -156,7 +156,7 @@ public class YiChengPay{
 	 * @author 金鑫
 	 * @version 1.0 2010-11-4 下午04:26:27
 	 */
-	public static String getResultDecodedDataString(FeiLongYiChengPayEntity feiLongYiChengPayEntity){
+	public static String getResultDecodedDataString(YiChengPayEntity feiLongYiChengPayEntity){
 		StringBuilder md5_stringBuilder = new StringBuilder("");
 		// 商户号
 		md5_stringBuilder.append(feiLongYiChengPayEntity.getMerchantNo());

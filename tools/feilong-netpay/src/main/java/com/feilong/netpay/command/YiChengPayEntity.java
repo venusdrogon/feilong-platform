@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.netpay.entity;
+package com.feilong.netpay.command;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -26,7 +26,7 @@ import com.feilong.netpay.adaptor.YiChengPay;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 26, 2010 4:48:36 PM
  */
-public class FeiLongYiChengPayEntity implements Serializable{
+public class YiChengPayEntity implements Serializable{
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -95,7 +95,7 @@ public class FeiLongYiChengPayEntity implements Serializable{
 	private String				resultDecodedData;
 
 	// ***********************************************************
-	public FeiLongYiChengPayEntity(){
+	public YiChengPayEntity(){
 		super();
 	}
 
@@ -119,7 +119,7 @@ public class FeiLongYiChengPayEntity implements Serializable{
 	 * @param createTime
 	 *            important 必须和数据库订单创建时间一致
 	 */
-	public FeiLongYiChengPayEntity(String merchantNo, String orderId, String amount, String callBackUrl, String isFull, String terminalNo, String key,
+	public YiChengPayEntity(String merchantNo, String orderId, String amount, String callBackUrl, String isFull, String terminalNo, String key,
 			Date createTime){
 		this.merchantNo = merchantNo;
 		this.orderId = orderId;

@@ -35,7 +35,7 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.netpay.PaymentAdaptor;
-import com.feilong.netpay.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentFormEntity;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -84,7 +84,7 @@ public class AlipayPayAdaptorTest extends AbstractJUnit4SpringContextTests{
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.doBeginPayment(code, total_fee, return_url, notify_url, specialSignMap);
 
 		log.info(JsonFormatUtil.format(paymentFormEntity));
-		System.out.println(paymentFormEntity.getFullRequestURL());
+		System.out.println(paymentFormEntity.getFullEncodedUrl());
 		System.out.println();
 		System.out.println();
 		System.out.println();
