@@ -33,6 +33,11 @@ public final class ChartIndex{
 	private Integer	value;
 
 	/**
+	 * 颜色 比如柱状图 线条颜色
+	 */
+	private String	color;
+
+	/**
 	 * The Constructor.
 	 * 
 	 * @param name
@@ -61,6 +66,20 @@ public final class ChartIndex{
 		super();
 		this.name = name;
 		this.value = value;
+	}
+
+	/**
+	 * @param code
+	 * @param name
+	 * @param value
+	 * @param color
+	 */
+	public ChartIndex(String code, String name, Integer value, String color){
+		super();
+		this.code = code;
+		this.name = name;
+		this.value = value;
+		this.color = color;
 	}
 
 	/**
@@ -125,6 +144,21 @@ public final class ChartIndex{
 	 */
 	public void setValue(Integer value){
 		this.value = value;
+	}
+
+	/**
+	 * @return the color
+	 */
+	public String getColor(){
+		return color;
+	}
+
+	/**
+	 * @param color
+	 *            the color to set
+	 */
+	public void setColor(String color){
+		this.color = color;
 	}
 
 }
