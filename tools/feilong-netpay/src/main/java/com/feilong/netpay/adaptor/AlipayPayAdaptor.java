@@ -1,41 +1,58 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (c) 2010 Jumbomart All Rights Reserved.
+ *
+ * This software is the confidential and proprietary information of Jumbomart.
+ * You shall not disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jumbo.
+ *
+ * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+ * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
+ * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+ * THIS SOFTWARE OR ITS DERIVATIVES.
+ *
  */
-
 package com.feilong.netpay.adaptor;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.InputSource;
+
+import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.netpay.AbstractPaymentAdaptor;
-import com.feilong.netpay.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.TradeRole;
 import com.feilong.netpay.util.Md5Encrypt;
+import com.feilong.tools.net.httpclient.HttpClientUtil;
+import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
  * alipay 纯网关接口<br>
@@ -52,6 +69,9 @@ import com.feilong.netpay.util.Md5Encrypt;
  */
 public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 
+	/** The Constant log. */
+	private static final Logger	log					= LoggerFactory.getLogger(AlipayPayAdaptor.class);
+
 	// ************************不属于签名用的 属性/字段**********************************************************************
 	/**
 	 * MD5 的私钥是以英文字母和数字组成的 32位字符串。<br>
@@ -65,9 +85,6 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * 支付宝网关.
 	 */
 	private String				gateway;
-
-	/** 通知验证地址. */
-	private String				notify_verify_url;
 
 	// *************************签名用的必须配置的参数**********************************************************************
 	/**
@@ -87,43 +104,59 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	/** 其他需要被签名的 Map. */
 	private Map<String, String>	signMap;
 
-	// // ***************************************************************************************
-	// HttpSession session = request.getSession();
-	// // 支付宝联合登陆
-	// String strToken = (String) session.getAttribute("aliPayToken");
-	// boolean hasToken = strToken != null && strToken.length() > 0;
-	// if (hasToken){
-	// params.put("token", strToken);
-	// }
-	// /**
-	// * Begin payment1.
-	// *
-	// * @param so
-	// * the so
-	// * @param request
-	// * the request
-	// * @return the payment form entity
-	// */
-	// public PaymentFormEntity beginPayment1(SalesOrder so,HttpServletRequest request){
-	// String code = so.getCode();
-	// String paymentType = so.getPaymentType();
-	// BigDecimal total_fee = so.getTotalforOrder();
-	// String return_url = getReturnUrl(code, request);
-	// String notify_url = getNotifyUrl(paymentType, request);
-	//
-	// return doBeginPayment(code, total_fee, return_url, notify_url);
-	// }
+	// **********************************************************************************************
+	/** 验证通知的 service. */
+	private String				service_notify_verify;
 
-	// model.addAttribute("postItem", paymentData);
-	// model.addAttribute("postUrl", POST_URL);
-	// model.addAttribute("postMethod", "get");
+	/** 关闭交易. */
+	private String				service_close_trade;
+
+	/** 时间戳查询接口,用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数. */
+	private String				service_query_timestamp;
+
+	/**
+	 * 是否开通开通 防钓鱼认证,默认否<br>
+	 * 如果开通了 设置为true,那么 发送到支付网关 会自动设置 这个参数值
+	 */
+	private boolean				isOpenAntiPhishing	= false;
+
+	/**
+	 * Construct 后
+	 */
+	@PostConstruct
+	public void postConstruct(){
+		if (log.isDebugEnabled()){
+
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			map.put("key", key);
+			map.put("partner", partner);
+			map.put("gateway", gateway);
+			map.put("signMap", signMap);
+			map.put("isOpenAntiPhishing", isOpenAntiPhishing);
+			log.debug("{}", JsonFormatUtil.format(map));
+		}
+	}
+
+	// 支付宝联合登陆
+	// String strToken = (String) session.getAttribute(com.jumbo.shop.Constants.aliPayToken_CONTEXT);
+	// params.put("token", strToken);
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.feilong.netpay.PaymentAdaptor#doBeginPayment(java.lang.String, java.math.BigDecimal, java.lang.String, java.lang.String, java.util.Map)
+	 * @see com.jumbo.brandstore.payment.AbstractPaymentAdaptor#doGetPaymentFormEntity(java.lang.String, java.math.BigDecimal,
+	 * java.lang.String, java.lang.String, java.util.Map)
 	 */
-	public PaymentFormEntity doBeginPayment(String code,BigDecimal total_fee,String return_url,String notify_url,Map<String, String> specialSignMap){
-		if (doValidator(code, total_fee, return_url, notify_url)){
+	protected PaymentFormEntity doGetPaymentFormEntity(
+			String code,
+			BigDecimal total_fee,
+			String return_url,
+			String notify_url,
+			Map<String, String> specialSignMap){
+
+		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
+
+		if (isPassValidatorSpecialSignMap){
 
 			// *************************************************************************************************
 			// 需要被签名的 参数map
@@ -134,16 +167,13 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 				signParamsMap.putAll(signMap);
 			}
 
-			// 子类可以实现 比如 alipay 信用卡, alipay网银
-			Map<String, String> otherParamsMap = setOtherParamsMap();
-			if (Validator.isNotNullOrEmpty(otherParamsMap)){
-				signParamsMap.putAll(otherParamsMap);
-			}
-
 			// 特殊 传入
 			if (Validator.isNotNullOrEmpty(specialSignMap)){
 				signParamsMap.putAll(specialSignMap);
 			}
+
+			// 设置防钓鱼参数
+			setAntiPhishingParams(signParamsMap);
 
 			// 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
 			setCommonAlipayParams(code, total_fee, return_url, notify_url, signParamsMap);
@@ -175,55 +205,40 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 			paymentFormEntity.setHiddenParamMap(hiddenParamsMap);
 			return paymentFormEntity;
 		}
-		return null;
+		throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
 	}
 
 	/**
-	 * 验证参数
+	 * 验证输入的参数(子类可以按照需要 重写).
 	 * 
-	 * @param code
-	 * @param total_fee
-	 * @param return_url
-	 * @param notify_url
+	 * @param specialSignMap
+	 *            指定的签名map
+	 * @return true, if successful
 	 */
-	public boolean doValidator(String code,BigDecimal total_fee,String return_url,String notify_url){
-		// ******************************************************************
-		// validate
-		if (Validator.isNullOrEmpty(code)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(total_fee)){
-			throw new IllegalArgumentException("total_fee can't be null/empty!");
-		}
-
-		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
-		// 精确到小数点 后两位
-		BigDecimal minPay = new BigDecimal(0.01f);
-		BigDecimal maxPay = new BigDecimal(100000000);
-		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
-			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
-		}
-
-		if (Validator.isNullOrEmpty(return_url)){
-			throw new IllegalArgumentException("return_url can't be null/empty!");
-		}
-
-		if (Validator.isNullOrEmpty(notify_url)){
-			throw new IllegalArgumentException("notify_url can't be null/empty!");
-		}
+	protected boolean validatorSpecialSignMap(@SuppressWarnings("unused") Map<String, String> specialSignMap){
 		return true;
 	}
 
 	/**
-	 * 设置 共用的 alipay 参数信息
+	 * 设置 共用的 alipay 参数信息.
 	 * 
 	 * @param code
+	 *            订单code
 	 * @param total_fee
+	 *            总支付金额
 	 * @param return_url
+	 *            浏览器返回地址
 	 * @param notify_url
+	 *            通知地址
 	 * @param signParamsMap
+	 *            签名参数map
 	 */
-	private void setCommonAlipayParams(String code,BigDecimal total_fee,String return_url,String notify_url,Map<String, String> signParamsMap){
+	private void setCommonAlipayParams(
+			String code,
+			BigDecimal total_fee,
+			String return_url,
+			String notify_url,
+			Map<String, String> signParamsMap){
 		// 支付宝合作商户网站,唯一订单号 （确保在商户系统中唯一） String(64)
 		signParamsMap.put("out_trade_no", code);
 
@@ -242,17 +257,18 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 
 		signParamsMap.put("_input_charset", _input_charset);
 		signParamsMap.put("partner", partner);
-
-		// signParamsMap.put("it_b_pay", "1m");
 	}
 
 	/**
-	 * 子类可以实现 比如 alipay 信用卡, alipay网银
+	 * 设置防钓鱼参数
 	 * 
-	 * @return
+	 * @param signParamsMap
 	 */
-	protected Map<String, String> setOtherParamsMap(){
-		return null;
+	private void setAntiPhishingParams(Map<String, String> signParamsMap){
+		if (isOpenAntiPhishing){
+			String anti_phishing_key = getAnti_phishing_key();
+			signParamsMap.put("anti_phishing_key", anti_phishing_key);
+		}
 	}
 
 	/*
@@ -261,43 +277,78 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	@Override
 	public boolean doNotifyVerify(HttpServletRequest request){
-		// 获取支付宝返回数据之一的通知校验ID（notify_id），按照支付宝要求的格式拼接成要请求的链接
-
-		// 通过访问这个请求链接，利用编程方法来模拟http请求与支付宝服务器进行交互，
-		// 获得支付宝服务器上处理的结果。 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
-		Map<String, String[]> paramData = request.getParameterMap();
-
-		// TODO 还有没有必要再次 sign 来确认了
-		Map<String, String> params = new HashMap<String, String>();
-		for (Iterator<String> iter = paramData.keySet().iterator(); iter.hasNext();){
-			String name = iter.next();
-			String[] values = paramData.get(name);
-			String valueStr = "";
-			for (int i = 0; i < values.length; i++){
-				valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
-			}
-			if (name.equals("body") || name.equals("subject")){
-				valueStr = "Nike官方商城商品";
-			}
-			params.put(name, valueStr);
+		if (Validator.isNullOrEmpty(key)){
+			throw new NullPointerException("the key is null or empty!");
 		}
-		String mysign = sign(params, key);
-		boolean isSignOk = mysign.equals(paramData.get("sign")[0]);
 
-		if (isSignOk){
+		boolean isNotifySignOk = isNotifySignOk(request);
+
+		if (isNotifySignOk){
+			// 获取支付宝返回数据之一的通知校验ID（notify_id），按照支付宝要求的格式拼接成要请求的链接
 			// 示例https://mapi.alipay.com/gateway.do?service=notify_verify&partner=2088002396712354&notify_id=RqPnCoPT3K9%252Fvwbh3I%252BFioE227%252BPfNMl8jwyZqMIiXQWxhOCmQ5MQO%252FWd93rvCB%252BaiGg
-			String alipayNotifyURL = notify_verify_url + "partner=" + partner + "&notify_id=" + paramData.get("notify_id")[0];
+
+			// 通过访问这个请求链接，利用编程方法来模拟http请求与支付宝服务器进行交互，
+			// 获得支付宝服务器上处理的结果。 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
+			String notify_id = request.getParameter("notify_id");
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(gateway);
+			sb.append("?");
+			sb.append("service=" + service_notify_verify);
+			sb.append("&partner=" + partner);
+			sb.append("&notify_id=" + notify_id);
+			String alipayNotifyURL = sb.toString();
 
 			boolean isNotifyVerifySuccess = isNotifyVerifySuccess(alipayNotifyURL);
 
-			if (isNotifyVerifySuccess){
-				// 付款成功
-				return true;
-			}else{
-				return false;
-			}
+			// 付款成功
+			return isNotifyVerifySuccess;
 		}else{
+			log.error("isNotifySignOk error");
 			return false;
+		}
+	}
+
+	/**
+	 * 校验 返回的请求 <br>
+	 * 还有没有必要再次 sign 来确认了? --alipay 伦奇说 都需要.
+	 * 
+	 * @param request
+	 *            the request
+	 * @return true, if is notify sign ok
+	 */
+	private boolean isNotifySignOk(HttpServletRequest request){
+		// alipay 传过来的参数
+		String alipaySign = request.getParameter("sign");
+		if (Validator.isNullOrEmpty(alipaySign)){
+			throw new IllegalArgumentException("alipaySign can't be null/empty!");
+		}else{
+
+			// alipay 支付接口 里面所有的参数 都是单值的
+			@SuppressWarnings("unchecked")
+			Enumeration<String> parameterNames = request.getParameterNames();
+			Map<String, String> params = new HashMap<String, String>();
+			while (parameterNames.hasMoreElements()){
+				String key = parameterNames.nextElement();
+
+				// 把参数里面的 sign 和 sign_type 去掉
+				if (key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("sign_type")){
+					continue;
+				}else{
+					String value = request.getParameter(key);
+					StringBuilder stringBuilder = new StringBuilder();
+					stringBuilder.append(value);
+
+					// if (key.equals("body") || key.equals("subject")){
+					// valueStr = "Nike官方商城商品";
+					// }
+					params.put(key, stringBuilder.toString());
+				}
+			}
+			String toBeSignedString = getToBeSignedString(params);
+			String mysign = Md5Encrypt.md5(toBeSignedString + key, _input_charset);
+			boolean isSignOk = mysign.equals(alipaySign);
+			return isSignOk;
 		}
 	}
 
@@ -332,7 +383,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 使用 HttpURLConnection 去alipay 上面 验证 是否确实 校验成功
+	 * 使用 HttpURLConnection 去alipay 上面 验证 是否确实 校验成功.
 	 * 
 	 * @param notifyVerifyUrl
 	 *            通知验证的url
@@ -353,53 +404,6 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 		return false;
 	}
 
-	/**
-	 * Sign.
-	 * 
-	 * @param params
-	 *            the params
-	 * @param privateKey
-	 *            the private key
-	 * @return the string
-	 */
-	private String sign(Map<String, String> params,String privateKey){
-		Properties properties = new Properties();
-		for (Iterator<String> iter = params.keySet().iterator(); iter.hasNext();){
-			String name = iter.next();
-			Object value = params.get(name);
-			if (name == null || name.equalsIgnoreCase("sign") || name.equalsIgnoreCase("sign_type")){
-				continue;
-			}
-			properties.setProperty(name, value.toString());
-		}
-		String content = getSignatureContent(properties);
-
-		if (privateKey == null){
-			return null;
-		}
-		String signBefore = content + privateKey;
-		return Md5Encrypt.md5(signBefore, _input_charset);
-	}
-
-	/**
-	 * Gets the signature content.
-	 * 
-	 * @param properties
-	 *            the properties
-	 * @return the signature content
-	 */
-	private static String getSignatureContent(Properties properties){
-		StringBuffer content = new StringBuffer();
-		List keys = new ArrayList(properties.keySet());
-		Collections.sort(keys);
-		for (int i = 0; i < keys.size(); i++){
-			String key = (String) keys.get(i);
-			String value = properties.getProperty(key);
-			content.append((i == 0 ? "" : "&") + key + "=" + value);
-		}
-		return content.toString();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
@@ -408,6 +412,255 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	public String doGetFeedbackSoCode(HttpServletRequest request){
 		return request.getParameter("out_trade_no");
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
+	 */
+	public String doGetFeedbackTotalFee(HttpServletRequest request){
+		return request.getParameter("total_fee");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
+	 */
+	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("service", service_close_trade);
+		params.put("partner", partner);
+		params.put("_input_charset", _input_charset);
+		params.put("out_order_no", orderNo);
+
+		String trade_role = "";
+		switch (tradeRole) {
+			case BUYER:
+				// 买家取消
+				trade_role = "B";
+				/** 买家取消 */
+				break;
+			case SELLER:
+				// 卖家取消
+				trade_role = "S";
+				break;
+			default:
+				throw new IllegalArgumentException("trade_role can't be null/empty!");
+		}
+
+		params.put("trade_role", trade_role);
+
+		String toBeSignedString = getToBeSignedString(params);
+		String sign = Md5Encrypt.md5(toBeSignedString + key, _input_charset);
+
+		params.put("sign", sign);
+		params.put("sign_type", "MD5");
+
+		return _closeTrade(params);
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#isSupportCloseTrade()
+	 */
+	public boolean isSupportCloseTrade(){
+		return true;
+	}
+
+	// **********************************************************************************************************
+
+	/**
+	 * 关闭交易.
+	 * 
+	 * @param params
+	 *            参数
+	 * @return true, if successful
+	 * @throws HttpClientUtilException
+	 */
+	private boolean _closeTrade(Map<String, String> params) throws HttpClientUtilException{
+		String closeTradeUrl = getCloseTradeUrl(params);
+
+		String returnXML = HttpClientUtil.getHttpMethodResponseBodyAsString(closeTradeUrl, HttpMethodType.GET);
+		// getResponseBodyAsString(closeTradeUrl);
+
+		if (Validator.isNotNullOrEmpty(returnXML)){
+			try{
+				Map<String, String> resultMap = convertResultToMap(returnXML);
+				String errorMessage = resultMap.get("error");
+				if ("T".equals(resultMap.get("is_success"))// 取消訂單成功
+						|| "TRADE_NOT_EXIST".equals(errorMessage))// 交易不存在
+				{
+					return true;
+				}else{
+					String orderNo = params.get("out_order_no");
+					Object[] args = { orderNo, errorMessage, closeTradeUrl };
+					log.error("close trade error : out_order_no:[{}],info:[{}],closeTradeUrl:{}", args);
+				}
+			}catch (DocumentException e){
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 生成请求连接.
+	 * 
+	 * @param params
+	 *            the params
+	 * @return the close trade url
+	 * @author xialong
+	 */
+	private String getCloseTradeUrl(Map<String, String> params){
+		List<String> keys = new ArrayList<String>(params.keySet());
+		String prestr = "";
+		for (int i = 0; i < keys.size(); i++){
+			String key = (String) keys.get(i);
+			String value = params.get(key).toString();
+			if (i == keys.size() - 1){
+				prestr = prestr + key + "=" + value;
+			}else{
+				prestr = prestr + key + "=" + value + "&";
+			}
+		}
+		return gateway.concat("?").concat(prestr);
+	}
+
+	// private static String getResponseBodyAsString(String url){
+	// HttpClient client = new HttpClient();
+	// GetMethod getMethod = new GetMethod(url);
+	// try{
+	// client.executeMethod(getMethod);
+	// String responseBodyAsString = getMethod.getResponseBodyAsString();
+	//
+	// if (Validator.isNotNullOrEmpty(responseBodyAsString)){
+	// return responseBodyAsString;
+	// }
+	// }catch (HttpException e){
+	// e.printStackTrace();
+	// }catch (IOException e){
+	// e.printStackTrace();
+	// }
+	// return null;
+	// }
+
+	/**
+	 * 解析支付宝返回的xml信息.
+	 * 
+	 * @param alipayResult
+	 *            the alipay result
+	 * @return the map
+	 * @throws DocumentException
+	 *             the document exception
+	 * @author xialong
+	 */
+	private static Map<String, String> convertResultToMap(String alipayResult) throws DocumentException{
+		log.info("alipayResult :\n {}", alipayResult);
+
+		Map<String, String> map = new HashMap<String, String>();
+		SAXReader reader = new SAXReader();
+		Document document = reader.read(new InputSource(new StringReader(alipayResult)));
+		Element root = document.getRootElement();
+
+		String is_success = root.elementText("is_success");
+		String error = root.elementText("error");
+		log.info("is_success : {}", is_success);
+		log.info("error : {}", error);
+
+		map.put("is_success", is_success);
+		map.put("error", error);
+
+		return map;
+	}
+
+	/**
+	 * 用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数 <br>
+	 * 注意：远程解析XML出错，与服务器是否支持SSL等配置有关.
+	 * 
+	 * @return 时间戳字符串
+	 * @throws MalformedURLException
+	 *             the malformed url exception
+	 * @throws DocumentException
+	 *             the document exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private final String getAnti_phishing_key(){
+
+		// 构造访问query_timestamp接口的URL串
+		StringBuilder sb = new StringBuilder();
+		sb.append(gateway);
+		sb.append("?");
+		sb.append("service=" + service_query_timestamp);
+		sb.append("&");
+		sb.append("partner=" + partner);
+
+		InputStream inputStream = null;
+		try{
+			URL url = new URL(sb.toString());
+			inputStream = url.openStream();
+
+			SAXReader saxReader = new SAXReader();
+			Document document = saxReader.read(inputStream);
+
+			if (log.isDebugEnabled()){
+				log.debug("document:{}", document.toString());
+
+				// <alipay>
+				// <is_success>T</is_success>
+				// <request>
+				// <param name="service">query_timestamp</param>
+				// <param name="partner">2088201564862550</param>
+				// </request>
+				// <response>
+				// <timestamp>
+				// <encrypt_key>KPr8DuZp5xc031OVxw==</encrypt_key>
+				// </timestamp>
+				// </response>
+				// <sign>1fc434a9045f5681736cd47ee2faa41a</sign>
+				// <sign_type>MD5</sign_type>
+				// </alipay>
+			}
+
+			StringBuffer result = new StringBuffer();
+			@SuppressWarnings("unchecked")
+			List<Node> nodeList = document.selectNodes("//alipay/*");
+			for (Node node : nodeList){
+				// 截取部分不需要解析的信息
+				String name = node.getName();
+				String text = node.getText();
+				if (name.equals("is_success") && text.equals("T")){
+					// 判断是否有成功标示
+					@SuppressWarnings("unchecked")
+					List<Node> nodeList1 = document.selectNodes("//response/timestamp/*");
+					for (Node node1 : nodeList1){
+						result.append(node1.getText());
+					}
+				}
+			}
+
+			String anti_phishing_key = result.toString();
+			log.debug("anti_phishing_key value:[{}]", anti_phishing_key);
+
+			return anti_phishing_key;
+		}catch (MalformedURLException e){
+			e.printStackTrace();
+		}catch (IOException e){
+			e.printStackTrace();
+		}catch (DocumentException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				inputStream.close();
+			}catch (IOException e){
+				e.printStackTrace();
+			}
+		}
+		// 内部 不控制,不能影响订单的创建
+		return "";
+	}
+
+	// ****************************************************************************************************************************
 
 	/**
 	 * Sets the mD5 的私钥是以英文字母和数字组成的 32位字符串。<br>
@@ -443,16 +696,8 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * Sets the 通知验证地址.
+	 * Sets the _input_charset.
 	 * 
-	 * @param notify_verify_url
-	 *            the notify_verify_url to set
-	 */
-	public void setNotify_verify_url(String notify_verify_url){
-		this.notify_verify_url = notify_verify_url;
-	}
-
-	/**
 	 * @param _input_charset
 	 *            the _input_charset to set
 	 */
@@ -461,11 +706,50 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the 其他需要被签名的 Map.
+	 * 
 	 * @param signMap
 	 *            the signMap to set
 	 */
-	public void setSignMap(Map signMap){
+	public void setSignMap(Map<String, String> signMap){
 		this.signMap = signMap;
 	}
 
+	/**
+	 * Sets the 验证通知的 service.
+	 * 
+	 * @param service_notify_verify
+	 *            the service_notify_verify to set
+	 */
+	public void setService_notify_verify(String service_notify_verify){
+		this.service_notify_verify = service_notify_verify;
+	}
+
+	/**
+	 * Sets the 关闭交易.
+	 * 
+	 * @param service_close_trade
+	 *            the service_close_trade to set
+	 */
+	public void setService_close_trade(String service_close_trade){
+		this.service_close_trade = service_close_trade;
+	}
+
+	/**
+	 * Sets the 时间戳查询接口,用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数.
+	 * 
+	 * @param service_query_timestamp
+	 *            the service_query_timestamp to set
+	 */
+	public void setService_query_timestamp(String service_query_timestamp){
+		this.service_query_timestamp = service_query_timestamp;
+	}
+
+	/**
+	 * @param isOpenAntiPhishing
+	 *            the isOpenAntiPhishing to set
+	 */
+	public void setIsOpenAntiPhishing(boolean isOpenAntiPhishing){
+		this.isOpenAntiPhishing = isOpenAntiPhishing;
+	}
 }

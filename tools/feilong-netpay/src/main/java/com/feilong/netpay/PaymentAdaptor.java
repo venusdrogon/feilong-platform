@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
+import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
  * PaymentAdaptor 接口
@@ -92,7 +93,7 @@ public interface PaymentAdaptor{
 	 * @author xialong
 	 * @author feilong
 	 */
-	boolean doCloseTrade(String orderNo,TradeRole tradeRole);
+	boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException;
 
 	/**
 	 * 是否支持关闭接口
