@@ -17,7 +17,8 @@
 		<module>feilong-application-taobao</module>
 		<module>feilong-application-weibo</module>
 		<module>feilong-struts1</module>
-		<module>feilong-office</module>
+		<module>feilong-office-excel</module>
+		<module>feilong-office-word</module>
 		<module>feilong-office-pdf</module>
 		<module>feilong-netpay</module>
 		<module>feilong-ssh</module>
