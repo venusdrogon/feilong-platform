@@ -20,115 +20,96 @@ import java.io.Serializable;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 
 /**
- * excel实体配置
+ * excel个性化配置.
  * 
- * @author 金鑫 2010-7-7 上午11:38:26
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 Feb 10, 2014 2:51:13 AM
  */
-public class FeiLongExcelEntity implements Serializable{
+public class ExcelConfigEntity implements Serializable{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID				= 1L;
 
-	/**
-	 * 是否隔行变色 默认是true
-	 */
+	/** 是否隔行变色 默认是true. */
 	private boolean				isRowChangeColor				= true;
 
-	/**
-	 * 当字段带有特殊字符串的时候是否添加样式? 默认是false
-	 */
+	/** 当字段带有特殊字符串的时候是否添加样式? 默认是false. */
 	private boolean				isHasSpecialStringToAddStyle	= false;
 
-	/**
-	 * 是否冻结窗口 默认是true
-	 */
+	/** 是否冻结窗口 默认是true. */
 	private boolean				isFreezePane					= true;
 
-	/**
-	 * 特殊字符串标识
-	 */
+	/** 特殊字符串标识. */
 	private String				specialString;
 
-	/**
-	 * 高亮
-	 */
+	/** 高亮. */
 	private HSSFCellStyle		cellStyle_hightLight;
 
-	/**
-	 * 隔行变色
-	 */
+	/** 隔行变色. */
 	private HSSFCellStyle		cellStyle_changeColorRow;
 
-	/**
-	 * 隔行且变色
-	 */
+	/** 隔行且变色. */
 	private HSSFCellStyle		cellStyle_changeColorRowAndHightLight;
 
 	/**
-	 * 
-	 */
-	public FeiLongExcelEntity(){
-		super();
-	}
-
-	/**
-	 * 是否隔行变色 默认是true
+	 * Gets the 是否隔行变色 默认是true.
 	 * 
 	 * @return the isRowChangeColor
 	 */
-	public boolean isRowChangeColor(){
+	public boolean getIsRowChangeColor(){
 		return isRowChangeColor;
 	}
 
 	/**
-	 * 是否隔行变色 默认是true
+	 * Sets the 是否隔行变色 默认是true.
 	 * 
 	 * @param isRowChangeColor
 	 *            the isRowChangeColor to set
 	 */
-	public void setRowChangeColor(boolean isRowChangeColor){
+	public void setIsRowChangeColor(boolean isRowChangeColor){
 		this.isRowChangeColor = isRowChangeColor;
 	}
 
 	/**
-	 * 是否冻结窗口 默认是true
-	 * 
-	 * @return the isFreezePane
-	 */
-	public boolean isFreezePane(){
-		return isFreezePane;
-	}
-
-	/**
-	 * 是否冻结窗口
-	 * 
-	 * @param isFreezePane
-	 *            the isFreezePane to set
-	 */
-	public void setFreezePane(boolean isFreezePane){
-		this.isFreezePane = isFreezePane;
-	}
-
-	/**
-	 * 当字段带有特殊字符串的时候是否添加样式? 默认是false
+	 * Gets the 当字段带有特殊字符串的时候是否添加样式? 默认是false.
 	 * 
 	 * @return the isHasSpecialStringToAddStyle
 	 */
-	public boolean isHasSpecialStringToAddStyle(){
+	public boolean getIsHasSpecialStringToAddStyle(){
 		return isHasSpecialStringToAddStyle;
 	}
 
 	/**
-	 * 当字段带有特殊字符串的时候是否添加样式? 默认是false
+	 * Sets the 当字段带有特殊字符串的时候是否添加样式? 默认是false.
 	 * 
 	 * @param isHasSpecialStringToAddStyle
 	 *            the isHasSpecialStringToAddStyle to set
 	 */
-	public void setHasSpecialStringToAddStyle(boolean isHasSpecialStringToAddStyle){
+	public void setIsHasSpecialStringToAddStyle(boolean isHasSpecialStringToAddStyle){
 		this.isHasSpecialStringToAddStyle = isHasSpecialStringToAddStyle;
 	}
 
 	/**
-	 * 特殊字符串标识
+	 * Gets the 是否冻结窗口 默认是true.
+	 * 
+	 * @return the isFreezePane
+	 */
+	public boolean getIsFreezePane(){
+		return isFreezePane;
+	}
+
+	/**
+	 * Sets the 是否冻结窗口 默认是true.
+	 * 
+	 * @param isFreezePane
+	 *            the isFreezePane to set
+	 */
+	public void setIsFreezePane(boolean isFreezePane){
+		this.isFreezePane = isFreezePane;
+	}
+
+	/**
+	 * Gets the 特殊字符串标识.
 	 * 
 	 * @return the specialString
 	 */
@@ -137,7 +118,7 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
-	 * 特殊字符串标识
+	 * Sets the 特殊字符串标识.
 	 * 
 	 * @param specialString
 	 *            the specialString to set
@@ -147,6 +128,8 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
+	 * Gets the 高亮.
+	 * 
 	 * @return the cellStyle_hightLight
 	 */
 	public HSSFCellStyle getCellStyle_hightLight(){
@@ -154,6 +137,8 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
+	 * Sets the 高亮.
+	 * 
 	 * @param cellStyle_hightLight
 	 *            the cellStyle_hightLight to set
 	 */
@@ -162,6 +147,8 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
+	 * Gets the 隔行变色.
+	 * 
 	 * @return the cellStyle_changeColorRow
 	 */
 	public HSSFCellStyle getCellStyle_changeColorRow(){
@@ -169,6 +156,8 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
+	 * Sets the 隔行变色.
+	 * 
 	 * @param cellStyle_changeColorRow
 	 *            the cellStyle_changeColorRow to set
 	 */
@@ -177,6 +166,8 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
+	 * Gets the 隔行且变色.
+	 * 
 	 * @return the cellStyle_changeColorRowAndHightLight
 	 */
 	public HSSFCellStyle getCellStyle_changeColorRowAndHightLight(){
@@ -184,10 +175,13 @@ public class FeiLongExcelEntity implements Serializable{
 	}
 
 	/**
+	 * Sets the 隔行且变色.
+	 * 
 	 * @param cellStyle_changeColorRowAndHightLight
 	 *            the cellStyle_changeColorRowAndHightLight to set
 	 */
 	public void setCellStyle_changeColorRowAndHightLight(HSSFCellStyle cellStyle_changeColorRowAndHightLight){
 		this.cellStyle_changeColorRowAndHightLight = cellStyle_changeColorRowAndHightLight;
 	}
+
 }
