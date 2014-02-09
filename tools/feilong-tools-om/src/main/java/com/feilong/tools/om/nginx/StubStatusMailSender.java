@@ -20,11 +20,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -35,22 +34,28 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.mail.MailEntity;
 import com.feilong.tools.mail.MailSenderUtil;
+import com.feilong.tools.om.nginx.command.StubStatusCommand;
+import com.feilong.tools.om.nginx.command.StubStatusVMCommand;
+import com.feilong.tools.om.nginx.comparator.ActiveConnectionsComparator;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
- * main
+ * StubStatusMailSender
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 7:58:34 PM
  */
-public class NginxStubStatusMailSender{
+public class StubStatusMailSender{
 
-	private static final Logger	log	= LoggerFactory.getLogger(NginxStubStatusMailSender.class);
+	private static final Logger	log					= LoggerFactory.getLogger(StubStatusMailSender.class);
 
 	/** 发送. */
-	private static String[]		tos	= { "xin.jin@baozun.com" };
+	private static String[]		tos					= { "xin.jin@baozun.com" };
+
+	private static String		templateInClassPath	= "velocity/nginxStubStatusMail.vm";
 
 	/**
 	 * 发送监控邮件
@@ -61,6 +66,10 @@ public class NginxStubStatusMailSender{
 	 * @throws IOException
 	 */
 	public static void sendMonitorMail(String filePath) throws MessagingException,IOException{
+
+		if (Validator.isNullOrEmpty(filePath)){
+			throw new IllegalArgumentException("filePath can't be null/empty!");
+		}
 
 		String userName = "sanguoxuhuang@163.com";
 		String password = "521000";
@@ -81,7 +90,7 @@ public class NginxStubStatusMailSender{
 
 		mailEntity.setSubject("小K监控-NginxStubStatus");// + DateUtil.date2String(new Date())
 
-		String textContent = getTextContent(filePath);
+		String textContent = getTextContentForEmail(filePath);
 		mailEntity.setContent(textContent);
 
 		String[] filenameString = { FileUtil.getFileName(filePath) };
@@ -92,13 +101,28 @@ public class NginxStubStatusMailSender{
 		mailEntity.setAttachList(attachList);
 
 		mailSenderUtil.sendMail(mailEntity);
-
 	}
 
-	public static String getTextContent(String filePath) throws IOException{
-		String templateInClassPath = "velocity/nginxStubStatusMail.vm";
+	/**
+	 * 基于文件 获得要发送邮件的内容
+	 * 
+	 * @param filePath
+	 * @return
+	 * @throws IOException
+	 */
+	public static String getTextContentForEmail(String filePath) throws IOException{
 
-		List<NginxStubStatusCommand> nginxStubStatusCommandList = new ArrayList<NginxStubStatusCommand>();
+		if (Validator.isNullOrEmpty(filePath)){
+			throw new IllegalArgumentException("filePath can't be null/empty!");
+		}
+
+		if (FileUtil.isNotExistFile(filePath)){
+			throw new IllegalArgumentException("filePath is not exist");
+		}
+
+		// *************************************************************************
+
+		LinkedList<StubStatusCommand> stubStatusCommandList = new LinkedList<StubStatusCommand>();
 
 		Reader reader = new FileReader(filePath);
 		LineNumberReader lineNumberReader = new LineNumberReader(reader);
@@ -108,18 +132,34 @@ public class NginxStubStatusMailSender{
 			int lineNumber = lineNumberReader.getLineNumber();
 			log.debug("the param lineNumber:{}", lineNumber);
 
-			NginxStubStatusCommand nginxStubStatusCommand = toNginxStubStatusCommand(line);
-			nginxStubStatusCommandList.add(nginxStubStatusCommand);
+			StubStatusCommand nginxStubStatusCommand = toNginxStubStatusCommand(line);
+			stubStatusCommandList.add(nginxStubStatusCommand);
 		}
 
+		if (Validator.isNullOrEmpty(stubStatusCommandList)){
+			throw new NullPointerException("the nginxStubStatusCommandList is null or empty!");
+		}
+		// *************************************************************************
+		ActiveConnectionsComparator activeConnectionsComparator = new ActiveConnectionsComparator();
+
+		StubStatusCommand maxActiveConnectionsStubStatusCommand = Collections.max(stubStatusCommandList, activeConnectionsComparator);
+		StubStatusCommand minActiveConnectionsStubStatusCommand = Collections.min(stubStatusCommandList, activeConnectionsComparator);
+
+		// *************************************************************************
+		StubStatusVMCommand stubStatusVMCommand = new StubStatusVMCommand();
+		stubStatusVMCommand.setBeginDate(stubStatusCommandList.getFirst().getCrawlDate());
+		stubStatusVMCommand.setEndDate(stubStatusCommandList.getLast().getCrawlDate());
+		stubStatusVMCommand.setStubStatusCommandList(stubStatusCommandList);
+
+		stubStatusVMCommand.setMaxActiveConnectionsStubStatusCommand(maxActiveConnectionsStubStatusCommand);
+		stubStatusVMCommand.setMinActiveConnectionsStubStatusCommand(minActiveConnectionsStubStatusCommand);
 		// ******************************************************************************************
 		Map<String, Object> contextKeyValues = new HashMap<String, Object>();
-		contextKeyValues.put("nginxStubStatusCommandList", nginxStubStatusCommandList);
 		contextKeyValues.put("DateUtil", DateUtil.class);
+		contextKeyValues.put("stubStatusVMCommand", stubStatusVMCommand);
+
 		// ******************************************************************************************
-
 		String textContent = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
-
 		return textContent;
 	}
 
@@ -129,10 +169,10 @@ public class NginxStubStatusMailSender{
 	 * @param line
 	 * @return
 	 */
-	private static NginxStubStatusCommand toNginxStubStatusCommand(String line){
+	private static StubStatusCommand toNginxStubStatusCommand(String line){
 		String[] split = line.split("	");
 
-		Date now = DateUtil.string2Date(split[0], NginxStubStatusUtilMain.pattern_crawlDate);
+		Date now = DateUtil.string2Date(split[0], StubStatusMain.pattern_crawlDate);
 		Integer activeConnections = Integer.parseInt(split[1]);
 
 		Long serverAccepts = Long.parseLong(split[2]);
@@ -142,15 +182,15 @@ public class NginxStubStatusMailSender{
 		Integer writing = Integer.parseInt(split[6]);
 		Integer waiting = Integer.parseInt(split[7]);
 
-		NginxStubStatusCommand nginxStubStatusCommand = new NginxStubStatusCommand();
-		nginxStubStatusCommand.setActiveConnections(activeConnections);
-		nginxStubStatusCommand.setReading(reading);
-		nginxStubStatusCommand.setServerAccepts(serverAccepts);
-		nginxStubStatusCommand.setServerHandled(serverHandled);
-		nginxStubStatusCommand.setServerRequests(serverRequests);
-		nginxStubStatusCommand.setWaiting(waiting);
-		nginxStubStatusCommand.setWriting(writing);
-		nginxStubStatusCommand.setCrawlDate(now);
-		return nginxStubStatusCommand;
+		StubStatusCommand stubStatusCommand = new StubStatusCommand();
+		stubStatusCommand.setActiveConnections(activeConnections);
+		stubStatusCommand.setReading(reading);
+		stubStatusCommand.setServerAccepts(serverAccepts);
+		stubStatusCommand.setServerHandled(serverHandled);
+		stubStatusCommand.setServerRequests(serverRequests);
+		stubStatusCommand.setWaiting(waiting);
+		stubStatusCommand.setWriting(writing);
+		stubStatusCommand.setCrawlDate(now);
+		return stubStatusCommand;
 	}
 }

@@ -52,7 +52,7 @@ public class ResultUtil{
 	 *            字段参数
 	 * @return java bean
 	 */
-	public static Object convertResultToObjectOneBean(Result result,Class clz,String...fieldNames){
+	public static Object convertResultToObjectOneBean(Result result,Class<?> clz,String...fieldNames){
 		if (isEmpty(result)){
 			return null;
 		}
@@ -63,6 +63,7 @@ public class ResultUtil{
 		}
 		Object bean = null;
 		String className = clz.getName();
+		@SuppressWarnings("unchecked")
 		SortedMap<Object, Object>[] sortedMaps = result.getRows();
 		SortedMap<Object, Object> sortedMap = sortedMaps[0];
 		// 实例化
@@ -102,6 +103,20 @@ public class ResultUtil{
 	 * 将Result转成list
 	 * 
 	 * @param result
+	 * @param clz
+	 * @return
+	 */
+	public static List<?> convertResultToList(Result result,Class<?> clz){
+		if (isEmpty(result)){
+			return null;
+		}
+		return convertResultToList(result, clz, result.getColumnNames());
+	}
+
+	/**
+	 * 将Result转成list
+	 * 
+	 * @param result
 	 *            结果集
 	 * @param clz
 	 *            类名
@@ -109,8 +124,8 @@ public class ResultUtil{
 	 *            字段可变参数
 	 * @return 将Result转成list
 	 */
-	@SuppressWarnings("unchecked")
-	public static List convertResultToList(Result result,Class clz,String...fileds){
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static List convertResultToList(Result result,Class<?> clz,String...fileds){
 		if (isEmpty(result)){
 			return null;
 		}

@@ -17,8 +17,6 @@
 			<artifactId>feilong-core</artifactId>
 		</dependency>
 
-
-
 		<!-- jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -34,7 +32,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 		</dependency>
-
 
 	</dependencies>
 </project>

@@ -94,7 +94,7 @@
 		<v.maven-source-plugin>2.1.2</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.12</v.maven-surefire-plugin>
 		<v.maven-resources-plugin>2.5</v.maven-resources-plugin>
-		<v.maven-war-plugin>2.2</v.maven-war-plugin>
+		<v.maven-war-plugin>2.4</v.maven-war-plugin>
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 	</properties>
 

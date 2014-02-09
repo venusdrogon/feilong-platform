@@ -28,7 +28,7 @@ import com.feilong.servlet.http.RequestUtil;
  * 
  * @author 金鑫 2010-5-24 上午06:04:45
  */
-public class FeiLongStrutsUtil{
+public class StrutsUtil{
 
 	// **********************************************************************
 	/**

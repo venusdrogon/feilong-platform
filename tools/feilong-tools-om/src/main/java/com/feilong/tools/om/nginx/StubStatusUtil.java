@@ -28,6 +28,7 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.net.httpclient.HttpClientUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.om.nginx.command.StubStatusCommand;
 
 /**
  * NginxStubStatus 工具类
@@ -35,9 +36,9 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 3:42:00 AM
  */
-public final class NginxStubStatusUtil{
+public final class StubStatusUtil{
 
-	private static final Logger	log	= LoggerFactory.getLogger(NginxStubStatusUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(StubStatusUtil.class);
 
 	/**
 	 * 解析nginx stub status 成 NginxStubStatusCommand
@@ -49,7 +50,7 @@ public final class NginxStubStatusUtil{
 	 * @param password
 	 *            密码
 	 */
-	public static NginxStubStatusCommand getNginxStubStatusCommand(String uri,String userName,String password){
+	public static StubStatusCommand getStubStatusCommand(String uri,String userName,String password){
 		Date now = new Date();
 
 		Integer activeConnections = 0;
@@ -61,7 +62,7 @@ public final class NginxStubStatusUtil{
 		Integer waiting = 0;
 
 		// **************************************************************************
-		NginxStubStatusCommand nginxStubStatusCommand = new NginxStubStatusCommand();
+		StubStatusCommand stubStatusCommand = new StubStatusCommand();
 
 		try{
 			String responseBodyAsString = HttpClientUtil.getHttpMethodResponseBodyAsString(uri, HttpMethodType.GET, userName, password);
@@ -112,15 +113,15 @@ public final class NginxStubStatusUtil{
 		}
 
 		// **************有可能异常情况, 设置为默认值*****************************************
-		nginxStubStatusCommand.setActiveConnections(activeConnections);
-		nginxStubStatusCommand.setReading(reading);
-		nginxStubStatusCommand.setServerAccepts(serverAccepts);
-		nginxStubStatusCommand.setServerHandled(serverHandled);
-		nginxStubStatusCommand.setServerRequests(serverRequests);
-		nginxStubStatusCommand.setWaiting(waiting);
-		nginxStubStatusCommand.setWriting(writing);
-		nginxStubStatusCommand.setCrawlDate(now);
+		stubStatusCommand.setActiveConnections(activeConnections);
+		stubStatusCommand.setReading(reading);
+		stubStatusCommand.setServerAccepts(serverAccepts);
+		stubStatusCommand.setServerHandled(serverHandled);
+		stubStatusCommand.setServerRequests(serverRequests);
+		stubStatusCommand.setWaiting(waiting);
+		stubStatusCommand.setWriting(writing);
+		stubStatusCommand.setCrawlDate(now);
 
-		return nginxStubStatusCommand;
+		return stubStatusCommand;
 	}
 }

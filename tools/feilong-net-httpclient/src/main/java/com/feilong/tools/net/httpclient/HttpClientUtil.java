@@ -24,7 +24,6 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.URIException;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -363,27 +362,27 @@ public final class HttpClientUtil{
 	 */
 	private static Map<String, Object> getHttpMethodAttributeMapForLog(HttpMethod httpMethod){
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("httpMethod.getName()", httpMethod.getName());
-		map.put("httpMethod.getPath()", httpMethod.getPath());
-		map.put("httpMethod.getQueryString()", httpMethod.getQueryString());
-		// object.put("", httpMethod.getResponseBodyAsString());
-		map.put("httpMethod.getStatusText()", httpMethod.getStatusText());
-		map.put("httpMethod.getDoAuthentication()", httpMethod.getDoAuthentication());
-		map.put("httpMethod.getFollowRedirects()", httpMethod.getFollowRedirects());
-		map.put("httpMethod.getHostAuthState()", httpMethod.getHostAuthState());
-		map.put("httpMethod.getHostConfiguration()", httpMethod.getHostConfiguration());
-		map.put("httpMethod.getParams()", httpMethod.getParams());
-		map.put("httpMethod.getProxyAuthState()", httpMethod.getProxyAuthState());
-		map.put("httpMethod.getRequestHeaders()", httpMethod.getRequestHeaders());
-		// object.put("", httpMethod.getResponseBody());
-		map.put("httpMethod.getResponseFooters()", httpMethod.getResponseFooters());
-		map.put("httpMethod.getResponseHeaders()", httpMethod.getResponseHeaders());
-		map.put("httpMethod.getStatusCode()", httpMethod.getStatusCode());
-		map.put("httpMethod.getStatusLine()", httpMethod.getStatusLine());
 		try{
+			map.put("httpMethod.getName()", httpMethod.getName());
+			map.put("httpMethod.getPath()", httpMethod.getPath());
+			map.put("httpMethod.getQueryString()", httpMethod.getQueryString());
+			// object.put("", httpMethod.getResponseBodyAsString());
+			map.put("httpMethod.getStatusText()", httpMethod.getStatusText());
+			map.put("httpMethod.getDoAuthentication()", httpMethod.getDoAuthentication());
+			map.put("httpMethod.getFollowRedirects()", httpMethod.getFollowRedirects());
+			map.put("httpMethod.getHostAuthState()", httpMethod.getHostAuthState());
+			map.put("httpMethod.getHostConfiguration()", httpMethod.getHostConfiguration());
+			map.put("httpMethod.getParams()", httpMethod.getParams());
+			map.put("httpMethod.getProxyAuthState()", httpMethod.getProxyAuthState());
+			map.put("httpMethod.getRequestHeaders()", httpMethod.getRequestHeaders());
+			// object.put("", httpMethod.getResponseBody());
+			map.put("httpMethod.getResponseFooters()", httpMethod.getResponseFooters());
+			map.put("httpMethod.getResponseHeaders()", httpMethod.getResponseHeaders());
+			map.put("httpMethod.getStatusCode()", httpMethod.getStatusCode());
+			map.put("httpMethod.getStatusLine()", httpMethod.getStatusLine());
 			map.put("httpMethod.getURI()", httpMethod.getURI());
-		}catch (URIException e1){
-			e1.printStackTrace();
+		}catch (Exception e){
+			e.printStackTrace();
 		}
 		return map;
 	}

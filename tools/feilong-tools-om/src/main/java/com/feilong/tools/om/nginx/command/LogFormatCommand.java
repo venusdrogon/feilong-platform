@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.om.nginx;
+package com.feilong.tools.om.nginx.command;
 
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ import java.io.Serializable;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 12:40:54 AM
  */
-public final class NginxLogFormatCommand implements Serializable{
+public final class LogFormatCommand implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;

@@ -34,7 +34,7 @@ import com.feilong.struts1.web.form.ImportForm;
  * 
  * @author 金鑫 2010-7-26 上午11:15:54
  */
-public class FeiLongStrutsImportUtil{
+public class StrutsImportUtil{
 
 	/**
 	 * 获得输入流

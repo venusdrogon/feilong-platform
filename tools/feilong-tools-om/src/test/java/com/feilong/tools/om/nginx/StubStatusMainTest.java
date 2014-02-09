@@ -15,23 +15,23 @@
  */
 package com.feilong.tools.om.nginx;
 
-import java.io.Serializable;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * NginxStubStatusVMCommand
- * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 1, 2014 12:47:52 AM
+ * @version 1.0 Dec 31, 2013 11:40:57 PM
  */
-public final class NginxStubStatusVMCommand implements Serializable{
+public class StubStatusMainTest{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+	private static final Logger	log	= LoggerFactory.getLogger(StubStatusMainTest.class);
 
-	/** The upstream_addr. */
-	private String				beginDate;
-
-	/** The request_time. */
-	private String				endDate;
-
+	/**
+	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike()}.
+	 */
+	@Test
+	public final void testCrawStubStatusNike(){
+		StubStatusMain.crawStubStatusNike();
+	}
 }

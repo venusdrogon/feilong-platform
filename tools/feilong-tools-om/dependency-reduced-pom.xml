@@ -50,7 +50,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>com.feilong.tools.om.nginx.NginxStubStatusUtilMain</mainClass>
+                  <mainClass>com.feilong.tools.om.nginx.StubStatusMain</mainClass>
                 </transformer>
               </transformers>
             </configuration>

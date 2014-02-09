@@ -30,7 +30,7 @@ import org.apache.struts.upload.FormFile;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-19 上午10:19:12
  */
-public class FeiLongStrutsUpload{
+public class StrutsUpload{
 
 	/**
 	 * 上传文件

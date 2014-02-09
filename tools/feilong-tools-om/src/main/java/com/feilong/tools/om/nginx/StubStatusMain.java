@@ -31,20 +31,24 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.enumeration.FileWriteMode;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.tools.om.nginx.command.StubStatusCommand;
 
 /**
- * main.
+ * StubStatusMain.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 7:58:34 PM
  */
-public class NginxStubStatusUtilMain{
+public class StubStatusMain{
 
 	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(NginxStubStatusUtilMain.class);
+	private static final Logger	log					= LoggerFactory.getLogger(StubStatusMain.class);
 
-	/** 中间使用tab键分隔. */
-	private static String		pattern				= "%s	%s	%s	%s	%s	%s	%s	%s";
+	/** 中间使用tab键分隔 <code>{@value}</code>. */
+	private final static String	pattern_write		= "%s	%s	%s	%s	%s	%s	%s	%s";
+
+	/** 中间使用tab键分隔 <code>{@value}</code>. */
+	private final static String	pattern_log			= "Active(%s)	Reading(%s)	Writing(%s)	Waiting(%s)";
 
 	/** The encode. */
 	private static String		encode				= CharsetType.GBK;
@@ -95,30 +99,40 @@ public class NginxStubStatusUtilMain{
 	 *            the patch
 	 */
 	private static void crawStubStatus(String stubStatusURI,String userName,String password,String patch){
-		NginxStubStatusCommand nginxStubStatusCommand = NginxStubStatusUtil.getNginxStubStatusCommand(stubStatusURI, userName, password);
+		StubStatusCommand stubStatusCommand = StubStatusUtil.getStubStatusCommand(stubStatusURI, userName, password);
 		// String format = JsonFormatUtil.format(nginxStubStatusCommand);
 		// log.info("\n{}", format);
 
-		Date crawlDate = nginxStubStatusCommand.getCrawlDate();
+		Date crawlDate = stubStatusCommand.getCrawlDate();
 		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.monthAndDay);
 		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
 		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 
 		String filePath = patch.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
 
-		String content = StringUtil.format(
-				pattern,
+		String logContent = StringUtil.format(
+				pattern_log,
+				stubStatusCommand.getActiveConnections(),
+				stubStatusCommand.getReading(),
+				stubStatusCommand.getWriting(),
+				stubStatusCommand.getWaiting());
+
+		log.info(logContent);
+		// ****************************************************************
+
+		String writecontent = StringUtil.format(
+				pattern_write,
 				DateUtil.date2String(crawlDate, pattern_crawlDate),
-				nginxStubStatusCommand.getActiveConnections(),
-				nginxStubStatusCommand.getServerAccepts(),
-				nginxStubStatusCommand.getServerHandled(),
-				nginxStubStatusCommand.getServerRequests(),
-				nginxStubStatusCommand.getReading(),
-				nginxStubStatusCommand.getWriting(),
-				nginxStubStatusCommand.getWaiting())
+				stubStatusCommand.getActiveConnections(),
+				stubStatusCommand.getServerAccepts(),
+				stubStatusCommand.getServerHandled(),
+				stubStatusCommand.getServerRequests(),
+				stubStatusCommand.getReading(),
+				stubStatusCommand.getWriting(),
+				stubStatusCommand.getWaiting())
 				+ "\n";
 
-		IOWriteUtil.write(filePath, content, encode, FileWriteMode.APPEND);
+		IOWriteUtil.write(filePath, writecontent, encode, FileWriteMode.APPEND);
 
 		// 每小时 最后一秒
 		int minute = DateUtil.getMinute(crawlDate);
@@ -126,7 +140,7 @@ public class NginxStubStatusUtilMain{
 		boolean isLastSecondOfHour = (59 == minute && 59 == second);
 		if (isLastSecondOfHour){
 			try{
-				NginxStubStatusMailSender.sendMonitorMail(filePath);
+				StubStatusMailSender.sendMonitorMail(filePath);
 			}catch (MessagingException e){
 				e.printStackTrace();
 			}catch (IOException e){

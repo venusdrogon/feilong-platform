@@ -13,18 +13,18 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.om.nginx;
+package com.feilong.tools.om.nginx.command;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * The Class NginxStubStatusCommand.
+ * The Class StubStatusCommand.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 3:42:00 AM
  */
-public class NginxStubStatusCommand implements Serializable{
+public class StubStatusCommand implements Serializable,Comparable<StubStatusCommand>{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
@@ -230,6 +230,19 @@ public class NginxStubStatusCommand implements Serializable{
 	 */
 	public void setCrawlDate(Date crawlDate){
 		this.crawlDate = crawlDate;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	public int compareTo(StubStatusCommand o){
+		if (this.activeConnections == o.getActiveConnections()){
+			return 0;
+		}else if (this.activeConnections < o.getActiveConnections()){
+			return -1;
+		}
+		return 1;
 	}
 
 }

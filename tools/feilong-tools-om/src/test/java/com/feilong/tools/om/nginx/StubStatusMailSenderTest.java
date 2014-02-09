@@ -27,19 +27,20 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 31, 2013 1:54:16 AM
  */
-public class NginxStubStatusMailSenderTest{
+public class StubStatusMailSenderTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(NginxStubStatusMailSenderTest.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(StubStatusMailSenderTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.tools.om.nginx.NginxStubStatusMailSender#sendMonitorMail(java.lang.String)}.
+	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMailSender#sendMonitorMail(java.lang.String)}.
 	 * 
 	 * @throws IOException
 	 * @throws MessagingException
 	 */
 	@Test
-	public final void testSendMail() throws MessagingException,IOException{
-		String filePath = "F:\\stubstatus\\2014\\01-01\\00.txt";
-		NginxStubStatusMailSender.sendMonitorMail(filePath);
+	public final void testSendMonitorMail() throws MessagingException,IOException{
+		String filePath = "F:\\stubstatus\\2014\\02-06\\02.txt";
+		StubStatusMailSender.sendMonitorMail(filePath);
 	}
 }

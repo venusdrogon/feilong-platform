@@ -30,7 +30,7 @@ import com.feilong.commons.core.util.ObjectUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-19 下午01:14:39
  */
-public class FeiLongStrutsTaglibUtil{
+public class StrutsTaglibUtil{
 
 	/**
 	 * 数组/map/Collection/Iterator/Enumeration转成Iterator

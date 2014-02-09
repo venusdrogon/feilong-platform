@@ -20,10 +20,7 @@
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-mail</artifactId>
 			<version>${version.feilong-platform}</version>
-		</dependency>				<dependency>
-				<groupId>com.mycila</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>2.5</version></dependency>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -72,8 +69,11 @@
 
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.feilong.tools.om.nginx.NginxStubStatusUtilMain</mainClass>
+									<mainClass>com.feilong.tools.om.nginx.StubStatusMain</mainClass>
 								</transformer>
+
+			<!-- 					<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
+								</transformer> -->
 							</transformers>
 						</configuration>
 					</execution>

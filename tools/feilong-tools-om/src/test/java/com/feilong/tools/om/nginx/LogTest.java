@@ -21,15 +21,16 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.om.nginx.command.LogFormatCommand;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午11:55:46
  * @since 1.0
  */
-public class NginxLogTest{
+public class LogTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(NginxLogTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(LogTest.class);
 
 	@Test
 	public void testAj11visitlogall(){
@@ -44,14 +45,14 @@ public class NginxLogTest{
 	public void nginxLogFormatTest(){
 		String line = "112.64.235.89 - - [19/Dec/2013:16:21:47 +0800] 404 \"GET /product/fair/aj11blue1200.htm?cid=dis1221ondspaj01 HTTP/1.1\" 29520 \"-\" \"Mozilla/4.0\" 112.64.235.89 \"192.168.10.27:8407\" \"0.027\"";
 		String pattern = "$remote_addr - $remote_user [$time_local] $status \"$request\" $body_bytes_sent \"$http_referer\" \"$http_user_agent\" $proxy_add_x_forwarded_for \"$upstream_addr\" \"$request_time\"";
-		NginxLogFormatCommand nginxLogFormatCommand = getNginxLogFormatCommand(line, pattern);
+		LogFormatCommand nginxLogFormatCommand = getNginxLogFormatCommand(line, pattern);
 		log.info(JsonFormatUtil.format(nginxLogFormatCommand));
 	}
 
 	/**
 	 * @param line
 	 */
-	private NginxLogFormatCommand getNginxLogFormatCommand(String line,String pattern){
+	private LogFormatCommand getNginxLogFormatCommand(String line,String pattern){
 		log.debug("the param pattern:{}", pattern);
 		log.debug("the param line:{}", line);
 
@@ -71,7 +72,7 @@ public class NginxLogTest{
 
 		// SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd:HH:mm:ss", Locale.US);
 
-		NginxLogFormatCommand nginxLogFormatCommand = new NginxLogFormatCommand();
+		LogFormatCommand nginxLogFormatCommand = new LogFormatCommand();
 		nginxLogFormatCommand.setRemote_addr(remote_addr);
 		nginxLogFormatCommand.setRemote_user(remote_user);
 		nginxLogFormatCommand.setTime_local(time_local);
