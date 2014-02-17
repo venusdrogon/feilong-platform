@@ -17,12 +17,13 @@ package com.feilong.tools.office.excel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 
 import com.feilong.commons.core.util.NumberUtil;
 
@@ -47,13 +48,13 @@ public class ExcelParseUtil{
 	 * @author 金鑫
 	 * @version 1.0 Jul 9, 2010 1:20:08 AM
 	 */
-	public static String getCellValue(HSSFSheet sheet,String cellLogo){
-		int cellNum = 0;
-		int rowIndex = 0;
-		HSSFRow row = sheet.getRow(rowIndex);
-		// TODO 未完成
-		return getCellValue(row, cellNum);
-	}
+	// public static String getCellValue(HSSFSheet sheet,String cellLogo){
+	// int cellNum = 0;
+	// int rowIndex = 0;
+	// HSSFRow row = sheet.getRow(rowIndex);
+	// // TODO 未完成
+	// return getCellValue(row, cellNum);
+	// }
 
 	/**
 	 * 获得单元格值
@@ -66,8 +67,8 @@ public class ExcelParseUtil{
 	 * @author 金鑫
 	 * @version 1.0 2010年4月7日 15:45:21
 	 */
-	public static String getCellValue(HSSFRow row,int cellNum){
-		HSSFCell cell = row.getCell(cellNum);
+	public static String getCellValue(Row row,int cellNum){
+		Cell cell = row.getCell(cellNum);
 		return getCellValue(cell);
 	}
 
@@ -80,10 +81,18 @@ public class ExcelParseUtil{
 	 * @author 金鑫
 	 * @version 1.0 Jul 9, 2010 1:24:07 AM
 	 */
-	public static String getCellValue(HSSFCell cell){
+	public static String getCellValue(Cell cell){
 		String returnValue = "";
 		if (null != cell){
 			switch (cell.getCellType()) {
+				case Cell.CELL_TYPE_BLANK:
+					break;
+				case Cell.CELL_TYPE_ERROR:
+					returnValue = cell.getErrorCellValue() + "";
+					break;
+				case Cell.CELL_TYPE_FORMULA:// 公式
+					returnValue = cell.getCellFormula();
+					break;
 				case Cell.CELL_TYPE_NUMERIC:
 					returnValue = NumberUtil.toString(cell.getNumericCellValue());
 					break;
@@ -112,12 +121,11 @@ public class ExcelParseUtil{
 	 * @author 金鑫
 	 * @version 1.0 Jul 9, 2010 3:31:22 AM
 	 */
-	public static HSSFRow getHSSFRowByPrimaryKey(HSSFSheet sheet,int beginRowIndex,String primaryKeyValue,int primaryKeyColumnNum){
-		HSSFRow row = null;
+	public static Row getRowByPrimaryKey(Sheet sheet,int beginRowIndex,String primaryKeyValue,int primaryKeyColumnNum){
 		int rowCount = getPhysicalNumberOfRows(sheet);
 		if (rowCount > 0){
 			for (int i = beginRowIndex; i < rowCount; i++){
-				row = sheet.getRow(i);
+				Row row = sheet.getRow(i);
 				if (primaryKeyValue.equals(getCellValue(row, primaryKeyColumnNum))){
 					return row;
 				}
@@ -154,47 +162,104 @@ public class ExcelParseUtil{
 	 * @author 金鑫
 	 * @version 1.0 Jul 9, 2010 1:56:02 AM
 	 */
-	public static int getPhysicalNumberOfRows(HSSFSheet sheet){
+	public static int getPhysicalNumberOfRows(Sheet sheet){
 		return sheet.getPhysicalNumberOfRows();
 	}
-	// **************************************************************************
 
 	/**
-	 * 导入excel表格 获得对应的表数据
-	 * 
-	 * @param excelPath
-	 *            excel路径
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2009-5-20下午12:45:49
+	 * @param row
 	 */
-	// public HSSFSheet importExcel(String excelPath){
-	// InputStream inputStream = null;
-	// try{
-	// inputStream = new FileInputStream(excelPath);
-	// }catch (Exception e){
-	// e.printStackTrace();
-	// }
-	// return importExcel(inputStream);
-	// }
+	public static Map<String, Object> getCellMapForLog(Cell cell){
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("getCellComment", cell.getCellComment());
+
+		int cellType = cell.getCellType();
+		map.put("getCellType", cellType);
+		switch (cellType) {
+			case Cell.CELL_TYPE_BLANK:
+
+				break;
+			case Cell.CELL_TYPE_BOOLEAN:
+				map.put("getBooleanCellValue", cell.getBooleanCellValue());
+				break;
+			case Cell.CELL_TYPE_ERROR:
+				map.put("getErrorCellValue", cell.getErrorCellValue());
+				break;
+			case Cell.CELL_TYPE_FORMULA:// 公式
+				map.put("getCellFormula", cell.getCellFormula());
+				map.put("getCachedFormulaResultType", cell.getCachedFormulaResultType());
+				break;
+			case Cell.CELL_TYPE_NUMERIC:
+				map.put("getDateCellValue", cell.getDateCellValue());
+				map.put("getNumericCellValue", cell.getNumericCellValue());
+				break;
+			case Cell.CELL_TYPE_STRING:
+				map.put("getStringCellValue", cell.getStringCellValue());
+				map.put("getRichStringCellValue", cell.getRichStringCellValue());
+				break;
+			default:
+				break;
+		}
+
+		map.put("getColumnIndex", cell.getColumnIndex());
+		map.put("getHyperlink", cell.getHyperlink());
+		map.put("getRowIndex", cell.getRowIndex());
+
+		return map;
+	}
+
 	/**
-	 * 导入excel表格 获得对应的表数据
-	 * 
-	 * @param inputStream
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2009-5-20下午01:39:33
+	 * @param row
 	 */
-	// public HSSFSheet importExcel(InputStream inputStream){
-	// try{
-	// workbook = new HSSFWorkbook(inputStream);
-	// sheet = workbook.getSheetAt(0);
-	// // sheet.getFirstRowNum();
-	// // sheet.getLastRowNum();
-	// }catch (Exception e){
-	// e.printStackTrace();
-	// }
-	// return sheet;
-	// }
+	public static Map<String, Object> getRowMapForLog(Row row){
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("getFirstCellNum", row.getFirstCellNum());
+		map.put("getHeight", row.getHeight());
+		map.put("getHeightInPoints", row.getHeightInPoints());
+		map.put("getLastCellNum", row.getLastCellNum());
+		map.put("getPhysicalNumberOfCells", row.getPhysicalNumberOfCells());
+		map.put("getRowNum", row.getRowNum());
+		map.put("getRowStyle", row.getRowStyle());
+		map.put("getZeroHeight", row.getZeroHeight());
+
+		return map;
+	}
+
+	/**
+	 * @param sheet
+	 * @return
+	 */
+	public static Map<String, Object> getSheetMapForLog(Sheet sheet){
+		int lastRowNum = sheet.getLastRowNum();
+		int firstRowNum = sheet.getFirstRowNum();
+		int physicalNumberOfRows = sheet.getPhysicalNumberOfRows();
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("getLastRowNum", lastRowNum);
+		map.put("getFirstRowNum", firstRowNum);
+		map.put("getPhysicalNumberOfRows", physicalNumberOfRows);
+		map.put("getAutobreaks", sheet.getAutobreaks());
+		map.put("getDefaultColumnWidth", sheet.getDefaultColumnWidth());
+		map.put("getDefaultRowHeight", sheet.getDefaultRowHeight());
+		map.put("getDefaultRowHeightInPoints", sheet.getDefaultRowHeightInPoints());
+		map.put("getDisplayGuts", sheet.getDisplayGuts());
+		map.put("getFitToPage", sheet.getFitToPage());
+		map.put("getForceFormulaRecalculation", sheet.getForceFormulaRecalculation());
+		map.put("getHorizontallyCenter", sheet.getHorizontallyCenter());
+		map.put("getLeftCol", sheet.getLeftCol());
+		map.put("getNumMergedRegions", sheet.getNumMergedRegions());
+		map.put("getPaneInformation", sheet.getPaneInformation());
+		map.put("getProtect", sheet.getProtect());
+		map.put("getRowSumsBelow", sheet.getRowSumsBelow());
+		map.put("getRowSumsRight", sheet.getRowSumsRight());
+		map.put("getScenarioProtect", sheet.getScenarioProtect());
+		map.put("getSheetName", sheet.getSheetName());
+		map.put("getTopRow", sheet.getTopRow());
+		map.put("getVerticallyCenter", sheet.getVerticallyCenter());
+		return map;
+	}
 
 }
