@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta http-equiv="content-Type" content="text/html;charset=gb2312" />
+		<title></title>
+		
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+    	<form action="${paymentFormEntity.action}" method="${paymentFormEntity.method}" >
+            #foreach($entry in ${paymentFormEntity.hiddenParamMap.entrySet()} )
+               <input type="hidden" name="${entry.key}" value="${entry.value}"/>
+        	#end
+        	<input type="submit" name="submit"/>
+        </form>
+	</body>
+</html>

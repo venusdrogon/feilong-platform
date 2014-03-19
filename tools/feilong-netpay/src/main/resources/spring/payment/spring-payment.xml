@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!--单独xml式配置 ,避免其他项目引用 可能带来的错误 -->
+	<bean id="paymentAdaptorManager" class="com.feilong.netpay.PaymentAdaptorManagerImpl">
+		<property name="paymentAdaptorMap">
+			<map>
+				<entry key="3" value-ref="alipayNetPayAdaptor"></entry>
+				<entry key="6" value-ref="alipayPayAdaptor"></entry>
+				<entry key="14" value-ref="alipayCreditCardPayAdaptor"></entry>
+
+				<entry key="15" value-ref="chinapnrPayAdaptor"></entry>
+
+				<!-- 有新的支付方式 ,请在下面扩展配置 -->
+				<!-- 国际信用卡 -->
+				<entry key="131" value-ref="alipayInternationalCreditCardPayAdaptor"></entry>
+				<entry key="141" value-ref="alipayScanCodePayAdaptor"></entry>
+
+				<entry key="151" value-ref="mandiriClickPayAdaptor"></entry>
+				<entry key="152" value-ref="briEPayAdaptor"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<!--********************* 有新的支付方式 ,请在下面扩展配置**************** -->
+	<!-- alipay相关 -->
+	<import resource="classpath:spring/payment/spring-payment-alipay.xml" />
+
+	<!-- 汇付天下 -->
+	<import resource="classpath:spring/payment/spring-payment-chinapnr.xml" />
+
+	<!-- DOKU -->
+	<import resource="classpath:spring/payment/spring-payment-doku.xml" />
+
+	<!-- BCA -->
+	<import resource="classpath:spring/payment/spring-payment-bca.xml" />
+</beans>
