@@ -16,6 +16,8 @@
  */
 package com.feilong.netpay;
 
+import com.feilong.netpay.adaptor.PaymentAdaptor;
+
 
 
 /**

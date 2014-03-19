@@ -46,6 +46,13 @@
 			<version>${version.feilong-platform}</version>
 		</dependency>
 
+		<!-- velocity -->
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-velocity</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
 		<!-- commons-httpclient -->
 		<dependency>
 			<groupId>commons-httpclient</groupId>

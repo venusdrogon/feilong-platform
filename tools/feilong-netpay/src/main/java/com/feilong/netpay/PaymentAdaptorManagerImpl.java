@@ -21,6 +21,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.netpay.adaptor.PaymentAdaptor;
+
 /**
  * 支付对外的接口.
  * 

@@ -17,7 +17,7 @@ package com.feilong.netpay.taglib;
 
 import java.util.Date;
 
-import com.feilong.netpay.adaptor.YiChengPay;
+import com.feilong.netpay.adaptor.else1.YiChengPay;
 import com.feilong.netpay.command.YiChengPayEntity;
 import com.feilong.taglib.base.AbstractCommonTag;
 

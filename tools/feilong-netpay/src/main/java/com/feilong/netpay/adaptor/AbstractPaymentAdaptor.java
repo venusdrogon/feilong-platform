@@ -19,12 +19,14 @@ package com.feilong.netpay.adaptor;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.netpay.PaymentAdaptor;
+import com.feilong.netpay.command.PaySo;
 import com.feilong.netpay.command.PaymentFormEntity;
 
 /**
@@ -39,17 +41,15 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doBeginPayment(java.lang.String, java.math.BigDecimal, java.lang.String,
-	 * java.lang.String, java.util.Map)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doBeginPayment(com.feilong.netpay.command.PaySo, java.lang.String, java.lang.String,
+	 * java.util.Map)
 	 */
-	public PaymentFormEntity doBeginPayment(
-			String code,
-			BigDecimal total_fee,
-			String return_url,
-			String notify_url,
-			Map<String, String> specialSignMap){
+	@Deprecated
+	public PaymentFormEntity doBeginPayment(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
+		String code = paySo.getSoCode();
+		BigDecimal total_fee = paySo.getTotalActual().add(paySo.getTransferFee());
 		if (doValidator(code, total_fee, return_url, notify_url)){
-			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(code, total_fee, return_url, notify_url, specialSignMap);
+			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(paySo, return_url, notify_url, specialSignMap);
 			if (log.isDebugEnabled()){
 				log.debug(JsonFormatUtil.format(paymentFormEntity));
 			}
@@ -58,13 +58,21 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		return true;
+	}
+
+	// **************************************************************************
+
 	/**
 	 * 每个类 自己实现
 	 * 
-	 * @param code
-	 *            订单号/交易号
-	 * @param total_fee
-	 *            交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
+	 * @param paySo
+	 *            交易订单,包含关键交易信息,以便不同的接口实现不同的业务
 	 * @param return_url
 	 *            页面跳转同步通知页面路径String(200) <br>
 	 *            支付宝处理完请求后，当前页面自 动跳转到商户网站里指定页面的 http 路径。
@@ -76,8 +84,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 	 * @return
 	 */
 	protected abstract PaymentFormEntity doGetPaymentFormEntity(
-			String code,
-			BigDecimal total_fee,
+			PaySo paySo,
 			String return_url,
 			String notify_url,
 			Map<String, String> specialSignMap);
@@ -117,4 +124,5 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		}
 		return true;
 	}
+
 }

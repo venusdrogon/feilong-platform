@@ -18,7 +18,7 @@ package com.feilong.netpay.command;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.feilong.netpay.adaptor.YiChengPay;
+import com.feilong.netpay.adaptor.else1.YiChengPay;
 
 /**
  * 新华一城网配置参数 实体类

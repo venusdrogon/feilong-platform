@@ -48,8 +48,7 @@
 	<!-- ******************com.feilong****************** -->
 
 	<category name="com.feilong">
-		<priority value="warn" />
-		<appender-ref ref="CONSOLE" />
+		<priority value="debug" />
 	</category>
 
 	<category name="com.feilong.servlet.http.RequestUtil">
