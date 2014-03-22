@@ -15,32 +15,23 @@
  */
 package com.feilong.netpay.adaptor.alipay;
 
-import static org.junit.Assert.fail;
-
-import java.math.BigDecimal;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import com.feilong.commons.core.date.DatePattern;
-import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
-import com.feilong.netpay.command.PaySo;
-import com.feilong.netpay.command.PaymentFormEntity;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 16, 2013 8:27:39 PM
  */
-@ContextConfiguration(locations = { "classpath*:spring/payment/spring-payment.xml" })
-public class AlipayNetPayAdaptorTest extends AbstractJUnit4SpringContextTests{
+public class AlipayNetPayAdaptorTest extends BasePaymentTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(AlipayNetPayAdaptorTest.class);
 
@@ -49,43 +40,11 @@ public class AlipayNetPayAdaptorTest extends AbstractJUnit4SpringContextTests{
 	private PaymentAdaptor		paymentAdaptor;
 
 	@Test
-	public void testDoBeginPayment(){
+	public final void createPaymentForm(){
+		String filePath = "F:/alipayNetPayAdaptor.html";
+		Map<String, String> specialSignMap = new HashMap<String, String>();
 
-		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
-		BigDecimal total_fee = new BigDecimal(0.01f);
-
-		PaySo paySo = new PaySo();
-		paySo.setSoCode(code);
-		paySo.setTotalActual(total_fee);
-
-		String return_url = "/patment1url";
-		String notify_url = "/patment2url";
-		PaymentFormEntity paymentFormEntity = paymentAdaptor.doBeginPayment(paySo, return_url, notify_url, null);
-
-		log.info(JsonFormatUtil.format(paymentFormEntity));
-		System.out.println(paymentFormEntity.getFullEncodedUrl());
-		System.out.println();
-		System.out.println();
-		System.out.println();
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.feilong.netpay.adaptor.alipay.jumbo.brandstore.payment.adaptor.AlipayPayAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)}
-	 * .
-	 */
-	@Test
-	public void testDoNotifyVerify(){
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.feilong.netpay.adaptor.alipay.jumbo.brandstore.payment.adaptor.AlipayPayAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)}
-	 * .
-	 */
-	@Test
-	public void testDoGetFeedbackSoCode(){
-		fail("Not yet implemented");
+		specialSignMap.put("defaultbank", "ABC");
+		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
 	}
 }

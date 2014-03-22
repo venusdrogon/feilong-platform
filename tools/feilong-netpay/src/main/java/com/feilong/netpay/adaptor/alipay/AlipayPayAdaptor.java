@@ -146,8 +146,8 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * java.lang.String, java.util.Map)
 	 */
 	protected PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
-		String code = paySo.getSoCode();
-		BigDecimal total_fee = paySo.getTotalActual().add(paySo.getTransferFee());
+		String tradeNo = paySo.getTradeNo();
+		BigDecimal total_fee = paySo.getTotalFee();
 
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 
@@ -171,7 +171,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 			setAntiPhishingParams(signParamsMap);
 
 			// 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
-			setCommonAlipayParams(code, total_fee, return_url, notify_url, signParamsMap);
+			setCommonAlipayParams(tradeNo, total_fee, return_url, notify_url, signParamsMap);
 
 			// *************************************************************************************
 			// 待签名字符串
@@ -195,11 +195,8 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 			// #宝尊 暂时只支持MD5
 			hiddenParamsMap.put("sign_type", "MD5");
 
-			PaymentFormEntity paymentFormEntity = new PaymentFormEntity();
-			paymentFormEntity.setAction(gateway);
-			paymentFormEntity.setMethod("get");
-			paymentFormEntity.setHiddenParamMap(hiddenParamsMap);
-			return paymentFormEntity;
+			String method = "get";
+			return getPaymentFormEntity(gateway, method, hiddenParamsMap);
 		}
 		throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
 	}

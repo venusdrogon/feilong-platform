@@ -95,16 +95,15 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 
 	@Override
 	protected PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
-
-		String code = paySo.getSoCode();
-		BigDecimal total_fee = paySo.getTotalActual().add(paySo.getTransferFee());
+		String tradeNo = paySo.getTradeNo();
+		BigDecimal total_fee = paySo.getTotalFee();
 
 		// 验证传入的参数(支付宝支付直接返回true，网银、信用卡支付主要验证银行code是否支持)
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 		if (isPassValidatorSpecialSignMap){
 			String requestToken = "";
 			try{
-				requestToken = getRequestToken(code, total_fee, return_url, notify_url, specialSignMap);
+				requestToken = getRequestToken(tradeNo, total_fee, return_url, notify_url, specialSignMap);
 			}catch (Exception e){
 				e.printStackTrace();
 			}
@@ -113,12 +112,9 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 				String toBeSignedString = ParamUtil.getToBeSignedString(map);
 				String authSign = MD5Util.encode(toBeSignedString + key, _input_charset);
 				map.put("sign", authSign);
-				PaymentFormEntity paymentFormEntity = new PaymentFormEntity();
-				paymentFormEntity.setAction(gateway);
-				paymentFormEntity.setMethod("get");
-				paymentFormEntity.setHiddenParamMap(map);
-				log.info("salesOrder code{} payment url:{}", new Object[] { code, paymentFormEntity.getFullEncodedUrl() });
-				return paymentFormEntity;
+
+				String method = "get";
+				return getPaymentFormEntity(gateway, method, map);
 			}
 		}
 		return null;
