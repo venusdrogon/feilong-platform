@@ -31,83 +31,102 @@ public class PaySo implements Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
 
-	/** 订单code. */
-	private String				soCode;
+	/** 交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code. */
+	private String				tradeNo;
 
-	/** 用户的姓名. */
-	private String				memberName;
+	/** 买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
+	private String				buyerName;
 
-	/** 用户的邮箱. */
-	private String				memberEmail;
+	/** 买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
+	private String				buyerEmail;
 
-	/** 需要在线支付的总金额(不含运费). */
-	private BigDecimal			totalActual			= new BigDecimal(0);
+	/** 需要在线支付的总金额(含运费),订单行总价加起来总和+运费transferFee 必须＝totalFee. */
+	private BigDecimal			totalFee			= new BigDecimal(0);
 
-	/** 需要在线支付的运费. */
+	/** 需要在线支付的运费,一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
 	private BigDecimal			transferFee			= new BigDecimal(0);
 
-	/** 支付的订单明细行. */
+	/** 支付的订单明细行, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
 	private List<PaySoLine>		paySoLineList		= new ArrayList<PaySoLine>();
 
 	/**
-	 * Gets the 订单code.
+	 * Gets the 交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code.
 	 * 
-	 * @return the soCode
+	 * @return the tradeNo
 	 */
-	public String getSoCode(){
-		return soCode;
+	public String getTradeNo(){
+		return tradeNo;
 	}
 
 	/**
-	 * Sets the 订单code.
+	 * Sets the 交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code.
 	 * 
-	 * @param soCode
-	 *            the soCode to set
+	 * @param tradeNo
+	 *            the tradeNo to set
 	 */
-	public void setSoCode(String soCode){
-		this.soCode = soCode;
+	public void setTradeNo(String tradeNo){
+		this.tradeNo = tradeNo;
 	}
 
 	/**
-	 * Gets the 支付的订单明细行.
+	 * Gets the 买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
-	 * @return the paySoLineList
+	 * @return the buyerName
 	 */
-	public List<PaySoLine> getPaySoLineList(){
-		return paySoLineList;
+	public String getBuyerName(){
+		return buyerName;
 	}
 
 	/**
-	 * Sets the 支付的订单明细行.
+	 * Sets the 买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
-	 * @param paySoLineList
-	 *            the paySoLineList to set
+	 * @param buyerName
+	 *            the buyerName to set
 	 */
-	public void setPaySoLineList(List<PaySoLine> paySoLineList){
-		this.paySoLineList = paySoLineList;
+	public void setBuyerName(String buyerName){
+		this.buyerName = buyerName;
 	}
 
 	/**
-	 * Gets the 需要支付的总金额(不含运费).
+	 * Gets the 买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
-	 * @return the totalActual
+	 * @return the buyerEmail
 	 */
-	public BigDecimal getTotalActual(){
-		return totalActual;
+	public String getBuyerEmail(){
+		return buyerEmail;
 	}
 
 	/**
-	 * Sets the 需要支付的总金额(不含运费).
+	 * Sets the 买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
-	 * @param totalActual
-	 *            the totalActual to set
+	 * @param buyerEmail
+	 *            the buyerEmail to set
 	 */
-	public void setTotalActual(BigDecimal totalActual){
-		this.totalActual = totalActual;
+	public void setBuyerEmail(String buyerEmail){
+		this.buyerEmail = buyerEmail;
 	}
 
 	/**
-	 * Gets the 需要支付的运费.
+	 * Gets the 需要在线支付的总金额(含运费),订单行总价加起来总和+运费transferFee 必须＝totalFee.
+	 * 
+	 * @return the totalFee
+	 */
+	public BigDecimal getTotalFee(){
+		return totalFee;
+	}
+
+	/**
+	 * Sets the 需要在线支付的总金额(含运费),订单行总价加起来总和+运费transferFee 必须＝totalFee.
+	 * 
+	 * @param totalFee
+	 *            the totalFee to set
+	 */
+	public void setTotalFee(BigDecimal totalFee){
+		this.totalFee = totalFee;
+	}
+
+	/**
+	 * Gets the 需要在线支付的运费,一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
 	 * @return the transferFee
 	 */
@@ -116,7 +135,7 @@ public class PaySo implements Serializable{
 	}
 
 	/**
-	 * Sets the 需要支付的运费.
+	 * Sets the 需要在线支付的运费,一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
 	 * @param transferFee
 	 *            the transferFee to set
@@ -126,40 +145,22 @@ public class PaySo implements Serializable{
 	}
 
 	/**
-	 * Gets the 用户的姓名.
+	 * Gets the 支付的订单明细行, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
-	 * @return the memberName
+	 * @return the paySoLineList
 	 */
-	public String getMemberName(){
-		return memberName;
+	public List<PaySoLine> getPaySoLineList(){
+		return paySoLineList;
 	}
 
 	/**
-	 * Sets the 用户的姓名.
+	 * Sets the 支付的订单明细行, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的.
 	 * 
-	 * @param memberName
-	 *            the memberName to set
+	 * @param paySoLineList
+	 *            the paySoLineList to set
 	 */
-	public void setMemberName(String memberName){
-		this.memberName = memberName;
+	public void setPaySoLineList(List<PaySoLine> paySoLineList){
+		this.paySoLineList = paySoLineList;
 	}
 
-	/**
-	 * Gets the 用户的邮箱.
-	 * 
-	 * @return the memberEmail
-	 */
-	public String getMemberEmail(){
-		return memberEmail;
-	}
-
-	/**
-	 * Sets the 用户的邮箱.
-	 * 
-	 * @param memberEmail
-	 *            the memberEmail to set
-	 */
-	public void setMemberEmail(String memberEmail){
-		this.memberEmail = memberEmail;
-	}
 }

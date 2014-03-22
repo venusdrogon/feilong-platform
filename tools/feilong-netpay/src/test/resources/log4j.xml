@@ -119,6 +119,9 @@
 	<category name="com.jumbo.web.interceptor.UserDetailsInterceptor">
 		<priority value="debug" />
 	</category>
+	<category name="org.apache.velocity.runtime.log">
+		<priority value="warn" />
+	</category>
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>

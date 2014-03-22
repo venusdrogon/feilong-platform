@@ -46,16 +46,36 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 	 */
 	@Deprecated
 	public PaymentFormEntity doBeginPayment(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
-		String code = paySo.getSoCode();
-		BigDecimal total_fee = paySo.getTotalActual().add(paySo.getTransferFee());
-		if (doValidator(code, total_fee, return_url, notify_url)){
+		String tradeNo = paySo.getTradeNo();
+		BigDecimal total_fee = paySo.getTotalFee();
+		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
 			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(paySo, return_url, notify_url, specialSignMap);
-			if (log.isDebugEnabled()){
-				log.debug(JsonFormatUtil.format(paymentFormEntity));
-			}
 			return paymentFormEntity;
 		}
 		return null;
+	}
+
+	/**
+	 * 获得PaymentFormEntity
+	 * 
+	 * @param actionGateway
+	 *            提交网关地址
+	 * @param method
+	 *            method 是get 还是post
+	 * @param hiddenParamMap
+	 *            参数
+	 * @return PaymentFormEntity
+	 */
+	protected PaymentFormEntity getPaymentFormEntity(String actionGateway,String method,Map<String, String> hiddenParamMap){
+		PaymentFormEntity paymentFormEntity = new PaymentFormEntity();
+		paymentFormEntity.setAction(actionGateway);
+		paymentFormEntity.setMethod(method);
+		paymentFormEntity.setHiddenParamMap(hiddenParamMap);
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonFormatUtil.format(paymentFormEntity));
+		}
+		return paymentFormEntity;
 	}
 
 	/*
@@ -92,15 +112,15 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 	/**
 	 * 验证参数
 	 * 
-	 * @param code
+	 * @param tradeNo
 	 * @param total_fee
 	 * @param return_url
 	 * @param notify_url
 	 */
-	private boolean doValidator(String code,BigDecimal total_fee,String return_url,String notify_url){
+	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
 		// ******************************************************************
 		// validate
-		if (Validator.isNullOrEmpty(code)){
+		if (Validator.isNullOrEmpty(tradeNo)){
 			throw new IllegalArgumentException("code can't be null/empty!");
 		}
 		if (Validator.isNullOrEmpty(total_fee)){

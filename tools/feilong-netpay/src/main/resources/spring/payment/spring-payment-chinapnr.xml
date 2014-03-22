@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_chinapnrPayment" location="classpath:config/payment/payment-bca.properties"></util:properties>
+	<util:properties id="p_chinapnrPayment" location="classpath:config/payment/payment-chinapnr.properties"></util:properties>
 
 	<!-- 汇付天下-->
 	<bean id="chinapnrPayAdaptor" class="com.feilong.netpay.adaptor.chinapnr.ChinapnrPayAdaptor">

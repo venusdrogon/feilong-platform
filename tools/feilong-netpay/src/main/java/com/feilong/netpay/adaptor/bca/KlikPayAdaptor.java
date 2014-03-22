@@ -17,6 +17,7 @@
 package com.feilong.netpay.adaptor.bca;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,9 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.security.MD5Util;
+import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PaySo;
 import com.feilong.netpay.command.PaymentFormEntity;
@@ -46,9 +49,43 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 15, 2013 8:41:39 PM
  */
-public class BCAPayAdaptor extends AbstractPaymentAdaptor{
+public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BCAPayAdaptor.class);
+	/** The Constant log. */
+	private static final Logger	log								= LoggerFactory.getLogger(KlikPayAdaptor.class);
+
+	/** 表单提交地址. */
+	private String				gateway;
+
+	/** The method. */
+	private String				method;
+
+	/**
+	 * What is the "klikPayCode"? <br>
+	 * [AD] klikPayCode is unique ID for MetraPlasa
+	 */
+	private String				klikPayCode;
+
+	// - payType (5) field may consists only one of these values:
+	// ▪ 01 = Full Transaction
+	// ▪ 02 = Installment Transaction
+	// ▪ 03 = Combination of both transactions above
+	/** 01 = Full Transaction. */
+	private String				payType_FullTransaction			= "01";
+
+	/** 02 = Installment Transaction. */
+	private String				payType_InstallmentTransaction	= "02";
+
+	/** 03 = Combination of both transactions above. */
+	private String				payType_CombinationTransaction	= "03";
+
+	/**
+	 * currency只能是 IDR - currency (4) field may consists only one of these values: ▪ IDR
+	 */
+	private String				currencyDefault;
+
+	/** The price pattern. */
+	private String				pricePattern					= "############.00";
 
 	/*
 	 * (non-Javadoc)
@@ -101,17 +138,91 @@ public class BCAPayAdaptor extends AbstractPaymentAdaptor{
 	 * java.lang.String, java.lang.String, java.util.Map)
 	 */
 	protected PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
-		// TODO Auto-generated method stub
-		return null;
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		// klikPayCode String 10 (AN) TRUE
+
+		map.put("klikPayCode", klikPayCode);
+
+		// transactionNo String 18 (AN) TRUE
+		String transactionNo = paySo.getTradeNo();
+		map.put("transactionNo", transactionNo);
+
+		// totalAmount String 12 7500000.00 TRUE
+		// - totalAmount和miscFee 最后两个数字必须是00,注意舍入单位是每1货币
+		String totalAmount = NumberUtil.toString(paySo.getTotalFee(), pricePattern);
+		map.put("totalAmount", totalAmount);
+
+		// currency String 5 (AN) TRUE
+		map.put("currency", currencyDefault);
+
+		// payType String 2 99 TRUE
+		// - payType (5) field may consists only one of these values:
+		// ▪ 01 = Full Transaction
+		// ▪ 02 = Installment Transaction
+		// ▪ 03 = Combination of both transactions above
+		map.put("payType", payType_FullTransaction);
+
+		// callback String 100 (AN) TRUE
+		// callback (6) is the URL on your site that user will be directed when they have finished the transaction on BCA KlikPay.
+		map.put("callback", return_url);
+
+		// transactionDate String 19 DD/MM/YYYY hh:mm:ss TRUE
+		String datePattern = "dd/MM/yyyy HH:mm:ss";
+
+		Date transactionDate = new Date();
+		map.put("transactionDate", DateUtil.date2String(transactionDate, datePattern));
+
+		// descp String 60 (AN) FALSE
+		map.put("descp", "");
+
+		// miscFee String 12 7500000.00 FALSE
+		map.put("miscFee", "0");
+
+		// signature String 10 (N) TRUE
+		// - signature (10) is validation that will be parsed by BCA KlikPay login page to decide whether data sent is valid or not.
+		String keyId = "";
+		String signature = getSign(klikPayCode, transactionDate, transactionNo, totalAmount, currencyDefault, keyId);
+		map.put("signature", signature);
+
+		// *************************************************************************************************
+		// 需要被签名的 参数map
+
+		// 特殊 传入
+		if (Validator.isNotNullOrEmpty(specialSignMap)){
+			map.putAll(specialSignMap);
+		}
+
+		return getPaymentFormEntity(gateway, method, map);
+		// throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
 	}
 
 	// 详见 svn "API Doc. for Payment KlikPay BCA-Sprint v1.8.pdf"
+	/**
+	 * Gets the sign.
+	 * 
+	 * @param klikPayCode
+	 *            the klik pay code
+	 * @param transactionDate
+	 *            the transaction date
+	 * @param transactionNo
+	 *            the transaction no
+	 * @param totalAmount
+	 *            the total amount
+	 * @param currency
+	 *            the currency
+	 * @param keyId
+	 *            the key id
+	 * @return the sign
+	 */
 	public String getSign(String klikPayCode,Date transactionDate,String transactionNo,String totalAmount,String currency,String keyId){
 
 		String firstValue = klikPayCode + transactionNo + currency + keyId;
 		log.debug("the firstValue:{}", firstValue);
 
-		String formatTransactionDate = DateUtil.date2String(transactionDate, "ddMMyyyy");
+		String datePattern = "ddMMyyyy";
+		String formatTransactionDate = DateUtil.date2String(transactionDate, datePattern);
 
 		// Total amount from redirect forward : 1500500.00
 		// Total amount that will be used : 1500500
@@ -135,6 +246,21 @@ public class BCAPayAdaptor extends AbstractPaymentAdaptor{
 	// e
 	// k = encrypt by keyId
 	// h = hash function
+	/**
+	 * Gets the auth key.
+	 * 
+	 * @param klikPayCode
+	 *            the klik pay code
+	 * @param transactionDate
+	 *            the transaction date
+	 * @param transactionNo
+	 *            the transaction no
+	 * @param currency
+	 *            the currency
+	 * @param keyId
+	 *            the key id
+	 * @return the auth key
+	 */
 	public String getAuthKey(String klikPayCode,Date transactionDate,String transactionNo,String currency,String keyId){
 
 		// klikPay Code : 123 1230000000
@@ -166,6 +292,13 @@ public class BCAPayAdaptor extends AbstractPaymentAdaptor{
 		return result;
 	}
 
+	/**
+	 * Hash.
+	 * 
+	 * @param value
+	 *            the value
+	 * @return the string
+	 */
 	@SuppressWarnings("cast")
 	// TODO 检查这个算法的漏洞
 	public String hash(String value){
@@ -182,5 +315,37 @@ public class BCAPayAdaptor extends AbstractPaymentAdaptor{
 		}
 		log.debug("the value:{}---> hash:{}", value, hash);
 		return hash + "";
+	}
+
+	/**
+	 * @param gateway
+	 *            the gateway to set
+	 */
+	public void setGateway(String gateway){
+		this.gateway = gateway;
+	}
+
+	/**
+	 * @param method
+	 *            the method to set
+	 */
+	public void setMethod(String method){
+		this.method = method;
+	}
+
+	/**
+	 * @param klikPayCode
+	 *            the klikPayCode to set
+	 */
+	public void setKlikPayCode(String klikPayCode){
+		this.klikPayCode = klikPayCode;
+	}
+
+	/**
+	 * @param currencyDefault
+	 *            the currencyDefault to set
+	 */
+	public void setCurrencyDefault(String currencyDefault){
+		this.currencyDefault = currencyDefault;
 	}
 }

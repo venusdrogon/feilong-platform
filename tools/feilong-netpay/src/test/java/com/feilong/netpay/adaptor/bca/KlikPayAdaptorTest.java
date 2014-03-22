@@ -15,34 +15,46 @@
  */
 package com.feilong.netpay.adaptor.bca;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.netpay.adaptor.bca.BCAPayAdaptor;
+import com.feilong.netpay.adaptor.BasePaymentTest;
+import com.feilong.netpay.adaptor.PaymentAdaptor;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Mar 6, 2014 3:00:33 PM
+ * @version 1.0 Mar 22, 2014 4:15:13 PM
  */
-public class BCAAdaptorTest extends AbstractJUnit4SpringContextTests{
+public class KlikPayAdaptorTest extends BasePaymentTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BCAAdaptorTest.class);
+	@Autowired
+	@Qualifier("klikPayAdaptor")
+	private PaymentAdaptor		paymentAdaptor;
+
+	private static final Logger	log	= LoggerFactory.getLogger(KlikPayAdaptorTest.class);
+
+	@Test
+	public final void createPaymentForm(){
+		String filePath = "F:/klikPayAdaptor.html";
+		Map<String, String> specialSignMap = null;
+		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+	}
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.netpay.adaptor.bca.BCAPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link com.feilong.netpay.adaptor.bca.KlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetSign(){
-		BCAPayAdaptor bcaAdaptor = new BCAPayAdaptor();
+		KlikPayAdaptor bcaAdaptor = new KlikPayAdaptor();
 		String klikPayCode = "123";
 
 		Date transactionDate = DateUtil.string2Date("20/01/2010", "dd/MM/yyyy");
@@ -56,7 +68,7 @@ public class BCAAdaptorTest extends AbstractJUnit4SpringContextTests{
 
 	@Test
 	public final void testGetAuthKey(){
-		BCAPayAdaptor bcaAdaptor = new BCAPayAdaptor();
+		KlikPayAdaptor bcaAdaptor = new KlikPayAdaptor();
 		String klikPayCode = "123";
 
 		Date transactionDate = DateUtil.string2Date("20/01/2010", "dd/MM/yyyy");

@@ -46,14 +46,14 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	@Override
 	public PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
 
-		String code = paySo.getSoCode();
-		BigDecimal total_fee = paySo.getTotalActual().add(paySo.getTransferFee());
+		String tradeNo = paySo.getTradeNo();
+		BigDecimal total_fee = paySo.getTotalFee();
 
 		// sing里的参数
 		String Version = "10";
 		String CmdId = "Buy";
 		String MerId = merId;
-		String OrdId = code;
+		String OrdId = tradeNo;
 		String OrdAmt = total_fee.setScale(2, BigDecimal.ROUND_HALF_UP) + "";
 		String CurCode = "RMB";
 		String Pid = "";
@@ -94,12 +94,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 			hiddenParamsMap.put("PayUsrId", PayUsrId);
 			hiddenParamsMap.put("ChkValue", ChkValue);
 
-			PaymentFormEntity paymentFormEntity = new PaymentFormEntity();
-			paymentFormEntity.setAction(gateway);
-			paymentFormEntity.setMethod("get");
-			paymentFormEntity.setHiddenParamMap(hiddenParamsMap);
-
-			return paymentFormEntity;
+			return getPaymentFormEntity(gateway, "get", hiddenParamsMap);
 		}
 	}
 
