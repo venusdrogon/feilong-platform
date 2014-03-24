@@ -86,7 +86,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		paySoLineList.add(paySoLine2);
 
 		// ******************************************************************
-		String return_url = "/patment1url";
+		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
 		String notify_url = "/patment2url";
 
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.doBeginPayment(paySo, return_url, notify_url, specialSignMap);

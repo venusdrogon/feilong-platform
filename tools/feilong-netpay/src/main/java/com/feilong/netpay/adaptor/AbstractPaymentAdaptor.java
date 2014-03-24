@@ -78,14 +78,6 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		return paymentFormEntity;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
-	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
-		return true;
-	}
-
 	// **************************************************************************
 
 	/**

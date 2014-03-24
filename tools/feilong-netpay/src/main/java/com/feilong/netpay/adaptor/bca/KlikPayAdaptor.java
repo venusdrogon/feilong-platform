@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.security.MD5Util;
+import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -66,6 +66,11 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	private String				klikPayCode;
 
+	/**
+	 * clearKey given by BCA
+	 */
+	private String				clearkey;
+
 	// - payType (5) field may consists only one of these values:
 	// ▪ 01 = Full Transaction
 	// ▪ 02 = Installment Transaction
@@ -100,7 +105,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackSoCode(HttpServletRequest request){
+	public String doGetFeedbackTradeNo(HttpServletRequest request){
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -178,12 +183,12 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		map.put("descp", "");
 
 		// miscFee String 12 7500000.00 FALSE
-		map.put("miscFee", "0");
+		map.put("miscFee", "0.00");
 
 		// signature String 10 (N) TRUE
 		// - signature (10) is validation that will be parsed by BCA KlikPay login page to decide whether data sent is valid or not.
-		String keyId = "";
-		String signature = getSign(klikPayCode, transactionDate, transactionNo, totalAmount, currencyDefault, keyId);
+		String keyId = getKeyId(clearkey);
+		String signature = getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currencyDefault, keyId);
 		map.put("signature", signature);
 
 		// *************************************************************************************************
@@ -216,7 +221,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 *            the key id
 	 * @return the sign
 	 */
-	public String getSign(String klikPayCode,Date transactionDate,String transactionNo,String totalAmount,String currency,String keyId){
+	public String getSignature(String klikPayCode,Date transactionDate,String transactionNo,String totalAmount,String currency,String keyId){
 
 		String firstValue = klikPayCode + transactionNo + currency + keyId;
 		log.debug("the firstValue:{}", firstValue);
@@ -237,6 +242,14 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
 		String result = Math.abs((Integer.parseInt(firstValueHash) + Integer.parseInt(secondValueHash))) + "";
 		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		return true;
 	}
 
 	// A = klikPayCode
@@ -318,6 +331,24 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Uppercase [to String [Hexa[clearKey]]]
+	 * 
+	 * @param clearKey
+	 * @return
+	 */
+	public static String getKeyId(String clearKey){
+		char[] hexArray = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+		byte[] bytes = clearKey.getBytes();
+		String keyId = "";
+		for (int cntr = 0; cntr < clearKey.length(); cntr++){
+			keyId = keyId + hexArray[(bytes[cntr] & 0xFF) / 16] + hexArray[(bytes[cntr] & 0xFF) % 16];
+		}
+
+		log.debug("clearKey:{}, keyId:{}", clearKey, keyId);
+		return keyId;
+	}
+
+	/**
 	 * @param gateway
 	 *            the gateway to set
 	 */
@@ -347,5 +378,13 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setCurrencyDefault(String currencyDefault){
 		this.currencyDefault = currencyDefault;
+	}
+
+	/**
+	 * @param clearkey
+	 *            the clearkey to set
+	 */
+	public void setClearkey(String clearkey){
+		this.clearkey = clearkey;
 	}
 }

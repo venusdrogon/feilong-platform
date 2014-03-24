@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
-import com.feilong.commons.core.security.MD5Util;
+import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
@@ -402,7 +402,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public String doGetFeedbackSoCode(HttpServletRequest request){
+	public String doGetFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("out_trade_no");
 	}
 
@@ -651,6 +651,14 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 		}
 		// 内部 不控制,不能影响订单的创建
 		return "";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		return true;
 	}
 
 	// ****************************************************************************************************************************

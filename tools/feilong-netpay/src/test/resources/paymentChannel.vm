@@ -5,24 +5,18 @@
 		<title></title>
 		<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
 		<script type="text/javascript" src="E:\DataCommon\Files\else\jquery version js\jquery-1.9.1.js"></script>
-		
-<script type="text/javascript">
-
-    $(function() {
-    	$('#submitForm').submit();
-    });
-
-</script>
-		<style type="text/css">
-
-		</style>
+        <script type="text/javascript">
+            $(function() {
+            	$('#submitForm').submit();
+            });
+        </script>
 	</head>
 	<body>
-			请稍等,我们再努力的为您跳转到支付网关.....
-            <form id="submitForm" name="submitForm" action="${paymentFormEntity.action}" method="${paymentFormEntity.method}" target="_blank">
-                #foreach($entry in ${paymentFormEntity.hiddenParamMap.entrySet()} )
-                   <input type="hidden" name="${entry.key}" value="${entry.value}"/>
-            	#end
-            </form>
+		请稍等,我们再努力的为您跳转到支付网关.....
+        <form id="submitForm" name="submitForm" action="${paymentFormEntity.action}" method="${paymentFormEntity.method}" target="_blank">
+            #foreach($entry in ${paymentFormEntity.hiddenParamMap.entrySet()} )
+               <input type="hidden" name="${entry.key}" value="${entry.value}"/>
+        	#end
+        </form>
 	</body>
 </html>

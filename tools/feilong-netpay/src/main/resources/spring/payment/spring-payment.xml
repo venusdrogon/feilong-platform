@@ -38,6 +38,12 @@
 	<!-- DOKU -->
 	<import resource="classpath:spring/payment/spring-payment-doku.xml" />
 
-	<!-- BCA -->
-	<import resource="classpath:spring/payment/spring-payment-bca.xml" />
+
+	<!-- bca3个支付方式 参数都不一样没有共同性 -->
+
+	<!-- bca-klikPay -->
+	<import resource="classpath:spring/payment/spring-payment-bca-klikPay.xml" />
+
+	<!-- bca-creditCard -->
+	<import resource="classpath:spring/payment/spring-payment-bca-creditCard.xml" />
 </beans>

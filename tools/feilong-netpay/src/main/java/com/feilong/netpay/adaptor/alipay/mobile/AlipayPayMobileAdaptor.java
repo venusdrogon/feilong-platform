@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import com.feilong.commons.core.net.URIUtil;
-import com.feilong.commons.core.security.MD5Util;
+import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PaySo;
@@ -138,7 +138,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	@Override
-	public String doGetFeedbackSoCode(HttpServletRequest request){
+	public String doGetFeedbackTradeNo(HttpServletRequest request){
 		String soCode = null;
 		soCode = request.getParameter("out_trade_no");
 		if (Validator.isNotNullOrEmpty(soCode)){
@@ -285,7 +285,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 */
 	private String getCreateTradeResult(String reqUrl) throws Exception{
 		String result = "";
-		String invokeUrl = URIUtil.getBefore(reqUrl) + "?";
+		String invokeUrl = URIUtil.getBeforePath(reqUrl) + "?";
 		URL serverUrl = new URL(invokeUrl);
 		HttpURLConnection conn = (HttpURLConnection) serverUrl.openConnection();
 		conn.setRequestMethod("POST");
@@ -482,6 +482,14 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		Element root = document.getRootElement();
 		String value = root.elementText(key);
 		return value;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		return true;
 	}
 
 	public String getGateway(){

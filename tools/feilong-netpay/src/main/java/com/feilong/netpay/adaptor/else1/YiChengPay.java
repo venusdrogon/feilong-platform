@@ -20,7 +20,7 @@ import java.util.Date;
 
 import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.security.MD5Util;
+import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.command.YiChengPayEntity;

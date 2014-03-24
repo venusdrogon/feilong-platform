@@ -26,7 +26,7 @@ import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
- * PaymentAdaptor 接口
+ * PaymentAdaptor 接口.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 21, 2013 11:13:51 AM
@@ -53,13 +53,10 @@ public interface PaymentAdaptor{
 	PaymentFormEntity doBeginPayment(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap);
 
 	/**
-	 * 生成交易表单相关参数
+	 * 生成交易表单相关参数.
 	 * 
-	 * @param paySo
-	 *            交易订单,包含关键交易信息,以便不同的接口实现不同的业务
-	 * @param specialSignMap
-	 *            特殊签名参数设置 ,可以为null <br>
-	 *            会覆盖配置的signMap ，比如 某些 网关支持过期时间设置
+	 * @param request
+	 *            the request
 	 * @return the payment form entity
 	 */
 	// PaymentFormEntity doBeginPayment(PaySo paySo,Map<String, String> specialSignMap);
@@ -75,51 +72,52 @@ public interface PaymentAdaptor{
 
 	/**
 	 * 处理跳转参数的校验,主要是做核实参数是否正确<br>
-	 * 每个adaptor 如果有需要可以自己实现
+	 * 每个adaptor 如果有需要可以自己实现.
 	 * 
 	 * @param request
-	 * @return
+	 *            the request
+	 * @return true, if successful
 	 */
 	boolean doRedirectVerify(HttpServletRequest request);
 
 	// ********************************************************************************************
 
 	/**
-	 * feedback 回来 通过request取到 订单号
+	 * feedback 回来 通过request取到 订单号(交易号).
 	 * 
 	 * @param request
 	 *            request
-	 * @return
+	 * @return the string
 	 */
-	String doGetFeedbackSoCode(HttpServletRequest request);
+	String doGetFeedbackTradeNo(HttpServletRequest request);
 
 	/**
 	 * feedback 回来 ,通过request取到得到 交易金额<br>
-	 * 某些商城需要显示 用户实际支付的金额,可以从这里取 不用再次计算了
+	 * 某些商城需要显示 用户实际支付的金额,可以从这里取 不用再次计算了.
 	 * 
 	 * @param request
 	 *            request
-	 * @return
+	 * @return the string
 	 */
 	String doGetFeedbackTotalFee(HttpServletRequest request);
 
 	/**
-	 * 关闭交易
+	 * 关闭交易.
 	 * 
 	 * @param orderNo
 	 *            交易号(订单号) 官方商城唯一订单号
 	 * @param tradeRole
 	 *            (关闭角色) 一般有 商家 或者 买家 取消交易方：B-买家取消；S-卖家取消
 	 * @return 成功返回true
-	 * @author xialong
-	 * @author feilong
+	 * @throws HttpClientUtilException
+	 *             the http client util exception
 	 */
 	boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException;
 
 	/**
-	 * 是否支持关闭接口
+	 * 是否支持关闭接口.
 	 * 
-	 * @return
+	 * @return true, if is support close trade
 	 */
 	boolean isSupportCloseTrade();
 }

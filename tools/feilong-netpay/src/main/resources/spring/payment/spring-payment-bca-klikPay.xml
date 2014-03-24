@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:properties id="p_bcaklikPayPayment" location="classpath:config/payment/payment-bca-klikPay.properties"></util:properties>
+
+
+	<!-- klikPayAdaptor -->
+	<bean id="klikPayAdaptor" class="com.feilong.netpay.adaptor.bca.KlikPayAdaptor">
+		<property name="gateway" value="#{p_bcaklikPayPayment['gateway']}" />
+		<property name="method" value="#{p_bcaklikPayPayment['method']}" />
+		<property name="klikPayCode" value="#{p_bcaklikPayPayment['klikPayCode']}" />
+		<property name="currencyDefault" value="#{p_bcaklikPayPayment['currencyDefault']}" />
+		<property name="clearkey" value="#{p_bcaklikPayPayment['clearkey']}" />
+	</bean>
+
+</beans>

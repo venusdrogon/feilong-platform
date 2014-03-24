@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.security.SHA1Util;
+import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
@@ -556,7 +556,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public String doGetFeedbackSoCode(HttpServletRequest request){
+	public String doGetFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("SESSIONID");
 	}
 

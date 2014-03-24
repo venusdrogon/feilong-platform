@@ -62,7 +62,7 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 		String totalAmount = "1500500.00";
 		String currency = "IDR";
 		String keyId = "12345678901234561234567890123456";
-		String sign = bcaAdaptor.getSign(klikPayCode, transactionDate, transactionNo, totalAmount, currency, keyId);
+		String sign = bcaAdaptor.getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currency, keyId);
 		log.info(sign);
 	}
 

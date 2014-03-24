@@ -103,7 +103,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public String doGetFeedbackSoCode(HttpServletRequest request){
+	public String doGetFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("OrdId");
 	}
 
@@ -113,6 +113,14 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public String doGetFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("OrdAmt");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		return true;
 	}
 
 	/*
