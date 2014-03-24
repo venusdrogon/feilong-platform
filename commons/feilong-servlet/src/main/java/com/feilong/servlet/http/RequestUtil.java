@@ -232,44 +232,6 @@ public final class RequestUtil{
 	/************************************************************************************************************/
 
 	/**
-	 * 获得request 错误日志<br>
-	 * 如果 errorCode有 返回json 格式日志,否则返回空
-	 * 
-	 * @param request
-	 * @deprecated use getErrorMap
-	 */
-	public static String getErrorLog(HttpServletRequest request){
-		Map<String, String> map = getErrorMap(request);
-		return JsonFormatUtil.format(map);
-	}
-
-	/**
-	 * 遍历显示request的attribute 用于debug
-	 * 
-	 * @param request
-	 * @deprecated use getAttributeMap
-	 */
-	public static void showAttributes(HttpServletRequest request){
-		if (log.isDebugEnabled()){
-			Map<String, Object> map = getAttributeMap(request);
-			log.debug("request attributeMap:{}", JsonFormatUtil.format(map));
-		}
-	}
-
-	/**
-	 * 遍历显示request的header 用于debug
-	 * 
-	 * @param request
-	 * @deprecated use getHeaderMap
-	 */
-	public static void showHeaders(HttpServletRequest request){
-		if (log.isDebugEnabled()){
-			Map<String, String> map = getHeaderMap(request);
-			log.debug("request HeaderMap:{}", JsonFormatUtil.format(map));
-		}
-	}
-
-	/**
 	 * 获得request error 相关参数 map
 	 * 
 	 * @param request
@@ -341,6 +303,10 @@ public final class RequestUtil{
 		map.put("request.getServerName()", request.getServerName());
 		map.put("request.getServerPort()", request.getServerPort());
 		map.put("request.getServletPath()", request.getServletPath());
+
+		map.put("_errorMap", getErrorMap(request));
+		map.put("_headerMap", getHeaderMap(request));
+		map.put("_attributeMap", getAttributeMap(request));
 		return JsonFormatUtil.format(map);
 	}
 

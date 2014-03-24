@@ -42,7 +42,7 @@ public final class ParamUtil{
 	private ParamUtil(){}
 
 	private static String	defaultCharsetType	= CharsetType.UTF8;
-	
+
 	/**
 	 * 生成待签名的字符串 <br>
 	 * 对数组里的每一个值从 a 到 z 的顺序排序，若遇到相同首字母，则看第二个字母， 以此类推。 排序完成之后，再把所有数组值以“&”字符连接起来 <br>
@@ -72,7 +72,6 @@ public final class ParamUtil{
 		}
 		return builder.toString();
 	}
- 
 
 	// *********************************获取值**************************************************
 	/**
@@ -268,7 +267,7 @@ public final class ParamUtil{
 		}
 		// ***********************************************************************
 		String url = uri.toString();
-		String before = URIUtil.getBefore(url);
+		String before = URIUtil.getBeforePath(url);
 		// ***********************************************************************
 		// getQuery() 返回此 URI 的已解码的查询组成部分。
 		// getRawQuery() 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
@@ -302,7 +301,7 @@ public final class ParamUtil{
 	 */
 	@Deprecated
 	public static String addParameter(String url,Map<String, ? extends Object> nameAndValueMap){
-		URI uri = URIUtil.create(url);
+		URI uri = URIUtil.create(url, CharsetType.UTF8);
 		return addParameter(uri, nameAndValueMap, defaultCharsetType);
 	}
 
@@ -406,7 +405,7 @@ public final class ParamUtil{
 			return url;
 		}
 		// ***********************************************************************
-		String before = URIUtil.getBefore(url);
+		String before = URIUtil.getBeforePath(url);
 		// ***********************************************************************
 		// 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
 		String query = uri.getRawQuery();
@@ -470,7 +469,7 @@ public final class ParamUtil{
 			if (Validator.isNullOrEmpty(paramNameList)){
 				return url;
 			}
-			String before = URIUtil.getBefore(url);
+			String before = URIUtil.getBeforePath(url);
 			// ***********************************************************************
 			// 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
 			String query = uri.getRawQuery();

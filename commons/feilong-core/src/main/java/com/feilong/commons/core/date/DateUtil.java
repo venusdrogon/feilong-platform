@@ -630,7 +630,7 @@ public final class DateUtil{
 	 * </pre>
 	 * 
 	 * @param date
-	 * @return
+	 * @return 当前日期星期几
 	 * @see Calendar#SUNDAY
 	 * @see Calendar#MONDAY
 	 * @see Calendar#TUESDAY

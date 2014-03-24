@@ -147,7 +147,7 @@ public final class PagerUtil{
 			return null;
 		}else{
 			String url = uri.toString();
-			String before = URIUtil.getBefore(url);
+			String before = URIUtil.getBeforePath(url);
 			// ***********************************************************************
 			// getQuery() 返回此 URI 的已解码的查询组成部分。
 			// getRawQuery() 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。

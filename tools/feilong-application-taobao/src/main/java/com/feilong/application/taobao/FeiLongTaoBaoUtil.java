@@ -32,7 +32,7 @@ import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForTokenEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginOutEntity;
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.security.MD5Util;
+import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.ParamUtil;

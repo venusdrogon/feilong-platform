@@ -1,12 +1,18 @@
 package com.feilong.tools.net.httpclient;
 
+import loxia.support.json.JSONException;
+import loxia.support.json.JSONObject;
+
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.util.JsonFormatUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -36,5 +42,24 @@ public class HttpClientUtilTest{
 		httpMethod.releaseConnection();
 	}
 
+	@Test
+	public void getFLLogisticsTrack() throws HttpClientUtilException,JSONException{
+		String uri = "http://firstlogistics.co.id/ws/demo/post/";
+
+		NameValuePair[] nameValuePairs = new NameValuePair[] {
+				new NameValuePair("APPID", "EBDEMO01"),
+				new NameValuePair("ACCOUNT", "1300000430"),
+				new NameValuePair("FUNCTION", "track"),
+				new NameValuePair("REF", "MPE100503") };
+
+		// MPE100503 - SHIPPED
+		// MPE100501 - PICKED UP
+		// MPE100500 - FAILED
+		// MPE100498 - DELIVERED
+		String responseBodyAsString = HttpClientUtil.getPostMethodResponseBodyAsString(uri, nameValuePairs);
+		JSONObject jsonObject = new JSONObject(responseBodyAsString);
+		log.debug(jsonObject.toString(4, 4));
+
+	}
 
 }

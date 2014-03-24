@@ -34,6 +34,7 @@ import java.net.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 
 /**
@@ -58,7 +59,7 @@ public final class DesktopUtil{
 		// 判断当前系统是否支持Java AWT Desktop扩展
 		if (Desktop.isDesktopSupported()){
 			// 创建一个URI实例
-			URI uri = URIUtil.create(url);
+			URI uri = URIUtil.create(url, CharsetType.UTF8);
 			// 获取当前系统桌面扩展
 			Desktop desktop = Desktop.getDesktop();
 			// 判断系统桌面是否支持要执行的功能

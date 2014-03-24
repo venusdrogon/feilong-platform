@@ -53,10 +53,15 @@ import com.feilong.commons.core.util.Validator;
  */
 public final class URIUtil{
 
-	private static final Logger	log			= LoggerFactory.getLogger(URIUtil.class);
+	private static final Logger	log				= LoggerFactory.getLogger(URIUtil.class);
 
 	/** 查询片段 <code>{@value}</code> */
-	public static final String	fragment	= "#";
+	public static final String	fragment		= "#";
+
+	/**
+	 * ? The question mark is used as a separator and is not part of the query string
+	 */
+	public static final String	questionMark	= "?";
 
 	/**
 	 * URI uri = new URI(path);<br>
@@ -98,18 +103,6 @@ public final class URIUtil{
 	 * 如果知道URI是有效的，不会产生URISyntaxException，可以使用静态的create(String uri)方法
 	 * 
 	 * @param url
-	 * @return 如果异常 返回null
-	 */
-	@Deprecated
-	public static URI create(String url){
-		return create(url, CharsetType.UTF8);
-	}
-
-	/**
-	 * URI.create(url)<br>
-	 * 如果知道URI是有效的，不会产生URISyntaxException，可以使用静态的create(String uri)方法
-	 * 
-	 * @param url
 	 * @param charsetType
 	 *            decode/encode 编码
 	 * @return 如果异常 返回null
@@ -126,12 +119,11 @@ public final class URIUtil{
 			try{
 				// 暂不处理 这种路径报错的情况
 				// cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm
-				String beIncludedString = "?";
-				if (StringUtil.isContain(url, beIncludedString)){
+				if (StringUtil.isContain(url, questionMark)){
 					// 问号前面的部分
-					String before = getBefore(url);
+					String before = getBeforePath(url);
 
-					String query = StringUtil.substring(url, beIncludedString, 1);
+					String query = StringUtil.substring(url, questionMark, 1);
 
 					// 浏览器传递queryString()参数差别
 					// chrome 会将query 进行 encoded 再发送请求
@@ -165,24 +157,57 @@ public final class URIUtil{
 	/**
 	 * 拼接url(如果charsetType 是null,则原样拼接,如果不是空,则返回安全的url)
 	 * 
-	 * @param before
-	 *            ?前面的部分
+	 * @param beforeUrl
+	 *            支持带?的形式, 内部自动解析
 	 * @param paramMap
 	 *            参数map value将会被 toString
 	 * @param charsetType
-	 *            编码,如果为空 不name 和value 不进行编码
+	 *            编码,如果为空 ,name 和value 不进行编码
 	 * @return
 	 */
-	public static String getEncodedUrl(String before,Map<String, ?> paramMap,String charsetType){
+	public static String getEncodedUrl(String beforeUrl,Map<String, ?> paramMap,String charsetType){
 		// map 不是空 表示 有参数
 		if (Validator.isNotNullOrEmpty(paramMap)){
+
+			Map<String, Object> appendMap = new HashMap<String, Object>();
+			appendMap.putAll(paramMap);
+
+			// 注意 action before 可能带参数
+			// "action": "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest",
+			// "fullEncodedUrl":
+			// "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest?miscFee=0&descp=&klikPayCode=03BELAV220&callback=%2Fpatment1url&totalAmount=60000.00&payType=01&transactionNo=20140323024019&signature=1278794012&transactionDate=23%2F03%2F2014+02%3A40%3A19&currency=IDR",
+
+			// *******************************************
+			String beforePath = beforeUrl;
+
+			// 如果包含?
+			if (StringUtil.isContain(beforeUrl, questionMark)){
+				// 问号前面的部分
+				beforePath = getBeforePath(beforeUrl);
+
+				String query = StringUtil.substring(beforeUrl, questionMark, 1);
+
+				// 浏览器传递queryString()参数差别
+				// chrome 会将query 进行 encoded 再发送请求
+				// 而ie 原封不动的发送
+
+				// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
+				// 此处不能先转 ,参数就是想传 =是转义符
+				// query = decode(query, charsetType);
+
+				Map<String, String> map = parseQueryToMap(query);
+				appendMap.putAll(map);
+			}
+
 			StringBuilder builder = new StringBuilder("");
-			builder.append(before);
-			builder.append("?");
+			builder.append(beforePath);
+			builder.append(questionMark);
+
+			// *******************************************
 
 			int i = 0;
-			int size = paramMap.size();
-			for (Map.Entry<String, ?> entry : paramMap.entrySet()){
+			int size = appendMap.size();
+			for (Map.Entry<String, ?> entry : appendMap.entrySet()){
 				String key = entry.getKey();
 				// 兼容特殊情况
 				Object value = entry.getValue();
@@ -213,7 +238,7 @@ public final class URIUtil{
 
 			return builder.toString();
 		}
-		return before;
+		return beforeUrl;
 	}
 
 	/**
@@ -280,13 +305,13 @@ public final class URIUtil{
 	 * @param url
 	 * @return 如果 url 为空 返回 ""
 	 */
-	public static String getBefore(String url){
+	public static String getBeforePath(String url){
 		if (Validator.isNullOrEmpty(url)){
 			return "";
 		}else{
 			String before = "";
 			// 判断url中是否含有?
-			int index = url.indexOf('?');
+			int index = url.indexOf(questionMark);
 			if (index == -1){
 				before = url;
 			}else{
@@ -439,8 +464,8 @@ public final class URIUtil{
 
 	/**
 	 * 解码,对参数值进行解码 <br>
-	 * Decodes a <code>application/x-www-form-urlencoded</code> string using a specific encoding scheme. The supplied encoding is used to determine what
-	 * characters are represented by any consecutive sequences of the form "<code>%<i>xy</i></code>".
+	 * Decodes a <code>application/x-www-form-urlencoded</code> string using a specific encoding scheme. The supplied encoding is used to
+	 * determine what characters are represented by any consecutive sequences of the form "<code>%<i>xy</i></code>".
 	 * <p>
 	 * <em><strong>Note:</strong> The <a href=
 	 * "http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">
@@ -491,7 +516,7 @@ public final class URIUtil{
 		specialCharacterMap.put("+", "%2B");// URL 中+号表示空格
 		specialCharacterMap.put(" ", "%20");// URL中的空格可以用+号或者编码
 		specialCharacterMap.put("/", "%2F");// 分隔目录和子目录
-		specialCharacterMap.put("?", "%3F");// 分隔实际的 URL 和参数
+		specialCharacterMap.put(questionMark, "%3F");// 分隔实际的 URL 和参数
 		specialCharacterMap.put("%", "%25");// 指定特殊字符
 		specialCharacterMap.put("#", "%23");// 表示书签
 		specialCharacterMap.put("&", "%26");// URL 中指定的参数间的分隔符

@@ -28,11 +28,17 @@ package jdk.java.util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.util.JsonFormatUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -43,6 +49,20 @@ public class CollectionsTest{
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionsTest.class);
 
 	@Test
+	public void test(){
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("a", "1");
+		map.put("a", "2");
+		log.info(JsonFormatUtil.format(map));
+
+		Set<String> set = new HashSet<String>();
+		set.add("a");
+		set.add("a");
+		log.info(JsonFormatUtil.format(set));
+	}
+
+	@Test
 	public void sort(){
 		List<BrowsingHistoryCommand> browsingHistoryCommands = new ArrayList<BrowsingHistoryCommand>();
 		browsingHistoryCommands.add(new BrowsingHistoryCommand("2048", 10000L));
@@ -51,7 +71,7 @@ public class CollectionsTest{
 		browsingHistoryCommands.add(new BrowsingHistoryCommand("20483333", 1000033333L));
 		browsingHistoryCommands.add(new BrowsingHistoryCommand("20482222", 10000222L));
 		browsingHistoryCommands.add(new BrowsingHistoryCommand("20483333333", 10200033333L));
-		
+
 		// 只要你给出List中对象的比较大小的办法
 		// java.util.Collections.sort(List,Comparator)
 		// 方法就能帮你排序List,第一个参数是你要排序的List，第二个参数是你的比较器，他告诉sort方法如何比较大小
@@ -66,7 +86,8 @@ public class CollectionsTest{
 		// java.lang
 		// Interface Comparable
 		// All Known Implementing Classes:
-		// BigDecimal, BigInteger, Byte, ByteBuffer, Character, CharBuffer, Charset, CollationKey, Date, Double, DoubleBuffer, File, Float, FloatBuffer,
+		// BigDecimal, BigInteger, Byte, ByteBuffer, Character, CharBuffer, Charset, CollationKey, Date, Double, DoubleBuffer, File, Float,
+		// FloatBuffer,
 		// IntBuffer, Integer, Long, LongBuffer, ObjectStreamField, Short, ShortBuffer, String, URI
 		//
 		//

@@ -202,6 +202,12 @@ public class DateUtilTest{
 	}
 
 	@Test
+	public void addMonth(){
+		Date beginDate = DateUtil.string2Date("2013-10-28", DatePattern.onlyDate);
+		print(DateUtil.addMonth(beginDate, 6));
+	}
+
+	@Test
 	public void testAddSecond(){
 		print(DateUtil.addSecond(now, 180));
 		print(DateUtil.addSecond(now, -180));
@@ -580,8 +586,9 @@ public class DateUtilTest{
 	public final void testToCalendar(){
 		fail("Not yet implemented"); // TODO
 	}
+
 	@Test
 	public final void testToCalendar1(){
-		System.out.println((new Date().getTime()+"").length());
+		System.out.println((new Date().getTime() + "").length());
 	}
 }

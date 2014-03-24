@@ -2,7 +2,11 @@
 
 
 1.0.3
-
+	1.update feilong security framework
+	2.update feilong feilong-netpay framework
+	3.URIUtil.getBefore(url) to URIUtil.getBeforePath(url)
+	4.update slf4j 1.6.4 to 1.7.6
+	5.update log4j 1.2.6 to 1.2.7
 
 1.0.2
 

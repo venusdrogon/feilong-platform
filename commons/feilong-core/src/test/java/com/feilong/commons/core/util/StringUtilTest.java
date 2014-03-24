@@ -94,6 +94,11 @@ public class StringUtilTest{
 	public void length(){
 		String string = "我的新浪微博:http://weibo.com/venusdrogon,关注我哦[url=http://bbs.guqu.net/Query.asp?keyword=%B6%C5%B4%CF%D7%A8%BC%AD&boardid=0&sType=2]sssss[/url][url=http://weibo.com/venusdrogon][img]http://service.t.sina.com.cn/widget/qmd/1903991210/1c853142/5.png[/img][/url]";
 		log.info(string.length() + "");
+
+		log.info("572367774882343".length() + "");
+
+		// 运单号
+		log.info("1900681807840".length() + "");
 	}
 
 	@Test
