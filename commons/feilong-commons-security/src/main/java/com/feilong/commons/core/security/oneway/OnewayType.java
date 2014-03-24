@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.oneway;
 
 /**
  * 单向加密类型.

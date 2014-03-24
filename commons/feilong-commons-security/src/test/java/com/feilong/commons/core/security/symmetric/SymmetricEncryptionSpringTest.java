@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.symmetric;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
@@ -28,6 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.feilong.commons.core.TestConstants;
+import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 
 @ContextConfiguration(locations = { "classpath:feilong-security.xml" })
 public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTests{
@@ -40,7 +41,7 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 	@Test
 	public void base64String() throws SecurityException{
 		String original = TestConstants.testString;
-		String base64 = symmetricEncryption.encryptToBase64String(original);
+		String base64 = symmetricEncryption.encrypBase64(original);
 		log.info(base64);
 	}
 
@@ -50,7 +51,7 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 		// log.info(blowfishUtil.encryptToHexString(original));
 		// String keyString = blowfishUtil.getKeyString();
 		// log.info(keyString);
-		log.info(symmetricEncryption.decryptBase64String(hexString));
+		log.info(symmetricEncryption.decryptBase64(hexString));
 		// 3B37B7F90CBBD4EFD5502F50F9B407E3
 		// 3B37B7F90CBBD4EFD5502F50F9B407E3
 		// /x3JicoLOTnZO+Zs3Ha5pg==
@@ -60,14 +61,14 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 	@Test
 	public void encryptToHexString() throws SecurityException,NoSuchMethodException{
 		String original = TestConstants.testString;
-		String base64 = symmetricEncryption.encryptToHexString(original);
+		String base64 = symmetricEncryption.encryptHex(original);
 		log.info(base64);
 	}
 
 	@Test
 	public void decryptHexString() throws SecurityException,NoSuchMethodException{
 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
-		log.info(symmetricEncryption.decryptHexString(hexString));
+		log.info(symmetricEncryption.decryptHex(hexString));
 	}
 
 	@Test

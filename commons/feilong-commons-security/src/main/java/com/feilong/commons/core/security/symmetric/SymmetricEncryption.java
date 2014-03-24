@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.symmetric;
 
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +23,6 @@ import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.slf4j.Logger;
@@ -68,7 +67,7 @@ import com.feilong.commons.core.util.Validator;
  * 		String original = "鑫哥爱feilong";
  * 		String keyString = "feilong";
  * 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
- * 		log.info("SymmetricType.Blowfish:{}", symmetricEncryption.encryptToHexString(original));
+ * 		log.info("SymmetricType.Blowfish:{}", symmetricEncryption.encryptHex(original));
  * 		
  * 		返回:055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
  * 
@@ -77,7 +76,7 @@ import com.feilong.commons.core.util.Validator;
  * 		String keyString = "feilong";
  * 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
  * 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
- * 		log.info(symmetricEncryption.decryptHexString(hexString));
+ * 		log.info(symmetricEncryption.decryptHex(hexString));
  * 		返回:鑫哥爱feilong
  * 
  * </pre>
@@ -89,23 +88,25 @@ import com.feilong.commons.core.util.Validator;
 public final class SymmetricEncryption{
 
 	/** The Constant log. */
-	protected static final Logger	log			= LoggerFactory.getLogger(SymmetricEncryption.class);
+	protected static final Logger	log					= LoggerFactory.getLogger(SymmetricEncryption.class);
 
 	/** 对称加密key. */
-	private Key						key			= null;
+	private Key						key;
 
+	/** The key string. */
 	private String					keyString;
 
 	/** 使用的算法如 DES,DESede,Blowfish. */
 	private String					algorithm;
 
-	private String					charsetName	= CharsetType.UTF8;
+	/** 默认charset name. */
+	private String					charsetNameDefault	= CharsetType.UTF8;
 
 	/**
 	 * 构造函数.
 	 * 
-	 * @param type
-	 *            对称加密的类型
+	 * @param symmetricType
+	 *            the symmetric type
 	 * @param keyString
 	 *            自定义密钥
 	 */
@@ -113,7 +114,7 @@ public final class SymmetricEncryption{
 		if (Validator.isNullOrEmpty(keyString)){
 			throw new IllegalArgumentException("the keyString can't be null");
 		}
-		this.algorithm = symmetricType.toString();
+		this.algorithm = symmetricType.getAlgorithm();
 		log.debug("the param algorithm:[{}]", this.algorithm);
 		log.debug("the param keyString:[{}]", keyString);
 		setKey(keyString);
@@ -135,17 +136,19 @@ public final class SymmetricEncryption{
 	 * 
 	 * <pre>
 	 * keyString=feilong
-	 * desEncryptString("鑫哥爱feilong") ---->BVl2k0U5+qokOeI6ufFlVS8XnkwEwff2
+	 * encrypBase64("鑫哥爱feilong") ---->BVl2k0U5+qokOeI6ufFlVS8XnkwEwff2
 	 * 
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param original
 	 *            原字符串
 	 * @return 加密之后的字符串
 	 */
-	public String encryptToBase64String(String original){
+	public String encrypBase64(String original){
 		try{
-			byte[] bs1 = original.getBytes(charsetName);
+			byte[] bs1 = original.getBytes(charsetNameDefault);
 			byte[] bs = opBytes(algorithm, bs1, key, Cipher.ENCRYPT_MODE);
 
 			BASE64Encoder base64Encoder = new BASE64Encoder();
@@ -182,7 +185,7 @@ public final class SymmetricEncryption{
 	 * 
 	 * <pre>
 	 * keyString=feilong
-	 * decryptBase64String("BVl2k0U5+qokOeI6ufFlVS8XnkwEwff2") ---->鑫哥爱feilong
+	 * decryptBase64("BVl2k0U5+qokOeI6ufFlVS8XnkwEwff2") ---->鑫哥爱feilong
 	 * 
 	 * </pre>
 	 * 
@@ -192,12 +195,12 @@ public final class SymmetricEncryption{
 	 *            加密后的字符串
 	 * @return 解密返回的原始密码
 	 */
-	public String decryptBase64String(String base64String){
+	public String decryptBase64(String base64String){
 		try{
 			BASE64Decoder base64Decoder = new BASE64Decoder();
 			byte[] byteMi = base64Decoder.decodeBuffer(base64String);
 			byte[] bs = opBytes(algorithm, byteMi, key, Cipher.DECRYPT_MODE);
-			String original = new String(bs, charsetName);
+			String original = new String(bs, charsetNameDefault);
 
 			if (log.isDebugEnabled()){
 				Map<String, String> map = new HashMap<String, String>();
@@ -230,14 +233,16 @@ public final class SymmetricEncryption{
 	 * 例如:key=feilong
 	 * 
 	 * <pre>
-	 * encryptToHexString("鑫哥爱feilong")---->055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
+	 * encryptHex("鑫哥爱feilong")---->055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param original
 	 *            明文,原始内容
 	 * @return 加密String明文输入,String密文输出
 	 */
-	public String encryptToHexString(Object original){
+	public String encryptHex(Object original){
 		byte[] bs = StringUtil.toBytes(original.toString());
 		try{
 			byte[] bs2 = opBytes(algorithm, bs, key, Cipher.ENCRYPT_MODE);
@@ -274,14 +279,16 @@ public final class SymmetricEncryption{
 	 * 例如:key=feilong
 	 * 
 	 * <pre>
-	 * decryptHexString("055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6")---->"鑫哥爱feilong"
+	 * decryptHex("055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6")---->"鑫哥爱feilong"
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param hexString
 	 *            一串经过加密的16进制形式字符串,例如 055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
 	 * @return 解密 String明文输出
 	 */
-	public String decryptHexString(String hexString){
+	public String decryptHex(String hexString){
 		byte[] bs = ByteUtil.hexBytesToBytes(hexString.getBytes());
 		try{
 			byte[] bs2 = opBytes(algorithm, bs, key, Cipher.DECRYPT_MODE);
@@ -315,24 +322,26 @@ public final class SymmetricEncryption{
 
 	// **********************************************************************
 	/**
-	 * 生成密钥
+	 * 生成密钥.
 	 * 
 	 * @param algorithm
 	 *            定义 加密算法 可用 DES,DESede,Blowfish
 	 * @param keyString
 	 *            自定义的密钥字符串
-	 * @see <a href="http://blog.csdn.net/hbcui1984/article/details/5753083">解决Linux操作系统下AES解密失败的问题</a>
 	 * @return Key
+	 * @see <a href="http://blog.csdn.net/hbcui1984/article/details/5753083">解决Linux操作系统下AES解密失败的问题</a>
 	 */
 	private static Key getKey(String algorithm,String keyString){
 		try{
 			// KeyGenerator 对象可重复使用，也就是说，在生成密钥后，可以重复使用同一个 KeyGenerator 对象来生成更多的密钥。
 			KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm);
 
+			// SHA1PRNG: It is just ensuring the random number generated is as close to "truly random" as possible.
+			// Easily guessable random numbers break encryption.
+
 			// 此类提供强加密随机数生成器 (RNG)。 创建一个可信任的随机数源
-			SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");// SHA1PRNG: It is just ensuring the random number generated is as close to
-																				// "truly random" as
-																				// possible. Easily guessable random numbers break encryption.
+			SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+
 			// SecureRandom 实现完全隨操作系统本身的內部狀態，除非調用方在調用 getInstance 方法之後又調用了 setSeed 方法
 			// 解决 :windows上加解密正常，linux上加密正常，解密时发生如下异常：
 			// javax.crypto.BadPaddingException: Given final block not properly padded
@@ -350,7 +359,13 @@ public final class SymmetricEncryption{
 	}
 
 	/**
-	 * 自定义一个key
+	 * 自定义一个key.
+	 * 
+	 * @param algorithm
+	 *            the algorithm
+	 * @param keyRule
+	 *            the key rule
+	 * @return the key2
 	 */
 	private static Key getKey2(String algorithm,String keyRule){
 		byte[] keyByte = keyRule.getBytes();
@@ -366,26 +381,33 @@ public final class SymmetricEncryption{
 	}
 
 	/**
-	 * 操作
+	 * 操作.
 	 * 
 	 * @param algorithm
 	 *            算法
 	 * @param bytes
+	 *            the bytes
 	 * @param key
 	 *            key
 	 * @param opmode
 	 *            模式
-	 * @return
-	 * @throws NoSuchPaddingException
-	 * @throws NoSuchAlgorithmException
+	 * @return the byte[]
+	 * @throws Exception
+	 *             the exception
 	 */
 	private static byte[] opBytes(String algorithm,byte[] bytes,Key key,int opmode) throws Exception{
 		Cipher cipher = Cipher.getInstance(algorithm);
 		cipher.init(opmode, key);
-		// 结束时，此方法将此 Cipher 对象重置为上一次调用 init 初始化得到的状态。即该对象被重置，并可用于加密或解密（具体取决于调用 init 时指定的操作模式）更多的数据。
+		// 结束时，此方法将此 Cipher 对象重置为上一次调用 init 初始化得到的状态。
+		// 即该对象被重置，并可用于加密或解密（具体取决于调用 init 时指定的操作模式）更多的数据。
 		return cipher.doFinal(bytes);
 	}
 
+	/**
+	 * Gets the key string.
+	 * 
+	 * @return the key string
+	 */
 	public String getKeyString(){
 		return this.keyString;
 	}

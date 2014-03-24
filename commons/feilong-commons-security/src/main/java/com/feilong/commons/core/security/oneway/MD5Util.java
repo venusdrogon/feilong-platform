@@ -13,44 +13,39 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.oneway;
 
 /**
- * Secure Hash Algorithm，安全散列算法 （单向加密）
- * 
- * <pre>
- * SHA-1与MD5的比较
- * 因为二者均由MD4导出，SHA-1和MD5彼此很相似。相应的，他们的强度和其他特性也是相似，但还有以下几点不同：
- * l 对强行攻击的安全性：最显著和最重要的区别是SHA-1摘要比MD5摘要长32 位。
- * 		使用强行技术，产生任何一个报文使其摘要等于给定报摘要的难度对MD5是2^128数量级的操作，而对SHA-1则是2^160数量级的操作。这样，SHA-1对强行攻击有更大的强度。
- * 
- * l 对密码分析的安全性：由于MD5的设计，易受密码分析的攻击，SHA-1显得不易受这样的攻击。
- * 
- * l 速度：在相同的硬件上，SHA-1的运行速度比MD5慢。
- * </pre>
+ * Message Digest algorithm 5，信息摘要算法 <br>
+ * 将任意长度的"字节串"变换成一个128bit的大整数.
  * 
  * <pre>
  * 检验你的实现是否正确：
- * SHA1Util.encode(&quot;你好&quot;) = 440ee0853ad1e99f962b63e459ef992d7c211722
+ * MD5Util.encode(&quot;&quot;) = d41d8cd98f00b204e9800998ecf8427e
+ * MD5Util.encode(&quot;a&quot;) = 0cc175b9c0f1b6a831c399e269772661
+ * MD5Util.encode(&quot;abc&quot;) = 900150983cd24fb0d6963f7d28e17f72
+ * MD5Util.encode(&quot;message digest&quot;) = f96b697d7cb7938d525a2f31aaf161d0
+ * MD5Util.encode(&quot;abcdefghijklmnopqrstuvwxyz&quot;) = c3fcd3d76192e4007dfb496cca67e13b
  * </pre>
  * 
+ * @author 腾讯通
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0.0 2010年10月26日 17:13:58
- * @version 1.0.1 2011-10-18 16:49
- * @version 1.0.2 2013-7-18 17:01 修改了javadoc 和类关系
+ * @version 1.0 2010年10月26日 17:13:58
+ * @version 1.1 2011-10-18 16:49
  * @since 1.0
  */
-public final class SHA1Util{
+public final class MD5Util{
 
-	private static OnewayType	onewayType	= OnewayType.SHA1;
+	/** The oneway type. */
+	private static OnewayType	onewayType	= OnewayType.MD5;
 
 	/**
-	 * private
+	 * private.
 	 */
-	private SHA1Util(){}
+	private MD5Util(){}
 
 	/**
-	 * 加密字符串
+	 * 加密字符串.
 	 * 
 	 * @param origin
 	 *            原始字符串
@@ -61,9 +56,24 @@ public final class SHA1Util{
 	}
 
 	/**
-	 * 加密,byte[] 便于自定义编码
+	 * 加密字符串.
+	 * 
+	 * @param origin
+	 *            原始字符串
+	 * @param charsetName
+	 *            受支持的 charset 名称,比如 utf-8
+	 * @return 加密之后的转成小写的16进制字符串
+	 */
+
+	public static String encode(String origin,String charsetName){
+		return OnewayEncryption.encode(onewayType, origin, charsetName);
+	}
+
+	/**
+	 * 加密,byte[] 便于自定义编码.
 	 * 
 	 * @param inputBytes
+	 *            the input bytes
 	 * @return 加密之后的转成小写的16进制字符串
 	 */
 	public static String encode(byte[] inputBytes){
@@ -71,10 +81,11 @@ public final class SHA1Util{
 	}
 
 	/**
-	 * 计算文件 algorithm值
+	 * 计算文件 algorithm值.
 	 * 
 	 * @param filePath
-	 * @return
+	 *            the file path
+	 * @return the string
 	 */
 	public static String encodeFile(String filePath){
 		return OnewayEncryption.encodeFile(onewayType, filePath);

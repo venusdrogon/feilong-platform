@@ -15,7 +15,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  * <p/>
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.symmetric;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
+import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
+import com.feilong.commons.core.security.symmetric.SymmetricType;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -43,43 +45,46 @@ public class DESUtilTest{
 	public final static String	config_security_key_des_hex		= "jinxin";
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.security.DESUtil#encryptToBase64String(java.lang.String)}.
+	 * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.
 	 */
 	@Test
-	public final void testDesDecryptString(){
-		SymmetricEncryption dESUtil = new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default);
-		String mingsString = dESUtil.decryptBase64String("LdCGo0dplVASWwJrvlHqpw==");
+	public final void decryptBase64(){
+		SymmetricType symmetricType = SymmetricType.DES;
+		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, config_security_key_des_default);
+		String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==");
 		log.debug(mingsString);
 		assertEquals(TestConstants.testString, mingsString);
 	}
 
 	@Test
-	public final void testEncryptOriginalToBase64String(){
+	public final void encrypBase641(){
 		String aString = "06123246FFFEFFEE";
 		String key = "1234567890ABCDEF";
 		SymmetricEncryption dESUtil = new SymmetricEncryption(SymmetricType.DES, key);
-		log.debug(dESUtil.encryptToBase64String(aString));
+		log.debug(dESUtil.encrypBase64(aString));
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.security.DESUtil#decryptBase64String(java.lang.String)}.
+	 * Test method for {@link com.feilong.commons.core.security.DESUtil#decryptBase64(java.lang.String)}.
 	 */
 	@Test
 	// @Ignore
-	public final void testDesEncryptString(){
-		SymmetricEncryption dESUtil = new SymmetricEncryption(SymmetricType.DES, config_security_key_des_hex);
+	public final void encrypBase64(){
+		SymmetricType des = SymmetricType.DES;
+		SymmetricEncryption dESUtil = new SymmetricEncryption(des, config_security_key_des_hex);
 		// LdCGo0dplVASWwJrvlHqpw==
-		log.debug(dESUtil.encryptToBase64String(TestConstants.testString));
+		log.debug(dESUtil.encrypBase64(TestConstants.testString));
 	}
 
 	@Test
-	public void getEncryptHexStringTest(){
+	public void encryptHex(){
 		String keyString = "jinxin";
-		SymmetricEncryption dESUtil = new SymmetricEncryption(SymmetricType.DES, keyString);
-		String miString = dESUtil.encryptToHexString(TestConstants.testString);
+		SymmetricType symmetricType = SymmetricType.DES;
+		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
+		String miString = symmetricEncryption.encryptHex(TestConstants.testString);
 		// String miString = dESUtil.encryptToHexString(TestConstants.testString);
 		log.debug("encryptOriginalToHexString:{}", miString);
-		String mingString = dESUtil.decryptHexString(miString);
+		String mingString = symmetricEncryption.decryptHex(miString);
 		log.debug(mingString);
 		Assert.assertEquals(mingString, TestConstants.testString);
 

@@ -1,13 +1,16 @@
 /**
  * 
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.oneway;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.security.oneway.MD5Util;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -18,11 +21,11 @@ public class MD5UtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(MD5UtilTest.class);
 
 	/**
-	 * {@link com.feilong.commons.core.security.MD5Util#encodeFile(java.lang.String)} 的测试方法。
+	 * {@link com.feilong.commons.core.security.oneway.MD5Util#encodeFile(java.lang.String)} 的测试方法。
 	 */
 	@Test
 	public void encodeFile(){
-		log.debug(MD5Util.encodeFile("E:/Data/java/Taglib/qqwrffy/qqwrffy 20100105/QQWry.dat"));
+		log.debug(MD5Util.encodeFile("E:\\DataCommon\\Java\\JDK API 1.6.0 中文版.CHM"));
 	}
 
 	@Test
@@ -39,5 +42,18 @@ public class MD5UtilTest{
 	public void encode1(){
 		log.debug(MD5Util.encode("你好"));
 		log.debug(MD5Util.encode("521000"));
+	}
+
+	@Test
+	public void encode11(){
+		log.debug(MD5Util.encode("你好", CharsetType.UTF8));
+		log.debug(MD5Util.encode("521000", CharsetType.UTF8));
+	}
+
+	@Test
+	public void encode12(){
+		Assert.assertEquals(
+				"F7468B69D12BB6CE76D6206419A6AC28",
+				MD5Util.encode("1230000000456AAAAAAAAAAAAAAAIDR1120/01/2010 01:01:0112345678901234561234567890123456").toUpperCase());
 	}
 }

@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.oneway;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +21,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.security.oneway.OnewayEncryption;
+import com.feilong.commons.core.security.oneway.OnewayType;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -31,7 +33,9 @@ public class OnewayEncryptionTest{
 	private static final Logger	log	= LoggerFactory.getLogger(OnewayEncryptionTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.security.OnewayEncryption#encode(com.feilong.commons.core.security.OnewayType, java.lang.String)}.
+	 * Test method for
+	 * {@link com.feilong.commons.core.security.oneway.OnewayEncryption#encode(com.feilong.commons.core.security.oneway.OnewayType, java.lang.String)}
+	 * .
 	 */
 	@Test
 	public final void testEncodeOnewayTypeString(){
@@ -52,23 +56,6 @@ public class OnewayEncryptionTest{
 				"5232181bc0d9888f5c9746e410b4740eb461706ba5dacfbc93587cecfc8d068bac7737e92870d6745b11a25e9cd78b55f4ffc706f73cfcae5345f1b53fb8f6b5",
 				OnewayEncryption.encode(OnewayType.SHA512, "你好"));
 
-		//log.info(OnewayEncryption.encode(OnewayType.HmacSHA512, "你好"));
-
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.security.OnewayEncryption#encode(com.feilong.commons.core.security.OnewayType, byte[])}.
-	 */
-	@Test
-	public final void testEncodeOnewayTypeByteArray(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.security.OnewayEncryption#encodeFile(com.feilong.commons.core.security.OnewayType, java.lang.String)}.
-	 */
-	@Test
-	public final void testEncodeFile(){
-		fail("Not yet implemented"); // TODO
+		// log.info(OnewayEncryption.encode(OnewayType.HmacSHA512, "你好"));
 	}
 }

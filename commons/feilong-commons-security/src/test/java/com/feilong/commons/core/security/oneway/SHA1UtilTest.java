@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.feilong.commons.core.security;
+package com.feilong.commons.core.security.oneway;
 
 import junit.framework.Assert;
 
@@ -10,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
@@ -21,11 +19,11 @@ public class SHA1UtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(SHA1UtilTest.class);
 
 	/**
-	 * {@link com.feilong.commons.core.security.MD5Util#encodeFile(java.lang.String)} 的测试方法。
+	 * {@link com.feilong.commons.core.security.oneway.MD5Util#encodeFile(java.lang.String)} 的测试方法。
 	 */
 	@Test
 	public void encodeFile(){
-		log.debug(SHA1Util.encodeFile("E:/Data/java/Taglib/qqwrffy/qqwrffy 20100105/QQWry.dat"));
+		log.debug(SHA1Util.encodeFile("E:\\DataCommon\\Java\\JDK API 1.6.0 中文版.CHM"));
 	}
 
 	@Test
