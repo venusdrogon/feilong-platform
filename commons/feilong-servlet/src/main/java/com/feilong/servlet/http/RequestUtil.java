@@ -32,15 +32,19 @@ import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * HttpServletRequest工具类
+ * HttpServletRequest工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:24:55
  */
 public final class RequestUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(RequestUtil.class);
 
+	/**
+	 * Instantiates a new request util.
+	 */
 	private RequestUtil(){};
 
 	// ************************************include**************************************************************************
@@ -73,7 +77,7 @@ public final class RequestUtil{
 
 	/**
 	 * <code>{@value}</code><br>
-	 * The request attribute under which the query string of the included servlet is stored on an included dispatcher request
+	 * The request attribute under which the query string of the included servlet is stored on an included dispatcher request.
 	 */
 	public static final String	INCLUDE_QUERY_STRING_ATTRIBUTE		= "javax.servlet.include.query_string";
 
@@ -155,27 +159,30 @@ public final class RequestUtil{
 	public static final String	ERROR_SERVLET_NAME_ATTRIBUTE		= "javax.servlet.error.servlet_name";
 
 	// ****************************************header**************************************************************************
+	/** The Constant header_referer. */
 	public static final String	header_referer						= "referer";
 
+	/** The Constant header_userAgent. */
 	public static final String	header_userAgent					= "User-Agent";
 
 	/**
 	 * X-Forwarded-For:简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP，只有在通过了HTTP 代理或者负载均衡服务器时才会添加该项。<br>
 	 * 它不是RFC中定义的标准请求头信息，在squid缓存代理服务器开发文档中可以找到该项的详细介绍。 <br>
 	 * 标准格式如下：<br>
-	 * X-Forwarded-For: client1, proxy1, proxy2
+	 * X-Forwarded-For: client1, proxy1, proxy2.
 	 */
 	public static final String	header_xForwardedFor				= "x-forwarded-for";
 
+	/** The Constant header_proxyClientIP. */
 	public static final String	header_proxyClientIP				= "Proxy-Client-IP";
 
-	/**
-	 * WL-Proxy-Client-IP 这个应该是WebLogic前置HttpClusterServlet提供的属性，一般不需要自己处理，在WebLogic控制台中已经可以指定使用这个属性来覆盖
-	 */
+	/** WL-Proxy-Client-IP 这个应该是WebLogic前置HttpClusterServlet提供的属性，一般不需要自己处理，在WebLogic控制台中已经可以指定使用这个属性来覆盖. */
 	public static final String	header_wLProxyClientIP				= "WL-Proxy-Client-IP";
 
+	/** The Constant header_XRequestedWith. */
 	public static final String	header_XRequestedWith				= "X-Requested-With";
 
+	/** The Constant header_XRequestedWith_value_ajax. */
 	public static final String	header_XRequestedWith_value_ajax	= "XMLHttpRequest";
 
 	// ******************************是否包含******************************************
@@ -202,7 +209,7 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 请求路径中是否包含某个参数名称 (注意:这是判断是否包含参数,而不是判断参数值是否为空)
+	 * 请求路径中是否包含某个参数名称 (注意:这是判断是否包含参数,而不是判断参数值是否为空).
 	 * 
 	 * @param request
 	 *            请求
@@ -215,10 +222,11 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 获得参数 map
+	 * 获得参数 map.
 	 * 
 	 * @param request
-	 * @return
+	 *            the request
+	 * @return the parameter map
 	 */
 	public static Map<String, String> getParameterMap(HttpServletRequest request){
 		@SuppressWarnings("unchecked")
@@ -229,7 +237,13 @@ public final class RequestUtil{
 		return map;
 	}
 
-	/************************************************************************************************************/
+	/**
+	 * *********************************************************************************************************.
+	 * 
+	 * @param request
+	 *            the request
+	 * @return the error map
+	 */
 
 	/**
 	 * 获得request error 相关参数 map
@@ -255,9 +269,11 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 遍历显示request的attribute,将 name /attributeValue 存入到map
+	 * 遍历显示request的attribute,将 name /attributeValue 存入到map.
 	 * 
 	 * @param request
+	 *            the request
+	 * @return the attribute map
 	 */
 	public static Map<String, Object> getAttributeMap(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -272,10 +288,11 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 将request 相关 get 数据 转成 \n 分隔的 String,以便log 显示
+	 * 将request 相关 get 数据 转成 \n 分隔的 String,以便log 显示.
 	 * 
 	 * @param request
-	 * @return
+	 *            the request
+	 * @return the request string for log
 	 */
 	public static String getRequestStringForLog(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -307,14 +324,22 @@ public final class RequestUtil{
 		map.put("_errorMap", getErrorMap(request));
 		map.put("_headerMap", getHeaderMap(request));
 		map.put("_attributeMap", getAttributeMap(request));
+
+		// 在3.0 是数组Map<String, String[]> getParameterMap
+		// The keys in the parameter map are of type String.
+		// The values in the parameter map are of type String array.
+		map.put("_parameterMap", request.getParameterMap());
+
 		return JsonFormatUtil.format(map);
 	}
 
 	/**
 	 * 遍历显示request的header 用于debug<br>
-	 * 将 request header name 和value 封装到map
+	 * 将 request header name 和value 封装到map.
 	 * 
 	 * @param request
+	 *            the request
+	 * @return the header map
 	 */
 	public static Map<String, String> getHeaderMap(HttpServletRequest request){
 		Map<String, String> map = new HashMap<String, String>();
@@ -328,7 +353,15 @@ public final class RequestUtil{
 		return map;
 	}
 
-	/** ******************************* url参数相关 getAttribute***************************************************** */
+	/**
+	 * ******************************* url参数相关 getAttribute*****************************************************.
+	 * 
+	 * @param request
+	 *            the request
+	 * @param name
+	 *            the name
+	 * @return the attribute to int
+	 */
 	// [start] url参数相关
 	/**
 	 * 获得requst属性值,并将其转换成int类型
@@ -345,7 +378,7 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 取到request里面的属性值
+	 * 取到request里面的属性值.
 	 * 
 	 * @param request
 	 *            请求
@@ -358,7 +391,7 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 取到request里面的属性值
+	 * 取到request里面的属性值.
 	 * 
 	 * @param request
 	 *            请求
@@ -380,11 +413,12 @@ public final class RequestUtil{
 	 * 返回:http://localhost:8080/feilong/requestdemo.jsp
 	 * 
 	 * 注:
-	 * 	 request.getRequestURI() 返回值类似：/feilong/requestdemo.jsp
-	 * 	 request.getRequestURL() 返回值类似：http://localhost:8080/feilong/requestdemo.jsp
+	 * request.getRequestURI() 返回值类似：/feilong/requestdemo.jsp
+	 * request.getRequestURL() 返回值类似：http://localhost:8080/feilong/requestdemo.jsp
 	 * </pre>
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 获得请求的?部分前面的地址
 	 */
 	public final static String getRequestURL(HttpServletRequest request){
@@ -411,9 +445,10 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 获得请求的全地址
+	 * 获得请求的全地址.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 如:http://localhost:8080/feilong/requestdemo.jsp?id=2
 	 */
 	public final static String getRequestAllURL(HttpServletRequest request){
@@ -429,10 +464,11 @@ public final class RequestUtil{
 
 	/**
 	 * scheme+port+getContextPath <br>
-	 * 区分 http 和https
+	 * 区分 http 和https.
 	 * 
 	 * @param request
-	 * @return
+	 *            the request
+	 * @return the server root with context path
 	 */
 	public final static String getServerRootWithContextPath(HttpServletRequest request){
 
@@ -460,9 +496,10 @@ public final class RequestUtil{
 	// ***************************************LocalAddr******************************************************************************
 
 	/**
-	 * 是否是本地ip(测试)
+	 * 是否是本地ip(测试).
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 是否是本地ip(测试)
 	 */
 	public final static boolean isLocalHost(HttpServletRequest request){
@@ -470,9 +507,10 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 获得项目本地ip地址
+	 * 获得项目本地ip地址.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return Returns the Internet Protocol (IP) address of the interface on which the request was received.
 	 */
 	public final static String getLocalAddr(HttpServletRequest request){
@@ -482,9 +520,10 @@ public final class RequestUtil{
 	// ***************************************Header******************************************************************************
 
 	/**
-	 * 获得客户端ip地址
+	 * 获得客户端ip地址.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 获得客户端ip地址
 	 */
 	public final static String getClientIp(HttpServletRequest request){
@@ -529,10 +568,11 @@ public final class RequestUtil{
 
 	/**
 	 * 　User Agent中文名为用户代理，简称 UA，<br>
-	 * 它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。
+	 * 它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。.
 	 * 
 	 * @param request
-	 * @return
+	 *            the request
+	 * @return the user agent
 	 */
 	public final static String getUserAgent(HttpServletRequest request){
 		return request.getHeader(header_userAgent);
@@ -544,8 +584,8 @@ public final class RequestUtil{
 	 * <pre>
 	 * 请用于常规请求,必须走http协议才有值,javascript跳转无效
 	 * 以下情况请慎用:
-	 * 	  也就是说要通过&lt;a href=&quot;url&quot;&gt;sss&lt;/a&gt;标记才能获得那个值   
-	 * 	而通过改变location或是&lt;a href=&quot;javascript:location='url'&quot;&gt;sss&lt;/a&gt;都是得不到那个值得
+	 * 也就是说要通过&lt;a href=&quot;url&quot;&gt;sss&lt;/a&gt;标记才能获得那个值
+	 * 而通过改变location或是&lt;a href=&quot;javascript:location='url'&quot;&gt;sss&lt;/a&gt;都是得不到那个值得
 	 * 
 	 * referer是浏览器在用户提交请求当前页面中的一个链接时,将当前页面的URL放在头域中提交给服务端的,如当前页面为a.html,
 	 * 它里面有一个b.html的链接,当用户要访问b.html时浏览器就会把a.html作为referer发给服务端.
@@ -557,6 +597,7 @@ public final class RequestUtil{
 	 * </pre>
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 上上个请求的URL
 	 */
 	public final static String getReferer(HttpServletRequest request){
@@ -572,6 +613,7 @@ public final class RequestUtil{
 	 * Most JavaScript frameworks send this header with value of XMLHttpRequest.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 如果是ajax 请求 返回true
 	 * @see http://en.wikipedia.org/wiki/X-Requested-With#Requested-With
 	 */
@@ -584,9 +626,10 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 判断一个请求 ,不是ajax 请求
+	 * 判断一个请求 ,不是ajax 请求.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return 如果不是ajax 返回true
 	 */
 	public final static boolean isNotAjaxRequest(HttpServletRequest request){
