@@ -32,7 +32,7 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
-import com.feilong.netpay.command.PaySo;
+import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.tools.velocity.VelocityUtil;
@@ -61,15 +61,15 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
 		BigDecimal total_fee = new BigDecimal(60000.00f);
 
-		PaySo paySo = new PaySo();
-		paySo.setTradeNo(code);
-		paySo.setTotalFee(total_fee);
-		paySo.setBuyerEmail("venusdrogon@163.com");
-		paySo.setBuyerName("jin xin");
+		PayRequest payRequest = new PayRequest();
+		payRequest.setTradeNo(code);
+		payRequest.setTotalFee(total_fee);
+		payRequest.setBuyerEmail("venusdrogon@163.com");
+		payRequest.setBuyerName("jin xin");
 
-		paySo.setTransferFee(new BigDecimal(10000.00f));
+		payRequest.setTransferFee(new BigDecimal(10000.00f));
 
-		List<PaySoLine> paySoLineList = paySo.getPaySoLineList();
+		List<PaySoLine> paySoLineList = payRequest.getPaySoLineList();
 
 		PaySoLine paySoLine1 = new PaySoLine();
 		paySoLine1.setItemName("nike ;s free 5.0");
@@ -89,7 +89,10 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
 		String notify_url = "/patment2url";
 
-		PaymentFormEntity paymentFormEntity = paymentAdaptor.doBeginPayment(paySo, return_url, notify_url, specialSignMap);
+		payRequest.setReturnUrl(return_url);
+		payRequest.setNotifyUrl(notify_url);
+
+		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
 
 		log.info(JsonFormatUtil.format(paymentFormEntity));
 

@@ -42,7 +42,7 @@ import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
-import com.feilong.netpay.command.PaySo;
+import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.ParamUtil;
@@ -93,10 +93,65 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 */
 	private String				_input_charset;
 
-	@Override
-	protected PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
-		String tradeNo = paySo.getTradeNo();
-		BigDecimal total_fee = paySo.getTotalFee();
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
+	 */
+	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+		String tradeNo = payRequest.getTradeNo();
+		BigDecimal total_fee = payRequest.getTotalFee();
+		String return_url = payRequest.getReturnUrl();
+		String notify_url = payRequest.getNotifyUrl();
+		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
+			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(payRequest, return_url, notify_url, specialSignMap);
+			return paymentFormEntity;
+		}
+		return null;
+	}
+
+	/**
+	 * 验证参数
+	 * 
+	 * @param tradeNo
+	 * @param total_fee
+	 * @param return_url
+	 * @param notify_url
+	 */
+	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
+		// ******************************************************************
+		// validate
+		if (Validator.isNullOrEmpty(tradeNo)){
+			throw new IllegalArgumentException("code can't be null/empty!");
+		}
+		if (Validator.isNullOrEmpty(total_fee)){
+			throw new IllegalArgumentException("total_fee can't be null/empty!");
+		}
+
+		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
+		// 精确到小数点 后两位
+		BigDecimal minPay = new BigDecimal(0.01f);
+		BigDecimal maxPay = new BigDecimal(100000000);
+		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
+			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
+		}
+
+		if (Validator.isNullOrEmpty(return_url)){
+			throw new IllegalArgumentException("return_url can't be null/empty!");
+		}
+
+		if (Validator.isNullOrEmpty(notify_url)){
+			throw new IllegalArgumentException("notify_url can't be null/empty!");
+		}
+		return true;
+	}
+
+	protected PaymentFormEntity doGetPaymentFormEntity(
+			PayRequest payRequest,
+			String return_url,
+			String notify_url,
+			Map<String, String> specialSignMap){
+		String tradeNo = payRequest.getTradeNo();
+		BigDecimal total_fee = payRequest.getTotalFee();
 
 		// 验证传入的参数(支付宝支付直接返回true，网银、信用卡支付主要验证银行code是否支持)
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);

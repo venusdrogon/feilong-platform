@@ -36,7 +36,7 @@ import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
-import com.feilong.netpay.command.PaySo;
+import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
@@ -91,12 +91,11 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	/** The price pattern. */
 	private String				pricePattern				= "############.00";
 
-	/**
-	 * 跳转回来带的 成功状态 code
-	 */
+	/** 跳转回来带的 成功状态 code. */
 	private String				redirectSuccessStatusCode	= "0000";
 
 	// Andi 拿出的 DOKU 邮件里面的script 是 "ISO-8859-1"
+	/** The charset name for sh a1. */
 	private String				charsetNameForSHA1			= CharsetType.ISO_8859_1;
 
 	// **********************************************************************************************
@@ -113,17 +112,16 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doGetPaymentFormEntity(com.feilong.netpay.command.PaySo, java.lang.String,
-	 * java.lang.String, java.util.Map)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
-	protected PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
+	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 		// TODO validate param
-		if (Validator.isNullOrEmpty(paySo)){
+		if (Validator.isNullOrEmpty(payRequest)){
 			throw new IllegalArgumentException("paySo can't be null/empty!");
 		}
 
-		String NAME = paySo.getBuyerName();
-		String EMAIL = paySo.getBuyerEmail();
+		String NAME = payRequest.getBuyerName();
+		String EMAIL = payRequest.getBuyerEmail();
 
 		// ******************* 验证 NAME********************
 		// NAME AN …50 Travel Arranger Name / Buyer name
@@ -142,7 +140,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		}
 
 		// ******************* 验证 code********************
-		String tradeNo = paySo.getTradeNo();
+		String tradeNo = payRequest.getTradeNo();
 		if (Validator.isNullOrEmpty(tradeNo)){
 			throw new IllegalArgumentException("code can't be null/empty!");
 		}else if (tradeNo.length() > 14){ // TRANSIDMERCHANT AN …14 Transaction ID from Merchant
@@ -152,8 +150,8 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		String TRANSIDMERCHANT = tradeNo;
 
 		// ******************* 验证 totalActual********************
-		BigDecimal totalFee = paySo.getTotalFee();
-		BigDecimal transferFee = paySo.getTransferFee();
+		BigDecimal totalFee = payRequest.getTotalFee();
+		BigDecimal transferFee = payRequest.getTransferFee();
 
 		if (Validator.isNullOrEmpty(totalFee)){
 			throw new IllegalArgumentException("totalActual can't be null/empty!");
@@ -206,7 +204,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// Hashed key combi- nation encryption (use SHA1 meth- od).
 		// The hashed key generated from combining these parameters value in this order : AMOUNT+MALLID + <shared key> +
 		// TRANSIDMER-CHANT
-		map.put("WORDS", getWORDS(TRANSIDMERCHANT, AMOUNT));
+		map.put("WORDS", getWORDSForPaymentRequest(TRANSIDMERCHANT, AMOUNT));
 
 		// YYYYMMDDHHMMSS
 		map.put("REQUESTDATETIME", REQUESTDATETIME);
@@ -298,7 +296,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// Show transaction description.
 		// Use comma to separate each field and semicolon for each item.
 		// Item1,1000.00,2,20000.00;item2,15000.00,2,30000.00
-		String BASKET = getBASKET(paySo);
+		String BASKET = getBASKET(payRequest);
 		map.put("BASKET", BASKET);
 
 		// // Shipping address contains street and number
@@ -338,14 +336,14 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	/**
 	 * 生成 BASKET,显示交易说明（分号分隔每个item，逗号分隔每个字段）.
 	 * 
-	 * @param paySo
+	 * @param payRequest
 	 *            the pay so
 	 * @return the bASKET
 	 */
-	private String getBASKET(PaySo paySo){
+	private String getBASKET(PayRequest payRequest){
 		StringBuilder sb = new StringBuilder();
 
-		List<PaySoLine> paySoLineList = paySo.getPaySoLineList();
+		List<PaySoLine> paySoLineList = payRequest.getPaySoLineList();
 
 		for (int i = 0, j = paySoLineList.size(); i < j; ++i){
 			PaySoLine paySoLine = paySoLineList.get(i);
@@ -369,7 +367,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		}
 
 		// **************如果包含运费,*****************************
-		BigDecimal transferFee = paySo.getTransferFee();
+		BigDecimal transferFee = payRequest.getTransferFee();
 		boolean isHasTransferFee = (transferFee.compareTo(new BigDecimal(0)) == 1);
 
 		if (isHasTransferFee){
@@ -400,21 +398,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	private String formatItemName(String itemName){
 		// TODO 验证特殊字符
 		return itemName.replace(";", " ").replace(",", " ");
-	}
-
-	/**
-	 * Hashed key combination encryption (use SHA1 method). The hashed key generated from com- bining these parameters value in this order:
-	 * AMOUNT+MALLID+<shared key> +TRANSIDMERCHANT+ RESULTMSG+VERIFYSTATUS
-	 * 
-	 * @param TRANSIDMERCHANT
-	 *            the tRANSIDMERCHANT
-	 * @param AMOUNT
-	 *            the aMOUNT
-	 * @return the wORDS
-	 */
-	private String getWORDS(String TRANSIDMERCHANT,String AMOUNT){
-		String WORDS = AMOUNT + MALLID + Shared_key + TRANSIDMERCHANT;
-		return SHA1Util.encode(WORDS, charsetNameForSHA1);
 	}
 
 	/**
@@ -487,7 +470,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// for Visa/Master
 		// String VERIFYSCORE = request.getParameter("VERIFYSCORE");
 
-		String ourWORDS = getWORDS(TRANSIDMERCHANT, AMOUNT);
+		String ourWORDS = getWORDSForNotify(TRANSIDMERCHANT, AMOUNT, RESULTMSG, VERIFYSTATUS);
 		boolean isSignOk = ourWORDS.equals(WORDS);
 
 		if (isSignOk){
@@ -536,19 +519,21 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// N …8 Virtual Account identifier for VA transaction
 		String PAYMENTCODE = request.getParameter("PAYMENTCODE");
 
-		String ourWORDS = getWORDS(TRANSIDMERCHANT, AMOUNT);
+		String ourWORDS = getWORDSForRedirect(TRANSIDMERCHANT, AMOUNT, STATUSCODE);
 		boolean isSignOk = ourWORDS.equals(WORDS);
 
 		if (isSignOk){
 			if (redirectSuccessStatusCode.equals(STATUSCODE)){
-				isPaymentStatusSuccess = true;
+				return true;
+			}else{
+				log.error("redirectSuccessStatusCode:{}", redirectSuccessStatusCode);
+				return false;
 			}
 		}else{
 			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestAllURL(request) };
 			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
 			return false;
 		}
-		return false;
 	}
 
 	/*
@@ -582,6 +567,60 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public boolean isSupportCloseTrade(){
 		return false;
+	}
+
+	/**
+	 * Hashed key combination encryption (use SHA1 method). <br>
+	 * The hashed key generated from com- bining these parameters value in this order: <br>
+	 * AMOUNT+MALLID+<shared key> +TRANSIDMERCHANT+ RESULTMSG+VERIFYSTATUS
+	 * 
+	 * @param TRANSIDMERCHANT
+	 *            the tRANSIDMERCHANT
+	 * @param AMOUNT
+	 *            the aMOUNT
+	 * @return the wORDS
+	 */
+	private String getWORDSForPaymentRequest(String TRANSIDMERCHANT,String AMOUNT){
+		String WORDS = AMOUNT + MALLID + Shared_key + TRANSIDMERCHANT;
+		return SHA1Util.encode(WORDS, charsetNameForSHA1);
+	}
+
+	/**
+	 * Hashed key combination encryption (use SHA1 method).<br>
+	 * The hashed key generated from com- bining these parameters value in this order:<br>
+	 * AMOUNT+MALLID+<shared key> +TRANSIDMERCHANT+ RESULTMSG+VERIFYSTATUS
+	 * 
+	 * @param TRANSIDMERCHANT
+	 *            the tRANSIDMERCHANT
+	 * @param AMOUNT
+	 *            the aMOUNT
+	 * @param RESULTMSG
+	 *            the rESULTMSG
+	 * @param VERIFYSTATUS
+	 *            the vERIFYSTATUS
+	 * @return the wORDS for notify
+	 */
+	private String getWORDSForNotify(String TRANSIDMERCHANT,String AMOUNT,String RESULTMSG,String VERIFYSTATUS){
+		String WORDS = AMOUNT + MALLID + Shared_key + TRANSIDMERCHANT + RESULTMSG + VERIFYSTATUS;
+		return SHA1Util.encode(WORDS, charsetNameForSHA1);
+	}
+
+	/**
+	 * Hashed key combination encryption (use SHA1 method). <br>
+	 * The hashed key generated from combining these parameters value in this order:<br>
+	 * AMOUNT+<shared key> +TRANSIDMERCHANT+STATUSCODE
+	 * 
+	 * @param TRANSIDMERCHANT
+	 *            the tRANSIDMERCHANT
+	 * @param AMOUNT
+	 *            the aMOUNT
+	 * @param STATUSCODE
+	 *            the sTATUSCODE
+	 * @return the wORDS for redirect
+	 */
+	private String getWORDSForRedirect(String TRANSIDMERCHANT,String AMOUNT,String STATUSCODE){
+		String WORDS = AMOUNT + Shared_key + TRANSIDMERCHANT + STATUSCODE;
+		return SHA1Util.encode(WORDS, charsetNameForSHA1);
 	}
 
 	// ****************************************************************************************************************************

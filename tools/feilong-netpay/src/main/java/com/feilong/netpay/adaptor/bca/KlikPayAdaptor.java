@@ -16,6 +16,7 @@
  */
 package com.feilong.netpay.adaptor.bca;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
-import com.feilong.netpay.command.PaySo;
+import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
@@ -94,6 +95,58 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
+	 */
+	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+		String tradeNo = payRequest.getTradeNo();
+		BigDecimal total_fee = payRequest.getTotalFee();
+		String return_url = payRequest.getReturnUrl();
+		String notify_url = payRequest.getNotifyUrl();
+		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
+			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(payRequest, return_url, notify_url, specialSignMap);
+			return paymentFormEntity;
+		}
+		return null;
+	}
+
+	/**
+	 * 验证参数
+	 * 
+	 * @param tradeNo
+	 * @param total_fee
+	 * @param return_url
+	 * @param notify_url
+	 */
+	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
+		// ******************************************************************
+		// validate
+		if (Validator.isNullOrEmpty(tradeNo)){
+			throw new IllegalArgumentException("code can't be null/empty!");
+		}
+		if (Validator.isNullOrEmpty(total_fee)){
+			throw new IllegalArgumentException("total_fee can't be null/empty!");
+		}
+
+		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
+		// 精确到小数点 后两位
+		BigDecimal minPay = new BigDecimal(0.01f);
+		BigDecimal maxPay = new BigDecimal(100000000);
+		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
+			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
+		}
+
+		if (Validator.isNullOrEmpty(return_url)){
+			throw new IllegalArgumentException("return_url can't be null/empty!");
+		}
+
+		if (Validator.isNullOrEmpty(notify_url)){
+			throw new IllegalArgumentException("notify_url can't be null/empty!");
+		}
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public boolean doNotifyVerify(HttpServletRequest request){
@@ -142,7 +195,11 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doGetPaymentFormEntity(java.lang.String, java.math.BigDecimal,
 	 * java.lang.String, java.lang.String, java.util.Map)
 	 */
-	protected PaymentFormEntity doGetPaymentFormEntity(PaySo paySo,String return_url,String notify_url,Map<String, String> specialSignMap){
+	protected PaymentFormEntity doGetPaymentFormEntity(
+			PayRequest payRequest,
+			String return_url,
+			String notify_url,
+			Map<String, String> specialSignMap){
 
 		Map<String, String> map = new HashMap<String, String>();
 
@@ -151,12 +208,12 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		map.put("klikPayCode", klikPayCode);
 
 		// transactionNo String 18 (AN) TRUE
-		String transactionNo = paySo.getTradeNo();
+		String transactionNo = payRequest.getTradeNo();
 		map.put("transactionNo", transactionNo);
 
 		// totalAmount String 12 7500000.00 TRUE
 		// - totalAmount和miscFee 最后两个数字必须是00,注意舍入单位是每1货币
-		String totalAmount = NumberUtil.toString(paySo.getTotalFee(), pricePattern);
+		String totalAmount = NumberUtil.toString(payRequest.getTotalFee(), pricePattern);
 		map.put("totalAmount", totalAmount);
 
 		// currency String 5 (AN) TRUE
