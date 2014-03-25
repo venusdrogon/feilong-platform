@@ -130,5 +130,12 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.6</version>
 		</dependency>
+
+		<!-- org.json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>

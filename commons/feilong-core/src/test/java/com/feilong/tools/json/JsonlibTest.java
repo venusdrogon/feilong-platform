@@ -52,7 +52,6 @@ public class JsonlibTest{
 		Assert.assertEquals(jsonObject.get("func"), PropertyUtils.getProperty(bean, "func"));
 		List expected = JSONArray.toList(jsonObject.getJSONArray("array"));
 		Assert.assertEquals(expected, (List) PropertyUtils.getProperty(bean, "array"));
-
 	}
 
 	@Test
@@ -69,10 +68,10 @@ public class JsonlibTest{
 	public void toBean(){
 		String json = getJsonString();
 
-		Map<String, Class<?>> classMap =new HashMap<String, Class<?>>();
+		Map<String, Class<?>> classMap = new HashMap<String, Class<?>>();
 		classMap.put("userAddresseList", UserAddress.class);
-		
-		User user = JsonUtil.toBean(json, User.class,classMap);
+
+		User user = JsonUtil.toBean(json, User.class, classMap);
 		log.info(JsonFormatUtil.format(user));
 	}
 

@@ -87,11 +87,7 @@
 						<year>${project.inceptionYear}</year>
 						<email>venusdrogon@163.com</email>
 					</properties>
-<!-- 					<excludes>
-						<exclude>**/README</exclude>
-						<exclude>src/test/resources/**</exclude>
-						<exclude>**/src/main/resources/**</exclude>
-					</excludes> -->
+					<!-- <excludes> <exclude>**/README</exclude> <exclude>src/test/resources/**</exclude> <exclude>**/src/main/resources/**</exclude> </excludes> -->
 					<includes>
 						<includes>**/src/main/java/**</includes>
 					</includes>
@@ -127,9 +123,6 @@
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
-			<version>${version.commons-collections}</version>
 		</dependency>
-
-
 	</dependencies>
 </project>

@@ -22,14 +22,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.net.URIUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * HttpServletRequest工具类.
@@ -328,9 +331,19 @@ public final class RequestUtil{
 		// 在3.0 是数组Map<String, String[]> getParameterMap
 		// The keys in the parameter map are of type String.
 		// The values in the parameter map are of type String array.
-		map.put("_parameterMap", request.getParameterMap());
+		Map parameterMap = request.getParameterMap();
+		map.put("_parameterMap", parameterMap);
 
-		return JsonFormatUtil.format(map);
+		// return JsonFormatUtil.format(map);
+
+		JsonConfig jsonConfig = new JsonConfig();
+
+		// 排除,避免循环引用 There is a cycle in the hierarchy!
+		String[] excludes = { "_attributeMap" };
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+		jsonConfig.setIgnoreDefaultExcludes(true);
+		jsonConfig.setExcludes(excludes);
+		return JsonUtil.toJSON(map, jsonConfig).toString(4, 4);
 	}
 
 	/**
