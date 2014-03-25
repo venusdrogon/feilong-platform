@@ -1,11 +1,12 @@
 package weibo4j;
 
+import org.json.JSONObject;
+
 import weibo4j.model.PostParameter;
 import weibo4j.model.Status;
 import weibo4j.model.StatusWapper;
 import weibo4j.model.User;
 import weibo4j.model.WeiboException;
-import weibo4j.org.json.JSONObject;
 import weibo4j.util.WeiboConfig;
 
 public class Place extends Weibo{

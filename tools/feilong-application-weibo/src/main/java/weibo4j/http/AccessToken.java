@@ -2,10 +2,11 @@ package weibo4j.http;
 
 import java.io.Serializable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import weibo4j.model.WeiboException;
 import weibo4j.model.WeiboResponse;
-import weibo4j.org.json.JSONException;
-import weibo4j.org.json.JSONObject;
 
 
 public class AccessToken extends WeiboResponse implements Serializable {

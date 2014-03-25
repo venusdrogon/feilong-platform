@@ -28,6 +28,7 @@ import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 import net.sf.json.util.JSONUtils;
 import net.sf.json.xml.XMLSerializer;
 
@@ -75,6 +76,40 @@ public final class JsonUtil{
 		// 注册器
 		MorpherRegistry morpherRegistry = JSONUtils.getMorpherRegistry();
 		morpherRegistry.registerMorpher(dateMorpher);
+	}
+
+	/**
+	 * Format.
+	 * 
+	 * @param obj
+	 *            the obj
+	 * @return the string
+	 */
+	public static String format(Object obj){
+		return format(obj, null);
+	}
+
+	/**
+	 * Format.
+	 * 
+	 * @param obj
+	 *            the obj
+	 * @param excludes
+	 *            the excludes 排除需要序列化成json的属性
+	 * @return the string
+	 */
+	public static String format(Object obj,String[] excludes){
+		JsonConfig jsonConfig = new JsonConfig();
+
+		// 排除,避免循环引用 There is a cycle in the hierarchy!
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+		jsonConfig.setIgnoreDefaultExcludes(true);
+
+		if (Validator.isNotNullOrEmpty(excludes)){
+			jsonConfig.setExcludes(excludes);
+		}
+		String string = JsonUtil.toJSON(obj, jsonConfig).toString(4, 4);
+		return string;
 	}
 
 	/**

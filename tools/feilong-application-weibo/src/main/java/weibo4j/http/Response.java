@@ -41,14 +41,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import weibo4j.model.Configuration;
 import weibo4j.model.WeiboException;
-import weibo4j.org.json.JSONArray;
-import weibo4j.org.json.JSONException;
-import weibo4j.org.json.JSONObject;
 
 /**
  * A data class representing HTTP Response

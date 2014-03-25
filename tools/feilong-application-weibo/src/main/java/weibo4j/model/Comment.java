@@ -1,13 +1,14 @@
 package weibo4j.model;
 
 import weibo4j.http.Response;
-import weibo4j.org.json.JSONArray;
-import weibo4j.org.json.JSONException;
-import weibo4j.org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Comment extends WeiboResponse implements java.io.Serializable {
 

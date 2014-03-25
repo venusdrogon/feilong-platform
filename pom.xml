@@ -374,8 +374,6 @@
 				<artifactId>json</artifactId>
 				<version>${version.org.json}</version>
 			</dependency>
-
-
 		</dependencies>
 	</dependencyManagement>
 

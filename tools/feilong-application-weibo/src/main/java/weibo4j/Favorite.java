@@ -2,14 +2,15 @@ package weibo4j;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import weibo4j.model.Favorites;
 import weibo4j.model.FavoritesTag;
 import weibo4j.model.Paging;
 import weibo4j.model.PostParameter;
 import weibo4j.model.Tag;
 import weibo4j.model.WeiboException;
-import weibo4j.org.json.JSONException;
-import weibo4j.org.json.JSONObject;
 import weibo4j.util.WeiboConfig;
 
 public class Favorite extends Weibo{

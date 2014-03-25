@@ -285,8 +285,26 @@ public final class RequestUtil{
 		while (attributeNames.hasMoreElements()){
 			String name = attributeNames.nextElement();
 			Object attributeValue = request.getAttribute(name);
+			// String[] excludes = {
+			// "autowireCapableBeanFactory",
+			// "classLoader",
+			// "servletConfig",
+			// "servletContext",
+			// "beanClassLoader",
+			// "environment",
+			// "beanFactory",
+			// "parentBeanFactory",
+			// "parent",
+			// "defaultAssertionStatus",
+			// "URLs" };
+			// log.debug("\n\tbegin name:[{}]", name);
+			//
+			// String string = JsonUtil.format(attributeValue, excludes);
+			// log.debug("\n\tname:[{}],\n\t:{}", name, string);
 			map.put(name, attributeValue);
 		}
+
+		// log.debug("the param request attributeNames:{}", JsonUtil.toJSON(map.keySet()).toString(4, 4));
 		return map;
 	}
 
@@ -326,7 +344,7 @@ public final class RequestUtil{
 
 		map.put("_errorMap", getErrorMap(request));
 		map.put("_headerMap", getHeaderMap(request));
-		map.put("_attributeMap", getAttributeMap(request));
+		map.put("_attributeKeys", getAttributeMap(request).keySet());
 
 		// 在3.0 是数组Map<String, String[]> getParameterMap
 		// The keys in the parameter map are of type String.
@@ -336,14 +354,8 @@ public final class RequestUtil{
 
 		// return JsonFormatUtil.format(map);
 
-		JsonConfig jsonConfig = new JsonConfig();
-
-		// 排除,避免循环引用 There is a cycle in the hierarchy!
-		String[] excludes = { "_attributeMap" };
-		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-		jsonConfig.setIgnoreDefaultExcludes(true);
-		jsonConfig.setExcludes(excludes);
-		return JsonUtil.toJSON(map, jsonConfig).toString(4, 4);
+		String string = JsonUtil.format(map);
+		return string;
 	}
 
 	/**

@@ -30,13 +30,13 @@ import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.log4j.Logger;
+import org.json.JSONException;
 
 import weibo4j.model.Configuration;
 import weibo4j.model.MySSLSocketFactory;
 import weibo4j.model.Paging;
 import weibo4j.model.PostParameter;
 import weibo4j.model.WeiboException;
-import weibo4j.org.json.JSONException;
 
 /**
  * @author sinaWeibo

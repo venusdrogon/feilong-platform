@@ -1,11 +1,13 @@
 package weibo4j;
 
 import java.util.List;
+
+import org.json.JSONObject;
+
 import weibo4j.model.PostParameter;
 import weibo4j.model.RateLimitStatus;
 import weibo4j.model.School;
 import weibo4j.model.WeiboException;
-import weibo4j.org.json.JSONObject;
 import weibo4j.util.WeiboConfig;
 
 public class Account extends Weibo{

@@ -1,7 +1,7 @@
 package weibo4j.model;
 
-import weibo4j.org.json.JSONException;
-import weibo4j.org.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Visible {
 	private int type;

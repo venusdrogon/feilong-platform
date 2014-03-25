@@ -1,9 +1,10 @@
 package weibo4j;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import weibo4j.model.PostParameter;
 import weibo4j.model.WeiboException;
-import weibo4j.org.json.JSONArray;
-import weibo4j.org.json.JSONObject;
 import weibo4j.util.WeiboConfig;
 
 public class PublicService extends Weibo{
