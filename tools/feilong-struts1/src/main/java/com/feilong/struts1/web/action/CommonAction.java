@@ -45,7 +45,7 @@ public class CommonAction extends DispatchAction{
 		HttpSession session = request.getSession();
 		String redirectHref = request.getParameter("redirectHref");
 		// 返回路径
-		session.setAttribute("backURL", RequestUtil.getReferer(request));
+		session.setAttribute("backURL", RequestUtil.getHeaderReferer(request));
 //		try{
 //			//response.sendRedirect(FeiLongSecurity.getDecryptParam(redirectHref));
 //		}catch (IOException e){

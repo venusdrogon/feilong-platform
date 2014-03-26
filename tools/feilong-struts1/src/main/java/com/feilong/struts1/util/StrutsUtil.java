@@ -69,7 +69,7 @@ public class StrutsUtil{
 		// String 字符串常量
 		// 在大部分情况下 StringBuffer > String
 		// 在大部分情况下 StringBuilder > StringBuffer
-		String referer = RequestUtil.getReferer(request);
+		String referer = RequestUtil.getHeaderReferer(request);
 		String path = getActionForwardHref(referer, flag, method, isAddSessionWarn);
 		return new ActionForward(path, true);
 	}

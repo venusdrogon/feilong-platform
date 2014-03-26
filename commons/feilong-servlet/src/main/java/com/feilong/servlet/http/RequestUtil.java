@@ -22,17 +22,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.net.URIUtil;
+import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * HttpServletRequest工具类.
@@ -165,6 +162,14 @@ public final class RequestUtil{
 	/** The Constant header_referer. */
 	public static final String	header_referer						= "referer";
 
+	/**
+	 * 1、Origin字段里只包含是谁发起的请求，并没有其他信息 (通常情况下是方案，主机和活动文档URL的端口)。<br>
+	 * 跟Referer不一样的是，Origin字段并没有包含涉及到用户隐私的URL路径和请求内容，这个尤其重要。 <br>
+	 * 2、Origin字段只存在于POST请求，而Referer则存在于所有类型的请求。<br>
+	 * .
+	 */
+	public static final String	header_origin						= "origin";
+
 	/** The Constant header_userAgent. */
 	public static final String	header_userAgent					= "User-Agent";
 
@@ -205,7 +210,7 @@ public final class RequestUtil{
 	 */
 	public static boolean isContainsParam(HttpServletRequest request,String param){
 		if (Validator.isNotNullOrEmpty(param)){
-			Map<String, String> map = getParameterMap(request);
+			Map<String, ?> map = getParameterMap(request);
 			return map.containsKey(param);
 		}
 		return false;
@@ -231,9 +236,10 @@ public final class RequestUtil{
 	 *            the request
 	 * @return the parameter map
 	 */
-	public static Map<String, String> getParameterMap(HttpServletRequest request){
+	public static Map<String, ?> getParameterMap(HttpServletRequest request){
 		@SuppressWarnings("unchecked")
-		Map<String, String> map = request.getParameterMap();
+		// servlet 3.0 此处返回的是 泛型数组 Map<String, String[]>
+		Map<String, ?> map = request.getParameterMap();
 		// http://localhost:8888/s.htm?keyword&a=
 		// 这种链接
 		// map key 会是 keyword,a 值都是空
@@ -309,52 +315,69 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 将request 相关 get 数据 转成 \n 分隔的 String,以便log 显示.
+	 * 将request 相关属性，数据转成json格式 以便log显示.
 	 * 
 	 * @param request
 	 *            the request
 	 * @return the request string for log
 	 */
 	public static String getRequestStringForLog(HttpServletRequest request){
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("request.getAuthType()", request.getAuthType());
-		map.put("request.getCharacterEncoding()", request.getCharacterEncoding());
-		map.put("request.getContentLength()", request.getContentLength());
-		map.put("request.getContextPath()", request.getContextPath());
-		map.put("request.getLocalAddr()", request.getLocalAddr());
 		map.put("request.getLocale()", request.getLocale());
-		map.put("request.getLocalName()", request.getLocalName());
-		map.put("request.getLocalPort()", request.getLocalPort());
-		map.put("request.getMethod()", request.getMethod());
-		map.put("request.getPathInfo()", request.getPathInfo());
-		map.put("request.getPathTranslated()", request.getPathTranslated());
-		map.put("request.getProtocol()", request.getProtocol());
-		map.put("request.getQueryString()", request.getQueryString());
-		map.put("request.getRemoteAddr()", request.getRemoteAddr());
-		map.put("request.getRemoteHost()", request.getRemoteHost());
-		map.put("request.getRemoteUser()", request.getRemoteUser());
-		map.put("request.getRemotePort()", request.getRemotePort());
-		map.put("request.getRequestedSessionId()", request.getRequestedSessionId());
-		map.put("request.getRequestURI()", request.getRequestURI());
-		map.put("request.getRequestURL()", request.getRequestURL());
-		map.put("request.getScheme()", request.getScheme());
-		map.put("request.getServerName()", request.getServerName());
-		map.put("request.getServerPort()", request.getServerPort());
-		map.put("request.getServletPath()", request.getServletPath());
+
+		Map<String, String> aboutElseMap = new HashMap<String, String>();
+		aboutElseMap.put("request.getAuthType()", request.getAuthType());
+		aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
+		aboutElseMap.put("request.getContentLength()", request.getContentLength() + "");
+		aboutElseMap.put("request.getLocalName()", request.getLocalName());
+		aboutElseMap.put("request.getMethod()", request.getMethod());
+		aboutElseMap.put("request.getProtocol()", request.getProtocol());
+		aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
+		aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
+		aboutElseMap.put("request.getScheme()", request.getScheme());
+		map.put("aboutElseMap", aboutElseMap);
+
+		Map<String, String> aboutPortMap = new HashMap<String, String>();
+		aboutPortMap.put("request.getLocalPort()", request.getLocalPort() + "");
+		aboutPortMap.put("request.getRemotePort()", request.getRemotePort() + "");
+		aboutPortMap.put("request.getServerPort()", request.getServerPort() + "");
+		map.put("aboutPortMap", aboutPortMap);
+
+		Map<String, String> aboutIPMap = new HashMap<String, String>();
+		aboutIPMap.put("request.getLocalAddr()", request.getLocalAddr());
+		aboutIPMap.put("request.getRemoteAddr()", request.getRemoteAddr());
+		aboutIPMap.put("request.getRemoteHost()", request.getRemoteHost());
+		aboutIPMap.put("request.getServerName()", request.getServerName());
+		aboutIPMap.put("getClientIp", getClientIp(request));
+		map.put("aboutIPMap", aboutIPMap);
+
+		Map<String, String> aboutURLMap = new HashMap<String, String>();
+		aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
+		aboutURLMap.put("request.getRequestURL()", request.getRequestURL().toString());
+		aboutURLMap.put("request.getQueryString()", request.getQueryString());
+		aboutURLMap.put("request.getServletPath()", request.getServletPath());
+		aboutURLMap.put("request.getPathInfo()", request.getPathInfo());
+		aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
+		aboutURLMap.put("request.getContextPath()", request.getContextPath());
+		map.put("aboutURLMap", aboutURLMap);
 
 		map.put("_errorMap", getErrorMap(request));
 		map.put("_headerMap", getHeaderMap(request));
+
+		// 避免json渲染出错，只放 key
 		map.put("_attributeKeys", getAttributeMap(request).keySet());
 
 		// 在3.0 是数组Map<String, String[]> getParameterMap
 		// The keys in the parameter map are of type String.
 		// The values in the parameter map are of type String array.
-		Map parameterMap = request.getParameterMap();
+		Map<String, ?> parameterMap = getParameterMap(request);
 		map.put("_parameterMap", parameterMap);
 
-		// return JsonFormatUtil.format(map);
+		String string = JsonFormatUtil.format(map);
 
-		String string = JsonUtil.format(map);
+		// 好慢
+		// String string = JsonUtil.format(map);
 		return string;
 	}
 
@@ -625,8 +648,21 @@ public final class RequestUtil{
 	 *            the request
 	 * @return 上上个请求的URL
 	 */
-	public final static String getReferer(HttpServletRequest request){
+	public final static String getHeaderReferer(HttpServletRequest request){
 		return request.getHeader(header_referer);
+	}
+
+	/**
+	 * 1、Origin字段里只包含是谁发起的请求，并没有其他信息 (通常情况下是方案，主机和活动文档URL的端口)。 <br>
+	 * 跟Referer不一样的是，Origin字段并没有包含涉及到用户隐私的URL路径和请求内容，这个尤其重要。 <br>
+	 * 2、Origin字段只存在于POST请求，而Referer则存在于所有类型的请求。.
+	 * 
+	 * @param request
+	 *            the request
+	 * @return the header origin
+	 */
+	public final static String getHeaderOrigin(HttpServletRequest request){
+		return request.getHeader(header_origin);
 	}
 
 	/**

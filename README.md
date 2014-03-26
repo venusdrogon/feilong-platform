@@ -1,7 +1,7 @@
 feilong-platform
 ================
 
-reduce development, release ideas
+Reduce development, Release ideas
 
 
 #Welcome to feilong-platform.
@@ -16,35 +16,33 @@ reduce development, release ideas
 ```XML
 <dependencies>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.1</version>
       <scope>compile</scope>
     </dependency>
+    
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.8.3</version>
       <scope>compile</scope>
     </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.10</version>
       <scope>test</scope>
     </dependency>
+    
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.6.4</version>
+      <version>1.7.6</version>
       <scope>compile</scope>
     </dependency>
+    
   </dependencies>
 ```
 
@@ -54,7 +52,7 @@ reduce development, release ideas
 
 ## com.feilong.commons.core.date 包下有以下几个类:
 
-* ★ DateUtil 时间工具类
+* ★  DateUtil时间工具类  
 * ★ CalendarUtil 日历工具类
 * DatePattern 时间格式,用于formart
 * ConstellationType 星座枚举类

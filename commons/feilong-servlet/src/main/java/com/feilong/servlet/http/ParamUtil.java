@@ -33,14 +33,18 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 处理参数相关
+ * 处理参数相关.
  * 
  * @author 金鑫 2010-4-15 下午04:01:29
  */
 public final class ParamUtil{
 
+	/**
+	 * Instantiates a new param util.
+	 */
 	private ParamUtil(){}
 
+	/** The default charset type. */
 	private static String	defaultCharsetType	= CharsetType.UTF8;
 
 	/**
@@ -75,7 +79,7 @@ public final class ParamUtil{
 
 	// *********************************获取值**************************************************
 	/**
-	 * 将参数值转换成int类型
+	 * 将参数值转换成int类型.
 	 * 
 	 * @param request
 	 *            请求
@@ -89,7 +93,7 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 将参数值转换成BigDecimal类型
+	 * 将参数值转换成BigDecimal类型.
 	 * 
 	 * @param request
 	 *            请求
@@ -103,7 +107,7 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 获得request中的请求参数值
+	 * 获得request中的请求参数值.
 	 * 
 	 * @param request
 	 *            当前请求
@@ -116,10 +120,12 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题
+	 * 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题.
 	 * 
 	 * @param request
+	 *            the request
 	 * @param paramName
+	 *            the param name
 	 * @return 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题
 	 */
 	public static String getParameterWithoutSharp(HttpServletRequest request,String paramName){
@@ -157,26 +163,12 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * FormatHTML取到参数值,通常处理文本域里的换行问题
-	 * 
-	 * @param request
-	 * @param paramName
-	 *            参数名称
-	 * @return FormatHTML取到参数值,通常处理文本域里的换行问题
-	 */
-	@Deprecated
-	public static String getParameterWithFormatHTML(HttpServletRequest request,String paramName){
-		String returnValue = getParameter(request, paramName);
-		returnValue = returnValue.replace("\r\n", "<br/>");// 换行
-		return returnValue;
-	}
-
-	/**
-	 * 取到参数值,没有返回null,有去除空格返回
+	 * 取到参数值,没有返回null,有去除空格返回.
 	 * 
 	 * @param request
 	 *            当前请求
 	 * @param paramName
+	 *            the param name
 	 * @return 取到参数值,没有返回null,有去除空格返回
 	 */
 	public static String getParameterWithTrim(HttpServletRequest request,String paramName){
@@ -190,13 +182,16 @@ public final class ParamUtil{
 	// ************************************addParameter******************************************************
 
 	/**
-	 * 添加参数 加入含有该参数会替换掉
+	 * 添加参数 加入含有该参数会替换掉.
 	 * 
 	 * @param url
+	 *            the url
 	 * @param paramName
 	 *            添加的参数名称
 	 * @param parameValue
 	 *            添加的参数值
+	 * @param charsetType
+	 *            the charset type
 	 * @return 添加参数 加入含有该参数会替换掉
 	 */
 	public static String addParameter(String url,String paramName,Object parameValue,String charsetType){
@@ -205,17 +200,15 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 添加参数 加入含有该参数会替换掉
+	 * 添加参数 加入含有该参数会替换掉.
 	 * 
-	 * @param uri
-	 *            URI 统一资源标识符 (URI),<br>
-	 *            如果带有? 和参数,会先被截取,最后再拼接,<br>
-	 *            如果不带?,则自动 增加?
+	 * @param url
+	 *            the url
 	 * @param nameAndValueMap
 	 *            nameAndValueMap param name 和value 的键值对
+	 * @param charsetType
+	 *            the charset type
 	 * @return 添加参数 加入含有该参数会替换掉
-	 * @exception 如果FeiLongValidator.isNull
-	 *                (nameAndValueMap) 则IllegalArgumentException
 	 */
 	public static String addParameter(String url,Map<String, ? extends Object> nameAndValueMap,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
@@ -223,7 +216,7 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 添加参数 加入含有该参数会替换掉
+	 * 添加参数 加入含有该参数会替换掉.
 	 * 
 	 * @param uri
 	 *            URI 统一资源标识符 (URI),<br>
@@ -244,7 +237,7 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 添加参数 加入含有该参数会替换掉
+	 * 添加参数 加入含有该参数会替换掉.
 	 * 
 	 * @param uri
 	 *            URI 统一资源标识符 (URI),<br>
@@ -255,8 +248,6 @@ public final class ParamUtil{
 	 * @param charsetType
 	 *            编码
 	 * @return 添加参数 加入含有该参数会替换掉
-	 * @exception 如果FeiLongValidator.isNull
-	 *                (nameAndValueMap) 则IllegalArgumentException
 	 */
 	public static String addParameter(URI uri,Map<String, ? extends Object> nameAndValueMap,String charsetType){
 		if (null == uri){
@@ -287,17 +278,13 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 添加参数 加入含有该参数会替换掉
+	 * 添加参数 加入含有该参数会替换掉.
 	 * 
-	 * @param uri
-	 *            URI 统一资源标识符 (URI),<br>
-	 *            如果带有? 和参数,会先被截取,最后再拼接,<br>
-	 *            如果不带?,则自动 增加?
+	 * @param url
+	 *            the url
 	 * @param nameAndValueMap
 	 *            nameAndValueMap param name 和value 的键值对
 	 * @return 添加参数 加入含有该参数会替换掉
-	 * @exception 如果FeiLongValidator.isNull
-	 *                (nameAndValueMap) 则IllegalArgumentException
 	 */
 	@Deprecated
 	public static String addParameter(String url,Map<String, ? extends Object> nameAndValueMap){
@@ -310,6 +297,7 @@ public final class ParamUtil{
 	 * 默认使用CharsetType.UTF8解析参数
 	 * 
 	 * @param url
+	 *            the url
 	 * @param paramName
 	 *            添加的参数名称
 	 * @param parameValue
@@ -327,11 +315,12 @@ public final class ParamUtil{
 	 * 默认使用CharsetType.UTF8解析参数
 	 * 
 	 * @param uri
+	 *            the uri
 	 * @param paramName
 	 *            添加的参数名称
 	 * @param parameValue
 	 *            添加的参数值
-	 * @return
+	 * @return the string
 	 * @deprecated 分页组件 vm会调用 暂时还不能删除
 	 */
 	public static String addParameter(URI uri,String paramName,Object parameValue){
@@ -341,13 +330,15 @@ public final class ParamUtil{
 	// ********************************removeParameter*********************************************************************
 
 	/**
-	 * 删除参数
+	 * 删除参数.
 	 * 
 	 * @param url
+	 *            the url
 	 * @param paramName
+	 *            the param name
 	 * @param charsetType
 	 *            编码
-	 * @return
+	 * @return the string
 	 */
 	public static String removeParameter(String url,String paramName,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
@@ -355,13 +346,15 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 删除参数
+	 * 删除参数.
 	 * 
 	 * @param uri
+	 *            the uri
 	 * @param paramName
+	 *            the param name
 	 * @param charsetType
 	 *            编码
-	 * @return
+	 * @return the string
 	 */
 	private static String removeParameter(URI uri,String paramName,String charsetType){
 		List<String> paramNameList = null;
@@ -373,13 +366,15 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 删除参数
+	 * 删除参数.
 	 * 
 	 * @param url
+	 *            the url
 	 * @param paramNameList
+	 *            the param name list
 	 * @param charsetType
 	 *            编码
-	 * @return
+	 * @return the string
 	 */
 	public static String removeParameter(String url,List<String> paramNameList,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
@@ -387,13 +382,15 @@ public final class ParamUtil{
 	};
 
 	/**
-	 * 删除参数
+	 * 删除参数.
 	 * 
 	 * @param uri
+	 *            the uri
 	 * @param paramNameList
+	 *            the param name list
 	 * @param charsetType
 	 *            编码
-	 * @return
+	 * @return the string
 	 */
 	public static String removeParameter(URI uri,List<String> paramNameList,String charsetType){
 		if (null == uri){
@@ -424,11 +421,13 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * 删除参数
+	 * 删除参数.
 	 * 
 	 * @param url
+	 *            the url
 	 * @param paramName
-	 * @return
+	 *            the param name
+	 * @return the string
 	 * @deprecated use removeParameter(url, paramName, charsetType)
 	 */
 	public static String removeParameter(String url,String paramName){
@@ -438,13 +437,15 @@ public final class ParamUtil{
 	// **************************************retentionParams********************************************************
 
 	/**
-	 * url里面仅保留 指定的参数
+	 * url里面仅保留 指定的参数.
 	 * 
 	 * @param url
+	 *            the url
 	 * @param paramNameList
+	 *            the param name list
 	 * @param charsetType
 	 *            编码
-	 * @return
+	 * @return the string
 	 */
 	public static String retentionParams(String url,List<String> paramNameList,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
@@ -452,13 +453,15 @@ public final class ParamUtil{
 	}
 
 	/**
-	 * url里面仅保留 指定的参数
+	 * url里面仅保留 指定的参数.
 	 * 
 	 * @param uri
+	 *            the uri
 	 * @param paramNameList
+	 *            the param name list
 	 * @param charsetType
 	 *            编码
-	 * @return
+	 * @return the string
 	 */
 	public static String retentionParams(URI uri,List<String> paramNameList,String charsetType){
 		if (null == uri){
@@ -488,18 +491,4 @@ public final class ParamUtil{
 			}
 		}
 	}
-
-	/**
-	 * url里面仅保留 指定的参数<br>
-	 * 默认使用utf-8
-	 * 
-	 * @param url
-	 * @param paramNameList
-	 * @return
-	 * @deprecated 请使用带参数 {@link #retentionParams(String, List, String)} 代替
-	 */
-	public static String retentionParams(String url,List<String> paramNameList){
-		return retentionParams(url, paramNameList, defaultCharsetType);
-	}
-
 }
