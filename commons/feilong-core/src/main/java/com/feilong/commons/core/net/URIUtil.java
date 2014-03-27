@@ -45,7 +45,7 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 处理url uri 等
+ * 处理url uri 等.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-6-11 上午02:06:43
@@ -53,14 +53,13 @@ import com.feilong.commons.core.util.Validator;
  */
 public final class URIUtil{
 
+	/** The Constant log. */
 	private static final Logger	log				= LoggerFactory.getLogger(URIUtil.class);
 
-	/** 查询片段 <code>{@value}</code> */
+	/** 查询片段 <code>{@value}</code>. */
 	public static final String	fragment		= "#";
 
-	/**
-	 * ? The question mark is used as a separator and is not part of the query string
-	 */
+	/** ? The question mark is used as a separator and is not part of the query string. */
 	public static final String	questionMark	= "?";
 
 	/**
@@ -68,7 +67,8 @@ public final class URIUtil{
 	 * 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
 	 * 
 	 * @param path
-	 * @return
+	 *            the path
+	 * @return the URI
 	 */
 	public static URI getURI(String path){
 		try{
@@ -82,7 +82,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 验证path是不是绝对路径
+	 * 验证path是不是绝对路径.
 	 * 
 	 * @param path
 	 *            待验证的字符串
@@ -103,6 +103,7 @@ public final class URIUtil{
 	 * 如果知道URI是有效的，不会产生URISyntaxException，可以使用静态的create(String uri)方法
 	 * 
 	 * @param url
+	 *            the url
 	 * @param charsetType
 	 *            decode/encode 编码
 	 * @return 如果异常 返回null
@@ -155,7 +156,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 拼接url(如果charsetType 是null,则原样拼接,如果不是空,则返回安全的url)
+	 * 拼接url(如果charsetType 是null,则原样拼接,如果不是空,则返回安全的url).
 	 * 
 	 * @param beforeUrl
 	 *            支持带?的形式, 内部自动解析
@@ -163,7 +164,7 @@ public final class URIUtil{
 	 *            参数map value将会被 toString
 	 * @param charsetType
 	 *            编码,如果为空 ,name 和value 不进行编码
-	 * @return
+	 * @return the encoded url
 	 */
 	public static String getEncodedUrl(String beforeUrl,Map<String, ?> paramMap,String charsetType){
 		// map 不是空 表示 有参数
@@ -242,7 +243,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 将a=1&b=2这样格式的数据转换成map,这个方法不会处理 特殊符号 中文等不兼容情况
+	 * 将a=1&b=2这样格式的数据转换成map,这个方法不会处理 特殊符号 中文等不兼容情况.
 	 * 
 	 * @param query
 	 *            a=1&b=2类型的数据
@@ -254,7 +255,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 将a=1&b=2这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value)
+	 * 将a=1&b=2这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
 	 * 
 	 * @param query
 	 *            a=1&b=2类型的数据
@@ -300,9 +301,10 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 获取链接?前面的连接(不包含?)
+	 * 获取链接?前面的连接(不包含?).
 	 * 
 	 * @param url
+	 *            the url
 	 * @return 如果 url 为空 返回 ""
 	 */
 	public static String getBeforePath(String url){
@@ -364,7 +366,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 将字符串路径转成url
+	 * 将字符串路径转成url.
 	 * 
 	 * @param pathName
 	 *            字符串路径
@@ -382,34 +384,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * ******************************************** 去除乱码 *************************************************
-	 */
-	/**
-	 * iso-8859的方式去除乱码(默认采用Constants.bianma)
-	 * 
-	 * @param str
-	 *            字符串
-	 * @return 原来的字符串
-	 * @deprecated
-	 */
-	public static String decodeLuanMa_ISO8859(String str){
-		return decodeLuanMa_ISO8859(str, CharsetType.GB2312);
-	}
-
-	// /**
-	// * iso-8859的方式去除乱码
-	// *
-	// * @param str
-	// * 字符串
-	// * @return 原来的字符串
-	// * @deprecated
-	// */
-	// public static String decodeLuanMa_ISO8859_UTF(String str){
-	// return decodeLuanMa_ISO8859(str, CharsetType.UTF8);
-	// }
-
-	/**
-	 * iso-8859的方式去除乱码
+	 * iso-8859的方式去除乱码.
 	 * 
 	 * @param str
 	 *            字符串
@@ -443,11 +418,12 @@ public final class URIUtil{
 	 * </ul>
 	 * 
 	 * @param value
+	 *            the value
 	 * @param charsetType
 	 *            charsetType {@link CharsetType}
-	 * @see CharsetType
 	 * @return 加码之后的值<br>
 	 *         如果 charsetType 是空 原样返回 value
+	 * @see CharsetType
 	 */
 	public static String encode(String value,String charsetType){
 		if (Validator.isNullOrEmpty(charsetType)){
@@ -473,21 +449,14 @@ public final class URIUtil{
 	 * UTF-8 should be used. Not doing so may introduce
 	 * incompatibilites.</em>
 	 * 
-	 * @param s
-	 *            the <code>String</code> to decode
-	 * @param enc
-	 *            The name of a supported <a href="../lang/package-summary.html#charenc">character encoding</a>.
-	 * @return the newly decoded <code>String</code>
-	 * @exception UnsupportedEncodingException
-	 *                If character encoding needs to be consulted, but named character encoding is not supported
-	 * @see URLEncoder#encode(java.lang.String, java.lang.String)
 	 * @param value
 	 *            需要被解码的值
 	 * @param charsetType
 	 *            charsetType {@link CharsetType}
-	 * @see CharsetType
-	 * @return 解码之后的值<br>
+	 * @return the newly decoded <code>String</code> 解码之后的值<br>
 	 *         如果 charsetType 是空 原样返回 value
+	 * @see URLEncoder#encode(java.lang.String, java.lang.String)
+	 * @see CharsetType
 	 */
 	public static String decode(String value,String charsetType){
 		if (Validator.isNullOrEmpty(charsetType)){
@@ -502,7 +471,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * url中的特殊字符转为16进制代码,用于url传递
+	 * url中的特殊字符转为16进制代码,用于url传递.
 	 * 
 	 * @param specialCharacter
 	 *            特殊字符

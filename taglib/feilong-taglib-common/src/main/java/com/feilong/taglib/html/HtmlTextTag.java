@@ -17,6 +17,7 @@ package com.feilong.taglib.html;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.CookieUtil;
@@ -97,7 +98,7 @@ public class HtmlTextTag extends BaseHtmlTag{
 			}
 			// 参数值
 			else if (isHasParamAttribute){
-				valueString = URIUtil.decodeLuanMa_ISO8859(p_nameValue);
+				valueString = URIUtil.decodeLuanMa_ISO8859(p_nameValue, CharsetType.GB2312);
 			}
 			// cookie值
 			else if (isHasCookieAttribute){

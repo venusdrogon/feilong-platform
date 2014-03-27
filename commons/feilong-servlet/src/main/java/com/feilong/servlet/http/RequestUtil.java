@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.Constants;
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.ObjectUtil;
@@ -244,6 +245,27 @@ public final class RequestUtil{
 		// 这种链接
 		// map key 会是 keyword,a 值都是空
 		return map;
+	}
+
+	public static String getQueryString(HttpServletRequest request){
+		// Returns the query string that is contained in the request URL after the path.
+		// This method returns null if the URL does not have a query string.
+		// Same as the value of the CGI variable QUERY_STRING.
+		// 它只对get方法得到的数据有效。
+
+		String queryString = request.getQueryString();
+
+		// Returns the name of the HTTP method with which this request was made,
+		// for example, GET, POST, or PUT.
+		// Same as the value of the CGI variable REQUEST_METHOD.
+		String method = request.getMethod();
+
+		if (method.toUpperCase().equals("POST")){
+			Map<String, ?> map = getParameterMap(request);
+			queryString = "";
+			return queryString;
+		}
+		return queryString;
 	}
 
 	/**
@@ -505,7 +527,7 @@ public final class RequestUtil{
 		if (Validator.isNullOrEmpty(queryString)){
 			returnValue = getRequestURL(request);
 		}else{
-			returnValue = getRequestURL(request) + "?" + URIUtil.decodeLuanMa_ISO8859(queryString);
+			returnValue = getRequestURL(request) + "?" + URIUtil.decodeLuanMa_ISO8859(queryString, CharsetType.GB2312);
 		}
 		return returnValue;
 	}

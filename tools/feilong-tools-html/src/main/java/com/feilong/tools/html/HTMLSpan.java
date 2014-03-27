@@ -15,6 +15,7 @@
  */
 package com.feilong.tools.html;
 
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -156,7 +157,7 @@ public final class HTMLSpan{
 		// 高亮文字不是空
 		if (Validator.isNotNullOrEmpty(highLight)){
 			String default_color = "#FB7E1E";
-			highLight = URIUtil.decodeLuanMa_ISO8859(highLight);
+			highLight = URIUtil.decodeLuanMa_ISO8859(highLight, CharsetType.GB2312);
 			if (Validator.isNotNullOrEmpty(highLightColor)){
 				default_color = highLightColor;
 			}

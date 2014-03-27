@@ -26,7 +26,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.StringUtil;
@@ -43,9 +42,6 @@ public final class ParamUtil{
 	 * Instantiates a new param util.
 	 */
 	private ParamUtil(){}
-
-	/** The default charset type. */
-	private static String	defaultCharsetType	= CharsetType.UTF8;
 
 	/**
 	 * 生成待签名的字符串 <br>
@@ -277,56 +273,6 @@ public final class ParamUtil{
 		return URIUtil.getEncodedUrl(before, map, charsetType);
 	}
 
-	/**
-	 * 添加参数 加入含有该参数会替换掉.
-	 * 
-	 * @param url
-	 *            the url
-	 * @param nameAndValueMap
-	 *            nameAndValueMap param name 和value 的键值对
-	 * @return 添加参数 加入含有该参数会替换掉
-	 */
-	@Deprecated
-	public static String addParameter(String url,Map<String, ? extends Object> nameAndValueMap){
-		URI uri = URIUtil.create(url, CharsetType.UTF8);
-		return addParameter(uri, nameAndValueMap, defaultCharsetType);
-	}
-
-	/**
-	 * 添加参数 加入含有该参数会替换掉<br>
-	 * 默认使用CharsetType.UTF8解析参数
-	 * 
-	 * @param url
-	 *            the url
-	 * @param paramName
-	 *            添加的参数名称
-	 * @param parameValue
-	 *            添加的参数值
-	 * @return 添加参数 加入含有该参数会替换掉
-	 * @deprecated 请使用{@link #addParameter(String, String, Object, String)} 代替,<br>
-	 *             分页组件 vm会调用 暂时还不能删除
-	 */
-	public static String addParameter(String url,String paramName,Object parameValue){
-		return addParameter(url, paramName, parameValue, defaultCharsetType);
-	}
-
-	/**
-	 * 添加参数 加入含有该参数会替换掉 <br>
-	 * 默认使用CharsetType.UTF8解析参数
-	 * 
-	 * @param uri
-	 *            the uri
-	 * @param paramName
-	 *            添加的参数名称
-	 * @param parameValue
-	 *            添加的参数值
-	 * @return the string
-	 * @deprecated 分页组件 vm会调用 暂时还不能删除
-	 */
-	public static String addParameter(URI uri,String paramName,Object parameValue){
-		return addParameter(uri, paramName, parameValue, defaultCharsetType);
-	}
-
 	// ********************************removeParameter*********************************************************************
 
 	/**
@@ -418,20 +364,6 @@ public final class ParamUtil{
 			}
 			return URIUtil.getEncodedUrl(before, map, charsetType);
 		}
-	}
-
-	/**
-	 * 删除参数.
-	 * 
-	 * @param url
-	 *            the url
-	 * @param paramName
-	 *            the param name
-	 * @return the string
-	 * @deprecated use removeParameter(url, paramName, charsetType)
-	 */
-	public static String removeParameter(String url,String paramName){
-		return removeParameter(url, paramName, defaultCharsetType);
 	}
 
 	// **************************************retentionParams********************************************************
