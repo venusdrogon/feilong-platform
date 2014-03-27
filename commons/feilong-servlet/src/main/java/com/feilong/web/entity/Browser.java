@@ -77,7 +77,7 @@ public class Browser implements Serializable{
 	 *            the request
 	 */
 	public Browser(HttpServletRequest request){
-		this.userAgent = RequestUtil.getUserAgent(request);
+		this.userAgent = RequestUtil.getHeaderUserAgent(request);
 
 		if (log.isDebugEnabled()){
 			log.debug("the ua:[{}]", userAgent);
