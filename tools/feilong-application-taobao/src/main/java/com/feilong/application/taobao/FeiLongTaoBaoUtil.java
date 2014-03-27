@@ -59,8 +59,8 @@ public class FeiLongTaoBaoUtil{
 	 * @param taoBaoStandardLoginOutEntity
 	 *            {@link TaoBaoStandardLoginOutEntity}
 	 * @return 获得淘宝退出登录,完整url,如<br>
-	 *         http://container.api.taobao.com/container/logoff?app_key=12129547&sign=06E307E5164260BF87B2E75689AC77B6&sign_method=md5&timestamp=2010-12-06
-	 *         17:19:08
+	 *         http://container.api.taobao.com/container/logoff?app_key=12129547&sign=06E307E5164260BF87B2E75689AC77B6&sign_method=md5&
+	 *         timestamp=2010-12-06 17:19:08
 	 */
 	public static String getTaoBaoStandardLoginOutUrl(TaoBaoStandardLoginOutEntity taoBaoStandardLoginOutEntity){
 		// validate taoBaoStandardLoginOutEntity
@@ -94,9 +94,9 @@ public class FeiLongTaoBaoUtil{
 			// 组装协议参数sign
 			apiparamsMap.put("sign", sign(apiparamsMap, taoBaoStandardLoginOutEntity.getApp_secret()));
 			/******************************************************************************************/
-			Map<String, Object> nameAndValueMap1 = new HashMap<String, Object>();
+			Map<String, String> nameAndValueMap1 = new HashMap<String, String>();
 			nameAndValueMap1.putAll(apiparamsMap);
-			return ParamUtil.addParameter(taoBaoStandardLoginOutEntity.getRequestUrl(), nameAndValueMap1,CharsetType.UTF8);
+			return ParamUtil.addParameterValueMap(taoBaoStandardLoginOutEntity.getRequestUrl(), nameAndValueMap1, CharsetType.UTF8);
 		}
 	}
 
@@ -106,8 +106,8 @@ public class FeiLongTaoBaoUtil{
 	 * @param taoBaoStandardLoginEntity
 	 *            {@link TaoBaoStandardLoginEntity}
 	 * @return 获得淘宝 快速登录实现,完整url,如<br>
-	 *         http://container.api.taobao.com/container/identify?app_key=12129547&sign=B78AC46FDD0470661BC2B9B0E11E10FE&sign_method=md5&target
-	 *         =1&timestamp=2010-12-06%2017:23:54
+	 *         http://container.api.taobao.com/container/identify?app_key=12129547&sign=B78AC46FDD0470661BC2B9B0E11E10FE&sign_method=md5&
+	 *         target =1&timestamp=2010-12-06%2017:23:54
 	 */
 	public static String getTaoBaoStandardLoginUrl(TaoBaoStandardLoginEntity taoBaoStandardLoginEntity){
 		// validate taoBaoStandardLoginEntity
@@ -146,9 +146,9 @@ public class FeiLongTaoBaoUtil{
 			}
 			nameAndValueMap.put("sign", sign(nameAndValueMap, taoBaoStandardLoginEntity.getApp_secret()));
 			/**************************************************************************/
-			Map<String, Object> nameAndValueMap1 = new HashMap<String, Object>();
+			Map<String, String> nameAndValueMap1 = new HashMap<String, String>();
 			nameAndValueMap1.putAll(nameAndValueMap);
-			return ParamUtil.addParameter(taoBaoStandardLoginEntity.getRequestUrl(), nameAndValueMap1,CharsetType.UTF8);
+			return ParamUtil.addParameterValueMap(taoBaoStandardLoginEntity.getRequestUrl(), nameAndValueMap1, CharsetType.UTF8);
 		}
 	}
 
@@ -185,10 +185,10 @@ public class FeiLongTaoBaoUtil{
 				nameAndValueMap.put("state", taoBaoOAuthLoginForCodeEntity.getState());
 			}
 			/**********************************************************************/
-			Map<String, Object> nameAndValueMap1 = new HashMap<String, Object>();
+			Map<String, String> nameAndValueMap1 = new HashMap<String, String>();
 			nameAndValueMap1.putAll(nameAndValueMap);
 			/**********************************************************************/
-			return ParamUtil.addParameter(taoBaoOAuthLoginForCodeEntity.getRequestUrl(), nameAndValueMap1,CharsetType.UTF8);
+			return ParamUtil.addParameterValueMap(taoBaoOAuthLoginForCodeEntity.getRequestUrl(), nameAndValueMap1, CharsetType.UTF8);
 		}
 	}
 

@@ -33,14 +33,18 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.util.ArrayUtil;
+import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -61,6 +65,11 @@ public final class URIUtil{
 
 	/** ? The question mark is used as a separator and is not part of the query string. */
 	public static final String	questionMark	= "?";
+
+	/** The Constant ampersand. */
+	public static final String	ampersand		= "&";
+
+	// public static final String equal = "=";
 
 	/**
 	 * URI uri = new URI(path);<br>
@@ -134,8 +143,8 @@ public final class URIUtil{
 					// 此处不能先转 ,参数就是想传 =是转义符
 					// query = decode(query, charsetType);
 
-					Map<String, String> map = parseQueryToMap(query);
-					url = getEncodedUrl(before, map, charsetType);
+					Map<String, String[]> map = parseQueryToArrayMap(query, charsetType);
+					url = getEncodedUrlByArrayMap(before, map, charsetType);
 
 					if (log.isDebugEnabled()){
 						log.debug("after url:{}", url);
@@ -159,19 +168,43 @@ public final class URIUtil{
 	 * 拼接url(如果charsetType 是null,则原样拼接,如果不是空,则返回安全的url).
 	 * 
 	 * @param beforeUrl
-	 *            支持带?的形式, 内部自动解析
-	 * @param paramMap
-	 *            参数map value将会被 toString
+	 *            支持带?的形式, 内部自动解析,如果 是 ？ 形似 ，参数会自动混合到 keyAndValueMap
+	 * @param keyAndValueMap
+	 *            单值Map，会转成 数组值Map
+	 * @param charsetType
+	 *            the charset type
+	 * @return the encoded url1
+	 */
+	public static String getEncodedUrlByValueMap(String beforeUrl,Map<String, String> keyAndValueMap,String charsetType){
+		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
+
+		if (Validator.isNotNullOrEmpty(keyAndValueMap)){
+			for (Map.Entry<String, String> entry : keyAndValueMap.entrySet()){
+				String key = entry.getKey();
+				String value = entry.getValue();
+				keyAndArrayMap.put(key, new String[] { value });
+			}
+		}
+
+		return getEncodedUrlByArrayMap(beforeUrl, keyAndArrayMap, charsetType);
+	}
+
+	/**
+	 * 拼接url(如果charsetType 是null,则原样拼接,如果不是空,则返回安全的url).
+	 * 
+	 * @param beforeUrl
+	 *            支持带?的形式, 内部自动解析,如果 是 ？ 形似 ，参数会自动混合到 keyAndArrayMap
+	 * @param keyAndArrayMap
+	 *            参数map value支持数组，类似于 request.getParameterMap
 	 * @param charsetType
 	 *            编码,如果为空 ,name 和value 不进行编码
 	 * @return the encoded url
 	 */
-	public static String getEncodedUrl(String beforeUrl,Map<String, ?> paramMap,String charsetType){
+	public static String getEncodedUrlByArrayMap(String beforeUrl,Map<String, String[]> keyAndArrayMap,String charsetType){
 		// map 不是空 表示 有参数
-		if (Validator.isNotNullOrEmpty(paramMap)){
-
-			Map<String, Object> appendMap = new HashMap<String, Object>();
-			appendMap.putAll(paramMap);
+		if (Validator.isNotNullOrEmpty(keyAndArrayMap)){
+			Map<String, String[]> appendMap = new HashMap<String, String[]>();
+			appendMap.putAll(keyAndArrayMap);
 
 			// 注意 action before 可能带参数
 			// "action": "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest",
@@ -196,7 +229,7 @@ public final class URIUtil{
 				// 此处不能先转 ,参数就是想传 =是转义符
 				// query = decode(query, charsetType);
 
-				Map<String, String> map = parseQueryToMap(query);
+				Map<String, String[]> map = parseQueryToArrayMap(query, null);
 				appendMap.putAll(map);
 			}
 
@@ -205,37 +238,8 @@ public final class URIUtil{
 			builder.append(questionMark);
 
 			// *******************************************
-
-			int i = 0;
-			int size = appendMap.size();
-			for (Map.Entry<String, ?> entry : appendMap.entrySet()){
-				String key = entry.getKey();
-				// 兼容特殊情况
-				Object value = entry.getValue();
-				if (null == value){
-					value = "";
-					log.warn("the param key:[{}] value is null", key);
-				}
-
-				if (Validator.isNotNullOrEmpty(charsetType)){
-					// 统统先强制 decode 再 encode
-					// 浏览器兼容问题
-					key = encode(decode(key, charsetType), charsetType);
-					if (!"".equals(value)){
-						value = encode(decode(value.toString(), charsetType), charsetType);
-					}
-				}
-
-				builder.append(key);
-				builder.append("=");
-				builder.append(value);
-
-				// 最后一个& 不拼接
-				if (i != size - 1){
-					builder.append("&");
-				}
-				++i;
-			}
+			String queryString = combineQueryString(appendMap, charsetType);
+			builder.append(queryString);
 
 			return builder.toString();
 		}
@@ -243,36 +247,124 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 将a=1&b=2这样格式的数据转换成map,这个方法不会处理 特殊符号 中文等不兼容情况.
+	 * 将map 混合成 queryString.
 	 * 
-	 * @param query
-	 *            a=1&b=2类型的数据
-	 * @return map value的处理,原始的key和value
-	 * @see #parseQueryToMap(String, String)
+	 * @param appendMap
+	 *            类似于 request.getParamMap
+	 * @param charsetType
+	 *            the charset type
+	 * @return the string
 	 */
-	public static Map<String, String> parseQueryToMap(String query){
-		return parseQueryToMap(query, null);
+	public static String combineQueryString(Map<String, String[]> appendMap,String charsetType){
+
+		StringBuilder sb = new StringBuilder();
+
+		if (Validator.isNotNullOrEmpty(appendMap)){
+			int i = 0;
+			int size = appendMap.size();
+			for (Map.Entry<String, String[]> entry : appendMap.entrySet()){
+				String key = entry.getKey();
+				String[] paramValues = entry.getValue();
+
+				// **************************************************************
+				if (Validator.isNotNullOrEmpty(charsetType)){
+					// 统统先强制 decode 再 encode
+					// 浏览器兼容问题
+					key = encode(decode(key, charsetType), charsetType);
+				}
+
+				// **************************************************************
+
+				if (Validator.isNullOrEmpty(paramValues)){
+					log.warn("the param key:[{}] value is null", key);
+					sb.append(key);
+					sb.append("=");
+					sb.append("");
+				}else{
+					List<String> list = null;
+					// value isNotNullOrEmpty
+					if (Validator.isNotNullOrEmpty(charsetType)){
+						list = new ArrayList<String>();
+						for (String value : paramValues){
+							if (Validator.isNotNullOrEmpty(value)){
+								// 统统先强制 decode 再 encode
+								// 浏览器兼容问题
+								list.add(encode(decode(value.toString(), charsetType), charsetType));
+							}else{
+								list.add("");
+							}
+						}
+					}else{
+						list = ArrayUtil.toList(paramValues);
+					}
+
+					for (int j = 0, z = list.size(); j < z; ++j){
+						String value = list.get(j);
+						sb.append(key);
+						sb.append("=");
+						sb.append(value);
+						// 最后一个& 不拼接
+						if (j != z - 1){
+							sb.append(ampersand);
+						}
+					}
+				}
+
+				// 最后一个& 不拼接
+				if (i != size - 1){
+					sb.append(ampersand);
+				}
+				++i;
+			}
+		}
+		return sb.toString();
 	}
 
 	/**
 	 * 将a=1&b=2这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
 	 * 
 	 * @param query
-	 *            a=1&b=2类型的数据
+	 *            the query
+	 * @param charsetType
+	 *            the charset type
+	 * @return the map< string, string>
+	 * @see {@link #parseQueryToArrayMap(String, String)}
+	 */
+	public static Map<String, String> parseQueryToValueMap(String query,String charsetType){
+		Map<String, String> returnMap = new HashMap<String, String>();
+		Map<String, String[]> map = parseQueryToArrayMap(query, charsetType);
+		if (Validator.isNotNullOrEmpty(map)){
+			for (Map.Entry<String, String[]> entry : map.entrySet()){
+				String key = entry.getKey();
+				String[] value = entry.getValue();
+				returnMap.put(key, value[0]);
+			}
+		}
+		return returnMap;
+	}
+
+	/**
+	 * 将a=1&b=2这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
+	 * 
+	 * @param query
+	 *            a=1&b=2类型的数据,支持a=1&a=1的形式， 返回map的值是数组
 	 * @param charsetType
 	 *            何种编码，如果是null或者 empty,那么不参数部分原样返回,自己去处理兼容性问题<br>
 	 *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
-	 * @return map value的处理
+	 * @return map value的处理 （LinkedHashMap<String, String[]>）
 	 *         <ul>
 	 *         <li>没有Validator.isNullOrEmpty(bianma) 那么就原样返回</li>
 	 *         <li>如果有编码,统统先强制 decode 再 encode</li>
 	 *         </ul>
 	 */
-	public static Map<String, String> parseQueryToMap(String query,String charsetType){
+	public static Map<String, String[]> parseQueryToArrayMap(String query,String charsetType){
 		if (Validator.isNotNullOrEmpty(query)){
-			String[] nameAndValueArray = query.split("&");
+			String[] nameAndValueArray = query.split(ampersand);
+
 			if (Validator.isNotNullOrEmpty(nameAndValueArray)){
-				Map<String, String> map = new LinkedHashMap<String, String>();
+
+				Map<String, String[]> map = new LinkedHashMap<String, String[]>();
+
 				for (int i = 0, j = nameAndValueArray.length; i < j; ++i){
 
 					String nameAndValue = nameAndValueArray[i];
@@ -284,14 +376,23 @@ public final class URIUtil{
 
 						if (Validator.isNullOrEmpty(charsetType)){
 							// 没有编码 原样返回
-							map.put(key, value);
 						}else{
 							// 统统先强制 decode 再 encode
 							// 浏览器兼容问题
 							key = encode(decode(key, charsetType), charsetType);
 							value = encode(decode(value, charsetType), charsetType);
-							map.put(key, value);
 						}
+
+						String[] valuesArrayInMap = map.get(key);
+
+						List<String> list = null;
+						if (Validator.isNullOrEmpty(valuesArrayInMap)){
+							list = new ArrayList<String>();
+						}else{
+							list = ArrayUtil.toList(valuesArrayInMap);
+						}
+						list.add(value);
+						map.put(key, ListUtil.toArray(list));
 					}
 				}
 				return map;

@@ -152,8 +152,8 @@ public final class ParamUtil{
 		String returnValue = null;
 		String queryString = request.getQueryString();
 		if (Validator.isNotNullOrEmpty(queryString)){
-			Map<String, String> map = URIUtil.parseQueryToMap(queryString);
-			return map.get(paramName);
+			Map<String, String[]> map = URIUtil.parseQueryToArrayMap(queryString, null);
+			return map.get(paramName)[0];
 		}
 		return returnValue;
 	}
@@ -200,15 +200,39 @@ public final class ParamUtil{
 	 * 
 	 * @param url
 	 *            the url
-	 * @param nameAndValueMap
+	 * @param nameAndValuesMap
 	 *            nameAndValueMap param name 和value 的键值对
 	 * @param charsetType
 	 *            the charset type
 	 * @return 添加参数 加入含有该参数会替换掉
 	 */
-	public static String addParameter(String url,Map<String, ? extends Object> nameAndValueMap,String charsetType){
+	public static String addParameterArrayMap(String url,Map<String, String[]> nameAndValuesMap,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
-		return addParameter(uri, nameAndValueMap, charsetType);
+		return addParameterArrayMap(uri, nameAndValuesMap, charsetType);
+	}
+
+	/**
+	 * 添加参数 加入含有该参数会替换掉.
+	 * 
+	 * @param url
+	 *            the url
+	 * @param nameAndValueMap
+	 *            nameAndValueMap param name 和value 的键值对
+	 * @param charsetType
+	 *            the charset type
+	 * @return the string
+	 */
+	public static String addParameterValueMap(String url,Map<String, String> nameAndValueMap,String charsetType){
+		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
+
+		if (Validator.isNotNullOrEmpty(nameAndValueMap)){
+			for (Map.Entry<String, String> entry : nameAndValueMap.entrySet()){
+				String key = entry.getKey();
+				String value = entry.getValue();
+				keyAndArrayMap.put(key, new String[] { value });
+			}
+		}
+		return addParameterArrayMap(url, keyAndArrayMap, charsetType);
 	}
 
 	/**
@@ -227,25 +251,26 @@ public final class ParamUtil{
 	 * @return 添加参数 加入含有该参数会替换掉
 	 */
 	public static String addParameter(URI uri,String paramName,Object parameValue,String charsetType){
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(paramName, parameValue);
-		return addParameter(uri, map, charsetType);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put(paramName, new String[] { parameValue.toString() });
+		return addParameterArrayMap(uri, map, charsetType);
 	}
 
 	/**
-	 * 添加参数 加入含有该参数会替换掉.
+	 * 添加参数 <br>
+	 * 假如含有该参数会替换掉，比如原来是a=1&a=2,现在使用a,[3,4]调用这个方法， 会返回a=3&a=4.
 	 * 
 	 * @param uri
 	 *            URI 统一资源标识符 (URI),<br>
 	 *            如果带有? 和参数,会先被截取,最后再拼接,<br>
 	 *            如果不带?,则自动 增加?
 	 * @param nameAndValueMap
-	 *            nameAndValueMap param name 和value 的键值对
+	 *            nameAndValueMap 类似于 request.getParameterMap
 	 * @param charsetType
 	 *            编码
 	 * @return 添加参数 加入含有该参数会替换掉
 	 */
-	public static String addParameter(URI uri,Map<String, ? extends Object> nameAndValueMap,String charsetType){
+	public static String addParameterArrayMap(URI uri,Map<String, String[]> nameAndValueMap,String charsetType){
 		if (null == uri){
 			throw new IllegalArgumentException("uri can not be null!");
 		}
@@ -260,17 +285,17 @@ public final class ParamUtil{
 		// getRawQuery() 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
 		String query = uri.getRawQuery();
 		// ***********************************************************************
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		Map<String, String[]> map = new LinkedHashMap<String, String[]>();
 		// 传入的url不带参数的情况
 		if (Validator.isNullOrEmpty(query)){
 			// nothing to do
 		}else{
-			Map<String, String> originalMap = URIUtil.parseQueryToMap(query);
+			Map<String, String[]> originalMap = URIUtil.parseQueryToArrayMap(query, null);
 			map.putAll(originalMap);
 		}
 		map.putAll(nameAndValueMap);
 		// **************************************************************
-		return URIUtil.getEncodedUrl(before, map, charsetType);
+		return URIUtil.getEncodedUrlByArrayMap(before, map, charsetType);
 	}
 
 	// ********************************removeParameter*********************************************************************
@@ -308,7 +333,7 @@ public final class ParamUtil{
 			paramNameList = new ArrayList<String>();
 			paramNameList.add(paramName);
 		}
-		return removeParameter(uri, paramNameList, charsetType);
+		return removeParameterList(uri, paramNameList, charsetType);
 	}
 
 	/**
@@ -322,9 +347,9 @@ public final class ParamUtil{
 	 *            编码
 	 * @return the string
 	 */
-	public static String removeParameter(String url,List<String> paramNameList,String charsetType){
+	public static String removeParameterList(String url,List<String> paramNameList,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
-		return removeParameter(uri, paramNameList, charsetType);
+		return removeParameterList(uri, paramNameList, charsetType);
 	};
 
 	/**
@@ -338,7 +363,7 @@ public final class ParamUtil{
 	 *            编码
 	 * @return the string
 	 */
-	public static String removeParameter(URI uri,List<String> paramNameList,String charsetType){
+	public static String removeParameterList(URI uri,List<String> paramNameList,String charsetType){
 		if (null == uri){
 			return "";
 		}
@@ -358,11 +383,11 @@ public final class ParamUtil{
 			// 不带参数原样返回
 			return url;
 		}else{
-			Map<String, String> map = URIUtil.parseQueryToMap(query);
+			Map<String, String[]> map = URIUtil.parseQueryToArrayMap(query, null);
 			for (String paramName : paramNameList){
 				map.remove(paramName);
 			}
-			return URIUtil.getEncodedUrl(before, map, charsetType);
+			return URIUtil.getEncodedUrlByArrayMap(before, map, charsetType);
 		}
 	}
 
@@ -379,9 +404,9 @@ public final class ParamUtil{
 	 *            编码
 	 * @return the string
 	 */
-	public static String retentionParams(String url,List<String> paramNameList,String charsetType){
+	public static String retentionParamList(String url,List<String> paramNameList,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
-		return retentionParams(uri, paramNameList, charsetType);
+		return retentionParamList(uri, paramNameList, charsetType);
 	}
 
 	/**
@@ -395,7 +420,7 @@ public final class ParamUtil{
 	 *            编码
 	 * @return the string
 	 */
-	public static String retentionParams(URI uri,List<String> paramNameList,String charsetType){
+	public static String retentionParamList(URI uri,List<String> paramNameList,String charsetType){
 		if (null == uri){
 			return "";
 		}else{
@@ -414,12 +439,14 @@ public final class ParamUtil{
 				// 不带参数原样返回
 				return url;
 			}else{
-				Map<String, String> map = new LinkedHashMap<String, String>();
-				Map<String, String> originalMap = URIUtil.parseQueryToMap(query);
+				Map<String, String[]> map = new LinkedHashMap<String, String[]>();
+
+				Map<String, String[]> originalMap = URIUtil.parseQueryToArrayMap(query, null);
+
 				for (String paramName : paramNameList){
 					map.put(paramName, originalMap.get(paramName));
 				}
-				return URIUtil.getEncodedUrl(before, map, charsetType);
+				return URIUtil.getEncodedUrlByArrayMap(before, map, charsetType);
 			}
 		}
 	}

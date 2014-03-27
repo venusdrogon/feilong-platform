@@ -28,15 +28,16 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * HttpServletRequest工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:24:55
+ * @version 1.0.4 2014-3-27 14:38
  */
 public final class RequestUtil{
 
@@ -248,12 +249,7 @@ public final class RequestUtil{
 	}
 
 	public static String getQueryString(HttpServletRequest request){
-		// Returns the query string that is contained in the request URL after the path.
-		// This method returns null if the URL does not have a query string.
-		// Same as the value of the CGI variable QUERY_STRING.
-		// 它只对get方法得到的数据有效。
-
-		String queryString = request.getQueryString();
+		String returnValue = "";
 
 		// Returns the name of the HTTP method with which this request was made,
 		// for example, GET, POST, or PUT.
@@ -261,21 +257,21 @@ public final class RequestUtil{
 		String method = request.getMethod();
 
 		if (method.toUpperCase().equals("POST")){
-			Map<String, ?> map = getParameterMap(request);
-			queryString = "";
-			return queryString;
+			Map<String, String[]> map = (Map<String, String[]>) getParameterMap(request);
+			if (Validator.isNotNullOrEmpty(map)){
+				returnValue = URIUtil.combineQueryString(map, CharsetType.UTF8);
+			}
+		}else{
+			// Returns the query string that is contained in the request URL after the path.
+			// This method returns null if the URL does not have a query string.
+			// Same as the value of the CGI variable QUERY_STRING.
+			// 它只对get方法得到的数据有效。
+			returnValue = request.getQueryString();
 		}
-		return queryString;
+		return returnValue;
 	}
 
-	/**
-	 * *********************************************************************************************************.
-	 * 
-	 * @param request
-	 *            the request
-	 * @return the error map
-	 */
-
+	// ********************************************************************************************
 	/**
 	 * 获得request error 相关参数 map
 	 * 
@@ -396,10 +392,10 @@ public final class RequestUtil{
 		Map<String, ?> parameterMap = getParameterMap(request);
 		map.put("_parameterMap", parameterMap);
 
-		String string = JsonFormatUtil.format(map);
+		// String string = JsonFormatUtil.format(map);
 
 		// 好慢
-		// String string = JsonUtil.format(map);
+		String string = JsonUtil.format(map);
 		return string;
 	}
 
@@ -433,32 +429,6 @@ public final class RequestUtil{
 	 * @return the attribute to int
 	 */
 	// [start] url参数相关
-	/**
-	 * 获得requst属性值,并将其转换成int类型
-	 * 
-	 * @param request
-	 *            请求
-	 * @param name
-	 *            参数名
-	 * @return 获得requst属性值,并将其转换成int类型
-	 */
-	public final static Integer getAttributeToInt(HttpServletRequest request,String name){
-		Object value = getAttribute(request, name);
-		return ObjectUtil.toInteger(value);
-	}
-
-	/**
-	 * 取到request里面的属性值.
-	 * 
-	 * @param request
-	 *            请求
-	 * @param name
-	 *            属性名称
-	 * @return 取到request里面的属性值
-	 */
-	public final static Object getAttribute(HttpServletRequest request,String name){
-		return request.getAttribute(name);
-	}
 
 	/**
 	 * 取到request里面的属性值.
@@ -520,6 +490,7 @@ public final class RequestUtil{
 	 * @param request
 	 *            the request
 	 * @return 如:http://localhost:8080/feilong/requestdemo.jsp?id=2
+	 * @deprecated 编码参数要支持可以传递， 暂时还没有写
 	 */
 	public final static String getRequestAllURL(HttpServletRequest request){
 		String queryString = request.getQueryString();
@@ -632,7 +603,7 @@ public final class RequestUtil{
 				ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
 			}
 		}
-		log.debug(logBuilder.toString());
+		// log.debug(logBuilder.toString());
 		return ipAddress;
 	}
 
@@ -644,7 +615,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return the user agent
 	 */
-	public final static String getUserAgent(HttpServletRequest request){
+	public final static String getHeaderUserAgent(HttpServletRequest request){
 		return request.getHeader(header_userAgent);
 	}
 

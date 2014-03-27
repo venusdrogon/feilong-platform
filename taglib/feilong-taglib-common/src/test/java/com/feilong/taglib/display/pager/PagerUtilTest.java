@@ -21,8 +21,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.IOWriteUtil;
 
 public class PagerUtilTest{
 
@@ -36,7 +38,22 @@ public class PagerUtilTest{
 	@Test
 	public void testGetPagerContent(){
 		Date beginDate = new Date();
+		int j = 1;// 80000
+		j = 80000;
+		j = 100;
+		j = 800;
+		for (int i = 0; i < j; ++i){
+			// log.debug("===================================================");
+			getPagerContent();
+			// log.info("the param content:\n\n{}", content);
+			// log.debug("{} ", i);
+		}
+		Date endDate = new Date();
+		log.info("{}次\t{}", j, DateUtil.getIntervalForView(beginDate, endDate));
+	}
 
+	@Test
+	public void getPagerContent(){
 		int count = 1024;
 		int currentPageNo = 1;
 		int pageSize = 10;
@@ -44,35 +61,30 @@ public class PagerUtilTest{
 		String skin = PagerConstant.default_skin;
 		String pageUrl = "http://localhost:8888/pager.htm";
 
-		pageUrl = "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
+	//	pageUrl = "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
 
 		String pageParamName = "pageNo";
 		String vmPath = PagerConstant.default_templateInClassPath;
 
-		int j = 1;// 80000
-		j = 80000;
-		j = 100;
-		j = 80000;
-		for (int i = 0; i < j; ++i){
-			// log.debug("===================================================");
+		// log.debug("===================================================");
 
-			PagerParams pagerParams = new PagerParams(count, pageUrl);
+		PagerParams pagerParams = new PagerParams(count, pageUrl);
 
-			pagerParams.setCurrentPageNo(currentPageNo);
-			pagerParams.setPageSize(pageSize);
-			pagerParams.setMaxIndexPages(maxIndexPages);
-			pagerParams.setSkin(skin);
-			pagerParams.setPageParamName(pageParamName);
-			pagerParams.setVmPath(vmPath);
-			pagerParams.setCharsetType(CharsetType.UTF8);
-			pagerParams.setDebugIsNotParseVM(false);
+		pagerParams.setCurrentPageNo(currentPageNo);
+		pagerParams.setPageSize(pageSize);
+		pagerParams.setMaxIndexPages(maxIndexPages);
+		pagerParams.setSkin(skin);
+		pagerParams.setPageParamName(pageParamName);
+		pagerParams.setVmPath(vmPath);
+		pagerParams.setCharsetType(CharsetType.UTF8);
+		pagerParams.setDebugIsNotParseVM(false);
 
-			String content = PagerUtil.getPagerContent(pagerParams);
-			// log.info("the param content:\n\n{}", content);
-			// log.debug("{} ", i);
-		}
+		String content = PagerUtil.getPagerContent(pagerParams);
 
-		Date endDate = new Date();
-		log.info("{}次\t{}", j, DateUtil.getIntervalForView(beginDate, endDate));
+		String filePath = "F://pagerTest.html";
+
+		IOWriteUtil.write(filePath, content, CharsetType.UTF8);
+		DesktopUtil.browse(filePath);
+		// log.info("the param content:\n\n{}", content);
 	}
 }

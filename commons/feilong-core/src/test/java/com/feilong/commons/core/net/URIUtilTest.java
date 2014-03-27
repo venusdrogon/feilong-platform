@@ -28,12 +28,15 @@ package com.feilong.commons.core.net;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -106,8 +109,8 @@ public class URIUtilTest{
 
 	@Test
 	public void create(){
-		String url = "http://127.0.0.1/cmens/t-b-f-a-c-s-f-p-g-e-i-o.htm";
-		url = "/cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm";
+		String url = "http://127.0.0.1/cmens/t-b-f-a-c-s-f-p-g-e-i-o.htm?a=1&a=2";
+		// url = "/cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm";
 
 		String queryString = null;
 		queryString = "'\"--></style></script><script>netsparker(0x0000E1)</script>=";
@@ -126,5 +129,54 @@ public class URIUtilTest{
 		// }
 		URI uri = URIUtil.create(url, CharsetType.UTF8);
 		log.info(uri.toString());
+	}
+
+	@Test
+	public void getEncodedUrlByValueMap(){
+		String beforeUrl = "www.baidu.com";
+		Map<String, String> keyAndValueMap = new HashMap<String, String>();
+		keyAndValueMap.put("a", "aaaa");
+		String charsetType = CharsetType.UTF8;
+		log.info(URIUtil.getEncodedUrlByValueMap(beforeUrl, keyAndValueMap, charsetType));
+		log.info(URIUtil.getEncodedUrlByValueMap(beforeUrl, null, charsetType));
+		log.info(URIUtil.getEncodedUrlByValueMap(beforeUrl, null, null));
+	}
+
+	@Test
+	public void getEncodedUrlByArrayMap(){
+		String beforeUrl = "www.baidu.com";
+		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
+		keyAndArrayMap.put("a", new String[] { "aaaa", "bbbb" });
+		String charsetType = CharsetType.UTF8;
+		log.info(URIUtil.getEncodedUrlByArrayMap(beforeUrl, keyAndArrayMap, charsetType));
+		log.info(URIUtil.getEncodedUrlByArrayMap(beforeUrl, null, charsetType));
+		log.info(URIUtil.getEncodedUrlByArrayMap(beforeUrl, null, null));
+		log.info(URIUtil.getEncodedUrlByArrayMap(null, keyAndArrayMap, null));
+	}
+
+	@Test
+	public void combineQueryString(){
+		String beforeUrl = "www.baidu.com";
+		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
+		keyAndArrayMap.put("a", new String[] { "aaaa", "bbbb" });
+		String charsetType = CharsetType.UTF8;
+		log.info(URIUtil.combineQueryString(keyAndArrayMap, charsetType));
+		log.info(URIUtil.combineQueryString(null, charsetType));
+		log.info(URIUtil.combineQueryString(null, null));
+		log.info(URIUtil.combineQueryString(keyAndArrayMap, null));
+	}
+
+	@Test
+	public void parseQueryToValueMap(){
+		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("a=1&b=2&a=3", CharsetType.UTF8)));
+		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("a=", CharsetType.UTF8)));
+		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("a=1&", CharsetType.UTF8)));
+		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("", CharsetType.UTF8)));
+
+	}
+
+	@Test
+	public void parseQueryToValueMap1(){
+		log.info(JsonUtil.format(URIUtil.parseQueryToArrayMap("a=1&b=2&a", CharsetType.UTF8)));
 	}
 }

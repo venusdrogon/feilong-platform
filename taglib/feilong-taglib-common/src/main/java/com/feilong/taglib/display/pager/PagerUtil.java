@@ -28,29 +28,14 @@ import com.feilong.tools.velocity.VelocityUtil;
  */
 public final class PagerUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PagerUtil.class);
 
 	/**
-	 * 解析vm模板 生成分页html代码
+	 * 解析vm模板 生成分页html代码.
 	 * 
-	 * @param totalCount
-	 *            总数
-	 * @param currentPageNo
-	 *            当前页码
-	 * @param pageSize
-	 *            每页显示list 数量
-	 * @param maxIndexPages
-	 *            分页页码最多显示个数
-	 * @param skin
-	 *            皮肤,支持皮肤的功能,请参考 分页皮肤样式
-	 * @param pageUrl
-	 *            url,如http://localhost:8888/pager.htm
-	 * @param pageParamName
-	 *            url中关于分页页码的参数
-	 * @param vmPath
-	 *            velocity 模板地址
-	 * @param charsetType
-	 *            编码
+	 * @param pagerParams
+	 *            带有一系列分页需要的参数
 	 * @return 生成分页html代码
 	 */
 	public static String getPagerContent(PagerParams pagerParams){
@@ -98,7 +83,7 @@ public final class PagerUtil{
 			}
 			// ****************************************************************************************
 			// Map<Integer, String> map = new HashMap<Integer, String>();
-			Map<Integer, String> map = getAllHrefMap(pageUrl, pageParamName, indexSet, charsetType);
+			Map<Integer, String> map = getAllPageIndexHrefMap(pageUrl, pageParamName, indexSet, charsetType);
 			// ****************************************************************************************
 			PagerVMParam pagerVMParam = new PagerVMParam();
 			pagerVMParam.setSkin(skin);// 皮肤
@@ -139,7 +124,20 @@ public final class PagerUtil{
 		return "";
 	}
 
-	private static Map<Integer, String> getAllHrefMap(String pageUrl,String pageParamName,Set<Integer> indexSet,String charsetType){
+	/**
+	 * 获得所有页码的连接.
+	 * 
+	 * @param pageUrl
+	 *            页面url
+	 * @param pageParamName
+	 *            分页参数名称
+	 * @param indexSet
+	 *            索引set
+	 * @param charsetType
+	 *            编码
+	 * @return key是分页页码，value是解析之后的链接
+	 */
+	private static Map<Integer, String> getAllPageIndexHrefMap(String pageUrl,String pageParamName,Set<Integer> indexSet,String charsetType){
 		URI uri = URIUtil.create(pageUrl, charsetType);
 
 		if (null == uri){
@@ -148,27 +146,33 @@ public final class PagerUtil{
 		}else{
 			String url = uri.toString();
 			String before = URIUtil.getBeforePath(url);
+
 			// ***********************************************************************
 			// getQuery() 返回此 URI 的已解码的查询组成部分。
 			// getRawQuery() 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
 			String query = uri.getRawQuery();
+
 			// ***********************************************************************
-			Map<String, Object> map = new LinkedHashMap<String, Object>();
+			Map<String, String[]> map = new LinkedHashMap<String, String[]>();
 			// 传入的url不带参数的情况
 			if (Validator.isNullOrEmpty(query)){
 				// nothing to do
 			}else{
+
 				// 先返回 安全的 参数 ,避免循环里面 浪费性能
-				Map<String, String> originalMap = URIUtil.parseQueryToMap(query, charsetType);
+				Map<String, String[]> originalMap = URIUtil.parseQueryToArrayMap(query, charsetType);
 				map.putAll(originalMap);
 			}
 
+			// ***********************************************************************F
 			Map<Integer, String> returnMap = new HashMap<Integer, String>();
 			for (Integer index : indexSet){
-				map.put(pageParamName, index);
+
+				// 构建一个数组，完全覆盖pageParamName
+				map.put(pageParamName, new String[] { index + "" });
 
 				// 循环里面不再加码,避免 浪费性能
-				String encodedUrl = URIUtil.getEncodedUrl(before, map, null);
+				String encodedUrl = URIUtil.getEncodedUrlByArrayMap(before, map, null);
 				returnMap.put(index, encodedUrl);
 			}
 			return returnMap;
@@ -176,7 +180,7 @@ public final class PagerUtil{
 	}
 
 	/**
-	 * 获得当前分页数字,不带这个参数 或者转换异常 返回1
+	 * 获得当前分页数字,不带这个参数 或者转换异常 返回1.
 	 * 
 	 * @param request
 	 *            当前请求
@@ -202,6 +206,8 @@ public final class PagerUtil{
 	 *            总页数
 	 * @param currentPageNo
 	 *            当前页数
+	 * @param maxIndexPages
+	 *            the max index pages
 	 * @return 获得开始和结束的索引
 	 * @author 金鑫
 	 * @version 1.0 2010-5-31 上午06:03:53
@@ -254,6 +260,7 @@ public final class PagerUtil{
 	 * <li>当大于100的页码 显示8个 即 101,102,103,104,105,106,107,108 类似于这样的</li>
 	 * <li>其余,默认显示10条</li>
 	 * </ul>
+	 * .
 	 * 
 	 * @param allPageNo
 	 *            分页总总页数,不解释地球人都知道

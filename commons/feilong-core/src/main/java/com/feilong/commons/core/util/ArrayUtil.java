@@ -93,7 +93,8 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 数组转成 List(ArrayList)
+	 * 数组转成 List(ArrayList)，此方法通过循环遍历创建， 返回的list可操作<br>
+	 * 注意 Arrays.asList(arrays)返回的list不含add方法，
 	 * 
 	 * @param arrays
 	 *            T数组
@@ -104,7 +105,15 @@ public final class ArrayUtil{
 		if (Validator.isNullOrEmpty(arrays)){
 			return null;
 		}
-		return Arrays.asList(arrays);
+		// 这个地方返回的是Arrays类的内部类的对象，而Arrays类里的内部类ArrayList没有实现AbstractList类的add方法，导致抛此异常! strList.add("c");
+		// return Arrays.asList(arrays);
+
+		List<T> list = new ArrayList<T>(Arrays.asList(arrays));
+		// List<T> list = new ArrayList<T>();
+		// for (T t : arrays){
+		// list.add(t);
+		// }
+		return list;
 	}
 
 	/**

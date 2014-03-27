@@ -47,7 +47,7 @@ public class PaymentFormEntity implements Serializable{
 	 * @return the full encoded url
 	 */
 	public String getFullEncodedUrl(){
-		return URIUtil.getEncodedUrl(action, hiddenParamMap, CharsetType.UTF8);
+		return URIUtil.getEncodedUrlByValueMap(action, hiddenParamMap, CharsetType.UTF8);
 	}
 
 	/**

@@ -15,7 +15,9 @@
  */
 package com.feilong.servlet.http;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -68,7 +70,7 @@ public class ParamUtilTest{
 	}
 
 	@Test
-	public void test(){
+	public void addParameter1(){
 		String pageParamName = "page";
 		Object prePageNo = "";
 		String addParameter = ParamUtil.addParameter(uri, pageParamName, prePageNo, CharsetType.UTF8);
@@ -76,7 +78,7 @@ public class ParamUtilTest{
 	}
 
 	@Test
-	public void test1(){
+	public void addParameter(){
 		String pageParamName = "label";
 		Object prePageNo = "2-5-8-12";
 		String addParameter = ParamUtil.addParameter(uri, pageParamName, prePageNo, CharsetType.UTF8);
@@ -88,6 +90,32 @@ public class ParamUtilTest{
 		uri = "http://www.feilong.com:8888/search.htm?keyword=中国&page=&categoryCode=2-5-3-11&label=TopSeller";
 		String pageParamName = "label";
 		String removeParameter = ParamUtil.removeParameter(uri, pageParamName, CharsetType.ISO_8859_1);
+		log.info(removeParameter);
+	}
+
+	@Test
+	public void removeParameterList(){
+		uri = "http://www.feilong.com:8888/search.htm?keyword=中国&page=&categoryCode=2-5-3-11&label=TopSeller";
+		String pageParamName = "label";
+		List<String> paramNameList = new ArrayList<String>();
+		paramNameList.add(pageParamName);
+		paramNameList.add("keyword");
+
+		String charsetType = CharsetType.UTF8;
+		String removeParameter = ParamUtil.removeParameterList(uri, paramNameList, charsetType);
+		log.info(removeParameter);
+	}
+
+	@Test
+	public void retentionParamList(){
+		uri = "http://www.feilong.com:8888/search.htm?keyword=中国&page=&categoryCode=2-5-3-11&label=TopSeller";
+		String pageParamName = "label";
+		List<String> paramNameList = new ArrayList<String>();
+		paramNameList.add(pageParamName);
+		paramNameList.add("keyword");
+
+		String charsetType = CharsetType.UTF8;
+		String removeParameter = ParamUtil.retentionParamList(uri, paramNameList, charsetType);
 		log.info(removeParameter);
 	}
 }

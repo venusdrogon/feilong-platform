@@ -256,7 +256,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		String toBeSignedString = ParamUtil.getToBeSignedString(hiddenParamMap);
 		String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
 		hiddenParamMap.put("sign", sign);
-		String url = URIUtil.getEncodedUrl(gateway, hiddenParamMap, _input_charset);
+		String url = URIUtil.getEncodedUrlByValueMap(gateway, hiddenParamMap, _input_charset);
 		String createResult = getCreateTradeResult(url);
 		String requestToken = parseAlipayResult(createResult);
 		return requestToken;
@@ -370,7 +370,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	private String parseAlipayResult(String return_result) throws Exception{
 		HashMap<String, String> resMap = new HashMap<String, String>();
 
-		Map<String, String> returnParamMap = URIUtil.parseQueryToMap(return_result);
+		Map<String, String> returnParamMap = URIUtil.parseQueryToValueMap(return_result, null);
 		String returnV = returnParamMap.get("v");
 		String returnService = returnParamMap.get("service");
 		String returnPartner = returnParamMap.get("partner");
