@@ -248,7 +248,14 @@ public final class RequestUtil{
 		return map;
 	}
 
-	public static String getQueryString(HttpServletRequest request){
+	/**
+	 * 获取queryString （支持 post/get）.
+	 * 
+	 * @param request
+	 *            the request
+	 * @return the query string
+	 */
+	public static String getQueryStringLog(HttpServletRequest request){
 		String returnValue = "";
 
 		// Returns the name of the HTTP method with which this request was made,
@@ -259,7 +266,7 @@ public final class RequestUtil{
 		if (method.toUpperCase().equals("POST")){
 			Map<String, String[]> map = (Map<String, String[]>) getParameterMap(request);
 			if (Validator.isNotNullOrEmpty(map)){
-				returnValue = URIUtil.combineQueryString(map, CharsetType.UTF8);
+				returnValue = URIUtil.combineQueryString(map, null);
 			}
 		}else{
 			// Returns the query string that is contained in the request URL after the path.
@@ -273,7 +280,7 @@ public final class RequestUtil{
 
 	// ********************************************************************************************
 	/**
-	 * 获得request error 相关参数 map
+	 * 获得request error 相关参数 map.
 	 * 
 	 * @param request
 	 *            HttpServletRequest
@@ -374,6 +381,7 @@ public final class RequestUtil{
 		aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
 		aboutURLMap.put("request.getRequestURL()", request.getRequestURL().toString());
 		aboutURLMap.put("request.getQueryString()", request.getQueryString());
+		aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
 		aboutURLMap.put("request.getServletPath()", request.getServletPath());
 		aboutURLMap.put("request.getPathInfo()", request.getPathInfo());
 		aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
@@ -394,7 +402,6 @@ public final class RequestUtil{
 
 		// String string = JsonFormatUtil.format(map);
 
-		// 好慢
 		String string = JsonUtil.format(map);
 		return string;
 	}
