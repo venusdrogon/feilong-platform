@@ -34,6 +34,13 @@ import org.junit.Test;
  */
 public class DesktopUtilTest{
 
+	@Test
+	public final void testBrowse1(){
+		int id = 14;
+		String s = "";
+		DesktopUtil.browse("http://101.95.128.146/payment/paymentChannel?s=" + s + "&id=" + id);
+	}
+
 	/**
 	 * {@link com.feilong.commons.core.awt.DesktopUtil#browse(java.lang.String)} 的测试方法。
 	 */
