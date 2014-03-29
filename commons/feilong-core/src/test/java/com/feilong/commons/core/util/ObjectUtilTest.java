@@ -33,6 +33,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -41,6 +42,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.test.User;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -63,6 +66,30 @@ public class ObjectUtilTest{
 		Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, "1"));
 		Assert.assertEquals(true, ObjectUtil.equalsNotNull(1, 1));
 		Assert.assertEquals(true, ObjectUtil.equalsNotNull("1", "1"));
+	}
+
+	@Test
+	public final void assertEquals(){
+
+		Long a = new Long(1L);
+		Long b = new Long(1L);
+
+		log.info((1L == 1L) + "");
+		log.info((a == b) + "");
+		log.info(a.equals(b) + "");
+
+		User user = new User(1L);
+		List<User> list = new ArrayList<User>();
+
+		list.add(user);
+		list.add(new User(1L));
+		list.add(new User(new Long(1L)));
+		list.add(new User(new Long(1L)));
+		list.add(new User(new Long(1L)));
+
+		for (User user2 : list){
+			log.info((user2.getId() == user.getId()) + "");
+		}
 	}
 
 	/**
