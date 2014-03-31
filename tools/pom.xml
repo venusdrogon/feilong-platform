@@ -40,6 +40,7 @@
 		<module>feilong-tools-solrj4</module>
 		<module>feilong-tools-om</module>
 		<module>feilong-tools-scm</module>
+		<module>feilong-tools-xstream</module>
 	</modules>
 
 	<dependencies>

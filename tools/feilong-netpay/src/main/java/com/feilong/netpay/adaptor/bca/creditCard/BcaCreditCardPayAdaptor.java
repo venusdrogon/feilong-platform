@@ -14,7 +14,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-package com.feilong.netpay.adaptor.bca;
+package com.feilong.netpay.adaptor.bca.creditCard;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

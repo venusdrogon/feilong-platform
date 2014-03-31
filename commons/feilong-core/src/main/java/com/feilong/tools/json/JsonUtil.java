@@ -416,7 +416,13 @@ public final class JsonUtil{
 	}
 
 	/**
-	 * Object to xml.
+	 * Object to xml<br>
+	 * 缺点:
+	 * <ul>
+	 * <li>不能去掉 <?xml version="1.0" encoding="UTF-8"?></li>
+	 * <li>不能格式化输出</li>
+	 * <li>对于空元素,不能输出 < additionalData> < /additionalData>,只能输出< additionalData/></li>
+	 * </ul>
 	 * 
 	 * @param object
 	 *            the object
@@ -427,11 +433,15 @@ public final class JsonUtil{
 	public static String objectToXML(Object object,String encoding){
 		JSON json = toJSON(object);
 		XMLSerializer xmlSerializer = new XMLSerializer();
-
+		// xmlSerializer.setRootName("outputPaymentPGW");
+		// xmlSerializer.setTypeHintsEnabled(true);
+		// xmlSerializer.setTypeHintsCompatibility(true);
+		// xmlSerializer.setSkipWhitespace(false);
 		if (Validator.isNotNullOrEmpty(encoding)){
 			return xmlSerializer.write(json, encoding);
 		}
 		return xmlSerializer.write(json);
+
 	}
 
 	/**

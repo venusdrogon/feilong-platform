@@ -148,6 +148,9 @@ public final class DatePattern{
 	/** <code>{@value}</code> example:2013-12-27 22:13:55. */
 	public static final String	commonWithTime				= "yyyy-MM-dd HH:mm:ss";
 
+	/** <code>{@value}</code> example:31/03/2014 14:53:39. */
+	public static final String	ddMMyyyyHHmmss				= "dd/MM/yyyy HH:mm:ss";
+
 	/** <code>{@value}</code> 带毫秒的时间格式 example:2013-12-27 22:13:55.453. */
 	public static final String	commonWithMillisecond		= "yyyy-MM-dd HH:mm:ss.SSS";
 

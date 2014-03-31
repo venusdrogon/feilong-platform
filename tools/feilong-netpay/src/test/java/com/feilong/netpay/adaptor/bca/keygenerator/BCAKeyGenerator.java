@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 import com.feilong.commons.core.security.symmetric.SymmetricType;
-import com.feilong.netpay.adaptor.bca.KlikPayAdaptor;
+import com.feilong.netpay.adaptor.bca.klikPay.KlikPayAdaptor;
 
 /**
  * The Class BCAKeyGenerator.
@@ -54,7 +54,7 @@ final public class BCAKeyGenerator{
 			String currency,
 			String secretKey) throws Exception{
 		if (secretKey.length() == 16)
-			secretKey = com.feilong.netpay.adaptor.bca.KlikPayAdaptor.getKeyId(secretKey);
+			secretKey = com.feilong.netpay.adaptor.bca.klikPay.KlikPayAdaptor.getKeyId(secretKey);
 		else if (secretKey.length() != 32)
 			throw new Exception("Invalid keyId or clearKey (" + secretKey + ")");
 		if (!transactionDate.matches("^\\d\\d/\\d\\d/\\d{4} \\d\\d:\\d\\d:\\d\\d$"))

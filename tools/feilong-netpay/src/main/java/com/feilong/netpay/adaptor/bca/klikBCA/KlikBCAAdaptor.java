@@ -14,7 +14,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-package com.feilong.netpay.adaptor.bca;
+package com.feilong.netpay.adaptor.bca.klikBCA;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -31,7 +31,6 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
-import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**

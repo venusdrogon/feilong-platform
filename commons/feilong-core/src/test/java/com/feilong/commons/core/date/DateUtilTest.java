@@ -202,6 +202,11 @@ public class DateUtilTest{
 	}
 
 	@Test
+	public void testAddMinute111(){
+		log.debug(DateUtil.date2String(new Date(), DatePattern.ddMMyyyyHHmmss));
+	}
+
+	@Test
 	public void addMonth(){
 		Date beginDate = DateUtil.string2Date("2013-10-28", DatePattern.onlyDate);
 		print(DateUtil.addMonth(beginDate, 6));
