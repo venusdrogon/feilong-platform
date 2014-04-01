@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.klikBCA;
+package com.feilong.netpay.adaptor.bca.klikbca;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class OutputListTransactionPGW implements Serializable{
 	private String						userID;
 
 	/** Optional. */
-	private String						additionalData;
+	private String						additionalData			= "";
 
 	/** The output detail payments. */
 	private List<OutputDetailPayment>	outputDetailPayments	= new ArrayList<OutputDetailPayment>();

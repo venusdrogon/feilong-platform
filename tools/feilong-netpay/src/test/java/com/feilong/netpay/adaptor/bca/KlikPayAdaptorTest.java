@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
-import com.feilong.netpay.adaptor.bca.klikPay.KlikPayAdaptor;
+import com.feilong.netpay.adaptor.bca.klikpay.KlikPayAdaptor;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -50,7 +50,7 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.netpay.adaptor.bca.klikPay.KlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * {@link com.feilong.netpay.adaptor.bca.klikpay.KlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test

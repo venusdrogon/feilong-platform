@@ -29,9 +29,9 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.netpay.adaptor.bca.klikBCA.OutputDetailPayment;
-import com.feilong.netpay.adaptor.bca.klikBCA.OutputListTransactionPGW;
-import com.feilong.netpay.adaptor.bca.klikBCA.OutputPaymentPGW;
+import com.feilong.netpay.adaptor.bca.klikbca.OutputDetailPayment;
+import com.feilong.netpay.adaptor.bca.klikbca.OutputListTransactionPGW;
+import com.feilong.netpay.adaptor.bca.klikbca.OutputPaymentPGW;
 import com.feilong.test.User;
 import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.xstream.ToXmlConfig;
@@ -61,9 +61,7 @@ public class XStreamTest implements Serializable{
 	public final void testList(){
 
 		String additionalData = "additionalData";
-		String reason = "";
 		String transactionDate = DateUtil.date2String(new Date(), DatePattern.ddMMyyyyHHmmss);
-		String status = "00";
 		String transactionNo = "010000130002";
 		String userID = "</userID>123456";
 
@@ -131,45 +129,7 @@ public class XStreamTest implements Serializable{
 		// </ OutputListTransactionPGW >
 	}
 
-	@Test
-	public final void testObject(){
-
-		String additionalData = "additionalData";
-		String reason = "";
-		String transactionDate = DateUtil.date2String(new Date(), DatePattern.ddMMyyyyHHmmss);
-		String status = "00";
-		String transactionNo = "010000130002";
-		String userID = "123456";
-
-		OutputPaymentPGW outputPaymentPGW = new OutputPaymentPGW();
-		outputPaymentPGW.setAdditionalData(additionalData);
-		outputPaymentPGW.setReason(reason);
-		outputPaymentPGW.setStatus(status);
-		outputPaymentPGW.setTransactionDate(transactionDate);
-		outputPaymentPGW.setTransactionNo(transactionNo);
-		outputPaymentPGW.setUserID(userID);
-
-		String objectToXML = JsonUtil.objectToXML(outputPaymentPGW);
-		log.info(objectToXML);
-
-		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
-		aliasMap.put("OutputPaymentPGW", OutputPaymentPGW.class);
-
-		ToXmlConfig toXmlConfig = new ToXmlConfig();
-		toXmlConfig.setAliasMap(aliasMap);
-
-		log.info(XStreamUtil.toXML(outputPaymentPGW, toXmlConfig));
-
-		// <OutputPaymentPGW>
-		// <userID>user01</userID>
-		// <transactionNo>1234ABC5678EFG4321</transactionNo>
-		// <transactionDate>20/10/2010 10:08:09</transactionDate>
-		// <status>00</status>
-		// <reason>Success</reason>
-		// <additionalData> </additionalData>
-		// </OutputPaymentPGW>
-	}
-
+	
 	/**
 	 * To xml.
 	 * 

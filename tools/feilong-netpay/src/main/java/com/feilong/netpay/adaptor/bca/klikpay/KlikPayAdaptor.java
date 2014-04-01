@@ -14,7 +14,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-package com.feilong.netpay.adaptor.bca.klikPay;
+package com.feilong.netpay.adaptor.bca.klikpay;
 
 import java.math.BigDecimal;
 import java.util.Date;

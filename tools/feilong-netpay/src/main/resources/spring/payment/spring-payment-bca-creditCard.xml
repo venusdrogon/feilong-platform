@@ -11,12 +11,12 @@
 
 
 	<!-- bcaCreditCardPayAdaptor -->
-	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.bca.BcaCreditCardPayAdaptor">
+<!-- 	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.bca.BcaCreditCardPayAdaptor">
 		<property name="gateway" value="#{p_bcaCreditCardPayment['gateway']}" />
 		<property name="method" value="#{p_bcaCreditCardPayment['method']}" />
 		
 		<property name="currencyDefault" value="#{p_bcaCreditCardPayment['currencyDefault']}" />
 		<property name="siteID" value="#{p_bcaCreditCardPayment['siteID']}" />
 		<property name="serviceVersion" value="#{p_bcaCreditCardPayment['serviceVersion']}" />
-	</bean>
+	</bean> -->
 </beans>

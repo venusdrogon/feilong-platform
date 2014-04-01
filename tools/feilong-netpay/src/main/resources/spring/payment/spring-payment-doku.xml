@@ -10,7 +10,7 @@
 	<util:properties id="p_dokuPayment" location="classpath:config/payment/payment-doku.properties"></util:properties>
 
 	<!-- base DOKU -->
-	<bean id="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.AbstractDokuAdaptor" abstract="true">
+	<bean id="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.AbstractDokuPayAdaptor" abstract="true">
 		<property name="gateway" value="#{p_dokuPayment['gateway']}" />
 		<property name="MALLID" value="#{p_dokuPayment['MALLID']}" />
 		<property name="Shared_key" value="#{p_dokuPayment['Shared_key']}" />

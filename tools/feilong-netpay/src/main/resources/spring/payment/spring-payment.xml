@@ -44,6 +44,9 @@
 	<!-- bca-klikPay -->
 	<import resource="classpath:spring/payment/spring-payment-bca-klikPay.xml" />
 
+	<!-- bca-klikPayAdaptor -->
+	<import resource="classpath:spring/payment/spring-payment-bca-klikBCA.xml" />
+
 	<!-- bca-creditCard -->
 	<import resource="classpath:spring/payment/spring-payment-bca-creditCard.xml" />
 </beans>

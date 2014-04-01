@@ -14,7 +14,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-package com.feilong.netpay.adaptor.bca.klikBCA;
+package com.feilong.netpay.adaptor.bca.creditcard;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -31,6 +31,7 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
+import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
@@ -46,10 +47,10 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 15, 2013 8:41:39 PM
  */
-public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
+public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(KlikBCAAdaptor.class);
+	private static final Logger	log				= LoggerFactory.getLogger(BcaCreditCardPayAdaptor.class);
 
 	/** 表单提交地址. */
 	private String				gateway;
@@ -90,7 +91,6 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 		}
 		return null;
 	}
-
 	/**
 	 * 验证参数
 	 * 
@@ -254,6 +254,14 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public boolean doNotifyVerify(HttpServletRequest request){
@@ -355,14 +363,6 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public String doGetFeedbackTotalFee(HttpServletRequest request){
 		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
-	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
-		return true;
 	}
 
 	/*

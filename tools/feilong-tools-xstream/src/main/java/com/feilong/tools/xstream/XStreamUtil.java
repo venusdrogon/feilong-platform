@@ -58,7 +58,7 @@ public class XStreamUtil{
 		}
 		// *******************implicitCollectionMap********************************************
 		Map<String, Class<?>> implicitCollectionMap = toXmlConfig.getImplicitCollectionMap();
-		if (Validator.isNotNullOrEmpty(aliasMap)){
+		if (Validator.isNotNullOrEmpty(implicitCollectionMap)){
 			for (Map.Entry<String, Class<?>> entry : implicitCollectionMap.entrySet()){
 				String key = entry.getKey();
 				Class<?> value = entry.getValue();
