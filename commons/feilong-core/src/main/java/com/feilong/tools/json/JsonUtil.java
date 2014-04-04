@@ -419,7 +419,7 @@ public final class JsonUtil{
 	 * Object to xml<br>
 	 * 缺点:
 	 * <ul>
-	 * <li>不能去掉 <?xml version="1.0" encoding="UTF-8"?></li>
+	 * <li>不能去掉 < ?xml version="1.0" encoding="UTF-8"? ></li>
 	 * <li>不能格式化输出</li>
 	 * <li>对于空元素,不能输出 < additionalData> < /additionalData>,只能输出< additionalData/></li>
 	 * </ul>

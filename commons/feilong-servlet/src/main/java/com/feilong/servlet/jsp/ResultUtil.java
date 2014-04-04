@@ -26,6 +26,7 @@ import javax.servlet.jsp.jstl.sql.Result;
 import com.feilong.commons.core.util.BeanUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.ReflectUtil;
+import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -189,10 +190,41 @@ public class ResultUtil{
 	public static void getSortedMapValueToBeanAutoChangeRegulateFiled(SortedMap sortedMap,Object bean,String...fileds){
 		if (Validator.isNotNullOrEmpty(fileds)){
 			for (int i = 0, j = fileds.length; i < j; ++i){
-				fileds[i] = ReflectUtil.convertNameToPropertyName(fileds[i]);
+				fileds[i] = convertNameToPropertyName(fileds[i]);
 			}
 		}
 		getSortedMapValueToBean(sortedMap, bean, fileds);
+	}
+
+	/**
+	 * 将普通名称转成属性名称 首字母小写,第二个字母大写
+	 * 
+	 * <pre>
+	 * jinxin----jinxin
+	 * Jinxin----jinxin
+	 * jin_xin----jin_Xin
+	 * jin_xin_xin----jin_Xin_Xin
+	 * </pre>
+	 * 
+	 * @param name
+	 *            普通名称
+	 * @return 将普通名称转成属性名称
+	 */
+	private static String convertNameToPropertyName(String name){
+		/**
+		 * 如果名称里面包含_ 则分割,首字母小写,第二个字母大写
+		 */
+		if (StringUtil.isContain(name, "_")){
+			String[] strings = name.split("_");
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(strings[0].toLowerCase());
+			for (int i = 1; i < strings.length; ++i){
+				stringBuilder.append("_");
+				stringBuilder.append(StringUtil.firstCharToUpperCase(strings[i]));
+			}
+			return stringBuilder.toString();
+		}
+		return name.toLowerCase();
 	}
 
 	/**

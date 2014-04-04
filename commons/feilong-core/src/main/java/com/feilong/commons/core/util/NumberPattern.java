@@ -92,9 +92,9 @@ import java.text.DecimalFormat;
  */
 public final class NumberPattern{
 
-	/** 百分数的表达式(2位小数点). */
+	/** 百分数的表达式(2位小数点) <code>{@value}</code>. */
 	public static final String	percent_with_2Point		= "#0.00%";
 
-	/** 百分数的表达式(无小数点). */
+	/** 百分数的表达式(无小数点) <code>{@value}</code>. */
 	public static final String	percent_with_noPoint	= "##%";
 }

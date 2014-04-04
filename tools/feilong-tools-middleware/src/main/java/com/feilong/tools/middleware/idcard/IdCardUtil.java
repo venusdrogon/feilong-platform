@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.text.DateFormatUtil;
+import com.feilong.commons.core.util.RegexPattern;
 import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -31,24 +32,26 @@ import com.feilong.commons.core.util.Validator;
  * 飞龙身份证类,验证及读取相关信息
  * 
  * <pre>
- * 身份证前6位【ABCDEF】为行政区划数字代码（简称数字码）：该数字码的编制原则和结构分析，它采用三层六位层次码结构，按层次分别表示我国各省（自治区，直辖市，特别行政区）、市（地区，自治州，盟）、县（自治县、县级市、旗、自治旗、市辖区、林区、特区）。 
- *  
- *  数字码码位结构从左至右的含义是： 
- *  第一层为AB两位代码表示省、自治区、直辖市、特别行政区； 
- *  
- *  第二层为CD两位代码表示市、地区、自治州、盟、直辖市所辖市辖区、县汇总码、省（自治区）直辖县级行政区划汇总码，其中： 
- *  ——01&tilde;20、51&tilde;70表示市，01、02还用于表示直辖市所辖市辖区、县汇总码； 
- *  ——21&tilde;50表示地区、自治州、盟； 
- *  ——90表示省（自治区）直辖县级行政区划汇总码。 
- *  
- *  第三层为EF两位表示县、自治县、县级市、旗、自治旗、市辖区、林区、特区，其中： 
- *  ——01&tilde;20表示市辖区、地区（自治州、盟）辖县级市、市辖特区以及省（自治区）直辖县级行政区划中的县级市，01通常表示辖区汇总码； 
- *  ——21&tilde;80表示县、自治县、旗、自治旗、林区、地区辖特区； 
- *  ——81&tilde;99表示省（自治区）辖县级市。
- *  
+ * 身份证前6位【ABCDEF】为行政区划数字代码（简称数字码）：该数字码的编制原则和结构分析，它采用三层六位层次码结构，按层次分别表示我国各省（自治区，直辖市，特别行政区）、市（地区，自治州，盟）、县（自治县、县级市、旗、自治旗、市辖区、林区、特区）。
+ * 
+ * 数字码码位结构从左至右的含义是：
+ * 第一层为AB两位代码表示省、自治区、直辖市、特别行政区；
+ * 
+ * 第二层为CD两位代码表示市、地区、自治州、盟、直辖市所辖市辖区、县汇总码、省（自治区）直辖县级行政区划汇总码，其中：
+ * ——01&tilde;20、51&tilde;70表示市，01、02还用于表示直辖市所辖市辖区、县汇总码；
+ * ——21&tilde;50表示地区、自治州、盟；
+ * ——90表示省（自治区）直辖县级行政区划汇总码。
+ * 
+ * 第三层为EF两位表示县、自治县、县级市、旗、自治旗、市辖区、林区、特区，其中：
+ * ——01&tilde;20表示市辖区、地区（自治州、盟）辖县级市、市辖特区以及省（自治区）直辖县级行政区划中的县级市，01通常表示辖区汇总码；
+ * ——21&tilde;80表示县、自治县、旗、自治旗、林区、地区辖特区；
+ * ——81&tilde;99表示省（自治区）辖县级市。
+ * 
  * -15位身份证号码：第7、8位为出生年份(两位数)，第9、10位为出生月份，第11、12位代表出生日期，第15位代表性别，奇数为男，偶数为女。
  * -18位身份证号码：第7、8、9、10位为出生年份(四位数)，第11、第12位为出生月份，第13、14位代表出生日期，第17位代表性别，奇数为男，偶数为女。
  * </pre>
+ * 
+ * .
  * 
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-9-14 下午02:30:25
@@ -57,7 +60,7 @@ import com.feilong.commons.core.util.Validator;
 public class IdCardUtil{
 
 	/**
-	 * 提取身份证信息
+	 * 提取身份证信息.
 	 * 
 	 * @param idCard
 	 *            身份证号码
@@ -113,7 +116,7 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 验证所有的身份证的合法性
+	 * 验证所有的身份证的合法性.
 	 * 
 	 * @param idCard
 	 *            身份证号码
@@ -154,6 +157,8 @@ public class IdCardUtil{
 	 * </p>
 	 * 
 	 * @param idCard
+	 *            the id card
+	 * @return true, if is validate18 id card
 	 */
 	public static boolean isValidate18IdCard(String idCard){
 		// 非18位为假
@@ -166,7 +171,8 @@ public class IdCardUtil{
 		String idCard18Code = idCard.substring(17, 18);
 		char c[] = null;
 		// 是否都为数字
-		if (RegexUtil.isNumber(idCard17)){
+
+		if (RegexUtil.match(RegexPattern.NUMBER, idCard17)){
 			c = idCard17.toCharArray();
 		}else{
 			return false;
@@ -188,9 +194,10 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 验证15位身份证的合法性,该方法验证不准确，最好是将15转为18位后再判断，该类中已提供。
+	 * 验证15位身份证的合法性,该方法验证不准确，最好是将15转为18位后再判断，该类中已提供。.
 	 * 
 	 * @param idCard
+	 *            the id card
 	 * @return 验证15位身份证的合法性,该方法验证不准确，最好是将15转为18位后再判断，该类中已提供。
 	 * @deprecated
 	 */
@@ -201,7 +208,7 @@ public class IdCardUtil{
 			return false;
 		}
 		// 是否全都为数字
-		if (RegexUtil.isNumber(idCard)){
+		if (RegexUtil.match(RegexPattern.NUMBER, idCard)){
 			String provinceid = idCard.substring(0, 2);
 			String birthday = idCard.substring(6, 12);
 			int year = Integer.parseInt(idCard.substring(6, 8));
@@ -272,7 +279,7 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 将15位的身份证转成18位身份证
+	 * 将15位的身份证转成18位身份证.
 	 * 
 	 * @param idCard
 	 *            身份证号码
@@ -284,7 +291,7 @@ public class IdCardUtil{
 		if (idCard.length() != 15){
 			return null;
 		}
-		if (RegexUtil.isNumber(idCard)){
+		if (RegexUtil.match(RegexPattern.NUMBER, idCard)){
 			// 获取出生年月日
 			String birthday = idCard.substring(6, 12);
 			Date birthdate = DateFormatUtil.parse(birthday, "yyMMdd");
@@ -316,18 +323,22 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 15位和18位身份证号码的基本数字和位数验校
+	 * 15位和18位身份证号码的基本数字和位数验校.
 	 * 
 	 * @param idCard
+	 *            the id card
+	 * @return true, if is id card
 	 */
 	public static boolean isIdCard(String idCard){
 		return idCard == null || "".equals(idCard) ? false : Pattern.matches("(^\\d{15}$)|(\\d{17}(?:\\d|x|X)$)", idCard);
 	}
 
 	/**
-	 * 15位身份证号码的基本数字和位数验校
+	 * 15位身份证号码的基本数字和位数验校.
 	 * 
 	 * @param idCard
+	 *            the id card
+	 * @return true, if is 15 id card
 	 */
 	public static boolean is15IdCard(String idCard){
 		return idCard == null || "".equals(idCard) ? false : Pattern.matches(
@@ -336,18 +347,21 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 18位身份证号码的基本数字和位数验校
+	 * 18位身份证号码的基本数字和位数验校.
 	 * 
 	 * @param idCard
+	 *            the id card
+	 * @return true, if is 18 id card
 	 */
 	public static boolean is18IdCard(String idCard){
 		return Pattern.matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([\\d|x|X]{1})$", idCard);
 	}
 
 	/**
-	 * 将身份证的每位和对应位的加权因子相乘之后，再得到和值
+	 * 将身份证的每位和对应位的加权因子相乘之后，再得到和值.
 	 * 
 	 * @param bit
+	 *            the bit
 	 * @return 将身份证的每位和对应位的加权因子相乘之后，再得到和值
 	 */
 	private static int getPowerSum(int[] bit){
@@ -366,9 +380,10 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 将和值与11取模得到余数进行校验码判断
+	 * 将和值与11取模得到余数进行校验码判断.
 	 * 
 	 * @param sum17
+	 *            the sum17
 	 * @return 将和值与11取模得到余数进行校验码判断
 	 */
 	private static String getCheckCodeBySum(int sum17){
@@ -412,7 +427,7 @@ public class IdCardUtil{
 	}
 
 	/**
-	 * 将字符数组转为整型数组
+	 * 将字符数组转为整型数组.
 	 * 
 	 * @param chars
 	 *            字符数组
@@ -431,19 +446,10 @@ public class IdCardUtil{
 	 * 省,直辖市代码表：
 	 * 
 	 * <pre>
-	 * { 
-	 * 11:&quot;北京&quot;,12:&quot;天津&quot;,13:&quot;河北&quot;,14:&quot;山西&quot;,
-	 * 15:&quot;内蒙古&quot;,21:&quot;辽宁&quot;,22:&quot;吉林&quot;,23:&quot;黑龙江&quot;,
-	 * 31:&quot;上海&quot;,32:&quot;江苏&quot;,33:&quot;浙江&quot;,34:&quot;安徽&quot;,
-	 * 35:&quot;福建&quot;,36:&quot;江西&quot;,37:&quot;山东&quot;,41:&quot;河南&quot;,
-	 * 42:&quot;湖北&quot;,43:&quot;湖南&quot;,44:&quot;广东&quot;,45:&quot;广西&quot;,
-	 * 46:&quot;海南&quot;,50:&quot;重庆&quot;,51:&quot;四川&quot;,52:&quot;贵州&quot;,
-	 * 53:&quot;云南&quot;,54:&quot;西藏&quot;,61:&quot;陕西&quot;,62:&quot;甘肃&quot;,
-	 * 63:&quot;青海&quot;,64:&quot;宁夏&quot;,65:&quot;新疆&quot;,71:&quot;台湾&quot;,
-	 * 81:&quot;香港&quot;,82:&quot;澳门&quot;,91:&quot;国外&quot;
-	 * }
-	 * 
+	 * { 11:&quot;北京&quot;,12:&quot;天津&quot;,13:&quot;河北&quot;,14:&quot;山西&quot;, 15:&quot;内蒙古&quot;,21:&quot;辽宁&quot;,22:&quot;吉林&quot;,23:&quot;黑龙江&quot;, 31:&quot;上海&quot;,32:&quot;江苏&quot;,33:&quot;浙江&quot;,34:&quot;安徽&quot;, 35:&quot;福建&quot;,36:&quot;江西&quot;,37:&quot;山东&quot;,41:&quot;河南&quot;, 42:&quot;湖北&quot;,43:&quot;湖南&quot;,44:&quot;广东&quot;,45:&quot;广西&quot;, 46:&quot;海南&quot;,50:&quot;重庆&quot;,51:&quot;四川&quot;,52:&quot;贵州&quot;, 53:&quot;云南&quot;,54:&quot;西藏&quot;,61:&quot;陕西&quot;,62:&quot;甘肃&quot;, 63:&quot;青海&quot;,64:&quot;宁夏&quot;,65:&quot;新疆&quot;,71:&quot;台湾&quot;, 81:&quot;香港&quot;,82:&quot;澳门&quot;,91:&quot;国外&quot; }
 	 * </pre>
+	 * 
+	 * .
 	 */
 	private static String[][]			codeAndProvinces	= {
 			{ "11", "北京" },
@@ -482,9 +488,7 @@ public class IdCardUtil{
 			{ "82", "澳门" },
 			{ "91", "国外" }									};
 
-	/**
-	 * 省份,自治区 代码map
-	 */
+	/** 省份,自治区 代码map. */
 	private static Map<String, String>	provinceCodeMap;
 	/**
 	 * 初始化
@@ -496,9 +500,7 @@ public class IdCardUtil{
 		}
 	}
 
-	/**
-	 * 省份 自治区 代码
-	 */
+	/** 省份 自治区 代码. */
 	private static String[]				provinceCode		= {
 			"11",
 			"12",
@@ -537,6 +539,7 @@ public class IdCardUtil{
 			"91"											};
 
 	// 每位加权因子
+	/** The power. */
 	private static int[]				power				= { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
 
 	// 第18位校检码

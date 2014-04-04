@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.lang.reflect.Array;
@@ -38,13 +28,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 反射类
+ * 反射类.
  * 
  * @author 金鑫 2010-1-18 下午06:35:58
  * @since 1.0
  */
 public final class ReflectUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ReflectUtil.class);
 
 	/** Don't let anyone instantiate this class. */
@@ -55,6 +46,10 @@ public final class ReflectUtil{
 	 * public class SkuItemRepositoryImpl extends BaseSolrRepositoryImpl<SkuItem, Long> implements SkuItemRepository<br>
 	 * 这样的类,取到泛型里面第一个参数 SkuItem.class
 	 * 
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
 	 * @return the generic model class
 	 */
 	@SuppressWarnings("unchecked")
@@ -92,7 +87,10 @@ public final class ReflectUtil{
 	 * 如果该类或接口不声明任何字段，或者此 Class 对象表示一个基本类型、一个数组类或 void，则此方法返回一个长度为 0 的数组。
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param clz
+	 *            the clz
 	 * @return 包括public,protected,默认,private字段，但不包括继承的字段。
 	 */
 	public static String[] getDeclaredFieldNames(Class<?> clz){
@@ -106,9 +104,11 @@ public final class ReflectUtil{
 	 * 如果类或接口没有可访问的公共字段，或者表示一个数组类、一个基本类型或 void，则此方法返回长度为 0 的数组。 <br>
 	 * 特别地，如果该 Class 对象表示一个类，则此方法返回该类及其所有超类的公共字段。<br>
 	 * 如果该 Class 对象表示一个接口，则此方法返回该接口及其所有超接口的公共字段。 <br>
+	 * .
 	 * 
 	 * @param clz
-	 * @return
+	 *            the clz
+	 * @return the field names
 	 * @see {@link Class#getFields()}
 	 */
 	public static String[] getFieldNames(Class<?> clz){
@@ -117,10 +117,11 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 获得Field[] fields,每个field name 拼成数组
+	 * 获得Field[] fields,每个field name 拼成数组.
 	 * 
 	 * @param fields
-	 * @return
+	 *            the fields
+	 * @return the fields names
 	 */
 	private static String[] getFieldsNames(Field[] fields){
 		if (Validator.isNullOrEmpty(fields)){
@@ -134,7 +135,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 返回一个 Field 对象，该对象反映此 Class 对象所表示的类或接口的指定已声明字段
+	 * 返回一个 Field 对象，该对象反映此 Class 对象所表示的类或接口的指定已声明字段.
 	 * 
 	 * @param clz
 	 *            clz
@@ -155,38 +156,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 将普通名称转成属性名称 首字母小写,第二个字母大写
-	 * 
-	 * <pre>
-	 * jinxin----jinxin
-	 * Jinxin----jinxin
-	 * jin_xin----jin_Xin
-	 * jin_xin_xin----jin_Xin_Xin
-	 * </pre>
-	 * 
-	 * @param name
-	 *            普通名称
-	 * @return 将普通名称转成属性名称
-	 */
-	public static String convertNameToPropertyName(String name){
-		/**
-		 * 如果名称里面包含_ 则分割,首字母小写,第二个字母大写
-		 */
-		if (StringUtil.isContain(name, "_")){
-			String[] strings = name.split("_");
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append(strings[0].toLowerCase());
-			for (int i = 1; i < strings.length; ++i){
-				stringBuilder.append("_");
-				stringBuilder.append(StringUtil.firstCharToUpperCase(strings[i]));
-			}
-			return stringBuilder.toString();
-		}
-		return name.toLowerCase();
-	}
-
-	/**
-	 * 执行某对象方法
+	 * 执行某对象方法.
 	 * 
 	 * @param owner
 	 *            对象
@@ -250,7 +220,7 @@ public final class ReflectUtil{
 	// return null;
 	// }
 	/**
-	 * 获得方法
+	 * 获得方法.
 	 * 
 	 * @param ownerClass
 	 *            类
@@ -314,7 +284,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 执行静态方法
+	 * 执行静态方法.
 	 * 
 	 * @param className
 	 *            类名
@@ -346,11 +316,11 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 返回一个类
+	 * 返回一个类.
 	 * 
 	 * @param className
 	 *            包名+类名 "org.jfree.chart.ChartFactory"
-	 * @return
+	 * @return the class
 	 */
 	private static Class<?> loadClass(String className){
 		try{
@@ -362,10 +332,12 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 得到某个对象的公共属性
+	 * 得到某个对象的公共属性.
 	 * 
 	 * @param owner
+	 *            the owner
 	 * @param fieldName
+	 *            the field name
 	 * @return 该属性对象
 	 */
 	public static Object getProperty(Object owner,String fieldName){
@@ -387,9 +359,10 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 设置属性
+	 * 设置属性.
 	 * 
 	 * @param owner
+	 *            the owner
 	 * @param fieldName
 	 *            字段
 	 * @param value
@@ -412,7 +385,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 得到某类的静态公共属性
+	 * 得到某类的静态公共属性.
 	 * 
 	 * @param className
 	 *            类名
@@ -420,6 +393,7 @@ public final class ReflectUtil{
 	 *            属性名
 	 * @return 该属性对象
 	 * @throws Exception
+	 *             the exception
 	 */
 	public static Object getStaticProperty(String className,String fieldName) throws Exception{
 		Class<?> ownerClass = Class.forName(className);
@@ -429,14 +403,13 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 新建实例
+	 * 新建实例.
 	 * 
 	 * @param className
 	 *            类名
 	 * @param args
 	 *            构造函数的参数
 	 * @return 新建的实例
-	 * @throws Exception
 	 */
 	public static Object newInstance(String className,Object...args){
 		try{
@@ -466,7 +439,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 是不是某个类的实例
+	 * 是不是某个类的实例.
 	 * 
 	 * @param obj
 	 *            实例
@@ -479,7 +452,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 判断对象是否是接口
+	 * 判断对象是否是接口.
 	 * 
 	 * @param ownerClass
 	 *            对象class
@@ -493,7 +466,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 得到数组中的某个元素
+	 * 得到数组中的某个元素.
 	 * 
 	 * @param array
 	 *            数组
