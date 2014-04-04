@@ -46,6 +46,7 @@ import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.ParamUtil;
+import com.feilong.servlet.http.RequestUtil;
 
 /**
  * 手机版alipay支付
@@ -98,42 +99,11 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
+		doCommonValidate(payRequest);
+
 		String return_url = payRequest.getReturnUrl();
 		String notify_url = payRequest.getNotifyUrl();
-		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
-			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(payRequest, return_url, notify_url, specialSignMap);
-			return paymentFormEntity;
-		}
-		return null;
-	}
-
-	/**
-	 * 验证参数
-	 * 
-	 * @param tradeNo
-	 * @param total_fee
-	 * @param return_url
-	 * @param notify_url
-	 */
-	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
 		// ******************************************************************
-		// validate
-		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(total_fee)){
-			throw new IllegalArgumentException("total_fee can't be null/empty!");
-		}
-
-		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
-		// 精确到小数点 后两位
-		BigDecimal minPay = new BigDecimal(0.01f);
-		BigDecimal maxPay = new BigDecimal(100000000);
-		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
-			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
-		}
 
 		if (Validator.isNullOrEmpty(return_url)){
 			throw new IllegalArgumentException("return_url can't be null/empty!");
@@ -142,23 +112,13 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		if (Validator.isNullOrEmpty(notify_url)){
 			throw new IllegalArgumentException("notify_url can't be null/empty!");
 		}
-		return true;
-	}
-
-	protected PaymentFormEntity doGetPaymentFormEntity(
-			PayRequest payRequest,
-			String return_url,
-			String notify_url,
-			Map<String, String> specialSignMap){
-		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
 
 		// 验证传入的参数(支付宝支付直接返回true，网银、信用卡支付主要验证银行code是否支持)
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 		if (isPassValidatorSpecialSignMap){
 			String requestToken = "";
 			try{
-				requestToken = getRequestToken(tradeNo, total_fee, return_url, notify_url, specialSignMap);
+				requestToken = getRequestToken(payRequest, specialSignMap);
 			}catch (Exception e){
 				e.printStackTrace();
 			}
@@ -177,6 +137,8 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 
 	@Override
 	public boolean doNotifyVerify(HttpServletRequest request){
+
+		log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 		if (Validator.isNullOrEmpty(key)){
 			throw new NullPointerException("the key is null or empty!");
 		}
@@ -194,6 +156,8 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 
 	@Override
 	public String doGetFeedbackTradeNo(HttpServletRequest request){
+
+		log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 		String soCode = null;
 		soCode = request.getParameter("out_trade_no");
 		if (Validator.isNotNullOrEmpty(soCode)){
@@ -212,37 +176,11 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		}
 	}
 
-	@Override
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
-		return null;
-	}
-
-	@Override
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole){
-		return false;
-	}
-
-	@Override
-	public boolean isSupportCloseTrade(){
-		return false;
-	}
-
-	/**
-	 * 验证输入的参数(子类可以按照需要 重写).
-	 * 
-	 * @param specialSignMap
-	 *            指定的签名map
-	 * @return true, if successful
-	 */
-	protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
-		return true;
-	}
-
 	/**
 	 * 生成创建交易请求的url，并发送请求获得返回结果
 	 * 
 	 * @param code
-	 * @param total_fee
+	 * @param totalFee
 	 * @param return_url
 	 * @param notify_url
 	 * @throws Exception
@@ -250,9 +188,13 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * @author 冯明雷
 	 * @time 2013-6-7上午11:17:51
 	 */
-	private String getRequestToken(String code,BigDecimal total_fee,String return_url,String notify_url,Map<String, String> specialSignMap)
-			throws Exception{
-		Map<String, String> hiddenParamMap = prepareTradeRequestParamsMap(code, total_fee, return_url, notify_url, specialSignMap);
+	private String getRequestToken(PayRequest payRequest,Map<String, String> specialSignMap) throws Exception{
+		String tradeNo = payRequest.getTradeNo();
+		BigDecimal totalFee = payRequest.getTotalFee();
+		String return_url = payRequest.getReturnUrl();
+		String notify_url = payRequest.getNotifyUrl();
+
+		Map<String, String> hiddenParamMap = prepareTradeRequestParamsMap(tradeNo, totalFee, return_url, notify_url, specialSignMap);
 		String toBeSignedString = ParamUtil.getToBeSignedString(hiddenParamMap);
 		String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
 		hiddenParamMap.put("sign", sign);
@@ -415,8 +357,9 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * @return true, if is notify sign ok
 	 */
 	private boolean isNotifySignOk(HttpServletRequest request){
-		boolean isSignOk = false;
+		log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 
+		boolean isSignOk = false;
 		String notify_data = request.getParameter("notify_data");
 		if (Validator.isNotNullOrEmpty(notify_data)){
 			isSignOk = isNotifySignOkForNotifyUrl(request);
@@ -446,6 +389,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 			log.info("------------notify notify_data:" + notify_data);
 			if (Validator.isNotNullOrEmpty(notify_data)){
 				try{
+
 					String status = getValueByKeyForXML(notify_data, "trade_status");
 					log.info("------------notify status:" + status);
 					isSuccess = "TRADE_FINISHED".equals(status) || "TRADE_SUCCESS".equals(status);
@@ -504,17 +448,11 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	private boolean isNotifySignOkForNotifyUrl(HttpServletRequest request){
 		// alipay 传过来的参数
 		String alipaySign = request.getParameter("sign");
-		log.info("------------notify alipaySign:" + alipaySign);
 		String service = request.getParameter("service");
-		log.info("------------notify service:" + service);
 		String v = request.getParameter("v");
-		log.info("------------notify v:" + v);
 		String sec_id = request.getParameter("sec_id");
-		log.info("------------notify sec_id:" + sec_id);
 		String notify_data = request.getParameter("notify_data");
-		log.info("------------notify notify_data:" + notify_data);
 		String verifyData = "service=" + service + "&v=" + v + "&sec_id=" + sec_id + "&notify_data=" + notify_data;
-		log.info("------------notify verifyData:" + verifyData);
 		String mysign = MD5Util.encode(verifyData + key, _input_charset);
 		boolean isSignOk = mysign.equals(alipaySign);
 		return isSignOk;
@@ -547,88 +485,70 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		return true;
 	}
 
-	public String getGateway(){
-		return gateway;
+	@Override
+	public String doGetFeedbackTotalFee(HttpServletRequest request){
+		return null;
+	}
+
+	@Override
+	public boolean doCloseTrade(String orderNo,TradeRole tradeRole){
+		return false;
+	}
+
+	@Override
+	public boolean isSupportCloseTrade(){
+		return false;
+	}
+
+	/**
+	 * 验证输入的参数(子类可以按照需要 重写).
+	 * 
+	 * @param specialSignMap
+	 *            指定的签名map
+	 * @return true, if successful
+	 */
+	protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
+		return true;
 	}
 
 	public void setGateway(String gateway){
 		this.gateway = gateway;
 	}
 
-	public String getSubject(){
-		return subject;
-	}
-
 	public void setSubject(String subject){
 		this.subject = subject;
-	}
-
-	public String getSeller(){
-		return seller;
 	}
 
 	public void setSeller(String seller){
 		this.seller = seller;
 	}
 
-	public String getPartner(){
-		return partner;
-	}
-
 	public void setPartner(String partner){
 		this.partner = partner;
-	}
-
-	public String getService_create(){
-		return service_create;
 	}
 
 	public void setService_create(String service_create){
 		this.service_create = service_create;
 	}
 
-	public String getService_auth(){
-		return service_auth;
-	}
-
 	public void setService_auth(String service_auth){
 		this.service_auth = service_auth;
-	}
-
-	public String getSec_id(){
-		return sec_id;
 	}
 
 	public void setSec_id(String sec_id){
 		this.sec_id = sec_id;
 	}
 
-	public String getKey(){
-		return key;
-	}
-
 	public void setKey(String key){
 		this.key = key;
-	}
-
-	public String getFormat(){
-		return format;
 	}
 
 	public void setFormat(String format){
 		this.format = format;
 	}
 
-	public String getV(){
-		return v;
-	}
-
 	public void setV(String v){
 		this.v = v;
-	}
-
-	public String get_input_charset(){
-		return _input_charset;
 	}
 
 	public void set_input_charset(String _input_charset){

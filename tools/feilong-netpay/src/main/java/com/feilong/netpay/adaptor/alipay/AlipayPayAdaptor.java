@@ -33,7 +33,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.dom4j.Document;
@@ -47,7 +46,6 @@ import org.xml.sax.InputSource;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.security.oneway.MD5Util;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
@@ -122,65 +120,18 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	private boolean				isOpenAntiPhishing	= false;
 
-	/**
-	 * Construct 后
-	 */
-	@PostConstruct
-	public void postConstruct(){
-		if (log.isDebugEnabled()){
-
-			Map<String, Object> map = new HashMap<String, Object>();
-
-			map.put("key", key);
-			map.put("partner", partner);
-			map.put("gateway", gateway);
-			map.put("signMap", signMap);
-			map.put("isOpenAntiPhishing", isOpenAntiPhishing);
-			log.debug("{}", JsonFormatUtil.format(map));
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+
+		doCommonValidate(payRequest);
+
 		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
+		BigDecimal totalFee = payRequest.getTotalFee();
 		String return_url = payRequest.getReturnUrl();
 		String notify_url = payRequest.getNotifyUrl();
-		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
-			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(payRequest, return_url, notify_url, specialSignMap);
-			return paymentFormEntity;
-		}
-		return null;
-	}
-
-	/**
-	 * 验证参数
-	 * 
-	 * @param tradeNo
-	 * @param total_fee
-	 * @param return_url
-	 * @param notify_url
-	 */
-	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
-		// ******************************************************************
-		// validate
-		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(total_fee)){
-			throw new IllegalArgumentException("total_fee can't be null/empty!");
-		}
-
-		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
-		// 精确到小数点 后两位
-		BigDecimal minPay = new BigDecimal(0.01f);
-		BigDecimal maxPay = new BigDecimal(100000000);
-		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
-			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
-		}
 
 		if (Validator.isNullOrEmpty(return_url)){
 			throw new IllegalArgumentException("return_url can't be null/empty!");
@@ -189,24 +140,8 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 		if (Validator.isNullOrEmpty(notify_url)){
 			throw new IllegalArgumentException("notify_url can't be null/empty!");
 		}
-		return true;
-	}
 
-	/**
-	 * @param payRequest
-	 * @param return_url
-	 * @param notify_url
-	 * @param specialSignMap
-	 * @return
-	 */
-	protected PaymentFormEntity doGetPaymentFormEntity(
-			PayRequest payRequest,
-			String return_url,
-			String notify_url,
-			Map<String, String> specialSignMap){
-		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
-
+		// *******************************************************************************************
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 
 		if (isPassValidatorSpecialSignMap){
@@ -229,7 +164,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 			setAntiPhishingParams(signParamsMap);
 
 			// 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
-			setCommonAlipayParams(tradeNo, total_fee, return_url, notify_url, signParamsMap);
+			setCommonAlipayParams(tradeNo, totalFee, return_url, notify_url, signParamsMap);
 
 			// *************************************************************************************
 			// 待签名字符串

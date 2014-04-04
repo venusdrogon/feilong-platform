@@ -27,7 +27,7 @@ import com.feilong.commons.core.util.Validator;
  * @author 冯明雷
  * @time 2013-6-4 下午2:05:50
  */
-public class AlipayGreditCardMobileAdaptor extends AlipayPayMobileAdaptor {
+public class AlipayCreditCardMobileAdaptor extends AlipayPayMobileAdaptor {
 
 	/*
 	 * (non-Javadoc)

@@ -13,12 +13,12 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.netpay.command;
+package yicheng;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import com.feilong.netpay.adaptor.else1.YiChengPay;
+
 
 /**
  * 新华一城网配置参数 实体类

@@ -20,6 +20,9 @@
 		<property name="shippingItemName" value="#{p_dokuPayment['shippingItemName']}" />
 
 		<property name="CURRENCY" value="#{p_dokuPayment['CURRENCY']}" />
+
+		<property name="minPriceForPay" value="#{p_dokuPayment['minPriceForPay']}" />
+		<property name="maxPriceForPay" value="#{p_dokuPayment['maxPriceForPay']}" />
 	</bean>
 
 	<!-- mandiriClickPayAdaptor 支付 -->

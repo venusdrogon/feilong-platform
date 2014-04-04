@@ -25,6 +25,9 @@
 		<property name="service_notify_verify" value="#{p_alipayPayment['service.notify_verify']}" />
 		<property name="service_close_trade" value="#{p_alipayPayment['service.close_trade']}" />
 		<property name="service_query_timestamp" value="#{p_alipayPayment['service.query_timestamp']}" />
+		
+		<property name="minPriceForPay" value="#{p_alipayPayment['minPriceForPay']}" />
+		<property name="maxPriceForPay" value="#{p_alipayPayment['maxPriceForPay']}" />
 	</bean>
 
 	<!-- alipay 支付 -->
@@ -68,7 +71,6 @@
 			</map>
 		</property>
 	</bean>
-
 
 	<!-- alipay 网银在线 -->
 	<bean id="alipayNetPayAdaptor" class="com.feilong.netpay.adaptor.alipay.AlipayNetPayAdaptor" parent="baseAlipayPayAdaptor">

@@ -9,14 +9,16 @@
 
 	<util:properties id="p_bcaCreditCardPayment" location="classpath:config/payment/payment-bca-creditCard.properties"></util:properties>
 
-
 	<!-- bcaCreditCardPayAdaptor -->
-<!-- 	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.bca.BcaCreditCardPayAdaptor">
+	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.bca.creditcard.BcaCreditCardPayAdaptor">
 		<property name="gateway" value="#{p_bcaCreditCardPayment['gateway']}" />
 		<property name="method" value="#{p_bcaCreditCardPayment['method']}" />
-		
+
 		<property name="currencyDefault" value="#{p_bcaCreditCardPayment['currencyDefault']}" />
 		<property name="siteID" value="#{p_bcaCreditCardPayment['siteID']}" />
 		<property name="serviceVersion" value="#{p_bcaCreditCardPayment['serviceVersion']}" />
-	</bean> -->
+		
+		<property name="minPriceForPay" value="#{p_bcaCreditCardPayment['minPriceForPay']}" />
+		<property name="maxPriceForPay" value="#{p_bcaCreditCardPayment['maxPriceForPay']}" />
+	</bean>
 </beans>

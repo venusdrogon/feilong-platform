@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -32,8 +31,9 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.oneway.SHA1Util;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.NumberUtil;
+import com.feilong.commons.core.util.RegexPattern;
+import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
@@ -100,75 +100,41 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	// **********************************************************************************************
 
-	/**
-	 * Construct 后.
-	 */
-	@PostConstruct
-	public void postConstruct(){
-		if (log.isDebugEnabled()){
-
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-		// TODO validate param
-		if (Validator.isNullOrEmpty(payRequest)){
-			throw new IllegalArgumentException("paySo can't be null/empty!");
-		}
 
-		String NAME = payRequest.getBuyerName();
-		String EMAIL = payRequest.getBuyerEmail();
+		doCommonValidate(payRequest);
 
-		// ******************* 验证 NAME********************
-		// NAME AN …50 Travel Arranger Name / Buyer name
-		if (Validator.isNullOrEmpty(NAME)){
-			throw new IllegalArgumentException("NAME can't be null/empty!");
-		}else if (NAME.length() > 50){
-			throw new IllegalArgumentException("the length of NAME not more than 50");
-		}
-
-		// ******************* 验证 EMAIL********************
-		// EMAIL ANS …100 Customer email
-		if (Validator.isNullOrEmpty(EMAIL)){
-			throw new IllegalArgumentException("EMAIL can't be null/empty!");
-		}else if (NAME.length() > 100){
-			throw new IllegalArgumentException("the length of EMAIL not more than 100");
-		}
+		// alpha numeric space
 
 		// ******************* 验证 code********************
 		String tradeNo = payRequest.getTradeNo();
-		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}else if (tradeNo.length() > 14){ // TRANSIDMERCHANT AN …14 Transaction ID from Merchant
-			throw new IllegalArgumentException("the length of code not more than 14");
+		if (tradeNo.length() > 14){ // TRANSIDMERCHANT AN …14 Transaction ID from Merchant
+			throw new IllegalArgumentException("the length of code not more than 14,length is :" + tradeNo.length());
+		}else if (!RegexUtil.match(RegexPattern.AN, tradeNo)){// AN
+			throw new IllegalArgumentException("the tradeNo:" + tradeNo + ",must be only with numeric and alpha.");
 		}
 
-		String TRANSIDMERCHANT = tradeNo;
-
-		// ******************* 验证 totalActual********************
+		// ******************* 验证 totalFee********************
 		BigDecimal totalFee = payRequest.getTotalFee();
 		BigDecimal transferFee = payRequest.getTransferFee();
 
-		if (Validator.isNullOrEmpty(totalFee)){
-			throw new IllegalArgumentException("totalActual can't be null/empty!");
-		}
 		if (Validator.isNullOrEmpty(transferFee)){
 			throw new IllegalArgumentException("transferFee can't be null/empty!");
 		}
 
 		// AMOUNT N 12.2 Total amount. Eg 10000.00
+		BigDecimal minValue = new BigDecimal("0.00");
 		BigDecimal maxValue = new BigDecimal("999999999999.00");
 
-		if (totalFee.compareTo(maxValue) > 0){
-			throw new IllegalArgumentException("totalFee:" + totalFee + " can't be more than maxValue:" + maxValue + "");
+		if (transferFee.compareTo(minValue) < 0){
+			throw new IllegalArgumentException("transferFee:" + transferFee + " can't be less than minValue:" + minValue + "");
 		}
 
 		// ******************* 验证 totalActual********************
-
 		String AMOUNT = NumberUtil.toString(totalFee, pricePattern);
 		// these are the total amount that the buyer must paid, both of them must have the same value for checking purpose in Doku side
 		String PURCHASEAMOUNT = AMOUNT;
@@ -179,6 +145,30 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 		// TODO
 		String SESSIONID = DateUtil.date2String(new Date(), DatePattern.timestamp);
+
+		// ******************* 验证 NAME********************
+		// NAME AN …50 Travel Arranger Name / Buyer name
+		String NAME = payRequest.getBuyerName();
+		if (Validator.isNullOrEmpty(NAME)){
+			throw new IllegalArgumentException("NAME can't be null/empty!");
+		}else if (NAME.length() > 50){
+			throw new IllegalArgumentException("the length of NAME:" + NAME + " not more than 50,length is :" + NAME.length());
+		}else if (!RegexUtil.match(RegexPattern.AN, NAME)){// AN
+			throw new IllegalArgumentException("the NAME:" + NAME + ",must be only with numeric and alpha.");
+		}
+
+		// ******************* 验证 EMAIL********************
+		String EMAIL = payRequest.getBuyerEmail();
+		// EMAIL ANS …100 Customer email
+		if (Validator.isNullOrEmpty(EMAIL)){
+			throw new IllegalArgumentException("EMAIL can't be null/empty!");
+		}else if (EMAIL.length() > 100){
+			throw new IllegalArgumentException("the length of EMAIL not more than 100,length is :" + EMAIL.length());
+		}
+		// else if (!RegexUtil.match(RegexPattern.EMAIL, EMAIL)){
+		// throw new IllegalArgumentException("the length of code not more than 14,length is :" + tradeNo.length());
+		// }
+		// TODO email format
 
 		// **************************************************************************************
 
@@ -199,6 +189,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// Transaction ID from Merchant
 
 		// TRANSIDMERCHANT AN …14 Transaction ID from Merchant
+		String TRANSIDMERCHANT = tradeNo;
 		map.put("TRANSIDMERCHANT", TRANSIDMERCHANT);
 
 		// Hashed key combi- nation encryption (use SHA1 meth- od).
@@ -314,10 +305,9 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// // Zip Code
 		// map.put("SHIPPING_ZIPCODE", "216000");
 
-		log.debug("{}", JsonFormatUtil.format(map));
+		// log.debug("{}", JsonFormatUtil.format(map));
 
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
-
 		if (isPassValidatorSpecialSignMap){
 
 			// *************************************************************************************************
@@ -526,7 +516,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			if (redirectSuccessStatusCode.equals(STATUSCODE)){
 				return true;
 			}else{
-				log.error("redirectSuccessStatusCode:{}", redirectSuccessStatusCode);
+				log.error("redirectSuccessStatusCode:[{}]", STATUSCODE);
 				return false;
 			}
 		}else{

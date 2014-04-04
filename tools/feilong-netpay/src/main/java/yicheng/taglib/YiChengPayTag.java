@@ -13,13 +13,15 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.netpay.taglib;
+package yicheng.taglib;
 
 import java.util.Date;
 
-import com.feilong.netpay.adaptor.else1.YiChengPay;
-import com.feilong.netpay.command.YiChengPayEntity;
+import yicheng.YiChengPay;
+import yicheng.YiChengPayEntity;
+
 import com.feilong.taglib.base.AbstractCommonTag;
+
 
 /**
  * 生成新华一城 支付form表单

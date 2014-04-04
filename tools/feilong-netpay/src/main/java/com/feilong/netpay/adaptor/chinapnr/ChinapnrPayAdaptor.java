@@ -39,46 +39,18 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	private String				pgKeyFile;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+
+		doCommonValidate(payRequest);
+
 		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
+		BigDecimal totalFee = payRequest.getTotalFee();
 		String return_url = payRequest.getReturnUrl();
 		String notify_url = payRequest.getNotifyUrl();
-		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
-			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(payRequest, return_url, notify_url, specialSignMap);
-			return paymentFormEntity;
-		}
-		return null;
-	}
-
-	/**
-	 * 验证参数
-	 * 
-	 * @param tradeNo
-	 * @param total_fee
-	 * @param return_url
-	 * @param notify_url
-	 */
-	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
-		// ******************************************************************
-		// validate
-		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(total_fee)){
-			throw new IllegalArgumentException("total_fee can't be null/empty!");
-		}
-
-		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
-		// 精确到小数点 后两位
-		BigDecimal minPay = new BigDecimal(0.01f);
-		BigDecimal maxPay = new BigDecimal(100000000);
-		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
-			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
-		}
 
 		if (Validator.isNullOrEmpty(return_url)){
 			throw new IllegalArgumentException("return_url can't be null/empty!");
@@ -87,25 +59,14 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 		if (Validator.isNullOrEmpty(notify_url)){
 			throw new IllegalArgumentException("notify_url can't be null/empty!");
 		}
-		return true;
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.jumbo.brandstore.payment.AbstractPaymentAdaptor#doGetPaymentFormEntity(java.lang.String, java.math.BigDecimal,
-	 * java.lang.String, java.lang.String, java.util.Map)
-	 */
-	private PaymentFormEntity doGetPaymentFormEntity(PayRequest payRequest,String return_url,String notify_url,Map<String, String> specialSignMap){
-
-		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
-
+		// ********************************************************************
 		// sing里的参数
 		String Version = "10";
 		String CmdId = "Buy";
 		String MerId = merId;
 		String OrdId = tradeNo;
-		String OrdAmt = total_fee.setScale(2, BigDecimal.ROUND_HALF_UP) + "";
+		String OrdAmt = totalFee.setScale(2, BigDecimal.ROUND_HALF_UP) + "";
 		String CurCode = "RMB";
 		String Pid = "";
 		String RetUrl = return_url;
@@ -124,29 +85,28 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 		boolean isSignOk = (ret == 0);
 		if (!isSignOk){
 			throw new IllegalArgumentException("[Chinapnr]签名错误 ret=" + ret);
-		}else{
-			String ChkValue = secureLink.getChkValue();
-
-			// 传送至汇付天下的参数
-			Map<String, String> hiddenParamsMap = new HashMap<String, String>();
-			hiddenParamsMap.put("Version", Version);
-			hiddenParamsMap.put("MerId", MerId);
-			hiddenParamsMap.put("CmdId", CmdId);
-			hiddenParamsMap.put("CurCode", CurCode);
-			hiddenParamsMap.put("OrdId", OrdId);
-			hiddenParamsMap.put("OrdAmt", OrdAmt);
-			hiddenParamsMap.put("Pid", Pid);
-			hiddenParamsMap.put("RetUrl", RetUrl);
-			hiddenParamsMap.put("BgRetUrl", BgRetUrl);
-			hiddenParamsMap.put("MerPriv", MerPriv);
-			hiddenParamsMap.put("GateId", GateId);
-			hiddenParamsMap.put("UsrMp", UsrMp);
-			hiddenParamsMap.put("DivDetails", DivDetails);
-			hiddenParamsMap.put("PayUsrId", PayUsrId);
-			hiddenParamsMap.put("ChkValue", ChkValue);
-
-			return getPaymentFormEntity(gateway, "get", hiddenParamsMap);
 		}
+		String ChkValue = secureLink.getChkValue();
+
+		// 传送至汇付天下的参数
+		Map<String, String> hiddenParamsMap = new HashMap<String, String>();
+		hiddenParamsMap.put("Version", Version);
+		hiddenParamsMap.put("MerId", MerId);
+		hiddenParamsMap.put("CmdId", CmdId);
+		hiddenParamsMap.put("CurCode", CurCode);
+		hiddenParamsMap.put("OrdId", OrdId);
+		hiddenParamsMap.put("OrdAmt", OrdAmt);
+		hiddenParamsMap.put("Pid", Pid);
+		hiddenParamsMap.put("RetUrl", RetUrl);
+		hiddenParamsMap.put("BgRetUrl", BgRetUrl);
+		hiddenParamsMap.put("MerPriv", MerPriv);
+		hiddenParamsMap.put("GateId", GateId);
+		hiddenParamsMap.put("UsrMp", UsrMp);
+		hiddenParamsMap.put("DivDetails", DivDetails);
+		hiddenParamsMap.put("PayUsrId", PayUsrId);
+		hiddenParamsMap.put("ChkValue", ChkValue);
+
+		return getPaymentFormEntity(gateway, "get", hiddenParamsMap);
 	}
 
 	/*

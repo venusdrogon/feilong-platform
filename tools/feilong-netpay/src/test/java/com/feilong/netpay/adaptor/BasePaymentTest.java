@@ -65,7 +65,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		payRequest.setTradeNo(code);
 		payRequest.setTotalFee(total_fee);
 		payRequest.setBuyerEmail("venusdrogon@163.com");
-		payRequest.setBuyerName("jin xin");
+		payRequest.setBuyerName("jinxin");
 
 		payRequest.setTransferFee(new BigDecimal(10000.00f));
 

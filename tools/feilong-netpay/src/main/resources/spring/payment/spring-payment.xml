@@ -24,6 +24,9 @@
 
 				<entry key="151" value-ref="mandiriClickPayAdaptor"></entry>
 				<entry key="152" value-ref="briEPayAdaptor"></entry>
+				<entry key="153" value-ref="permataVALITEPayAdaptor"></entry>
+				
+				<entry key="154" value-ref="bcaCreditCardPayAdaptor"></entry>
 			</map>
 		</property>
 	</bean>
@@ -31,6 +34,7 @@
 	<!--********************* 有新的支付方式 ,请在下面扩展配置**************** -->
 	<!-- alipay相关 -->
 	<import resource="classpath:spring/payment/spring-payment-alipay.xml" />
+	<import resource="classpath:spring/payment/spring-payment-alipay-mobile.xml" />
 
 	<!-- 汇付天下 -->
 	<import resource="classpath:spring/payment/spring-payment-chinapnr.xml" />

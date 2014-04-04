@@ -31,21 +31,13 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
-import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
- * alipay 纯网关接口<br>
- * <ul>
- * <li>此接口只支持 https 请求</li>
- * <li>参数 body（商品描述）、subject（商品名称）、extra_common_param（公用 回传参数）不能包含特殊字符（如：#、%、&、+）、敏感词汇，<br>
- * 也不能使用外 国文字（旺旺不支持的外文，如：韩文、泰语、藏文、蒙古文、阿拉伯语）；</li>
- * <li>此接口支持重复调用，前提是交易基本信息（买家、卖家、交易金额、超时时间等）在多次调用中保持一致，且交易尚未完成支付。</li>
- * </ul>
- * .
+ * BcaCreditCard.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 15, 2013 8:41:39 PM
+ * @version 1.0 Apr 2, 2014 9:15:37 PM
  */
 public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 
@@ -61,10 +53,11 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	/**
 	 * Required<br>
 	 * Value: Merchant’s DOacquire ID (will be provided by your Account Manager)<br>
-	 * Format: Up to 20 alphanumeric characters
+	 * Format: Up to 20 alphanumeric characters.
 	 */
 	private String				siteID;
 
+	/** The service version. */
 	private String				serviceVersion;
 
 	/**
@@ -77,62 +70,13 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	/** The price pattern. */
 	private String				pricePattern	= "############.00";
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-		String tradeNo = payRequest.getTradeNo();
-		BigDecimal total_fee = payRequest.getTotalFee();
-		String return_url = payRequest.getReturnUrl();
-		String notify_url = payRequest.getNotifyUrl();
-		if (doValidator(tradeNo, total_fee, return_url, notify_url)){
-			PaymentFormEntity paymentFormEntity = doGetPaymentFormEntity(payRequest, return_url, notify_url, specialSignMap);
-			return paymentFormEntity;
-		}
-		return null;
-	}
-	/**
-	 * 验证参数
-	 * 
-	 * @param tradeNo
-	 * @param total_fee
-	 * @param return_url
-	 * @param notify_url
-	 */
-	private boolean doValidator(String tradeNo,BigDecimal total_fee,String return_url,String notify_url){
-		// ******************************************************************
-		// validate
-		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(total_fee)){
-			throw new IllegalArgumentException("total_fee can't be null/empty!");
-		}
+		doCommonValidate(payRequest);
 
-		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
-		// 精确到小数点 后两位
-		BigDecimal minPay = new BigDecimal(0.01f);
-		BigDecimal maxPay = new BigDecimal(100000000);
-		if (total_fee.compareTo(minPay) == -1 || total_fee.compareTo(maxPay) == 1){
-			throw new IllegalArgumentException("total_fee:" + total_fee + " can't < " + minPay + " or > " + maxPay);
-		}
-
-		if (Validator.isNullOrEmpty(return_url)){
-			throw new IllegalArgumentException("return_url can't be null/empty!");
-		}
-
-		if (Validator.isNullOrEmpty(notify_url)){
-			throw new IllegalArgumentException("notify_url can't be null/empty!");
-		}
-		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doGetPaymentFormEntity(java.lang.String, java.math.BigDecimal,
-	 * java.lang.String, java.lang.String, java.util.Map)
-	 */
-	protected PaymentFormEntity doGetPaymentFormEntity(PayRequest payRequest,String return_url,String notify_url,Map<String, String> specialSignMap){
 		String transactionNo = payRequest.getTradeNo();
 		String totalAmount = NumberUtil.toString(payRequest.getTotalFee(), pricePattern);
 
@@ -296,16 +240,11 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		// Value: DOacquire transaction status
 		// Format:
 		//  PENDING (transaction still in process)
-		//  APPROVE (transaction has been authorized by the partner
-		// bank/acquirer)
-		//  DECLINE (transaction has been rejected by the partner
-		// bank/acquirer)
-		//  SCRUB (transaction has been rejected based on account risk
-		// policy)
-		//  ERROR (network connectivity error with the partner
-		// bank/acquirer)
+		//  APPROVE (transaction has been authorized by the partner bank/acquirer)
+		//  DECLINE (transaction has been rejected by the partner bank/acquirer)
+		//  SCRUB (transaction has been rejected based on account risk policy)
+		//  ERROR (network connectivity error with the partner bank/acquirer)
 		//  CANCEL (cardholder did not complete the transaction)
-		//
 		String transactionStatus = request.getParameter("transactionStatus");
 
 		// Value: Card number
@@ -382,6 +321,8 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the 表单提交地址.
+	 * 
 	 * @param gateway
 	 *            the gateway to set
 	 */
@@ -390,6 +331,8 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the method.
+	 * 
 	 * @param method
 	 *            the method to set
 	 */
@@ -398,6 +341,10 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the required<br>
+	 * Value: Transaction currency<br>
+	 * Format: 3 characters (ISO 4217 alpha-3 format.
+	 * 
 	 * @param currencyDefault
 	 *            the currencyDefault to set
 	 */
@@ -406,6 +353,10 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the required<br>
+	 * Value: Merchant’s DOacquire ID (will be provided by your Account Manager)<br>
+	 * Format: Up to 20 alphanumeric characters.
+	 * 
 	 * @param siteID
 	 *            the siteID to set
 	 */
@@ -414,6 +365,8 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the service version.
+	 * 
 	 * @param serviceVersion
 	 *            the serviceVersion to set
 	 */

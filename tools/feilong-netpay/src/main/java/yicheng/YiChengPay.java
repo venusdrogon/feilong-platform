@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.netpay.adaptor.else1;
+package yicheng;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,7 +23,6 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.netpay.command.YiChengPayEntity;
 import com.feilong.tools.html.HTMLInput;
 
 /**
