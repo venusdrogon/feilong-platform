@@ -35,8 +35,8 @@ import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class SolrUtil.
@@ -106,7 +106,7 @@ public final class SolrUtil{
 			map.put("solrQuery.toString()", solrQuery.toString());
 
 
-			log.debug("{}", JsonFormatUtil.format(map));
+			log.debug("{}", JsonUtil.format(map));
 		}
 	}
 
@@ -167,7 +167,7 @@ public final class SolrUtil{
 				map.put("suggestionMap", object);
 			}
 
-			log.debug("{}", JsonFormatUtil.format(map));
+			log.debug("{}", JsonUtil.format(map));
 		}
 	}
 
@@ -265,7 +265,7 @@ public final class SolrUtil{
 			List<T> beans = queryResponse.getBeans(modelClass);
 			map.put("beans size", beans.size());
 
-			log.debug("{}", JsonFormatUtil.format(map));
+			log.debug("{}", JsonUtil.format(map));
 		}
 	}
 }

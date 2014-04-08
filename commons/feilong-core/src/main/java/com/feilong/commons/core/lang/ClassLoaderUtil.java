@@ -34,7 +34,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *这个类提供了一些根据类的class文件位置来定位的方法。
+ * 这个类提供了一些根据类的class文件位置来定位的方法。.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午12:40:08
@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ClassLoaderUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ClassLoaderUtil.class);
 
 	/**
@@ -71,18 +72,18 @@ public class ClassLoaderUtil{
 	}
 
 	/**
-	 * 获得 项目的 classpath,及classes编译的根目录
+	 * 获得 项目的 classpath,及classes编译的根目录.
 	 * 
+	 * @return 获得 项目的 classpath
 	 * @see {@link #getResource(String)}
 	 * @since 1.0
-	 * @return 获得 项目的 classpath
 	 */
 	public static URL getClassPath(){
 		URL url = getResource("");
 		return url;
 	}
 
-	/**********************************************************************************/
+	// *****************************************************
 	/**
 	 * This is a convenience method to load a resource as a stream.
 	 * <p/>
@@ -92,6 +93,7 @@ public class ClassLoaderUtil{
 	 *            The name of the resource to load
 	 * @param callingClass
 	 *            The Class object of the calling object
+	 * @return the resource as stream
 	 */
 	public static InputStream getResourceAsStream(String resourceName,Class<?> callingClass){
 		URL url = getResource(resourceName, callingClass);
@@ -116,6 +118,7 @@ public class ClassLoaderUtil{
 	 *            The name of the resource to load
 	 * @param callingClass
 	 *            The Class object of the calling object
+	 * @return the resource
 	 */
 	public static URL getResource(String resourceName,Class<?> callingClass){
 		ClassLoader classLoader = getClassLoaderByCurrentThread();
@@ -137,11 +140,15 @@ public class ClassLoaderUtil{
 	}
 
 	/**
-	 * Load resources
+	 * Load resources.
 	 * 
 	 * @param resourceName
+	 *            the resource name
 	 * @param callingClass
+	 *            the calling class
+	 * @return the resources
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Enumeration<URL> getResources(String resourceName,Class<?> callingClass) throws IOException{
 		ClassLoader classLoader = getClassLoaderByCurrentThread();
@@ -177,6 +184,7 @@ public class ClassLoaderUtil{
 	 *            The name of the class to load
 	 * @param callingClass
 	 *            The Class object of the calling object
+	 * @return the class
 	 * @throws ClassNotFoundException
 	 *             If the class cannot be found anywhere.
 	 */
@@ -200,11 +208,11 @@ public class ClassLoaderUtil{
 		}
 	}
 
-	/**********************************************************************************/
+	// ***************************************************************
 	/**
 	 * 通过Thread.currentThread().getContextClassLoader() 获得ClassLoader
 	 * 
-	 * @return
+	 * @return the class loader by current thread
 	 */
 	public static ClassLoader getClassLoaderByCurrentThread(){
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -214,10 +222,11 @@ public class ClassLoaderUtil{
 	}
 
 	/**
-	 * 通过类来获得 classLoader
+	 * 通过类来获得 classLoader.
 	 * 
 	 * @param callingClass
-	 * @return
+	 *            the calling class
+	 * @return the class loader by class
 	 */
 	public static ClassLoader getClassLoaderByClass(Class<?> callingClass){
 		ClassLoader classLoader = callingClass.getClassLoader();
@@ -226,7 +235,9 @@ public class ClassLoaderUtil{
 		return classLoader;
 	}
 
-	/********************************************************************************************************/
+	/**
+	 * *****************************************************************************************************.
+	 */
 	/**
 	 * Prints the current classloader hierarchy <br>
 	 * useful for debugging.
@@ -240,7 +251,11 @@ public class ClassLoaderUtil{
 	/**
 	 * Prints the classloader hierarchy from a given classloader<br>
 	 * useful for debugging.
+	 * 
+	 * @param classLoader
+	 *            the class loader
 	 */
+	@SuppressWarnings("null")
 	public static void printClassLoader(ClassLoader classLoader){
 		log.info(classLoader.toString());
 		if (classLoader != null){

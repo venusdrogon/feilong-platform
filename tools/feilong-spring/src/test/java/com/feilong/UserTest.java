@@ -16,8 +16,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.entity.User;
+import com.feilong.tools.json.JsonUtil;
 
 public class UserTest implements ApplicationContextAware{
 
@@ -33,45 +33,45 @@ public class UserTest implements ApplicationContextAware{
 		Properties props = context.getBean("testProperties", Properties.class);
 		// System.out.println(aString);
 
-		log.info("props:{}", JsonFormatUtil.format(props));
+		log.info("props:{}", JsonUtil.format(props));
 		// Locale locale = new Locale("zh", "CN");
 		// log.info("================" + context.getMessage("name", null, locale));
 		User user = (User) context.getBean("feitian@");
 		System.out.println(user.getUserName());
 		// -----------------------------
 		List<String> list = user.getList();
-		log.info("list:{}", JsonFormatUtil.format(list));
+		log.info("list:{}", JsonUtil.format(list));
 		// --------------------------------
 		Map<String, Object> map = user.getMap();
 		map.put(null, null);
 		map.put(null, 222);
-		log.info("map:{}", JsonFormatUtil.format(map));
+		log.info("map:{}", JsonUtil.format(map));
 		List<String> list2 = (List<String>) map.get("五子良将");
-		log.info("list2:{}", JsonFormatUtil.format(list2));
+		log.info("list2:{}", JsonUtil.format(list2));
 		// -----------------------------------------
 		List<String> list3 = (List<String>) map.get("八虎骑");
-		log.info("list3:{}", JsonFormatUtil.format(list3));
+		log.info("list3:{}", JsonUtil.format(list3));
 		// -----------------------------------------
 		Properties properties = user.getProperties();
-		log.info("properties:{}", JsonFormatUtil.format(properties));
+		log.info("properties:{}", JsonUtil.format(properties));
 		// *********************************
 		Set<String> set = user.getSet();
 		set.add("1");
 		set.add("1");
-		log.info("set:{}", JsonFormatUtil.format(set));
+		log.info("set:{}", JsonUtil.format(set));
 		// *******************************
 		Vector<Integer> vector = new Vector<Integer>();
 		vector.add(1);
 		vector.add(2222);
 		vector.add(3333);
 		vector.add(55555);
-		log.info("vector:{}", JsonFormatUtil.format(vector));
+		log.info("vector:{}", JsonUtil.format(vector));
 		System.out.println(vector.get(0));
 		// /********************************************
 		Hashtable<String, Object> hashtable = new Hashtable<String, Object>();
 		hashtable.put("a", "a");
 		// hashtable.put("a", null);
-		log.info("hashtable:{}", JsonFormatUtil.format(hashtable));
+		log.info("hashtable:{}", JsonUtil.format(hashtable));
 	}
 
 	@Test
@@ -79,19 +79,19 @@ public class UserTest implements ApplicationContextAware{
 		// **********************************************************
 		HashSet<String> hashSet = new HashSet<String>();
 		hashSet.add("今天");
-		log.info("hashSet:{}", JsonFormatUtil.format(hashSet));
+		log.info("hashSet:{}", JsonUtil.format(hashSet));
 		// **********************************************************
 		HashSet<com.feilong.entity.user.User> hashSet1 = new HashSet<com.feilong.entity.user.User>();
 		com.feilong.entity.user.User user = new com.feilong.entity.user.User();
 		user.setId(555);
 		hashSet1.add(user);
-		log.info("hashSet1:{}", JsonFormatUtil.format(hashSet1));
+		log.info("hashSet1:{}", JsonUtil.format(hashSet1));
 	}
 
 	@Test
 	public void test1(){
 		User user = (User) context.getBean("feitian@");
-		log.info("user:{}", JsonFormatUtil.format(user));
+		log.info("user:{}", JsonUtil.format(user));
 	}
 
 	@Override

@@ -1,11 +1,10 @@
 package com.feilong.tools.net.httpclient;
 
-import loxia.support.json.JSONException;
-import loxia.support.json.JSONObject;
-
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +42,7 @@ public class HttpClientUtilTest{
 	@Test
 	public void getFLLogisticsTrack() throws HttpClientUtilException,JSONException{
 		String uri = "http://firstlogistics.co.id/ws/demo/post/";
-		
+
 		NameValuePair[] nameValuePairs = new NameValuePair[] {
 				new NameValuePair("APPID", "EBDEMO01"),
 				new NameValuePair("ACCOUNT", "1300000430"),
@@ -71,7 +70,7 @@ public class HttpClientUtilTest{
 		// MPE100498 - DELIVERED
 		String responseBodyAsString = HttpClientUtil.getPostMethodResponseBodyAsString(uri, nameValuePairs);
 		JSONObject jsonObject = new JSONObject(responseBodyAsString);
-		log.debug(jsonObject.toString(4, 4));
+		log.debug(jsonObject.toString(4));
 
 	}
 

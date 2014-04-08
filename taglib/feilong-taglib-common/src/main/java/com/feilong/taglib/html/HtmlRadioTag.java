@@ -19,9 +19,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.servlet.http.ParamUtil;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.taglib.base.BaseHtmlTag;
 import com.feilong.tools.html.HtmlUtil;

@@ -16,8 +16,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.test.Mp2PersonInfo;
+import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.office.excel.ExcelParseUtil;
 
 /**
@@ -38,7 +38,7 @@ public class ExcelParseTest{
 		Workbook workbook = new XSSFWorkbook(inputStream);
 		Sheet sheet = workbook.getSheetAt(0);
 		Map<String, Object> map = ExcelParseUtil.getSheetMapForLog(sheet);
-		log.info(JsonFormatUtil.format(map));
+		log.info(JsonUtil.format(map));
 
 		List<Mp2PersonInfo> list = new ArrayList<Mp2PersonInfo>();
 
@@ -47,14 +47,14 @@ public class ExcelParseTest{
 			Row row = sheet.getRow(i);
 
 			Map<String, Object> rowMapLog = ExcelParseUtil.getRowMapForLog(row);
-			log.info(JsonFormatUtil.format(rowMapLog));
+			log.info(JsonUtil.format(rowMapLog));
 
 			Mp2PersonInfo personInfo = new Mp2PersonInfo();
 			for (int j = 0; j < 7; ++j){
 				Cell cell = row.getCell(j);
 
 				Map<String, Object> cellMapLog = ExcelParseUtil.getCellMapForLog(cell);
-				log.info(JsonFormatUtil.format(cellMapLog));
+				log.info(JsonUtil.format(cellMapLog));
 			}
 			personInfo.setName(ExcelParseUtil.getCellValue(row.getCell(0)));
 			personInfo.setTitle(ExcelParseUtil.getCellValue(row.getCell(1)));
@@ -65,6 +65,6 @@ public class ExcelParseTest{
 			personInfo.setPassportCase(ExcelParseUtil.getCellValue(row.getCell(6)));
 			list.add(personInfo);
 		}
-		log.info(JsonFormatUtil.format(list));
+		log.info(JsonUtil.format(list));
 	}
 }

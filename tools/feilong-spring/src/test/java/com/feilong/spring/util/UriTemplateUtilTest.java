@@ -25,7 +25,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -44,7 +44,7 @@ public class UriTemplateUtilTest{
 	public void testGetVariableNames(){
 		List<String> list = UriTemplateUtil.getVariableNames(uriTemplatePath);
 
-		log.info("list:{}", JsonFormatUtil.format(list));
+		log.info("list:{}", JsonUtil.format(list));
 	}
 
 	@Test
@@ -131,7 +131,7 @@ public class UriTemplateUtilTest{
 		String requestPath = "/c/m-caaa-s-k-s-o.htm";
 		String matchingPatternPath = uriTemplatePath;
 		Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
-		log.info("map:{}", JsonFormatUtil.format(map));
+		log.info("map:{}", JsonUtil.format(map));
 	}
 
 	/**

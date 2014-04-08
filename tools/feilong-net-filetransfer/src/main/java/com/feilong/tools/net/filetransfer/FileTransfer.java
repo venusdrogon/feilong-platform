@@ -27,8 +27,8 @@ import com.feilong.commons.core.entity.FileInfoEntity;
 import com.feilong.commons.core.enumeration.FileType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * 通用的文件传输 ,开放出来的方法有: <br>
@@ -385,7 +385,7 @@ public abstract class FileTransfer{
 		Map<String, FileInfoEntity> map = getLsFileMap(remotePath);
 
 		if (log.isDebugEnabled()){
-			log.debug(JsonFormatUtil.format(map));
+			log.debug(JsonUtil.format(map));
 		}
 
 		if (Validator.isNotNullOrEmpty(map)){

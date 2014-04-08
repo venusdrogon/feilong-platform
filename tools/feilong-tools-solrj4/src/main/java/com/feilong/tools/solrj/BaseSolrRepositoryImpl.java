@@ -48,9 +48,9 @@ import org.apache.solr.common.params.GroupParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.solrj.command.SolrGroup;
 import com.feilong.tools.solrj.command.SolrGroupCommand;
 import com.feilong.tools.solrj.data.BaseSolrData;
@@ -300,7 +300,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 					}
 
 					if (log.isDebugEnabled()){
-						log.debug(JsonFormatUtil.format(facetQueryMap));
+						log.debug(JsonUtil.format(facetQueryMap));
 					}
 					return facetQueryMap;
 				}
@@ -383,7 +383,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 				}
 			}
 			if (log.isDebugEnabled()){
-				log.debug(JsonFormatUtil.format(map));
+				log.debug(JsonUtil.format(map));
 			}
 		}
 		return map;
@@ -477,7 +477,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 			return model;
 		}catch (Exception e){
-			log.error("error:{}", JsonFormatUtil.format(model));
+			log.error("error:{}", JsonUtil.format(model));
 			e.printStackTrace();
 			throw new SolrException("Save failed for model " + model + "," + e.getMessage());
 		}
@@ -500,7 +500,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
-			// log.error("error:{}", JsonFormatUtil.format(modelList));
+			// log.error("error:{}", JsonUtil.format(modelList));
 			e.printStackTrace();
 			throw new SolrException("Batch save model failed for modelClass " + modelClass + "," + e.getMessage());
 		}

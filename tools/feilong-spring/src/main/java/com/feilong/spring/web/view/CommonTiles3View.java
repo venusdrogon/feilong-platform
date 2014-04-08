@@ -25,10 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.servlet.ServletContextUtil;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.SessionUtil;
+import com.feilong.tools.json.JsonUtil;
 
 public class CommonTiles3View extends TilesView{
 
@@ -55,9 +55,9 @@ public class CommonTiles3View extends TilesView{
 			// model 已经 exposeModelAsRequestAttributes
 			Object[] argsObjects = { RequestUtil.getRequestAllURL(request),
 					// , JsonFormatUtil.defaultPropFilterStr + ",-" + Config.FMT_LOCALIZATION_CONTEXT + ".request"
-					JsonFormatUtil.format(attributeMap),
-					JsonFormatUtil.format(SessionUtil.getAttributeMap(request.getSession())),
-					JsonFormatUtil.format(ServletContextUtil.getAttributeMap(request.getSession().getServletContext())) };
+					JsonUtil.format(attributeMap),
+					JsonUtil.format(SessionUtil.getAttributeMap(request.getSession())),
+					JsonUtil.format(ServletContextUtil.getAttributeMap(request.getSession().getServletContext())) };
 
 			log.debug(
 					"requestAllURL:{},\n request attributeMap:{},\n session attributeMap:{} , \n servletContext attributeMap:{} ",

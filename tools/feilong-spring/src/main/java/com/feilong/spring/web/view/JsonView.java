@@ -21,15 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.jstl.core.Config;
 
-import loxia.support.json.JSONObject;
+import net.sf.json.JSONObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.AbstractView;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.ResponseUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class JsonView.
@@ -108,7 +108,8 @@ public class JsonView extends AbstractView{
 				filterString = "**";
 			}
 
-			writeStr = JsonFormatUtil.format(model, filterString);
+			//writeStr = JsonUtil.format(model, filterString);
+			writeStr = JsonUtil.format(model);
 		}else{
 			writeStr = new JSONObject().toString(4);
 		}

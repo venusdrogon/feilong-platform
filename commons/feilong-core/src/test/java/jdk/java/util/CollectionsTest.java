@@ -38,7 +38,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -54,12 +54,12 @@ public class CollectionsTest{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("a", "1");
 		map.put("a", "2");
-		log.info(JsonFormatUtil.format(map));
+		log.info(JsonUtil.format(map));
 
 		Set<String> set = new HashSet<String>();
 		set.add("a");
 		set.add("a");
-		log.info(JsonFormatUtil.format(set));
+		log.info(JsonUtil.format(set));
 	}
 
 	@Test

@@ -22,9 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.ThreadUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
-import com.feilong.tools.om.os.MonitorInfoEntity;
-import com.feilong.tools.om.os.OperatingSystemUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -46,7 +44,7 @@ public class OperatingSystemUtilTest{
 
 	@Test
 	public void getMacMap(){
-		log.info(JsonFormatUtil.format(OperatingSystemUtil.getMacAddressMap()));
+		log.info(JsonUtil.format(OperatingSystemUtil.getMacAddressMap()));
 	}
 
 	@Test
@@ -65,7 +63,7 @@ public class OperatingSystemUtilTest{
 	@Test
 	public void getMonitorInfoEntity(){
 		MonitorInfoEntity monitorInfoEntity = OperatingSystemUtil.getMonitorInfoEntity();
-		log.info(JsonFormatUtil.format(monitorInfoEntity));
+		log.info(JsonUtil.format(monitorInfoEntity));
 	}
 
 	@Test

@@ -100,7 +100,7 @@ public class StubStatusMain{
 	 */
 	private static void crawStubStatus(String stubStatusURI,String userName,String password,String patch){
 		StubStatusCommand stubStatusCommand = StubStatusUtil.getStubStatusCommand(stubStatusURI, userName, password);
-		// String format = JsonFormatUtil.format(nginxStubStatusCommand);
+		// String format = JsonUtil.format(nginxStubStatusCommand);
 		// log.info("\n{}", format);
 
 		Date crawlDate = stubStatusCommand.getCrawlDate();

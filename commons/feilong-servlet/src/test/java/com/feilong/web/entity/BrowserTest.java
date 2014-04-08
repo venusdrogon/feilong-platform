@@ -19,8 +19,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
-
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 29, 2013 7:07:30 PM
@@ -42,6 +40,6 @@ public class BrowserTest{
 
 		 Browser browser = new Browser(null);
 	 
-		 //log.info(JsonFormatUtil.format(browser.getIsMobileDevice(iphone)));
+		 //log.info(JsonUtil.format(browser.getIsMobileDevice(iphone)));
 	}
 }

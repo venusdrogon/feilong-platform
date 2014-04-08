@@ -15,20 +15,6 @@
  */
 package com.feilong.servlet;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-
-import com.feilong.commons.core.Constants;
-import com.feilong.commons.core.awt.ValidateCodeUtil;
-import com.feilong.commons.core.enumeration.ImageType;
-import com.feilong.servlet.http.ResponseUtil;
 
 /**
  * 编写验证码 ,对应res/feilong/include/jsp/code.jsp页面,可以现在这里编写,因为jsp编写重构不方便

@@ -40,6 +40,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.test.User;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -146,7 +147,7 @@ public class ArrayUtilTest{
 
 		User[] users = { user1, user2 };
 		LinkedList<User> list = ArrayUtil.toLinkedList(users);
-		log.info(JsonFormatUtil.format(list));
+		log.info(JsonUtil.format(list));
 	}
 
 	@Test
@@ -159,7 +160,7 @@ public class ArrayUtilTest{
 		User[] users = { user1, user2 };
 
 		List<User> list = ArrayUtil.toList(users);
-		log.info(JsonFormatUtil.format(list));
+		log.info(JsonUtil.format(list));
 
 	}
 

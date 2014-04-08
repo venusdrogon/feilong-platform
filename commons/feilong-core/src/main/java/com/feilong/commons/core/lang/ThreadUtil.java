@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.lang;
 
 import java.util.HashMap;
@@ -31,22 +21,23 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
- * 线程解析
+ * 线程解析.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 17, 2011 2:00:35 AM
  */
 public final class ThreadUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ThreadUtil.class);
 
 	/**
-	 * 获得线程总数
+	 * 获得线程总数.
 	 * 
-	 * @return
+	 * @return the top thread group active count
 	 */
 	public static int getTopThreadGroupActiveCount(){
 
@@ -55,12 +46,12 @@ public final class ThreadUtil{
 		Thread currentThread = Thread.currentThread();
 
 		Map<String, Object> threadObjectLog = getThreadObjectLog(currentThread);
-		log.debug(JsonFormatUtil.format(threadObjectLog));
+		log.debug(JsonUtil.format(threadObjectLog));
 
 		ThreadGroup currentThreadGroup = currentThread.getThreadGroup();
 		ThreadGroup topThreadGroup = getTopThreadGroup(currentThreadGroup);
 
-		log.debug(JsonFormatUtil.format(getThreadGroupObjectLog(topThreadGroup)));
+		log.debug(JsonUtil.format(getThreadGroupObjectLog(topThreadGroup)));
 		// 返回此线程组中活动线程的估计数。
 		int topThreadGroupActiveCount = topThreadGroup.activeCount();
 
@@ -68,14 +59,15 @@ public final class ThreadUtil{
 	}
 
 	/**
-	 * 获得最顶层的 ThreadGroup
+	 * 获得最顶层的 ThreadGroup.
 	 * 
 	 * @param threadGroup
-	 * @return
+	 *            the thread group
+	 * @return the top thread group
 	 */
 	private static ThreadGroup getTopThreadGroup(ThreadGroup threadGroup){
 
-		log.debug(JsonFormatUtil.format(getThreadGroupObjectLog(threadGroup)));
+		log.debug(JsonUtil.format(getThreadGroupObjectLog(threadGroup)));
 
 		ThreadGroup parentThreadGroup = threadGroup.getParent();
 		if (parentThreadGroup == null){
@@ -93,10 +85,11 @@ public final class ThreadUtil{
 	}
 
 	/**
-	 * 获得 ThreadGroup 对象log
+	 * 获得 ThreadGroup 对象log.
 	 * 
 	 * @param threadGroup
-	 * @return
+	 *            the thread group
+	 * @return the thread group object log
 	 */
 	public static Map<String, Object> getThreadGroupObjectLog(ThreadGroup threadGroup){
 
@@ -123,14 +116,14 @@ public final class ThreadUtil{
 	}
 
 	/**
-	 * 获得 thread 对象log
+	 * 获得 thread 对象log.
 	 * 
 	 * @param thread
 	 *            线程 是程序中的执行线程。Java 虚拟机允许应用程序并发地运行多个执行线程。<br>
 	 *            每个线程都有一个优先级，高优先级线程的执行优先于低优先级线程。<br>
 	 *            每个线程都可以或不可以标记为一个守护程序。<br>
 	 *            当某个线程中运行的代码创建一个新 Thread 对象时，该新线程的初始优先级被设定为创建线程的优先级，并且当且仅当创建线程是守护线程时，新线程才是守护程序。
-	 * @return
+	 * @return the thread object log
 	 */
 	public static Map<String, Object> getThreadObjectLog(Thread thread){
 
@@ -167,35 +160,35 @@ public final class ThreadUtil{
 	}
 
 	/**
-	 * 传入currentThread 解析其当前方法的名称
+	 * 传入currentThread 解析其当前方法的名称.
 	 * 
 	 * @param currentThread
 	 *            Thread thread = Thread.currentThread();
-	 * @return
+	 * @return the current method name
 	 */
 	public static String getCurrentMethodName(Thread currentThread){
 		return getMethodName(currentThread, 3);
 	}
 
 	/**
-	 * 解析其调用者方法的名称
+	 * 解析其调用者方法的名称.
 	 * 
 	 * @param currentThread
 	 *            Thread thread = Thread.currentThread();
-	 * @return
+	 * @return the caller method name
 	 */
 	public static String getCallerMethodName(Thread currentThread){
 		return getMethodName(currentThread, 1);
 	}
 
 	/**
-	 * 传入currentThread 解析调用方法的名称
+	 * 传入currentThread 解析调用方法的名称.
 	 * 
 	 * @param currentThread
 	 *            currentThread
 	 * @param index
 	 *            index 索引
-	 * @return
+	 * @return the method name
 	 */
 	private static String getMethodName(Thread currentThread,int index){
 		StackTraceElement[] stackTraceElements = currentThread.getStackTrace();

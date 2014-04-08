@@ -142,7 +142,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		paymentFormEntity.setHiddenParamMap(hiddenParamMap);
 
 		// if (log.isDebugEnabled()){
-		// log.debug(JsonFormatUtil.format(paymentFormEntity));
+		// log.debug(JsonUtil.format(paymentFormEntity));
 		// }
 		return paymentFormEntity;
 	}

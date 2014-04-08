@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.test.User;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -91,7 +92,7 @@ public class BeanUtilTest{
 		a.setDate(now);
 		Map<String, String> map = BeanUtil.describe(a);
 		
-		log.info("map:{}", JsonFormatUtil.format(map));
+		log.info("map:{}", JsonUtil.format(map));
 	}
 
 	@Test

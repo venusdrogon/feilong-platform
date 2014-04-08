@@ -16,7 +16,6 @@
 package com.feilong.taglib.common.middleware;
 
 import com.feilong.taglib.base.AbstractCommonTag;
-import com.feilong.tools.middleware.email.EmailUtil;
 
 /**
  * 邮箱显示其名称及登录路径

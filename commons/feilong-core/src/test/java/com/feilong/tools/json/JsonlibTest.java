@@ -30,7 +30,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.test.User;
 import com.feilong.test.UserAddress;
 import com.feilong.test.UserInfo;
@@ -60,7 +59,7 @@ public class JsonlibTest{
 
 		User user = JsonUtil.toBean(json, User.class);
 		user.setId(10L);
-		json = JsonFormatUtil.format(user);
+		json = JsonUtil.format(user);
 		log.info(json);
 	}
 
@@ -72,7 +71,7 @@ public class JsonlibTest{
 		classMap.put("userAddresseList", UserAddress.class);
 
 		User user = JsonUtil.toBean(json, User.class, classMap);
-		log.info(JsonFormatUtil.format(user));
+		log.info(JsonUtil.format(user));
 	}
 
 	/**
@@ -115,7 +114,7 @@ public class JsonlibTest{
 		user.setUserAddresseList(userAddresseList);
 
 		String json;
-		// json= JsonFormatUtil.format(user);
+		// json= JsonUtil.format(user);
 
 		json = JsonUtil.toJSON(user).toString(4, 4);
 		log.info(json);

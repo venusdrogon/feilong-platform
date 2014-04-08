@@ -37,7 +37,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.commons.core.io.FileUtil;
-import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.Validator;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;

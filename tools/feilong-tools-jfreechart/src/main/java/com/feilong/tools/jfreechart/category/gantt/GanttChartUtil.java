@@ -17,7 +17,6 @@ package com.feilong.tools.jfreechart.category.gantt;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Stroke;
 import java.util.List;
 import java.util.Map;
@@ -38,9 +37,7 @@ import org.jfree.chart.renderer.category.GanttRenderer;
 import org.jfree.data.category.IntervalCategoryDataset;
 import org.jfree.data.gantt.Task;
 import org.jfree.data.gantt.TaskSeriesCollection;
-import org.jfree.ui.GradientPaintTransformType;
 import org.jfree.ui.RectangleInsets;
-import org.jfree.ui.StandardGradientPaintTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

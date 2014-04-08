@@ -35,8 +35,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.enumeration.HttpMethodType;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * HttpClient 相关工具类.
@@ -312,7 +312,7 @@ public final class HttpClientUtil{
 
 		}catch (Exception e){
 			Map<String, Object> map = getHttpMethodAttributeMapForLog(httpMethod);
-			log.error("{},visit error,{}", JsonFormatUtil.format(map), e.getMessage());
+			log.error("{},visit error,{}", JsonUtil.format(map), e.getMessage());
 			e.printStackTrace();
 
 			throw new HttpClientUtilException("", e.getCause());
@@ -341,7 +341,7 @@ public final class HttpClientUtil{
 			requestResult = httpMethod.getResponseBodyAsString();
 		}catch (Exception e){
 			Map<String, Object> map = getHttpMethodAttributeMapForLog(httpMethod);
-			log.error("{},visit error,", JsonFormatUtil.format(map), e.getMessage());
+			log.error("{},visit error,", JsonUtil.format(map), e.getMessage());
 			e.printStackTrace();
 
 			throw new HttpClientUtilException("", e.getCause());

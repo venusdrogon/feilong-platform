@@ -17,7 +17,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.test.A;
 import com.feilong.test.MyBean;
 import com.feilong.test.Person;
@@ -216,7 +215,7 @@ public class JsonUtilTest{
 		map.put("aa", map1);
 		map.put("aaa", map1);
 		log.info(JsonUtil.toJSON(map).toString(4, 4));
-		log.info(JsonFormatUtil.format(map,"a.b"));
+		//log.info(JsonUtil.format(map,"a.b"));
 	}
 
 	@Test
@@ -240,7 +239,7 @@ public class JsonUtilTest{
 		list.add(a);
 		list.add(a1);
 
-		log.info(JsonFormatUtil.format(list));
+		log.info(JsonUtil.format(list));
 
 	}
 

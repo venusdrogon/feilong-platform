@@ -33,9 +33,9 @@ import sun.misc.BASE64Encoder;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.ByteUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * 对称加密,支持的类型,详见 {@link SymmetricType}<br>
@@ -115,6 +115,14 @@ public final class SymmetricEncryption{
 		this.keyString = keyString;
 		this.symmetricType = symmetricType;
 		this.key = getKey(symmetricType.getAlgorithm(), keyString);
+
+		if (log.isDebugEnabled()){
+			log.debug(
+					"symmetricType:[{}],getAlgorithm:[{}],getTransformation:[{}]",
+					symmetricType.toString(),
+					symmetricType.getAlgorithm(),
+					symmetricType.getTransformation());
+		}
 	}
 
 	/**
@@ -149,7 +157,7 @@ public final class SymmetricEncryption{
 				map.put("original", original);
 				map.put("encode", encode);
 
-				log.debug(JsonFormatUtil.format(map));
+				log.debug(JsonUtil.format(map));
 			}
 			return encode;
 		}catch (Exception e){
@@ -160,7 +168,7 @@ public final class SymmetricEncryption{
 				map.put("keyString", keyString);
 				map.put("original", original);
 
-				log.error(JsonFormatUtil.format(map));
+				log.error(JsonUtil.format(map));
 			}
 			e.printStackTrace();
 		}
@@ -199,7 +207,7 @@ public final class SymmetricEncryption{
 				map.put("original", original);
 				map.put("base64String", base64String);
 
-				log.debug(JsonFormatUtil.format(map));
+				log.debug(JsonUtil.format(map));
 			}
 			return original;
 		}catch (Exception e){
@@ -210,7 +218,7 @@ public final class SymmetricEncryption{
 				map.put("keyString", keyString);
 				map.put("base64String", base64String);
 
-				log.error(JsonFormatUtil.format(map));
+				log.error(JsonUtil.format(map));
 			}
 			e.printStackTrace();
 		}
@@ -247,7 +255,7 @@ public final class SymmetricEncryption{
 				map.put("original", original);
 				map.put("hexStringUpperCase", hexStringUpperCase);
 
-				log.debug(JsonFormatUtil.format(map));
+				log.debug(JsonUtil.format(map));
 			}
 			return hexStringUpperCase;
 		}catch (Exception e){
@@ -258,7 +266,7 @@ public final class SymmetricEncryption{
 				map.put("keyString", keyString);
 				map.put("original", original);
 
-				log.error(JsonFormatUtil.format(map));
+				log.error(JsonUtil.format(map));
 			}
 			e.printStackTrace();
 		}
@@ -295,7 +303,7 @@ public final class SymmetricEncryption{
 				map.put("original", original);
 				map.put("hexString", hexString);
 
-				log.debug(JsonFormatUtil.format(map));
+				log.debug(JsonUtil.format(map));
 			}
 			return original;
 		}catch (Exception e){
@@ -306,7 +314,7 @@ public final class SymmetricEncryption{
 				map.put("keyString", keyString);
 				map.put("hexString", hexString);
 
-				log.error(JsonFormatUtil.format(map));
+				log.error(JsonUtil.format(map));
 			}
 			e.printStackTrace();
 		}

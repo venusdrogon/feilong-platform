@@ -28,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.ClassLoaderUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.servlet.ServletContextUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * 专门给esapi 设置的监听器<br>
@@ -61,7 +61,7 @@ public class ESAPIContextListener implements ServletContextListener{
 		Map<String, String> initParameterMap = ServletContextUtil.getInitParameterMap(servletContext);
 
 		if (log.isInfoEnabled()){
-			log.info("initParameterMap:{}", JsonFormatUtil.format(initParameterMap));
+			log.info("initParameterMap:{}", JsonUtil.format(initParameterMap));
 		}
 
 		try{

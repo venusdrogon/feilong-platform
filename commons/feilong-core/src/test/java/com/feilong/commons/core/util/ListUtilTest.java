@@ -26,16 +26,14 @@
 package com.feilong.commons.core.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.test.User;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -68,7 +66,7 @@ public class ListUtilTest{
 		// // String string = list.get(i);
 		//
 		// }
-		log.info("list:{}", JsonFormatUtil.format(list));
+		log.info("list:{}", JsonUtil.format(list));
 	}
 
 	/**
@@ -109,7 +107,7 @@ public class ListUtilTest{
 
 		String[] array = ListUtil.toArray(testList);
 
-		log.info(JsonFormatUtil.format(array));
+		log.info(JsonUtil.format(array));
 	}
 
 	/**

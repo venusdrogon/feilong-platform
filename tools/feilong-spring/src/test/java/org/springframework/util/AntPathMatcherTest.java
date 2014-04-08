@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.util.UriTemplate;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -55,7 +55,7 @@ public class AntPathMatcherTest{
 		boolean result = matcher.match(patternPath, requestPath);
 		log.info(result + "");
 		Map<String, String> map = matcher.extractUriTemplateVariables(patternPath, requestPath);
-		log.info("map:{}", JsonFormatUtil.format(map));
+		log.info("map:{}", JsonUtil.format(map));
 		map.put("color", "XL");
 		UriTemplate uriTemplate = new UriTemplate(patternPath);
 		URI uri = uriTemplate.expand(map);

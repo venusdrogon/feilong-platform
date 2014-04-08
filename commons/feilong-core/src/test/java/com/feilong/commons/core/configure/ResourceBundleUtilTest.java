@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.PropertiesConstants;
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 
 public class ResourceBundleUtilTest{
 
@@ -72,18 +72,18 @@ public class ResourceBundleUtilTest{
 	@Test
 	public final void readAllPropertiesToMap(){
 		Map<String, String> map = ResourceBundleUtil.readAllPropertiesToMap(baseName);
-		log.info(JsonFormatUtil.format(map));
+		log.info(JsonUtil.format(map));
 	}
 
 	@Test
 	public final void readPropertiesAsArray(){
 		String[] strings = ResourceBundleUtil.getArray(resourceBundle, "config_test_array", ",", String.class);
-		log.info(JsonFormatUtil.format(strings));
+		log.info(JsonUtil.format(strings));
 	}
 
 	@Test
 	public final void readPrefixAsMap(){
 		Map<String, String> map = ResourceBundleUtil.readPrefixAsMap(baseName, "FileType", "\\.");
-		log.info(JsonFormatUtil.format(map));
+		log.info(JsonUtil.format(map));
 	}
 }

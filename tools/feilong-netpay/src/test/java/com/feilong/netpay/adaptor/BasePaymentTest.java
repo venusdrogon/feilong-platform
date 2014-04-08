@@ -33,11 +33,11 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
@@ -102,7 +102,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		payRequest.setNotifyUrl(notify_url);
 
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
-		log.info(JsonFormatUtil.format(paymentFormEntity));
+		log.info(JsonUtil.format(paymentFormEntity));
 
 		String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
 		System.out.println(fullEncodedUrl);

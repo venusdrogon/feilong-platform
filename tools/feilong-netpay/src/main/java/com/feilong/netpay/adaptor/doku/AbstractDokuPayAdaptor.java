@@ -305,7 +305,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// // Zip Code
 		// map.put("SHIPPING_ZIPCODE", "216000");
 
-		// log.debug("{}", JsonFormatUtil.format(map));
+		// log.debug("{}", JsonUtil.format(map));
 
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 		if (isPassValidatorSpecialSignMap){

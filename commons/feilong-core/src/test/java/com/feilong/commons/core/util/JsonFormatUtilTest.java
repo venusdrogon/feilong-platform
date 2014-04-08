@@ -25,11 +25,13 @@
  */
 package com.feilong.commons.core.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -44,13 +46,13 @@ public class JsonFormatUtilTest{
 	 */
 	@Test
 	public final void testFormatObject(){
-		log.info(JsonFormatUtil.format(1));
+		log.info(JsonUtil.format(1));
 	}
 
 	@Test
 	public final void testFormatObjectArray(){
 		Integer[] integers = { 1, 2 };
-		log.info(JsonFormatUtil.format(integers));
+		log.info(JsonUtil.format(integers));
 	}
 
 	/**

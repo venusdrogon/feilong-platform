@@ -25,8 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.commons.core.entity.FileInfoEntity;
-import com.feilong.commons.core.util.JsonFormatUtil;
-import com.feilong.tools.net.filetransfer.FileTransfer;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class FTPUtilTest.
@@ -205,6 +204,6 @@ public class FTPUtilTest extends FileTransferTest{
 		String[] fileNames = { "SportActivity.dat", "SubCategory.dat", "aaa" };
 		Map<String, FileInfoEntity> fileEntityMap = fileTransfer.getFileEntityMap(remotePath, fileNames);
 
-		log.info(JsonFormatUtil.format(fileEntityMap));
+		log.info(JsonUtil.format(fileEntityMap));
 	}
 }

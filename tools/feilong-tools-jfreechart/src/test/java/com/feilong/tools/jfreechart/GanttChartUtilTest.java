@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.jfree.data.gantt.Task;
-import org.jfree.data.time.TimePeriod;
 import org.junit.Test;
 
 import com.feilong.commons.core.date.DatePattern;

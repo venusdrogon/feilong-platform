@@ -35,7 +35,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -59,7 +59,7 @@ public class MessageFormatUtilTest{
 		Object[] objs = mf.parse(forParsing, new ParsePosition(0));
 		// result now equals {new String("z")}
 		log.info(objs.toString());
-		log.info("objs:{}", JsonFormatUtil.format(objs));
+		log.info("objs:{}", JsonUtil.format(objs));
 		int planet = 7;
 		String event = "a disturbance in the Force";
 		String result = MessageFormat.format(

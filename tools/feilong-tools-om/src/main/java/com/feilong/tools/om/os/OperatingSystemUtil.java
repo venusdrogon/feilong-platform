@@ -33,7 +33,7 @@ import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.lang.ThreadUtil;
 import com.feilong.commons.core.net.InetAddressUtil;
 import com.feilong.commons.core.util.ByteUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 import com.sun.management.OperatingSystemMXBean;
 
 /**
@@ -118,7 +118,7 @@ public final class OperatingSystemUtil{
 				InetAddress _inetAddress = inetAddresses.nextElement();
 
 				Map<String, Object> inetAddressObjectLog = InetAddressUtil.getInetAddressObjectLog(_inetAddress);
-				log.debug(JsonFormatUtil.format(inetAddressObjectLog));
+				log.debug(JsonUtil.format(inetAddressObjectLog));
 
 				if (_inetAddress.isSiteLocalAddress() // 检查 InetAddress 是否是站点本地地址的实用例行程序。
 						&& !_inetAddress.isLoopbackAddress() // 127.开头的都是lookback地址
@@ -226,7 +226,7 @@ public final class OperatingSystemUtil{
 			}
 
 			if (log.isDebugEnabled()){
-				log.debug("the param allMap:{}", JsonFormatUtil.format(allMap));
+				log.debug("the param allMap:{}", JsonUtil.format(allMap));
 			}
 
 		}catch (SocketException e){
@@ -343,7 +343,7 @@ public final class OperatingSystemUtil{
 		// sb.append("file.encoding : " + props.getProperty("file.encoding") + "\n");
 		// sb.append("--------Disk information---------\n");
 
-		return JsonFormatUtil.format(props);
+		return JsonUtil.format(props);
 	}
 
 	/** 记录磁盘信息 */
@@ -370,7 +370,7 @@ public final class OperatingSystemUtil{
 			map.put(path, _map);
 
 		}
-		return JsonFormatUtil.format(map);
+		return JsonUtil.format(map);
 	}
 
 	// ********************************************************************************

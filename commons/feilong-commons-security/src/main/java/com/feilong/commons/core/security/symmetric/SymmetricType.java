@@ -46,7 +46,11 @@ public enum SymmetricType{
 	// DESede/ECB/NoPadding
 	DESede("DESede","DESede/ECB/NoPadding"),
 
-	/** The Triple des. @deprecated please use {@link #DESede} */
+	/**
+	 * The Triple des.
+	 * 
+	 * @deprecated please use {@link #DESede}
+	 */
 	TripleDES("TripleDES","TripleDES"),
 
 	/**

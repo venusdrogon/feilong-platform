@@ -25,9 +25,6 @@
  */
 package com.feilong.commons.core.util;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

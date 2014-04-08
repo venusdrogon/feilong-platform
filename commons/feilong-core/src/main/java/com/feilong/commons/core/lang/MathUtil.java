@@ -29,21 +29,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 数学工具类
+ * 数学工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 11, 2013 12:30:10 AM
  */
 public class MathUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MathUtil.class);
 
 	/**
 	 * 弧度转成度 <br>
-	
+	 * .
 	 * 
 	 * @param radians
-	 * @return
+	 *            the radians
+	 * @return the double
 	 */
 	public static double radian2Degree(double radians){
 		double degree = radians * 180 / Math.PI;
@@ -51,10 +53,11 @@ public class MathUtil{
 	}
 
 	/**
-	 * 度转成弧度
+	 * 度转成弧度.
 	 * 
 	 * @param degree
-	 * @return
+	 *            the degree
+	 * @return the double
 	 */
 	public static double degree2Radian(double degree){
 		double radians = degree * Math.PI / 180;

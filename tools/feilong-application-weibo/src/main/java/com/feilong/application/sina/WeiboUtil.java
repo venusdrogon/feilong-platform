@@ -30,8 +30,8 @@ import weibo4j.model.WeiboException;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.net.URIUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * 微博核心工具类
@@ -87,7 +87,7 @@ public final class WeiboUtil{
 			map.put("isLessThanMaxLength", isLessThanMaxLength);
 			map.put("length", length);
 
-			log.debug(JsonFormatUtil.format(map));
+			log.debug(JsonUtil.format(map));
 		}
 
 		if (isLessThanMaxLength){
@@ -112,12 +112,12 @@ public final class WeiboUtil{
 				String[] _annotations = { "飞龙", "小蜜" };
 				// 北纬40度，西纬75度
 				//40.684804,-73.962708
-				String annotations = JsonFormatUtil.format(_annotations);
+				String annotations = JsonUtil.format(_annotations);
 				status = timeline.UpdateStatus(content, 40.68f, -73.96f, annotations);
 			}
 			// status.
 			if (log.isDebugEnabled()){
-				// log.debug("status:{}", JsonFormatUtil.format(status));
+				// log.debug("status:{}", JsonUtil.format(status));
 			}
 		}else{
 			log.error("You can't thanMaxLength[140]");

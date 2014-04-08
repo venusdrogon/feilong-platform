@@ -400,7 +400,7 @@ public final class RequestUtil{
 		Map<String, ?> parameterMap = getParameterMap(request);
 		map.put("_parameterMap", parameterMap);
 
-		// String string = JsonFormatUtil.format(map);
+		// String string = JsonUtil.format(map);
 
 		String string = JsonUtil.format(map);
 		return string;

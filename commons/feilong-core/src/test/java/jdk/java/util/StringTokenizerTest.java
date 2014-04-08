@@ -25,8 +25,6 @@
  */
 package jdk.java.util;
 
-import static org.junit.Assert.*;
-
 import java.util.StringTokenizer;
 
 import org.junit.Test;

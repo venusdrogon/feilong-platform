@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.net.URIUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.ParamUtil;
+import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
@@ -112,7 +112,7 @@ public final class PagerUtil{
 			Map<String, Object> vmParamMap = new HashMap<String, Object>();
 			vmParamMap.put("pagerVMParam", pagerVMParam);
 			if (log.isDebugEnabled()){
-				log.debug("vmParamMap:{}", JsonFormatUtil.format(vmParamMap));
+				log.debug("vmParamMap:{}", JsonUtil.format(vmParamMap));
 				log.debug("debugIsNotParseVM:{}", debugIsNotParseVM);
 			}
 

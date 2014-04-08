@@ -1,7 +1,5 @@
 package weibo4j.model;
 
-import weibo4j.http.Response;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +7,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import weibo4j.http.Response;
 
 public class Comment extends WeiboResponse implements java.io.Serializable {
 

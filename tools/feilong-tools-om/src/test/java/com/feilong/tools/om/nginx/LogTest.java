@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.IOReaderUtil;
-import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.om.nginx.command.LogFormatCommand;
 
 /**
@@ -46,7 +46,7 @@ public class LogTest{
 		String line = "112.64.235.89 - - [19/Dec/2013:16:21:47 +0800] 404 \"GET /product/fair/aj11blue1200.htm?cid=dis1221ondspaj01 HTTP/1.1\" 29520 \"-\" \"Mozilla/4.0\" 112.64.235.89 \"192.168.10.27:8407\" \"0.027\"";
 		String pattern = "$remote_addr - $remote_user [$time_local] $status \"$request\" $body_bytes_sent \"$http_referer\" \"$http_user_agent\" $proxy_add_x_forwarded_for \"$upstream_addr\" \"$request_time\"";
 		LogFormatCommand nginxLogFormatCommand = getNginxLogFormatCommand(line, pattern);
-		log.info(JsonFormatUtil.format(nginxLogFormatCommand));
+		log.info(JsonUtil.format(nginxLogFormatCommand));
 	}
 
 	/**
