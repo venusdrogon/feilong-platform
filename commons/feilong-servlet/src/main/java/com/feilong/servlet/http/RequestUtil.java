@@ -19,6 +19,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -586,31 +588,34 @@ public final class RequestUtil{
 		// WL-Proxy-SSL=false
 		String unknown = "unknown";
 
-		String wrap = "\n\t\t";
-		StringBuilder logBuilder = new StringBuilder();
+		Map<String, String> map = new TreeMap<String, String>();
+
 		// 是否使用反向代理
 		String ipAddress = request.getHeader(header_xForwardedFor);
-		logBuilder.append(wrap + "header_xForwardedFor:" + ipAddress);
+		map.put("1.header_xForwardedFor", ipAddress);
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
 			ipAddress = request.getHeader(header_proxyClientIP);
-			logBuilder.append(wrap + "header_proxyClientIP:" + ipAddress);
+			map.put("2.header_proxyClientIP", ipAddress);
 		}
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
 			ipAddress = request.getHeader(header_wLProxyClientIP);
-			logBuilder.append(wrap + "header_wLProxyClientIP:" + ipAddress);
+			map.put("3.header_wLProxyClientIP", ipAddress);
 		}
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
 			ipAddress = request.getRemoteAddr();
-			logBuilder.append(wrap + "request.getRemoteAddr():" + ipAddress);
+			map.put("4.request.getRemoteAddr()", ipAddress);
 		}
 		// 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
 		if (ipAddress != null && ipAddress.length() > 15){ // "***.***.***.***".length() = 15
-			logBuilder.append(wrap + "all:" + ipAddress);
+			map.put("5.all", ipAddress);
 			if (ipAddress.indexOf(",") > 0){
 				ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
+				map.put("6.ipAddress", ipAddress);
 			}
 		}
-		// log.debug(logBuilder.toString());
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(map));
+		}
 		return ipAddress;
 	}
 

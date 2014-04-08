@@ -44,7 +44,7 @@ public class PaymentAdaptorManagerImpl implements PaymentAdaptorManager{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.jumbo.brandstore.payment.PaymentAdaptorManager#getPaymentAdaptor(java.lang.String)
+	 * @see com.feilong.netpay.PaymentAdaptorManager#getPaymentAdaptor(java.lang.String)
 	 */
 	public PaymentAdaptor getPaymentAdaptor(String paymentType){
 		if (null == paymentAdaptorMap || paymentAdaptorMap.isEmpty()){
@@ -57,7 +57,7 @@ public class PaymentAdaptorManagerImpl implements PaymentAdaptorManager{
 		 */
 		// if (Constants.pay_isCanGoToPay){
 		if (!paymentAdaptorMap.containsKey(paymentType)){
-			log.debug("paymentType:{},don't use PaymentAdaptor", paymentType);
+			log.error("paymentAdaptorMap not containsKey paymentType:[{}]", paymentType);
 			return null;
 		}else{
 			PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
