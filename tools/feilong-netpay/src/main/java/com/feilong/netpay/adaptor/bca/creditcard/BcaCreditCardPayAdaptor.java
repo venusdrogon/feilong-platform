@@ -16,7 +16,6 @@
  */
 package com.feilong.netpay.adaptor.bca.creditcard;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -209,7 +208,6 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public boolean doNotifyVerify(HttpServletRequest request){
-
 		// Value: Merchant’s DOacquire ID
 		// Format: Up to 20 alphanumeric characters
 		String siteID = request.getParameter("siteID");
@@ -229,10 +227,16 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		// Value: Transaction amount
 		// Format: Up to 10 numeric characters
 		String amount = request.getParameter("amount");
+		if (Validator.isNullOrEmpty(amount)){
+			throw new IllegalArgumentException("amount can't be null/empty!");
+		}
 
 		// Value: DOacquire transaction ID
 		// Format: Up to 50 alphanumeric characters
 		String transactionID = request.getParameter("transactionID");
+		if (Validator.isNullOrEmpty(transactionID)){
+			throw new IllegalArgumentException("transactionID can't be null/empty!");
+		}
 
 		// Value: AUTHORIZATION
 		String transactionType = request.getParameter("transactionType");

@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca;
-
-import static org.junit.Assert.*;
+package com.feilong.netpay.adaptor.bca.creditcard;
 
 import java.util.Map;
 
@@ -42,8 +40,7 @@ public class BcaCreditCardPayAdaptorTest extends BasePaymentTest{
 
 	@Test
 	public final void createPaymentForm(){
-		String filePath = "F:/bcaCreditCardPayAdaptor.html";
 		Map<String, String> specialSignMap = null;
-		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 }

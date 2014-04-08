@@ -1,4 +1,4 @@
-package com.feilong.netpay.adaptor.bca.keygenerator;
+package com.feilong.netpay.adaptor.bca.klikpay;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -6,17 +6,15 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 
 /**
+ * (这是BCA提供的代码)
+ * 
  * @author Brian
  */
 final class EnDeCipherDESTriple{
 
 	private SecretKey	desKey;
 
-	public EnDeCipherDESTriple(byte[] key) throws Exception{
-		createCipher(key);
-	}
-
-	public final void createCipher(byte[] desKeyData) throws Exception{
+	public EnDeCipherDESTriple(byte[] desKeyData) throws Exception{
 		if (!(desKeyData.length == 16 || desKeyData.length == 24)){
 			throw new Exception("Length not valid :" + desKeyData.length);
 		}

@@ -33,6 +33,8 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
  */
 public interface PaymentAdaptor{
 
+	// ********************************************************************************************
+
 	/**
 	 * 生成交易表单相关参数.
 	 * 
@@ -44,6 +46,8 @@ public interface PaymentAdaptor{
 	 * @return the payment form entity
 	 */
 	PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap);
+
+	// ********************************************************************************************
 
 	/**
 	 * 拿到订单号返回支付服务器重新验证这笔订单到底有没有支付成功<br>
@@ -86,6 +90,15 @@ public interface PaymentAdaptor{
 	 */
 	String doGetFeedbackTotalFee(HttpServletRequest request);
 
+	// ************************************************************
+
+	/**
+	 * 是否支持关闭接口.
+	 * 
+	 * @return true, if is support close trade
+	 */
+	boolean isSupportCloseTrade();
+
 	/**
 	 * 关闭交易.
 	 * 
@@ -98,11 +111,4 @@ public interface PaymentAdaptor{
 	 *             the http client util exception
 	 */
 	boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException;
-
-	/**
-	 * 是否支持关闭接口.
-	 * 
-	 * @return true, if is support close trade
-	 */
-	boolean isSupportCloseTrade();
 }

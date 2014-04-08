@@ -41,10 +41,9 @@ public class AlipayNetPayMobileAdaptorTest extends BasePaymentTest{
 
 	@Test
 	public final void createPaymentForm(){
-		String filePath = "F:/alipayNetPayMobileAdaptor.html";
 		Map<String, String> specialSignMap = new HashMap<String, String>();
 
 		specialSignMap.put("defaultbank", "ABC");
-		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 }

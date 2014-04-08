@@ -231,5 +231,4 @@ public class PayRequest implements Serializable{
 	public void setPaySoLineList(List<PaySoLine> paySoLineList){
 		this.paySoLineList = paySoLineList;
 	}
-
 }

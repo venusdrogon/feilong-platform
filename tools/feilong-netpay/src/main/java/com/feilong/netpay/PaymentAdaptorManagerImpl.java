@@ -39,7 +39,6 @@ public class PaymentAdaptorManagerImpl implements PaymentAdaptorManager{
 	private static final Logger			log	= LoggerFactory.getLogger(PaymentAdaptorManagerImpl.class);
 
 	// @Value("#{paymentAdaptorMap}")
-	//
 	/** 商城支持的支付, 单独配置 ,避免其他项目引用 可能带来的错误. */
 	private Map<String, PaymentAdaptor>	paymentAdaptorMap;
 
@@ -56,19 +55,19 @@ public class PaymentAdaptorManagerImpl implements PaymentAdaptorManager{
 		/**
 		 * 全部 配置,测试环境不可以去付款
 		 */
-		//if (Constants.pay_isCanGoToPay){
-			if (!paymentAdaptorMap.containsKey(paymentType)){
-				log.debug("paymentType:{},don't use PaymentAdaptor", paymentType);
-				return null;
-			}else{
-				PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
-				return paymentAdaptor;
-			}
-//		}else{
-//			log.warn("Constants.pay_isCanGoToPay:{}", Constants.pay_isCanGoToPay);
-//		}
+		// if (Constants.pay_isCanGoToPay){
+		if (!paymentAdaptorMap.containsKey(paymentType)){
+			log.debug("paymentType:{},don't use PaymentAdaptor", paymentType);
+			return null;
+		}else{
+			PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
+			return paymentAdaptor;
+		}
+		// }else{
+		// log.warn("Constants.pay_isCanGoToPay:{}", Constants.pay_isCanGoToPay);
+		// }
 
-		//return null;
+		// return null;
 	}
 
 	/**

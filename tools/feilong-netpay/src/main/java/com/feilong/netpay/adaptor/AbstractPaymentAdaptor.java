@@ -27,7 +27,6 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.JsonFormatUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
@@ -56,6 +55,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		if (log.isDebugEnabled()){
 
 			Class<?> class1 = this.getClass();
+			// Class<?> superclass = class1.getSuperclass();
 			Field[] declaredField = class1.getDeclaredFields();
 
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -141,9 +141,9 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		paymentFormEntity.setMethod(method);
 		paymentFormEntity.setHiddenParamMap(hiddenParamMap);
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonFormatUtil.format(paymentFormEntity));
-		}
+		// if (log.isDebugEnabled()){
+		// log.debug(JsonFormatUtil.format(paymentFormEntity));
+		// }
 		return paymentFormEntity;
 	}
 

@@ -50,6 +50,8 @@ public class PaymentFormEntity implements Serializable{
 		return URIUtil.getEncodedUrlByValueMap(action, hiddenParamMap, CharsetType.UTF8);
 	}
 
+	// ************************************************************
+
 	/**
 	 * Gets the action.
 	 * 
@@ -106,5 +108,4 @@ public class PaymentFormEntity implements Serializable{
 	public void setHiddenParamMap(Map<String, String> hiddenParamMap){
 		this.hiddenParamMap = hiddenParamMap;
 	}
-
 }

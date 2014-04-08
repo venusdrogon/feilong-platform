@@ -14,7 +14,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-package com.feilong.netpay.command;
+package com.feilong.netpay.adaptor.alipay;
 
 /**
  * 支付结果

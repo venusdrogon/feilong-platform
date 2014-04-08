@@ -28,6 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.feilong.commons.core.TestConstants;
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 
 @ContextConfiguration(locations = { "classpath:feilong-security.xml" })
@@ -41,7 +42,7 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 	@Test
 	public void base64String() throws SecurityException{
 		String original = TestConstants.testString;
-		String base64 = symmetricEncryption.encrypBase64(original);
+		String base64 = symmetricEncryption.encrypBase64(original, CharsetType.UTF8);
 		log.info(base64);
 	}
 
@@ -51,7 +52,7 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 		// log.info(blowfishUtil.encryptToHexString(original));
 		// String keyString = blowfishUtil.getKeyString();
 		// log.info(keyString);
-		log.info(symmetricEncryption.decryptBase64(hexString));
+		log.info(symmetricEncryption.decryptBase64(hexString, CharsetType.UTF8));
 		// 3B37B7F90CBBD4EFD5502F50F9B407E3
 		// 3B37B7F90CBBD4EFD5502F50F9B407E3
 		// /x3JicoLOTnZO+Zs3Ha5pg==
@@ -61,14 +62,14 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 	@Test
 	public void encryptToHexString() throws SecurityException,NoSuchMethodException{
 		String original = TestConstants.testString;
-		String base64 = symmetricEncryption.encryptHex(original);
+		String base64 = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
 		log.info(base64);
 	}
 
 	@Test
 	public void decryptHexString() throws SecurityException,NoSuchMethodException{
 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
-		log.info(symmetricEncryption.decryptHex(hexString));
+		log.info(symmetricEncryption.decryptHex(hexString, CharsetType.UTF8));
 	}
 
 	@Test

@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 import com.feilong.commons.core.security.symmetric.SymmetricType;
 
@@ -47,11 +48,17 @@ public class SymmetricEncryptionTest{
 	@Test
 	public void base64String() throws SecurityException,NoSuchMethodException{
 
-		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).encrypBase64(original));
-		log.info("SymmetricType.ARCFOUR:{}", new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encrypBase64(original));
-		log.info("SymmetricType.Blowfish:{}", new SymmetricEncryption(SymmetricType.Blowfish, keyString).encrypBase64(original));
-		log.info("SymmetricType.DES:{}", new SymmetricEncryption(SymmetricType.DES, keyString).encrypBase64(original));
-		log.info("SymmetricType.DESede:{}", new SymmetricEncryption(SymmetricType.DESede, keyString).encrypBase64(original));
+		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).encrypBase64(original, CharsetType.UTF8));
+		log.info(
+				"SymmetricType.ARCFOUR:{}",
+				new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encrypBase64(original, CharsetType.UTF8));
+		log.info(
+				"SymmetricType.Blowfish:{}",
+				new SymmetricEncryption(SymmetricType.Blowfish, keyString).encrypBase64(original, CharsetType.UTF8));
+		log.info("SymmetricType.DES:{}", new SymmetricEncryption(SymmetricType.DES, keyString).encrypBase64(original, CharsetType.UTF8));
+		log.info(
+				"SymmetricType.DESede:{}",
+				new SymmetricEncryption(SymmetricType.DESede, keyString).encrypBase64(original, CharsetType.UTF8));
 
 	}
 
@@ -60,7 +67,7 @@ public class SymmetricEncryptionTest{
 		String original = "鑫哥爱feilong";
 		String keyString = "feilong";
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		log.info("SymmetricType.Blowfish:{}", symmetricEncryption.encryptHex(original));
+		log.info("SymmetricType.Blowfish:{}", symmetricEncryption.encryptHex(original, CharsetType.UTF8));
 		// 055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
 	}
 
@@ -71,7 +78,7 @@ public class SymmetricEncryptionTest{
 
 		SymmetricType symmetricType = SymmetricType.DESede;
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
-		String encryptToHexString = symmetricEncryption.encryptHex(original);
+		String encryptToHexString = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
 		log.info(encryptToHexString.length() + "");
 		log.info("BF81501C562D6FEA2FCB905D392D5851".length() + "");
 		Assert.assertEquals("BF81501C562D6FEA2FCB905D392D5851", encryptToHexString);
@@ -82,14 +89,14 @@ public class SymmetricEncryptionTest{
 		String keyString = "feilong";
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
-		log.info(symmetricEncryption.decryptHex(hexString));
+		log.info(symmetricEncryption.decryptHex(hexString, CharsetType.UTF8));
 	}
 
 	@Test
 	public void decryptBase64String(){
-		log.info(
-				"SymmetricType.AES:{}",
-				new SymmetricEncryption(SymmetricType.AES, keyString).decryptBase64("NvHLVz3ADOlx3K2dMa8TZjjP5fkAPus2ienTEkOdUX4="));
+		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).decryptBase64(
+				"NvHLVz3ADOlx3K2dMa8TZjjP5fkAPus2ienTEkOdUX4=",
+				CharsetType.UTF8));
 	}
 
 	@Test
@@ -97,14 +104,14 @@ public class SymmetricEncryptionTest{
 		String original = TestConstants.testString;
 
 		symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		String base64 = symmetricEncryption.encryptHex(original);
+		String base64 = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
 		log.info(base64);
 	}
 
 	@Test
 	public void decryptHexString() throws SecurityException,NoSuchMethodException{
 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
-		log.info(symmetricEncryption.decryptHex(hexString));
+		log.info(symmetricEncryption.decryptHex(hexString, CharsetType.UTF8));
 	}
 
 	@Test

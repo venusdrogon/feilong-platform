@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 import com.feilong.commons.core.security.symmetric.SymmetricType;
 
@@ -51,7 +52,7 @@ public class DESUtilTest{
 	public final void decryptBase64(){
 		SymmetricType symmetricType = SymmetricType.DES;
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, config_security_key_des_default);
-		String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==");
+		String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==", CharsetType.UTF8);
 		log.debug(mingsString);
 		assertEquals(TestConstants.testString, mingsString);
 	}
@@ -61,7 +62,7 @@ public class DESUtilTest{
 		String aString = "06123246FFFEFFEE";
 		String key = "1234567890ABCDEF";
 		SymmetricEncryption dESUtil = new SymmetricEncryption(SymmetricType.DES, key);
-		log.debug(dESUtil.encrypBase64(aString));
+		log.debug(dESUtil.encrypBase64(aString, CharsetType.UTF8));
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class DESUtilTest{
 		SymmetricType des = SymmetricType.DES;
 		SymmetricEncryption dESUtil = new SymmetricEncryption(des, config_security_key_des_hex);
 		// LdCGo0dplVASWwJrvlHqpw==
-		log.debug(dESUtil.encrypBase64(TestConstants.testString));
+		log.debug(dESUtil.encrypBase64(TestConstants.testString, CharsetType.UTF8));
 	}
 
 	@Test
@@ -81,10 +82,10 @@ public class DESUtilTest{
 		String keyString = "jinxin";
 		SymmetricType symmetricType = SymmetricType.DES;
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
-		String miString = symmetricEncryption.encryptHex(TestConstants.testString);
+		String miString = symmetricEncryption.encryptHex(TestConstants.testString, CharsetType.UTF8);
 		// String miString = dESUtil.encryptToHexString(TestConstants.testString);
 		log.debug("encryptOriginalToHexString:{}", miString);
-		String mingString = symmetricEncryption.decryptHex(miString);
+		String mingString = symmetricEncryption.decryptHex(miString, CharsetType.UTF8);
 		log.debug(mingString);
 		Assert.assertEquals(mingString, TestConstants.testString);
 

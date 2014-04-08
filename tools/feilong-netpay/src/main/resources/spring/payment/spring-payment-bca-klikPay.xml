@@ -9,14 +9,13 @@
 
 	<util:properties id="p_bcaklikPayPayment" location="classpath:config/payment/payment-bca-klikPay.properties"></util:properties>
 
-
 	<!-- klikPayAdaptor -->
-<!-- 	<bean id="klikPayAdaptor" class="com.feilong.netpay.adaptor.bca.KlikPayAdaptor">
+	<!-- -->
+	<bean id="klikPayAdaptor" class="com.feilong.netpay.adaptor.bca.klikpay.KlikPayAdaptor">
 		<property name="gateway" value="#{p_bcaklikPayPayment['gateway']}" />
 		<property name="method" value="#{p_bcaklikPayPayment['method']}" />
 		<property name="klikPayCode" value="#{p_bcaklikPayPayment['klikPayCode']}" />
 		<property name="currencyDefault" value="#{p_bcaklikPayPayment['currencyDefault']}" />
 		<property name="clearkey" value="#{p_bcaklikPayPayment['clearkey']}" />
-	</bean> -->
-
+	</bean>
 </beans>

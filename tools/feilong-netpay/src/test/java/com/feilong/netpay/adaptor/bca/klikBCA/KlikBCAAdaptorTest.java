@@ -38,7 +38,7 @@ public class KlikBCAAdaptorTest extends BasePaymentTest{
 	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAAdaptorTest.class);
 
 	@Autowired
-	@Qualifier("klikPayAdaptor")
+	@Qualifier("klikBCAAdaptor")
 	private KlikBCAAdaptor		klikBCAAdaptor;
 
 	@Test
@@ -70,5 +70,4 @@ public class KlikBCAAdaptorTest extends BasePaymentTest{
 		// <additionalData> </additionalData>
 		// </OutputPaymentPGW>
 	}
-
 }

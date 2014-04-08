@@ -40,8 +40,7 @@ public class CreditCardPayAdaptorTest extends BasePaymentTest{
 
 	@Test
 	public final void createPaymentForm(){
-		String filePath = "F:/creditCardPayAdaptor.html";
 		Map<String, String> specialSignMap = null;
-		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 }

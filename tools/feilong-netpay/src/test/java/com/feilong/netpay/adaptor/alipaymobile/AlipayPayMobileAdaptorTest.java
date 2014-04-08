@@ -43,7 +43,6 @@ public class AlipayPayMobileAdaptorTest extends BasePaymentTest{
 
 		Map<String, String> specialSignMap = null;
 
-		String filePath = "F:/alipayPayMobileAdaptor.html";
-		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 }

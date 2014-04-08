@@ -40,8 +40,7 @@ public class AlipayCreditCardPayMobileAdaptorTest extends BasePaymentTest{
 
 	@Test
 	public final void createPaymentForm(){
-		String filePath = "F:/alipayCreditCardMobileAdaptor.html";
 		Map<String, String> specialSignMap = null;
-		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 }

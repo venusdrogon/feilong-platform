@@ -29,7 +29,7 @@ public enum SymmetricType{
 	 * 最常用的对称加密算法，安全性较差,<br>
 	 * The Digital Encryption Standard as described in FIPS PUB 46-2.
 	 */
-	DES("DES"),
+	DES("DES","DES"),
 
 	/**
 	 * sIVcl7DB9hzAsiGKGFVJ2g==<br>
@@ -44,14 +44,10 @@ public enum SymmetricType{
 	 * ES即是设计用来提供一种相对简单的方法，即通过增加DES的密钥长度来避免类似的攻击，而不是设计一种全新的块密码算法。
 	 */
 	// DESede/ECB/NoPadding
-	DESede("DESede"),
+	DESede("DESede","DESede/ECB/NoPadding"),
 
-	/**
-	 * The Triple des
-	 * 
-	 * @deprecated please use {@link #DESede}
-	 */
-	TripleDES("TripleDES"),
+	/** The Triple des. @deprecated please use {@link #DESede} */
+	TripleDES("TripleDES","TripleDES"),
 
 	/**
 	 * MKNbK/ieTaepCk8SefgPMw==<br>
@@ -60,29 +56,29 @@ public enum SymmetricType{
 	 * AES is a 128-bit block cipher supporting keys of 128, 192, and 256 bits<br>
 	 * 是一种替代DES算法的新算法，可提供很好的安全性.
 	 */
-	AES("AES"),
+	AES("AES","AES"),
 
 	/**
 	 * BVl2k0U5+qrX8Otcg/4NXQ==<br>
 	 * The block cipher designed by Bruce Schneier,key size must be multiple of 8, and can only range from 32 to 448 (inclusive)<br>
 	 * 密钥长度可达448位.
 	 */
-	Blowfish("Blowfish"),
+	Blowfish("Blowfish","Blowfish"),
 
 	/**
 	 * CyJ22S/ct5YAhv5wMCTFZQ==<br>
 	 * key size must be between 40 and 1024 bits.
 	 */
-	RC2("RC2"),
+	RC2("RC2","RC2"),
 
 	/**
 	 * Jo5UARgjNRbDaL0VW77a<br>
 	 * s key size must be between 40 and 1024 bits.
 	 */
-	RC4("RC4"),
+	RC4("RC4","RC4"),
 
 	/** R1qRmIN8s4VY7OTRspIA. */
-	ARCFOUR("ARCFOUR");
+	ARCFOUR("ARCFOUR","ARCFOUR");
 
 	// java.security.NoSuchAlgorithmException: RSA KeyGenerator not available
 	// java.security.InvalidKeyException: No installed provider supports this key: (null)
@@ -120,13 +116,22 @@ public enum SymmetricType{
 	private String	algorithm;
 
 	/**
-	 * Instantiates a new Symmetric Type.
+	 * 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
+	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
+	 */
+	private String	transformation;
+
+	/**
+	 * Instantiates a new symmetric type.
 	 * 
 	 * @param algorithm
 	 *            the algorithm
+	 * @param transformation
+	 *            the transformation
 	 */
-	private SymmetricType(String algorithm){
+	private SymmetricType(String algorithm, String transformation){
 		this.algorithm = algorithm;
+		this.transformation = transformation;
 	}
 
 	/**
@@ -146,5 +151,26 @@ public enum SymmetricType{
 	 */
 	public void setAlgorithm(String algorithm){
 		this.algorithm = algorithm;
+	}
+
+	/**
+	 * Gets the 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
+	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
+	 * 
+	 * @return the transformation
+	 */
+	public String getTransformation(){
+		return transformation;
+	}
+
+	/**
+	 * Sets the 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
+	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
+	 * 
+	 * @param transformation
+	 *            the transformation to set
+	 */
+	public void setTransformation(String transformation){
+		this.transformation = transformation;
 	}
 }

@@ -18,10 +18,8 @@ package com.feilong.netpay;
 
 import com.feilong.netpay.adaptor.PaymentAdaptor;
 
-
-
 /**
- * 支付对外的接口
+ * 支付对外的接口.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Feb 2, 2013 8:25:30 PM
@@ -29,11 +27,11 @@ import com.feilong.netpay.adaptor.PaymentAdaptor;
 public interface PaymentAdaptorManager{
 
 	/**
-	 * 通过支付类型 获得PaymentAdaptor
+	 * 通过支付类型 获得PaymentAdaptor.
 	 * 
 	 * @param paymentType
 	 *            支付类型
-	 * @return
+	 * @return the payment adaptor
 	 */
 	PaymentAdaptor getPaymentAdaptor(String paymentType);
 }

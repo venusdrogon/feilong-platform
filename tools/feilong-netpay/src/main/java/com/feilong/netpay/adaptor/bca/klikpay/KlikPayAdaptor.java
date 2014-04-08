@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
@@ -36,24 +37,16 @@ import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.xstream.ToXmlConfig;
+import com.feilong.tools.xstream.XStreamUtil;
 
 /**
- * alipay 纯网关接口<br>
- * <ul>
- * <li>此接口只支持 https 请求</li>
- * <li>参数 body（商品描述）、subject（商品名称）、extra_common_param（公用 回传参数）不能包含特殊字符（如：#、%、&、+）、敏感词汇，<br>
- * 也不能使用外 国文字（旺旺不支持的外文，如：韩文、泰语、藏文、蒙古文、阿拉伯语）；</li>
- * <li>此接口支持重复调用，前提是交易基本信息（买家、卖家、交易金额、超时时间等）在多次调用中保持一致，且交易尚未完成支付。</li>
- * </ul>
- * .
- * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 15, 2013 8:41:39 PM
+ * The Class KlikPayAdaptor.
  */
 public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log								= LoggerFactory.getLogger(KlikPayAdaptor.class);
+	private static final Logger	log						= LoggerFactory.getLogger(KlikPayAdaptor.class);
 
 	/** 表单提交地址. */
 	private String				gateway;
@@ -63,13 +56,11 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/**
 	 * What is the "klikPayCode"? <br>
-	 * [AD] klikPayCode is unique ID for MetraPlasa
+	 * [AD] klikPayCode is unique ID for MetraPlasa.
 	 */
 	private String				klikPayCode;
 
-	/**
-	 * clearKey given by BCA
-	 */
+	/** clearKey given by BCA. */
 	private String				clearkey;
 
 	// - payType (5) field may consists only one of these values:
@@ -77,52 +68,31 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	// ▪ 02 = Installment Transaction
 	// ▪ 03 = Combination of both transactions above
 	/** 01 = Full Transaction. */
-	private String				payType_FullTransaction			= "01";
+	private String				payType_FullTransaction	= "01";
 
-	/** 02 = Installment Transaction. */
-	private String				payType_InstallmentTransaction	= "02";
+	// /** 02 = Installment Transaction. */
+	// private String payType_InstallmentTransaction = "02";
+	//
+	// /** 03 = Combination of both transactions above. */
+	// private String payType_CombinationTransaction = "03";
 
-	/** 03 = Combination of both transactions above. */
-	private String				payType_CombinationTransaction	= "03";
-
-	/**
-	 * currency只能是 IDR - currency (4) field may consists only one of these values: ▪ IDR
-	 */
+	/** currency只能是 IDR - currency (4) field may consists only one of these values: ▪ IDR. */
 	private String				currencyDefault;
 
 	/** The price pattern. */
-	private String				pricePattern					= "############.00";
-
-	/** 最小支付金额. */
-	private BigDecimal			minPriceForPay;
-
-	/** 最大支付金额. */
-	private BigDecimal			maxPriceForPay;
+	private String				pricePattern			= "############.00";
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+
+		doCommonValidate(payRequest);
+
 		String tradeNo = payRequest.getTradeNo();
 		BigDecimal totalFee = payRequest.getTotalFee();
 		String return_url = payRequest.getReturnUrl();
-
-		// validate
-		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("code can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(totalFee)){
-			throw new IllegalArgumentException("total_fee can't be null/empty!");
-		}
-
-		// 交易总额 单位为 RMB-Yuan 取值范围为[0.01， 100000000.00]
-		// 精确到小数点 后两位
-		BigDecimal minPay = new BigDecimal(0.01f);
-		BigDecimal maxPay = new BigDecimal(100000000);
-		if (totalFee.compareTo(minPay) == -1 || totalFee.compareTo(maxPay) == 1){
-			throw new IllegalArgumentException("total_fee:" + totalFee + " can't < " + minPay + " or > " + maxPay);
-		}
 
 		if (Validator.isNullOrEmpty(return_url)){
 			throw new IllegalArgumentException("return_url can't be null/empty!");
@@ -136,12 +106,12 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		map.put("klikPayCode", klikPayCode);
 
 		// transactionNo String 18 (AN) TRUE
-		String transactionNo = payRequest.getTradeNo();
+		String transactionNo = tradeNo;
 		map.put("transactionNo", transactionNo);
 
 		// totalAmount String 12 7500000.00 TRUE
 		// - totalAmount和miscFee 最后两个数字必须是00,注意舍入单位是每1货币
-		String totalAmount = NumberUtil.toString(payRequest.getTotalFee(), pricePattern);
+		String totalAmount = NumberUtil.toString(totalFee, pricePattern);
 		map.put("totalAmount", totalAmount);
 
 		// currency String 5 (AN) TRUE
@@ -177,15 +147,12 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		map.put("signature", signature);
 
 		// *************************************************************************************************
-		// 需要被签名的 参数map
-
 		// 特殊 传入
 		if (Validator.isNotNullOrEmpty(specialSignMap)){
 			map.putAll(specialSignMap);
 		}
 
 		return getPaymentFormEntity(gateway, method, map);
-		// throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
 	}
 
 	/*
@@ -193,7 +160,103 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public boolean doNotifyVerify(HttpServletRequest request){
-		return false;
+		// Field# Parameter Type Length Format Mandatory
+		// 1 klikPayCode string 10 (AN) TRUE
+		// 2 transactionDate string 19 DD/MM/YYYY hh:mm:ss TRUE
+		// 3 transactionNo string 18 (AN) TRUE
+		// 4 currency string 5 (AN) TRUE
+		// 5 totalAmount number 12 888888.00 TRUE
+		// 6 payType string 2 99 TRUE
+		// 7 approvalCode[fullTransaction] number 6 (N) FALSE
+		// 8 approvalCode[installmentTransaction] number 6 (N) FALSE
+		// 9 authKey string 32 (N) TRUE
+		// 10 additionalData string 999 (AN) FALSE
+
+		// 1 klikPayCode string 10 (AN) TRUE
+		String klikPayCode = request.getParameter("klikPayCode");
+		if (Validator.isNullOrEmpty(klikPayCode)){
+			throw new IllegalArgumentException("klikPayCode can't be null/empty!");
+		}
+		// 2 transactionDate string 19 DD/MM/YYYY hh:mm:ss TRUE
+		String transactionDate = request.getParameter("transactionDate");
+		if (Validator.isNullOrEmpty(transactionDate)){
+			throw new IllegalArgumentException("transactionDate can't be null/empty!");
+		}
+		// 3 transactionNo string 18 (AN) TRUE
+		String transactionNo = request.getParameter("transactionNo");
+		if (Validator.isNullOrEmpty(transactionNo)){
+			throw new IllegalArgumentException("transactionNo can't be null/empty!");
+		}
+		// 4 currency string 5 (AN) TRUE
+		String currency = request.getParameter("currency");
+		if (Validator.isNullOrEmpty(currency)){
+			throw new IllegalArgumentException("currency can't be null/empty!");
+		}
+
+		// 5 totalAmount number 12 888888.00 TRUE
+		String totalAmount = request.getParameter("totalAmount");
+		if (Validator.isNullOrEmpty(totalAmount)){
+			throw new IllegalArgumentException("totalAmount can't be null/empty!");
+		}
+
+		// 6 payType string 2 99 TRUE
+		// o 01 = full
+		// o 02 = installment
+		// o 03 = 01 and 02
+		String payType = request.getParameter("payType");
+		if (Validator.isNullOrEmpty(payType)){
+			throw new IllegalArgumentException("payType can't be null/empty!");
+		}
+
+		// 不必填
+		// - approvalCode (7, 8) are given by BCA only when customers use Credit Card as their payment on BCA KlikPay.
+		String approvalCode = request.getParameter("approvalCode");
+
+		// 9 authKey string 32 (N) TRUE
+		String authKey = request.getParameter("authKey");
+		if (Validator.isNullOrEmpty(authKey)){
+			throw new IllegalArgumentException("authKey can't be null/empty!");
+		}
+
+		// 不必填
+		String additionalData = request.getParameter("additionalData");
+
+		String keyId = getKeyId(clearkey);
+		String ourAuthKey = getAuthKey(
+				klikPayCode,
+				DateUtil.string2Date(transactionDate, DatePattern.ddMMyyyyHHmmss),
+				transactionNo,
+				currency,
+				keyId);
+
+		// 如果 参数中的加密值 和我们算出来的不相等, 那么失败
+		if (!ourAuthKey.equals(authKey)){
+			log.error("authKey:{} is not eq our's :{}", authKey, ourAuthKey);
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * 获得支付确认 返回的xml.
+	 * 
+	 * @param outputPaymentIPAY
+	 *            the output payment ipay
+	 * @return the payment confirmation xml
+	 */
+	public String getPaymentFlagInvocationOutputXML(OutputPaymentIPAY outputPaymentIPAY){
+		if (Validator.isNullOrEmpty(outputPaymentIPAY)){
+			throw new IllegalArgumentException("outputPaymentIPAY can't be null/empty!");
+		}
+
+		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
+		aliasMap.put("OutputPaymentIPAY", OutputPaymentIPAY.class);
+
+		ToXmlConfig toXmlConfig = new ToXmlConfig();
+		toXmlConfig.setAliasMap(aliasMap);
+
+		return XStreamUtil.toXML(outputPaymentIPAY, toXmlConfig);
 	}
 
 	/*
@@ -201,7 +264,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	public String doGetFeedbackTradeNo(HttpServletRequest request){
-		return null;
+		return request.getParameter("transactionNo");
 	}
 
 	/*
@@ -209,7 +272,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	public String doGetFeedbackTotalFee(HttpServletRequest request){
-		return null;
+		return request.getParameter("totalAmount");
 	}
 
 	/*
@@ -217,7 +280,15 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doCloseTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
 	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
-		return false;
+		throw new UnsupportedOperationException("KlikPayAdaptor not support doCloseTrade");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+	 */
+	public boolean doRedirectVerify(HttpServletRequest request){
+		throw new UnsupportedOperationException("KlikPayAdaptor not support doRedirectVerify");
 	}
 
 	/*
@@ -269,14 +340,6 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
-	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
-		return true;
-	}
-
 	// A = klikPayCode
 	// B = transactionNo C = currency
 	// D = transactionDate
@@ -308,17 +371,6 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		// KeyId : 12345678901234561234567890123456 
 		// 12345678901234561234567890123456
 
-		String padKlikPayCode = "";
-		String padTransactionDate = "";
-		String padTransactionNo = "";
-		String padCurrency = "";
-		String padKeyId = "";
-
-		String secondValue = padKlikPayCode + padTransactionNo + padCurrency + padTransactionDate + padKeyId;
-
-		String md5SecondValue = MD5Util.encode(secondValue).toUpperCase();
-
-		String authKeyString;
 		// Field# Parameter Pad Position Length Pad Data
 		// 1. klikPayCode Right 10 0
 		// 2. transactionNo Right 18 A
@@ -326,8 +378,23 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		// 4. transactionDate Left 19 C
 		// 5. keyId Right 32 E
 
-		String result = "";
-		return result;
+		String padKlikPayCode = BCAKeyGenerator.strpad(klikPayCode, 10, '0', false);
+		String padTransactionDate = DateUtil.date2String(transactionDate, DatePattern.ddMMyyyyHHmmss);
+		String padTransactionNo = BCAKeyGenerator.strpad(transactionNo, 18, 'A', false);
+		String padCurrency = BCAKeyGenerator.strpad(currency, 5, '1', false);
+		String padKeyId = keyId;
+
+		String secondValue = padKlikPayCode + padTransactionNo + padCurrency + padTransactionDate + padKeyId;
+
+		String md5SecondValue = MD5Util.encode(secondValue).toUpperCase();
+
+		try{
+			String authKeyString = BCAKeyGenerator.doAuthKey(md5SecondValue, keyId).toUpperCase();
+			return authKeyString;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -338,7 +405,6 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @return the string
 	 */
 	@SuppressWarnings("cast")
-	// TODO 检查这个算法的漏洞
 	public String hash(String value){
 		Integer hash = 0;
 		for (int i = 0; i < value.length(); i++){
@@ -356,10 +422,11 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * Uppercase [to String [Hexa[clearKey]]]
+	 * Uppercase [to String [Hexa[clearKey]]].
 	 * 
 	 * @param clearKey
-	 * @return
+	 *            the clear key
+	 * @return the key id
 	 */
 	public static String getKeyId(String clearKey){
 		char[] hexArray = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
@@ -374,6 +441,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the 表单提交地址.
+	 * 
 	 * @param gateway
 	 *            the gateway to set
 	 */
@@ -382,6 +451,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the method.
+	 * 
 	 * @param method
 	 *            the method to set
 	 */
@@ -390,6 +461,9 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the what is the "klikPayCode"? <br>
+	 * [AD] klikPayCode is unique ID for MetraPlasa.
+	 * 
 	 * @param klikPayCode
 	 *            the klikPayCode to set
 	 */
@@ -398,6 +472,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the currency只能是 IDR - currency (4) field may consists only one of these values: ▪ IDR.
+	 * 
 	 * @param currencyDefault
 	 *            the currencyDefault to set
 	 */
@@ -406,6 +482,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the clearKey given by BCA.
+	 * 
 	 * @param clearkey
 	 *            the clearkey to set
 	 */

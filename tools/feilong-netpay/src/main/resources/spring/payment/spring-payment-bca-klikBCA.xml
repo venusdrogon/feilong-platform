@@ -9,9 +9,8 @@
 
 	<util:properties id="p_bcaklikBCAPayment" location="classpath:config/payment/payment-bca-klikBCA.properties"></util:properties>
 
-
-	<!-- KlikBCAAdaptor -->
-	<bean id="klikPayAdaptor" class="com.feilong.netpay.adaptor.bca.klikbca.KlikBCAAdaptor">
+	<!-- klikBCAAdaptor -->
+	<bean id="klikBCAAdaptor" class="com.feilong.netpay.adaptor.bca.klikbca.KlikBCAAdaptor">
 	</bean>
 
 </beans>

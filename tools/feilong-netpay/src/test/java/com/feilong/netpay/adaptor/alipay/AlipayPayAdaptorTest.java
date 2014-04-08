@@ -63,7 +63,6 @@ public class AlipayPayAdaptorTest extends BasePaymentTest{
 		// 该功能需要联系技术支持来配置关闭时间。
 		specialSignMap.put("it_b_pay", "1m");
 
-		String filePath = "F:/alipayPayAdaptor.html";
-		createPaymentForm(paymentAdaptor, filePath, specialSignMap);
+		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 }

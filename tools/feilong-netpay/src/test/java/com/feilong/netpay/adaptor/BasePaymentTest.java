@@ -15,6 +15,7 @@
  */
 package com.feilong.netpay.adaptor;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -32,32 +34,39 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.JsonFormatUtil;
+import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
+ * The Class BasePaymentTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 22, 2014 4:31:38 PM
  */
 @ContextConfiguration(locations = { "classpath*:spring/payment/spring-payment.xml" })
 public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 
+	/** The Constant log. */
 	private static final Logger	log					= LoggerFactory.getLogger(BasePaymentTest.class);
 
+	/** The template in class path. */
 	private String				templateInClassPath	= "paymentChannel.vm";
 
+	/** The encode. */
 	private String				encode				= CharsetType.UTF8;
 
 	/**
-	 * 文件路径
+	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
 	 * 
 	 * @param paymentAdaptor
-	 * @param filePath
+	 *            the payment adaptor
 	 * @param specialSignMap
+	 *            the special sign map
 	 */
-	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,String filePath,Map<String, String> specialSignMap){
+	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
 		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
 		BigDecimal total_fee = new BigDecimal(60000.00f);
 
@@ -93,13 +102,10 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		payRequest.setNotifyUrl(notify_url);
 
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
-
 		log.info(JsonFormatUtil.format(paymentFormEntity));
 
 		String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
 		System.out.println(fullEncodedUrl);
-		System.out.println();
-		System.out.println();
 		System.out.println();
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -110,6 +116,12 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		// if (method.toLowerCase().equals("get")){
 		// DesktopUtil.browse(fullEncodedUrl);
 		// }else{
+
+		Field declaredField = ReflectUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
+		Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
+		String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
+
+		String filePath = "F:/payment/" + fileName + ".html";
 
 		String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
 		log.info(html);
