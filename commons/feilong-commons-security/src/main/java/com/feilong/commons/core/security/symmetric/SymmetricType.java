@@ -38,13 +38,14 @@ public enum SymmetricType{
 	 * 针对DES安全性的改进产生了能满足当前安全需要的TripleDES算法<br>
 	 * 等于 TripleDES<br>
 	 * <br>
-	 * 3DES <br>
-	 * 3DES（或称为Triple DES）是三重数据加密算法（TDEA，Triple Data Encryption
-	 * Algorithm）块密码的通称。它相当于是对每个数据块应用三次DES加密算法。由于计算机运算能力的增强，原版DES密码的密钥长度变得容易被暴力破解；3D
-	 * ES即是设计用来提供一种相对简单的方法，即通过增加DES的密钥长度来避免类似的攻击，而不是设计一种全新的块密码算法。
+	 * 3DES（或称为Triple DES）是三重数据加密算法（TDEA，Triple Data Encryption Algorithm）块密码的通称。<br>
+	 * 它相当于是对每个数据块应用三次DES加密算法。由于计算机运算能力的增强，原版DES密码的密钥长度变得容易被暴力破解；<br>
+	 * 3DES即是设计用来提供一种相对简单的方法，即通过增加DES的密钥长度来避免类似的攻击，而不是设计一种全新的块密码算法。
 	 */
 	// DESede/ECB/NoPadding
-	DESede("DESede","DESede/ECB/NoPadding"),
+	// DESede/ECB/PKCS5Padding
+	// DESede/ECB/ISO10126Padding
+	DESede("DESede","DESede/ECB/ISO10126Padding"),
 
 	/**
 	 * The Triple des.

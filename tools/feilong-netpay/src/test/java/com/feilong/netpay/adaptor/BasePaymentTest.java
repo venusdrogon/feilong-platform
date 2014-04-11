@@ -58,6 +58,8 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	/** The encode. */
 	private String				encode				= CharsetType.UTF8;
 
+	boolean						openFile			= true;
+
 	/**
 	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
 	 * 
@@ -65,6 +67,8 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	 *            the payment adaptor
 	 * @param specialSignMap
 	 *            the special sign map
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
 	 */
 	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
 		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
@@ -102,32 +106,42 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		payRequest.setNotifyUrl(notify_url);
 
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
-		log.info(JsonUtil.format(paymentFormEntity));
 
-		String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
-		System.out.println(fullEncodedUrl);
-		System.out.println();
+		if (openFile){
+			log.info(JsonUtil.format(paymentFormEntity));
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("paymentFormEntity", paymentFormEntity);
+			String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
+			System.out.println(fullEncodedUrl);
+			System.out.println();
 
-		String method = paymentFormEntity.getMethod();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("paymentFormEntity", paymentFormEntity);
 
-		// if (method.toLowerCase().equals("get")){
-		// DesktopUtil.browse(fullEncodedUrl);
-		// }else{
+			String method = paymentFormEntity.getMethod();
 
-		Field declaredField = ReflectUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
-		Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
-		String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
+			// if (method.toLowerCase().equals("get")){
+			// DesktopUtil.browse(fullEncodedUrl);
+			// }else{
 
-		String filePath = "F:/payment/" + fileName + ".html";
+			try{
+				Field declaredField = ReflectUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
+				Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
+				String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
 
-		String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
-		log.info(html);
+				String filePath = "F:/payment/" + fileName + ".html";
 
-		IOWriteUtil.write(filePath, html, encode);
-		DesktopUtil.browse(filePath);
-		// }
+				String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
+				log.info(html);
+
+				IOWriteUtil.write(filePath, html, encode);
+				DesktopUtil.browse(filePath);
+			}catch (SecurityException e){
+				e.printStackTrace();
+			}catch (NoSuchFieldException e){
+				e.printStackTrace();
+			}
+			// }
+		}
+
 	}
 }

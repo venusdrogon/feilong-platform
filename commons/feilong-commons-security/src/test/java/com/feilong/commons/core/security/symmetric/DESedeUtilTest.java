@@ -26,8 +26,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
-import com.feilong.commons.core.security.symmetric.SymmetricType;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -45,7 +43,7 @@ public class DESedeUtilTest{
 	/** #des 16进制加密解密. */
 	public final static String	config_security_key_des_hex		= "jinxin";
 
-	private SymmetricType		symmetricType					= SymmetricType.TripleDES;
+	private SymmetricType		symmetricType					= SymmetricType.DESede;
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.

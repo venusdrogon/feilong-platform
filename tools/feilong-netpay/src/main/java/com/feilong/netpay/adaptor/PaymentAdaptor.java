@@ -1,18 +1,17 @@
-/*
- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+/**
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
- * This software is the confidential and proprietary information of Jumbomart.
- * You shall not disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jumbo.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.netpay.adaptor;
 
@@ -33,19 +32,20 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
  */
 public interface PaymentAdaptor{
 
-	// ********************************************************************************************
-
 	/**
 	 * 生成交易表单相关参数.
 	 * 
 	 * @param payRequest
 	 *            交易订单,包含关键交易信息,以便不同的接口实现不同的业务
-	 * @param specialSignMap
-	 *            特殊签名参数设置 ,可以为null <br>
-	 *            会覆盖配置的signMap ，比如 某些 网关支持过期时间设置
+	 * @param specialParamMap
+	 *            自定义参数map
+	 *            <ul>
+	 *            <li>可以为null</li>
+	 *            <li>也可以是,特殊签名参数设置,会覆盖配置的signMap,比如 某些 网关支持过期时间设置</li>
+	 *            </ul>
 	 * @return the payment form entity
 	 */
-	PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap);
+	PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap);
 
 	// ********************************************************************************************
 

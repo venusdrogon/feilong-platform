@@ -1,18 +1,17 @@
-/*
- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+/**
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
- * This software is the confidential and proprietary information of Jumbomart.
- * You shall not disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jumbo.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.netpay.adaptor.doku;
 
@@ -105,7 +104,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-
 		doCommonValidate(payRequest);
 
 		// alpha numeric space
@@ -128,7 +126,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 		// AMOUNT N 12.2 Total amount. Eg 10000.00
 		BigDecimal minValue = new BigDecimal("0.00");
-		BigDecimal maxValue = new BigDecimal("999999999999.00");
+		// BigDecimal maxValue = new BigDecimal("999999999999.00");
 
 		if (transferFee.compareTo(minValue) < 0){
 			throw new IllegalArgumentException("transferFee:" + transferFee + " can't be less than minValue:" + minValue + "");
@@ -309,15 +307,12 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 		boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 		if (isPassValidatorSpecialSignMap){
-
 			// *************************************************************************************************
 			// 需要被签名的 参数map
-
 			// 特殊 传入
 			if (Validator.isNotNullOrEmpty(specialSignMap)){
 				map.putAll(specialSignMap);
 			}
-
 			return getPaymentFormEntity(gateway, method, map);
 		}
 		throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
@@ -532,7 +527,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	@Override
 	public String doGetFeedbackTradeNo(HttpServletRequest request){
-		return request.getParameter("SESSIONID");
+		return request.getParameter("TRANSIDMERCHANT");
 	}
 
 	/*

@@ -17,8 +17,6 @@
 			<param name="LevelMax" value="ERROR" />
 		</filter>
 	</appender>
-
-
 	<!-- ******************loxia****************** -->
 	<category name="loxia">
 		<priority value="warn" />
@@ -39,14 +37,11 @@
 	</category>
 
 	<!-- ******************org.springframework****************** -->
-
-
 	<category name="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<priority value="warn" />
 	</category>
 
 	<!-- ******************com.feilong****************** -->
-
 	<category name="com.feilong">
 		<priority value="debug" />
 	</category>
@@ -63,63 +58,19 @@
 		<priority value="warn" />
 	</category>
 
-	<!-- ******************com.jumbo****************** -->
-	<category name="com.jumbo">
-		<priority value="info" />
-	</category>
-	<category name="com.jumbo.controller.common.ErrorController">
-		<priority value="warn" />
-	</category>
-	<category name="com.jumbo.manager.lucene.ProductResultTransformer">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.view">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.web.CacheService">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.util.CacheConfig">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.web.PageStaticTilesView">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.util.CookieUtil">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.manager.ScriptManager">
-		<priority value="warn" />
-	</category>
-
-	<category name="com.jumbo.interceptor">
-		<priority value="warn" />
-	</category>
-
-
-	<!-- debug 验证码 -->
-	<category name="com.jumbo.servlet.SecurityImageServlet">
-		<priority value="debug" />
-	</category>
-
-	<category name="com.jumbo.controller.member.MemberLoginController">
-		<priority value="debug" />
-	</category>
-
-
-	<category name="com.jumbo.controller.common.ErrorController">
-		<priority value="debug" />
-	</category>
-	<category name="com.jumbo.web.interceptor.UserDetailsInterceptor">
-		<priority value="debug" />
-	</category>
 	<category name="org.apache.velocity.runtime.log">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.digester.Digester">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.beanutils.ConvertUtilsBean">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.beanutils.converters">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache.commons.beanutils.converters.AbstractConverter">
 		<priority value="warn" />
 	</category>
 

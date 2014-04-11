@@ -108,8 +108,16 @@
 		<!-- org.slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${version.slf4j}</version>
+		</dependency>
+
+		<!-- slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${version.slf4j}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- net.sf.json-lib -->
@@ -155,6 +163,14 @@
 			<version>${version.feilong-platform}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${version.log4j}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<!--*******************************dependencyManagement******************************************* -->
@@ -199,12 +215,7 @@
 				<version>${version.memcached}</version>
 			</dependency>
 
-			<!-- log4j -->
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${version.log4j}</version>
-			</dependency>
+
 
 			<!-- dom4j -->
 			<dependency>

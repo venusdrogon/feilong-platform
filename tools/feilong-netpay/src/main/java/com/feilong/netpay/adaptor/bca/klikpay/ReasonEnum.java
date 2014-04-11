@@ -21,25 +21,24 @@ package com.feilong.netpay.adaptor.bca.klikpay;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 7, 2014 9:00:13 PM
  */
-// TODO add Indonesian language
 public enum ReasonEnum{
 
 	/** The SUCCESS. */
 	SUCCESS("Success","Sukses"),
 
 	/** The CANCELED. */
-	CANCELED("Transaction has been canceled",""),
+	CANCELED("Transaction has been canceled.","Transaksi Anda telah dibatalkan."),
 
 	/** The PAID. */
-	PAID("Transaction has been paid",""),
+	PAID("Transaction has been paid.","Transaksi Anda telah dibayar."),
 
 	/**
 	 * The transaction has expired or exceeded Time limit given..
 	 */
-	EXPIRED("Transaction has expired",""),
+	EXPIRED("Transaction has expired.","Transaksi Anda telah kedaluwarsa."),
 
 	/** The CANNOTBEPROCESSED,Technical issues . */
-	CANNOTBEPROCESSED("Transaction cannot be processed","");
+	CANNOTBEPROCESSED("Transaction cannot be processed.","Transaksi Anda telah dapat diproses.");
 
 	// ***********************************************************************
 

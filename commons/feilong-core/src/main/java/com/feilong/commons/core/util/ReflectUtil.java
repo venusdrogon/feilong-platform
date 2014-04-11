@@ -23,7 +23,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Map;
+import java.util.TreeMap;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,20 +55,22 @@ public final class ReflectUtil{
 	 *            the clazz
 	 * @return the generic model class
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked" })
 	public static <T> Class<T> getGenericModelClass(Class<?> clazz){
 		Type type = clazz.getGenericSuperclass();
-		while (!(type instanceof ParameterizedType) && clazz != null && clazz != Object.class){
+		while (!(type instanceof ParameterizedType) && null != clazz && Object.class != clazz){
 			clazz = clazz.getSuperclass();
-			type = clazz.getGenericSuperclass();
 		}
 		if (!(type instanceof ParameterizedType)){
 			Class<?>[] iclazzs = clazz.getInterfaces();
 			if (iclazzs.length > 0){
 				int index = -1;
 				if (index >= 0){
-					if (clazz.getGenericInterfaces()[index] instanceof ParameterizedType)
-						type = clazz.getGenericInterfaces()[index];
+					Type[] genericInterfaces = clazz.getGenericInterfaces();
+					Type type2 = genericInterfaces[index];
+					if (type2 instanceof ParameterizedType){
+						type = type2;
+					}
 				}
 			}
 		}
@@ -74,6 +79,75 @@ public final class ReflectUtil{
 		}
 		ParameterizedType pType = (ParameterizedType) type;
 		return (Class<T>) pType.getActualTypeArguments()[0];
+	}
+
+	/**
+	 * 获得这个对象 所有字段的值(不是属性).
+	 * 
+	 * @param obj
+	 *            the obj
+	 * @return the field value map
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 */
+	public static Map<String, Object> getFieldValueMap(Object obj) throws IllegalArgumentException,IllegalAccessException{
+		// BeanInfo beanInfo = Introspector.getBeanInfo(class1);
+		//
+		// PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+		//
+		// for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
+		// String name = propertyDescriptor.getName();
+		// log.info(name);
+		// if ("class".equals(name) && "classLoader".equals(name)){
+		// // Ignore Class.getClassLoader() method - nobody needs to bind to that
+		// continue;
+		// }
+		//
+		// // Method readMethod = propertyDescriptor.getReadMethod();
+		// // Object invoke = readMethod.invoke(class1);
+		// // log.info(invoke.toString());
+		// }
+
+		// 获得一个对象所有的声明字段
+		Field[] fields = getAllDeclaredFields(obj);
+
+		Map<String, Object> map = new TreeMap<String, Object>();
+		if (Validator.isNotNullOrEmpty(fields)){
+			for (Field field : fields){
+				String fieldName = field.getName();
+				int modifiers = field.getModifiers();
+				// 私有并且静态 一般是log
+				boolean isPrivateAndStatic = Modifier.isPrivate(modifiers) && Modifier.isStatic(modifiers);
+				log.debug("fieldName:[{}],modifiers/isPrivateAndStatic:[{}/{}]", fieldName, modifiers, isPrivateAndStatic);
+
+				if (!isPrivateAndStatic){
+					field.setAccessible(true);
+					map.put(fieldName, field.get(obj));
+				}
+			}
+		}
+		return map;
+	}
+
+	/**
+	 * 获得一个对象所有的声明字段
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	private static Field[] getAllDeclaredFields(Object obj){
+		Class<?> clz = obj.getClass();
+
+		//  返回Class对象所代表的类或接口中所有成员变量(不限于public)
+		Field[] declaredField = clz.getDeclaredFields();
+		Class<?> superclass = clz.getSuperclass();
+
+		Field[] fields;
+
+		Field[] declaredFields = superclass.getDeclaredFields();
+		// TODO
+		fields = ArrayUtils.addAll(declaredField, declaredFields);
+		return fields;
 	}
 
 	/**
@@ -142,16 +216,11 @@ public final class ReflectUtil{
 	 * @param name
 	 *            属性名称
 	 * @return 返回一个 Field 对象，该对象反映此 Class 对象所表示的类或接口的指定已声明字段
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
 	 */
-	public static Field getDeclaredField(Class<?> clz,String name){
-		Field field = null;
-		try{
-			field = clz.getDeclaredField(name);
-		}catch (SecurityException e){
-			e.printStackTrace();
-		}catch (NoSuchFieldException e){
-			e.printStackTrace();
-		}
+	public static Field getDeclaredField(Class<?> clz,String name) throws SecurityException,NoSuchFieldException{
+		Field field = clz.getDeclaredField(name);
 		return field;
 	}
 
@@ -165,26 +234,18 @@ public final class ReflectUtil{
 	 * @param params
 	 *            参数
 	 * @return 方法返回值
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
-	public static Object invokeMethod(Object owner,String methodName,Object...params){
+	public static Object invokeMethod(Object owner,String methodName,Object...params) throws IllegalArgumentException,
+			IllegalAccessException,InvocationTargetException{
 		Class<?> ownerClass = owner.getClass();
 		Method method = getMethod(ownerClass, methodName, params);
 		if (null == method){
 			return null;
 		}
-		try{
-			return method.invoke(owner, params);
-		}catch (IllegalArgumentException e){
-			log.debug(e.getMessage());
-			e.printStackTrace();
-		}catch (IllegalAccessException e){
-			log.debug(e.getMessage());
-			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			log.debug(e.getMessage());
-			e.printStackTrace();
-		}
-		return null;
+		return method.invoke(owner, params);
 	}
 
 	// public static Object invokeMethod(Object owner,String methodName,LinkedList<Map<Object, Class>> linkedList){

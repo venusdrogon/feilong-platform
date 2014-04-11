@@ -52,8 +52,11 @@ public class ResultUtil{
 	 * @param fieldNames
 	 *            字段参数
 	 * @return java bean
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
 	 */
-	public static Object convertResultToObjectOneBean(Result result,Class<?> clz,String...fieldNames){
+	public static Object convertResultToObjectOneBean(Result result,Class<?> clz,String...fieldNames) throws SecurityException,
+			NoSuchFieldException{
 		if (isEmpty(result)){
 			return null;
 		}
