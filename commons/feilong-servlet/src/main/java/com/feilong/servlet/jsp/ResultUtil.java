@@ -16,6 +16,7 @@
 package com.feilong.servlet.jsp;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,9 +55,16 @@ public class ResultUtil{
 	 * @return java bean
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws NoSuchMethodException
+	 * @throws ClassNotFoundException
+	 * @throws IllegalArgumentException
 	 */
 	public static Object convertResultToObjectOneBean(Result result,Class<?> clz,String...fieldNames) throws SecurityException,
-			NoSuchFieldException{
+			NoSuchFieldException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
+			IllegalAccessException,InvocationTargetException{
 		if (isEmpty(result)){
 			return null;
 		}
@@ -109,8 +117,16 @@ public class ResultUtil{
 	 * @param result
 	 * @param clz
 	 * @return
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws NoSuchMethodException
+	 * @throws ClassNotFoundException
+	 * @throws IllegalArgumentException
+	 * @throws SecurityException
 	 */
-	public static List<?> convertResultToList(Result result,Class<?> clz){
+	public static List<?> convertResultToList(Result result,Class<?> clz) throws SecurityException,IllegalArgumentException,
+			ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,InvocationTargetException{
 		if (isEmpty(result)){
 			return null;
 		}
@@ -127,9 +143,17 @@ public class ResultUtil{
 	 * @param fileds
 	 *            字段可变参数
 	 * @return 将Result转成list
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws NoSuchMethodException
+	 * @throws ClassNotFoundException
+	 * @throws IllegalArgumentException
+	 * @throws SecurityException
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static List convertResultToList(Result result,Class<?> clz,String...fileds){
+	public static List convertResultToList(Result result,Class<?> clz,String...fileds) throws SecurityException,IllegalArgumentException,
+			ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,InvocationTargetException{
 		if (isEmpty(result)){
 			return null;
 		}

@@ -18,6 +18,7 @@ package com.feilong.office.excel;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.jsp.jstl.sql.Result;
@@ -70,8 +71,17 @@ public class ExcelResult{
 	 * @version 1.0 2009-5-20上午11:32:29
 	 * @version 1.1 2010-7-7 下午02:02:49
 	 * @throws IOException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws NoSuchMethodException
+	 * @throws ClassNotFoundException
+	 * @throws IllegalArgumentException
+	 * @throws SecurityException
 	 */
-	public void convertResultToExcel(Result result,ExcelConfigEntity excelConfigEntity,OutputStream outputStream) throws IOException{
+	public void convertResultToExcel(Result result,ExcelConfigEntity excelConfigEntity,OutputStream outputStream) throws IOException,
+			SecurityException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
+			IllegalAccessException,InvocationTargetException{
 		/**
 		 * 标题数组
 		 */

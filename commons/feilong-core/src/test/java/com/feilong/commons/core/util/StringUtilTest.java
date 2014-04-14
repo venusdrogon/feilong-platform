@@ -103,6 +103,7 @@ public class StringUtilTest{
 
 	@Test
 	public void format(){
+		System.out.println(StringUtil.format("%03d", 1));
 		System.out.println(StringUtil.format("%s%n%s%h", 1.2d, 2, "feilong"));
 		System.out.println(StringUtil.format("%+d", -5));
 		System.out.println(StringUtil.format("%-5d", -5));

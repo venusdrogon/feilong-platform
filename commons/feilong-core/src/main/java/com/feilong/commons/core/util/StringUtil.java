@@ -694,7 +694,10 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 格式化字符串<br>
+	 * 格式化字符串
+	 * <ul>
+	 * <li>StringUtil.format("%03d", 1)不能写成 StringUtil.format("%03d", "1")</li>
+	 * </ul>
 	 * %index$开头，index从1开始取值，表示将第index个参数拿进来进行格式化。<br>
 	 * 对整数进行格式化:格式化字符串由4部分组成:%[index$][标识][最小宽度]转换方式<br>
 	 * 对浮点数进行格式化:%[index$][标识][最少宽度][.精度]转换方式<br>

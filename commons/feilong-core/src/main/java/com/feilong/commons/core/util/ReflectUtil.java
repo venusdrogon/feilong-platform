@@ -33,7 +33,9 @@ import org.slf4j.LoggerFactory;
 /**
  * 反射类.
  * 
- * @author 金鑫 2010-1-18 下午06:35:58
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 2010-1-18 下午06:35:58
+ * @version 1.1 Apr 11, 2014 10:45:26 PM
  * @since 1.0
  */
 public final class ReflectUtil{
@@ -91,25 +93,9 @@ public final class ReflectUtil{
 	 * @throws IllegalArgumentException
 	 */
 	public static Map<String, Object> getFieldValueMap(Object obj) throws IllegalArgumentException,IllegalAccessException{
-		// BeanInfo beanInfo = Introspector.getBeanInfo(class1);
-		//
-		// PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-		//
-		// for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
-		// String name = propertyDescriptor.getName();
-		// log.info(name);
-		// if ("class".equals(name) && "classLoader".equals(name)){
-		// // Ignore Class.getClassLoader() method - nobody needs to bind to that
-		// continue;
-		// }
-		//
-		// // Method readMethod = propertyDescriptor.getReadMethod();
-		// // Object invoke = readMethod.invoke(class1);
-		// // log.info(invoke.toString());
-		// }
 
-		// 获得一个对象所有的声明字段
-		Field[] fields = getAllDeclaredFields(obj);
+		// 获得一个对象所有的声明字段(包括私有的,继承的)
+		Field[] fields = getDeclaredFields(obj);
 
 		Map<String, Object> map = new TreeMap<String, Object>();
 		if (Validator.isNotNullOrEmpty(fields)){
@@ -130,23 +116,28 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 获得一个对象所有的声明字段
+	 * 获得一个对象所有的声明字段(包括私有的 private,继承 inherited 的)
 	 * 
 	 * @param obj
 	 * @return
 	 */
-	private static Field[] getAllDeclaredFields(Object obj){
-		Class<?> clz = obj.getClass();
+	private static Field[] getDeclaredFields(Object obj){
+		Field[] fields = null;
 
-		//  返回Class对象所代表的类或接口中所有成员变量(不限于public)
-		Field[] declaredField = clz.getDeclaredFields();
+		Class<?> clz = obj.getClass();
 		Class<?> superclass = clz.getSuperclass();
 
-		Field[] fields;
+		//  返回Class对象所代表的类或接口中所有成员变量(不限于public)
+		fields = clz.getDeclaredFields();
+		do{
+			if (log.isDebugEnabled()){
+				log.debug("superclass:{}", superclass.getName());
+			}
+			fields = ArrayUtils.addAll(fields, superclass.getDeclaredFields());
+			superclass = superclass.getSuperclass();
 
-		Field[] declaredFields = superclass.getDeclaredFields();
-		// TODO
-		fields = ArrayUtils.addAll(declaredField, declaredFields);
+		}while (null != superclass && superclass != Object.class);
+
 		return fields;
 	}
 
@@ -160,8 +151,6 @@ public final class ReflectUtil{
 	 * 返回数组中的元素没有排序，也没有任何特定的顺序。
 	 * 如果该类或接口不声明任何字段，或者此 Class 对象表示一个基本类型、一个数组类或 void，则此方法返回一个长度为 0 的数组。
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param clz
 	 *            the clz
@@ -237,9 +226,11 @@ public final class ReflectUtil{
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
 	 */
 	public static Object invokeMethod(Object owner,String methodName,Object...params) throws IllegalArgumentException,
-			IllegalAccessException,InvocationTargetException{
+			IllegalAccessException,InvocationTargetException,SecurityException,NoSuchMethodException{
 		Class<?> ownerClass = owner.getClass();
 		Method method = getMethod(ownerClass, methodName, params);
 		if (null == method){
@@ -248,38 +239,6 @@ public final class ReflectUtil{
 		return method.invoke(owner, params);
 	}
 
-	// public static Object invokeMethod(Object owner,String methodName,LinkedList<Map<Object, Class>> linkedList){
-	// Class ownerClass = owner.getClass();
-	// //**********************************************************
-	// int size = linkedList.size();
-	// //参数数组
-	// Object[] params = new Object[size];
-	// //参数对应的class 数组
-	// Class[] classes = new Class[size];
-	// for (int i = 0; i < size; ++i){
-	// Map<Object, Class> map=linkedList.get(i);
-	// params[i];
-	//
-	// classes[i]=map.get(key);
-	//
-	// }
-	// //**********************************************************
-	// Method method = getMethod(ownerClass, methodName, params);
-	// try{
-	// if (Validator.isNotNull(linkedList)){}
-	// return method.invoke(owner, params);
-	// }catch (IllegalArgumentException e){
-	// log.debug(e.getMessage());
-	// e.printStackTrace();
-	// }catch (IllegalAccessException e){
-	// log.debug(e.getMessage());
-	// e.printStackTrace();
-	// }catch (InvocationTargetException e){
-	// log.debug(e.getMessage());
-	// e.printStackTrace();
-	// }
-	// return null;
-	// }
 	/**
 	 * 获得方法.
 	 * 
@@ -290,11 +249,14 @@ public final class ReflectUtil{
 	 * @param params
 	 *            动态参数
 	 * @return 该方法
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
 	 */
-	private static Method getMethod(Class<?> ownerClass,String methodName,Object...params){
+	private static Method getMethod(Class<?> ownerClass,String methodName,Object...params) throws SecurityException,NoSuchMethodException{
 		log.debug("input param ownerClass is :" + ownerClass);
 		log.debug("input param methodName is :" + methodName);
 		log.debug("input param params is :" + params);
+
 		Class<?>[] paramsClass = null;
 		if (Validator.isNullOrEmpty(params)){
 			log.debug("params is empty,use default paramsClass");
@@ -326,22 +288,13 @@ public final class ReflectUtil{
 				}
 			}
 		}
-		try{
-			/**
-			 * 它反映此 Class 对象所表示的类或接口的指定公共成员方法。<br>
-			 * name 参数是一个 String，用于指定所需方法的简称。<br>
-			 * parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组。如果 parameterTypes 为 null，则按空数组处理。
-			 */
-			Method method = ownerClass.getMethod(methodName, paramsClass);
-			return method;
-		}catch (SecurityException e){
-			log.error("存在安全侵犯");
-			e.printStackTrace();
-		}catch (NoSuchMethodException e){
-			log.error("in this class,can not found this method (" + methodName + "),please check the name of the method");
-			log.error(e.getMessage());
-		}
-		return null;
+		/**
+		 * 它反映此 Class 对象所表示的类或接口的指定公共成员方法。<br>
+		 * name 参数是一个 String，用于指定所需方法的简称。<br>
+		 * parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组。如果 parameterTypes 为 null，则按空数组处理。
+		 */
+		Method method = ownerClass.getMethod(methodName, paramsClass);
+		return method;
 	}
 
 	/**
@@ -354,24 +307,21 @@ public final class ReflectUtil{
 	 * @param params
 	 *            动态参数
 	 * @return 该方法执行之后的结果
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws ClassNotFoundException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
 	 */
-	public static Object invokeStaticMethod(String className,String methodName,Object...params){
-		try{
-			Class<?> ownerClass = loadClass(className);
-			Method method = getMethod(ownerClass, methodName, params);
-			if (null != method){
-				// 如果底层方法是静态的，那么可以忽略指定的 obj 参数。该参数可以为 null。 从中调用底层方法的对象
-				// 如果底层方法所需的形参数为 0，则所提供的 args 数组长度可以为 0 或 null 用于方法调用的参数
-				return method.invoke(null, params);
-			}
-		}catch (SecurityException e){
-			e.printStackTrace();
-		}catch (IllegalArgumentException e){
-			e.printStackTrace();
-		}catch (IllegalAccessException e){
-			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
+	public static Object invokeStaticMethod(String className,String methodName,Object...params) throws IllegalArgumentException,
+			IllegalAccessException,InvocationTargetException,ClassNotFoundException,SecurityException,NoSuchMethodException{
+		Class<?> ownerClass = loadClass(className);
+		Method method = getMethod(ownerClass, methodName, params);
+		if (null != method){
+			// 如果底层方法是静态的，那么可以忽略指定的 obj 参数。该参数可以为 null。 从中调用底层方法的对象
+			// 如果底层方法所需的形参数为 0，则所提供的 args 数组长度可以为 0 或 null 用于方法调用的参数
+			return method.invoke(null, params);
 		}
 		return null;
 	}
@@ -382,14 +332,10 @@ public final class ReflectUtil{
 	 * @param className
 	 *            包名+类名 "org.jfree.chart.ChartFactory"
 	 * @return the class
+	 * @throws ClassNotFoundException
 	 */
-	private static Class<?> loadClass(String className){
-		try{
-			return Class.forName(className);// JVM查找并加载指定的类
-		}catch (ClassNotFoundException e){
-			e.printStackTrace();
-		}
-		return null;
+	private static Class<?> loadClass(String className) throws ClassNotFoundException{
+		return Class.forName(className);// JVM查找并加载指定的类
 	}
 
 	/**
@@ -400,22 +346,16 @@ public final class ReflectUtil{
 	 * @param fieldName
 	 *            the field name
 	 * @return 该属性对象
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
-	public static Object getProperty(Object owner,String fieldName){
+	public static Object getProperty(Object owner,String fieldName) throws SecurityException,NoSuchFieldException,IllegalArgumentException,
+			IllegalAccessException{
 		Class<?> ownerClass = owner.getClass();
-		Object property = null;
-		try{
-			Field field = ownerClass.getField(fieldName);
-			property = field.get(owner);
-		}catch (SecurityException e){
-			e.printStackTrace();
-		}catch (IllegalArgumentException e){
-			e.printStackTrace();
-		}catch (NoSuchFieldException e){
-			e.printStackTrace();
-		}catch (IllegalAccessException e){
-			e.printStackTrace();
-		}
+		Field field = ownerClass.getField(fieldName);
+		Object property = field.get(owner);
 		return property;
 	}
 
@@ -428,21 +368,16 @@ public final class ReflectUtil{
 	 *            字段
 	 * @param value
 	 *            值
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
-	public static void setProperty(Object owner,String fieldName,Object value){
+	public static void setProperty(Object owner,String fieldName,Object value) throws SecurityException,NoSuchFieldException,
+			IllegalArgumentException,IllegalAccessException{
 		Class<?> ownerClass = owner.getClass();
-		try{
-			Field field = ownerClass.getField(fieldName);
-			field.set(ownerClass, value);
-		}catch (SecurityException e){
-			e.printStackTrace();
-		}catch (IllegalArgumentException e){
-			e.printStackTrace();
-		}catch (NoSuchFieldException e){
-			e.printStackTrace();
-		}catch (IllegalAccessException e){
-			e.printStackTrace();
-		}
+		Field field = ownerClass.getField(fieldName);
+		field.set(ownerClass, value);
 	}
 
 	/**
@@ -471,32 +406,23 @@ public final class ReflectUtil{
 	 * @param args
 	 *            构造函数的参数
 	 * @return 新建的实例
+	 * @throws ClassNotFoundException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws IllegalArgumentException
 	 */
-	public static Object newInstance(String className,Object...args){
-		try{
-			Class<?> newoneClass = Class.forName(className);
-			Class<?>[] argsClass = new Class[args.length];
-			for (int i = 0, j = args.length; i < j; ++i){
-				argsClass[i] = args[i].getClass();
-			}
-			Constructor<?> constructor = newoneClass.getConstructor(argsClass);
-			return constructor.newInstance(args);
-		}catch (SecurityException e){
-			e.printStackTrace();
-		}catch (IllegalArgumentException e){
-			e.printStackTrace();
-		}catch (ClassNotFoundException e){
-			e.printStackTrace();
-		}catch (NoSuchMethodException e){
-			e.printStackTrace();
-		}catch (InstantiationException e){
-			e.printStackTrace();
-		}catch (IllegalAccessException e){
-			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
+	public static Object newInstance(String className,Object...args) throws ClassNotFoundException,SecurityException,NoSuchMethodException,
+			IllegalArgumentException,InstantiationException,IllegalAccessException,InvocationTargetException{
+		Class<?> newoneClass = Class.forName(className);
+		Class<?>[] argsClass = new Class[args.length];
+		for (int i = 0, j = args.length; i < j; ++i){
+			argsClass[i] = args[i].getClass();
 		}
-		return null;
+		Constructor<?> constructor = newoneClass.getConstructor(argsClass);
+		return constructor.newInstance(args);
 	}
 
 	/**
@@ -538,4 +464,37 @@ public final class ReflectUtil{
 	public static Object getByArray(Object array,int index){
 		return Array.get(array, index);
 	}
+
+	// public static Object invokeMethod(Object owner,String methodName,LinkedList<Map<Object, Class>> linkedList){
+	// Class ownerClass = owner.getClass();
+	// //**********************************************************
+	// int size = linkedList.size();
+	// //参数数组
+	// Object[] params = new Object[size];
+	// //参数对应的class 数组
+	// Class[] classes = new Class[size];
+	// for (int i = 0; i < size; ++i){
+	// Map<Object, Class> map=linkedList.get(i);
+	// params[i];
+	//
+	// classes[i]=map.get(key);
+	//
+	// }
+	// //**********************************************************
+	// Method method = getMethod(ownerClass, methodName, params);
+	// try{
+	// if (Validator.isNotNull(linkedList)){}
+	// return method.invoke(owner, params);
+	// }catch (IllegalArgumentException e){
+	// log.debug(e.getMessage());
+	// e.printStackTrace();
+	// }catch (IllegalAccessException e){
+	// log.debug(e.getMessage());
+	// e.printStackTrace();
+	// }catch (InvocationTargetException e){
+	// log.debug(e.getMessage());
+	// e.printStackTrace();
+	// }
+	// return null;
+	// }
 }

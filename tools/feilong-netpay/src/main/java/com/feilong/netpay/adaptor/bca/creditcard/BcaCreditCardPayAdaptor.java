@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +58,9 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The service version. */
 	private String				serviceVersion;
+
+	/** The query service version. */
+	private String				queryServiceVersion;
 
 	/**
 	 * Required<br>
@@ -315,6 +319,50 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		return false;
 	}
 
+	/** The query url. */
+	String	queryURL;
+
+	/**
+	 * Gets the query result.
+	 * 
+	 * @return the query result
+	 */
+	public boolean getQueryResult(String tradeNo){
+		// Please make sure parameters are submitted in following order
+		Map<String, String> object = new HashMap<String, String>();
+
+		// Conditional (must present if transactionID is not)
+		// Value: Merchant’s unique Transaction ID
+		// Format: Up to 50 alphanumeric characters
+		object.put("merchantTransactionID", "");
+
+		// Required
+		object.put("serviceVersion", queryServiceVersion);
+
+		// Required
+		// Value: Merchant’s DOacquire ID (same siteID you use for initial
+		// transaction)
+		// Format: Up to 20 alphanumeric characters
+		object.put("siteID", siteID);
+
+		// Conditional (must present if merchantTransactionID is not)
+		// Value: DOacquire’s transaction ID
+		// Format: Up to 50 alphanumeric characters
+		object.put("transactionID", "");
+
+		// Required
+		// Value:
+		//  AUTHORIZATION
+		//  CAPTURE
+		//  VOID CAPTURE
+		//  SALES
+		//  VOID
+		//  REFUND
+		//  FORCE
+		object.put("transactionType", "");
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#isSupportCloseTrade()
@@ -375,6 +423,16 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setServiceVersion(String serviceVersion){
 		this.serviceVersion = serviceVersion;
+	}
+
+	/**
+	 * Sets the query service version.
+	 * 
+	 * @param queryServiceVersion
+	 *            the queryServiceVersion to set
+	 */
+	public void setQueryServiceVersion(String queryServiceVersion){
+		this.queryServiceVersion = queryServiceVersion;
 	}
 
 }
