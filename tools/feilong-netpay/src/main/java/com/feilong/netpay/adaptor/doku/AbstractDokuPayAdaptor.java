@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.RegexPattern;
@@ -51,10 +50,13 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
 public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log							= LoggerFactory.getLogger(AbstractDokuPayAdaptor.class);
+	private static final Logger	log	= LoggerFactory.getLogger(AbstractDokuPayAdaptor.class);
 
 	/** 表单提交地址. */
 	private String				gateway;
+
+	/** The method. */
+	private String				method;
 
 	/** The MALLID. */
 	private String				MALLID;
@@ -64,12 +66,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Shared_key. */
 	private String				Shared_key;
-
-	/** The method. */
-	private String				method;
-
-	/** The shipping item name. */
-	private String				shippingItemName;
 
 	/** The CURRENCY. */
 	private String				CURRENCY;
@@ -88,15 +84,19 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	private String				PAYMENTCHANNEL;
 
 	/** The price pattern. */
-	private String				pricePattern				= "############.00";
+	private String				pricePattern;
 
 	/** 跳转回来带的 成功状态 code. */
-	private String				redirectSuccessStatusCode	= "0000";
+	private String				redirectSuccessStatusCode;
 
 	// Andi 拿出的 DOKU 邮件里面的script 是 "ISO-8859-1"
 	/** The charset name for sh a1. */
-	private String				charsetNameForSHA1			= CharsetType.ISO_8859_1;
+	private String				charsetNameForSHA1;
 
+	/** The shipping item name. */
+	private String				shippingItemName;
+
+	// alpha numeric space
 	// **********************************************************************************************
 
 	/*
@@ -105,8 +105,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 		doCommonValidate(payRequest);
-
-		// alpha numeric space
 
 		// ******************* 验证 code********************
 		String tradeNo = payRequest.getTradeNo();
@@ -385,17 +383,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		return itemName.replace(";", " ").replace(",", " ");
 	}
 
-	/**
-	 * 验证输入的参数(子类可以按照需要 重写).
-	 * 
-	 * @param specialSignMap
-	 *            指定的签名map
-	 * @return true, if successful
-	 */
-	protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
-		return true;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
@@ -472,15 +459,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public boolean doRedirectVerify(HttpServletRequest request){
-
-		// 是正确的 redirect 地址
-		boolean isCorrectRedirectAddress = false;
-
-		// 是否支付成功
-		boolean isPaymentStatusSuccess = false;
-
 		// ************************************************
-
 		// N 12.2 Total amount. Eg: 10000.00
 		String AMOUNT = request.getParameter("AMOUNT");
 
@@ -506,19 +485,30 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 		String ourWORDS = getWORDSForRedirect(TRANSIDMERCHANT, AMOUNT, STATUSCODE);
 		boolean isSignOk = ourWORDS.equals(WORDS);
-
 		if (isSignOk){
-			if (redirectSuccessStatusCode.equals(STATUSCODE)){
-				return true;
-			}else{
-				log.error("redirectSuccessStatusCode:[{}]", STATUSCODE);
-				return false;
+
+			boolean statusSuccess = validateRedirectStatusParam(STATUSCODE);
+			if (!statusSuccess){
+				log.error("PAYMENTCHANNEL:[{}],STATUSCODE:[{}],error", PAYMENTCHANNEL, STATUSCODE);
 			}
+			return statusSuccess;
 		}else{
 			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestAllURL(request) };
 			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
 			return false;
 		}
+	}
+
+	/**
+	 * 验证redirect status 参数
+	 * 
+	 * @param STATUSCODE
+	 *            the sTATUSCODE
+	 * @return true, if successful
+	 */
+	protected boolean validateRedirectStatusParam(String STATUSCODE){
+		boolean statusSuccess = redirectSuccessStatusCode.equals(STATUSCODE);
+		return statusSuccess;
 	}
 
 	/*
@@ -552,6 +542,17 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public boolean isSupportCloseTrade(){
 		return false;
+	}
+
+	/**
+	 * 验证输入的参数(子类可以按照需要 重写).
+	 * 
+	 * @param specialSignMap
+	 *            指定的签名map
+	 * @return true, if successful
+	 */
+	protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
+		return true;
 	}
 
 	/**
@@ -699,6 +700,22 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setCURRENCY(String cURRENCY){
 		CURRENCY = cURRENCY;
+	}
+
+	/**
+	 * @param redirectSuccessStatusCode
+	 *            the redirectSuccessStatusCode to set
+	 */
+	public void setRedirectSuccessStatusCode(String redirectSuccessStatusCode){
+		this.redirectSuccessStatusCode = redirectSuccessStatusCode;
+	}
+
+	/**
+	 * @param charsetNameForSHA1
+	 *            the charsetNameForSHA1 to set
+	 */
+	public void setCharsetNameForSHA1(String charsetNameForSHA1){
+		this.charsetNameForSHA1 = charsetNameForSHA1;
 	}
 
 }

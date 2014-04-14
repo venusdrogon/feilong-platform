@@ -42,7 +42,7 @@ public class ReflectUtilTest{
 	 *             the illegal access exception
 	 */
 	@Test
-	public final void createPaymentForm() throws IllegalArgumentException,IllegalAccessException{
+	public final void getFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
 
 		User user = new User(12L);
 

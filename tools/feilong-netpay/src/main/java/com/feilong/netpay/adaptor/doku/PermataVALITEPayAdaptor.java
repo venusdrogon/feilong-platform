@@ -16,9 +16,35 @@
 package com.feilong.netpay.adaptor.doku;
 
 /**
- * Doku支付方式
+ * Doku支付方式.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 11, 2014 5:05:30 PM
  */
-public class PermataVALITEPayAdaptor extends AbstractDokuPayAdaptor{}
+public class PermataVALITEPayAdaptor extends AbstractDokuPayAdaptor{
+
+	/** 5511 Not an error, payment code has not been paid by Customer. */
+	private String	atmRedirectSuccessStatusCode;
+
+	/**
+	 * Validate status.
+	 * 
+	 * @param STATUSCODE
+	 *            the sTATUSCODE
+	 * @return true, if successful
+	 */
+	protected boolean validateRedirectStatusParam(String STATUSCODE){
+		boolean statusSuccess = atmRedirectSuccessStatusCode.equals(STATUSCODE);
+		return statusSuccess;
+	}
+
+	/**
+	 * Sets the 5511 Not an error, payment code has not been paid by Customer.
+	 * 
+	 * @param atmRedirectSuccessStatusCode
+	 *            the atmRedirectSuccessStatusCode to set
+	 */
+	public void setAtmRedirectSuccessStatusCode(String atmRedirectSuccessStatusCode){
+		this.atmRedirectSuccessStatusCode = atmRedirectSuccessStatusCode;
+	}
+}

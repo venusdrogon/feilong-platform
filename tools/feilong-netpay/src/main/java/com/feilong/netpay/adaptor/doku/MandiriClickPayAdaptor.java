@@ -15,6 +15,7 @@
  */
 package com.feilong.netpay.adaptor.doku;
 
+
 /**
  * Doku Mandiri ClickPay 支付方式.
  * 

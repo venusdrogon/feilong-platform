@@ -12,14 +12,18 @@
 	<!-- base DOKU -->
 	<bean id="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.AbstractDokuPayAdaptor" abstract="true">
 		<property name="gateway" value="#{p_dokuPayment['gateway']}" />
+		<property name="method" value="#{p_dokuPayment['method']}" />
+
 		<property name="MALLID" value="#{p_dokuPayment['MALLID']}" />
 		<property name="Shared_key" value="#{p_dokuPayment['Shared_key']}" />
 
 		<property name="CHAINMERCHANT" value="#{p_dokuPayment['CHAINMERCHANT']}" />
-		<property name="method" value="#{p_dokuPayment['method']}" />
-		<property name="shippingItemName" value="#{p_dokuPayment['shippingItemName']}" />
-
 		<property name="CURRENCY" value="#{p_dokuPayment['CURRENCY']}" />
+
+		<property name="shippingItemName" value="#{p_dokuPayment['shippingItemName']}" />
+		<property name="pricePattern" value="#{p_dokuPayment['pricePattern']}" />
+		<property name="charsetNameForSHA1" value="#{p_dokuPayment['charsetNameForSHA1']}" />
+		<property name="redirectSuccessStatusCode" value="#{p_dokuPayment['redirect.status.success.common']}" />
 
 		<property name="minPriceForPay" value="#{p_dokuPayment['minPriceForPay']}" />
 		<property name="maxPriceForPay" value="#{p_dokuPayment['maxPriceForPay']}" />
@@ -38,6 +42,7 @@
 	<!-- PermataVALITEPayAdaptor 支付 -->
 	<bean id="permataVALITEPayAdaptor" parent="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.PermataVALITEPayAdaptor">
 		<property name="PAYMENTCHANNEL" value="#{p_dokuPayment['PAYMENTCHANNEL.permataVALITEPay']}" />
+		<property name="atmRedirectSuccessStatusCode" value="#{p_dokuPayment['redirect.status.success.atm']}" />
 	</bean>
 
 	<!-- creditCardPayAdaptor 支付 -->
