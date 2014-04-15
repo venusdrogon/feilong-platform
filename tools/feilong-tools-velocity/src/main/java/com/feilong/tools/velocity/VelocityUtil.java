@@ -21,7 +21,6 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.log4j.Level;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -30,7 +29,6 @@ import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.log.Log4JLogChute;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +49,7 @@ public final class VelocityUtil{
 
 	private static String			feilongStringVelocity			= "feilongStringVelocity";
 
-	private static String			RUNTIME_LOG_LOG4J_LOGGER_LEVEL	= Level.DEBUG.toString();
+	// private static String RUNTIME_LOG_LOG4J_LOGGER_LEVEL	= Level.DEBUG.toString();
 
 	private static String			default_CharsetType				= CharsetType.UTF8;
 
@@ -68,10 +66,18 @@ public final class VelocityUtil{
 		properties.put(Velocity.RESOURCE_LOADER, resource_loader_class);
 		properties.put(resource_loader_class + ".resource.loader.class", ClasspathResourceLoader.class.getName());
 		// log
-		properties.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, Log4JLogChute.class.getName());
-		properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER, RUNTIME_LOG_LOG4J_LOGGER);
-		properties.put(RuntimeConstants.RUNTIME_LOG, "E://velocity.log");
-		properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER_LEVEL, RUNTIME_LOG_LOG4J_LOGGER_LEVEL);
+		// String name = Log4JLogChute.class.getName();
+
+		// 2014-4-15 19:35 切换到 SLF4JLogChute
+		String logsystemClass = SLF4JLogChute.class.getName();
+		properties.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, logsystemClass);
+
+		properties.put(SLF4JLogChute.RUNTIME_LOG_SLF4J_LOGGER, RUNTIME_LOG_LOG4J_LOGGER);
+
+		// log 4j
+		// properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER, RUNTIME_LOG_LOG4J_LOGGER);
+		// properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER_LEVEL, RUNTIME_LOG_LOG4J_LOGGER_LEVEL);
+		// properties.put(RuntimeConstants.RUNTIME_LOG, "E://velocity.log");
 
 		// ENCODING
 		properties.put(Velocity.INPUT_ENCODING, default_CharsetType);

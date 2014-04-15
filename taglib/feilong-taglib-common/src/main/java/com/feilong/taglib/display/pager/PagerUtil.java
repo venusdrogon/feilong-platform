@@ -47,6 +47,11 @@ public final class PagerUtil{
 		if (totalCount > 0){
 
 			int currentPageNo = pagerParams.getCurrentPageNo();
+
+			// 解决可能出现界面上 负数的情况
+			if (currentPageNo < 1){
+				currentPageNo = 1;
+			}
 			int pageSize = pagerParams.getPageSize();
 			int maxIndexPages = pagerParams.getMaxIndexPages();
 			String skin = pagerParams.getSkin();
@@ -184,17 +189,28 @@ public final class PagerUtil{
 	 * 
 	 * @param request
 	 *            当前请求
-	 * @param paramName
+	 * @param pageParamName
 	 *            the param name
-	 * @return 分页请求第几页,不带这个参数 或者转换异常 返回1
+	 * @return <ul>
+	 *         <li>请求参数中,分页参数值 Integer 类型</li>
+	 *         <li>如果参数中不带这个分页参数,或者转换异常 返回1</li>
+	 *         </ul>
 	 */
-	public static Integer getCurrentPageNo(HttpServletRequest request,String paramName){
+	public static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
 		// /s/s-t-b-f-a-cBlack-s-f-p-gHeat+Gear-e-i-o.htm?keyword=&pageNo=%uFF1B
-		Integer currentPageNo = ParamUtil.getParameterToInteger(request, paramName);
-		// 不是空
+		Integer currentPageNo = null;
+		try{
+			currentPageNo = ParamUtil.getParameterToInteger(request, pageParamName);
+		}catch (Exception e){
+			// 抛出异常, 但是不给 currentPageNo 赋值
+			e.printStackTrace();
+		}
+
+		// 不是空 直接返回
 		if (null != currentPageNo){
 			return currentPageNo;
 		}
+
 		// 不带这个参数 或者转换异常 返回1
 		return 1;
 	}
