@@ -34,9 +34,9 @@ public class PagerTag extends AbstractCommonTag{
 	/** The vm path. */
 	private String				vmPath				= PagerConstant.default_templateInClassPath;
 
+	// *****************************end**************************************************.
+
 	/**
-	 * *****************************end**************************************************.
-	 * 
 	 * @return the string
 	 */
 	@Override

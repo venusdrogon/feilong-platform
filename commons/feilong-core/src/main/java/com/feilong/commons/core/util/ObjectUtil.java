@@ -213,7 +213,14 @@ public final class ObjectUtil{
 	 * 
 	 * @param value
 	 *            值
-	 * @return Integer
+	 * @return <ul>
+	 *         <li>如果value是null,则返回null</li>
+	 *         <li>如果value本身是Integer类型,则强制转换成 (Integer) value</li>
+	 *         <li>否则 new Integer(value.toString().trim())</li>
+	 *         <li>如果value不能转成integer 会抛出 IllegalArgumentException异常</li>
+	 *         </ul>
+	 * @exception IllegalArgumentException
+	 *                如果value不能转成integer 会抛出 IllegalArgumentException异常
 	 */
 	public final static Integer toInteger(Object value){
 		Integer returnValue = null;

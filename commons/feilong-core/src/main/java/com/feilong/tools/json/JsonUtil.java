@@ -105,6 +105,10 @@ public final class JsonUtil{
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		jsonConfig.setIgnoreDefaultExcludes(true);
 
+		// java.lang.ClassCastException: JSON keys must be strings
+		// see http://feitianbenyue.iteye.com/blog/2046877
+		jsonConfig.setAllowNonStringKeys(true);
+
 		if (Validator.isNotNullOrEmpty(excludes)){
 			jsonConfig.setExcludes(excludes);
 		}

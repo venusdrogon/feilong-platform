@@ -55,7 +55,7 @@ public class PagerUtilTest{
 	@Test
 	public void getPagerContent(){
 		int count = 1024;
-		int currentPageNo = 1;
+		int currentPageNo = -1;
 		int pageSize = 10;
 		int maxIndexPages = 8;
 		String skin = PagerConstant.default_skin;
