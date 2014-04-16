@@ -27,7 +27,7 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.bca.klikbca.KlikBCAAdaptor;
-import com.feilong.netpay.adaptor.bca.klikbca.OutputPaymentPGW;
+import com.feilong.netpay.adaptor.bca.klikbca.command.OutputPaymentPGW;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

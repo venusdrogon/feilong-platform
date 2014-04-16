@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
  * @author Mandus Elfving
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 15, 2014 7:41:21 PM
- * @see https://jira.spring.io/browse/SES-5
+ * @see https://jira.spring.io/browse/SES-5 <br>
+ *      http://velocity.apache.org/engine/devel/apidocs/org/apache/velocity/slf4j/Slf4jLogChute.html
  */
 public class SLF4JLogChute implements LogChute{
 

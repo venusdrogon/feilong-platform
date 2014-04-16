@@ -26,6 +26,9 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
+import com.feilong.netpay.adaptor.bca.klikbca.command.OutputDetailPayment;
+import com.feilong.netpay.adaptor.bca.klikbca.command.OutputListTransactionPGW;
+import com.feilong.netpay.adaptor.bca.klikbca.command.OutputPaymentPGW;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;

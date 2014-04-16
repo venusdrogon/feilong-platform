@@ -27,6 +27,8 @@
 				<entry key="153" value-ref="permataVALITEPayAdaptor"></entry>
 				
 				<entry key="154" value-ref="bcaCreditCardPayAdaptor"></entry>
+				
+				<entry key="155" value-ref="klikPayAdaptor"></entry>
 			</map>
 		</property>
 	</bean>

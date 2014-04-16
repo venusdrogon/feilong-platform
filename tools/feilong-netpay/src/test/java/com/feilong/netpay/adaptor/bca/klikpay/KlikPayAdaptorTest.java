@@ -30,6 +30,11 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
+import com.feilong.netpay.adaptor.bca.klikpay.command.ApprovalCode;
+import com.feilong.netpay.adaptor.bca.klikpay.command.OutputPaymentIPAY;
+import com.feilong.netpay.adaptor.bca.klikpay.command.Reason;
+import com.feilong.netpay.adaptor.bca.klikpay.command.ReasonEnum;
+import com.feilong.netpay.adaptor.bca.klikpay.util.BCAKeyGenerator;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -98,6 +103,35 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 	@Test
 	public final void testObject(){
 
+		OutputPaymentIPAY outputPaymentIPAY = getOutputPaymentIPAY();
+
+		KlikPayAdaptor klikPayAdaptor = (KlikPayAdaptor) paymentAdaptor;
+		log.info("\n" + klikPayAdaptor.getPaymentFlagInvocationOutputXML(outputPaymentIPAY));
+
+		// <OutputPaymentIPAY>
+		// <klikPayCode>0001</klikPayCode>
+		// <transactionNo>317058F4D44B71252F</transactionNo>
+		// <transactionDate>15/12/2008 09:07:05</transactionDate>
+		// <currency>IDR</currency>
+		// <totalAmount>1000.00</totalAmount>
+		// <payType>02</payType>
+		// <approvalCode>
+		// <fullTransaction>00002</fullTransaction>
+		// <installmentTransaction>00003</installmentTransaction>
+		// </approvalCode>
+		// <status>00</status>
+		// <reason>
+		// <indonesian>Sukses</indonesian>
+		// <english>Success</english>
+		// </reason>
+		// <additionalData></additionalData>
+		// </OutputPaymentIPAY>
+	}
+
+	/**
+	 * @return
+	 */
+	protected OutputPaymentIPAY getOutputPaymentIPAY(){
 		String additionalData = "";
 		String transactionDate = DateUtil.date2String(new Date(), DatePattern.ddMMyyyyHHmmss);
 		String transactionNo = "010000130002";
@@ -134,27 +168,6 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 
 		outputPaymentIPAY.setTransactionDate(transactionDate);
 		outputPaymentIPAY.setTransactionNo(transactionNo);
-
-		KlikPayAdaptor klikPayAdaptor = (KlikPayAdaptor) paymentAdaptor;
-		log.info("\n" + klikPayAdaptor.getPaymentFlagInvocationOutputXML(outputPaymentIPAY));
-
-		// <OutputPaymentIPAY>
-		// <klikPayCode>0001</klikPayCode>
-		// <transactionNo>317058F4D44B71252F</transactionNo>
-		// <transactionDate>15/12/2008 09:07:05</transactionDate>
-		// <currency>IDR</currency>
-		// <totalAmount>1000.00</totalAmount>
-		// <payType>02</payType>
-		// <approvalCode>
-		// <fullTransaction>00002</fullTransaction>
-		// <installmentTransaction>00003</installmentTransaction>
-		// </approvalCode>
-		// <status>00</status>
-		// <reason>
-		// <indonesian>Sukses</indonesian>
-		// <english>Success</english>
-		// </reason>
-		// <additionalData></additionalData>
-		// </OutputPaymentIPAY>
+		return outputPaymentIPAY;
 	}
 }

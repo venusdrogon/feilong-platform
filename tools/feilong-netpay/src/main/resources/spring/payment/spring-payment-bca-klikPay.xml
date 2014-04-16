@@ -17,5 +17,8 @@
 		<property name="klikPayCode" value="#{p_bcaklikPayPayment['klikPayCode']}" />
 		<property name="currencyDefault" value="#{p_bcaklikPayPayment['currencyDefault']}" />
 		<property name="clearkey" value="#{p_bcaklikPayPayment['clearkey']}" />
+		
+		<property name="pricePattern" value="#{p_bcaklikPayPayment['pricePattern']}" />
+		<property name="transactionDatePattern" value="#{p_bcaklikPayPayment['transactionDatePattern']}" />
 	</bean>
 </beans>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.klikpay;
+package com.feilong.netpay.adaptor.bca.klikpay.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

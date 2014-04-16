@@ -32,6 +32,8 @@ import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
+import com.feilong.netpay.adaptor.bca.klikpay.command.OutputPaymentIPAY;
+import com.feilong.netpay.adaptor.bca.klikpay.util.BCAKeyGenerator;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
@@ -79,7 +81,10 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	private String				currencyDefault;
 
 	/** The price pattern. */
-	private String				pricePattern			= "############.00";
+	private String				pricePattern;
+
+	/** The transaction date pattern. */
+	private String				transactionDatePattern;
 
 	/*
 	 * (non-Javadoc)
@@ -128,10 +133,9 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		map.put("callback", return_url);
 
 		// transactionDate String 19 DD/MM/YYYY hh:mm:ss TRUE
-		String datePattern = "dd/MM/yyyy HH:mm:ss";
 
 		Date transactionDate = new Date();
-		map.put("transactionDate", DateUtil.date2String(transactionDate, datePattern));
+		map.put("transactionDate", DateUtil.date2String(transactionDate, transactionDatePattern));
 
 		// descp String 60 (AN) FALSE
 		map.put("descp", "");
@@ -232,6 +236,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		if (!ourAuthKey.equals(authKey)){
 			log.error("authKey:{} is not eq our's :{}", authKey, ourAuthKey);
 			return false;
+		}else{
+			log.debug("pass doNotifyVerify,transactionNo:{}", transactionNo);
 		}
 
 		return true;
@@ -488,5 +494,25 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setClearkey(String clearkey){
 		this.clearkey = clearkey;
+	}
+
+	/**
+	 * Sets the price pattern.
+	 * 
+	 * @param pricePattern
+	 *            the pricePattern to set
+	 */
+	public void setPricePattern(String pricePattern){
+		this.pricePattern = pricePattern;
+	}
+
+	/**
+	 * Sets the transaction date pattern.
+	 * 
+	 * @param transactionDatePattern
+	 *            the transactionDatePattern to set
+	 */
+	public void setTransactionDatePattern(String transactionDatePattern){
+		this.transactionDatePattern = transactionDatePattern;
 	}
 }
