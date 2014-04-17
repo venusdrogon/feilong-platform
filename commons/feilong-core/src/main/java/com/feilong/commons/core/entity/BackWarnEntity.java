@@ -28,7 +28,8 @@ package com.feilong.commons.core.entity;
 import java.io.Serializable;
 
 /**
- * 返回提示.
+ * 返回提示.<br>
+ * 可以用来被继承,以便实现各种定制化的功能
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-6-24 上午03:14:56
@@ -36,8 +37,7 @@ import java.io.Serializable;
  */
 public class BackWarnEntity implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 1L;
+	private static final long	serialVersionUID	= 3703766119930341844L;
 
 	/** 是否成功. */
 	private boolean				isSuccess;
@@ -100,5 +100,4 @@ public class BackWarnEntity implements Serializable{
 	public void setDescription(Object description){
 		this.description = description;
 	}
-
 }

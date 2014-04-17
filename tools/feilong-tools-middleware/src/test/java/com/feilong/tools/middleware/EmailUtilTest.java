@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.tools.middleware.email.EmailType;
 import com.feilong.tools.middleware.email.EmailUtil;
 
 /**
@@ -52,7 +53,11 @@ public class EmailUtilTest{
 	 */
 	@Test
 	public void testGetFeiLongEmailType(){
-		log.info(EmailUtil.getEmailType(email).toString());
+		EmailType emailType = EmailUtil.getEmailType(email);
+		log.info(emailType.getChineseName());
+		emailType.setChineseName("hahahaha");
+		log.info(emailType.toString());
+		log.info(emailType.getChineseName());
 	}
 
 	/**
