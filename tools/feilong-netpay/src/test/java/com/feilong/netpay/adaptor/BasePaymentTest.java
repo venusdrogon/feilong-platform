@@ -72,6 +72,8 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	 */
 	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
 		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
+
+		code = "44";
 		BigDecimal total_fee = new BigDecimal(60000.00f);
 
 		PayRequest payRequest = new PayRequest();
@@ -98,8 +100,11 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		paySoLine2.setSubTotalPrice(new BigDecimal(30000));
 		paySoLineList.add(paySoLine2);
 
+		payRequest.setCreateDate(new Date());
+
 		// ******************************************************************
 		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
+		return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
 		String notify_url = "/patment2url";
 
 		payRequest.setReturnUrl(return_url);

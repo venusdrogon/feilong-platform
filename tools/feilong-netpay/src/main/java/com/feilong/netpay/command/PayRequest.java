@@ -18,6 +18,7 @@ package com.feilong.netpay.command;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,17 +57,24 @@ public class PayRequest implements Serializable{
 	 */
 	private String				returnUrl;
 
-	/** (optional)买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
+	/** (optional)买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private String				buyerName;
 
-	/** (optional)买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
+	/** (optional)买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private String				buyerEmail;
 
-	/** (optional)需要在线支付的运费,一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
+	/** (optional)需要在线支付的运费,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private BigDecimal			transferFee			= new BigDecimal(0);
 
-	/** (optional)支付的订单明细行, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的. */
+	/** (optional)支付的订单明细行, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private List<PaySoLine>		paySoLineList		= new ArrayList<PaySoLine>();
+
+	// ***************************************************************************************
+
+	/**
+	 * (optional) 交易创建时间, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证.
+	 */
+	private Date				createDate;
 
 	/**
 	 * Gets the (required)交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code.
@@ -230,5 +238,24 @@ public class PayRequest implements Serializable{
 	 */
 	public void setPaySoLineList(List<PaySoLine> paySoLineList){
 		this.paySoLineList = paySoLineList;
+	}
+
+	/**
+	 * Gets the (optional) 交易创建时间, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证.
+	 * 
+	 * @return the createDate
+	 */
+	public Date getCreateDate(){
+		return createDate;
+	}
+
+	/**
+	 * Sets the (optional) 交易创建时间, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证.
+	 * 
+	 * @param createDate
+	 *            the createDate to set
+	 */
+	public void setCreateDate(Date createDate){
+		this.createDate = createDate;
 	}
 }

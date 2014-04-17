@@ -50,8 +50,7 @@ public class CommonConstants{
 
 	@Test
 	public void length(){
-		log.info("5232181bc0d9888f5c9746e410b4740eb461706ba5dacfbc93587cecfc8d068bac7737e92870d6745b11a25e9cd78b55f4ffc706f73cfcae5345f1b53fb8f6b5"
-				.length() + "");
+		log.info("http://203.128.73.211/p/klikpayback/010000140002?s=30cbbe7a9bfcfc1131b018426e8560854bf507b3".length() + "");
 	}
 
 	@Test

@@ -27,8 +27,10 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
+import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
@@ -98,19 +100,51 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		BigDecimal totalFee = payRequest.getTotalFee();
 		String return_url = payRequest.getReturnUrl();
 
-		if (Validator.isNullOrEmpty(return_url)){
+		// *******************************************************
+		String callbackUrl = return_url;
+
+		if (Validator.isNullOrEmpty(callbackUrl)){
 			throw new IllegalArgumentException("return_url can't be null/empty!");
 		}
 
-		// **************************************************************************
+		// callback url 的最大长度是100, 虽然可以传>100的字符串过去, 但是返回的时候只返回前100个字符 坑爹
+		int callbackUrlMaxLength = 100;
+		int callbackUrlLength = callbackUrl.length();
+		if (callbackUrlLength > callbackUrlMaxLength){
+			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
+					"callbackUrl:[{}] ,length:[{}] can't >{}",
+					callbackUrl,
+					callbackUrlLength,
+					callbackUrlMaxLength));
+		}
 
+		// *******************************************************
+		String transactionNo = tradeNo;
+		String regexPattern_transactionNo = "^[0-9a-zA-Z]{1,18}+$";
+		if (!RegexUtil.match(regexPattern_transactionNo, transactionNo)){
+			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
+					"transactionNo:[{}] ,don't match:[{}]",
+					transactionNo,
+					regexPattern_transactionNo));
+		}
+
+		// **************************验证时间************************************************
+		Date createDate = payRequest.getCreateDate();
+		if (Validator.isNullOrEmpty(createDate)){
+			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
+					"transactionNo:[{}],payRequest's createDate can't be null/empty!",
+					transactionNo));
+		}
+
+		Date transactionDate = createDate;
+
+		// **************************************************************************
 		Map<String, String> map = new HashMap<String, String>();
 
 		// klikPayCode String 10 (AN) TRUE
 		map.put("klikPayCode", klikPayCode);
 
 		// transactionNo String 18 (AN) TRUE
-		String transactionNo = tradeNo;
 		map.put("transactionNo", transactionNo);
 
 		// totalAmount String 12 7500000.00 TRUE
@@ -130,11 +164,9 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
 		// callback String 100 (AN) TRUE
 		// callback (6) is the URL on your site that user will be directed when they have finished the transaction on BCA KlikPay.
-		map.put("callback", return_url);
+		map.put("callback", callbackUrl);
 
 		// transactionDate String 19 DD/MM/YYYY hh:mm:ss TRUE
-
-		Date transactionDate = new Date();
 		map.put("transactionDate", DateUtil.date2String(transactionDate, transactionDatePattern));
 
 		// descp String 60 (AN) FALSE

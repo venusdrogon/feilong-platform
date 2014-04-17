@@ -47,17 +47,21 @@ public class SymmetricEncryptionTest extends BaseSecurityTest{
 	@Test
 	public void base64String() throws SecurityException,NoSuchMethodException{
 
-		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).encrypBase64(original, CharsetType.UTF8));
+		log.info(
+				"SymmetricType.AES:{}",
+				debugSecurityValue(new SymmetricEncryption(SymmetricType.AES, keyString).encrypBase64(original, CharsetType.UTF8)));
 		log.info(
 				"SymmetricType.ARCFOUR:{}",
-				new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encrypBase64(original, CharsetType.UTF8));
+				debugSecurityValue(new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encrypBase64(original, CharsetType.UTF8)));
 		log.info(
 				"SymmetricType.Blowfish:{}",
-				new SymmetricEncryption(SymmetricType.Blowfish, keyString).encrypBase64(original, CharsetType.UTF8));
-		log.info("SymmetricType.DES:{}", new SymmetricEncryption(SymmetricType.DES, keyString).encrypBase64(original, CharsetType.UTF8));
+				debugSecurityValue(new SymmetricEncryption(SymmetricType.Blowfish, keyString).encrypBase64(original, CharsetType.UTF8)));
+		log.info(
+				"SymmetricType.DES:{}",
+				debugSecurityValue(new SymmetricEncryption(SymmetricType.DES, keyString).encrypBase64(original, CharsetType.UTF8)));
 		log.info(
 				"SymmetricType.DESede:{}",
-				new SymmetricEncryption(SymmetricType.DESede, keyString).encrypBase64(original, CharsetType.UTF8));
+				debugSecurityValue(new SymmetricEncryption(SymmetricType.DESede, keyString).encrypBase64(original, CharsetType.UTF8)));
 
 	}
 
