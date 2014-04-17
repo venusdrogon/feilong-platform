@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.security.BaseSecurityTest;
 import com.feilong.commons.core.security.oneway.OnewayEncryption;
 import com.feilong.commons.core.security.oneway.OnewayType;
 
@@ -28,7 +29,7 @@ import com.feilong.commons.core.security.oneway.OnewayType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 14, 2013 8:14:12 PM
  */
-public class OnewayEncryptionTest{
+public class OnewayEncryptionTest extends BaseSecurityTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(OnewayEncryptionTest.class);
 
@@ -57,5 +58,16 @@ public class OnewayEncryptionTest{
 				OnewayEncryption.encode(OnewayType.SHA512, "你好"));
 
 		// log.info(OnewayEncryption.encode(OnewayType.HmacSHA512, "你好"));
+	}
+
+	@Test
+	public void name(){
+		String origin = "你好";
+		log.debug(debugSecurityValue(OnewayEncryption.encode(OnewayType.MD5, origin)));
+		log.debug(debugSecurityValue(OnewayEncryption.encode(OnewayType.SHA, origin)));
+		log.debug(debugSecurityValue(OnewayEncryption.encode(OnewayType.SHA1, origin)));
+		log.debug(debugSecurityValue(OnewayEncryption.encode(OnewayType.SHA256, origin)));
+		log.debug(debugSecurityValue(OnewayEncryption.encode(OnewayType.SHA384, origin)));
+		log.debug(debugSecurityValue(OnewayEncryption.encode(OnewayType.SHA512, origin)));
 	}
 }

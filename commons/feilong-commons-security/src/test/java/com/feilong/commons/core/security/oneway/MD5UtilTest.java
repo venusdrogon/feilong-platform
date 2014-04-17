@@ -10,13 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.security.BaseSecurityTest;
 import com.feilong.commons.core.security.oneway.MD5Util;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-7 上午01:12:36
  */
-public class MD5UtilTest{
+public class MD5UtilTest extends BaseSecurityTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(MD5UtilTest.class);
 
@@ -39,15 +40,11 @@ public class MD5UtilTest{
 	}
 
 	@Test
-	public void encode1(){
-		log.debug(MD5Util.encode("你好"));
-		log.debug(MD5Util.encode("521000"));
-	}
-
-	@Test
 	public void encode11(){
-		log.debug(MD5Util.encode("你好", CharsetType.UTF8));
-		log.debug(MD5Util.encode("521000", CharsetType.UTF8));
+		log.debug(debugSecurityValue(MD5Util.encode("你好")));
+		log.debug(debugSecurityValue(MD5Util.encode("521000")));
+		log.debug(debugSecurityValue(MD5Util.encode("你好", CharsetType.UTF8)));
+		log.debug(debugSecurityValue(MD5Util.encode("521000", CharsetType.UTF8)));
 	}
 
 	@Test

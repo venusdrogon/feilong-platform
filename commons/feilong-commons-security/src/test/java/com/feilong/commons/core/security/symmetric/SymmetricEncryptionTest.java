@@ -28,14 +28,13 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
-import com.feilong.commons.core.security.symmetric.SymmetricType;
+import com.feilong.commons.core.security.BaseSecurityTest;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-26 上午10:50:59
  */
-public class SymmetricEncryptionTest{
+public class SymmetricEncryptionTest extends BaseSecurityTest{
 
 	private static final Logger	log			= LoggerFactory.getLogger(SymmetricEncryptionTest.class);
 

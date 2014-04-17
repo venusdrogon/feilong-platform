@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.security.BaseSecurityTest;
 import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 import com.feilong.commons.core.security.symmetric.SymmetricType;
 
@@ -33,7 +34,7 @@ import com.feilong.commons.core.security.symmetric.SymmetricType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 21, 2011 4:55:43 PM
  */
-public class DESUtilTest{
+public class DESUtilTest extends BaseSecurityTest{
 
 	private static final Logger	log								= LoggerFactory.getLogger(DESUtilTest.class);
 
