@@ -89,6 +89,9 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	/** 跳转回来带的 成功状态 code. */
 	private String				redirectSuccessStatusCode;
 
+	/** notify 成功的response code. */
+	private String				notifySuccessResponseCode;
+
 	// Andi 拿出的 DOKU 邮件里面的script 是 "ISO-8859-1"
 	/** The charset name for sh a1. */
 	private String				charsetNameForSHA1;
@@ -441,12 +444,15 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// N …3 0 - 100
 		// for Visa/Master
 		// String VERIFYSCORE = request.getParameter("VERIFYSCORE");
-
 		String ourWORDS = getWORDSForNotify(TRANSIDMERCHANT, AMOUNT, RESULTMSG, VERIFYSTATUS);
 		boolean isSignOk = ourWORDS.equals(WORDS);
 
 		if (isSignOk){
-			return true;
+			boolean statusSuccess = notifySuccessResponseCode.equals(RESPONSECODE);
+			if (!statusSuccess){
+				log.error("PAYMENTCHANNEL:[{}],RESPONSECODE:[{}],error", PAYMENTCHANNEL, RESPONSECODE);
+			}
+			return statusSuccess;
 		}else{
 			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestAllURL(request) };
 			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
@@ -500,7 +506,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 验证redirect status 参数
+	 * 验证redirect status 参数(可以被子类继承 实现,比如ATM的code 是 5511).
 	 * 
 	 * @param STATUSCODE
 	 *            the sTATUSCODE
@@ -703,6 +709,8 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the 跳转回来带的 成功状态 code.
+	 * 
 	 * @param redirectSuccessStatusCode
 	 *            the redirectSuccessStatusCode to set
 	 */
@@ -711,11 +719,23 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Sets the charset name for sh a1.
+	 * 
 	 * @param charsetNameForSHA1
 	 *            the charsetNameForSHA1 to set
 	 */
 	public void setCharsetNameForSHA1(String charsetNameForSHA1){
 		this.charsetNameForSHA1 = charsetNameForSHA1;
+	}
+
+	/**
+	 * Sets the notify success response code.
+	 * 
+	 * @param notifySuccessResponseCode
+	 *            the notifySuccessResponseCode to set
+	 */
+	public void setNotifySuccessResponseCode(String notifySuccessResponseCode){
+		this.notifySuccessResponseCode = notifySuccessResponseCode;
 	}
 
 }

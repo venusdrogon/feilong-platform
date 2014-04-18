@@ -24,6 +24,7 @@
 		<property name="pricePattern" value="#{p_dokuPayment['pricePattern']}" />
 		<property name="charsetNameForSHA1" value="#{p_dokuPayment['charsetNameForSHA1']}" />
 		<property name="redirectSuccessStatusCode" value="#{p_dokuPayment['redirect.status.success.common']}" />
+		<property name="notifySuccessResponseCode" value="#{p_dokuPayment['notifySuccessResponseCode']}" />
 
 		<property name="minPriceForPay" value="#{p_dokuPayment['minPriceForPay']}" />
 		<property name="maxPriceForPay" value="#{p_dokuPayment['maxPriceForPay']}" />
