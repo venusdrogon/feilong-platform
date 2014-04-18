@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.adaptor.bca.klikbca.command.OutputDetailPayment;
@@ -173,7 +174,8 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	public String doGetFeedbackTotalFee(HttpServletRequest request){
-		return request.getParameter("amount");
+		// amount fields consist of 3 digits of currency and 11 digits of numeric format
+		return StringUtil.substring(request.getParameter("amount"), 3);
 	}
 
 	/*
