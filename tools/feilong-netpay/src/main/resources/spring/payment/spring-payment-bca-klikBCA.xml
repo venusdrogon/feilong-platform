@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<util:properties id="p_bcaklikBCAPayment" location="classpath:config/payment/payment-bca-klikBCA.properties"></util:properties>
-
-	<!-- klikBCAAdaptor -->
+	<!-- #{p_bcaklikBCAPayment['klikBCA.gateway']} -->
+	<!-- klikBCAAdaptor klikBCA.gateway-->
 	<bean id="klikBCAAdaptor" class="com.feilong.netpay.adaptor.bca.klikbca.KlikBCAAdaptor">
 	</bean>
 
