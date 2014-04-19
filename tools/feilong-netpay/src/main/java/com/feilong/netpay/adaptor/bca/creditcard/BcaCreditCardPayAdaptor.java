@@ -20,7 +20,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +29,7 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
+import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
@@ -284,13 +284,15 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		// Format: Up to 250 alphanumeric characters
 		String scrubMessage = request.getParameter("scrubMessage");
 
-		boolean isSignOk = true;
+		// PENDING 表示BCA网关拿不到银行支付情况, 他们会再次主动发送请求去询问, 然后邮件形式通知
+		// 我们使用查询接口,去查询 也会触发 BCA 去查询去查询
 
-		if (isSignOk){
+		// PENDING 大约有1%的可能
+		if ("PENDING".equals(transactionStatus) || "APPROVE".equals(transactionStatus)){
 			return true;
 		}else{
-			// Object[] logArgs = { WORDS, RequestUtil.getRequestAllURL(request) };
-			// log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
+			Object[] logArgs = { transactionStatus, RequestUtil.getRequestAllURL(request) };
+			log.error("transactionStatus is:{}, full request url is :{}", logArgs);
 			return false;
 		}
 	}
@@ -300,7 +302,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	public String doGetFeedbackTradeNo(HttpServletRequest request){
-		return null;
+		return request.getParameter("merchantTransactionID");
 	}
 
 	/*
@@ -308,7 +310,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	public String doGetFeedbackTotalFee(HttpServletRequest request){
-		return null;
+		return request.getParameter("amount");
 	}
 
 	/*
