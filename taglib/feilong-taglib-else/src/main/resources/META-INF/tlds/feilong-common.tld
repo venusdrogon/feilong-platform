@@ -155,6 +155,8 @@
 		</attribute>
 	</tag>
 
+
+
 	<!--显示地区(除去直辖市中的城市) -->
 	<tag>
 		<name>showRegion</name>
@@ -191,6 +193,8 @@
 			<description>显示等级 支持 3全部显示,2 如果是省份显示省份+城市,如果是直辖市,显示直辖市+区县 默认3(省份+城市+区县)</description>
 		</attribute>
 	</tag>
+
+
 
 	<!-- 关键字高亮显示 -->
 	<tag>

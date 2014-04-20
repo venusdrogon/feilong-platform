@@ -7,13 +7,9 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.4</version>
 	</parent>
-	
-	
 	<artifactId>feilong-taglib-pager</artifactId>
-
 	<name>feilong-taglib-pager</name>
 
 	<dependencies>
-
 	</dependencies>
 </project>

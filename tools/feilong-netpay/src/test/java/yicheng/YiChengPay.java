@@ -23,7 +23,6 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.html.HTMLInput;
 
 /**
  * 飞龙"新华一城网"支付
@@ -60,32 +59,35 @@ public class YiChengPay{
 		if (Validator.isNullOrEmpty(action)){
 			action = post_url_test;
 		}
-		stringBuilder.append("<form action=\"" + action + "\" method=\"post\" target=\"_blank\">");
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--商户号-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "merchantNo", feiLongYiChengPayEntity.getMerchantNo()));
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--订单号(生成)-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "orderId", feiLongYiChengPayEntity.getOrderId()));
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--支付流水号(HHmmss)-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "serialNo", feiLongYiChengPayEntity.getSerialNo()));
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--订单未付金额（必须为两位小数,最低金额为0.1元）-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "amount", feiLongYiChengPayEntity.getAmount()));
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--回调地址,支付成功将向该地址发送支付结果等信息-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "callBackUrl", feiLongYiChengPayEntity.getCallBackUrl()));
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--终端号(一城卡提供)-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "terminalNo", feiLongYiChengPayEntity.getTerminalNo()));
-		stringBuilder.append(Constants.lineSeparator);
-		// <!--是否全额支付（0为部分支付，1为全额支付）-->
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "isFull", feiLongYiChengPayEntity.getIsFull()));
-		stringBuilder.append(Constants.lineSeparator);
-		// 密文 MD5序列
-		stringBuilder.append(HTMLInput.createInputTag("hidden", "merchantDecodedData", YiChengPay
-				.getMerchantDecodedDataString(feiLongYiChengPayEntity)));
+
+		// TODO 转成vm写法
+
+		// stringBuilder.append("<form action=\"" + action + "\" method=\"post\" target=\"_blank\">");
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--商户号-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "merchantNo", feiLongYiChengPayEntity.getMerchantNo()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--订单号(生成)-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "orderId", feiLongYiChengPayEntity.getOrderId()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--支付流水号(HHmmss)-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "serialNo", feiLongYiChengPayEntity.getSerialNo()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--订单未付金额（必须为两位小数,最低金额为0.1元）-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "amount", feiLongYiChengPayEntity.getAmount()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--回调地址,支付成功将向该地址发送支付结果等信息-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "callBackUrl", feiLongYiChengPayEntity.getCallBackUrl()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--终端号(一城卡提供)-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "terminalNo", feiLongYiChengPayEntity.getTerminalNo()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // <!--是否全额支付（0为部分支付，1为全额支付）-->
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "isFull", feiLongYiChengPayEntity.getIsFull()));
+		// stringBuilder.append(Constants.lineSeparator);
+		// // 密文 MD5序列
+		// stringBuilder.append(HTMLInput.createInputTag("hidden", "merchantDecodedData", YiChengPay
+		// .getMerchantDecodedDataString(feiLongYiChengPayEntity)));
 		stringBuilder.append(Constants.lineSeparator);
 		stringBuilder.append("<input type=\"image\" src=\"/images/netpay/button_001town.gif\" alt=\"点击此处进入新华一城卡付款\">");
 		stringBuilder.append(Constants.lineSeparator);

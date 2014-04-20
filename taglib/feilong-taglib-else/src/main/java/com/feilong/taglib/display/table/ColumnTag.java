@@ -1,4 +1,4 @@
-package com.feilong.taglib.display;
+package com.feilong.taglib.display.table;
 
 import javax.servlet.jsp.tagext.Tag;
 

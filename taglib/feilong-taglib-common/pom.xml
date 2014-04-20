@@ -7,15 +7,11 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.4</version>
 	</parent>
-
 	
 	<artifactId>feilong-taglib-common</artifactId>
-
 	<name>feilong-taglib-common</name>
 
 	<dependencies>
-
-
 		<!-- velocity -->
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
@@ -28,20 +24,6 @@
 			<artifactId>feilong-tools-middleware</artifactId>
 			<version>${version.feilong-platform}</version>
 		</dependency>
-
-		<!-- spring-web -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-
-		<!-- spring-webmvc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-
-		<!-- <dependency> <groupId>mockobjects</groupId> <artifactId>mockobjects-jdk1.4-j2ee1.2</artifactId> <version>0.09</version> <scope>test</scope> </dependency> -->
 
 	</dependencies>
 </project>

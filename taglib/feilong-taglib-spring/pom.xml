@@ -8,18 +8,14 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.4</version>
 	</parent>
-
 	
 	<artifactId>feilong-taglib-spring</artifactId>
-
 	<name>feilong-taglib-spring</name>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-spring</artifactId>
 		</dependency>
-
 	</dependencies>
 </project>

@@ -1,4 +1,4 @@
-package com.feilong.taglib.display;
+package com.feilong.taglib.display.table;
 
 import java.util.Iterator;
 import java.util.LinkedList;
