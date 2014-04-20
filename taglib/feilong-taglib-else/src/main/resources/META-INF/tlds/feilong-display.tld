@@ -103,49 +103,4 @@
 		<body-content>jsp</body-content>
 		<description>如果没有数据显示的内容</description>
 	</tag>
-
-	<!-- 分页 -->
-	<tag>
-		<name>pager</name>
-		<tag-class>com.feilong.taglib.display.pager.PagerTag</tag-class>
-		<tei-class>com.feilong.taglib.display.pager.PagerTagExtraInfo</tei-class>
-		<body-content>empty</body-content>
-		<description>分页</description>
-		<attribute>
-			<name>count</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>数据总数</description>
-		</attribute>
-		<attribute>
-			<name>pageSize</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>每页显示多少行</description>
-		</attribute>
-		<attribute>
-			<name>pageParamName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>url分页页码参数,默认 pageNo. </description>
-		</attribute>
-		<attribute>
-			<name>maxIndexPages</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>最多显示多少个导航页码</description>
-		</attribute>
-		<attribute>
-			<name>skin</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>皮肤,默认有24种常用皮肤</description>
-		</attribute>
-		<attribute>
-			<name>vmPath</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>分页解析的vm模版</description>
-		</attribute>
-	</tag>
 </taglib>

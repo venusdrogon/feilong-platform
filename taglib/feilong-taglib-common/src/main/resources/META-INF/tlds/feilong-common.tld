@@ -33,19 +33,6 @@
 		</attribute>
 	</tag>
 
-	<!-- 异常 -->
-	<tag>
-		<name>exception</name>
-		<tag-class>com.feilong.taglib.common.ExceptionTag</tag-class>
-		<body-content>empty</body-content>
-		<description><![CDATA[异常]]></description>
-		<attribute>
-			<name>method</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
 	<!-- 判断一个日期,是否在一个时间区间内 -->
 	<tag>
 		<name>isInTime</name>
@@ -169,40 +156,7 @@
 		</attribute>
 	</tag>
 
-	<!-- 关键字高亮显示 -->
-	<tag>
-		<name>highlight</name>
-		<tag-class>com.feilong.taglib.common.HighLightTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<name>content</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>highLight</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>highLightColor</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
 
-
-	<!-- 数字颜色 -->
-	<tag>
-		<name>decimal</name>
-		<tag-class>com.feilong.taglib.common.DecimalTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<name>value</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
 
 	<!-- ip地址转换成地名 -->
 	<tag>
