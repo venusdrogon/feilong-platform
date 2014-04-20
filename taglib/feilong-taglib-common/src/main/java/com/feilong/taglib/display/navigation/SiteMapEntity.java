@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.taglib.common.navigation;
+package com.feilong.taglib.display.navigation;
 
 import java.io.Serializable;
 

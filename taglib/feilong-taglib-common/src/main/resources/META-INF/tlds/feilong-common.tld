@@ -7,27 +7,6 @@
 	<uri>http://java.feilong.com/tags-common</uri>
 	<description>飞龙java自定义标签</description>
 
-	<!-- 面包屑导航 -->
-	<tag>
-		<name>siteMap</name>
-		<tag-class>com.feilong.taglib.common.navigation.SiteMapTag</tag-class>
-		<body-content>empty</body-content>
-		<description>面包屑导航</description>
-		<attribute>
-			<description>面包屑导航的连接符,默认">"</description>
-			<name>connector</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<description>数据源,用户所有可以访问的链接List</description>
-			<name>siteMapEntityList</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
 	<!--判断文件是否存在 -->
 	<tag>
 		<name>isExistsFile</name>
@@ -40,8 +19,6 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
-
 
 	<!-- 显示当前时间 -->
 	<tag>
