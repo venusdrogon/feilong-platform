@@ -39,6 +39,8 @@ public class PagerConstant{
 	/** 默认将解析出来的htm 的存放在 request 作用域里面的变量. */
 	public static final String	default_request_name					= "feilongPagerHtml";
 
+	// ******************************************************************************
+
 	/** url 中特殊变量,如果带有这个变量 将不解析vm,调试使用问题所在 . */
 	public static final String	default_param_debugIsNotParseVM			= "debugIsNotParseVM";
 
