@@ -69,8 +69,9 @@ public class StubStatusMain{
 
 		final String userName = System.getProperty("StubStatus.userName");
 		final String password = System.getProperty("StubStatus.password");
-		// 此参数暂时不设置成 可配置式的
-		final String path = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
+		// ::生成文件的路径
+		// ::目前支持以下的变量 ${year} ${monthAndDay} ${hour}
+		final String path = System.getProperty("StubStatus.path");
 
 		if (Validator.isNullOrEmpty(uri)){
 			throw new IllegalArgumentException("StubStatus.uri can't be null/empty!");
@@ -117,15 +118,10 @@ public class StubStatusMain{
 	 */
 	private static void crawStubStatus(String stubStatusURI,String userName,String password,String path){
 		StubStatusCommand stubStatusCommand = StubStatusUtil.getStubStatusCommand(stubStatusURI, userName, password);
-		// String format = JsonUtil.format(nginxStubStatusCommand);
-		// log.info("\n{}", format);
 
 		Date crawlDate = stubStatusCommand.getCrawlDate();
-		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.monthAndDay);
-		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
-		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 
-		String filePath = path.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
+		String filePath = parseFilePath(path, crawlDate);
 
 		String logContent = StringUtil.format(
 				pattern_log,
@@ -136,7 +132,6 @@ public class StubStatusMain{
 
 		log.info(logContent);
 		// ****************************************************************
-
 		String writecontent = StringUtil.format(
 				pattern_write,
 				DateUtil.date2String(crawlDate, pattern_crawlDate),
@@ -164,5 +159,23 @@ public class StubStatusMain{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * 解析文件路径.
+	 * 
+	 * @param path
+	 *            the path
+	 * @param crawlDate
+	 *            the crawl date
+	 * @return the string
+	 */
+	protected static String parseFilePath(String path,Date crawlDate){
+		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.monthAndDay);
+		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
+		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
+
+		String filePath = path.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
+		return filePath;
 	}
 }

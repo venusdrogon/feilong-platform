@@ -13,7 +13,6 @@
     <plugins>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>${v.maven-jar-plugin}</version>
         <configuration>
           <archive>
             <addMavenDescriptor>false</addMavenDescriptor>
