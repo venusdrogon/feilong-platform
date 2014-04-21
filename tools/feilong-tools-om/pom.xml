@@ -9,6 +9,11 @@
 	<artifactId>feilong-tools-om</artifactId>
 	<name>feilong-tools-om</name>
 	<description>feilong-tools-om</description>
+
+	<properties>
+		<scope.slf4j-log4j12>compile</scope.slf4j-log4j12>
+		<scope.log4j>compile</scope.log4j>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
@@ -21,6 +26,7 @@
 			<artifactId>feilong-tools-mail</artifactId>
 			<version>${version.feilong-platform}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -28,7 +34,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>${v.maven-jar-plugin}</version>
 				<configuration>
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
@@ -72,8 +77,7 @@
 									<mainClass>com.feilong.tools.om.nginx.StubStatusMain</mainClass>
 								</transformer>
 
-			<!-- 					<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
-								</transformer> -->
+								<!-- <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"> </transformer> -->
 							</transformers>
 						</configuration>
 					</execution>

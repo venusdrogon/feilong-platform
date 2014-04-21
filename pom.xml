@@ -86,6 +86,10 @@
 
 		<version.xfire>1.2.6</version.xfire>
 		<version.velocity>1.7</version.velocity>
+		
+		
+		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
+		<scope.log4j>provided</scope.log4j>
 
 		<!--****************************plugin************************************ -->
 		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
@@ -117,7 +121,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${version.slf4j}</version>
-			<scope>provided</scope>
+			<scope>${scope.slf4j-log4j12}</scope>
 		</dependency>
 
 		<!-- net.sf.json-lib -->
@@ -173,7 +177,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${version.log4j}</version>
-			<scope>provided</scope>
+			<scope>${scope.log4j}</scope>
 		</dependency>
 	</dependencies>
 

@@ -31,6 +31,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.enumeration.FileWriteMode;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
 
 /**
@@ -53,6 +54,7 @@ public class StubStatusMain{
 	/** The encode. */
 	private static String		encode				= CharsetType.GBK;
 
+	/** The pattern_crawl date. */
 	public static String		pattern_crawlDate	= DatePattern.commonWithTime;
 
 	/**
@@ -62,28 +64,43 @@ public class StubStatusMain{
 	 *            the args
 	 */
 	public static void main(String[] args){
+
+		final String uri = System.getProperty("StubStatus.uri");
+
+		final String userName = System.getProperty("StubStatus.userName");
+		final String password = System.getProperty("StubStatus.password");
+		// 此参数暂时不设置成 可配置式的
+		final String path = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
+
+		if (Validator.isNullOrEmpty(uri)){
+			throw new IllegalArgumentException("StubStatus.uri can't be null/empty!");
+		}
+
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask(){
 
 			public void run(){
-				crawStubStatusNike();
+				crawStubStatusNike(uri, userName, password, path);
 			}
 		};
 		timer.schedule(task, 2L, 1000);
 	}
 
 	/**
-	 * nike爬取信息
+	 * nike爬取信息.
+	 * 
+	 * @param uri
+	 *            the uri
+	 * @param userName
+	 *            the user name
+	 * @param password
+	 *            the password
+	 * @param path
+	 *            the patch
 	 */
-	public static void crawStubStatusNike(){
-		final String uri = "http://www.nikestore.com.cn/nginx_status";
-
-		final String userName = "nginx_status";
-		final String password = "baozun_nikestore_status";
-		final String patch = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
-
-		crawStubStatus(uri, userName, password, patch);
+	public static void crawStubStatusNike(String uri,String userName,String password,String path){
+		crawStubStatus(uri, userName, password, path);
 	}
 
 	/**
@@ -95,10 +112,10 @@ public class StubStatusMain{
 	 *            bisic 用户名
 	 * @param password
 	 *            bisic 密码
-	 * @param patch
+	 * @param path
 	 *            the patch
 	 */
-	private static void crawStubStatus(String stubStatusURI,String userName,String password,String patch){
+	private static void crawStubStatus(String stubStatusURI,String userName,String password,String path){
 		StubStatusCommand stubStatusCommand = StubStatusUtil.getStubStatusCommand(stubStatusURI, userName, password);
 		// String format = JsonUtil.format(nginxStubStatusCommand);
 		// log.info("\n{}", format);
@@ -108,7 +125,7 @@ public class StubStatusMain{
 		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
 		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 
-		String filePath = patch.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
+		String filePath = path.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
 
 		String logContent = StringUtil.format(
 				pattern_log,

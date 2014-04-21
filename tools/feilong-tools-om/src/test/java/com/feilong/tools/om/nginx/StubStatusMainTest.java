@@ -32,6 +32,15 @@ public class StubStatusMainTest{
 	 */
 	@Test
 	public final void testCrawStubStatusNike(){
-		StubStatusMain.crawStubStatusNike();
+
+		final String uri = "http://www.nikestore.com.cn/nginx_status";
+
+		final String userName = "nginx_status";
+		final String password = "baozun_nikestore_status";
+
+		// 此参数暂时不设置成 可配置式的
+		final String patch = "F:\\stubstatus\\${year}\\${monthAndDay}\\${hour}.txt";
+
+		StubStatusMain.crawStubStatusNike(uri, userName, password, patch);
 	}
 }
