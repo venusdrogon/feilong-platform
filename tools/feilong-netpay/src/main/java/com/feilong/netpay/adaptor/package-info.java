@@ -1,31 +1,36 @@
 /**
- * 欢迎来到feilong支付框架
+ *<h2>欢迎来到feilong支付框架</h2>
  * 
- * feilong支付框架,是可扩展的,支持接入各种支付类型
- * 
- * 目前已经集成了6种支付方式:
- * <ul>
+ *<ul>
+ *<li>高可配置</li>
+ *<li>可扩展</li>
+ *<li>支持接入多种支付类型</li>
+ *<li>支持和Spring集成,聊聊数行代码即可实现去支付的功能</li>
+ *</ul>
+ *
+ *<h5>目前已经集成了15种支付方式(可直接使用,仅需要修改相关配置参数):</h5>
+ *<ol>
+ *<li>Alipay 即时到账</li>
+ *<li>Alipay 信用卡</li>
+ *<li>Alipay 网银在线</li>
+ *<li>Alipay 国际卡</li>
+ *<li>Alipay 即时到账(无线web)</li>
+ *<li>Alipay 信用卡(无线web)</li>
+ *<li>Alipay 网银在线(无线web)</li>
  *<li>DOKU Mandiri click</li>
  *<li>DOKU BRI</li>
  *<li>DOKU ATM</li>
  *<li>DOKU creditcard</li>
- *<li></li>
  *<li>BCA creditcard</li>
  *<li>BCA klikpay</li>
  *<li>BCA klikbca</li>
- *<li></li>
  *<li>汇付天下</li>
- *<li></li>
- *<li></li>
- *<li></li>
- *<li></li>
- *<li></li>
- *<li></li>
- *</ul>
+ *</ol>
  * 		
- *每个适配器,需要实现核心的7个方法:
+ *<h5>每个适配器,需要实现核心的7个方法:</h5>
  * 
  *<ul>
+ *<li>PaymentAdaptor#getPaymentFormEntity 核心方法,生成支付请求参数,该对象可以根据情况直接拿到 fullEncodedUrl直接跳转,或者根据请求参数和action method自行构建提交表单</li>
  *<li>PaymentAdaptor#verifyNotify 后台通知验证(这个步骤可能需要和支付网关交互获得真实的支付状态)</li>
  *<li>PaymentAdaptor#verifyRedirect 前端跳转验证(一般这个步骤仅仅验证参数)</li>
  *<li>PaymentAdaptor#getFeedbackTradeNo 解析请求中的交易号</li>
