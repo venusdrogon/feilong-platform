@@ -194,7 +194,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 		// Field# Parameter Type Length Format Mandatory
 		// 1 klikPayCode string 10 (AN) TRUE
 		// 2 transactionDate string 19 DD/MM/YYYY hh:mm:ss TRUE
@@ -300,7 +300,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("transactionNo");
 	}
 
@@ -308,7 +308,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("totalAmount");
 	}
 
@@ -316,7 +316,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doCloseTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
 		throw new UnsupportedOperationException("KlikPayAdaptor not support doCloseTrade");
 	}
 
@@ -324,7 +324,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("KlikPayAdaptor not support doRedirectVerify");
 	}
 

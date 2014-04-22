@@ -135,7 +135,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	@Override
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 
 		log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 		if (Validator.isNullOrEmpty(key)){
@@ -154,7 +154,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	@Override
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 
 		log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 		String soCode = null;
@@ -480,17 +480,17 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		return true;
 	}
 
 	@Override
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		return null;
 	}
 
 	@Override
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole){
+	public boolean closeTrade(String orderNo,TradeRole tradeRole){
 		return false;
 	}
 

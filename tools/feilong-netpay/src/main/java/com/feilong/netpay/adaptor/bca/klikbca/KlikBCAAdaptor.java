@@ -122,7 +122,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 
 		String userid = request.getParameter("userid");
 
@@ -165,7 +165,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("transno");
 	}
 
@@ -173,7 +173,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		// amount fields consist of 3 digits of currency and 11 digits of numeric format
 		return StringUtil.substring(request.getParameter("amount"), 3);
 	}
@@ -182,7 +182,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support doRedirectVerify");
 	}
 
@@ -190,7 +190,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doCloseTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support doCloseTrade");
 	}
 

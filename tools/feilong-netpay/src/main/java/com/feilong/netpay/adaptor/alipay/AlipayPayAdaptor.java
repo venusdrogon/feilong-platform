@@ -261,7 +261,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 		if (Validator.isNullOrEmpty(key)){
 			throw new NullPointerException("the key is null or empty!");
 		}
@@ -394,7 +394,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("out_trade_no");
 	}
 
@@ -402,7 +402,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("total_fee");
 	}
 
@@ -410,7 +410,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("service", service_close_trade);
 		params.put("partner", partner);
@@ -649,7 +649,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		return true;
 	}
 

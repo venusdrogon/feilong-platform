@@ -57,7 +57,7 @@ public interface PaymentAdaptor{
 	 *            the request
 	 * @return true, if successful
 	 */
-	boolean doNotifyVerify(HttpServletRequest request);
+	boolean verifyNotify(HttpServletRequest request);
 
 	/**
 	 * 处理跳转参数的校验,主要是做核实参数是否正确<br>
@@ -67,7 +67,7 @@ public interface PaymentAdaptor{
 	 *            the request
 	 * @return true, if successful
 	 */
-	boolean doRedirectVerify(HttpServletRequest request);
+	boolean verifyRedirect(HttpServletRequest request);
 
 	// ********************************************************************************************
 
@@ -78,7 +78,7 @@ public interface PaymentAdaptor{
 	 *            request
 	 * @return the string
 	 */
-	String doGetFeedbackTradeNo(HttpServletRequest request);
+	String getFeedbackTradeNo(HttpServletRequest request);
 
 	/**
 	 * feedback 回来 ,通过request取到得到 交易金额<br>
@@ -88,7 +88,7 @@ public interface PaymentAdaptor{
 	 *            request
 	 * @return the string
 	 */
-	String doGetFeedbackTotalFee(HttpServletRequest request);
+	String getFeedbackTotalFee(HttpServletRequest request);
 
 	// ************************************************************
 
@@ -110,5 +110,5 @@ public interface PaymentAdaptor{
 	 * @throws HttpClientUtilException
 	 *             the http client util exception
 	 */
-	boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException;
+	boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException;
 }

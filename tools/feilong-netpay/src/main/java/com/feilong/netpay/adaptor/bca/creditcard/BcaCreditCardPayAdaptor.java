@@ -202,7 +202,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		return true;
 	}
 
@@ -210,7 +210,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 		// Value: Merchant’s DOacquire ID
 		// Format: Up to 20 alphanumeric characters
 		String siteID = request.getParameter("siteID");
@@ -301,7 +301,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("merchantTransactionID");
 	}
 
@@ -309,7 +309,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("amount");
 	}
 
@@ -317,7 +317,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doCloseTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
 		return false;
 	}
 

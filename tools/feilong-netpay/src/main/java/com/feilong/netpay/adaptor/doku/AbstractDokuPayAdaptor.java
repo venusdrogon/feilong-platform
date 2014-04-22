@@ -391,7 +391,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 		// N 12.2 Total amount. Eg: 10000.00
 		String AMOUNT = request.getParameter("AMOUNT");
 
@@ -464,7 +464,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		// ************************************************
 		// N 12.2 Total amount. Eg: 10000.00
 		String AMOUNT = request.getParameter("AMOUNT");
@@ -522,7 +522,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("TRANSIDMERCHANT");
 	}
 
@@ -530,7 +530,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("AMOUNT");
 	}
 
@@ -538,7 +538,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
 		throw new UnsupportedOperationException("DOKU don't support close trade");
 	}
 

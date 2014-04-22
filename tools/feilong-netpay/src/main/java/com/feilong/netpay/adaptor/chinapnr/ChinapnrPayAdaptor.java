@@ -129,7 +129,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public String doGetFeedbackTradeNo(HttpServletRequest request){
+	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("OrdId");
 	}
 
@@ -137,7 +137,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
-	public String doGetFeedbackTotalFee(HttpServletRequest request){
+	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("OrdAmt");
 	}
 
@@ -145,7 +145,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean doRedirectVerify(HttpServletRequest request){
+	public boolean verifyRedirect(HttpServletRequest request){
 		return true;
 	}
 
@@ -154,7 +154,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public boolean doNotifyVerify(HttpServletRequest request){
+	public boolean verifyNotify(HttpServletRequest request){
 		// 消息类型
 		String CmdId = request.getParameter("CmdId");
 		// 商户号
@@ -250,7 +250,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
-	public boolean doCloseTrade(String orderNo,TradeRole tradeRole){
+	public boolean closeTrade(String orderNo,TradeRole tradeRole){
 		throw new UnsupportedOperationException("汇付天下暂时不支持关闭交易");
 	}
 
