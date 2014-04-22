@@ -234,20 +234,23 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 获得参数 map.
+	 * 获得参数 map(结果转成了 TreeMap).
 	 * 
 	 * @param request
 	 *            the request
 	 * @return the parameter map
 	 */
-	public static Map<String, ?> getParameterMap(HttpServletRequest request){
+	public static Map<String, String[]> getParameterMap(HttpServletRequest request){
 		@SuppressWarnings("unchecked")
-		// servlet 3.0 此处返回的是 泛型数组 Map<String, String[]>
-		Map<String, ?> map = request.getParameterMap();
 		// http://localhost:8888/s.htm?keyword&a=
 		// 这种链接
 		// map key 会是 keyword,a 值都是空
-		return map;
+		// servlet 3.0 此处返回类型的是 泛型数组 Map<String, String[]>
+		Map<String, String[]> map = request.getParameterMap();
+
+		// 转成TreeMap ,这样log出现的key 是有顺序的
+		Map<String, String[]> returnMap = new TreeMap<String, String[]>(map);
+		return returnMap;
 	}
 
 	/**
@@ -350,28 +353,18 @@ public final class RequestUtil{
 	 */
 	public static String getRequestStringForLog(HttpServletRequest request){
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("request.getLocale()", request.getLocale());
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
-		Map<String, String> aboutElseMap = new HashMap<String, String>();
-		aboutElseMap.put("request.getAuthType()", request.getAuthType());
-		aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
-		aboutElseMap.put("request.getContentLength()", request.getContentLength() + "");
-		aboutElseMap.put("request.getLocalName()", request.getLocalName());
-		aboutElseMap.put("request.getMethod()", request.getMethod());
-		aboutElseMap.put("request.getProtocol()", request.getProtocol());
-		aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
-		aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
-		aboutElseMap.put("request.getScheme()", request.getScheme());
-		map.put("aboutElseMap", aboutElseMap);
+		// 在3.0 是数组Map<String, String[]> getParameterMap
+		// The keys in the parameter map are of type String.
+		// The values in the parameter map are of type String array.
+		Map<String, ?> parameterMap = getParameterMap(request);
+		map.put("_parameterMap", parameterMap);
 
-		Map<String, String> aboutPortMap = new HashMap<String, String>();
-		aboutPortMap.put("request.getLocalPort()", request.getLocalPort() + "");
-		aboutPortMap.put("request.getRemotePort()", request.getRemotePort() + "");
-		aboutPortMap.put("request.getServerPort()", request.getServerPort() + "");
-		map.put("aboutPortMap", aboutPortMap);
+		map.put("request.getMethod()", request.getMethod());
+		map.put("_cookieMap", CookieUtil.getCookieMap(request));
 
-		Map<String, String> aboutIPMap = new HashMap<String, String>();
+		Map<String, String> aboutIPMap = new TreeMap<String, String>();
 		aboutIPMap.put("request.getLocalAddr()", request.getLocalAddr());
 		aboutIPMap.put("request.getRemoteAddr()", request.getRemoteAddr());
 		aboutIPMap.put("request.getRemoteHost()", request.getRemoteHost());
@@ -379,9 +372,9 @@ public final class RequestUtil{
 		aboutIPMap.put("getClientIp", getClientIp(request));
 		map.put("aboutIPMap", aboutIPMap);
 
-		Map<String, String> aboutURLMap = new HashMap<String, String>();
+		Map<String, String> aboutURLMap = new TreeMap<String, String>();
 		aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
-		aboutURLMap.put("request.getRequestURL()", request.getRequestURL().toString());
+		aboutURLMap.put("request.getRequestURL()", "" + request.getRequestURL());
 		aboutURLMap.put("request.getQueryString()", request.getQueryString());
 		aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
 		aboutURLMap.put("request.getServletPath()", request.getServletPath());
@@ -390,19 +383,32 @@ public final class RequestUtil{
 		aboutURLMap.put("request.getContextPath()", request.getContextPath());
 		map.put("aboutURLMap", aboutURLMap);
 
-		map.put("_errorMap", getErrorMap(request));
 		map.put("_headerMap", getHeaderMap(request));
 
+		Map<String, String> aboutPortMap = new TreeMap<String, String>();
+		aboutPortMap.put("request.getLocalPort()", "" + request.getLocalPort());
+		aboutPortMap.put("request.getRemotePort()", "" + request.getRemotePort());
+		aboutPortMap.put("request.getServerPort()", "" + request.getServerPort());
+		map.put("aboutPortMap", aboutPortMap);
+
+		Map<String, Object> aboutElseMap = new TreeMap<String, Object>();
+		aboutElseMap.put("request.getAuthType()", request.getAuthType());
+		aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
+		aboutElseMap.put("request.getContentLength()", "" + request.getContentLength());
+		aboutElseMap.put("request.getLocalName()", request.getLocalName());
+
+		aboutElseMap.put("request.getProtocol()", request.getProtocol());
+		aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
+		aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
+		aboutElseMap.put("request.getScheme()", request.getScheme());
+		aboutElseMap.put("request.getLocale()", request.getLocale());
+		map.put("aboutElseMap", aboutElseMap);
+
+		map.put("_errorMap", getErrorMap(request));
+
 		// 避免json渲染出错，只放 key
-		map.put("_attributeKeys", getAttributeMap(request).keySet());
-
-		// 在3.0 是数组Map<String, String[]> getParameterMap
-		// The keys in the parameter map are of type String.
-		// The values in the parameter map are of type String array.
-		Map<String, ?> parameterMap = getParameterMap(request);
-		map.put("_parameterMap", parameterMap);
-
-		// String string = JsonUtil.format(map);
+		// attribute 不属于 log 范围之内, 如果有需要 自行调用 getAttributeMap(request)
+		// map.put("_attributeKeys", getAttributeMap(request).keySet());
 
 		String string = JsonUtil.format(map);
 		return string;
@@ -417,7 +423,7 @@ public final class RequestUtil{
 	 * @return the header map
 	 */
 	public static Map<String, String> getHeaderMap(HttpServletRequest request){
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new TreeMap<String, String>();
 		@SuppressWarnings("unchecked")
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()){

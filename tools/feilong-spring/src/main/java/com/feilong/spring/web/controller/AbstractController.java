@@ -2,6 +2,7 @@ package com.feilong.spring.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSourceResolvable;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.feilong.commons.core.util.Validator;
@@ -131,7 +135,7 @@ public abstract class AbstractController{
 	 */
 	protected String getMessage(String code,Object...args){
 		if (Validator.isNotNullOrEmpty(code)){
-			return context.getMessage(code, args, LocaleContextHolder.getLocale());
+			return context.getMessage(code, args, getLocale());
 		}
 		return null;
 	}
@@ -144,6 +148,19 @@ public abstract class AbstractController{
 	 * @return
 	 */
 	protected String getMessage(MessageSourceResolvable messageSourceResolvable){
-		return context.getMessage(messageSourceResolvable, LocaleContextHolder.getLocale());
+		// LocaleContextHolder.getLocale()
+		return context.getMessage(messageSourceResolvable, getLocale());
+	}
+
+	/**
+	 * 获取当前国际化内容语言.
+	 * 
+	 * @return the request language
+	 */
+	private Locale getLocale(){
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+		Locale locale = localeResolver.resolveLocale(request);
+		return locale;
 	}
 }
