@@ -252,6 +252,11 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		//  SCRUB (transaction has been rejected based on account risk policy)
 		//  ERROR (network connectivity error with the partner bank/acquirer)
 		//  CANCEL (cardholder did not complete the transaction)
+
+		// Jim, list of revised statuses should be as follows:
+		// - APPROVED instead of APPROVE
+		// - DECLINED instead of DECLINE
+		// - SCRUBBED instead of SCRUBB
 		String transactionStatus = request.getParameter("transactionStatus");
 
 		// Value: Card number
@@ -288,11 +293,12 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		// 我们使用查询接口,去查询 也会触发 BCA 去查询去查询
 
 		// PENDING 大约有1%的可能
-		if ("PENDING".equals(transactionStatus) || "APPROVE".equals(transactionStatus)){
+		// 他们文档里面写的是 APPROVE,但是传递是参数值是 APPROVED
+		if ("PENDING".equals(transactionStatus) || "APPROVED".equals(transactionStatus)){
 			return true;
 		}else{
 			Object[] logArgs = { transactionStatus, RequestUtil.getRequestAllURL(request) };
-			log.error("transactionStatus is:{}, full request url is :{}", logArgs);
+			log.error("transactionStatus is:[{}], full request url is :{}", logArgs);
 			return false;
 		}
 	}

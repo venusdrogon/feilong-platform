@@ -38,5 +38,14 @@
  *<li>PaymentAdaptor#isSupportCloseTrade 是否支持关闭接口</li>
  *<li>PaymentAdaptor#closeTrade 关闭交易接口</li>
  *</ul>
+ *
+ * 有任何问题或者建议,您可以通过以下方式联系作者:
+ *
+ *<ul>
+ *<li>email:<a href="mailto:venusdrogon@163.com">金鑫</a></li>
+ *<li>博客:<a href="http://feitianbenyue.iteye.com/" target="_blank">飞天奔月的java博客</a></li>
+ *<li>weibo:<a href="http://weibo.com/venusdrogon" target="_blank">i鑫哥</a></li>
+ *</ul>
+ * 
  */
 package com.feilong.netpay.adaptor;

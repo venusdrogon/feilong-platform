@@ -359,9 +359,11 @@ public final class RequestUtil{
 		// The keys in the parameter map are of type String.
 		// The values in the parameter map are of type String array.
 		Map<String, ?> parameterMap = getParameterMap(request);
+		map.put("requestAllURL:{}", getRequestAllURL(request));
+		map.put("request.getMethod()", request.getMethod());
+		
 		map.put("_parameterMap", parameterMap);
 
-		map.put("request.getMethod()", request.getMethod());
 		map.put("_cookieMap", CookieUtil.getCookieMap(request));
 
 		Map<String, String> aboutIPMap = new TreeMap<String, String>();

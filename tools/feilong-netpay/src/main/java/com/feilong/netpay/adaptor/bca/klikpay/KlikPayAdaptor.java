@@ -325,7 +325,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public boolean verifyRedirect(HttpServletRequest request){
-		throw new UnsupportedOperationException("KlikPayAdaptor not support doRedirectVerify");
+		throw new UnsupportedOperationException("KlikPayAdaptor not support verifyRedirect,need use customer verifyRedirect");
 	}
 
 	/*
