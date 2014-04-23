@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.RegexPattern;
@@ -454,7 +455,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			}
 			return statusSuccess;
 		}else{
-			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestAllURL(request) };
+			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
 			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
 			return false;
 		}
@@ -499,7 +500,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			}
 			return statusSuccess;
 		}else{
-			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestAllURL(request) };
+			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
 			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
 			return false;
 		}

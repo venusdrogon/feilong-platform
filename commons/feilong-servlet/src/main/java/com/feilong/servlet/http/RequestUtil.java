@@ -19,7 +19,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.net.URIConstants;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
@@ -50,152 +49,6 @@ public final class RequestUtil{
 	 * Instantiates a new request util.
 	 */
 	private RequestUtil(){};
-
-	// ************************************include**************************************************************************
-	/**
-	 * <code>{@value}</code> <br>
-	 * Standard Servlet 2.3+ spec request attributes for include URI and paths.
-	 * <p>
-	 * If included via a RequestDispatcher, the current resource will see the originating request. <br>
-	 * Its own URI and paths are exposed as request attributes.
-	 */
-	public static final String	INCLUDE_REQUEST_URI_ATTRIBUTE		= "javax.servlet.include.request_uri";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the context path of the included servlet is stored on an included dispatcher request.
-	 */
-	public static final String	INCLUDE_CONTEXT_PATH_ATTRIBUTE		= "javax.servlet.include.context_path";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the servlet path of the included servlet is stored on an included dispatcher request.
-	 */
-	public static final String	INCLUDE_SERVLET_PATH_ATTRIBUTE		= "javax.servlet.include.servlet_path";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the path info of the included servlet is stored on an included dispatcher request.
-	 */
-	public static final String	INCLUDE_PATH_INFO_ATTRIBUTE			= "javax.servlet.include.path_info";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the query string of the included servlet is stored on an included dispatcher request.
-	 */
-	public static final String	INCLUDE_QUERY_STRING_ATTRIBUTE		= "javax.servlet.include.query_string";
-
-	// *********************************forward******************************************************************************/
-
-	/**
-	 * <code>{@value}</code><br>
-	 * Standard Servlet 2.4+ spec request attributes for forward URI and paths.
-	 * <p>
-	 * If forwarded to via a RequestDispatcher, the current resource will see its own URI and paths.<br>
-	 * The originating URI and paths are exposed as request attributes.<br>
-	 * The request attribute under which the original request URI is stored on an forwarded dispatcher request.
-	 */
-	public static final String	FORWARD_REQUEST_URI_ATTRIBUTE		= "javax.servlet.forward.request_uri";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the original context path is stored on an forwarded dispatcher request.
-	 */
-	public static final String	FORWARD_CONTEXT_PATH_ATTRIBUTE		= "javax.servlet.forward.context_path";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the original servlet path is stored on an forwarded dispatcher request.
-	 */
-	public static final String	FORWARD_SERVLET_PATH_ATTRIBUTE		= "javax.servlet.forward.servlet_path";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the original path info is stored on an forwarded dispatcher request.
-	 */
-	public static final String	FORWARD_PATH_INFO_ATTRIBUTE			= "javax.servlet.forward.path_info";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which the original query string is stored on an forwarded dispatcher request.
-	 */
-	public static final String	FORWARD_QUERY_STRING_ATTRIBUTE		= "javax.servlet.forward.query_string";
-
-	// *********************************error******************************************************************************/
-	/**
-	 * <code>{@value}</code><br>
-	 * Standard Servlet 2.3+ spec request attributes for error pages.
-	 * <p>
-	 * To be exposed to JSPs that are marked as error pages,<br>
-	 * when forwarding to them directly rather than through the servlet container's error page resolution mechanism. <br>
-	 * The request attribute under which we forward an HTTP status code (as an object of type Integer) to an error page.
-	 */
-	public static final String	ERROR_STATUS_CODE_ATTRIBUTE			= "javax.servlet.error.status_code";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which we forward a Java exception type (as an object of type Class) to an error page.
-	 */
-	public static final String	ERROR_EXCEPTION_TYPE_ATTRIBUTE		= "javax.servlet.error.exception_type";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which we forward an HTTP status message (as an object of type STring) to an error page.
-	 */
-	public static final String	ERROR_MESSAGE_ATTRIBUTE				= "javax.servlet.error.message";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which we forward a Java exception (as an object of type Throwable) to an error page.
-	 */
-	public static final String	ERROR_EXCEPTION_ATTRIBUTE			= "javax.servlet.error.exception";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which we forward the request URI (as an object of type String) of the page on which an error occurred.
-	 */
-	public static final String	ERROR_REQUEST_URI_ATTRIBUTE			= "javax.servlet.error.request_uri";
-
-	/**
-	 * <code>{@value}</code><br>
-	 * The request attribute under which we forward a servlet name to an error page.
-	 */
-	public static final String	ERROR_SERVLET_NAME_ATTRIBUTE		= "javax.servlet.error.servlet_name";
-
-	// ****************************************header**************************************************************************
-	/** The Constant header_referer. */
-	public static final String	header_referer						= "referer";
-
-	/**
-	 * 1、Origin字段里只包含是谁发起的请求，并没有其他信息 (通常情况下是方案，主机和活动文档URL的端口)。<br>
-	 * 跟Referer不一样的是，Origin字段并没有包含涉及到用户隐私的URL路径和请求内容，这个尤其重要。 <br>
-	 * 2、Origin字段只存在于POST请求，而Referer则存在于所有类型的请求。<br>
-	 * .
-	 */
-	public static final String	header_origin						= "origin";
-
-	/** The Constant header_userAgent. */
-	public static final String	header_userAgent					= "User-Agent";
-
-	/**
-	 * X-Forwarded-For:简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP，只有在通过了HTTP 代理或者负载均衡服务器时才会添加该项。<br>
-	 * 它不是RFC中定义的标准请求头信息，在squid缓存代理服务器开发文档中可以找到该项的详细介绍。 <br>
-	 * 标准格式如下：<br>
-	 * X-Forwarded-For: client1, proxy1, proxy2.
-	 */
-	public static final String	header_xForwardedFor				= "x-forwarded-for";
-
-	/** The Constant header_proxyClientIP. */
-	public static final String	header_proxyClientIP				= "Proxy-Client-IP";
-
-	/** WL-Proxy-Client-IP 这个应该是WebLogic前置HttpClusterServlet提供的属性，一般不需要自己处理，在WebLogic控制台中已经可以指定使用这个属性来覆盖. */
-	public static final String	header_wLProxyClientIP				= "WL-Proxy-Client-IP";
-
-	/** The Constant header_XRequestedWith. */
-	public static final String	header_XRequestedWith				= "X-Requested-With";
-
-	/** The Constant header_XRequestedWith_value_ajax. */
-	public static final String	header_XRequestedWith_value_ajax	= "XMLHttpRequest";
 
 	// ******************************是否包含******************************************
 	/**
@@ -289,69 +142,54 @@ public final class RequestUtil{
 	 * 
 	 * @param request
 	 *            HttpServletRequest
-	 * @return 如果request 有 {@link #ERROR_STATUS_CODE_ATTRIBUTE}属性,则返回error 相关属性 封装到map,<br>
-	 *         如果 request没有 {@link #ERROR_STATUS_CODE_ATTRIBUTE}属性,返回null
+	 * @return 如果request 有 {@link #ATTRIBUTE_ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
+	 *         如果 request没有 {@link #ATTRIBUTE_ERROR_STATUS_CODE}属性,返回null
 	 */
 	public static Map<String, String> getErrorMap(HttpServletRequest request){
-		String errorCode = getAttributeToString(request, ERROR_STATUS_CODE_ATTRIBUTE);
+		String errorCode = getAttributeToString(request, RequestConstans.ATTRIBUTE_ERROR_STATUS_CODE);
 		if (Validator.isNotNullOrEmpty(errorCode)){
 			Map<String, String> map = new LinkedHashMap<String, String>();
-			map.put(ERROR_STATUS_CODE_ATTRIBUTE, errorCode);
-			map.put(ERROR_REQUEST_URI_ATTRIBUTE, getAttributeToString(request, ERROR_REQUEST_URI_ATTRIBUTE));
-			map.put(ERROR_EXCEPTION_ATTRIBUTE, getAttributeToString(request, ERROR_EXCEPTION_ATTRIBUTE));
-			map.put(ERROR_EXCEPTION_TYPE_ATTRIBUTE, getAttributeToString(request, ERROR_EXCEPTION_TYPE_ATTRIBUTE));
-			map.put(ERROR_MESSAGE_ATTRIBUTE, getAttributeToString(request, ERROR_MESSAGE_ATTRIBUTE));
-			map.put(ERROR_SERVLET_NAME_ATTRIBUTE, getAttributeToString(request, ERROR_SERVLET_NAME_ATTRIBUTE));
+			map.put(RequestConstans.ATTRIBUTE_ERROR_STATUS_CODE, errorCode);
+			map.put(RequestConstans.ATTRIBUTE_ERROR_REQUEST_URI, getAttributeToString(request, RequestConstans.ATTRIBUTE_ERROR_REQUEST_URI));
+			map.put(RequestConstans.ATTRIBUTE_ERROR_EXCEPTION, getAttributeToString(request, RequestConstans.ATTRIBUTE_ERROR_EXCEPTION));
+			map.put(
+					RequestConstans.ATTRIBUTE_ERROR_EXCEPTION_TYPE,
+					getAttributeToString(request, RequestConstans.ATTRIBUTE_ERROR_EXCEPTION_TYPE));
+			map.put(RequestConstans.ATTRIBUTE_ERROR_MESSAGE, getAttributeToString(request, RequestConstans.ATTRIBUTE_ERROR_MESSAGE));
+			map.put(
+					RequestConstans.ATTRIBUTE_ERROR_SERVLET_NAME,
+					getAttributeToString(request, RequestConstans.ATTRIBUTE_ERROR_SERVLET_NAME));
 			return map;
 		}
 		return null;
 	}
 
 	/**
-	 * 遍历显示request的attribute,将 name /attributeValue 存入到map.
-	 * 
-	 * @param request
-	 *            the request
-	 * @return the attribute map
-	 */
-	public static Map<String, Object> getAttributeMap(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		@SuppressWarnings("unchecked")
-		Enumeration<String> attributeNames = request.getAttributeNames();
-		while (attributeNames.hasMoreElements()){
-			String name = attributeNames.nextElement();
-			Object attributeValue = request.getAttribute(name);
-			// String[] excludes = {
-			// "autowireCapableBeanFactory",
-			// "classLoader",
-			// "servletConfig",
-			// "servletContext",
-			// "beanClassLoader",
-			// "environment",
-			// "beanFactory",
-			// "parentBeanFactory",
-			// "parent",
-			// "defaultAssertionStatus",
-			// "URLs" };
-			// log.debug("\n\tbegin name:[{}]", name);
-			//
-			// String string = JsonUtil.format(attributeValue, excludes);
-			// log.debug("\n\tname:[{}],\n\t:{}", name, string);
-			map.put(name, attributeValue);
-		}
-
-		// log.debug("the param request attributeNames:{}", JsonUtil.toJSON(map.keySet()).toString(4, 4));
-		return map;
-	}
-
-	/**
-	 * 将request 相关属性，数据转成json格式 以便log显示.
+	 * 将request 相关属性，数据转成json格式 以便log显示(目前仅作log使用).
 	 * 
 	 * @param request
 	 *            the request
 	 * @return the request string for log
 	 */
 	public static String getRequestStringForLog(HttpServletRequest request){
+		RequestLogSwitch requestLogSwitch = new RequestLogSwitch();
+		return getRequestStringForLog(request, requestLogSwitch);
+	}
+
+	/**
+	 * 将request 相关属性，数据转成json格式 以便log显示(目前仅作log使用).
+	 * 
+	 * @param request
+	 *            the request
+	 * @param requestLogSwitch
+	 *            the request log switch
+	 * @return the request string for log
+	 */
+	public static String getRequestStringForLog(HttpServletRequest request,RequestLogSwitch requestLogSwitch){
+
+		if (null == requestLogSwitch){
+			requestLogSwitch = new RequestLogSwitch();
+		}
 
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
@@ -359,54 +197,107 @@ public final class RequestUtil{
 		// The keys in the parameter map are of type String.
 		// The values in the parameter map are of type String array.
 		Map<String, ?> parameterMap = getParameterMap(request);
-		map.put("requestAllURL:{}", getRequestAllURL(request));
-		map.put("request.getMethod()", request.getMethod());
-		
-		map.put("_parameterMap", parameterMap);
 
-		map.put("_cookieMap", CookieUtil.getCookieMap(request));
+		// requestFullURL
+		if (requestLogSwitch.getShowFullURL()){
+			// TODO 编码参数转成可传递
+			map.put("requestFullURL:", getRequestFullURL(request, CharsetType.UTF8));
+		}
+		// Method
+		if (requestLogSwitch.getShowMethod()){
+			map.put("request.getMethod:", request.getMethod());
+		}
 
-		Map<String, String> aboutIPMap = new TreeMap<String, String>();
-		aboutIPMap.put("request.getLocalAddr()", request.getLocalAddr());
-		aboutIPMap.put("request.getRemoteAddr()", request.getRemoteAddr());
-		aboutIPMap.put("request.getRemoteHost()", request.getRemoteHost());
-		aboutIPMap.put("request.getServerName()", request.getServerName());
-		aboutIPMap.put("getClientIp", getClientIp(request));
-		map.put("aboutIPMap", aboutIPMap);
+		// _parameterMap
+		if (requestLogSwitch.getShowParams()){
+			map.put("_parameterMap", parameterMap);
+		}
 
-		Map<String, String> aboutURLMap = new TreeMap<String, String>();
-		aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
-		aboutURLMap.put("request.getRequestURL()", "" + request.getRequestURL());
-		aboutURLMap.put("request.getQueryString()", request.getQueryString());
-		aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
-		aboutURLMap.put("request.getServletPath()", request.getServletPath());
-		aboutURLMap.put("request.getPathInfo()", request.getPathInfo());
-		aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
-		aboutURLMap.put("request.getContextPath()", request.getContextPath());
-		map.put("aboutURLMap", aboutURLMap);
+		// _cookieMap
+		if (requestLogSwitch.getShowCookies()){
+			map.put("_cookieMap", CookieUtil.getCookieMap(request));
+		}
 
-		map.put("_headerMap", getHeaderMap(request));
+		// aboutURLMap
+		if (requestLogSwitch.getShowURLs()){
 
-		Map<String, String> aboutPortMap = new TreeMap<String, String>();
-		aboutPortMap.put("request.getLocalPort()", "" + request.getLocalPort());
-		aboutPortMap.put("request.getRemotePort()", "" + request.getRemotePort());
-		aboutPortMap.put("request.getServerPort()", "" + request.getServerPort());
-		map.put("aboutPortMap", aboutPortMap);
+			// 1.getServletContext().getRealPath("/") 后包含当前系统的文件夹分隔符（windows系统是"\"，linux系统是"/"），而getPathInfo()以"/"开头。
+			// 2.getPathInfo()与getPathTranslated()在servlet的url-pattern被设置为/*或/aa/*之类的pattern时才有值，其他时候都返回null。
+			// 3.在servlet的url-pattern被设置为*.xx之类的pattern时，getServletPath()返回的是getRequestURI()去掉前面ContextPath的剩余部分。
 
-		Map<String, Object> aboutElseMap = new TreeMap<String, Object>();
-		aboutElseMap.put("request.getAuthType()", request.getAuthType());
-		aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
-		aboutElseMap.put("request.getContentLength()", "" + request.getContentLength());
-		aboutElseMap.put("request.getLocalName()", request.getLocalName());
+			Map<String, String> aboutURLMap = new LinkedHashMap<String, String>();
 
-		aboutElseMap.put("request.getProtocol()", request.getProtocol());
-		aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
-		aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
-		aboutElseMap.put("request.getScheme()", request.getScheme());
-		aboutElseMap.put("request.getLocale()", request.getLocale());
-		map.put("aboutElseMap", aboutElseMap);
+			aboutURLMap.put("request.getContextPath()", request.getContextPath());
 
-		map.put("_errorMap", getErrorMap(request));
+			// Returns any extra path information associated with the URL the client sent when it made this request.
+			// Servlet访问路径之后，QueryString之前的中间部分
+			aboutURLMap.put("request.getPathInfo()", request.getPathInfo());
+
+			// web.xml中定义的Servlet访问路径
+			aboutURLMap.put("request.getServletPath()", request.getServletPath());
+			// 等于getServletContext().getRealPath("/") + getPathInfo()
+			aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
+
+			// ***********************************************************************
+			aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
+			// &之后GET方法的参数部分
+			aboutURLMap.put("request.getQueryString()", request.getQueryString());
+
+			// ***********************************************************************
+			// 等于getContextPath() + getServletPath() + getPathInfo()
+			aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
+
+			// 等于getScheme() + "://" + getServerName() + ":" + getServerPort() + getRequestURI()
+			aboutURLMap.put("request.getRequestURL()", "" + request.getRequestURL());
+
+			map.put("aboutURLMap", aboutURLMap);
+		}
+
+		// aboutIPMap
+		if (requestLogSwitch.getShowIPs()){
+			Map<String, String> aboutIPMap = new TreeMap<String, String>();
+			aboutIPMap.put("request.getLocalAddr()", request.getLocalAddr());
+			aboutIPMap.put("request.getRemoteAddr()", request.getRemoteAddr());
+			aboutIPMap.put("request.getRemoteHost()", request.getRemoteHost());
+			aboutIPMap.put("request.getServerName()", request.getServerName());
+			aboutIPMap.put("getClientIp", getClientIp(request));
+			map.put("aboutIPMap", aboutIPMap);
+		}
+
+		// aboutPortMap
+		if (requestLogSwitch.getShowPorts()){
+			Map<String, String> aboutPortMap = new TreeMap<String, String>();
+			aboutPortMap.put("request.getLocalPort()", "" + request.getLocalPort());
+			aboutPortMap.put("request.getRemotePort()", "" + request.getRemotePort());
+			aboutPortMap.put("request.getServerPort()", "" + request.getServerPort());
+			map.put("aboutPortMap", aboutPortMap);
+		}
+
+		// _headerMap
+		if (requestLogSwitch.getShowHeaders()){
+			map.put("_headerMap", getHeaderMap(request));
+		}
+
+		// aboutElseMap
+		if (requestLogSwitch.getShowElses()){
+			Map<String, Object> aboutElseMap = new TreeMap<String, Object>();
+			aboutElseMap.put("request.getAuthType()", request.getAuthType());
+			aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
+			aboutElseMap.put("request.getContentLength()", "" + request.getContentLength());
+			aboutElseMap.put("request.getLocalName()", request.getLocalName());
+
+			aboutElseMap.put("request.getProtocol()", request.getProtocol());
+			aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
+			aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
+			aboutElseMap.put("request.getScheme()", request.getScheme());
+			aboutElseMap.put("request.getLocale()", request.getLocale());
+			map.put("aboutElseMap", aboutElseMap);
+		}
+
+		// _errorMap
+		if (requestLogSwitch.getShowErrors()){
+			map.put("_errorMap", getErrorMap(request));
+		}
 
 		// 避免json渲染出错，只放 key
 		// attribute 不属于 log 范围之内, 如果有需要 自行调用 getAttributeMap(request)
@@ -454,7 +345,7 @@ public final class RequestUtil{
 	 *            请求
 	 * @param name
 	 *            属性名称
-	 * @return 取到request里面的属性值
+	 * @return 取到的object类型会调用 ObjectUtil.toString(value)
 	 */
 	public final static String getAttributeToString(HttpServletRequest request,String name){
 		Object value = request.getAttribute(name);
@@ -479,7 +370,7 @@ public final class RequestUtil{
 	 * @return 获得请求的?部分前面的地址
 	 */
 	public final static String getRequestURL(HttpServletRequest request){
-		String forward_request_uri = (String) request.getAttribute(FORWARD_REQUEST_URI_ATTRIBUTE);
+		String forward_request_uri = (String) request.getAttribute(RequestConstans.ATTRIBUTE_FORWARD_REQUEST_URI);
 		if (Validator.isNotNullOrEmpty(forward_request_uri)){
 			return forward_request_uri;
 		}
@@ -494,7 +385,7 @@ public final class RequestUtil{
 	 * @return the servlet path
 	 */
 	public static String getOriginatingServletPath(HttpServletRequest request){
-		String servletPath = (String) request.getAttribute(FORWARD_SERVLET_PATH_ATTRIBUTE);
+		String servletPath = (String) request.getAttribute(RequestConstans.ATTRIBUTE_FORWARD_SERVLET_PATH);
 		if (servletPath == null){
 			servletPath = request.getServletPath();
 		}
@@ -502,31 +393,38 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 获得请求的全地址.
+	 * 获得请求的全地址
+	 * <ul>
+	 * <li>如果request不含queryString,直接返回 requestURL(比如post请求)</li>
+	 * <li>如果request含queryString,直接返回 requestURL+编码后的queryString</li>
+	 * </ul>
+	 * .
 	 * 
 	 * @param request
 	 *            the request
+	 * @param charsetType
+	 *            编码集 {@link CharsetType}
 	 * @return 如:http://localhost:8080/feilong/requestdemo.jsp?id=2
-	 * @deprecated 编码参数要支持可以传递， 暂时还没有写
 	 */
-	public final static String getRequestAllURL(HttpServletRequest request){
+	public final static String getRequestFullURL(HttpServletRequest request,String charsetType){
+		String requestURL = getRequestURL(request);
+
 		String queryString = request.getQueryString();
-		String returnValue = "";
 		if (Validator.isNullOrEmpty(queryString)){
-			returnValue = getRequestURL(request);
-		}else{
-			returnValue = getRequestURL(request) + "?" + URIUtil.decodeLuanMa_ISO8859(queryString, CharsetType.GB2312);
+			return requestURL;
 		}
-		return returnValue;
+
+		// TODO 处理乱码
+		return requestURL + URIConstants.QUESTIONMARK + URIUtil.decodeLuanMa_ISO8859(queryString, charsetType);
 	}
 
 	/**
 	 * scheme+port+getContextPath <br>
-	 * 区分 http 和https.
+	 * 区分 http 和https.<br>
 	 * 
 	 * @param request
 	 *            the request
-	 * @return the server root with context path
+	 * @return 如:http://localhost:8080/feilong/
 	 */
 	public final static String getServerRootWithContextPath(HttpServletRequest request){
 
@@ -541,7 +439,8 @@ public final class RequestUtil{
 		if (port < 0){
 			port = 80; // Work around java.net.URL bug
 		}
-		if ((scheme.equals("http") && (port != 80)) || (scheme.equals("https") && (port != 443))){
+
+		if ((scheme.equals(URIConstants.SCHEME_HTTP) && (port != 80)) || (scheme.equals(URIConstants.SCHEME_HTTPS) && (port != 443))){
 			url.append(':');
 			url.append(port);
 		}
@@ -552,17 +451,6 @@ public final class RequestUtil{
 
 	// [end]
 	// ***************************************LocalAddr******************************************************************************
-
-	/**
-	 * 是否是本地ip(测试).
-	 * 
-	 * @param request
-	 *            the request
-	 * @return 是否是本地ip(测试)
-	 */
-	public final static boolean isLocalHost(HttpServletRequest request){
-		return Constants.localhostIp.equals(getLocalAddr(request));
-	}
 
 	/**
 	 * 获得项目本地ip地址.
@@ -599,14 +487,14 @@ public final class RequestUtil{
 		Map<String, String> map = new TreeMap<String, String>();
 
 		// 是否使用反向代理
-		String ipAddress = request.getHeader(header_xForwardedFor);
+		String ipAddress = request.getHeader(RequestConstans.HEADER_X_FORWARDED_FOR);
 		map.put("1.header_xForwardedFor", ipAddress);
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
-			ipAddress = request.getHeader(header_proxyClientIP);
+			ipAddress = request.getHeader(RequestConstans.HEADER_PROXY_CLIENT_IP);
 			map.put("2.header_proxyClientIP", ipAddress);
 		}
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
-			ipAddress = request.getHeader(header_wLProxyClientIP);
+			ipAddress = request.getHeader(RequestConstans.HEADER_WL_PROXY_CLIENT_IP);
 			map.put("3.header_wLProxyClientIP", ipAddress);
 		}
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
@@ -627,6 +515,8 @@ public final class RequestUtil{
 		return ipAddress;
 	}
 
+	// *****************************Header区域******************************************************
+
 	/**
 	 * 　User Agent中文名为用户代理，简称 UA，<br>
 	 * 它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。.
@@ -636,7 +526,7 @@ public final class RequestUtil{
 	 * @return the user agent
 	 */
 	public final static String getHeaderUserAgent(HttpServletRequest request){
-		return request.getHeader(header_userAgent);
+		return request.getHeader(RequestConstans.HEADER_USER_AGENT);
 	}
 
 	/**
@@ -662,7 +552,7 @@ public final class RequestUtil{
 	 * @return 上上个请求的URL
 	 */
 	public final static String getHeaderReferer(HttpServletRequest request){
-		return request.getHeader(header_referer);
+		return request.getHeader(RequestConstans.HEADER_REFERER);
 	}
 
 	/**
@@ -675,7 +565,7 @@ public final class RequestUtil{
 	 * @return the header origin
 	 */
 	public final static String getHeaderOrigin(HttpServletRequest request){
-		return request.getHeader(header_origin);
+		return request.getHeader(RequestConstans.HEADER_ORIGIN);
 	}
 
 	/**
@@ -689,11 +579,12 @@ public final class RequestUtil{
 	 * @param request
 	 *            the request
 	 * @return 如果是ajax 请求 返回true
-	 * @see http://en.wikipedia.org/wiki/X-Requested-With#Requested-With
+	 * @see {@link http://en.wikipedia.org/wiki/X-Requested-With#Requested-With}
 	 */
+	@SuppressWarnings("javadoc")
 	public final static boolean isAjaxRequest(HttpServletRequest request){
-		String header = request.getHeader(header_XRequestedWith);
-		if (Validator.isNotNullOrEmpty(header) && header.equalsIgnoreCase(header_XRequestedWith_value_ajax)){
+		String header = request.getHeader(RequestConstans.HEADER_X_REQUESTED_WITH);
+		if (Validator.isNotNullOrEmpty(header) && header.equalsIgnoreCase(RequestConstans.HEADER_X_REQUESTED_WITH_VALUE_AJAX)){
 			return true;
 		}
 		return false;
@@ -710,187 +601,44 @@ public final class RequestUtil{
 		return !isAjaxRequest(request);
 	}
 
-	// /**
-	// * 将collection转成map
-	// *
-	// * <pre>
-	// * 暂时仅支持 list及数组
-	// *
-	// * </pre>
-	// *
-	// * @param map
-	// * @param scopeOptions
-	// * 作用域集合名称
-	// * @param scopeLabel
-	// * 显示,如果为空,则默认为scopeOptions的名称去掉后缀List 自动加上Name
-	// * @param scopeValue
-	// * 值,如果为空,则默认为scopeOptions的名称去掉后缀List 自动加上Id
-	// * @param request
-	// * @return map
-	// */
-	// @SuppressWarnings("rawtypes")
-	// public final static Map<String, String> collectionToMap(
-	// Map<String, String> map,
-	// String scopeOptions,
-	// String scopeLabel,
-	// String scopeValue,
-	// HttpServletRequest request){
-	// if (null == map){
-	// map = new LinkedHashMap<String, String>();
-	// }
-	// String s_label = "";
-	// String s_value = "";
-	// Object optionCollection = request.getAttribute(scopeOptions);
-	// // optionList不是null
-	// if (Validator.isNotNullOrEmpty(optionCollection)){
-	// // 集合
-	// if (optionCollection instanceof List){
-	// // 判断scopeOptions以List结尾
-	// String specialCharacters = "List";
-	// boolean isEndsWithListString = scopeOptions.endsWith(specialCharacters);
-	// // 去掉末尾
-	// String beanName = scopeOptions.substring(0, scopeOptions.length() - specialCharacters.length());
-	// // scopeValue
-	// if (Validator.isNullOrEmpty(scopeValue)){
-	// if (isEndsWithListString){
-	// scopeValue = beanName + "Id";
-	// }
-	// }
-	// // scopeLabel
-	// if (Validator.isNullOrEmpty(scopeLabel)){
-	// if (isEndsWithListString){
-	// scopeLabel = beanName + "Name";
-	// }
-	// }
-	// try{
-	// List list = (List) optionCollection;
-	// for (Object objectOption : list){
-	// s_label = PropertyUtils.getProperty(objectOption, scopeLabel).toString();
-	// s_value = PropertyUtils.getProperty(objectOption, scopeValue).toString();
-	// map.put(s_value, s_label);
-	// }
-	// }catch (Exception e){
-	// e.printStackTrace();
-	// }
-	// }
-	// // Result 用于jdbc
-	// else if (optionCollection instanceof Result){
-	// // 判断scopeOptions以List结尾
-	// String specialCharacters = "Result";
-	// boolean isEndsWithListString = scopeOptions.endsWith(specialCharacters);
-	// // 去掉末尾
-	// String beanName = scopeOptions.substring(0, scopeOptions.length() - specialCharacters.length());
-	// // scopeValue
-	// if (Validator.isNullOrEmpty(scopeValue)){
-	// if (isEndsWithListString){
-	// scopeValue = beanName + "Id";
-	// }
-	// }
-	// // scopeLabel
-	// if (Validator.isNullOrEmpty(scopeLabel)){
-	// if (isEndsWithListString){
-	// scopeLabel = beanName + "Name";
-	// }
-	// }
-	// Result result = (Result) optionCollection;
-	// SortedMap[] sortedMaps = result.getRows();
-	// for (SortedMap sortedMap : sortedMaps){
-	// s_label = sortedMap.get(scopeLabel).toString();
-	// s_value = sortedMap.get(scopeValue).toString();
-	// map.put(s_value, s_label);
-	// }
-	// }
-	// // 数组
-	// else if (optionCollection instanceof Object[]){}
-	// }
-	// return map;
-	// }
+	// ****************************************************************************************************
 
-	// /**
-	// * 读取文件内容
-	// *
-	// * @param request
-	// * HttpServletRequest
-	// * @param directoryName
-	// * 文件夹路径 前面没有/ 后面有/ 如:res/html/email/
-	// * @param fileName
-	// * 文件名称 如:register.html
-	// * @return 读取文件内容
-	// */
-	// public final static String getFileContent(HttpServletRequest request,String directoryName,String fileName){
-	// ServletContext servletContext = request.getSession().getServletContext();
-	// return ServletContextUtil.getFileContent(servletContext, directoryName, fileName);
-	// }
+	/**
+	 * 遍历显示request的attribute,将 name /attributeValue 存入到map.
+	 * 
+	 * @param request
+	 *            the request
+	 * @return the attribute map
+	 * @deprecated 目前如果直接 转json 如果属性有级联关系,会报错,待重构
+	 */
+	// TODO
+	private static Map<String, Object> getAttributeMap(HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String, Object>();
+		@SuppressWarnings("unchecked")
+		Enumeration<String> attributeNames = request.getAttributeNames();
+		while (attributeNames.hasMoreElements()){
+			String name = attributeNames.nextElement();
+			Object attributeValue = request.getAttribute(name);
+			// String[] excludes = {
+			// "autowireCapableBeanFactory",
+			// "classLoader",
+			// "servletConfig",
+			// "servletContext",
+			// "beanClassLoader",
+			// "environment",
+			// "beanFactory",
+			// "parentBeanFactory",
+			// "parent",
+			// "defaultAssertionStatus",
+			// "URLs" };
+			// log.debug("\n\tbegin name:[{}]", name);
+			//
+			// String string = JsonUtil.format(attributeValue, excludes);
+			// log.debug("\n\tname:[{}],\n\t:{}", name, string);
+			map.put(name, attributeValue);
+		}
 
-	// /**
-	// * 判断是否是通过电脑web访问
-	// *
-	// * @param request
-	// * @return web访问返回true
-	// * @deprecated 不准确 待修改
-	// */
-	// public final static boolean isWebVisit(HttpServletRequest request){
-	// String userAgent = getUserAgent(request);
-	// if (Validator.isNotNullOrEmpty(userAgent) && StringUtil.isContain(userAgent.toLowerCase(), "mozilla")){
-	// return true;
-	// }
-	// return false;
-	// }
-	// /**
-	// * 判断一个请求是否包含参数
-	// *
-	// * @param request
-	// * 请求
-	// * @return 包含返回true
-	// * @deprecated
-	// */
-	// // TODO post请求
-	// public static boolean isContainsParam(HttpServletRequest request){
-	// return StringUtil.isContain(RequestUtil.getRequestAllURL(request), "?");
-	// }
-	//
-	// /**
-	// * 判断一个请求是否不包含参数
-	// *
-	// * @param request
-	// * @return 不包含参数
-	// * @deprecated
-	// */
-	// public static boolean isNotContainsParam(HttpServletRequest request){
-	// return !isContainsParam(request);
-	// }
-
-	// /**
-	// * 获得参数经过8859之后的值
-	// *
-	// * @param request
-	// * 当前请求
-	// * @param param
-	// * 参数名称
-	// * @return 获得参数经过8859之后的值
-	// * @deprecated 暂没有想好
-	// */
-	// public static String getParameterWith8859(HttpServletRequest request,String param){
-	// String value = getParameter(request, param);
-	// return URIUtil.decodeLuanMa_ISO8859(value);
-	// }
-
-	// /**
-	// * 获取Properties配置文件键值
-	// *
-	// * @param servletContext
-	// * servletContext
-	// * @param propertiesPath
-	// * Properties文件路径 如"/WEB-INF/classes/feilong.user.properties"
-	// * @param key
-	// * 键
-	// * @return 获取Properties配置文件键值
-	// * @deprecated 这个方法使用场景 几乎没有,可以使用spring 代替
-	// */
-	// public final static String getPropertiesValue(ServletContext servletContext,String propertiesPath,String key){
-	// InputStream inputStream = servletContext.getResourceAsStream(propertiesPath);
-	// Properties properties = PropertiesUtil.getProperties(inputStream);
-	// return properties.getProperty(key);
-	// }
-
+		// log.debug("the param request attributeNames:{}", JsonUtil.toJSON(map.keySet()).toString(4, 4));
+		return map;
+	}
 }

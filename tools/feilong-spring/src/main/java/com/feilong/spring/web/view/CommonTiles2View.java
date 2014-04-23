@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.tiles2.TilesView;
 
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.servlet.ServletContextUtil;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.SessionUtil;
@@ -51,7 +52,7 @@ public class CommonTiles2View extends TilesView{
 			// Class loxia.support.json.JSONObject can not access a member of class org.springframework.web.servlet.support.JstlUtils$SpringLocalizationContext
 			// with modifiers "public"
 			// model 已经 exposeModelAsRequestAttributes
-			Object[] argsObjects = { RequestUtil.getRequestAllURL(request),
+			Object[] argsObjects = { RequestUtil.getRequestFullURL(request, CharsetType.UTF8),
 					// , JsonFormatUtil.defaultPropFilterStr + ",-" + Config.FMT_LOCALIZATION_CONTEXT + ".request"
 					JsonUtil.format(attributeMap),
 					JsonUtil.format(SessionUtil.getAttributeMap(request.getSession())),

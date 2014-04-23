@@ -58,18 +58,7 @@ import com.feilong.commons.core.util.Validator;
 public final class URIUtil{
 
 	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(URIUtil.class);
-
-	/** 查询片段 <code>{@value}</code>. */
-	public static final String	fragment		= "#";
-
-	/** ? The question mark is used as a separator and is not part of the query string. */
-	public static final String	questionMark	= "?";
-
-	/** The Constant ampersand. */
-	public static final String	ampersand		= "&";
-
-	// public static final String equal = "=";
+	private static final Logger	log	= LoggerFactory.getLogger(URIUtil.class);
 
 	/**
 	 * URI uri = new URI(path);<br>
@@ -129,11 +118,11 @@ public final class URIUtil{
 			try{
 				// 暂不处理 这种路径报错的情况
 				// cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm
-				if (StringUtil.isContain(url, questionMark)){
+				if (StringUtil.isContain(url, URIConstants.QUESTIONMARK)){
 					// 问号前面的部分
 					String before = getBeforePath(url);
 
-					String query = StringUtil.substring(url, questionMark, 1);
+					String query = StringUtil.substring(url, URIConstants.QUESTIONMARK, 1);
 
 					// 浏览器传递queryString()参数差别
 					// chrome 会将query 进行 encoded 再发送请求
@@ -215,11 +204,11 @@ public final class URIUtil{
 			String beforePath = beforeUrl;
 
 			// 如果包含?
-			if (StringUtil.isContain(beforeUrl, questionMark)){
+			if (StringUtil.isContain(beforeUrl, URIConstants.QUESTIONMARK)){
 				// 问号前面的部分
 				beforePath = getBeforePath(beforeUrl);
 
-				String query = StringUtil.substring(beforeUrl, questionMark, 1);
+				String query = StringUtil.substring(beforeUrl, URIConstants.QUESTIONMARK, 1);
 
 				// 浏览器传递queryString()参数差别
 				// chrome 会将query 进行 encoded 再发送请求
@@ -235,7 +224,7 @@ public final class URIUtil{
 
 			StringBuilder builder = new StringBuilder("");
 			builder.append(beforePath);
-			builder.append(questionMark);
+			builder.append(URIConstants.QUESTIONMARK);
 
 			// *******************************************
 			String queryString = combineQueryString(appendMap, charsetType);
@@ -305,14 +294,14 @@ public final class URIUtil{
 						sb.append(value);
 						// 最后一个& 不拼接
 						if (j != z - 1){
-							sb.append(ampersand);
+							sb.append(URIConstants.AMPERSAND);
 						}
 					}
 				}
 
 				// 最后一个& 不拼接
 				if (i != size - 1){
-					sb.append(ampersand);
+					sb.append(URIConstants.AMPERSAND);
 				}
 				++i;
 			}
@@ -359,7 +348,7 @@ public final class URIUtil{
 	 */
 	public static Map<String, String[]> parseQueryToArrayMap(String query,String charsetType){
 		if (Validator.isNotNullOrEmpty(query)){
-			String[] nameAndValueArray = query.split(ampersand);
+			String[] nameAndValueArray = query.split(URIConstants.AMPERSAND);
 
 			if (Validator.isNotNullOrEmpty(nameAndValueArray)){
 
@@ -414,7 +403,7 @@ public final class URIUtil{
 		}else{
 			String before = "";
 			// 判断url中是否含有?
-			int index = url.indexOf(questionMark);
+			int index = url.indexOf(URIConstants.QUESTIONMARK);
 			if (index == -1){
 				before = url;
 			}else{
@@ -586,7 +575,7 @@ public final class URIUtil{
 		specialCharacterMap.put("+", "%2B");// URL 中+号表示空格
 		specialCharacterMap.put(" ", "%20");// URL中的空格可以用+号或者编码
 		specialCharacterMap.put("/", "%2F");// 分隔目录和子目录
-		specialCharacterMap.put(questionMark, "%3F");// 分隔实际的 URL 和参数
+		specialCharacterMap.put(URIConstants.QUESTIONMARK, "%3F");// 分隔实际的 URL 和参数
 		specialCharacterMap.put("%", "%25");// 指定特殊字符
 		specialCharacterMap.put("#", "%23");// 表示书签
 		specialCharacterMap.put("&", "%26");// URL 中指定的参数间的分隔符

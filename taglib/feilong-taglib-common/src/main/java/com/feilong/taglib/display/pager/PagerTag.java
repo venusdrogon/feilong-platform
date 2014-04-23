@@ -45,7 +45,8 @@ public class PagerTag extends AbstractCommonTag{
 		// 当前页码
 		int currentPageNo = PagerUtil.getCurrentPageNo(request, pageParamName);
 		// 当前全路径
-		String pageUrl = RequestUtil.getRequestAllURL(request);
+		// TODO
+		String pageUrl = RequestUtil.getRequestFullURL(request, CharsetType.UTF8);
 
 		PagerParams pagerParams = new PagerParams(count, pageUrl);
 

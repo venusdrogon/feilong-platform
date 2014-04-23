@@ -26,6 +26,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.feilong.commons.core.net.URIConstants;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.StringUtil;
@@ -129,8 +130,8 @@ public final class ParamUtil{
 	public static String getParameterWithoutSharp(HttpServletRequest request,String paramName){
 		String returnValue = getParameter(request, paramName);
 		if (Validator.isNotNullOrEmpty(returnValue)){
-			if (StringUtil.isContain(returnValue, URIUtil.fragment)){
-				returnValue = StringUtil.substring(returnValue, null, URIUtil.fragment);
+			if (StringUtil.isContain(returnValue, URIConstants.FRAGMENT)){
+				returnValue = StringUtil.substring(returnValue, null, URIConstants.FRAGMENT);
 			}
 		}
 		return returnValue;

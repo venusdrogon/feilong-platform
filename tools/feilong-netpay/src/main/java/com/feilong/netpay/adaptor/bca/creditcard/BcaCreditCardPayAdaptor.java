@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
@@ -297,7 +298,7 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		if ("PENDING".equals(transactionStatus) || "APPROVED".equals(transactionStatus)){
 			return true;
 		}else{
-			Object[] logArgs = { transactionStatus, RequestUtil.getRequestAllURL(request) };
+			Object[] logArgs = { transactionStatus, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
 			log.error("transactionStatus is:[{}], full request url is :{}", logArgs);
 			return false;
 		}
