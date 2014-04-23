@@ -31,8 +31,12 @@ import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.SessionUtil;
 import com.feilong.tools.json.JsonUtil;
 
+/**
+ * The Class CommonTiles3View.
+ */
 public class CommonTiles3View extends TilesView{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CommonTiles3View.class);
 
 	/*

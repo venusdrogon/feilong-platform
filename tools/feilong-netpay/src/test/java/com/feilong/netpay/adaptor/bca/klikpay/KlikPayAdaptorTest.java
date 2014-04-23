@@ -73,14 +73,19 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 	 */
 	@Test
 	public final void testGetSign(){
-		KlikPayAdaptor bcaAdaptor = new KlikPayAdaptor();
-		String klikPayCode = "123";
+		// "miscFee": "0.00",
+		// "descp": "",
+		// "payType": "01",
+		// "signature": "1995880609",
 
-		Date transactionDate = DateUtil.string2Date("20/01/2010", "dd/MM/yyyy");
-		String transactionNo = "456";
-		String totalAmount = "1500500.00";
+		KlikPayAdaptor bcaAdaptor = new KlikPayAdaptor();
+		String klikPayCode = "03BELAV220";
+
+		Date transactionDate = DateUtil.string2Date("23/04/2014 18:20:20", DatePattern.ddMMyyyyHHmmss);
+		String transactionNo = "010003240001";
+		String totalAmount = "9000009.00";
 		String currency = "IDR";
-		String keyId = "12345678901234561234567890123456";
+		String keyId = bcaAdaptor.getKeyId("ClearKeyDev2Blj2");
 		String sign = bcaAdaptor.getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currency, keyId);
 		log.info(sign);
 	}

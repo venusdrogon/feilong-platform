@@ -31,16 +31,21 @@ import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.SessionUtil;
 import com.feilong.tools.json.JsonUtil;
 
+/**
+ * The Class CommonTiles2View.
+ */
 public class CommonTiles2View extends TilesView{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CommonTiles2View.class);
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.springframework.web.servlet.view.tiles2.TilesView#renderMergedOutputModel(java.util.Map, javax.servlet.http.HttpServletRequest,
-	 * javax.servlet.http.HttpServletResponse)
+	 * @see org.springframework.web.servlet.view.tiles2.TilesView#renderMergedOutputModel(java.util.Map,
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	protected void renderMergedOutputModel(Map<String, Object> model,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	protected void renderMergedOutputModel(Map<String, Object> model,HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
 		super.renderMergedOutputModel(model, request, response);
 
 		if (log.isDebugEnabled()){
@@ -49,7 +54,8 @@ public class CommonTiles2View extends TilesView{
 			attributeMap.remove(Config.FMT_LOCALIZATION_CONTEXT + ".request");
 			// javax.servlet.jsp.jstl.fmt.localizationContext.request
 			// java.lang.IllegalAccessException:
-			// Class loxia.support.json.JSONObject can not access a member of class org.springframework.web.servlet.support.JstlUtils$SpringLocalizationContext
+			// Class loxia.support.json.JSONObject can not access a member of class
+			// org.springframework.web.servlet.support.JstlUtils$SpringLocalizationContext
 			// with modifiers "public"
 			// model 已经 exposeModelAsRequestAttributes
 			Object[] argsObjects = { RequestUtil.getRequestFullURL(request, CharsetType.UTF8),
@@ -58,7 +64,9 @@ public class CommonTiles2View extends TilesView{
 					JsonUtil.format(SessionUtil.getAttributeMap(request.getSession())),
 					JsonUtil.format(ServletContextUtil.getAttributeMap(request.getSession().getServletContext())) };
 
-			log.debug("requestAllURL:{},\n request attributeMap:{},\n session attributeMap:{} , \n servletContext attributeMap:{} ", argsObjects);
+			log.debug(
+					"requestAllURL:{},\n request attributeMap:{},\n session attributeMap:{} , \n servletContext attributeMap:{} ",
+					argsObjects);
 		}
 	}
 }

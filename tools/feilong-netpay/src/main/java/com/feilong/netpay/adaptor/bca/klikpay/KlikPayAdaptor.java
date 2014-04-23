@@ -355,9 +355,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * @return the sign
 	 */
 	public String getSignature(String klikPayCode,Date transactionDate,String transactionNo,String totalAmount,String currency,String keyId){
-
 		String firstValue = klikPayCode + transactionNo + currency + keyId;
-		log.debug("the firstValue:{}", firstValue);
+		log.debug("the firstValue:[{}]", firstValue);
 
 		String datePattern = "ddMMyyyy";
 		String formatTransactionDate = DateUtil.date2String(transactionDate, datePattern);
@@ -368,13 +367,17 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		String formatTotalAmount = StringUtil.substringWithoutLast(totalAmount, 3);
 
 		Integer secondValue = Integer.parseInt(formatTransactionDate) + Integer.parseInt(formatTotalAmount);
-		log.debug("the secondValue:{}", secondValue);
+		log.debug("the secondValue:[{}]", secondValue);
 
 		String firstValueHash = hash(firstValue);
+		log.debug("firstValue:[{}]---> hash:[{}]", firstValue, firstValueHash);
 		String secondValueHash = hash(secondValue + "");
+		log.debug("secondValue:[{}]---> hash:[{}]", secondValue, secondValueHash);
 
-		String result = Math.abs((Integer.parseInt(firstValueHash) + Integer.parseInt(secondValueHash))) + "";
-		return result;
+		String signature = Math.abs((Integer.parseInt(firstValueHash) + Integer.parseInt(secondValueHash))) + "";
+		log.debug("signature value:{}", signature);
+
+		return signature;
 	}
 
 	// A = klikPayCode
@@ -454,8 +457,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 				hash = hash + Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
 			}
 		}
-		log.debug("the value:{}---> hash:{}", value, hash);
-		return hash + "";
+		return "" + hash;
 	}
 
 	/**
@@ -473,7 +475,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 			keyId = keyId + hexArray[(bytes[cntr] & 0xFF) / 16] + hexArray[(bytes[cntr] & 0xFF) % 16];
 		}
 
-		log.debug("clearKey:{}, keyId:{}", clearKey, keyId);
+		log.debug("clearKey:[{}], keyId:[{}]", clearKey, keyId);
 		return keyId;
 	}
 

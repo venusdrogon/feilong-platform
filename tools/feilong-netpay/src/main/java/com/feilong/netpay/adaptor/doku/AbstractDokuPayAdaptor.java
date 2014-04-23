@@ -449,14 +449,22 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		boolean isSignOk = ourWORDS.equals(WORDS);
 
 		if (isSignOk){
+			log.info("signOk,tradeNo:[{}]");
+
 			boolean statusSuccess = notifySuccessResponseCode.equals(RESPONSECODE);
+			Object[] logArgs = { TRANSIDMERCHANT, PAYMENTCHANNEL, RESPONSECODE };
 			if (!statusSuccess){
-				log.error("PAYMENTCHANNEL:[{}],RESPONSECODE:[{}],error", PAYMENTCHANNEL, RESPONSECODE);
+				log.error("not pass verifyNotify,tradeNo:[{}],PAYMENTCHANNEL:[{}],RESPONSECODE:[{}]", logArgs);
+			}else{
+				log.info("pass verifyNotify,tradeNo:[{}],PAYMENTCHANNEL:[{}],RESPONSECODE:[{}]", logArgs);
 			}
 			return statusSuccess;
 		}else{
-			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
-			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
+			log.error(
+					"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
+					WORDS,
+					ourWORDS,
+					RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
 			return false;
 		}
 	}
@@ -493,15 +501,23 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		String ourWORDS = getWORDSForRedirect(TRANSIDMERCHANT, AMOUNT, STATUSCODE);
 		boolean isSignOk = ourWORDS.equals(WORDS);
 		if (isSignOk){
+			log.info("signOk,tradeNo:[{}]", TRANSIDMERCHANT);
 
 			boolean statusSuccess = validateRedirectStatusParam(STATUSCODE);
+
+			Object[] logArgs = { TRANSIDMERCHANT, PAYMENTCHANNEL, STATUSCODE };
 			if (!statusSuccess){
-				log.error("PAYMENTCHANNEL:[{}],STATUSCODE:[{}],error", PAYMENTCHANNEL, STATUSCODE);
+				log.error("not pass verifyRedirect,tradeNo:[{}],PAYMENTCHANNEL:[{}],STATUSCODE:[{}]", logArgs);
+			}else{
+				log.info("pass verifyRedirect,tradeNo:[{}],PAYMENTCHANNEL:[{}],STATUSCODE:[{}]", logArgs);
 			}
 			return statusSuccess;
 		}else{
-			Object[] logArgs = { WORDS, ourWORDS, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
-			log.error("from DoKu WORDS is:{},ourWORDS:{},full request url is :{}", logArgs);
+			log.error(
+					"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
+					WORDS,
+					ourWORDS,
+					RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
 			return false;
 		}
 	}

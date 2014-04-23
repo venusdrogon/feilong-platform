@@ -21,30 +21,39 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.feilong.commons.core.util.Validator;
-import com.feilong.servlet.http.RequestUtil;
+import com.feilong.servlet.http.RequestConstans;
 
 /**
- * 通用的 父类 AbstractController
+ * 通用的 父类 AbstractController.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Feb 23, 2013 10:54:51 PM
  */
 public abstract class AbstractController{
 
+	/** The Constant log. */
 	protected static final Logger	log							= LoggerFactory.getLogger(AbstractController.class);
 
-	/** 包装的单价 */
+	/** 包装的单价. */
 	public static final Double		PACK_PRICE					= 20.0;
 
-	public static final String		header_with_ajax_springmvc	= RequestUtil.header_XRequestedWith + "="
-																		+ RequestUtil.header_XRequestedWith_value_ajax;
+	/** The Constant header_with_ajax_springmvc. */
+	public static final String		header_with_ajax_springmvc	= RequestConstans.HEADER_X_REQUESTED_WITH + "="
+																		+ RequestConstans.HEADER_X_REQUESTED_WITH_VALUE_AJAX;
 
+	/** The context. */
 	@Resource
 	protected ApplicationContext	context;
 
 	// @Autowired
 	// protected ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource;
 
+	/**
+	 * Inits the binder.
+	 * 
+	 * @param webDataBinder
+	 *            the web data binder
+	 */
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder){
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("");
@@ -55,18 +64,12 @@ public abstract class AbstractController{
 	}
 
 	/**
-	 * can be override to add new binding
+	 * can be override to add new binding.
 	 * 
 	 * @param webDataBinder
 	 *            webDataBinder
 	 */
 	protected void initBinderInternal(WebDataBinder webDataBinder){}
-
-	protected String getServerRootWithContextPath(HttpServletRequest request){
-		return "http://".concat(request.getServerName())
-				.concat((request.getServerPort() == 80 ? "" : ":".concat(String.valueOf(request.getServerPort()))))
-				.concat(request.getContextPath());
-	}
 
 	/**
 	 * 生成spring 的跳转路径<br>
@@ -76,17 +79,18 @@ public abstract class AbstractController{
 	 * @param targetUrl
 	 *            如果是相对根目录路径 只需要传递 如"/shoppingcart" spring会自动添加request.getContextPath() <br>
 	 *            也可以传入绝对路径 如:http://www.baidu.com
-	 * @return
+	 * @return the spring redirect path
 	 */
 	protected String getSpringRedirectPath(String targetUrl){
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + targetUrl;
 	}
 
 	/**
-	 * 生成 spring Forward 路径
+	 * 生成 spring Forward 路径.
 	 * 
 	 * @param forwardUrl
-	 * @return
+	 *            the forward url
+	 * @return the spring forward path
 	 */
 	protected String getSpringForwardPath(String forwardUrl){
 		return UrlBasedViewResolver.FORWARD_URL_PREFIX + forwardUrl;
@@ -95,13 +99,11 @@ public abstract class AbstractController{
 	// **********************************************************************************************
 
 	/**
-	 * 获得消息信息
+	 * 获得消息信息.
 	 * 
-	 * @param code
-	 *            code
-	 * @param args
-	 *            args
-	 * @return
+	 * @param errorCode
+	 *            the error code
+	 * @return the message
 	 */
 	protected String getMessage(Integer errorCode){
 		Object[] args = null;
@@ -109,13 +111,13 @@ public abstract class AbstractController{
 	}
 
 	/**
-	 * 获得消息信息
+	 * 获得消息信息.
 	 * 
-	 * @param code
-	 *            code
+	 * @param errorCode
+	 *            the error code
 	 * @param args
 	 *            args
-	 * @return
+	 * @return the message
 	 */
 	protected String getMessage(Integer errorCode,Object...args){
 		if (Validator.isNotNullOrEmpty(errorCode)){
@@ -125,13 +127,13 @@ public abstract class AbstractController{
 	}
 
 	/**
-	 * 获得消息信息
+	 * 获得消息信息.
 	 * 
 	 * @param code
 	 *            code
 	 * @param args
 	 *            args
-	 * @return
+	 * @return the message
 	 */
 	protected String getMessage(String code,Object...args){
 		if (Validator.isNotNullOrEmpty(code)){
@@ -141,11 +143,11 @@ public abstract class AbstractController{
 	}
 
 	/**
-	 * 获得消息信息
+	 * 获得消息信息.
 	 * 
 	 * @param messageSourceResolvable
 	 *            适用于 ObjectError 以及 FieldError
-	 * @return
+	 * @return the message
 	 */
 	protected String getMessage(MessageSourceResolvable messageSourceResolvable){
 		// LocaleContextHolder.getLocale()
