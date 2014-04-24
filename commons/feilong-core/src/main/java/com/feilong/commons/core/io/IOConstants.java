@@ -26,29 +26,25 @@
 package com.feilong.commons.core.io;
 
 /**
- * 飞龙io单位
+ * io常用单位<br>
+ * This class defines the common IOConstants ,so that they can be referenced as a constant within Java code. <br>
+ * 参考了 velocity RuntimeConstants.
  * 
- * @author 金鑫 2010-5-21 下午04:31:08
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 2010-5-21 下午04:31:08
+ * @version 1.1 Apr 24, 2014 1:56:38 AM
  */
-public final class IOConstants{
+public interface IOConstants{
 
-	/**
-	 * KB 1024
-	 */
-	public final static long		KB				= 1024;
+	/** KB 1024. */
+	long		KB				= 1024;
 
-	/**
-	 * MB 1024 * 1024 1048576
-	 */
-	public final static long		MB				= 1024 * KB;
+	/** MB 1024 * 1024 1048576. */
+	long		MB				= 1024 * KB;
 
-	/**
-	 * GB 1024 * 1024 * 1024 1073741824
-	 */
-	public final static long		GB				= 1024 * MB;
+	/** GB 1024 * 1024 * 1024 1073741824. */
+	long		GB				= 1024 * MB;
 
-	/**
-	 * 常用图片格式
-	 */
-	public final static String[]	commonImages	= { "gif", "bmp", "jpg", "png" };
+	/** 常用图片格式. */
+	String[]	commonImages	= { "gif", "bmp", "jpg", "png" };
 }

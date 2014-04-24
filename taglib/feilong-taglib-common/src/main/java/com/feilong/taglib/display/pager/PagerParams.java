@@ -41,7 +41,7 @@ public class PagerParams implements Serializable{
 	private int					maxIndexPages;
 
 	/** 皮肤:可选. */
-	private String				skin				= PagerConstant.default_skin;
+	private String				skin				= PagerConstants.default_skin;
 
 	/** 分页的 基础 url. */
 	private String				pageUrl;

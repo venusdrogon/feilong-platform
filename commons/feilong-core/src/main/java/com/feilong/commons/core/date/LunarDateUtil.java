@@ -51,7 +51,7 @@ public final class LunarDateUtil{
 	 * @return 如 星期一
 	 */
 	public static String getChineseWeek(int week){
-		return PropertiesConstants.config_date_week + DateDictionary.week_chineses[week];
+		return PropertiesConstants.CONFIG_DATE_WEEK + DateDictionary.week_chineses[week];
 	}
 
 	/**

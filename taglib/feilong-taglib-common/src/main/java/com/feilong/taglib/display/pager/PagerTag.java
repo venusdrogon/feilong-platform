@@ -20,7 +20,7 @@ public class PagerTag extends AbstractCommonTag{
 	private int					maxIndexPages;
 
 	/** 皮肤 默认digg. */
-	private String				skin				= PagerConstant.default_skin;
+	private String				skin				= PagerConstants.default_skin;
 
 	/** 数据总数. */
 	private int					count;
@@ -29,10 +29,10 @@ public class PagerTag extends AbstractCommonTag{
 	private int					pageSize;
 
 	/** url页码参数,默认 pageNo. */
-	private String				pageParamName		= PagerConstant.default_pageParamName;
+	private String				pageParamName		= PagerConstants.default_pageParamName;
 
 	/** The vm path. */
-	private String				vmPath				= PagerConstant.default_templateInClassPath;
+	private String				vmPath				= PagerConstants.default_templateInClassPath;
 
 	// *****************************end**************************************************.
 
@@ -58,13 +58,13 @@ public class PagerTag extends AbstractCommonTag{
 		pagerParams.setVmPath(vmPath);
 		pagerParams.setCharsetType(CharsetType.UTF8);
 
-		String parameter = request.getParameter(PagerConstant.default_param_debugIsNotParseVM);
-		boolean debugIsNotParseVM = PagerConstant.default_param_debugIsNotParseVM_value.equals(parameter);
+		String parameter = request.getParameter(PagerConstants.default_param_debugIsNotParseVM);
+		boolean debugIsNotParseVM = PagerConstants.default_param_debugIsNotParseVM_value.equals(parameter);
 		pagerParams.setDebugIsNotParseVM(debugIsNotParseVM);
 
 		String html = PagerUtil.getPagerContent(pagerParams);
 
-		pageContext.setAttribute(PagerConstant.default_request_name, html);
+		pageContext.setAttribute(PagerConstants.default_request_name, html);
 		return html;
 	}
 

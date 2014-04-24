@@ -28,20 +28,22 @@ package com.feilong.commons.core;
 import static com.feilong.commons.core.configure.ResourceBundleUtil.getValue;
 
 /**
- * 配置文件.
+ * 配置文件<br>
+ * This class defines the common ExceptionConstants ,so that they can be referenced as a constant within Java code. <br>
+ * 参考了 velocity RuntimeConstants.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-19 下午05:58:59
  * @since 1.0
  */
-public class ExceptionConstants{
+public interface ExceptionConstants{
 
-	public final static String	$feilong_core_exception			= "messages/feilong-core-exception";
+	String	$feilong_core_exception			= "messages/feilong-core-exception";
 
 	// ******************************************************************************************************
 	/** 未知类型邮箱. */
-	public final static String	exception_unknown_type_email	= getValue($feilong_core_exception, "exception_unknown_type_email");
+	String	exception_unknown_type_email	= getValue($feilong_core_exception, "exception_unknown_type_email");
 
 	/** fileName 文件名不能为null. */
-	public final static String	exception_fileName_null			= getValue($feilong_core_exception, "exception_fileName_null");
+	String	exception_fileName_null			= getValue($feilong_core_exception, "exception_fileName_null");
 }

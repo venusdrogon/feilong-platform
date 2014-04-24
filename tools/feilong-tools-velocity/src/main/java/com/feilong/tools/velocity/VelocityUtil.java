@@ -36,29 +36,36 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
- * Velocity 工具类
+ * Velocity 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-8 下午02:01:59
  */
 public final class VelocityUtil{
 
-	private static final Logger		log								= LoggerFactory.getLogger(VelocityUtil.class);
+	/** The Constant log. */
+	private static final Logger		log						= LoggerFactory.getLogger(VelocityUtil.class);
 
-	private static String			RUNTIME_LOG_LOG4J_LOGGER		= "feilongVelocityLogger";
+	/** log的名字 */
+	private static String			RUNTIME_LOG_LOGGER_NAME	= "feilongVelocityLogger";
 
-	private static String			feilongStringVelocity			= "feilongStringVelocity";
+	/** The feilong string velocity. */
+	private static String			feilongStringVelocity	= "feilongStringVelocity";
 
-	// private static String RUNTIME_LOG_LOG4J_LOGGER_LEVEL	= Level.DEBUG.toString();
+	// private static String RUNTIME_LOG_LOG4J_LOGGER_LEVEL = Level.DEBUG.toString();
 
-	private static String			default_CharsetType				= CharsetType.UTF8;
+	/** The default_ charset type. */
+	private static String			default_CharsetType		= CharsetType.UTF8;
 
-	private static String			resource_loader_string			= "string";
+	/** The resource_loader_string. */
+	private static String			resource_loader_string	= "string";
 
-	private static String			resource_loader_class			= "class";
+	/** The resource_loader_class. */
+	private static String			resource_loader_class	= "class";
 
 	// 分离实例 避免影响其他的 项目
-	private static VelocityEngine	velocityEngine					= null;
+	/** The velocity engine. */
+	private static VelocityEngine	velocityEngine			= null;
 
 	static{
 		Properties properties = new Properties();
@@ -72,7 +79,8 @@ public final class VelocityUtil{
 		String logsystemClass = SLF4JLogChute.class.getName();
 		properties.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, logsystemClass);
 
-		properties.put(SLF4JLogChute.RUNTIME_LOG_SLF4J_LOGGER, RUNTIME_LOG_LOG4J_LOGGER);
+		// log的 The name of the logger.
+		properties.put(SLF4JLogChute.RUNTIME_LOG_SLF4J_LOGGER, RUNTIME_LOG_LOGGER_NAME);
 
 		// log 4j
 		// properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER, RUNTIME_LOG_LOG4J_LOGGER);
@@ -105,26 +113,26 @@ public final class VelocityUtil{
 	}
 
 	/**
-	 * 解析vm模板文件
+	 * 解析vm模板文件.
 	 * 
 	 * @param templateInClassPath
 	 *            vm文件,模版classpath 下面的路径
 	 * @param contextKeyValues
 	 *            参数
-	 * @return
+	 * @return the string
 	 */
 	public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues){
 		return parseVMTemplateAfterInitVelocity(templateInClassPath, contextKeyValues);
 	}
 
 	/**
-	 * 解析vm文件内容字符串
+	 * 解析vm文件内容字符串.
 	 * 
 	 * @param vmContent
 	 *            vm字符串
 	 * @param contextKeyValues
 	 *            vm参数
-	 * @return
+	 * @return the string
 	 */
 	public static String parseString(String vmContent,Map<String, Object> contextKeyValues){
 		// Properties properties = new Properties();
@@ -166,7 +174,7 @@ public final class VelocityUtil{
 
 	// ***************************************************************************************************************
 	/**
-	 * Velocity 初始化之后 调用,解析并获得模板内容
+	 * Velocity 初始化之后 调用,解析并获得模板内容.
 	 * 
 	 * @param templateName
 	 *            模板名称

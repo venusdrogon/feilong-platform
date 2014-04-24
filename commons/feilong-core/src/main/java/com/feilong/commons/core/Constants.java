@@ -31,20 +31,18 @@ package com.feilong.commons.core;
  * @author 金鑫 2010-3-19 下午05:37:33
  * @since 1.0
  * @version 1.0
+ * @deprecated 每个用到的地方自己实现
  */
-public final class Constants{
-
-	/** Don't let anyone instantiate this class. */
-	private Constants(){}
+public interface Constants{
 
 	/** 本地ip <code>{@value}</code>. */
-	public final static String	localhostIp		= "127.0.0.1";
+	String	localhostIp		= "127.0.0.1";
 
 	/** 初始值空格 oracle空格需要空1个实在的空格 ""在oracle自动转换为null. <code>{@value}</code> */
-	public final static String	space			= " ";
+	String	space			= " ";
 
 	/** 生成换行标识 Line separator ("\n" on UNIX). */
-	public final static String	lineSeparator	= System.getProperty("line.separator");
+	String	lineSeparator	= System.getProperty("line.separator");
 
 	/**
 	 * ***************************** Session 常量,内部类 ***************************************.
@@ -56,14 +54,9 @@ public final class Constants{
 	 * @version 1.0 2011-4-14 下午02:20:15
 	 * @since 1.0
 	 */
-	public static final class Session{
-
-		/**
-		 * private.
-		 */
-		private Session(){}
+	public static interface Session{
 
 		/** 验证码<code>{@value}</code>. */
-		public final static String	validateCode	= "feilong.validateCode";
+		String	validateCode	= "feilong.validateCode";
 	}
 }

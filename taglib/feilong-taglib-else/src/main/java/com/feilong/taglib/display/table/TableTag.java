@@ -10,7 +10,7 @@ import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.taglib.display.pager.PagerConstant;
+import com.feilong.taglib.display.pager.PagerConstants;
 import com.feilong.taglib.html.HtmlTableTag;
 import com.feilong.taglib.util.TagUtils;
 import com.feilong.tools.html.HtmlUtil;
@@ -125,7 +125,7 @@ public class TableTag extends HtmlTableTag{
 		if (isHasData){
 			Pager pageModel = (Pager) request.getAttribute("pageModel");
 			if (null != pageModel){
-				maxPageItems = PagerConstant.maxPageItems;
+				maxPageItems = PagerConstants.maxPageItems;
 				// 获得参数pageNo
 				pageNo = pageModel.getCurrentPageNo();
 			}

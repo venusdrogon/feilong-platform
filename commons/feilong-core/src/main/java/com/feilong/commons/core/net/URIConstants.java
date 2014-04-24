@@ -26,27 +26,29 @@
 package com.feilong.commons.core.net;
 
 /**
- * uri使用的常量
+ * uri使用的常量 <br>
+ * This class defines the common URI constants ,so that they can be referenced as a constant within Java code. <br>
+ * 参考了 velocity RuntimeConstants
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 23, 2014 1:36:16 PM
  */
-public final class URIConstants{
+public interface URIConstants{ // 声明成接口,不想被实例化
 
 	/** 查询片段 <code>{@value}</code>. */
-	public static final String	FRAGMENT		= "#";
+	String	FRAGMENT		= "#";
 
 	/** ? The question mark is used as a separator and is not part of the query string. */
-	public static final String	QUESTIONMARK	= "?";
+	String	QUESTIONMARK	= "?";
 
 	/** The Constant ampersand. */
-	public static final String	AMPERSAND		= "&";
+	String	AMPERSAND		= "&";
 
 	/** http协议. */
-	public static final String	SCHEME_HTTP		= "http";
+	String	SCHEME_HTTP		= "http";
 
 	/** https协议. */
-	public static final String	SCHEME_HTTPS	= "https";
+	String	SCHEME_HTTPS	= "https";
 
 	// public static final String equal = "=";
 

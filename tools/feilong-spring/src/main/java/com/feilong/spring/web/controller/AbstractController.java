@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.feilong.commons.core.util.Validator;
-import com.feilong.servlet.http.RequestConstans;
+import com.feilong.servlet.http.RequestConstants;
 
 /**
  * 通用的 父类 AbstractController.
@@ -38,8 +38,8 @@ public abstract class AbstractController{
 	public static final Double		PACK_PRICE					= 20.0;
 
 	/** The Constant header_with_ajax_springmvc. */
-	public static final String		header_with_ajax_springmvc	= RequestConstans.HEADER_X_REQUESTED_WITH + "="
-																		+ RequestConstans.HEADER_X_REQUESTED_WITH_VALUE_AJAX;
+	public static final String		header_with_ajax_springmvc	= RequestConstants.HEADER_X_REQUESTED_WITH + "="
+																		+ RequestConstants.HEADER_X_REQUESTED_WITH_VALUE_AJAX;
 
 	/** The context. */
 	@Resource

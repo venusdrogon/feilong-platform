@@ -58,13 +58,13 @@ public class PagerUtilTest{
 		int currentPageNo = -1;
 		int pageSize = 10;
 		int maxIndexPages = 8;
-		String skin = PagerConstant.default_skin;
+		String skin = PagerConstants.default_skin;
 		String pageUrl = "http://localhost:8888/pager.htm";
 
 	//	pageUrl = "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
 
 		String pageParamName = "pageNo";
-		String vmPath = PagerConstant.default_templateInClassPath;
+		String vmPath = PagerConstants.default_templateInClassPath;
 
 		// log.debug("===================================================");
 
