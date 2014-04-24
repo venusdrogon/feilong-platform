@@ -28,20 +28,15 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.log.Slf4jUtil;
-import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.RegexUtil;
-import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
-import com.feilong.netpay.adaptor.bca.klikpay.command.OutputPaymentIPAY;
-import com.feilong.netpay.adaptor.bca.klikpay.util.BCAKeyGenerator;
+import com.feilong.netpay.adaptor.bca.klikpay.util.KlikPayUtil;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
-import com.feilong.tools.xstream.ToXmlConfig;
-import com.feilong.tools.xstream.XStreamUtil;
 
 /**
  * The Class KlikPayAdaptor.
@@ -177,8 +172,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 
 		// signature String 10 (N) TRUE
 		// - signature (10) is validation that will be parsed by BCA KlikPay login page to decide whether data sent is valid or not.
-		String keyId = getKeyId(clearkey);
-		String signature = getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currencyDefault, keyId);
+		String keyId = KlikPayUtil.getKeyId(clearkey);
+		String signature = KlikPayUtil.getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currencyDefault, keyId);
 		map.put("signature", signature);
 
 		// *************************************************************************************************
@@ -256,8 +251,8 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		// 不必填
 		String additionalData = request.getParameter("additionalData");
 
-		String keyId = getKeyId(clearkey);
-		String ourAuthKey = getAuthKey(
+		String keyId = KlikPayUtil.getKeyId(clearkey);
+		String ourAuthKey = KlikPayUtil.getAuthKey(
 				klikPayCode,
 				DateUtil.string2Date(transactionDate, DatePattern.ddMMyyyyHHmmss),
 				transactionNo,
@@ -273,27 +268,6 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		}
 
 		return true;
-	}
-
-	/**
-	 * 获得支付确认 返回的xml.
-	 * 
-	 * @param outputPaymentIPAY
-	 *            the output payment ipay
-	 * @return the payment confirmation xml
-	 */
-	public String getPaymentFlagInvocationOutputXML(OutputPaymentIPAY outputPaymentIPAY){
-		if (Validator.isNullOrEmpty(outputPaymentIPAY)){
-			throw new IllegalArgumentException("outputPaymentIPAY can't be null/empty!");
-		}
-
-		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
-		aliasMap.put("OutputPaymentIPAY", OutputPaymentIPAY.class);
-
-		ToXmlConfig toXmlConfig = new ToXmlConfig();
-		toXmlConfig.setAliasMap(aliasMap);
-
-		return XStreamUtil.toXML(outputPaymentIPAY, toXmlConfig);
 	}
 
 	/*
@@ -334,149 +308,6 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public boolean isSupportCloseTrade(){
 		return false;
-	}
-
-	// 详见 svn "API Doc. for Payment KlikPay BCA-Sprint v1.8.pdf"
-	/**
-	 * Gets the sign.
-	 * 
-	 * @param klikPayCode
-	 *            the klik pay code
-	 * @param transactionDate
-	 *            the transaction date
-	 * @param transactionNo
-	 *            the transaction no
-	 * @param totalAmount
-	 *            the total amount
-	 * @param currency
-	 *            the currency
-	 * @param keyId
-	 *            the key id
-	 * @return the sign
-	 */
-	public String getSignature(String klikPayCode,Date transactionDate,String transactionNo,String totalAmount,String currency,String keyId){
-		String firstValue = klikPayCode + transactionNo + currency + keyId;
-		log.debug("the firstValue:[{}]", firstValue);
-
-		String datePattern = "ddMMyyyy";
-		String formatTransactionDate = DateUtil.date2String(transactionDate, datePattern);
-
-		// Total amount from redirect forward : 1500500.00
-		// Total amount that will be used : 1500500
-		// - totalAmount和miscFee 最后两个数字必须是00,注意舍入单位是每1货币。
-		String formatTotalAmount = StringUtil.substringWithoutLast(totalAmount, 3);
-
-		Integer secondValue = Integer.parseInt(formatTransactionDate) + Integer.parseInt(formatTotalAmount);
-		log.debug("the secondValue:[{}]", secondValue);
-
-		String firstValueHash = hash(firstValue);
-		log.debug("firstValue:[{}]---> hash:[{}]", firstValue, firstValueHash);
-		String secondValueHash = hash(secondValue + "");
-		log.debug("secondValue:[{}]---> hash:[{}]", secondValue, secondValueHash);
-
-		String signature = Math.abs((Integer.parseInt(firstValueHash) + Integer.parseInt(secondValueHash))) + "";
-		log.debug("signature value:{}", signature);
-
-		return signature;
-	}
-
-	// A = klikPayCode
-	// B = transactionNo C = currency
-	// D = transactionDate
-	// K = keyId (current key used for transaction)
-	// e
-	// k = encrypt by keyId
-	// h = hash function
-	/**
-	 * Gets the auth key.
-	 * 
-	 * @param klikPayCode
-	 *            the klik pay code
-	 * @param transactionDate
-	 *            the transaction date
-	 * @param transactionNo
-	 *            the transaction no
-	 * @param currency
-	 *            the currency
-	 * @param keyId
-	 *            the key id
-	 * @return the auth key
-	 */
-	public String getAuthKey(String klikPayCode,Date transactionDate,String transactionNo,String currency,String keyId){
-
-		// klikPay Code : 123 1230000000
-		// transactionNo : 456 456AAAAAAAAAAAAAAA
-		// currency : IDR IDR11
-		// transactionDate : 20/01/2010 01:01:01  20/01/2010 01:01:01
-		// KeyId : 12345678901234561234567890123456 
-		// 12345678901234561234567890123456
-
-		// Field# Parameter Pad Position Length Pad Data
-		// 1. klikPayCode Right 10 0
-		// 2. transactionNo Right 18 A
-		// 3. currency Right 5 1
-		// 4. transactionDate Left 19 C
-		// 5. keyId Right 32 E
-
-		String padKlikPayCode = BCAKeyGenerator.strpad(klikPayCode, 10, '0', false);
-		String padTransactionDate = DateUtil.date2String(transactionDate, DatePattern.ddMMyyyyHHmmss);
-		String padTransactionNo = BCAKeyGenerator.strpad(transactionNo, 18, 'A', false);
-		String padCurrency = BCAKeyGenerator.strpad(currency, 5, '1', false);
-		String padKeyId = keyId;
-
-		String secondValue = padKlikPayCode + padTransactionNo + padCurrency + padTransactionDate + padKeyId;
-
-		String md5SecondValue = MD5Util.encode(secondValue).toUpperCase();
-
-		try{
-			String authKeyString = BCAKeyGenerator.doAuthKey(md5SecondValue, keyId).toUpperCase();
-			return authKeyString;
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
-	 * Hash.
-	 * 
-	 * @param value
-	 *            the value
-	 * @return the string
-	 */
-	@SuppressWarnings("cast")
-	public String hash(String value){
-		Integer hash = 0;
-		for (int i = 0; i < value.length(); i++){
-			// (int)chars[i]); ascii( value[i] );
-			hash = (hash * 31) + (int) (value.charAt(i));
-			while (hash > Integer.MAX_VALUE){
-				hash = hash + Integer.MIN_VALUE - Integer.MAX_VALUE - 1;
-			}
-			while (hash < Integer.MIN_VALUE){
-				hash = hash + Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
-			}
-		}
-		return "" + hash;
-	}
-
-	/**
-	 * Uppercase [to String [Hexa[clearKey]]].
-	 * 
-	 * @param clearKey
-	 *            the clear key
-	 * @return the key id
-	 */
-	public static String getKeyId(String clearKey){
-		char[] hexArray = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-		byte[] bytes = clearKey.getBytes();
-		String keyId = "";
-		for (int cntr = 0; cntr < clearKey.length(); cntr++){
-			keyId = keyId + hexArray[(bytes[cntr] & 0xFF) / 16] + hexArray[(bytes[cntr] & 0xFF) % 16];
-		}
-
-		log.debug("clearKey:[{}], keyId:[{}]", clearKey, keyId);
-		return keyId;
 	}
 
 	/**

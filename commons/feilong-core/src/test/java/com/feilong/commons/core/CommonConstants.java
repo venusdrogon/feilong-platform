@@ -25,7 +25,10 @@
  */
 package com.feilong.commons.core;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
+
+import junit.framework.Assert;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -46,6 +49,21 @@ public class CommonConstants{
 		log.info(Integer.MAX_VALUE + "");
 		log.info(Long.MAX_VALUE + "");
 		log.info(Double.MAX_VALUE + "");
+	}
+
+	@Test
+	public void IntegerAssertEquals(){
+		int i = 760802109 + 1538284578;
+
+		log.warn("the param i:{}", i);
+		String signature1 = Math.abs(i) + "";
+		log.debug("signature1 value:{}", signature1);
+
+		BigDecimal add = new BigDecimal(760802109).add(new BigDecimal(1538284578));
+		log.warn("the param add:{}", add);
+		BigDecimal hash = add.abs();
+		String signature2 = hash + "";
+		log.debug("signature2 value:{}", signature2);
 	}
 
 	@Test
