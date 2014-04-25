@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 支付请求(独立的entity,不受官方商城版本影响).
+ * 用来构建支付数据的(独立的entity,不受官方商城版本影响).
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 25, 2014 8:27:43 PM

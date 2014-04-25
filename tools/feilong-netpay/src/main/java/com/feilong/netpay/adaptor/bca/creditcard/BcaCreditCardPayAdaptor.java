@@ -196,7 +196,6 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		}
 
 		return getPaymentFormEntity(gateway, method, map);
-		// throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
 	}
 
 	/*
@@ -295,7 +294,8 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 
 		// PENDING 大约有1%的可能
 		// 他们文档里面写的是 APPROVE,但是传递是参数值是 APPROVED
-		if ("PENDING".equals(transactionStatus) || "APPROVED".equals(transactionStatus)){
+
+		if (TransactionStatus.PENDING.equals(transactionStatus) || TransactionStatus.APPROVED.equals(transactionStatus)){
 			return true;
 		}else{
 			Object[] logArgs = { transactionStatus, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
@@ -337,6 +337,8 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * @return the query result
 	 */
 	public boolean getQueryResult(String tradeNo){
+
+		// TODO
 		// Please make sure parameters are submitted in following order
 		Map<String, String> object = new HashMap<String, String>();
 
