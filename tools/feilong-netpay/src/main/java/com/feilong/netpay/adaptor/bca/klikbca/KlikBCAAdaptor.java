@@ -15,8 +15,6 @@
  */
 package com.feilong.netpay.adaptor.bca.klikbca;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +25,10 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
-import com.feilong.netpay.adaptor.bca.klikbca.command.OutputDetailPayment;
-import com.feilong.netpay.adaptor.bca.klikbca.command.OutputListTransactionPGW;
-import com.feilong.netpay.adaptor.bca.klikbca.command.OutputPaymentPGW;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
-import com.feilong.tools.xstream.ToXmlConfig;
-import com.feilong.tools.xstream.XStreamUtil;
 
 /**
  * The Class KlikBCAAdaptor.
@@ -53,69 +46,8 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+		// KlikBCA 的支付方式 是 网关主动在 inquery,和通用的不一样
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support getPaymentFormEntity");
-	}
-
-	/**
-	 * 生成 Inquiry output数据.
-	 * 
-	 * @param userID
-	 *            the user id
-	 * @param additionalData
-	 *            the additional data
-	 * @param outputDetailPayments
-	 *            the output detail payments
-	 * @return the payment inquiry xml
-	 */
-	public String getPaymentInquiryXML(String userID,String additionalData,List<OutputDetailPayment> outputDetailPayments){
-
-		if (Validator.isNullOrEmpty(userID)){
-			throw new IllegalArgumentException("userID can't be null/empty!");
-		}
-
-		// ********************************************************************
-
-		OutputListTransactionPGW outputListTransactionPGW = new OutputListTransactionPGW();
-		outputListTransactionPGW.setUserID(userID);
-		outputListTransactionPGW.setAdditionalData(additionalData);
-
-		outputListTransactionPGW.setOutputDetailPayments(outputDetailPayments);
-
-		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
-		aliasMap.put("OutputListTransactionPGW", OutputListTransactionPGW.class);
-		aliasMap.put("OutputDetailPayment", OutputDetailPayment.class);
-
-		Map<String, Class<?>> implicitCollectionMap = new HashMap<String, Class<?>>();
-		implicitCollectionMap.put("outputDetailPayments", OutputListTransactionPGW.class);
-
-		ToXmlConfig toXmlConfig = new ToXmlConfig();
-		toXmlConfig.setAliasMap(aliasMap);
-		toXmlConfig.setImplicitCollectionMap(implicitCollectionMap);
-
-		return XStreamUtil.toXML(outputListTransactionPGW, toXmlConfig);
-	}
-
-	/**
-	 * 获得支付确认 返回的xml.
-	 * 
-	 * @param outputPaymentPGW
-	 *            the output payment pgw
-	 * @return the payment confirmation xml
-	 */
-	public String getPaymentConfirmationXML(OutputPaymentPGW outputPaymentPGW){
-
-		if (Validator.isNullOrEmpty(outputPaymentPGW)){
-			throw new IllegalArgumentException("outputPaymentPGW can't be null/empty!");
-		}
-
-		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
-		aliasMap.put("OutputPaymentPGW", OutputPaymentPGW.class);
-
-		ToXmlConfig toXmlConfig = new ToXmlConfig();
-		toXmlConfig.setAliasMap(aliasMap);
-
-		return XStreamUtil.toXML(outputPaymentPGW, toXmlConfig);
-
 	}
 
 	/*
@@ -157,6 +89,8 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 		if (!"N".equals(type)){
 			return false;
 		}
+
+		// 这里未发现 参数有状态的判断
 
 		return true;
 	}

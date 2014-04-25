@@ -13,33 +13,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.klikBCA;
+package com.feilong.netpay.adaptor.bca.klikbca;
+
+import static org.junit.Assert.*;
 
 import java.util.Date;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.netpay.adaptor.BasePaymentTest;
-import com.feilong.netpay.adaptor.bca.klikbca.KlikBCAAdaptor;
 import com.feilong.netpay.adaptor.bca.klikbca.command.OutputPaymentPGW;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Apr 1, 2014 9:40:39 PM
+ * @version 1.0 Apr 25, 2014 4:43:41 PM
  */
-public class KlikBCAAdaptorTest extends BasePaymentTest{
+public class KlikBCAUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAAdaptorTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAUtilTest.class);
 
-	@Autowired
-	@Qualifier("klikBCAAdaptor")
-	private KlikBCAAdaptor		klikBCAAdaptor;
+	/**
+	 * Test method for
+	 * {@link com.feilong.netpay.adaptor.bca.klikbca.KlikBCAUtil#getPaymentInquiryXML(java.lang.String, java.lang.String, java.util.List)}.
+	 */
+	@Test
+	public final void testGetPaymentInquiryXML(){
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.feilong.netpay.adaptor.bca.klikbca.KlikBCAUtil#getPaymentConfirmationXML(com.feilong.netpay.adaptor.bca.klikbca.command.OutputPaymentPGW)}
+	 * .
+	 */
+	@Test
+	public final void testGetPaymentConfirmationXML(){
+		fail("Not yet implemented"); // TODO
+	}
 
 	@Test
 	public final void testObject(){
@@ -59,7 +72,7 @@ public class KlikBCAAdaptorTest extends BasePaymentTest{
 		outputPaymentPGW.setTransactionNo(transactionNo);
 		outputPaymentPGW.setUserID(userID);
 
-		log.info(klikBCAAdaptor.getPaymentConfirmationXML(outputPaymentPGW));
+		log.info(KlikBCAUtil.getPaymentConfirmationXML(outputPaymentPGW));
 
 		// <OutputPaymentPGW>
 		// <userID>user01</userID>

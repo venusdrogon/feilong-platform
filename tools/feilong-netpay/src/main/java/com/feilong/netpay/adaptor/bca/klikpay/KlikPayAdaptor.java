@@ -263,10 +263,11 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		if (!ourAuthKey.equals(authKey)){
 			log.error("authKey:{} is not eq our's :{}", authKey, ourAuthKey);
 			return false;
-		}else{
-			log.debug("pass doNotifyVerify,transactionNo:{}", transactionNo);
 		}
+		
+		// XXX 在API 里面没有发现 状态这样的参数
 
+		log.info("pass doNotifyVerify,transactionNo:{}", transactionNo);
 		return true;
 	}
 

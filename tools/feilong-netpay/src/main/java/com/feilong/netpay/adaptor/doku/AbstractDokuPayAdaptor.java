@@ -451,6 +451,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		if (isSignOk){
 			log.info("signOk,tradeNo:[{}]");
 
+			// 0000: Success, others Failed
 			boolean statusSuccess = notifySuccessResponseCode.equals(RESPONSECODE);
 			Object[] logArgs = { TRANSIDMERCHANT, PAYMENTCHANNEL, RESPONSECODE };
 			if (!statusSuccess){
