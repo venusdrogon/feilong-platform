@@ -236,6 +236,9 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		String payType = request.getParameter("payType");
 		if (Validator.isNullOrEmpty(payType)){
 			throw new IllegalArgumentException("payType can't be null/empty!");
+		}else if (!"01".equals(payType)){// 我们只支持 全额支付,此处加上限制,防止用户人为修改传递的参数
+			String messagePattern = "transactionNo:[{}],payType:[{}] not support!";
+			throw new UnsupportedOperationException(Slf4jUtil.formatMessage(messagePattern, transactionNo, payType));
 		}
 
 		// 不必填
@@ -264,7 +267,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 			log.error("authKey:{} is not eq our's :{}", authKey, ourAuthKey);
 			return false;
 		}
-		
+
 		// XXX 在API 里面没有发现 状态这样的参数
 
 		log.info("pass doNotifyVerify,transactionNo:{}", transactionNo);
