@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.util.Collection;
@@ -32,7 +22,7 @@ import java.util.Enumeration;
 import com.feilong.commons.core.entity.JoinStringEntity;
 
 /**
- * 集合工具类
+ * 集合工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:08:40 PM
@@ -43,19 +33,19 @@ public final class CollectionUtil{
 	/** Don't let anyone instantiate this class. */
 	private CollectionUtil(){}
 
-	/**
-	 * 默认逗号连接
-	 */
+	/** 默认逗号连接. */
 	public static String	connector_default	= ",";
 
 	/**
-	 * 集合转成字符串
+	 * 集合转成字符串.
 	 * 
 	 * @param <T>
+	 *            the generic type
 	 * @param collection
+	 *            the collection
 	 * @param joinStringEntity
 	 *            连接字符串 实体
-	 * @return
+	 * @return the string
 	 */
 	public static <T> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
 		StringBuilder stringBuilder = null;
@@ -79,9 +69,10 @@ public final class CollectionUtil{
 	}
 
 	/**
-	 * 将集合转成枚举
+	 * 将集合转成枚举.
 	 * 
 	 * @param <T>
+	 *            the generic type
 	 * @param collection
 	 *            集合
 	 * @return Enumeration

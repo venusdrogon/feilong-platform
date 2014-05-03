@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.net;
 
@@ -336,10 +326,8 @@ public final class URLConnectionUtil{
 			}catch (IOException e){
 				e.printStackTrace();
 			}finally{
-				if (null != httpURLConnection){
-					// 指示近期服务器不太可能有其他请求。调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例。
-					httpURLConnection.disconnect();
-				}
+				// 指示近期服务器不太可能有其他请求。调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例。
+				httpURLConnection.disconnect();
 			}
 		}
 		return null;

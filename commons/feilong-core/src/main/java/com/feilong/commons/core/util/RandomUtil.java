@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,22 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.util.Random;
 
 /**
- * 飞龙随机工具类
+ * 飞龙随机工具类.
  * 
  * @author 金鑫 2010-4-5 下午10:55:19
  * @since 1.0
@@ -39,7 +29,7 @@ public final class RandomUtil{
 	private RandomUtil(){}
 
 	/**
-	 * 创建0-最大值之间的随机数
+	 * 创建0-最大值之间的随机数.
 	 * 
 	 * @param number
 	 *            随机数最大值
@@ -50,7 +40,7 @@ public final class RandomUtil{
 	}
 
 	/**
-	 * 创建最小值和最大值之间的随机数
+	 * 创建最小值和最大值之间的随机数.
 	 * 
 	 * @param min
 	 *            最小值
@@ -66,7 +56,7 @@ public final class RandomUtil{
 	// ********************************************************************
 
 	/**
-	 * 生成一个指定长度大小的随机正整数
+	 * 生成一个指定长度大小的随机正整数.
 	 * 
 	 * @param length
 	 *            设定所取出随机数的长度。length小于11
@@ -92,7 +82,7 @@ public final class RandomUtil{
 	// ****************************************************************
 
 	/**
-	 * 随机抽取字符串char,拼接成随机字符串
+	 * 随机抽取字符串char,拼接成随机字符串.
 	 * 
 	 * @param minLength
 	 *            最小长度
@@ -108,7 +98,7 @@ public final class RandomUtil{
 	}
 
 	/**
-	 * 随机抽取字符串char,拼接成随机字符串
+	 * 随机抽取字符串char,拼接成随机字符串.
 	 * 
 	 * @param length
 	 *            随机字符串长度

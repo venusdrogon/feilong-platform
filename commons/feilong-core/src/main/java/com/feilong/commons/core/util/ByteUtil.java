@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 /**
- * Byte 工具类
+ * Byte 工具类.
  * 
  * @author 金鑫 2010-3-11 下午02:58:49
  * @since 1.0
@@ -36,19 +26,19 @@ public final class ByteUtil{
 	/** Don't let anyone instantiate this class. */
 	private ByteUtil(){}
 
-	/**
-	 * 数字 字符数组
-	 */
+	/** 数字 字符数组. */
 	private static final char[]		digit2char	= { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', };
 
+	/** The Constant hexDigits. */
 	private static final String[]	hexDigits	= { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
 
 	/**
 	 * 字节数组,转成小写的16进制字符串<br>
-	 * md5加密 使用这个
+	 * md5加密 使用这个.
 	 * 
 	 * @param b
-	 * @return
+	 *            the b
+	 * @return the string
 	 */
 	public final static String bytesToHexStringLowerCase(byte b[]){
 		StringBuffer resultSb = new StringBuffer();
@@ -60,6 +50,13 @@ public final class ByteUtil{
 
 	// UpperCase
 	// LowerCase
+	/**
+	 * Byte to hex string lower case.
+	 * 
+	 * @param b
+	 *            the b
+	 * @return the string
+	 */
 	public final static String byteToHexStringLowerCase(byte b){
 		int i = b;
 		if (i < 0){
@@ -81,10 +78,11 @@ public final class ByteUtil{
 
 	/**
 	 * 字节数组,转成大写的16进制字符串 <br>
-	 * 网友gdpglc的思路
+	 * 网友gdpglc的思路.
 	 * 
 	 * @param bytes
-	 * @return
+	 *            the bytes
+	 * @return the string
 	 */
 	public final static String bytesToHexStringUpperCase(byte[] bytes){
 		if (null == bytes){
@@ -101,7 +99,7 @@ public final class ByteUtil{
 	}
 
 	/**
-	 * 字节数组转换成16进制字符串
+	 * 字节数组转换成16进制字符串.
 	 * 
 	 * @param bytes
 	 *            byte[]
@@ -128,10 +126,12 @@ public final class ByteUtil{
 
 	// *****************************************************************************************************
 	/**
-	 * 将两个ASCII字符合成一个字节； 如："EF"--> 0xEF
+	 * 将两个ASCII字符合成一个字节； 如："EF"--> 0xEF.
 	 * 
 	 * @param byte1
+	 *            the byte1
 	 * @param byte2
+	 *            the byte2
 	 * @return 将两个ASCII字符合成一个字节； 如："EF"--> 0xEF
 	 */
 	public final static byte uniteBytes(byte byte1,byte byte2){
@@ -143,9 +143,10 @@ public final class ByteUtil{
 	}
 
 	/**
-	 * 16进制字符串转成字节数组
+	 * 16进制字符串转成字节数组.
 	 * 
 	 * @param bytes
+	 *            the bytes
 	 * @return 16进制字符串转成字节数组
 	 */
 	public final static byte[] hexBytesToBytes(byte[] bytes){
@@ -167,6 +168,13 @@ public final class ByteUtil{
 	}
 
 	// 将指定字符串hexString，以每两个字符分割转换为16进制形式 如："2B44EFD9" --> byte[]{0x2B, 0x44, 0xEF, 0xD9}
+	/**
+	 * Hex bytes to bytes2.
+	 * 
+	 * @param bytes
+	 *            the bytes
+	 * @return the byte[]
+	 */
 	public final static byte[] hexBytesToBytes2(byte[] bytes){
 		int size = bytes.length / 2;
 		byte[] ret = new byte[size];

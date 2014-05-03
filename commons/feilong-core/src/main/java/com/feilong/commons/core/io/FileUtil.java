@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,21 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.io;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.slf4j.Logger;

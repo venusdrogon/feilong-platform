@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.xml.javaxXml;
 
@@ -51,11 +41,11 @@ public class XmlUtil{
 	 * 
 	 * <pre>
 	 * 
-	 * 指定名称空间 URI 和本地部分的 QName 构造方法 
+	 * 指定名称空间 URI 和本地部分的 QName 构造方法
 	 * 如果名称空间 URI 为 null，则将它设置为 XMLConstants.NULL_NS_URI。此值表示非显式定义的名称空间，在 Namespaces in XML 规范中定义。此操作保持了与 QName 1.0 兼容的行为。显式提供 XMLConstants.NULL_NS_URI 值是首选的编码风格。
 	 * 
-	 * 如果本地部分为 null，则抛出 IllegalArgumentException。允许 &quot;&quot; 的本地部分保持与 QName 1.0 的兼容行为。 
-	 * 当使用此构造方法时，将前缀设置为 XMLConstants.DEFAULT_NS_PREFIX。 
+	 * 如果本地部分为 null，则抛出 IllegalArgumentException。允许 &quot;&quot; 的本地部分保持与 QName 1.0 的兼容行为。
+	 * 当使用此构造方法时，将前缀设置为 XMLConstants.DEFAULT_NS_PREFIX。
 	 * 名称空间 URI 不根据 URI 参考验证。没有按 Namespaces in XML 中的指定将本地部分作为 NCName 来验证。
 	 * 
 	 * </pre>
@@ -64,7 +54,7 @@ public class XmlUtil{
 	 *            QName 的名称空间 URI
 	 * @param localPart
 	 *            QName 的本地部分
-	 * @return
+	 * @return the q name
 	 */
 	public static QName getQName(String namespaceURI,String localPart){
 		QName name = new QName(namespaceURI, localPart);
@@ -73,7 +63,7 @@ public class XmlUtil{
 
 	// *********************************************************************************
 	/**
-	 * Xml 元素的 JAXB 表示形式。
+	 * Xml 元素的 JAXB 表示形式。.
 	 * 
 	 * @param namespaceURI
 	 *            QName 的名称空间 URI
@@ -89,7 +79,7 @@ public class XmlUtil{
 	}
 
 	/**
-	 * Timestamp类型的传值方式
+	 * Timestamp类型的传值方式.
 	 * 
 	 * @param name
 	 *            QName
@@ -99,12 +89,15 @@ public class XmlUtil{
 	 */
 	public static JAXBElement<XMLGregorianCalendar> getJAXBElement(QName name,Date date){
 		XMLGregorianCalendar xml_gregorianCalendar = convertDateToXMLGregorianCalendar(date);
-		JAXBElement<XMLGregorianCalendar> element = new JAXBElement<XMLGregorianCalendar>(name, XMLGregorianCalendar.class, xml_gregorianCalendar);
+		JAXBElement<XMLGregorianCalendar> element = new JAXBElement<XMLGregorianCalendar>(
+				name,
+				XMLGregorianCalendar.class,
+				xml_gregorianCalendar);
 		return element;
 	}
 
 	/**
-	 * 将date 转成XMLGregorianCalendar
+	 * 将date 转成XMLGregorianCalendar.
 	 * 
 	 * @param date
 	 *            date
@@ -124,7 +117,7 @@ public class XmlUtil{
 	}
 
 	/**
-	 * Double类型的传值方式
+	 * Double类型的传值方式.
 	 * 
 	 * @param name
 	 *            QName
@@ -137,7 +130,7 @@ public class XmlUtil{
 	}
 
 	/**
-	 * Integer类型的传值方式
+	 * Integer类型的传值方式.
 	 * 
 	 * @param name
 	 *            QName
@@ -150,7 +143,7 @@ public class XmlUtil{
 	}
 
 	/**
-	 * 字符串传值
+	 * 字符串传值.
 	 * 
 	 * @param name
 	 *            QName

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.io.UnsupportedEncodingException;
@@ -34,13 +24,14 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
- * 字符串工具类
+ * 字符串工具类.
  * 
  * @author 金鑫 2010-2-9 上午09:53:37
  * @since 1.0
  */
 public final class StringUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(StringUtil.class);
 
 	/** Don't let anyone instantiate this class. */
@@ -141,7 +132,7 @@ public final class StringUtil{
 	 *            分隔符
 	 * @param elements
 	 *            任意字符串
-	 * @return
+	 * @return the string
 	 */
 	public final static String join(boolean isJoinBlankOrNull,String separator,String...elements){
 		if (Validator.isNullOrEmpty(elements)){
@@ -167,7 +158,13 @@ public final class StringUtil{
 		return stringBuilder.toString();
 	}
 
-	/******************************************************************************************************/
+	/**
+	 * ***************************************************************************************************.
+	 * 
+	 * @param word
+	 *            the word
+	 * @return the string
+	 */
 	/**
 	 * 单词首字母大写 比如jinxin---->Jinxin
 	 * 
@@ -205,7 +202,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 判断字符串是否包含小数点
+	 * 判断字符串是否包含小数点.
 	 * 
 	 * @param text
 	 *            字符串
@@ -216,7 +213,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 判断一个字符串内是否包含另外的字符串
+	 * 判断一个字符串内是否包含另外的字符串.
 	 * 
 	 * @param text
 	 *            原始字符串 jinxin,自动转成string
@@ -247,7 +244,9 @@ public final class StringUtil{
 	 * </pre>
 	 * 
 	 * @param text
+	 *            the text
 	 * @param beIncludedString
+	 *            the be included string
 	 * @return <ul>
 	 *         <li>如果 null==text, return false</li>
 	 *         <li>如果 null==beIncludedString, return false</li>
@@ -268,7 +267,7 @@ public final class StringUtil{
 
 	// ********************************replace************************************************
 	/**
-	 * 使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。
+	 * 使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。.
 	 * 
 	 * @param content
 	 *            需要被替换的字符串
@@ -293,6 +292,8 @@ public final class StringUtil{
 	 * 处理了replacement为空的情况
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param content
 	 *            内容
 	 * @param target
@@ -313,7 +314,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 替换,将内容content 中的需要被替换的内容target 替换成bean里面的filedName属性值
+	 * 替换,将内容content 中的需要被替换的内容target 替换成bean里面的filedName属性值.
 	 * 
 	 * @param content
 	 *            内容
@@ -339,7 +340,7 @@ public final class StringUtil{
 
 	// ********************************replace************************************************
 	/**
-	 * 测试此字符串是否以指定的前缀开始。
+	 * 测试此字符串是否以指定的前缀开始。.
 	 * 
 	 * @param value
 	 *            value
@@ -352,7 +353,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 字符串和数字相加(一般生成流水号使用)
+	 * 字符串和数字相加(一般生成流水号使用).
 	 * 
 	 * @param str
 	 *            字符串
@@ -529,7 +530,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * [截取]:从开始的字符串到结束的字符串中间的字符串(包括开始的字符串startString),不包含结束的endString
+	 * [截取]:从开始的字符串到结束的字符串中间的字符串(包括开始的字符串startString),不包含结束的endString.
 	 * 
 	 * @param text
 	 *            文字
@@ -555,7 +556,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * [截取]:截取文字最后几个字符串
+	 * [截取]:截取文字最后几个字符串.
 	 * 
 	 * @param text
 	 *            文字
@@ -568,7 +569,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * [截取]:去除最后几位
+	 * [截取]:去除最后几位.
 	 * 
 	 * @param text
 	 *            文字
@@ -585,7 +586,7 @@ public final class StringUtil{
 
 	// ********************************************************************************
 	/**
-	 * 字符串转换成byte数组
+	 * 字符串转换成byte数组.
 	 * 
 	 * @param value
 	 *            字符串
@@ -596,7 +597,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 字符串转换成byte数组
+	 * 字符串转换成byte数组.
 	 * 
 	 * @param value
 	 *            字符串
@@ -614,13 +615,14 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将string 类型值转成泛型,一般用于配置文件读取数据
+	 * 将string 类型值转成泛型,一般用于配置文件读取数据.
 	 * 
 	 * @param <T>
+	 *            the generic type
 	 * @param value
 	 *            值
-	 * @param toValue
-	 *            转成泛型
+	 * @param class1
+	 *            the class1
 	 * @return <pre>
 	 * if (class1 == String.class){
 	 * 	return (T) value;
@@ -637,7 +639,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将字符串分隔成 字符串数组
+	 * 将字符串分隔成 字符串数组.
 	 * 
 	 * @param value
 	 *            value
@@ -654,7 +656,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将字符串分隔成 字符串数组
+	 * 将字符串分隔成 字符串数组.
 	 * 
 	 * @param value
 	 *            value
@@ -671,9 +673,10 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 转成T
+	 * 转成T.
 	 * 
 	 * @param <T>
+	 *            the generic type
 	 * @param value
 	 *            字符串
 	 * @param spliter
@@ -714,10 +717,10 @@ public final class StringUtil{
 	 * %f	浮点类型	99.99
 	 * %a	十六进制浮点类型	FF.35AE
 	 * %e	指数类型	9.38e+5
-	 * %g	通用浮点类型（f和e类型中较短的）	
-	 * %h	散列码	
+	 * %g	通用浮点类型（f和e类型中较短的）
+	 * %h	散列码
 	 * %%	百分比类型	％
-	 * %n	换行符	
+	 * %n	换行符
 	 * %tx	日期与时间类型（x代表不同的日期与时间转换符
 	 * </pre>
 	 * 
@@ -729,13 +732,15 @@ public final class StringUtil{
 	 * 空格	在整数之前添加指定数量的空格	("% 4d", 99)	|  99|
 	 * ,	以“,”对数字分组	("%,f", 9999.99)	9,999.990000
 	 * (	使用括号包含负数	("%(f", -99.99)	(99.990000)
-	 * #	如果是浮点数则包含小数点，如果是16进制或8进制则添加0x或0 
+	 * #	如果是浮点数则包含小数点，如果是16进制或8进制则添加0x或0
 	 * <	格式化前一个转换符所描述的参数	("%f和%<3.2f", 99.45)	99.450000和99.45
 	 * $	被格式化的参数索引	("%1$d,%2$s", 99,"abc")	99,abc
 	 * </pre>
 	 * 
 	 * @param format
+	 *            the format
 	 * @param args
+	 *            the args
 	 * @return A formatted string
 	 * @see java.util.Formatter
 	 * @see {@link String#format(String, Object...)}
@@ -746,11 +751,11 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将原始字符串 转成 大写的HexString 网友gdpglc的思路
+	 * 将原始字符串 转成 大写的HexString 网友gdpglc的思路.
 	 * 
 	 * @param original
 	 *            原始字符串
-	 * @return
+	 * @return the string
 	 */
 	public final static String toHexStringUpperCase(String original){
 		// 先 Charset.defaultCharset() 如果有异常 用 ISO-8859-1
@@ -760,13 +765,13 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将原始字符串 转成 大写的HexString 网友gdpglc的思路
+	 * 将原始字符串 转成 大写的HexString 网友gdpglc的思路.
 	 * 
 	 * @param original
 	 *            原始字符串
 	 * @param charsetName
 	 *            字符集 {@link CharsetType}
-	 * @return
+	 * @return the string
 	 */
 	public final static String toHexStringUpperCase(String original,String charsetName){
 		try{
@@ -780,11 +785,11 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将 转成 大写的HexString原始字符串
+	 * 将 转成 大写的HexString原始字符串.
 	 * 
 	 * @param hexStringUpperCase
 	 *            大写的HexString
-	 * @return
+	 * @return the string
 	 */
 	public final static String toOriginal(String hexStringUpperCase){
 		byte[] hexBytesToBytes = ByteUtil.hexBytesToBytes(hexStringUpperCase.getBytes());
@@ -794,12 +799,13 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 将 转成 大写的HexString原始字符串
+	 * 将 转成 大写的HexString原始字符串.
 	 * 
 	 * @param hexStringUpperCase
+	 *            the hex string upper case
 	 * @param charsetName
 	 *            指定字符集
-	 * @return
+	 * @return the string
 	 */
 	public final static String toOriginal(String hexStringUpperCase,String charsetName){
 		byte[] hexBytesToBytes = ByteUtil.hexBytesToBytes(hexStringUpperCase.getBytes());

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -84,7 +74,8 @@ public final class BeanUtil{
 	 * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性
 	 * 
 	 * @param bean
-	 * @return
+	 *            the bean
+	 * @return the map
 	 */
 	public static Map<String, String> describe(Object bean){
 		try{
@@ -102,10 +93,12 @@ public final class BeanUtil{
 	}
 
 	/**
-	 * 把properties里面的值放入bean中
+	 * 把properties里面的值放入bean中.
 	 * 
 	 * @param bean
+	 *            the bean
 	 * @param properties
+	 *            the properties
 	 */
 	public static void populate(Object bean,Map<String, ?> properties){
 		try{
@@ -338,6 +331,9 @@ public final class BeanUtil{
 	 * ConvertUtils.register(converter, Date.class);
 	 * BeanUtil.copyProperty(b, a, &quot;date&quot;);
 	 * </pre>
+	 * 
+	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+	 * @version 1.0 2014-5-4 0:35:31
 	 */
 	public static class DateConverter extends DateTimeConverter{
 

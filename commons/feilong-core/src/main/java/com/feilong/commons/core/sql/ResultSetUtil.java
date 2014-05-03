@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.sql;
 
 import java.sql.ResultSet;
@@ -35,20 +25,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * ResultSetUtil
+ * ResultSetUtil.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-8-2 下午3:16:45
  */
 public class ResultSetUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ResultSetUtil.class);
 
 	/**
-	 * 将 resultSet值 安装顺序 转成 Object[]数组
+	 * 将 resultSet值 安装顺序 转成 Object[]数组.
 	 * 
 	 * @param resultSet
-	 * @return
+	 *            the result set
+	 * @return the object[]
 	 */
 	public static Object[] toObjects(ResultSet resultSet){
 		try{
@@ -68,7 +60,7 @@ public class ResultSetUtil{
 	}
 
 	/**
-	 * 获得 resultSet 列名 list
+	 * 获得 resultSet 列名 list.
 	 * 
 	 * @param resultSet
 	 *            resultSet

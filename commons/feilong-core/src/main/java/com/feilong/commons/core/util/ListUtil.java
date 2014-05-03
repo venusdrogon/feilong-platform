@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.lang.reflect.Array;
@@ -36,20 +26,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * list工具类
+ * list工具类.
  * 
  * @author 金鑫 2010-3-2 下午03:20:12
  * @since 1.0
  */
 public final class ListUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ListUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private ListUtil(){}
 
 	/**
-	 * iterator是否包含某个值
+	 * iterator是否包含某个值.
 	 * 
 	 * @param iterator
 	 *            iterator
@@ -75,13 +66,13 @@ public final class ListUtil{
 	}
 
 	/**
-	 * 用于 自定义标签/ 自定义el
+	 * 用于 自定义标签/ 自定义el.
 	 * 
 	 * @param collection
 	 *            一个集合,将会被转成Iterator,可以为逗号隔开的字符串,会被分隔成Iterator.
 	 * @param value
 	 *            任意类型的值,最终toString 判断比较.
-	 * @return
+	 * @return true, if successful
 	 */
 	public static boolean _isContainTag(Object collection,Object value){
 		@SuppressWarnings("rawtypes")
@@ -90,8 +81,10 @@ public final class ListUtil{
 	}
 
 	/**
-	 * 集合转成数组
+	 * 集合转成数组.
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param list
 	 *            list
 	 * @return 数组
@@ -122,8 +115,10 @@ public final class ListUtil{
 	}
 
 	/**
-	 * 获得 list第一个元素
+	 * 获得 list第一个元素.
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param list
 	 *            list
 	 * @return 第一个元素,<br>
@@ -205,8 +200,12 @@ public final class ListUtil{
 	}
 
 	/**
-	 * 解析对象集合,取到对象特殊字段值,拼成集合
+	 * 解析对象集合,取到对象特殊字段值,拼成集合.
 	 * 
+	 * @param <T>
+	 *            the generic type
+	 * @param <O>
+	 *            the generic type
 	 * @param objectList
 	 *            对象集合
 	 * @param field

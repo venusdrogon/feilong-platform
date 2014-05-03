@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 /**
- * 常用的算法
+ * 常用的算法.
  * 
  * @author 金鑫 2010-4-15 下午01:51:24
  * @since 1.0
@@ -34,11 +24,13 @@ package com.feilong.commons.core.util;
 public final class Algorithm{
 
 	/**
-	 * 二分搜索法，返回座标，不存在返回-1
+	 * 二分搜索法，返回座标，不存在返回-1.
 	 * 
 	 * @param sort
+	 *            the sort
 	 * @param data
-	 * @return
+	 *            the data
+	 * @return the int
 	 */
 	public static int binarySearch(int[] sort,int data){
 		if (data < sort[0] || data > sort[sort.length - 1]){
@@ -66,12 +58,15 @@ public final class Algorithm{
 	 * <pre>
 	 * 
 	 * 是<b>稳定的排序方法</b>。
-	 * 将一个数据插入到已经排好序的有序数据中,从而得到一个新的、个数加一的有序数据  
+	 * 将一个数据插入到已经排好序的有序数据中,从而得到一个新的、个数加一的有序数据
 	 * 算法适用于少量数据的排序，时间复杂度为O(n^2)。
 	 * 
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param sort
+	 *            the sort
 	 */
 	public static void directInsertSort(int[] sort){
 		for (int i = 1; i < sort.length; ++i){
@@ -89,10 +84,14 @@ public final class Algorithm{
 	 * 快速排序
 	 * 
 	 * <pre>
-	 * 过一趟排序将要排序的数据分割成独立的两部分， 其中一部分的所有数据都比另外一部分的所有数据都要小，  
+	 * 过一趟排序将要排序的数据分割成独立的两部分， 其中一部分的所有数据都比另外一部分的所有数据都要小，
 	 * 然后再按此方法对这两部分数据分别进行快速排序， 整个排序过程可以递归进行，以此达到整个数据变成有序序列。
 	 * </pre>
 	 * 
+	 * .
+	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param sort
 	 *            要排序的数组
 	 * @param start
@@ -141,12 +140,14 @@ public final class Algorithm{
 	 * 
 	 * <pre>
 	 * 
-	 * 每一趟从待排序的数据元素中选出最小（或最大）的一个元素， 
+	 * 每一趟从待排序的数据元素中选出最小（或最大）的一个元素，
 	 * 顺序放在已排好序的数列的最后，
-	 * 直到全部待排序的数据元素排完。 
+	 * 直到全部待排序的数据元素排完。
 	 * 
 	 * 选择排序是不稳定的排序方法。
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param array
 	 *            需要排序的数组
@@ -169,7 +170,7 @@ public final class Algorithm{
 	 * <pre>
 	 * 冒泡排序，具有稳定性
 	 * 
-	 * 时间复杂度为O（n^2） 
+	 * 时间复杂度为O（n^2）
 	 * 
 	 * 不及堆排序，快速排序O（nlogn，底数为2）
 	 * 
@@ -183,16 +184,18 @@ public final class Algorithm{
 	 * 将小数放前，大数放后，一直比较到最大数前的一对相邻数，将小数放前，大数放后，
 	 * 第二趟结束，在倒数第二个数中得到一个新的最大数。如此下去，直至最终完成排序。
 	 * 
-	 *  用二重循环实现，外循环变量设为i，内循环变量设为j。
-	 *  外循环重复9次，内循环依次重复9，8，...，1次。
-	 *  每次进行比较的两个元素都是与内循环j有关的，
-	 *  它们可以分别用a[j]和a[j+1]标识，i的值依次为1,2,...,9，对于每一个i, j的值依次为1,2,...10-i。
-	 *  
-	 *  设想被排序的数组R［1..N］垂直竖立，将每个数据元素看作有重量的气泡，
-	 *  根据轻气泡不能在重气泡之下的原则，从下往上扫描数组R，凡扫描到违反本原则的轻气泡，就使其向上&quot;漂浮&quot;，
-	 *  如此反复进行，直至最后任何两个气泡都是轻者在上，重者在下为止。
+	 * 用二重循环实现，外循环变量设为i，内循环变量设为j。
+	 * 外循环重复9次，内循环依次重复9，8，...，1次。
+	 * 每次进行比较的两个元素都是与内循环j有关的，
+	 * 它们可以分别用a[j]和a[j+1]标识，i的值依次为1,2,...,9，对于每一个i, j的值依次为1,2,...10-i。
+	 * 
+	 * 设想被排序的数组R［1..N］垂直竖立，将每个数据元素看作有重量的气泡，
+	 * 根据轻气泡不能在重气泡之下的原则，从下往上扫描数组R，凡扫描到违反本原则的轻气泡，就使其向上&quot;漂浮&quot;，
+	 * 如此反复进行，直至最后任何两个气泡都是轻者在上，重者在下为止。
 	 * </pre>
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param array
 	 *            需要排序的数组
 	 * @param isDesc
@@ -220,9 +223,10 @@ public final class Algorithm{
 	}
 
 	/**
-	 * 某些情况下 不能快速的转成 T[]数组,可以调用这个方法
+	 * 某些情况下 不能快速的转成 T[]数组,可以调用这个方法.
 	 * 
 	 * @param array
+	 *            the array
 	 * @param isDesc
 	 *            是否倒序,true倒序 大数字在上面, 小数字在下面,false 顺序
 	 */

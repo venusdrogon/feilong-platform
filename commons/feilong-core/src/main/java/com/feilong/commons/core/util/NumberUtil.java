@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -80,7 +70,7 @@ public final class NumberUtil{
 	 *            number
 	 * @param scale
 	 *            小数点位数
-	 * @return
+	 * @return the big decimal
 	 */
 	public final static BigDecimal setHalfUpRounding(BigDecimal number,int scale){
 		return number.setScale(scale, BigDecimal.ROUND_HALF_UP);
@@ -313,7 +303,7 @@ public final class NumberUtil{
 	/**
 	 * 判断一个Object 类型的 value,是否是一个特定的数<br>
 	 * 系统自动将value 装成BigDecimal,并将specificNumber 也装成BigDecimal ,两个BigDecimal 进行compareTo,<br>
-	 * 如果是0 ,则返回true
+	 * 如果是0 ,则返回true.
 	 * 
 	 * @param value
 	 *            Object 类型的 value,类型必须是 Number 或者 String

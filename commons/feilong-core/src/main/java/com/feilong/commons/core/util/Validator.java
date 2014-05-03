@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.util.Collection;
@@ -35,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 飞龙通用验证类,该类最实用的方法,核心类之一<br>
- * isNullOrEmpty(Object value),判断元素是否为空
+ * isNullOrEmpty(Object value),判断元素是否为空.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:35:28 PM
@@ -44,6 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Validator{
 
+	/** The Constant log. */
 	@SuppressWarnings("unused")
 	private final static Logger	log	= LoggerFactory.getLogger(Validator.class);
 

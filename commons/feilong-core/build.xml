@@ -1,33 +1,5 @@
-<!--
-
-    Copyright (C) 2008 feilong (venusdrogon@163.com)
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
--->
-<!--
-
-    This product currently only contains code developed by authors
-    of specific components, as identified by the source code files.
-
-    Since product implements StAX API, it has dependencies to StAX API
-    classes.
-
-    For additional credits (generally to people who reported problems)
-    see CREDITS file.
-
--->
 <project name="feilong-core" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
 	<description>feilong-core</description>
 	<property file="${basedir}/build.properties" />
 
@@ -36,7 +8,7 @@
 	<import file="${path.config}/build-feilong-nested.xml" />
 
 	<!--由于使用的是maven 架构项目, 下面javadoc 需要引用 classpath -->
-	<artifact:pom id="feilongMaven" file="pom.xml"  />
+	<artifact:pom id="feilongMaven" file="pom.xml" />
 	<artifact:dependencies filesetId="feilong.maven.dependencies.fileset" pathid="feilong.maven.dependencies.runtime" useScope="runtime">
 		<pom refid="feilongMaven" />
 	</artifact:dependencies>
@@ -48,28 +20,30 @@
 	<artifact:dependencies pathid="feilong.maven.dependencies.all">
 		<pom refid="feilongMaven" />
 	</artifact:dependencies>
-	
- <!-- - - - - - - - - - - - - - - - - - 
-          target: name    >${feilongMaven.settingsFile}</echo>                   
-         - - - - - - - - - - - - - - - - - -->
-    <target name="1-test">
-		<echoproperties></echoproperties>
-		<echo>${feilongMaven.settings.localRepository}</echo>
-		<echo>${feilongMaven.repo.local}</echo>
-		<echo>${feilongMaven.localRepository}</echo>
-		<echo>${org.springframework:spring-web:jar}</echo>
-		<echo>${feilongMaven.version}</echo>
-		<echo>${feilong.YEAR}</echo>
-		<echo>${feilong.MONTH}</echo>
-		
-		
-		<echo>[java.class.path]:${java.class.path}</echo>
-    	
-    	<property environment="env" />
-    	<property name="java5.boot.classpath" value="${env.JAVA5_BOOTCLASSES}" />
 
+	<!-- - - - - - - - - - - - - - - - - - target: name >${feilongMaven.settingsFile}</echo> - - - - - - - - - - - - - - - - - -->
+	<target name="1-test">
+		<echoproperties></echoproperties>
+		<echo>feilongMaven.settings.localRepository:${feilongMaven.settings.localRepository}</echo>
+		<echo>feilongMaven.repo.local:${feilongMaven.repo.local}</echo>
+		<echo>feilongMaven.localRepository:${feilongMaven.localRepository}</echo>
+		<echo>org.springframework:spring-web:jar:${org.springframework:spring-web:jar}</echo>
+		<echo>feilongMaven.version:${feilongMaven.version}</echo>
+
+		<echo>feilong.YEAR:[${feilong.YEAR}]</echo>
+		<echo>feilong.MONTH:[${feilong.MONTH}]</echo>
+
+
+		<!-- 访问环境变量 -->
+		<property environment="env" />
+		<echo>[env]:${env._FeilongSoft}</echo>
+
+		<echo>[java.class.path]:${java.class.path}</echo>
+
+
+		<property name="java5.boot.classpath" value="${env.JAVA5_BOOTCLASSES}" />
 		<echo>[compile.classpath]:${sun.boot.class.path}</echo>
-    </target>
+	</target>
 
 
 
@@ -127,40 +101,13 @@
 		<delete dir="${destdir}" verbose="true" />
 
 		<!-- javadoc -->
-		<javadoc destdir="${destdir}"
-		         windowtitle="${windowtitle}"
-		         locale="${locale}"
-		         encoding="${encoding}"
-		         docencoding="${docencoding}"
-		         charset="${charset}"
-		         access="${access}"
-		         
-		         version="${version}"
-		         author="${author}"
-		         use="${use}"
-		         
-		         nodeprecated="${nodeprecated}"
-		         nodeprecatedlist="${nodeprecatedlist}"
-		         noindex="${noindex}"
-		         nonavbar="${nonavbar}"
-		         notree="${notree}"
-		         
-		         splitindex="${splitindex}"
-		         
-		         source="${source}"
-		         
-		         overview="${overview}"
-		         verbose="${verbose}"
-		         
-		         stylesheetfile="${stylesheetfile}"
-		         
+		<javadoc destdir="${destdir}" windowtitle="${windowtitle}" locale="${locale}" encoding="${encoding}" docencoding="${docencoding}" charset="${charset}"
+			access="${access}" version="${version}" author="${author}" use="${use}" nodeprecated="${nodeprecated}" nodeprecatedlist="${nodeprecatedlist}" noindex="${noindex}"
+			nonavbar="${nonavbar}" notree="${notree}" splitindex="${splitindex}" source="${source}" overview="${overview}" verbose="${verbose}" stylesheetfile="${stylesheetfile}"
 
-		         
-		         defaultexcludes="${defaultexcludes}"
-		         description="生成javadoc"
-			
-			
-		>
+
+
+			defaultexcludes="${defaultexcludes}" description="生成javadoc">
 			<!-- Include title for the package index(first) page (html-code) -->
 			<doctitle>feilong-core ${feilongMaven.version} API</doctitle>
 
@@ -174,26 +121,15 @@
 			<fileset dir="src/main/java" defaultexcludes="yes">
 				<!--这里可以定制 你先哪些包生成 那些包不生成javadoc -->
 				<!--<include name="com/feilong/commons/core/**" /> -->
-				<!-- <include name="com/feilong/commons/core/date/DateUtil.java" />-->
+				<!-- <include name="com/feilong/commons/core/date/DateUtil.java" /> -->
 				<include name="com/feilong/commons/core/date/**" />
 			</fileset>
-			  <!--
-			<classpath>
-				<path path="${sun.boot.class.path}"></path>
-				<path path="${java.class.path}"></path>
-				<path refid="feilong.maven.dependencies.all"></path>
-			</classpath>
-			-->
-			
-			
-			    <!-- <tag name="todo" scope="all" description="To do:"/> 
-			     bootclasspath="${sun.boot.class.path}"
-			     
-			     		         classpathref="feilong.maven.dependencies.all"
-		         classpath="${java.class.path}"
-			   -->
-			   <!-- <bootclasspath location="D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\rt.jar"></bootclasspath>-->
-			
+			<!-- <classpath> <path path="${sun.boot.class.path}"></path> <path path="${java.class.path}"></path> <path refid="feilong.maven.dependencies.all"></path> </classpath> -->
+
+
+			<!-- <tag name="todo" scope="all" description="To do:"/> bootclasspath="${sun.boot.class.path}" classpathref="feilong.maven.dependencies.all" classpath="${java.class.path}" -->
+			<!-- <bootclasspath location="D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\rt.jar"></bootclasspath> -->
+
 			<group title="日期操作工具包" packages="com.feilong.commons.core.date" />
 			<group title="加密解密工具包" packages="com.feilong.commons.core.security" />
 			<group title="IO工具包" packages="com.feilong.commons.core.io" />
@@ -204,7 +140,7 @@
 		<copy toDir="${destdir}/resources">
 			<fileset dir="${javadoc.resources.dir}" erroronmissingdir="false" />
 		</copy>
-		
+
 		<!-- javadoc 生成完成后,打开目标目录 -->
 		<property name="_explorerPath" location="${destdir}" />
 		<antcall target="Z_feilongExecExplorer" inheritall="true" />

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,33 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.enumeration;
 
 /**
- * 字体
+ * 字体.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:02:06
+ * @version 1.0.5 2014-5-4 00:24 改成interface
  */
-public class FontType{
+public interface FontType{
 
-	public final static String	kaiti		= "楷体_gb2312";
+	/** The KAITI. */
+	String	KAITI		= "楷体_gb2312";
 
-	public final static String	songti		= "宋体";
+	/** The SONGTI. */
+	String	SONGTI		= "宋体";
 
-	public final static String	yahei		= "微软雅黑";
+	/** The YAHEI. */
+	String	YAHEI		= "微软雅黑";
 
-	public final static String	verdana		= "Verdana";
+	/** The VERDANA. */
+	String	VERDANA		= "Verdana";
 
-	public final static String	courier_New	= "Courier New";
+	/** The COURIE r_ new. */
+	String	COURIER_NEW	= "Courier New";
 }

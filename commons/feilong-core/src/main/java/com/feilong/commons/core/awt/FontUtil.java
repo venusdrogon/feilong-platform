@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.awt;
 
@@ -42,7 +32,7 @@ public final class FontUtil{
 	/**
 	 * 验证码用到的字体 //\u534e\u6587\u884c\u6977 华文行楷 //\u6977\u4f53 楷体
 	 */
-	public static String[]	fontNamesForValidateCode	= { FontType.verdana, FontType.verdana };
+	public static String[]	fontNamesForValidateCode	= { FontType.VERDANA, FontType.VERDANA };
 
 	/**
 	 * 获得随机的验证码用到的字体
@@ -63,7 +53,7 @@ public final class FontUtil{
 	 * @return 12 正常 宋体字体
 	 */
 	public final static Font getFont_Song_Plain_12(){
-		return getFont(FontType.songti, 12);
+		return getFont(FontType.SONGTI, 12);
 	}
 
 	/**
@@ -73,7 +63,7 @@ public final class FontUtil{
 	 */
 	public final static Font getFont_KaiTi_Plain_16(){
 		// 普通样式常量
-		return getFont(FontType.kaiti, 16);
+		return getFont(FontType.KAITI, 16);
 	}
 
 	/**
@@ -83,7 +73,7 @@ public final class FontUtil{
 	 */
 	public final static Font getFont_Song_Plain_9(){
 		// 普通样式常量
-		return getFont(FontType.songti, 9);
+		return getFont(FontType.SONGTI, 9);
 	}
 
 	/**
@@ -93,7 +83,7 @@ public final class FontUtil{
 	 * @return
 	 */
 	public final static Font getFont_courier_New_Plain(int size){
-		return getFont(FontType.courier_New, size);
+		return getFont(FontType.COURIER_NEW, size);
 	}
 
 	/**
@@ -103,7 +93,7 @@ public final class FontUtil{
 	 * @return
 	 */
 	public final static Font getFont_verdana_Plain(int size){
-		return getFont(FontType.verdana, size);
+		return getFont(FontType.VERDANA, size);
 	}
 
 	/**
@@ -131,7 +121,7 @@ public final class FontUtil{
 	 * @return
 	 */
 	public final static Font getFont_YaHei_Plain(int size){
-		return getFont(FontType.yahei, size);
+		return getFont(FontType.YAHEI, size);
 	}
 
 	/**

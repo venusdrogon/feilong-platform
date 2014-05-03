@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 
 	<name>feilong-platform-parent</name>
+
 	<!-- 成立年份 -->
 	<inceptionYear>2008</inceptionYear>
 	<url>http://www.feilong.com</url>
@@ -20,6 +21,10 @@
 
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
+
+		<developer.feilong.name>feilong</developer.feilong.name>
+		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
+
 		<version.feilong-platform>${project.version}</version.feilong-platform>
 
 		<native2ascii_pattern>**/*.properties</native2ascii_pattern>
@@ -91,6 +96,7 @@
 		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
 		<scope.log4j>provided</scope.log4j>
 
+
 		<!--****************************plugin************************************ -->
 		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
 		<v.maven-clean-plugin>2.4.1</v.maven-clean-plugin>
@@ -104,6 +110,7 @@
 		<v.maven-resources-plugin>2.5</v.maven-resources-plugin>
 		<v.maven-war-plugin>2.4</v.maven-war-plugin>
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
+		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 	</properties>
 
 	<!--*******************************junit******************************************* -->
@@ -412,6 +419,7 @@
 
 		<plugins>
 
+			<!-- 国际化插件 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>native2ascii-maven-plugin</artifactId>
@@ -437,6 +445,44 @@
 				</executions>
 			</plugin>
 
+			<!-- license插件 -->
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${v.license-maven-plugin}</version>
+				<configuration>
+					<header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+					<properties>
+						<owner>${developer.feilong.name}</owner>
+						<year>${project.inceptionYear}</year>
+						<email>${developer.feilong.email}</email>
+					</properties>
+					<!-- -->
+					<excludes>
+						<exclude>**/README</exclude>
+						<exclude>src/test/resources/**</exclude>
+						<exclude>**/src/main/resources/**</exclude>
+					</excludes>
+					<includes>
+						<!----> <includes>**/src/main/java/**/*.java</includes> 
+						<!-- <includes>**/src/main/java/com/feilong/commons/core/log/**</includes> -->
+					</includes>
+
+					<headerDefinitions>
+						<!-- _FeilongTaglib会环境变量 -->
+						<headerDefinition>${env._FEILONGTAGLIB}\Apache Maven\javadoc_style.xml</headerDefinition>
+					</headerDefinitions>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- maven-resources-plugin插件 -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -529,6 +575,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- maven-clean-plugin插件 -->
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -543,6 +590,7 @@
 				</executions>
 			</plugin>
 
+			<!-- maven-deploy-plugin插件 -->
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-deploy-plugin</artifactId>
@@ -564,6 +612,7 @@
 				</dependencies>
 			</plugin>
 
+			<!-- maven-install-plugin插件 -->
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-install-plugin</artifactId>
@@ -582,55 +631,26 @@
 		<!-- pluginManagement -->
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>${v.maven-jar-plugin}</version>
-				</plugin>
+				<!-- <plugin> <artifactId>maven-jar-plugin</artifactId> <version>${v.maven-jar-plugin}</version> </plugin> -->
+				<!-- <plugin> <artifactId>maven-javadoc-plugin</artifactId> <version>${v.maven-javadoc-plugin}</version> </plugin> -->
+				<!-- <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>${v.maven-compiler-plugin}</version> </plugin> -->
 
-				<plugin>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>${v.maven-javadoc-plugin}</version>
-				</plugin>
+				<!-- <plugin> <artifactId>maven-source-plugin</artifactId> <version>${v.maven-source-plugin}</version> </plugin> -->
 
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${v.maven-compiler-plugin}</version>
-				</plugin>
+				<!-- <plugin> <artifactId>maven-surefire-plugin</artifactId> <version>${v.maven-surefire-plugin}</version> </plugin> -->
 
-				<plugin>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>${v.maven-source-plugin}</version>
-				</plugin>
+				<!-- <plugin> <artifactId>maven-deploy-plugin</artifactId> <version>${v.maven-deploy-plugin}</version> </plugin> -->
 
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${v.maven-surefire-plugin}</version>
-				</plugin>
+				<!-- <plugin> <artifactId>maven-install-plugin</artifactId> <version>${v.maven-install-plugin}</version> </plugin> -->
 
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>${v.maven-deploy-plugin}</version>
-				</plugin>
-
-				<plugin>
-					<artifactId>maven-install-plugin</artifactId>
-					<version>${v.maven-install-plugin}</version>
-				</plugin>
-
+				<!-- -->
 				<plugin>
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>${v.maven-antrun-plugin}</version>
 				</plugin>
 
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>${v.maven-clean-plugin}</version>
-				</plugin>
-
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>${v.maven-resources-plugin}</version>
-				</plugin>
+				<!-- <plugin> <artifactId>maven-clean-plugin</artifactId> <version>${v.maven-clean-plugin}</version> </plugin> -->
+				<!-- <plugin> <artifactId>maven-resources-plugin</artifactId> <version>${v.maven-resources-plugin}</version> </plugin> -->
 
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
@@ -643,6 +663,7 @@
 					<version>2.1</version> </plugin> <plugin> <artifactId>maven-plugin-plugin</artifactId> <version>2.5.1</version> </plugin> <plugin> <artifactId>maven-rar-plugin</artifactId> 
 					<version>2.2</version> </plugin> <plugin> <artifactId>maven-release-plugin</artifactId> <version>2.0-beta-9</version> </plugin> <plugin> <artifactId>maven-site-plugin</artifactId> 
 					<version>2.0.1</version> </plugin> -->
+
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -697,7 +718,7 @@
 		<developer>
 			<id>venusdrogn</id>
 			<name>金鑫</name>
-			<email>venusdrogon@163.com</email>
+			<email>${developer.feilong.email}</email>
 			<url>http://www.feilong.com</url>
 			<organization>feilong</organization>
 			<organizationUrl>http://www.feilong.com</organizationUrl>
@@ -711,9 +732,6 @@
 			</properties>
 		</developer>
 	</developers>
-
-
-
 
 	<licenses>
 		<license>

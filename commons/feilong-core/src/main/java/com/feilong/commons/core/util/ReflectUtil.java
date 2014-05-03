@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89,8 +89,10 @@ public final class ReflectUtil{
 	 * @param obj
 	 *            the obj
 	 * @return the field value map
-	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
 	 */
 	public static Map<String, Object> getFieldValueMap(Object obj) throws IllegalArgumentException,IllegalAccessException{
 
@@ -116,10 +118,11 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 获得一个对象所有的声明字段(包括私有的 private,继承 inherited 的)
+	 * 获得一个对象所有的声明字段(包括私有的 private,继承 inherited 的).
 	 * 
 	 * @param obj
-	 * @return
+	 *            the obj
+	 * @return the declared fields
 	 */
 	private static Field[] getDeclaredFields(Object obj){
 		Field[] fields = null;
@@ -151,6 +154,8 @@ public final class ReflectUtil{
 	 * 返回数组中的元素没有排序，也没有任何特定的顺序。
 	 * 如果该类或接口不声明任何字段，或者此 Class 对象表示一个基本类型、一个数组类或 void，则此方法返回一个长度为 0 的数组。
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param clz
 	 *            the clz
@@ -205,8 +210,10 @@ public final class ReflectUtil{
 	 * @param name
 	 *            属性名称
 	 * @return 返回一个 Field 对象，该对象反映此 Class 对象所表示的类或接口的指定已声明字段
-	 * @throws NoSuchFieldException
 	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchFieldException
+	 *             the no such field exception
 	 */
 	public static Field getDeclaredField(Class<?> clz,String name) throws SecurityException,NoSuchFieldException{
 		Field field = clz.getDeclaredField(name);
@@ -223,11 +230,16 @@ public final class ReflectUtil{
 	 * @param params
 	 *            参数
 	 * @return 方法返回值
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
-	 * @throws NoSuchMethodException
+	 *             the illegal argument exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
 	 */
 	public static Object invokeMethod(Object owner,String methodName,Object...params) throws IllegalArgumentException,
 			IllegalAccessException,InvocationTargetException,SecurityException,NoSuchMethodException{
@@ -249,8 +261,10 @@ public final class ReflectUtil{
 	 * @param params
 	 *            动态参数
 	 * @return 该方法
-	 * @throws NoSuchMethodException
 	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
 	 */
 	private static Method getMethod(Class<?> ownerClass,String methodName,Object...params) throws SecurityException,NoSuchMethodException{
 		log.debug("input param ownerClass is :" + ownerClass);
@@ -307,12 +321,18 @@ public final class ReflectUtil{
 	 * @param params
 	 *            动态参数
 	 * @return 该方法执行之后的结果
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 * @throws ClassNotFoundException
-	 * @throws NoSuchMethodException
+	 *             the class not found exception
 	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
 	 */
 	public static Object invokeStaticMethod(String className,String methodName,Object...params) throws IllegalArgumentException,
 			IllegalAccessException,InvocationTargetException,ClassNotFoundException,SecurityException,NoSuchMethodException{
@@ -333,6 +353,7 @@ public final class ReflectUtil{
 	 *            包名+类名 "org.jfree.chart.ChartFactory"
 	 * @return the class
 	 * @throws ClassNotFoundException
+	 *             the class not found exception
 	 */
 	private static Class<?> loadClass(String className) throws ClassNotFoundException{
 		return Class.forName(className);// JVM查找并加载指定的类
@@ -346,10 +367,14 @@ public final class ReflectUtil{
 	 * @param fieldName
 	 *            the field name
 	 * @return 该属性对象
-	 * @throws NoSuchFieldException
 	 * @throws SecurityException
-	 * @throws IllegalAccessException
+	 *             the security exception
+	 * @throws NoSuchFieldException
+	 *             the no such field exception
 	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
 	 */
 	public static Object getProperty(Object owner,String fieldName) throws SecurityException,NoSuchFieldException,IllegalArgumentException,
 			IllegalAccessException{
@@ -368,10 +393,14 @@ public final class ReflectUtil{
 	 *            字段
 	 * @param value
 	 *            值
-	 * @throws NoSuchFieldException
 	 * @throws SecurityException
-	 * @throws IllegalAccessException
+	 *             the security exception
+	 * @throws NoSuchFieldException
+	 *             the no such field exception
 	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
 	 */
 	public static void setProperty(Object owner,String fieldName,Object value) throws SecurityException,NoSuchFieldException,
 			IllegalArgumentException,IllegalAccessException{
@@ -407,12 +436,19 @@ public final class ReflectUtil{
 	 *            构造函数的参数
 	 * @return 新建的实例
 	 * @throws ClassNotFoundException
-	 * @throws NoSuchMethodException
+	 *             the class not found exception
 	 * @throws SecurityException
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
+	 *             the security exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
 	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 */
 	public static Object newInstance(String className,Object...args) throws ClassNotFoundException,SecurityException,NoSuchMethodException,
 			IllegalArgumentException,InstantiationException,IllegalAccessException,InvocationTargetException{

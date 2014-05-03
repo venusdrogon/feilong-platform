@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,44 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.lang;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class ClassUtil.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-6-1 下午7:19:47
  */
 public class ClassUtil{
 
+	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ClassUtil.class);
 
 	/**
-	 * debug
+	 * debug.
 	 * 
 	 * @param clz
+	 *            the clz
+	 * @return the map for log
 	 */
-	public static void debug(Class<? extends Object> clz){
-		log.debug("clz.getComponentType():{}", clz.getComponentType());
+	public static Map<String, Object> getMapForLog(Class<? extends Object> clz){
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+		map.put("clz.getComponentType()", clz.getComponentType());
 		// 用来判断指定的Class类是否为一个基本类型。
-		log.debug("clz.isPrimitive():{}", clz.isPrimitive());
-		log.debug("clz.isLocalClass():{}", clz.isLocalClass());
-		log.debug("clz.isMemberClass():{}", clz.isMemberClass());
-		log.debug("clz.isSynthetic():{}", clz.isSynthetic());
-		log.debug("clz.isArray():{}", clz.isArray());
-		log.debug("clz.isAnnotation():{}", clz.isAnnotation());
-		log.debug("clz.isAnonymousClass():{}", clz.isAnonymousClass());
-		log.debug("clz.isEnum():{}", clz.isEnum());
+		map.put("clz.isPrimitive()", clz.isPrimitive());
+		map.put("clz.isLocalClass()", clz.isLocalClass());
+		map.put("clz.isMemberClass()", clz.isMemberClass());
+		map.put("clz.isSynthetic()", clz.isSynthetic());
+		map.put("clz.isArray()", clz.isArray());
+		map.put("clz.isAnnotation()", clz.isAnnotation());
+		map.put("clz.isAnonymousClass()", clz.isAnonymousClass());
+		map.put("clz.isEnum()", clz.isEnum());
+
+		return map;
 	}
 }

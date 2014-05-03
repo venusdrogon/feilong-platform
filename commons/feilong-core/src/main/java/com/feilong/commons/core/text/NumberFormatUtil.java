@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.text;
 
 import java.text.DecimalFormat;
@@ -34,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * NumberFormat 是所有数值格式的抽象基类,此类提供格式化和解析数值的接口<br>
- * 直接已知子类： ChoiceFormat, DecimalFormat
+ * 直接已知子类： ChoiceFormat, DecimalFormat.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:39:53
@@ -44,8 +34,18 @@ import org.slf4j.LoggerFactory;
  */
 public class NumberFormatUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(NumberFormatUtil.class);
 
+	/**
+	 * Format.
+	 * 
+	 * @param value
+	 *            the value
+	 * @param pattern
+	 *            the pattern
+	 * @return the string
+	 */
 	public static String format(Number value,String pattern){
 		try{
 			DecimalFormat decimalFormat = new DecimalFormat(pattern);

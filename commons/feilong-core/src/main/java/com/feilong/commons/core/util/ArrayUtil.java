@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.lang.reflect.Array;
@@ -35,7 +25,7 @@ import java.util.List;
 import com.feilong.commons.core.entity.JoinStringEntity;
 
 /**
- * 数组工具类
+ * 数组工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-4-16 下午01:00:27
@@ -51,6 +41,8 @@ public final class ArrayUtil{
 	 * 如果我们幸运的话，它是一个对象数组,我们可以遍历并with no copying<br>
 	 * 否则,异常 ClassCastException 中 ,Rats -- 它是一个基本类型数组,循环放入arrayList 转成arrayList.iterator()
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param arrays
 	 *            数组,可以是 对象数组,或者是 基本类型数组
 	 * @return Iterator
@@ -74,8 +66,10 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 数组转成LinkedList
+	 * 数组转成LinkedList.
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param arrays
 	 *            字符串数组
 	 * @return 数组转成LinkedList<br>
@@ -96,6 +90,8 @@ public final class ArrayUtil{
 	 * 数组转成 List(ArrayList)，此方法通过循环遍历创建， 返回的list可操作<br>
 	 * 注意 Arrays.asList(arrays)返回的list不含add方法，
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param arrays
 	 *            T数组
 	 * @return 数组转成 List(ArrayList)<br>
@@ -117,7 +113,7 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 任意的数组转成Integer 数组
+	 * 任意的数组转成Integer 数组.
 	 * 
 	 * @param objects
 	 *            objects
@@ -138,8 +134,10 @@ public final class ArrayUtil{
 
 	/**
 	 * 判断 一个数组中,是否包含某个特定的值<br>
-	 * 使用equals 来比较,所以如果是 对象类型 需要自己实现equals方法
+	 * 使用equals 来比较,所以如果是 对象类型 需要自己实现equals方法.
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param arrays
 	 *            数组
 	 * @param value
@@ -159,11 +157,14 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 将数组 通过 joinStringEntity 拼接成 字符串
+	 * 将数组 通过 joinStringEntity 拼接成 字符串.
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param arrays
 	 *            请使用包装类型,比如 Integer []arrays,而不是 int []arrays
 	 * @param joinStringEntity
+	 *            the join string entity
 	 * @return <ul>
 	 *         <li>如果 arrays 是null 或者Empty ,返回null</li>
 	 *         <li>否则循环,拼接joinStringEntity.getConnector()</li>

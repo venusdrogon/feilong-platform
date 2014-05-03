@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.tools.json;
 
 import org.slf4j.Logger;
@@ -11,8 +26,8 @@ import net.sf.json.util.PropertySetStrategy;
  * Ignore missing properties with Json-Lib <br>
  * 避免出现 Unknown property 'orderIdAndCodeMap' on class 'class com.baozun.trade.web.controller.payment.result.command.PaymentResultEntity' 异常
  * 
- * @see http://javaskeleton.blogspot.com/2011/05/ignore-missing-properties-with-json-lib.html
- * @see http://envy2002.iteye.com/blog/1682738
+ * @see {@link http://javaskeleton.blogspot.com/2011/05/ignore-missing-properties-with-json-lib.html}
+ * @see {@link http://envy2002.iteye.com/blog/1682738}
  */
 public class PropertyStrategyWrapper extends PropertySetStrategy{
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.net;
 
 import java.io.IOException;
@@ -35,13 +25,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 互联网协议 (ip) 地址相关操作
+ * 互联网协议 (ip) 地址相关操作.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-12 上午09:57:10
  */
 public final class InetAddressUtil{
 
+	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(InetAddressUtil.class);
 
 	/**
@@ -61,9 +53,9 @@ public final class InetAddressUtil{
 	}
 
 	/**
-	 * 获得本机 InetAddress
+	 * 获得本机 InetAddress.
 	 * 
-	 * @return
+	 * @return the inet address local host
 	 */
 	public static InetAddress getInetAddressLocalHost(){
 		InetAddress inetAddress = null;
@@ -104,10 +96,11 @@ public final class InetAddressUtil{
 	}
 
 	/**
-	 * 获得 inetAddress log信息
+	 * 获得 inetAddress log信息.
 	 * 
 	 * @param inetAddress
-	 * @return
+	 *            the inet address
+	 * @return the inet address object log
 	 */
 	public static Map<String, Object> getInetAddressObjectLog(InetAddress inetAddress){
 

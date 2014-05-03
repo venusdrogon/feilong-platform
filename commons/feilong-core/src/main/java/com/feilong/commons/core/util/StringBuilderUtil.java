@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import org.slf4j.Logger;
@@ -31,16 +21,23 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.Constants;
 
 /**
- * StringBuilderUtil
+ * StringBuilderUtil.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-7-11 下午5:05:56
  */
 public class StringBuilderUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(StringBuilderUtil.class);
 
-	/******************************************************************************************************/
+	/**
+	 * ***************************************************************************************************.
+	 * 
+	 * @param strings
+	 *            the strings
+	 * @return the string
+	 */
 	/**
 	 * 将不定参数,拼接成string
 	 * 
@@ -60,7 +57,7 @@ public class StringBuilderUtil{
 	}
 
 	/**
-	 * append 并且换行
+	 * append 并且换行.
 	 * 
 	 * @param stringBuilder
 	 *            stringBuilder
@@ -78,13 +75,14 @@ public class StringBuilderUtil{
 	 * </code>
 	 * 
 	 * @param stringBuilder
+	 *            the string builder
 	 */
 	public final static void appendLn(StringBuilder stringBuilder){
 		stringBuilder.append(Constants.lineSeparator);
 	}
 
 	/**
-	 * append 并且换行,键值对形式输出
+	 * append 并且换行,键值对形式输出.
 	 * 
 	 * @param stringBuilder
 	 *            stringBuilder
@@ -108,6 +106,7 @@ public class StringBuilderUtil{
 	 * </pre>
 	 * 
 	 * @param stringBuilder
+	 *            the string builder
 	 */
 	public final static void appendTextWithSeparated(StringBuilder stringBuilder){
 		appendTextWithSeparatedWithTitle(stringBuilder, null);
@@ -121,8 +120,12 @@ public class StringBuilderUtil{
 	 * ***************呵呵,下面是销售日报-库存部分*******************
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param stringBuilder
+	 *            the string builder
 	 * @param title
+	 *            the title
 	 */
 	public final static void appendTextWithSeparatedWithTitle(StringBuilder stringBuilder,String title){
 		stringBuilder.append(Constants.lineSeparator);
@@ -135,7 +138,7 @@ public class StringBuilderUtil{
 	}
 
 	/**
-	 * 文件 以醒目字符分隔,一般用于 文本输出
+	 * 文件 以醒目字符分隔,一般用于 文本输出.
 	 * 
 	 * @return stringBuilder
 	 */

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import java.math.BigDecimal;
@@ -31,7 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * object工具类
+ * object工具类.
  * 
  * @author 金鑫 2010-4-5 下午11:00:54
  * @since 1.0
@@ -50,7 +40,7 @@ public final class ObjectUtil{
 	 * <li>Collection</li>
 	 * <li>Iterator</li>
 	 * </ul>
-	 * 转成Iterator
+	 * 转成Iterator.
 	 * 
 	 * @param object
 	 *            <ul>
@@ -118,7 +108,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * 判断两个值是否相等,允许两个值都为null
+	 * 判断两个值是否相等,允许两个值都为null.
 	 * 
 	 * @param object
 	 *            object
@@ -160,7 +150,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * 判断两个值是否相等,允许两个值都为null
+	 * 判断两个值是否相等,允许两个值都为null.
 	 * 
 	 * @param object
 	 *            object
@@ -173,7 +163,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * 判断对象是不是boolean类型数据
+	 * 判断对象是不是boolean类型数据.
 	 * 
 	 * @param object
 	 *            对象
@@ -184,7 +174,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * 判断对象是不是Integer类型
+	 * 判断对象是不是Integer类型.
 	 * 
 	 * @param object
 	 *            对象
@@ -195,7 +185,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * object 类型转换成boolean类型
+	 * object 类型转换成boolean类型.
 	 * 
 	 * @param object
 	 *            object
@@ -209,7 +199,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * object转成integer类型
+	 * object转成integer类型.
 	 * 
 	 * @param value
 	 *            值
@@ -219,8 +209,6 @@ public final class ObjectUtil{
 	 *         <li>否则 new Integer(value.toString().trim())</li>
 	 *         <li>如果value不能转成integer 会抛出 IllegalArgumentException异常</li>
 	 *         </ul>
-	 * @exception IllegalArgumentException
-	 *                如果value不能转成integer 会抛出 IllegalArgumentException异常
 	 */
 	public final static Integer toInteger(Object value){
 		Integer returnValue = null;
@@ -240,7 +228,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * object类型转换成BigDecimal
+	 * object类型转换成BigDecimal.
 	 * 
 	 * @param value
 	 *            值
@@ -259,7 +247,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * 把对象转换为long类型
+	 * 把对象转换为long类型.
 	 * 
 	 * @param value
 	 *            包含数字的对象.
@@ -276,10 +264,11 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * Object to double
+	 * Object to double.
 	 * 
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the double
 	 */
 	public final static Double toDouble(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
@@ -292,10 +281,11 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * object to float
+	 * object to float.
 	 * 
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the float
 	 */
 	public final static Float toFloat(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
@@ -308,10 +298,11 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * object to short
+	 * object to short.
 	 * 
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the short
 	 */
 	public final static Short toShort(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
@@ -324,7 +315,7 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * 把对象转换成字符串
+	 * 把对象转换成字符串.
 	 * 
 	 * @param value
 	 *            参数值
@@ -346,12 +337,15 @@ public final class ObjectUtil{
 	}
 
 	/**
-	 * object to T
+	 * object to T.
 	 * 
 	 * @param <T>
+	 *            the generic type
 	 * @param value
+	 *            the value
 	 * @param class1
-	 * @return
+	 *            the class1
+	 * @return the t
 	 */
 	@SuppressWarnings("unchecked")
 	public final static <T> T toT(Object value,Class<?> class1){
@@ -386,6 +380,8 @@ public final class ObjectUtil{
 	 * trim(&quot;null&quot;) --------&gt; &quot;null&quot;
 	 * 
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param obj
 	 *            obj

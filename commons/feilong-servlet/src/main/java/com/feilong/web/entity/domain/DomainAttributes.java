@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,24 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.enumeration;
+package com.feilong.web.entity.domain;
 
 /**
- * 文件写入的方式
- * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Dec 23, 2013 8:11:33 PM
+ * @version 1.0 Apr 27, 2014 1:09:51 AM
  */
-public enum FileWriteMode{
-	/**
-	 * 覆盖
-	 */
-	COVER,
+public interface DomainAttributes{
 
-	/**
-	 * 追加 then bytes will be written to the end of the file rather than the beginning
-	 * 
-	 * @see {@link java.io.FileOutputStream#FileOutputStream(File, boolean)}
-	 */
-	APPEND
+	/** 样式表 域名的变量. */
+	String	ATTRIBUTE_DOMAIN_CSS		= "domain_css";
+
+	/** js 域名的变量. */
+	String	ATTRIBUTE_DOMAIN_JS			= "domain_js";
+
+	/** image 域名的变量. */
+	String	ATTRIBUTE_DOMAIN_IMAGE		= "domain_image";
+
+	/** 商品图片 resource 域名的变量. */
+	String	ATTRIBUTE_DOMAIN_RESOURCE	= "domain_resource";
+
+	/** store 域名的变量,商城的网址，一般用于不同环境 第三方数据传递 比如微博等. */
+	String	ATTRIBUTE_DOMAIN_STORE		= "domain_store";
 }
