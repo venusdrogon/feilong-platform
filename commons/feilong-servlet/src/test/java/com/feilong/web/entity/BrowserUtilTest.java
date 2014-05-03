@@ -19,6 +19,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.web.entity.browser.BrowserUtil;
+
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 29, 2013 8:11:13 PM

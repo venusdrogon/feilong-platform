@@ -33,6 +33,7 @@ import org.springframework.web.util.UrlPathHelper;
 
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.RequestUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * UriTemplate,此类是 单值 expend.
@@ -89,7 +90,8 @@ public class UriTemplateUtil{
 	 */
 	public static Map<String, String> getUriTemplateVariables(HttpServletRequest request){
 		@SuppressWarnings("unchecked")
-		Map<String, String> uriTemplateVariables = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
+		Map<String, String> uriTemplateVariables = (Map<String, String>) request
+				.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 		return uriTemplateVariables;
 	}
 
@@ -120,9 +122,13 @@ public class UriTemplateUtil{
 		String matchingPatternPath = getBestMatchingPattern(request);// 这种方法可能不太好 可能被覆盖
 		String expandUrl = expandWithVariable(requestPath, matchingPatternPath, variableName, value);
 		String queryString = request.getQueryString();
-		UrlPathHelperUtil.showProperties(request);
+		Map<String, Object> map = UrlPathHelperUtil.getUrlPathHelperMapForLog(request);
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(map));
+		}
 		UrlPathHelper urlPathHelper = new UrlPathHelper();
-		return urlPathHelper.getOriginatingContextPath(request) + expandUrl + (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
+		return urlPathHelper.getOriginatingContextPath(request) + expandUrl
+				+ (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
 	}
 
 	/**
@@ -288,7 +294,7 @@ public class UriTemplateUtil{
 			_map.put(variableName, null);
 		}
 		if (Validator.isNotNullOrEmpty(map)){
-			_map.putAll(map);//map如果是null 会报错
+			_map.putAll(map);// map如果是null 会报错
 		}
 		UriTemplate uriTemplate = new UriTemplate(uriTemplatePath);
 		URI uri = uriTemplate.expand(_map);

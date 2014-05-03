@@ -1,9 +1,25 @@
+/**
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.taglib.display.pager;
 
 import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,10 +28,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.ParamUtil;
+import com.feilong.taglib.display.pager.command.PagerParams;
+import com.feilong.taglib.display.pager.command.PagerVMParam;
 import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
@@ -29,7 +48,23 @@ import com.feilong.tools.velocity.VelocityUtil;
 public final class PagerUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PagerUtil.class);
+	private static final Logger	log					= LoggerFactory.getLogger(PagerUtil.class);
+
+	/**
+	 * vm里面 pagerVMParam变量名称 <code>{@value}</code>,在vm里面,你可以使用 ${pagerVMParam.xxx} 来获取数据
+	 */
+	private static final String	VM_KEY_PAGERVMPARAM	= "pagerVMParam";
+
+	/**
+	 * vm里面i18n变量名称 <code>{@value}</code>,在vm里面,你可以使用 ${i18nMap.xxx} 来获取数据
+	 */
+	private static final String	VM_KEY_I18NMAP		= "i18nMap";
+
+	/** 国际化配置文件<code>{@value}</code>. */
+	private static final String	i18n_FEILONG_PAGER	= "messages/feilong-pager";
+
+	/** 模板链接页码<code>{@value}</code>. */
+	private static final int	templatePageNo		= -8888888;
 
 	/**
 	 * 解析vm模板 生成分页html代码.
@@ -61,10 +96,14 @@ public final class PagerUtil{
 			String charsetType = pagerParams.getCharsetType();
 			boolean debugIsNotParseVM = pagerParams.getDebugIsNotParseVM();
 
+			// *************************************************************
+			Integer maxShowPageNo = pagerParams.getMaxShowPageNo();
 			Pager pager = new Pager(currentPageNo, pageSize, totalCount);
+			pager.setMaxShowPageNo(maxShowPageNo);
+
 			int allPageNo = pager.getAllPageNo();
 
-			/** ******************************************************** */
+			// *************************************************************
 			// 获得开始和结束的索引
 			int[] startIteratorIndexAndEndIteratorIndexs = getStartIteratorIndexAndEndIteratorIndex(allPageNo, currentPageNo, maxIndexPages);
 			// 开始迭代索引编号
@@ -79,6 +118,7 @@ public final class PagerUtil{
 
 			// 所有需要生成url 的 index值
 			Set<Integer> indexSet = new HashSet<Integer>();
+			indexSet.add(templatePageNo);// 模板链接 用于前端操作
 			indexSet.add(prePageNo);
 			indexSet.add(nextPageNo);
 			indexSet.add(firstPageNo);
@@ -86,8 +126,10 @@ public final class PagerUtil{
 			for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
 				indexSet.add(i);
 			}
+
 			// ****************************************************************************************
-			// Map<Integer, String> map = new HashMap<Integer, String>();
+
+			// 获得所有页码的连接.
 			Map<Integer, String> map = getAllPageIndexHrefMap(pageUrl, pageParamName, indexSet, charsetType);
 			// ****************************************************************************************
 			PagerVMParam pagerVMParam = new PagerVMParam();
@@ -108,29 +150,75 @@ public final class PagerUtil{
 			// 最后一页的链接
 			pagerVMParam.setLastUrl(map.get(lastPageNo));
 
+			// templatePageNo
+			pagerVMParam.setHrefUrlTemplate(map.get(templatePageNo));
+
+			// *********************************************************
+			// 国际化
+			Locale locale = pagerParams.getLocale();
+			Map<String, String> i18nMap = ResourceBundleUtil.readAllPropertiesToMap(i18n_FEILONG_PAGER, locale);
+
+			// *********************************************************
 			LinkedHashMap<Integer, String> iteratorIndexMap = new LinkedHashMap<Integer, String>();
 			for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
 				iteratorIndexMap.put(i, map.get(i));
 			}
 			pagerVMParam.setIteratorIndexMap(iteratorIndexMap);
 
+			// ****************************************************************************
 			Map<String, Object> vmParamMap = new HashMap<String, Object>();
-			vmParamMap.put("pagerVMParam", pagerVMParam);
+			vmParamMap.put(VM_KEY_PAGERVMPARAM, pagerVMParam);
+			vmParamMap.put(VM_KEY_I18NMAP, i18nMap);
 			if (log.isDebugEnabled()){
 				log.debug("vmParamMap:{}", JsonUtil.format(vmParamMap));
-				log.debug("debugIsNotParseVM:{}", debugIsNotParseVM);
+				log.debug("debugNotParseVM:{}", debugIsNotParseVM);
 			}
 
 			if (!debugIsNotParseVM){
 				String content = VelocityUtil.parseTemplateWithClasspathResourceLoader(vmPath, vmParamMap);
 				return content;
 			}
+		}else{
+			if (log.isDebugEnabled()){
+				log.debug("the param totalCount:{} not >0", totalCount);
+			}
 		}
 		return "";
 	}
 
 	/**
-	 * 获得所有页码的连接.
+	 * 获得当前分页数字,不带这个参数 或者转换异常 返回1.
+	 * 
+	 * @param request
+	 *            当前请求
+	 * @param pageParamName
+	 *            the param name
+	 * @return <ul>
+	 *         <li>请求参数中,分页参数值 Integer 类型</li>
+	 *         <li>如果参数中不带这个分页参数,或者转换异常 返回1</li>
+	 *         </ul>
+	 */
+	public static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
+		// /s/s-t-b-f-a-cBlack-s-f-p-gHeat+Gear-e-i-o.htm?keyword=&pageNo=%uFF1B
+		Integer currentPageNo = null;
+		try{
+			currentPageNo = ParamUtil.getParameterToInteger(request, pageParamName);
+		}catch (Exception e){
+			// 抛出异常, 但是不给 currentPageNo 赋值
+			e.printStackTrace();
+		}
+
+		// 不是空 直接返回
+		if (null != currentPageNo){
+			return currentPageNo;
+		}
+
+		// 不带这个参数 或者转换异常 返回1
+		return 1;
+	}
+
+	/**
+	 * 获得所有页码的连接(key=-1 为模板链接,可用户前端解析 {@link PagerVMParam#getHrefUrlTemplate()}
 	 * 
 	 * @param pageUrl
 	 *            页面url
@@ -182,37 +270,6 @@ public final class PagerUtil{
 			}
 			return returnMap;
 		}
-	}
-
-	/**
-	 * 获得当前分页数字,不带这个参数 或者转换异常 返回1.
-	 * 
-	 * @param request
-	 *            当前请求
-	 * @param pageParamName
-	 *            the param name
-	 * @return <ul>
-	 *         <li>请求参数中,分页参数值 Integer 类型</li>
-	 *         <li>如果参数中不带这个分页参数,或者转换异常 返回1</li>
-	 *         </ul>
-	 */
-	public static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
-		// /s/s-t-b-f-a-cBlack-s-f-p-gHeat+Gear-e-i-o.htm?keyword=&pageNo=%uFF1B
-		Integer currentPageNo = null;
-		try{
-			currentPageNo = ParamUtil.getParameterToInteger(request, pageParamName);
-		}catch (Exception e){
-			// 抛出异常, 但是不给 currentPageNo 赋值
-			e.printStackTrace();
-		}
-
-		// 不是空 直接返回
-		if (null != currentPageNo){
-			return currentPageNo;
-		}
-
-		// 不带这个参数 或者转换异常 返回1
-		return 1;
 	}
 
 	/**

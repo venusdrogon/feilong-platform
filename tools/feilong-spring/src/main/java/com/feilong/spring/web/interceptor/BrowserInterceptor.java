@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.feilong.web.entity.Browser;
+import com.feilong.web.entity.browser.Browser;
 
 /**
  * 浏览器拦截器<br/>

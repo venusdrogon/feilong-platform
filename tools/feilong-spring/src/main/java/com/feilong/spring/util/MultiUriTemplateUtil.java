@@ -31,6 +31,7 @@ import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.util.CollectionUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.RequestUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * MultiUriTemplateUtil,某些商城筛选条件可以是多值,比如 既是 儿童 又是 男子<br>
@@ -64,9 +65,14 @@ public class MultiUriTemplateUtil{
 		String matchingPatternPath = UriTemplateUtil.getBestMatchingPattern(request);// 这种方法可能不太好 可能被覆盖
 		String expandUrl = expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator);
 		String queryString = request.getQueryString();
-		UrlPathHelperUtil.showProperties(request);
+		Map<String, Object> map = UrlPathHelperUtil.getUrlPathHelperMapForLog(request);
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(map));
+		}
+
 		UrlPathHelper urlPathHelper = new UrlPathHelper();
-		return urlPathHelper.getOriginatingContextPath(request) + expandUrl + (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
+		return urlPathHelper.getOriginatingContextPath(request) + expandUrl
+				+ (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
 	}
 
 	/**
@@ -102,7 +108,12 @@ public class MultiUriTemplateUtil{
 	 * @return 获得一个新的url<br>
 	 *         参数部分 需要自己添加
 	 */
-	public static String expandWithMultiVariable(String requestPath,String matchingPatternPath,String variableName,String value,String valueSeparator){
+	public static String expandWithMultiVariable(
+			String requestPath,
+			String matchingPatternPath,
+			String variableName,
+			String value,
+			String valueSeparator){
 		Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
 		return expandWithMultiVariable(matchingPatternPath, map, variableName, value, valueSeparator);
 	}
@@ -133,7 +144,12 @@ public class MultiUriTemplateUtil{
 	 * @param valueSeparator
 	 * @return
 	 */
-	public static String expandWithMultiVariable(String matchingPatternPath,Map<String, String> map,String variableName,String value,String valueSeparator){
+	public static String expandWithMultiVariable(
+			String matchingPatternPath,
+			Map<String, String> map,
+			String variableName,
+			String value,
+			String valueSeparator){
 		if (Validator.isNullOrEmpty(map)){
 			map = new HashMap<String, String>();
 		}
@@ -189,7 +205,12 @@ public class MultiUriTemplateUtil{
 	 *         <li>移掉数组中的值重新拼接成url</li>
 	 *         </ul>
 	 */
-	public static String removeMultiVariableValue(String requestPath,String matchingPatternPath,String variableName,String value,String valueSeparator){
+	public static String removeMultiVariableValue(
+			String requestPath,
+			String matchingPatternPath,
+			String variableName,
+			String value,
+			String valueSeparator){
 		Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
 
 		String oldValue = map.get(variableName);

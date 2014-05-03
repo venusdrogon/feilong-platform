@@ -86,8 +86,8 @@
 
 		<version.xfire>1.2.6</version.xfire>
 		<version.velocity>1.7</version.velocity>
-		
-		
+
+
 		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
 		<scope.log4j>provided</scope.log4j>
 
@@ -108,20 +108,11 @@
 
 	<!--*******************************junit******************************************* -->
 	<dependencies>
-
 		<!-- org.slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${version.slf4j}</version>
-		</dependency>
-
-		<!-- slf4j-log4j12 -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${version.slf4j}</version>
-			<scope>${scope.slf4j-log4j12}</scope>
 		</dependency>
 
 		<!-- net.sf.json-lib -->
@@ -135,10 +126,7 @@
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
-<!-- 				<exclusion>
-					<artifactId>commons-lang</artifactId>
-					<groupId>commons-lang</groupId>
-				</exclusion> -->
+				<!-- <exclusion> <artifactId>commons-lang</artifactId> <groupId>commons-lang</groupId> </exclusion> -->
 			</exclusions>
 		</dependency>
 
@@ -148,7 +136,6 @@
 			<artifactId>xom</artifactId>
 			<version>${version.xom}</version>
 		</dependency>
-
 
 		<!-- junit -->
 		<dependency>
@@ -172,6 +159,14 @@
 			<scope>test</scope>
 		</dependency>
 
+
+		<!-- slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${version.slf4j}</version>
+			<scope>${scope.slf4j-log4j12}</scope>
+		</dependency>
 		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>

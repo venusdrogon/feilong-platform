@@ -18,7 +18,6 @@ package com.feilong.servlet.listener;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -28,8 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.ClassLoaderUtil;
-import com.feilong.servlet.ServletContextUtil;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * 专门给esapi 设置的监听器<br>
@@ -48,6 +45,7 @@ import com.feilong.tools.json.JsonUtil;
  */
 public class ESAPIContextListener implements ServletContextListener{
 
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ESAPIContextListener.class);
 
 	/*
@@ -57,12 +55,6 @@ public class ESAPIContextListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent){
 		ServletContext servletContext = servletContextEvent.getServletContext();
-
-		Map<String, String> initParameterMap = ServletContextUtil.getInitParameterMap(servletContext);
-
-		if (log.isInfoEnabled()){
-			log.info("initParameterMap:{}", JsonUtil.format(initParameterMap));
-		}
 
 		try{
 			// 取到classes/esapi 绝对地址,

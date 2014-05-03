@@ -28,30 +28,37 @@
 		</attribute>
 	</tag>
 
-	<!-- 分页 -->
+	<!-- 飞龙分页自定义标签 -->
 	<tag>
 		<name>pager</name>
 		<tag-class>com.feilong.taglib.display.pager.PagerTag</tag-class>
 		<tei-class>com.feilong.taglib.display.pager.PagerTagExtraInfo</tei-class>
 		<body-content>empty</body-content>
-		<description>分页</description>
+
+		<description>飞龙分页自定义标签</description>
+
+		<!--***************** required********************* -->
 		<attribute>
 			<name>count</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<description>数据总数</description>
 		</attribute>
+
+
+		<!-- optional -->
 		<attribute>
 			<name>pageSize</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>每页显示多少行</description>
+			<description>每一页显示多少个数据,默认20</description>
 		</attribute>
+
 		<attribute>
 			<name>pageParamName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>url分页页码参数,默认 pageNo. </description>
+			<description>url分页页码参数,默认 pageNo.</description>
 		</attribute>
 		<attribute>
 			<name>maxIndexPages</name>
@@ -63,13 +70,45 @@
 			<name>skin</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>皮肤,默认有24种常用皮肤</description>
+			<description>皮肤,默认有24种常用皮肤,默认皮肤 digg</description>
 		</attribute>
 		<attribute>
 			<name>vmPath</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>分页解析的vm模版</description>
+			<description>分页解析的vm模版,默认路径 velocity/feilong-default-pager.vm</description>
+		</attribute>
+		<attribute>
+			<name>locale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>国际化语言,默认 Locale.getDefault() </description>
+		</attribute>
+		<attribute>
+			<name>charsetType</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>url编码,默认UTF-8</description>
+		</attribute>
+		<attribute>
+			<name>pagerHtmlAttributeName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				vm被解析出来的文本会被存在在这个变量中,作用域为pageContext,以便重复使用,比如某些页面,上面下面都要显示同样的分页,方便用户操作
+				此外,此变量名称允许变更,以便实现,同一页页面不同功能的的分页.
+			</description>
+		</attribute>
+		<attribute>
+			<name>maxShowPageNo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				最多显示页数,(-1或者不设置,默认显示所有页数)
+				类似于淘宝不管搜索东西多少,最多显示100页 
+				这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。
+				新浪微博的时间轴也只给出了10页，同样的折中处理。
+			</description>
 		</attribute>
 	</tag>
 </taglib>

@@ -30,6 +30,7 @@ import java.text.MessageFormat;
 
 /**
  * MessageFormat 工具包,常用于国际化<br>
+ * .
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:19:22
@@ -57,7 +58,7 @@ public final class MessageFormatUtil{
 	 *            </ul>
 	 * @param arguments
 	 *            动态参数
-	 * @return
+	 * @return the string
 	 */
 	public static String format(String pattern,Object...arguments){
 		return MessageFormat.format(pattern, arguments);

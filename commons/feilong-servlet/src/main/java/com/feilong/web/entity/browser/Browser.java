@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.web.entity;
+package com.feilong.web.entity.browser;
 
 import java.io.Serializable;
 
