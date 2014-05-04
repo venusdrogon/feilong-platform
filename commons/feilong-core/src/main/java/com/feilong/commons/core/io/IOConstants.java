@@ -36,5 +36,5 @@ public interface IOConstants{
 	long		GB				= 1024 * MB;
 
 	/** 常用图片格式. */
-	String[]	commonImages	= { "gif", "bmp", "jpg", "png" };
+	String[]	COMMON_IMAGES	= { "gif", "bmp", "jpg", "png" };
 }

@@ -40,7 +40,7 @@ public class PropertiesConstantsTest{
 
 	@Test
 	public void test(){
-		log.debug(ExceptionConstants.exception_unknown_type_email);
-		log.debug(PropertiesConstants.config_date_minute);
+		log.debug(ExceptionConstants.EXCEPTION_UNKNOWN_TYPE_EMAIL);
+		log.debug(PropertiesConstants.CONFIG_DATE_MINUTE);
 	}
 }

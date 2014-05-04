@@ -25,6 +25,8 @@
  */
 package com.feilong.commons.core.enumeration;
 
+import java.nio.charset.Charset;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,11 +40,8 @@ public class CharsetTypeTest{
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(CharsetTypeTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.enumeration.CharsetType#isSupported(java.lang.String)}.
-	 */
 	@Test
 	public void testIsSupported(){
-		log.info(CharsetType.isSupported(CharsetType.ISO_8859_1)+"");
+		log.info(Charset.isSupported(CharsetType.ISO_8859_1) + "");
 	}
 }

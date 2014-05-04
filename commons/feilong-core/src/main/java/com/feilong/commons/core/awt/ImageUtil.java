@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 图片工具类
+ * 图片工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-11-30 下午03:24:45
@@ -39,9 +39,12 @@ import org.slf4j.LoggerFactory;
  */
 public class ImageUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ImageUtil.class);
 
 	/**
+	 * Write.
+	 * 
 	 * @param outputStream
 	 *            outputStream will close
 	 * @param renderedImage
@@ -63,10 +66,10 @@ public class ImageUtil{
 	/**
 	 * 从一个old图片,生成一个新的 new BufferedImage,<br>
 	 * 该BufferedImage 的Width Height 和原图一样<br>
-	 * 该BufferedImage操作不会影响原图
+	 * 该BufferedImage操作不会影响原图.
 	 * 
-	 * @param imagePath
-	 *            图片
+	 * @param bufferedImage_old
+	 *            the buffered image_old
 	 * @return new BufferedImage
 	 */
 	public static BufferedImage getNewBufferedImageFromFile(BufferedImage bufferedImage_old){
@@ -79,7 +82,7 @@ public class ImageUtil{
 	/**
 	 * 从一个old图片,生成一个新的 new BufferedImage,<br>
 	 * 该BufferedImage 的Width Height 和原图一样<br>
-	 * 该BufferedImage操作不会影响原图
+	 * 该BufferedImage操作不会影响原图.
 	 * 
 	 * @param imagePath
 	 *            图片
@@ -95,11 +98,13 @@ public class ImageUtil{
 
 	/**
 	 * 基于原始图片,获得一个Graphics2D,大小和原图相等<br>
-	 * 并 drawImage原始图
+	 * 并 drawImage原始图.
 	 * 
 	 * @param bufferedImage_new
+	 *            the buffered image_new
 	 * @param bufferedImage_old
-	 * @return
+	 *            the buffered image_old
+	 * @return the graphics2 d by image
 	 */
 	public static Graphics2D getGraphics2DByImage(BufferedImage bufferedImage_new,BufferedImage bufferedImage_old){
 		Graphics2D graphics2D = bufferedImage_new.createGraphics();
@@ -111,11 +116,11 @@ public class ImageUtil{
 
 	/**
 	 * 获得image/BufferedImage 对象<br>
-	 * BufferedImage 子类描述具有 可访问图像数据缓冲区的 Image
+	 * BufferedImage 子类描述具有 可访问图像数据缓冲区的 Image.
 	 * 
 	 * @param filePath
 	 *            图像路径
-	 * @return
+	 * @return the buffered image
 	 */
 	public static BufferedImage getBufferedImage(String filePath){
 		File file = new File(filePath);
@@ -133,7 +138,7 @@ public class ImageUtil{
 	}
 
 	/**
-	 * 是否是cmyk类型
+	 * 是否是cmyk类型.
 	 * 
 	 * @param filename
 	 *            文件

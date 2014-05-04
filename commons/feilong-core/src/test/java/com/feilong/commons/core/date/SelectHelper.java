@@ -16,12 +16,14 @@
 package com.feilong.commons.core.date;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.SelectEntity;
+import com.feilong.commons.core.util.RegexUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -100,5 +102,25 @@ public class SelectHelper{
 			}
 		}
 		return monthList;
+	}
+
+	/**
+	 * 将出生日期转换成年龄.
+	 * 
+	 * @param birthday
+	 *            出生日期,格式{@link DatePattern#onlyDate}
+	 * @return 将生日转换成年龄,如果传入的日期格式不正确,则返回null
+	 * @since 1.0
+	 * @deprecated 待重构,不建议使用
+	 */
+	public final static Integer convertBirthdayToAge(String birthday){
+		String birthdayPattern = "^(?:([0-9]{4}-(?:(?:0?[1,3-9]|1[0-2])-(?:29|30)|" + "((?:0?[13578]|1[02])-31)))|"
+				+ "([0-9]{4}-(?:0?[1-9]|1[0-2])-(?:0?[1-9]|1\\d|2[0-8]))|" + "(((?:(\\d\\d(?:0[48]|[2468][048]|[13579][26]))|"
+				+ "(?:0[48]00|[2468][048]00|[13579][26]00))-0?2-29)))$";
+		if (RegexUtil.match(birthdayPattern, birthday)){
+			Date nowDate = new Date();
+			return DateUtil.getYear(nowDate) - Integer.parseInt(birthday.substring(0, 4)) + 1;
+		}
+		return null;
 	}
 }

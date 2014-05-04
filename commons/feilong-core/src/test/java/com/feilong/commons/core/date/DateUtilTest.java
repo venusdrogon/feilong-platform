@@ -255,7 +255,7 @@ public class DateUtilTest{
 
 	@Test
 	public void testConvertBirthdayToAge(){
-		log.debug("convertBirthdayToAge:" + DateUtil.convertBirthdayToAge("2000-05-41"));
+		log.debug("convertBirthdayToAge:" + SelectHelper.convertBirthdayToAge("2000-05-41"));
 	}
 
 	@Test

@@ -32,7 +32,7 @@ import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * URLConnectionUtil.
+ * URLConnectionUtil(支持代理)
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 26, 2013 11:10:59 AM

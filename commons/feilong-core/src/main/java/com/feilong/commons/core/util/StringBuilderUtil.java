@@ -29,15 +29,9 @@ import com.feilong.commons.core.Constants;
 public class StringBuilderUtil{
 
 	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(StringBuilderUtil.class);
 
-	/**
-	 * ***************************************************************************************************.
-	 * 
-	 * @param strings
-	 *            the strings
-	 * @return the string
-	 */
 	/**
 	 * 将不定参数,拼接成string
 	 * 

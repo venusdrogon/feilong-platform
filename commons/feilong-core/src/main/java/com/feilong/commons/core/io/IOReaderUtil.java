@@ -30,20 +30,17 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
- * 读文件
+ * 读文件.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:27:08 PM
  */
 public final class IOReaderUtil{
 
+	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(IOReaderUtil.class);
 
-	/***************************************************************************/
-	//
-	// 读取文件内容
-	//
-	/***************************************************************************/
 	/**
 	 * 读取文件内容
 	 * 
@@ -57,7 +54,7 @@ public final class IOReaderUtil{
 	}
 
 	/**
-	 * 读取文件内容
+	 * 读取文件内容.
 	 * 
 	 * @param file
 	 *            文件
@@ -68,13 +65,13 @@ public final class IOReaderUtil{
 	}
 
 	/**
-	 * 读取文件内容
+	 * 读取文件内容.
 	 * 
 	 * @param file
 	 *            文件
 	 * @param charsetName
 	 *            字符编码
-	 * @return
+	 * @return the file content
 	 */
 	public static String getFileContent(File file,String charsetName){
 		// 分配新的直接字节缓冲区

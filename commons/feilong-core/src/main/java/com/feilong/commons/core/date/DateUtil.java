@@ -16,13 +16,13 @@
 
 package com.feilong.commons.core.date;
 
-import static com.feilong.commons.core.PropertiesConstants.config_date_day;
-import static com.feilong.commons.core.PropertiesConstants.config_date_hour;
-import static com.feilong.commons.core.PropertiesConstants.config_date_millisecond;
-import static com.feilong.commons.core.PropertiesConstants.config_date_minute;
-import static com.feilong.commons.core.PropertiesConstants.config_date_second;
-import static com.feilong.commons.core.PropertiesConstants.config_date_theDayBeforeYesterday;
-import static com.feilong.commons.core.PropertiesConstants.config_date_yesterday;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_DAY;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_HOUR;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_MILLISECOND;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_MINUTE;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_SECOND;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_THEDAY_BEFORE_YESTERDAY;
+import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_YESTERDAY;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -31,13 +31,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.feilong.commons.core.text.DateFormatUtil;
-import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
  * 日期操作工具类(feilong-core 核心类之一)<br>
  * 包括通用的:字符串转日期,日期转字符串,日期加减,获得日期某部值,获得两个日期间隔.
- *
+ * 
  * @see CalendarUtil
  * @see DatePattern
  * @see DateFormatUtil
@@ -172,8 +171,9 @@ public final class DateUtil{
 	 * 
 	 * return  2012-10-07 00:00:00.000
 	 * </pre>
-	 *
-	 * @param date the date
+	 * 
+	 * @param date
+	 *            the date
 	 * @return Date
 	 * @since 1.0
 	 */
@@ -214,8 +214,9 @@ public final class DateUtil{
 	 * 
 	 * return 2012-10-01 00:00:00
 	 * </pre>
-	 *
-	 * @param date the date
+	 * 
+	 * @param date
+	 *            the date
 	 * @return Date
 	 * @since 1.0
 	 */
@@ -234,8 +235,9 @@ public final class DateUtil{
 	 * 
 	 * return 2012-10-31 23:59:59.999
 	 * </pre>
-	 *
-	 * @param date the date
+	 * 
+	 * @param date
+	 *            the date
 	 * @return Date
 	 * @since 1.0
 	 */
@@ -292,8 +294,9 @@ public final class DateUtil{
 
 	/**
 	 * 一天开始,0:0:0.0
-	 *
-	 * @param calendar the calendar
+	 * 
+	 * @param calendar
+	 *            the calendar
 	 */
 	private static void dayBegin(Calendar calendar){
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -304,8 +307,9 @@ public final class DateUtil{
 
 	/**
 	 * 一天结束,最后的时间 23:59:59.999
-	 *
-	 * @param calendar the calendar
+	 * 
+	 * @param calendar
+	 *            the calendar
 	 */
 	private static void dayEnd(Calendar calendar){
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
@@ -350,11 +354,16 @@ public final class DateUtil{
 	 * isInTime(date, "2012-10-10 22:59:00", "2012-10-18 22:59:00")
 	 * 
 	 * return true
-	 * </pre>.
-	 *
-	 * @param date 需要判断的日期
-	 * @param beginTimeDate the begin time date
-	 * @param endTimeDate the end time date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            需要判断的日期
+	 * @param beginTimeDate
+	 *            the begin time date
+	 * @param endTimeDate
+	 *            the end time date
 	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
 	 */
 	public final static boolean isInTime(Date date,Date beginTimeDate,Date endTimeDate){
@@ -365,9 +374,11 @@ public final class DateUtil{
 	// [start] 时间操作(加减)
 	/**
 	 * *********************** 时间操作(加减) ****************************************.
-	 *
-	 * @param date the date
-	 * @param year the year
+	 * 
+	 * @param date
+	 *            the date
+	 * @param year
+	 *            the year
 	 * @return the date
 	 */
 	/**
@@ -425,10 +436,14 @@ public final class DateUtil{
 	 * 
 	 * addDay(2012-06-29 00:42:26,-5)
 	 * return 2012-06-24 00:42:26
-	 * </pre>.
-	 *
-	 * @param date 指定时间
-	 * @param day 需要加减的天数 可以为负数
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            指定时间
+	 * @param day
+	 *            需要加减的天数 可以为负数
 	 * @return 日期加减天数
 	 * @since 1.0
 	 * @see #operateDate(Date, int, int)
@@ -446,10 +461,14 @@ public final class DateUtil{
 	 * 
 	 * addWeek(2012-06-29 00:45:18,-5)
 	 * return 2012-05-25 00:45:18
-	 * </pre>.
-	 *
-	 * @param date 指定时间
-	 * @param week 需要加减的星期数 可以为负数
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            指定时间
+	 * @param week
+	 *            需要加减的星期数 可以为负数
 	 * @return 指定时间加减星期
 	 * @since 1.0
 	 * @see #operateDate(Date, int, int)
@@ -468,9 +487,11 @@ public final class DateUtil{
 	 * addHour(2012-06-29 00:46:24,-5)
 	 * return 2012-06-28 19:46:24
 	 * </pre>
-	 *
-	 * @param date the date
-	 * @param hour the hour
+	 * 
+	 * @param date
+	 *            the date
+	 * @param hour
+	 *            the hour
 	 * @return the date
 	 * @see #operateDate(Date, int, int)
 	 */
@@ -488,9 +509,11 @@ public final class DateUtil{
 	 * addMinute(2012-10-16 23:20:33,-180)
 	 * return 2012-10-16 20:20:33.669
 	 * </pre>
-	 *
-	 * @param date the date
-	 * @param minute the minute
+	 * 
+	 * @param date
+	 *            the date
+	 * @param minute
+	 *            the minute
 	 * @return the date
 	 * @see #operateDate(Date, int, int)
 	 */
@@ -508,9 +531,11 @@ public final class DateUtil{
 	 * addSecond(2012-10-16 23:22:02,-180)
 	 * return 2012-10-16 23:19:02.206
 	 * </pre>
-	 *
-	 * @param date 任意时间
-	 * @param second 加减秒
+	 * 
+	 * @param date
+	 *            任意时间
+	 * @param second
+	 *            加减秒
 	 * @return the date
 	 * @see #operateDate(Date, int, int)
 	 */
@@ -521,10 +546,13 @@ public final class DateUtil{
 	/**
 	 * 底层操作时间的方法 <br>
 	 * 根据日历的规则，为给定的日历字段添加或减去指定的时间量.
-	 *
-	 * @param currentDate 当前date
-	 * @param field 日历字段
-	 * @param amount 为字段添加的日期或时间量,可以为负数
+	 * 
+	 * @param currentDate
+	 *            当前date
+	 * @param field
+	 *            日历字段
+	 * @param amount
+	 *            为字段添加的日期或时间量,可以为负数
 	 * @return 底层操作时间的方法 根据日历的规则，为给定的日历字段添加或减去指定的时间量
 	 * @see #addYear(Date, int)
 	 * @see #addMonth(Date, int)
@@ -549,9 +577,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-06-29
 	 * return 2012
-	 * </pre>.
-	 *
-	 * @param date the date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            the date
 	 * @return 获得任意日期中的年份部分
 	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
@@ -566,9 +597,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-06-29
 	 * return 6
-	 * </pre>.
-	 *
-	 * @param date the date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            the date
 	 * @return 获得任意日期中的月份
 	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
@@ -586,9 +620,12 @@ public final class DateUtil{
 	 * 
 	 * 2013-01-05
 	 * return 5
-	 * </pre>.
-	 *
-	 * @param date the date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            the date
 	 * @return 获得任意时间中的天(在当年中)
 	 * @since 1.0.2
 	 */
@@ -603,9 +640,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-06-29
 	 * return 29
-	 * </pre>.
-	 *
-	 * @param date the date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            the date
 	 * @return 获得任意时间中的天
 	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
@@ -621,9 +661,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-6-29    是星期5
 	 * return 6
-	 * </pre>.
-	 *
-	 * @param date the date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            the date
 	 * @return 当前日期星期几
 	 * @see Calendar#SUNDAY
 	 * @see Calendar#MONDAY
@@ -644,9 +687,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-6-29 00:26:53
 	 * return 0
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return 获得时间中的小时
 	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
@@ -672,9 +718,12 @@ public final class DateUtil{
 	 * 
 	 * 2013-09-09 17:28
 	 * return 6041
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return 获得date 在它一年中的 小时数
 	 * @since 1.0.2
 	 */
@@ -689,9 +738,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-6-29 00:26:53
 	 * return 26
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return 获得时间中的分钟
 	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
@@ -706,9 +758,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-6-29 00:26:53
 	 * return 53
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return 获得时间中的秒
 	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
@@ -723,9 +778,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2013-09-09 16:42:41
 	 * return 60161
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return 获得当前时间在当天中的秒数
 	 * @since 1.0.2
 	 */
@@ -740,9 +798,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2013-09-15 01:15:23
 	 * return 923
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return 获得时间在当前小时中的秒数
 	 * @since 1.0.2
 	 */
@@ -758,9 +819,12 @@ public final class DateUtil{
 	 * <pre>
 	 * 2012-6-29 00:28
 	 * return 1340900883288
-	 * </pre>.
-	 *
-	 * @param date date
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param date
+	 *            date
 	 * @return date.getTime()
 	 * @since 1.0
 	 */
@@ -803,8 +867,9 @@ public final class DateUtil{
 
 	/**
 	 * 不带参数pattern的 的method,采用默认 pattern--->{@link DatePattern#commonWithTime}.
-	 *
-	 * @param date 任意时间
+	 * 
+	 * @param date
+	 *            任意时间
 	 * @return use {@link DatePattern#commonWithTime} format
 	 */
 	public final static String date2String(Date date){
@@ -834,11 +899,13 @@ public final class DateUtil{
 
 	/**
 	 * 将日期集合装成特定pattern的字符串集合.
-	 *
-	 * @param dateList 日期集合
-	 * @param datePattern 模式 @see {@link DatePattern}
+	 * 
+	 * @param dateList
+	 *            日期集合
+	 * @param datePattern
+	 *            模式 @see {@link DatePattern}
 	 * @return 如果 Validator.isNotNullOrEmpty(dateList) return null;<br>
-	 * 否则循环date转成string,返回List<String>
+	 *         否则循环date转成string,返回List<String>
 	 * @since 1.0
 	 */
 	public final static List<String> dateList2StringList(List<Date> dateList,String datePattern){
@@ -854,34 +921,17 @@ public final class DateUtil{
 
 	/**
 	 * 将时间string字符串转换成date类型.
-	 *
-	 * @param dateString 时间字符串
-	 * @param datePattern 模式,时间字符串的模式 @see {@link DatePattern}
+	 * 
+	 * @param dateString
+	 *            时间字符串
+	 * @param datePattern
+	 *            模式,时间字符串的模式 @see {@link DatePattern}
 	 * @return 将string字符串转换成date类型
 	 * @since 1.0
 	 * @see DateFormatUtil#parse(String, String)
 	 */
 	public final static Date string2Date(String dateString,String datePattern){
 		return DateFormatUtil.parse(dateString, datePattern);
-	}
-
-	/**
-	 * 将出生日期转换成年龄.
-	 *
-	 * @param birthday 出生日期,格式{@link DatePattern#onlyDate}
-	 * @return 将生日转换成年龄,如果传入的日期格式不正确,则返回null
-	 * @since 1.0
-	 * @deprecated 待重构,不建议使用
-	 */
-	public final static Integer convertBirthdayToAge(String birthday){
-		String birthdayPattern = "^(?:([0-9]{4}-(?:(?:0?[1,3-9]|1[0-2])-(?:29|30)|" + "((?:0?[13578]|1[02])-31)))|"
-				+ "([0-9]{4}-(?:0?[1-9]|1[0-2])-(?:0?[1-9]|1\\d|2[0-8]))|" + "(((?:(\\d\\d(?:0[48]|[2468][048]|[13579][26]))|"
-				+ "(?:0[48]00|[2468][048]00|[13579][26]00))-0?2-29)))$";
-		if (RegexUtil.match(birthdayPattern, birthday)){
-			Date nowDate = new Date();
-			return getYear(nowDate) - Integer.parseInt(birthday.substring(0, 4)) + 1;
-		}
-		return null;
 	}
 
 	/**
@@ -956,16 +1006,16 @@ public final class DateUtil{
 		// 间隔一天
 		if (space_day == 1){
 			if (isEqual(addDay(inDate, 1), nowDate, DatePattern.onlyDate)){
-				returnValue = config_date_yesterday + " ";
+				returnValue = CONFIG_DATE_YESTERDAY + " ";
 			}else{
-				returnValue = config_date_theDayBeforeYesterday + " ";
+				returnValue = CONFIG_DATE_THEDAY_BEFORE_YESTERDAY + " ";
 			}
 			returnValue += date2String(inDate, DatePattern.onlyTime_withoutSecond);
 		}
 		// 间隔2天
 		else if (space_day == 2){
 			if (isEqual(addDay(inDate, 2), nowDate, DatePattern.onlyDate)){
-				returnValue = config_date_theDayBeforeYesterday + " " + date2String(inDate, DatePattern.onlyTime_withoutSecond);
+				returnValue = CONFIG_DATE_THEDAY_BEFORE_YESTERDAY + " " + date2String(inDate, DatePattern.onlyTime_withoutSecond);
 			}else{
 				// 今年
 				if (year == inYear){
@@ -989,16 +1039,16 @@ public final class DateUtil{
 			// 小时间隔
 			if (space_hour != 0){
 				if (inDay == day){
-					returnValue = space_hour + config_date_hour + "前";
+					returnValue = space_hour + CONFIG_DATE_HOUR + "前";
 				}else{
-					returnValue = config_date_yesterday + " " + date2String(inDate, DatePattern.onlyTime_withoutSecond);
+					returnValue = CONFIG_DATE_YESTERDAY + " " + date2String(inDate, DatePattern.onlyTime_withoutSecond);
 				}
 			}else{
 				// 分钟间隔
 				if (space_minute == 0){
-					returnValue = space_second + config_date_second + "前";
+					returnValue = space_second + CONFIG_DATE_SECOND + "前";
 				}else{
-					returnValue = space_minute + config_date_minute + "前";
+					returnValue = space_minute + CONFIG_DATE_MINUTE + "前";
 				}
 			}
 		}
@@ -1009,10 +1059,13 @@ public final class DateUtil{
 	// [start] 转换成特色时间
 	/**
 	 * 在相同格式下,判断两个日期是否相等.
-	 *
-	 * @param date1 日期1
-	 * @param date2 日期2
-	 * @param datePattern 格式 @see {@link DatePattern}
+	 * 
+	 * @param date1
+	 *            日期1
+	 * @param date2
+	 *            日期2
+	 * @param datePattern
+	 *            格式 @see {@link DatePattern}
 	 * @return 相等返回true,不相等则为false
 	 * @since 1.0
 	 */
@@ -1057,11 +1110,14 @@ public final class DateUtil{
 	 * return 0
 	 * 
 	 * 自动增加 天,小时,分钟,秒,毫秒中文文字
-	 * </pre>.
-	 *
-	 * @param space_time 单位毫秒
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param space_time
+	 *            单位毫秒
 	 * @return 将时间(单位毫秒),并且转换成直观的表示方式<br>
-	 * 如果 space_time 是0 直接返回0
+	 *         如果 space_time 是0 直接返回0
 	 * @since 1.0
 	 */
 	public final static String getIntervalForView(long space_time){
@@ -1082,27 +1138,28 @@ public final class DateUtil{
 		// **************************************************************************************
 		StringBuilder stringBuilder = new StringBuilder();
 		if (0 != space_day){
-			stringBuilder.append(space_day + config_date_day);
+			stringBuilder.append(space_day + CONFIG_DATE_DAY);
 		}
 		if (0 != space_hour){
-			stringBuilder.append(space_hour + config_date_hour);
+			stringBuilder.append(space_hour + CONFIG_DATE_HOUR);
 		}
 		if (0 != space_minute){
-			stringBuilder.append(space_minute + config_date_minute);
+			stringBuilder.append(space_minute + CONFIG_DATE_MINUTE);
 		}
 		if (0 != space_second){
-			stringBuilder.append(space_second + config_date_second);
+			stringBuilder.append(space_second + CONFIG_DATE_SECOND);
 		}
 		if (0 != space_millisecond){
-			stringBuilder.append(space_millisecond + config_date_millisecond);
+			stringBuilder.append(space_millisecond + CONFIG_DATE_MILLISECOND);
 		}
 		return stringBuilder.toString();
 	}
 
 	/**
 	 * 两个时间相差的小时数.
-	 *
-	 * @param space_time 间隔毫秒
+	 * 
+	 * @param space_time
+	 *            间隔毫秒
 	 * @return 相差的小时数
 	 * @since 1.0
 	 */
@@ -1113,8 +1170,9 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的分数.
-	 *
-	 * @param space_time 间隔毫秒
+	 * 
+	 * @param space_time
+	 *            间隔毫秒
 	 * @return 相差的分数
 	 * @since 1.0
 	 */
@@ -1125,8 +1183,9 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的秒数.
-	 *
-	 * @param space_time 间隔毫秒
+	 * 
+	 * @param space_time
+	 *            间隔毫秒
 	 * @return 相差的秒数
 	 * @since 1.0
 	 */
@@ -1137,9 +1196,11 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的秒数.
-	 *
-	 * @param date1 the date1
-	 * @param date2 the date2
+	 * 
+	 * @param date1
+	 *            the date1
+	 * @param date2
+	 *            the date2
 	 * @return 相差的秒数
 	 * @since 1.0.2
 	 */
@@ -1150,9 +1211,11 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的的小时数.
-	 *
-	 * @param date1 date1
-	 * @param date2 date2
+	 * 
+	 * @param date1
+	 *            date1
+	 * @param date2
+	 *            date2
 	 * @return 相差的小时数
 	 * @since 1.0
 	 */
@@ -1162,8 +1225,9 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的天数.
-	 *
-	 * @param space_time 间隔毫秒
+	 * 
+	 * @param space_time
+	 *            间隔毫秒
 	 * @return 相差的天数
 	 * @since 1.0
 	 */
@@ -1174,10 +1238,13 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的的天数.
-	 *
-	 * @param date1 date1
-	 * @param date2 date2
-	 * @param datePattern 时间模式 @see {@link DatePattern}
+	 * 
+	 * @param date1
+	 *            date1
+	 * @param date2
+	 *            date2
+	 * @param datePattern
+	 *            时间模式 @see {@link DatePattern}
 	 * @return 相差的天数
 	 * @since 1.0
 	 */
@@ -1189,9 +1256,11 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的的天数.
-	 *
-	 * @param date1 date1
-	 * @param date2 date2
+	 * 
+	 * @param date1
+	 *            date1
+	 * @param date2
+	 *            date2
 	 * @return 相差的天数
 	 * @since 1.0
 	 */
@@ -1216,10 +1285,13 @@ public final class DateUtil{
 	 * 2011-03-10 00:00:00
 	 * 
 	 * </pre>
-	 *
-	 * @param fromDate 开始时间
-	 * @param toDate 结束时间
-	 * @param datePattern 时间模式 @see {@link DatePattern}
+	 * 
+	 * @param fromDate
+	 *            开始时间
+	 * @param toDate
+	 *            结束时间
+	 * @param datePattern
+	 *            时间模式 @see {@link DatePattern}
 	 * @return the interval day list
 	 * @since 1.0
 	 * @see #getIntervalDay(Date, Date)
@@ -1258,9 +1330,11 @@ public final class DateUtil{
 
 	/**
 	 * 两个时间相差的毫秒数,不管date1是否早于还是晚于date2,均返回绝对值.
-	 *
-	 * @param date1 date1
-	 * @param date2 date2
+	 * 
+	 * @param date1
+	 *            date1
+	 * @param date2
+	 *            date2
 	 * @return 两个时间相差的毫秒数,不管date1是否早于还是晚于date2,均返回绝对值
 	 * @since 1.0
 	 */
@@ -1272,8 +1346,9 @@ public final class DateUtil{
 
 	/**
 	 * 将date转成Calendar.
-	 *
-	 * @param date date
+	 * 
+	 * @param date
+	 *            date
 	 * @return Calendar
 	 */
 	public static Calendar toCalendar(Date date){

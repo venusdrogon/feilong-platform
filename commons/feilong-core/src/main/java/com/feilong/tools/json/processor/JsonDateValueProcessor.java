@@ -24,29 +24,56 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 
 /**
- * 时间转换 日期值处理器实现
+ * 时间转换 日期值处理器实现.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 26, 2013 3:49:55 PM
  */
 public class JsonDateValueProcessor implements JsonValueProcessor{
 
+	/** The date pattern. */
 	private String	datePattern	= DatePattern.commonWithTime;
 
+	/**
+	 * Instantiates a new json date value processor.
+	 */
 	public JsonDateValueProcessor(){}
 
+	/**
+	 * Instantiates a new json date value processor.
+	 * 
+	 * @param datePattern
+	 *            the date pattern
+	 */
 	public JsonDateValueProcessor(String datePattern){
 		this.datePattern = datePattern;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see net.sf.json.processors.JsonValueProcessor#processArrayValue(java.lang.Object, net.sf.json.JsonConfig)
+	 */
 	public Object processArrayValue(Object value,JsonConfig jsonConfig){
 		return process(value, jsonConfig);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see net.sf.json.processors.JsonValueProcessor#processObjectValue(java.lang.String, java.lang.Object, net.sf.json.JsonConfig)
+	 */
 	public Object processObjectValue(String key,Object value,JsonConfig jsonConfig){
 		return process(value, jsonConfig);
 	}
 
+	/**
+	 * Process.
+	 * 
+	 * @param value
+	 *            the value
+	 * @param jsonConfig
+	 *            the json config
+	 * @return the object
+	 */
 	private Object process(Object value,JsonConfig jsonConfig){
 		if (null == value){
 			return null;
@@ -58,6 +85,8 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 	}
 
 	/**
+	 * Gets the date pattern.
+	 * 
 	 * @return the datePattern
 	 */
 	public String getDatePattern(){
@@ -65,6 +94,8 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 	}
 
 	/**
+	 * Sets the date pattern.
+	 * 
 	 * @param datePattern
 	 *            the datePattern to set
 	 */

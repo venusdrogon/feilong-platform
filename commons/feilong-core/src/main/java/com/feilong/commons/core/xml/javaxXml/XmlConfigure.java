@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 import com.feilong.commons.core.configure.BaseConfigure;
 
 /**
- * xml配置文件
+ * xml配置文件.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午10:08:30
@@ -45,31 +45,53 @@ import com.feilong.commons.core.configure.BaseConfigure;
  */
 public final class XmlConfigure extends BaseConfigure{
 
-	// ************************************************************************
 	/**
-	 * XmlConfigure
+	 * XmlConfigure.
+	 * 
+	 * @param xmlPath
+	 *            the xml path
 	 */
 	public XmlConfigure(String xmlPath){
 		createDocument(xmlPath);
 	}
 
+	/**
+	 * Instantiates a new xml configure.
+	 * 
+	 * @param xmlFile
+	 *            the xml file
+	 */
 	public XmlConfigure(File xmlFile){
 		createDocument(xmlFile);
 	}
 
+	/**
+	 * Instantiates a new xml configure.
+	 * 
+	 * @param inputStream
+	 *            the input stream
+	 */
 	public XmlConfigure(InputStream inputStream){
 		createDocument(inputStream);
 	}
 
+	/**
+	 * Instantiates a new xml configure.
+	 * 
+	 * @param inputSource
+	 *            the input source
+	 */
 	public XmlConfigure(InputSource inputSource){
 		createDocument(inputSource);
 	}
 
 	// ************************************************************************
 	/**
-	 * 获得document对象
+	 * 获得document对象.
 	 * 
 	 * @param xmlPath
+	 *            the xml path
+	 * @return the document
 	 */
 	public Document createDocument(Object xmlPath){
 		DocumentBuilder documentBuilder = createDocumentBuilder();
@@ -93,6 +115,11 @@ public final class XmlConfigure extends BaseConfigure{
 		return document;
 	}
 
+	/**
+	 * Creates the document builder.
+	 * 
+	 * @return the document builder
+	 */
 	public DocumentBuilder createDocumentBuilder(){
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 		try{
@@ -106,7 +133,7 @@ public final class XmlConfigure extends BaseConfigure{
 
 	// **************************************************************************
 	/**
-	 * 获取xml node对象
+	 * 获取xml node对象.
 	 * 
 	 * @param nodeTagName
 	 *            节点名称
@@ -124,7 +151,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 获取xml node对象
+	 * 获取xml node对象.
 	 * 
 	 * @param expression
 	 *            xpath表达式
@@ -135,7 +162,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 通过xpath 获取对象
+	 * 通过xpath 获取对象.
 	 * 
 	 * @param expression
 	 *            xpath表达式
@@ -155,7 +182,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 获得xml节点
+	 * 获得xml节点.
 	 * 
 	 * @param nodeTagName
 	 *            节点名称
@@ -166,7 +193,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 获取xml对象文档节点里面的属性值
+	 * 获取xml对象文档节点里面的属性值.
 	 * 
 	 * @param nodeTagName
 	 *            节点名称
@@ -182,7 +209,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * xpath 获得node 属性
+	 * xpath 获得node 属性.
 	 * 
 	 * @param expression
 	 *            xpath表达式
@@ -196,7 +223,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 获得node属性值
+	 * 获得node属性值.
 	 * 
 	 * @param node
 	 *            节点
@@ -216,7 +243,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 获取xml对象文档节点里面的属性值
+	 * 获取xml对象文档节点里面的属性值.
 	 * 
 	 * @param nodeTagName
 	 *            节点名称
@@ -229,7 +256,7 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 返回节点及其后代的文本内容
+	 * 返回节点及其后代的文本内容.
 	 * 
 	 * @param nodeTagName
 	 *            节点名称
@@ -241,11 +268,11 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	/**
-	 * 获得节点内容
+	 * 获得节点内容.
 	 * 
 	 * @param node
 	 *            节点
-	 * @return
+	 * @return the node text content
 	 */
 	private String getNodeTextContent(Node node){
 		if (null == node){
@@ -255,19 +282,13 @@ public final class XmlConfigure extends BaseConfigure{
 	}
 
 	// [start]
-	/**
-	 * document
-	 */
+	/** document. */
 	private Document		document		= null;
 
-	/**
-	 * node
-	 */
+	/** node. */
 	private Node			node			= null;
 
-	/**
-	 * namedNodeMap
-	 */
+	/** namedNodeMap. */
 	private NamedNodeMap	namedNodeMap	= null;
 	// [end]
 }

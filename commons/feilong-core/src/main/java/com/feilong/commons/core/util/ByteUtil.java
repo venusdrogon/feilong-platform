@@ -98,31 +98,35 @@ public final class ByteUtil{
 		return new String(tmpData);
 	}
 
-	/**
-	 * 字节数组转换成16进制字符串.
-	 * 
-	 * @param bytes
-	 *            byte[]
-	 * @return 16进制字符串
-	 * @deprecated ("该方法性能不高,请使用ByteUtil.bytesToHexStringUpperCase(byte[] bytes)")
-	 */
-	public final static String bytesToHexString_old(byte[] bytes){
-		if (null == bytes){
-			throw new IllegalArgumentException("bytes不能为空");
-		}
-		String returnValue = "";
-		String hex = "";
-		int length = bytes.length;
-		for (int i = 0; i < length; ++i){
-			hex = Integer.toHexString(bytes[i] & 0xFF);// 整数转成十六进制表示
-			if (hex.length() == 1){
-				hex = '0' + hex;
-			}
-			returnValue += hex;
-		}
-		// 转成大写
-		return returnValue.toUpperCase();
-	}
+	// @formatter:off
+
+//	/**
+//	 * 字节数组转换成16进制字符串.
+//	 * 
+//	 * @param bytes
+//	 *            byte[]
+//	 * @return 16进制字符串
+//	 * @deprecated ("该方法性能不高,请使用ByteUtil.bytesToHexStringUpperCase(byte[] bytes)")
+//	 */
+//	public final static String bytesToHexString_old(byte[] bytes){
+//		if (null == bytes){
+//			throw new IllegalArgumentException("bytes不能为空");
+//		}
+//		String returnValue = "";
+//		String hex = "";
+//		int length = bytes.length;
+//		for (int i = 0; i < length; ++i){
+//			hex = Integer.toHexString(bytes[i] & 0xFF);// 整数转成十六进制表示
+//			if (hex.length() == 1){
+//				hex = '0' + hex;
+//			}
+//			returnValue += hex;
+//		}
+//		// 转成大写
+//		return returnValue.toUpperCase();
+//	}
+	
+	// @formatter:on
 
 	// *****************************************************************************************************
 	/**

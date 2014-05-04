@@ -24,7 +24,7 @@ import java.io.OutputStream;
 import com.feilong.commons.core.io.IOUtil;
 
 /**
- * 飞龙水印
+ * 飞龙水印.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午02:55:23
@@ -33,11 +33,14 @@ import com.feilong.commons.core.io.IOUtil;
 public final class WaterMark{
 
 	/**
-	 * 默认 水印在右下角
+	 * 默认 水印在右下角.
 	 * 
 	 * @param targetImg
+	 *            the target img
 	 * @param pressImg
+	 *            the press img
 	 * @param outputStream
+	 *            the output stream
 	 */
 	public final static void pressImage(String targetImg,String pressImg,OutputStream outputStream){
 		pressImage(targetImg, pressImg, 0, 0, outputStream);
@@ -45,7 +48,7 @@ public final class WaterMark{
 
 	/**
 	 * 把图片印刷到图片上(水印)<br>
-	 * 由于是动态从流中加水印，因此不会修改服务器上原图片
+	 * 由于是动态从流中加水印，因此不会修改服务器上原图片.
 	 * 
 	 * @param targetImg
 	 *            目标文件
@@ -65,7 +68,7 @@ public final class WaterMark{
 
 	/**
 	 * 把图片印刷到图片上(水印)<br>
-	 * 由于是动态从流中加水印，因此不会修改服务器上原图片
+	 * 由于是动态从流中加水印，因此不会修改服务器上原图片.
 	 * 
 	 * @param targetImg
 	 *            目标文件
@@ -103,7 +106,7 @@ public final class WaterMark{
 	}
 
 	/**
-	 * 文字水印图片 (水印)
+	 * 文字水印图片 (水印).
 	 * 
 	 * @param targetImg
 	 *            目标图片
@@ -126,7 +129,7 @@ public final class WaterMark{
 	}
 
 	/**
-	 * 文字水印图片 (水印)
+	 * 文字水印图片 (水印).
 	 * 
 	 * @param targetImg
 	 *            目标图片

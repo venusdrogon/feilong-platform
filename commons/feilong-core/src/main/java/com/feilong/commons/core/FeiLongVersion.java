@@ -30,6 +30,7 @@ public class FeiLongVersion{
 	/**
 	 * Return the full version feilong of the present feilong codebase, or <code>null</code> if it cannot be determined.
 	 * 
+	 * @return the version
 	 * @see java.lang.Package#getImplementationVersion()
 	 */
 	public static String getVersion(){

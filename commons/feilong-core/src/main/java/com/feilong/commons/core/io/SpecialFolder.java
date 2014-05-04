@@ -20,7 +20,7 @@ import java.io.File;
 import javax.swing.filechooser.FileSystemView;
 
 /**
- *特殊文件夹
+ * 特殊文件夹.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-22 下午11:45:57
@@ -32,6 +32,7 @@ public final class SpecialFolder{
 	 * <ul>
 	 * <li>win7:C:\Users\VENUSD~1\AppData\Local\Temp\</li>
 	 * </ul>
+	 * .
 	 * 
 	 * @return 操作系统临时文件夹
 	 */
@@ -43,14 +44,14 @@ public final class SpecialFolder{
 
 	/**
 	 * 获得桌面<br>
-	 * example:win7:C:\Users\venusdrogon\Desktop
+	 * example:win7:C:\Users\venusdrogon\Desktop.
 	 * 
 	 * @return 桌面地址
 	 */
 	public final static String getDesktop(){
 		FileSystemView fileSystemView = FileSystemView.getFileSystemView();
 		File file = fileSystemView.getHomeDirectory();
-		//或者 通过环境变量 USERPROFILE======>C:\Users\venusdrogon   再拼接 Desktop 获得
+		// 或者 通过环境变量 USERPROFILE======>C:\Users\venusdrogon 再拼接 Desktop 获得
 		return file.getPath();
 	}
 
@@ -59,6 +60,7 @@ public final class SpecialFolder{
 	 * <ul>
 	 * <li>win7:D:\noMove\documents</li>
 	 * </ul>
+	 * .
 	 * 
 	 * @return 我的文档地址
 	 */

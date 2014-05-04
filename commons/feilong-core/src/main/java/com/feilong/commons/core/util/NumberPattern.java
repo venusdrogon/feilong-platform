@@ -88,13 +88,14 @@ import java.text.DecimalFormat;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-6 下午8:33:23
+ * @version 1.0.5 2014-5-4 14:35 改成interface
  * @see {@link DecimalFormat}
  */
-public final class NumberPattern{
+public interface NumberPattern{
 
 	/** 百分数的表达式(2位小数点) <code>{@value}</code>. */
-	public static final String	percent_with_2Point		= "#0.00%";
+	String	PERCENT_WITH_2POINT		= "#0.00%";
 
 	/** 百分数的表达式(无小数点) <code>{@value}</code>. */
-	public static final String	percent_with_noPoint	= "##%";
+	String	PERCENT_WITH_NOPOINT	= "##%";
 }

@@ -23,26 +23,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *注册表工具类,暂时支持查询
+ * 注册表工具类,暂时支持查询.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-7 下午01:36:21
  */
 public final class RegeditUtil{
 
+	/** The Constant log. */
 	private final static Logger	log					= LoggerFactory.getLogger(RegeditUtil.class);
 
-	/**
-	 * 几大根键简写
-	 */
+	/** 几大根键简写. */
 	public static final String	HKEY_CURRENT_USER	= "HKCU";
 
 	// hklm | hkcu | hkcr | hku | hkcc
+	/** The Constant REGQUERY_UTIL. */
 	public static final String	REGQUERY_UTIL		= "reg query ";
 
+	/** The Constant REGSTR_TOKEN. */
 	public static final String	REGSTR_TOKEN		= "REG_SZ";
 
-	/********************************************************************************/
 	/**
 	 * 查询注册表
 	 * 
@@ -69,18 +69,35 @@ public final class RegeditUtil{
 		return result;
 	}
 
-	/*************************** StreamReaderThread **************************/
+	/**
+	 * StreamReaderThread
+	 * 
+	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+	 * @version 1.0 2014-5-4 14:41:10
+	 */
 	public static class FeiLongStreamReaderThread extends Thread{
 
+		/** The input stream. */
 		private InputStream		inputStream;
 
+		/** The string writer. */
 		private StringWriter	stringWriter;
 
+		/**
+		 * Instantiates a new fei long stream reader thread.
+		 * 
+		 * @param is
+		 *            the is
+		 */
 		public FeiLongStreamReaderThread(InputStream is){
 			this.inputStream = is;
 			stringWriter = new StringWriter();
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
 		@Override
 		public void run(){
 			int i;
@@ -94,6 +111,11 @@ public final class RegeditUtil{
 		}
 
 		// **************************************************************
+		/**
+		 * Gets the result.
+		 * 
+		 * @return the result
+		 */
 		public String getResult(){
 			return stringWriter.toString();
 		}

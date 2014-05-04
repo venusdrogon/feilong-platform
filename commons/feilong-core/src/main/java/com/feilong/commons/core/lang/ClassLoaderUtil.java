@@ -226,9 +226,6 @@ public class ClassLoaderUtil{
 	}
 
 	/**
-	 * *****************************************************************************************************.
-	 */
-	/**
 	 * Prints the current classloader hierarchy <br>
 	 * useful for debugging.
 	 */

@@ -21,7 +21,7 @@ import java.util.Random;
 import com.feilong.commons.core.enumeration.FontType;
 
 /**
- *飞龙字体类
+ * 飞龙字体类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-21 上午10:08:47
@@ -29,13 +29,11 @@ import com.feilong.commons.core.enumeration.FontType;
  */
 public final class FontUtil{
 
-	/**
-	 * 验证码用到的字体 //\u534e\u6587\u884c\u6977 华文行楷 //\u6977\u4f53 楷体
-	 */
+	/** 验证码用到的字体 //\u534e\u6587\u884c\u6977 华文行楷 //\u6977\u4f53 楷体. */
 	public static String[]	fontNamesForValidateCode	= { FontType.VERDANA, FontType.VERDANA };
 
 	/**
-	 * 获得随机的验证码用到的字体
+	 * 获得随机的验证码用到的字体.
 	 * 
 	 * @return 获得随机的验证码用到的字体
 	 */
@@ -48,7 +46,7 @@ public final class FontUtil{
 	}
 
 	/**
-	 * 12 正常 宋体字体
+	 * 12 正常 宋体字体.
 	 * 
 	 * @return 12 正常 宋体字体
 	 */
@@ -57,7 +55,7 @@ public final class FontUtil{
 	}
 
 	/**
-	 * 16 正常 楷体字体
+	 * 16 正常 楷体字体.
 	 * 
 	 * @return 16 正常 楷体字体
 	 */
@@ -67,7 +65,7 @@ public final class FontUtil{
 	}
 
 	/**
-	 * 9 正常 宋体字体
+	 * 9 正常 宋体字体.
 	 * 
 	 * @return 9 正常 宋体字体
 	 */
@@ -80,7 +78,8 @@ public final class FontUtil{
 	 * 获得courier_New字体(默认 Font.PLAIN)
 	 * 
 	 * @param size
-	 * @return
+	 *            the size
+	 * @return the font_courier_ new_ plain
 	 */
 	public final static Font getFont_courier_New_Plain(int size){
 		return getFont(FontType.COURIER_NEW, size);
@@ -90,25 +89,26 @@ public final class FontUtil{
 	 * 获得verdana字体(默认 Font.PLAIN)
 	 * 
 	 * @param size
-	 * @return
+	 *            the size
+	 * @return the font_verdana_ plain
 	 */
 	public final static Font getFont_verdana_Plain(int size){
 		return getFont(FontType.VERDANA, size);
 	}
 
 	/**
-	 * 9 正常 雅黑
+	 * 9 正常 雅黑.
 	 * 
-	 * @return
+	 * @return the font_ ya hei_ plain_9
 	 */
 	public final static Font getFont_YaHei_Plain_9(){
 		return getFont_YaHei_Plain(9);
 	}
 
 	/**
-	 * 9 正常 雅黑
+	 * 9 正常 雅黑.
 	 * 
-	 * @return
+	 * @return the font_ ya hei_ plain_12
 	 */
 	public final static Font getFont_YaHei_Plain_12(){
 		return getFont_YaHei_Plain(12);
@@ -118,7 +118,8 @@ public final class FontUtil{
 	 * 获得微软雅黑字体(默认 Font.PLAIN)
 	 * 
 	 * @param size
-	 * @return
+	 *            the size
+	 * @return the font_ ya hei_ plain
 	 */
 	public final static Font getFont_YaHei_Plain(int size){
 		return getFont(FontType.YAHEI, size);
@@ -128,10 +129,10 @@ public final class FontUtil{
 	 * 获得字体(默认 Font.PLAIN)
 	 * 
 	 * @param fontName
-	 *            字体名称。可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。 <li>逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或 SansSerif。</li> 如果 name 为
-	 *            null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
-	 * @param fontSize
-	 *            字体磅值大小 9pt=12px
+	 *            字体名称。可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。 <li>逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或
+	 *            SansSerif。</li> 如果 name 为 null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
+	 * @param size
+	 *            the size
 	 * @return 字体
 	 */
 	public final static Font getFont(String fontName,int size){
@@ -140,14 +141,14 @@ public final class FontUtil{
 	}
 
 	/**
-	 * 获得字体
+	 * 获得字体.
 	 * 
 	 * @param fontName
-	 *            字体名称。可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。 <li>逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或 SansSerif。</li> 如果 name 为
-	 *            null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
+	 *            字体名称。可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。 <li>逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或
+	 *            SansSerif。</li> 如果 name 为 null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
 	 * @param fontStyle
-	 *            字体样式 粗体BOLD 斜体ITALIC 普通样式常量PLAIN <li>Font 的样式常量。样式参数是整数位掩码，可以为 PLAIN，或 BOLD 和 ITALIC 的按位或（例如，ITALIC 或 BOLD|ITALIC）。</li> <li>
-	 *            如果样式参数不符合任何一个期望的整数位掩码，则将样式设置为 PLAIN。</li>
+	 *            字体样式 粗体BOLD 斜体ITALIC 普通样式常量PLAIN <li>Font 的样式常量。样式参数是整数位掩码，可以为 PLAIN，或 BOLD 和 ITALIC 的按位或（例如，ITALIC 或 BOLD|ITALIC）。</li>
+	 *            <li>如果样式参数不符合任何一个期望的整数位掩码，则将样式设置为 PLAIN。</li>
 	 * @param fontSize
 	 *            字体磅值大小 9pt=12px
 	 * @return 字体

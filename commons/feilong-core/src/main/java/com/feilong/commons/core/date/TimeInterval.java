@@ -23,36 +23,27 @@ package com.feilong.commons.core.date;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-18 下午2:57:14
+ * @version 1.0.5 2014-5-4 14:23 change to interface
  */
-public final class TimeInterval{
+public interface TimeInterval{
 
-	private TimeInterval(){}
+	/** 1分钟 60s. */
+	Integer	SECONDS_PER_MINUTE	= 60;
 
-	/**
-	 * 1分钟 60s
-	 */
-	public static final Integer	SECONDS_PER_MINUTE	= 60;
+	/** 1小时 60 * 60=3600. */
+	Integer	SECONDS_PER_HOUR	= SECONDS_PER_MINUTE * 60;
 
-	/**
-	 * 1小时 60 * 60=3600
-	 */
-	public static final Integer	SECONDS_PER_HOUR	= SECONDS_PER_MINUTE * 60;
+	/** 1天 60 * 60 * 24=86400. */
+	Integer	SECONDS_PER_DAY		= SECONDS_PER_HOUR * 24;
 
-	/**
-	 * 1天 60 * 60 * 24=86400
-	 */
-	public static final Integer	SECONDS_PER_DAY		= SECONDS_PER_HOUR * 24;
-
-	/**
-	 * 一个星期 60 * 60 * 24 * 7= 604 800
-	 */
-	public static final Integer	SECONDS_PER_WEEK	= SECONDS_PER_DAY * 7;
+	/** 一个星期 60 * 60 * 24 * 7= 604 800. */
+	Integer	SECONDS_PER_WEEK	= SECONDS_PER_DAY * 7;
 
 	/**
 	 * 30天 一个月 60 * 60 * 24 * 30= 2592000<br>
-	 * 估值,没有精确一个月28/29天 还是30 31天
+	 * 估值,没有精确一个月28/29天 还是30 31天.
 	 */
-	public static final Integer	SECONDS_PER_MONTH	= SECONDS_PER_DAY * 30;
+	Integer	SECONDS_PER_MONTH	= SECONDS_PER_DAY * 30;
 
 	/**
 	 * 365天 1年 60 * 60 * 24 * 365=31536000<br>
@@ -60,5 +51,5 @@ public final class TimeInterval{
 	 * Integer.MIN_VALUE-2147483648<br>
 	 * 一年数据为 31536000,所以 Integer 最大为 68.096259734906 年
 	 */
-	public static final Integer	SECONDS_PER_YEAR	= SECONDS_PER_DAY * 365;
+	Integer	SECONDS_PER_YEAR	= SECONDS_PER_DAY * 365;
 }

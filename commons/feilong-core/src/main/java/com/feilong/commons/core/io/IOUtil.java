@@ -32,12 +32,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 一些流之间的转换
+ * 一些流之间的转换.
  * 
  * @author 金鑫 2009-10-26下午02:36:47
  */
 public final class IOUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(IOUtil.class);
 
 	/** Don't let anyone instantiate this class. */
@@ -48,6 +49,7 @@ public final class IOUtil{
 	 * 使用 Charset.defaultCharset()
 	 * 
 	 * @param inputStream
+	 *            the input stream
 	 * @return 将 InputStream 转成string，如果出现异常， 返回null<br/>
 	 *         已经处理了 inputStream 的关闭
 	 * @since 1.0.2
@@ -61,9 +63,10 @@ public final class IOUtil{
 
 	/**
 	 * 将 InputStream 转成string(该方法会将 inputStream 关闭)<br>
-	 * 读取cmd命令结果时候， 有时候读取的是乱码，需要传递charset字符集
+	 * 读取cmd命令结果时候， 有时候读取的是乱码，需要传递charset字符集.
 	 * 
 	 * @param inputStream
+	 *            the input stream
 	 * @param charsetName
 	 *            指定受支持的 charset 的名称
 	 * @return 将 InputStream 转成string，如果出现异常， 返回null<br/>
@@ -96,14 +99,10 @@ public final class IOUtil{
 		return null;
 	}
 
-	// ***********************************************************************
-	//
-	// 写文件
-	//
-	// *******************************************************************
 	/**
 	 * 将网络文件 下载到文件夹<br>
 	 * 取到网络文件的文件名 原样下载到目标文件夹<br>
+	 * .
 	 * 
 	 * @param url
 	 *            网络任意文件<br>
@@ -125,7 +124,7 @@ public final class IOUtil{
 	}
 
 	/**
-	 * 将文件转成ByteArray
+	 * 将文件转成ByteArray.
 	 * 
 	 * @param file
 	 *            file
@@ -165,7 +164,7 @@ public final class IOUtil{
 
 	/**
 	 * 获得FileOutputStream文件输出流 FileOutputStream（或其他文件写入对象）打开文件进行写入 <br>
-	 * FileOutputStream 用于写入诸如图像数据之类的原始字节的流。要写入字符流，请考虑使用 FileWriter。
+	 * FileOutputStream 用于写入诸如图像数据之类的原始字节的流。要写入字符流，请考虑使用 FileWriter。.
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -183,7 +182,7 @@ public final class IOUtil{
 
 	/**
 	 * FileInputStream 从文件系统中的某个文件中获得输入字节。哪些文件可用取决于主机环境。<br>
-	 * FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。
+	 * FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。.
 	 * 
 	 * @param fileName
 	 *            该文件通过文件系统中的路径名 fileName 指定。
@@ -196,7 +195,7 @@ public final class IOUtil{
 
 	/**
 	 * FileInputStream 从文件系统中的某个文件中获得输入字节。哪些文件可用取决于主机环境。<br>
-	 * FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。
+	 * FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。.
 	 * 
 	 * @param file
 	 *            为了进行读取而打开的文件。

@@ -37,15 +37,6 @@ public final class NumberUtil{
 	private NumberUtil(){}
 
 	/**
-	 * **********************************************************************************.
-	 * 
-	 * @param one
-	 *            the one
-	 * @param two
-	 *            the two
-	 * @return the divide value to zheng shu
-	 */
-	/**
 	 * 获得 除法结果one/two,四舍五入取整,不需要再次toZhengShu转换了
 	 * <p>
 	 * 当two 是空或者是0的时候,直接返回one<br>
@@ -211,7 +202,7 @@ public final class NumberUtil{
 	 * @return 百分数字符串,2位小数点
 	 */
 	public final static String toPercentWith2Point(Number value){
-		return toString(value, NumberPattern.percent_with_2Point);
+		return toString(value, NumberPattern.PERCENT_WITH_2POINT);
 	}
 
 	/**
@@ -222,7 +213,7 @@ public final class NumberUtil{
 	 * @return 百分数字符串,不带小数点
 	 */
 	public final static String toPercentWithNoPoint(Number value){
-		return toString(value, NumberPattern.percent_with_noPoint);
+		return toString(value, NumberPattern.PERCENT_WITH_NOPOINT);
 	}
 
 	/**

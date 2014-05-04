@@ -94,8 +94,8 @@ public final class URIUtil{
 	 *            the url
 	 * @param charsetType
 	 *            decode/encode 编码
+	 * @see {@link <a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>}
 	 * @return 如果异常 返回null
-	 * @see {@link http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser}
 	 */
 	public static URI create(String url,String charsetType){
 		if (log.isDebugEnabled()){

@@ -33,13 +33,14 @@ import com.feilong.commons.core.enumeration.FileWriteMode;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 写文件
+ * 写文件.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:23:23 PM
  */
 public final class IOWriteUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtil.class);
 
 	/**
@@ -73,7 +74,7 @@ public final class IOWriteUtil{
 	}
 
 	/**
-	 * 写资源,速度最快的方法,速度比较请看 电脑资料<<压缩解压性能探究>>
+	 * 写资源,速度最快的方法,速度比较请看 电脑资料<<压缩解压性能探究>>.
 	 * 
 	 * @param inputStream
 	 *            inputStream
@@ -101,6 +102,7 @@ public final class IOWriteUtil{
 	/**
 	 * 将字符串写到文件中,如果文件存在则覆盖旧文件,<br>
 	 * 默认采用GBK 编码 (支持级联创建 文件夹)<br>
+	 * .
 	 * 
 	 * @param filePath
 	 *            文件路径
@@ -117,7 +119,7 @@ public final class IOWriteUtil{
 	}
 
 	/**
-	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹),默认 以覆盖的模式 write内容
+	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹),默认 以覆盖的模式 write内容.
 	 * 
 	 * @param filePath
 	 *            文件路径
@@ -189,7 +191,7 @@ public final class IOWriteUtil{
 	}
 
 	/**
-	 * 将字符串写到文件中,该方法一般给上面{@link #write(String, String, String)}调用
+	 * 将字符串写到文件中,该方法一般给上面{@link #write(String, String, String)}调用.
 	 * 
 	 * @param filePath
 	 *            文件路径 ,必须是存在的路径,且不是文件夹,且不是只读属性

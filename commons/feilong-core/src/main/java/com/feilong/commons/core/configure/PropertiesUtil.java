@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.lang.ClassLoaderUtil;
 
 /**
- * 操作properties配置文件
+ * 操作properties配置文件.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午10:05:19
@@ -35,9 +35,15 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
  */
 public class PropertiesUtil extends BaseConfigure{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtil.class);
 
-	/****************************************************************************************/
+	/**
+	 * *************************************************************************************.
+	 * 
+	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+	 * @version 1.0 2014-5-4 14:21:02
+	 */
 	/**
 	 * 读取方式
 	 * 
@@ -54,7 +60,17 @@ public class PropertiesUtil extends BaseConfigure{
 		byClassLoaderGetResourceAsStream
 	}
 
-	/****************************************************************************************/
+	/**
+	 * *************************************************************************************.
+	 * 
+	 * @param clz
+	 *            the clz
+	 * @param propertiesPath
+	 *            the properties path
+	 * @param key
+	 *            the key
+	 * @return the properties value
+	 */
 	/**
 	 * 获取Properties配置文件键值
 	 * 
@@ -72,10 +88,11 @@ public class PropertiesUtil extends BaseConfigure{
 	}
 
 	/**
-	 * 转换成map
+	 * 转换成map.
 	 * 
 	 * @param properties
-	 * @return
+	 *            the properties
+	 * @return the map
 	 */
 	public static Map<String, String> toMap(Properties properties){
 		// Create a new HashMap and pass an instance of Properties.
@@ -86,7 +103,7 @@ public class PropertiesUtil extends BaseConfigure{
 	}
 
 	/**
-	 * 获取Properties
+	 * 获取Properties.
 	 * 
 	 * @param clz
 	 *            当前类
@@ -100,7 +117,15 @@ public class PropertiesUtil extends BaseConfigure{
 		return getProperties(inputStream);
 	}
 
-	/****************************************************************************************/
+	/**
+	 * *************************************************************************************.
+	 * 
+	 * @param readType
+	 *            the read type
+	 * @param propertiesPath
+	 *            the properties path
+	 * @return the properties
+	 */
 	/**
 	 * 获得Properties对象
 	 * 
@@ -123,7 +148,7 @@ public class PropertiesUtil extends BaseConfigure{
 	}
 
 	/**
-	 * 通过ClassLoader获得properties值
+	 * 通过ClassLoader获得properties值.
 	 * 
 	 * @param clz
 	 *            当前Class
@@ -143,8 +168,8 @@ public class PropertiesUtil extends BaseConfigure{
 	 * 
 	 * @param clz
 	 *            当前加载类
-	 * @param key
-	 *            用指定的键在此属性列表中搜索属性。如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值。如果未找到属性，则此方法返回 null。
+	 * @param propertiesPath
+	 *            the properties path
 	 * @return 获得飞龙配置文件 feilong.user.properties 值
 	 */
 	// public static String getPropertiesFeiLongValueWithClassLoader(Class clz,String key){
@@ -177,7 +202,7 @@ public class PropertiesUtil extends BaseConfigure{
 	}
 
 	/**
-	 * 获取Properties
+	 * 获取Properties.
 	 * 
 	 * @param inputStream
 	 *            inputStream

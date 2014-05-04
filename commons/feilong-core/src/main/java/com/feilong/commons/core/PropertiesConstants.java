@@ -32,40 +32,40 @@ public interface PropertiesConstants{
 	 * feilong-core-message 路径,<br>
 	 * 包名+名称,并去除后缀,默认classpath下面 <code>{@value}</code>
 	 */
-	String	$feilong_core_message						= "messages/feilong-core-message";
+	String	$FEILONG_CORE_MESSAGE						= "messages/feilong-core-message";
 
 	// ******************************************************************************************************************************************************************************************
 	/** 星期. */
-	String	CONFIG_DATE_WEEK							= getValue($feilong_core_message, "config_date_week");
+	String	CONFIG_DATE_WEEK							= getValue($FEILONG_CORE_MESSAGE, "config_date_week");
 
 	/** 昨天. */
-	String	config_date_yesterday						= getValue($feilong_core_message, "config_date_yesterday");
+	String	CONFIG_DATE_YESTERDAY						= getValue($FEILONG_CORE_MESSAGE, "config_date_yesterday");
 
 	/** 前天. */
-	String	config_date_theDayBeforeYesterday			= getValue($feilong_core_message, "config_date_theDayBeforeYesterday");
+	String	CONFIG_DATE_THEDAY_BEFORE_YESTERDAY			= getValue($FEILONG_CORE_MESSAGE, "config_date_theDayBeforeYesterday");
 
 	/** 天. */
-	String	config_date_day								= getValue($feilong_core_message, "config_date_day");
+	String	CONFIG_DATE_DAY								= getValue($FEILONG_CORE_MESSAGE, "config_date_day");
 
 	/** 小时. */
-	String	config_date_hour							= getValue($feilong_core_message, "config_date_hour");
+	String	CONFIG_DATE_HOUR							= getValue($FEILONG_CORE_MESSAGE, "config_date_hour");
 
 	/** 分钟. */
-	String	config_date_minute							= getValue($feilong_core_message, "config_date_minute");
+	String	CONFIG_DATE_MINUTE							= getValue($FEILONG_CORE_MESSAGE, "config_date_minute");
 
 	/** 秒. */
-	String	config_date_second							= getValue($feilong_core_message, "config_date_second");
+	String	CONFIG_DATE_SECOND							= getValue($FEILONG_CORE_MESSAGE, "config_date_second");
 
 	/** 毫秒. */
-	String	config_date_millisecond						= getValue($feilong_core_message, "config_date_millisecond");
+	String	CONFIG_DATE_MILLISECOND						= getValue($FEILONG_CORE_MESSAGE, "config_date_millisecond");
 
 	// **************************************************************************************************************************************************************
 	/** 数字和小写的字母. */
-	String	config_validateCode_numbersAndLittleLetters	= getValue($feilong_core_message, "config_validateCode_numbersAndLittleLetters");
+	String	CONFIG_VALIDATECODE_NUMBERSANDLITTLELETTERS	= getValue($FEILONG_CORE_MESSAGE, "config_validateCode_numbersAndLittleLetters");
 
 	/** 数字和大小写字母. */
-	String	config_numbersAndAllLetters					= getValue($feilong_core_message, "config_numbersAndAllLetters");					;
+	String	CONFIG_NUMBERSANDALLLETTERS					= getValue($FEILONG_CORE_MESSAGE, "config_numbersAndAllLetters");					;
 
 	/** 所有的数字. */
-	String	config_numbers								= getValue($feilong_core_message, "config_numbers");
+	String	CONFIG_NUMBERS								= getValue($FEILONG_CORE_MESSAGE, "config_numbers");
 }

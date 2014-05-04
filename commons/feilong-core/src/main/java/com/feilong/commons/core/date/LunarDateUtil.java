@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.PropertiesConstants;
 
 /**
- * 阴历日期,农历日期
+ * 阴历日期,农历日期.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:32
@@ -31,10 +31,11 @@ import com.feilong.commons.core.PropertiesConstants;
  */
 public final class LunarDateUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(LunarDateUtil.class);
 
 	/**
-	 * 获得中文星期
+	 * 获得中文星期.
 	 * 
 	 * @param week
 	 *            星期 日从0开始 1 2 --6
@@ -45,7 +46,7 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * 农历转成阳历The lunar calendar is turned into the Solar calendar
+	 * 农历转成阳历The lunar calendar is turned into the Solar calendar.
 	 * 
 	 * @param year_lunar
 	 *            农历年份
@@ -59,7 +60,8 @@ public final class LunarDateUtil{
 		int year;
 		int month;
 		int day;
-		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(year_lunar, month_lunar, day_lunar) + DateDictionary.solarAndLunarOffsetTable[year_lunar - 1901];
+		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(year_lunar, month_lunar, day_lunar)
+				+ DateDictionary.solarAndLunarOffsetTable[year_lunar - 1901];
 		int yearDays = DateUtil.isLeapYear(year_lunar) ? 366 : 365;
 		if (offSetDays >= yearDays){
 			year = year_lunar + 1;
@@ -77,10 +79,11 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * date 转成农历
+	 * date 转成农历.
 	 * 
 	 * @param date
-	 * @return
+	 *            the date
+	 * @return the lunar date string
 	 */
 	public static String getLunarDateString(Date date){
 		int year = DateUtil.getYear(date);
@@ -96,7 +99,7 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * 获得某年某月农历最大的天数
+	 * 获得某年某月农历最大的天数.
 	 * 
 	 * @param iYear
 	 *            农历年
@@ -127,7 +130,7 @@ public final class LunarDateUtil{
 
 	// *************************************************************************
 	/**
-	 * 获得农历字符串
+	 * 获得农历字符串.
 	 * 
 	 * @param year_Lunar
 	 *            农历年
@@ -186,7 +189,7 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * 年份转成中文 2010--->二零一零
+	 * 年份转成中文 2010--->二零一零.
 	 * 
 	 * @param year
 	 *            年份 2010
@@ -204,10 +207,11 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * 获得闰月
+	 * 获得闰月.
 	 * 
 	 * @param year
-	 * @return
+	 *            the year
+	 * @return the int
 	 */
 	public static int _getLeapMonth(int year){
 		char iMonth = DateDictionary.lunarLeapMonthTable[(year - 1901) / 2];
@@ -218,7 +222,7 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * 根据年份获得干支记法
+	 * 根据年份获得干支记法.
 	 * 
 	 * @param year
 	 *            年份
@@ -229,6 +233,17 @@ public final class LunarDateUtil{
 		return DateDictionary.heavenlyStems[temp % 10] + DateDictionary.earthlyBranches[temp % 12];
 	}
 
+	/**
+	 * Gets the l new year offset days.
+	 * 
+	 * @param iYear
+	 *            the i year
+	 * @param iMonth
+	 *            the i month
+	 * @param iDay
+	 *            the i day
+	 * @return the l new year offset days
+	 */
 	private static int getLNewYearOffsetDays(int iYear,int iMonth,int iDay){
 		int iOffsetDays = 0;
 		int iLeapMonth = _getLeapMonth(iYear);

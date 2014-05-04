@@ -25,18 +25,12 @@ package com.feilong.commons.core;
  */
 public interface Constants{
 
-	/** 本地ip <code>{@value}</code>. */
-	String	localhostIp		= "127.0.0.1";
-
 	/** 初始值空格 oracle空格需要空1个实在的空格 ""在oracle自动转换为null. <code>{@value}</code> */
 	String	space			= " ";
 
 	/** 生成换行标识 Line separator ("\n" on UNIX). */
 	String	lineSeparator	= System.getProperty("line.separator");
 
-	/**
-	 * ***************************** Session 常量,内部类 ***************************************.
-	 */
 	/**
 	 * Session 常量,内部类,不建议直接调用Session类,请使用FeiLongConstants.Session
 	 * 

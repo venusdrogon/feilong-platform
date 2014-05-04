@@ -28,12 +28,13 @@ import static com.feilong.commons.core.configure.ResourceBundleUtil.getValue;
  */
 public interface ExceptionConstants{
 
-	String	$feilong_core_exception			= "messages/feilong-core-exception";
+	/** The $ feilon g_ cor e_ exception. */
+	String	$FEILONG_CORE_EXCEPTION			= "messages/feilong-core-exception";
 
 	// ******************************************************************************************************
 	/** 未知类型邮箱. */
-	String	exception_unknown_type_email	= getValue($feilong_core_exception, "exception_unknown_type_email");
+	String	EXCEPTION_UNKNOWN_TYPE_EMAIL	= getValue($FEILONG_CORE_EXCEPTION, "exception_unknown_type_email");
 
 	/** fileName 文件名不能为null. */
-	String	exception_fileName_null			= getValue($feilong_core_exception, "exception_fileName_null");
+	String	EXCEPTION_FILENAME_NULL			= getValue($FEILONG_CORE_EXCEPTION, "exception_fileName_null");
 }

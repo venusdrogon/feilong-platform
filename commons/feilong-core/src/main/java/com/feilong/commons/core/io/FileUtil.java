@@ -16,7 +16,6 @@
 package com.feilong.commons.core.io;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,20 +24,21 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * File 文件操作
+ * File 文件操作.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-23 下午5:00:54
  */
 public final class FileUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(FileUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private FileUtil(){}
 
 	/**
-	 * 判断一个目录 是否是空目录(里面没有文件)
+	 * 判断一个目录 是否是空目录(里面没有文件).
 	 * 
 	 * @param directory
 	 *            指定一个存在的文件夹
@@ -83,9 +83,11 @@ public final class FileUtil{
 		return flag;
 	}
 
+	// [start] 文件夹操作(createDirectory/deleteFileOrDirectory/deleteFileOrDirectory)
+
 	/**
 	 * 创建文件夹<br>
-	 * 支持级联创建
+	 * 支持级联创建.
 	 * 
 	 * @param folderPath
 	 *            文件夹路径, 支持级联创建
@@ -110,7 +112,7 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 删除某个文件或者文件夹
+	 * 删除某个文件或者文件夹.
 	 * 
 	 * @param fileName
 	 *            文件或者文件夹名称
@@ -125,7 +127,7 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 删除文件或者文件夹,如果是文件夹 ,递归深层次 删除
+	 * 删除文件或者文件夹,如果是文件夹 ,递归深层次 删除.
 	 * 
 	 * @param file
 	 *            文件或者文件夹名称
@@ -148,15 +150,20 @@ public final class FileUtil{
 		}
 	}
 
-	/**************************************************************************************/
+	// [end]
+
+	// ************************************************************
+
+	// [start] 解析文件名称
+
 	/**
-	 * 使用新的 后缀名称
+	 * 使用新的 后缀名称.
 	 * 
 	 * @param fileName
 	 *            文件名称
 	 * @param newPostfixName
 	 *            新的文件名
-	 * @return
+	 * @return the new file name
 	 */
 	public final static String getNewFileName(String fileName,String newPostfixName){
 		// 有后缀
@@ -168,10 +175,11 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 判断是否有后缀
+	 * 判断是否有后缀.
 	 * 
 	 * @param fileName
-	 * @return
+	 *            the file name
+	 * @return true, if successful
 	 */
 	public final static boolean hasPostfixName(String fileName){
 		String _fileName = getFileName(fileName);
@@ -184,7 +192,7 @@ public final class FileUtil{
 
 	/**
 	 * 获得文件后缀名,并返回原样字母<br>
-	 * 如果文件没有后缀名 返回 ""
+	 * 如果文件没有后缀名 返回 "".
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -200,7 +208,7 @@ public final class FileUtil{
 
 	/**
 	 * 获得文件后缀名,并返回小写字母<br>
-	 * 如果文件没有后缀名 返回 ""
+	 * 如果文件没有后缀名 返回 "".
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -212,7 +220,7 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 获得文件的不带后缀名的名称
+	 * 获得文件的不带后缀名的名称.
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -227,17 +235,21 @@ public final class FileUtil{
 	 * 如:F:/pie2.png,return pie2.png
 	 * 
 	 * @param fileName
-	 * @return
+	 *            the file name
+	 * @return the file name
 	 */
 	public final static String getFileName(String fileName){
 		File file = new File(fileName);
 		return file.getName();
 	}
 
+	// [end]
+
 	/**
-	 * 判断文件是否存在
+	 * 判断文件是否存在.
 	 * 
 	 * @param filePath
+	 *            the file path
 	 * @return 如果文件存在,返回true
 	 */
 	public final static boolean isExistFile(String filePath){
@@ -246,9 +258,10 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 判断文件不存在
+	 * 判断文件不存在.
 	 * 
 	 * @param filePath
+	 *            the file path
 	 * @return 如果文件不存在,返回true
 	 * @since 1.0.3
 	 */
@@ -257,12 +270,11 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 取得文件大小
+	 * 取得文件大小.
 	 * 
 	 * @param file
 	 *            文件
 	 * @return b
-	 * @throws IOException
 	 */
 	public static long getFileSize(File file){
 
@@ -284,18 +296,18 @@ public final class FileUtil{
 	//
 	// ************************************************************************
 	/**
-	 * 上传的文件是否是常用图片格式
+	 * 上传的文件是否是常用图片格式.
 	 * 
 	 * @param fileName
 	 *            文件名称,可以是全路径 ,也可以是 部分路径,会解析取到后缀名
 	 * @return 上传的文件是否是常用图片格式
 	 */
 	public final static boolean isCommonImage(String fileName){
-		return isInAppointTypes(fileName, IOConstants.commonImages);
+		return isInAppointTypes(fileName, IOConstants.COMMON_IMAGES);
 	}
 
 	/**
-	 * 上传的文件是否在指定的文件类型里面
+	 * 上传的文件是否在指定的文件类型里面.
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -329,7 +341,7 @@ public final class FileUtil{
 	// return "xlsx".equalsIgnoreCase(getFilePostfixName(fileName));
 	// }
 
-	/**************************************************************************************/
+	// ************************************************************
 	/**
 	 * 文件大小格式化
 	 * 

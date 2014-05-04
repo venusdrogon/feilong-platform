@@ -24,6 +24,7 @@ import java.util.List;
 
 /**
  * 扩展 {@link DateUtil}类,更多人性化的操作及转换<br>
+ * .
  * 
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @see {@link DateUtil}
@@ -37,7 +38,7 @@ public final class CalendarUtil{
 
 	/**
 	 * 获得当天00:00:00<br>
-	 * 例如: 2011-01-01 10:20:20---->2011-01-01 00:00:00
+	 * 例如: 2011-01-01 10:20:20---->2011-01-01 00:00:00.
 	 * 
 	 * @return 获得当天00:00:00
 	 */
@@ -47,8 +48,10 @@ public final class CalendarUtil{
 
 	/**
 	 * 获得任意日期的00:00:00<br>
-	 * 例如: 2011-01-01 10:20:20---->2011-01-01 00:00:00
+	 * 例如: 2011-01-01 10:20:20---->2011-01-01 00:00:00.
 	 * 
+	 * @param date
+	 *            the date
 	 * @return 获得任意日期的00:00:00
 	 */
 	public static Calendar getResetCalendar_byDay(Date date){
@@ -62,8 +65,10 @@ public final class CalendarUtil{
 
 	/**
 	 * 获得任意日期的00:00:00<br>
-	 * 例如: 2011-01-01 10:20:20---->2011-01-01 00:00:00
+	 * 例如: 2011-01-01 10:20:20---->2011-01-01 00:00:00.
 	 * 
+	 * @param date
+	 *            the date
 	 * @return 获得任意日期的00:00:00
 	 */
 	public static Date getResetDate_byDay(Date date){
@@ -71,7 +76,15 @@ public final class CalendarUtil{
 		return calendar.getTime();
 	}
 
-	/***********************************************************************************************************/
+	/**
+	 * ********************************************************************************************************.
+	 * 
+	 * @param date
+	 *            the date
+	 * @param field
+	 *            the field
+	 * @return the calendar field value
+	 */
 	/**
 	 * 获得日历字段值
 	 * 
@@ -89,7 +102,15 @@ public final class CalendarUtil{
 		return DateUtil.toCalendar(date).get(field);
 	}
 
-	/***********************************************************************************************************/
+	/**
+	 * ********************************************************************************************************.
+	 * 
+	 * @param dateString
+	 *            the date string
+	 * @param datePattern
+	 *            the date pattern
+	 * @return the calendar
+	 */
 	/**
 	 * 将日期字符串转成Calendar
 	 * 
@@ -106,7 +127,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得英文星期
+	 * 获得英文星期.
 	 * 
 	 * @param week
 	 *            星期 日从0开始 1 2 --6
@@ -117,7 +138,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得阳历中月份的最大天数The days in the month of solar calendar(阳历)
+	 * 获得阳历中月份的最大天数The days in the month of solar calendar(阳历).
 	 * 
 	 * @param year
 	 *            年
@@ -132,11 +153,11 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得阳历中月份的最大天数The days in the month of solar calendar(阳历)
+	 * 获得阳历中月份的最大天数The days in the month of solar calendar(阳历).
 	 * 
 	 * @param calendar
 	 *            calendar
-	 * @return
+	 * @return the max day of month
 	 */
 	public static int getMaxDayOfMonth(Calendar calendar){
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -155,7 +176,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得这一天在这一年中的偏移量 The offset days from New Year and the day when point out in solar calendar
+	 * 获得这一天在这一年中的偏移量 The offset days from New Year and the day when point out in solar calendar.
 	 * 
 	 * @param year
 	 *            年
@@ -171,7 +192,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得某个时间在年份中的周数
+	 * 获得某个时间在年份中的周数.
 	 * 
 	 * @param dateString
 	 *            日期字符串
@@ -185,7 +206,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得某个时间在年份中的周数
+	 * 获得某个时间在年份中的周数.
 	 * 
 	 * @param date
 	 *            date
@@ -204,6 +225,8 @@ public final class CalendarUtil{
 	 * 
 	 * 分别对应1-7
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param dateString
 	 *            dateString 2010-08-09
@@ -224,6 +247,8 @@ public final class CalendarUtil{
 	 * 分别对应1-7
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param date
 	 *            date
 	 * @return 周几
@@ -240,6 +265,8 @@ public final class CalendarUtil{
 	 * 比如:三个月之后的现在 getDateOffsetByMonth(new Date(),3);
 	 * 
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -261,6 +288,8 @@ public final class CalendarUtil{
 	 * 
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param date
 	 *            date
 	 * @param weekOffset
@@ -274,7 +303,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 获得一年中所有的周几集合 例如:getWeekDateStringList(6, "yyyy-MM-dd");
+	 * 获得一年中所有的周几集合 例如:getWeekDateStringList(6, "yyyy-MM-dd");.
 	 * 
 	 * @param week
 	 *            周几 星期天开始为0 依次1 2 3 4 5 6
@@ -331,7 +360,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 将calendar转成Date
+	 * 将calendar转成Date.
 	 * 
 	 * @param calendar
 	 *            calendar
@@ -343,7 +372,7 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 将Calendar转成string
+	 * 将Calendar转成string.
 	 * 
 	 * @param calendar
 	 *            calendar
@@ -358,7 +387,7 @@ public final class CalendarUtil{
 
 	/**
 	 * 设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值。<br>
-	 * 保留其他日历字段以前的值。如果不需要这样做，则先调用 clear()。
+	 * 保留其他日历字段以前的值。如果不需要这样做，则先调用 clear()。.
 	 * 
 	 * @param year
 	 *            用来设置 YEAR 日历字段的值
@@ -368,7 +397,7 @@ public final class CalendarUtil{
 	 *            注:Java 的date Month 值是基于 0 的。例如，0 表示 January。
 	 * @param day
 	 *            用来设置 DAY_OF_MONTH 日历字段的值。
-	 * @return
+	 * @return the calendar
 	 */
 	public static Calendar toCalendar(int year,int month,int day){
 		Calendar calendar = new GregorianCalendar();

@@ -33,9 +33,6 @@ public final class CollectionUtil{
 	/** Don't let anyone instantiate this class. */
 	private CollectionUtil(){}
 
-	/** 默认逗号连接. */
-	public static String	connector_default	= ",";
-
 	/**
 	 * 集合转成字符串.
 	 * 
@@ -48,6 +45,9 @@ public final class CollectionUtil{
 	 * @return the string
 	 */
 	public static <T> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
+		// 默认逗号连接
+		String connector_default = ",";
+
 		StringBuilder stringBuilder = null;
 		if (Validator.isNotNullOrEmpty(collection) && collection.size() > 0){
 			if (Validator.isNotNullOrEmpty(joinStringEntity) && Validator.isNotNullOrEmpty(joinStringEntity.getConnector())){

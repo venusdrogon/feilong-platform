@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *剪切板操作
+ * 剪切板操作.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-23 下午02:38:55
@@ -35,11 +35,12 @@ import org.slf4j.LoggerFactory;
  */
 public class ClipboardUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ClipboardUtil.class);
 
 	/**
 	 * 获取系统 Clipboard 的一个实例，该 Clipboard 可作为本机平台提供的剪贴板工具的接口。<br>
-	 * 该剪贴板使数据能够在 Java 应用程序和使用本机剪贴板工具的本机应用程序之间传输。
+	 * 该剪贴板使数据能够在 Java 应用程序和使用本机剪贴板工具的本机应用程序之间传输。.
 	 * 
 	 * @return Clipboard
 	 */
@@ -49,7 +50,10 @@ public class ClipboardUtil{
 	}
 
 	/**
-	 * 设置剪贴板数据
+	 * 设置剪贴板数据.
+	 * 
+	 * @param data
+	 *            the new clipboard content
 	 */
 	public static void setClipboardContent(String data){
 		Clipboard clipboard = getSystemClipboard();
@@ -58,9 +62,9 @@ public class ClipboardUtil{
 	}
 
 	/**
-	 * 从剪贴板中取数据
+	 * 从剪贴板中取数据.
 	 * 
-	 * @return
+	 * @return the clipboard content
 	 */
 	public static String getClipboardContent(){
 		String returnValue = null;

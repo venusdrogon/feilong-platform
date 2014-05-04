@@ -60,7 +60,7 @@ public class ResourceBundleUtilTest{
 	public final void getValue(){
 		String aString = ResourceBundleUtil.getValue(baseName, "config_test_array");
 		log.debug(aString);
-		log.debug(PropertiesConstants.config_date_day);
+		log.debug(PropertiesConstants.CONFIG_DATE_DAY);
 	}
 
 	/**

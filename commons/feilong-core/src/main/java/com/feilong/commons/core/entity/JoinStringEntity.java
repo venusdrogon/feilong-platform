@@ -15,26 +15,35 @@
  */
 package com.feilong.commons.core.entity;
 
+import java.io.Serializable;
+
 /**
- * 用于 连接object 成为字符串
+ * 用于 连接object 成为字符串.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 11, 2011 2:37:57 PM
  * @since 1.0
  */
-public class JoinStringEntity{
+public class JoinStringEntity implements Serializable{
+
+	/** The Constant serialVersionUID. */
+	private static final long	serialVersionUID	= 3182446945343865398L;
+
+	/** 连接符. */
+	private String				connector;
 
 	/**
-	 * 连接符
+	 * Instantiates a new join string entity.
 	 */
-	private String	connector;
-
 	public JoinStringEntity(){
 		super();
 	}
 
 	/**
+	 * Instantiates a new join string entity.
+	 * 
 	 * @param connector
+	 *            the connector
 	 */
 	public JoinStringEntity(String connector){
 		super();

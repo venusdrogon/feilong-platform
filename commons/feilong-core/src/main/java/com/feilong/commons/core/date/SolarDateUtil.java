@@ -18,7 +18,7 @@ package com.feilong.commons.core.date;
 import java.util.Date;
 
 /**
- * 阳历日期
+ * 阳历日期.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:48
@@ -31,7 +31,8 @@ public final class SolarDateUtil{
 	 * 如 SolarDateUtil.toLundar(2013, 1, 8) 返回20121126
 	 * 
 	 * @param date
-	 * @return
+	 *            the date
+	 * @return the string
 	 */
 	public static String toLundar(Date date){
 		int year = DateUtil.getYear(date);

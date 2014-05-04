@@ -61,13 +61,13 @@ public class RandomUtilTest{
 	 */
 	@Test
 	public final void testgetRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(5, PropertiesConstants.config_numbersAndAllLetters));
-		log.info(RandomUtil.createRandomFromString(200, PropertiesConstants.config_numbers));
+		log.info(RandomUtil.createRandomFromString(5, PropertiesConstants.CONFIG_NUMBERSANDALLLETTERS));
+		log.info(RandomUtil.createRandomFromString(200, PropertiesConstants.CONFIG_NUMBERS));
 	}
 
 	@Test
 	public final void createRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(8, 20, PropertiesConstants.config_numbers));
+		log.info(RandomUtil.createRandomFromString(8, 20, PropertiesConstants.CONFIG_NUMBERS));
 	}
 
 	@Test

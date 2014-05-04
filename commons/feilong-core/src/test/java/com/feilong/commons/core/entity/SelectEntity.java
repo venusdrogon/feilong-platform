@@ -18,7 +18,7 @@ package com.feilong.commons.core.entity;
 import java.io.Serializable;
 
 /**
- *自定义下拉框 包含 值和显示文本
+ * 自定义下拉框 包含 值和显示文本.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-8-11 上午11:27:47
@@ -27,21 +27,23 @@ import java.io.Serializable;
 @Deprecated
 public class SelectEntity implements Serializable{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
 
-	/**
-	 * 值
-	 */
+	/** 值. */
 	private int					value;
 
-	/**
-	 * 显示的文本
-	 */
+	/** 显示的文本. */
 	private int					label;
 
+	/**
+	 * Instantiates a new select entity.
+	 */
 	public SelectEntity(){}
 
 	/**
+	 * Instantiates a new select entity.
+	 * 
 	 * @param value
 	 *            值
 	 * @param label
@@ -52,18 +54,40 @@ public class SelectEntity implements Serializable{
 		this.label = label;
 	}
 
+	/**
+	 * 获得 值.
+	 * 
+	 * @return the 值
+	 */
 	public int getValue(){
 		return value;
 	}
 
+	/**
+	 * 设置 值.
+	 * 
+	 * @param value
+	 *            the new 值
+	 */
 	public void setValue(int value){
 		this.value = value;
 	}
 
+	/**
+	 * 获得 显示的文本.
+	 * 
+	 * @return the 显示的文本
+	 */
 	public int getLabel(){
 		return label;
 	}
 
+	/**
+	 * 设置 显示的文本.
+	 * 
+	 * @param label
+	 *            the new 显示的文本
+	 */
 	public void setLabel(int label){
 		this.label = label;
 	}

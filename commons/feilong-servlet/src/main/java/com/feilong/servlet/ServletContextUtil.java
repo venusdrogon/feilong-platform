@@ -113,7 +113,7 @@ public final class ServletContextUtil{
 	public static String getFileContent(ServletContext servletContext,String directoryName,String fileName){
 		String filePathString = servletContext.getRealPath("/");
 		if (Validator.isNullOrEmpty(fileName)){
-			throw new IllegalArgumentException(ExceptionConstants.exception_fileName_null);
+			throw new IllegalArgumentException(ExceptionConstants.EXCEPTION_FILENAME_NULL);
 		}
 		if (Validator.isNullOrEmpty(directoryName)){
 			filePathString = filePathString + fileName;
