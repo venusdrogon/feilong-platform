@@ -53,14 +53,6 @@ public class PagerParams implements Serializable{
 	/** 每页显示多少条. */
 	private Integer				pageSize			= PagerConstants.DEFAULT_PAGESIZE;
 
-	/**
-	 * 最多显示页数,(-1或者不设置,默认显示所有页数)<br>
-	 * 类似于淘宝不管搜索东西多少,最多显示100页<br>
-	 * 这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。<br>
-	 * 新浪微博的时间轴也只给出了10页，同样的折中处理。.
-	 */
-	private Integer				maxShowPageNo		= Pager.DEFAULT_LIMITED_MAX_PAGENO;
-
 	/** 皮肤:可选. */
 	private String				skin				= PagerConstants.DEFAULT_SKIN;
 
@@ -70,12 +62,28 @@ public class PagerParams implements Serializable{
 	/** vm的路径. */
 	private String				vmPath				= PagerConstants.DEFAULT_TEMPLATE_IN_CLASSPATH;
 
-	/** 编码集. */
+	/**
+	 * 最多显示页数,(-1或者不设置,默认显示所有页数)<br>
+	 * 类似于淘宝不管搜索东西多少,最多显示100页<br>
+	 * 这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。<br>
+	 * 新浪微博的时间轴也只给出了10页，同样的折中处理。.
+	 * 
+	 * @since 1.0.5
+	 */
+	private Integer				maxShowPageNo		= Pager.DEFAULT_LIMITED_MAX_PAGENO;
+
+	/**
+	 * 编码集.
+	 * 
+	 * @since 1.0.5
+	 */
 	private String				charsetType			= CharsetType.UTF8;
 
 	/**
 	 * 获得此 Java 虚拟机实例的当前默认语言环境值。 <br>
 	 * Java 虚拟机根据主机的环境在启动期间设置默认语言环境。如果没有明确地指定语言环境，则很多语言环境敏感的方法都使用该方法。可使用 setDefault 方法更改该值。.
+	 * 
+	 * @since 1.0.5
 	 */
 	private Locale				locale				= Locale.getDefault();
 
