@@ -196,7 +196,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 		//无数据时显示内容
 		categoryPlot.setNoDataMessage("无对应的数据，请重新查询。");
 		//无数据时显示内容字体
-		categoryPlot.setNoDataMessageFont(FontUtil.getFont(FontType.kaiti, 14));
+		categoryPlot.setNoDataMessageFont(FontUtil.getFont(FontType.KAITI, 14));
 		//无数据时显示内容字体颜色
 		categoryPlot.setNoDataMessagePaint(Color.red);
 		setChildDefaultCategoryPlotAttributes(categoryPlot);

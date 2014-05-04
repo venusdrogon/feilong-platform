@@ -15,7 +15,6 @@
  */
 package com.feilong.taglib.common;
 
-import com.feilong.commons.core.date.DateUtil;
 import com.feilong.taglib.base.AbstractCommonTag;
 
 /**
@@ -35,7 +34,8 @@ public class AgeTag extends AbstractCommonTag{
 
 	@Override
 	public String writeContent(){
-		return DateUtil.convertBirthdayToAge(birthday) + "";
+//		return SelectHelper.convertBirthdayToAge(birthday) + "";
+		return null;
 	}
 
 	public void setBirthday(String birthday){

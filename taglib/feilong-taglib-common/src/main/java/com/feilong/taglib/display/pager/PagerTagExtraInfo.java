@@ -15,6 +15,8 @@
  */
 package com.feilong.taglib.display.pager;
 
+import java.util.Map;
+
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.ValidationMessage;
 import javax.servlet.jsp.tagext.VariableInfo;
@@ -23,13 +25,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.taglib.base.BaseTagTEL;
+import com.feilong.tools.json.JsonUtil;
 
 /**
+ * TagExtraInfo can be used to <br>
+ * 1. Define Scripting Variables. <br>
+ * 2. Validation.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-13 上午12:50:50
  */
 public class PagerTagExtraInfo extends BaseTagTEL{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PagerTagExtraInfo.class);
 
 	/*
@@ -37,23 +45,33 @@ public class PagerTagExtraInfo extends BaseTagTEL{
 	 * @see javax.servlet.jsp.tagext.TagExtraInfo#validate(javax.servlet.jsp.tagext.TagData)
 	 */
 	@Override
+	// JSP 2.0 and higher containers call validate() instead of isValid().
+	// The default implementation of this method is to call isValid().
+	// If isValid() returns false, a generic ValidationMessage[] is returned indicating isValid() returned false.
 	public ValidationMessage[] validate(TagData tagData){
-//		Object count = tagData.getAttribute("maxElements");
-//		if (TagData.REQUEST_TIME_VALUE == count){
-//			// String id = tagData.getId();
-//			// return new ValidationMessage[] { new ValidationMessage(id, "asdasdasdad") };
-//		}
-//		if (TagData.REQUEST_TIME_VALUE == count){
-//			showAttributes(tagData);
-//			Object allPageNo = tagData.getAttribute("allPageNo");
-//			Object pageParamName = tagData.getAttribute("pageParamName");
-//			// if (maxElements < 0){
-//			// log.debug("the param maxElements:{},must >=0", maxElements);
-//			// return false;
-//			// }
-////			Object maxIndexPages = tagData.getAttribute("maxIndexPages");
-////			Object skin = tagData.getAttribute("skin");
-//		}
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(tagData));
+			Map<String, Object> map = toMap(tagData);
+			log.debug(JsonUtil.format(map));
+		}
+
+		// Object count = tagData.getAttribute("maxElements");
+		// if (TagData.REQUEST_TIME_VALUE == count){
+		// // String id = tagData.getId();
+		// // return new ValidationMessage[] { new ValidationMessage(id, "asdasdasdad") };
+		// }
+		// if (TagData.REQUEST_TIME_VALUE == count){
+		// showAttributes(tagData);
+		// Object allPageNo = tagData.getAttribute("allPageNo");
+		// Object pageParamName = tagData.getAttribute("pageParamName");
+		// // if (maxElements < 0){
+		// // log.debug("the param maxElements:{},must >=0", maxElements);
+		// // return false;
+		// // }
+		// // Object maxIndexPages = tagData.getAttribute("maxIndexPages");
+		// // Object skin = tagData.getAttribute("skin");
+		// }
 		return super.validate(tagData);
 	}
 

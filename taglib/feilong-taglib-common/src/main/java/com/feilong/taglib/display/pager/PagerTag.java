@@ -38,6 +38,7 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  * <li>1.6.经过大型项目检验,通用安全扫描</li>
  * <li>1.7.支持国际化(1.0.5 new feature)</li>
  * <li>1.8.内置文本框页码输入快速跳转(1.0.5 new feature)</li>
+ * <li>1.9.支持类似于淘宝最大分页码100 这样的控制 ,见参数 {@link #maxShowPageNo} (1.0.5 new feature)</li>
  * </ul>
  * <h3>使用方式:</h3>
  * 

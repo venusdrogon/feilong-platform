@@ -1,18 +1,19 @@
 /**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 package com.feilong.taglib.base;
 
 import java.io.IOException;
@@ -38,18 +39,21 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  * 如果不需要交互的就用TagSupport，否则如果不需要交互就用BodyTagSupport。 <br>
  * 交互就是标签处理类是否要读取标签体的内容和改变标签体返回的内容。<br>
  * <br>
- * 用TagSupport实现的标签，都可以用BodyTagSupport来实现，因为BodyTagSupport继承了TagSupport
+ * 用TagSupport实现的标签，都可以用BodyTagSupport来实现，因为BodyTagSupport继承了TagSupport.
  * 
- * @author 金鑫 时间:2012-3-13 01:46
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 2012-3-13 01:46
  */
 public abstract class BaseTag extends BodyTagSupport{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -5494214419937813707L;
 
 	/**
-	 * 将文字输出到页面
+	 * 将文字输出到页面.
 	 * 
 	 * @param object
+	 *            the object
 	 * @author 金鑫
 	 * @version 1.0 2010-5-5 下午03:27:25
 	 */
@@ -63,9 +67,10 @@ public abstract class BaseTag extends BodyTagSupport{
 	}
 
 	/**
-	 * 将文字输出到页面
+	 * 将文字输出到页面.
 	 * 
 	 * @param object
+	 *            the object
 	 * @author 金鑫
 	 * @version 1.0 2010-5-5 下午03:53:12
 	 */
@@ -85,11 +90,12 @@ public abstract class BaseTag extends BodyTagSupport{
 	// public int doEndTag(){
 	// return EVAL_PAGE;// 处理标签后，继续处理JSP后面的内容
 	// }
+
 	// [start] 公用方法
 	/**
-	 * 获得HttpServletRequest
+	 * 获得HttpServletRequest.
 	 * 
-	 * @return
+	 * @return the http servlet request
 	 * @author 金鑫
 	 * @version 1.0 2010-2-3 下午01:59:09
 	 */
@@ -98,10 +104,9 @@ public abstract class BaseTag extends BodyTagSupport{
 	}
 
 	/**
-	 * 获得ServletRequest
+	 * 获得ServletRequest.
 	 * 
-	 * @return
-	 * @author 金鑫
+	 * @return the servlet request
 	 * @version 1.0 2010-2-3 下午01:58:55
 	 */
 	protected final ServletRequest getServletRequest(){
@@ -109,7 +114,7 @@ public abstract class BaseTag extends BodyTagSupport{
 	}
 
 	/**
-	 * 获得 HttpSession
+	 * 获得 HttpSession.
 	 * 
 	 * @return HttpSession
 	 * @author 金鑫
@@ -120,9 +125,9 @@ public abstract class BaseTag extends BodyTagSupport{
 	}
 
 	/**
-	 * 获得HttpServletResponse
+	 * 获得HttpServletResponse.
 	 * 
-	 * @return
+	 * @return the http servlet response
 	 * @author 金鑫
 	 * @version 1.0 2010-3-15 下午06:25:18
 	 */

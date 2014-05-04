@@ -109,7 +109,7 @@ public class BarChartUtilTest{
 		// categoryPlot.setRangeGridlineStroke(stroke);
 		BarRenderer barRenderer = jfreeChartUtil.getBarRenderer();
 		barRenderer.setBaseItemLabelPaint(ColorUtil.getColor("FF6600"));// FF6600
-		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.verdana, Font.PLAIN, 20));
+		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.VERDANA, Font.PLAIN, 20));
 		jfreeChartUtil.createImage(chartInfoEntity);
 	}
 
@@ -172,7 +172,7 @@ public class BarChartUtilTest{
 		// categoryPlot.setRangeGridlineStroke(stroke);
 		BarRenderer barRenderer = jfreeChartUtil.getBarRenderer();
 		barRenderer.setBaseItemLabelPaint(ColorUtil.getColor("FF6600"));// FF6600
-		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.verdana, Font.PLAIN, 20));
+		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.VERDANA, Font.PLAIN, 20));
 		jfreeChartUtil.createImage(chartInfoEntity);
 	}
 
@@ -224,7 +224,7 @@ public class BarChartUtilTest{
 		// categoryPlot.setRangeGridlineStroke(stroke);
 		BarRenderer barRenderer = jfreeChartUtil.getBarRenderer();
 		barRenderer.setBaseItemLabelPaint(ColorUtil.getColor("FF6600"));// FF6600
-		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.verdana, Font.PLAIN, 20));
+		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.VERDANA, Font.PLAIN, 20));
 		jfreeChartUtil.createImage(chartInfoEntity);
 	}
 

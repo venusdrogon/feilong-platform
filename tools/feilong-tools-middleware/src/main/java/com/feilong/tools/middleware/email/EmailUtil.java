@@ -39,7 +39,7 @@ public final class EmailUtil{
 		if (null != emailType){
 			return emailType.getChineseName();
 		}
-		return ExceptionConstants.exception_unknown_type_email;
+		return ExceptionConstants.EXCEPTION_UNKNOWN_TYPE_EMAIL;
 	}
 
 	/**

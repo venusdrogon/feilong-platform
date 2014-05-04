@@ -19,6 +19,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import com.feilong.entity.User;
 import com.feilong.tools.json.JsonUtil;
 
+
 public class UserTest implements ApplicationContextAware{
 
 	private static final Logger			log		= LoggerFactory.getLogger(UserTest.class);

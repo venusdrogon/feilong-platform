@@ -1,3 +1,18 @@
+#**
+    这是个示例或者默认的模板,通过这个模板,可以看到哪些变量可以使用
+    每个商城可以使用这个模板,也可以自定义模板来使用
+	
+	该VM 可以取到两个变量:
+	
+    	pagerVMParam	:	包含各种显示数字/链接 参数
+    	i18nMap			:	包含国际化信息
+	
+    @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+    @version 1.0.0 2010-2-3 下午01:03:14
+    @version 1.0.5 May 3, 2014 1:44:08 PM
+    @since 1.0.0
+*#
+
 <div class="div_feilongPager ${pagerVMParam.skin}" style="text-align:left">
 	##总数
 	<span class="span_pagerInfo">${i18nMap.get('feilong-pager.text.totalCount')}${pagerVMParam.totalCount}</span>
