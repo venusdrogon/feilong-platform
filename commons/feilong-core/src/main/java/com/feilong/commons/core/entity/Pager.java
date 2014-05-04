@@ -86,23 +86,23 @@ public final class Pager implements Serializable{
 	}
 
 	/**
-	 * 总页数({@link #maxShowPageNo} 参与装饰) .
+	 * 总页数({@link #maxShowPageNo} 参与装饰).<br>
+	 * 如果要获得原始的真正的总页数,请使用 {@link #getOriginatingAllPageNo()}
 	 * 
 	 * @return <ul>
-	 *         <li>如果 count==0 直接返回0</li>
-	 *         <li>如果count<pageSize 直接返回1</li>
-	 *         <li>如果 count % pageSize == 0 除数是整数, 返回count / pageSize</li>
-	 *         <li>如果 count % pageSize != 0 除数不是整数, 返回count / pageSize+1</li>
+	 *         <li>如果{@code count==0}直接返回0</li>
+	 *         <li>如果{@code count < pageSize} 直接返回1</li>
+	 *         <li>如果{@code count % pageSize == 0 }除数是整数, 返回count / pageSize</li>
+	 *         <li>如果{@code count % pageSize != 0} 除数不是整数, 返回count / pageSize+1</li>
 	 *         <li>上面是原始的originatingAllPageNo</li>
 	 *         <li>如果
-	 *         {@code  boolean isMaxShowPageNoDecorate = (null != maxShowPageNo && maxShowPageNo != Pager.DEFAULT_LIMITED_MAX_PAGENO && maxShowPageNo > 0);}
+	 *         {@code boolean isMaxShowPageNoDecorate = (null != maxShowPageNo && maxShowPageNo != Pager.DEFAULT_LIMITED_MAX_PAGENO && maxShowPageNo > 0);}
 	 *         ) <br>
 	 *         {@code originatingAllPageNo<=maxShowPageNo}) 直接返回 originatingAllPageNo,否则返回maxShowPageNo</li>
 	 *         <li>如果 !isMaxShowPageNoDecorate ,直接返回originatingAllPageNo</li>
 	 *         </ul>
 	 */
 	public int getAllPageNo(){
-
 		// maxShowPageNo不是null
 		// 且maxShowPageNo !=Pager.DEFAULT_LIMITED_MAX_PAGENO
 		// 且maxShowPageNo>0
@@ -112,22 +112,20 @@ public final class Pager implements Serializable{
 		if (isMaxShowPageNoDecorate){
 			if (originatingAllPageNo <= maxShowPageNo){
 				return originatingAllPageNo;
-			}else{
-				return maxShowPageNo;
 			}
-		}else{
-			return originatingAllPageNo;
+			return maxShowPageNo;
 		}
+		return originatingAllPageNo;
 	}
 
 	/**
 	 * 获得原始的总页数(不经过 {@link #maxShowPageNo}) 修饰过的 ,(通过这个值 可以实现一些特殊的功能,一般用不到).
 	 * 
 	 * @return <ul>
-	 *         <li>如果 count==0 直接返回0</li>
-	 *         <li>如果count<pageSize 直接返回1</li>
-	 *         <li>如果 count % pageSize == 0 除数是整数, 返回count / pageSize</li>
-	 *         <li>如果 count % pageSize != 0 除数不是整数, 返回count / pageSize+1</li>
+	 *         <li>如果{@code count == 0}直接返回0</li>
+	 *         <li>如果{@code count < pageSize} 直接返回1</li>
+	 *         <li>如果{@code count % pageSize == 0}除数是整数, 返回count / pageSize</li>
+	 *         <li>如果{@code count % pageSize != 0}除数不是整数, 返回count / pageSize+1</li>
 	 *         </ul>
 	 */
 	public int getOriginatingAllPageNo(){

@@ -43,7 +43,8 @@ import com.feilong.tools.velocity.VelocityUtil;
  * 该类主要是将url相关数据转成vm需要的数据,解析成字符串返回.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-5-26 下午11:50:10
+ * @version 1.0.0 2010-5-26 下午11:50:10
+ * @version 1.0.5 2014-5-4 19:36
  */
 public final class PagerUtil{
 
@@ -61,10 +62,10 @@ public final class PagerUtil{
 	private static final String	VM_KEY_I18NMAP		= "i18nMap";
 
 	/** 国际化配置文件<code>{@value}</code>. */
-	private static final String	i18n_FEILONG_PAGER	= "messages/feilong-pager";
+	private static final String	I18N_FEILONG_PAGER	= "messages/feilong-pager";
 
 	/** 模板链接页码<code>{@value}</code>. */
-	private static final int	templatePageNo		= -8888888;
+	private static final int	TEMPLATE_PAGE_NO	= -8888888;
 
 	/**
 	 * 解析vm模板 生成分页html代码.
@@ -73,7 +74,11 @@ public final class PagerUtil{
 	 *            带有一系列分页需要的参数
 	 * @return 生成分页html代码
 	 */
-	public static String getPagerContent(PagerParams pagerParams){
+	public final static String getPagerContent(PagerParams pagerParams){
+
+		if (Validator.isNullOrEmpty(pagerParams)){
+			throw new IllegalArgumentException("pagerParams can't be null/empty!");
+		}
 
 		int totalCount = pagerParams.getTotalCount();
 
@@ -81,100 +86,22 @@ public final class PagerUtil{
 		// 如果=0 应该显示其他内容
 		if (totalCount > 0){
 
-			int currentPageNo = pagerParams.getCurrentPageNo();
+			PagerVMParam pagerVMParam = buildPagerVMParam(pagerParams);
+			Map<String, String> i18nMap = buildI18nMap(pagerParams);
 
-			// 解决可能出现界面上 负数的情况
-			if (currentPageNo < 1){
-				currentPageNo = 1;
-			}
-			int pageSize = pagerParams.getPageSize();
-			int maxIndexPages = pagerParams.getMaxIndexPages();
-			String skin = pagerParams.getSkin();
-			String pageUrl = pagerParams.getPageUrl();
-			String pageParamName = pagerParams.getPageParamName();
-			String vmPath = pagerParams.getVmPath();
-			String charsetType = pagerParams.getCharsetType();
 			boolean debugIsNotParseVM = pagerParams.getDebugIsNotParseVM();
-
-			// *************************************************************
-			Integer maxShowPageNo = pagerParams.getMaxShowPageNo();
-			Pager pager = new Pager(currentPageNo, pageSize, totalCount);
-			pager.setMaxShowPageNo(maxShowPageNo);
-
-			int allPageNo = pager.getAllPageNo();
-
-			// *************************************************************
-			// 获得开始和结束的索引
-			int[] startIteratorIndexAndEndIteratorIndexs = getStartIteratorIndexAndEndIteratorIndex(allPageNo, currentPageNo, maxIndexPages);
-			// 开始迭代索引编号
-			int startIteratorIndex = startIteratorIndexAndEndIteratorIndexs[0];
-			// 结束迭代索引编号
-			int endIteratorIndex = startIteratorIndexAndEndIteratorIndexs[1];
-
-			int prePageNo = pager.getPrePageNo();
-			int nextPageNo = pager.getNextPageNo();
-			int firstPageNo = 1;
-			int lastPageNo = allPageNo;
-
-			// 所有需要生成url 的 index值
-			Set<Integer> indexSet = new HashSet<Integer>();
-			indexSet.add(templatePageNo);// 模板链接 用于前端操作
-			indexSet.add(prePageNo);
-			indexSet.add(nextPageNo);
-			indexSet.add(firstPageNo);
-			indexSet.add(lastPageNo);
-			for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
-				indexSet.add(i);
-			}
-
-			// ****************************************************************************************
-
-			// 获得所有页码的连接.
-			Map<Integer, String> map = getAllPageIndexHrefMap(pageUrl, pageParamName, indexSet, charsetType);
-			// ****************************************************************************************
-			PagerVMParam pagerVMParam = new PagerVMParam();
-			pagerVMParam.setSkin(skin);// 皮肤
-
-			pagerVMParam.setTotalCount(totalCount);// 总行数，总结果数
-			pagerVMParam.setCurrentPageNo(currentPageNo);// 当前页
-			pagerVMParam.setAllPageNo(allPageNo);// 当前页
-			pagerVMParam.setStartIteratorIndex(startIteratorIndex);// 导航页码 开始号码
-			pagerVMParam.setEndIteratorIndex(endIteratorIndex);// 导航页码 结束号码
-			// ****************************************************************************************
-			// 上一页链接
-			pagerVMParam.setPreUrl(map.get(prePageNo));
-			// 下一页链接
-			pagerVMParam.setNextUrl(map.get(nextPageNo));
-			// 第一页的链接
-			pagerVMParam.setFirstUrl(map.get(firstPageNo));
-			// 最后一页的链接
-			pagerVMParam.setLastUrl(map.get(lastPageNo));
-
-			// templatePageNo
-			pagerVMParam.setHrefUrlTemplate(map.get(templatePageNo));
-
-			// *********************************************************
-			// 国际化
-			Locale locale = pagerParams.getLocale();
-			Map<String, String> i18nMap = ResourceBundleUtil.readAllPropertiesToMap(i18n_FEILONG_PAGER, locale);
-
-			// *********************************************************
-			LinkedHashMap<Integer, String> iteratorIndexMap = new LinkedHashMap<Integer, String>();
-			for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
-				iteratorIndexMap.put(i, map.get(i));
-			}
-			pagerVMParam.setIteratorIndexMap(iteratorIndexMap);
-
-			// ****************************************************************************
-			Map<String, Object> vmParamMap = new HashMap<String, Object>();
-			vmParamMap.put(VM_KEY_PAGERVMPARAM, pagerVMParam);
-			vmParamMap.put(VM_KEY_I18NMAP, i18nMap);
-			if (log.isDebugEnabled()){
-				log.debug("vmParamMap:{}", JsonUtil.format(vmParamMap));
-				log.debug("debugNotParseVM:{}", debugIsNotParseVM);
-			}
-
 			if (!debugIsNotParseVM){
+
+				// ****************设置变量参数************************************************************
+				Map<String, Object> vmParamMap = new HashMap<String, Object>();
+				vmParamMap.put(VM_KEY_PAGERVMPARAM, pagerVMParam);
+				vmParamMap.put(VM_KEY_I18NMAP, i18nMap);
+
+				if (log.isDebugEnabled()){
+					log.debug("vmParamMap:{}", JsonUtil.format(vmParamMap));
+					log.debug("debugNotParseVM:{}", debugIsNotParseVM);
+				}
+				String vmPath = pagerParams.getVmPath();
 				String content = VelocityUtil.parseTemplateWithClasspathResourceLoader(vmPath, vmParamMap);
 				return content;
 			}
@@ -183,6 +110,8 @@ public final class PagerUtil{
 				log.debug("the param totalCount:{} not >0", totalCount);
 			}
 		}
+
+		// 如果总数不>0 则直接返回 empty,页面分页地方显示空白
 		return "";
 	}
 
@@ -192,13 +121,13 @@ public final class PagerUtil{
 	 * @param request
 	 *            当前请求
 	 * @param pageParamName
-	 *            the param name
+	 *            分页参数名称
 	 * @return <ul>
 	 *         <li>请求参数中,分页参数值 Integer 类型</li>
 	 *         <li>如果参数中不带这个分页参数,或者转换异常 返回1</li>
 	 *         </ul>
 	 */
-	public static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
+	public final static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
 		// /s/s-t-b-f-a-cBlack-s-f-p-gHeat+Gear-e-i-o.htm?keyword=&pageNo=%uFF1B
 		Integer currentPageNo = null;
 		try{
@@ -217,59 +146,226 @@ public final class PagerUtil{
 		return 1;
 	}
 
+	// *****************************private************************************************************
+
 	/**
-	 * 获得所有页码的连接(key=-1 为模板链接,可用户前端解析 {@link PagerVMParam#getHrefUrlTemplate()}
+	 * Builds the i18n map.
 	 * 
-	 * @param pageUrl
-	 *            页面url
-	 * @param pageParamName
-	 *            分页参数名称
+	 * @param pagerParams
+	 *            the pager params
+	 * @return the map
+	 * @since 1.0.5
+	 */
+	private static Map<String, String> buildI18nMap(PagerParams pagerParams){
+		// ****************国际化*****************************************
+		Locale locale = pagerParams.getLocale();
+		Map<String, String> i18nMap = ResourceBundleUtil.readAllPropertiesToMap(I18N_FEILONG_PAGER, locale);
+		return i18nMap;
+	}
+
+	/**
+	 * Builds the pager vm param.
+	 * 
+	 * @param pagerParams
+	 *            the pager params
+	 * @return the pager vm param
+	 * @since 1.0.5
+	 */
+	private static PagerVMParam buildPagerVMParam(PagerParams pagerParams){
+
+		int totalCount = pagerParams.getTotalCount();
+
+		int currentPageNo = getCurrentPageNo(pagerParams);
+		int pageSize = pagerParams.getPageSize();
+
+		// *************************************************************
+		Integer maxShowPageNo = pagerParams.getMaxShowPageNo();
+		Pager pager = new Pager(currentPageNo, pageSize, totalCount);
+		pager.setMaxShowPageNo(maxShowPageNo);
+
+		int allPageNo = pager.getAllPageNo();
+
+		// *************************************************************
+		// 获得开始和结束的索引
+		int[] startAndEndIteratorIndexs = getStartAndEndIteratorIndexs(allPageNo, currentPageNo, pagerParams);
+		// 开始迭代索引编号
+		int startIteratorIndex = startAndEndIteratorIndexs[0];
+		// 结束迭代索引编号
+		int endIteratorIndex = startAndEndIteratorIndexs[1];
+
+		Set<Integer> indexSet = getAllIndexSet(pager, startAndEndIteratorIndexs);
+		// ****************************************************************************************
+		// 获得所有页码的连接.
+		Map<Integer, String> indexAndHrefMap = getAllIndexAndHrefMap(pagerParams, indexSet);
+
+		// ****************************************************************************************
+		int prePageNo = pager.getPrePageNo();
+		int nextPageNo = pager.getNextPageNo();
+		int firstPageNo = 1;
+		int lastPageNo = allPageNo;
+
+		// ********************************************************************************************
+		String skin = pagerParams.getSkin();
+
+		PagerVMParam pagerVMParam = new PagerVMParam();
+		pagerVMParam.setSkin(skin);// 皮肤
+
+		pagerVMParam.setTotalCount(totalCount);// 总行数，总结果数
+		pagerVMParam.setCurrentPageNo(currentPageNo);// 当前页
+		pagerVMParam.setAllPageNo(allPageNo);// 总页数
+
+		pagerVMParam.setStartIteratorIndex(startIteratorIndex);// 导航开始页码
+		pagerVMParam.setEndIteratorIndex(endIteratorIndex);// 导航结束页码
+
+		// ****************************************************************************************
+		pagerVMParam.setPreUrl(indexAndHrefMap.get(prePageNo)); // 上一页链接
+		pagerVMParam.setNextUrl(indexAndHrefMap.get(nextPageNo));// 下一页链接
+		pagerVMParam.setFirstUrl(indexAndHrefMap.get(firstPageNo));// 第一页的链接
+		pagerVMParam.setLastUrl(indexAndHrefMap.get(lastPageNo));// 最后一页的链接
+
+		pagerVMParam.setHrefUrlTemplate(indexAndHrefMap.get(TEMPLATE_PAGE_NO));// 模板链接
+
+		// *********************************************************
+		LinkedHashMap<Integer, String> iteratorIndexAndHrefMap = getIteratorIndexAndHrefMap(
+				startIteratorIndex,
+				endIteratorIndex,
+				indexAndHrefMap);
+		pagerVMParam.setIteratorIndexMap(iteratorIndexAndHrefMap);
+		return pagerVMParam;
+	}
+
+	/**
+	 * 要循环的 index和 end 索引 =href map.
+	 * 
+	 * @param startIteratorIndex
+	 *            the start iterator index
+	 * @param endIteratorIndex
+	 *            the end iterator index
+	 * @param indexAndHrefMap
+	 *            the index and href map
+	 * @return the iterator index and href map
+	 * @since 1.0.5
+	 */
+	private static LinkedHashMap<Integer, String> getIteratorIndexAndHrefMap(
+			int startIteratorIndex,
+			int endIteratorIndex,
+			Map<Integer, String> indexAndHrefMap){
+		LinkedHashMap<Integer, String> iteratorIndexAndHrefMap = new LinkedHashMap<Integer, String>();
+		for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
+			iteratorIndexAndHrefMap.put(i, indexAndHrefMap.get(i));
+		}
+		return iteratorIndexAndHrefMap;
+	}
+
+	/**
+	 * 需要生成链接的 索引号.
+	 * 
+	 * @param pager
+	 *            the pager
+	 * @param startIteratorIndexAndEndIteratorIndexs
+	 *            the start iterator index and end iterator indexs
+	 * @return the index set
+	 * @since 1.0.5
+	 */
+	private final static Set<Integer> getAllIndexSet(Pager pager,int[] startIteratorIndexAndEndIteratorIndexs){
+		int prePageNo = pager.getPrePageNo();
+		int nextPageNo = pager.getNextPageNo();
+		int allPageNo = pager.getAllPageNo();
+		int lastPageNo = allPageNo;
+		int firstPageNo = 1;
+
+		// 开始迭代索引编号
+		int startIteratorIndex = startIteratorIndexAndEndIteratorIndexs[0];
+		// 结束迭代索引编号
+		int endIteratorIndex = startIteratorIndexAndEndIteratorIndexs[1];
+
+		// 所有需要生成url 的 index值
+		Set<Integer> indexSet = new HashSet<Integer>();
+		indexSet.add(TEMPLATE_PAGE_NO);// 模板链接 用于前端操作
+		indexSet.add(prePageNo);
+		indexSet.add(nextPageNo);
+		indexSet.add(firstPageNo);
+		indexSet.add(lastPageNo);
+		for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
+			indexSet.add(i);
+		}
+		return indexSet;
+	}
+
+	/**
+	 * 如果pagerParams.getCurrentPageNo()<1返回1 否则返回 pagerParams.getCurrentPageNo()
+	 * 
+	 * @param pagerParams
+	 *            the pager params
+	 * @return 如果pagerParams.getCurrentPageNo()<1返回1 否则返回 pagerParams.getCurrentPageNo()
+	 * @since 1.0.5
+	 */
+	private final static int getCurrentPageNo(PagerParams pagerParams){
+		int currentPageNo = pagerParams.getCurrentPageNo();
+
+		// 解决可能出现界面上 负数的情况
+		if (currentPageNo < 1){
+			currentPageNo = 1;
+		}
+		return currentPageNo;
+	}
+
+	/**
+	 * 获得所有页码的连接<br>
+	 * 注:(key={@link #TEMPLATE_PAGE_NO} 为模板链接,可用户前端解析 {@link PagerVMParam#getHrefUrlTemplate()}.
+	 * 
+	 * @param pagerParams
+	 *            the pager params
 	 * @param indexSet
 	 *            索引set
-	 * @param charsetType
-	 *            编码
 	 * @return key是分页页码，value是解析之后的链接
 	 */
-	private static Map<Integer, String> getAllPageIndexHrefMap(String pageUrl,String pageParamName,Set<Integer> indexSet,String charsetType){
+	private final static Map<Integer, String> getAllIndexAndHrefMap(PagerParams pagerParams,Set<Integer> indexSet){
+		String pageUrl = pagerParams.getPageUrl();
+		String charsetType = pagerParams.getCharsetType();
+		String pageParamName = pagerParams.getPageParamName();
+
 		URI uri = URIUtil.create(pageUrl, charsetType);
 
 		if (null == uri){
 			log.error("pageUrl:{} can not create to uri,charsetType:{}", pageUrl, charsetType);
 			return null;
-		}else{
-			String url = uri.toString();
-			String before = URIUtil.getBeforePath(url);
-
-			// ***********************************************************************
-			// getQuery() 返回此 URI 的已解码的查询组成部分。
-			// getRawQuery() 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
-			String query = uri.getRawQuery();
-
-			// ***********************************************************************
-			Map<String, String[]> map = new LinkedHashMap<String, String[]>();
-			// 传入的url不带参数的情况
-			if (Validator.isNullOrEmpty(query)){
-				// nothing to do
-			}else{
-
-				// 先返回 安全的 参数 ,避免循环里面 浪费性能
-				Map<String, String[]> originalMap = URIUtil.parseQueryToArrayMap(query, charsetType);
-				map.putAll(originalMap);
-			}
-
-			// ***********************************************************************F
-			Map<Integer, String> returnMap = new HashMap<Integer, String>();
-			for (Integer index : indexSet){
-
-				// 构建一个数组，完全覆盖pageParamName
-				map.put(pageParamName, new String[] { index + "" });
-
-				// 循环里面不再加码,避免 浪费性能
-				String encodedUrl = URIUtil.getEncodedUrlByArrayMap(before, map, null);
-				returnMap.put(index, encodedUrl);
-			}
-			return returnMap;
 		}
+
+		String url = uri.toString();
+		String before = URIUtil.getBeforePath(url);
+
+		// ***********************************************************************
+		// getQuery() 返回此 URI 的已解码的查询组成部分。
+		// getRawQuery() 返回此 URI 的原始查询组成部分。 URI 的查询组成部分（如果定义了）只包含合法的 URI 字符。
+		String query = uri.getRawQuery();
+
+		// ***********************************************************************
+		Map<String, String[]> map = new LinkedHashMap<String, String[]>();
+		// 传入的url不带参数的情况
+		if (Validator.isNullOrEmpty(query)){
+			// nothing to do
+		}else{
+
+			// 先返回 安全的 参数 ,避免循环里面 浪费性能
+			Map<String, String[]> originalMap = URIUtil.parseQueryToArrayMap(query, charsetType);
+			map.putAll(originalMap);
+		}
+
+		// ***********************************************************************F
+		Map<Integer, String> returnMap = new HashMap<Integer, String>();
+
+		// XXX 可以优化 优化成先出 模板链接,然后每个替换, 这样性能要比 循环解析url要快
+		for (Integer index : indexSet){
+
+			// 构建一个数组，完全覆盖pageParamName
+			map.put(pageParamName, new String[] { index + "" });
+
+			// 循环里面不再加码,避免 浪费性能
+			String encodedUrl = URIUtil.getEncodedUrlByArrayMap(before, map, null);
+			returnMap.put(index, encodedUrl);
+		}
+		return returnMap;
 	}
 
 	/**
@@ -279,23 +375,21 @@ public final class PagerUtil{
 	 *            总页数
 	 * @param currentPageNo
 	 *            当前页数
-	 * @param maxIndexPages
-	 *            the max index pages
+	 * @param pagerParams
+	 *            the pager params
 	 * @return 获得开始和结束的索引
-	 * @author 金鑫
-	 * @version 1.0 2010-5-31 上午06:03:53
+	 * @since 1.0.0
 	 */
-	private static int[] getStartIteratorIndexAndEndIteratorIndex(int allPageNo,int currentPageNo,int maxIndexPages){
+	private final static int[] getStartAndEndIteratorIndexs(int allPageNo,int currentPageNo,PagerParams pagerParams){
+		int maxIndexPages = pagerParams.getMaxIndexPages();
+
 		// 最多显示多少个导航页码
 		maxIndexPages = getAutoMaxIndexPages(allPageNo, maxIndexPages);
-		/**
-		 * 开始迭代索引编号
-		 */
+		// 开始迭代索引编号
 		int startIteratorIndex = 1;
-		/**
-		 * 结束迭代索引编号
-		 */
+		// 结束迭代索引编号
 		int endIteratorIndex = allPageNo;
+
 		// 总页数大于最大导航页数
 		if (allPageNo > maxIndexPages){
 			// 当前页导航两边总数和
@@ -336,13 +430,14 @@ public final class PagerUtil{
 	 * .
 	 * 
 	 * @param allPageNo
-	 *            分页总总页数,不解释地球人都知道
+	 *            分页总总页数
 	 * @param maxIndexPages
 	 *            表示手动指定一个固定的显示码<br>
 	 *            如果不指定,或者是0 那么就采用自动调节的显示码
 	 * @return 最大显示码
+	 * @deprecated 需要重构
 	 */
-	private static int getAutoMaxIndexPages(int allPageNo,Integer maxIndexPages){
+	private final static int getAutoMaxIndexPages(int allPageNo,Integer maxIndexPages){
 		if (Validator.isNullOrEmpty(maxIndexPages) || 0 == maxIndexPages){
 			// 总页数超过1000的时候,自动调节导航数量的作用
 			if (allPageNo > 1000){
