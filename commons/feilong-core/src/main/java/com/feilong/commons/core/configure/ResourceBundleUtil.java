@@ -129,7 +129,7 @@ public class ResourceBundleUtil{
 	 * @return the value with arguments
 	 */
 	public static String getValueWithArguments(String baseName,String key,Locale locale,Object...arguments){
-		ResourceBundle resourceBundle = getResourceBundle(baseName);
+		ResourceBundle resourceBundle = getResourceBundle(baseName, locale);
 		return getValueWithArguments(resourceBundle, key, arguments);
 	}
 
