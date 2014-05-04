@@ -39,12 +39,6 @@ public class PropertiesUtil extends BaseConfigure{
 	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtil.class);
 
 	/**
-	 * *************************************************************************************.
-	 * 
-	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
-	 * @version 1.0 2014-5-4 14:21:02
-	 */
-	/**
 	 * 读取方式
 	 * 
 	 * @author 金鑫 2010-4-20 下午04:16:34
@@ -53,24 +47,14 @@ public class PropertiesUtil extends BaseConfigure{
 		/**
 		 * ClassLoader.getSystemResourceAsStream(propertiesPath)
 		 */
-		byClassLoaderGetSystemResourceAsStream,
+		BY_CLASSLOADER_GET_SYSTEM_RESOURCEAS_STREAM,
+
 		/**
 		 * clz.getClassLoader().getResourceAsStream(propertiesPath)
 		 */
-		byClassLoaderGetResourceAsStream
+		BY_CLASSLOADER_GET_RESOURCE_AS_STREAM
 	}
 
-	/**
-	 * *************************************************************************************.
-	 * 
-	 * @param clz
-	 *            the clz
-	 * @param propertiesPath
-	 *            the properties path
-	 * @param key
-	 *            the key
-	 * @return the properties value
-	 */
 	/**
 	 * 获取Properties配置文件键值
 	 * 
@@ -118,15 +102,6 @@ public class PropertiesUtil extends BaseConfigure{
 	}
 
 	/**
-	 * *************************************************************************************.
-	 * 
-	 * @param readType
-	 *            the read type
-	 * @param propertiesPath
-	 *            the properties path
-	 * @return the properties
-	 */
-	/**
 	 * 获得Properties对象
 	 * 
 	 * @param readType
@@ -138,7 +113,7 @@ public class PropertiesUtil extends BaseConfigure{
 	public static Properties getProperties(ReadType readType,String propertiesPath){
 		InputStream inputStream = null;
 		switch (readType) {
-			case byClassLoaderGetSystemResourceAsStream:
+			case BY_CLASSLOADER_GET_SYSTEM_RESOURCEAS_STREAM:
 				inputStream = ClassLoader.getSystemResourceAsStream(propertiesPath);
 				break;
 			default:
@@ -163,30 +138,6 @@ public class PropertiesUtil extends BaseConfigure{
 		return properties.getProperty(key);
 	}
 
-	/**
-	 * 获得飞龙配置文件 feilong.user.properties 值
-	 * 
-	 * @param clz
-	 *            当前加载类
-	 * @param propertiesPath
-	 *            the properties path
-	 * @return 获得飞龙配置文件 feilong.user.properties 值
-	 */
-	// public static String getPropertiesFeiLongValueWithClassLoader(Class clz,String key){
-	// return getPropertiesValueWithClassLoader(clz, properties_feilong, key);
-	// }
-	/**
-	 * 获得飞龙配置文件 feilong.user.properties 值
-	 * 
-	 * @param servletContext
-	 *            servletContext
-	 * @param key
-	 *            用指定的键在此属性列表中搜索属性。如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值。如果未找到属性，则此方法返回 null。
-	 * @return 获得飞龙配置文件 feilong.user.properties 值
-	 */
-	// public static String getPropertiesFeiLongValueWithServletContext(ServletContext servletContext,String key){
-	// return getPropertiesValue(servletContext, properties_feilong, key);
-	// }
 	/**
 	 * 获取Properties
 	 * 
@@ -222,77 +173,111 @@ public class PropertiesUtil extends BaseConfigure{
 		}
 		return properties;
 	}
-	// public static boolean write(String fileName){
-	// // 建立Properties对象
-	// Properties properties = new Properties();
-	// // 将信息方入Properties对象
-	// properties.put("a.b.c", "金鑫");
-	// properties.put("aaa", "ppp");
-	// // 将信息包存在a.ini文件中
-	// try{
-	// properties.store(new FileOutputStream(fileName), null);
-	// }catch (FileNotFoundException e){
-	// e.printStackTrace();
-	// }catch (IOException e){
-	// e.printStackTrace();
+
+	// @formatter:off
+	
+	
+	/**
+	 * 获得飞龙配置文件 feilong.user.properties 值
+	 * 
+	 * @param clz
+	 *            当前加载类
+	 * @param propertiesPath
+	 *            the properties path
+	 * @return 获得飞龙配置文件 feilong.user.properties 值
+	 */
+	// public static String getPropertiesFeiLongValueWithClassLoader(Class clz,String key){
+	// return getPropertiesValueWithClassLoader(clz, properties_feilong, key);
 	// }
-	// return true;
+	/**
+	 * 获得飞龙配置文件 feilong.user.properties 值
+	 * 
+	 * @param servletContext
+	 *            servletContext
+	 * @param key
+	 *            用指定的键在此属性列表中搜索属性。如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值。如果未找到属性，则此方法返回 null。
+	 * @return 获得飞龙配置文件 feilong.user.properties 值
+	 */
+	// public static String getPropertiesFeiLongValueWithServletContext(ServletContext servletContext,String key){
+	// return getPropertiesValue(servletContext, properties_feilong, key);
 	// }
-	//
-	// public static void read(String fileName){
-	// Properties properties = new Properties();
-	// // 可以从a.ini中通过Properties.get方法读取配置信息
-	// try{
-	// properties.load(new FileInputStream(fileName));
-	// }catch (FileNotFoundException e){
-	// e.printStackTrace();
-	// }catch (IOException e){
-	// e.printStackTrace();
-	// }
-	// log.debug(properties.get("a.b.c"));
-	// log.debug(properties.get("aaa"));
-	// }
-	// /**
-	// * 更新（或插入）一对properties信息(主键及其键值) 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
-	// *
-	// * @param keyname
-	// * 键名
-	// * @param keyvalue
-	// * 键值
-	// */
-	// public static void writeProperties(String keyname,String keyvalue){
-	// try{
-	// // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
-	// // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
-	// OutputStream fos = new FileOutputStream(profilepath);
-	// props.setProperty(keyname, keyvalue);
-	// // 以适合使用 load 方法加载到 Properties 表中的格式，
-	// // 将此 Properties 表中的属性列表（键和元素对）写入输出流
-	// props.store(fos, "Update '" + keyname + "' value");
-	// }catch (IOException e){
-	// System.err.println("属性文件更新错误");
-	// }
-	// }
-	// /**
-	// * 更新properties文件的键值对 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
-	// *
-	// * @param keyname
-	// * 键名
-	// * @param keyvalue
-	// * 键值
-	// */
-	// public void updateProperties(String keyname,String keyvalue){
-	// try{
-	// props.load(new FileInputStream(profilepath));
-	// // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
-	// // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
-	// OutputStream fos = new FileOutputStream(profilepath);
-	// props.setProperty(keyname, keyvalue);
-	// // 以适合使用 load 方法加载到 Properties 表中的格式，
-	// // 将此 Properties 表中的属性列表（键和元素对）写入输出流
-	// props.store(fos, "Update '" + keyname + "' value");
-	// }catch (IOException e){
-	// System.err.println("属性文件更新错误");
-	// }
-	// }
+
+
+//	public static boolean write(String fileName){
+//		// 建立Properties对象
+//		Properties properties = new Properties();
+//		// 将信息方入Properties对象
+//		properties.put("a.b.c", "金鑫");
+//		properties.put("aaa", "ppp");
+//		// 将信息包存在a.ini文件中
+//		try{
+//			properties.store(new FileOutputStream(fileName), null);
+//		}catch (FileNotFoundException e){
+//			e.printStackTrace();
+//		}catch (IOException e){
+//			e.printStackTrace();
+//		}
+//		return true;
+//	}
+//
+//	public static void read(String fileName){
+//		Properties properties = new Properties();
+//		// 可以从a.ini中通过Properties.get方法读取配置信息
+//		try{
+//			properties.load(new FileInputStream(fileName));
+//		}catch (FileNotFoundException e){
+//			e.printStackTrace();
+//		}catch (IOException e){
+//			e.printStackTrace();
+//		}
+//		log.debug(properties.get("a.b.c"));
+//		log.debug(properties.get("aaa"));
+//	}
+//
+//	/**
+//	 * 更新（或插入）一对properties信息(主键及其键值) 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
+//	 * 
+//	 * @param keyname
+//	 *            键名
+//	 * @param keyvalue
+//	 *            键值
+//	 */
+//	public static void writeProperties(String keyname,String keyvalue){
+//		try{
+//			// 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
+//			// 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
+//			OutputStream fos = new FileOutputStream(profilepath);
+//			props.setProperty(keyname, keyvalue);
+//			// 以适合使用 load 方法加载到 Properties 表中的格式，
+//			// 将此 Properties 表中的属性列表（键和元素对）写入输出流
+//			props.store(fos, "Update '" + keyname + "' value");
+//		}catch (IOException e){
+//			System.err.println("属性文件更新错误");
+//		}
+//	}
+//
+//	/**
+//	 * 更新properties文件的键值对 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
+//	 * 
+//	 * @param keyname
+//	 *            键名
+//	 * @param keyvalue
+//	 *            键值
+//	 */
+//	public void updateProperties(String keyname,String keyvalue){
+//		try{
+//			props.load(new FileInputStream(profilepath));
+//			// 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
+//			// 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
+//			OutputStream fos = new FileOutputStream(profilepath);
+//			props.setProperty(keyname, keyvalue);
+//			// 以适合使用 load 方法加载到 Properties 表中的格式，
+//			// 将此 Properties 表中的属性列表（键和元素对）写入输出流
+//			props.store(fos, "Update '" + keyname + "' value");
+//		}catch (IOException e){
+//			System.err.println("属性文件更新错误");
+//		}
+//	}
+
+	// @formatter:on
 }
