@@ -10,6 +10,22 @@ Reduce development, Release ideas
 1. 基于maven2.2.1构建,
 1. 需要jdk1.5及以上环境
 
+
+
+# 类和方法介绍: 
+
+## com.feilong.commons.core.date 包下有以下几个类:
+
+* ★  DateUtil时间工具类  
+* ★ CalendarUtil 日历工具类
+* DatePattern 时间格式,用于formart
+* ConstellationType 星座枚举类
+* ConstellationUtil 星座工具类
+* LunarDateUtil 农历日期工具类
+* SolarDateUtil 阳历日期工具类
+
+***
+
 ***
 # 项目依赖
 
@@ -45,20 +61,6 @@ Reduce development, Release ideas
     
   </dependencies>
 ```
-
-***
-
-# 类和方法介绍: 
-
-## com.feilong.commons.core.date 包下有以下几个类:
-
-* ★  DateUtil时间工具类  
-* ★ CalendarUtil 日历工具类
-* DatePattern 时间格式,用于formart
-* ConstellationType 星座枚举类
-* ConstellationUtil 星座工具类
-* LunarDateUtil 农历日期工具类
-* SolarDateUtil 阳历日期工具类
 
 ***
 
