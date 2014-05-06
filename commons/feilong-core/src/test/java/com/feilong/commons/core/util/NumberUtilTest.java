@@ -49,6 +49,13 @@ public class NumberUtilTest{
 	}
 
 	@Test
+	public void compareTo(){
+		BigDecimal totalFee = new BigDecimal(-0.01);
+		boolean isLEZero = totalFee.compareTo(BigDecimal.ZERO) == -1 || totalFee.compareTo(BigDecimal.ZERO) == 0;
+		assertEquals(true, isLEZero);
+	}
+
+	@Test
 	public void testadd(){
 		BigDecimal a = new BigDecimal(19);
 		BigDecimal b = new BigDecimal(20);

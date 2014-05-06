@@ -1,22 +1,20 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.dom4j;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
@@ -26,6 +24,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
@@ -42,7 +41,7 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2011-4-27 下午04:49:45
  * @since 1.0
  */
-public class Dom4jUtil{
+public final class Dom4jUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(Dom4jUtil.class);
@@ -154,6 +153,10 @@ public class Dom4jUtil{
 		return getElementText(childElement);
 	}
 
+	// ****************************************************************************
+
+	// [start] AttributeValue
+
 	/**
 	 * 获得elemenet 属性值.
 	 * 
@@ -174,10 +177,30 @@ public class Dom4jUtil{
 			return null;
 		}
 		String text = attribute.getText();
-
 		return text;
 	}
 
+	/**
+	 * 获得node某个属性值.
+	 * 
+	 * @param node
+	 *            the node
+	 * @param attributeName
+	 *            属性名称
+	 * @return the attribute value
+	 */
+	public static String getAttributeValue(Node node,String attributeName){
+		if (Validator.isNullOrEmpty(node)){
+			log.warn("node is null or empty!");
+			return null;
+		}
+
+		// node 转element 强转
+		Element element = (Element) node;
+		return getAttributeValue(element, attributeName);
+	}
+
+	// [end]
 	/**
 	 * 格式化输出 xml<br>
 	 * 
