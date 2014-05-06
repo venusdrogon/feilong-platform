@@ -30,6 +30,7 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 
 /**
@@ -145,8 +146,8 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
-		return true;
+	public PaymentResult verifyRedirect(HttpServletRequest request){
+		return PaymentResult.PAID;
 	}
 
 	/*
@@ -154,7 +155,7 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 		// 消息类型
 		String CmdId = request.getParameter("CmdId");
 		// 商户号
@@ -193,15 +194,30 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 				log.error("[Chinapnr]同步步签名验证失败[" + msgData + "]");
 			}else{
 				if (RespCode.equals("000000")){
-					return true;
-				}else{
-					log.error("[Chinapnr]同步交易失败");
-					return false;
+					return PaymentResult.PAID;
 				}
+				log.error("[Chinapnr]同步交易失败");
+				return PaymentResult.FAIL;
 			}
 		}catch (Exception e){
 			log.error("[Chinapnr]同步签名验证异常");
 		}
+		return PaymentResult.FAIL;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
+	 */
+	public boolean closeTrade(String orderNo,TradeRole tradeRole){
+		throw new UnsupportedOperationException("ChinapnrPay not support closeTrade");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#isSupportCloseTrade()
+	 */
+	public boolean isSupportCloseTrade(){
 		return false;
 	}
 
@@ -246,19 +262,4 @@ public class ChinapnrPayAdaptor extends AbstractPaymentAdaptor{
 		this.merKeyFile = merKeyFile;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
-	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole){
-		throw new UnsupportedOperationException("汇付天下暂时不支持关闭交易");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#isSupportCloseTrade()
-	 */
-	public boolean isSupportCloseTrade(){
-		return false;
-	}
 }

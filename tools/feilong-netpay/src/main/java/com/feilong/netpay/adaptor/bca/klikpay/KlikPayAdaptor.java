@@ -35,6 +35,7 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.adaptor.bca.klikpay.util.KlikPayUtil;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
@@ -189,7 +190,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 		// Field# Parameter Type Length Format Mandatory
 		// 1 klikPayCode string 10 (AN) TRUE
 		// 2 transactionDate string 19 DD/MM/YYYY hh:mm:ss TRUE
@@ -265,13 +266,13 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 		// 如果 参数中的加密值 和我们算出来的不相等, 那么失败
 		if (!ourAuthKey.equals(authKey)){
 			log.error("authKey:{} is not eq our's :{}", authKey, ourAuthKey);
-			return false;
+			return PaymentResult.FAIL;
 		}
 
 		// XXX 在API 里面没有发现 状态这样的参数
 
 		log.info("pass doNotifyVerify,transactionNo:{}", transactionNo);
-		return true;
+		return PaymentResult.PAID;
 	}
 
 	/*
@@ -302,7 +303,7 @@ public class KlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
+	public PaymentResult verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("KlikPayAdaptor not support verifyRedirect,need use customer verifyRedirect");
 	}
 

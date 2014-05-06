@@ -27,10 +27,17 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
+import com.feilong.netpay.adaptor.bca.creditcard.command.CreditCardQueryResult;
+import com.feilong.netpay.adaptor.bca.creditcard.command.TransactionStatus;
+import com.feilong.netpay.adaptor.bca.creditcard.command.TransactionType;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
+import com.feilong.netpay.command.QueryRequest;
+import com.feilong.netpay.command.QueryResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.RequestUtil;
+import com.feilong.tools.cxf.JaxWsDynamicClientUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
@@ -42,10 +49,16 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
 public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(BcaCreditCardPayAdaptor.class);
+	private static final Logger	log	= LoggerFactory.getLogger(BcaCreditCardPayAdaptor.class);
 
 	/** 表单提交地址. */
 	private String				gateway;
+
+	/** 查询网关提交地址. */
+	private String				queryGateway;
+
+	/** 查询ws operationName. */
+	private String				queryOperationName;
 
 	/** The method. */
 	private String				method;
@@ -71,7 +84,96 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	private String				currencyDefault;
 
 	/** The price pattern. */
-	private String				pricePattern	= "############.00";
+	private String				pricePattern;
+
+	/**
+	 * Gets the query result.<br>
+	 * 他们还在使用 RPC/encoded is a vestige from before SOAP objects were defined with XML Schema.<br>
+	 * JAX-WS doesn't support rpc/enc Web Services
+	 * 
+	 * @param queryRequest
+	 *            the query request
+	 * @return the query result
+	 * @throws HttpClientUtilException
+	 *             the http client util exception
+	 */
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws HttpClientUtilException{
+
+		// @formatter:off
+
+//
+//		// Please make sure parameters are submitted in following order
+//		Map<String, String> object = new HashMap<String, String>();
+//
+//		// Conditional (must present if transactionID is not)
+//		// Value: Merchant’s unique Transaction ID
+//		// Format: Up to 50 alphanumeric characters
+//		object.put("merchantTransactionID", queryRequest.getTradeNo());
+//
+//		// Required
+//		object.put("serviceVersion", queryServiceVersion);
+//
+//		// Required
+//		// Value: Merchant’s DOacquire ID (same siteID you use for initial transaction)
+//		// Format: Up to 20 alphanumeric characters
+//		object.put("siteID", siteID);
+//
+//		// Conditional (must present if merchantTransactionID is not)
+//		// Value: DOacquire’s transaction ID
+//		// Format: Up to 50 alphanumeric characters
+//		// object.put("transactionID", "");
+//
+//		// Required
+//		// Value:
+//		//  AUTHORIZATION
+//		//  CAPTURE
+//		//  VOID CAPTURE
+//		//  SALES
+//		//  VOID
+//		//  REFUND
+//		//  FORCE
+//		object.put("transactionType", TransactionType.AUTHORIZATION);
+//
+//		NameValuePair[] nameValuePairs = {
+//				new NameValuePair("merchantTransactionID", queryRequest.getTradeNo()),
+//				new NameValuePair("serviceVersion", queryServiceVersion),
+//				new NameValuePair("siteID", siteID),
+//				new NameValuePair("transactionType", TransactionType.AUTHORIZATION), };
+
+		// @formatter:on
+
+		// *************************************************************
+		String merchantTransactionID = queryRequest.getTradeNo();
+		String transactionID = "";
+
+		try{
+
+			String wddxPacketXML = JaxWsDynamicClientUtil.call(
+					queryGateway,
+					queryOperationName,
+					merchantTransactionID,
+					queryServiceVersion,
+					siteID,
+					transactionID,
+					TransactionType.AUTHORIZATION);
+			// ******************************************************************
+			CreditCardQueryResult creditCardQueryResult = CreditCardQueryResultPaser.parseWddxPacket(wddxPacketXML);
+
+			String transactionStatus = creditCardQueryResult.getTransactionStatus();
+
+			PaymentResult paymentResult = toPaymentResult(transactionStatus);
+
+			QueryResult queryResult = new QueryResult();
+			queryResult.setTradeNo(merchantTransactionID);
+			queryResult.setPaymentGatewayResult(wddxPacketXML);
+			queryResult.setPaymentGatewayTradeNo(creditCardQueryResult.getTransactionID());
+			queryResult.setPaymentResult(paymentResult);
+			return queryResult;
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -202,15 +304,16 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
-		return true;
+	public PaymentResult verifyRedirect(HttpServletRequest request){
+		// the same as Notify
+		return verifyNotify(request);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 		// Value: Merchant’s DOacquire ID
 		// Format: Up to 20 alphanumeric characters
 		String siteID = request.getParameter("siteID");
@@ -295,12 +398,14 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		// PENDING 大约有1%的可能
 		// 他们文档里面写的是 APPROVE,但是传递是参数值是 APPROVED
 
-		if (TransactionStatus.PENDING.equals(transactionStatus) || TransactionStatus.APPROVED.equals(transactionStatus)){
-			return true;
+		if (TransactionStatus.APPROVED.equals(transactionStatus)){
+			return PaymentResult.PAID;
+		}else if (TransactionStatus.PENDING.equals(transactionStatus)){
+			return PaymentResult.PENDING;
 		}else{
 			Object[] logArgs = { transactionStatus, RequestUtil.getRequestFullURL(request, CharsetType.UTF8) };
 			log.error("transactionStatus is:[{}], full request url is :{}", logArgs);
-			return false;
+			return PaymentResult.FAIL;
 		}
 	}
 
@@ -328,50 +433,24 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 		return false;
 	}
 
-	/** The query url. */
-	String	queryURL;
-
 	/**
-	 * Gets the query result.
+	 * To payment result.
 	 * 
-	 * @return the query result
+	 * @param transactionStatus
+	 *            the transaction status
+	 * @return the payment result
 	 */
-	public boolean getQueryResult(String tradeNo){
-
-		// TODO
-		// Please make sure parameters are submitted in following order
-		Map<String, String> object = new HashMap<String, String>();
-
-		// Conditional (must present if transactionID is not)
-		// Value: Merchant’s unique Transaction ID
-		// Format: Up to 50 alphanumeric characters
-		object.put("merchantTransactionID", "");
-
-		// Required
-		object.put("serviceVersion", queryServiceVersion);
-
-		// Required
-		// Value: Merchant’s DOacquire ID (same siteID you use for initial
-		// transaction)
-		// Format: Up to 20 alphanumeric characters
-		object.put("siteID", siteID);
-
-		// Conditional (must present if merchantTransactionID is not)
-		// Value: DOacquire’s transaction ID
-		// Format: Up to 50 alphanumeric characters
-		object.put("transactionID", "");
-
-		// Required
-		// Value:
-		//  AUTHORIZATION
-		//  CAPTURE
-		//  VOID CAPTURE
-		//  SALES
-		//  VOID
-		//  REFUND
-		//  FORCE
-		object.put("transactionType", "");
-		return true;
+	private PaymentResult toPaymentResult(String transactionStatus){
+		PaymentResult paymentResult;
+		if (TransactionStatus.APPROVED.equals(transactionStatus)){
+			paymentResult = PaymentResult.PAID;
+		}else if (TransactionStatus.PENDING.equals(transactionStatus)){
+			paymentResult = PaymentResult.PENDING;
+		}else{
+			// 其余视为 失败,可以重新支付
+			paymentResult = PaymentResult.FAIL;
+		}
+		return paymentResult;
 	}
 
 	/*
@@ -444,6 +523,36 @@ public class BcaCreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setQueryServiceVersion(String queryServiceVersion){
 		this.queryServiceVersion = queryServiceVersion;
+	}
+
+	/**
+	 * Sets the 查询网关提交地址.
+	 * 
+	 * @param queryGateway
+	 *            the queryGateway to set
+	 */
+	public void setQueryGateway(String queryGateway){
+		this.queryGateway = queryGateway;
+	}
+
+	/**
+	 * 设置 查询ws operationName.
+	 * 
+	 * @param queryOperationName
+	 *            the queryOperationName to set
+	 */
+	public void setQueryOperationName(String queryOperationName){
+		this.queryOperationName = queryOperationName;
+	}
+
+	/**
+	 * 设置 the price pattern.
+	 * 
+	 * @param pricePattern
+	 *            the pricePattern to set
+	 */
+	public void setPricePattern(String pricePattern){
+		this.pricePattern = pricePattern;
 	}
 
 }

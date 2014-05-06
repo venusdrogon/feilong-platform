@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
@@ -57,7 +58,7 @@ public interface PaymentAdaptor{
 	 *            the request
 	 * @return true, if successful
 	 */
-	boolean verifyNotify(HttpServletRequest request);
+	PaymentResult verifyNotify(HttpServletRequest request);
 
 	/**
 	 * 处理跳转参数的校验,主要是做核实参数是否正确<br>
@@ -67,7 +68,7 @@ public interface PaymentAdaptor{
 	 *            the request
 	 * @return true, if successful
 	 */
-	boolean verifyRedirect(HttpServletRequest request);
+	PaymentResult verifyRedirect(HttpServletRequest request);
 
 	// ********************************************************************************************
 

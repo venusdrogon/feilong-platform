@@ -27,6 +27,7 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
@@ -54,7 +55,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 
 		String userid = request.getParameter("userid");
 
@@ -69,30 +70,25 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 		String adddata = request.getParameter("adddata");
 
-		if (Validator.isNullOrEmpty(userid)){
-			return false;
-		}
-		if (Validator.isNullOrEmpty(transno)){
-			return false;
-		}
-		if (Validator.isNullOrEmpty(transdate)){
-			return false;
-		}
-		if (Validator.isNullOrEmpty(amount)){
-			return false;
-		}
-		if (Validator.isNullOrEmpty(type)){
-			return false;
-		}
+		boolean validateParam = true;
 
-		// Value of type field always N
-		if (!"N".equals(type)){
-			return false;
+		if (Validator.isNullOrEmpty(userid)){
+			validateParam = false;
+		}else if (Validator.isNullOrEmpty(transno)){
+			validateParam = false;
+		}else if (Validator.isNullOrEmpty(transdate)){
+			validateParam = false;
+		}else if (Validator.isNullOrEmpty(amount)){
+			validateParam = false;
+		}else if (Validator.isNullOrEmpty(type)){
+			validateParam = false;
+		}else if (!"N".equals(type)){// Value of type field always N
+			validateParam = false;
 		}
 
 		// 这里未发现 参数有状态的判断
 
-		return true;
+		return validateParam ? PaymentResult.PAID : PaymentResult.FAIL;
 	}
 
 	/*
@@ -116,7 +112,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
+	public PaymentResult verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support doRedirectVerify");
 	}
 

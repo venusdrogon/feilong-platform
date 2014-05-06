@@ -38,6 +38,7 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
@@ -392,7 +393,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 		// N 12.2 Total amount. Eg: 10000.00
 		String AMOUNT = request.getParameter("AMOUNT");
 
@@ -459,22 +460,21 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			}else{
 				log.info("pass verifyNotify,tradeNo:[{}],PAYMENTCHANNEL:[{}],RESPONSECODE:[{}]", logArgs);
 			}
-			return statusSuccess;
-		}else{
-			log.error(
-					"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
-					WORDS,
-					ourWORDS,
-					RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
-			return false;
+			return statusSuccess ? PaymentResult.PAID : PaymentResult.FAIL;
 		}
+		log.error(
+				"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
+				WORDS,
+				ourWORDS,
+				RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
+		return PaymentResult.FAIL;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
+	public PaymentResult verifyRedirect(HttpServletRequest request){
 		// ************************************************
 		// N 12.2 Total amount. Eg: 10000.00
 		String AMOUNT = request.getParameter("AMOUNT");
@@ -512,15 +512,14 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			}else{
 				log.info("pass verifyRedirect,tradeNo:[{}],PAYMENTCHANNEL:[{}],STATUSCODE:[{}]", logArgs);
 			}
-			return statusSuccess;
-		}else{
-			log.error(
-					"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
-					WORDS,
-					ourWORDS,
-					RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
-			return false;
+			return statusSuccess ? PaymentResult.PAID : PaymentResult.FAIL;
 		}
+		log.error(
+				"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
+				WORDS,
+				ourWORDS,
+				RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
+		return PaymentResult.FAIL;
 	}
 
 	/**

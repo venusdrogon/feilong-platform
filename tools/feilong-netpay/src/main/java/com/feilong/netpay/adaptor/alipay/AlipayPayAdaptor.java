@@ -49,6 +49,7 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
@@ -261,7 +262,7 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 		if (Validator.isNullOrEmpty(key)){
 			throw new NullPointerException("the key is null or empty!");
 		}
@@ -287,11 +288,10 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 			boolean isNotifyVerifySuccess = isNotifyVerifySuccess(alipayNotifyURL);
 
 			// 付款成功
-			return isNotifyVerifySuccess;
-		}else{
-			log.error("isNotifySignOk error");
-			return false;
+			return isNotifyVerifySuccess ? PaymentResult.PAID : PaymentResult.FAIL;
 		}
+		log.error("isNotifySignOk error");
+		return PaymentResult.FAIL;
 	}
 
 	/**
@@ -307,34 +307,33 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 		String alipaySign = request.getParameter("sign");
 		if (Validator.isNullOrEmpty(alipaySign)){
 			throw new IllegalArgumentException("alipaySign can't be null/empty!");
-		}else{
-
-			// alipay 支付接口 里面所有的参数 都是单值的
-			@SuppressWarnings("unchecked")
-			Enumeration<String> parameterNames = request.getParameterNames();
-			Map<String, String> params = new HashMap<String, String>();
-			while (parameterNames.hasMoreElements()){
-				String key = parameterNames.nextElement();
-
-				// 把参数里面的 sign 和 sign_type 去掉
-				if (key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("sign_type")){
-					continue;
-				}else{
-					String value = request.getParameter(key);
-					StringBuilder stringBuilder = new StringBuilder();
-					stringBuilder.append(value);
-
-					// if (key.equals("body") || key.equals("subject")){
-					// valueStr = "Nike官方商城商品";
-					// }
-					params.put(key, stringBuilder.toString());
-				}
-			}
-			String toBeSignedString = getToBeSignedString(params);
-			String mysign = MD5Util.encode(toBeSignedString + key, _input_charset);
-			boolean isSignOk = mysign.equals(alipaySign);
-			return isSignOk;
 		}
+
+		// alipay 支付接口 里面所有的参数 都是单值的
+		@SuppressWarnings("unchecked")
+		Enumeration<String> parameterNames = request.getParameterNames();
+		Map<String, String> params = new HashMap<String, String>();
+		while (parameterNames.hasMoreElements()){
+			String key = parameterNames.nextElement();
+
+			// 把参数里面的 sign 和 sign_type 去掉
+			if (key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("sign_type")){
+				continue;
+			}
+			String value = request.getParameter(key);
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(value);
+
+			// if (key.equals("body") || key.equals("subject")){
+			// valueStr = "Nike官方商城商品";
+			// }
+			params.put(key, stringBuilder.toString());
+
+		}
+		String toBeSignedString = getToBeSignedString(params);
+		String mysign = MD5Util.encode(toBeSignedString + key, _input_charset);
+		boolean isSignOk = mysign.equals(alipaySign);
+		return isSignOk;
 	}
 
 	/**
@@ -649,8 +648,9 @@ public class AlipayPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
-		return true;
+	public PaymentResult verifyRedirect(HttpServletRequest request){
+		// TODO
+		return PaymentResult.PAID;
 	}
 
 	// ****************************************************************************************************************************

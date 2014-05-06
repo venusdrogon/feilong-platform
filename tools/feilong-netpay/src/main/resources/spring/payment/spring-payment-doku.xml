@@ -44,6 +44,7 @@
 	<bean id="permataVALITEPayAdaptor" parent="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.PermataVALITEPayAdaptor">
 		<property name="PAYMENTCHANNEL" value="#{p_dokuPayment['PAYMENTCHANNEL.permataVALITEPay']}" />
 		<property name="atmRedirectSuccessStatusCode" value="#{p_dokuPayment['redirect.status.success.atm']}" />
+		<property name="maxPriceForPay" value="#{p_dokuPayment['maxPriceForPay']}" />
 	</bean>
 
 	<!-- creditCardPayAdaptor 支付 -->

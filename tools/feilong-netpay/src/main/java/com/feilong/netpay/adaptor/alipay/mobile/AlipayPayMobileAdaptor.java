@@ -43,48 +43,50 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.ParamUtil;
 import com.feilong.servlet.http.RequestUtil;
 
 /**
- * 手机版alipay支付
+ * 手机版alipay支付.
  * 
  * @author 冯明雷
  * @time 2013-6-4 下午2:05:50
  */
 public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(AlipayPayMobileAdaptor.class);
 
-	/** 请求地址 */
+	/** 请求地址. */
 	private String				gateway;
 
-	/** 商品名称 */
+	/** 商品名称. */
 	private String				subject;
 
-	/** 商城支付宝账户 */
+	/** 商城支付宝账户. */
 	private String				seller;
 
-	/** 支付宝合作伙伴id */
+	/** 支付宝合作伙伴id. */
 	private String				partner;
 
-	/** 创建交易接口名称 */
+	/** 创建交易接口名称. */
 	private String				service_create;
 
-	/** 授权接口名称 */
+	/** 授权接口名称. */
 	private String				service_auth;
 
-	/** 算法名称，商城只支持MD5 */
+	/** 算法名称，商城只支持MD5. */
 	private String				sec_id;
 
-	/** 签名 */
+	/** 签名. */
 	private String				key;
 
-	/** 请求参数格式 */
+	/** 请求参数格式. */
 	private String				format;
 
-	/** 接口版本号 */
+	/** 接口版本号. */
 	private String				v;
 
 	/**
@@ -134,8 +136,12 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#verifyNotify(javax.servlet.http.HttpServletRequest)
+	 */
 	@Override
-	public boolean verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request){
 
 		log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 		if (Validator.isNullOrEmpty(key)){
@@ -146,13 +152,16 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		if (isNotifySignOk){
 			boolean isPaymentSuccess = isPaymentSuccess(request);
 			// 付款成功
-			return isPaymentSuccess;
-		}else{
-			log.error("isNotifySignOk error");
-			return false;
+			return isPaymentSuccess ? PaymentResult.PAID : PaymentResult.FAIL;
 		}
+		log.error("isNotifySignOk error");
+		return PaymentResult.FAIL;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getFeedbackTradeNo(javax.servlet.http.HttpServletRequest)
+	 */
 	@Override
 	public String getFeedbackTradeNo(HttpServletRequest request){
 
@@ -161,29 +170,29 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		soCode = request.getParameter("out_trade_no");
 		if (Validator.isNotNullOrEmpty(soCode)){
 			return soCode;
-		}else{
-			String notify_data = request.getParameter("notify_data");
-			log.info("notify--------" + notify_data);
-			if (Validator.isNotNullOrEmpty(notify_data)){
-				try{
-					soCode = getValueByKeyForXML(notify_data, "out_trade_no");
-				}catch (DocumentException e){
-					e.printStackTrace();
-				}
-			}
-			return soCode;
 		}
+		String notify_data = request.getParameter("notify_data");
+		log.info("notify--------" + notify_data);
+		if (Validator.isNotNullOrEmpty(notify_data)){
+			try{
+				soCode = getValueByKeyForXML(notify_data, "out_trade_no");
+			}catch (DocumentException e){
+				e.printStackTrace();
+			}
+		}
+		return soCode;
 	}
 
 	/**
-	 * 生成创建交易请求的url，并发送请求获得返回结果
+	 * 生成创建交易请求的url，并发送请求获得返回结果.
 	 * 
-	 * @param code
-	 * @param totalFee
-	 * @param return_url
-	 * @param notify_url
-	 * @throws Exception
+	 * @param payRequest
+	 *            the pay request
+	 * @param specialSignMap
+	 *            the special sign map
 	 * @return String
+	 * @throws Exception
+	 *             the exception
 	 * @author 冯明雷
 	 * @time 2013-6-7上午11:17:51
 	 */
@@ -206,7 +215,16 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	/**
 	 * 准备alipay.wap.trade.create.direct服务的参数
 	 * 
-	 * @param request
+	 * @param code
+	 *            the code
+	 * @param total_fee
+	 *            the total_fee
+	 * @param return_url
+	 *            the return_url
+	 * @param notify_url
+	 *            the notify_url
+	 * @param specialSignMap
+	 *            the special sign map
 	 * @return 请求参数map
 	 */
 	private Map<String, String> prepareTradeRequestParamsMap(
@@ -241,8 +259,8 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	/**
 	 * 准备alipay.wap.auth.authAndExecute服务的参数
 	 * 
-	 * @param request
 	 * @param requestToken
+	 *            the request token
 	 * @return 返回授权接口参数map
 	 */
 	private Map<String, String> prepareAuthParamsMap(String requestToken){
@@ -256,7 +274,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 准备通用参数
+	 * 准备通用参数.
 	 * 
 	 * @return 通用参数map
 	 */
@@ -270,12 +288,13 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 获得发送创建交易的返回结果
+	 * 获得发送创建交易的返回结果.
 	 * 
 	 * @param reqUrl
-	 * @param params
-	 * @throws Exception
+	 *            the req url
 	 * @return String
+	 * @throws Exception
+	 *             the exception
 	 * @author 冯明雷
 	 * @time 2013-6-6下午5:12:38
 	 */
@@ -302,11 +321,13 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 解析支付宝返回的结果
+	 * 解析支付宝返回的结果.
 	 * 
-	 * @param response
-	 * @return
+	 * @param return_result
+	 *            the return_result
+	 * @return the string
 	 * @throws Exception
+	 *             the exception
 	 */
 	private String parseAlipayResult(String return_result) throws Exception{
 		HashMap<String, String> resMap = new HashMap<String, String>();
@@ -328,28 +349,28 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 			String error = returnParamMap.get("res_error");
 			log.error("创建支付宝交易失败：" + error);
 			throw new Exception("创建支付宝交易失败：" + error);
-		}else{
-			String res_data = returnParamMap.get("res_data");
-			resMap.put("res_data", res_data);
-			// 验证签名数据
-			String verifyData = ParamUtil.getToBeSignedString(resMap);
-			String sign = MD5Util.encode(verifyData + key, _input_charset);
-			if (sign.equals(reutrnSign)){
-				try{
-					businessResult = getValueByKeyForXML(res_data, "request_token");
-				}catch (DocumentException e){
-					e.printStackTrace();
-				}
-			}else{
-				log.error("MD5验证签名失败");
-				throw new Exception("MD5验证签名失败");
+		}
+		String res_data = returnParamMap.get("res_data");
+		resMap.put("res_data", res_data);
+		// 验证签名数据
+		String verifyData = ParamUtil.getToBeSignedString(resMap);
+		String sign = MD5Util.encode(verifyData + key, _input_charset);
+		if (sign.equals(reutrnSign)){
+			try{
+				businessResult = getValueByKeyForXML(res_data, "request_token");
+			}catch (DocumentException e){
+				e.printStackTrace();
 			}
+		}else{
+			log.error("MD5验证签名失败");
+			throw new Exception("MD5验证签名失败");
 		}
 		return businessResult;
 	}
 
 	/**
 	 * 校验 返回的请求 <br>
+	 * .
 	 * 
 	 * @param request
 	 *            the request
@@ -369,9 +390,10 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 判断是否交易成功
+	 * 判断是否交易成功.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return boolean
 	 * @author 冯明雷
 	 * @time 2013-6-10下午2:22:42
@@ -401,9 +423,10 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 解析随浏览器跳转发回的消息参数
+	 * 解析随浏览器跳转发回的消息参数.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return boolean
 	 * @author 冯明雷
 	 * @time 2013-9-16上午10:22:17
@@ -413,33 +436,33 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		String alipaySign = request.getParameter("sign");
 		if (Validator.isNullOrEmpty(alipaySign)){
 			throw new IllegalArgumentException("alipaySign can't be null/empty!");
-		}else{
-			// alipay 支付接口 里面所有的参数 都是单值的
-			@SuppressWarnings("unchecked")
-			Enumeration<String> parameterNames = request.getParameterNames();
-			Map<String, String> params = new HashMap<String, String>();
-			while (parameterNames.hasMoreElements()){
-				String key = parameterNames.nextElement();
-				// 把参数里面的 sign 和 sign_type 去掉
-				if (key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("sign_type")){
-					continue;
-				}else{
-					String value = request.getParameter(key);
-					params.put(key, value);
-				}
-			}
-			String toBeSignedString = ParamUtil.getToBeSignedString(params);
-
-			String mysign = MD5Util.encode(toBeSignedString + key, _input_charset);
-			boolean isSignOk = mysign.equals(alipaySign);
-			return isSignOk;
 		}
+		// alipay 支付接口 里面所有的参数 都是单值的
+		@SuppressWarnings("unchecked")
+		Enumeration<String> parameterNames = request.getParameterNames();
+		Map<String, String> params = new HashMap<String, String>();
+		while (parameterNames.hasMoreElements()){
+			String key = parameterNames.nextElement();
+			// 把参数里面的 sign 和 sign_type 去掉
+			if (key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("sign_type")){
+				continue;
+			}
+			String value = request.getParameter(key);
+			params.put(key, value);
+
+		}
+		String toBeSignedString = ParamUtil.getToBeSignedString(params);
+
+		String mysign = MD5Util.encode(toBeSignedString + key, _input_charset);
+		boolean isSignOk = mysign.equals(alipaySign);
+		return isSignOk;
 	}
 
 	/**
-	 * 解析alipay推送的消息参数
+	 * 解析alipay推送的消息参数.
 	 * 
 	 * @param request
+	 *            the request
 	 * @return boolean
 	 * @author 冯明雷
 	 * @time 2013-9-16上午10:23:19
@@ -459,12 +482,15 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 根据key获得xml类型字符串中对应的节点的值
+	 * 根据key获得xml类型字符串中对应的节点的值.
 	 * 
 	 * @param xmlData
+	 *            the xml data
 	 * @param key
-	 * @throws DocumentException
+	 *            the key
 	 * @return String
+	 * @throws DocumentException
+	 *             the document exception
 	 * @author 冯明雷
 	 * @time 2013-9-16上午10:16:39
 	 */
@@ -480,20 +506,33 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public boolean verifyRedirect(HttpServletRequest request){
-		return true;
+	public PaymentResult verifyRedirect(HttpServletRequest request){
+		// TODO
+		return PaymentResult.PAID;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
+	 */
 	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#closeTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
+	 */
 	@Override
 	public boolean closeTrade(String orderNo,TradeRole tradeRole){
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#isSupportCloseTrade()
+	 */
 	@Override
 	public boolean isSupportCloseTrade(){
 		return false;
@@ -510,46 +549,112 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		return true;
 	}
 
+	/**
+	 * 设置 请求地址.
+	 * 
+	 * @param gateway
+	 *            the new 请求地址
+	 */
 	public void setGateway(String gateway){
 		this.gateway = gateway;
 	}
 
+	/**
+	 * 设置 商品名称.
+	 * 
+	 * @param subject
+	 *            the new 商品名称
+	 */
 	public void setSubject(String subject){
 		this.subject = subject;
 	}
 
+	/**
+	 * 设置 商城支付宝账户.
+	 * 
+	 * @param seller
+	 *            the new 商城支付宝账户
+	 */
 	public void setSeller(String seller){
 		this.seller = seller;
 	}
 
+	/**
+	 * 设置 支付宝合作伙伴id.
+	 * 
+	 * @param partner
+	 *            the new 支付宝合作伙伴id
+	 */
 	public void setPartner(String partner){
 		this.partner = partner;
 	}
 
+	/**
+	 * 设置 创建交易接口名称.
+	 * 
+	 * @param service_create
+	 *            the new 创建交易接口名称
+	 */
 	public void setService_create(String service_create){
 		this.service_create = service_create;
 	}
 
+	/**
+	 * 设置 授权接口名称.
+	 * 
+	 * @param service_auth
+	 *            the new 授权接口名称
+	 */
 	public void setService_auth(String service_auth){
 		this.service_auth = service_auth;
 	}
 
+	/**
+	 * 设置 算法名称，商城只支持MD5.
+	 * 
+	 * @param sec_id
+	 *            the new 算法名称，商城只支持MD5
+	 */
 	public void setSec_id(String sec_id){
 		this.sec_id = sec_id;
 	}
 
+	/**
+	 * 设置 签名.
+	 * 
+	 * @param key
+	 *            the new 签名
+	 */
 	public void setKey(String key){
 		this.key = key;
 	}
 
+	/**
+	 * 设置 请求参数格式.
+	 * 
+	 * @param format
+	 *            the new 请求参数格式
+	 */
 	public void setFormat(String format){
 		this.format = format;
 	}
 
+	/**
+	 * 设置 接口版本号.
+	 * 
+	 * @param v
+	 *            the new 接口版本号
+	 */
 	public void setV(String v){
 		this.v = v;
 	}
 
+	/**
+	 * Sets the _input_charset.
+	 * 
+	 * @param _input_charset
+	 *            the new _input_charset
+	 */
 	public void set_input_charset(String _input_charset){
 		this._input_charset = _input_charset;
 	}
