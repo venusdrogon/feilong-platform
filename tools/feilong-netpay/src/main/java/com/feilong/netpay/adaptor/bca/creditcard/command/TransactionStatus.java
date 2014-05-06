@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.creditcard;
+package com.feilong.netpay.adaptor.bca.creditcard.command;
 
 /**
  * gateway 返回的状态<br>
@@ -51,7 +51,7 @@ public interface TransactionStatus{
 	String	SCRUBBED	= "SCRUBBED";	// - SCRUBBED instead of SCRUBB
 
 	/** The ERROR,network connectivity error with the partner bank/acquirer. */
-	String	ERROR		= "CANCEL";
+	String	ERROR		= "ERROR";
 
 	/** The CANCEL,cardholder did not complete the transaction. */
 	String	CANCEL		= "CANCEL";

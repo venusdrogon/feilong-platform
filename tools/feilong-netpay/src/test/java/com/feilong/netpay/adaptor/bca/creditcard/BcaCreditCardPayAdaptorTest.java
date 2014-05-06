@@ -25,6 +25,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
+import com.feilong.netpay.command.QueryRequest;
+import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -43,4 +45,16 @@ public class BcaCreditCardPayAdaptorTest extends BasePaymentTest{
 		Map<String, String> specialSignMap = null;
 		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
+
+	@Test
+	public final void getQueryResult() throws HttpClientUtilException{
+
+		BcaCreditCardPayAdaptor bcaCreditCardPayAdaptor = (BcaCreditCardPayAdaptor) paymentAdaptor;
+		QueryRequest queryRequest = new QueryRequest();
+		queryRequest.setTradeNo("010003170001");
+		
+		
+		bcaCreditCardPayAdaptor.getQueryResult(queryRequest);
+	}
+
 }
