@@ -46,14 +46,14 @@
 	<import resource="classpath:spring/payment/spring-payment-doku.xml" />
 
 
-	<!-- bca3个支付方式 参数都不一样没有共同性 -->
+	<!-- sprintasia 3个支付方式 参数都不一样没有共同性 -->
 
-	<!-- bca-klikPay -->
-	<import resource="classpath:spring/payment/spring-payment-bca-klikPay.xml" />
+	<!-- sprintasia-klikPay -->
+	<import resource="classpath:spring/payment/spring-payment-sprintasia-klikPay.xml" />
 
-	<!-- bca-klikPayAdaptor -->
-	<import resource="classpath:spring/payment/spring-payment-bca-klikBCA.xml" />
+	<!-- sprintasia-klikPayAdaptor -->
+	<import resource="classpath:spring/payment/spring-payment-sprintasia-klikBCA.xml" />
 
-	<!-- bca-creditCard -->
-	<import resource="classpath:spring/payment/spring-payment-bca-creditCard.xml" />
+	<!-- sprintasia-creditCard -->
+	<import resource="classpath:spring/payment/spring-payment-sprintasia-creditCard.xml" />
 </beans>

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,9 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.feilong.netpay.adaptor.sprintasia.klikbca;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import com.feilong.netpay.adaptor.BasePaymentTest;
+
 /**
- *  支付宝所有的支付方式
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a> 
- * @version 1.0.5 2014年5月6日 下午8:53:25  
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 Apr 1, 2014 9:40:39 PM
  */
-package com.feilong.netpay.adaptor.alipay;
+public class KlikBCAAdaptorTest extends BasePaymentTest{
+
+	@Autowired
+	@Qualifier("klikBCAAdaptor")
+	private KlikBCAAdaptor	klikBCAAdaptor;
+
+}

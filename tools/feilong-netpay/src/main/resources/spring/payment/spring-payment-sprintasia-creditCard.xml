@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:properties id="p_bcaCreditCardPayment" location="classpath:config/payment/payment-sprintasia-creditCard.properties"></util:properties>
+
+	<!-- bcaCreditCardPayAdaptor -->
+	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.sprintasia.creditcard.BcaCreditCardPayAdaptor">
+		<property name="gateway" value="#{p_bcaCreditCardPayment['gateway']}" />
+		<property name="method" value="#{p_bcaCreditCardPayment['method']}" />
+
+		<property name="pricePattern" value="#{p_bcaCreditCardPayment['pricePattern']}" />
+
+		<property name="currencyDefault" value="#{p_bcaCreditCardPayment['currencyDefault']}" />
+		<property name="siteID" value="#{p_bcaCreditCardPayment['siteID']}" />
+		<property name="serviceVersion" value="#{p_bcaCreditCardPayment['serviceVersion']}" />
+
+		<property name="queryGateway" value="#{p_bcaCreditCardPayment['query.gateway']}" />
+		<property name="queryOperationName" value="#{p_bcaCreditCardPayment['query.operationName']}" />
+		<property name="queryServiceVersion" value="#{p_bcaCreditCardPayment['queryServiceVersion']}" />
+
+		<property name="minPriceForPay" value="#{p_bcaCreditCardPayment['minPriceForPay']}" />
+		<property name="maxPriceForPay" value="#{p_bcaCreditCardPayment['maxPriceForPay']}" />
+	</bean>
+</beans>

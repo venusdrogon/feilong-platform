@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 /**
- *  支付宝所有的支付方式
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a> 
- * @version 1.0.5 2014年5月6日 下午8:53:25  
+ * @version 1.0 2014年5月5日 下午9:15:05  
  */
-package com.feilong.netpay.adaptor.alipay;
+package com.feilong.netpay.adaptor.sprintasia.creditcard.command;
