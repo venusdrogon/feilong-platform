@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.alipay;
+package com.feilong.netpay.adaptor.alipay.pconline;
 
 /**
- * alipay 信用卡支付<br>
- * 见 快捷支付网银前置文档
+ * 在线扫码支付
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 16, 2013 10:18:24 PM
+ * @version 1.0 2014年5月6日 下午9:24:22
+ * @since 1.0.5
  */
-public class AlipayCreditCardPayAdaptor extends AlipayPayAdaptor{
+public class AlipayOnlineScanCodeAdaptor extends AlipayOnlineAdaptor{
 
-	// 目前方法 完全和 alipay 支付一样
-	// 只是 注入的 sign参数 增加了 default_login
+	// 目前方法 alipay 支付一样
+	// 新增 qr_pay_mode 参数
 	// paymethod 值不同
 }

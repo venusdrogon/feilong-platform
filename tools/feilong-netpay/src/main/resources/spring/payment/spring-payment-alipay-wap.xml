@@ -10,7 +10,7 @@
 	<util:properties id="p_alipayMobilePayment" location="classpath:config/payment/payment-alipay-mobile.properties"></util:properties>
 
 	<!-- 支付宝支付 -->
-	<bean id="alipayPayMobileAdaptor" class="com.feilong.netpay.adaptor.alipay.mobile.AlipayPayMobileAdaptor">
+	<bean id="alipayWapAdaptor" class="com.feilong.netpay.adaptor.alipay.wap.AlipayWapAdaptor">
 		<!--请求地址 -->
 		<property name="gateway" value="#{p_alipayMobilePayment['gateway']}" />
 		<!-- 商品名称 -->
@@ -40,12 +40,12 @@
 	</bean>
 
 	<!-- 支付宝支付(网银在线) -->
-	<bean id="alipayNetPayMobileAdaptor" class="com.feilong.netpay.adaptor.alipay.mobile.AlipayNetPayMobileAdaptor" parent="alipayPayMobileAdaptor">
+	<bean id="alipayWapNetpayAdaptor" class="com.feilong.netpay.adaptor.alipay.wap.AlipayWapNetpayAdaptor" parent="alipayWapAdaptor">
 
 	</bean>
 
 	<!-- 支付宝支付(信用卡) -->
-	<bean id="alipayCreditCardMobileAdaptor" class="com.feilong.netpay.adaptor.alipay.mobile.AlipayCreditCardMobileAdaptor" parent="alipayPayMobileAdaptor">
+	<bean id="alipayWapCreditCardAdaptor" class="com.feilong.netpay.adaptor.alipay.wap.AlipayWapCreditCardAdaptor" parent="alipayWapAdaptor">
 
 	</bean>
 </beans>

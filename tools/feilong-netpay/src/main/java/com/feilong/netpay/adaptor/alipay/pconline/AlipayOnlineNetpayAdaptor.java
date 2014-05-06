@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.alipay;
+package com.feilong.netpay.adaptor.alipay.pconline;
 
 import java.util.Map;
 
@@ -21,12 +21,13 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * alipay 版本(网银在线)
+ * alipay 版本(网银在线).
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 20, 2013 12:40:06 PM
+ * @version 1.0.5 2014-5-6 20:38 change name
  */
-public class AlipayNetPayAdaptor extends AlipayPayAdaptor{
+public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor{
 
 	/*
 	 * (non-Javadoc)
@@ -38,7 +39,7 @@ public class AlipayNetPayAdaptor extends AlipayPayAdaptor{
 			throw new NullPointerException("the specialSignMap is null or empty!");
 		}
 
-		String defaultbank = specialSignMap.get("defaultbank");
+		String defaultbank = specialSignMap.get(PARAM_DEFAULT_BANK);
 		if (Validator.isNullOrEmpty(defaultbank)){
 			throw new NullPointerException("the defaultbank param is null or empty!");
 		}
@@ -51,20 +52,19 @@ public class AlipayNetPayAdaptor extends AlipayPayAdaptor{
 	}
 
 	/**
-	 * 判断传入的 银行code 是否 支持
+	 * 判断传入的 银行code 是否 支持.
 	 * 
 	 * @param defaultbank
-	 * @return
+	 *            the defaultbank
+	 * @return true, if is support bank
 	 */
 	private boolean isSupportBank(String defaultbank){
-		return ArrayUtil.isContain(supportBank, defaultbank);
+		return ArrayUtil.isContain(SUPPORT_BANKS, defaultbank);
 	}
 
-	/**
-	 * 支持的银行code
-	 */
-	private String[]	supportBank	= {
-									// ******** B2B 代表企业银行***************************************
+	/** 支持的银行code. */
+	private static final String[]	SUPPORT_BANKS	= {
+													// ******** B2B 代表企业银行***************************************
 			"ICBCBTB",// 中国工商银行（B2B）
 			"ABCBTB",// 中国农业银行（B2B）
 			"CCBBTB",// 中国建设银行（B2B）
@@ -114,6 +114,6 @@ public class AlipayNetPayAdaptor extends AlipayPayAdaptor{
 			"BJBANK", // 北京银行
 			"SHRCB", // 上海农商银行
 			"WZCBB2C-DEBIT", // 温州银行
-									};
+													};
 
 }

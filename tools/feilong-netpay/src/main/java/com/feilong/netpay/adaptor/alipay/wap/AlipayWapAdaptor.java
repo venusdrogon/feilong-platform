@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.alipay.mobile;
+package com.feilong.netpay.adaptor.alipay.wap;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -40,11 +40,10 @@ import org.xml.sax.InputSource;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
+import com.feilong.netpay.adaptor.alipay.BaseAlipayAdaptor;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.PaymentResult;
-import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.ParamUtil;
 import com.feilong.servlet.http.RequestUtil;
 
@@ -52,24 +51,20 @@ import com.feilong.servlet.http.RequestUtil;
  * 手机版alipay支付.
  * 
  * @author 冯明雷
- * @time 2013-6-4 下午2:05:50
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0.0 2013-6-4 下午2:05:50
+ * @version 1.0.5 2014-5-6 20:38 change name
  */
-public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
+public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AlipayPayMobileAdaptor.class);
-
-	/** 请求地址. */
-	private String				gateway;
+	private static final Logger	log	= LoggerFactory.getLogger(AlipayWapAdaptor.class);
 
 	/** 商品名称. */
 	private String				subject;
 
 	/** 商城支付宝账户. */
 	private String				seller;
-
-	/** 支付宝合作伙伴id. */
-	private String				partner;
 
 	/** 创建交易接口名称. */
 	private String				service_create;
@@ -80,20 +75,11 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	/** 算法名称，商城只支持MD5. */
 	private String				sec_id;
 
-	/** 签名. */
-	private String				key;
-
 	/** 请求参数格式. */
 	private String				format;
 
 	/** 接口版本号. */
 	private String				v;
-
-	/**
-	 * 参数编码字符集 不可为空 <br>
-	 * 商户网站使用的 编码格式 如utf-8 ,gbk, gb2312.
-	 */
-	private String				_input_charset;
 
 	/*
 	 * (non-Javadoc)
@@ -242,7 +228,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 		regData.append("<seller_account_name>" + seller + "</seller_account_name>");
 		regData.append("<call_back_url>" + return_url + "</call_back_url>");
 		regData.append("<notify_url>" + notify_url + "</notify_url>");
-		String bankCode = specialSignMap.get("defaultbank");
+		String bankCode = specialSignMap.get(PARAM_DEFAULT_BANK);
 		if (Validator.isNotNullOrEmpty(bankCode)){
 			regData.append("<cashier_code>" + bankCode + "</cashier_code>");
 		}
@@ -517,25 +503,8 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 */
 	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
+		// TODO
 		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#closeTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
-	 */
-	@Override
-	public boolean closeTrade(String orderNo,TradeRole tradeRole){
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#isSupportCloseTrade()
-	 */
-	@Override
-	public boolean isSupportCloseTrade(){
-		return false;
 	}
 
 	/**
@@ -550,20 +519,10 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
-	 * 设置 请求地址.
-	 * 
-	 * @param gateway
-	 *            the new 请求地址
-	 */
-	public void setGateway(String gateway){
-		this.gateway = gateway;
-	}
-
-	/**
 	 * 设置 商品名称.
 	 * 
 	 * @param subject
-	 *            the new 商品名称
+	 *            the subject to set
 	 */
 	public void setSubject(String subject){
 		this.subject = subject;
@@ -573,27 +532,17 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * 设置 商城支付宝账户.
 	 * 
 	 * @param seller
-	 *            the new 商城支付宝账户
+	 *            the seller to set
 	 */
 	public void setSeller(String seller){
 		this.seller = seller;
 	}
 
 	/**
-	 * 设置 支付宝合作伙伴id.
-	 * 
-	 * @param partner
-	 *            the new 支付宝合作伙伴id
-	 */
-	public void setPartner(String partner){
-		this.partner = partner;
-	}
-
-	/**
 	 * 设置 创建交易接口名称.
 	 * 
 	 * @param service_create
-	 *            the new 创建交易接口名称
+	 *            the service_create to set
 	 */
 	public void setService_create(String service_create){
 		this.service_create = service_create;
@@ -603,7 +552,7 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * 设置 授权接口名称.
 	 * 
 	 * @param service_auth
-	 *            the new 授权接口名称
+	 *            the service_auth to set
 	 */
 	public void setService_auth(String service_auth){
 		this.service_auth = service_auth;
@@ -613,27 +562,17 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * 设置 算法名称，商城只支持MD5.
 	 * 
 	 * @param sec_id
-	 *            the new 算法名称，商城只支持MD5
+	 *            the sec_id to set
 	 */
 	public void setSec_id(String sec_id){
 		this.sec_id = sec_id;
 	}
 
 	/**
-	 * 设置 签名.
-	 * 
-	 * @param key
-	 *            the new 签名
-	 */
-	public void setKey(String key){
-		this.key = key;
-	}
-
-	/**
 	 * 设置 请求参数格式.
 	 * 
 	 * @param format
-	 *            the new 请求参数格式
+	 *            the format to set
 	 */
 	public void setFormat(String format){
 		this.format = format;
@@ -643,20 +582,10 @@ public class AlipayPayMobileAdaptor extends AbstractPaymentAdaptor{
 	 * 设置 接口版本号.
 	 * 
 	 * @param v
-	 *            the new 接口版本号
+	 *            the v to set
 	 */
 	public void setV(String v){
 		this.v = v;
-	}
-
-	/**
-	 * Sets the _input_charset.
-	 * 
-	 * @param _input_charset
-	 *            the new _input_charset
-	 */
-	public void set_input_charset(String _input_charset){
-		this._input_charset = _input_charset;
 	}
 
 }

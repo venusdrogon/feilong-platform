@@ -32,11 +32,9 @@ import com.feilong.netpay.adaptor.PaymentAdaptor;
  */
 public class PermataVALITEPayAdaptorTest extends BasePaymentTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(PermataVALITEPayAdaptorTest.class);
-
 	@Autowired
 	@Qualifier("permataVALITEPayAdaptor")
-	private PaymentAdaptor		paymentAdaptor;
+	private PaymentAdaptor	paymentAdaptor;
 
 	@Test
 	public final void createPaymentForm(){

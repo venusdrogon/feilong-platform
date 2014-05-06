@@ -24,7 +24,9 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -50,15 +52,22 @@ import com.feilong.tools.velocity.VelocityUtil;
 public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 
 	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(BasePaymentTest.class);
+	protected static final Logger	log					= LoggerFactory.getLogger(BasePaymentTest.class);
 
 	/** The template in class path. */
-	private String				templateInClassPath	= "paymentChannel.vm";
+	private String					templateInClassPath	= "paymentChannel.vm";
 
 	/** The encode. */
-	private String				encode				= CharsetType.UTF8;
+	private String					encode				= CharsetType.UTF8;
 
-	boolean						openFile			= true;
+	private boolean					openFile			= true;
+
+	private String					code				= DateUtil.date2String(new Date(), DatePattern.timestamp);
+
+	// private String code = "44";
+
+	@Autowired
+	protected ApplicationContext	applicationContext;
 
 	/**
 	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
@@ -71,9 +80,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	 * @throws SecurityException
 	 */
 	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
-		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
 
-		code = "44";
 		BigDecimal total_fee = new BigDecimal(60000.00f);
 
 		PayRequest payRequest = new PayRequest();

@@ -11,23 +11,24 @@
 	<bean id="paymentAdaptorManager" class="com.feilong.netpay.PaymentAdaptorManagerImpl">
 		<property name="paymentAdaptorMap">
 			<map>
-				<entry key="3" value-ref="alipayNetPayAdaptor"></entry>
-				<entry key="6" value-ref="alipayPayAdaptor"></entry>
-				<entry key="14" value-ref="alipayCreditCardPayAdaptor"></entry>
+				<entry key="3" value-ref="alipayOnlineNetpayAdaptor"></entry>
+				<entry key="6" value-ref="alipayOnlineAdaptor"></entry>
+				<entry key="14" value-ref="alipayOnlineCreditCardAdaptor"></entry>
+				<!-- 国际信用卡 -->
+				<entry key="131" value-ref="alipayOnlineInternationalCardAdaptor"></entry>
+				<entry key="141" value-ref="alipayOnlineScanCodeAdaptor"></entry>
+
 
 				<entry key="15" value-ref="chinapnrPayAdaptor"></entry>
 
 				<!-- 有新的支付方式 ,请在下面扩展配置 -->
-				<!-- 国际信用卡 -->
-				<entry key="131" value-ref="alipayInternationalCreditCardPayAdaptor"></entry>
-				<entry key="141" value-ref="alipayScanCodePayAdaptor"></entry>
 
 				<entry key="151" value-ref="mandiriClickPayAdaptor"></entry>
 				<entry key="152" value-ref="briEPayAdaptor"></entry>
 				<entry key="153" value-ref="permataVALITEPayAdaptor"></entry>
-				
+
 				<entry key="154" value-ref="bcaCreditCardPayAdaptor"></entry>
-				
+
 				<entry key="155" value-ref="klikPayAdaptor"></entry>
 			</map>
 		</property>
@@ -35,8 +36,8 @@
 
 	<!--********************* 有新的支付方式 ,请在下面扩展配置**************** -->
 	<!-- alipay相关 -->
-	<import resource="classpath:spring/payment/spring-payment-alipay.xml" />
-	<import resource="classpath:spring/payment/spring-payment-alipay-mobile.xml" />
+	<import resource="classpath:spring/payment/spring-payment-alipay-pconline.xml" />
+	<import resource="classpath:spring/payment/spring-payment-alipay-wap.xml" />
 
 	<!-- 汇付天下 -->
 	<import resource="classpath:spring/payment/spring-payment-chinapnr.xml" />

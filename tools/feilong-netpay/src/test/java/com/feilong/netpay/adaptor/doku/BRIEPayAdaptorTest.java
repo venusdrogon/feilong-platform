@@ -32,11 +32,9 @@ import com.feilong.netpay.adaptor.PaymentAdaptor;
  */
 public class BRIEPayAdaptorTest extends BasePaymentTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BRIEPayAdaptorTest.class);
-
 	@Autowired
 	@Qualifier("briEPayAdaptor")
-	private PaymentAdaptor		paymentAdaptor;
+	private PaymentAdaptor	paymentAdaptor;
 
 	@Test
 	public final void createPaymentForm(){

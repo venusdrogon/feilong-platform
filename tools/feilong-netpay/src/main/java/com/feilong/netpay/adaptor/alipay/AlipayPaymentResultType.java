@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.klikbca;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import com.feilong.netpay.adaptor.BasePaymentTest;
+package com.feilong.netpay.adaptor.alipay;
 
 /**
+ * 支付结果
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Apr 1, 2014 9:40:39 PM
+ * @version 1.0 Jan 15, 2013 10:51:46 PM
  */
-public class KlikBCAAdaptorTest extends BasePaymentTest{
+public interface AlipayPaymentResultType{
 
-	@Autowired
-	@Qualifier("klikBCAAdaptor")
-	private KlikBCAAdaptor	klikBCAAdaptor;
+	/** 支付成功 <code>{@value}</code> */
+	String	SUCCESS	= "success";
 
+	/** 支付失败 <code>{@value}</code> */
+	String	FAIL	= "fail";
 }

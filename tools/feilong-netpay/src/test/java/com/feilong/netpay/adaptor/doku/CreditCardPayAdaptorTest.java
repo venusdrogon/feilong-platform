@@ -32,11 +32,9 @@ import com.feilong.netpay.adaptor.PaymentAdaptor;
  */
 public class CreditCardPayAdaptorTest extends BasePaymentTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(CreditCardPayAdaptorTest.class);
-
 	@Autowired
 	@Qualifier("creditCardPayAdaptor")
-	private PaymentAdaptor		paymentAdaptor;
+	private PaymentAdaptor	paymentAdaptor;
 
 	@Test
 	public final void createPaymentForm(){

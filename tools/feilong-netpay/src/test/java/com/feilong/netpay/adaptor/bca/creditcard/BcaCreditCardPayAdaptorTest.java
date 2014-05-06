@@ -18,8 +18,6 @@ package com.feilong.netpay.adaptor.bca.creditcard;
 import java.util.Map;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -29,31 +27,41 @@ import com.feilong.netpay.command.QueryRequest;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
+ * The Class BcaCreditCardPayAdaptorTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 24, 2014 11:45:24 AM
  */
 public class BcaCreditCardPayAdaptorTest extends BasePaymentTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BcaCreditCardPayAdaptorTest.class);
-
+	/** The payment adaptor. */
 	@Autowired
 	@Qualifier("bcaCreditCardPayAdaptor")
-	private PaymentAdaptor		paymentAdaptor;
+	private PaymentAdaptor	paymentAdaptor;
 
+	/**
+	 * Creates the payment form.
+	 */
 	@Test
 	public final void createPaymentForm(){
 		Map<String, String> specialSignMap = null;
 		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 
+	/**
+	 * Gets the query result.
+	 * 
+	 * @return the query result
+	 * @throws HttpClientUtilException
+	 *             the http client util exception
+	 */
 	@Test
 	public final void getQueryResult() throws HttpClientUtilException{
 
 		BcaCreditCardPayAdaptor bcaCreditCardPayAdaptor = (BcaCreditCardPayAdaptor) paymentAdaptor;
 		QueryRequest queryRequest = new QueryRequest();
 		queryRequest.setTradeNo("010003170001");
-		
-		
+
 		bcaCreditCardPayAdaptor.getQueryResult(queryRequest);
 	}
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.doku;
+package com.feilong.netpay.adaptor.alipay.wap;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -27,19 +26,26 @@ import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
 
 /**
+ * The Class AlipayWapNetpayAdaptorTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Mar 12, 2014 8:59:42 PM
+ * @version 1.0 Jan 16, 2013 8:27:39 PM
  */
-public class MandiriClickPayAdaptorTest extends BasePaymentTest{
+public class AlipayWapNetpayAdaptorTest extends BasePaymentTest{
 
+	/** The payment adaptor. */
 	@Autowired
-	@Qualifier("mandiriClickPayAdaptor")
+	@Qualifier("alipayWapNetpayAdaptor")
 	private PaymentAdaptor	paymentAdaptor;
 
+	/**
+	 * Creates the payment form.
+	 */
 	@Test
 	public final void createPaymentForm(){
-		Map<String, String> specialSignMap = null;
+		Map<String, String> specialSignMap = new HashMap<String, String>();
+
+		specialSignMap.put("defaultbank", "DEBITCARD_CITIC");
 		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
-
 }

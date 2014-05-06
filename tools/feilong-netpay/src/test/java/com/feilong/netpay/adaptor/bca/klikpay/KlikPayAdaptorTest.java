@@ -35,23 +35,33 @@ import com.feilong.netpay.adaptor.bca.klikpay.sprintutil.BCAKeyGenerator;
 import com.feilong.netpay.adaptor.bca.klikpay.util.KlikPayUtil;
 
 /**
+ * The Class KlikPayAdaptorTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 22, 2014 4:15:13 PM
  */
 public class KlikPayAdaptorTest extends BasePaymentTest{
 
+	/** The payment adaptor. */
 	@Autowired
 	@Qualifier("klikPayAdaptor")
-	private PaymentAdaptor		paymentAdaptor;
+	private PaymentAdaptor	paymentAdaptor;
 
-	private static final Logger	log	= LoggerFactory.getLogger(KlikPayAdaptorTest.class);
-
+	/**
+	 * Creates the payment form.
+	 */
 	@Test
 	public final void createPaymentForm(){
 		Map<String, String> specialSignMap = null;
 		createPaymentForm(paymentAdaptor, specialSignMap);
 	}
 
+	/**
+	 * Test do auth key.
+	 * 
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public final void testDoAuthKey() throws Exception{
 		// Input  F7468B69D12BB6CE76D6206419A6AC28
@@ -65,11 +75,12 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.feilong.netpay.adaptor.bca.klikpay.KlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-	 * .
+	 * Test method for.
 	 * 
 	 * @throws Exception
+	 *             the exception
+	 *             {@link com.feilong.netpay.adaptor.bca.klikpay.KlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 *             .
 	 */
 	@Test
 	public final void testGetSign() throws Exception{

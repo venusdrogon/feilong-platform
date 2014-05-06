@@ -13,9 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.alipay;
+package com.feilong.netpay.adaptor.alipay.pconline;
 
 /**
- * 国际卡信用卡支付 继承 alipay 纯网关接口（AlipayPayAdaptor）
+ * 国际卡信用卡支付 继承 alipay 纯网关接口
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0.5 2014-5-6 20:38 change name
+ * @see {@link AlipayOnlineAdaptor}
  */
-public class AlipayInternationalCardPayAdaptor extends AlipayPayAdaptor{}
+public class AlipayOnlineInternationalCardAdaptor extends AlipayOnlineAdaptor{}

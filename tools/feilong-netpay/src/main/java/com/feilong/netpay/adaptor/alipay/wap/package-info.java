@@ -13,32 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.creditcard.command;
-
-import static org.junit.Assert.*;
-
-import org.apache.commons.lang3.AnnotationUtils;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.feilong.commons.core.util.ReflectUtil;
-
-
 /**
- *
+ *无线wap应用
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a> 
- * @version 1.0 2014年5月5日 下午10:05:47  
+ * @version 1.0 2014年5月6日 下午8:11:59  
  */
-public class CreditCardQueryResultTest{
-
-	private static final Logger	log	= LoggerFactory.getLogger(CreditCardQueryResultTest.class);
-
-	@Test
-	public final void test(){
-		CreditCardQueryResult queryResult=new CreditCardQueryResult();
-		 
-	 
-		
-	}
-}
+package com.feilong.netpay.adaptor.alipay.wap;

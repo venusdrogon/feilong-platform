@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,23 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.bca.klikbca;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import com.feilong.netpay.adaptor.BasePaymentTest;
-
 /**
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Apr 1, 2014 9:40:39 PM
+ *电脑在线支付
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a> 
+ * @version 1.0 2014年5月6日 下午8:06:23  
  */
-public class KlikBCAAdaptorTest extends BasePaymentTest{
-
-	@Autowired
-	@Qualifier("klikBCAAdaptor")
-	private KlikBCAAdaptor	klikBCAAdaptor;
-
-}
+package com.feilong.netpay.adaptor.alipay.pconline;
