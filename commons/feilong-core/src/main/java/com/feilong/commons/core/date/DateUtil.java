@@ -62,8 +62,9 @@ public final class DateUtil{
 	 * 
 	 * @return Date数组 第一个为today 第二个为tomorrow
 	 * @since 1.0
-	 * @deprecated 方法名会更新
+	 * @deprecated 方法名在未来版本可能会更新
 	 */
+	@Deprecated
 	public final static Date[] getExtentToday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
 		Date today = calendar.getTime();
@@ -92,6 +93,7 @@ public final class DateUtil{
 	 * @since 1.0
 	 * @deprecated 方法名会更新
 	 */
+	@Deprecated
 	public final static Date[] getExtentYesterday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
 		Date today = calendar.getTime();
@@ -729,6 +731,7 @@ public final class DateUtil{
 	 * @since 1.0
 	 * @deprecated 不适合做api,未来可能会删除
 	 */
+	@Deprecated
 	public final static List<String> dateList2StringList(List<Date> dateList,String datePattern){
 		if (Validator.isNotNullOrEmpty(dateList)){
 			List<String> stringList = new LinkedList<String>();
@@ -799,6 +802,7 @@ public final class DateUtil{
 	 * @since 1.0
 	 * @deprecated 未来名称可能会更改
 	 */
+	@Deprecated
 	public final static String toHumanizationDateString(Date inDate){
 		Date nowDate = new Date();
 		/**************************************************************************************/
@@ -1105,6 +1109,7 @@ public final class DateUtil{
 	 * @see #getIntervalDay(Date, Date)
 	 * @deprecated 不适合做API
 	 */
+	@Deprecated
 	public final static List<Date> getIntervalDayList(String fromDate,String toDate,String datePattern){
 		List<Date> dateList = new LinkedList<Date>();
 		/***************************************************************/
