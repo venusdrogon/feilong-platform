@@ -81,9 +81,8 @@ public final class URIUtil{
 
 		if (null == uri){
 			return false;
-		}else{
-			return uri.isAbsolute();
 		}
+		return uri.isAbsolute();
 	}
 
 	/**
@@ -104,43 +103,42 @@ public final class URIUtil{
 
 		if (Validator.isNullOrEmpty(url)){
 			return null;
-		}else{
-			try{
-				// 暂不处理 这种路径报错的情况
-				// cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm
-				if (StringUtil.isContain(url, URIConstants.QUESTIONMARK)){
-					// 问号前面的部分
-					String before = getBeforePath(url);
-
-					String query = StringUtil.substring(url, URIConstants.QUESTIONMARK, 1);
-
-					// 浏览器传递queryString()参数差别
-					// chrome 会将query 进行 encoded 再发送请求
-					// 而ie 原封不动的发送
-
-					// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
-					// 此处不能先转 ,参数就是想传 =是转义符
-					// query = decode(query, charsetType);
-
-					Map<String, String[]> map = parseQueryToArrayMap(query, charsetType);
-					url = getEncodedUrlByArrayMap(before, map, charsetType);
-
-					if (log.isDebugEnabled()){
-						log.debug("after url:{}", url);
-					}
-				}else{
-					// 不带参数 一般不需要处理
-				}
-				// 如果知道URI是有效的，不会产生URISyntaxException，可以使用静态的create(String uri)方法
-				// 调用的 new URI(str) 方法
-				URI uri = URI.create(url);
-				return uri;
-			}catch (Exception e){
-				log.error("url:{}", url);
-				e.printStackTrace();
-			}
-			return null;
 		}
+		try{
+			// 暂不处理 这种路径报错的情况
+			// cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm
+			if (StringUtil.isContain(url, URIConstants.QUESTIONMARK)){
+				// 问号前面的部分
+				String before = getBeforePath(url);
+
+				String query = StringUtil.substring(url, URIConstants.QUESTIONMARK, 1);
+
+				// 浏览器传递queryString()参数差别
+				// chrome 会将query 进行 encoded 再发送请求
+				// 而ie 原封不动的发送
+
+				// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
+				// 此处不能先转 ,参数就是想传 =是转义符
+				// query = decode(query, charsetType);
+
+				Map<String, String[]> map = parseQueryToArrayMap(query, charsetType);
+				url = getEncodedUrlByArrayMap(before, map, charsetType);
+
+				if (log.isDebugEnabled()){
+					log.debug("after url:{}", url);
+				}
+			}else{
+				// 不带参数 一般不需要处理
+			}
+			// 如果知道URI是有效的，不会产生URISyntaxException，可以使用静态的create(String uri)方法
+			// 调用的 new URI(str) 方法
+			URI uri = URI.create(url);
+			return uri;
+		}catch (Exception e){
+			log.error("url:{}", url);
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -390,17 +388,16 @@ public final class URIUtil{
 	public static String getBeforePath(String url){
 		if (Validator.isNullOrEmpty(url)){
 			return "";
-		}else{
-			String before = "";
-			// 判断url中是否含有?
-			int index = url.indexOf(URIConstants.QUESTIONMARK);
-			if (index == -1){
-				before = url;
-			}else{
-				before = url.substring(0, index);
-			}
-			return before;
 		}
+		String before = "";
+		// 判断url中是否含有?
+		int index = url.indexOf(URIConstants.QUESTIONMARK);
+		if (index == -1){
+			before = url;
+		}else{
+			before = url.substring(0, index);
+		}
+		return before;
 	}
 
 	/**
@@ -473,6 +470,7 @@ public final class URIUtil{
 	 * @return 原来的字符串
 	 * @deprecated
 	 */
+	@Deprecated
 	public static String decodeLuanMa_ISO8859(String str,String bianma){
 		if (Validator.isNotNullOrEmpty(str)){
 			try{
