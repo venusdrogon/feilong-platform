@@ -60,9 +60,9 @@ public final class SolarDateUtil{
 		int iLYear;
 		int iOffsetDays = CalendarUtil.getDayOfYear(year, month, day);
 		int iLeapMonth = LunarDateUtil._getLeapMonth(year);
-		if (iOffsetDays < DateDictionary.solarAndLunarOffsetTable[year - 1901]){
+		if (iOffsetDays < DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year - 1901]){
 			iLYear = year - 1;
-			iOffsetDays = DateDictionary.solarAndLunarOffsetTable[year - 1901] - iOffsetDays;
+			iOffsetDays = DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year - 1901] - iOffsetDays;
 			iLDay = iOffsetDays;
 			for (iLMonth = 12; iOffsetDays > LunarDateUtil.getLunarMonthMaxDays(iLYear, iLMonth); --iLMonth){
 				iLDay = iOffsetDays;
@@ -75,7 +75,7 @@ public final class SolarDateUtil{
 			}
 		}else{
 			iLYear = year;
-			iOffsetDays -= DateDictionary.solarAndLunarOffsetTable[year - 1901];
+			iOffsetDays -= DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year - 1901];
 			iLDay = iOffsetDays + 1;
 			for (iLMonth = 1; iOffsetDays >= 0; ++iLMonth){
 				iLDay = iOffsetDays + 1;

@@ -77,15 +77,6 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * ********************************************************************************************************.
-	 * 
-	 * @param date
-	 *            the date
-	 * @param field
-	 *            the field
-	 * @return the calendar field value
-	 */
-	/**
 	 * 获得日历字段值
 	 * 
 	 * @param date
@@ -102,15 +93,6 @@ public final class CalendarUtil{
 		return DateUtil.toCalendar(date).get(field);
 	}
 
-	/**
-	 * ********************************************************************************************************.
-	 * 
-	 * @param dateString
-	 *            the date string
-	 * @param datePattern
-	 *            the date pattern
-	 * @return the calendar
-	 */
 	/**
 	 * 将日期字符串转成Calendar
 	 * 
@@ -134,7 +116,7 @@ public final class CalendarUtil{
 	 * @return 如 Sunday { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" } 中一个
 	 */
 	public static String getEnglishWeek(int week){
-		return DateDictionary.week_englishs[week];
+		return DateDictionary.WEEK_ENGLISHS[week];
 	}
 
 	/**

@@ -42,7 +42,7 @@ public final class LunarDateUtil{
 	 * @return 如 星期一
 	 */
 	public static String getChineseWeek(int week){
-		return PropertiesConstants.CONFIG_DATE_WEEK + DateDictionary.week_chineses[week];
+		return PropertiesConstants.CONFIG_DATE_WEEK + DateDictionary.WEEK_CHINESES[week];
 	}
 
 	/**
@@ -61,7 +61,7 @@ public final class LunarDateUtil{
 		int month;
 		int day;
 		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(year_lunar, month_lunar, day_lunar)
-				+ DateDictionary.solarAndLunarOffsetTable[year_lunar - 1901];
+				+ DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year_lunar - 1901];
 		int yearDays = DateUtil.isLeapYear(year_lunar) ? 366 : 365;
 		if (offSetDays >= yearDays){
 			year = year_lunar + 1;
@@ -114,7 +114,7 @@ public final class LunarDateUtil{
 			return -1;
 		}
 		if (iMonth - 12 == iLeapMonth){
-			if ((DateDictionary.lunarMonthDaysTable[iYear - 1901] & (0x8000 >> iLeapMonth)) == 0){
+			if ((DateDictionary.LUNAR_MONTH_DAYS_TABLE[iYear - 1901] & (0x8000 >> iLeapMonth)) == 0){
 				return 29;
 			}
 			return 30;
@@ -122,7 +122,7 @@ public final class LunarDateUtil{
 		if ((iLeapMonth > 0) && (iMonth > iLeapMonth)){
 			iMonth++;
 		}
-		if ((DateDictionary.lunarMonthDaysTable[iYear - 1901] & (0x8000 >> (iMonth - 1))) == 0){
+		if ((DateDictionary.LUNAR_MONTH_DAYS_TABLE[iYear - 1901] & (0x8000 >> (iMonth - 1))) == 0){
 			return 29;
 		}
 		return 30;
@@ -171,19 +171,19 @@ public final class LunarDateUtil{
 		}else if (month_Lunar == 1){
 			stringBuilder.append("正月");
 		}else{
-			stringBuilder.append(DateDictionary.chinses_numbers[month_Lunar] + "月");
+			stringBuilder.append(DateDictionary.CHINSES_NUMBERS[month_Lunar] + "月");
 		}
 		// **************day*************************************************
 		if (day_Lunar > 29){
 			stringBuilder.append("三十");
 		}else if (day_Lunar > 20){
-			stringBuilder.append("二十" + DateDictionary.chinses_numbers[day_Lunar % 20]);
+			stringBuilder.append("二十" + DateDictionary.CHINSES_NUMBERS[day_Lunar % 20]);
 		}else if (day_Lunar == 20){
 			stringBuilder.append("二十");
 		}else if (day_Lunar > 10){
-			stringBuilder.append("十" + DateDictionary.chinses_numbers[day_Lunar % 10]);
+			stringBuilder.append("十" + DateDictionary.CHINSES_NUMBERS[day_Lunar % 10]);
 		}else{
-			stringBuilder.append("初" + DateDictionary.chinses_numbers[day_Lunar]);
+			stringBuilder.append("初" + DateDictionary.CHINSES_NUMBERS[day_Lunar]);
 		}
 		return stringBuilder.toString();
 	}
@@ -201,7 +201,7 @@ public final class LunarDateUtil{
 		for (int i = 0; i < cs.length; ++i){
 			Object iObject = cs[i];
 			int index = Integer.parseInt(iObject.toString());
-			stringBuilder.append(DateDictionary.chinses_numbers[index]);
+			stringBuilder.append(DateDictionary.CHINSES_NUMBERS[index]);
 		}
 		return stringBuilder.toString();
 	}
@@ -214,7 +214,7 @@ public final class LunarDateUtil{
 	 * @return the int
 	 */
 	public static int _getLeapMonth(int year){
-		char iMonth = DateDictionary.lunarLeapMonthTable[(year - 1901) / 2];
+		char iMonth = DateDictionary.LUNAR_LEAP_MONTH_TABLE[(year - 1901) / 2];
 		if (year % 2 == 0){
 			return (iMonth & 0x0f);
 		}
@@ -230,7 +230,7 @@ public final class LunarDateUtil{
 	 */
 	private static String _getChineseGanZhi(int year){
 		int temp = Math.abs(year - 1924);
-		return DateDictionary.heavenlyStems[temp % 10] + DateDictionary.earthlyBranches[temp % 12];
+		return DateDictionary.HEAVENLY_STEMS[temp % 10] + DateDictionary.EARTHLY_BRANCHES[temp % 12];
 	}
 
 	/**

@@ -28,37 +28,37 @@ public interface DateDictionary{
 	 * 英文星期<br>
 	 * { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
 	 */
-	String[]	week_englishs				= { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	String[]	WEEK_ENGLISHS					= { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
 	/**
 	 * 中文星期<br>
 	 * { "日", "一", "二", "三", "四", "五", "六" }
 	 */
-	String[]	week_chineses				= { "日", "一", "二", "三", "四", "五", "六" };
+	String[]	WEEK_CHINESES					= { "日", "一", "二", "三", "四", "五", "六" };
 
 	/**
 	 * 生肖<br>
 	 * ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
 	 */
-	String[]	zodiacs						= { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" };
+	String[]	ZODIACS							= { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" };
 
 	/**
 	 * 天干<br>
 	 * ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
 	 */
-	String[]	heavenlyStems				= { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸" };
+	String[]	HEAVENLY_STEMS					= { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸" };
 
 	/**
 	 * 地支<br>
 	 * ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
 	 */
-	String[]	earthlyBranches				= { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" };
+	String[]	EARTHLY_BRANCHES				= { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" };
 
 	/**
 	 * 中文数字<br>
 	 * ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
 	 */
-	String[]	chinses_numbers				= { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十" };
+	String[]	CHINSES_NUMBERS					= { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十" };
 
 	/**
 	 * 1901-2050每年阴历和农历相差量
@@ -68,8 +68,8 @@ public interface DateDictionary{
 	 * in New Year of solar calendar and lunar calendar from 1901 to 2050;
 	 * </pre>
 	 */
-	char[]		solarAndLunarOffsetTable	= { //
-											49, //
+	char[]		SOLAR_AND_LUNAR_OFFSET_TABLE	= { //
+												49, //
 			38,
 			28,
 			46,
@@ -219,7 +219,7 @@ public interface DateDictionary{
 			44,
 			32,
 			22, // 2050
-											};
+												};
 
 	/**
 	 * 农历闰月表 1901-2050
@@ -229,7 +229,7 @@ public interface DateDictionary{
 	 * 	  if it is 0 express not to have , every byte was stored for two years
 	 * </pre>
 	 */
-	char[]		lunarLeapMonthTable			= { 0x00, 0x50, 0x04, 0x00, 0x20, // 1910
+	char[]		LUNAR_LEAP_MONTH_TABLE			= { 0x00, 0x50, 0x04, 0x00, 0x20, // 1910
 			0x60,
 			0x05,
 			0x00,
@@ -299,8 +299,8 @@ public interface DateDictionary{
 			0x07,
 			0x00,
 			0x50,
-			0x03							// 2050
-											};
+			0x03								// 2050
+												};
 
 	/**
 	 * 农历日期表 1901-2100农历表
@@ -312,7 +312,7 @@ public interface DateDictionary{
 	 * it is 30 days for 1 form in the corresponding location , otherwise it is 29 days
 	 * </pre>
 	 */
-	int[]		lunarMonthDaysTable			= { 0x4ae0, 0xa570, 0x5268, 0xd260, 0xd950, 0x6aa8, 0x56a0, 0x9ad0, 0x4ae8, 0x4ae0, // 1910
+	int[]		LUNAR_MONTH_DAYS_TABLE			= { 0x4ae0, 0xa570, 0x5268, 0xd260, 0xd950, 0x6aa8, 0x56a0, 0x9ad0, 0x4ae8, 0x4ae0, // 1910
 			0xa4d8,
 			0xa4d0,
 			0xd250,
@@ -452,6 +452,6 @@ public interface DateDictionary{
 			0xb528,
 			0x6d20,
 			0xada0,
-			0x55b0							// 2050
-											};
+			0x55b0								// 2050
+												};
 }
