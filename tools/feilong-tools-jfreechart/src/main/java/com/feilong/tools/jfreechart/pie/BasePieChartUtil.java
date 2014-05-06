@@ -66,7 +66,7 @@ public abstract class BasePieChartUtil extends ChartUtil{
 		// 设置无数据时的信息显示颜色
 		piePlot.setNoDataMessagePaint(Color.red);
 		// 设置无数据时的信息字体
-		piePlot.setNoDataMessageFont(FontUtil.getFont_KaiTi_Plain_16());
+		piePlot.setNoDataMessageFont(FontUtil.KAITI_PLAIN_16);
 		// piePlot3D背景颜色
 		piePlot.setBackgroundPaint(Color.WHITE);
 		// 边框

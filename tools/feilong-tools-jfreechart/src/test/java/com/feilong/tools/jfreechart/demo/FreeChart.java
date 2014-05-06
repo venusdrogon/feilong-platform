@@ -54,7 +54,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
 
 public class FreeChart{
 
-	/*定义各类图表所需的Dataset*/
+	/* 定义各类图表所需的Dataset */
 	private DefaultCategoryDataset				vDefaultCategoryDataset			= null;
 
 	private CategoryDataset						vCategoryDataset				= null;
@@ -81,17 +81,17 @@ public class FreeChart{
 
 	private BoxAndWhiskerXYDataset				vBoxAndWhiskerXYDataset			= null;
 
-	/*定义各类图表所需的Dataset辅助*/
+	/* 定义各类图表所需的Dataset辅助 */
 	TimeSeries									vTimeSeries						= null;
 
 	TimeSeriesCollection						vTimeSeriesCollection			= null;
 
-	/*定义图表*/
+	/* 定义图表 */
 	private JFreeChart							vFreeChart						= null;
 
 	private JFreeChart							vFreeChartExtend				= null;
 
-	/*定义效果*/
+	/* 定义效果 */
 	private CategoryPlot						vCategoryPlot					= null;
 
 	private PiePlot								vPiePlot						= null;
@@ -124,10 +124,10 @@ public class FreeChart{
 
 	private XYItemRenderer						vXYItemRenderer					= null;
 
-	//是否启用效果模式 
+	// 是否启用效果模式
 	private boolean								bRender							= false;
 
-	/*定义静态数据*/
+	/* 定义静态数据 */
 	private String[]							strItemArray					= null;
 
 	private String[]							strMultipleItemArray			= null;
@@ -193,18 +193,19 @@ public class FreeChart{
 			}else{
 				vTimeSeries = new TimeSeries(strCategoryArray[mIndex], Day.class);
 			}
-			//vTimeSeries.clear(); 
+			// vTimeSeries.clear();
 			for (int nIndex = 0; nIndex < strElementArray.length; nIndex++){
 				iMultipleDataArray[mIndex][nIndex] = Double.parseDouble(strElementArray[nIndex]);
 				try{
-					//vItemDate=vSimpleDateFormat.parse(vSimpleDateFormatToday.format(vTodayDate)+String.valueOf(nIndex+1)); 
+					// vItemDate=vSimpleDateFormat.parse(vSimpleDateFormatToday.format(vTodayDate)+String.valueOf(nIndex+1));
 					vItemDate = vSimpleDateFormat.parse(strMultipleItemArray[nIndex]);
 					if (strTimeAxis.equals("Hour")){
 						vDay = new Day(vItemDate.getDate(), 1 + vItemDate.getMonth(), 1900 + vItemDate.getYear());
 						vTimeSeries.add(new Hour(vItemDate.getHours(), vDay), Double.parseDouble(strElementArray[nIndex]));
 					}else{
-						vTimeSeries.add(new Day(vItemDate.getDate(), 1 + vItemDate.getMonth(), 1900 + vItemDate.getYear()), Double
-								.parseDouble(strElementArray[nIndex]));
+						vTimeSeries.add(
+								new Day(vItemDate.getDate(), 1 + vItemDate.getMonth(), 1900 + vItemDate.getYear()),
+								Double.parseDouble(strElementArray[nIndex]));
 					}
 				}catch (Exception e){
 					System.out.println(e.getMessage());
@@ -216,18 +217,15 @@ public class FreeChart{
 			vCategoryDataset = DatasetUtilities.createCategoryDataset(strCategoryArray, strMultipleItemArray, iMultipleDataArray);
 			vPieDataset = DatasetUtilities.createPieDatasetForColumn(vCategoryDataset, 0);
 			vPieDataset = DatasetUtilities.createPieDatasetForRow(vCategoryDataset, 0);
-			//vWaferMapDataset=(WaferMapDataset)vCategoryDataset; 
+			// vWaferMapDataset=(WaferMapDataset)vCategoryDataset;
 			vTableXYDataset = (TableXYDataset) vTimeSeriesCollection;
 			vIntervalXYDataset = (IntervalXYDataset) vTimeSeriesCollection;
 			vXYDataset = (XYDataset) vTimeSeriesCollection;
-			/* 
-			vXYZDataset=(XYZDataset)vTimeSeriesCollection; 
-			//vWaferMapDataset=(WaferMapDataset)vTimeSeriesCollection; 
-			vWindDataset=(WindDataset)vTimeSeriesCollection;   
-			vOHLCDataset=(OHLCDataset)vTimeSeriesCollection; 
-			vSignalsDataset=(SignalsDataset)vTimeSeriesCollection; 
-			vBoxAndWhiskerXYDataset=(BoxAndWhiskerXYDataset)vTimeSeriesCollection; 
-			*/
+			/*
+			 * vXYZDataset=(XYZDataset)vTimeSeriesCollection; //vWaferMapDataset=(WaferMapDataset)vTimeSeriesCollection;
+			 * vWindDataset=(WindDataset)vTimeSeriesCollection; vOHLCDataset=(OHLCDataset)vTimeSeriesCollection;
+			 * vSignalsDataset=(SignalsDataset)vTimeSeriesCollection; vBoxAndWhiskerXYDataset=(BoxAndWhiskerXYDataset)vTimeSeriesCollection;
+			 */
 		}catch (Exception e){}
 	}
 
@@ -294,9 +292,9 @@ public class FreeChart{
 		return this.vBoxAndWhiskerXYDataset;
 	}
 
-	/* 
-	iChartType:图表类型 
-	*/
+	/*
+	 * iChartType:图表类型
+	 */
 	public void createChart(int iChartType,String strFreeChartInfo,String strFreeChartXInfo,String strFreeChartYInfo){
 		switch (iChartType) {
 			case 1:
@@ -307,17 +305,17 @@ public class FreeChart{
 						if (bRender){
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
-									//指定Section色彩 
+									// 指定Section色彩
 									vPiePlot.setSectionPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
-									//指定Section轮廓线颜色 
+									// 指定Section轮廓线颜色
 									vPiePlot.setSectionOutlinePaint(0, Color.BLACK);
 								}
 							}
 						}
-						//指定Section标签格式 
+						// 指定Section标签格式
 						vStandardPieItemLabelGenerator = new StandardPieSectionLabelGenerator("{1}");
 						vPiePlot.setLabelGenerator(vStandardPieItemLabelGenerator);
-						// 
+						//
 						vPiePlot.setForegroundAlpha(0.5f);
 					}
 				}catch (Exception e){}
@@ -340,16 +338,16 @@ public class FreeChart{
 						if (bRender){
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
-									//指定Section色彩 
+									// 指定Section色彩
 									vPiePlot.setSectionPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
-									//指定Section轮廓线颜色 
+									// 指定Section轮廓线颜色
 									vPiePlot.setSectionOutlinePaint(0, Color.BLACK);
 								}
-								//抽取指定块 
+								// 抽取指定块
 								vPiePlot.setExplodePercent(0, 1.00);
 							}
 						}
-						//指定Section标签格式 
+						// 指定Section标签格式
 						vStandardPieItemLabelGenerator = new StandardPieSectionLabelGenerator("{1}");
 						vPiePlot.setLabelGenerator(vStandardPieItemLabelGenerator);
 						vPiePlot.setForegroundAlpha(0.5f);
@@ -357,7 +355,13 @@ public class FreeChart{
 				}catch (Exception e){}
 				break;
 			case 3:
-				vFreeChart = ChartFactory.createMultiplePieChart(strFreeChartInfo, this.getCategoryDataset(), TableOrder.BY_ROW, true, false, false);
+				vFreeChart = ChartFactory.createMultiplePieChart(
+						strFreeChartInfo,
+						this.getCategoryDataset(),
+						TableOrder.BY_ROW,
+						true,
+						false,
+						false);
 				try{
 					vMultiplePiePlot = (MultiplePiePlot) vFreeChart.getPlot();
 					if (vMultiplePiePlot != null){
@@ -366,14 +370,14 @@ public class FreeChart{
 						if (bRender){
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
-									//指定Section色彩 
+									// 指定Section色彩
 									vPiePlot.setSectionPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
-									//指定Section轮廓线颜色 
+									// 指定Section轮廓线颜色
 									vPiePlot.setSectionOutlinePaint(0, Color.BLACK);
 								}
 							}
 						}
-						//指定Section标签格式 
+						// 指定Section标签格式
 						vStandardPieItemLabelGenerator = new StandardPieSectionLabelGenerator("{1}");
 						vPiePlot.setLabelGenerator(vStandardPieItemLabelGenerator);
 						vPiePlot.setForegroundAlpha(0.5f);
@@ -388,23 +392,29 @@ public class FreeChart{
 						if (bRender){
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
-									//指定Section色彩 
+									// 指定Section色彩
 									vPiePlot3D.setSectionPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
-									//指定Section轮廓线颜色 
+									// 指定Section轮廓线颜色
 									vPiePlot3D.setSectionOutlinePaint(0, Color.BLACK);
 								}
 							}
 						}
-						//指定Section标签格式 
+						// 指定Section标签格式
 						vStandardPieItemLabelGenerator = new StandardPieSectionLabelGenerator("{1}");
 						vPiePlot3D.setLabelGenerator(vStandardPieItemLabelGenerator);
-						// 
+						//
 						vPiePlot3D.setForegroundAlpha(0.8f);
 					}
 				}catch (Exception e){}
 				break;
 			case 5:
-				vFreeChart = ChartFactory.createMultiplePieChart3D(strFreeChartInfo, this.getCategoryDataset(), TableOrder.BY_ROW, true, false, false);
+				vFreeChart = ChartFactory.createMultiplePieChart3D(
+						strFreeChartInfo,
+						this.getCategoryDataset(),
+						TableOrder.BY_ROW,
+						true,
+						false,
+						false);
 				try{
 					vMultiplePiePlot = (MultiplePiePlot) vFreeChart.getPlot();
 					if (vMultiplePiePlot != null){
@@ -413,17 +423,17 @@ public class FreeChart{
 						if (bRender){
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
-									//指定Section色彩 
+									// 指定Section色彩
 									vPiePlot3D.setSectionPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
-									//指定Section轮廓线颜色 
+									// 指定Section轮廓线颜色
 									vPiePlot3D.setSectionOutlinePaint(0, Color.BLACK);
 								}
 							}
 						}
-						//指定Section标签格式 
+						// 指定Section标签格式
 						vStandardPieItemLabelGenerator = new StandardPieSectionLabelGenerator("{1}");
 						vPiePlot3D.setLabelGenerator(vStandardPieItemLabelGenerator);
-						// 
+						//
 						vPiePlot3D.setForegroundAlpha(0.8f);
 					}
 				}catch (Exception e){}
@@ -444,7 +454,7 @@ public class FreeChart{
 						if (bRender){
 							vBarRenderer = new BarRenderer();
 							vBarRenderer.setBaseOutlinePaint(Color.GRAY);
-							//设置X轴代表的柱的颜色      
+							// 设置X轴代表的柱的颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vBarRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
@@ -453,11 +463,11 @@ public class FreeChart{
 							}
 							vBarRenderer.setItemMargin(0.1);
 							vCategoryPlot.setRenderer(vBarRenderer);
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置柱的透明度 
+						// 设置柱的透明度
 						vCategoryPlot.setForegroundAlpha(0.5f);
 					}
 				}catch (Exception e){}
@@ -478,19 +488,22 @@ public class FreeChart{
 						if (bRender){
 							vStackedBarRenderer = new StackedBarRenderer();
 							vStackedBarRenderer.setBaseOutlinePaint(Color.GRAY);
-							//设置X轴代表的柱的颜色 
+							// 设置X轴代表的柱的颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
-									vStackedBarRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
+									vStackedBarRenderer.setSeriesPaint(iIndex, new Color(
+											0,
+											0 + iIndex * (255 / strCategoryArray.length),
+											255));
 									vStackedBarRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
 							vCategoryPlot.setRenderer(vStackedBarRenderer);
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置柱的透明度 
+						// 设置柱的透明度
 						vCategoryPlot.setForegroundAlpha(0.5f);
 					}
 				}catch (Exception e){}
@@ -511,7 +524,7 @@ public class FreeChart{
 						if (bRender){
 							vBarRenderer3D = new BarRenderer3D();
 							vBarRenderer3D.setBaseOutlinePaint(Color.GRAY);
-							//设置X轴代表的柱的颜色 
+							// 设置X轴代表的柱的颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vBarRenderer3D.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
@@ -520,11 +533,11 @@ public class FreeChart{
 							}
 							vBarRenderer3D.setItemMargin(0.1);
 							vCategoryPlot.setRenderer(vBarRenderer3D);
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置柱的透明度 
+						// 设置柱的透明度
 						vCategoryPlot.setForegroundAlpha(0.8f);
 					}
 				}catch (Exception e){}
@@ -545,19 +558,22 @@ public class FreeChart{
 						if (bRender){
 							vStackedBarRenderer3D = new StackedBarRenderer3D();
 							vStackedBarRenderer3D.setBaseOutlinePaint(Color.GRAY);
-							//设置X轴代表的柱的颜色 
+							// 设置X轴代表的柱的颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
-									vStackedBarRenderer3D.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
+									vStackedBarRenderer3D.setSeriesPaint(iIndex, new Color(
+											0,
+											0 + iIndex * (255 / strCategoryArray.length),
+											255));
 									vStackedBarRenderer3D.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
 							vCategoryPlot.setRenderer(vStackedBarRenderer3D);
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置柱的透明度 
+						// 设置柱的透明度
 						vCategoryPlot.setForegroundAlpha(0.8f);
 					}
 				}catch (Exception e){}
@@ -578,21 +594,22 @@ public class FreeChart{
 						if (bRender){
 							vStackedAreaRenderer = new StackedAreaRenderer();
 							vStackedAreaRenderer.setBaseOutlinePaint(Color.GRAY);
-							//设置区域颜色 
+							// 设置区域颜色
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
-									vStackedAreaRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
+									vStackedAreaRenderer
+											.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
 									vStackedAreaRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
 							vCategoryPlot.setRenderer(vStackedAreaRenderer);
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置区域透明度 
+						// 设置区域透明度
 						vCategoryPlot.setForegroundAlpha(0.5f);
-						//背景表格线 
+						// 背景表格线
 						vCategoryPlot.setDomainGridlinesVisible(true);
 					}
 				}catch (Exception e){}
@@ -613,19 +630,22 @@ public class FreeChart{
 						if (bRender){
 							vStackedAreaRenderer = new StackedAreaRenderer();
 							vStackedAreaRenderer.setBaseOutlinePaint(Color.GRAY);
-							//设置区域颜色 
+							// 设置区域颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
-									vStackedAreaRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
+									vStackedAreaRenderer.setSeriesPaint(iIndex, new Color(
+											0,
+											0 + iIndex * (255 / strCategoryArray.length),
+											255));
 									vStackedAreaRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
 							vCategoryPlot.setRenderer(vStackedAreaRenderer);
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置区域透明度 
+						// 设置区域透明度
 						vCategoryPlot.setForegroundAlpha(0.5f);
 					}
 				}catch (Exception e){}
@@ -646,19 +666,22 @@ public class FreeChart{
 						vLineAndShapeRenderer = new LineAndShapeRenderer();
 						vLineAndShapeRenderer.setBaseOutlinePaint(Color.GRAY);
 						if (bRender){
-							//设置线条颜色 
+							// 设置线条颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
-									vLineAndShapeRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
+									vLineAndShapeRenderer.setSeriesPaint(iIndex, new Color(
+											0,
+											0 + iIndex * (255 / strCategoryArray.length),
+											255));
 									vLineAndShapeRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
 						vCategoryPlot.setRenderer(vLineAndShapeRenderer);
-						//背景表格线 
+						// 背景表格线
 						vCategoryPlot.setDomainGridlinesVisible(true);
 					}
 				}catch (Exception e){}
@@ -679,20 +702,23 @@ public class FreeChart{
 						vLineRenderer3D = new LineRenderer3D();
 						vLineRenderer3D.setBaseOutlinePaint(Color.GRAY);
 						if (bRender){
-							//设置线面颜色 
+							// 设置线面颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vLineRenderer3D.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
-									vLineRenderer3D.setSeriesFillPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
+									vLineRenderer3D.setSeriesFillPaint(iIndex, new Color(
+											0,
+											0 + iIndex * (255 / strCategoryArray.length),
+											255));
 									vLineRenderer3D.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
 						vCategoryPlot.setRenderer(vLineRenderer3D);
-						//背景表格线 
+						// 背景表格线
 						vCategoryPlot.setDomainGridlinesVisible(true);
 					}
 				}catch (Exception e){}
@@ -723,22 +749,26 @@ public class FreeChart{
 						vWaterfallBarRenderer = new WaterfallBarRenderer();
 						vWaterfallBarRenderer.setBaseOutlinePaint(Color.GRAY);
 						if (bRender){
-							//设置柱颜色 
+							// 设置柱颜色
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
-									vWaterfallBarRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
-									vWaterfallBarRenderer.setSeriesFillPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
+									vWaterfallBarRenderer.setSeriesPaint(iIndex, new Color(
+											0,
+											0 + iIndex * (255 / strCategoryArray.length),
+											255));
+									vWaterfallBarRenderer.setSeriesFillPaint(iIndex, new Color(0, 0 + iIndex
+											* (255 / strCategoryArray.length), 255));
 									vWaterfallBarRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vCategoryPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vCategoryPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
 						vCategoryPlot.setRenderer(vWaterfallBarRenderer);
-						//背景表格线 
+						// 背景表格线
 						vCategoryPlot.setDomainGridlinesVisible(true);
-						//设置区域透明度 
+						// 设置区域透明度
 						vCategoryPlot.setForegroundAlpha(0.5f);
 					}
 				}catch (Exception e){}
@@ -807,21 +837,21 @@ public class FreeChart{
 						vXYItemRenderer = vXYPlot.getRenderer();
 						vXYItemRenderer.setBaseOutlinePaint(Color.GRAY);
 						if (bRender){
-							//设置线面颜色 
+							// 设置线面颜色
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
 									vXYItemRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
 									vXYItemRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vXYPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vXYPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
 						}
-						//设置线条颜色 
+						// 设置线条颜色
 						vXYItemRenderer.setPaint(new Color(0, 100, 255));
 						vXYPlot.setRenderer(vXYItemRenderer);
-						//背景表格线 
+						// 背景表格线
 						vXYPlot.setDomainGridlinesVisible(true);
 					}
 				}catch (Exception e){}
@@ -849,29 +879,35 @@ public class FreeChart{
 						false);
 				break;
 			case 24:
-				vFreeChart = ChartFactory
-						.createTimeSeriesChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo, this.getXYDataset(), true, false, false);
+				vFreeChart = ChartFactory.createTimeSeriesChart(
+						strFreeChartInfo,
+						strFreeChartXInfo,
+						strFreeChartYInfo,
+						this.getXYDataset(),
+						true,
+						false,
+						false);
 				try{
 					vXYPlot = vFreeChart.getXYPlot();
 					if (vXYPlot != null){
 						vXYItemRenderer = vXYPlot.getRenderer();
 						vXYItemRenderer.setBaseOutlinePaint(Color.GRAY);
 						if (bRender){
-							//设置线面颜色 
+							// 设置线面颜色
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
 									vXYItemRenderer.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
 									vXYItemRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
-							//设置X轴、Y轴的显示位置 
+							// 设置X轴、Y轴的显示位置
 							vXYPlot.setDomainAxisLocation(AxisLocation.TOP_OR_RIGHT);
 							vXYPlot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
-							//设置线条颜色 
+							// 设置线条颜色
 							vXYItemRenderer.setPaint(new Color(0, 100, 255));
 							vXYPlot.setRenderer(vXYItemRenderer);
 						}
-						//背景表格线 
+						// 背景表格线
 						vXYPlot.setDomainGridlinesVisible(true);
 						SimpleDateFormat vSimpleDateFormat = null;
 						if (strTimeAxis.equals("Hour")){
@@ -885,16 +921,32 @@ public class FreeChart{
 				}catch (Exception e){}
 				break;
 			case 25:
-				vFreeChart = ChartFactory.createCandlestickChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo, this.getOHLCDataset(), true);
+				vFreeChart = ChartFactory.createCandlestickChart(
+						strFreeChartInfo,
+						strFreeChartXInfo,
+						strFreeChartYInfo,
+						this.getOHLCDataset(),
+						true);
 				break;
 			case 26:
-				vFreeChart = ChartFactory.createHighLowChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo, this.getOHLCDataset(), true);
+				vFreeChart = ChartFactory.createHighLowChart(
+						strFreeChartInfo,
+						strFreeChartXInfo,
+						strFreeChartYInfo,
+						this.getOHLCDataset(),
+						true);
 				break;
 			case 27:
-				vFreeChart = ChartFactory.createHighLowChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo, this.getOHLCDataset(), true);
+				vFreeChart = ChartFactory.createHighLowChart(
+						strFreeChartInfo,
+						strFreeChartXInfo,
+						strFreeChartYInfo,
+						this.getOHLCDataset(),
+						true);
 				break;
 			case 28:
-				//	vFreeChart = ChartFactory.createSignalChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo, this.getSignalsDataset(), true);
+				// vFreeChart = ChartFactory.createSignalChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo,
+				// this.getSignalsDataset(), true);
 				break;
 			case 29:
 				vFreeChart = ChartFactory.createBubbleChart(
@@ -927,16 +979,29 @@ public class FreeChart{
 						true);
 				break;
 			case 32:
-				vFreeChart = ChartFactory.createWindPlot(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo, this.getWindDataset(), true, false, false);
+				vFreeChart = ChartFactory.createWindPlot(
+						strFreeChartInfo,
+						strFreeChartXInfo,
+						strFreeChartYInfo,
+						this.getWindDataset(),
+						true,
+						false,
+						false);
 				break;
 			case 33:
-				vFreeChart = ChartFactory.createWaferMapChart(strFreeChartInfo, this.getWaferMapDataset(), PlotOrientation.VERTICAL, true, false, false);
+				vFreeChart = ChartFactory.createWaferMapChart(
+						strFreeChartInfo,
+						this.getWaferMapDataset(),
+						PlotOrientation.VERTICAL,
+						true,
+						false,
+						false);
 				break;
 			default:
 				vFreeChart = ChartFactory.createPieChart(strFreeChartInfo, this.getPieDataset(), true, false, false);
 				break;
 		}
-		//图表背景颜色 
+		// 图表背景颜色
 		vFreeChart.setBackgroundPaint(new Color(212, 234, 243));
 	}
 
@@ -968,8 +1033,8 @@ public class FreeChart{
 	 */
 	private static void a(int chartType) throws IOException{
 		FreeChart freeChart = new FreeChart();
-		//初始化 
-		//考虑图形中是否直接链接到统计查询表格 
+		// 初始化
+		// 考虑图形中是否直接链接到统计查询表格
 		String strTimeList = "2005-05-01 00:00:00,2005-05-02 05:00:00,2005-05-03 10:00:00,2005-05-04 15:00:00,2005-05-05 20:00:00";
 		String strMultipleTimeList = "2005-05-01 00:00:00,2005-05-02 05:00:00,2005-05-03 10:00:00,2005-05-04 15:00:00,2005-05-05 20:00:00";
 		String strCategoryList = "JSP工作量,Servlet工作量,Bean工作量";
@@ -984,8 +1049,8 @@ public class FreeChart{
 		chartInfoEntity.setImageNameOrOutputStream(DateUtil.date2String(new Date(), DatePattern.timestampWithMillisecond) + ".jpg");
 		chartInfoEntity.setWidth(800);
 		chartInfoEntity.setHeight(400);
-		freeChart.getChart().getTitle().setFont(FontUtil.getFont_Song_Plain_12());
-		freeChart.getChart().getLegend().setItemFont(FontUtil.getFont_Song_Plain_12());
+		freeChart.getChart().getTitle().setFont(FontUtil.SONG_PLAIN_12);
+		freeChart.getChart().getLegend().setItemFont(FontUtil.SONG_PLAIN_12);
 		ChartUtil.createImage(freeChart.getChart(), chartInfoEntity);
 	}
 }
