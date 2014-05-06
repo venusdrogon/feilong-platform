@@ -61,7 +61,7 @@ public class WaterMarkTest{
 		int y = 30;
 
 		// 默认 雅黑 12 黑色
-		Font font = FontUtil.getFont_YaHei_Plain_12();
+		Font font = FontUtil.YAHEI_PLAIN_12;
 		Color color = ColorUtil.getColor("000000");
 
 		String fileName = "E:\\DataCommon\\test\\b.png";

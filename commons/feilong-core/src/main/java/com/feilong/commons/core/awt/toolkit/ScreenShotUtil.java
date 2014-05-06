@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2011-5-30 下午01:33:59
  * @since 1.0
  */
-public class ScreenShotUtil{
+public final class ScreenShotUtil{
 
 	private final static Logger	log	= LoggerFactory.getLogger(ScreenShotUtil.class);
 

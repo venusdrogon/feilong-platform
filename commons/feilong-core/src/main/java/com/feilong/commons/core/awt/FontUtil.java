@@ -16,7 +16,6 @@
 package com.feilong.commons.core.awt;
 
 import java.awt.Font;
-import java.util.Random;
 
 import com.feilong.commons.core.enumeration.FontType;
 
@@ -29,50 +28,20 @@ import com.feilong.commons.core.enumeration.FontType;
  */
 public final class FontUtil{
 
-	/** 验证码用到的字体 //\u534e\u6587\u884c\u6977 华文行楷 //\u6977\u4f53 楷体. */
-	public static String[]	fontNamesForValidateCode	= { FontType.VERDANA, FontType.VERDANA };
+	/** 9 正常 雅黑 . */
+	public final static Font	YAHEI_PLAIN_9	= getFont_YaHei_Plain(9);
 
-	/**
-	 * 获得随机的验证码用到的字体.
-	 * 
-	 * @return 获得随机的验证码用到的字体
-	 */
-	public final static String getRandomFontNameForValidateCode(){
-		// 随机字体长度
-		int fontTypesLength = FontUtil.fontNamesForValidateCode.length;
-		// 创建随机类的实例
-		Random random = new Random();
-		return FontUtil.fontNamesForValidateCode[random.nextInt(fontTypesLength)];
-	}
+	/** 12正常 雅黑. */
+	public final static Font	YAHEI_PLAIN_12	= getFont_YaHei_Plain(12);
 
-	/**
-	 * 12 正常 宋体字体.
-	 * 
-	 * @return 12 正常 宋体字体
-	 */
-	public final static Font getFont_Song_Plain_12(){
-		return getFont(FontType.SONGTI, 12);
-	}
+	/** 16 正常 楷体字体. */
+	public final static Font	KAITI_PLAIN_16	= getFont(FontType.KAITI, 16);
 
-	/**
-	 * 16 正常 楷体字体.
-	 * 
-	 * @return 16 正常 楷体字体
-	 */
-	public final static Font getFont_KaiTi_Plain_16(){
-		// 普通样式常量
-		return getFont(FontType.KAITI, 16);
-	}
+	/** 12 正常 宋体字体. */
+	public final static Font	SONG_PLAIN_12	= getFont(FontType.SONGTI, 12);
 
-	/**
-	 * 9 正常 宋体字体.
-	 * 
-	 * @return 9 正常 宋体字体
-	 */
-	public final static Font getFont_Song_Plain_9(){
-		// 普通样式常量
-		return getFont(FontType.SONGTI, 9);
-	}
+	/** 9 正常 宋体字体. */
+	public final static Font	SONG_PLAIN_9	= getFont(FontType.SONGTI, 9);
 
 	/**
 	 * 获得courier_New字体(默认 Font.PLAIN)
@@ -94,24 +63,6 @@ public final class FontUtil{
 	 */
 	public final static Font getFont_verdana_Plain(int size){
 		return getFont(FontType.VERDANA, size);
-	}
-
-	/**
-	 * 9 正常 雅黑.
-	 * 
-	 * @return the font_ ya hei_ plain_9
-	 */
-	public final static Font getFont_YaHei_Plain_9(){
-		return getFont_YaHei_Plain(9);
-	}
-
-	/**
-	 * 9 正常 雅黑.
-	 * 
-	 * @return the font_ ya hei_ plain_12
-	 */
-	public final static Font getFont_YaHei_Plain_12(){
-		return getFont_YaHei_Plain(12);
 	}
 
 	/**

@@ -23,6 +23,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import com.feilong.commons.core.PropertiesConstants;
+import com.feilong.commons.core.enumeration.FontType;
 
 /**
  * 验证码工具类.
@@ -31,7 +32,13 @@ import com.feilong.commons.core.PropertiesConstants;
  * @version 1.0 2011-4-14 下午01:43:06
  * @since 1.0
  */
-public class ValidateCodeUtil{
+public final class ValidateCodeUtil{
+
+	/** 验证码用到的字体 //\u534e\u6587\u884c\u6977 华文行楷 //\u6977\u4f53 楷体. */
+	private static String[]	fontNamesForValidateCode	= { FontType.VERDANA, FontType.VERDANA };
+
+	/** 验证码用到的字体颜色,随机获取. */
+	private static Color[]	colorsForValidateCode		= { new Color(44, 188, 17), new Color(55, 55, 55), new Color(251, 0, 254) };
 
 	/**
 	 * 生成验证码字符串.
@@ -87,9 +94,9 @@ public class ValidateCodeUtil{
 		char[] chars = sRand.toCharArray();
 		for (int i = 0; i < chars.length; ++i){
 			// 设置字体的颜色
-			graphics2d.setColor(ColorUtil.getRandomColorsForValidateCode());
+			graphics2d.setColor(getRandomColorsForValidateCode());
 			// 设置字体
-			graphics2d.setFont(new Font(FontUtil.getRandomFontNameForValidateCode(), Font.TRUETYPE_FONT, 20));
+			graphics2d.setFont(new Font(getRandomFontNameForValidateCode(), Font.TRUETYPE_FONT, 20));
 			// 将此汉字画到图片上
 			// 要绘制的 string x 坐标 y 坐标
 			graphics2d.drawString(String.valueOf(chars[i]), 18 * i + 12, 18);
@@ -98,4 +105,31 @@ public class ValidateCodeUtil{
 		graphics2d.dispose();
 		return bufferedImage;
 	}
+
+	/**
+	 * 获得随机的验证码用到的字体.
+	 * 
+	 * @return 获得随机的验证码用到的字体
+	 */
+	private final static String getRandomFontNameForValidateCode(){
+		// 随机字体长度
+		int fontTypesLength = fontNamesForValidateCode.length;
+		// 创建随机类的实例
+		Random random = new Random();
+		return fontNamesForValidateCode[random.nextInt(fontTypesLength)];
+	}
+
+	/**
+	 * 获得验证码用的随机字体.
+	 * 
+	 * @return the random colors for validate code
+	 */
+	private static Color getRandomColorsForValidateCode(){
+		// 创建随机类的实例
+		Random random = new Random();
+		// 随机颜色长度
+		int colorsLength = colorsForValidateCode.length;
+		return colorsForValidateCode[random.nextInt(colorsLength)];
+	}
+
 }

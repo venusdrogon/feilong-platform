@@ -28,7 +28,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 
 /**
- * Desktop 类允许 Java 应用程序启动已在本机桌面上注册的关联应用程序，以处理 URI 或文件。
+ * Desktop 类允许 Java 应用程序启动已在本机桌面上注册的关联应用程序，以处理 URI 或文件。.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-5 下午05:07:45
@@ -37,10 +37,11 @@ import com.feilong.commons.core.net.URIUtil;
  */
 public final class DesktopUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(DesktopUtil.class);
 
 	/**
-	 * 使用系统默认浏览器,打开url
+	 * 使用系统默认浏览器,打开url.
 	 * 
 	 * @param url
 	 *            url地址
@@ -67,7 +68,7 @@ public final class DesktopUtil{
 	}
 
 	/**
-	 * 启动关联应用程序来打开文件。
+	 * 启动关联应用程序来打开文件。.
 	 * 
 	 * @param url
 	 *            url地址
@@ -81,7 +82,6 @@ public final class DesktopUtil{
 
 			// 判断系统桌面是否支持要执行的功能
 			if (desktop.isSupported(Action.OPEN)){
-
 				// 启动关联应用程序来打开文件
 				File file = new File(url);
 				try{
@@ -89,7 +89,6 @@ public final class DesktopUtil{
 				}catch (IOException e){
 					e.printStackTrace();
 				}
-
 			}
 		}else{
 			log.error("don'nt Support Desktop");

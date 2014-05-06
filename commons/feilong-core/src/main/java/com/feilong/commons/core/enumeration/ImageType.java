@@ -26,29 +26,29 @@ package com.feilong.commons.core.enumeration;
 public interface ImageType{
 
 	/**
-	 * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
+	 * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的 <code>{@value}</code>
 	 */
 	String	JPG		= "JPG";
 
 	/**
-	 * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
+	 * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的 <code>{@value}</code>
 	 */
 	String	JPEG	= "JPEG";
 
 	/**
-	 * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式
+	 * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式 <code>{@value}</code>
 	 */
 	String	PNG		= "PNG";
 
 	/**
-	 * GIF Graphics Interchange format（图形交换格式）
+	 * GIF Graphics Interchange format（图形交换格式） <code>{@value}</code>
 	 */
 	String	GIF		= "GIF";
 
 	/**
 	 * BMP Windows 位图<br>
 	 * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件。<br>
-	 * BMP 文件适用于 Windows 中的墙纸
+	 * BMP 文件适用于 Windows 中的墙纸 <code>{@value}</code>
 	 */
 	String	BMP		= "BMP";
 }

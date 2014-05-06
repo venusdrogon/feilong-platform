@@ -16,7 +16,6 @@
 package com.feilong.commons.core.awt;
 
 import java.awt.Color;
-import java.util.Random;
 
 /**
  * 飞龙 颜色工具类.
@@ -25,23 +24,7 @@ import java.util.Random;
  * @version 1.0 2011-4-15 上午01:09:40
  * @since 1.0
  */
-public class ColorUtil{
-
-	/** 验证码用到的字体颜色,随机获取. */
-	public static Color[]	colorsForValidateCode	= { new Color(44, 188, 17), new Color(55, 55, 55), new Color(251, 0, 254) };
-
-	/**
-	 * 获得验证码用的随机字体.
-	 * 
-	 * @return the random colors for validate code
-	 */
-	public static Color getRandomColorsForValidateCode(){
-		// 创建随机类的实例
-		Random random = new Random();
-		// 随机颜色长度
-		int colorsLength = ColorUtil.colorsForValidateCode.length;
-		return ColorUtil.colorsForValidateCode[random.nextInt(colorsLength)];
-	}
+public final class ColorUtil{
 
 	/**
 	 * 通过16进制颜色字符串 获得颜色.

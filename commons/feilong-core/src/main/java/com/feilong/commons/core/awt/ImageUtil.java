@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2010-11-30 下午03:24:45
  * @since 1.0
  */
-public class ImageUtil{
+public final class ImageUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ImageUtil.class);
@@ -143,7 +143,9 @@ public class ImageUtil{
 	 * @param filename
 	 *            文件
 	 * @return 是否是cmyk类型,是返回true
+	 * @deprecated 未成功验证,暂时不要调用
 	 */
+	@Deprecated
 	public static boolean isCMYKType(String filename){
 		boolean flag = false;
 		BufferedImage bufferedImage = null;

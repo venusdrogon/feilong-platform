@@ -21,6 +21,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
 
+import com.feilong.commons.core.enumeration.ImageType;
 import com.feilong.commons.core.io.IOUtil;
 
 /**
@@ -102,7 +103,7 @@ public final class WaterMark{
 		// 水印文件结束
 		graphics2D.dispose();
 		/*************************************************************/
-		ImageUtil.write(outputStream, bufferedImage_new, "PNG");
+		ImageUtil.write(outputStream, bufferedImage_new, ImageType.PNG);
 	}
 
 	/**
@@ -165,7 +166,7 @@ public final class WaterMark{
 		graphics2D.drawString(pressText, x2, y2);
 		graphics2D.dispose();
 		/*************************************************************/
-		ImageUtil.write(outputStream, bufferedImage_new, "PNG");
+		ImageUtil.write(outputStream, bufferedImage_new, ImageType.PNG);
 		// }
 	}
 

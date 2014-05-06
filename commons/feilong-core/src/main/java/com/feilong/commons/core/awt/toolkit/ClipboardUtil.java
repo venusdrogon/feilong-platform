@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2011-5-23 下午02:38:55
  * @since 1.0
  */
-public class ClipboardUtil{
+public final class ClipboardUtil{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ClipboardUtil.class);
@@ -44,7 +44,7 @@ public class ClipboardUtil{
 	 * 
 	 * @return Clipboard
 	 */
-	public static Clipboard getSystemClipboard(){
+	public final static Clipboard getSystemClipboard(){
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		return clipboard;
 	}
@@ -55,7 +55,7 @@ public class ClipboardUtil{
 	 * @param data
 	 *            the new clipboard content
 	 */
-	public static void setClipboardContent(String data){
+	public final static void setClipboardContent(String data){
 		Clipboard clipboard = getSystemClipboard();
 		Transferable transferable = new StringSelection(data);
 		clipboard.setContents(transferable, null);
@@ -66,7 +66,7 @@ public class ClipboardUtil{
 	 * 
 	 * @return the clipboard content
 	 */
-	public static String getClipboardContent(){
+	public final static String getClipboardContent(){
 		String returnValue = null;
 		Clipboard clipboard = getSystemClipboard();
 		// 取得系统剪贴板里可传输的数据构造的Java对象
