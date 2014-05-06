@@ -509,7 +509,7 @@ public class DateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#isEqual(java.util.Date, java.util.Date, java.lang.String)}.
+	 * Test method for {@link com.feilong.commons.core.date.DateUtil#isEquals(java.util.Date, java.util.Date, java.lang.String)}.
 	 */
 	@Test
 	public final void testIsEqual(){

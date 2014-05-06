@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.feilong.commons.core.date;
 
 import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_DAY;
@@ -42,6 +41,7 @@ import com.feilong.commons.core.util.Validator;
  * @see DateFormatUtil
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-27 下午01:53:21
+ * @version 1.0.5 2014-5-6 10:04
  * @since 1.0
  */
 public final class DateUtil{
@@ -49,49 +49,7 @@ public final class DateUtil{
 	/** Don't let anyone instantiate this class. */
 	private DateUtil(){}
 
-	/**
-	 * 按照同样格式,转成Date类型,判断 date_before 是否早于date_after<br>
-	 * 如:
-	 * 
-	 * <pre>
-	 * isBefore("2011-05-01","2011-04-01",DateUtil.pattern_onlyDate)
-	 * return true
-	 * </pre>
-	 * 
-	 * @param date_before
-	 *            date_before
-	 * @param date_after
-	 *            date_after
-	 * @param datePattern
-	 *            pattern @see {@link DatePattern}
-	 * @return 如果date_before 早于 date_after返回 true
-	 */
-	public final static boolean isBefore(String date_before,String date_after,String datePattern){
-		Date before = DateUtil.string2Date(date_before, datePattern);
-		return isBefore(before, date_after, datePattern);
-	}
-
-	/**
-	 * 按照同样格式,转成Date类型,判断 date_before 是否早于date_after<br>
-	 * 如:
-	 * 
-	 * <pre>
-	 * isBefore("2011-05-01","2011-04-01",DateUtil.pattern_onlyDate)
-	 * return true
-	 * </pre>
-	 * 
-	 * @param before
-	 *            before
-	 * @param date_after
-	 *            date_after
-	 * @param datePattern
-	 *            pattern @see {@link DatePattern}
-	 * @return 如果before 早于 date_after返回 true
-	 */
-	public final static boolean isBefore(Date before,String date_after,String datePattern){
-		Date after = DateUtil.string2Date(date_after, datePattern);
-		return before.before(after);
-	}
+	// [start]extent 获得时间 /时间数组,可以用于sql查询
 
 	/**
 	 * 获得当天0:00:00及下一天0:00:00,一般用于统计当天数据,between ... and ...
@@ -104,6 +62,7 @@ public final class DateUtil{
 	 * 
 	 * @return Date数组 第一个为today 第二个为tomorrow
 	 * @since 1.0
+	 * @deprecated 方法名会更新
 	 */
 	public final static Date[] getExtentToday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
@@ -112,6 +71,33 @@ public final class DateUtil{
 		calendar.add(Calendar.DATE, 1);
 		Date tomorrow = calendar.getTime();
 		Date[] dates = { today, tomorrow };
+		return dates;
+	}
+
+	/**
+	 * 获得昨天的区间 [yestoday,today]<br>
+	 * 第一个为昨天00:00 <br>
+	 * 第二个为今天00:00 <br>
+	 * 一般用于sql/hql统计昨天数据,between ... and ...
+	 * 
+	 * <pre>
+	 * 比如现在 :2012-10-16 22:46:42
+	 * 
+	 * return  {2012-10-15 00:00:00.000,2012-10-16 00:00:00.000}
+	 * </pre>
+	 * 
+	 * @return Date数组 <br>
+	 *         第一个为昨天00:00 <br>
+	 *         第二个为今天00:00
+	 * @since 1.0
+	 * @deprecated 方法名会更新
+	 */
+	public final static Date[] getExtentYesterday(){
+		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
+		Date today = calendar.getTime();
+		calendar.add(Calendar.DATE, -1);
+		Date yesterday = calendar.getTime();
+		Date[] dates = { yesterday, today };
 		return dates;
 	}
 
@@ -134,32 +120,6 @@ public final class DateUtil{
 		Calendar calendar = toCalendar(date);
 		calendar.add(Calendar.DATE, -1);
 		return calendar.getTime();
-	}
-
-	/**
-	 * 获得昨天的区间 [yestoday,today]<br>
-	 * 第一个为昨天00:00 <br>
-	 * 第二个为今天00:00 <br>
-	 * 一般用于sql/hql统计昨天数据,between ... and ...
-	 * 
-	 * <pre>
-	 * 比如现在 :2012-10-16 22:46:42
-	 * 
-	 * return  {2012-10-15 00:00:00.000,2012-10-16 00:00:00.000}
-	 * </pre>
-	 * 
-	 * @return Date数组 <br>
-	 *         第一个为昨天00:00 <br>
-	 *         第二个为今天00:00
-	 * @since 1.0
-	 */
-	public final static Date[] getExtentYesterday(){
-		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
-		Date today = calendar.getTime();
-		calendar.add(Calendar.DATE, -1);
-		Date yesterday = calendar.getTime();
-		Date[] dates = { yesterday, today };
-		return dates;
 	}
 
 	/**
@@ -292,97 +252,11 @@ public final class DateUtil{
 		return calendar.getTime();
 	}
 
-	/**
-	 * 一天开始,0:0:0.0
-	 * 
-	 * @param calendar
-	 *            the calendar
-	 */
-	private static void dayBegin(Calendar calendar){
-		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
-	}
+	// [end]
 
+	// [start]operate 时间操作(加减)
 	/**
-	 * 一天结束,最后的时间 23:59:59.999
-	 * 
-	 * @param calendar
-	 *            the calendar
-	 */
-	private static void dayEnd(Calendar calendar){
-		calendar.set(Calendar.HOUR_OF_DAY, 23);
-		calendar.set(Calendar.MINUTE, 59);
-		calendar.set(Calendar.SECOND, 59);
-		calendar.set(Calendar.MILLISECOND, 999);
-	}
-
-	/**
-	 * 判断当前时间是否在两个时间之间
-	 * 
-	 * <pre>
-	 * 比如现在是 :2012-10-16 23:00:02
-	 * 
-	 * isInTime(date, "2012-10-10 22:59:00", "2012-10-18 22:59:00", DatePattern.commonWithTime)
-	 * 
-	 * return true
-	 * </pre>
-	 * 
-	 * @param date
-	 *            需要判断的日期
-	 * @param beginTime
-	 *            开始时间
-	 * @param endTime
-	 *            结束时间
-	 * @param datePattern
-	 *            开始时间和结束时间的格式 @see {@link DatePattern}
-	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
-	 */
-	public final static boolean isInTime(Date date,String beginTime,String endTime,String datePattern){
-		Date beginTimeDate = string2Date(beginTime, datePattern);
-		Date endTimeDate = string2Date(endTime, datePattern);
-		return isInTime(date, beginTimeDate, endTimeDate);
-	}
-
-	/**
-	 * 判断当前时间是否在两个时间之间
-	 * 
-	 * <pre>
-	 * 比如现在是 :2012-10-16 23:00:02
-	 * 
-	 * isInTime(date, "2012-10-10 22:59:00", "2012-10-18 22:59:00")
-	 * 
-	 * return true
-	 * </pre>
-	 * 
-	 * .
-	 * 
-	 * @param date
-	 *            需要判断的日期
-	 * @param beginTimeDate
-	 *            the begin time date
-	 * @param endTimeDate
-	 *            the end time date
-	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
-	 */
-	public final static boolean isInTime(Date date,Date beginTimeDate,Date endTimeDate){
-		boolean flag = date.after(beginTimeDate) && date.before(endTimeDate);
-		return flag;
-	}
-
-	// [start] 时间操作(加减)
-	/**
-	 * *********************** 时间操作(加减) ****************************************.
-	 * 
-	 * @param date
-	 *            the date
-	 * @param year
-	 *            the year
-	 * @return the date
-	 */
-	/**
-	 * 指定时间,加减年份(仅仅年进行加减)
+	 * 指定时间,加减年份(仅年进行加减)
 	 * 
 	 * <pre>
 	 * addYear(2012-06-29 00:33:05,5)
@@ -428,7 +302,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 指定时间加减天数,(仅仅天进行加减)
+	 * 指定时间加减天数,(仅仅天进行加减).
 	 * 
 	 * <pre>
 	 * addDay(2012-06-29 00:42:26,5)
@@ -437,8 +311,6 @@ public final class DateUtil{
 	 * addDay(2012-06-29 00:42:26,-5)
 	 * return 2012-06-24 00:42:26
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            指定时间
@@ -453,7 +325,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减星期 WEEK_OF_YEAR
+	 * 日期加减星期 WEEK_OF_YEAR.
 	 * 
 	 * <pre>
 	 * addWeek(2012-06-29 00:45:18,5)
@@ -462,8 +334,6 @@ public final class DateUtil{
 	 * addWeek(2012-06-29 00:45:18,-5)
 	 * return 2012-05-25 00:45:18
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            指定时间
@@ -478,7 +348,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减小时 Calendar.HOUR_OF_DAY 24小时制
+	 * 日期加减小时 Calendar.HOUR_OF_DAY 24小时制.
 	 * 
 	 * <pre>
 	 * addHour(2012-06-29 00:46:24,5)
@@ -500,7 +370,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减分钟 Calendar.MINUTE
+	 * 日期加减分钟 Calendar.MINUTE.
 	 * 
 	 * <pre>
 	 * addMinute(2012-10-16 23:20:33,180)
@@ -522,7 +392,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减秒 Calendar.SECOND
+	 * 日期加减秒 Calendar.SECOND.
 	 * 
 	 * <pre>
 	 * addSecond(2012-10-16 23:22:02,180)
@@ -570,16 +440,15 @@ public final class DateUtil{
 	}
 
 	// [end]
-	// [start] 底层取到数据
+
+	// [start]fieldValue获得日期中的某属性字段
 	/**
-	 * 获得任意日期中的年份部分
+	 * 获得任意日期中的年份部分.
 	 * 
 	 * <pre>
 	 * 2012-06-29
 	 * return 2012
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            the date
@@ -592,14 +461,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得任意日期中的月份(已经+1处理)<br>
+	 * 获得任意日期中的月份(已经+1处理).
 	 * 
 	 * <pre>
 	 * 2012-06-29
 	 * return 6
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            the date
@@ -612,7 +479,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得任意时间中的天(在当年中)<br>
+	 * 获得任意时间中的天(在当年中).
 	 * 
 	 * <pre>
 	 * 2013-01-01
@@ -621,8 +488,6 @@ public final class DateUtil{
 	 * 2013-01-05
 	 * return 5
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            the date
@@ -635,14 +500,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得任意时间中的天<br>
+	 * 获得任意时间中的天.
 	 * 
 	 * <pre>
 	 * 2012-06-29
 	 * return 29
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            the date
@@ -656,14 +519,12 @@ public final class DateUtil{
 
 	/**
 	 * 获得当前日期星期几<br>
-	 * 从星期天开始,并且星期天是1<br>
+	 * 从星期天开始,并且星期天是1.
 	 * 
 	 * <pre>
 	 * 2012-6-29    是星期5
 	 * return 6
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            the date
@@ -682,14 +543,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得时间中的小时(24小时制)<br>
+	 * 获得时间中的小时(24小时制).
 	 * 
 	 * <pre>
 	 * 2012-6-29 00:26:53
 	 * return 0
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -703,7 +562,7 @@ public final class DateUtil{
 
 	/**
 	 * 获得date 在它一年中的 小时数<br>
-	 * max value: 8784
+	 * max value: 8784.
 	 * 
 	 * <pre>
 	 * 
@@ -720,8 +579,6 @@ public final class DateUtil{
 	 * return 6041
 	 * </pre>
 	 * 
-	 * .
-	 * 
 	 * @param date
 	 *            date
 	 * @return 获得date 在它一年中的 小时数
@@ -733,14 +590,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得时间中的分钟
+	 * 获得时间中的分钟.
 	 * 
 	 * <pre>
 	 * 2012-6-29 00:26:53
 	 * return 26
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -753,14 +608,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得时间中的秒
+	 * 获得时间中的秒.
 	 * 
 	 * <pre>
 	 * 2012-6-29 00:26:53
 	 * return 53
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -773,14 +626,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得时间在当天中的秒数,最大值86400 {@link TimeInterval#SECONDS_PER_DAY}
+	 * 获得时间在当天中的秒数,最大值86400 {@link TimeInterval#SECONDS_PER_DAY} .
 	 * 
 	 * <pre>
 	 * 2013-09-09 16:42:41
 	 * return 60161
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -793,14 +644,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得时间在当前小时中的秒数,最大值3600 {@link TimeInterval#SECONDS_PER_HOUR}
+	 * 获得时间在当前小时中的秒数,最大值3600 {@link TimeInterval#SECONDS_PER_HOUR}.
 	 * 
 	 * <pre>
 	 * 2013-09-15 01:15:23
 	 * return 923
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -814,14 +663,12 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数
+	 * 返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数.
 	 * 
 	 * <pre>
 	 * 2012-6-29 00:28
 	 * return 1340900883288
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            date
@@ -833,37 +680,8 @@ public final class DateUtil{
 	}
 
 	// [end]
-	/**
-	 * 判断某年是否为闰年
-	 * 
-	 * <pre>
-	 * 最根本的原因是：地球绕太阳运行周期为365天5小时48分46秒（合365.24219天）即一回归年（tropical year）。
-	 *  
-	 * 公历的平年只有365日，比回归年短约0.2422日，所余下的时间约为四年累计一天，故四年于2月加1天，使当年的历年长度为366日，这一年就为闰年。
-	 *  		
-	 * 现行公历中每400年有97个闰年。按照每四年一个闰年计算，平均每年就要多算出0.0078天，这样经过四百年就会多算出大约3天来，
-	 * 因此，每四百年中要减少三个闰年。
-	 * 
-	 * 所以规定，公历年份是整百数的，必须是400的倍数的才是闰年，不是400的倍数的,虽然是100的倍数，也是平年,
-	 * 这就是通常所说的：四年一闰，百年不闰，四百年再闰。
-	 * 
-	 * 例如，2000年是闰年，1900年则是平年。
-	 * </pre>
-	 * 
-	 * @param year
-	 *            年份
-	 * @return 四年一闰，百年不闰，四百年再闰
-	 * @since 1.0
-	 * @see GregorianCalendar#isLeapYear(int)
-	 */
-	public final static boolean isLeapYear(int year){
-		// GregorianCalendar calendar = new GregorianCalendar();
-		// calendar.isLeapYear(year);
 
-		return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
-	}
-
-	// [start] 类型转换
+	// [start]date2String/string2Date 类型转换
 
 	/**
 	 * 不带参数pattern的 的method,采用默认 pattern--->{@link DatePattern#commonWithTime}.
@@ -871,7 +689,9 @@ public final class DateUtil{
 	 * @param date
 	 *            任意时间
 	 * @return use {@link DatePattern#commonWithTime} format
+	 * @deprecated 请使用 @see {@link #date2String(Date, String)}
 	 */
+	@Deprecated
 	public final static String date2String(Date date){
 		String defaultPattern = DatePattern.commonWithTime;
 		return date2String(date, defaultPattern);
@@ -907,6 +727,7 @@ public final class DateUtil{
 	 * @return 如果 Validator.isNotNullOrEmpty(dateList) return null;<br>
 	 *         否则循环date转成string,返回List<String>
 	 * @since 1.0
+	 * @deprecated 不适合做api,未来可能会删除
 	 */
 	public final static List<String> dateList2StringList(List<Date> dateList,String datePattern){
 		if (Validator.isNotNullOrEmpty(dateList)){
@@ -934,6 +755,9 @@ public final class DateUtil{
 		return DateFormatUtil.parse(dateString, datePattern);
 	}
 
+	// [end]
+
+	// [start]转换成特色时间 toHumanizationDateString
 	/**
 	 * 人性化显示date时间,依据是和现在的时间间隔
 	 * <p>
@@ -973,6 +797,7 @@ public final class DateUtil{
 	 * @see #getIntervalMinute(long)
 	 * @see #getIntervalSecond(long)
 	 * @since 1.0
+	 * @deprecated 未来名称可能会更改
 	 */
 	public final static String toHumanizationDateString(Date inDate){
 		Date nowDate = new Date();
@@ -1005,7 +830,7 @@ public final class DateUtil{
 		/**************************************************************************************/
 		// 间隔一天
 		if (space_day == 1){
-			if (isEqual(addDay(inDate, 1), nowDate, DatePattern.onlyDate)){
+			if (isEquals(addDay(inDate, 1), nowDate, DatePattern.onlyDate)){
 				returnValue = CONFIG_DATE_YESTERDAY + " ";
 			}else{
 				returnValue = CONFIG_DATE_THEDAY_BEFORE_YESTERDAY + " ";
@@ -1014,7 +839,7 @@ public final class DateUtil{
 		}
 		// 间隔2天
 		else if (space_day == 2){
-			if (isEqual(addDay(inDate, 2), nowDate, DatePattern.onlyDate)){
+			if (isEquals(addDay(inDate, 2), nowDate, DatePattern.onlyDate)){
 				returnValue = CONFIG_DATE_THEDAY_BEFORE_YESTERDAY + " " + date2String(inDate, DatePattern.onlyTime_withoutSecond);
 			}else{
 				// 今年
@@ -1056,25 +881,10 @@ public final class DateUtil{
 	}
 
 	// [end]
-	// [start] 转换成特色时间
-	/**
-	 * 在相同格式下,判断两个日期是否相等.
-	 * 
-	 * @param date1
-	 *            日期1
-	 * @param date2
-	 *            日期2
-	 * @param datePattern
-	 *            格式 @see {@link DatePattern}
-	 * @return 相等返回true,不相等则为false
-	 * @since 1.0
-	 */
-	public final static boolean isEqual(Date date1,Date date2,String datePattern){
-		return date2String(date1, datePattern).equals(date2String(date2, datePattern));
-	}
 
+	// [start]interval时间间隔
 	/**
-	 * 获得两日期之间的间隔,并且转换成直观的表示方式
+	 * 获得两日期之间的间隔,并且转换成直观的表示方式.
 	 * 
 	 * <pre>
 	 * getIntervalForView(2011-05-19 8:30:40,2011-05-19 11:30:24) 
@@ -1100,7 +910,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 将时间(单位毫秒),并且转换成直观的表示方式
+	 * 将时间(单位毫秒),并且转换成直观的表示方式.
 	 * 
 	 * <pre>
 	 * getIntervalForView(13516)
@@ -1111,8 +921,6 @@ public final class DateUtil{
 	 * 
 	 * 自动增加 天,小时,分钟,秒,毫秒中文文字
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param space_time
 	 *            单位毫秒
@@ -1295,6 +1103,7 @@ public final class DateUtil{
 	 * @return the interval day list
 	 * @since 1.0
 	 * @see #getIntervalDay(Date, Date)
+	 * @deprecated 不适合做API
 	 */
 	public final static List<Date> getIntervalDayList(String fromDate,String toDate,String datePattern){
 		List<Date> dateList = new LinkedList<Date>();
@@ -1344,6 +1153,8 @@ public final class DateUtil{
 
 	// [end]
 
+	// [start]toCalendar
+
 	/**
 	 * 将date转成Calendar.
 	 * 
@@ -1362,4 +1173,191 @@ public final class DateUtil{
 		calendar.setTime(date);
 		return calendar;
 	}
+
+	// [end]
+
+	// [start]isBefore 时间早晚
+
+	/**
+	 * 按照同样格式,转成Date类型,判断 date_before 是否早于date_after<br>
+	 * 如:
+	 * 
+	 * <pre>
+	 * isBefore("2011-05-01","2011-04-01",DateUtil.pattern_onlyDate)
+	 * return true
+	 * </pre>
+	 * 
+	 * @param date_before
+	 *            date_before
+	 * @param date_after
+	 *            date_after
+	 * @param datePattern
+	 *            pattern @see {@link DatePattern}
+	 * @return 如果date_before 早于 date_after返回 true
+	 */
+	public final static boolean isBefore(String date_before,String date_after,String datePattern){
+		Date before = DateUtil.string2Date(date_before, datePattern);
+		return isBefore(before, date_after, datePattern);
+	}
+
+	/**
+	 * 按照同样格式,转成Date类型,判断 date_before 是否早于date_after<br>
+	 * 如:
+	 * 
+	 * <pre>
+	 * isBefore("2011-05-01","2011-04-01",DateUtil.pattern_onlyDate)
+	 * return true
+	 * </pre>
+	 * 
+	 * @param before
+	 *            before
+	 * @param date_after
+	 *            date_after
+	 * @param datePattern
+	 *            pattern @see {@link DatePattern}
+	 * @return 如果before 早于 date_after返回 true
+	 */
+	public final static boolean isBefore(Date before,String date_after,String datePattern){
+		Date after = DateUtil.string2Date(date_after, datePattern);
+		return before.before(after);
+	}
+
+	// [end]
+
+	// [start]isInTime 时间区间内
+
+	/**
+	 * 判断当前时间是否在两个时间之间.
+	 * 
+	 * <pre>
+	 * 比如现在是 :2012-10-16 23:00:02
+	 * 
+	 * isInTime(date, "2012-10-10 22:59:00", "2012-10-18 22:59:00", DatePattern.commonWithTime)
+	 * 
+	 * return true
+	 * </pre>
+	 * 
+	 * @param date
+	 *            需要判断的日期
+	 * @param beginTime
+	 *            开始时间
+	 * @param endTime
+	 *            结束时间
+	 * @param datePattern
+	 *            开始时间和结束时间的格式 @see {@link DatePattern}
+	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
+	 */
+	public final static boolean isInTime(Date date,String beginTime,String endTime,String datePattern){
+		Date beginTimeDate = string2Date(beginTime, datePattern);
+		Date endTimeDate = string2Date(endTime, datePattern);
+		return isInTime(date, beginTimeDate, endTimeDate);
+	}
+
+	/**
+	 * 判断当前时间是否在两个时间之间.
+	 * 
+	 * <pre>
+	 * 比如现在是 :2012-10-16 23:00:02
+	 * 
+	 * isInTime(date, "2012-10-10 22:59:00", "2012-10-18 22:59:00")
+	 * 
+	 * return true
+	 * </pre>
+	 * 
+	 * @param date
+	 *            需要判断的日期
+	 * @param beginTimeDate
+	 *            the begin time date
+	 * @param endTimeDate
+	 *            the end time date
+	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
+	 */
+	public final static boolean isInTime(Date date,Date beginTimeDate,Date endTimeDate){
+		boolean flag = date.after(beginTimeDate) && date.before(endTimeDate);
+		return flag;
+	}
+
+	// [end]
+
+	// [start]isEquals
+	/**
+	 * 在相同格式下,判断两个日期是否相等.
+	 * 
+	 * @param date1
+	 *            日期1
+	 * @param date2
+	 *            日期2
+	 * @param datePattern
+	 *            格式 {@link DatePattern}
+	 * @return 相等返回true,不相等则为false
+	 * @since 1.0.5 change name from isEqual to isEquals
+	 */
+	public final static boolean isEquals(Date date1,Date date2,String datePattern){
+		return date2String(date1, datePattern).equals(date2String(date2, datePattern));
+	}
+
+	// [end]
+
+	// [start]isLeapYear 闰年
+
+	/**
+	 * 判断某年是否为闰年
+	 * 
+	 * <pre>
+	 * 最根本的原因是：地球绕太阳运行周期为365天5小时48分46秒（合365.24219天）即一回归年（tropical year）。
+	 *  
+	 * 公历的平年只有365日，比回归年短约0.2422日，所余下的时间约为四年累计一天，故四年于2月加1天，使当年的历年长度为366日，这一年就为闰年。
+	 *  		
+	 * 现行公历中每400年有97个闰年。按照每四年一个闰年计算，平均每年就要多算出0.0078天，这样经过四百年就会多算出大约3天来，
+	 * 因此，每四百年中要减少三个闰年。
+	 * 
+	 * 所以规定，公历年份是整百数的，必须是400的倍数的才是闰年，不是400的倍数的,虽然是100的倍数，也是平年,
+	 * 这就是通常所说的：四年一闰，百年不闰，四百年再闰。
+	 * 
+	 * 例如，2000年是闰年，1900年则是平年。
+	 * </pre>
+	 * 
+	 * @param year
+	 *            年份
+	 * @return 四年一闰，百年不闰，四百年再闰
+	 * @since 1.0
+	 * @see GregorianCalendar#isLeapYear(int)
+	 */
+	public final static boolean isLeapYear(int year){
+		// GregorianCalendar calendar = new GregorianCalendar();
+		// calendar.isLeapYear(year);
+
+		return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+	}
+
+	// [end]
+
+	// [start]private
+
+	/**
+	 * 一天开始,0:0:0.0
+	 * 
+	 * @param calendar
+	 *            the calendar
+	 */
+	private static void dayBegin(Calendar calendar){
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+	}
+
+	/**
+	 * 一天结束,最后的时间 23:59:59.999
+	 * 
+	 * @param calendar
+	 *            the calendar
+	 */
+	private static void dayEnd(Calendar calendar){
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		calendar.set(Calendar.MILLISECOND, 999);
+	}
+	// [end]
 }

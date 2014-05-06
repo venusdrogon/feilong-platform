@@ -14,7 +14,7 @@ Reduce development, Release ideas
 
 # 类和方法介绍: 
 
-## com.feilong.commons.core.date 包下有以下几个类:
+## com.feilong.commons.core.date 包,时间日期操作核心类:
 
 * ★  DateUtil时间工具类  
 * ★ CalendarUtil 日历工具类
@@ -26,7 +26,6 @@ Reduce development, Release ideas
 
 ***
 
-***
 # 项目依赖
 
 ```XML
