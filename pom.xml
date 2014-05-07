@@ -42,8 +42,9 @@
 		<version.commons-collections>3.2.1</version.commons-collections>
 		<version.commons-fileupload>1.2.2</version.commons-fileupload>
 		<version.commons-httpclient>3.1</version.commons-httpclient>
-		<version.commons-lang>3.1</version.commons-lang>
-		<version.commons-lang3>3.1</version.commons-lang3>
+
+		<version.commons-lang>2.6</version.commons-lang>
+		<version.commons-lang3>3.3.2</version.commons-lang3>
 
 		<version.commons-logging>1.1.1</version.commons-logging>
 		<version.commons-io>2.0</version.commons-io>
@@ -133,8 +134,35 @@
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
-				<!-- <exclusion> <artifactId>commons-lang</artifactId> <groupId>commons-lang</groupId> </exclusion> -->
 			</exclusions>
+		</dependency>
+
+		<!-- commons-lang -->
+		<dependency>
+			<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<version>${version.commons-lang}</version>
+		</dependency>
+
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${version.commons-lang3}</version>
+		</dependency>
+
+		<!-- commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${version.commons-beanutils}</version>
+		</dependency>
+
+		<!-- commons-collections -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${version.commons-collections}</version>
 		</dependency>
 
 		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->
@@ -225,8 +253,6 @@
 				<version>${version.memcached}</version>
 			</dependency>
 
-
-
 			<!-- dom4j -->
 			<dependency>
 				<groupId>dom4j</groupId>
@@ -239,23 +265,6 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>${version.jstl}</version>
-			</dependency>
-
-			<!--********************************provided******************************** -->
-			<!-- jsp-api -->
-			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<version>${version.jsp-api}</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<!-- servlet-api -->
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
-				<version>${version.servlet-api}</version>
-				<scope>provided</scope>
 			</dependency>
 
 			<!-- *******************spring********************************* -->
@@ -330,21 +339,7 @@
 				<version>${version.jsoup}</version>
 			</dependency>
 
-
 			<!-- *********************apache******************************* -->
-			<!-- commons-lang -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>${version.commons-lang3}</version>
-			</dependency>
-
-			<!-- commons-beanutils -->
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils</artifactId>
-				<version>${version.commons-beanutils}</version>
-			</dependency>
 
 			<!-- commons-net -->
 			<dependency>
@@ -360,12 +355,7 @@
 				<version>${version.commons-httpclient}</version>
 			</dependency>
 
-			<!-- commons-collections -->
-			<dependency>
-				<groupId>commons-collections</groupId>
-				<artifactId>commons-collections</artifactId>
-				<version>${version.commons-collections}</version>
-			</dependency>
+
 
 			<dependency>
 				<groupId>org.apache.commons</groupId>
@@ -394,6 +384,23 @@
 				<groupId>org.json</groupId>
 				<artifactId>json</artifactId>
 				<version>${version.org.json}</version>
+			</dependency>
+
+			<!--********************************provided******************************** -->
+			<!-- jsp-api -->
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${version.jsp-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- servlet-api -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${version.servlet-api}</version>
+				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -464,7 +471,8 @@
 						<exclude>**/src/main/resources/**</exclude>
 					</excludes>
 					<includes>
-						<!----> <includes>**/src/main/java/**/*.java</includes> 
+						<!---->
+						<includes>**/src/main/java/**/*.java</includes>
 						<!-- <includes>**/src/main/java/com/feilong/commons/core/log/**</includes> -->
 					</includes>
 
@@ -658,10 +666,10 @@
 				</plugin>
 
 
-				<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <version>2.2-beta-4</version> </plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId> 
-					<version>2.0</version> </plugin> <plugin> <artifactId>maven-ear-plugin</artifactId> <version>2.3.1</version> </plugin> <plugin> <artifactId>maven-ejb-plugin</artifactId> 
-					<version>2.1</version> </plugin> <plugin> <artifactId>maven-plugin-plugin</artifactId> <version>2.5.1</version> </plugin> <plugin> <artifactId>maven-rar-plugin</artifactId> 
-					<version>2.2</version> </plugin> <plugin> <artifactId>maven-release-plugin</artifactId> <version>2.0-beta-9</version> </plugin> <plugin> <artifactId>maven-site-plugin</artifactId> 
+				<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <version>2.2-beta-4</version> </plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId>
+					<version>2.0</version> </plugin> <plugin> <artifactId>maven-ear-plugin</artifactId> <version>2.3.1</version> </plugin> <plugin> <artifactId>maven-ejb-plugin</artifactId>
+					<version>2.1</version> </plugin> <plugin> <artifactId>maven-plugin-plugin</artifactId> <version>2.5.1</version> </plugin> <plugin> <artifactId>maven-rar-plugin</artifactId>
+					<version>2.2</version> </plugin> <plugin> <artifactId>maven-release-plugin</artifactId> <version>2.0-beta-9</version> </plugin> <plugin> <artifactId>maven-site-plugin</artifactId>
 					<version>2.0.1</version> </plugin> -->
 
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
