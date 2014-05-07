@@ -66,7 +66,6 @@
 	##跳转到下一页
 	<a title="${i18nMap.get('feilong-pager.text.goto.next')}" href="${pagerVMParam.nextUrl}">Next ></a>
 #end
-
 	<input type="text" value="${pagerVMParam.currentPageNo}" class="feilongGotoInput" pagerUrlTemplateHref="${pagerVMParam.pagerUrlTemplate.href}" templateValue="${pagerVMParam.pagerUrlTemplate.templateValue}" pageParamName="${pagerVMParam.pageParamName}"/>/${pagerVMParam.allPageNo}<button value="go">Go</button>
 </div>
 
@@ -77,9 +76,12 @@
 			if (event.keyCode == 13) { 
     			var pageNoValue=$(this).val();
 				if(""!=pageNoValue&&pageNoValue>0){
+				
 					var templateValue=$(this).attr("templateValue");
 					var pageParamName=$(this).attr("pageParamName");
-    				location.href=$(this).attr("pagerUrlTemplateHref").replace(pageParamName+"="+templateValue,pageParamName+"="+pageNoValue);
+					var pagerUrlTemplateHref=$(this).attr("pagerUrlTemplateHref");
+					
+    				location.href=pagerUrlTemplateHref.replace(pageParamName+"="+templateValue,pageParamName+"="+pageNoValue);
 				}
 			}
 		});
