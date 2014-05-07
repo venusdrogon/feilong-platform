@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.om.nginx;
 
@@ -21,27 +21,30 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.Date;
 
+import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.net.httpclient.HttpClientUtil;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientConfig;
+import com.feilong.tools.net.httpclient3.HttpClientUtil;
+import com.feilong.tools.net.httpclient3.HttpClientUtilException;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
 
 /**
- * NginxStubStatus 工具类
+ * NginxStubStatus 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 3:42:00 AM
  */
 public final class StubStatusUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(StubStatusUtil.class);
 
 	/**
-	 * 解析nginx stub status 成 NginxStubStatusCommand
+	 * 解析nginx stub status 成 NginxStubStatusCommand.
 	 * 
 	 * @param uri
 	 *            uri
@@ -49,6 +52,7 @@ public final class StubStatusUtil{
 	 *            用户名
 	 * @param password
 	 *            密码
+	 * @return the stub status command
 	 */
 	public static StubStatusCommand getStubStatusCommand(String uri,String userName,String password){
 		Date now = new Date();
@@ -62,10 +66,16 @@ public final class StubStatusUtil{
 		Integer waiting = 0;
 
 		// **************************************************************************
-		StubStatusCommand stubStatusCommand = new StubStatusCommand();
+
+		UsernamePasswordCredentials usernamePasswordCredentials = new UsernamePasswordCredentials(userName, password);
+
+		HttpClientConfig httpClientConfig = new HttpClientConfig();
+		httpClientConfig.setUri(uri);
+		httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+		httpClientConfig.setUsernamePasswordCredentials(usernamePasswordCredentials);
 
 		try{
-			String responseBodyAsString = HttpClientUtil.getHttpMethodResponseBodyAsString(uri, HttpMethodType.GET, userName, password);
+			String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
 
 			if (Validator.isNotNullOrEmpty(responseBodyAsString)){
 
@@ -113,6 +123,7 @@ public final class StubStatusUtil{
 		}
 
 		// **************有可能异常情况, 设置为默认值*****************************************
+		StubStatusCommand stubStatusCommand = new StubStatusCommand();
 		stubStatusCommand.setActiveConnections(activeConnections);
 		stubStatusCommand.setReading(reading);
 		stubStatusCommand.setServerAccepts(serverAccepts);

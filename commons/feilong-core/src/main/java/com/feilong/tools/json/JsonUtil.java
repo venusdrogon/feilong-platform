@@ -41,20 +41,21 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * json 工具类 <br>
- * 依赖于
+ * <b>依赖于下面的jar:</b>
  * 
  * <pre>
+ * {@code
  * <groupId>net.sf.json-lib</groupId>
  * <artifactId>json-lib</artifactId>
  * 
  * 如果要使用xml 部分功能,需要
  * <groupId>xom</groupId> 
  * <artifactId>xom</artifactId>
- * 
+ * }
  * </pre>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 26, 2013 8:02:09 PM
+ * @version 1.0.5 Jan 26, 2013 8:02:09 PM
  */
 public final class JsonUtil{
 
@@ -80,10 +81,10 @@ public final class JsonUtil{
 	}
 
 	/**
-	 * Format.
+	 * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.
 	 * 
 	 * @param obj
-	 *            the obj
+	 *            任何对象
 	 * @return the string
 	 */
 	public static String format(Object obj){
@@ -91,13 +92,14 @@ public final class JsonUtil{
 	}
 
 	/**
-	 * Format.
+	 * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.
 	 * 
 	 * @param obj
-	 *            the obj
+	 *            对象
 	 * @param excludes
-	 *            the excludes 排除需要序列化成json的属性
+	 *            排除需要序列化成json的属性,如果 excludes isNotNullOrEmpty,那么不会setExcludes
 	 * @return the string
+	 * @see {@link <a href="http://feitianbenyue.iteye.com/blog/2046877">java.lang.ClassCastException: JSON keys must be strings</a>}
 	 */
 	public static String format(Object obj,String[] excludes){
 		JsonConfig jsonConfig = new JsonConfig();
