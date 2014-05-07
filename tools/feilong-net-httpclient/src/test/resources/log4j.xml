@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- This product currently only contains code developed by authors of specific components, as identified by the source code files. Since product implements StAX 
+<!-- This product currently only contains code developed by authors of specific components, as identified by the source code files. Since product implements StAX
 	API, it has dependencies to StAX API classes. For additional credits (generally to people who reported problems) see CREDITS file. -->
 <!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 
@@ -30,6 +30,25 @@
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
 		</layout>
 	</appender>
+	
+	<category name="org.apache.commons.beanutils">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.HeaderElement">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpParser">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.methods.EntityEnclosingMethod">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpConnection">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpMethodBase">
+		<priority value="info" />
+	</category>
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>
