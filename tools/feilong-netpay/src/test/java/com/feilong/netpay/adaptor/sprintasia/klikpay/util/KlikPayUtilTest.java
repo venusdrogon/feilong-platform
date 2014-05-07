@@ -15,7 +15,7 @@
  */
 package com.feilong.netpay.adaptor.sprintasia.klikpay.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.util.Date;
 
@@ -27,19 +27,20 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.netpay.adaptor.sprintasia.klikpay.KlikPayAdaptor;
 import com.feilong.netpay.adaptor.sprintasia.klikpay.command.ApprovalCode;
 import com.feilong.netpay.adaptor.sprintasia.klikpay.command.OutputPaymentIPAY;
 import com.feilong.netpay.adaptor.sprintasia.klikpay.command.Reason;
 import com.feilong.netpay.adaptor.sprintasia.klikpay.command.ReasonEnum;
-import com.feilong.netpay.adaptor.sprintasia.klikpay.util.KlikPayUtil;
 
 /**
+ * The Class KlikPayUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 24, 2014 4:02:04 PM
  */
 public class KlikPayUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(KlikPayUtilTest.class);
 
 	/**
@@ -51,7 +52,7 @@ public class KlikPayUtilTest{
 	}
 
 	/**
-	 * Test method for
+	 * Test method for.
 	 * {@link com.feilong.netpay.adaptor.sprintasia.klikpay.util.KlikPayUtil#getSignature(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
@@ -61,7 +62,7 @@ public class KlikPayUtilTest{
 	}
 
 	/**
-	 * Test method for
+	 * Test method for.
 	 * {@link com.feilong.netpay.adaptor.sprintasia.klikpay.util.KlikPayUtil#getAuthKey(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
 	 */
@@ -79,6 +80,9 @@ public class KlikPayUtilTest{
 		Assert.assertEquals("BF81501C562D6FEA2FCB905D392D5851", sign);
 	}
 
+	/**
+	 * Test object.
+	 */
 	@Test
 	public final void testObject(){
 
@@ -107,7 +111,9 @@ public class KlikPayUtilTest{
 	}
 
 	/**
-	 * @return
+	 * Gets the output payment ipay.
+	 * 
+	 * @return the output payment ipay
 	 */
 	protected OutputPaymentIPAY getOutputPaymentIPAY(){
 		String additionalData = "";

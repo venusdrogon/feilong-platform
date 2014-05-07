@@ -25,25 +25,21 @@ import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 飞龙"新华一城网"支付
+ * 飞龙"新华一城网"支付.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 26, 2010 4:28:58 PM
  */
 public class YiChengPay{
 
-	/**
-	 * 测试地址
-	 */
+	/** 测试地址. */
 	public final static String	post_url_test	= "https://dev.001town.com/selfhelp/payOrderInput.action";
 
-	/**
-	 * 正式地址
-	 */
+	/** 正式地址. */
 	public final static String	post_url_formal	= "https://pay.001town.com/selfhelp/payOrderInput.action";
 
 	/**
-	 * 写内容
+	 * 写内容.
 	 * 
 	 * @param action
 	 *            提交地址
@@ -96,7 +92,7 @@ public class YiChengPay{
 	}
 
 	/**
-	 * 将金额转成2位小数
+	 * 将金额转成2位小数.
 	 * 
 	 * @param amount
 	 *            金额
@@ -113,11 +109,14 @@ public class YiChengPay{
 	 * 
 	 * <pre>
 	 * 按如下规则拼凑字符串:商户号，终端号，订单号，流水号，金额，全额支付标识，回调地址，密钥。
-	 * 	注意:不需要任何连接符号，直接附加。然后对获得的字符串进行MD5加密，最后将结果转换为小写。
+	 * 注意:不需要任何连接符号，直接附加。然后对获得的字符串进行MD5加密，最后将结果转换为小写。
 	 * 
 	 * </pre>
 	 * 
+	 * .
+	 * 
 	 * @param feiLongYiChengPayEntity
+	 *            the fei long yi cheng pay entity
 	 * @return 根据feiLongYiChengPayEntity 生成MerchantDecodedData值
 	 * @author 金鑫
 	 * @version 1.0 Oct 26, 2010 5:02:58 PM
@@ -147,12 +146,13 @@ public class YiChengPay{
 	 * 根据feiLongYiChengPayEntity 生成ResultDecodedData值
 	 * 
 	 * <pre>
-	 * 	 	按如下规则拼凑字符串:商户号，终端号，订单号，流水号，金额，全额支付标识，支付状态，密钥。
-	 * 		注意:不需要任何连接符号，直接附加。然后对获得的字符串进行MD5加密，最后将结果转换为小写。
-	 * 		MD5(merchantNo + terminalNo + orderId + serialNo + amount + isFull +  payStatus + KEY).toLowerCase()。
+	 * 按如下规则拼凑字符串:商户号，终端号，订单号，流水号，金额，全额支付标识，支付状态，密钥。
+	 * 注意:不需要任何连接符号，直接附加。然后对获得的字符串进行MD5加密，最后将结果转换为小写。
+	 * MD5(merchantNo + terminalNo + orderId + serialNo + amount + isFull +  payStatus + KEY).toLowerCase()。
 	 * </pre>
 	 * 
 	 * @param feiLongYiChengPayEntity
+	 *            the fei long yi cheng pay entity
 	 * @return 根据feiLongYiChengPayEntity 生成ResultDecodedData值
 	 * @author 金鑫
 	 * @version 1.0 2010-11-4 下午04:26:27
@@ -179,7 +179,7 @@ public class YiChengPay{
 	}
 
 	/**
-	 * 通过订单创建时间生成流水号
+	 * 通过订单创建时间生成流水号.
 	 * 
 	 * @param createTime
 	 *            创建时间

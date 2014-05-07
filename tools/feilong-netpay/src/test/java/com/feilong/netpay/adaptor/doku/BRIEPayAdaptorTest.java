@@ -18,27 +18,52 @@ package com.feilong.netpay.adaptor.doku;
 import java.util.Map;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
+import com.feilong.netpay.command.QueryRequest;
+import com.feilong.netpay.command.QueryResult;
+import com.feilong.tools.json.JsonUtil;
 
 /**
+ * The Class BRIEPayAdaptorTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 12, 2014 8:59:42 PM
  */
 public class BRIEPayAdaptorTest extends BasePaymentTest{
 
+	/** The payment adaptor. */
 	@Autowired
 	@Qualifier("briEPayAdaptor")
 	private PaymentAdaptor	paymentAdaptor;
 
+	/**
+	 * Creates the payment form.
+	 */
 	@Test
 	public final void createPaymentForm(){
 		Map<String, String> specialSignMap = null;
 		createPaymentForm(paymentAdaptor, specialSignMap);
+	}
+
+	/**
+	 * Gets the query result.
+	 * 
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public final void getQueryResult() throws Exception{
+		QueryRequest queryRequest = new QueryRequest();
+		queryRequest.setTradeNo("010003210001");
+		queryRequest.setBuyer(47);
+
+		QueryResult queryResult = paymentAdaptor.getQueryResult(queryRequest);
+		if (log.isInfoEnabled()){
+			log.info(JsonUtil.format(queryResult));
+		}
 	}
 }

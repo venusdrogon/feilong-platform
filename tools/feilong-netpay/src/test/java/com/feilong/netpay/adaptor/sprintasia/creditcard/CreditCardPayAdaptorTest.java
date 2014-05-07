@@ -23,9 +23,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
-import com.feilong.netpay.adaptor.sprintasia.creditcard.CreditCardPayAdaptor;
 import com.feilong.netpay.command.QueryRequest;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
 /**
  * The Class BcaCreditCardPayAdaptorTest.
@@ -52,8 +50,8 @@ public class CreditCardPayAdaptorTest extends BasePaymentTest{
 	/**
 	 * Gets the query result.
 	 * 
-	 * @return the query result
 	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public final void getQueryResult() throws Exception{

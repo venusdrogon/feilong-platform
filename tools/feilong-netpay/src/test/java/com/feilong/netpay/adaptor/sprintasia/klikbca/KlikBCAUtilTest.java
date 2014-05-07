@@ -29,16 +29,20 @@ import com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil;
 import com.feilong.netpay.adaptor.sprintasia.klikbca.command.OutputPaymentPGW;
 
 /**
+ * The Class KlikBCAUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 25, 2014 4:43:41 PM
  */
 public class KlikBCAUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAUtilTest.class);
 
 	/**
-	 * Test method for
-	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil#getPaymentInquiryXML(java.lang.String, java.lang.String, java.util.List)}.
+	 * Test method for.
+	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil#getPaymentInquiryXML(java.lang.String, java.lang.String, java.util.List)}
+	 * .
 	 */
 	@Test
 	public final void testGetPaymentInquiryXML(){
@@ -46,7 +50,7 @@ public class KlikBCAUtilTest{
 	}
 
 	/**
-	 * Test method for
+	 * Test method for.
 	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil#getPaymentConfirmationXML(com.feilong.netpay.adaptor.sprintasia.klikbca.command.OutputPaymentPGW)}
 	 * .
 	 */
@@ -55,6 +59,9 @@ public class KlikBCAUtilTest{
 		fail("Not yet implemented"); // TODO
 	}
 
+	/**
+	 * Test object.
+	 */
 	@Test
 	public final void testObject(){
 

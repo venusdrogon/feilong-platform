@@ -66,6 +66,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 
 	// private String code = "44";
 
+	@SuppressWarnings("hiding")
 	@Autowired
 	protected ApplicationContext	applicationContext;
 
@@ -88,6 +89,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		payRequest.setTotalFee(total_fee);
 		payRequest.setBuyerEmail("venusdrogon@163.com");
 		payRequest.setBuyerName("jinxin");
+		payRequest.setBuyer(888);
 
 		payRequest.setTransferFee(new BigDecimal(10000.00f));
 
@@ -129,6 +131,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("paymentFormEntity", paymentFormEntity);
 
+			@SuppressWarnings("unused")
 			String method = paymentFormEntity.getMethod();
 
 			// if (method.toLowerCase().equals("get")){

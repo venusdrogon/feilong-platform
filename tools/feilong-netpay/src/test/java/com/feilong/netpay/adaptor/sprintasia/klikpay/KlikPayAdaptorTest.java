@@ -87,7 +87,6 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 		// "payType": "01",
 		// "signature": "1995880609",
 
-		KlikPayAdaptor bcaAdaptor = new KlikPayAdaptor();
 		String klikPayCode = "03BELAV220";
 
 		String dateString = "23/04/2014 18:20:20";

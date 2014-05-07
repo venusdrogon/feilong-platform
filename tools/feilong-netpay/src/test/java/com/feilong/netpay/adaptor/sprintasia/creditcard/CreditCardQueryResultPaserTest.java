@@ -18,10 +18,6 @@ package com.feilong.netpay.adaptor.sprintasia.creditcard;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.feilong.netpay.adaptor.sprintasia.creditcard.CreditCardQueryResultPaser;
 
 /**
  * The Class CreditCardQueryResultPaserTest.
@@ -30,9 +26,6 @@ import com.feilong.netpay.adaptor.sprintasia.creditcard.CreditCardQueryResultPas
  * @version 1.0 2014年5月5日 下午10:04:24
  */
 public class CreditCardQueryResultPaserTest{
-
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(CreditCardQueryResultPaserTest.class);
 
 	/**
 	 * Parses the wddx packet.

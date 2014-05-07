@@ -18,32 +18,25 @@ package yicheng;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
 /**
- * 新华一城网配置参数 实体类
+ * 新华一城网配置参数 实体类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 26, 2010 4:48:36 PM
  */
 public class YiChengPayEntity implements Serializable{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
 
 	// ******************form提交参数*******************************
-	/**
-	 * 商户号(一城卡提供)
-	 */
+	/** 商户号(一城卡提供). */
 	private String				merchantNo			= "888888880175003";
 
-	/**
-	 * 订单号 商户生成
-	 */
+	/** 订单号 商户生成. */
 	private String				orderId;
 
-	/**
-	 * 支付流水号（可以用当前时间） hhmmss
-	 */
+	/** 支付流水号（可以用当前时间） hhmmss. */
 	private String				serialNo;
 
 	/**
@@ -51,30 +44,20 @@ public class YiChengPayEntity implements Serializable{
 	 */
 	private String				amount;
 
-	/**
-	 * 回调地址，支付成功将向该地址发送支付结果等信息
-	 */
+	/** 回调地址，支付成功将向该地址发送支付结果等信息. */
 	private String				callBackUrl;
 
-	/**
-	 * 是否全额支付（0为部分支付，1为全额支付）
-	 */
+	/** 是否全额支付（0为部分支付，1为全额支付）. */
 	private String				isFull				= "1";
 
-	/**
-	 * 终端号 一城卡提供
-	 */
+	/** 终端号 一城卡提供. */
 	private String				terminalNo			= "75003003";
 
-	/**
-	 * 密文 MD5序列
-	 */
+	/** 密文 MD5序列. */
 	private String				merchantDecodedData;
 
 	// **********************************************************
-	/**
-	 * 一城网给商业客户密钥,用于拼接md5参数
-	 */
+	/** 一城网给商业客户密钥,用于拼接md5参数. */
 	private String				key					= "AFuIFd1wxySyDDqq";
 
 	// ******************回调参数*******************************
@@ -84,23 +67,22 @@ public class YiChengPayEntity implements Serializable{
 	// private static String serialNo;
 	// private static String amount;
 	// private static String isFull;
-	/**
-	 * 支付状态。1-成功，2-失败，3-已付款
-	 */
+	/** 支付状态。1-成功，2-失败，3-已付款. */
 	private String				payStatus;
 
-	/**
-	 * 密文 密文 数字签名 MD5序列
-	 */
+	/** 密文 密文 数字签名 MD5序列. */
 	private String				resultDecodedData;
 
 	// ***********************************************************
+	/**
+	 * Instantiates a new yi cheng pay entity.
+	 */
 	public YiChengPayEntity(){
 		super();
 	}
 
 	/**
-	 * 带参数实例化(用于提交)
+	 * 带参数实例化(用于提交).
 	 * 
 	 * @param merchantNo
 	 *            商户号(一城卡提供)
@@ -119,8 +101,8 @@ public class YiChengPayEntity implements Serializable{
 	 * @param createTime
 	 *            important 必须和数据库订单创建时间一致
 	 */
-	public YiChengPayEntity(String merchantNo, String orderId, String amount, String callBackUrl, String isFull, String terminalNo, String key,
-			Date createTime){
+	public YiChengPayEntity(String merchantNo, String orderId, String amount, String callBackUrl, String isFull, String terminalNo,
+			String key, Date createTime){
 		this.merchantNo = merchantNo;
 		this.orderId = orderId;
 		this.serialNo = YiChengPay.getSerialNo(createTime);
