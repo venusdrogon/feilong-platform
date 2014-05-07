@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
-import com.feilong.netpay.adaptor.sprintasia.creditcard.BcaCreditCardPayAdaptor;
+import com.feilong.netpay.adaptor.sprintasia.creditcard.CreditCardPayAdaptor;
 import com.feilong.netpay.command.QueryRequest;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
@@ -33,7 +33,7 @@ import com.feilong.tools.net.httpclient.HttpClientUtilException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 24, 2014 11:45:24 AM
  */
-public class BcaCreditCardPayAdaptorTest extends BasePaymentTest{
+public class CreditCardPayAdaptorTest extends BasePaymentTest{
 
 	/** The payment adaptor. */
 	@Autowired
@@ -59,7 +59,7 @@ public class BcaCreditCardPayAdaptorTest extends BasePaymentTest{
 	@Test
 	public final void getQueryResult() throws HttpClientUtilException{
 
-		BcaCreditCardPayAdaptor bcaCreditCardPayAdaptor = (BcaCreditCardPayAdaptor) paymentAdaptor;
+		CreditCardPayAdaptor bcaCreditCardPayAdaptor = (CreditCardPayAdaptor) paymentAdaptor;
 		QueryRequest queryRequest = new QueryRequest();
 		queryRequest.setTradeNo("010003170001");
 
