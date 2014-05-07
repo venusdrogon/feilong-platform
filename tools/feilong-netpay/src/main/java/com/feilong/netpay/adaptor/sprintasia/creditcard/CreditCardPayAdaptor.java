@@ -97,7 +97,7 @@ public class CreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * @throws HttpClientUtilException
 	 *             the http client util exception
 	 */
-	public QueryResult getQueryResult(QueryRequest queryRequest) throws HttpClientUtilException{
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
 
 		// @formatter:off
 

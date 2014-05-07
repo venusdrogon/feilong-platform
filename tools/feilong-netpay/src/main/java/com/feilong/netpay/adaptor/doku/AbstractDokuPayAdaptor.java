@@ -39,6 +39,8 @@ import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.PaymentResult;
+import com.feilong.netpay.command.QueryRequest;
+import com.feilong.netpay.command.QueryResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
@@ -319,6 +321,15 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			return getPaymentFormEntity(gateway, method, map);
 		}
 		throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#getQueryResult(com.feilong.netpay.command.QueryRequest)
+	 */
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
+		// TODO Auto-generated method stub
+		return super.getQueryResult(queryRequest);
 	}
 
 	/**

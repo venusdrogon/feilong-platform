@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.PaymentResult;
+import com.feilong.netpay.command.QueryRequest;
+import com.feilong.netpay.command.QueryResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.tools.net.httpclient.HttpClientUtilException;
 
@@ -47,6 +49,17 @@ public interface PaymentAdaptor{
 	 * @return the payment form entity
 	 */
 	PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap);
+
+	/**
+	 * Gets the query result.
+	 * 
+	 * @param queryRequest
+	 *            the query request
+	 * @return the query result
+	 * @throws Exception
+	 *             查询时候的异常
+	 */
+	QueryResult getQueryResult(QueryRequest queryRequest) throws Exception;
 
 	// ********************************************************************************************
 

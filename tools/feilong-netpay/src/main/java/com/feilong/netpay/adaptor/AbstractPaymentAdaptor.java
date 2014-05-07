@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +29,8 @@ import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
+import com.feilong.netpay.command.QueryRequest;
+import com.feilong.netpay.command.QueryResult;
 import com.feilong.tools.json.JsonUtil;
 
 /**
@@ -174,6 +177,16 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		paymentFormEntity.setMethod(method);
 		paymentFormEntity.setHiddenParamMap(hiddenParamMap);
 		return paymentFormEntity;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getQueryResult(com.feilong.netpay.command.QueryRequest)
+	 */
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
+		// 抛出表示代码块尚未实施。这一例外补充UnsupportedOperationException异常提供更加丰富的语义描述的问题。
+		// NotImplementedException代表作者已经实现的逻辑在程序中的情况。这可以作为基础的TODO标记一个例外。因为这个逻辑可能在catch块，该异常等异常链。
+		throw new NotImplementedException("getQueryResult is not implemented!");
 	}
 
 	// *********************************************************************************************

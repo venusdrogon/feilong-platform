@@ -53,11 +53,10 @@ public class CreditCardPayAdaptorTest extends BasePaymentTest{
 	 * Gets the query result.
 	 * 
 	 * @return the query result
-	 * @throws HttpClientUtilException
-	 *             the http client util exception
+	 * @throws Exception
 	 */
 	@Test
-	public final void getQueryResult() throws HttpClientUtilException{
+	public final void getQueryResult() throws Exception{
 
 		CreditCardPayAdaptor bcaCreditCardPayAdaptor = (CreditCardPayAdaptor) paymentAdaptor;
 		QueryRequest queryRequest = new QueryRequest();
