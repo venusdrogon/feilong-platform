@@ -13,6 +13,8 @@
 	<bean id="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.AbstractDokuPayAdaptor" abstract="true">
 		<property name="gateway" value="#{p_dokuPayment['gateway']}" />
 		<property name="method" value="#{p_dokuPayment['method']}" />
+		<property name="queryGateway" value="#{p_dokuPayment['query.gateway']}" />
+		<property name="queryMethod" value="#{p_dokuPayment['query.method']}" />
 
 		<property name="MALLID" value="#{p_dokuPayment['MALLID']}" />
 		<property name="Shared_key" value="#{p_dokuPayment['Shared_key']}" />
@@ -44,7 +46,7 @@
 	<bean id="permataVALITEPayAdaptor" parent="baseDoKuPayAdaptor" class="com.feilong.netpay.adaptor.doku.PermataVALITEPayAdaptor">
 		<property name="PAYMENTCHANNEL" value="#{p_dokuPayment['PAYMENTCHANNEL.permataVALITEPay']}" />
 		<property name="atmRedirectSuccessStatusCode" value="#{p_dokuPayment['redirect.status.success.atm']}" />
-		<property name="maxPriceForPay" value="#{p_dokuPayment['maxPriceForPay']}" />
+		<property name="maxPriceForPay" value="#{p_dokuPayment['maxPriceForPay.atm']}" />
 	</bean>
 
 	<!-- creditCardPayAdaptor 支付 -->

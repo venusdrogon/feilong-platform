@@ -62,6 +62,12 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	/** The method. */
 	private String				method;
 
+	/** 查询网关提交地址. */
+	private String				queryGateway;
+
+	/** queryMethod. */
+	private String				queryMethod;
+
 	/** The MALLID. */
 	private String				MALLID;
 
@@ -764,6 +770,26 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setNotifySuccessResponseCode(String notifySuccessResponseCode){
 		this.notifySuccessResponseCode = notifySuccessResponseCode;
+	}
+
+	/**
+	 * 设置 查询网关提交地址.
+	 * 
+	 * @param queryGateway
+	 *            the queryGateway to set
+	 */
+	public void setQueryGateway(String queryGateway){
+		this.queryGateway = queryGateway;
+	}
+
+	/**
+	 * 设置 queryMethod.
+	 * 
+	 * @param queryMethod
+	 *            the queryMethod to set
+	 */
+	public void setQueryMethod(String queryMethod){
+		this.queryMethod = queryMethod;
 	}
 
 }
