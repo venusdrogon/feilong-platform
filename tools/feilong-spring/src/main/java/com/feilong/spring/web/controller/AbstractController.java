@@ -159,7 +159,7 @@ public abstract class AbstractController{
 	 * 
 	 * @return the request language
 	 */
-	private Locale getLocale(){
+	protected Locale getLocale(){
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
 		Locale locale = localeResolver.resolveLocale(request);

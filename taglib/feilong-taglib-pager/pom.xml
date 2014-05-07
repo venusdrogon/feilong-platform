@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.feilong.platform.taglib</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.5</version>
+		<version>1.0.6-SNAPSHOT</version>
 	</parent>
 	<artifactId>feilong-taglib-pager</artifactId>
 	<name>feilong-taglib-pager</name>

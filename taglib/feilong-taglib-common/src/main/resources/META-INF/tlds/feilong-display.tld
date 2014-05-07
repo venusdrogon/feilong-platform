@@ -16,29 +16,7 @@
 	<!-- 将由工具显示的可选名 -->
 	<description>飞龙java自定义标签-显示标签</description>
 
-
-	<!-- 面包屑导航 -->
-	<tag>
-		<name>siteMap</name>
-		<tag-class>com.feilong.taglib.display.navigation.SiteMapTag</tag-class>
-		<body-content>empty</body-content>
-		<description>面包屑导航</description>
-		<attribute>
-			<description>面包屑导航的连接符,默认">"</description>
-			<name>connector</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<description>数据源,用户所有可以访问的链接List</description>
-			<name>siteMapEntityList</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<!-- 飞龙分页自定义标签 -->
+	<!-- ******************分页*************************************** -->
 	<tag>
 		<name>pager</name>
 		<tag-class>com.feilong.taglib.display.pager.PagerTag</tag-class>
@@ -161,6 +139,70 @@
 					新浪微博的时间轴也只给出了10页，同样的折中处理。
 				]]>
 			</description>
+		</attribute>
+	</tag>
+
+
+	<!-- **********************面包屑导航*********************************** -->
+	<tag>
+		<name>siteMap</name>
+		<tag-class>com.feilong.taglib.display.navigation.SiteMapTag</tag-class>
+		<body-content>empty</body-content>
+		<description>面包屑导航</description>
+		<attribute>
+			<description>面包屑导航的连接符,默认">"</description>
+			<name>connector</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<description>数据源,用户所有可以访问的链接List</description>
+			<name>siteMapEntityList</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<!-- *******************httpConcat************************************** -->
+	<tag>
+		<name>httpConcat</name>
+		<tag-class>com.feilong.taglib.display.httpconcat.HttpConcatTag</tag-class>
+		<description>自动合并拆分tengine</description>
+		<body-content>jsp</body-content>
+		<attribute>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>类型css/js</description>
+		</attribute>
+
+		<attribute>
+			<name>root</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>根目录:如果设置root为'/script',会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801</description>
+		</attribute>
+
+		<attribute>
+			<name>version</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>版本号</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>httpConcatItem</name>
+		<tag-class>com.feilong.taglib.display.httpconcat.HttpConcatItemTag</tag-class>
+		<body-content>empty</body-content>
+		<description>tengine文件SRC</description>
+
+		<attribute>
+			<name>src</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>css/js的src</description>
 		</attribute>
 	</tag>
 </taglib>

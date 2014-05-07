@@ -3,7 +3,7 @@
   <parent>
     <artifactId>parent</artifactId>
     <groupId>com.feilong.platform.tools</groupId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>feilong-tools-om</artifactId>
@@ -90,7 +90,7 @@
     <dependency>
       <groupId>com.feilong.test</groupId>
       <artifactId>feilong-common-test</artifactId>
-      <version>1.0.5</version>
+      <version>1.0.6-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

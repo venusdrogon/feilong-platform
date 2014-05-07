@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.feilong.platform</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.5</version>
+		<version>1.0.6-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.feilong.platform.tools</groupId>
@@ -42,6 +42,7 @@
 		<module>feilong-tools-scm</module>
 		<module>feilong-tools-xstream</module>
 		<module>feilong-tools-cxf</module>
+		<module>feilong-application-weather</module>
 	</modules>
 
 	<dependencies>

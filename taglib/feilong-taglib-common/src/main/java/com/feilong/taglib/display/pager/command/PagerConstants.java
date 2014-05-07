@@ -22,6 +22,7 @@ package com.feilong.taglib.display.pager.command;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-16 上午12:03:45
+ * @version 1.0.5 2014-5-7 13:24
  */
 public interface PagerConstants{
 
@@ -48,4 +49,12 @@ public interface PagerConstants{
 
 	/** url 中特殊变量,如果带有这个变量 将不解析vm,调试使用问题所在 . */
 	String	DEFAULT_PARAM_DEBUG_NOT_PARSEVM_VALUE	= "true";
+
+	/**
+	 * 模板链接页码,一般url正常的url不会出现这个分页码<code>{@value}</code>
+	 * 
+	 * @since 1.0.5
+	 */
+	// TODO 可修改为 可传递参数
+	Integer	DEFAULT_TEMPLATE_PAGE_NO				= -88888888;
 }

@@ -23,6 +23,8 @@ import java.util.LinkedHashMap;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 9, 2013 1:14:35 AM
+ * @version 1.0.5 2014-5-7 13:26
+ * @version 1.0.6 2014-5-7 13:50
  */
 public class PagerVMParam implements Serializable{
 
@@ -61,9 +63,6 @@ public class PagerVMParam implements Serializable{
 	/** 最后一页的链接. */
 	private String							lastUrl;
 
-	/** 链接的模板,以便前端js 替换. */
-	private String							hrefUrlTemplate;
-
 	/** 开始迭代索引编号. */
 	private Integer							startIteratorIndex;
 
@@ -72,6 +71,16 @@ public class PagerVMParam implements Serializable{
 
 	/** 循环 迭代索引map key是编号，value 是页面链接. */
 	private LinkedHashMap<Integer, String>	iteratorIndexMap;
+
+	/** The pager url template. */
+	private PagerUrlTemplate				pagerUrlTemplate;
+
+	/**
+	 * 分页参数名称 .
+	 * 
+	 * @since 1.0.6
+	 */
+	private String							pageParamName;
 
 	/**
 	 * Gets the 设置的皮肤.
@@ -251,25 +260,6 @@ public class PagerVMParam implements Serializable{
 	}
 
 	/**
-	 * Gets the 链接的模板,以便前端js 替换.
-	 * 
-	 * @return the hrefUrlTemplate
-	 */
-	public String getHrefUrlTemplate(){
-		return hrefUrlTemplate;
-	}
-
-	/**
-	 * Sets the 链接的模板,以便前端js 替换.
-	 * 
-	 * @param hrefUrlTemplate
-	 *            the hrefUrlTemplate to set
-	 */
-	public void setHrefUrlTemplate(String hrefUrlTemplate){
-		this.hrefUrlTemplate = hrefUrlTemplate;
-	}
-
-	/**
 	 * Gets the 开始迭代索引编号.
 	 * 
 	 * @return the startIteratorIndex
@@ -324,6 +314,46 @@ public class PagerVMParam implements Serializable{
 	 */
 	public void setIteratorIndexMap(LinkedHashMap<Integer, String> iteratorIndexMap){
 		this.iteratorIndexMap = iteratorIndexMap;
+	}
+
+	/**
+	 * Gets the pager url template.
+	 * 
+	 * @return the pagerUrlTemplate
+	 */
+	public PagerUrlTemplate getPagerUrlTemplate(){
+		return pagerUrlTemplate;
+	}
+
+	/**
+	 * Sets the pager url template.
+	 * 
+	 * @param pagerUrlTemplate
+	 *            the pagerUrlTemplate to set
+	 */
+	public void setPagerUrlTemplate(PagerUrlTemplate pagerUrlTemplate){
+		this.pagerUrlTemplate = pagerUrlTemplate;
+	}
+
+	/**
+	 * 获得 参数.
+	 * 
+	 * @return the pageParamName
+	 * @since 1.0.6
+	 */
+	public String getPageParamName(){
+		return pageParamName;
+	}
+
+	/**
+	 * 设置 参数.
+	 * 
+	 * @param pageParamName
+	 *            the pageParamName to set
+	 * @since 1.0.6
+	 */
+	public void setPageParamName(String pageParamName){
+		this.pageParamName = pageParamName;
 	}
 
 }

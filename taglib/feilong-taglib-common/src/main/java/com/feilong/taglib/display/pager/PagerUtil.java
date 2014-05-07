@@ -33,7 +33,9 @@ import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.ParamUtil;
+import com.feilong.taglib.display.pager.command.PagerConstants;
 import com.feilong.taglib.display.pager.command.PagerParams;
+import com.feilong.taglib.display.pager.command.PagerUrlTemplate;
 import com.feilong.taglib.display.pager.command.PagerVMParam;
 import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.velocity.VelocityUtil;
@@ -63,9 +65,6 @@ public final class PagerUtil{
 
 	/** 国际化配置文件<code>{@value}</code>. */
 	private static final String	I18N_FEILONG_PAGER	= "messages/feilong-pager";
-
-	/** 模板链接页码<code>{@value}</code>. */
-	private static final int	TEMPLATE_PAGE_NO	= -8888888;
 
 	/**
 	 * 解析vm模板 生成分页html代码.
@@ -204,6 +203,8 @@ public final class PagerUtil{
 		int firstPageNo = 1;
 		int lastPageNo = allPageNo;
 
+		String pageParamName = pagerParams.getPageParamName();
+
 		// ********************************************************************************************
 		String skin = pagerParams.getSkin();
 
@@ -223,7 +224,14 @@ public final class PagerUtil{
 		pagerVMParam.setFirstUrl(indexAndHrefMap.get(firstPageNo));// 第一页的链接
 		pagerVMParam.setLastUrl(indexAndHrefMap.get(lastPageNo));// 最后一页的链接
 
-		pagerVMParam.setHrefUrlTemplate(indexAndHrefMap.get(TEMPLATE_PAGE_NO));// 模板链接
+		Integer defaultTemplatePageNo = PagerConstants.DEFAULT_TEMPLATE_PAGE_NO;
+
+		PagerUrlTemplate pagerUrlTemplate = new PagerUrlTemplate();
+		pagerUrlTemplate.setHref(indexAndHrefMap.get(defaultTemplatePageNo));// 模板链接
+		pagerUrlTemplate.setTemplateValue(defaultTemplatePageNo);
+		pagerVMParam.setPagerUrlTemplate(pagerUrlTemplate);
+
+		pagerVMParam.setPageParamName(pageParamName);
 
 		// *********************************************************
 		LinkedHashMap<Integer, String> iteratorIndexAndHrefMap = getIteratorIndexAndHrefMap(
@@ -281,7 +289,7 @@ public final class PagerUtil{
 
 		// 所有需要生成url 的 index值
 		Set<Integer> indexSet = new HashSet<Integer>();
-		indexSet.add(TEMPLATE_PAGE_NO);// 模板链接 用于前端操作
+		indexSet.add(PagerConstants.DEFAULT_TEMPLATE_PAGE_NO);// 模板链接 用于前端操作
 		indexSet.add(prePageNo);
 		indexSet.add(nextPageNo);
 		indexSet.add(firstPageNo);
@@ -312,7 +320,7 @@ public final class PagerUtil{
 
 	/**
 	 * 获得所有页码的连接<br>
-	 * 注:(key={@link #TEMPLATE_PAGE_NO} 为模板链接,可用户前端解析 {@link PagerVMParam#getHrefUrlTemplate()}.
+	 * 注:(key={@link #DEFAULT_TEMPLATE_PAGE_NO} 为模板链接,可用户前端解析 {@link PagerVMParam#getHrefUrlTemplate()}.
 	 * 
 	 * @param pagerParams
 	 *            the pager params
