@@ -1,22 +1,21 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.application.taobao;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -45,22 +44,21 @@ import com.taobao.api.request.UserGetRequest;
 import com.taobao.api.response.UserGetResponse;
 
 /**
- * 飞龙淘宝包
+ * 飞龙淘宝包.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-17 下午01:31:02
  */
-public class FeiLongTaoBaoUtil{
+public class TaoBaoUtil{
 
-	/******************************************************************************************/
 	/**
-	 * 获得淘宝退出登录,完整url
+	 * 获得淘宝退出登录,完整url.
 	 * 
 	 * @param taoBaoStandardLoginOutEntity
-	 *            {@link TaoBaoStandardLoginOutEntity}
+	 *            the tao bao standard login out entity
 	 * @return 获得淘宝退出登录,完整url,如<br>
 	 *         http://container.api.taobao.com/container/logoff?app_key=12129547&sign=06E307E5164260BF87B2E75689AC77B6&sign_method=md5&
-	 *         timestamp=2010-12-06 17:19:08
+	 *         timestamp=2010-12-06 17:19:08 {@link TaoBaoStandardLoginOutEntity}
 	 */
 	public static String getTaoBaoStandardLoginOutUrl(TaoBaoStandardLoginOutEntity taoBaoStandardLoginOutEntity){
 		// validate taoBaoStandardLoginOutEntity
@@ -101,13 +99,13 @@ public class FeiLongTaoBaoUtil{
 	}
 
 	/**
-	 * 获得淘宝 快速登录实现,完整url
+	 * 获得淘宝 快速登录实现,完整url.
 	 * 
 	 * @param taoBaoStandardLoginEntity
-	 *            {@link TaoBaoStandardLoginEntity}
+	 *            the tao bao standard login entity
 	 * @return 获得淘宝 快速登录实现,完整url,如<br>
 	 *         http://container.api.taobao.com/container/identify?app_key=12129547&sign=B78AC46FDD0470661BC2B9B0E11E10FE&sign_method=md5&
-	 *         target =1&timestamp=2010-12-06%2017:23:54
+	 *         target =1&timestamp=2010-12-06%2017:23:54 {@link TaoBaoStandardLoginEntity}
 	 */
 	public static String getTaoBaoStandardLoginUrl(TaoBaoStandardLoginEntity taoBaoStandardLoginEntity){
 		// validate taoBaoStandardLoginEntity
@@ -152,13 +150,12 @@ public class FeiLongTaoBaoUtil{
 		}
 	}
 
-	/*********************************************************************************************************/
 	/**
-	 * 为了获取授权码Code,拼接url
+	 * 为了获取授权码Code,拼接url.
 	 * 
 	 * @param taoBaoOAuthLoginForCodeEntity
-	 *            {@link TaoBaoOAuthLoginForCodeEntity}
-	 * @return
+	 *            the tao bao o auth login for code entity
+	 * @return the tao bao o auth login url for get code {@link TaoBaoOAuthLoginForCodeEntity}
 	 */
 	public static String getTaoBaoOAuthLoginUrlForGetCode(TaoBaoOAuthLoginForCodeEntity taoBaoOAuthLoginForCodeEntity){
 		// validate taoBaoOAuthLoginForCodeEntity
@@ -193,13 +190,13 @@ public class FeiLongTaoBaoUtil{
 	}
 
 	/**
-	 * 获得 oauth 退出地址
+	 * 获得 oauth 退出地址.
 	 * 
 	 * @param client_id
 	 *            即创建应用时的Appkey
 	 * @param redirect_uri
 	 *            成功退出后返回到redirect_uri地址
-	 * @return
+	 * @return the tao bao o auth login out url
 	 */
 	public static String getTaoBaoOAuthLoginOutUrl(String client_id,String redirect_uri){
 		String format = "https://oauth.taobao.com/logoff?client_id=%s&redirect_uri=%s";
@@ -208,9 +205,11 @@ public class FeiLongTaoBaoUtil{
 
 	/**
 	 * 基于 code 获得 token 值<br>
-	 * access_token就相当于sessionkey，后续调用其他接口可以直接使用
+	 * access_token就相当于sessionkey，后续调用其他接口可以直接使用.
 	 * 
-	 * @return
+	 * @param taoBaoOAuthLoginForTokenEntity
+	 *            the tao bao o auth login for token entity
+	 * @return the tao bao o auth access token
 	 */
 	public static String getTaoBaoOAuthAccessToken(TaoBaoOAuthLoginForTokenEntity taoBaoOAuthLoginForTokenEntity){
 		Map<String, String> props = new HashMap<String, String>();
@@ -244,7 +243,7 @@ public class FeiLongTaoBaoUtil{
 	}
 
 	/**
-	 * 获取当前登录用户User数据
+	 * 获取当前登录用户User数据.
 	 * 
 	 * @param access_token
 	 *            access_token就相当于sessionkey，后续调用其他接口可以直接使用
@@ -259,8 +258,7 @@ public class FeiLongTaoBaoUtil{
 	 *            需返回的字段列表。<br>
 	 *            可选值：User结构体中的所有字段；以半角逗号(,)分隔。<br>
 	 *            不支持：地址，真实姓名，身份证，手机，电话<br>
-	 *            {@link User}
-	 * @return User
+	 * @return User {@link User}
 	 */
 	public static User getUserByAccessToken(String access_token,String serverUrl,String appKey,String appSecret,String fields){
 		TaobaoClient taobaoClient = new DefaultTaobaoClient(serverUrl, appKey, appSecret);
@@ -279,7 +277,7 @@ public class FeiLongTaoBaoUtil{
 	}
 
 	/**
-	 * 获取当前登录用户User数据
+	 * 获取当前登录用户User数据.
 	 * 
 	 * @param access_token
 	 *            access_token就相当于sessionkey，后续调用其他接口可以直接使用
@@ -294,8 +292,7 @@ public class FeiLongTaoBaoUtil{
 	 *            需返回的字段列表。<br>
 	 *            可选值：User结构体中的所有字段； <br>
 	 *            不支持：地址，真实姓名，身份证，手机，电话<br>
-	 *            {@link User}
-	 * @return User
+	 * @return User {@link User}
 	 */
 	public static User getUserByAccessToken(String access_token,String serverUrl,String appKey,String appSecret,String[] fields){
 		String _fields = StringUtils.join(fields, ',');
@@ -318,9 +315,10 @@ public class FeiLongTaoBaoUtil{
 	 * </ul>
 	 * 
 	 * @param params
+	 *            the params
 	 * @param secret
-	 * @return
-	 * @throws UnsupportedEncodingException
+	 *            the secret
+	 * @return the string
 	 */
 	public static String sign(final TreeMap<String, String> params,String secret){
 		if (null == params || params.isEmpty()){

@@ -19,7 +19,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.feilong.application.taobao.FeiLongTaoBaoUtil;
+import com.feilong.application.taobao.TaoBaoUtil;
 import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForCodeEntity;
 import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForTokenEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginEntity;
@@ -44,7 +44,7 @@ import com.taobao.api.response.TradesSoldGetResponse;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-17 下午01:31:02
  */
-public class FeiLongTaoBaoUtilTest{
+public class TaoBaoUtilTest{
 
 	public final static String	APP_KEY		= "12398690";
 
@@ -143,7 +143,7 @@ public class FeiLongTaoBaoUtilTest{
 		taoBaoStandardLoginEntity.setTimestamp(DateUtil.date2String(
 				new Date(),
 				DatePattern.commonWithTime));
-		System.out.println(FeiLongTaoBaoUtil.getTaoBaoStandardLoginUrl(taoBaoStandardLoginEntity));
+		System.out.println(TaoBaoUtil.getTaoBaoStandardLoginUrl(taoBaoStandardLoginEntity));
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class FeiLongTaoBaoUtilTest{
 		taoBaoStandardLoginOutEntity.setTimestamp(DateUtil.date2String(
 				new Date(),
 				DatePattern.commonWithTime));
-		System.out.println(FeiLongTaoBaoUtil.getTaoBaoStandardLoginOutUrl(taoBaoStandardLoginOutEntity));
+		System.out.println(TaoBaoUtil.getTaoBaoStandardLoginOutUrl(taoBaoStandardLoginOutEntity));
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class FeiLongTaoBaoUtilTest{
 		taoBaoOAuthLoginForCodeEntity.setClient_id(APP_KEY);
 		taoBaoOAuthLoginForCodeEntity.setResponse_type("code");
 		taoBaoOAuthLoginForCodeEntity.setState("11111");
-		System.out.println(FeiLongTaoBaoUtil.getTaoBaoOAuthLoginUrlForGetCode(taoBaoOAuthLoginForCodeEntity));
+		System.out.println(TaoBaoUtil.getTaoBaoOAuthLoginUrlForGetCode(taoBaoOAuthLoginForCodeEntity));
 		// 成功返回
 		// http://www.feilong.com/taobao?code=Agx2k1jZZ8PSFLg3Z49NVdIl792&state=11111
 		// http://www.feilong.com/taobao?error=invalid_client&error_description=The%20Application%20already%20Bind%20the%20user:%DE)T%08&state=11111
@@ -183,7 +183,7 @@ public class FeiLongTaoBaoUtilTest{
 	public final void getTaoBaoOAuthLoginOutUrl(){
 		String client_id = APP_KEY;
 		String redirect_uri = "http://www.feilong.com/usercenter";
-		System.out.println(FeiLongTaoBaoUtil.getTaoBaoOAuthLoginOutUrl(client_id, redirect_uri));
+		System.out.println(TaoBaoUtil.getTaoBaoOAuthLoginOutUrl(client_id, redirect_uri));
 	}
 
 	@Test
@@ -197,7 +197,7 @@ public class FeiLongTaoBaoUtilTest{
 		taoBaoOAuthLoginForTokenEntity.setClient_id(APP_KEY);
 		taoBaoOAuthLoginForTokenEntity.setClient_secret(APP_SERCET);
 		// access_token就相当于sessionkey，后续调用其他接口可以直接使用
-		String access_token = FeiLongTaoBaoUtil.getTaoBaoOAuthAccessToken(taoBaoOAuthLoginForTokenEntity);
+		String access_token = TaoBaoUtil.getTaoBaoOAuthAccessToken(taoBaoOAuthLoginForTokenEntity);
 		String serverUrl = "http://gw.api.taobao.com/router/rest";
 		String[] fields = {
 				"user_id",
@@ -233,7 +233,7 @@ public class FeiLongTaoBaoUtilTest{
 				"magazine_subscribe",
 				"vertical_market",
 				"online_gaming" };
-		User user = FeiLongTaoBaoUtil.getUserByAccessToken(access_token, serverUrl, APP_KEY, APP_SERCET, fields);
+		User user = TaoBaoUtil.getUserByAccessToken(access_token, serverUrl, APP_KEY, APP_SERCET, fields);
 		// 获取当前登录用户nick等数据，
 		// 获取nick
 		System.out.println(user.getNick());
