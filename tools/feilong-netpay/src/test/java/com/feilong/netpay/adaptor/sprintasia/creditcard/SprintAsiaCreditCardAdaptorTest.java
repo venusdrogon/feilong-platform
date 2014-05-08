@@ -33,7 +33,7 @@ import com.feilong.tools.json.JsonUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 24, 2014 11:45:24 AM
  */
-public class CreditCardPayAdaptorTest extends BasePaymentTest{
+public class SprintAsiaCreditCardAdaptorTest extends BasePaymentTest{
 
 	/** The payment adaptor. */
 	@Autowired
@@ -58,11 +58,11 @@ public class CreditCardPayAdaptorTest extends BasePaymentTest{
 	@Test
 	public final void getQueryResult() throws Exception{
 
-		CreditCardPayAdaptor creditCardPayAdaptor = (CreditCardPayAdaptor) paymentAdaptor;
+		SprintAsiaCreditCardAdaptor sprintAsiaCreditCardAdaptor = (SprintAsiaCreditCardAdaptor) paymentAdaptor;
 		QueryRequest queryRequest = new QueryRequest();
 		queryRequest.setTradeNo("010003170001");
 
-		QueryResult queryResult = creditCardPayAdaptor.getQueryResult(queryRequest);
+		QueryResult queryResult = sprintAsiaCreditCardAdaptor.getQueryResult(queryRequest);
 
 		if (log.isInfoEnabled()){
 			log.info(JsonUtil.format(queryResult));

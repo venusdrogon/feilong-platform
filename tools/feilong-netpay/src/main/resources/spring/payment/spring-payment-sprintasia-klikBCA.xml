@@ -10,7 +10,7 @@
 	<util:properties id="p_bcaklikBCAPayment" location="classpath:config/payment/payment-sprintasia-klikBCA.properties"></util:properties>
 	<!-- #{p_bcaklikBCAPayment['klikBCA.gateway']} -->
 	<!-- klikBCAAdaptor klikBCA.gateway-->
-	<bean id="klikBCAAdaptor" class="com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAAdaptor">
+	<bean id="klikBCAAdaptor" class="com.feilong.netpay.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor">
 	</bean>
 
 </beans>

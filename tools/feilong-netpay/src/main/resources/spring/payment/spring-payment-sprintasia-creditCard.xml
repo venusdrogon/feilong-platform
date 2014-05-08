@@ -10,7 +10,7 @@
 	<util:properties id="p_bcaCreditCardPayment" location="classpath:config/payment/payment-sprintasia-creditCard.properties"></util:properties>
 
 	<!-- bcaCreditCardPayAdaptor -->
-	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.sprintasia.creditcard.CreditCardPayAdaptor">
+	<bean id="bcaCreditCardPayAdaptor" class="com.feilong.netpay.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdaptor">
 		<property name="gateway" value="#{p_bcaCreditCardPayment['gateway']}" />
 		<property name="method" value="#{p_bcaCreditCardPayment['method']}" />
 

@@ -24,10 +24,10 @@ import com.feilong.netpay.adaptor.BasePaymentTest;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 1, 2014 9:40:39 PM
  */
-public class KlikBCAAdaptorTest extends BasePaymentTest{
+public class SprintAsiaKlikBCAAdaptorTest extends BasePaymentTest{
 
 	@Autowired
 	@Qualifier("klikBCAAdaptor")
-	private KlikBCAAdaptor	klikBCAAdaptor;
+	private SprintAsiaKlikBCAAdaptor	sprintAsiaKlikBCAAdaptor;
 
 }

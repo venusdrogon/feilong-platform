@@ -50,10 +50,10 @@ import com.feilong.tools.net.httpclient3.HttpClientException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 2, 2014 9:15:37 PM
  */
-public class CreditCardPayAdaptor extends AbstractPaymentAdaptor{
+public class SprintAsiaCreditCardAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(CreditCardPayAdaptor.class);
+	private static final Logger	log	= LoggerFactory.getLogger(SprintAsiaCreditCardAdaptor.class);
 
 	/** 表单提交地址. */
 	private String				gateway;

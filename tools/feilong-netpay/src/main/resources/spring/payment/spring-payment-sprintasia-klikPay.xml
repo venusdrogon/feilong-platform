@@ -11,7 +11,7 @@
 
 	<!-- klikPayAdaptor -->
 	<!-- -->
-	<bean id="klikPayAdaptor" class="com.feilong.netpay.adaptor.sprintasia.klikpay.KlikPayAdaptor">
+	<bean id="klikPayAdaptor" class="com.feilong.netpay.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor">
 		<property name="gateway" value="#{p_bcaklikPayPayment['gateway']}" />
 		<property name="method" value="#{p_bcaklikPayPayment['method']}" />
 		<property name="klikPayCode" value="#{p_bcaklikPayPayment['klikPayCode']}" />

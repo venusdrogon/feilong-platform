@@ -37,10 +37,10 @@ import com.feilong.tools.net.httpclient3.HttpClientException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 15, 2013 8:41:39 PM
  */
-public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
+public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAAdaptor.class);
+	private static final Logger	log	= LoggerFactory.getLogger(SprintAsiaKlikBCAAdaptor.class);
 
 	/*
 	 * (non-Javadoc)

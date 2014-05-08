@@ -42,10 +42,10 @@ import com.feilong.tools.net.httpclient3.HttpClientException;
 /**
  * The Class KlikPayAdaptor.
  */
-public class KlikPayAdaptor extends AbstractPaymentAdaptor{
+public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/** The Constant log. */
-	private static final Logger	log						= LoggerFactory.getLogger(KlikPayAdaptor.class);
+	private static final Logger	log						= LoggerFactory.getLogger(SprintAsiaKlikPayAdaptor.class);
 
 	/** 表单提交地址. */
 	private String				gateway;

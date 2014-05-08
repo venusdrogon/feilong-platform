@@ -38,7 +38,7 @@ import com.feilong.netpay.adaptor.sprintasia.klikpay.util.KlikPayUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 22, 2014 4:15:13 PM
  */
-public class KlikPayAdaptorTest extends BasePaymentTest{
+public class SprintAsiaKlikPayAdaptorTest extends BasePaymentTest{
 
 	/** The payment adaptor. */
 	@Autowired
@@ -77,7 +77,7 @@ public class KlikPayAdaptorTest extends BasePaymentTest{
 	 * 
 	 * @throws Exception
 	 *             the exception
-	 *             {@link com.feilong.netpay.adaptor.sprintasia.klikpay.KlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 *             {@link com.feilong.netpay.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 *             .
 	 */
 	@Test
