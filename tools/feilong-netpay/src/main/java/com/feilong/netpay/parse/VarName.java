@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.sprintasia.creditcard.command;
+package com.feilong.netpay.parse;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 用来标识QueryResult 字段和 wddxPacket xml 一对一的关系,简化 减少hard coding
+ * 用来标识QueryResult 字段和 wddxPacket xml 一对一的关系,简化 减少hard coding.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 下午8:27:13
@@ -38,9 +38,16 @@ import java.lang.annotation.Target;
 public @interface VarName{
 
 	/**
-	 * 对应wddxPacket 里面的名称
+	 * 对应wddxPacket/XML 里面的名称.
 	 * 
 	 * @return the string
 	 */
-	String value();
+	String name();
+
+	/**
+	 * 示例结果(仅供查看的时候,知道这个字段的结果值格式和大致的值,没有其他作用).
+	 * 
+	 * @return the string
+	 */
+	String sampleValue() default "";
 }

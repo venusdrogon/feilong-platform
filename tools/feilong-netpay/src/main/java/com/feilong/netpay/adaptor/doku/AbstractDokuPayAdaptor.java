@@ -29,12 +29,17 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.RegexPattern;
 import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
+import com.feilong.netpay.adaptor.doku.command.DokuQueryResult;
+import com.feilong.netpay.adaptor.doku.command.Resultmsg;
+import com.feilong.netpay.adaptor.doku.util.DokuQueryResultParse;
+import com.feilong.netpay.adaptor.sprintasia.creditcard.command.TransactionStatus;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaySoLine;
 import com.feilong.netpay.command.PaymentFormEntity;
@@ -43,7 +48,10 @@ import com.feilong.netpay.command.QueryRequest;
 import com.feilong.netpay.command.QueryResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.RequestUtil;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.json.JsonUtil;
+import com.feilong.tools.net.httpclient3.HttpClientConfig;
+import com.feilong.tools.net.httpclient3.HttpClientUtil;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * Doku支付方式.
@@ -99,9 +107,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	/** 跳转回来带的 成功状态 code. */
 	private String				redirectSuccessStatusCode;
 
-	/** notify 成功的response code. */
-	private String				notifySuccessResponseCode;
-
 	// Andi 拿出的 DOKU 邮件里面的script 是 "ISO-8859-1"
 	/** The charset name for sh a1. */
 	private String				charsetNameForSHA1;
@@ -152,9 +157,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		// see Doku_OneCheckout_Metraplasa page 61
 		String PURCHASECURRENCY = CURRENCY;
 
-		// TODO
-		String SESSIONID = DateUtil.date2String(new Date(), DatePattern.timestamp);
-
+		String SESSIONID = payRequest.getBuyerName();
 		// ******************* 验证 NAME********************
 		// NAME AN …50 Travel Arranger Name / Buyer name
 		String NAME = payRequest.getBuyerName();
@@ -334,8 +337,79 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#getQueryResult(com.feilong.netpay.command.QueryRequest)
 	 */
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
-		// TODO Auto-generated method stub
-		return super.getQueryResult(queryRequest);
+		String TRANSIDMERCHANT = queryRequest.getTradeNo();
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("MALLID", MALLID); // Given by DOKU
+		map.put("CHAINMERCHANT", CHAINMERCHANT);// Given by DOKU
+		map.put("TRANSIDMERCHANT", TRANSIDMERCHANT);// Transaction ID from Merchant
+		map.put("SESSIONID", "" + queryRequest.getBuyer());
+		map.put("PAYMENTCHANNEL", PAYMENTCHANNEL);// See payment channel code list
+		// WORDS AN ...200 Hashed key combination encryption (use SHA1 meth- od).
+		// The hashed key generated from combining these parameters value in this order : MALLID+<shared key>+TRANSIDMERCHANT
+		map.put("WORDS", getWORDSForCheckStatus(TRANSIDMERCHANT));
+
+		HttpClientConfig httpClientConfig = new HttpClientConfig();
+
+		httpClientConfig.setUri(queryGateway);
+		httpClientConfig.setHttpMethodType(HttpMethodType.getHttpMethodType(queryMethod));
+		httpClientConfig.setParams(map);
+
+		// // <?xml
+		// version="1.0"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>
+		String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+
+		if (Resultmsg.FAILED.equals(responseBodyAsString)){
+			log.error("responseBodyAsString:[{}],httpClientConfig:{}", responseBodyAsString, JsonUtil.format(httpClientConfig));
+			return null;
+		}
+
+		DokuQueryResultParse dokuQueryResultParse = new DokuQueryResultParse();
+		DokuQueryResult dokuQueryResult = dokuQueryResultParse.parseXML(responseBodyAsString);
+		PaymentResult paymentResult = toPaymentResult(dokuQueryResult);
+
+		// DOKU 取不到
+		String paymentGatewayTradeNo = null;
+
+		QueryResult queryResult = new QueryResult();
+
+		queryResult.setGatewayAmount(new BigDecimal(dokuQueryResult.getAmount()));
+		// 20140508095526
+		queryResult.setGatewayPaymentTime(DateUtil.string2Date(dokuQueryResult.getPaymentDateTime(), DatePattern.timestamp));
+		queryResult.setGatewayResult(responseBodyAsString);
+		queryResult.setGatewayTradeNo(paymentGatewayTradeNo);
+		queryResult.setPaymentResult(paymentResult);
+		queryResult.setQueryResultCommand(dokuQueryResult);
+		queryResult.setTradeNo(TRANSIDMERCHANT);
+
+		if (log.isDebugEnabled()){
+			log.debug("queryResult:{}", JsonUtil.format(queryResult));
+		}
+		return queryResult;
+	}
+
+	/**
+	 * To payment result.
+	 * 
+	 * @param dokuQueryResult
+	 *            the doku query result
+	 * @return the payment result
+	 */
+	private PaymentResult toPaymentResult(DokuQueryResult dokuQueryResult){
+		String resultmsg = dokuQueryResult.getResultmsg();
+
+		// 成功
+		if (Resultmsg.SUCCESS.equals(resultmsg)){
+			return PaymentResult.PAID;
+		}
+		// 失败
+		else if (Resultmsg.FAILED.equals(resultmsg)){
+			return PaymentResult.NO_PAID;
+		}
+		// 其余抛出异常
+		else{
+			throw new UnsupportedOperationException("resultmsg:" + resultmsg + " not support!");
+		}
 	}
 
 	/**
@@ -469,8 +543,9 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		if (isSignOk){
 			log.info("signOk,tradeNo:[{}]");
 
-			// 0000: Success, others Failed
-			boolean statusSuccess = notifySuccessResponseCode.equals(RESPONSECODE);
+			// *) main identifier of transaction success / failed
+			boolean statusSuccess = Resultmsg.SUCCESS.equals(RESULTMSG);
+
 			Object[] logArgs = { TRANSIDMERCHANT, PAYMENTCHANNEL, RESPONSECODE };
 			if (!statusSuccess){
 				log.error("not pass verifyNotify,tradeNo:[{}],PAYMENTCHANNEL:[{}],RESPONSECODE:[{}]", logArgs);
@@ -484,6 +559,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 				WORDS,
 				ourWORDS,
 				RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
+
 		return PaymentResult.FAIL;
 	}
 
@@ -572,7 +648,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{
 		throw new UnsupportedOperationException("DOKU don't support close trade");
 	}
 
@@ -628,6 +704,20 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	private String getWORDSForNotify(String TRANSIDMERCHANT,String AMOUNT,String RESULTMSG,String VERIFYSTATUS){
 		String WORDS = AMOUNT + MALLID + Shared_key + TRANSIDMERCHANT + RESULTMSG + VERIFYSTATUS;
+		return SHA1Util.encode(WORDS, charsetNameForSHA1);
+	}
+
+	/**
+	 * Gets the wORDS for check status.
+	 * 
+	 * @param TRANSIDMERCHANT
+	 *            the tRANSIDMERCHANT
+	 * @return the wORDS for check status
+	 */
+	// Hashed key combination encryption (use SHA1 meth- od).
+	// The hashed key generated from combining these parameters value in this order : MALLID+<shared key>+TRANSIDMERCHANT
+	private String getWORDSForCheckStatus(String TRANSIDMERCHANT){
+		String WORDS = MALLID + Shared_key + TRANSIDMERCHANT;
 		return SHA1Util.encode(WORDS, charsetNameForSHA1);
 	}
 
@@ -760,16 +850,6 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 */
 	public void setCharsetNameForSHA1(String charsetNameForSHA1){
 		this.charsetNameForSHA1 = charsetNameForSHA1;
-	}
-
-	/**
-	 * Sets the notify success response code.
-	 * 
-	 * @param notifySuccessResponseCode
-	 *            the notifySuccessResponseCode to set
-	 */
-	public void setNotifySuccessResponseCode(String notifySuccessResponseCode){
-		this.notifySuccessResponseCode = notifySuccessResponseCode;
 	}
 
 	/**

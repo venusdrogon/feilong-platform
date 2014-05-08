@@ -22,7 +22,7 @@ package com.feilong.tools.net.httpclient3;
  * @version 1.0 Dec 30, 2013 1:58:26 AM
  * @since 1.0.6
  */
-public class HttpClientUtilException extends Exception{
+public class HttpClientException extends RuntimeException{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 4485565007832406655L;
@@ -30,7 +30,7 @@ public class HttpClientUtilException extends Exception{
 	/**
 	 * Instantiates a new http client util exception.
 	 */
-	public HttpClientUtilException(){
+	public HttpClientException(){
 		super();
 	}
 
@@ -40,7 +40,7 @@ public class HttpClientUtilException extends Exception{
 	 * @param message
 	 *            the message
 	 */
-	public HttpClientUtilException(String message){
+	public HttpClientException(String message){
 		super(message);
 	}
 
@@ -50,7 +50,7 @@ public class HttpClientUtilException extends Exception{
 	 * @param cause
 	 *            the cause
 	 */
-	public HttpClientUtilException(Throwable cause){
+	public HttpClientException(Throwable cause){
 		super(cause);
 	}
 
@@ -62,7 +62,7 @@ public class HttpClientUtilException extends Exception{
 	 * @param cause
 	 *            the cause
 	 */
-	public HttpClientUtilException(String message, Throwable cause){
+	public HttpClientException(String message, Throwable cause){
 		super(message, cause);
 	}
 }

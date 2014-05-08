@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.sprintasia.klikbca;
+package com.feilong.netpay.adaptor.sprintasia.klikbca.util;
 
 import static org.junit.Assert.*;
 
@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil;
 import com.feilong.netpay.adaptor.sprintasia.klikbca.command.OutputPaymentPGW;
+import com.feilong.netpay.adaptor.sprintasia.klikbca.util.KlikBCAUtil;
 
 /**
  * The Class KlikBCAUtilTest.
@@ -41,7 +41,7 @@ public class KlikBCAUtilTest{
 
 	/**
 	 * Test method for.
-	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil#getPaymentInquiryXML(java.lang.String, java.lang.String, java.util.List)}
+	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.util.KlikBCAUtil#getPaymentInquiryXML(java.lang.String, java.lang.String, java.util.List)}
 	 * .
 	 */
 	@Test
@@ -51,7 +51,7 @@ public class KlikBCAUtilTest{
 
 	/**
 	 * Test method for.
-	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.KlikBCAUtil#getPaymentConfirmationXML(com.feilong.netpay.adaptor.sprintasia.klikbca.command.OutputPaymentPGW)}
+	 * {@link com.feilong.netpay.adaptor.sprintasia.klikbca.util.KlikBCAUtil#getPaymentConfirmationXML(com.feilong.netpay.adaptor.sprintasia.klikbca.command.OutputPaymentPGW)}
 	 * .
 	 */
 	@Test

@@ -60,6 +60,9 @@ public class PayRequest implements Serializable{
 	/** (optional)买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private String				buyerName;
 
+	/** (optional)买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定. */
+	private Serializable		buyer;
+
 	/** (optional)买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private String				buyerEmail;
 
@@ -257,5 +260,24 @@ public class PayRequest implements Serializable{
 	 */
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;
+	}
+
+	/**
+	 * 获得 (optional)买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
+	 * 
+	 * @return the buyer
+	 */
+	public Serializable getBuyer(){
+		return buyer;
+	}
+
+	/**
+	 * 设置 (optional)买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
+	 * 
+	 * @param buyer
+	 *            the buyer to set
+	 */
+	public void setBuyer(Serializable buyer){
+		this.buyer = buyer;
 	}
 }

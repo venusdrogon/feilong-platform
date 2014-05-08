@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.netpay.adaptor.sprintasia.creditcard;
+package com.feilong.netpay.adaptor.sprintasia.creditcard.util;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +24,8 @@ import org.dom4j.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.sprintasia.creditcard.command.CreditCardQueryResult;
-import com.feilong.netpay.adaptor.sprintasia.creditcard.command.VarName;
+import com.feilong.netpay.parse.AbstractQueryResultXmlParse;
 import com.feilong.tools.dom4j.Dom4jUtil;
 import com.feilong.tools.json.JsonUtil;
 
@@ -98,7 +96,7 @@ import com.feilong.tools.json.JsonUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 下午6:47:34
  */
-public final class CreditCardQueryResultPaser{
+public final class CreditCardQueryResultPaser extends AbstractQueryResultXmlParse<CreditCardQueryResult>{
 
 	/** The Constant log. */
 	private static final Logger	log						= LoggerFactory.getLogger(CreditCardQueryResultPaser.class);
@@ -107,90 +105,13 @@ public final class CreditCardQueryResultPaser{
 	private static final String	XPATH_EXPRESSION_VAR	= "/wddxPacket/data/struct/var";
 
 	/**
-	 * Parses the wddx packet.
-	 * 
-	 * @param wddxPacketXML
-	 *            the xml string
-	 * @return the query result
-	 */
-	public static CreditCardQueryResult parseWddxPacket(String wddxPacketXML){
-		if (Validator.isNullOrEmpty(wddxPacketXML)){
-			throw new IllegalArgumentException("wddxPacketXML can't be null/empty!");
-		}
-
-		// Writer writer = new StringWriter();
-		// log.info(Dom4jUtil.format(wddxPacketXML, CharsetType.UTF8, writer));
-
-		// Dom4jUtil.getElementText(element, "TRANSACTIONSTATUS");
-
-		// XStream xstream = new XStream();
-		// String xml = xstream.toXML(wddxPacketXML);
-		// log.info(xml);
-
-		// 解析 wddxPacketXML ,获得我们需要的 var name 和值.
-		Map<String, String> varNameAndValueMap = getVarNameAndValueMap(wddxPacketXML);
-
-		try{
-			CreditCardQueryResult creditCardQueryResult = buildQueryResult(varNameAndValueMap);
-			return creditCardQueryResult;
-		}catch (IllegalArgumentException e){
-			e.printStackTrace();
-		}catch (IllegalAccessException e){
-			e.printStackTrace();
-		}
-		throw new IllegalArgumentException("build buildQueryResult exception");
-	}
-
-	/**
-	 * Builds the query result.
-	 * 
-	 * @param varNameAndValueMap
-	 *            the var name and value map
-	 * @return the query result
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 */
-	private static CreditCardQueryResult buildQueryResult(Map<String, String> varNameAndValueMap) throws IllegalArgumentException,
-			IllegalAccessException{
-
-		// 通过反射机制 省却一堆的 set
-		CreditCardQueryResult creditCardQueryResult = new CreditCardQueryResult();
-		Field[] fields = CreditCardQueryResult.class.getDeclaredFields();
-		for (Field field : fields){
-			if (field.isAnnotationPresent(VarName.class)){
-				VarName varName = field.getAnnotation(VarName.class);
-				if (log.isInfoEnabled()){
-					String varNameName = varName.value();
-
-					if (log.isDebugEnabled()){
-						String fieldName = field.getName();
-						log.debug("{}:{}", fieldName, varNameName);
-					}
-
-					String value = varNameAndValueMap.get(varNameName);
-					field.setAccessible(true);
-
-					// 将指定对象变量上此 Field 对象表示的字段设置为指定的新值。如果底层字段的类型为基本类型，则对新值进行自动解包
-					field.set(creditCardQueryResult, value);
-				}
-			}
-		}
-		if (log.isInfoEnabled()){
-			log.info(JsonUtil.format(creditCardQueryResult));
-		}
-		return creditCardQueryResult;
-	}
-
-	/**
 	 * 解析 wddxPacketXML ,获得我们需要的 var name 和值.
 	 * 
 	 * @param wddxPacketXML
 	 *            the wddx packet xml
 	 * @return the var name and value map
 	 */
-	private static Map<String, String> getVarNameAndValueMap(String wddxPacketXML){
+	protected Map<String, String> getVarNameAndValueMap(String wddxPacketXML){
 		Document document = Dom4jUtil.string2Document(wddxPacketXML);
 
 		@SuppressWarnings("unchecked")

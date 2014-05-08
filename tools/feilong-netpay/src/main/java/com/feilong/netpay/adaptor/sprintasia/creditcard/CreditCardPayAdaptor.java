@@ -15,6 +15,7 @@
  */
 package com.feilong.netpay.adaptor.sprintasia.creditcard;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
@@ -30,6 +33,7 @@ import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.adaptor.sprintasia.creditcard.command.CreditCardQueryResult;
 import com.feilong.netpay.adaptor.sprintasia.creditcard.command.TransactionStatus;
 import com.feilong.netpay.adaptor.sprintasia.creditcard.command.TransactionType;
+import com.feilong.netpay.adaptor.sprintasia.creditcard.util.CreditCardQueryResultPaser;
 import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.PaymentResult;
@@ -38,7 +42,7 @@ import com.feilong.netpay.command.QueryResult;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.cxf.JaxWsDynamicClientUtil;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * BcaCreditCard.
@@ -94,7 +98,7 @@ public class CreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * @param queryRequest
 	 *            the query request
 	 * @return the query result
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
@@ -157,17 +161,21 @@ public class CreditCardPayAdaptor extends AbstractPaymentAdaptor{
 					transactionID,
 					TransactionType.AUTHORIZATION);
 			// ******************************************************************
-			CreditCardQueryResult creditCardQueryResult = CreditCardQueryResultPaser.parseWddxPacket(wddxPacketXML);
+			CreditCardQueryResultPaser creditCardQueryResultPaser = new CreditCardQueryResultPaser();
+			CreditCardQueryResult creditCardQueryResult = creditCardQueryResultPaser.parseXML(wddxPacketXML);
 
 			String transactionStatus = creditCardQueryResult.getTransactionStatus();
 
 			PaymentResult paymentResult = toPaymentResult(transactionStatus);
 
 			QueryResult queryResult = new QueryResult();
-			queryResult.setTradeNo(merchantTransactionID);
-			queryResult.setPaymentGatewayResult(wddxPacketXML);
-			queryResult.setPaymentGatewayTradeNo(creditCardQueryResult.getTransactionID());
+			queryResult.setGatewayAmount(new BigDecimal(creditCardQueryResult.getAmount()));
+			queryResult.setGatewayPaymentTime(DateUtil.string2Date(creditCardQueryResult.getTransactionDate(), DatePattern.commonWithTime));
+			queryResult.setGatewayResult(wddxPacketXML);
+			queryResult.setGatewayTradeNo(creditCardQueryResult.getTransactionID());
 			queryResult.setPaymentResult(paymentResult);
+			queryResult.setQueryResultCommand(creditCardQueryResult);
+			queryResult.setTradeNo(merchantTransactionID);
 			return queryResult;
 		}catch (Exception e){
 			e.printStackTrace();
@@ -429,7 +437,7 @@ public class CreditCardPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doCloseTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{
 		return false;
 	}
 

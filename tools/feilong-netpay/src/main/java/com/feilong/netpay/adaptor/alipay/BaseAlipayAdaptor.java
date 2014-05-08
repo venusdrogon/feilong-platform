@@ -35,8 +35,9 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.netpay.adaptor.AbstractPaymentAdaptor;
 import com.feilong.netpay.command.TradeRole;
 import com.feilong.servlet.http.ParamUtil;
-import com.feilong.tools.net.httpclient.HttpClientUtil;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientConfig;
+import com.feilong.tools.net.httpclient3.HttpClientUtil;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * 所有支付宝支付的父类.
@@ -95,7 +96,7 @@ public abstract class BaseAlipayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("service", service_close_trade);
 		params.put("partner", partner);
@@ -143,14 +144,18 @@ public abstract class BaseAlipayAdaptor extends AbstractPaymentAdaptor{
 	 * @param params
 	 *            参数
 	 * @return true, if successful
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
-	private boolean _closeTrade(Map<String, String> params) throws HttpClientUtilException{
+	private boolean _closeTrade(Map<String, String> params) throws HttpClientException{
 		String closeTradeUrl = getCloseTradeUrl(params);
 
-		String returnXML = HttpClientUtil.getHttpMethodResponseBodyAsString(closeTradeUrl, HttpMethodType.GET);
-		// getResponseBodyAsString(closeTradeUrl);
+		HttpClientConfig httpClientConfig = new HttpClientConfig();
+
+		httpClientConfig.setUri(closeTradeUrl);
+		httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+
+		String returnXML = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
 
 		if (Validator.isNotNullOrEmpty(returnXML)){
 			try{
@@ -276,23 +281,5 @@ public abstract class BaseAlipayAdaptor extends AbstractPaymentAdaptor{
 	public void set_input_charset(String _input_charset){
 		this._input_charset = _input_charset;
 	}
-
-	// private static String getResponseBodyAsString(String url){
-	// HttpClient client = new HttpClient();
-	// GetMethod getMethod = new GetMethod(url);
-	// try{
-	// client.executeMethod(getMethod);
-	// String responseBodyAsString = getMethod.getResponseBodyAsString();
-	//
-	// if (Validator.isNotNullOrEmpty(responseBodyAsString)){
-	// return responseBodyAsString;
-	// }
-	// }catch (HttpException e){
-	// e.printStackTrace();
-	// }catch (IOException e){
-	// e.printStackTrace();
-	// }
-	// return null;
-	// }
 
 }

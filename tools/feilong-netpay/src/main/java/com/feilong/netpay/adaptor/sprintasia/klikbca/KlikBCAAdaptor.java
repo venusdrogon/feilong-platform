@@ -29,7 +29,7 @@ import com.feilong.netpay.command.PayRequest;
 import com.feilong.netpay.command.PaymentFormEntity;
 import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.TradeRole;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * The Class KlikBCAAdaptor.
@@ -120,7 +120,7 @@ public class KlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doCloseTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support doCloseTrade");
 	}
 

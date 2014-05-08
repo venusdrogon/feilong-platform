@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.feilong.netpay.adaptor.BasePaymentTest;
 import com.feilong.netpay.adaptor.PaymentAdaptor;
 import com.feilong.netpay.command.QueryRequest;
+import com.feilong.netpay.command.QueryResult;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class BcaCreditCardPayAdaptorTest.
@@ -56,11 +58,15 @@ public class CreditCardPayAdaptorTest extends BasePaymentTest{
 	@Test
 	public final void getQueryResult() throws Exception{
 
-		CreditCardPayAdaptor bcaCreditCardPayAdaptor = (CreditCardPayAdaptor) paymentAdaptor;
+		CreditCardPayAdaptor creditCardPayAdaptor = (CreditCardPayAdaptor) paymentAdaptor;
 		QueryRequest queryRequest = new QueryRequest();
 		queryRequest.setTradeNo("010003170001");
 
-		bcaCreditCardPayAdaptor.getQueryResult(queryRequest);
+		QueryResult queryResult = creditCardPayAdaptor.getQueryResult(queryRequest);
+
+		if (log.isInfoEnabled()){
+			log.info(JsonUtil.format(queryResult));
+		}
 	}
 
 }

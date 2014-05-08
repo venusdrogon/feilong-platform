@@ -29,7 +29,7 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
-import com.feilong.tools.net.httpclient3.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
 
 /**
@@ -118,7 +118,7 @@ public final class StubStatusUtil{
 					e.printStackTrace();
 				}
 			}
-		}catch (HttpClientUtilException e1){
+		}catch (HttpClientException e1){
 			e1.printStackTrace();
 		}
 

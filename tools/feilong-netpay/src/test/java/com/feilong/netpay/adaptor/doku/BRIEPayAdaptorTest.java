@@ -58,12 +58,15 @@ public class BRIEPayAdaptorTest extends BasePaymentTest{
 	@Test
 	public final void getQueryResult() throws Exception{
 		QueryRequest queryRequest = new QueryRequest();
-		queryRequest.setTradeNo("010003210001");
-		queryRequest.setBuyer(47);
+
+		queryRequest.setTradeNo("010003660001");
+		queryRequest.setBuyer("20140508105926");// 222
 
 		QueryResult queryResult = paymentAdaptor.getQueryResult(queryRequest);
-		if (log.isInfoEnabled()){
-			log.info(JsonUtil.format(queryResult));
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(queryResult));
 		}
+
 	}
 }

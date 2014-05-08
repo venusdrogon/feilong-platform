@@ -25,7 +25,7 @@ import com.feilong.netpay.command.PaymentResult;
 import com.feilong.netpay.command.QueryRequest;
 import com.feilong.netpay.command.QueryResult;
 import com.feilong.netpay.command.TradeRole;
-import com.feilong.tools.net.httpclient.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * PaymentAdaptor 接口.
@@ -121,8 +121,8 @@ public interface PaymentAdaptor{
 	 * @param tradeRole
 	 *            (关闭角色) 一般有 商家 或者 买家 取消交易方：B-买家取消；S-卖家取消
 	 * @return 成功返回true
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
-	boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientUtilException;
+	boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException;
 }

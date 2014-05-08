@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
-import com.feilong.tools.net.httpclient3.HttpClientUtilException;
+import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * The Class HttpClientUtilTest.
@@ -43,11 +43,11 @@ public class HttpClientUtilTest{
 	/**
 	 * Gets the http method with execute.
 	 * 
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
 	@Test
-	public void getHttpMethodWithExecute() throws HttpClientUtilException{
+	public void getHttpMethodWithExecute() throws HttpClientException{
 		String uri = "http://www.google.com.hk/search?client=aff-cs-360se&forid=1&ie=utf-8&oe=UTF-8&q=enumeration";
 		uri = "http://www.d9cn.org/d9cnbook/50/50537/10967924.html";
 		uri = "http://www.kenwen.com/egbk/31/31186/4395342.txt";
@@ -70,13 +70,13 @@ public class HttpClientUtilTest{
 	/**
 	 * Gets the fL logistics track.
 	 * 
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 * @throws JSONException
 	 *             the jSON exception
 	 */
 	@Test
-	public void getFLLogisticsTrack() throws HttpClientUtilException,JSONException{
+	public void getFLLogisticsTrack() throws HttpClientException,JSONException{
 		String uri = "http://firstlogistics.co.id/ws/demo/post/";
 
 		Map<String, String> params = new HashMap<String, String>();

@@ -19,6 +19,9 @@ import java.io.Serializable;
 
 /**
  * 用于查询.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 2014-5-7 19:04:43
  */
 public class QueryRequest implements Serializable{
 
@@ -28,6 +31,9 @@ public class QueryRequest implements Serializable{
 	// **********************required******************************************************
 	/** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
 	private String				tradeNo;
+
+	/** 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定. */
+	private Serializable		buyer;
 
 	/**
 	 * Gets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
@@ -46,6 +52,25 @@ public class QueryRequest implements Serializable{
 	 */
 	public void setTradeNo(String tradeNo){
 		this.tradeNo = tradeNo;
+	}
+
+	/**
+	 * 获得 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
+	 * 
+	 * @return the buyer
+	 */
+	public Serializable getBuyer(){
+		return buyer;
+	}
+
+	/**
+	 * 设置 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
+	 * 
+	 * @param buyer
+	 *            the buyer to set
+	 */
+	public void setBuyer(Serializable buyer){
+		this.buyer = buyer;
 	}
 
 }

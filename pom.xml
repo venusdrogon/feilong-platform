@@ -355,8 +355,6 @@
 				<version>${version.commons-httpclient}</version>
 			</dependency>
 
-
-
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-jexl</artifactId>

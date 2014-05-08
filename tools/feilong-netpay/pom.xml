@@ -83,12 +83,6 @@
 			<version>${version.feilong-platform}</version>
 		</dependency>
 
-		<!-- commons-httpclient -->
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-		</dependency>
-
 		<!-- 招商银行 -->
 		<dependency>
 			<groupId>cmb</groupId>

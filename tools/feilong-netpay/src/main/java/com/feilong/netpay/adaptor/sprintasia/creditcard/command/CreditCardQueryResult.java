@@ -17,6 +17,9 @@ package com.feilong.netpay.adaptor.sprintasia.creditcard.command;
 
 import java.io.Serializable;
 
+import com.feilong.netpay.command.QueryResultCommand;
+import com.feilong.netpay.parse.VarName;
+
 /**
  * The Class QueryResult.
  * 
@@ -84,7 +87,7 @@ import java.io.Serializable;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 下午6:47:34
  */
-public final class CreditCardQueryResult implements Serializable{
+public final class CreditCardQueryResult implements Serializable,QueryResultCommand{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
@@ -94,7 +97,7 @@ public final class CreditCardQueryResult implements Serializable{
 	 * Value: DOacquire transaction ID <br>
 	 * Format: Up to 50 alphanumeric characters.
 	 */
-	@VarName("TRANSACTIONID")
+	@VarName(name = "TRANSACTIONID",sampleValue = "868BBC35-A5D1-FCBF-0453F134C99B5553")
 	private String				transactionID;
 
 	//
@@ -103,7 +106,7 @@ public final class CreditCardQueryResult implements Serializable{
 	 * Value: Approval code given by the partner bank/acquirer <br>
 	 * Format: Up to 10 alphanumeric characters.
 	 */
-	@VarName("ACQUIRERRESPONSECODE")
+	@VarName(name = "ACQUIRERRESPONSECODE",sampleValue = "000")
 	private String				acquirerResponseCode;
 
 	// <string/>
@@ -111,39 +114,35 @@ public final class CreditCardQueryResult implements Serializable{
 	 * Value: System generated message by DOacquire when transaction status is SCRUB, ERROR or CANCEL <br>
 	 * Format: Up to 250 alphanumeric characters .
 	 */
-	@VarName("SCRUBMESSAGE")
+	@VarName(name = "SCRUBMESSAGE")
 	private String				scrubMessage;
 
-	// AMOUNT 9011999.0
 	/**
 	 * 9011999.0 <br>
 	 * Value: Transaction amount <br>
 	 * Format: Up to 10 numeric characters .
 	 */
-	@VarName("AMOUNT")
+	@VarName(name = "AMOUNT",sampleValue = "9011999.0")
 	private String				amount;
 
-	// 2.0
 	/** Value: 2.0. */
-	@VarName("SERVICEVERSION")
+	@VarName(name = "SERVICEVERSION",sampleValue = "2.0")
 	private String				serviceVersion;
 
-	// 010003170001
 	/**
 	 * 010003170001 <br>
 	 * Value: Merchant’s unique Transaction ID <br>
 	 * Format: Up to 50 alphanumeric characters .
 	 */
-	@VarName("MERCHANTTRANSACTIONID")
+	@VarName(name = "MERCHANTTRANSACTIONID",sampleValue = "010003170001")
 	private String				merchantTransactionID;
 
-	// IDR
 	/**
 	 * IDR <br>
 	 * Value: Transaction currency <br>
 	 * Format: 3 characters (ISO 4217 alpha-3 format. Example: USD, MYR, IDR).
 	 */
-	@VarName("CURRENCY")
+	@VarName(name = "CURRENCY",sampleValue = "IDR")
 	private String				currency;
 
 	/**
@@ -157,7 +156,7 @@ public final class CreditCardQueryResult implements Serializable{
 	 *  CANCEL (transaction is not completed by cardholder. Please refer the details in response parameter ‘scrubCode’ and ‘scrubMessage’)
 	 * .
 	 */
-	@VarName("TRANSACTIONSTATUS")
+	@VarName(name = "TRANSACTIONSTATUS",sampleValue = "APPROVED")
 	private String				transactionStatus;
 
 	/**
@@ -165,7 +164,7 @@ public final class CreditCardQueryResult implements Serializable{
 	 * Value: Merchant’s DOacquire ID <br>
 	 * Format: Up to 20 alphanumeric characters .
 	 */
-	@VarName("SITEID")
+	@VarName(name = "SITEID",sampleValue = "Blanja2")
 	private String				siteID;
 
 	/**
@@ -173,14 +172,14 @@ public final class CreditCardQueryResult implements Serializable{
 	 * Value: Partner bank/acquirer transaction ID <br>
 	 * Format: Up to 10 alphanumeric characters.
 	 */
-	@VarName("ACQUIRERCODE")
+	@VarName(name = "ACQUIRERCODE",sampleValue = "AUTH20140423152019PM")
 	private String				acquirerCode;
 
 	/**
 	 * Value: System generated code by DOacquire when transaction status is SCRUB, ERROR or CANCEL <br>
 	 * Format: Up to 10 alphanumeric characters .
 	 */
-	@VarName("SCRUBCODE")
+	@VarName(name = "SCRUBCODE")
 	private String				scrubCode;
 
 	/**
@@ -188,7 +187,7 @@ public final class CreditCardQueryResult implements Serializable{
 	 * Value: Response code received from the partner bank/acquirer <br>
 	 * Format: Up to 10 alphanumeric characters .
 	 */
-	@VarName("ACQUIRERAPPROVALCODE")
+	@VarName(name = "ACQUIRERAPPROVALCODE",sampleValue = "298883")
 	private String				acquirerApprovalCode;
 
 	/**
@@ -202,23 +201,23 @@ public final class CreditCardQueryResult implements Serializable{
 	 *  REFUND <br>
 	 *  FORCE.
 	 */
-	@VarName("TRANSACTIONTYPE")
+	@VarName(name = "TRANSACTIONTYPE",sampleValue = "AUTHORIZATION")
 	private String				transactionType;
 
 	// *************************** 文档没有******************************************
 
 	/** 2014-04-23 15:19:27 文档没有. */
-	@VarName("TRANSACTIONDATE")
-	private String				TRANSACTIONDATE;
+	@VarName(name = "TRANSACTIONDATE")
+	private String				transactionDate;
 
 	/** 文档没有. */
-	@VarName("TRANSACTIONSCRUBMESSAGE")
-	private String				TRANSACTIONSCRUBMESSAGE;
+	@VarName(name = "TRANSACTIONSCRUBMESSAGE")
+	private String				transactionScrubMessage;
 
 	// <string/>
 	/** The TRANSACTIONSCRUBCODE. */
-	@VarName("TRANSACTIONSCRUBCODE")
-	private String				TRANSACTIONSCRUBCODE;
+	@VarName(name = "TRANSACTIONSCRUBCODE")
+	private String				transactionScrubcode;
 
 	/**
 	 * 获得 868BBC35-A5D1-FCBF-0453F134C99B5553 <br>
@@ -372,6 +371,62 @@ public final class CreditCardQueryResult implements Serializable{
 	}
 
 	/**
+	 * 获得 aPPROVED <br>
+	 * Value: DOacquire transaction status Format: <br>
+	 *  APPROVE (transaction has been authorized by the partner bank/acquirer) <br>
+	 *  DECLINE (transaction has been rejected by the partner bank/acquirer) <br>
+	 *  SCRUB (transaction has been rejected based on account risk policy, Please refer the details in response parameter ‘scrubCode’ and
+	 * ‘scrubMessage’) <br>
+	 *  ERROR (please refer the details in response parameter ‘scrubCode’ and ‘scrubMessage’) <br>
+	 *  CANCEL (transaction is not completed by cardholder.
+	 * 
+	 * @return the transactionStatus
+	 */
+	public String getTransactionStatus(){
+		return transactionStatus;
+	}
+
+	/**
+	 * 设置 aPPROVED <br>
+	 * Value: DOacquire transaction status Format: <br>
+	 *  APPROVE (transaction has been authorized by the partner bank/acquirer) <br>
+	 *  DECLINE (transaction has been rejected by the partner bank/acquirer) <br>
+	 *  SCRUB (transaction has been rejected based on account risk policy, Please refer the details in response parameter ‘scrubCode’ and
+	 * ‘scrubMessage’) <br>
+	 *  ERROR (please refer the details in response parameter ‘scrubCode’ and ‘scrubMessage’) <br>
+	 *  CANCEL (transaction is not completed by cardholder.
+	 * 
+	 * @param transactionStatus
+	 *            the transactionStatus to set
+	 */
+	public void setTransactionStatus(String transactionStatus){
+		this.transactionStatus = transactionStatus;
+	}
+
+	/**
+	 * 获得 blanja2<br>
+	 * Value: Merchant’s DOacquire ID <br>
+	 * Format: Up to 20 alphanumeric characters .
+	 * 
+	 * @return the siteID
+	 */
+	public String getSiteID(){
+		return siteID;
+	}
+
+	/**
+	 * 设置 blanja2<br>
+	 * Value: Merchant’s DOacquire ID <br>
+	 * Format: Up to 20 alphanumeric characters .
+	 * 
+	 * @param siteID
+	 *            the siteID to set
+	 */
+	public void setSiteID(String siteID){
+		this.siteID = siteID;
+	}
+
+	/**
 	 * 获得 aUTH20140423152019PM<br>
 	 * Value: Partner bank/acquirer transaction ID <br>
 	 * Format: Up to 10 alphanumeric characters.
@@ -474,97 +529,59 @@ public final class CreditCardQueryResult implements Serializable{
 	}
 
 	/**
-	 * Gets the tRANSACTIONDATE.
+	 * 获得 2014-04-23 15:19:27 文档没有.
 	 * 
-	 * @return the tRANSACTIONDATE
+	 * @return the transactionDate
 	 */
-	public String getTRANSACTIONDATE(){
-		return TRANSACTIONDATE;
+	public String getTransactionDate(){
+		return transactionDate;
 	}
 
 	/**
-	 * Sets the tRANSACTIONDATE.
+	 * 设置 2014-04-23 15:19:27 文档没有.
 	 * 
-	 * @param tRANSACTIONDATE
-	 *            the tRANSACTIONDATE to set
+	 * @param transactionDate
+	 *            the transactionDate to set
 	 */
-	public void setTRANSACTIONDATE(String tRANSACTIONDATE){
-		TRANSACTIONDATE = tRANSACTIONDATE;
+	public void setTransactionDate(String transactionDate){
+		this.transactionDate = transactionDate;
 	}
 
 	/**
-	 * Gets the tRANSACTIONSCRUBMESSAGE.
+	 * 获得 文档没有.
 	 * 
-	 * @return the tRANSACTIONSCRUBMESSAGE
+	 * @return the transactionScrubMessage
 	 */
-	public String getTRANSACTIONSCRUBMESSAGE(){
-		return TRANSACTIONSCRUBMESSAGE;
+	public String getTransactionScrubMessage(){
+		return transactionScrubMessage;
 	}
 
 	/**
-	 * Sets the tRANSACTIONSCRUBMESSAGE.
+	 * 设置 文档没有.
 	 * 
-	 * @param tRANSACTIONSCRUBMESSAGE
-	 *            the tRANSACTIONSCRUBMESSAGE to set
+	 * @param transactionScrubMessage
+	 *            the transactionScrubMessage to set
 	 */
-	public void setTRANSACTIONSCRUBMESSAGE(String tRANSACTIONSCRUBMESSAGE){
-		TRANSACTIONSCRUBMESSAGE = tRANSACTIONSCRUBMESSAGE;
+	public void setTransactionScrubMessage(String transactionScrubMessage){
+		this.transactionScrubMessage = transactionScrubMessage;
 	}
 
 	/**
-	 * Gets the tRANSACTIONSCRUBCODE.
+	 * 获得 the TRANSACTIONSCRUBCODE.
 	 * 
-	 * @return the tRANSACTIONSCRUBCODE
+	 * @return the transactionScrubcode
 	 */
-	public String getTRANSACTIONSCRUBCODE(){
-		return TRANSACTIONSCRUBCODE;
+	public String getTransactionScrubcode(){
+		return transactionScrubcode;
 	}
 
 	/**
-	 * Sets the tRANSACTIONSCRUBCODE.
+	 * 设置 the TRANSACTIONSCRUBCODE.
 	 * 
-	 * @param tRANSACTIONSCRUBCODE
-	 *            the tRANSACTIONSCRUBCODE to set
+	 * @param transactionScrubcode
+	 *            the transactionScrubcode to set
 	 */
-	public void setTRANSACTIONSCRUBCODE(String tRANSACTIONSCRUBCODE){
-		TRANSACTIONSCRUBCODE = tRANSACTIONSCRUBCODE;
-	}
-
-	/**
-	 * 获得 blanja2<br>
-	 * Value: Merchant’s DOacquire ID <br>
-	 * Format: Up to 20 alphanumeric characters .
-	 * 
-	 * @return the siteID
-	 */
-	public String getSiteID(){
-		return siteID;
-	}
-
-	/**
-	 * 设置 blanja2<br>
-	 * Value: Merchant’s DOacquire ID <br>
-	 * Format: Up to 20 alphanumeric characters .
-	 * 
-	 * @param siteID
-	 *            the siteID to set
-	 */
-	public void setSiteID(String siteID){
-		this.siteID = siteID;
-	}
-
-	/**
-	 * @return the transactionStatus
-	 */
-	public String getTransactionStatus(){
-		return transactionStatus;
-	}
-
-	/**
-	 * @param transactionStatus
-	 *            the transactionStatus to set
-	 */
-	public void setTransactionStatus(String transactionStatus){
-		this.transactionStatus = transactionStatus;
+	public void setTransactionScrubcode(String transactionScrubcode){
+		this.transactionScrubcode = transactionScrubcode;
 	}
 }

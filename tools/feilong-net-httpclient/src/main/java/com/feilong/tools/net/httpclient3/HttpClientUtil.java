@@ -62,10 +62,10 @@ public final class HttpClientUtil{
 	 *            the http client config
 	 * @return the http method response body as string<br>
 	 *         仅支持 {@link HttpMethodType} 类型协议,其他抛出 {@link UnsupportedOperationException}
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
-	public static String getResponseBodyAsString(HttpClientConfig httpClientConfig) throws HttpClientUtilException{
+	public static String getResponseBodyAsString(HttpClientConfig httpClientConfig) throws HttpClientException{
 		HttpMethod httpMethod = getHttpMethod(httpClientConfig);
 		return getHttpMethodResponseBodyAsString(httpMethod, httpClientConfig);
 	}
@@ -76,10 +76,10 @@ public final class HttpClientUtil{
 	 * @param httpClientConfig
 	 *            the http client config
 	 * @return the http method
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
-	private static HttpMethod getHttpMethod(HttpClientConfig httpClientConfig) throws HttpClientUtilException{
+	private static HttpMethod getHttpMethod(HttpClientConfig httpClientConfig) throws HttpClientException{
 		if (log.isDebugEnabled()){
 			log.debug("[httpClientConfig]:{}", JsonUtil.format(httpClientConfig));
 		}
@@ -144,10 +144,10 @@ public final class HttpClientUtil{
 	 * @param httpClientConfig
 	 *            the http client config
 	 * @return the http method
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             如果代码执行有异常会以HttpClientUtilException的形式抛出
 	 */
-	private static HttpMethod executeMethod(HttpMethod httpMethod,HttpClientConfig httpClientConfig) throws HttpClientUtilException{
+	private static HttpMethod executeMethod(HttpMethod httpMethod,HttpClientConfig httpClientConfig) throws HttpClientException{
 		HttpClient httpClient = new HttpClient();
 
 		// 认证
@@ -201,7 +201,7 @@ public final class HttpClientUtil{
 			log.error(JsonUtil.format(map));
 
 			e.printStackTrace();
-			throw new HttpClientUtilException(e);
+			throw new HttpClientException(e);
 		}
 		return httpMethod;
 	}
@@ -264,11 +264,11 @@ public final class HttpClientUtil{
 	 * @param httpClientConfig
 	 *            the http client config
 	 * @return the http method response body as string
-	 * @throws HttpClientUtilException
+	 * @throws HttpClientException
 	 *             如果代码执行有异常会以HttpClientUtilException的形式抛出
 	 */
 	private static String getHttpMethodResponseBodyAsString(HttpMethod httpMethod,HttpClientConfig httpClientConfig)
-			throws HttpClientUtilException{
+			throws HttpClientException{
 
 		try{
 			httpMethod = executeMethod(httpMethod, httpClientConfig);
@@ -284,7 +284,7 @@ public final class HttpClientUtil{
 
 		}catch (Exception e){
 			e.printStackTrace();
-			throw new HttpClientUtilException(e);
+			throw new HttpClientException(e);
 		}finally{
 			// 释放连接
 			httpMethod.releaseConnection();

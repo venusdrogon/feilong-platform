@@ -16,87 +16,41 @@
 package com.feilong.netpay.command;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 查询结果.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2014-5-5 22:56:51
+ * @version 1.0.6 2014年5月8日 下午2:09:38
+ * @since 1.0.6
  */
 public class QueryResult implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
 
-	// **********************required******************************************************
-	/** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
-	private String				tradeNo;
-
-	/** 支付网关返回的原生结果. */
-	private String				paymentGatewayResult;
-
-	/** 支付网关交易号. */
-	private String				paymentGatewayTradeNo;
-
 	/** 支付结果. */
 	private PaymentResult		paymentResult;
 
-	/**
-	 * Gets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
-	 * 
-	 * @return the tradeNo
-	 */
-	public String getTradeNo(){
-		return tradeNo;
-	}
+	/** 转换成的对象. */
+	private QueryResultCommand	queryResultCommand;
 
-	/**
-	 * Sets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
-	 * 
-	 * @param tradeNo
-	 *            the tradeNo to set
-	 */
-	public void setTradeNo(String tradeNo){
-		this.tradeNo = tradeNo;
-	}
+	/** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
+	private String				tradeNo;
 
-	/**
-	 * 获得 支付网关返回的原生结果.
-	 * 
-	 * @return the paymentGatewayResult
-	 */
-	public String getPaymentGatewayResult(){
-		return paymentGatewayResult;
-	}
+	/** (optional) 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU. */
+	private String				gatewayTradeNo;
 
-	/**
-	 * 设置 支付网关返回的原生结果.
-	 * 
-	 * @param paymentGatewayResult
-	 *            the paymentGatewayResult to set
-	 */
-	public void setPaymentGatewayResult(String paymentGatewayResult){
-		this.paymentGatewayResult = paymentGatewayResult;
-	}
+	/** 支付网关返回的原生结果. */
+	private String				gatewayResult;
 
-	/**
-	 * 获得 支付网关交易号.
-	 * 
-	 * @return the paymentGatewayTradeNo
-	 */
-	public String getPaymentGatewayTradeNo(){
-		return paymentGatewayTradeNo;
-	}
+	/** 支付网关返回的支付金额. */
+	private BigDecimal			gatewayAmount;
 
-	/**
-	 * 设置 支付网关交易号.
-	 * 
-	 * @param paymentGatewayTradeNo
-	 *            the paymentGatewayTradeNo to set
-	 */
-	public void setPaymentGatewayTradeNo(String paymentGatewayTradeNo){
-		this.paymentGatewayTradeNo = paymentGatewayTradeNo;
-	}
+	/** (optional)支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date. */
+	private Date				gatewayPaymentTime;
 
 	/**
 	 * 获得 支付结果.
@@ -115,6 +69,120 @@ public class QueryResult implements Serializable{
 	 */
 	public void setPaymentResult(PaymentResult paymentResult){
 		this.paymentResult = paymentResult;
+	}
+
+	/**
+	 * 获得 转换成的对象.
+	 * 
+	 * @return the queryResultCommand
+	 */
+	public QueryResultCommand getQueryResultCommand(){
+		return queryResultCommand;
+	}
+
+	/**
+	 * 设置 转换成的对象.
+	 * 
+	 * @param queryResultCommand
+	 *            the queryResultCommand to set
+	 */
+	public void setQueryResultCommand(QueryResultCommand queryResultCommand){
+		this.queryResultCommand = queryResultCommand;
+	}
+
+	/**
+	 * 获得 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
+	 * 
+	 * @return the tradeNo
+	 */
+	public String getTradeNo(){
+		return tradeNo;
+	}
+
+	/**
+	 * 设置 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
+	 * 
+	 * @param tradeNo
+	 *            the tradeNo to set
+	 */
+	public void setTradeNo(String tradeNo){
+		this.tradeNo = tradeNo;
+	}
+
+	/**
+	 * 获得 (optional) 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU.
+	 * 
+	 * @return the gatewayTradeNo
+	 */
+	public String getGatewayTradeNo(){
+		return gatewayTradeNo;
+	}
+
+	/**
+	 * 设置 (optional) 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU.
+	 * 
+	 * @param gatewayTradeNo
+	 *            the gatewayTradeNo to set
+	 */
+	public void setGatewayTradeNo(String gatewayTradeNo){
+		this.gatewayTradeNo = gatewayTradeNo;
+	}
+
+	/**
+	 * 获得 支付网关返回的原生结果.
+	 * 
+	 * @return the gatewayResult
+	 */
+	public String getGatewayResult(){
+		return gatewayResult;
+	}
+
+	/**
+	 * 设置 支付网关返回的原生结果.
+	 * 
+	 * @param gatewayResult
+	 *            the gatewayResult to set
+	 */
+	public void setGatewayResult(String gatewayResult){
+		this.gatewayResult = gatewayResult;
+	}
+
+	/**
+	 * 获得 (optional)支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date.
+	 * 
+	 * @return the gatewayPaymentTime
+	 */
+	public Date getGatewayPaymentTime(){
+		return gatewayPaymentTime;
+	}
+
+	/**
+	 * 设置 (optional)支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date.
+	 * 
+	 * @param gatewayPaymentTime
+	 *            the gatewayPaymentTime to set
+	 */
+	public void setGatewayPaymentTime(Date gatewayPaymentTime){
+		this.gatewayPaymentTime = gatewayPaymentTime;
+	}
+
+	/**
+	 * 获得 支付网关返回的支付金额.
+	 * 
+	 * @return the gatewayAmount
+	 */
+	public BigDecimal getGatewayAmount(){
+		return gatewayAmount;
+	}
+
+	/**
+	 * 设置 支付网关返回的支付金额.
+	 * 
+	 * @param gatewayAmount
+	 *            the gatewayAmount to set
+	 */
+	public void setGatewayAmount(BigDecimal gatewayAmount){
+		this.gatewayAmount = gatewayAmount;
 	}
 
 }
