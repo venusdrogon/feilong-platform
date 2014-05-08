@@ -146,6 +146,66 @@ public class SprintAsiaCreditCardAdaptor extends AbstractPaymentAdaptor{
 
 		// @formatter:on
 
+		// @formatter:off
+
+//		<wddxPacket version="1.0">
+//		<header/>
+//		<data>
+//			<struct>
+//				<var name="TRANSACTIONID">
+//					<string/>
+//				</var>
+//				<var name="ACQUIRERRESPONSECODE">
+//					<string/>
+//				</var>
+//				<var name="SCRUBMESSAGE">
+//					<string>Transaction not found</string>
+//				</var>
+//				<var name="AMOUNT">
+//					<string/>
+//				</var>
+//				<var name="SERVICEVERSION">
+//					<string>2.0</string>
+//				</var>
+//				<var name="TRANSACTIONSCRUBCODE">
+//					<string/>
+//				</var>
+//				<var name="MERCHANTTRANSACTIONID">
+//					<string>010003420004</string>
+//				</var>
+//				<var name="CURRENCY">
+//					<string/>
+//				</var>
+//				<var name="TRANSACTIONSTATUS">
+//					<string/>
+//				</var>
+//				<var name="SITEID">
+//					<string>Blanja2</string>
+//				</var>
+//				<var name="TRANSACTIONDATE">
+//					<string/>
+//				</var>
+//				<var name="ACQUIRERCODE">
+//					<string/>
+//				</var>
+//				<var name="SCRUBCODE">
+//					<string>50008</string>
+//				</var>
+//				<var name="TRANSACTIONSCRUBMESSAGE">
+//					<string/>
+//				</var>
+//				<var name="ACQUIRERAPPROVALCODE">
+//					<string/>
+//				</var>
+//				<var name="TRANSACTIONTYPE">
+//					<string>AUTHORIZATION</string>
+//				</var>
+//			</struct>
+//		</data>
+//	</wddxPacket>
+
+	// @formatter:on
+
 		// *************************************************************
 		String merchantTransactionID = queryRequest.getTradeNo();
 		String transactionID = "";
@@ -166,9 +226,13 @@ public class SprintAsiaCreditCardAdaptor extends AbstractPaymentAdaptor{
 
 			String transactionStatus = creditCardQueryResult.getTransactionStatus();
 
-			PaymentResult paymentResult = toPaymentResult(transactionStatus);
+			// SCRUBMESSAGE Transaction not found
+			if (Validator.isNullOrEmpty(transactionStatus)){
+				throw new RuntimeException("transactionStatus is isNullOrEmpty,wddxPacketXML is:" + wddxPacketXML);
+			}
 
 			QueryResult queryResult = new QueryResult();
+			PaymentResult paymentResult = toPaymentResult(transactionStatus);
 			queryResult.setGatewayAmount(new BigDecimal(creditCardQueryResult.getAmount()));
 			queryResult.setGatewayPaymentTime(DateUtil.string2Date(creditCardQueryResult.getTransactionDate(), DatePattern.commonWithTime));
 			queryResult.setGatewayResult(wddxPacketXML);

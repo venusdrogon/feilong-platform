@@ -69,4 +69,19 @@ public class SprintAsiaCreditCardAdaptorTest extends BasePaymentTest{
 		}
 	}
 
+	@Test
+	public final void getQueryResult1() throws Exception{
+
+		SprintAsiaCreditCardAdaptor sprintAsiaCreditCardAdaptor = (SprintAsiaCreditCardAdaptor) paymentAdaptor;
+		QueryRequest queryRequest = new QueryRequest();
+		queryRequest.setTradeNo("010003420004");
+		queryRequest.setBuyer("342");
+
+		QueryResult queryResult = sprintAsiaCreditCardAdaptor.getQueryResult(queryRequest);
+
+		if (log.isInfoEnabled()){
+			log.info(JsonUtil.format(queryResult));
+		}
+	}
+
 }
