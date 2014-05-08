@@ -18,21 +18,23 @@
 		</filter>
 	</appender>
 	<!-- ******************loxia****************** -->
-	<category name="loxia">
-		<priority value="warn" />
-	</category>
-	<category name="loxia.aspect.ReadWriteDataSourceAspect">
+	
+	<category name="org.apache.commons.beanutils">
 		<priority value="info" />
 	</category>
-	<category name="loxia.dao.ReadWriteDataSource">
+	<category name="org.apache.commons.httpclient.HeaderElement">
 		<priority value="info" />
 	</category>
-	<category name="loxia.support.cache.CacheAspect">
-		<priority value="debug" />
+	<category name="org.apache.commons.httpclient.HttpParser">
+		<priority value="info" />
 	</category>
-
-	<!-- ******************org.hibernate****************** -->
-	<category name="org.hibernate">
+	<category name="org.apache.commons.httpclient.methods.EntityEnclosingMethod">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpConnection">
+		<priority value="info" />
+	</category>
+	<category name="org.apache.commons.httpclient.HttpMethodBase">
 		<priority value="info" />
 	</category>
 
