@@ -24,20 +24,25 @@ import java.io.Serializable;
  * @version 1.0 Mar 11, 2011 2:37:57 PM
  * @since 1.0
  */
-public class JoinStringEntity implements Serializable{
+public final class JoinStringEntity implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 3182446945343865398L;
 
-	/** 连接符. */
-	private String				connector;
+	/**
+	 * 默认逗号连接 <code>{@value}</code>.
+	 * 
+	 * @since 1.0.6
+	 */
+	public static final String	DEFAULT_CONNECTOR	= ",";
+
+	/** 连接符,默认={@link #DEFAULT_CONNECTOR}. */
+	private String				connector			= DEFAULT_CONNECTOR;
 
 	/**
 	 * Instantiates a new join string entity.
 	 */
-	public JoinStringEntity(){
-		super();
-	}
+	public JoinStringEntity(){}
 
 	/**
 	 * Instantiates a new join string entity.
@@ -46,12 +51,11 @@ public class JoinStringEntity implements Serializable{
 	 *            the connector
 	 */
 	public JoinStringEntity(String connector){
-		super();
 		this.connector = connector;
 	}
 
 	/**
-	 * 连接符
+	 * 获得 连接符,默认={@link #DEFAULT_CONNECTOR}.
 	 * 
 	 * @return the connector
 	 */
@@ -60,7 +64,7 @@ public class JoinStringEntity implements Serializable{
 	}
 
 	/**
-	 * 连接符
+	 * 设置 连接符,默认={@link #DEFAULT_CONNECTOR}.
 	 * 
 	 * @param connector
 	 *            the connector to set
@@ -68,4 +72,5 @@ public class JoinStringEntity implements Serializable{
 	public void setConnector(String connector){
 		this.connector = connector;
 	}
+
 }

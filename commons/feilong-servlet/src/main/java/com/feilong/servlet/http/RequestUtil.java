@@ -122,7 +122,7 @@ public final class RequestUtil implements RequestConstants{
 		String method = request.getMethod();
 
 		if (method.toUpperCase().equals("POST")){
-			Map<String, String[]> map = (Map<String, String[]>) getParameterMap(request);
+			Map<String, String[]> map = getParameterMap(request);
 			if (Validator.isNotNullOrEmpty(map)){
 				returnValue = URIUtil.combineQueryString(map, null);
 			}
@@ -196,7 +196,7 @@ public final class RequestUtil implements RequestConstants{
 
 		// requestFullURL
 		if (requestLogSwitch.getShowFullURL()){
-			// TODO 编码参数转成可传递
+			// XXX 编码参数转成可传递
 			map.put("requestFullURL:", getRequestFullURL(request, CharsetType.UTF8));
 		}
 		// Method
@@ -410,7 +410,7 @@ public final class RequestUtil implements RequestConstants{
 			return requestURL;
 		}
 
-		// TODO 处理乱码
+		// XXX 处理乱码
 		return requestURL + URIConstants.QUESTIONMARK + URIUtil.decodeLuanMa_ISO8859(queryString, charsetType);
 	}
 
@@ -607,7 +607,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @return the attribute map
 	 * @deprecated 目前如果直接 转json 如果属性有级联关系,会报错,待重构
 	 */
-	// TODO
+	// XXX
 	private static Map<String, Object> getAttributeMap(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
 		@SuppressWarnings("unchecked")

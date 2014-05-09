@@ -234,7 +234,19 @@ public class CodeGenerator{
 				throw new UnsupportedOperationException("codeType:" + codeType + " not support!");
 		}
 
-		return sb.toString() + debugLength(sb);
+		String result = sb.toString() + debugLength(sb);
+
+		if (log.isDebugEnabled()){
+			log.debug(
+					"{}-->{},buyerId:{},sellerId:{},codeType:{}",
+					DateUtil.date2String(date, DatePattern.commonWithMillisecond),
+					result,
+					buyerId,
+					sellerId,
+					codeType);
+		}
+
+		return result;
 
 	}
 

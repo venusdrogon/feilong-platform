@@ -15,6 +15,7 @@
  */
 package com.feilong.commons.core.util;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -34,36 +35,38 @@ public final class CollectionUtil{
 	private CollectionUtil(){}
 
 	/**
-	 * 集合转成字符串.
+	 * 将集合使用连接符号链接成字符串.
 	 * 
 	 * @param <T>
-	 *            the generic type
+	 *            the generic type ,必须实现 {@link Serializable} 接口
 	 * @param collection
-	 *            the collection
+	 *            集合, 建议基本类型泛型的结合,因为这个方法是直接循环collection 进行拼接
 	 * @param joinStringEntity
 	 *            连接字符串 实体
-	 * @return the string
+	 * @return 如果 collection isNullOrEmpty,返回null<br>
+	 *         如果 joinStringEntity 是null,默认使用 {@link JoinStringEntity#DEFAULT_CONNECTOR} 进行连接<br>
+	 *         都不是null,会循环,拼接joinStringEntity.getConnector()
 	 */
-	public static <T> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
-		// 默认逗号连接
-		String connector_default = ",";
+	public final static <T extends Serializable> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
 
-		StringBuilder stringBuilder = null;
-		if (Validator.isNotNullOrEmpty(collection) && collection.size() > 0){
-			if (Validator.isNotNullOrEmpty(joinStringEntity) && Validator.isNotNullOrEmpty(joinStringEntity.getConnector())){
-				connector_default = joinStringEntity.getConnector();
+		if (Validator.isNotNullOrEmpty(collection)){
+
+			String connector = JoinStringEntity.DEFAULT_CONNECTOR;
+			if (Validator.isNotNullOrEmpty(joinStringEntity)){
+				connector = joinStringEntity.getConnector();
 			}
-			stringBuilder = new StringBuilder();
+
+			StringBuilder sb = new StringBuilder();
 			int i = 0;
 			for (T t : collection){
-				stringBuilder.append(t);
+				sb.append(t);
 				// 拼接连接符
 				if (i < collection.size() - 1){
-					stringBuilder.append(connector_default);
+					sb.append(connector);
 				}
 				i++;
 			}
-			return stringBuilder.toString();
+			return sb.toString();
 		}
 		return null;
 	}
@@ -77,7 +80,7 @@ public final class CollectionUtil{
 	 *            集合
 	 * @return Enumeration
 	 */
-	public static <T> Enumeration<T> toEnumeration(final Collection<T> collection){
+	public final static <T> Enumeration<T> toEnumeration(final Collection<T> collection){
 		return Collections.enumeration(collection);
 	}
 }

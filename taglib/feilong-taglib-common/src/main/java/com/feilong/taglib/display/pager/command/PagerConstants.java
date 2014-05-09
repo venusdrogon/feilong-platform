@@ -55,6 +55,6 @@ public interface PagerConstants{
 	 * 
 	 * @since 1.0.5
 	 */
-	// TODO 可修改为 可传递参数
+	// XXX 可修改为 可传递参数
 	Integer	DEFAULT_TEMPLATE_PAGE_NO				= -88888888;
 }

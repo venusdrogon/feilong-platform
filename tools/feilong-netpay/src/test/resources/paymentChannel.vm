@@ -11,9 +11,9 @@
             });
         </script>
 	</head>
-	<body>
+	<body> target="_blank"
 		请稍等,我们再努力的为您跳转到支付网关.....
-        <form id="submitForm" name="submitForm" action="${paymentFormEntity.action}" method="${paymentFormEntity.method}" target="_blank">
+        <form id="submitForm" name="submitForm" action="${paymentFormEntity.action}" method="${paymentFormEntity.method}">
             #foreach($entry in ${paymentFormEntity.hiddenParamMap.entrySet()} )
                <input type="hidden" name="${entry.key}" value="${entry.value}"/>
         	#end

@@ -69,6 +69,7 @@ public class CommonConstants{
 	@Test
 	public void length(){
 		log.info("http://203.128.73.211/p/klikpayback/010000140002?s=30cbbe7a9bfcfc1131b018426e8560854bf507b3".length() + "");
+		log.info("Rm.109-118, Building H, No.1188 Wanrong Road, Shanghai 200436".length() + "");
 	}
 
 	@Test

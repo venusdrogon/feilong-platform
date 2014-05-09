@@ -51,6 +51,7 @@
 		<version.commons-net>3.2</version.commons-net>
 		<version.commons-jexl>2.1.1</version.commons-jexl>
 
+
 		<version.cxf>2.7.11</version.cxf>
 
 		<version.derby>10.7.1.1</version.derby>
@@ -79,7 +80,7 @@
 		<version.log4j>1.2.17</version.log4j>
 
 		<version.quartz>1.5.2</version.quartz>
-		<version.poi>3.6</version.poi>
+		<version.poi>3.10-FINAL</version.poi>
 
 		<version.memcached>2.5.3</version.memcached>
 

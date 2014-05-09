@@ -10,6 +10,9 @@
 	<name>feilong-office-excel</name>
 	<description>feilong-office-excel</description>
 
+	<properties>
+		<version.loxia>2.5.2</version.loxia>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -26,20 +29,56 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.10-FINAL</version>
+			<version>${version.poi}</version>
 		</dependency>
 
 		<!-- poi-ooxml XSSF is our port of the Microsoft Excel XML (2007+) file format (OOXML) to pure Java -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.10-FINAL</version>
+			<version>${version.poi}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-examples</artifactId>
-			<version>3.10-FINAL</version>
+			<version>${version.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>loxia2</groupId>
+			<artifactId>loxia2-support</artifactId>
+			<version>${version.loxia}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spymemcached</artifactId>
+					<groupId>spy</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>ognl</artifactId>
+					<groupId>ognl</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.javax.media</groupId>
+					<artifactId>jai_codec</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.javax.media</groupId>
+					<artifactId>jai_core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 </project>

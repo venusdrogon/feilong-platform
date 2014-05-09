@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
+import com.feilong.test.Person;
 import com.feilong.test.User;
 
 public class CollectionUtilTest{
@@ -95,10 +96,12 @@ public class CollectionUtilTest{
 	public void testCollectionToString(){
 		List<String> list = new ArrayList<String>();
 		list.add("2548");
-		list.add("2549");
-		JoinStringEntity joinStringEntity = new JoinStringEntity();
-		joinStringEntity.setConnector("|");
-		System.out.println(CollectionUtil.toString(list, joinStringEntity));
+		list.add("");
+
+		JoinStringEntity joinStringEntity = new JoinStringEntity(",");
+
+		String string = CollectionUtil.toString(list, joinStringEntity);
+		System.out.println(string);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
