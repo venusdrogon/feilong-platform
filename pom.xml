@@ -17,6 +17,7 @@
 		<module>commons</module>
 		<module>taglib</module>
 		<module>tools</module>
+		<module>framework</module>
 	</modules>
 
 	<!--****************************定义属性 properties************************************* -->

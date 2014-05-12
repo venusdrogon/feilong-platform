@@ -20,7 +20,6 @@
 		<module>feilong-office-excel</module>
 		<module>feilong-office-word</module>
 		<module>feilong-office-pdf</module>
-		<module>feilong-netpay</module>
 		<module>feilong-ssh</module>
 		<module>feilong-spring</module>
 		<module>feilong-net-filetransfer</module>
