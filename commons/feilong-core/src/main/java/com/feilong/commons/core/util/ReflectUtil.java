@@ -428,21 +428,28 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 新建实例.
+	 * 新建实例<br>
+	 * 示例:
 	 * 
+	 * <pre>
+	 * {@code
+	 * User user = ReflectUtil.newInstance("com.feilong.test.User") 将返回user 对象
+	 * 
+	 * 你还可以 
+	 * User user1 = ReflectUtil.newInstance("com.feilong.test.User", 100L); 返回 id 是100的构造函数
+	 * }
+	 * </pre>
+	 * 
+	 * @param <T>
 	 * @param className
-	 *            类名
-	 * @param args
+	 *            类得名称,比如 com.feilong.test.User
+	 * @param parameterValues
 	 *            构造函数的参数
-	 * @return 新建的实例
+	 * @return 新建的实例,如果结果不能转成T 会抛出异常
 	 * @throws ClassNotFoundException
 	 *             the class not found exception
-	 * @throws SecurityException
-	 *             the security exception
 	 * @throws NoSuchMethodException
 	 *             the no such method exception
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
 	 * @throws InstantiationException
 	 *             the instantiation exception
 	 * @throws IllegalAccessException
@@ -450,15 +457,66 @@ public final class ReflectUtil{
 	 * @throws InvocationTargetException
 	 *             the invocation target exception
 	 */
-	public static Object newInstance(String className,Object...args) throws ClassNotFoundException,SecurityException,NoSuchMethodException,
-			IllegalArgumentException,InstantiationException,IllegalAccessException,InvocationTargetException{
-		Class<?> newoneClass = Class.forName(className);
-		Class<?>[] argsClass = new Class[args.length];
-		for (int i = 0, j = args.length; i < j; ++i){
-			argsClass[i] = args[i].getClass();
+	@SuppressWarnings("unchecked")
+	public static <T> T newInstance(String className,Object...parameterValues) throws ClassNotFoundException,NoSuchMethodException,
+			InstantiationException,IllegalAccessException,InvocationTargetException{
+		// 1. Class cl=对象引用o.getClass();返回引用o运行时真正所指的对象(因为:儿子对象的引用可能会赋给父对象的引用变量中)所属的类O的Class的对象。谈不上对类O做什么操作。
+		// 2. Class cl=A.class; JVM将使用类A的类装载器,将类A装入内存(前提:类A还没有装入内存),不对类A做类的初始化工作.返回类A的Class的对象。
+		// 3. Class cl=Class.forName("类全名");装载连接初始化类。
+		// 4.Class cl=ClassLoader.loadClass("类全名");装载类，不连接不初始化。
+
+		// 装载连接初始化类
+		Class<?> klass = Class.forName(className);
+		Object newInstance = newInstance(klass, parameterValues);
+		return (T) newInstance;
+	}
+
+	/**
+	 * 新建实例.
+	 * 
+	 * @param <T>
+	 *            the generic type
+	 * @param klass
+	 *            类
+	 * @param parameterValues
+	 *            构造函数的参数值, 比如100L
+	 * @return <ol>
+	 *         <li>if null==klass,抛出 {@link IllegalArgumentException}</li>
+	 *         <li>如果 args isNotNullOrEmpty,则构建 Class<?>[] parameterTypes</li>
+	 *         <li>{@link Class#getConstructor(Class...)} 获得构造函数</li>
+	 *         <li>{@link Constructor#newInstance(Object...)}实例化</li>
+	 *         </ol>
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 */
+	public static <T> T newInstance(Class<T> klass,Object...parameterValues) throws NoSuchMethodException,InstantiationException,
+			IllegalAccessException,InvocationTargetException{
+		if (null == klass){
+			throw new IllegalArgumentException("klass can't be null");
 		}
-		Constructor<?> constructor = newoneClass.getConstructor(argsClass);
-		return constructor.newInstance(args);
+
+		Class<?>[] parameterTypes = null;
+		if (Validator.isNotNullOrEmpty(parameterValues)){
+			if (log.isDebugEnabled()){
+				log.debug("klass:{},args:{}", klass.getName(), parameterValues);
+			}
+			int argsLength = parameterValues.length;
+			parameterTypes = new Class[argsLength];
+			for (int i = 0, j = argsLength; i < j; ++i){
+				// TODO 确认
+				parameterTypes[i] = parameterValues[i].getClass();
+			}
+		}
+		Constructor<T> constructor = klass.getConstructor(parameterTypes);
+
+		// 使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例。个别参数会自动解包，以匹配基本形参，必要时，基本参数和引用参数都要进行方法调用转换。
+		return constructor.newInstance(parameterValues);
 	}
 
 	/**

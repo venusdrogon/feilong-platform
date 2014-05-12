@@ -15,10 +15,13 @@
  */
 package com.feilong.commons.core.util;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.test.Person;
 import com.feilong.test.User;
 import com.feilong.tools.json.JsonUtil;
 
@@ -32,6 +35,17 @@ public class ReflectUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ReflectUtilTest.class);
+
+	@Test
+	public final void newInstance() throws ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,
+			InvocationTargetException{
+
+		User user = ReflectUtil.newInstance("com.feilong.test.User");
+		log.info(JsonUtil.format(user));
+		
+		User user1 = ReflectUtil.newInstance("com.feilong.test.User", 100L);
+		log.info(JsonUtil.format(user1));
+	}
 
 	/**
 	 * Creates the payment form.

@@ -348,6 +348,7 @@ public final class ObjectUtil{
 	 * @return the t
 	 */
 	@SuppressWarnings("unchecked")
+	// XXX
 	public final static <T> T toT(Object value,Class<?> class1){
 		if (null == value){
 			return null;
