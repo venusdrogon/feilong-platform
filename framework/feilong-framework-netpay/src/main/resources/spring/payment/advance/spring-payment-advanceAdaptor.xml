@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!--单独xml式配置 ,避免其他项目引用 可能带来的错误 -->
+	<bean id="paymentAdvanceAdaptorFactory" class="com.feilong.framework.netpay.advance.DefaultAdvanceAdaptorManagerFactory">
+		<property name="paymentAdvanceAdaptorMap">
+			<map>
+				<entry key="3" value-ref="alipayAdvanceAdaptor"></entry>
+				<entry key="6" value-ref="alipayAdvanceAdaptor"></entry>
+				<entry key="14" value-ref="alipayAdvanceAdaptor"></entry>
+				<!-- 国际信用卡 -->
+				<entry key="131" value-ref="alipayAdvanceAdaptor"></entry>
+				<entry key="141" value-ref="alipayAdvanceAdaptor"></entry>
+
+				<!-- 有新的支付方式 ,请在下面扩展配置 -->
+				<entry key="bca_creditcard" value-ref="sprintAsiaCreditCardAdvanceAdaptor"></entry>
+			</map>
+		</property>
+	</bean>
+	<!--********************* 有新的支付方式 ,请在下面扩展配置**************** -->
+	<!-- alipay相关 -->
+	<import resource="classpath:spring/payment/advance/advanceAdaptor-alipay.xml" />
+
+	<!-- DOKU -->
+	<import resource="classpath:spring/payment/advance/advanceAdaptor-doku.xml" />
+
+	<!-- sprintasia-creditCard -->
+	<import resource="classpath:spring/payment/advance/advanceAdaptor-sprintasia-creditCard.xml" />
+</beans>

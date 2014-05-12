@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:properties id="p_DokuAdvance" location="classpath:config/payment/advance/advanceAdaptor-doku.properties"></util:properties>
+
+	<!--dokuAdvanceAdaptor -->
+	<bean id="dokuAdvanceAdaptor" class="com.feilong.framework.netpay.advance.adaptor.doku.DokuAdvanceAdaptor">
+		<property name="MALLID" value="#{p_DokuAdvance['MALLID']}" />
+		<property name="CHAINMERCHANT" value="#{p_DokuAdvance['CHAINMERCHANT']}" />
+		<property name="Shared_key" value="#{p_DokuAdvance['Shared_key']}" />
+
+		<property name="queryGateway" value="#{p_DokuAdvance['query.gateway']}" />
+		<property name="queryMethod" value="#{p_DokuAdvance['query.method']}" />
+
+		<property name="charsetNameForSHA1" value="#{p_DokuAdvance['charsetNameForSHA1']}" />
+	</bean>
+</beans>
