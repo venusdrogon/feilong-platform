@@ -381,7 +381,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		boolean isSignOk = ourWORDS.equals(WORDS);
 
 		if (isSignOk){
-			log.info("signOk,tradeNo:[{}]");
+			log.info("signOk,tradeNo:[{}]",TRANSIDMERCHANT);
 
 			// *) main identifier of transaction success / failed
 			boolean statusSuccess = Resultmsg.SUCCESS.equals(RESULTMSG);
