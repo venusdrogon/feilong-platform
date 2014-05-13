@@ -33,7 +33,7 @@ import com.feilong.tools.json.JsonUtil;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014-5-9 3:17:20
  */
-@ContextConfiguration(locations = { "classpath*:spring/payment/advanceAdaptor/spring-payment-advanceAdaptor.xml" })
+@ContextConfiguration(locations = { "classpath*:spring/payment/advance/spring-payment-advanceAdaptor.xml" })
 public class BaseAdvanceAdaptorTest extends AbstractJUnit4SpringContextTests{
 
 	/** The Constant log. */

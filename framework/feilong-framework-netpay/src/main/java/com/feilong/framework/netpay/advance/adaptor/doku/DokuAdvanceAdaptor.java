@@ -119,10 +119,32 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 	 * )
 	 */
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
-		String TRANSIDMERCHANT = queryRequest.getTradeNo();
-		Serializable buyer = queryRequest.getBuyer();
-		String SESSIONID = DokuAdaptorUtil.generateSessionId(buyer);
 
+		// queryRequest
+		if (Validator.isNullOrEmpty(queryRequest)){
+			throw new IllegalArgumentException("oh,queryRequest can't be null/empty!");
+		}
+
+		// tradeNo
+		String TRANSIDMERCHANT = queryRequest.getTradeNo();
+		if (Validator.isNullOrEmpty(TRANSIDMERCHANT)){
+			throw new IllegalArgumentException("queryRequest.getTradeNo() can't be null/empty!What do you query for?");
+		}
+
+		// buyer
+		Serializable buyer = queryRequest.getBuyer();
+		if (Validator.isNullOrEmpty(buyer)){
+			throw new IllegalArgumentException(
+					"buyer can't be null/empty!,this time,queryRequest.getBuyer() use for generateSessionId,very important!");
+		}
+		HttpMethodType httpMethodType = EnumUtil.getEnumByField(HttpMethodType.class, "method", queryMethod);
+		if (Validator.isNullOrEmpty(httpMethodType)){
+			throw new IllegalArgumentException(
+					"httpMethodType can't be null/empty!Do you Forget to configure correct queryMethod?and only support get/post now");
+		}
+
+		// ***********************************************************************************
+		String SESSIONID = DokuAdaptorUtil.generateSessionId(buyer);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("MALLID", MALLID); // Given by DOKU
 		map.put("CHAINMERCHANT", CHAINMERCHANT);// Given by DOKU
@@ -134,10 +156,7 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 		map.put("WORDS", getWORDSForCheckStatus(TRANSIDMERCHANT));
 
 		HttpClientConfig httpClientConfig = new HttpClientConfig();
-
 		httpClientConfig.setUri(queryGateway);
-		
-		HttpMethodType httpMethodType = EnumUtil.getEnumByField(HttpMethodType.class, "method", queryMethod);
 		httpClientConfig.setHttpMethodType(httpMethodType);
 		httpClientConfig.setParams(map);
 
