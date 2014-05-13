@@ -406,7 +406,9 @@ public final class JsonUtil{
 		JSON json = null;
 
 		// obj instanceof Collection || obj instanceof Object[]
-		if (JSONUtils.isArray(obj)){
+		if (JSONUtils.isArray(obj) || //
+				obj.getClass().isEnum()// object' is an Enum. Use JSONArray instead
+		){
 			json = JSONArray.fromObject(obj, jsonConfig);
 		}else{
 			json = JSONObject.fromObject(obj, jsonConfig);

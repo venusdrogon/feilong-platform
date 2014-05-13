@@ -31,23 +31,4 @@ public class HttpMethodTypeTest{
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(HttpMethodTypeTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.enumeration.HttpMethodType#getHttpMethodType(java.lang.String)}.
-	 */
-	@Test
-	public final void testGetHttpMethodType(){
-		assertEquals(HttpMethodType.POST, HttpMethodType.getHttpMethodType("post"));
-		assertEquals(HttpMethodType.POST, HttpMethodType.getHttpMethodType("pOst"));
-		assertEquals(HttpMethodType.POST, HttpMethodType.getHttpMethodType("POST"));
-		assertEquals(HttpMethodType.POST, HttpMethodType.getHttpMethodType("posT"));
-
-		assertEquals(HttpMethodType.GET, HttpMethodType.getHttpMethodType("get"));
-		assertEquals(HttpMethodType.GET, HttpMethodType.getHttpMethodType("gEt"));
-		assertEquals(HttpMethodType.GET, HttpMethodType.getHttpMethodType("geT"));
-		assertEquals(HttpMethodType.GET, HttpMethodType.getHttpMethodType("GET"));
-
-		assertEquals(null, HttpMethodType.getHttpMethodType("post111"));
-		assertEquals(null, HttpMethodType.getHttpMethodType(""));
-		assertEquals(null, HttpMethodType.getHttpMethodType(null));
-	}
 }

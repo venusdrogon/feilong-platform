@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.lang.EnumUtil;
 import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
@@ -135,7 +136,9 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 		HttpClientConfig httpClientConfig = new HttpClientConfig();
 
 		httpClientConfig.setUri(queryGateway);
-		httpClientConfig.setHttpMethodType(HttpMethodType.getHttpMethodType(queryMethod));
+		
+		HttpMethodType httpMethodType = EnumUtil.getEnumByField(HttpMethodType.class, "method", queryMethod);
+		httpClientConfig.setHttpMethodType(httpMethodType);
 		httpClientConfig.setParams(map);
 
 		// // <?xml

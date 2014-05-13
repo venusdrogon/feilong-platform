@@ -83,6 +83,8 @@ public final class ReflectUtil{
 		return (Class<T>) pType.getActualTypeArguments()[0];
 	}
 
+	// [start] Field
+
 	/**
 	 * 获得这个对象 所有字段的值(不是属性).
 	 * 
@@ -189,7 +191,7 @@ public final class ReflectUtil{
 	 * 
 	 * @param fields
 	 *            the fields
-	 * @return the fields names
+	 * @return 如果 fields isNullOrEmpty,返回 null;否则取field name,合为数组返回
 	 */
 	private static String[] getFieldsNames(Field[] fields){
 		if (Validator.isNullOrEmpty(fields)){
@@ -220,6 +222,11 @@ public final class ReflectUtil{
 		return field;
 	}
 
+	// [end]
+	// *********************************************************************************
+
+	// [start]
+
 	/**
 	 * 执行某对象方法.
 	 * 
@@ -229,7 +236,7 @@ public final class ReflectUtil{
 	 *            方法名
 	 * @param params
 	 *            参数
-	 * @return 方法返回值
+	 * @return 如果找不到method,返回null,其他调用method 的invoke方法
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
 	 * @throws IllegalAccessException
@@ -249,66 +256,6 @@ public final class ReflectUtil{
 			return null;
 		}
 		return method.invoke(owner, params);
-	}
-
-	/**
-	 * 获得方法.
-	 * 
-	 * @param ownerClass
-	 *            类
-	 * @param methodName
-	 *            方法名
-	 * @param params
-	 *            动态参数
-	 * @return 该方法
-	 * @throws SecurityException
-	 *             the security exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
-	 */
-	private static Method getMethod(Class<?> ownerClass,String methodName,Object...params) throws SecurityException,NoSuchMethodException{
-		log.debug("input param ownerClass is :" + ownerClass);
-		log.debug("input param methodName is :" + methodName);
-		log.debug("input param params is :" + params);
-
-		Class<?>[] paramsClass = null;
-		if (Validator.isNullOrEmpty(params)){
-			log.debug("params is empty,use default paramsClass");
-		}else{
-			int len = params.length;
-			paramsClass = new Class[len];
-			Object param = null;
-			Class<?> clz = null;
-			for (int i = 0; i < len; ++i){
-				param = params[i];
-				// 是否是boolean类型
-				if (ObjectUtil.isBoolean(param)){
-					paramsClass[i] = boolean.class;
-					// 是不是Integer类型
-				}else if (ObjectUtil.isInteger(param)){
-					paramsClass[i] = int.class;
-				}else{
-					clz = param.getClass();
-					if (clz.getName().equals("org.jfree.data.category.DefaultCategoryDataset")){
-						// paramsClass[i] = CategoryDataset.class;
-						try{
-							paramsClass[i] = Class.forName("org.jfree.data.category.CategoryDataset");
-						}catch (ClassNotFoundException e){
-							e.printStackTrace();
-						}
-					}else{
-						paramsClass[i] = clz;
-					}
-				}
-			}
-		}
-		/**
-		 * 它反映此 Class 对象所表示的类或接口的指定公共成员方法。<br>
-		 * name 参数是一个 String，用于指定所需方法的简称。<br>
-		 * parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组。如果 parameterTypes 为 null，则按空数组处理。
-		 */
-		Method method = ownerClass.getMethod(methodName, paramsClass);
-		return method;
 	}
 
 	/**
@@ -347,17 +294,46 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 返回一个类.
+	 * 获得方法.
 	 * 
-	 * @param className
-	 *            包名+类名 "org.jfree.chart.ChartFactory"
-	 * @return the class
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
+	 * @param ownerClass
+	 *            类
+	 * @param methodName
+	 *            方法名
+	 * @param paramValues
+	 *            动态参数值,程序会基于参数值 转成参数类型
+	 * @return 该方法
+	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
 	 */
-	private static Class<?> loadClass(String className) throws ClassNotFoundException{
-		return Class.forName(className);// JVM查找并加载指定的类
+	private static Method getMethod(Class<?> ownerClass,String methodName,Object...paramValues) throws SecurityException,
+			NoSuchMethodException{
+		if (Validator.isNullOrEmpty(ownerClass)){
+			throw new IllegalArgumentException("ownerClass can't be null/empty!");
+		}
+		if (Validator.isNullOrEmpty(methodName)){
+			throw new IllegalArgumentException("methodName can't be null/empty!");
+		}
+
+		log.debug("input param ownerClass is :" + ownerClass);
+		log.debug("input param methodName is :" + methodName);
+		log.debug("input param params is :" + paramValues);
+
+		Class<?>[] parameterTypes = toParameterTypes(paramValues);
+		/**
+		 * 它反映此 Class 对象所表示的类或接口的指定公共成员方法。<br>
+		 * name 参数是一个 String，用于指定所需方法的简称。<br>
+		 * parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组。如果 parameterTypes 为 null，则按空数组处理。
+		 */
+		Method method = ownerClass.getMethod(methodName, parameterTypes);
+		return method;
 	}
+
+	// [end]
+
+	// [start] Property
 
 	/**
 	 * 得到某个对象的公共属性.
@@ -426,6 +402,10 @@ public final class ReflectUtil{
 		Object property = field.get(ownerClass);
 		return property;
 	}
+
+	// [end]
+
+	// [start] newInstance
 
 	/**
 	 * 新建实例<br>
@@ -501,18 +481,7 @@ public final class ReflectUtil{
 			throw new IllegalArgumentException("klass can't be null");
 		}
 
-		Class<?>[] parameterTypes = null;
-		if (Validator.isNotNullOrEmpty(parameterValues)){
-			if (log.isDebugEnabled()){
-				log.debug("klass:{},args:{}", klass.getName(), parameterValues);
-			}
-			int argsLength = parameterValues.length;
-			parameterTypes = new Class[argsLength];
-			for (int i = 0, j = argsLength; i < j; ++i){
-				// TODO 确认
-				parameterTypes[i] = parameterValues[i].getClass();
-			}
-		}
+		Class<?>[] parameterTypes = toParameterTypes(parameterValues);
 		Constructor<T> constructor = klass.getConstructor(parameterTypes);
 
 		// 使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例。个别参数会自动解包，以匹配基本形参，必要时，基本参数和引用参数都要进行方法调用转换。
@@ -524,12 +493,12 @@ public final class ReflectUtil{
 	 * 
 	 * @param obj
 	 *            实例
-	 * @param cls
+	 * @param klass
 	 *            类
 	 * @return 如果 obj 是此类的实例，则返回 true
 	 */
-	public static boolean isInstance(Object obj,Class<?> cls){
-		return cls.isInstance(obj);
+	public static boolean isInstance(Object obj,Class<?> klass){
+		return klass.isInstance(obj);
 	}
 
 	/**
@@ -546,6 +515,21 @@ public final class ReflectUtil{
 		return Modifier.isInterface(flag);
 	}
 
+	// [end]
+
+	/**
+	 * 返回一个类.
+	 * 
+	 * @param className
+	 *            包名+类名 "org.jfree.chart.ChartFactory"
+	 * @return the class
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 */
+	private static Class<?> loadClass(String className) throws ClassNotFoundException{
+		return Class.forName(className);// JVM查找并加载指定的类
+	}
+
 	/**
 	 * 得到数组中的某个元素.
 	 * 
@@ -559,36 +543,41 @@ public final class ReflectUtil{
 		return Array.get(array, index);
 	}
 
-	// public static Object invokeMethod(Object owner,String methodName,LinkedList<Map<Object, Class>> linkedList){
-	// Class ownerClass = owner.getClass();
-	// //**********************************************************
-	// int size = linkedList.size();
-	// //参数数组
-	// Object[] params = new Object[size];
-	// //参数对应的class 数组
-	// Class[] classes = new Class[size];
-	// for (int i = 0; i < size; ++i){
-	// Map<Object, Class> map=linkedList.get(i);
-	// params[i];
-	//
-	// classes[i]=map.get(key);
-	//
-	// }
-	// //**********************************************************
-	// Method method = getMethod(ownerClass, methodName, params);
-	// try{
-	// if (Validator.isNotNull(linkedList)){}
-	// return method.invoke(owner, params);
-	// }catch (IllegalArgumentException e){
-	// log.debug(e.getMessage());
-	// e.printStackTrace();
-	// }catch (IllegalAccessException e){
-	// log.debug(e.getMessage());
-	// e.printStackTrace();
-	// }catch (InvocationTargetException e){
-	// log.debug(e.getMessage());
-	// e.printStackTrace();
-	// }
-	// return null;
-	// }
+	/**
+	 * 解析参数,获得参数类型,如果参数 paramValues 是null 返回 null
+	 * 
+	 * @param paramValues
+	 *            参数值
+	 * @return 如果参数 paramValues 是null 返回 null
+	 */
+	private static Class<?>[] toParameterTypes(Object...paramValues){
+		if (Validator.isNullOrEmpty(paramValues)){
+			log.debug("params is empty,use default paramsClass");
+			return null;
+		}
+		int len = paramValues.length;
+
+		Class<?>[] parameterTypes = new Class[len];
+		for (int i = 0; i < len; ++i){
+			Object param = paramValues[i];
+			if (ObjectUtil.isBoolean(param)){// 是否是boolean类型
+				parameterTypes[i] = boolean.class;
+			}else if (ObjectUtil.isInteger(param)){// 是不是Integer类型
+				parameterTypes[i] = int.class;
+			}else{
+				Class<?> clz = param.getClass();
+				if (clz.getName().equals("org.jfree.data.category.DefaultCategoryDataset")){
+					try{
+						parameterTypes[i] = loadClass("org.jfree.data.category.CategoryDataset");
+					}catch (ClassNotFoundException e){
+						e.printStackTrace();
+					}
+				}else{
+					// XXX 待整理
+					parameterTypes[i] = clz;
+				}
+			}
+		}
+		return parameterTypes;
+	}
 }

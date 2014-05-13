@@ -36,13 +36,27 @@ public class ReflectUtilTest{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ReflectUtilTest.class);
 
+	/**
+	 * New instance.
+	 * 
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 */
 	@Test
 	public final void newInstance() throws ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,
 			InvocationTargetException{
 
 		User user = ReflectUtil.newInstance("com.feilong.test.User");
 		log.info(JsonUtil.format(user));
-		
+
 		User user1 = ReflectUtil.newInstance("com.feilong.test.User", 100L);
 		log.info(JsonUtil.format(user1));
 	}
@@ -50,6 +64,7 @@ public class ReflectUtilTest{
 	/**
 	 * Creates the payment form.
 	 * 
+	 * @return the field value map
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
 	 * @throws IllegalAccessException

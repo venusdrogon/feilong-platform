@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.enumeration;
 
-import com.feilong.commons.core.util.Validator;
-
 /**
  * http请求方法,目前仅支持通用的get和post 其他不支持
  * 
@@ -33,27 +31,10 @@ public enum HttpMethodType{
 	/** post方式. */
 	POST("post");
 
+	// *********************************************************************
+
 	/** The method. */
 	private String	method;
-
-	/**
-	 * 通过 method(忽视大小写) 获得HttpMethodType.
-	 * 
-	 * @param method
-	 *            the method
-	 * @return 如果 method 是null,返回null<br>
-	 *         如果查找不到,也返回null
-	 */
-	public static HttpMethodType getHttpMethodType(String method){
-		if (Validator.isNotNullOrEmpty(method)){
-			for (HttpMethodType httpMethodType : HttpMethodType.values()){
-				if (httpMethodType.getMethod().equalsIgnoreCase(method)){
-					return httpMethodType;
-				}
-			}
-		}
-		return null;
-	}
 
 	/**
 	 * Instantiates a new http method type.
