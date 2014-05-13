@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>parent</artifactId>
 		<groupId>com.feilong.platform.tools</groupId>
-		<version>1.0.6</version>
+		<version>1.0.7-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>feilong-tools-middleware</artifactId>
@@ -11,10 +11,5 @@
 	<description>feilong-tools-middleware</description>
 
 	<dependencies>
-<!-- 		<dependency>
-			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-tools-html</artifactId>
-			<version>${version.feilong-platform}</version>
-		</dependency> -->
 	</dependencies>
 </project>

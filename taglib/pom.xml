@@ -4,11 +4,13 @@
 	<parent>
 		<groupId>com.feilong.platform</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7-SNAPSHOT</version>
+		<relativePath>..</relativePath>
 	</parent>
 
 	<groupId>com.feilong.platform.taglib</groupId>
 	<artifactId>parent</artifactId>
+
 	<packaging>pom</packaging>
 
 	<name>feilong-taglib-parent</name>

@@ -3,9 +3,10 @@
 	<parent>
 		<artifactId>parent</artifactId>
 		<groupId>com.feilong.platform.tools</groupId>
-		<version>1.0.6</version>
+		<version>1.0.7-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
+	
 	<artifactId>feilong-tools-xstream</artifactId>
 	<name>feilong-tools-xstream</name>
 	<description>feilong-tools-xstream</description>

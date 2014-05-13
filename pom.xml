@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.7-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
@@ -23,10 +23,10 @@
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 
+		<version.feilong-platform>${project.version}</version.feilong-platform>
+
 		<developer.feilong.name>feilong</developer.feilong.name>
 		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
-
-		<version.feilong-platform>${project.version}</version.feilong-platform>
 
 		<native2ascii_pattern>**/*.properties</native2ascii_pattern>
 
@@ -471,7 +471,7 @@
 						<exclude>**/src/main/resources/**</exclude>
 					</excludes>
 					<includes>
-						<!---->
+						
 						<includes>**/src/main/java/**/*.java</includes>
 						<!-- <includes>**/src/main/java/com/feilong/commons/core/log/**</includes> -->
 					</includes>
@@ -691,7 +691,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -704,7 +704,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -762,4 +762,5 @@
 			<url>svn:https://feilong.googlecode.com/svn/repository</url>
 		</repository>
 	</distributionManagement>
+
 </project>

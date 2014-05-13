@@ -3,14 +3,15 @@
 	<parent>
 		<groupId>com.feilong.platform.framework</groupId>
 		<artifactId>feilong-framework-parent</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7-SNAPSHOT</version>
+		<relativePath>..</relativePath>
 	</parent>
+
 	<artifactId>feilong-framework-bind</artifactId>
 	<name>feilong-framework-bind</name>
 	<description>feilong-framework-bind</description>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-dom4j</artifactId>
@@ -34,6 +35,5 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 	</dependencies>
 </project>

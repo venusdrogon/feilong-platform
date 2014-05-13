@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>com.feilong.platform.commons</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7-SNAPSHOT</version>
+		<relativePath>..</relativePath>
 	</parent>
 
 	<artifactId>feilong-core</artifactId>
@@ -42,8 +40,8 @@
 				</configuration>
 			</plugin>
 			<!-- dependency插件 -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> <executions> <execution> <id>copy-dependencies</id> 
-				默认:<phase>process-sources</phase> <goals> <goal>copy-dependencies</goal> </goals> <configuration> 默认:<outputDirectory>${project.build.directory}\dependency</outputDirectory> 
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> <executions> <execution> <id>copy-dependencies</id>
+				默认:<phase>process-sources</phase> <goals> <goal>copy-dependencies</goal> </goals> <configuration> 默认:<outputDirectory>${project.build.directory}\dependency</outputDirectory>
 				</configuration> </execution> </executions> </plugin> -->
 
 			<!-- 可以运行ant 代码的插件 -->
@@ -66,7 +64,7 @@
 		</plugins>
 	</build>
 
-	<!-- *****************************reporting****************************** <reporting> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
+	<!-- *****************************reporting****************************** <reporting> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId>
 		<version>2.7</version> <configuration> </configuration> </plugin> </plugins> </reporting> -->
 
 </project>
