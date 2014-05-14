@@ -52,6 +52,17 @@ public class FileUtilTest{
 	private String				fString		= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
 
 	@Test
+	public void listFiles() throws IOException{
+		String localPath = "E:\\Workspaces\\baozun-else\\mp2-new\\mp2-configuration\\project\\mp2-web\\mp2-livechat\\dev";
+		// 读取localPath目录下的全部properties文件
+		File file = new File(localPath);
+		File[] files = file.listFiles();
+		for (int i = 0; i < files.length; i++){
+			System.out.println("File:" + files[i].getCanonicalPath());
+		}
+	}
+
+	@Test
 	public void isEmptyDirectory(){
 		// 不存在的文件
 		try{

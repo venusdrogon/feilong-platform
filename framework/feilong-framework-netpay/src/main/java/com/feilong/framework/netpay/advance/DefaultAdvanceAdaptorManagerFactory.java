@@ -51,7 +51,9 @@ public class DefaultAdvanceAdaptorManagerFactory implements PaymentAdvanceAdapto
 		if (Validator.isNullOrEmpty(paymentAdvanceAdaptorMap)){
 			throw new IllegalArgumentException("paymentAdvanceAdaptorMap can't be null/empty!");
 		}
-
+		if (Validator.isNullOrEmpty(paymentType)){
+			throw new IllegalArgumentException("paymentType can't be null/empty!");
+		}
 		if (!paymentAdvanceAdaptorMap.containsKey(paymentType)){
 			throw new IllegalArgumentException("paymentAdvanceAdaptorMap not containsKey paymentType:[{" + paymentType + "}]");
 		}

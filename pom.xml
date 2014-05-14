@@ -94,8 +94,11 @@
 
 		<version.xfire>1.2.6</version.xfire>
 		<version.velocity>1.7</version.velocity>
+		
+		<version.zookeeper>3.4.6</version.zookeeper>
 
 
+		<!--****************************scope************************************ -->
 		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
 		<scope.log4j>provided</scope.log4j>
 
@@ -471,7 +474,7 @@
 						<exclude>**/src/main/resources/**</exclude>
 					</excludes>
 					<includes>
-						
+
 						<includes>**/src/main/java/**/*.java</includes>
 						<!-- <includes>**/src/main/java/com/feilong/commons/core/log/**</includes> -->
 					</includes>

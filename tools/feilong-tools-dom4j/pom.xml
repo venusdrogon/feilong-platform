@@ -16,6 +16,8 @@
 			<artifactId>dom4j</artifactId>
 		</dependency>
 
+
+		<!-- java.lang.NoClassDefFoundError: org/jaxen/JaxenException -->
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
