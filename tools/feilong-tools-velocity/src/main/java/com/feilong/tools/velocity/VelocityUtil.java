@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.velocity;
 
@@ -23,17 +23,17 @@ import java.util.Properties;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.configure.PropertiesUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * Velocity 工具类.
@@ -41,57 +41,49 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-8 下午02:01:59
  */
+
+// Properties properties = new Properties();
+// properties.put(Velocity.RESOURCE_LOADER, resource_loader_string);
+// properties.put(resource_loader_string + ".resource.loader.class", StringResourceLoader.class.getName());
+//
+// properties.put(Velocity.INPUT_ENCODING, default_CharsetType);
+// properties.put(Velocity.OUTPUT_ENCODING, default_CharsetType);
+
+// 分离实例
+// VelocityEngine velocityEngine = new VelocityEngine();
+// velocityEngine.init(properties);
+
+// 单列模式
+// Velocity.init(properties);
+// *****************************************************************************
+// String templateName = feilongStringVelocity;
+// StringResourceRepository stringResourceRepository = StringResourceLoader.getRepository();
+// stringResourceRepository.putStringResource(templateName, vmContent);
+// String parseVMTemplateAfterInitVelocity = parseVMTemplateAfterInitVelocity(templateName, contextKeyValues);
+
 public final class VelocityUtil{
 
 	/** The Constant log. */
 	private static final Logger		log						= LoggerFactory.getLogger(VelocityUtil.class);
 
-	/** log的名字 */
-	private static String			RUNTIME_LOG_LOGGER_NAME	= "feilongVelocityLogger";
-
 	/** The feilong string velocity. */
 	private static String			feilongStringVelocity	= "feilongStringVelocity";
 
-	// private static String RUNTIME_LOG_LOG4J_LOGGER_LEVEL = Level.DEBUG.toString();
-
-	/** The default_ charset type. */
-	private static String			default_CharsetType		= CharsetType.UTF8;
-
-	/** The resource_loader_string. */
-	private static String			resource_loader_string	= "string";
-
-	/** The resource_loader_class. */
-	private static String			resource_loader_class	= "class";
+	private static String			PROPERTIES_PATH			= "config/feilong-velocity.properties";
 
 	// 分离实例 避免影响其他的 项目
 	/** The velocity engine. */
 	private static VelocityEngine	velocityEngine			= null;
 
 	static{
-		Properties properties = new Properties();
+		Properties properties = PropertiesUtil.getPropertiesWithClassLoader(VelocityUtil.class, PROPERTIES_PATH);
 
-		properties.put(Velocity.RESOURCE_LOADER, resource_loader_class);
-		properties.put(resource_loader_class + ".resource.loader.class", ClasspathResourceLoader.class.getName());
-		// log
-		// String name = Log4JLogChute.class.getName();
-
-		// 2014-4-15 19:35 切换到 SLF4JLogChute
-		String logsystemClass = SLF4JLogChute.class.getName();
-		properties.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, logsystemClass);
-
-		// log的 The name of the logger.
-		properties.put(SLF4JLogChute.RUNTIME_LOG_SLF4J_LOGGER, RUNTIME_LOG_LOGGER_NAME);
-
-		// log 4j
-		// properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER, RUNTIME_LOG_LOG4J_LOGGER);
-		// properties.put(Log4JLogChute.RUNTIME_LOG_LOG4J_LOGGER_LEVEL, RUNTIME_LOG_LOG4J_LOGGER_LEVEL);
-		// properties.put(RuntimeConstants.RUNTIME_LOG, "E://velocity.log");
-
-		// ENCODING
-		properties.put(Velocity.INPUT_ENCODING, default_CharsetType);
-		properties.put(Velocity.OUTPUT_ENCODING, default_CharsetType);
-
-		properties.put("cache", "true");
+		if (Validator.isNullOrEmpty(properties)){
+			String messagePattern = "can't load [{}],this properties is use for init velocityEngine,Please make sure that the location of the file path";
+			String formatMessage = Slf4jUtil.formatMessage(messagePattern, PROPERTIES_PATH);
+			log.error(formatMessage);
+			throw new IllegalArgumentException(formatMessage);
+		}
 
 		try{
 
@@ -122,7 +114,8 @@ public final class VelocityUtil{
 	 * @return the string
 	 */
 	public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues){
-		return parseVMTemplateAfterInitVelocity(templateInClassPath, contextKeyValues);
+		String encoding = CharsetType.UTF8;
+		return parseVMTemplateAfterInitVelocity(templateInClassPath, contextKeyValues, encoding);
 	}
 
 	/**
@@ -135,25 +128,6 @@ public final class VelocityUtil{
 	 * @return the string
 	 */
 	public static String parseString(String vmContent,Map<String, Object> contextKeyValues){
-		// Properties properties = new Properties();
-		// properties.put(Velocity.RESOURCE_LOADER, resource_loader_string);
-		// properties.put(resource_loader_string + ".resource.loader.class", StringResourceLoader.class.getName());
-		//
-		// properties.put(Velocity.INPUT_ENCODING, default_CharsetType);
-		// properties.put(Velocity.OUTPUT_ENCODING, default_CharsetType);
-
-		// 分离实例
-		// VelocityEngine velocityEngine = new VelocityEngine();
-		// velocityEngine.init(properties);
-
-		// 单列模式
-		// Velocity.init(properties);
-		// *****************************************************************************
-		// String templateName = feilongStringVelocity;
-		// StringResourceRepository stringResourceRepository = StringResourceLoader.getRepository();
-		// stringResourceRepository.putStringResource(templateName, vmContent);
-		// String parseVMTemplateAfterInitVelocity = parseVMTemplateAfterInitVelocity(templateName, contextKeyValues);
-
 		try{
 			VelocityContext context = new VelocityContext(contextKeyValues);
 
@@ -180,13 +154,16 @@ public final class VelocityUtil{
 	 *            模板名称
 	 * @param contextKeyValues
 	 *            模板参数k/v
-	 * @return 解析并获得模板内容
+	 * @param encoding
+	 *            The character encoding to use for the template
+	 * @return 如果发生异常返回null
 	 */
-	private static String parseVMTemplateAfterInitVelocity(String templateName,Map<String, Object> contextKeyValues){
+
+	private static String parseVMTemplateAfterInitVelocity(String templateName,Map<String, Object> contextKeyValues,String encoding){
 		try{
 			VelocityContext velocityContext = new VelocityContext(contextKeyValues);
 			Writer writer = new StringWriter();
-			Template template = velocityEngine.getTemplate(templateName, default_CharsetType);
+			Template template = velocityEngine.getTemplate(templateName, encoding);
 			template.merge(velocityContext, writer);
 			writer.flush();
 			return writer.toString();

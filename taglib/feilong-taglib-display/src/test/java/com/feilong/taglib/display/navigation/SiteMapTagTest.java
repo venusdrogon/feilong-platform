@@ -1,4 +1,4 @@
-package com.feilong.taglib.common.navigation;
+package com.feilong.taglib.display.navigation;
 
 import java.util.ArrayList;
 import java.util.HashMap;

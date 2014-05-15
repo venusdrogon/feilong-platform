@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.tools.velocity;
 
 import java.util.ArrayList;
@@ -13,10 +28,17 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.StringUtil;
 
+/**
+ * The Class VelocityUtilTest.
+ */
 public class VelocityUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(VelocityUtilTest.class);
 
+	/**
+	 * Parses the vm template with classpath resource loader.
+	 */
 	@Test
 	public void parseVMTemplateWithClasspathResourceLoader(){
 		// Properties properties = new Properties();
@@ -41,6 +63,9 @@ public class VelocityUtilTest{
 		log.info(parseVMTemplate);
 	}
 
+	/**
+	 * String resource loader1.
+	 */
 	@Test
 	public void stringResourceLoader1(){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -50,6 +75,9 @@ public class VelocityUtilTest{
 		log.info(parseVMTemplate);
 	}
 
+	/**
+	 * String resource loader.
+	 */
 	@Test
 	public void stringResourceLoader(){
 		Properties properties = new Properties();
@@ -61,6 +89,9 @@ public class VelocityUtilTest{
 		log.info(parseVMTemplate);
 	}
 
+	/**
+	 * Parses the vm template with classpath resource loader1.
+	 */
 	@Test
 	public void parseVMTemplateWithClasspathResourceLoader1(){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -71,6 +102,9 @@ public class VelocityUtilTest{
 		log.info(parseVMTemplate);
 	}
 
+	/**
+	 * Test null.
+	 */
 	@Test
 	public void testNull(){
 		Map<String, Object> map = new HashMap<String, Object>();

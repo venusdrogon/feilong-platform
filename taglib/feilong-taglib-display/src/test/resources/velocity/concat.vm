@@ -1,0 +1,9 @@
+#concat("js","20140514")
+	trade/js/payment/memberAddress.js
+	trade/js/payment/order.js
+#end
+
+
+
+	##concatItem("trade/js/payment/memberAddress.js")
+	##concatItem("trade/js/payment/order.js")

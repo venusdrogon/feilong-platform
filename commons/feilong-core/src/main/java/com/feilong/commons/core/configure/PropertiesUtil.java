@@ -39,24 +39,24 @@ public class PropertiesUtil extends BaseConfigure{
 	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtil.class);
 
 	/**
-	 * 读取方式
+	 * 转换成map<br>
+	 * Create a new HashMap and pass an instance of Properties.<br>
+	 * Properties is an implementation of a Map which keys and values stored as in a string.
 	 * 
-	 * @author 金鑫 2010-4-20 下午04:16:34
+	 * @param properties
+	 *            the properties
+	 * @return the map
 	 */
-	public enum ReadType{
-		/**
-		 * ClassLoader.getSystemResourceAsStream(propertiesPath)
-		 */
-		BY_CLASSLOADER_GET_SYSTEM_RESOURCEAS_STREAM,
-
-		/**
-		 * clz.getClassLoader().getResourceAsStream(propertiesPath)
-		 */
-		BY_CLASSLOADER_GET_RESOURCE_AS_STREAM
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Map<String, String> toMap(Properties properties){
+		Map<String, String> map = new HashMap<String, String>((Map) properties);
+		return map;
 	}
 
+	// [start] getPropertiesValue
+
 	/**
-	 * 获取Properties配置文件键值
+	 * 获取Properties配置文件键值.
 	 * 
 	 * @param clz
 	 *            当前类
@@ -69,57 +69,6 @@ public class PropertiesUtil extends BaseConfigure{
 	public static String getPropertiesValue(Class<?> clz,String propertiesPath,String key){
 		Properties properties = getProperties(clz, propertiesPath);
 		return properties.getProperty(key);
-	}
-
-	/**
-	 * 转换成map.
-	 * 
-	 * @param properties
-	 *            the properties
-	 * @return the map
-	 */
-	public static Map<String, String> toMap(Properties properties){
-		// Create a new HashMap and pass an instance of Properties.
-		// Properties is an implementation of a Map which keys and values stored as in a string.
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		Map<String, String> map = new HashMap<String, String>((Map) properties);
-		return map;
-	}
-
-	/**
-	 * 获取Properties.
-	 * 
-	 * @param clz
-	 *            当前类
-	 * @param propertiesPath
-	 *            Properties文件路径 如"/WEB-INF/classes/feilong.user.properties"
-	 * @return Properties
-	 */
-	public static Properties getPropertiesWithClassLoader(Class<?> clz,String propertiesPath){
-		ClassLoader classLoader = ClassLoaderUtil.getClassLoaderByClass(clz);
-		InputStream inputStream = classLoader.getResourceAsStream(propertiesPath);
-		return getProperties(inputStream);
-	}
-
-	/**
-	 * 获得Properties对象
-	 * 
-	 * @param readType
-	 *            读取方式
-	 * @param propertiesPath
-	 *            Properties路径
-	 * @return 获取Properties配置文件键值
-	 */
-	public static Properties getProperties(ReadType readType,String propertiesPath){
-		InputStream inputStream = null;
-		switch (readType) {
-			case BY_CLASSLOADER_GET_SYSTEM_RESOURCEAS_STREAM:
-				inputStream = ClassLoader.getSystemResourceAsStream(propertiesPath);
-				break;
-			default:
-				break;
-		}
-		return getProperties(inputStream);
 	}
 
 	/**
@@ -138,17 +87,56 @@ public class PropertiesUtil extends BaseConfigure{
 		return properties.getProperty(key);
 	}
 
+	// [end]
+
+	// [start] getProperties
+
 	/**
-	 * 获取Properties
+	 * klass调用ClassLoader,通过ClassLoader 获取Properties.
 	 * 
-	 * @param clz
-	 *            当前类
+	 * @param klass
+	 *            klass,通过 klass 获得 ClassLoader,然后获得 getResourceAsStream
 	 * @param propertiesPath
-	 *            Properties文件路径 如"/WEB-INF/classes/feilong.user.properties"
+	 *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-exception_en_US.properties<br>
+	 *            <ul>
+	 *            <li>那么使用 {@link #getProperties(Class, String)} 需要这么写
+	 *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-exception_en_US.properties")} <br>
+	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-exception_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
+	 *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
+	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-exception_en_US.properties")}<br>
+	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-exception_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
+	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-exception_en_US.properties"(不需要“/”)</li>
+	 *            </ul>
+	 * @return Properties
+	 */
+	public static Properties getPropertiesWithClassLoader(Class<?> klass,String propertiesPath){
+		ClassLoader classLoader = ClassLoaderUtil.getClassLoaderByClass(klass);
+		InputStream inputStream = classLoader.getResourceAsStream(propertiesPath);
+		return getProperties(inputStream);
+	}
+
+	/**
+	 * 通过ClassLoader 获取Properties.getResourceAsStream 方法获得 InputStream<br>
+	 * 
+	 * @param klass
+	 *            类,会通过 klass 调用
+	 * @param propertiesPath
+	 *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-exception_en_US.properties<br>
+	 *            <ul>
+	 *            <li>那么使用 {@link #getProperties(Class, String)} 需要这么写
+	 *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-exception_en_US.properties")} <br>
+	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-exception_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
+	 *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
+	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-exception_en_US.properties")}<br>
+	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-exception_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
+	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-exception_en_US.properties"(不需要“/”)</li>
+	 *            </ul>
 	 * @return 获取Properties
 	 */
-	public static Properties getProperties(Class<?> clz,String propertiesPath){
-		InputStream inputStream = clz.getResourceAsStream(propertiesPath);
+	public static Properties getProperties(Class<?> klass,String propertiesPath){
+		// klass.getResourceAsStream方法内部会调用classLoader.getResourceAsStream
+		// 之所以这样做无疑还是方便客户端的调用，省的每次获取ClassLoader才能加载资源文件的麻烦。
+		InputStream inputStream = klass.getResourceAsStream(propertiesPath);
 		return getProperties(inputStream);
 	}
 
@@ -157,50 +145,29 @@ public class PropertiesUtil extends BaseConfigure{
 	 * 
 	 * @param inputStream
 	 *            inputStream
-	 * @return 获取Properties
+	 * @return <ul>
+	 *         <li>如果null==inputStream,返回null</li>
+	 *         <li>如果发生异常,返回null</li>
+	 *         <li>正常情况,返回 properties.load(inputStream)</li>
+	 *         </ul>
 	 */
 	public static Properties getProperties(InputStream inputStream){
-		Properties properties = null;
 		if (null != inputStream){
-			properties = new Properties();
 			try{
+				Properties properties = new Properties();
 				properties.load(inputStream);
+				return properties;
 			}catch (IOException e){
 				e.printStackTrace();
 			}
-		}else{
-			log.warn("the inputStream is null,can'nt load properties");
 		}
-		return properties;
+		log.warn("the inputStream is null,can't load properties!and will return null");
+		return null;
 	}
 
+	// [end]
+
 	// @formatter:off
-	
-	
-	/**
-	 * 获得飞龙配置文件 feilong.user.properties 值
-	 * 
-	 * @param clz
-	 *            当前加载类
-	 * @param propertiesPath
-	 *            the properties path
-	 * @return 获得飞龙配置文件 feilong.user.properties 值
-	 */
-	// public static String getPropertiesFeiLongValueWithClassLoader(Class clz,String key){
-	// return getPropertiesValueWithClassLoader(clz, properties_feilong, key);
-	// }
-	/**
-	 * 获得飞龙配置文件 feilong.user.properties 值
-	 * 
-	 * @param servletContext
-	 *            servletContext
-	 * @param key
-	 *            用指定的键在此属性列表中搜索属性。如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值。如果未找到属性，则此方法返回 null。
-	 * @return 获得飞龙配置文件 feilong.user.properties 值
-	 */
-	// public static String getPropertiesFeiLongValueWithServletContext(ServletContext servletContext,String key){
-	// return getPropertiesValue(servletContext, properties_feilong, key);
-	// }
 
 
 //	public static boolean write(String fileName){
