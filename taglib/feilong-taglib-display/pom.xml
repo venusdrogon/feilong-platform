@@ -14,5 +14,10 @@
 			<groupId>com.feilong.platform.taglib</groupId>
 			<artifactId>feilong-taglib-common</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-commons-security</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
 	</dependencies>
 </project>

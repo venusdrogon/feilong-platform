@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.text.MessageFormatUtil;
 import com.feilong.commons.core.util.CollectionUtil;
 import com.feilong.commons.core.util.Validator;
@@ -165,7 +166,7 @@ public final class HttpConcatUtil{
 	}
 
 	/**
-	 * 获得不需要 Concat 的连接
+	 * 获得不需要 Concat 的连接.
 	 * 
 	 * @param itemSrc
 	 *            the src
@@ -208,5 +209,17 @@ public final class HttpConcatUtil{
 			return TEMPLATE_JS;
 		}
 		throw new UnsupportedOperationException("type:[" + type + "] not support!");
+	}
+
+	/**
+	 * 生成version号<br>
+	 * 目前采用md5加密
+	 * 
+	 * @param origin
+	 *            the origin
+	 * @return the string
+	 */
+	public static String createVersion(String origin){
+		return MD5Util.encode(origin);
 	}
 }
