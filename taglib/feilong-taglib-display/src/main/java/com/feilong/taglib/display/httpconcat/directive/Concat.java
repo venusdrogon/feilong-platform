@@ -42,9 +42,34 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * <pre>
  * {@code
  * 支持以下格式写法:
- * #concat(String type,String version)
- * #concat(String type,String version,String domain)
- * #concat(String type,String version,String domain,String root)
+ * 	#concat(String type,String version)
+ * 	#concat(String type,String version,String domain)
+ * 	#concat(String type,String version,String domain,String root)
+ * 
+ * 对于block块内容,每行一个css/js元素
+ * 
+ * 比如写成:
+ * 
+ * #concat("js","20140515","http://www.feilong.com")
+ *     static/livechat/js/livechat.js
+ *     static/public/js/cascading/jquery.cascading.data.js
+ *     static/public/js/cascading/jquery.cascading.js
+ *     static/public/js/jquery.validate.js
+ *     static/public/js/jquery.validate.custom.js
+ *         
+ *     static/public/js/jquery.json-2.4.js
+ *     static/public/js/jquery.form.js
+ *     static/public/js/jquery.lazyload.min.js
+ *     static/trade/js/payment/memberAddress.js
+ *     static/trade/js/payment/order.js
+ *         
+ *     static/member/js/dialogSignIn.js
+ *     static/member/messages/message_dialogSignIn_$request.getAttribute('locale').js
+ *     static/member/messages/messageAddress_$request.getAttribute('locale').js
+ *     static/trade/messages/messageTrade_$request.getAttribute('locale').js
+ * #end
+ * 
+ * 每行一个css/js元素,中间可以有空白行,程序会自动忽视空白行
  * }
  * </pre>
  * 
@@ -68,7 +93,7 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * <tr valign=top >
  * <td>domain</td>
  * <td>域名,某些商城有子域名</td>
- * <td>http://image.nikestore.com.cn</td>
+ * <td>http://image.nikestore.com.cn ,也可以写成 http://image.nikestore.com.cn/ (最后带/)</td>
  * </tr>
  * <tr valign='top' bgcolor="#eeeeff">
  * <td>root</td>
@@ -239,8 +264,8 @@ public class Concat extends AbstractDirective{
 	 * @see org.apache.velocity.runtime.directive.Directive#getName()
 	 */
 	public String getName(){
-		if (log.isInfoEnabled()){
-			log.info("DIRECTIVE_NAME:{}", DIRECTIVE_NAME);
+		if (log.isDebugEnabled()){
+			log.debug("DIRECTIVE_NAME:{}", DIRECTIVE_NAME);
 		}
 		return DIRECTIVE_NAME;
 	}
@@ -250,8 +275,8 @@ public class Concat extends AbstractDirective{
 	 * @see org.apache.velocity.runtime.directive.Directive#getType()
 	 */
 	public int getType(){
-		if (log.isInfoEnabled()){
-			log.info("DIRECTIVE_TYPE:{}", DIRECTIVE_TYPE);
+		if (log.isDebugEnabled()){
+			log.debug("DIRECTIVE_TYPE:{}", DIRECTIVE_TYPE);
 		}
 		return DIRECTIVE_TYPE;
 	}
