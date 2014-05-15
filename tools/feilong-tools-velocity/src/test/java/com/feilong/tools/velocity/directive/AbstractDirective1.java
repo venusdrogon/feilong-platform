@@ -32,7 +32,7 @@ import org.apache.velocity.tools.view.ViewToolContext;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-14 23:53:42
  */
-public abstract class AbstractDirective extends Directive{
+public abstract class AbstractDirective1 extends Directive{
 
 	/*
 	 * (non-Javadoc)

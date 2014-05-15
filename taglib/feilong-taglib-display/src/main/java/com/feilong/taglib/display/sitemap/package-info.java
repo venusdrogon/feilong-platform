@@ -4,4 +4,4 @@
  * 从feilong-commons项目抽取了一小部分,用于brand开发<br>
  * 有兴趣的同事同学可以访问google code :<a href="http://code.google.com/p/feilong-commons/">feilong-commons</a>
  */
-package com.feilong.taglib.display.navigation;
+package com.feilong.taglib.display.sitemap;

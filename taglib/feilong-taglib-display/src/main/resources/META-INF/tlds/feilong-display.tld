@@ -146,7 +146,7 @@
 	<!-- **********************面包屑导航*********************************** -->
 	<tag>
 		<name>siteMap</name>
-		<tag-class>com.feilong.taglib.display.navigation.SiteMapTag</tag-class>
+		<tag-class>com.feilong.taglib.display.sitemap.SiteMapTag</tag-class>
 		<body-content>empty</body-content>
 		<description>面包屑导航</description>
 		<attribute>

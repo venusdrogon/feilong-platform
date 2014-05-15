@@ -13,7 +13,7 @@ import org.apache.velocity.tools.view.ViewToolContext;
 
 //import org.tuckey.web.filters.urlrewrite.UrlRewriteWrappedResponse;
 
-public class UrlDirective extends AbstractDirective{
+public class UrlDirective extends AbstractDirective1{
 
 	@Override
 	protected boolean doRender(InternalContextAdapter internalContext,ViewToolContext context,Writer writer,Node node) throws IOException,

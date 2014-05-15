@@ -87,7 +87,7 @@ public class HttpConcatParam implements Serializable{
 
 	/**
 	 * 获得 根目录<br>
-	 * 如果设置root为'/script' 会拼成http://staging.
+	 * 如果设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801
 	 * 
 	 * @return the root
 	 */
@@ -97,7 +97,7 @@ public class HttpConcatParam implements Serializable{
 
 	/**
 	 * 设置 根目录<br>
-	 * 如果设置root为'/script' 会拼成http://staging.
+	 * 如果设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801
 	 * 
 	 * @param root
 	 *            the root to set
@@ -126,7 +126,7 @@ public class HttpConcatParam implements Serializable{
 	}
 
 	/**
-	 * Gets the item src list.
+	 * 获得 the item src list.
 	 * 
 	 * @return the itemSrcList
 	 */
@@ -135,7 +135,7 @@ public class HttpConcatParam implements Serializable{
 	}
 
 	/**
-	 * Sets the item src list.
+	 * 设置 the item src list.
 	 * 
 	 * @param itemSrcList
 	 *            the itemSrcList to set
@@ -143,4 +143,5 @@ public class HttpConcatParam implements Serializable{
 	public void setItemSrcList(List<String> itemSrcList){
 		this.itemSrcList = itemSrcList;
 	}
+
 }

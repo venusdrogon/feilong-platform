@@ -37,7 +37,9 @@ import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月4日 下午11:45:20
+ * @deprecated 待整理
  */
+@Deprecated
 public class HttpConcatTag extends AbstractCommonTag{
 
 	/** The Constant serialVersionUID. */

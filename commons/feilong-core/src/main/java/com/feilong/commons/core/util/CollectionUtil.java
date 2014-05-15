@@ -47,6 +47,7 @@ public final class CollectionUtil{
 	 *         如果 joinStringEntity 是null,默认使用 {@link JoinStringEntity#DEFAULT_CONNECTOR} 进行连接<br>
 	 *         都不是null,会循环,拼接joinStringEntity.getConnector()
 	 */
+	// XXX 空字符串不拼接
 	public final static <T extends Serializable> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
 
 		if (Validator.isNotNullOrEmpty(collection)){

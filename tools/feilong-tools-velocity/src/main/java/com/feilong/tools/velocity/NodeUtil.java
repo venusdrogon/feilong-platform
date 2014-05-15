@@ -23,8 +23,6 @@ import org.apache.velocity.runtime.parser.node.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.tools.json.JsonUtil;
-
 /**
  * The Class NodeUtil.
  * 
@@ -47,7 +45,7 @@ public class NodeUtil{
 	public final static Map<String, Object> getNodeMapForLog(InternalContextAdapter internalContextAdapter,Node node){
 
 		if (log.isDebugEnabled()){
-			log.debug("node:{}", JsonUtil.format(node));
+			//log.debug("node:{}", JsonUtil.format(node));
 		}
 
 		Map<String, Object> object = new LinkedHashMap<String, Object>();

@@ -23,7 +23,9 @@ import com.feilong.taglib.base.AbstractCommonTag;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月4日 下午11:45:20
+ * @deprecated 待整理
  */
+@Deprecated
 public class HttpConcatItemTag extends AbstractCommonTag{
 
 	/** The Constant serialVersionUID. */

@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.taglib.display.navigation.SiteMapEntity;
-import com.feilong.taglib.display.navigation.SiteMapTag;
+import com.feilong.taglib.display.sitemap.SiteMapEntity;
+import com.feilong.taglib.display.sitemap.SiteMapTag;
 import com.feilong.tools.velocity.VelocityUtil;
 
 public class SiteMapTagTest{

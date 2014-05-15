@@ -18,134 +18,230 @@ package com.feilong.taglib.display.httpconcat.directive;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.apache.velocity.exception.TemplateInitException;
-import org.apache.velocity.runtime.RuntimeServices;
-import org.apache.velocity.runtime.directive.Directive;
-import org.apache.velocity.runtime.directive.Scope;
+import org.apache.velocity.runtime.parser.node.ASTBlock;
 import org.apache.velocity.runtime.parser.node.Node;
-import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.ArrayUtil;
+import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.display.httpconcat.HttpConcatUtil;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
-import com.feilong.tools.json.JsonUtil;
-import com.feilong.tools.velocity.NodeUtil;
+import com.feilong.tools.velocity.directive.AbstractDirective;
 
 /**
- * 融合http concat功能的 Directive<br>
- * Directive 是所有指令的基类，Directive 是一个抽象类，它有三个方法必须实现的，<br>
- * 分别是：
- * <ul>
- * <li>getName：返回指令的名称</li>
- * <li>getType：返回指令的类型，行指令：LINE、块指令：BLOCK</li>
- * <li>render：指令执行的入口</li>
- * </ul>
- * .
+ * 融合http concat功能的 Directive.<br>
+ * 说明:
+ * 
+ * <pre>
+ * {@code
+ * 支持以下格式写法:
+ * #concat(String type,String version)
+ * #concat(String type,String version,String domain)
+ * #concat(String type,String version,String domain,String root)
+ * }
+ * </pre>
+ * 
+ * 其中: <blockquote>
+ * <table border='1' cellspacing='0' cellpadding='4' summary="Chart showing symbol,  location, localized, and meaning.">
+ * <tr bgcolor="#ccccff">
+ * <th align=left>字段</th>
+ * <th align=left>说明</th>
+ * <th align=left>示例</th>
+ * </tr>
+ * <tr valign='top'>
+ * <td>type</td>
+ * <td>标识 类型, 可用值 js或者css, 忽视大小写</td>
+ * <td>js</td>
+ * </tr>
+ * <tr valign=top bgcolor="#eeeeff">
+ * <td>version</td>
+ * <td>版本号</td>
+ * <td>20140515</td>
+ * </tr>
+ * <tr valign=top >
+ * <td>domain</td>
+ * <td>域名,某些商城有子域名</td>
+ * <td>http://image.nikestore.com.cn</td>
+ * </tr>
+ * <tr valign='top' bgcolor="#eeeeff">
+ * <td>root</td>
+ * <td>目录</td>
+ * <td>设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801</td>
+ * </tr>
+ * </table>
+ * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月14日 下午6:23:50
  * @since 1.0.7
  */
-public class Concat extends Directive{
+public class Concat extends AbstractDirective{
 
 	/** The Constant log. */
 	private static final Logger	log				= LoggerFactory.getLogger(Concat.class);
 
-	/** The DIRECTIV e_ name. */
+	// **************************************************************
+	// 由于继承 字段是不会被覆盖的,所以下面的 两个方法 必须每个实现类重写
+	// ****************************************************************
+	/** 自定义标签名称. */
 	private String				DIRECTIVE_NAME	= "concat";
 
+	/** 自定义标签类型. */
 	private int					DIRECTIVE_TYPE	= BLOCK;
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#init(org.apache.velocity.runtime.RuntimeServices,
-	 * org.apache.velocity.context.InternalContextAdapter, org.apache.velocity.runtime.parser.node.Node)
+	 * @see com.feilong.tools.velocity.directive.AbstractDirective#doRender(org.apache.velocity.context.InternalContextAdapter,
+	 * java.io.Writer, org.apache.velocity.runtime.parser.node.Node)
 	 */
-	public void init(RuntimeServices rs,InternalContextAdapter context,Node node) throws TemplateInitException{
-		// First difference is that we additionally overrode init() method from Directive class that allows us to get access
-		// to RuntimeServices object in order to get logger instance and read default directive parameters from configuration file.
-
-		super.init(rs, context, node);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer,
-	 * org.apache.velocity.runtime.parser.node.Node)
-	 */
-	public boolean render(InternalContextAdapter internalContextAdapter,Writer writer,Node node) throws IOException,
+	public boolean doRender(InternalContextAdapter internalContextAdapter,Writer writer,Node node) throws IOException,
 			ResourceNotFoundException,ParseErrorException,MethodInvocationException{
 
-		// 其中 render 方法的最后一个参数 node 表示为该指定对应在 Velocity 模板中的节点对象，
-		// 通过调用 node 的 jjtGetChild 方法可以获取到传递给该指令的参数以及包含在该指令的脚本内容。
-
-		Map<String, Object> nodeMapForLog = NodeUtil.getNodeMapForLog(internalContextAdapter, node);
-
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(nodeMapForLog));
+		HttpConcatParam httpConcatParam = getHttpConcatParam(internalContextAdapter, node);
+		if (null == httpConcatParam){
+			log.warn("httpConcatParam is isNullOrEmpty,will not concat,just return");
+			return true;
 		}
 
-		SimpleNode typeNode = (SimpleNode) node.jjtGetChild(0);
-		String type = "" + typeNode.value(internalContextAdapter);
-
-		SimpleNode versionNode = (SimpleNode) node.jjtGetChild(1);
-		String version = "" + versionNode.value(internalContextAdapter);
-
-		Node endNode = node.jjtGetChild(2);
-
-		Object value = typeNode.value(internalContextAdapter);
-
-		StringWriter stringWriter = new StringWriter();
-		endNode.render(internalContextAdapter, stringWriter);
-
-		String value2 = stringWriter.toString();
-		String[] items = value2.trim().split("\n\t");
-
-		for (int i = 0; i < items.length; ++i){
-			String item = items[i];
-			if (log.isInfoEnabled()){
-				log.info(item.trim());
-			}
-		}
-		String writeContent = getContent(type, version, items);
+		String writeContent = HttpConcatUtil.getWriteContent(httpConcatParam);
 		writer.write(writeContent);
 		return true;
 	}
 
 	/**
-	 * @param type
-	 * @param version
-	 * @param items
-	 * @return
+	 * 获得 http concat content.
+	 * 
+	 * @param internalContextAdapter
+	 *            the internal context adapter
+	 * @param node
+	 *            the node
+	 * @return the http concat content
+	 * @throws IOException
+	 *             the IO exception
 	 */
-	private String getContent(String type,String version,String[] items){
-		List<String> itemSrcList = ArrayUtil.toList(items);
+	private HttpConcatParam getHttpConcatParam(InternalContextAdapter internalContextAdapter,Node node) throws IOException{
+		// block content
+		String blockContent = getBlockContent(internalContextAdapter, node);
+
+		// 如果文字 isNullOrEmpty 那么仅仅 log warn
+		if (Validator.isNullOrEmpty(blockContent)){
+			log.warn("blockContent is isNullOrEmpty...,you should write source list between #{} and #end", DIRECTIVE_NAME);
+			return null;
+		}
+		// **********************parse params******************************************************
+
+		String type = "";
+		String version = "";
+		String domain = "";
+		String root = "";
+
+		// loop through all "params"
+		for (int i = 0, j = node.jjtGetNumChildren(); i < j; i++){
+			Node jjtGetChild = node.jjtGetChild(i);
+			if (null != jjtGetChild){
+				if (!(jjtGetChild instanceof ASTBlock)){
+					// reading and casting inline parameters
+					if (i == 0){
+						type = "" + jjtGetChild.value(internalContextAdapter);
+					}else if (i == 1){
+						version = "" + jjtGetChild.value(internalContextAdapter);
+					}else if (i == 2){
+						domain = "" + jjtGetChild.value(internalContextAdapter);
+					}else if (i == 3){
+						root = "" + jjtGetChild.value(internalContextAdapter);
+					}else{
+						break;
+					}
+				}
+
+				// else{
+				// // reading block content and rendering it
+				// StringWriter stringWriter = new StringWriter();
+				// jjtGetChild.render(internalContextAdapter, stringWriter);
+				//
+				// blockContent = blockContent.toString();
+				// break;
+				// }
+			}
+		}
+
+		// *******************************************************************************************
+		// 转成item src list
+		List<String> itemSrcList = toItemSrcList(blockContent);
 
 		HttpConcatParam httpConcatParam = new HttpConcatParam();
-		httpConcatParam.setDomain("");
-		httpConcatParam.setItemSrcList(itemSrcList);
-		httpConcatParam.setRoot("");
+
+		httpConcatParam.setDomain(domain);
+		httpConcatParam.setRoot(root);
 		httpConcatParam.setType(type);
 		httpConcatParam.setVersion(version);
+		httpConcatParam.setItemSrcList(itemSrcList);
 
-		String writeContent = HttpConcatUtil.getWriteContent(httpConcatParam);
-		return writeContent;
+		return httpConcatParam;
 	}
 
+	/**
+	 * 获得 block content.
+	 * 
+	 * @param internalContextAdapter
+	 *            the internal context adapter
+	 * @param node
+	 *            the node
+	 * @return the block content
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	private String getBlockContent(InternalContextAdapter internalContextAdapter,Node node) throws IOException{
+		int jjtGetNumChildren = node.jjtGetNumChildren();
+		Node endNode = node.jjtGetChild(jjtGetNumChildren - 1);
+
+		StringWriter stringWriter = new StringWriter();
+		endNode.render(internalContextAdapter, stringWriter);
+
+		String blockContent = stringWriter.toString();
+		return blockContent;
+	}
+
+	// ***************************************************************
+
+	/**
+	 * 获得 items array.
+	 * 
+	 * @param blockContent
+	 *            内容,目前 以 \n 分隔
+	 * @return the items array
+	 */
+	private List<String> toItemSrcList(String blockContent){
+		String regex = "\n";
+		String[] items = blockContent.trim().split(regex);
+		int length = items.length;
+
+		List<String> list = new ArrayList<String>(length);
+		for (int i = 0; i < length; ++i){
+			String item = items[i];
+			if (Validator.isNotNullOrEmpty(item)){
+				list.add(item.trim());
+			}
+		}
+		return list;
+	}
+
+	// ***************************************************************
 	/*
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#getName()
 	 */
 	public String getName(){
+		if (log.isInfoEnabled()){
+			log.info("DIRECTIVE_NAME:{}", DIRECTIVE_NAME);
+		}
 		return DIRECTIVE_NAME;
 	}
 
@@ -154,105 +250,9 @@ public class Concat extends Directive{
 	 * @see org.apache.velocity.runtime.directive.Directive#getType()
 	 */
 	public int getType(){
+		if (log.isInfoEnabled()){
+			log.info("DIRECTIVE_TYPE:{}", DIRECTIVE_TYPE);
+		}
 		return DIRECTIVE_TYPE;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#setLocation(int, int)
-	 */
-	public void setLocation(int line,int column){
-		// TODO Auto-generated method stub
-		super.setLocation(line, column);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#setLocation(int, int, java.lang.String)
-	 */
-	public void setLocation(int line,int column,String templateName){
-		// TODO Auto-generated method stub
-		super.setLocation(line, column, templateName);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#getLine()
-	 */
-	public int getLine(){
-		// TODO Auto-generated method stub
-		return super.getLine();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#getColumn()
-	 */
-	public int getColumn(){
-		// TODO Auto-generated method stub
-		return super.getColumn();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#getTemplateName()
-	 */
-	public String getTemplateName(){
-		// TODO Auto-generated method stub
-		return super.getTemplateName();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#getScopeName()
-	 */
-	public String getScopeName(){
-		// TODO Auto-generated method stub
-		return super.getScopeName();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#isScopeProvided()
-	 */
-	public boolean isScopeProvided(){
-		// TODO Auto-generated method stub
-		return super.isScopeProvided();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#preRender(org.apache.velocity.context.InternalContextAdapter)
-	 */
-	protected void preRender(InternalContextAdapter context){
-		// TODO Auto-generated method stub
-		super.preRender(context);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#makeScope(java.lang.Object)
-	 */
-	protected Scope makeScope(Object prev){
-		// TODO Auto-generated method stub
-		return super.makeScope(prev);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.apache.velocity.runtime.directive.Directive#postRender(org.apache.velocity.context.InternalContextAdapter)
-	 */
-	protected void postRender(InternalContextAdapter context){
-		// TODO Auto-generated method stub
-		super.postRender(context);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#clone()
-	 */
-	protected Object clone() throws CloneNotSupportedException{
-		// TODO Auto-generated method stub
-		return super.clone();
 	}
 }
