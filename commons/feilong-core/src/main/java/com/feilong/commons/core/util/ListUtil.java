@@ -17,7 +17,9 @@ package com.feilong.commons.core.util;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,6 +65,30 @@ public final class ListUtil{
 			log.debug("iterator is null/empty");
 		}
 		return flag;
+	}
+
+	/**
+	 * 去重(保留原list元素顺序).
+	 * 
+	 * @param <T>
+	 *            the generic type
+	 * @param list
+	 *            the item src list
+	 * @return 如果入参 isNullOrEmpty 返回null<br>
+	 *         返回的是 ArrayList
+	 * @see {@link <a href="http://www.oschina.net/code/snippet_117714_2991?p=2#comments">http://www.oschina.net/code/snippet_117714_2991?p=2#comments</a>}
+	 */
+	// TODO 按照原类型返回
+	public static <T> List<T> removeDuplicate(List<T> list){
+
+		if (Validator.isNullOrEmpty(list)){
+			return null;
+		}
+		// 效率问题？contains的本质就是遍历。你可以自己写段demo测试一下。new ArrayList<T>(new LinkedHashSet<T>(list));
+		// 在100W的list当中执行0.546秒，而contains，我则没耐心去等了。顺便贴一下在10W下2段代码的运行时间。
+		// [foo1] 100000 -> 50487 : 48610 ms.
+		// [foo2] 100000 -> 50487 : 47 ms.
+		return new ArrayList<T>(new LinkedHashSet<T>(list));
 	}
 
 	/**

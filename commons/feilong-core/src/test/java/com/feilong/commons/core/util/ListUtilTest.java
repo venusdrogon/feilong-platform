@@ -69,6 +69,22 @@ public class ListUtilTest{
 		log.info("list:{}", JsonUtil.format(list));
 	}
 
+	@Test
+	public void removeDuplicate(){
+		List<String> list = new ArrayList<String>();
+		list.add("xinge");
+		list.add("feilong5");
+		list.add("feilong1");
+		list.add("feilong2");
+		list.add("feilong2");
+		list.add("feilong3");
+		list.add("feilong4");
+		list.add("feilong4");
+		list.add("feilong5");
+
+		log.info("list:{}", JsonUtil.format(ListUtil.removeDuplicate(list)));
+	}
+
 	/**
 	 * {@link com.feilong.commons.core.util.ListUtil#toStringReplaceBrackets(java.util.List)} 的测试方法。
 	 */

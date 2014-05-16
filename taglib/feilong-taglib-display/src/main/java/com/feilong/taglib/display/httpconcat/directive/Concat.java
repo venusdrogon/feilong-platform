@@ -50,24 +50,25 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * 
  * 比如写成:
  * 
- * #concat("js","20140515","http://www.feilong.com")
- *     static/livechat/js/livechat.js
- *     static/public/js/cascading/jquery.cascading.data.js
- *     static/public/js/cascading/jquery.cascading.js
- *     static/public/js/jquery.validate.js
- *     static/public/js/jquery.validate.custom.js
- *         
- *     static/public/js/jquery.json-2.4.js
- *     static/public/js/jquery.form.js
- *     static/public/js/jquery.lazyload.min.js
- *     static/trade/js/payment/memberAddress.js
- *     static/trade/js/payment/order.js
- *         
- *     static/member/js/dialogSignIn.js
- *     static/member/messages/message_dialogSignIn_$request.getAttribute('locale').js
- *     static/member/messages/messageAddress_$request.getAttribute('locale').js
- *     static/trade/messages/messageTrade_$request.getAttribute('locale').js
- * #end
+ *  #concat("js","20140515","http://www.feilong.com")
+ *  
+ * 	    ##原来这个文件的script type是text/ecmascript,找不到主人,暂时合并,看看会不会出问题
+ * 	    static/marketplace/js/marketplace.js
+ * 	
+ * 	    static/public/js/cascading/jquery.cascading.data.js
+ * 	    static/public/js/cascading/jquery.cascading.js
+ * 	
+ * 	    static/public/js/jquery.json-2.4.js
+ * 	    static/public/js/jquery.form.js
+ * 	    static/public/js/jquery.lazyload.min.js
+ * 	
+ * 	    static/member/messages/messageAddress_$request.getAttribute('locale').js
+ * 	    static/trade/messages/messageTrade_$request.getAttribute('locale').js
+ * 
+ * 
+ * 
+ *  #end
+ * 
  * 
  * 每行一个css/js元素,中间可以有空白行,程序会自动忽视空白行
  * }
@@ -87,8 +88,8 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
  * <td>version</td>
- * <td>版本号</td>
- * <td>20140515</td>
+ * <td>版本号 不建议直接使用时间戳,容易被黑客CDN攻击 建议使用md5参数或者随机数</td>
+ * <td>16b3adc77c0d3e9df617d3178fe43445</td>
  * </tr>
  * <tr valign=top >
  * <td>domain</td>
@@ -98,7 +99,7 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * <tr valign='top' bgcolor="#eeeeff">
  * <td>root</td>
  * <td>目录</td>
- * <td>设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801</td>
+ * <td>设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?16b3adc77c0d3e9df617d3178fe43445</td>
  * </tr>
  * </table>
  * </blockquote>
@@ -251,7 +252,9 @@ public class Concat extends AbstractDirective{
 		List<String> list = new ArrayList<String>(length);
 		for (int i = 0; i < length; ++i){
 			String item = items[i];
+			// 忽视空行
 			if (Validator.isNotNullOrEmpty(item)){
+				// 去除空格
 				list.add(item.trim());
 			}
 		}

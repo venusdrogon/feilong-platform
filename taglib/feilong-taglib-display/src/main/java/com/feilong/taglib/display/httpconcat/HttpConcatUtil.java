@@ -15,7 +15,9 @@
  */
 package com.feilong.taglib.display.httpconcat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.text.MessageFormatUtil;
 import com.feilong.commons.core.util.CollectionUtil;
+import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 import com.feilong.tools.json.JsonUtil;
@@ -39,16 +42,28 @@ import com.feilong.tools.json.JsonUtil;
 public final class HttpConcatUtil{
 
 	/** The Constant log. */
-	private static final Logger		log	= LoggerFactory.getLogger(HttpConcatUtil.class);
+	private static final Logger			log			= LoggerFactory.getLogger(HttpConcatUtil.class);
 
 	/** The Constant TEMPLATE_CSS. */
-	private static final String		TEMPLATE_CSS;
+	private static final String			TEMPLATE_CSS;
 
 	/** The Constant TEMPLATE_JS. */
-	private static final String		TEMPLATE_JS;
+	private static final String			TEMPLATE_JS;
 
 	/** 是否支持 HTTP_CONCAT. */
-	private static final Boolean	HTTP_CONCAT_SUPPORT;
+	private static final Boolean		HTTP_CONCAT_SUPPORT;
+
+	/**
+	 * 设置缓存是否开启
+	 */
+	// XXX
+	private boolean						cache		= true;
+
+	/**
+	 * 缓存视图的映射对象
+	 */
+	// XXX
+	private final Map<String, String>	viewCache	= new HashMap<String, String>();
 
 	// XXX 支持多变量
 	static{
@@ -87,23 +102,61 @@ public final class HttpConcatUtil{
 	}
 
 	// *****************************************************************************
-
 	/**
-	 * Gets the write content.
+	 * 获得解析的内容
 	 * 
 	 * @param httpConcatParam
 	 *            the http concat param
-	 * @return 如果支持 concat,那么生成concat字符串;如果不支持,那么生成多行js/css字符串
+	 * @return <ul>
+	 *         <li>如果 httpConcatParam isNullOrEmpty, throw {@link NullPointerException}</li>
+	 *         <li>如果 httpConcatParam.getItemSrcList() isNullOrEmpty,return null</li>
+	 *         <li>如果 httpConcatParam.getType() 不是 js或者css, throw {@link UnsupportedOperationException}</li>
+	 *         <li>如果支持 concat,那么生成concat字符串</li>
+	 *         <li>如果不支持 concat,那么生成多行js/css 原生的字符串</li>
+	 *         </ul>
 	 */
 	public static String getWriteContent(HttpConcatParam httpConcatParam){
+
+		if (Validator.isNullOrEmpty(httpConcatParam)){
+			throw new NullPointerException("the httpConcatParam is null or empty!");
+		}
 
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(httpConcatParam));
 		}
 
+		// 判断item list
+		List<String> itemSrcList = httpConcatParam.getItemSrcList();
+
+		if (Validator.isNullOrEmpty(itemSrcList)){
+			log.warn("the param itemSrcList isNullOrEmpty,need itemSrcList to create links");
+			return null;
+		}
+
+		// 去重,元素不重复
+		List<String> noRepeatitemList = ListUtil.removeDuplicate(itemSrcList);
+		if (Validator.isNullOrEmpty(noRepeatitemList)){
+			log.warn("the param noRepeatitemList isNullOrEmpty,need noRepeatitemList to create links");
+			return null;
+		}
+		int noRepeatitemListSize = noRepeatitemList.size();
+		int itemSrcListSize = itemSrcList.size();
+
+		if (noRepeatitemListSize != itemSrcListSize){
+			log.warn(
+					"noRepeatitemList.size():[{}] != itemSrcList.size():[{}],httpConcatParam:{}",
+					noRepeatitemListSize,
+					itemSrcListSize,
+					JsonUtil.format(httpConcatParam));
+		}
+		httpConcatParam.setItemSrcList(noRepeatitemList);
+
+		// *********************************************************************************
+
 		String type = httpConcatParam.getType();
 		String template = getTemplate(type);
 
+		// *********************************************************************************
 		String returnValue = "";
 		if (HTTP_CONCAT_SUPPORT){
 			// concat
@@ -111,20 +164,30 @@ public final class HttpConcatUtil{
 		}else{
 			// 本地开发环境支持的.
 			StringBuffer sb = new StringBuffer();
-			List<String> itemSrcList = httpConcatParam.getItemSrcList();
-			for (String itemSrc : itemSrcList){
-				if (Validator.isNotNullOrEmpty(itemSrc)){
-					sb.append(MessageFormatUtil.format(template, getNoConcatLink(itemSrc, httpConcatParam)));
-				}else{
-					log.warn("itemSrc isNullOrEmpty");
-				}
+			for (String itemSrc : noRepeatitemList){
+				sb.append(MessageFormatUtil.format(template, getNoConcatLink(itemSrc, httpConcatParam)));
 			}
 			returnValue = sb.toString();
 		}
+
+		// **************************log***************************************************
 		if (log.isDebugEnabled()){
 			log.debug("returnValue:[{}]", returnValue);
 		}
 		return returnValue;
+	}
+
+	// *****************************************************************************
+	/**
+	 * 生成version号<br>
+	 * 目前采用md5加密
+	 * 
+	 * @param origin
+	 *            the origin
+	 * @return the string
+	 */
+	public static String createVersion(String origin){
+		return MD5Util.encode(origin);
 	}
 
 	// *****************************************************************************
@@ -211,15 +274,4 @@ public final class HttpConcatUtil{
 		throw new UnsupportedOperationException("type:[" + type + "] not support!");
 	}
 
-	/**
-	 * 生成version号<br>
-	 * 目前采用md5加密
-	 * 
-	 * @param origin
-	 *            the origin
-	 * @return the string
-	 */
-	public static String createVersion(String origin){
-		return MD5Util.encode(origin);
-	}
 }
