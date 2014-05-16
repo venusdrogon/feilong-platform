@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.servlet.http;
 
@@ -22,6 +22,7 @@ package com.feilong.servlet.http;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.4 2014-3-27 14:38
+ * @see {@link org.apache.catalina.Globals}
  */
 public interface RequestConstants{
 
@@ -96,6 +97,35 @@ public interface RequestConstants{
 	 */
 	String	ATTRIBUTE_FORWARD_QUERY_STRING		= "javax.servlet.forward.query_string";
 
+	// **************************************Servlet API 2.3 ******************************************************************/
+	// Servlet API 2.3 also adds two new request attributes that can help a servlet make an informed decision about how to handle secure
+	// HTTPS connections.
+	// For requests made using HTTPS, the server will provide these new request attributes:
+
+	/** A String representing the cipher suite used by HTTPS, if any. */
+	String	ATTRIBUTE_REQUEST_CIPHER_SUITE		= "javax.servlet.request.cipher_suite";
+
+	/** An Integer representing the bit size of the algorithm, if any. */
+	String	ATTRIBUTE_REQUEST_KEY_SIZE			= "javax.servlet.request.key_size";
+
+	// ********************************************************************************************************/
+	/** ATTRIBUTE_REQUEST_X509CERTIFICATE. */
+	String	ATTRIBUTE_REQUEST_X509CERTIFICATE	= "javax.servlet.request.X509Certificate";
+
+	/**
+	 * The ATTRIBUT e_ reques t_ ss l_ session
+	 * {@link <a href="http://stackoverflow.com/questions/1422977/how-to-prevent-tomcat-session-hijacking">http://stackoverflow.com/questions/1422977/how-to-prevent-tomcat-session-hijacking</a>}
+	 * .
+	 */
+	String	ATTRIBUTE_REQUEST_SSL_SESSION		= "javax.servlet.request.ssl_session";
+
+	// 暂时还用不到下面的属性
+	// /** The WOR k_ di r_ attr. */
+	// String WORK_DIR_ATTR = "javax.servlet.context.tempdir";
+	//
+	// /** The SUBJEC t_ attr. */
+	// String SUBJECT_ATTR = "javax.security.auth.subject";
+	//
 	// *********************************error******************************************************************************/
 	/**
 	 * <code>{@value}</code><br>
@@ -120,13 +150,13 @@ public interface RequestConstants{
 	String	ATTRIBUTE_ERROR_MESSAGE				= "javax.servlet.error.message";
 
 	/**
-	 * <code>{@value}</code><br>
+	 * Servlet 2.3+ <code>{@value}</code><br>
 	 * The request attribute under which we forward a Java exception (as an object of type Throwable) to an error page.
 	 */
 	String	ATTRIBUTE_ERROR_EXCEPTION			= "javax.servlet.error.exception";
 
 	/**
-	 * <code>{@value}</code><br>
+	 * Servlet 2.3+<code>{@value}</code><br>
 	 * The request attribute under which we forward the request URI (as an object of type String) of the page on which an error occurred.
 	 */
 	String	ATTRIBUTE_ERROR_REQUEST_URI			= "javax.servlet.error.request_uri";
