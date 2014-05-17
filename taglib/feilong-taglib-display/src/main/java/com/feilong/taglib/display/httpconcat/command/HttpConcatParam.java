@@ -44,6 +44,9 @@ public class HttpConcatParam implements Serializable{
 	/** The domain. */
 	private String				domain;
 
+	/** 是否支持 http concat(如果设置这个参数,本次渲染,将会覆盖全局变量). */
+	private Boolean				httpConcatSupport	= null;
+
 	/** The item src list. */
 	private List<String>		itemSrcList;
 
@@ -142,6 +145,25 @@ public class HttpConcatParam implements Serializable{
 	 */
 	public void setItemSrcList(List<String> itemSrcList){
 		this.itemSrcList = itemSrcList;
+	}
+
+	/**
+	 * 获得 是否支持 http concat(如果设置这个参数,本次渲染,将会覆盖全局变量).
+	 * 
+	 * @return the httpConcatSupport
+	 */
+	public Boolean getHttpConcatSupport(){
+		return httpConcatSupport;
+	}
+
+	/**
+	 * 设置 是否支持 http concat(如果设置这个参数,本次渲染,将会覆盖全局变量).
+	 * 
+	 * @param httpConcatSupport
+	 *            the httpConcatSupport to set
+	 */
+	public void setHttpConcatSupport(Boolean httpConcatSupport){
+		this.httpConcatSupport = httpConcatSupport;
 	}
 
 }

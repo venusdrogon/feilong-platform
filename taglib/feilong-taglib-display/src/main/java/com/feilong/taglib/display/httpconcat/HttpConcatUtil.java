@@ -29,12 +29,13 @@ import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.text.MessageFormatUtil;
 import com.feilong.commons.core.util.CollectionUtil;
 import com.feilong.commons.core.util.ListUtil;
+import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 import com.feilong.tools.json.JsonUtil;
 
 /**
- * The Class HttpConcatUtil.
+ * http concat的核心工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 上午11:04:37
@@ -50,29 +51,25 @@ public final class HttpConcatUtil{
 	/** The Constant TEMPLATE_JS. */
 	private static final String			TEMPLATE_JS;
 
-	/** 是否支持 HTTP_CONCAT. */
-	private static final Boolean		HTTP_CONCAT_SUPPORT;
+	/** 是否支持 HTTP_CONCAT (全局参数). */
+	private static final Boolean		GLOBAL_HTTP_CONCAT_SUPPORT;
 
-	/**
-	 * 设置缓存是否开启
-	 */
+	/** 设置缓存是否开启. */
 	// XXX
 	private boolean						cache		= true;
 
-	/**
-	 * 缓存视图的映射对象
-	 */
+	/** 缓存视图的映射对象. */
 	// XXX
 	private final Map<String, String>	viewCache	= new HashMap<String, String>();
 
 	// XXX 支持多变量
 	static{
-		HTTP_CONCAT_SUPPORT = ResourceBundleUtil.getValue(
+		GLOBAL_HTTP_CONCAT_SUPPORT = ResourceBundleUtil.getValue(
 				HttpConcatConstants.CONFIG_FILE,
 				HttpConcatConstants.KEY_HTTPCONCAT_SUPPORT,
 				Boolean.class);
 
-		if (Validator.isNullOrEmpty(HTTP_CONCAT_SUPPORT)){
+		if (Validator.isNullOrEmpty(GLOBAL_HTTP_CONCAT_SUPPORT)){
 			log.warn(
 					"can not find key:[{}],pls ensure you have put the correct configuration file path:[{}]",
 					HttpConcatConstants.KEY_HTTPCONCAT_SUPPORT,
@@ -103,7 +100,7 @@ public final class HttpConcatUtil{
 
 	// *****************************************************************************
 	/**
-	 * 获得解析的内容
+	 * 获得解析的内容.
 	 * 
 	 * @param httpConcatParam
 	 *            the http concat param
@@ -116,7 +113,6 @@ public final class HttpConcatUtil{
 	 *         </ul>
 	 */
 	public static String getWriteContent(HttpConcatParam httpConcatParam){
-
 		if (Validator.isNullOrEmpty(httpConcatParam)){
 			throw new NullPointerException("the httpConcatParam is null or empty!");
 		}
@@ -124,6 +120,81 @@ public final class HttpConcatUtil{
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(httpConcatParam));
 		}
+
+		// ******************************************************************
+		Boolean httpConcatSupport = httpConcatParam.getHttpConcatSupport();
+		if (log.isDebugEnabled()){
+			log.debug("" + httpConcatSupport);
+		}
+
+		if (null == httpConcatSupport){
+			httpConcatSupport = GLOBAL_HTTP_CONCAT_SUPPORT;
+			// httpConcatParam.setHttpConcatSupport(GLOBAL_HTTP_CONCAT_SUPPORT);
+		}
+
+		// *******************************************************************
+		// 标准化 httpConcatParam,比如list去重,标准化domain等等
+		httpConcatParam = standardHttpConcatParam(httpConcatParam);
+
+		// *********************************************************************************
+
+		String type = httpConcatParam.getType();
+		String template = getTemplate(type);
+
+		// *********************************************************************************
+		String returnValue = "";
+		if (httpConcatSupport){
+			// concat
+			returnValue = MessageFormatUtil.format(template, getConcatLink(httpConcatParam));
+		}else{ // 本地开发环境支持的.
+			List<String> itemSrcList = httpConcatParam.getItemSrcList();
+			StringBuilder sb = new StringBuilder();
+			for (String itemSrc : itemSrcList){
+				sb.append(MessageFormatUtil.format(template, getNoConcatLink(itemSrc, httpConcatParam)));
+			}
+			returnValue = sb.toString();
+		}
+
+		// **************************log***************************************************
+		if (log.isDebugEnabled()){
+			log.debug("returnValue:[{}],length:[{}]", returnValue, returnValue.length());
+		}
+		return returnValue;
+	}
+
+	/**
+	 * 标准化 httpConcatParam,比如list去重,标准化domain等等
+	 * 
+	 * @param httpConcatParam
+	 * @return
+	 */
+	private static HttpConcatParam standardHttpConcatParam(HttpConcatParam httpConcatParam){
+		String domain = httpConcatParam.getDomain();
+		String root = httpConcatParam.getRoot();
+
+		// 格式化 domain 成 http://www.feilong.com/ 形式
+		if (Validator.isNotNullOrEmpty(domain)){
+			if (!domain.endsWith("/")){
+				domain = domain + "/";
+			}
+		}else{
+			domain = "";
+		}
+		// 格式化 root 成 xxxx/xxx/ 形式,
+		if (Validator.isNotNullOrEmpty(root)){
+			if (!root.endsWith("/")){
+				root = root + "/";
+			}
+			if (root.startsWith("/")){
+				root = StringUtil.substring(root, 1);
+			}
+		}else{
+			root = "";
+		}
+
+		httpConcatParam.setDomain(domain);
+		httpConcatParam.setRoot(root);
+		// ***************************************************************************
 
 		// 判断item list
 		List<String> itemSrcList = httpConcatParam.getItemSrcList();
@@ -150,37 +221,18 @@ public final class HttpConcatUtil{
 					JsonUtil.format(httpConcatParam));
 		}
 		httpConcatParam.setItemSrcList(noRepeatitemList);
-
-		// *********************************************************************************
-
-		String type = httpConcatParam.getType();
-		String template = getTemplate(type);
-
-		// *********************************************************************************
-		String returnValue = "";
-		if (HTTP_CONCAT_SUPPORT){
-			// concat
-			returnValue = MessageFormatUtil.format(template, getConcatLink(httpConcatParam));
-		}else{
-			// 本地开发环境支持的.
-			StringBuffer sb = new StringBuffer();
-			for (String itemSrc : noRepeatitemList){
-				sb.append(MessageFormatUtil.format(template, getNoConcatLink(itemSrc, httpConcatParam)));
-			}
-			returnValue = sb.toString();
-		}
-
-		// **************************log***************************************************
+		// *******************************************************************
 		if (log.isDebugEnabled()){
-			log.debug("returnValue:[{}]", returnValue);
+			log.debug("standardHttpConcatParam:{}", JsonUtil.format(httpConcatParam));
 		}
-		return returnValue;
+		return httpConcatParam;
+
 	}
 
 	// *****************************************************************************
 	/**
 	 * 生成version号<br>
-	 * 目前采用md5加密
+	 * 目前采用md5加密.
 	 * 
 	 * @param origin
 	 *            the origin
@@ -206,24 +258,24 @@ public final class HttpConcatUtil{
 
 		// **********************************************************************************
 
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append(domain);
-		if (Validator.isNotNullOrEmpty(root)){
-			sb.append(root);
-		}
+		sb.append(root);
+
 		int size = itemSrcList.size();
-		// 只有一条
+		// 只有一条 输出原生字符串
 		if (size == 1){
-			sb.append("/");
 			sb.append(itemSrcList.get(0));
+			if (log.isDebugEnabled()){
+				log.debug("itemSrcList size==1,will generate primary {}.", httpConcatParam.getType());
+			}
 		}else{
-			sb.append("/??");
+			sb.append("??");
 
 			JoinStringEntity joinStringEntity = new JoinStringEntity(JoinStringEntity.DEFAULT_CONNECTOR);
 			sb.append(CollectionUtil.toString(itemSrcList, joinStringEntity));
 		}
-		sb.append("?");
-		sb.append(version);
+		appendVersion(version, sb);
 
 		return sb.toString();
 	}
@@ -238,21 +290,49 @@ public final class HttpConcatUtil{
 	 * @return the string
 	 */
 	private static String getNoConcatLink(String itemSrc,HttpConcatParam httpConcatParam){
-
 		String domain = httpConcatParam.getDomain();
 		String root = httpConcatParam.getRoot();
 		String version = httpConcatParam.getVersion();
-
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append(domain);
-		if (Validator.isNotNullOrEmpty(root)){
-			sb.append(root);
-		}
-		sb.append("/");
+		sb.append(root);
 		sb.append(itemSrc);
-		sb.append("?");
-		sb.append(version);
+		appendVersion(version, sb);
 		return sb.toString();
+	}
+
+	// /**
+	// * 加工结果
+	// *
+	// * @param sb
+	// * @return
+	// */
+	// private static String handleResult(StringBuilder sb){
+	// String string = sb.toString();
+	// if (log.isDebugEnabled()){
+	// log.debug("the param sb:{}", sb);
+	// }
+	// // return string.replace("//", "/");
+	// return string;
+	// }
+
+	/**
+	 * Append version.
+	 * 
+	 * @param version
+	 *            the version
+	 * @param sb
+	 *            the sb
+	 */
+	private static void appendVersion(String version,StringBuilder sb){
+		if (Validator.isNotNullOrEmpty(version)){
+			sb.append("?");
+			sb.append(version);
+		}else{
+			if (log.isDebugEnabled()){
+				log.debug("the param version isNullOrEmpty,we suggest you to set version value");
+			}
+		}
 	}
 
 	// *****************************************************************************
@@ -271,7 +351,7 @@ public final class HttpConcatUtil{
 		}else if (HttpConcatConstants.TYPE_JS.equalsIgnoreCase(type)){
 			return TEMPLATE_JS;
 		}
-		throw new UnsupportedOperationException("type:[" + type + "] not support!");
+		throw new UnsupportedOperationException("type:[" + type + "] not support!,current time,only support js or css");
 	}
 
 }

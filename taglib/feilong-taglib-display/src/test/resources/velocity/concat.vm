@@ -1,10 +1,13 @@
-#concat("js","20140514")
-##jjjjjjj
-	trade/js/payment/memberAddress.js
-	trade/js/payment/order.js
-	trade/js/payment/order.js
-		
+#concat("css","20140514","http://www.feilong.com","payment")
+	js/payment/memberAddress.css
+	js/payment/order.css
 #end
+#concat("js","20140514","http://www.feilong.com","/trade/js/payment",true)
+	memberAddress.js
+	order.js
+	#if(1==0)order2.js#end
+#end
+
 #concat("js","20140514")
 #end
 

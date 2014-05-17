@@ -69,6 +69,8 @@ public class CommonConstants{
 	@Test
 	public void length(){
 		log.info("http://203.128.73.211/p/klikpayback/010000140002?s=30cbbe7a9bfcfc1131b018426e8560854bf507b3".length() + "");
+		log.info("http://s.mp2.com/??static/public/js/jquery.jqzoom-core.js,static/public/js/jquery.json-2.4.js,static/marketplace/js/item/memberFavorite.js,static/marketplace/js/buyNow/addShoppingCart.js,static/marketplace/messages/messageDetail_en_US.js,static/marketplace/js/item/itemPDPDetail.js,static/marketplace/js/item/itemPDPDetail_subData.js,static/marketplace/js/item/itemPDPDetail_paging.js,static/public/js/cascading/jquery.cascading.data.js,static/public/js/cascading/jquery.cascading.js,static/marketplace/js/item/youMayLikeItemForPDP.js,static/livechat/js/livechat.js,static/trade/js/tradeFeedbacks/rating.js?16b3adc77c0d3e9df617d3178fe43445"
+				.length() + "");
 		log.info("Rm.109-118, Building H, No.1188 Wanrong Road, Shanghai 200436".length() + "");
 	}
 

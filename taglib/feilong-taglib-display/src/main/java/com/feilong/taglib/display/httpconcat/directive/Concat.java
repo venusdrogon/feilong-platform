@@ -167,6 +167,7 @@ public class Concat extends AbstractDirective{
 		String version = "";
 		String domain = "";
 		String root = "";
+		Boolean httpConcatSupport = null;
 
 		// loop through all "params"
 		for (int i = 0, j = node.jjtGetNumChildren(); i < j; i++){
@@ -174,14 +175,17 @@ public class Concat extends AbstractDirective{
 			if (null != jjtGetChild){
 				if (!(jjtGetChild instanceof ASTBlock)){
 					// reading and casting inline parameters
+					Object value = jjtGetChild.value(internalContextAdapter);
 					if (i == 0){
-						type = "" + jjtGetChild.value(internalContextAdapter);
+						type = "" + value;
 					}else if (i == 1){
-						version = "" + jjtGetChild.value(internalContextAdapter);
+						version = "" + value;
 					}else if (i == 2){
-						domain = "" + jjtGetChild.value(internalContextAdapter);
+						domain = "" + value;
 					}else if (i == 3){
-						root = "" + jjtGetChild.value(internalContextAdapter);
+						root = "" + value;
+					}else if (i == 4){
+						httpConcatSupport = Boolean.parseBoolean("" + value);
 					}else{
 						break;
 					}
@@ -209,6 +213,7 @@ public class Concat extends AbstractDirective{
 		httpConcatParam.setType(type);
 		httpConcatParam.setVersion(version);
 		httpConcatParam.setItemSrcList(itemSrcList);
+		httpConcatParam.setHttpConcatSupport(httpConcatSupport);
 
 		return httpConcatParam;
 	}
