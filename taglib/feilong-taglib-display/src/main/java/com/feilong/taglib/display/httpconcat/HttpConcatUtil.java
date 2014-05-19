@@ -37,8 +37,9 @@ import com.feilong.tools.json.JsonUtil;
 /**
  * http concat的核心工具类.
  * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2014年5月5日 上午11:04:37
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014年5月19日 下午2:50:43
+ * @since 1.0.7
  */
 public final class HttpConcatUtil{
 
@@ -163,10 +164,11 @@ public final class HttpConcatUtil{
 	}
 
 	/**
-	 * 标准化 httpConcatParam,比如list去重,标准化domain等等
+	 * 标准化 httpConcatParam,比如list去重,标准化domain等等.
 	 * 
 	 * @param httpConcatParam
-	 * @return
+	 *            the http concat param
+	 * @return the http concat param
 	 */
 	private static HttpConcatParam standardHttpConcatParam(HttpConcatParam httpConcatParam){
 		String domain = httpConcatParam.getDomain();
@@ -239,7 +241,11 @@ public final class HttpConcatUtil{
 	 * @return the string
 	 */
 	public static String createVersion(String origin){
-		return MD5Util.encode(origin);
+		String version = MD5Util.encode(origin);
+		if (log.isInfoEnabled()){
+			log.info("origin:[{}],version:[{}]", origin, version);
+		}
+		return version;
 	}
 
 	// *****************************************************************************
