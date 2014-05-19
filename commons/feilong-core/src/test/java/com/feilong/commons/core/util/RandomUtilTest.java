@@ -25,6 +25,9 @@
  */
 package com.feilong.commons.core.util;
 
+import java.util.Random;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +56,17 @@ public class RandomUtilTest{
 	 */
 	@Test
 	public final void createRandomWithLength(){
-		log.info(RandomUtil.createRandomWithLength(6) + "");
+		for (int i = 0, j = 100; i < j; ++i){
+			log.info(RandomUtil.createRandomWithLength(2) + "");
+		}
+	}
+
+	@Test
+	public final void createRandomWithLength2(){
+		for (int i = 0, j = 100; i < j; ++i){
+			Random rand = new Random();
+			System.out.println(rand.nextDouble());
+		}
 	}
 
 	/**
@@ -61,13 +74,23 @@ public class RandomUtilTest{
 	 */
 	@Test
 	public final void testgetRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(5, PropertiesConstants.CONFIG_NUMBERSANDALLLETTERS));
-		log.info(RandomUtil.createRandomFromString(200, PropertiesConstants.CONFIG_NUMBERS));
+		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERSANDALLLETTERS, 5));
+		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 200));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public final void testgetRandomFromString1(){
+		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 0));
+	}
+
+	@Test(expected = NullPointerException.class)
+	public final void testgetRandomFromString2(){
+		log.info(RandomUtil.createRandomFromString("", 5));
 	}
 
 	@Test
 	public final void createRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(8, 20, PropertiesConstants.CONFIG_NUMBERS));
+		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 8, 20));
 	}
 
 	@Test

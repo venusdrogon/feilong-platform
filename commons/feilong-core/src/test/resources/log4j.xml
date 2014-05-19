@@ -82,6 +82,10 @@
 		<priority value="info" />
 	</category>
 
+	<category name="elsepackage.code.CodeGenerator">
+		<priority value="info" />
+	</category>
+
 	<category name="loxia.support.json">
 		<priority value="warn" />
 	</category>

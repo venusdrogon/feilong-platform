@@ -59,6 +59,13 @@ public class CodeGeneratorTest{
 	}
 
 	@Test
+	public void createOrderCode1(){
+		for (int i = 0, j = 100; i < j; ++i){
+			log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2044-12-31 10:21:46", DatePattern.commonWithTime), 35191L, 555L));
+		}
+	}
+
+	@Test
 	public void createReturnOrderCode(){
 		log.info(CodeGenerator.createReturnOrderCode(111121L, 5555555L));
 	}

@@ -27,7 +27,8 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 订单编号生成器(要确保每个订单不编码不重复).
+ * 订单编号生成器(要确保每个订单不编码不重复)<br>
+ * 不能100%的保证订单号唯一,各个商城按照需求 定制retry机制
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 3, 2013 4:52:16 PM
@@ -36,7 +37,6 @@ import com.feilong.commons.core.util.Validator;
 public class CodeGenerator{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log			= LoggerFactory.getLogger(CodeGenerator.class);
 
 	/** The debug flag. */
@@ -176,7 +176,7 @@ public class CodeGenerator{
 		String hourOfYear = StringUtil.format("%04d", DateUtil.getHourOfYear(date));
 
 		// ****************两位随机数***************************************
-		String randomString = RandomUtil.createRandomWithLength(codeType.getRandomNumberLength()) + "";
+		String randomString = getRandom(codeType);
 
 		// **********************************************************
 		buyerIdFormat = formatLastValue(buyerId, codeType.getBuyerIdLastLength());
@@ -248,6 +248,18 @@ public class CodeGenerator{
 
 		return result;
 
+	}
+
+	/**
+	 * 随机数
+	 * 
+	 * @param codeType
+	 * @return
+	 */
+	private static String getRandom(CodeType codeType){
+		int randomNumberLength = codeType.getRandomNumberLength();
+		String randomString = RandomUtil.createRandomWithLength(randomNumberLength) + "";
+		return randomString;
 	}
 
 	// ******************************************************************************************
