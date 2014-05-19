@@ -94,13 +94,14 @@
 
 		<version.xfire>1.2.6</version.xfire>
 		<version.velocity>1.7</version.velocity>
-		
+
 		<version.zookeeper>3.4.6</version.zookeeper>
 
 
 		<!--****************************scope************************************ -->
 		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
 		<scope.log4j>provided</scope.log4j>
+		<github.repository>repository</github.repository>
 
 
 		<!--****************************plugin************************************ -->
@@ -427,7 +428,35 @@
 			</testResource>
 		</testResources>
 
+
+
 		<plugins>
+
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.9</version>
+				<configuration>
+					<message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+					<outputDirectory>${project.build.directory}/${github.repository}</outputDirectory> <!-- matches distribution management repository url above -->
+					<branch>refs/heads/${github.repository}</branch>                       <!-- remote branch name -->
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<repositoryName>${project.name}</repositoryName>      <!-- github repo name -->
+					<repositoryOwner>venusdrogon</repositoryOwner>    <!-- github username -->
+				</configuration>
+				<executions>
+					<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- 国际化插件 -->
 			<plugin>
@@ -605,6 +634,9 @@
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/${github.repository}</altDeploymentRepository>
+				</configuration>
 				<executions>
 					<execution>
 						<id>default-deploy</id>
@@ -760,10 +792,25 @@
 	</scm>
 
 	<distributionManagement>
-		<repository>
+		<!-- <repository>
 			<id>feilong.googlecode.com</id>
 			<url>svn:https://feilong.googlecode.com/svn/repository</url>
+			</repository> -->
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/${github.repository}</url>
 		</repository>
+
 	</distributionManagement>
+
+
+
+	<!-- <repositories>
+		<repository>
+		<id>maven-repository</id>
+		<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
+		</repository>
+		</repositories> -->
 
 </project>

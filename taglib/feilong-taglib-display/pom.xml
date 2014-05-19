@@ -17,7 +17,6 @@
 		<dependency>
 			<groupId>com.feilong.platform.commons</groupId>
 			<artifactId>feilong-commons-security</artifactId>
-			<version>${version.feilong-platform}</version>
 		</dependency>
 	</dependencies>
 </project>
