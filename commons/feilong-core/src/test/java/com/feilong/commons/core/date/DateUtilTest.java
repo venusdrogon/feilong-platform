@@ -25,8 +25,6 @@
  */
 package com.feilong.commons.core.date;
 
-import static org.junit.Assert.fail;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -83,11 +81,6 @@ public class DateUtilTest{
 	}
 
 	// **********************************************************************
-	@Test
-	public void testGetFirstDateOfThisYear(){
-		Date now_3 = DateUtil.getFirstDateOfThisYear(now);
-		log.debug(DateUtil.date2String(now_3));
-	}
 
 	@Test
 	public void aaaa(){
@@ -155,38 +148,63 @@ public class DateUtilTest{
 	}
 
 	@Test
-	public void testGetFirstDateOfThisMonth(){
-		Date now_3 = DateUtil.getFirstDateOfThisMonth(now);
-		log.debug(DateUtil.date2String(now_3));
+	public void getFirstDateOfThisMonth(){
+		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisMonth(now)));
+		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, +1))));
+		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, -1))));
 	}
 
 	@Test
 	public void getLastDateOfThisMonth(){
 		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(now)));
 		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(DateUtil.string2Date("2012-02-01", DatePattern.onlyDate))));
+		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, +1))));
+		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, -1))));
+	}
+
+	@Test
+	public void getFirstDateOfThisYear(){
+		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisYear(now)));
+		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, +1))));
+		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, -1))));
 	}
 
 	@Test
 	public void testGetLastDateOfThisYear(){
-		Date now_3 = DateUtil.getLastDateOfThisYear(now);
-		log.debug(DateUtil.date2String(now_3));
+		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisYear(now)));
+		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, +1))));
+		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, -1))));
 	}
 
 	@Test
-	public void testGetFirstDateOfThisWeek(){
+	public void getFirstDateOfThisWeek(){
 		Date date = DateUtil.addDay(now, -2);
 		log.debug("the param date:{}", DateUtil.date2String(date, DatePattern.commonWithMillisecond));
 		Date now_3 = DateUtil.getFirstDateOfThisWeek(date);
 		log.debug(DateUtil.date2String(now_3, DatePattern.commonWithMillisecond));
+		log.debug("今天所在week 第一天:{}", DateUtil.date2String(DateUtil.getFirstDateOfThisWeek(new Date()), DatePattern.commonWithMillisecond));
+
+		log.debug(
+				"getFirstDateOfThisWeek:{}",
+				DateUtil.date2String(
+						DateUtil.getFirstDateOfThisWeek(DateUtil.string2Date("2014-01-01 05:00:00", DatePattern.commonWithTime)),
+						DatePattern.commonWithMillisecond));
+
 	}
 
 	@Test
-	public void testGetLastDateOfThisWeek(){
+	public void getLastDateOfThisWeek(){
 		Date date = DateUtil.addDay(now, -2);
 
 		log.debug("the param date:{}", DateUtil.date2String(date, DatePattern.commonWithMillisecond));
 		Date now_3 = DateUtil.getLastDateOfThisWeek(date);
 		log.debug(DateUtil.date2String(now_3, DatePattern.commonWithMillisecond));
+
+		log.debug(
+				"getLastDateOfThisWeek:{}",
+				DateUtil.date2String(
+						DateUtil.getLastDateOfThisWeek(DateUtil.string2Date("2014-12-31 05:00:00", DatePattern.commonWithTime)),
+						DatePattern.commonWithMillisecond));
 	}
 
 	@Test
@@ -376,12 +394,17 @@ public class DateUtilTest{
 	}
 
 	@Test
-	public void testAddDay(){
+	public void addDay(){
 		Date date = DateUtil.addDay(new Date(), 5);
 		print(date);
 
 		date = DateUtil.addDay(new Date(), -5);
 		print(date);
+
+		date = DateUtil.addDay(DateUtil.string2Date("2014-12-31 02:10:05", DatePattern.commonWithTime), 5);
+		print(date);
+
+		print(DateUtil.addDay(DateUtil.string2Date("2014-01-01 02:10:05", DatePattern.commonWithTime), -5));
 	}
 
 	@Test
@@ -477,70 +500,6 @@ public class DateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#operateDate(java.util.Date, int, int)}.
-	 */
-	@Test
-	public final void testOperateDate(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#date2String(java.util.Date)}.
-	 */
-	@Test
-	public final void testDate2StringDate(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#date2String(java.util.Date, java.lang.String)}.
-	 */
-	@Test
-	public final void testDate2StringDateString(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#dateList2StringList(java.util.List, java.lang.String)}.
-	 */
-	@Test
-	public final void testDateList2StringList(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#isEquals(java.util.Date, java.util.Date, java.lang.String)}.
-	 */
-	@Test
-	public final void testIsEqual(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalForView(java.util.Date, java.util.Date)}.
-	 */
-	@Test
-	public final void testGetIntervalForViewDateDate(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalHour(long)}.
-	 */
-	@Test
-	public final void testGetIntervalHourLong(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalMinute(long)}.
-	 */
-	@Test
-	public final void testGetIntervalMinute(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
 	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalHour(java.util.Date, java.util.Date)}.
 	 */
 	@Test
@@ -553,26 +512,6 @@ public class DateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalDay(long)}.
-	 */
-	@Test
-	public final void testGetIntervalDayLong(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalDay(java.lang.String, java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public final void testGetIntervalDayString(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalDay(java.util.Date, java.util.Date)}.
-	 */
-	@Test
-	public final void testGetIntervalDayDateDate(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
 	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getIntervalTime(java.util.Date, java.util.Date)}.
 	 */
 	@Test
@@ -582,14 +521,6 @@ public class DateUtilTest{
 		log.info(DateUtil.getIntervalTime(startDate, now) + "");
 		log.info(DateUtil.getIntervalTime(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.commonWithTime)) + "");
 
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#toCalendar(java.util.Date)}.
-	 */
-	@Test
-	public final void testToCalendar(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	@Test

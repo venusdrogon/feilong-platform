@@ -34,7 +34,117 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * Date 操作工具类(feilong-core 核心类之一)<br>
- * 包括:字符串转日期,日期转字符串,日期加减,获得日期某部值,获得两个日期间隔.
+ * 包括:
+ * <ul>
+ * <li>字符串转日期
+ * <ul>
+ * <li>{@link DateUtil#string2Date(String, String)}</li>
+ * </ul>
+ * </li>
+ * <li>日期转字符串
+ * <ul>
+ * <li>{@link DateUtil#date2String(Date)}</li>
+ * <li>{@link DateUtil#date2String(Date, String)}</li>
+ * </ul>
+ * </li>
+ * <li>日期加减
+ * <ul>
+ * <li>{@link DateUtil#addDay(Date, int)}</li>
+ * <li>{@link DateUtil#addHour(Date, int)}</li>
+ * <li>{@link DateUtil#addMinute(Date, int)}</li>
+ * <li>{@link DateUtil#addMonth(Date, int)}</li>
+ * <li>{@link DateUtil#addSecond(Date, int)}</li>
+ * <li>{@link DateUtil#addWeek(Date, int)}</li>
+ * <li>{@link DateUtil#addYear(Date, int)}</li>
+ * </ul>
+ * </li>
+ * <li>获得日期某部值
+ * <ul>
+ * <li>{@link DateUtil#getDayOfMonth(Date)}</li>
+ * <li>{@link DateUtil#getDayOfWeek(Date)}</li>
+ * <li>{@link DateUtil#getDayOfYear(Date)}</li>
+ * <li>{@link DateUtil#getHourOfDay(Date)}</li>
+ * <li>{@link DateUtil#getHourOfYear(Date)}</li>
+ * <li>{@link DateUtil#getMinute(Date)}</li>
+ * <li>{@link DateUtil#getMonth(Date)}</li>
+ * <li>{@link DateUtil#getSecond(Date)}</li>
+ * <li>{@link DateUtil#getYear(Date)}</li>
+ * <li>{@link DateUtil#getTime(Date)}</li>
+ * </ul>
+ * </li>
+ * <li>获得两个日期间隔
+ * <ul>
+ * <li>{@link DateUtil#getIntervalDay(long)}</li>
+ * <li>{@link DateUtil#getIntervalDay(Date, Date)}</li>
+ * <li>{@link DateUtil#getIntervalDay(String, String, String)}</li>
+ * <li>{@link DateUtil#getIntervalDayList(String, String, String)}</li>
+ * <li>{@link DateUtil#getIntervalForView(long)}</li>
+ * <li>{@link DateUtil#getIntervalForView(Date, Date)}</li>
+ * <li>{@link DateUtil#getIntervalHour(long)}</li>
+ * <li>{@link DateUtil#getIntervalHour(Date, Date)}</li>
+ * <li>{@link DateUtil#getIntervalMinute(long)}</li>
+ * <li>{@link DateUtil#getIntervalSecond(long)}</li>
+ * <li>{@link DateUtil#getIntervalSecond(Date, Date)}</li>
+ * <li>{@link DateUtil#getIntervalTime(Date, Date)}</li>
+ * </ul>
+ * </li>
+ * <li>判断闰年 {@link DateUtil#isLeapYear(int)}</i>
+ * <li>判断相等 {@link DateUtil#isEquals(Date, Date, String)}</i>
+ * <li>判断早晚
+ * <ul>
+ * <li>{@link DateUtil#isBefore(Date, String, String)}</li>
+ * <li>{@link DateUtil#isBefore(String, String, String)}</li>
+ * </ul>
+ * </i>
+ * <li>判断日期区间
+ * <ul>
+ * <li>{@link DateUtil#isInTime(Date, Date, Date)}</li>
+ * <li>{@link DateUtil#isInTime(Date, String, String, String)}</li>
+ * </ul>
+ * </i>
+ * </ul>
+ * 通过这个类,还可以获得以下数据:
+ * 
+ * <pre>
+ * {@code
+ * 获得下一周的第一天时间
+ * Date nextWeekDay = addDay(date, 7);
+ * return getFirstDateOfThisWeek(nextWeekDay);
+ * 
+ * 获得下一周的最后一天时间
+ * Date nextWeekDay = addDay(date, 7);
+ * return getLastDateOfThisWeek(nextWeekDay);
+ * 
+ * 获得上一周的第一天时间
+ * Date nextWeekDay = addDay(date, -7);
+ * return getFirstDateOfThisWeek(nextWeekDay);
+ * 
+ * 获得上一周的最后一天时间
+ * Date nextWeekDay = addDay(date, -7);
+ * return getLastDateOfThisWeek(nextWeekDay);
+ * 
+ * 
+ * 获得下个月第一天
+ * return DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, +1)));
+ * 获得下个月最后一天
+ * return DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, +1)));
+ * 获得上个月第一天
+ * return DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, -1)));
+ * 获得上个月最后一天
+ * return DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, -1)));
+ * 
+ * 
+ * 获得去年第一天
+ * return DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, -1));
+ * 获得去年最后一天
+ * return DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, -1)));
+ * 获得明年第一天
+ * return DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, +1));
+ * 获得明年最后一天
+ * return DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, +1)));
+ * 
+ * }
+ * </pre>
  * 
  * @see CalendarUtil
  * @see DatePattern
@@ -124,19 +234,24 @@ public final class DateUtil{
 		return calendar.getTime();
 	}
 
+	// *****************************week****************************************************
 	/**
-	 * 获得传入date 所在星期的第一天(周日) 0:0:0:0 到毫秒<br>
-	 * 注意:按照外国制,周日为一个星期第一天,周六为最后一天
+	 * 获得传入date 所在的星期 第一天(<b>周日</b>) <code>00:00:00.000</code> 到毫秒<br>
+	 * 注意:按照外国制,周日为一个星期第一天,周六为最后一天<br>
+	 * 注意:会自动跨月,跨年操作
 	 * 
 	 * <pre>
-	 * 如果 现在是 2012-10-11 17:10:30.701 (周四),
+	 * 如果 现在是 2012-10-11 17:10:30.701(周四),
+	 * return 2012-10-07 00:00:00.000
 	 * 
-	 * return  2012-10-07 00:00:00.000
+	 * 跨年
+	 * getFirstDateOfThisWeek(2014-01-01 05:00:00)
+	 * return 2013-12-29 00:00:00.000
 	 * </pre>
 	 * 
 	 * @param date
 	 *            the date
-	 * @return Date
+	 * @return 传入date 所在星期的第一天 <code>00:00:00.000</code> 到毫秒
 	 * @since 1.0
 	 */
 	public final static Date getFirstDateOfThisWeek(Date date){
@@ -147,18 +262,22 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得传入date 所在星期的最后一天(周六) 23:59:59.999 到毫秒<br>
-	 * 注意:按照外国制,周日为一个星期第一天,周六为最后一天
+	 * 获得传入date 所在星期的最后一天(周六) <code>23:59:59.999</code> 到毫秒<br>
+	 * 注意:按照外国制,周日为一个星期第一天,周六为最后一天<br>
+	 * 注意:会自动跨月,跨年操作
 	 * 
 	 * <pre>
 	 * 如果 现在是 2012-10-11 17:10:30.701 (周四),
-	 * 
 	 * return 2012-10-13 23:59:59.999
+	 * 
+	 * 跨年
+	 * getLastDateOfThisWeek(2014-12-31 05:00:00)
+	 * return 2015-01-03 23:59:59.999
 	 * </pre>
 	 * 
 	 * @param date
 	 *            任意date
-	 * @return 传入date 所在星期的最后一天 23:59:59.999 到毫秒
+	 * @return 传入date 所在星期的最后一天 <code>23:59:59.999</code> 到毫秒
 	 * @since 1.0.1
 	 */
 	public final static Date getLastDateOfThisWeek(Date date){
@@ -168,8 +287,10 @@ public final class DateUtil{
 		return calendar.getTime();
 	}
 
+	// *********************************************************************************
+
 	/**
-	 * 获得当天所在月的第一天,0:0:0:0 到毫秒<br>
+	 * 获得当天所在月的第一天,<code>00:00:00</code> 到毫秒<br>
 	 * 
 	 * <pre>
 	 * 如果 现在是 2012-10-11 17:10:30.701 (周四),
@@ -190,7 +311,8 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得当天所在月的最后一天 23:59:59.999 到毫秒<br>
+	 * 获得当天所在月的最后一天 <code>23:59:59.999</code> 到毫秒<br>
+	 * 以当前月的实际天数为准,也就是说,2月会自动区分闰年 是28天还是29天
 	 * 
 	 * <pre>
 	 * 如果 现在是 2012-10-11 17:10:30.701,
@@ -211,7 +333,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得指定日期所在年的第一天,0:0:0:0 到毫秒
+	 * 获得指定日期所在年的第一天,<code>00:00:00.000</code> 到毫秒.
 	 * 
 	 * <pre>
 	 * 如果 现在是 2012-10-11 17:10:30.701,
@@ -233,7 +355,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 获得当天所在年的最后一天 23:59:59.999 到毫秒<br>
+	 * 获得当天所在年的最后一天 <code>23:59:59.999</code> 到毫秒<br>
 	 * 
 	 * <pre>
 	 * 如果 现在是 2012-10-11 17:10:30.701,
@@ -258,7 +380,8 @@ public final class DateUtil{
 
 	// [start]operate 时间操作(加减)
 	/**
-	 * 指定时间,加减年份(仅年进行加减)
+	 * 指定时间,加减年份(仅年进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addYear(2012-06-29 00:33:05,5)
@@ -267,6 +390,8 @@ public final class DateUtil{
 	 * addYear(2012-06-29 00:33:05,-5)
 	 * return 20<span style="color:red">07</span>-06-29 00:33:05
 	 * </pre>
+	 * 
+	 * .
 	 * 
 	 * @param date
 	 *            指定时间
@@ -281,7 +406,8 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 指定时间加减月份,(仅仅月进行加减)
+	 * 指定时间加减月份,(仅仅月进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addMonth(2012-10-16 23:12:43,5)
@@ -304,7 +430,8 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 指定时间加减天数,(仅仅天进行加减).
+	 * 指定时间加减天数 (仅仅天进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addDay(2012-06-29 00:42:26,5)
@@ -312,6 +439,12 @@ public final class DateUtil{
 	 * 
 	 * addDay(2012-06-29 00:42:26,-5)
 	 * return 2012-06-24 00:42:26
+	 * 
+	 * addDay(2014-12-31 02:10:05,5)
+	 * return 2015-01-05 02:10:05.000
+	 * 
+	 * addDay(2014-01-01 02:10:05,-5)
+	 * return 2013-12-27 02:10:05.000
 	 * </pre>
 	 * 
 	 * @param date
@@ -323,11 +456,13 @@ public final class DateUtil{
 	 * @see #operateDate(Date, int, int)
 	 */
 	public final static Date addDay(Date date,int day){
+		// Calendar.DAY_OF_MONTH 它与 Calendar.DATE 是同义词。一个月中第一天的值为 1。
 		return operateDate(date, Calendar.DAY_OF_MONTH, day);
 	}
 
 	/**
-	 * 日期加减星期 WEEK_OF_YEAR.
+	 * 日期加减星期 WEEK_OF_YEAR(仅仅week进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addWeek(2012-06-29 00:45:18,5)
@@ -350,7 +485,8 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减小时 Calendar.HOUR_OF_DAY 24小时制.
+	 * 日期加减小时 Calendar.HOUR_OF_DAY 24小时制(仅仅HOUR进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addHour(2012-06-29 00:46:24,5)
@@ -368,11 +504,14 @@ public final class DateUtil{
 	 * @see #operateDate(Date, int, int)
 	 */
 	public final static Date addHour(Date date,int hour){
+		// Calendar.HOUR——12小时制的小时数
+		// Calendar.HOUR_OF_DAY——24小时制的小时数
 		return operateDate(date, Calendar.HOUR_OF_DAY, hour);
 	}
 
 	/**
-	 * 日期加减分钟 Calendar.MINUTE.
+	 * 日期加减分钟 Calendar.MINUTE(仅仅MINUTE进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addMinute(2012-10-16 23:20:33,180)
@@ -394,7 +533,8 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减秒 Calendar.SECOND.
+	 * 日期加减秒 Calendar.SECOND(仅仅SECOND进行加减,不会操作其他字段)<br>
+	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
 	 * addSecond(2012-10-16 23:22:02,180)
@@ -1083,7 +1223,7 @@ public final class DateUtil{
 	/**
 	 * 获得两个日期时间的日期间隔时间集合,用于统计日报表<br>
 	 * 返回的List 为 LinkedList,日期按照顺序排列<br>
-	 * 每天的日期会被重置清零 0:0:0
+	 * 每天的日期会被重置清零 <code>00:00:00.000</code>
 	 * 
 	 * <pre>
 	 * getIntervalDayList("2011-03-5 23:31:25.456","2011-03-10 01:30:24.895", DatePattern.commonWithTime)
@@ -1340,7 +1480,7 @@ public final class DateUtil{
 	// [start]private
 
 	/**
-	 * 一天开始,0:0:0.0
+	 * 一天开始,<code>00:00:00.000</code>
 	 * 
 	 * @param calendar
 	 *            the calendar
@@ -1353,7 +1493,7 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 一天结束,最后的时间 23:59:59.999
+	 * 一天结束,最后的时间 <code>23:59:59.999</code>
 	 * 
 	 * @param calendar
 	 *            the calendar
