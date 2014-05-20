@@ -25,13 +25,11 @@ import com.feilong.commons.core.enumeration.CharsetType;
  */
 public class CSVParams{
 
-
-
 	/** 编码. */
-	private String				encode					= CharsetType.GBK;
+	private String	encode		= CharsetType.GBK;
 
 	/** filed 分隔符 默认,逗号. */
-	private char				separator				= ',';
+	private char	separator	= ',';
 
 	/**
 	 * Gets the 编码.
