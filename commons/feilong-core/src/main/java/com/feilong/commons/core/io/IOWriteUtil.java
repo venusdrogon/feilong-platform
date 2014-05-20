@@ -16,14 +16,12 @@
 package com.feilong.commons.core.io;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +31,8 @@ import com.feilong.commons.core.enumeration.FileWriteMode;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 写文件.
+ * 写文件<br>
+ * 如果需要覆盖写文件,可以调用 {@link #write(String, String, String, FileWriteMode)}.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:23:23 PM
@@ -54,8 +53,10 @@ public final class IOWriteUtil{
 	 * @param fileName
 	 *            文件名称
 	 * @return 是否成功
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static boolean write(InputStream inputStream,String directoryName,String fileName){
+	public static boolean write(InputStream inputStream,String directoryName,String fileName) throws IOException{
 		String fileAllName = directoryName + "/" + fileName;
 		// 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建
 		File file = new File(fileAllName);
@@ -63,14 +64,9 @@ public final class IOWriteUtil{
 		if (!fileParent.exists()){
 			fileParent.mkdirs();
 		}
-		try{
-			OutputStream outputStream = new FileOutputStream(fileAllName);
-			write(inputStream, outputStream);
-			return true;
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		}
-		return false;
+		OutputStream outputStream = new FileOutputStream(fileAllName);
+		write(inputStream, outputStream);
+		return true;
 	}
 
 	/**
@@ -80,21 +76,17 @@ public final class IOWriteUtil{
 	 *            inputStream
 	 * @param outputStream
 	 *            outputStream
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void write(InputStream inputStream,OutputStream outputStream){
+	public static void write(InputStream inputStream,OutputStream outputStream) throws IOException{
 		byte[] bytes = new byte[10240];
 		int j;
-		try{
-			while ((j = inputStream.read(bytes)) != -1){
-				outputStream.write(bytes, 0, j);
-			}
-			// 用完关闭流 是个好习惯,^_^
-			inputStream.close();
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		}catch (IOException e){
-			e.printStackTrace();
+		while ((j = inputStream.read(bytes)) != -1){
+			outputStream.write(bytes, 0, j);
 		}
+		// 用完关闭流 是个好习惯,^_^
+		inputStream.close();
 	}
 
 	// *******************************************************************************************
@@ -113,8 +105,10 @@ public final class IOWriteUtil{
 	 *            </ul>
 	 * @param content
 	 *            字符串内容
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void write(String filePath,String content){
+	public static void write(String filePath,String content) throws IOException{
 		write(filePath, content, null);
 	}
 
@@ -132,8 +126,10 @@ public final class IOWriteUtil{
 	 *            字符串内容
 	 * @param encode
 	 *            编码,如果isNullOrEmpty,则默认使用 GBK编码
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void write(String filePath,String content,String encode){
+	public static void write(String filePath,String content,String encode) throws IOException{
 		write(filePath, content, encode, FileWriteMode.COVER);
 	}
 
@@ -153,8 +149,10 @@ public final class IOWriteUtil{
 	 *            编码,如果isNullOrEmpty,则默认使用 GBK编码
 	 * @param fileWriteMode
 	 *            写模式
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode){
+	public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws IOException{
 		if (Validator.isNullOrEmpty(encode)){
 			encode = CharsetType.GBK;
 		}
@@ -201,37 +199,29 @@ public final class IOWriteUtil{
 	 *            编码
 	 * @param fileWriteMode
 	 *            write 模式
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	private static void _write(String filePath,String content,String encode,FileWriteMode fileWriteMode){
+	private static void _write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws IOException{
 		// 向文本输出流打印对象的格式化表示形式
 		// 会自动创建文件,替换覆盖文字(非追加)
-		try{
-			// \ / : * ? " < > |
-			// 而且这些符号好像都是英文状态下的,换成中文状态下的就可以
-			String[] specialChars = { "*", "?" };
-			filePath = filePath.replace("?", "");
-			File file = new File(filePath);
 
-			boolean append = (fileWriteMode == FileWriteMode.APPEND);
-			FileOutputStream fileOutputStream = new FileOutputStream(file, append);
-			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, encode);
-			PrintWriter printWriter = new PrintWriter(outputStreamWriter);
-			printWriter.write(content);
-			printWriter.close();
+		// XXX \ / : * ? " < > |
+		// 而且这些符号好像都是英文状态下的,换成中文状态下的就可以
+		String[] specialChars = { "*", "?" };
+		filePath = filePath.replace("?", "");
+		File file = new File(filePath);
 
-			if (log.isInfoEnabled()){
-				Object[] params = {
-						fileWriteMode,
-						content.length(),
-						FileUtil.formatFileSize(FileUtil.getFileSize(file)),
-						file.getAbsolutePath() };
-				log.info("fileWriteMode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]", params);
-			}
-		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
+		boolean append = (fileWriteMode == FileWriteMode.APPEND);
+		FileOutputStream fileOutputStream = new FileOutputStream(file, append);
+		OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, encode);
+		PrintWriter printWriter = new PrintWriter(outputStreamWriter);
+		printWriter.write(content);
+		printWriter.close();
+
+		if (log.isInfoEnabled()){
+			Object[] params = { fileWriteMode, content.length(), FileUtil.formatSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
+			log.info("fileWriteMode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]", params);
 		}
 	}
-
 }

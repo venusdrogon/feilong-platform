@@ -20,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 一些流之间的转换.
+ * 流之间的转换.
  * 
  * @author 金鑫 2009-10-26下午02:36:47
  */
@@ -128,11 +127,10 @@ public final class IOUtil{
 	 * 
 	 * @param file
 	 *            file
-	 * @return <pre>
-	 * return byteArrayOutputStream.toByteArray();
-	 * </pre>
+	 * @return byteArrayOutputStream.toByteArray();
+	 * @throws IOException
 	 */
-	public final static byte[] convertFileToByteArray(File file){
+	public final static byte[] convertFileToByteArray(File file) throws IOException{
 		InputStream inputStream = getFileInputStream(file);
 		// *************************************************************************
 		BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
@@ -169,14 +167,10 @@ public final class IOUtil{
 	 * @param fileName
 	 *            文件名称
 	 * @return FileOutputStream
+	 * @throws IOException
 	 */
-	public final static FileOutputStream getFileOutputStream(String fileName){
-		FileOutputStream fileOutputStream = null;
-		try{
-			fileOutputStream = new FileOutputStream(fileName);
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
-		}
+	public final static FileOutputStream getFileOutputStream(String fileName) throws IOException{
+		FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 		return fileOutputStream;
 	}
 
@@ -187,8 +181,9 @@ public final class IOUtil{
 	 * @param fileName
 	 *            该文件通过文件系统中的路径名 fileName 指定。
 	 * @return FileInputStream
+	 * @throws IOException
 	 */
-	public final static FileInputStream getFileInputStream(String fileName){
+	public final static FileInputStream getFileInputStream(String fileName) throws IOException{
 		File file = new File(fileName);
 		return getFileInputStream(file);
 	}
@@ -200,16 +195,11 @@ public final class IOUtil{
 	 * @param file
 	 *            为了进行读取而打开的文件。
 	 * @return FileInputStream
+	 * @throws IOException
 	 */
-	public final static FileInputStream getFileInputStream(File file){
-		FileInputStream fileInputStream = null;
-		try{
-			fileInputStream = new FileInputStream(file);
-		}catch (FileNotFoundException e){
-			// 如果指定文件不存在，或者它是一个目录，而不是一个常规文件，抑或因为其他某些原因而无法打开进行读取，则抛出
-			// FileNotFoundException。
-			log.error(file + "找不到," + e.getMessage());
-		}
+	public final static FileInputStream getFileInputStream(File file) throws IOException{
+		// 如果指定文件不存在，或者它是一个目录，而不是一个常规文件，抑或因为其他某些原因而无法打开进行读取，则抛出 FileNotFoundException。
+		FileInputStream fileInputStream = new FileInputStream(file);
 		return fileInputStream;
 	}
 }

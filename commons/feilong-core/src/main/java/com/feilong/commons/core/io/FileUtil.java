@@ -315,6 +315,7 @@ public final class FileUtil{
 	 *            指定的文件类型数组
 	 * @return 上传的文件是否在指定的文件类型里面
 	 */
+	// XXX 忽视大小写
 	public final static boolean isInAppointTypes(String fileName,String[] appointTypes){
 		return ArrayUtil.isContain(appointTypes, getFilePostfixName(fileName));
 	}
