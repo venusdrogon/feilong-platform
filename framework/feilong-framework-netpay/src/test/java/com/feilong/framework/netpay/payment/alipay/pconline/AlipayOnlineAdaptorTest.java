@@ -15,6 +15,7 @@
  */
 package com.feilong.framework.netpay.payment.alipay.pconline;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,9 +46,12 @@ public class AlipayOnlineAdaptorTest extends BasePaymentTest{
 
 	/**
 	 * Creates the payment form.
+	 * @throws NoSuchFieldException 
+	 * @throws IOException 
+	 * @throws SecurityException 
 	 */
 	@Test
-	public void createPaymentForm(){
+	public void createPaymentForm() throws SecurityException, IOException, NoSuchFieldException{
 		// Map<String, PaymentAdaptor> paymentAdaptorMap1 = (Map<String, PaymentAdaptor>) applicationContext.getBean("paymentAdaptorMap");
 		// PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get("6");
 

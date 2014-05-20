@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jsoup;
 
@@ -43,22 +43,26 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 进包网
+ * 进包网.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-22 下午06:45:18
  */
 public class FeiLongJinBaoWangCrawler{
 
+	/** The Constant log. */
 	private final static Logger	log			= LoggerFactory.getLogger(FeiLongJinBaoWangCrawler.class);
 
+	/** The search page. */
 	private static String		searchPage	= "http://www.jinbaowang.cn/gallery--n,%s-grid.html";
 
 	/**
-	 * 将map 转成文件
+	 * 将map 转成文件.
 	 * 
 	 * @param skuCodeAndImagesMap
+	 *            the sku code and images map
 	 * @param directoryName
+	 *            the directory name
 	 */
 	public static void convertSkuCodeImagesToFile(Map<String, List<String>> skuCodeAndImagesMap,String directoryName){
 		String columnTitles[] = { "code", "image" };
@@ -75,8 +79,8 @@ public class FeiLongJinBaoWangCrawler{
 		}
 		Date now = new Date();
 		String timestamp = DateUtil.date2String(now, DatePattern.timestamp);
-		CSVUtil.write(directoryName + "/" + timestamp + ".csv", columnTitles, dataList);
 		try{
+			CSVUtil.write(directoryName + "/" + timestamp + ".csv", columnTitles, dataList);
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(directoryName + "/" + timestamp + ".obj"));
 			out.writeObject(skuCodeAndImagesMap);
 			out.close();
@@ -88,10 +92,11 @@ public class FeiLongJinBaoWangCrawler{
 	}
 
 	/**
-	 * 反序列化
+	 * 反序列化.
 	 * 
 	 * @param objPath
-	 * @return
+	 *            the obj path
+	 * @return the map
 	 */
 	public static Map<String, List<String>> convertObjectToMap(String objPath){
 		try{
@@ -110,11 +115,11 @@ public class FeiLongJinBaoWangCrawler{
 	}
 
 	/**
-	 * 解析商家编码文件
+	 * 解析商家编码文件.
 	 * 
 	 * @param filePath
 	 *            文件路径
-	 * @return
+	 * @return the code list
 	 */
 	public static List<String> getCodeList(String filePath){
 		String content = IOReaderUtil.getFileContent(filePath);
@@ -133,7 +138,7 @@ public class FeiLongJinBaoWangCrawler{
 	}
 
 	/**
-	 * 根据codes 获得 skuCodeAndImages
+	 * 根据codes 获得 skuCodeAndImages.
 	 * 
 	 * @param codes
 	 *            codes
@@ -157,7 +162,7 @@ public class FeiLongJinBaoWangCrawler{
 	}
 
 	/**
-	 * 通过code 商家编码 ,获得 在进包网上面的 真实的 商品详细页面url
+	 * 通过code 商家编码 ,获得 在进包网上面的 真实的 商品详细页面url.
 	 * 
 	 * @param code
 	 *            商家编码
@@ -182,13 +187,11 @@ public class FeiLongJinBaoWangCrawler{
 
 	/**
 	 * 下载sku 的 内容介绍图片<br>
+	 * .
 	 * 
 	 * @param skuDetailsRealUrl
 	 *            sku 真实路径
-	 * @param skuCode
-	 *            code
-	 * @param directoryName
-	 *            目标文件夹
+	 * @return the sku details images
 	 */
 	public static List<String> getSkuDetailsImages(String skuDetailsRealUrl){
 		Document document = JsoupUtil.getDocument(skuDetailsRealUrl);
@@ -206,10 +209,12 @@ public class FeiLongJinBaoWangCrawler{
 	}
 
 	/**
-	 * 自动抓取该详细页面所有的图片 下载到 directoryName/skuCode 目录下面
+	 * 自动抓取该详细页面所有的图片 下载到 directoryName/skuCode 目录下面.
 	 * 
-	 * @param skuCodeAndImages
+	 * @param skuCodeAndImagesMap
+	 *            the sku code and images map
 	 * @param directoryName
+	 *            the directory name
 	 */
 	public static void downSkuImages(Map<String, List<String>> skuCodeAndImagesMap,String directoryName){
 		// 目标文件夹

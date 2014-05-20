@@ -25,6 +25,7 @@
  */
 package com.feilong.commons.core.io;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ import com.feilong.commons.core.date.DateUtil;
 public class CSVUtilTest{
 
 	@Test
-	public void testWrite(){
+	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_demand.csv";
 		path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.onlyDate));
 		System.out.println(path);

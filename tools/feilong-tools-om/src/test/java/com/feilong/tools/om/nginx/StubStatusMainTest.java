@@ -15,6 +15,8 @@
  */
 package com.feilong.tools.om.nginx;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +35,11 @@ public class StubStatusMainTest{
 
 	/**
 	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike()}.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public final void testCrawStubStatusNike(){
+	public final void testCrawStubStatusNike() throws IOException{
 
 		final String uri = "http://www.nikestore.com.cn/nginx_status";
 
@@ -50,9 +54,11 @@ public class StubStatusMainTest{
 
 	/**
 	 * Test craw stub status feilong.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public final void testCrawStubStatusFeilong(){
+	public final void testCrawStubStatusFeilong() throws IOException{
 		final String uri = "http://127.0.0.1:8011/feilong-nginx-status";
 
 		final String userName = "feilong";

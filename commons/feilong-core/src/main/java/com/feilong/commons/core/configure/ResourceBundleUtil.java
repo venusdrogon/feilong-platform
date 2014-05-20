@@ -35,7 +35,7 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2011-11-11 上午10:24:25
  * @see {@link MessageFormatUtil#format(String, Object...)}
  */
-public class ResourceBundleUtil{
+public final class ResourceBundleUtil{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ResourceBundleUtil.class);

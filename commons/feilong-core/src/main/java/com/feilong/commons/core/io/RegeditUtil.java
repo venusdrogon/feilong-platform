@@ -49,8 +49,9 @@ public final class RegeditUtil{
 	 * @param cmdCommand
 	 *            cmd 命令
 	 * @return 返回查询的结果
+	 * @throws IOException
 	 */
-	public static String query(String cmdCommand){
+	public static String query(String cmdCommand) throws IOException{
 		Process process = Command.exec(cmdCommand);
 		InputStream inputStream = process.getInputStream();
 		FeiLongStreamReaderThread feiLongStreamReaderThread = new FeiLongStreamReaderThread(inputStream);

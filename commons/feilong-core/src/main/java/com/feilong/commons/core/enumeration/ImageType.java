@@ -16,7 +16,7 @@
 package com.feilong.commons.core.enumeration;
 
 /**
- * 飞龙图片类型
+ * 图片类型的枚举.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午01:19:46
@@ -26,29 +26,34 @@ package com.feilong.commons.core.enumeration;
 public interface ImageType{
 
 	/**
-	 * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的 <code>{@value}</code>
+	 * <code>{@value}</code><br>
+	 * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
 	 */
 	String	JPG		= "JPG";
 
 	/**
-	 * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的 <code>{@value}</code>
+	 * <code>{@value}</code><br>
+	 * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
 	 */
 	String	JPEG	= "JPEG";
 
 	/**
-	 * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式 <code>{@value}</code>
+	 * <code>{@value}</code><br>
+	 * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式.
 	 */
 	String	PNG		= "PNG";
 
 	/**
-	 * GIF Graphics Interchange format（图形交换格式） <code>{@value}</code>
+	 * <code>{@value}</code><br>
+	 * GIF Graphics Interchange format（图形交换格式） .
 	 */
 	String	GIF		= "GIF";
 
 	/**
+	 * <code>{@value}</code><br>
 	 * BMP Windows 位图<br>
 	 * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件。<br>
-	 * BMP 文件适用于 Windows 中的墙纸 <code>{@value}</code>
+	 * BMP 文件适用于 Windows 中的墙纸 .
 	 */
 	String	BMP		= "BMP";
 }

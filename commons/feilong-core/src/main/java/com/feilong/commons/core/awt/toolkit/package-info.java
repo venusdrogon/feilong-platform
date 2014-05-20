@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- *Abstract Window Toolkit 相关工具包 运用
+ *   Abstract Window Toolkit 相关工具包运用
  */
 package com.feilong.commons.core.awt.toolkit;
 

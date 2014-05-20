@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * 实体包,数据传输的载体
+ *日志
  */
-package com.feilong.commons.core.entity;
+package com.feilong.commons.core.log;

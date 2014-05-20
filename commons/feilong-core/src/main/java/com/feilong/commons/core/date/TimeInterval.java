@@ -17,7 +17,7 @@ package com.feilong.commons.core.date;
 
 /**
  * 时间间隔(一般以秒为单位) <br>
- * Integer.MAX_VALUE:2147483647<br>
+ * 注意: Integer.MAX_VALUE:2147483647<br>
  * Integer.MIN_VALUE:-2147483648<br>
  * 一年数据为 31536000,所以 Integer 最大为 68.096259734906 年
  * 

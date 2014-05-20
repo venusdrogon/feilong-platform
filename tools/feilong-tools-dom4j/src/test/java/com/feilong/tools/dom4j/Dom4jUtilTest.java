@@ -22,11 +22,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
- *
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a> 
- * @version 1.0 Oct 23, 2013 1:32:14 PM  
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 Oct 23, 2013 1:32:14 PM
  */
 public class Dom4jUtilTest{
 
@@ -40,13 +38,4 @@ public class Dom4jUtilTest{
 		fail("Not yet implemented"); // TODO
 	}
 
-	/**
-	 * Test method for {@link com.feilong.tools.dom4j.Dom4jUtil#getDocument(java.io.InputStream)}.
-	 */
-	@Test
-	public final void testGetDocumentInputStream(){
-		Document document = Dom4jUtil.getDocument("");
-		
-		 
-	}
 }

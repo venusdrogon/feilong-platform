@@ -25,17 +25,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
  */
 public class CSVParams{
 
-	/** 转义引号用的字符 ". */
-	public static final char	ESCAPE_CHARACTER		= '"';
 
-	/** 默认的引号字符 "引号. */
-	public static final char	DEFAULT_QUOTE_CHARACTER	= '"';
-
-	/**
-	 * \\u转义字符的意思是“\\u后面的1-4位16进制数表示的Unicode码对应的汉字”,而Unicode 0000 代表的字符是 NUL，也就是空的意思，<br>
-	 * 如果把这个字符输出到控制台，显示为空格.
-	 */
-	public static final char	NO_QUOTE_CHARACTER		= '\u0000';
 
 	/** 编码. */
 	private String				encode					= CharsetType.GBK;

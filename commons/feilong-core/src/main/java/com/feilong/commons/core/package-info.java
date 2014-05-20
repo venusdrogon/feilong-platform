@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * 飞龙常见包操作
+ * 常见类操作,主要封装java core
  */
 package com.feilong.commons.core;

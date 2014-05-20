@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * 飞龙配置文件操作,读取properties,xml,ini文件
+ * 配置文件操作,目前可以操作properties
  */
 package com.feilong.commons.core.configure;

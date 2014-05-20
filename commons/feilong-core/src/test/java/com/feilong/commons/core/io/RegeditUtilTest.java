@@ -25,6 +25,8 @@
  */
 package com.feilong.commons.core.io;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 /**
@@ -40,9 +42,10 @@ public class RegeditUtilTest{
 
 	/**
 	 * {@link com.feilong.commons.core.io.RegeditUtil#query()} 的测试方法。
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testGetExcelInstallRoot(){
+	public final void testGetExcelInstallRoot() throws IOException{
 		System.out.println(RegeditUtil.query(EXCEL_PATH_CMD));
 		//	int p = result.indexOf(REGSTR_TOKEN);
 		//	if (p == -1)

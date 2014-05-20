@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 分页 bean实体<br>
+ * 分页 实体<br>
  * 可用于 数据库的分页封装,也可用于前端分页的封装.<br>
  * 通过简单的构造方法示例, 你可以得到下面的数据:
  * <ul>
@@ -296,7 +296,4 @@ public final class Pager implements Serializable{
 	public void setMaxShowPageNo(Integer maxShowPageNo){
 		this.maxShowPageNo = maxShowPageNo;
 	}
-
-	// ********************************************************
-
 }

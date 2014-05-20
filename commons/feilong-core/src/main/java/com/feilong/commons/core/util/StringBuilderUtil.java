@@ -60,7 +60,7 @@ public class StringBuilderUtil{
 	 */
 	public final static void appendTextWithLn(StringBuilder stringBuilder,Object text){
 		stringBuilder.append(text);
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class StringBuilderUtil{
 	 *            the string builder
 	 */
 	public final static void appendLn(StringBuilder stringBuilder){
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class StringBuilderUtil{
 		stringBuilder.append(key);
 		stringBuilder.append(":");
 		stringBuilder.append(value);
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 	}
 
 	/**
@@ -122,13 +122,13 @@ public class StringBuilderUtil{
 	 *            the title
 	 */
 	public final static void appendTextWithSeparatedWithTitle(StringBuilder stringBuilder,String title){
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 		stringBuilder.append("**************************");
 		if (Validator.isNotNullOrEmpty(title)){
 			stringBuilder.append(title);
 		}
 		stringBuilder.append("**************************");
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 	}
 
 	/**

@@ -363,9 +363,9 @@ public final class OperatingSystemUtil{
 			Map<String, Object> _map = new HashMap<String, Object>();
 			_map.put("path", path);
 			_map.put("name", name);
-			_map.put("Free space", FileUtil.formatFileSize(freeSpace));
-			_map.put("Usable space", FileUtil.formatFileSize(usableSpace));
-			_map.put("Total space", FileUtil.formatFileSize(totalSpace));
+			_map.put("Free space", FileUtil.formatSize(freeSpace));
+			_map.put("Usable space", FileUtil.formatSize(usableSpace));
+			_map.put("Total space", FileUtil.formatSize(totalSpace));
 
 			map.put(path, _map);
 

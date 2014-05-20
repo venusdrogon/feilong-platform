@@ -65,7 +65,7 @@ public class IOUtilTest{
 			URL url = new URL("http://www.jinbaowang.cn/images//20110722/096718c3d1c9b4a1.jpg");
 			URLConnection urlConnection = url.openConnection();
 			int contentLength = urlConnection.getContentLength();
-			System.out.println(FileUtil.formatFileSize(contentLength));
+			System.out.println(FileUtil.formatSize(contentLength));
 		}catch (IOException e){
 			e.printStackTrace();
 		}

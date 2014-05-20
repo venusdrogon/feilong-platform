@@ -185,8 +185,6 @@ public final class ArrayUtil{
 			}
 			return sb.toString();
 		}
-
 		return null;
-
 	}
 }

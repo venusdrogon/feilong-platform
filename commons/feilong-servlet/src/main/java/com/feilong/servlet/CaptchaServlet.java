@@ -48,6 +48,9 @@ public class CaptchaServlet extends HttpServlet{
 
 	private static final Logger	log					= LoggerFactory.getLogger(CaptchaServlet.class);
 
+	/** 验证码<code>{@value}</code>. */
+	private static String		VALIDATE_CODE		= "feilong.validateCode";
+
 	/*
 	 * (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#getLastModified(javax.servlet.http.HttpServletRequest)
@@ -72,7 +75,7 @@ public class CaptchaServlet extends HttpServlet{
 
 		// 将认证码存入session
 		HttpSession session = request.getSession();
-		session.setAttribute(Constants.Session.validateCode, validateCode);
+		session.setAttribute(VALIDATE_CODE, validateCode);
 
 		BufferedImage bufferedImage = ValidateCodeUtil.getBufferedImageAfterGraphics(validateCode, 88, 25);
 		ServletOutputStream servletOutputStream = response.getOutputStream();

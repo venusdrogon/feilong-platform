@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * 飞龙io操作
+ * io操作,可以文件读写,流转换,注册表操作,csv格式输出,运行程序等操作
  */
 package com.feilong.commons.core.io;

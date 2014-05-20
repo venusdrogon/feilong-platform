@@ -44,7 +44,8 @@ public class NumberFormatUtil{
 	 *            the value
 	 * @param pattern
 	 *            the pattern
-	 * @return the string
+	 * @return the string<br>
+	 *         如果有异常 将返回null
 	 */
 	public static String format(Number value,String pattern){
 		try{

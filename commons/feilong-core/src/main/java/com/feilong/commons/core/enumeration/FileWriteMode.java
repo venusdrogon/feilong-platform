@@ -16,19 +16,22 @@
 package com.feilong.commons.core.enumeration;
 
 /**
- * 文件写入的方式
+ * 文件写入的方式.
+ * <ul>
+ * <li>{@link #COVER} 覆盖</li>
+ * <li>{@link #APPEND} 追加</li>
+ * </ul>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 8:11:33 PM
  */
 public enum FileWriteMode{
-	/**
-	 * 覆盖
-	 */
+
+	/** 覆盖. */
 	COVER,
 
 	/**
-	 * 追加 then bytes will be written to the end of the file rather than the beginning
+	 * 追加 then bytes will be written to the end of the file rather than the beginning. <br>
 	 * 
 	 * @see {@link java.io.FileOutputStream#FileOutputStream(File, boolean)}
 	 */

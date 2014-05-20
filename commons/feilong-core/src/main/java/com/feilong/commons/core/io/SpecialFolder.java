@@ -28,15 +28,15 @@ import javax.swing.filechooser.FileSystemView;
 public final class SpecialFolder{
 
 	/**
-	 * 获得操作系统临时文件夹
+	 * 获得操作系统临时文件夹.
 	 * <ul>
 	 * <li>win7:C:\Users\VENUSD~1\AppData\Local\Temp\</li>
 	 * </ul>
-	 * .
 	 * 
 	 * @return 操作系统临时文件夹
 	 */
 	public final static String getTemp(){
+		// XXX 提取 java.io.tmpdir 这些环境变量名称
 		String property = "java.io.tmpdir";
 		String tempDir = System.getProperty(property);
 		return tempDir;

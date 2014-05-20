@@ -16,7 +16,7 @@
 package com.feilong.commons.core.enumeration;
 
 /**
- * 字体.
+ * 常用字体的枚举.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:02:06

@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * 飞龙lang包封装
+ * lang包封装
  */
 package com.feilong.commons.core.lang;

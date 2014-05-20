@@ -15,6 +15,7 @@
  */
 package com.feilong.application.sina;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.apache.commons.httpclient.NameValuePair;
@@ -37,14 +38,14 @@ public class WeiboUtilTest{
 	private String				access_token	= "2.00eFxqECiedPvB83b474816527NTJB";
 
 	@Test
-	public final void sendWeibo_withPhoto() throws WeiboException{
+	public final void sendWeibo_withPhoto() throws WeiboException, IOException{
 		String imagePath = "F:\\Picture 图片\\maitan.gif";
 		String statuses = "#鑫哥的微博小蜜# 发个图片玩玩";
 		WeiboUtil.sendWeibo(access_token, statuses, imagePath);
 	}
 
 	@Test
-	public void sendWeibo() throws WeiboException{
+	public void sendWeibo() throws WeiboException, IOException{
 		Date date = new Date();
 		String statuses = "#鑫哥的微博小蜜# 吃饭去了,好饿" + DateUtil.date2String(date);
 		WeiboUtil.sendWeibo(access_token, statuses);

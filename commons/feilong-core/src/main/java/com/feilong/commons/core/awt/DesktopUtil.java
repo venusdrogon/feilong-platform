@@ -28,7 +28,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 
 /**
- * Desktop 类允许 Java 应用程序启动已在本机桌面上注册的关联应用程序，以处理 URI 或文件。.
+ * 允许 Java应用程序启动已在本机桌面上注册的关联应用程序，以及处理 URI 或文件 .
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-5 下午05:07:45

@@ -16,20 +16,16 @@
 package com.feilong.commons.core.enumeration;
 
 /**
- * 文件类型
+ * 文件类型.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 7, 2013 7:14:42 PM
  */
 public enum FileType{
 
-	/**
-	 * 文件
-	 */
+	/** 文件. */
 	FILE,
 
-	/**
-	 * 文件夹
-	 */
+	/** 文件夹. */
 	DIRECTORY
 }

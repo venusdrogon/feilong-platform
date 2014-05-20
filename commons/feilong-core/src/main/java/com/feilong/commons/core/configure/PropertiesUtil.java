@@ -33,7 +33,7 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
  * @version 1.0 2010-3-22 上午10:05:19
  * @since 1.0
  */
-public class PropertiesUtil extends BaseConfigure{
+public final class PropertiesUtil extends BaseConfigure{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtil.class);

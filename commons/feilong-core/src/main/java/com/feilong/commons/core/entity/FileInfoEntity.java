@@ -141,7 +141,7 @@ public class FileInfoEntity implements Serializable{
 	 * @return the formatSize
 	 */
 	public String getFormatSize(){
-		formatSize = FileUtil.formatFileSize(size);
+		formatSize = FileUtil.formatSize(size);
 		return formatSize;
 	}
 

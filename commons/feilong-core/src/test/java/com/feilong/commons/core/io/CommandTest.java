@@ -25,6 +25,8 @@
  */
 package com.feilong.commons.core.io;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 /**
@@ -35,12 +37,12 @@ import org.junit.Test;
 public class CommandTest{
 
 	@Test
-	public void assoc(){
+	public void assoc() throws IOException{
 		Command.assoc(".txt", "txtfile");
 	}
 
 	@Test
-	public void execShutdownStop(){
+	public void execShutdownStop() throws IOException{
 		Command.execShutdownStop();
 	}
 

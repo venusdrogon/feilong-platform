@@ -21,26 +21,14 @@ package com.feilong.commons.core;
  * @author 金鑫 2010-3-19 下午05:37:33
  * @since 1.0
  * @version 1.0
- * @deprecated 每个用到的地方自己实现
+ * @deprecated 即将调整
  */
+@Deprecated
 public interface Constants{
 
 	/** 初始值空格 oracle空格需要空1个实在的空格 ""在oracle自动转换为null. <code>{@value}</code> */
-	String	space			= " ";
+	String	SPACE			= " ";
 
 	/** 生成换行标识 Line separator ("\n" on UNIX). */
-	String	lineSeparator	= System.getProperty("line.separator");
-
-	/**
-	 * Session 常量,内部类,不建议直接调用Session类,请使用FeiLongConstants.Session
-	 * 
-	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
-	 * @version 1.0 2011-4-14 下午02:20:15
-	 * @since 1.0
-	 */
-	public static interface Session{
-
-		/** 验证码<code>{@value}</code>. */
-		String	validateCode	= "feilong.validateCode";
-	}
+	String	LINE_SEPARATOR	= System.getProperty("line.separator");
 }

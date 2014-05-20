@@ -27,6 +27,7 @@ package com.feilong.commons.core.io;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.junit.Test;
@@ -46,14 +47,14 @@ public class IOWriteUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtilTest.class);
 
 	@Test
-	public void write(){
+	public void write() throws IOException{
 		String url = "F:\\test.txt";
 		String directoryName = SpecialFolder.getDesktop();
 		IOWriteUtil.write(url, directoryName);
 	}
 
 	@Test
-	public void testWrite(){
+	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log";
 		Date date = new Date();
 		path = path.replace("${yearMonth}", DateUtil.date2String(date, DatePattern.yearAndMonth));
@@ -61,11 +62,11 @@ public class IOWriteUtilTest{
 		path = path.replace("${fileName}", DateUtil.date2String(date, DatePattern.timestamp));
 		// **************************************************************
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("****************************************************" + Constants.lineSeparator);
-		stringBuilder.append("2011-05-13 22:24:37调用,系统顺丰在途订单597件" + Constants.lineSeparator);
-		stringBuilder.append("耗时:429020" + Constants.lineSeparator);
-		stringBuilder.append("****************************************************" + Constants.lineSeparator);
-		stringBuilder.append("派送成功订单495条" + Constants.lineSeparator);
+		stringBuilder.append("****************************************************" + Constants.LINE_SEPARATOR);
+		stringBuilder.append("2011-05-13 22:24:37调用,系统顺丰在途订单597件" + Constants.LINE_SEPARATOR);
+		stringBuilder.append("耗时:429020" + Constants.LINE_SEPARATOR);
+		stringBuilder.append("****************************************************" + Constants.LINE_SEPARATOR);
+		stringBuilder.append("派送成功订单495条" + Constants.LINE_SEPARATOR);
 		for (int i = 0; i < 1000; i++){
 			stringBuilder.append("订单号:20850010运单号:102085592089\t寄件时间:2011-05-09 19:00:00\t签收人:张寄件时间:2011-05-10 14:49:00\t回单类型:1\n");
 		}

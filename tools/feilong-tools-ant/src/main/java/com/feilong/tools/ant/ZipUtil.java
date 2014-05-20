@@ -53,9 +53,10 @@ public final class ZipUtil{
 	 *            文件夹名称
 	 * @param zipFileName
 	 *            所输出压缩文件夹的名称，打包后,压缩文件名字
+	 * @throws IOException
 	 * @throws Exception
 	 */
-	public static void zip(String inputFileName,String zipFileName){
+	public static void zip(String inputFileName,String zipFileName) throws IOException{
 		File file = new File(inputFileName);
 		zip(file, zipFileName);
 	}
@@ -67,8 +68,9 @@ public final class ZipUtil{
 	 *            文件夹/文件
 	 * @param zipFileName
 	 *            所输出压缩文件夹的名称，打包后,压缩文件名字
+	 * @throws IOException
 	 */
-	public static void zip(File inputFile,String zipFileName){
+	public static void zip(File inputFile,String zipFileName) throws IOException{
 		FileOutputStream fileOutputStream = IOUtil.getFileOutputStream(zipFileName);
 		ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
 		zip(inputFile, zipOutputStream, "");
@@ -87,8 +89,9 @@ public final class ZipUtil{
 	 * @param zipOutputStream
 	 *            zipOutputStream
 	 * @param base
+	 * @throws IOException
 	 */
-	public static void zip(File file,ZipOutputStream zipOutputStream,String base){
+	public static void zip(File file,ZipOutputStream zipOutputStream,String base) throws IOException{
 		// 判断是否为目录
 		if (file.isDirectory()){
 			File[] files = file.listFiles();

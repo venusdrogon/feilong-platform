@@ -27,6 +27,7 @@ package com.feilong.commons.core.awt;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class WaterMarkTest{
 	private String				pressText	= "鑫哥爱feilong";
 
 	@Test
-	public void pressImage(){
+	public void pressImage() throws IOException{
 		String pressImg = "E:\\DataFixed\\Material\\avatar\\1.印章 32 74.png";
 		int x = 0;
 		int y = 0;
@@ -55,7 +56,7 @@ public class WaterMarkTest{
 	}
 
 	@Test
-	public void pressText(){
+	public void pressText() throws IOException{
 
 		int x = 200;
 		int y = 30;

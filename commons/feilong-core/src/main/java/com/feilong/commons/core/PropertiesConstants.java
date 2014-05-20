@@ -25,7 +25,9 @@ import static com.feilong.commons.core.configure.ResourceBundleUtil.getValue;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-19 下午05:58:59
  * @since 1.0
+ * @deprecated 每个类自己实现
  */
+@Deprecated
 public interface PropertiesConstants{
 
 	/**

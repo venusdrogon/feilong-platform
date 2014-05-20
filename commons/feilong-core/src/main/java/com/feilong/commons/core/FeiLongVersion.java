@@ -37,5 +37,4 @@ public class FeiLongVersion{
 		Package pkg = FeiLongVersion.class.getPackage();
 		return (pkg != null ? pkg.getImplementationVersion() : null);
 	}
-
 }

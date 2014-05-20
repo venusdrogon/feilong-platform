@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 这个类提供了一些根据类的class文件位置来定位的方法。.
+ * 根据类的class文件位置来定位的方法。.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午12:40:08
@@ -90,6 +90,7 @@ public class ClassLoaderUtil{
 		try{
 			return (url != null) ? url.openStream() : null;
 		}catch (IOException e){
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -122,7 +123,7 @@ public class ClassLoaderUtil{
 			}
 		}
 		if (url == null){
-			log.debug("resourceName:\"" + resourceName + "\" in all ClassLoader is null");
+			log.warn("resourceName:\"" + resourceName + "\" in all ClassLoader is null");
 		}else{
 			log.debug("In ClassLoader " + classLoader.getResource("") + " found the resourceName:" + resourceName);
 		}
@@ -152,7 +153,7 @@ public class ClassLoaderUtil{
 			}
 		}
 		if (urls == null){
-			log.debug("resourceName:\"" + resourceName + "\" in all ClassLoader is null");
+			log.warn("resourceName:\"" + resourceName + "\" in all ClassLoader is null");
 		}else{
 			log.debug("In ClassLoader " + classLoader.getResource("") + " found the resourceName:" + resourceName);
 		}
@@ -198,7 +199,6 @@ public class ClassLoaderUtil{
 		}
 	}
 
-	// ***************************************************************
 	/**
 	 * 通过Thread.currentThread().getContextClassLoader() 获得ClassLoader
 	 * 
@@ -229,7 +229,8 @@ public class ClassLoaderUtil{
 	 * Prints the current classloader hierarchy <br>
 	 * useful for debugging.
 	 */
-	public static void printClassLoader(){
+	// XXX 拆
+	private static void printClassLoader(){
 		log.info("use " + ClassLoaderUtil.class.getSimpleName() + ".printClassLoader");
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		printClassLoader(classLoader);
@@ -242,11 +243,14 @@ public class ClassLoaderUtil{
 	 * @param classLoader
 	 *            the class loader
 	 */
-	@SuppressWarnings("null")
-	public static void printClassLoader(ClassLoader classLoader){
-		log.info(classLoader.toString());
-		if (classLoader != null){
-			printClassLoader(classLoader.getParent());
+	// XXX 拆
+	private static void printClassLoader(ClassLoader classLoader){
+		if (null != classLoader){
+			log.info(classLoader.toString());
+			ClassLoader parent = classLoader.getParent();
+			if (null != parent){
+				printClassLoader(parent);
+			}
 		}
 	}
 }

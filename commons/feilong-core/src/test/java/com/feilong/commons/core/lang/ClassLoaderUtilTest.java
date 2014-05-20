@@ -48,11 +48,6 @@ public class ClassLoaderUtilTest{
 	}
 
 	@Test
-	public void printClassLoader(){
-		ClassLoaderUtil.printClassLoader();
-	}
-
-	@Test
 	public void getResource(){
 		ClassLoaderUtil.getResource("jstl-1.2", this.getClass());
 	}

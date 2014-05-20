@@ -31,7 +31,9 @@ import com.feilong.commons.core.enumeration.FontType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-14 下午01:43:06
  * @since 1.0
+ * @deprecated 不推荐使用,可能调整
  */
+@Deprecated
 public final class ValidateCodeUtil{
 
 	/** 验证码用到的字体 //\u534e\u6587\u884c\u6977 华文行楷 //\u6977\u4f53 楷体. */

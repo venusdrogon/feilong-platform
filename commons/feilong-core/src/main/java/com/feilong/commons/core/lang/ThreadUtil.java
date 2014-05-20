@@ -28,7 +28,9 @@ import com.feilong.tools.json.JsonUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 17, 2011 2:00:35 AM
+ * @deprecated 不建议使用
  */
+@Deprecated
 public final class ThreadUtil{
 
 	/** The Constant log. */

@@ -18,7 +18,7 @@ package com.feilong.commons.core.date;
 import java.util.Date;
 
 /**
- * 阳历日期.
+ * 阳历(公历)日期.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:48

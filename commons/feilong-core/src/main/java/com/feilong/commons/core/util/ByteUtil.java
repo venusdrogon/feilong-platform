@@ -48,8 +48,8 @@ public final class ByteUtil{
 		return resultSb.toString();
 	}
 
-	// UpperCase
-	// LowerCase
+	// XXX UpperCase
+	// XXX LowerCase
 	/**
 	 * Byte to hex string lower case.
 	 * 

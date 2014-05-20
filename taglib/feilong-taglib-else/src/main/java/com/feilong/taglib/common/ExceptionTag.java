@@ -74,7 +74,7 @@ public class ExceptionTag extends AbstractCommonTag{
 		String ip = RequestUtil.getClientIp(request);
 		stringBuilder.append(ip);
 		stringBuilder.append(IpUtil.ipToAddress(ip));
-		stringBuilder.append("<br/>" + Constants.lineSeparator);
+		stringBuilder.append("<br/>" + Constants.LINE_SEPARATOR);
 		while (attributeNames.hasMoreElements()){
 			attributeName = attributeNames.nextElement();
 			attributeValue = request.getAttribute(attributeName);
@@ -88,7 +88,7 @@ public class ExceptionTag extends AbstractCommonTag{
 			}
 			stringBuilder.append("request.attribute['" + attributeName + "'] = " + attributeValue);
 			stringBuilder.append("<br/>");
-			stringBuilder.append(Constants.lineSeparator);
+			stringBuilder.append(Constants.LINE_SEPARATOR);
 		}
 		/** ************session***************** */
 		HttpSession session = request.getSession();
@@ -109,7 +109,7 @@ public class ExceptionTag extends AbstractCommonTag{
 			}
 			stringBuilder.append("session.attribute['" + attributeName_session + "'] = " + attributeValue_session);
 			stringBuilder.append("<br/>");
-			stringBuilder.append(Constants.lineSeparator);
+			stringBuilder.append(Constants.LINE_SEPARATOR);
 		}
 		// 错误代码
 		Object status_code = request.getAttribute("javax.servlet.error.status_code");

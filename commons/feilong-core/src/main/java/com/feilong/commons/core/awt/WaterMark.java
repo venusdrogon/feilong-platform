@@ -19,18 +19,21 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.OutputStream;
 
 import com.feilong.commons.core.enumeration.ImageType;
 import com.feilong.commons.core.io.IOUtil;
 
 /**
- * 飞龙水印.
+ * 水印.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午02:55:23
  * @since 1.0
+ * @deprecated 水印技术 建议使用第三方工具或者nginx配置
  */
+@Deprecated
 public final class WaterMark{
 
 	/**
@@ -61,8 +64,9 @@ public final class WaterMark{
 	 *            y坐标
 	 * @param outputFile
 	 *            输出的文件
+	 * @throws IOException 
 	 */
-	public final static void pressImage(String targetImg,String pressImg,int x,int y,String outputFile){
+	public final static void pressImage(String targetImg,String pressImg,int x,int y,String outputFile) throws IOException{
 		OutputStream outputStream = IOUtil.getFileOutputStream(outputFile);
 		pressImage(targetImg, pressImg, x, y, outputStream);
 	}
@@ -123,8 +127,9 @@ public final class WaterMark{
 	 *            偏移量(从右下角算起)
 	 * @param outputFile
 	 *            输出文件
+	 * @throws IOException 
 	 */
-	public static void pressText(String targetImg,String pressText,Font font,Color color,int x,int y,String outputFile){
+	public static void pressText(String targetImg,String pressText,Font font,Color color,int x,int y,String outputFile) throws IOException{
 		OutputStream outputStream = IOUtil.getFileOutputStream(outputFile);
 		pressText(targetImg, pressText, font, color, x, y, outputStream);
 	}
@@ -167,7 +172,5 @@ public final class WaterMark{
 		graphics2D.dispose();
 		/*************************************************************/
 		ImageUtil.write(outputStream, bufferedImage_new, ImageType.PNG);
-		// }
 	}
-
 }

@@ -20,12 +20,14 @@ import java.awt.Font;
 import com.feilong.commons.core.enumeration.FontType;
 
 /**
- * 飞龙字体类.
+ * 字体类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-21 上午10:08:47
  * @since 1.0
+ * @deprecated 将来可能会更改名称或者写法
  */
+@Deprecated
 public final class FontUtil{
 
 	/** 9 正常 雅黑 . */

@@ -15,6 +15,7 @@
  */
 package com.feilong.taglib.display.pager;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -64,7 +65,7 @@ public class PagerUtilTest{
 
 	@SuppressWarnings({ "javadoc", "unused" })
 	@Test
-	public void getPagerContent(){
+	public void getPagerContent() throws IOException{
 		int count = 1024;
 		int currentPageNo = -1;
 		int pageSize = 10;
@@ -111,9 +112,10 @@ public class PagerUtilTest{
 	 * Test method for.
 	 * {@link com.feilong.taglib.display.pager.PagerUtil#getPagerContent(int, int, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
+	 * @throws IOException 
 	 */
 	@Test
-	public void testGetPagerContent(){
+	public void testGetPagerContent() throws IOException{
 		Date beginDate = new Date();
 		int j = 1;// 80000
 		j = 80000;

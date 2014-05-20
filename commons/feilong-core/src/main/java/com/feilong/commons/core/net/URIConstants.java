@@ -42,5 +42,4 @@ public interface URIConstants{ // 声明成接口,不想被实例化
 	String	SCHEME_HTTPS	= "https";
 
 	// public static final String equal = "=";
-
 }

@@ -43,7 +43,7 @@ import com.feilong.commons.core.io.IOUtil;
 public class PropertiesUtilTest{
 
 	@Test
-	public void getPropertiesValue(){
+	public void getPropertiesValue() throws IOException{
 		String propertiesPath = "I:/Ebook/book.properties";
 		InputStream inputStream = IOUtil.getFileInputStream(propertiesPath);
 		Properties properties = PropertiesUtil.getProperties(inputStream);

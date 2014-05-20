@@ -554,6 +554,7 @@ public final class URIUtil{
 	 * @param specialCharacter
 	 *            特殊字符
 	 * @return 特殊字符url编码
+	 * @deprecated 将来会重构
 	 */
 	@Deprecated
 	public static String specialCharToHexString(String specialCharacter){
@@ -575,5 +576,4 @@ public final class URIUtil{
 		// 不是 url 特殊字符 原样输出
 		return specialCharacter;
 	}
-
 }

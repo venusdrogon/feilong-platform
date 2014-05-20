@@ -148,7 +148,7 @@ public abstract class AbstractPatchUtil{
 				}
 			}
 
-			log.info(builder.insert(0, Constants.lineSeparator).toString());
+			log.info(builder.insert(0, Constants.LINE_SEPARATOR).toString());
 		}else{
 			log.error("this map is null!!!Maybe clipboard/file content is null or unrelated with patch!");
 		}

@@ -25,6 +25,8 @@
  */
 package elsepackage.temple;
 
+import java.io.IOException;
+
 import com.feilong.commons.core.io.RegeditUtil;
 
 public class RegQuery{
@@ -43,7 +45,7 @@ public class RegQuery{
 	private static final String	CPU_NAME_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
 															+ " /v ProcessorNameString";
 
-	public static String getCurrentUserPersonalFolderPath(){
+	public static String getCurrentUserPersonalFolderPath() throws IOException{
 		String result = RegeditUtil.query(PERSONAL_FOLDER_CMD);
 		int p = result.indexOf(REGSTR_TOKEN);
 		if (p == -1){
@@ -52,7 +54,7 @@ public class RegQuery{
 		return result.substring(p + REGSTR_TOKEN.length()).trim();
 	}
 
-	public static String getCPUSpeed(){
+	public static String getCPUSpeed() throws IOException{
 		String result = RegeditUtil.query(CPU_SPEED_CMD);
 		int p = result.indexOf(REGDWORD_TOKEN);
 		if (p == -1){
@@ -63,7 +65,7 @@ public class RegQuery{
 		return Integer.toString((Integer.parseInt(temp.substring("0x".length()), 16) + 1));
 	}
 
-	public static String getCPUName(){
+	public static String getCPUName() throws IOException{
 		String result = RegeditUtil.query(CPU_NAME_CMD);
 		int p = result.indexOf(REGSTR_TOKEN);
 		if (p == -1){
@@ -72,7 +74,7 @@ public class RegQuery{
 		return result.substring(p + REGSTR_TOKEN.length()).trim();
 	}
 
-	public static void main(String s[]){
+	public static void main(String s[]) throws IOException{
 		System.out.println("Personal directory : " + getCurrentUserPersonalFolderPath());
 		System.out.println("CPU Name : " + getCPUName());
 		System.out.println("CPU Speed : " + getCPUSpeed() + " Mhz");

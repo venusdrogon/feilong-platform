@@ -23,12 +23,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 扩展 {@link DateUtil}类,更多人性化的操作及转换<br>
- * .
+ * 扩展 {@link DateUtil}类,更多人性化的操作及转换 .
  * 
  * @author <a href="venusdrogon@163.com">金鑫</a>
- * @see {@link DateUtil}
  * @version 1.1 Aug 4, 2010 9:06:54 PM
+ * @see {@link DateUtil}
  * @since 1.0
  */
 public final class CalendarUtil{

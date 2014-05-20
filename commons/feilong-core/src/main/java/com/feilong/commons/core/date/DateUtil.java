@@ -33,8 +33,8 @@ import com.feilong.commons.core.text.DateFormatUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 日期操作工具类(feilong-core 核心类之一)<br>
- * 包括通用的:字符串转日期,日期转字符串,日期加减,获得日期某部值,获得两个日期间隔.
+ * Date 操作工具类(feilong-core 核心类之一)<br>
+ * 包括:字符串转日期,日期转字符串,日期加减,获得日期某部值,获得两个日期间隔.
  * 
  * @see CalendarUtil
  * @see DatePattern

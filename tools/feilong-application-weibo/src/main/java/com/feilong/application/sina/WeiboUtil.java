@@ -1,21 +1,22 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.application.sina;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,13 +35,14 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.json.JsonUtil;
 
 /**
- * 微博核心工具类
+ * 微博核心工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 11, 2013 12:20:52 AM
  */
 public final class WeiboUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(WeiboUtil.class);
 
 	// source false string 采用OAuth授权方式不需要此参数，其他授权方式为必填参数，数值为应用的AppKey。
@@ -53,29 +55,36 @@ public final class WeiboUtil{
 	// annotations false string 元数据，主要是为了方便第三方应用记录一些适合于自己使用的信息，每条微博可以包含一个或者多个元数据，必须以json字串的形式提交，字串长度不超过512个字符，具体内容可以自定。
 
 	/**
-	 * 发送微博
+	 * 发送微博.
 	 * 
 	 * @param access_token
 	 *            access_token
 	 * @param content
 	 *            内容
 	 * @throws WeiboException
+	 *             the weibo exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void sendWeibo(String access_token,String content) throws WeiboException{
+	public static void sendWeibo(String access_token,String content) throws WeiboException,IOException{
 		sendWeibo(access_token, content, null);
 	}
 
 	/**
-	 * 发送微博(带图片)
+	 * 发送微博(带图片).
 	 * 
 	 * @param access_token
+	 *            the access_token
 	 * @param content
 	 *            微博内容
 	 * @param imagePath
 	 *            图片路径
 	 * @throws WeiboException
+	 *             the weibo exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void sendWeibo(String access_token,String content,String imagePath) throws WeiboException{
+	public static void sendWeibo(String access_token,String content,String imagePath) throws WeiboException,IOException{
 		int length = content.length();
 		boolean isLessThanMaxLength = length < 140;
 
@@ -111,7 +120,7 @@ public final class WeiboUtil{
 			else{
 				String[] _annotations = { "飞龙", "小蜜" };
 				// 北纬40度，西纬75度
-				//40.684804,-73.962708
+				// 40.684804,-73.962708
 				String annotations = JsonUtil.format(_annotations);
 				status = timeline.UpdateStatus(content, 40.68f, -73.96f, annotations);
 			}

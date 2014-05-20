@@ -147,7 +147,7 @@ public final class ReflectUtil{
 	}
 
 	/**
-	 * 返回 Field 对象的一个数组，这些对象反映此 Class对象所表示的类或接口,声明的所有字段。
+	 * 返回 Field 对象的一个数组，这些对象反映此 Class对象所表示的类或接口,声明的所有字段。.
 	 * 
 	 * <pre>
 	 * 包括public,protected,默认,private字段，
@@ -156,8 +156,6 @@ public final class ReflectUtil{
 	 * 返回数组中的元素没有排序，也没有任何特定的顺序。
 	 * 如果该类或接口不声明任何字段，或者此 Class 对象表示一个基本类型、一个数组类或 void，则此方法返回一个长度为 0 的数组。
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param clz
 	 *            the clz

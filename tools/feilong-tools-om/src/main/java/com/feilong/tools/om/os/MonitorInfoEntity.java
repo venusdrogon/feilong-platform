@@ -216,7 +216,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the runtimeFormatTotalMemory
 	 */
 	public String getRuntimeFormatTotalMemory(){
-		runtimeFormatTotalMemory = FileUtil.formatFileSize(runtimeTotalMemory);
+		runtimeFormatTotalMemory = FileUtil.formatSize(runtimeTotalMemory);
 		return runtimeFormatTotalMemory;
 	}
 
@@ -226,7 +226,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the runtimeFormatFreeMemory
 	 */
 	public String getRuntimeFormatFreeMemory(){
-		runtimeFormatFreeMemory = FileUtil.formatFileSize(runtimeFreeMemory);
+		runtimeFormatFreeMemory = FileUtil.formatSize(runtimeFreeMemory);
 		return runtimeFormatFreeMemory;
 	}
 
@@ -236,7 +236,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the runtimeFormatMaxMemory
 	 */
 	public String getRuntimeFormatMaxMemory(){
-		runtimeFormatMaxMemory = FileUtil.formatFileSize(runtimeMaxMemory);
+		runtimeFormatMaxMemory = FileUtil.formatSize(runtimeMaxMemory);
 		return runtimeFormatMaxMemory;
 	}
 
@@ -246,7 +246,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the osFormatTotalMemorySize
 	 */
 	public String getOsFormatTotalMemorySize(){
-		osFormatTotalMemorySize = FileUtil.formatFileSize(osTotalMemorySize);
+		osFormatTotalMemorySize = FileUtil.formatSize(osTotalMemorySize);
 		return osFormatTotalMemorySize;
 	}
 
@@ -256,7 +256,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the osFormatFreePhysicalMemorySize
 	 */
 	public String getOsFormatFreePhysicalMemorySize(){
-		osFormatFreePhysicalMemorySize = FileUtil.formatFileSize(osFreePhysicalMemorySize);
+		osFormatFreePhysicalMemorySize = FileUtil.formatSize(osFreePhysicalMemorySize);
 		return osFormatFreePhysicalMemorySize;
 	}
 
@@ -266,7 +266,7 @@ public class MonitorInfoEntity implements Serializable{
 	 * @return the osFormatUsedMemory
 	 */
 	public String getOsFormatUsedMemory(){
-		osFormatUsedMemory = FileUtil.formatFileSize(osUsedMemory);
+		osFormatUsedMemory = FileUtil.formatSize(osUsedMemory);
 		return osFormatUsedMemory;
 	}
 

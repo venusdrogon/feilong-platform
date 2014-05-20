@@ -15,6 +15,7 @@
  */
 package com.feilong.framework.netpay.payment;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -78,6 +79,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	 *            the payment adaptor
 	 * @param specialSignMap
 	 *            the special sign map
+	 * @throws IOException
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 */
@@ -154,6 +156,8 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			}catch (SecurityException e){
 				e.printStackTrace();
 			}catch (NoSuchFieldException e){
+				e.printStackTrace();
+			}catch (IOException e){
 				e.printStackTrace();
 			}
 			// }

@@ -84,9 +84,9 @@ public class YiChengPay{
 		// // 密文 MD5序列
 		// stringBuilder.append(HTMLInput.createInputTag("hidden", "merchantDecodedData", YiChengPay
 		// .getMerchantDecodedDataString(feiLongYiChengPayEntity)));
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 		stringBuilder.append("<input type=\"image\" src=\"/images/netpay/button_001town.gif\" alt=\"点击此处进入新华一城卡付款\">");
-		stringBuilder.append(Constants.lineSeparator);
+		stringBuilder.append(Constants.LINE_SEPARATOR);
 		stringBuilder.append("</form>");
 		return stringBuilder.toString();
 	}

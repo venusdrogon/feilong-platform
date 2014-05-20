@@ -54,5 +54,4 @@ public class MathUtil{
 		double radians = degree * Math.PI / 180;
 		return radians;
 	}
-
 }

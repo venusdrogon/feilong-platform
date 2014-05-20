@@ -18,7 +18,7 @@ package com.feilong.commons.core.date;
 import java.util.Date;
 
 /**
- * 飞龙星座
+ * 星座util
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-5 上午11:28:07

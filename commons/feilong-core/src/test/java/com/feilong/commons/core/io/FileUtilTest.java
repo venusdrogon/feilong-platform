@@ -102,17 +102,17 @@ public class FileUtilTest{
 
 		long fileSizes = FileUtil.getFileSize(file);
 		log.info(fileSizes + "");
-		log.info(FileUtil.formatFileSize(fileSizes) + "");
-		log.info(FileUtil.formatFileSize(file.length()) + "");
+		log.info(FileUtil.formatSize(fileSizes) + "");
+		log.info(FileUtil.formatSize(file.length()) + "");
 	}
 
 	/**
-	 * {@link com.feilong.commons.core.io.IOUtil#formatFileSize(long)} 的测试方法。
+	 * {@link com.feilong.commons.core.io.IOUtil#formatSize(long)} 的测试方法。
 	 */
 	@Test
 	public final void formatFileSize(){
 		// stats
-		log.info(FileUtil.formatFileSize(8981528));
+		log.info(FileUtil.formatSize(8981528));
 	}
 
 	@Test

@@ -16,6 +16,7 @@
 package com.feilong.tools.mail;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,7 +104,7 @@ public class MailSenderUtilTest{
 	}
 
 	@Test
-	public void sendMailWithAttach(){
+	public void sendMailWithAttach() throws IOException{
 		String templateInClassPath = "velocity/mailtest.vm";
 		// ******************************************************************************************
 		FileInfoEntity fileInfoEntity = new FileInfoEntity();

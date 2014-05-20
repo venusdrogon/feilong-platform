@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 常用的日期pattern. <blockquote>
+ * 常用的日期pattern <blockquote>
  * <table border=0 cellspacing=3 cellpadding=0 summary="Chart shows pattern letters, date/time component, presentation, and examples.">
  * <tr bgcolor="#ccccff">
  * <th align=left>Letter

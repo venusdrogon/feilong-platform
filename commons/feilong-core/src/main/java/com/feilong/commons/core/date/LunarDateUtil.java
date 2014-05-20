@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.PropertiesConstants;
 
 /**
- * 阴历日期,农历日期.
+ * 阴历(农历)日期.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:32
