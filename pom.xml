@@ -6,6 +6,7 @@
 	<version>1.0.7-SNAPSHOT</version>
 
 	<name>feilong-platform</name>
+	<description>Reduce development, Release ideas</description>
 
 	<packaging>pom</packaging>
 
@@ -15,15 +16,19 @@
 
 	<licenses>
 		<license>
-			<name>GNU General Public License, Version 3.0</name>
-			<url>http://www.gnu.org/licenses/gpl.txt</url>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
 		</license>
 	</licenses>
 
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<version.feilong-platform>${project.version}</version.feilong-platform>
+
+		<!-- 让整个项目统一字符集编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<developer.feilong.name>feilong</developer.feilong.name>
 		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
@@ -64,7 +69,6 @@
 		<version.commons-io>2.0</version.commons-io>
 		<version.commons-net>3.2</version.commons-net>
 		<version.commons-jexl>2.1.1</version.commons-jexl>
-
 
 		<version.cxf>2.7.11</version.cxf>
 
@@ -110,7 +114,6 @@
 
 		<version.zookeeper>3.4.6</version.zookeeper>
 
-
 		<!--****************************scope************************************ -->
 		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
 		<scope.log4j>provided</scope.log4j>
@@ -130,17 +133,22 @@
 		<v.maven-resources-plugin>2.6</v.maven-resources-plugin>
 		<v.maven-war-plugin>2.4</v.maven-war-plugin>
 
-		<v.site-maven-plugin>0.9</v.site-maven-plugin>
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
+		<v.site-maven-plugin>0.9</v.site-maven-plugin>
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 	</properties>
 
-
 	<!-- 软件配置管理，如cvs 和svn -->
-	<scm>
+	<!-- <scm>
 		<connection>scm:svn:https://feilong.googlecode.com/svn/trunk/</connection>
 		<developerConnection>scm:svn:https://feilong.googlecode.com/svn/trunk/</developerConnection>
 		<url>https://feilong.googlecode.com/svn/trunk/</url>
+		</scm> -->
+
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-platform.git</url>
+		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:venusdrogon/feilong-platform.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
@@ -155,6 +163,13 @@
 			<url>file://${project.build.directory}/mvn-repo</url>
 		</repository>
 	</distributionManagement>
+
+	<!-- <repositories>
+		<repository>
+		<id>maven-repository</id>
+		<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
+		</repository>
+		</repositories> -->
 
 	<modules>
 		<module>commons</module>
@@ -691,7 +706,6 @@
 				</configuration>
 			</plugin>
 
-
 			<!-- maven-surefire-plugin -->
 			<plugin>
 				<inherited>true</inherited>
@@ -778,13 +792,6 @@
 					<version>${v.maven-war-plugin}</version>
 				</plugin>
 
-
-				<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <version>2.2-beta-4</version> </plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId>
-					<version>2.0</version> </plugin> <plugin> <artifactId>maven-ear-plugin</artifactId> <version>2.3.1</version> </plugin> <plugin> <artifactId>maven-ejb-plugin</artifactId>
-					<version>2.1</version> </plugin> <plugin> <artifactId>maven-plugin-plugin</artifactId> <version>2.5.1</version> </plugin> <plugin> <artifactId>maven-rar-plugin</artifactId>
-					<version>2.2</version> </plugin> <plugin> <artifactId>maven-release-plugin</artifactId> <version>2.0-beta-9</version> </plugin> <plugin> <artifactId>maven-site-plugin</artifactId>
-					<version>2.0.1</version> </plugin> -->
-
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -830,7 +837,7 @@
 
 	<!-- 指定这个项目的组织机构信息 -->
 	<organization>
-		<name>FeiLong</name>
+		<name>feiLong</name>
 		<url>http://www.feilong.com</url>
 	</organization>
 
@@ -853,12 +860,5 @@
 			</properties>
 		</developer>
 	</developers>
-
-	<!-- <repositories>
-		<repository>
-		<id>maven-repository</id>
-		<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
-		</repository>
-		</repositories> -->
 
 </project>
