@@ -1,4 +1,4 @@
-package temp;
+package temple;
 
 import org.junit.Test;
 
