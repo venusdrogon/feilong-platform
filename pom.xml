@@ -5,36 +5,45 @@
 	<artifactId>parent</artifactId>
 	<version>1.0.7-SNAPSHOT</version>
 
-	<packaging>pom</packaging>
+	<name>feilong-platform</name>
 
-	<name>feilong-platform-parent</name>
+	<packaging>pom</packaging>
 
 	<!-- 成立年份 -->
 	<inceptionYear>2008</inceptionYear>
 	<url>http://www.feilong.com</url>
 
-	<modules>
-		<module>commons</module>
-		<module>taglib</module>
-		<module>tools</module>
-		<module>framework</module>
-	</modules>
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 3.0</name>
+			<url>http://www.gnu.org/licenses/gpl.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
-
 		<version.feilong-platform>${project.version}</version.feilong-platform>
 
 		<developer.feilong.name>feilong</developer.feilong.name>
 		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
 
-		<native2ascii_pattern>**/*.properties</native2ascii_pattern>
+		<native2ascii.pattern>**/*.properties</native2ascii.pattern>
+		<native2ascii.encoding>utf-8</native2ascii.encoding>
 
-		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-		<encoding.compiler>utf-8</encoding.compiler>
-		<javadoc.charset>utf-8</javadoc.charset>
-		<javadoc.docencoding>utf-8</javadoc.docencoding>
-		<javadoc.encoding>utf-8</javadoc.encoding>
+		<maven-compiler-plugin.source>1.6</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.6</maven-compiler-plugin.target>
+		<maven-compiler-plugin.encoding>utf-8</maven-compiler-plugin.encoding>
+
+		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
+		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
+		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
+
+		<maven-javadoc-plugin.charset>utf-8</maven-javadoc-plugin.charset>
+		<maven-javadoc-plugin.docencoding>utf-8</maven-javadoc-plugin.docencoding>
+		<maven-javadoc-plugin.encoding>utf-8</maven-javadoc-plugin.encoding>
+		<maven-javadoc-plugin.locale>zh</maven-javadoc-plugin.locale>
+		<maven-javadoc-plugin.reportOutputDirectory>${project.build.directory}\</maven-javadoc-plugin.reportOutputDirectory>
 
 		<!--****************************第三方************************************ -->
 		<version.ant>1.8.4</version.ant>
@@ -101,24 +110,54 @@
 		<!--****************************scope************************************ -->
 		<scope.slf4j-log4j12>provided</scope.slf4j-log4j12>
 		<scope.log4j>provided</scope.log4j>
-		<github.repository>repository</github.repository>
-
 
 		<!--****************************plugin************************************ -->
 		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
-		<v.maven-clean-plugin>2.4.1</v.maven-clean-plugin>
-		<v.maven-compiler-plugin>2.3.2</v.maven-compiler-plugin>
-		<v.maven-deploy-plugin>2.7</v.maven-deploy-plugin>
+
+		<v.maven-clean-plugin>2.5</v.maven-clean-plugin>
+		<v.maven-compiler-plugin>3.1</v.maven-compiler-plugin>
+		<v.maven-install-plugin>2.5.1</v.maven-install-plugin>
+		<v.maven-deploy-plugin>2.8.1</v.maven-deploy-plugin>
 		<v.maven-javadoc-plugin>2.8.1</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
-		<v.maven-install-plugin>2.3.1</v.maven-install-plugin>
-		<v.maven-source-plugin>2.1.2</v.maven-source-plugin>
-		<v.maven-surefire-plugin>2.12</v.maven-surefire-plugin>
-		<v.maven-resources-plugin>2.5</v.maven-resources-plugin>
+
+		<v.maven-source-plugin>2.2.1</v.maven-source-plugin>
+		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
+		<v.maven-resources-plugin>2.6</v.maven-resources-plugin>
 		<v.maven-war-plugin>2.4</v.maven-war-plugin>
+
+		<v.site-maven-plugin>0.9</v.site-maven-plugin>
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 	</properties>
+
+
+	<!-- 软件配置管理，如cvs 和svn -->
+	<scm>
+		<connection>scm:svn:https://feilong.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://feilong.googlecode.com/svn/trunk/</developerConnection>
+		<url>https://feilong.googlecode.com/svn/trunk/</url>
+	</scm>
+
+	<distributionManagement>
+		<!-- <repository>
+			<id>feilong.googlecode.com</id>
+			<url>svn:https://feilong.googlecode.com/svn/repository</url>
+			</repository> -->
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<!-- <url>file://${user.home}/feilong/repository</url> -->
+			<url>file://${project.build.directory}/mvn-repo</url>
+		</repository>
+	</distributionManagement>
+
+	<modules>
+		<module>commons</module>
+		<module>taglib</module>
+		<module>tools</module>
+		<module>framework</module>
+	</modules>
 
 	<!--*******************************junit******************************************* -->
 	<dependencies>
@@ -178,6 +217,9 @@
 			<version>${version.xom}</version>
 		</dependency>
 
+
+		<!--***************************** test************************** -->
+
 		<!-- junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -199,7 +241,6 @@
 			<version>${version.feilong-platform}</version>
 			<scope>test</scope>
 		</dependency>
-
 
 		<!-- slf4j-log4j12 -->
 		<dependency>
@@ -428,24 +469,34 @@
 			</testResource>
 		</testResources>
 
-
-
 		<plugins>
-
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-				<version>0.9</version>
+				<version>${v.site-maven-plugin}</version>
 				<configuration>
-					<message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
-					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
-					<outputDirectory>${project.build.directory}/${github.repository}</outputDirectory> <!-- matches distribution management repository url above -->
-					<branch>refs/heads/${github.repository}</branch>                       <!-- remote branch name -->
+					<!-- git commit message -->
+					<message>Maven artifacts for ${project.version}</message>
+					<!-- disable webpage processing -->
+					<noJekyll>true</noJekyll>
+
+					<!-- matches distribution management repository url above -->
+					<!---->
+					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+					<!-- <outputDirectory>file://${user.home}/feilong/repository</outputDirectory> -->
+
+					<merge>true</merge>
+
+					<!-- remote branch name -->
+					<branch>${site-maven-plugin.branch}</branch>
 					<includes>
 						<include>**/*</include>
 					</includes>
-					<repositoryName>${project.name}</repositoryName>      <!-- github repo name -->
-					<repositoryOwner>venusdrogon</repositoryOwner>    <!-- github username -->
+					<!-- github repo name -->
+					<repositoryName>${site-maven-plugin.repositoryName}</repositoryName>
+					<!-- github username -->
+					<repositoryOwner>${site-maven-plugin.repositoryOwner}</repositoryOwner>
+
 				</configuration>
 				<executions>
 					<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
@@ -472,10 +523,10 @@
 							<goal>native2ascii</goal>
 						</goals>
 						<configuration>
-							<encoding>utf-8</encoding>
+							<encoding>${native2ascii.encoding}</encoding>
 							<includes>
-								<include>classes\${native2ascii_pattern}</include>
-								<include>test-classes\${native2ascii_pattern}</include>
+								<include>classes\${native2ascii.pattern}</include>
+								<include>test-classes\${native2ascii.pattern}</include>
 							</includes>
 							<workDir>${project.build.directory}</workDir>
 							<tempDir>${project.build.directory}</tempDir>
@@ -503,7 +554,6 @@
 						<exclude>**/src/main/resources/**</exclude>
 					</excludes>
 					<includes>
-
 						<includes>**/src/main/java/**/*.java</includes>
 						<!-- <includes>**/src/main/java/com/feilong/commons/core/log/**</includes> -->
 					</includes>
@@ -525,6 +575,7 @@
 			<!-- maven-resources-plugin插件 -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>${v.maven-resources-plugin}</version>
 				<executions>
 					<execution>
 						<id>default-resources</id>
@@ -551,11 +602,12 @@
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${v.maven-compiler-plugin}</version>
 				<configuration>
 					<!-- 指定高版本的源码和编译后的字节码文件 -->
-					<source>1.6</source>
-					<target>1.6</target>
-					<encoding>${encoding.compiler}</encoding>
+					<source>${maven-compiler-plugin.source}</source>
+					<target>${maven-compiler-plugin.target}</target>
+					<encoding>${maven-compiler-plugin.encoding}</encoding>
 					<verbose>true</verbose>
 					<detail>true</detail>
 				</configuration>
@@ -565,6 +617,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>${v.maven-jar-plugin}</version>
 				<configuration>
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
@@ -577,6 +630,7 @@
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>${v.maven-source-plugin}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -592,14 +646,36 @@
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
-					<reportOutputDirectory>${project.build.directory}\</reportOutputDirectory>
-					<destDir>apidocs</destDir>
-					<locale>zh</locale>
-					<charset>${javadoc.charset}</charset>
-					<docencoding>${javadoc.docencoding}</docencoding>
-					<encoding>${javadoc.encoding}</encoding>
+					<outputDirectory>file://${user.home}/feilong/javadoc/${project.name}/${project.version}</outputDirectory>
+					<reportOutputDirectory>${user.home}/feilong/javadoc/${project.name}/${project.version}</reportOutputDirectory>
+
+					<!-- <stylesheet>maven</stylesheet> -->
+					<!-- -->
+					<stylesheetfile>${env._FEILONGTAGLIB}/Apache Maven/javadoc/feilong-core-javadoc.css</stylesheetfile>
+
+					<overview>src/main/java/overview.html</overview>
+
+					<!-- -->
+					<docfilessubdirs>true</docfilessubdirs>
+					<javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc</javadocDirectory>
+
+					<!-- Specifies the title to be placed in the HTML title tag.  -->
+					<windowtitle>${project.name} ${project.version} API create by feilong</windowtitle>
+
+					<!-- Specifies whether or not the author text is included in the generated Javadocs.  -->
+					<author>true</author>
+					<!-- Includes the version text in the generated docs.  -->
+					<version>true</version>
+
 					<failOnError>false</failOnError>
+
+					<locale>${maven-javadoc-plugin.locale}</locale>
+
+					<charset>${maven-javadoc-plugin.charset}</charset>
+					<docencoding>${maven-javadoc-plugin.docencoding}</docencoding>
+					<encoding>${maven-javadoc-plugin.encoding}</encoding>
 				</configuration>
 			</plugin>
 
@@ -609,6 +685,7 @@
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${v.maven-surefire-plugin}</version>
 				<configuration>
 					<!-- 跳过测试 -->
 					<skip>true</skip>
@@ -619,6 +696,7 @@
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-clean-plugin</artifactId>
+				<version>${v.maven-clean-plugin}</version>
 				<executions>
 					<execution>
 						<id>default-clean</id>
@@ -634,8 +712,11 @@
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${v.maven-deploy-plugin}</version>
 				<configuration>
-					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/${github.repository}</altDeploymentRepository>
+					<!-- Format: id::layout::url -->
+					<!-- <altDeploymentRepository>internal.repo::default::file://${user.home}/feilong/repository</altDeploymentRepository> -->
+					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
 				</configuration>
 				<executions>
 					<execution>
@@ -659,6 +740,7 @@
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-install-plugin</artifactId>
+				<version>${v.maven-install-plugin}</version>
 				<executions>
 					<execution>
 						<id>default-install</id>
@@ -674,7 +756,6 @@
 		<!-- pluginManagement -->
 		<pluginManagement>
 			<plugins>
-				<!-- <plugin> <artifactId>maven-jar-plugin</artifactId> <version>${v.maven-jar-plugin}</version> </plugin> -->
 				<!-- <plugin> <artifactId>maven-javadoc-plugin</artifactId> <version>${v.maven-javadoc-plugin}</version> </plugin> -->
 				<!-- <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>${v.maven-compiler-plugin}</version> </plugin> -->
 
@@ -775,36 +856,6 @@
 			</properties>
 		</developer>
 	</developers>
-
-	<licenses>
-		<license>
-			<name>GNU General Public License, Version 3.0</name>
-			<url>http://www.gnu.org/licenses/gpl.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
-	<!-- 软件配置管理，如cvs 和svn -->
-	<scm>
-		<connection>scm:svn:https://feilong.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://feilong.googlecode.com/svn/trunk/</developerConnection>
-		<url>https://feilong.googlecode.com/svn/trunk/</url>
-	</scm>
-
-	<distributionManagement>
-		<!-- <repository>
-			<id>feilong.googlecode.com</id>
-			<url>svn:https://feilong.googlecode.com/svn/repository</url>
-			</repository> -->
-		<repository>
-			<id>internal.repo</id>
-			<name>Temporary Staging Repository</name>
-			<url>file://${project.build.directory}/${github.repository}</url>
-		</repository>
-
-	</distributionManagement>
-
-
 
 	<!-- <repositories>
 		<repository>
