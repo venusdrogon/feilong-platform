@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-tools-solrj3</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.7-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20140520062031</lastUpdated>
+  </versioning>
+</metadata>
