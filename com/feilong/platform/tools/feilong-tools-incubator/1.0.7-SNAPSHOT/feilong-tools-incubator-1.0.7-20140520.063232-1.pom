@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.7-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>feilong-tools-incubator</artifactId>
+	<description>feilong tools 孵化器</description>
+
+	<name>feilong-tools-incubator</name>
+
+	<!--****************************dependencies************************************* -->
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-servlet</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-jsoup</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!-- velocity -->
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-velocity</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!-- pinyin4j -->
+		<dependency>
+			<groupId>net.sourceforge</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+		<!-- 父 platform 中 servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+
+		<!-- rsslibj -->
+		<dependency>
+			<groupId>rsslibj</groupId>
+			<artifactId>rsslibj</artifactId>
+			<version>1.0RC2</version>
+		</dependency>
+
+		<!-- exml -->
+		<dependency>
+			<groupId>exml</groupId>
+			<artifactId>exml</artifactId>
+			<version>7.0</version>
+		</dependency>
+
+		<!-- xfire -->
+		<dependency>
+			<groupId>org.codehaus.xfire</groupId>
+			<artifactId>xfire-core</artifactId>
+			<version>${version.xfire}</version>
+		</dependency>
+
+		<!-- spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+
+		<!-- spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dragonfly</groupId>
+			<artifactId>jsdocx</artifactId>
+			<version>1.1.0_20111219</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-jexl</artifactId>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.apache.solr</groupId> <artifactId>solr</artifactId> <version>3.5.0</version> <packaging>war</packaging> </dependency> -->
+
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>5.5.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>de.javakaffee.msm</groupId>
+			<artifactId>msm-kryo-serializer</artifactId>
+			<version>1.6.0</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.javakaffee.msm</groupId>
+			<artifactId>memcached-session-manager-tc6</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.javakaffee.msm</groupId>
+			<artifactId>memcached-session-manager</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
+		<!-- thumbnailator 一个用来生成图像缩略图、裁切、旋转、添加水印等操作的 Java 类库 -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.6</version>
+		</dependency>
+
+		<!-- org.json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
