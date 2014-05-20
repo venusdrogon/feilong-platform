@@ -3,6 +3,9 @@
 	<description>feilong-core</description>
 	<property file="${basedir}/build.properties" />
 
+	<!-- 访问环境变量 -->
+	<property environment="env" />
+
 	<property file="E:/DataCommon/java/Taglib/Apache Ant/config/build-feilong.properties" />
 	<import file="${path.config}/build-config-common-nested.xml" />
 	<import file="${path.config}/build-feilong-nested.xml" />
@@ -34,9 +37,9 @@
 		<echo>feilong.MONTH:[${feilong.MONTH}]</echo>
 
 
-		<!-- 访问环境变量 -->
-		<property environment="env" />
-		<echo>[env]:${env._FeilongSoft}</echo>
+
+		<echo>[env._FeilongSoft]:${env._FeilongSoft}</echo>
+		<echo>[env._FeilongTaglib]:${env._FeilongTaglib}</echo>
 
 		<echo>[java.class.path]:${java.class.path}</echo>
 
@@ -55,7 +58,7 @@
 		<property name="source" value="1.6" />
 
 		<!-- 指定使用什么样式 -->
-		<property name="stylesheetfile" value="${basedir}/${ant.project.name}-javadoc.css" />
+		<property name="stylesheetfile" value="${env._FeilongTaglib}/Apache Maven/javadoc/feilong-core-javadoc.css" />
 		<!-- 配置预览页面,总体概述文件 -->
 		<property name="overview" value="src/main/java/overview.html" />
 
@@ -120,9 +123,9 @@
 
 			<fileset dir="src/main/java" defaultexcludes="yes">
 				<!--这里可以定制 你先哪些包生成 那些包不生成javadoc -->
-				<!--<include name="com/feilong/commons/core/**" /> -->
+				<!-- --><include name="com/feilong/commons/core/**" />
 				<!-- <include name="com/feilong/commons/core/date/DateUtil.java" /> -->
-				<include name="com/feilong/commons/core/date/**" />
+				<!-- <include name="com/feilong/commons/core/date/**" /> -->
 			</fileset>
 			<!-- <classpath> <path path="${sun.boot.class.path}"></path> <path path="${java.class.path}"></path> <path refid="feilong.maven.dependencies.all"></path> </classpath> -->
 

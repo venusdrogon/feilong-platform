@@ -39,10 +39,14 @@
 		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
 		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
 
-		<maven-javadoc-plugin.charset>utf-8</maven-javadoc-plugin.charset>
-		<maven-javadoc-plugin.docencoding>utf-8</maven-javadoc-plugin.docencoding>
-		<maven-javadoc-plugin.encoding>utf-8</maven-javadoc-plugin.encoding>
-		<maven-javadoc-plugin.locale>zh</maven-javadoc-plugin.locale>
+		<!-- 用来编译生成文档 -->
+		<maven-javadoc-plugin.encoding>UTF-8</maven-javadoc-plugin.encoding>
+		<maven-javadoc-plugin.docencoding>UTF-8</maven-javadoc-plugin.docencoding>
+
+		<!-- 用来显示页面 META 部分 content="text/html; charset=GBK" -->
+		<maven-javadoc-plugin.charset>UTF-8</maven-javadoc-plugin.charset>
+		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
+		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
 		<maven-javadoc-plugin.reportOutputDirectory>${project.build.directory}\</maven-javadoc-plugin.reportOutputDirectory>
 
 		<!--****************************第三方************************************ -->
@@ -118,7 +122,7 @@
 		<v.maven-compiler-plugin>3.1</v.maven-compiler-plugin>
 		<v.maven-install-plugin>2.5.1</v.maven-install-plugin>
 		<v.maven-deploy-plugin>2.8.1</v.maven-deploy-plugin>
-		<v.maven-javadoc-plugin>2.8.1</v.maven-javadoc-plugin>
+		<v.maven-javadoc-plugin>2.9.1</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
 
 		<v.maven-source-plugin>2.2.1</v.maven-source-plugin>
@@ -648,6 +652,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
+					<verbose>true</verbose>
 					<outputDirectory>file://${user.home}/feilong/javadoc/${project.name}/${project.version}</outputDirectory>
 					<reportOutputDirectory>${user.home}/feilong/javadoc/${project.name}/${project.version}</reportOutputDirectory>
 
@@ -676,6 +681,13 @@
 					<charset>${maven-javadoc-plugin.charset}</charset>
 					<docencoding>${maven-javadoc-plugin.docencoding}</docencoding>
 					<encoding>${maven-javadoc-plugin.encoding}</encoding>
+
+					<groups>
+						<group>
+							<title>Date package 日期</title>
+							<packages>com.feilong.commons.core.date</packages>
+						</group>
+					</groups>
 				</configuration>
 			</plugin>
 
@@ -756,25 +768,10 @@
 		<!-- pluginManagement -->
 		<pluginManagement>
 			<plugins>
-				<!-- <plugin> <artifactId>maven-javadoc-plugin</artifactId> <version>${v.maven-javadoc-plugin}</version> </plugin> -->
-				<!-- <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>${v.maven-compiler-plugin}</version> </plugin> -->
-
-				<!-- <plugin> <artifactId>maven-source-plugin</artifactId> <version>${v.maven-source-plugin}</version> </plugin> -->
-
-				<!-- <plugin> <artifactId>maven-surefire-plugin</artifactId> <version>${v.maven-surefire-plugin}</version> </plugin> -->
-
-				<!-- <plugin> <artifactId>maven-deploy-plugin</artifactId> <version>${v.maven-deploy-plugin}</version> </plugin> -->
-
-				<!-- <plugin> <artifactId>maven-install-plugin</artifactId> <version>${v.maven-install-plugin}</version> </plugin> -->
-
-				<!-- -->
 				<plugin>
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>${v.maven-antrun-plugin}</version>
 				</plugin>
-
-				<!-- <plugin> <artifactId>maven-clean-plugin</artifactId> <version>${v.maven-clean-plugin}</version> </plugin> -->
-				<!-- <plugin> <artifactId>maven-resources-plugin</artifactId> <version>${v.maven-resources-plugin}</version> </plugin> -->
 
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>

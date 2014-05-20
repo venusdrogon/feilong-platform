@@ -20,9 +20,10 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
-						<manifestFile>
+<!---->
+						<!-- <manifestFile>
 							src/main/resources/META-INF/MANIFEST.MF
-						</manifestFile>
+							</manifestFile> -->
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
@@ -35,8 +36,6 @@
 						</manifestEntries>
 					</archive>
 					<!-- <excludes> <exclude>**/temple/**</exclude> </excludes> -->
-
-
 				</configuration>
 			</plugin>
 			<!-- dependency插件 -->
