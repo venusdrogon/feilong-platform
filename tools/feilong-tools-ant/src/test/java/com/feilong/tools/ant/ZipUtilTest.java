@@ -17,6 +17,7 @@
  */
 package com.feilong.tools.ant;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class ZipUtilTest{
 	String	outputFileName	= "E:\\test" + DateUtil.date2String(new Date(), DatePattern.timestamp);	// 解压到文件路径
 
 	//@Test
-	public void testZip(){
+	public void testZip() throws IOException{
 		Date date1 = new Date();
 		String inputFileName = "E:\\test"; // 你要压缩的文件夹
 		String zipFileName = "E:\\test.zip"; // 压缩后的zip文件
