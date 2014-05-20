@@ -24,7 +24,7 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * File 文件操作.
+ * File文件操作.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-23 下午5:00:54
@@ -349,7 +349,7 @@ public final class FileUtil{
 	 *            文件大小 单位byte
 	 * @return 文件大小byte 转换
 	 */
-	public final static String formatFileSize(long fileSize){
+	public final static String formatSize(long fileSize){
 		String danwei = "Bytes";
 		// 除完之后的余数
 		String yushu = "";
