@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.taglib</groupId>
+  <artifactId>feilong-taglib-common</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.7-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20140520061433</lastUpdated>
+  </versioning>
+</metadata>
