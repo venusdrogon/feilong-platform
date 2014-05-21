@@ -28,8 +28,10 @@ import com.feilong.commons.core.util.Validator;
 /**
  * 封装了org.apache.commons.beanutils包下面的类
  * 
- * @author 金鑫 2010-7-9 下午02:44:36
- * @author 金鑫 2012-5-15 15:07
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 2010-7-9 下午02:44:36
+ * @version 2012-5-15 15:07
+ * @version 1.0.7 2014年5月21日 下午12:24:53 move to om.feilong.commons.core.bean package
  * @since 1.0
  */
 public final class BeanUtil{
