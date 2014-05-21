@@ -29,6 +29,7 @@ import com.feilong.commons.core.util.StringUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-12-9 下午11:04:05
+ * @since 1.0.0
  */
 public final class Command{
 

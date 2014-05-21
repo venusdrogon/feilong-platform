@@ -24,6 +24,7 @@ package com.feilong.commons.core.enumeration;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 8:11:33 PM
+ * @since 1.0.0
  */
 public enum FileWriteMode{
 

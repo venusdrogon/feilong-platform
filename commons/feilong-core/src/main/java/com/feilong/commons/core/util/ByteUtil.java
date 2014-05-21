@@ -19,7 +19,7 @@ package com.feilong.commons.core.util;
  * Byte 工具类.
  * 
  * @author 金鑫 2010-3-11 下午02:58:49
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ByteUtil{
 

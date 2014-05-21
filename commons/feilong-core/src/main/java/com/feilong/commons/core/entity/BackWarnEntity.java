@@ -23,7 +23,7 @@ import java.io.Serializable;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-6-24 上午03:14:56
- * @since 1.0
+ * @since 1.0.0
  */
 public class BackWarnEntity implements Serializable{
 

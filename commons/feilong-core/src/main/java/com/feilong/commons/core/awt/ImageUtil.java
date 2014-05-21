@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-11-30 下午03:24:45
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ImageUtil{
 

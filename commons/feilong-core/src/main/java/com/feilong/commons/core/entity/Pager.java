@@ -34,7 +34,7 @@ import java.util.List;
  * @version 1.0.0 2009-9-2 下午02:24:44
  * @version 1.0.1 2012-3-16 01:01 将查询参数 删除,保留分页相关参数
  * @version 1.0.5 2014-5-3 14:22 新增 {@link #maxShowPageNo} 参数
- * @since 1.0
+ * @since 1.0.0
  */
 public final class Pager implements Serializable{
 

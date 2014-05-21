@@ -22,7 +22,7 @@ import java.awt.Color;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-15 上午01:09:40
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ColorUtil{
 

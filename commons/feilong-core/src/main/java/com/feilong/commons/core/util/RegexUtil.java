@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * 正则表达式工具类.
  * 
  * @author 金鑫 2010-1-13 下午02:33:11
- * @since 1.0
+ * @since 1.0.0
  */
 public final class RegexUtil{
 

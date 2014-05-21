@@ -26,7 +26,7 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * 处理int,Integer,long,BigDecimal 等数据类型.
  * 
  * @author 金鑫 2010-3-11 下午02:27:59
- * @since 1.0
+ * @since 1.0.0
  */
 public final class NumberUtil{
 

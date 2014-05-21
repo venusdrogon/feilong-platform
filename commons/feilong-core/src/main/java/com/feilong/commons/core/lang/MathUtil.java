@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 11, 2013 12:30:10 AM
+ * @since 1.0.0
  */
 public class MathUtil{
 

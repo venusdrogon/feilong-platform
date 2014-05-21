@@ -19,7 +19,7 @@ package com.feilong.commons.core.util;
  * 常用的算法.
  * 
  * @author 金鑫 2010-4-15 下午01:51:24
- * @since 1.0
+ * @since 1.0.0
  */
 public final class Algorithm{
 

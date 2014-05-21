@@ -32,7 +32,7 @@ import com.feilong.commons.core.net.URIUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-5 下午05:07:45
- * @since 1.0
+ * @since 1.0.0
  * @since jdk 1.6
  */
 public final class DesktopUtil{

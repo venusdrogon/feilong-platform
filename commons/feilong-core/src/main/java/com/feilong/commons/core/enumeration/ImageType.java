@@ -21,7 +21,7 @@ package com.feilong.commons.core.enumeration;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午01:19:46
  * @version 1.0.5 2014-5-4 00:24 改成interface
- * @since 1.0
+ * @since 1.0.0
  */
 public interface ImageType{
 

@@ -28,6 +28,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-23 下午5:00:54
+ * @since 1.0.0
  */
 public final class FileUtil{
 

@@ -149,7 +149,8 @@ import java.util.Date;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 21 04:18:00
  * @version 1.0.5 2014-5-4 14:23 change to interface
- * @see SimpleDateFormat
+ * @see {@link SimpleDateFormat}
+ * @since 1.0.0
  */
 public interface DatePattern{
 

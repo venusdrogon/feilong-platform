@@ -32,7 +32,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * 
  * @author 金鑫 2010-4-5 下午10:55:19
  * @version 1.0.7 2014年5月19日 下午6:45:01
- * @since 1.0
+ * @since 1.0.0
  */
 public final class RandomUtil{
 

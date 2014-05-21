@@ -16,14 +16,17 @@
 package com.feilong.commons.core.date;
 
 /**
- * 时间间隔(一般以秒为单位) <br>
- * 注意: Integer.MAX_VALUE:2147483647<br>
+ * <p>
+ * 常用时间间隔(一般以秒为单位)
+ * </p>
+ * 注意:Integer.MAX_VALUE:2147483647<br>
  * Integer.MIN_VALUE:-2147483648<br>
  * 一年数据为 31536000,所以 Integer 最大为 68.096259734906 年
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-18 下午2:57:14
  * @version 1.0.5 2014-5-4 14:23 change to interface
+ * @since 1.0.0
  */
 public interface TimeInterval{
 

@@ -18,7 +18,9 @@ package com.feilong.commons.core.util;
 import java.text.DecimalFormat;
 
 /**
- * 数字格式<br>
+ * <p>
+ * 数字格式
+ * </p>
  * <blockquote>
  * <table border=0 cellspacing=3 cellpadding=0 summary="Chart showing symbol, * location, localized, and meaning.">
  * <tr bgcolor="#ccccff">
@@ -90,6 +92,7 @@ import java.text.DecimalFormat;
  * @version 1.0 2012-3-6 下午8:33:23
  * @version 1.0.5 2014-5-4 14:35 改成interface
  * @see {@link DecimalFormat}
+ * @since 1.0.0
  */
 public interface NumberPattern{
 

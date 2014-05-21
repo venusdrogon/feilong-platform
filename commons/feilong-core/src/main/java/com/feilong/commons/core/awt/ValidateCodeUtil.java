@@ -30,7 +30,7 @@ import com.feilong.commons.core.enumeration.FontType;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-14 下午01:43:06
- * @since 1.0
+ * @since 1.0.0
  * @deprecated 不推荐使用,可能调整
  */
 @Deprecated

@@ -25,6 +25,7 @@ import com.feilong.commons.core.Constants;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-7-11 下午5:05:56
+ * @since 1.0.0
  */
 public class StringBuilderUtil{
 

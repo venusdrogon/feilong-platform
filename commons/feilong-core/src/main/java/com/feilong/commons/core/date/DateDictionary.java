@@ -21,6 +21,7 @@ package com.feilong.commons.core.date;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 9, 2013 12:01:50 AM
  * @version 1.0.5 2014-5-4 14:23 change to interface
+ * @since 1.0.0
  */
 public interface DateDictionary{
 

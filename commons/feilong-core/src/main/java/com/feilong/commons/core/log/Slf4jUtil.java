@@ -25,6 +25,7 @@ import org.slf4j.helpers.MessageFormatter;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 30, 2013 2:24:01 AM
+ * @since 1.0.0
  */
 public final class Slf4jUtil{
 

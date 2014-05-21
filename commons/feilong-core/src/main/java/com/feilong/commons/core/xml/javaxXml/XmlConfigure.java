@@ -41,7 +41,7 @@ import com.feilong.commons.core.configure.BaseConfigure;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午10:08:30
- * @since 1.0
+ * @since 1.0.0
  */
 public final class XmlConfigure extends BaseConfigure{
 

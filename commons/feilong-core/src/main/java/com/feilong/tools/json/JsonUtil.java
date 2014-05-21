@@ -56,6 +56,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.5 Jan 26, 2013 8:02:09 PM
+ * @since 1.0.5
  */
 public final class JsonUtil{
 

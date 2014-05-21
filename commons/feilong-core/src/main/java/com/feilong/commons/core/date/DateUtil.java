@@ -154,7 +154,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-27 下午01:53:21
  * @version 1.0.5 2014-5-6 10:04
- * @since 1.0
+ * @since 1.0.0
  */
 public final class DateUtil{
 

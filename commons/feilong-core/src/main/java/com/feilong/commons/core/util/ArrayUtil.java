@@ -29,7 +29,7 @@ import com.feilong.commons.core.entity.JoinStringEntity;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-4-16 下午01:00:27
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ArrayUtil{
 

@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-7 下午01:36:21
+ * @since 1.0.0
  */
 public final class RegeditUtil{
 

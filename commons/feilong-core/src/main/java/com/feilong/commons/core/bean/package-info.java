@@ -15,5 +15,6 @@
  */
 /**
  *封装 org.apache.commons.beanutils 非常使用的工具
+ *@since 1.0.0
  */
 package com.feilong.commons.core.bean;

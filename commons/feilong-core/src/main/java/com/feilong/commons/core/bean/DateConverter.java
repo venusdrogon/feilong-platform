@@ -40,6 +40,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014-5-4 0:35:31
+ * @since 1.0.0
  */
 public class DateConverter extends DateTimeConverter{
 

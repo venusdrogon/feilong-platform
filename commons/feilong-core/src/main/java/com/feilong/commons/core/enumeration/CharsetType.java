@@ -24,6 +24,7 @@ import org.apache.commons.lang3.CharEncoding;
  * @version 1.0 2012-4-5 下午4:51:08
  * @version 1.0.5 2014-5-4 14:35 改成interface
  * @see {@link CharEncoding}
+ * @since 1.0.0
  */
 public interface CharsetType{
 

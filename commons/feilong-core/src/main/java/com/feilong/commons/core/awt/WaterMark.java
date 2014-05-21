@@ -30,7 +30,7 @@ import com.feilong.commons.core.io.IOUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午02:55:23
- * @since 1.0
+ * @since 1.0.0
  * @deprecated 水印技术 建议使用第三方工具或者nginx配置
  */
 @Deprecated

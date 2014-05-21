@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:35:28 PM
  * @version 1.0.1 2012-9-23 21:34 api更新,isNullOrEmpty 替换isNull(deprecated)
- * @since 1.0
+ * @since 1.0.0
  */
 public final class Validator{
 

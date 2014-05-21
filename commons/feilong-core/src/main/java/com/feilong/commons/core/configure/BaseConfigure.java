@@ -20,6 +20,6 @@ package com.feilong.commons.core.configure;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-7 上午12:28:38
- * @since 1.0
+ * @since 1.0.0
  */
 public abstract class BaseConfigure{}

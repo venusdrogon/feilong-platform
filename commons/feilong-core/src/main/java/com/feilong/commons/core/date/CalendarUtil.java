@@ -28,7 +28,7 @@ import java.util.List;
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @version 1.1 Aug 4, 2010 9:06:54 PM
  * @see {@link DateUtil}
- * @since 1.0
+ * @since 1.0.0
  */
 public final class CalendarUtil{
 

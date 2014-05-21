@@ -43,7 +43,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-6-11 上午02:06:43
- * @since 1.0
+ * @since 1.0.0
  */
 public final class URIUtil{
 

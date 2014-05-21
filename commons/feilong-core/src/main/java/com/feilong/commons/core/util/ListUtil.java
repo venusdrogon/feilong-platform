@@ -20,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -31,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * list工具类.
  * 
  * @author 金鑫 2010-3-2 下午03:20:12
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ListUtil{
 

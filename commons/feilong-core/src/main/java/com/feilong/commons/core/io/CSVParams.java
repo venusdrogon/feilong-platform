@@ -22,6 +22,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-22 下午5:45:23
+ * @since 1.0.0
  */
 public class CSVParams{
 

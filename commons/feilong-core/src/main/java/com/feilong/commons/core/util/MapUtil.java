@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 8, 2012 8:02:44 PM
+ * @since 1.0.0
  */
 public class MapUtil{
 

@@ -31,7 +31,7 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午10:05:19
- * @since 1.0
+ * @since 1.0.0
  */
 public final class PropertiesUtil extends BaseConfigure{
 

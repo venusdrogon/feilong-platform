@@ -23,8 +23,9 @@ import java.text.MessageFormat;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:19:22
- * @see MessageFormat
- * @see Format
+ * @see {@link MessageFormat}
+ * @see {@link Format}
+ * @since 1.0.0
  */
 public final class MessageFormatUtil{
 

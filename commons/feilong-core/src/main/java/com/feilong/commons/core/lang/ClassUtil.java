@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-6-1 下午7:19:47
+ * @since 1.0.0
  */
 public class ClassUtil{
 

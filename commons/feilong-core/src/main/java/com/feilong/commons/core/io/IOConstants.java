@@ -23,6 +23,7 @@ package com.feilong.commons.core.io;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-5-21 下午04:31:08
  * @version 1.1 Apr 24, 2014 1:56:38 AM
+ * @since 1.0.0
  */
 public interface IOConstants{
 

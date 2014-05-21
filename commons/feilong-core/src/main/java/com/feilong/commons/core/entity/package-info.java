@@ -15,5 +15,6 @@
  */
 /**
  * 实体包,数据传输的载体
+ * @since 1.0.0
  */
 package com.feilong.commons.core.entity;

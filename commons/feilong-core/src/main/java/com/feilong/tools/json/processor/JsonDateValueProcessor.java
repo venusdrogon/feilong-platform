@@ -27,7 +27,8 @@ import com.feilong.commons.core.date.DateUtil;
  * 时间转换 日期值处理器实现.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 26, 2013 3:49:55 PM
+ * @version 1.0.5 Jan 26, 2013 3:49:55 PM
+ * @since 1.0.5
  */
 public class JsonDateValueProcessor implements JsonValueProcessor{
 

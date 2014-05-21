@@ -31,7 +31,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-26 上午01:26:47
- * @since 1.0
+ * @since 1.0.0
  */
 public final class CSVUtil{
 

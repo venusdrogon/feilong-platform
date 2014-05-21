@@ -22,7 +22,7 @@ import java.io.Serializable;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 11, 2011 2:37:57 PM
- * @since 1.0
+ * @since 1.0.0
  */
 public final class JoinStringEntity implements Serializable{
 

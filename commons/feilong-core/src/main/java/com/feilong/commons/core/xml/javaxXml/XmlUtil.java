@@ -27,11 +27,11 @@ import javax.xml.namespace.QName;
 import com.feilong.commons.core.date.DateUtil;
 
 /**
- * xml 相关,使用原始的 javax.xml. 标准的jdk api
+ * xml相关,使用原始的 javax.xml. 标准的jdk api
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-11-19 下午04:59:04
- * @since 1.0
+ * @since 1.0.0
  */
 public class XmlUtil{
 

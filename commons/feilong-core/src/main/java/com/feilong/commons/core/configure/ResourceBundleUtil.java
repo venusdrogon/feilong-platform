@@ -34,6 +34,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-11 上午10:24:25
  * @see {@link MessageFormatUtil#format(String, Object...)}
+ * @since 1.0.0
  */
 public final class ResourceBundleUtil{
 

@@ -28,6 +28,7 @@ import net.sf.json.util.PropertySetStrategy;
  * 
  * @see {@link <a href="http://javaskeleton.blogspot.com/2011/05/ignore-missing-properties-with-json-lib.html">ignore-missing-properties-with-json-lib</a>}
  * @see {@link <a href="http://envy2002.iteye.com/blog/1682738">envy2002.iteye.com</a>}
+ * @since 1.0.5
  */
 public class PropertyStrategyWrapper extends PropertySetStrategy{
 

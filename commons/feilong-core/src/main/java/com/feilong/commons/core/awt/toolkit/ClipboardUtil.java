@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-23 下午02:38:55
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ClipboardUtil{
 

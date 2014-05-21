@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-18 下午06:35:58
  * @version 1.1 Apr 11, 2014 10:45:26 PM
- * @since 1.0
+ * @since 1.0.0
  */
 public final class ReflectUtil{
 

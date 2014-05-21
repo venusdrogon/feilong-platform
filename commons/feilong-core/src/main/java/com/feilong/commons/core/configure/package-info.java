@@ -15,5 +15,6 @@
  */
 /**
  * 配置文件操作,目前可以操作properties
+ * @since 1.0.0
  */
 package com.feilong.commons.core.configure;

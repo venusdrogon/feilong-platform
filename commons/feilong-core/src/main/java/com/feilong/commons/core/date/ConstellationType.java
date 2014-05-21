@@ -39,7 +39,7 @@ package com.feilong.commons.core.date;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-5 上午11:16:41
- * @since 1.0
+ * @since 1.0.0
  */
 public enum ConstellationType{
 

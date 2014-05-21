@@ -28,6 +28,7 @@ import com.feilong.tools.json.JsonUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 17, 2011 2:00:35 AM
+ * @since 1.0.0
  * @deprecated 不建议使用
  */
 @Deprecated

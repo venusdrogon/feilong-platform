@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
  * 流之间的转换.
  * 
  * @author 金鑫 2009-10-26下午02:36:47
+ * @since 1.0.0
  */
 public final class IOUtil{
 

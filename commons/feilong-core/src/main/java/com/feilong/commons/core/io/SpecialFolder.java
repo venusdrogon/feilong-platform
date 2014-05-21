@@ -24,6 +24,7 @@ import javax.swing.filechooser.FileSystemView;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-22 下午11:45:57
+ * @since 1.0.0
  */
 public final class SpecialFolder{
 

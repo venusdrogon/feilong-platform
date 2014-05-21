@@ -28,6 +28,7 @@ import com.feilong.commons.core.io.FileUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 7, 2013 8:13:34 PM
+ * @since 1.0.0
  */
 public class FileInfoEntity implements Serializable{
 

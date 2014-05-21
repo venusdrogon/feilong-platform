@@ -27,7 +27,7 @@ import com.feilong.commons.core.entity.JoinStringEntity;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:08:40 PM
- * @since 1.0
+ * @since 1.0.0
  */
 public final class CollectionUtil{
 

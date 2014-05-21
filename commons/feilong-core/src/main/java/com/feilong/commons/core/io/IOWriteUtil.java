@@ -36,6 +36,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:23:23 PM
+ * @since 1.0.0
  */
 public final class IOWriteUtil{
 
