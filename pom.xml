@@ -53,8 +53,10 @@
 		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
 		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
 
-		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.name}/${project.version}</maven-javadoc-plugin.outputDirectory>
-		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.name}/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
+		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.outputDirectory>
+		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
+		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
+		
 		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/commons</maven-javadoc-plugin.javadocDirectory>
 		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
 		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
@@ -674,6 +676,8 @@
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
 					<verbose>true</verbose>
+					<destDir>${maven-javadoc-plugin.destDir}</destDir>
+					
 					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
 					<reportOutputDirectory>${maven-javadoc-plugin.reportOutputDirectory}</reportOutputDirectory>
 
