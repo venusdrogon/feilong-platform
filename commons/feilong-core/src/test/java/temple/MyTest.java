@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.feilong.childandparent.Child;
 import com.feilong.childandparent.Parent;
-import com.feilong.commons.core.util.BeanUtil;
+import com.feilong.commons.core.bean.BeanUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

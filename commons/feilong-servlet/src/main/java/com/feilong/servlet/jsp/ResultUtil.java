@@ -24,7 +24,7 @@ import java.util.SortedMap;
 
 import javax.servlet.jsp.jstl.sql.Result;
 
-import com.feilong.commons.core.util.BeanUtil;
+import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.commons.core.util.StringUtil;

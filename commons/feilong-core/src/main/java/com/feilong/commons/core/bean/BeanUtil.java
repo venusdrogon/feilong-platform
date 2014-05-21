@@ -13,21 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.bean;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.beanutils.converters.DateTimeConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
-import com.feilong.commons.core.text.DateFormatUtil;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * 封装了org.apache.commons.beanutils包下面的类
@@ -302,10 +298,14 @@ public final class BeanUtil{
 	 *            bean
 	 * @param name
 	 *            属性名称
-	 * @return 使用BeanUtils类从对象中取得属性值
+	 * @return 使用BeanUtils类从对象中取得属性值<br>
+	 *         如果方法内部出现异常,return null
+	 * @see {@link BeanUtils}
 	 */
 	public static String getProperty(Object bean,String name){
 		try{
+			// Return the value of the specified property of the specified bean,
+			// no matter which property reference format is used, as a String.
 			String propertyValue = BeanUtils.getProperty(bean, name);
 			return propertyValue;
 		}catch (IllegalAccessException e){
@@ -316,102 +316,5 @@ public final class BeanUtil{
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	/**
-	 * The Class DateConverter,for example:
-	 * 
-	 * <pre>
-	 * User a = new User();
-	 * a.setId(5L);
-	 * Date now = new Date();
-	 * a.setDate(now);
-	 * User b = new User();
-	 * DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
-	 * ConvertUtils.register(converter, Date.class);
-	 * BeanUtil.copyProperty(b, a, &quot;date&quot;);
-	 * </pre>
-	 * 
-	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
-	 * @version 1.0 2014-5-4 0:35:31
-	 */
-	public static class DateConverter extends DateTimeConverter{
-
-		/** pattern {@link DatePattern}. */
-		private String	pattern;
-
-		/** The locale. */
-		private Locale	locale	= Locale.getDefault();
-
-		/**
-		 * Instantiates a new date converter.
-		 * 
-		 * @param pattern
-		 *            the pattern
-		 */
-		public DateConverter(String pattern){
-			this.pattern = pattern;
-		}
-
-		/**
-		 * Instantiates a new date converter.
-		 * 
-		 * @param pattern
-		 *            the pattern
-		 * @param locale
-		 *            the locale
-		 */
-		public DateConverter(String pattern, Locale locale){
-			this.pattern = pattern;
-			this.locale = locale;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see org.apache.commons.beanutils.converters.AbstractConverter#getDefaultType()
-		 */
-		@Override
-		protected Class getDefaultType(){
-			return Date.class;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(java.lang.Class, java.lang.Object)
-		 */
-		@Override
-		public Object convert(Class type,Object value){
-			if (Validator.isNullOrEmpty(pattern)){
-				throw new IllegalArgumentException("value can't be null/empty!");
-			}
-			if (value == null){
-				return (null);
-			}
-			Date dateObj = null;
-			if (value instanceof String){
-				dateObj = DateFormatUtil.parse(value.toString(), pattern, locale);
-			}
-			return dateObj;
-		}
-
-		/**
-		 * Sets the pattern {@link DatePattern}.
-		 * 
-		 * @param pattern
-		 *            the pattern to set
-		 */
-		public void setPattern(String pattern){
-			this.pattern = pattern;
-		}
-
-		/**
-		 * Sets the locale.
-		 * 
-		 * @param locale
-		 *            the locale to set
-		 */
-		public void setLocale(Locale locale){
-			this.locale = locale;
-		}
 	}
 }

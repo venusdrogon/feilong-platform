@@ -226,7 +226,7 @@ public final class ListUtil{
 	}
 
 	/**
-	 * 解析对象集合,取到对象特殊字段值,拼成集合.
+	 * 解析对象集合,取到对象特殊属性,拼成List(ArrayList).
 	 * 
 	 * @param <T>
 	 *            the generic type
@@ -234,28 +234,42 @@ public final class ListUtil{
 	 *            the generic type
 	 * @param objectList
 	 *            对象集合
-	 * @param field
-	 *            指定字段
-	 * @return 如果 objectList是null/empty 返回null
+	 * @param propertyName
+	 *            属性名称
+	 * @return <ul>
+	 *         <li>isNotNullOrEmpty(objectList) 返回null</li>
+	 *         <li>解析对象集合,取到对象特殊属性,拼成List(ArrayList)</li>
+	 *         <li></li>
+	 *         <li></li>
+	 *         </ul>
+	 * @throws NullPointerException
+	 *             if isNotNullOrEmpty(objectList) or isNullOrEmpty(propertyName)
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T, O> List<T> getFieldValueList(List<O> objectList,String field){
-		if (Validator.isNotNullOrEmpty(objectList)){
-			List<T> _list = new LinkedList<T>();
-			for (O object : objectList){
-				try{
-					T property = (T) PropertyUtils.getProperty(object, field);
-					_list.add(property);
-				}catch (IllegalAccessException e){
-					e.printStackTrace();
-				}catch (InvocationTargetException e){
-					e.printStackTrace();
-				}catch (NoSuchMethodException e){
-					e.printStackTrace();
-				}
-			}
-			return _list;
+	public static <T, O> List<T> getFieldValueList(Iterable<O> objectList,String propertyName){
+
+		if (Validator.isNullOrEmpty(objectList)){
+			throw new NullPointerException("objectList is null or empty!");
 		}
-		return null;
+
+		if (Validator.isNullOrEmpty(propertyName)){
+			throw new NullPointerException("propertyName is null or empty!");
+		}
+
+		List<T> list = new ArrayList<T>();
+		for (O object : objectList){
+			try{
+				@SuppressWarnings("unchecked")
+				T property = (T) PropertyUtils.getProperty(object, propertyName);
+				list.add(property);
+			}catch (IllegalAccessException e){
+				e.printStackTrace();
+			}catch (InvocationTargetException e){
+				e.printStackTrace();
+			}catch (NoSuchMethodException e){
+				e.printStackTrace();
+			}
+		}
+		return list;
+
 	}
 }
