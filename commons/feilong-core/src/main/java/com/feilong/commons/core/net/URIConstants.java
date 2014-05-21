@@ -30,16 +30,16 @@ public interface URIConstants{ // 声明成接口,不想被实例化
 	/** 查询片段 <code>{@value}</code>. */
 	String	FRAGMENT		= "#";
 
-	/** ? The question mark is used as a separator and is not part of the query string. */
+	/** <code>{@value}</code> The question mark is used as a separator and is not part of the query string. */
 	String	QUESTIONMARK	= "?";
 
-	/** The Constant ampersand. */
+	/** The Constant ampersand<code>{@value}</code>. */
 	String	AMPERSAND		= "&";
 
-	/** http协议. */
+	/** http协议<code>{@value}</code>. */
 	String	SCHEME_HTTP		= "http";
 
-	/** https协议. */
+	/** https协议<code>{@value}</code>. */
 	String	SCHEME_HTTPS	= "https";
 
 	// public static final String equal = "=";
