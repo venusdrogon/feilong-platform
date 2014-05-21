@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.adaptor.sprintasia.creditcard.command.CreditCardQueryResult;
@@ -32,6 +33,7 @@ import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.command.TransactionStatus;
 import com.feilong.tools.cxf.JaxWsDynamicClientUtil;
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class SprintAsiaCreditCardAdvanceAdaptor.
@@ -43,7 +45,6 @@ import com.feilong.tools.cxf.JaxWsDynamicClientUtil;
 public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(SprintAsiaCreditCardAdvanceAdaptor.class);
 
 	/**
@@ -200,7 +201,9 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 
 			// SCRUBMESSAGE Transaction not found
 			if (Validator.isNullOrEmpty(transactionStatus)){
-				throw new RuntimeException("transactionStatus is isNullOrEmpty,wddxPacketXML is:" + wddxPacketXML);
+				String messagePattern = "creditCard transactionStatus is isNullOrEmpty,creditCardQueryResult:{},wddxPacketXML is:{}";
+				String formatMessage = Slf4jUtil.formatMessage(messagePattern, JsonUtil.format(creditCardQueryResult), wddxPacketXML);
+				throw new RuntimeException(formatMessage);
 			}
 
 			QueryResult queryResult = new QueryResult();
@@ -214,6 +217,7 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 			queryResult.setTradeNo(merchantTransactionID);
 			return queryResult;
 		}catch (Exception e){
+			log.error("{},queryRequest:{}", e.getMessage(), JsonUtil.format(queryRequest));
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}

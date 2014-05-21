@@ -15,22 +15,27 @@
  */
 package com.feilong.tools.cxf;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.dynamic.DynamicClientFactory;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.tools.json.JsonUtil;
+
 /**
  * The Class JaxWsDynamicClientUtil.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2014年5月5日 下午11:48:14
+ * @version 1.0.5 2014年5月5日 下午11:48:14
+ * @see 1.0.5
  */
 public class JaxWsDynamicClientUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(JaxWsDynamicClientUtil.class);
 
 	/**
@@ -52,11 +57,19 @@ public class JaxWsDynamicClientUtil{
 	 *             the exception
 	 */
 	public static String call(String wsdlUrl,String operationName,Object...params) throws Exception{
+		if (log.isInfoEnabled()){
+			Map<String, Object> object = new HashMap<String, Object>();
+
+			object.put("wsdlUrl", wsdlUrl);
+			object.put("operationName", operationName);
+			object.put("params", params);
+
+			log.info(JsonUtil.format(object));
+		}
 		DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
 		Client client = dynamicClientFactory.createClient(wsdlUrl);
 		Object[] obj = client.invoke(operationName, params);
 		String result = "" + obj[0];
 		return result;
 	}
-
 }
