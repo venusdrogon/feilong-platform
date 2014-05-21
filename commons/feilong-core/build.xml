@@ -58,7 +58,7 @@
 		<property name="source" value="1.6" />
 
 		<!-- 指定使用什么样式 -->
-		<property name="stylesheetfile" value="${env._FeilongTaglib}/Apache Maven/javadoc/feilong-core-javadoc.css" />
+		<property name="stylesheetfile" value="${env._FeilongTaglib}/Apache Maven/javadoc/springframework/stylesheet.css" />
 		<!-- 配置预览页面,总体概述文件 -->
 		<property name="overview" value="src/main/java/overview.html" />
 
