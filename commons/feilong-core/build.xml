@@ -53,7 +53,7 @@
 	<!--javadoc -->
 	<target name="javadoc">
 		<!-- Destination directory(输出文件的目的文件夹) -->
-		<property name="destdir" value="E:\javadoc\feilong-core api\${feilongMaven.version}" />
+		<property name="destdir" value="${user.home}/feilong/javadocAnt/${ant.project.name}/${feilongMaven.version}" />
 
 		<property name="source" value="1.6" />
 
