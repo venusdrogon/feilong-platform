@@ -249,7 +249,7 @@ public class UriTemplateUtil{
 	 *            匹配模式
 	 * @param variableNames
 	 *            变量数组
-	 * @see @{@link #clearVariablesValue(String, String, String[])}
+	 * @see #clearVariablesValue(String, String, String[])
 	 * @return
 	 */
 	public static String retainVariablesValue(String requestPath,String matchingPatternPath,String[] variableNames){

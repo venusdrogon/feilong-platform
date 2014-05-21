@@ -24,13 +24,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 飞龙通用验证类,该类最实用的方法,核心类之一<br>
- * isNullOrEmpty(Object value),判断元素是否为空.
+ * <p>
+ * 通用验证类,feilong-core核心类之一,判断对象是否是null或者空
+ * </p>
+ * <ol>
+ * <li>{@link #isNullOrEmpty(Object)} 判断对象是否是null或者空</li>
+ * <li>{@link #isNotNullOrEmpty(Object)}判断对象是否不是null或者不是空</li>
+ * </ol>
+ * .
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:35:28 PM
- * @version 1.0.1 2012-9-23 21:34 api更新,isNullOrEmpty 替换isNull(deprecated)
+ * @version 1.0.1 2012-9-23 21:34 api更新,rename method,isNullOrEmpty替换isNull
  * @since 1.0.0
+ * @see String#trim()
+ * @see Map#isEmpty()
+ * @see Collection#isEmpty()
+ * @see Enumeration#hasMoreElements()
+ * @see Iterator#hasNext()
  */
 public final class Validator{
 
@@ -42,22 +53,22 @@ public final class Validator{
 	private Validator(){}
 
 	/**
-	 * 判断元素是否为Null或者Empty
+	 * 判断对象是否为Null或者Empty
 	 * <p>
-	 * 目前可以判断一下元素
-	 * <ul>
-	 * <li>Collection,使用其isEmpty()</li>
-	 * <li>Map,使用其isEmpty()</li>
-	 * <li>Object[],判断length==0</li>
-	 * <li>String,使用.trim().length()效率高</li>
-	 * <li>Enumeration,使用hasMoreElements()</li>
-	 * <li>Iterator,使用hasNext()</li>
-	 * </ul>
+	 * 对于empty的判断:
+	 * </p>
+	 * <ol>
+	 * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
+	 * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
+	 * <li><code>Object[]</code>,判断length==0</li>
+	 * <li>{@link String},使用 {@link String#trim()}.length()<=0效率高</li>
+	 * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()}</li>
+	 * <li>{@link Iterator},使用 {@link Iterator#hasNext()}</li>
+	 * </ol>
 	 * 
 	 * @param value
 	 *            可以是Collection,Map,Object[],String,Enumeration,Iterator类型
-	 * @return 空返回true
-	 * @since 1.0
+	 * @return 如果是null,返回true;如果是空也返回true,其他情况返回false
 	 */
 	@SuppressWarnings("rawtypes")
 	public final static boolean isNullOrEmpty(Object value){
@@ -96,22 +107,22 @@ public final class Validator{
 	}
 
 	/**
-	 * 判断元素是否不为Null或者Empty,调用<code>!isNullOrEmpty</code>方法
+	 * 判断对象是否不为Null或者Empty,调用 !{@link #isNullOrEmpty(Object)} 方法 <br>
 	 * <p>
-	 * 目前可以判断一下元素
-	 * <ul>
-	 * <li>Collection,使用其isEmpty()</li>
-	 * <li>Map,使用其isEmpty()</li>
-	 * <li>Object[],判断length==0</li>
-	 * <li>String,使用.trim().length()效率高</li>
-	 * <li>Enumeration,使用hasMoreElements()</li>
-	 * <li>Iterator,使用hasNext()</li>
-	 * </ul>
+	 * 对于empty的判断:
+	 * </p>
+	 * <ol>
+	 * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
+	 * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
+	 * <li><code>Object[]</code>,判断length==0</li>
+	 * <li>{@link String},使用 {@link String#trim()}.length()<=0效率高</li>
+	 * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()}</li>
+	 * <li>{@link Iterator},使用 {@link Iterator#hasNext()}</li>
+	 * </ol>
 	 * 
 	 * @param value
 	 *            可以是Collection,Map,Object[],String,Enumeration,Iterator类型
-	 * @return 不为空返回true
-	 * @since 1.0
+	 * @return 如果是null,返回false;如果是空也返回false,其他情况返回true
 	 */
 	public final static boolean isNotNullOrEmpty(Object value){
 		return !isNullOrEmpty(value);

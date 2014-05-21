@@ -87,7 +87,7 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 数组转成 List(ArrayList)，此方法通过循环遍历创建， 返回的list可操作<br>
+	 * 数组转成 List(ArrayList)，此方法通过循环遍历创建， 返回的list可以操作<br>
 	 * 注意 Arrays.asList(arrays)返回的list不含add方法，
 	 * 
 	 * @param <T>

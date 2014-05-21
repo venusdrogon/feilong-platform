@@ -25,7 +25,7 @@ import org.apache.solr.common.params.ShardParams;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 20, 2013 1:06:26 AM
- * @see {@link ShardParams}
+ * @see ShardParams
  */
 public class ShardParamsCommand implements Serializable{
 

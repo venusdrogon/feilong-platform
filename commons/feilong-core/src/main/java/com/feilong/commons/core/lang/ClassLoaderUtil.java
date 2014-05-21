@@ -65,7 +65,7 @@ public class ClassLoaderUtil{
 	 * 获得 项目的 classpath,及classes编译的根目录.
 	 * 
 	 * @return 获得 项目的 classpath
-	 * @see {@link #getResource(String)}
+	 * @see #getResource(String)
 	 * @since 1.0
 	 */
 	public static URL getClassPath(){

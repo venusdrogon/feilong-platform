@@ -25,7 +25,7 @@ import org.apache.solr.common.params.GroupParams;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 29, 2012 4:05:35 PM
- * @see {@link GroupParams}
+ * @see GroupParams
  */
 public class GroupParamsCommand implements Serializable{
 

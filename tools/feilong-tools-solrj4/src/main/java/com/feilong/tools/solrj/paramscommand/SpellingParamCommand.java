@@ -26,7 +26,7 @@ import org.apache.solr.common.params.SpellingParams;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 29, 2012 3:26:36 PM
- * @see {@link SpellingParams}
+ * @see SpellingParams
  */
 public class SpellingParamCommand implements Serializable{
 

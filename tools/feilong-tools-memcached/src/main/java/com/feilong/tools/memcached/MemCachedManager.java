@@ -58,7 +58,7 @@ public interface MemCachedManager{
 
 	/**
 	 * 将key值,set到memcached中<br>
-	 * 不需要提供时间参数,默认@see {@link TimeInterval#SECONDS_PER_DAY *29}<br>
+	 * 不需要提供时间参数,默认{@link TimeInterval#SECONDS_PER_DAY *29}<br>
 	 * <b>和add 的区别:</b><br>
 	 * add方法,当且仅当不存在才add(iff it does not exist already);<br>
 	 * set方法,不管是否存在不存在都set(regardless of any existing value)
@@ -73,7 +73,7 @@ public interface MemCachedManager{
 
 	/**
 	 * 将key值,set到memcached中<br>
-	 * 需要提供时间参数,暴露出来,手工指定,你可以传入@see {@link TimeInterval#SECONDS_PER_DAY *29}<br>
+	 * 需要提供时间参数,暴露出来,手工指定,你可以传入{@link TimeInterval#SECONDS_PER_DAY *29}<br>
 	 * <b>和add 的区别:</b><br>
 	 * add方法,当且仅当不存在才add(iff it does not exist already);<br>
 	 * set方法,不管是否存在不存在都set(regardless of any existing value)

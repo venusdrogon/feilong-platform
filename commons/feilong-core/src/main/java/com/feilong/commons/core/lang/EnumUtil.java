@@ -32,8 +32,8 @@ import com.feilong.tools.json.JsonUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月8日 上午3:30:51
- * @see {@link EnumUtils}
- * @see {@link org.apache.commons.lang3.EnumUtils}
+ * @see EnumUtils
+ * @see org.apache.commons.lang3.EnumUtils
  * @since 1.0.6
  */
 public class EnumUtil{

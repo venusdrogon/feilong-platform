@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.Constants;
 
 /**
- * StringBuilderUtil.
+ * StringBuilder工具类,可以用来快速的拼接字符串.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-7-11 下午5:05:56

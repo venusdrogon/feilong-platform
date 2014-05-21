@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 反射类.
+ * 反射工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-18 下午06:35:58
@@ -177,7 +177,7 @@ public final class ReflectUtil{
 	 * @param clz
 	 *            the clz
 	 * @return the field names
-	 * @see {@link Class#getFields()}
+	 * @see Class#getFields()
 	 */
 	public static String[] getFieldNames(Class<?> clz){
 		Field[] fields = clz.getFields();

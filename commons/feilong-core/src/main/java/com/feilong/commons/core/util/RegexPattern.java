@@ -16,7 +16,10 @@
 package com.feilong.commons.core.util;
 
 /**
- * 正则表达式格式 .
+ * <p>
+ * 正则表达式格式,内置常用正则表达式
+ * </p>
+ * .
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 2, 2014 6:04:23 PM
@@ -65,14 +68,10 @@ public interface RegexPattern{
 	String	NUMBER				= "^[0-9]*$";
 
 	// alpha numeric space
-	/**
-	 * 字母和数字 (alpha numeric) <code>{@value}</code>
-	 */
+	/** 字母和数字 (alpha numeric) <code>{@value}</code>. */
 	String	AN					= "^[0-9a-zA-Z]+$";
 
-	/**
-	 * 字母和数字和空格(alpha numeric space)<code>{@value}</code>
-	 */
+	/** 字母和数字和空格(alpha numeric space)<code>{@value}</code>. */
 	String	ANS					= "^[0-9a-zA-Z ]+$";
 
 	// /** 验证输入一个月的31天 <code>{@value}</code>. */

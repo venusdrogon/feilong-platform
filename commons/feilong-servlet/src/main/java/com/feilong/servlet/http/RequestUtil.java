@@ -575,7 +575,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @param request
 	 *            the request
 	 * @return 如果是ajax 请求 返回true
-	 * @see {@link http://en.wikipedia.org/wiki/X-Requested-With#Requested-With}
+	 * @see http://en.wikipedia.org/wiki/X-Requested-With#Requested-With
 	 */
 	@SuppressWarnings("javadoc")
 	public final static boolean isAjaxRequest(HttpServletRequest request){

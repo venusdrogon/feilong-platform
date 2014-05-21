@@ -100,7 +100,7 @@ public final class JsonUtil{
 	 * @param excludes
 	 *            排除需要序列化成json的属性,如果 excludes isNotNullOrEmpty,那么不会setExcludes
 	 * @return the string
-	 * @see {@link <a href="http://feitianbenyue.iteye.com/blog/2046877">java.lang.ClassCastException: JSON keys must be strings</a>}
+	 * @see <a href="http://feitianbenyue.iteye.com/blog/2046877">java.lang.ClassCastException: JSON keys must be strings</a>
 	 */
 	public static String format(Object obj,String[] excludes){
 		JsonConfig jsonConfig = new JsonConfig();

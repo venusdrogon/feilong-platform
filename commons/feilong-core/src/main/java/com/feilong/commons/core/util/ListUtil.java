@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * list工具类.
+ * {@link List}工具类.
  * 
  * @author 金鑫 2010-3-2 下午03:20:12
  * @since 1.0.0
@@ -75,7 +75,7 @@ public final class ListUtil{
 	 *            the item src list
 	 * @return 如果入参 isNullOrEmpty 返回null<br>
 	 *         返回的是 ArrayList
-	 * @see {@link <a href="http://www.oschina.net/code/snippet_117714_2991?p=2#comments">http://www.oschina.net/code/snippet_117714_2991?p=2#comments</a>}
+	 * @see <a href="http://www.oschina.net/code/snippet_117714_2991?p=2#comments">http://www.oschina.net/code/snippet_117714_2991?p=2#comments</a>
 	 */
 	// TODO 按照原类型返回
 	public static <T> List<T> removeDuplicate(List<T> list){

@@ -26,7 +26,7 @@ import org.apache.solr.common.params.FacetParams;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 29, 2012 4:05:35 PM
- * @see {@link FacetParams}
+ * @see FacetParams
  */
 public class FacetParamsCommand implements Serializable{
 
@@ -46,22 +46,22 @@ public class FacetParamsCommand implements Serializable{
 	 * Numeric option indicating the maximum number of facet field counts be included in the response for each field - in descending order
 	 * of count.<br>
 	 * Can be overridden on a per field basis. <br>
-	 * 默认 25 @see {@link SolrQuery#getFacetLimit()}
+	 * 默认 25 {@link SolrQuery#getFacetLimit()}
 	 */
 	private Integer				limit				= 25;
 
 	/**
 	 * Numeric option indicating the minimum number of hits before a facet should be included in the response.<br>
 	 * Can be overridden on a per field basis. <br>
-	 * 默认 1 @see {@link SolrQuery#getFacetMinCount()}
+	 * 默认 1 {@link SolrQuery#getFacetMinCount()}
 	 */
 	private Integer				mincount			= 1;
 
 	/**
 	 * String option:
 	 * <ul>
-	 * <li>"count" causes facets to be sorted by the count, @see {@link FacetParams#FACET_SORT_COUNT}</li>
-	 * <li>"index" results in index order @see {@link FacetParams#FACET_SORT_INDEX}.</li>
+	 * <li>"count" causes facets to be sorted by the count, {@link FacetParams#FACET_SORT_COUNT}</li>
+	 * <li>"index" results in index order {@link FacetParams#FACET_SORT_INDEX}.</li>
 	 * </ul>
 	 * <br>
 	 * 默认 为count 排序
@@ -346,8 +346,8 @@ public class FacetParamsCommand implements Serializable{
 	/**
 	 * Gets the string option:
 	 * <ul>
-	 * <li>"count" causes facets to be sorted by the count, @see {@link FacetParams#FACET_SORT_COUNT}</li>
-	 * <li>"index" results in index order @see {@link FacetParams#FACET_SORT_INDEX}.
+	 * <li>"count" causes facets to be sorted by the count, {@link FacetParams#FACET_SORT_COUNT}</li>
+	 * <li>"index" results in index order {@link FacetParams#FACET_SORT_INDEX}.
 	 * 
 	 * @return the sort
 	 */
@@ -358,8 +358,8 @@ public class FacetParamsCommand implements Serializable{
 	/**
 	 * Sets the string option:
 	 * <ul>
-	 * <li>"count" causes facets to be sorted by the count, @see {@link FacetParams#FACET_SORT_COUNT}</li>
-	 * <li>"index" results in index order @see {@link FacetParams#FACET_SORT_INDEX}.
+	 * <li>"count" causes facets to be sorted by the count, {@link FacetParams#FACET_SORT_COUNT}</li>
+	 * <li>"index" results in index order {@link FacetParams#FACET_SORT_INDEX}.
 	 * 
 	 * @param sort
 	 *            the sort to set

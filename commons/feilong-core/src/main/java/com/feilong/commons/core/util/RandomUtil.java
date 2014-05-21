@@ -22,7 +22,9 @@ import org.apache.commons.lang.math.RandomUtils;
 import com.feilong.commons.core.log.Slf4jUtil;
 
 /**
- * 飞龙随机工具类.
+ * <p>
+ * 随机数工具类
+ * </p>
  * <ul>
  * <li>Math.random() 底层也是调用的 new Random(),值＝Random nextDouble()</li>
  * <li>把Random对象作为一个全局实例（static）来使用。 Java中Random是线程安全的（内部进行了加锁处理）；</li>
@@ -44,7 +46,7 @@ public final class RandomUtil{
 	 * This has to be not local to the random method so as to not return the same value in the same millisecond.<br>
 	 * 把Random对象作为一个全局实例（static）来使用。 Java中Random是线程安全的（内部进行了加锁处理）；
 	 * 
-	 * @see {@link RandomUtils}
+	 * @see RandomUtils
 	 * @since 1.0.7
 	 */
 	public static final Random	JVM_RANDOM	= new Random();
@@ -94,7 +96,7 @@ public final class RandomUtil{
 	 * @param length
 	 *            设定所取出随机数的长度。length小于11
 	 * @return 返回生成的随机数
-	 * @see {@link #JVM_RANDOM}
+	 * @see #JVM_RANDOM
 	 */
 	public static long createRandomWithLength(int length){
 		// 该值大于等于 0.0 且小于 1.0 正号的 double 值

@@ -25,7 +25,7 @@ import org.apache.solr.common.params.HighlightParams;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2013-12-20 01:06
- * @see {@link HighlightParams}
+ * @see HighlightParams
  */
 public class HighlightParamsCommand implements Serializable{
 

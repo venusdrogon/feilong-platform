@@ -19,7 +19,7 @@ import java.text.DecimalFormat;
 
 /**
  * <p>
- * 数字格式
+ * 数字格式,内置常用数字格式
  * </p>
  * <blockquote>
  * <table border=0 cellspacing=3 cellpadding=0 summary="Chart showing symbol, * location, localized, and meaning.">
@@ -91,7 +91,7 @@ import java.text.DecimalFormat;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-6 下午8:33:23
  * @version 1.0.5 2014-5-4 14:35 改成interface
- * @see {@link DecimalFormat}
+ * @see DecimalFormat
  * @since 1.0.0
  */
 public interface NumberPattern{

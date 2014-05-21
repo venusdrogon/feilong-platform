@@ -302,7 +302,7 @@ public final class BeanUtil{
 	 *            属性名称
 	 * @return 使用BeanUtils类从对象中取得属性值<br>
 	 *         如果方法内部出现异常,return null
-	 * @see {@link BeanUtils}
+	 * @see BeanUtils
 	 */
 	public static String getProperty(Object bean,String name){
 		try{

@@ -27,7 +27,7 @@ import java.util.List;
  * 
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @version 1.1 Aug 4, 2010 9:06:54 PM
- * @see {@link DateUtil}
+ * @see DateUtil
  * @since 1.0.0
  */
 public final class CalendarUtil{
@@ -126,7 +126,7 @@ public final class CalendarUtil{
 	 * @param month
 	 *            月
 	 * @return 最大的天数
-	 * @see {@link Calendar#getActualMaximum(int)}
+	 * @see Calendar#getActualMaximum(int)
 	 */
 	public static int getMaxDayOfMonth(int year,int month){
 		Calendar calendar = toCalendar(year, month, 1);

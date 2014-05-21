@@ -33,9 +33,9 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:39:38
- * @see {@link Format}
- * @see {@link DateFormat}
- * @see {@link SimpleDateFormat}
+ * @see Format
+ * @see DateFormat
+ * @see SimpleDateFormat
  * @since 1.0.0
  */
 public class DateFormatUtil{

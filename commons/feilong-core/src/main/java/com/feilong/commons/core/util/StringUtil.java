@@ -25,7 +25,7 @@ import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
- * 字符串工具类.
+ * {@link String}工具类,可以 查询,截取,format,转成16进制码
  * 
  * @author 金鑫 2010-2-9 上午09:53:37
  * @since 1.0.0
@@ -749,7 +749,7 @@ public final class StringUtil{
 	 *            the args
 	 * @return A formatted string
 	 * @see java.util.Formatter
-	 * @see {@link String#format(String, Object...)}
+	 * @see String#format(String, Object...)
 	 * @since JDK 1.5
 	 */
 	public static String format(String format,Object...args){

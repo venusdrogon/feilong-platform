@@ -22,7 +22,7 @@ package com.feilong.servlet.http;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.4 2014-3-27 14:38
- * @see {@link org.apache.catalina.Globals}
+ * @see org.apache.catalina.Globals
  */
 public interface RequestConstants{
 

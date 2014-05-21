@@ -22,7 +22,7 @@ package com.feilong.commons.core.net;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 23, 2014 1:36:16 PM
- * @see {@link org.springframework.web.util.HierarchicalUriComponents.Type}
+ * @see org.springframework.web.util.HierarchicalUriComponents.Type
  * @since 1.0.0
  */
 public interface URIConstants{ // 声明成接口,不想被实例化

@@ -23,9 +23,14 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.text.NumberFormatUtil;
 
 /**
- * 处理int,Integer,long,BigDecimal 等数据类型.
+ * 处理int,Integer,long,BigDecimal等数据类型.
  * 
  * @author 金鑫 2010-3-11 下午02:27:59
+ * @see Integer
+ * @see Long
+ * @see BigDecimal
+ * @see Number
+ * @see NumberPattern
  * @since 1.0.0
  */
 public final class NumberUtil{

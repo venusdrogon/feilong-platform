@@ -20,6 +20,6 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.5 2014-5-6 20:38 change name
- * @see {@link AlipayOnlineAdaptor}
+ * @see AlipayOnlineAdaptor
  */
 public class AlipayOnlineInternationalCardAdaptor extends AlipayOnlineAdaptor{}

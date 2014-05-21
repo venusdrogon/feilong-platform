@@ -833,7 +833,7 @@ public final class DateUtil{
 	 * @param date
 	 *            任意时间
 	 * @return use {@link DatePattern#commonWithTime} format
-	 * @deprecated 请使用 @see {@link #date2String(Date, String)}
+	 * @deprecated 请使用 {@link #date2String(Date, String)}
 	 */
 	@Deprecated
 	public final static String date2String(Date date){
@@ -852,7 +852,7 @@ public final class DateUtil{
 	 * @param date
 	 *            任意时间
 	 * @param datePattern
-	 *            模式 @see {@link DatePattern}
+	 *            模式 {@link DatePattern}
 	 * @return string
 	 * @since 1.0
 	 * @see DateFormatUtil#format(Date, String)
@@ -867,7 +867,7 @@ public final class DateUtil{
 	 * @param dateList
 	 *            日期集合
 	 * @param datePattern
-	 *            模式 @see {@link DatePattern}
+	 *            模式 {@link DatePattern}
 	 * @return 如果 Validator.isNotNullOrEmpty(dateList) return null;<br>
 	 *         否则循环date转成string,返回List<String>
 	 * @since 1.0
@@ -891,7 +891,7 @@ public final class DateUtil{
 	 * @param dateString
 	 *            时间字符串
 	 * @param datePattern
-	 *            模式,时间字符串的模式 @see {@link DatePattern}
+	 *            模式,时间字符串的模式{@link DatePattern}
 	 * @return 将string字符串转换成date类型
 	 * @since 1.0
 	 * @see DateFormatUtil#parse(String, String)
@@ -1198,7 +1198,7 @@ public final class DateUtil{
 	 * @param date2
 	 *            date2
 	 * @param datePattern
-	 *            时间模式 @see {@link DatePattern}
+	 *            时间模式 {@link DatePattern}
 	 * @return 相差的天数
 	 * @since 1.0
 	 */
@@ -1245,7 +1245,7 @@ public final class DateUtil{
 	 * @param toDate
 	 *            结束时间
 	 * @param datePattern
-	 *            时间模式 @see {@link DatePattern}
+	 *            时间模式 {@link DatePattern}
 	 * @return the interval day list
 	 * @since 1.0
 	 * @see #getIntervalDay(Date, Date)
@@ -1339,7 +1339,7 @@ public final class DateUtil{
 	 * @param date_after
 	 *            date_after
 	 * @param datePattern
-	 *            pattern @see {@link DatePattern}
+	 *            pattern  {@link DatePattern}
 	 * @return 如果date_before 早于 date_after返回 true
 	 */
 	public final static boolean isBefore(String date_before,String date_after,String datePattern){
@@ -1361,7 +1361,7 @@ public final class DateUtil{
 	 * @param date_after
 	 *            date_after
 	 * @param datePattern
-	 *            pattern @see {@link DatePattern}
+	 *            pattern  {@link DatePattern}
 	 * @return 如果before 早于 date_after返回 true
 	 */
 	public final static boolean isBefore(Date before,String date_after,String datePattern){
@@ -1391,7 +1391,7 @@ public final class DateUtil{
 	 * @param endTime
 	 *            结束时间
 	 * @param datePattern
-	 *            开始时间和结束时间的格式 @see {@link DatePattern}
+	 *            开始时间和结束时间的格式{@link DatePattern}
 	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
 	 */
 	public final static boolean isInTime(Date date,String beginTime,String endTime,String datePattern){

@@ -33,7 +33,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-11 上午10:24:25
- * @see {@link MessageFormatUtil#format(String, Object...)}
+ * @see MessageFormatUtil#format(String, Object...)
  * @since 1.0.0
  */
 public final class ResourceBundleUtil{
@@ -177,7 +177,7 @@ public final class ResourceBundleUtil{
 	 *            此处可以传递Object[]数组过来
 	 * @return 支持 arguments 为null,原样返回
 	 * @see MessageFormatUtil
-	 * @see {@link MessageFormatUtil#format(String, Object...)}
+	 * @see MessageFormatUtil#format(String, Object...)
 	 */
 	public static String getValueWithArguments(ResourceBundle resourceBundle,String key,Object...arguments){
 		String value = getValue(resourceBundle, key);

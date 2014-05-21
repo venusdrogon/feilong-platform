@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:39:53
- * @see {@link Format}
- * @see {@link NumberFormat}
- * @see {@link DecimalFormat}
+ * @see Format
+ * @see NumberFormat
+ * @see DecimalFormat
  * @since 1.0.0
  */
 public class NumberFormatUtil{

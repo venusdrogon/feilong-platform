@@ -93,7 +93,7 @@ public final class URIUtil{
 	 *            the url
 	 * @param charsetType
 	 *            decode/encode 编码
-	 * @see {@link <a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>}
+	 * @see <a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>
 	 * @return 如果异常 返回null
 	 */
 	public static URI create(String url,String charsetType){
@@ -305,7 +305,7 @@ public final class URIUtil{
 	 * @param charsetType
 	 *            the charset type
 	 * @return the map< string, string>
-	 * @see {@link #parseQueryToArrayMap(String, String)}
+	 * @see #parseQueryToArrayMap(String, String)
 	 */
 	public static Map<String, String> parseQueryToValueMap(String query,String charsetType){
 		Map<String, String> returnMap = new HashMap<String, String>();
