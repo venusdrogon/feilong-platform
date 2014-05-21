@@ -52,12 +52,18 @@
 		<maven-javadoc-plugin.charset>UTF-8</maven-javadoc-plugin.charset>
 		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
 		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
-		<maven-javadoc-plugin.reportOutputDirectory>${project.build.directory}\</maven-javadoc-plugin.reportOutputDirectory>
+
+		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.name}/${project.version}</maven-javadoc-plugin.outputDirectory>
+		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.name}/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
+		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/commons</maven-javadoc-plugin.javadocDirectory>
+		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
+		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
+		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
 
 		<!--****************************第三方************************************ -->
 		<version.ant>1.8.4</version.ant>
 
-		<version.commons-beanutils>1.8.3</version.commons-beanutils>
+		<version.commons-beanutils>1.9.1</version.commons-beanutils>
 		<version.commons-collections>3.2.1</version.commons-collections>
 		<version.commons-fileupload>1.2.2</version.commons-fileupload>
 		<version.commons-httpclient>3.1</version.commons-httpclient>
@@ -668,18 +674,20 @@
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
 					<verbose>true</verbose>
-					<outputDirectory>file://${user.home}/feilong/javadoc/${project.name}/${project.version}</outputDirectory>
-					<reportOutputDirectory>${user.home}/feilong/javadoc/${project.name}/${project.version}</reportOutputDirectory>
+					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
+					<reportOutputDirectory>${maven-javadoc-plugin.reportOutputDirectory}</reportOutputDirectory>
 
-					<!-- <stylesheet>maven</stylesheet> -->
-					<!-- -->
-					<stylesheetfile>${env._FEILONGTAGLIB}/Apache Maven/javadoc/feilong-core-javadoc.css</stylesheetfile>
+					<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
+					<!-- <stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet> -->
+
+					<stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile>
 
 					<overview>src/main/java/overview.html</overview>
 
 					<!-- -->
 					<docfilessubdirs>true</docfilessubdirs>
-					<javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc</javadocDirectory>
+					<javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory>
+					<javadocVersion>1.6</javadocVersion>
 
 					<!-- Specifies the title to be placed in the HTML title tag.  -->
 					<windowtitle>${project.name} ${project.version} API create by feilong</windowtitle>
