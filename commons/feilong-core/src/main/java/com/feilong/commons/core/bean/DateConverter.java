@@ -77,7 +77,7 @@ public class DateConverter extends DateTimeConverter{
 	 * (non-Javadoc)
 	 * @see org.apache.commons.beanutils.converters.AbstractConverter#getDefaultType()
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected Class getDefaultType(){
 		return Date.class;
@@ -87,6 +87,7 @@ public class DateConverter extends DateTimeConverter{
 	 * (non-Javadoc)
 	 * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(java.lang.Class, java.lang.Object)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object convert(@SuppressWarnings("rawtypes") Class type,Object value){
 		if (Validator.isNullOrEmpty(pattern)){

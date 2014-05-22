@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -49,8 +39,12 @@ import com.feilong.tools.json.JsonUtil;
  */
 public class ArrayUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ArrayUtilTest.class);
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public final void test(){
 		String[] aStrings = new String[2];
@@ -91,6 +85,9 @@ public class ArrayUtilTest{
 		}
 	}
 
+	/**
+	 * Testis contain value.
+	 */
 	@Test
 	public final void testisContainValue(){
 		Assert.assertEquals(true, ArrayUtil.isContain(new Integer[] { 1, 223 }, 1));
@@ -101,6 +98,9 @@ public class ArrayUtilTest{
 		ArrayUtils.add(array, "");
 	}
 
+	/**
+	 * Convert list to string replace brackets.
+	 */
 	@Test
 	public final void convertListToStringReplaceBrackets(){
 		String[] array = new String[] { "1", "223" };
@@ -109,6 +109,9 @@ public class ArrayUtilTest{
 		log.info(StringUtils.join(array, ","));
 	}
 
+	/**
+	 * To iterator.
+	 */
 	@Test
 	public final void toIterator(){
 		String[] array = { "1", "223" };
@@ -121,6 +124,9 @@ public class ArrayUtilTest{
 		}
 	}
 
+	/**
+	 * To iterator user.
+	 */
 	@Test
 	public final void toIteratorUser(){
 		User user1 = new User();
@@ -138,6 +144,9 @@ public class ArrayUtilTest{
 		}
 	}
 
+	/**
+	 * To linked list.
+	 */
 	@Test
 	public final void toLinkedList(){
 		User user1 = new User();
@@ -150,6 +159,9 @@ public class ArrayUtilTest{
 		log.info(JsonUtil.format(list));
 	}
 
+	/**
+	 * To list.
+	 */
 	@Test
 	public void toList(){
 		User user1 = new User();
@@ -164,6 +176,9 @@ public class ArrayUtilTest{
 
 	}
 
+	/**
+	 * To string1.
+	 */
 	@Test
 	public void toString1(){
 		Object[] arrays = { "222", "1111" };

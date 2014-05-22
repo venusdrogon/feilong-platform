@@ -209,7 +209,7 @@ public final class IOWriteUtil{
 
 		// XXX \ / : * ? " < > |
 		// 而且这些符号好像都是英文状态下的,换成中文状态下的就可以
-		String[] specialChars = { "*", "?" };
+		// String[] specialChars = { "*", "?" };
 		filePath = filePath.replace("?", "");
 		File file = new File(filePath);
 

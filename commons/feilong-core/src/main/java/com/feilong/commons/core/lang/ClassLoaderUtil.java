@@ -230,6 +230,7 @@ public class ClassLoaderUtil{
 	 * useful for debugging.
 	 */
 	// XXX 拆
+	@SuppressWarnings("unused")
 	private static void printClassLoader(){
 		log.info("use " + ClassLoaderUtil.class.getSimpleName() + ".printClassLoader");
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

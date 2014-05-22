@@ -86,6 +86,7 @@ public final class WaterMark{
 	 * @param outputStream
 	 *            输出流(可以来自HttpServletReponse的输出)
 	 */
+	@SuppressWarnings("unused")
 	public final static void pressImage(String targetImg,String pressImg,int x,int y,OutputStream outputStream){
 		// 原始图片
 		BufferedImage image_target = ImageUtil.getBufferedImage(targetImg);

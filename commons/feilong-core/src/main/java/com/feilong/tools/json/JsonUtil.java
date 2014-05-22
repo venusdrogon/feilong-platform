@@ -134,6 +134,7 @@ public final class JsonUtil{
 	 *            e.g. Person.class
 	 * @return the t
 	 */
+	@SuppressWarnings("cast")
 	public static <T> T toBean(Object json,Class<T> rootClass){
 		return (T) toBean(json, rootClass, null);
 	}
@@ -288,6 +289,7 @@ public final class JsonUtil{
 	 * @return List
 	 */
 	// TODO
+	@SuppressWarnings("cast")
 	public static <T> List<T> toList(String json,Class<T> clazz,Map<String, Class<?>> classMap){
 		JSONArray jsonArray = JSONArray.fromObject(json);
 		List<T> list = new ArrayList<T>();
@@ -354,6 +356,7 @@ public final class JsonUtil{
 	 * @return Map
 	 */
 	// TODO
+	@SuppressWarnings("cast")
 	public static <T> Map<String, T> toMap(String json,Class<T> clazz,Map<String, Class<?>> classMap){
 		if (log.isDebugEnabled()){
 			log.debug("in json:{}", json);

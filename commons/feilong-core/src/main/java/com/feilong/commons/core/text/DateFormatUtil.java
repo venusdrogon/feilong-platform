@@ -28,8 +28,10 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * DateFormat 是日期/时间格式化子类的抽象类,<br>
- * 直接已知子类： SimpleDateFormat.
+ * {@link DateFormat}是日期/时间格式化子类的抽象类
+ * <p>
+ * 直接已知子类：{@link SimpleDateFormat}.
+ * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:39:38

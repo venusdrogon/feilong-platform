@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
 import org.junit.Test;
@@ -35,6 +25,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RegexUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(RegexUtilTest.class);
 
 	/**
@@ -46,6 +37,9 @@ public class RegexUtilTest{
 		log.info(RegexUtil.match(RegexPattern.EMAIL, email) + "");
 	}
 
+	/**
+	 * Test is ip.
+	 */
 	@Test
 	public final void testIsIP(){
 		log.info(RegexUtil.match(RegexPattern.IP, "venusdrogon@163.com") + "");
@@ -66,6 +60,9 @@ public class RegexUtilTest{
 
 	}
 
+	/**
+	 * Test match1.
+	 */
 	@Test
 	public final void testMatch1(){
 		log.info(RegexUtil.match(RegexPattern.DECIMAL_TWODIGIT, "2000阿.00") + "");
@@ -76,6 +73,9 @@ public class RegexUtilTest{
 
 	}
 
+	/**
+	 * AN.
+	 */
 	@Test
 	public final void AN(){
 		log.info(RegexUtil.match(RegexPattern.AN, "0212545.4") + "");
@@ -83,6 +83,9 @@ public class RegexUtilTest{
 
 	}
 
+	/**
+	 * ANS.
+	 */
 	@Test
 	public final void ANS(){
 		log.info(RegexUtil.match(RegexPattern.ANS, "02125 454") + "");

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -42,13 +32,22 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
-import com.feilong.test.Person;
 import com.feilong.test.User;
 
+/**
+ * The Class CollectionUtilTest.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-5-22 21:55:38
+ */
 public class CollectionUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionUtilTest.class);
 
+	/**
+	 * Test tree set.
+	 */
 	@Test
 	public void testTreeSet(){
 		TreeSet<Date> treeSet = new TreeSet<Date>();
@@ -59,6 +58,9 @@ public class CollectionUtilTest{
 		log.info(treeSet + "");
 	}
 
+	/**
+	 * Test map.
+	 */
 	@Test
 	public void testMap(){
 		Map<Object, Object> map = new LinkedHashMap<Object, Object>();
@@ -72,6 +74,9 @@ public class CollectionUtilTest{
 		System.out.println(builder.toString());
 	}
 
+	/**
+	 * Test map to enumeration.
+	 */
 	public void testMapToEnumeration(){
 		// Enumeration
 		final Map<Object, Object> map = new LinkedHashMap<Object, Object>();
@@ -104,6 +109,9 @@ public class CollectionUtilTest{
 		System.out.println(string);
 	}
 
+	/**
+	 * Test.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void test(){
 		try{
@@ -133,6 +141,12 @@ public class CollectionUtilTest{
 		}
 	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args){
 		test();
 	}

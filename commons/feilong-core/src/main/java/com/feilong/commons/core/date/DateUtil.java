@@ -1074,6 +1074,7 @@ public final class DateUtil{
 	 *         如果 space_time 是0 直接返回0
 	 * @since 1.0
 	 */
+	@SuppressWarnings("deprecation")
 	public final static String getIntervalForView(long space_time){
 		if (0 == space_time){
 			return "0";

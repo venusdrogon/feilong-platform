@@ -231,7 +231,7 @@ public final class XmlConfigure extends BaseConfigure{
 	 *            属性名称
 	 * @return 获得node属性值
 	 */
-	public String getAttributeValue(Node node,String attributeName){
+	public String getAttributeValue(@SuppressWarnings("hiding") Node node,String attributeName){
 		if (null != node){
 			namedNodeMap = node.getAttributes();
 			Node node_current = namedNodeMap.getNamedItem(attributeName);
@@ -274,7 +274,7 @@ public final class XmlConfigure extends BaseConfigure{
 	 *            节点
 	 * @return the node text content
 	 */
-	private String getNodeTextContent(Node node){
+	private String getNodeTextContent(@SuppressWarnings("hiding") Node node){
 		if (null == node){
 			return "";
 		}

@@ -114,7 +114,7 @@ public final class ListUtil{
 	 *            list
 	 * @return 数组
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "cast" })
 	public static <T> T[] toArray(List<T> list){
 		if (Validator.isNullOrEmpty(list)){
 			return null;

@@ -77,7 +77,6 @@ public final class BeanUtil{
 	 */
 	public static Map<String, String> describe(Object bean){
 		try{
-			@SuppressWarnings("unchecked")
 			Map<String, String> map = BeanUtils.describe(bean);
 			return map;
 		}catch (IllegalAccessException e){

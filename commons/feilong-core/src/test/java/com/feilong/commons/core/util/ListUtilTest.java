@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -42,10 +32,15 @@ import com.feilong.tools.json.JsonUtil;
  */
 public class ListUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log			= LoggerFactory.getLogger(ListUtilTest.class);
 
+	/** The a strings. */
 	private String[]			aStrings	= { "a", "b" };
 
+	/**
+	 * Removes the.
+	 */
 	@Test
 	public void remove(){
 		List<String> list = new ArrayList<String>();
@@ -69,6 +64,9 @@ public class ListUtilTest{
 		log.info("list:{}", JsonUtil.format(list));
 	}
 
+	/**
+	 * Removes the duplicate.
+	 */
 	@Test
 	public void removeDuplicate(){
 		List<String> list = new ArrayList<String>();
@@ -96,6 +94,11 @@ public class ListUtilTest{
 		log.info(ListUtil.toStringReplaceBrackets(testList));
 	}
 
+	/**
+	 * Gets the first item.
+	 * 
+	 * @return the first item
+	 */
 	@Test
 	public final void getFirstItem(){
 		List<String> testList = new ArrayList<String>();
@@ -115,6 +118,9 @@ public class ListUtilTest{
 		log.info(ListUtil.toStringRemoveBrackets(testList));
 	}
 
+	/**
+	 * To array.
+	 */
 	@Test
 	public final void toArray(){
 		List<String> testList = new ArrayList<String>();
@@ -137,6 +143,9 @@ public class ListUtilTest{
 		log.info(ListUtil.toString(testList, true));
 	}
 
+	/**
+	 * Convert list to string replace brackets.
+	 */
 	@Test
 	public final void convertListToStringReplaceBrackets(){
 		List<String> testList = new ArrayList<String>();

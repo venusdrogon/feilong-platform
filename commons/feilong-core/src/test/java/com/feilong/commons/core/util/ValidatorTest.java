@@ -35,9 +35,13 @@ import com.feilong.test.User;
  */
 public class ValidatorTest{
 
+	/** The Constant log. */
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ValidatorTest.class);
 
+	/**
+	 * Name.
+	 */
 	@Test
 	public void name(){
 		assertEquals(true, new Integer[][] {} instanceof Object[]);

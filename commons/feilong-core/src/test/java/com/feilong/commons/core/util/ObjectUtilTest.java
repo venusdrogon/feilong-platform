@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -51,6 +41,7 @@ import com.feilong.test.User;
  */
 public class ObjectUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ObjectUtilTest.class);
 
 	/**
@@ -68,6 +59,9 @@ public class ObjectUtilTest{
 		Assert.assertEquals(true, ObjectUtil.equalsNotNull("1", "1"));
 	}
 
+	/**
+	 * Assert equals.
+	 */
 	@Test
 	public final void assertEquals(){
 

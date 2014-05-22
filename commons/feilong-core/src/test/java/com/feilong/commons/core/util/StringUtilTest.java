@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -39,10 +29,15 @@ import org.slf4j.LoggerFactory;
  */
 public class StringUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(StringUtilTest.class);
 
+	/** The text. */
 	private String				text	= "jinxin.feilong";
 
+	/**
+	 * Search count.
+	 */
 	@Test
 	public void searchCount(){
 		String source = "jiiiiiinxin.feilong";
@@ -57,12 +52,18 @@ public class StringUtilTest{
 
 	}
 
+	/**
+	 * Adds the double quotes.
+	 */
 	@Test
 	public void addDoubleQuotes(){
 		String text = "jinxin.feilong";
 		log.info(StringUtil.addDoubleQuotes(text));
 	}
 
+	/**
+	 * Checks if is contain ignore case.
+	 */
 	@Test
 	public void isContainIgnoreCase(){
 		String text = "jinxin.feilong";
@@ -74,11 +75,17 @@ public class StringUtilTest{
 		log.info(StringUtil.isContainIgnoreCase(text, "feiLong") + "");
 	}
 
+	/**
+	 * To hex string upper case.
+	 */
 	@Test
 	public void toHexStringUpperCase(){
 		log.info(StringUtil.toHexStringUpperCase(text));
 	}
 
+	/**
+	 * To original.
+	 */
 	@Test
 	public void toOriginal(){
 		String hexStringUpperCase = "5B7B2264617465223A313333343037323035323038312C2273696D706C65536B75436F6D6D616E64223A7B22636F6465223A223331373830392D313030222C22666F625069726365223A323139392C226964223A353636372C226C6973745072696365223A323139392C226E616D65223A2241495220464F52434520312048494748204C5558204D4158204149522027303820515320E7A9BAE5869BE4B880E58FB7EFBC88E99990E9878FE58F91E594AEEFBC89227D7D5D";
@@ -90,6 +97,9 @@ public class StringUtilTest{
 		log.info(msg);
 	}
 
+	/**
+	 * Length.
+	 */
 	@Test
 	public void length(){
 		String string = "我的新浪微博:http://weibo.com/venusdrogon,关注我哦[url=http://bbs.guqu.net/Query.asp?keyword=%B6%C5%B4%CF%D7%A8%BC%AD&boardid=0&sType=2]sssss[/url][url=http://weibo.com/venusdrogon][img]http://service.t.sina.com.cn/widget/qmd/1903991210/1c853142/5.png[/img][/url]";
@@ -101,6 +111,9 @@ public class StringUtilTest{
 		log.info("1900681807840".length() + "");
 	}
 
+	/**
+	 * Format.
+	 */
 	@Test
 	public void format(){
 		System.out.println(StringUtil.format("%03d", 1));
@@ -117,6 +130,9 @@ public class StringUtilTest{
 		System.out.println(StringUtil.format("%1$s,%1$s", 99));
 	}
 
+	/**
+	 * Replace.
+	 */
 	@Test
 	public void replace(){
 		Object content = "黑色/黄色/蓝色";
@@ -125,6 +141,9 @@ public class StringUtilTest{
 		log.info(StringUtil.replace(content, target, replacement));
 	}
 
+	/**
+	 * Join.
+	 */
 	@Test
 	public void join(){
 		Assert.assertEquals("a_2", StringUtil.join(true, "_", "a", "2"));
@@ -144,6 +163,9 @@ public class StringUtilTest{
 
 	}
 
+	/**
+	 * Replace all.
+	 */
 	@Test
 	public void replaceAll(){
 		Object content = "黑色/黄色/蓝色";
@@ -152,12 +174,18 @@ public class StringUtilTest{
 		log.info(StringUtil.replaceAll(content, target, replacement));
 	}
 
+	/**
+	 * Substring1.
+	 */
 	@Test
 	public void substring1(){
 		log.info("3999e85461ce7271dd5292c88f18567e".length() + "");
 		System.out.println(StringUtil.substring(text, 6));
 	}
 
+	/**
+	 * Substring2.
+	 */
 	@Test
 	public void substring2(){
 		System.out.println(StringUtil.substring(null, 6, 8));
@@ -169,6 +197,9 @@ public class StringUtilTest{
 		System.out.println(StringUtil.substring(text, 6, 20));
 	}
 
+	/**
+	 * Substring3.
+	 */
 	@Test
 	public void substring3(){
 		System.out.println(StringUtil.substring(null, "in", 8));
@@ -181,6 +212,9 @@ public class StringUtilTest{
 		System.out.println(StringUtil.substring(text, "j", text.length() - 1));
 	}
 
+	/**
+	 * Substring.
+	 */
 	@Test
 	public void substring(){
 		log.info(StringUtil.substring(text, "jinxin".length()));
@@ -188,12 +222,18 @@ public class StringUtilTest{
 		log.info(StringUtil.substring(text, "Index: ".length()));
 	}
 
+	/**
+	 * Substring6.
+	 */
 	@Test
 	public void substring6(){
 		log.info(StringUtil.substring(text, "jinxin.", 1));
 	}
 
 	// @Test
+	/**
+	 * Test a.
+	 */
 	public void testA(){
 		String a = "SH1265,SH5951,SH6766,SH7235,SH1265,SH5951,SH6766,SH7235";
 		System.out.println(a.replaceAll("([a-zA-Z]+[0-9]+)", "'$1'"));
@@ -231,6 +271,9 @@ public class StringUtilTest{
 		return sb.toString();
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	@Ignore
 	public void test(){

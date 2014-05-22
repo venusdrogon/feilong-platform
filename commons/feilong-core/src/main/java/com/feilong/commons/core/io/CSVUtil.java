@@ -33,6 +33,7 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2011-5-26 上午01:26:47
  * @since 1.0.0
  */
+@SuppressWarnings("deprecation")
 public final class CSVUtil{
 
 	/** The Constant log. */

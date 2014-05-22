@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.util;
 
@@ -41,6 +31,7 @@ import com.feilong.commons.core.PropertiesConstants;
  */
 public class RandomUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(RandomUtilTest.class);
 
 	/**
@@ -61,6 +52,9 @@ public class RandomUtilTest{
 		}
 	}
 
+	/**
+	 * Creates the random with length2.
+	 */
 	@Test
 	public final void createRandomWithLength2(){
 		for (int i = 0, j = 100; i < j; ++i){
@@ -78,21 +72,33 @@ public class RandomUtilTest{
 		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 200));
 	}
 
+	/**
+	 * Testget random from string1.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testgetRandomFromString1(){
 		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 0));
 	}
 
+	/**
+	 * Testget random from string2.
+	 */
 	@Test(expected = NullPointerException.class)
 	public final void testgetRandomFromString2(){
 		log.info(RandomUtil.createRandomFromString("", 5));
 	}
 
+	/**
+	 * Creates the random from string.
+	 */
 	@Test
 	public final void createRandomFromString(){
 		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 8, 20));
 	}
 
+	/**
+	 * Creates the random.
+	 */
 	@Test
 	public final void createRandom(){
 		log.info(RandomUtil.createRandom(10, 12) + "");

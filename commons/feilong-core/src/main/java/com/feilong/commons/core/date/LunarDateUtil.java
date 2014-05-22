@@ -29,6 +29,7 @@ import com.feilong.commons.core.PropertiesConstants;
  * @version 1.0 2010-2-8 下午04:59:32
  * @since 1.0.0
  */
+@SuppressWarnings("deprecation")
 public final class LunarDateUtil{
 
 	/** The Constant log. */

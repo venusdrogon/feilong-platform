@@ -19,7 +19,7 @@ import java.text.Format;
 import java.text.MessageFormat;
 
 /**
- * MessageFormat 工具包,常用于国际化 .
+ * MessageFormat工具类,常用于国际化 .
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:19:22

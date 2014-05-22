@@ -42,7 +42,7 @@ public final class Pager implements Serializable{
 	private static final long	serialVersionUID			= -903770720729924696L;
 
 	/** 最多显示分页码 <code>{@value}</code>. */
-	public static final Integer	DEFAULT_LIMITED_MAX_PAGENO	= -1;
+	public final static int		DEFAULT_LIMITED_MAX_PAGENO	= -1;
 
 	/** 当前页码. */
 	private Integer				currentPageNo;

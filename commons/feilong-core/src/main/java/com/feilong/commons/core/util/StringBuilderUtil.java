@@ -27,6 +27,7 @@ import com.feilong.commons.core.Constants;
  * @version 1.0 2012-7-11 下午5:05:56
  * @since 1.0.0
  */
+@SuppressWarnings("deprecation")
 public class StringBuilderUtil{
 
 	/** The Constant log. */
