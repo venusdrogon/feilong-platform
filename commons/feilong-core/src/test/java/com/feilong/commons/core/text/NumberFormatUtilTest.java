@@ -36,5 +36,6 @@ public class NumberFormatUtilTest{
 	@Test
 	public final void testFormat(){
 		assertEquals("26", NumberFormatUtil.format(25.5, "#####"));
+		assertEquals("RP 26", NumberFormatUtil.format(25.5, "RP #####"));
 	}
 }
