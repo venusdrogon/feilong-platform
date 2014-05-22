@@ -18,7 +18,13 @@ package com.feilong.servlet.http;
 import java.io.Serializable;
 
 /**
- * request log显示开关.
+ * request log显示开关.<br>
+ * 默认显示:
+ * <ul>
+ * <li>{@link #showFullURL} 请求路径</li>
+ * <li>{@link #showMethod} 提交方法</li>
+ * <li>{@link #showParams} 参数</li>
+ * </ul>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 23, 2014 11:33:28 AM

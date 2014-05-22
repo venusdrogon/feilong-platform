@@ -21,8 +21,11 @@ public class CommonConstants{
 
 	@Test
 	public void MAX_VALUE(){
+		//2147483647
 		log.info(Integer.MAX_VALUE + "");
+		//9223372036854775807
 		log.info(Long.MAX_VALUE + "");
+		//1.7976931348623157E308
 		log.info(Double.MAX_VALUE + "");
 	}
 
