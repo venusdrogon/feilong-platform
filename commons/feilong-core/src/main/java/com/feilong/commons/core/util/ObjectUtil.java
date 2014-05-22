@@ -343,34 +343,35 @@ public final class ObjectUtil{
 	 *            the generic type
 	 * @param value
 	 *            the value
-	 * @param class1
+	 * @param klass
 	 *            the class1
-	 * @return the t
+	 * @return if null==value return null,else to class convert<br>
+	 *         如果不是内置的class,将使用强制转换 (T) value
 	 */
 	@SuppressWarnings("unchecked")
 	// XXX
-	public final static <T> T toT(Object value,Class<?> class1){
+	public final static <T> T toT(Object value,Class<?> klass){
 		if (null == value){
 			return null;
 		}
-		if (class1 == String.class){
+		if (klass == String.class){
 			return (T) toString(value);
-		}else if (class1 == Boolean.class){
+		}else if (klass == Boolean.class){
 			return (T) toBoolean(value);
-		}else if (class1 == Integer.class){
+		}else if (klass == Integer.class){
 			return (T) toInteger(value);
-		}else if (class1 == BigDecimal.class){
+		}else if (klass == BigDecimal.class){
 			return (T) toBigDecimal(value);
-		}else if (class1 == Long.class){
+		}else if (klass == Long.class){
 			return (T) toLong(value);
-		}else if (class1 == Double.class){
+		}else if (klass == Double.class){
 			return (T) toDouble(value);
-		}else if (class1 == Float.class){
+		}else if (klass == Float.class){
 			return (T) toFloat(value);
-		}else if (class1 == Short.class){
+		}else if (klass == Short.class){
 			return (T) toShort(value);
 		}
-		return null;
+		return (T) value;
 	}
 
 	/**
