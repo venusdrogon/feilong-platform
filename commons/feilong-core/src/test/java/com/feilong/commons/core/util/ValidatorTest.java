@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,24 +13,94 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.util;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.feilong.test.User;
 
 /**
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2011-4-12 上午01:07:19
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014年5月22日 下午1:25:51
+ * @since 1.0.7
  */
 public class ValidatorTest{
 
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(ValidatorTest.class);
 
+	@Test
+	public void name(){
+		assertEquals(true, new Integer[][] {} instanceof Object[]);
+		assertEquals(true, new int[][] {} instanceof Object[]);
+	}
+
+	/**
+	 * Test method for {@link com.feilong.commons.core.util.Validator#isNullOrEmpty(java.lang.Object)}.
+	 */
+	@Test
+	public final void testIsNullOrEmpty(){
+		List<String> list = new ArrayList<String>();
+
+		assertEquals(true, Validator.isNullOrEmpty(""));
+		assertEquals(true, Validator.isNullOrEmpty("   "));
+		assertEquals(true, Validator.isNullOrEmpty(null));
+		assertEquals(true, Validator.isNullOrEmpty(list));
+		assertEquals(true, Validator.isNullOrEmpty(new LinkedHashMap<String, String>()));
+
+		// **********Array*********************************
+		assertEquals(true, Validator.isNullOrEmpty(new String[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new Integer[] { 2 }));
+		assertEquals(true, Validator.isNullOrEmpty(new Integer[][] {}));
+
+		assertEquals(false, Validator.isNullOrEmpty(new Long[] { 2L }));
+		assertEquals(true, Validator.isNullOrEmpty(new User[] {}));
+
+		assertEquals(true, Validator.isNullOrEmpty(new int[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new int[] { 1, 2 }));
+
+		assertEquals(true, Validator.isNullOrEmpty(new double[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new double[] { 1.2d }));
+
+		assertEquals(true, Validator.isNullOrEmpty(new long[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new long[] { 200L }));
+
+		assertEquals(true, Validator.isNullOrEmpty(new float[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new float[] { 5.8f }));
+
+		assertEquals(true, Validator.isNullOrEmpty(new boolean[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new boolean[] { true }));
+
+		assertEquals(true, Validator.isNullOrEmpty(new byte[] {}));
+
+		assertEquals(true, Validator.isNullOrEmpty(new char[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new char[] { 'a' }));
+
+		assertEquals(true, Validator.isNullOrEmpty(new short[] {}));
+		assertEquals(false, Validator.isNullOrEmpty(new short[] { 5 }));
+
+		assertEquals(true, Validator.isNullOrEmpty(list.iterator()));
+		assertEquals(true, Validator.isNullOrEmpty(CollectionUtil.toEnumeration(list)));
+		assertEquals(true, Validator.isNullOrEmpty(new Iterator<User>(){
+
+			public boolean hasNext(){
+				return false;
+			}
+
+			public User next(){
+				return null;
+			}
+
+			public void remove(){}
+		}));
+	}
 }
