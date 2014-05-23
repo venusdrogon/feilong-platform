@@ -22,8 +22,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.feilong.commons.core.enumeration.ImageType;
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.ImageType;
 
 /**
  * 水印.

@@ -26,8 +26,8 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.entity.FileInfoEntity;
-import com.feilong.commons.core.enumeration.FileType;
+import com.feilong.commons.core.io.FileInfoEntity;
+import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.util.Validator;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;

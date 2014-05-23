@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.test.A;
+import com.feilong.test.Order;
 import com.feilong.test.MyBean;
 import com.feilong.test.Person;
 import com.feilong.test.User;
@@ -223,14 +223,14 @@ public class JsonUtilTest{
 
 		log.info("status_deliveried".length() + "");
 
-		List<A> list = new ArrayList<A>();
+		List<Order> list = new ArrayList<Order>();
 
-		A a = new A();
+		Order a = new Order();
 		a.setCode("137214341849121");
 
 		a.setMemberID("325465");
 		a.setMerchant_order_code("216888");
-		A a1 = new A();
+		Order a1 = new Order();
 		a1.setCode("137214341888888");
 
 		a1.setMemberID("3240088");

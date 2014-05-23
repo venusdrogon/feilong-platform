@@ -372,7 +372,7 @@ public final class NumberUtil{
 
 	/**
 	 * 数字格式化,和下面方法相等 .:
-	 * <blockquote> {@link NumberFormatUtil#format(value, pattern)} </blockquote>
+	 * <blockquote> {@link NumberFormatUtil#format(Number, String)} </blockquote>
 	 * <p>
 	 * 示例:
 	 * 
@@ -392,7 +392,6 @@ public final class NumberUtil{
 	 * @param pattern
 	 *            规则 {@link NumberPattern}
 	 * @return 格式化后的数字字符串
-	 * 
 	 * 
 	 * @see NumberFormatUtil#format(Number, String)
 	 */

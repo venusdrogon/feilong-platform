@@ -45,7 +45,8 @@ public final class ClipboardUtil{
 	 * @return Clipboard
 	 */
 	public final static Clipboard getSystemClipboard(){
-		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+		Clipboard clipboard = defaultToolkit.getSystemClipboard();
 		return clipboard;
 	}
 

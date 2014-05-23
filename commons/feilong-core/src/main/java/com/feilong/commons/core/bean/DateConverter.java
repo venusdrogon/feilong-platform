@@ -75,6 +75,7 @@ public class DateConverter extends DateTimeConverter{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.commons.beanutils.converters.AbstractConverter#getDefaultType()
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -85,6 +86,7 @@ public class DateConverter extends DateTimeConverter{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(java.lang.Class, java.lang.Object)
 	 */
 	@SuppressWarnings("unchecked")

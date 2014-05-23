@@ -31,7 +31,7 @@ import org.junit.Test;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.ImageType;
+import com.feilong.commons.core.io.ImageType;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

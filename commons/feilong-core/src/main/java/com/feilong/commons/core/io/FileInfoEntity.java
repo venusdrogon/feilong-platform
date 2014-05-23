@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.entity;
+package com.feilong.commons.core.io;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.FileType;
-import com.feilong.commons.core.io.FileUtil;
 
 /**
  * 文件信息 entity.

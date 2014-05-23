@@ -30,7 +30,7 @@ public final class ColorUtil{
 	 * 通过16进制颜色字符串 获得颜色.
 	 * 
 	 * @param hex
-	 *            16进制颜色 字符串 <br>
+	 *            16进制颜色字符串 <br>
 	 *            比如:FF00FF
 	 * @return the color
 	 */

@@ -39,7 +39,7 @@ import javax.imageio.ImageIO;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.ImageType;
+import com.feilong.commons.core.io.ImageType;
 
 //97.区域截幕
 public class ScreenDumpHelper{
