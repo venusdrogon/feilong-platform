@@ -20,12 +20,11 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-
-import com.feilong.commons.core.util.NumberUtil;
 
 /**
  * 处理Excel文档(POI)
@@ -84,7 +83,8 @@ public class ExcelParseUtil{
 	public static String getCellValue(Cell cell){
 		String returnValue = "";
 		if (null != cell){
-			switch (cell.getCellType()) {
+			int cellType = cell.getCellType();
+			switch (cellType) {
 				case Cell.CELL_TYPE_BLANK:
 					break;
 				case Cell.CELL_TYPE_ERROR:
@@ -94,7 +94,8 @@ public class ExcelParseUtil{
 					returnValue = cell.getCellFormula();
 					break;
 				case Cell.CELL_TYPE_NUMERIC:
-					returnValue = NumberUtil.toString(cell.getNumericCellValue());
+					//TODO 重新定义下格式
+					//returnValue = NumberUtil.toString(cell.getNumericCellValue());
 					break;
 				case Cell.CELL_TYPE_STRING:
 					returnValue = cell.getRichStringCellValue().getString().trim();
@@ -102,6 +103,8 @@ public class ExcelParseUtil{
 				case Cell.CELL_TYPE_BOOLEAN:
 					returnValue = String.valueOf(cell.getBooleanCellValue());
 					break;
+				default:
+					throw new NotImplementedException("getCellValue:" + cellType + " is not implemented!");
 			}
 		}
 		return returnValue;

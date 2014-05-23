@@ -114,7 +114,11 @@ import java.text.DecimalFormat;
  */
 public interface NumberPattern{
 
-	/** 整数,不含小数 <code>{@value}</code>. */
+	/**
+	 * 整数,不含小数 <code>{@value}</code>.
+	 * 
+	 * @since 1.0.7
+	 * */
 	String	NO_SCALE				= "#";
 
 	/** 百分数的表达式(不带小数) <code>{@value}</code>. */

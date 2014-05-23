@@ -25,7 +25,7 @@ import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
- * {@link String}工具类,可以 查询,截取,format,转成16进制码
+ * StringUtil {@link String}工具类,可以 查询,截取,format,转成16进制码
  * 
  * @author 金鑫 2010-2-9 上午09:53:37
  * @since 1.0.0

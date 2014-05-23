@@ -418,7 +418,7 @@ public final class ReflectUtil{
 	 * }
 	 * </pre>
 	 * 
-	 * @param <T>
+	 * @param <T> t
 	 * @param className
 	 *            类得名称,比如 com.feilong.test.User
 	 * @param parameterValues

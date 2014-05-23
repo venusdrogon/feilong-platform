@@ -23,7 +23,7 @@ import java.util.Enumeration;
 import com.feilong.commons.core.entity.JoinStringEntity;
 
 /**
- * {@link Collection}工具类.
+ * CollectionUtil {@link Collection}工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:08:40 PM

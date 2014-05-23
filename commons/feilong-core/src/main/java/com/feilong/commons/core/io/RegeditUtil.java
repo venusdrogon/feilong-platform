@@ -45,12 +45,13 @@ public final class RegeditUtil{
 	public static final String	REGSTR_TOKEN		= "REG_SZ";
 
 	/**
-	 * 查询注册表
+	 * 查询注册表.
 	 * 
 	 * @param cmdCommand
 	 *            cmd 命令
 	 * @return 返回查询的结果
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static String query(String cmdCommand) throws IOException{
 		Process process = Command.exec(cmdCommand);
@@ -72,7 +73,7 @@ public final class RegeditUtil{
 	}
 
 	/**
-	 * StreamReaderThread
+	 * StreamReaderThread.
 	 * 
 	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
 	 * @version 1.0 2014-5-4 14:41:10

@@ -65,6 +65,7 @@ public final class WaterMark{
 	 * @param outputFile
 	 *            输出的文件
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public final static void pressImage(String targetImg,String pressImg,int x,int y,String outputFile) throws IOException{
 		OutputStream outputStream = IOUtil.getFileOutputStream(outputFile);
@@ -129,6 +130,7 @@ public final class WaterMark{
 	 * @param outputFile
 	 *            输出文件
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void pressText(String targetImg,String pressText,Font font,Color color,int x,int y,String outputFile) throws IOException{
 		OutputStream outputStream = IOUtil.getFileOutputStream(outputFile);

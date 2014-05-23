@@ -76,7 +76,7 @@ public final class RandomUtil{
 	 * @throws IllegalArgumentException
 	 *             if (maxLong < minLong)
 	 */
-	public static long createRandom(Number min,Number max){
+	public static long createRandom(Number min,Number max) throws IllegalArgumentException{
 		long maxLong = max.longValue();
 		long minLong = min.longValue();
 		if (maxLong < minLong){
@@ -132,7 +132,8 @@ public final class RandomUtil{
 	 * @throws IllegalArgumentException
 	 *             if maxLength<=0 or if (maxLength < minLength)
 	 */
-	public static String createRandomFromString(String str,int minLength,int maxLength){
+	public static String createRandomFromString(String str,int minLength,int maxLength) throws IllegalArgumentException,
+			NullPointerException{
 		if (Validator.isNullOrEmpty(str)){
 			throw new NullPointerException("the str is null or empty!");
 		}
@@ -164,7 +165,7 @@ public final class RandomUtil{
 	 * @throws IllegalArgumentException
 	 *             if length<=0
 	 */
-	public static String createRandomFromString(String str,int length){
+	public static String createRandomFromString(String str,int length) throws IllegalArgumentException,NullPointerException{
 		if (Validator.isNullOrEmpty(str)){
 			throw new NullPointerException("the str is null or empty!");
 		}

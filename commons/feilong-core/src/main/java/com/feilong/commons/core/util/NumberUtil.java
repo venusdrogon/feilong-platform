@@ -371,26 +371,28 @@ public final class NumberUtil{
 	}
 
 	/**
-	 * 数字格式化,和下面方法相等:
+	 * 数字格式化,和下面方法相等 .:
 	 * <blockquote> {@link NumberFormatUtil#format(value, pattern)} </blockquote>
 	 * <p>
 	 * 示例:
 	 * 
 	 * <pre>
-	 * .
-	 * 
-	 * @param value 值
-	 * @param pattern 规则 {@link NumberPattern}
-	 * @return 格式化后的数字字符串
 	 * {@code
-	 * 
-	 * 将数字转成百分数字符串,不带小数点,如 0.24转成24%
-	 * NumberUtil.toString(0.24f, NumberPattern.PERCENT_WITH_NOPOINT)
-	 * 
-	 * 将数字转成百分数字符串,带两位小数点,如 0.24转成24.00%
-	 * NumberUtil.toString(0.24f, NumberPattern.PERCENT_WITH_2POINT)
-	 * }
+	 *  
+	 *  将数字转成百分数字符串,不带小数点,如 0.24转成24%
+	 *  NumberUtil.toString(0.24f, NumberPattern.PERCENT_WITH_NOPOINT)
+	 *  
+	 *  将数字转成百分数字符串,带两位小数点,如 0.24转成24.00%
+	 *  NumberUtil.toString(0.24f, NumberPattern.PERCENT_WITH_2POINT)
+	 *  }
 	 * </pre>
+	 * 
+	 * @param value
+	 *            值
+	 * @param pattern
+	 *            规则 {@link NumberPattern}
+	 * @return 格式化后的数字字符串
+	 * 
 	 * 
 	 * @see NumberFormatUtil#format(Number, String)
 	 */

@@ -28,7 +28,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * {@link DateFormat}是日期/时间格式化子类的抽象类
+ * 
+ * DateFormatUtil {@link DateFormat}是日期/时间格式化子类的抽象类.
  * <p>
  * 直接已知子类：{@link SimpleDateFormat}.
  * </p>

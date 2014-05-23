@@ -43,6 +43,7 @@ public final class Command{
 	 *            the cmdarray
 	 * @return the string
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static String callCmd(String[] cmdarray) throws IOException{
 		Process process = Command.exec(cmdarray);
@@ -56,6 +57,7 @@ public final class Command{
 	 *            the command
 	 * @return the string
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static String callCmd(String command) throws IOException{
 		Process process = Command.exec(command);
@@ -100,6 +102,7 @@ public final class Command{
 	 *            一条指定的系统命令
 	 * @return 一个新的 Process 对象，用于管理子进程
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process exec(String command) throws IOException{
 		Runtime runtime = Runtime.getRuntime();
@@ -116,6 +119,7 @@ public final class Command{
 	 *            包含所调用命令及其参数的数组。
 	 * @return 一个新的 Process 对象，用于管理子进程
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process exec(String[] cmdarray) throws IOException{
 		Runtime runtime = Runtime.getRuntime();
@@ -131,6 +135,7 @@ public final class Command{
 	 *            文件或者文件夹,路径请使用\\的形式 不要用/,如E:\\Workspaces,不要用 E:/Workspaces
 	 * @return Process
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process execFileOrDirectoryOpen(String fileNameOrDirectory) throws IOException{
 		return exec("explorer.exe " + fileNameOrDirectory);
@@ -143,6 +148,7 @@ public final class Command{
 	 *            文件或者文件夹,路径请使用\\的形式 不要用/,如E:\\Workspaces,不要用 E:/Workspaces
 	 * @return Process
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process execFileOrDirectoryFocus(String fileNameOrDirectory) throws IOException{
 		return exec("explorer.exe /select," + fileNameOrDirectory);
@@ -155,6 +161,7 @@ public final class Command{
 	 *            指定时间
 	 * @return Process
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process execShutdownAt(String time) throws IOException{
 		String command = "at " + time + " shutdown -s";
@@ -168,6 +175,7 @@ public final class Command{
 	 *            the haomiao
 	 * @return Process
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process execShutdown(int haomiao) throws IOException{
 		String command = "shutdown -s -t " + haomiao;
@@ -179,6 +187,7 @@ public final class Command{
 	 * 
 	 * @return the process
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process execShutdownStop() throws IOException{
 		String command = "shutdown -a";
@@ -194,6 +203,7 @@ public final class Command{
 	 *            指定要与指定的文件扩展名相关联的文件类型
 	 * @return the process
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process assoc(String ext,String fileType) throws IOException{
 		// 如果在没有参数的情况下使用，则 assoc 命令将显示所有当前文件扩展名关联的列表。
