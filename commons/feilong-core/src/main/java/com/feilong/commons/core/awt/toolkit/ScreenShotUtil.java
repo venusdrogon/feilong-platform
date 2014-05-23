@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 截屏操作
+ * 截屏操作.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午01:33:59
@@ -39,10 +39,11 @@ import org.slf4j.LoggerFactory;
  */
 public final class ScreenShotUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ScreenShotUtil.class);
 
 	/**
-	 * 全屏幕截取
+	 * 全屏幕截取.
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -57,7 +58,7 @@ public final class ScreenShotUtil{
 	}
 
 	/**
-	 * 区域截图
+	 * 区域截图.
 	 * 
 	 * @param fileName
 	 *            文件名称

@@ -120,8 +120,8 @@ public final class NumberUtil{
 	 *            舍入法 {@link RoundingMode}
 	 * @return {@link RoundingMode},取整,无小数<br>
 	 *         如果 isNotNullOrEmpty(number)返回null {@link RoundingMode},取整,无小数
-	 * @since 1.0.7
 	 * @see <a href="#RoundingMode">JAVA 8种舍入法</a>
+	 * @since 1.0.7
 	 */
 	public final static BigDecimal toNoScale(Serializable number,RoundingMode roundingMode){
 		if (Validator.isNotNullOrEmpty(number)){
@@ -167,8 +167,8 @@ public final class NumberUtil{
 	 *             if total==null or if current==null
 	 * @throws IllegalArgumentException
 	 *             if total<=0 or if current<=0 or if current>total
-	 * @since 1.0.7
 	 * @see NumberPattern
+	 * @since 1.0.7
 	 */
 	public final static String getProgress(Number current,Number total) throws NullPointerException,IllegalArgumentException{
 		String numberPattern = NumberPattern.PERCENT_WITH_NOPOINT;
@@ -189,8 +189,8 @@ public final class NumberUtil{
 	 *             if total==null or if current==null
 	 * @throws IllegalArgumentException
 	 *             if total<=0 or if current<=0 or if current>total
-	 * @since 1.0.7
 	 * @see NumberPattern
+	 * @since 1.0.7
 	 */
 	public final static String getProgress(Number current,Number total,String numberPattern) throws NullPointerException,
 			IllegalArgumentException{
@@ -262,8 +262,8 @@ public final class NumberUtil{
 	 *         否则返回除法结果one/two,依据舍入法 {@link RoundingMode},小数位数指定
 	 * @throws NullPointerException
 	 *             if isNullOrEmpty(roundingMode)
-	 * @since 1.0.7
 	 * @see <a href="#RoundingMode">JAVA 8种舍入法</a>
+	 * @since 1.0.7
 	 */
 	public final static BigDecimal getDivideValue(BigDecimal one,Serializable two,int scale,RoundingMode roundingMode)
 			throws NullPointerException{

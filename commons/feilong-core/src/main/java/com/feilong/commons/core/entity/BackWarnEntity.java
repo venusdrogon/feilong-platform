@@ -27,6 +27,7 @@ import java.io.Serializable;
  */
 public class BackWarnEntity implements Serializable{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 3703766119930341844L;
 
 	/** 是否成功. */

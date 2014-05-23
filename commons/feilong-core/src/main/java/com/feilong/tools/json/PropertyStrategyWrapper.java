@@ -26,12 +26,14 @@ import net.sf.json.util.PropertySetStrategy;
  * Ignore missing properties with Json-Lib <br>
  * 避免出现 Unknown property 'orderIdAndCodeMap' on class 'class com.baozun.trade.web.controller.payment.result.command.PaymentResultEntity' 异常
  * 
- * @see <a href="http://javaskeleton.blogspot.com/2011/05/ignore-missing-properties-with-json-lib.html">ignore-missing-properties-with-json-lib</a>
+ * @see <a
+ *      href="http://javaskeleton.blogspot.com/2011/05/ignore-missing-properties-with-json-lib.html">ignore-missing-properties-with-json-lib</a>
  * @see <a href="http://envy2002.iteye.com/blog/1682738">envy2002.iteye.com</a>
  * @since 1.0.5
  */
 public class PropertyStrategyWrapper extends PropertySetStrategy{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PropertyStrategyWrapper.class);
 
 	/** The original. */
@@ -49,6 +51,7 @@ public class PropertyStrategyWrapper extends PropertySetStrategy{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.json.util.PropertySetStrategy#setProperty(java.lang.Object, java.lang.String, java.lang.Object)
 	 */
 	@Override

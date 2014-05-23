@@ -52,6 +52,7 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.json.processors.JsonValueProcessor#processArrayValue(java.lang.Object, net.sf.json.JsonConfig)
 	 */
 	public Object processArrayValue(Object value,JsonConfig jsonConfig){
@@ -60,6 +61,7 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see net.sf.json.processors.JsonValueProcessor#processObjectValue(java.lang.String, java.lang.Object, net.sf.json.JsonConfig)
 	 */
 	public Object processObjectValue(String key,Object value,JsonConfig jsonConfig){
@@ -71,8 +73,6 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 	 * 
 	 * @param value
 	 *            the value
-	 * @param jsonConfig
-	 *            the json config
 	 * @return the object
 	 */
 	private Object process(Object value){

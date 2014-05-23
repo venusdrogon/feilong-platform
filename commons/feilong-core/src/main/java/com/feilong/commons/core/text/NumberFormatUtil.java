@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.NumberPattern;
 
 /**
- * NumberFormatUtil {@link NumberFormat}是所有数值格式的抽象基类,此类提供格式化和解析数值的接口
+ * {@link NumberFormat}是所有数值格式的抽象基类,此类提供格式化和解析数值的接口
  * <p>
  * 直接已知子类： {@link ChoiceFormat}, {@link DecimalFormat}.<br>
  * 注意:<span style="color:red">{@link DecimalFormat}不是同步的 </span>,建议为每个线程创建独立的格式实例。 (见JAVA API 文档)
@@ -57,11 +57,11 @@ public final class NumberFormatUtil{
 	 * @param numberPattern
 	 *            the pattern {@link NumberPattern}
 	 * @return 如果有异常 将返回null
+	 * @throws NullPointerException
+	 *             if null == value or null == numberPattern
 	 * @see NumberPattern
 	 * @see DecimalFormat
 	 * @see RoundingMode#HALF_UP
-	 * @throws NullPointerException
-	 *             if null == value or null == numberPattern
 	 */
 	public static String format(Number value,String numberPattern) throws NullPointerException{
 		// 如果不设置, DecimalFormat默认使用的是 RoundingMode.HALF_EVEN

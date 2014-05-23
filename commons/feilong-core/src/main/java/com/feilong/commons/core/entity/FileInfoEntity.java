@@ -35,6 +35,7 @@ public class FileInfoEntity implements Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
 
+	/** The date pattern. */
 	private String				datePattern			= DatePattern.commonWithoutAndYearSecond;
 
 	/** 名称. */
