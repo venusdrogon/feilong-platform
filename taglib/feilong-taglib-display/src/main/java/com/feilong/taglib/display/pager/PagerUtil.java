@@ -41,12 +41,17 @@ import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
- * 分页工具类<br>
+ * 分页工具类
+ * <p>
  * 该类主要是将url相关数据转成vm需要的数据,解析成字符串返回.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 2010-5-26 下午11:50:10
  * @version 1.0.5 2014-5-4 19:36
+ * @see PagerConstants
+ * @see PagerParams
+ * @see PagerUrlTemplate
+ * @see PagerVMParam
  */
 public final class PagerUtil{
 
@@ -67,16 +72,60 @@ public final class PagerUtil{
 	private static final String	I18N_FEILONG_PAGER	= "messages/feilong-pager";
 
 	/**
-	 * 解析vm模板 生成分页html代码.
+	 * 解析VM模板,生成分页HTML代码.
+	 * <p>
+	 * 在自定义的vm里面 {@link PagerParams#getVmPath()} 或者默认vm {@link PagerConstants#DEFAULT_TEMPLATE_IN_CLASSPATH}
+	 * </p>
+	 * 
+	 * <h4>日志</h4>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * 内部会分别对入参 {@link PagerParams} 和构造vm参数,记录<b>debug</b>级别的log,<br>
+	 * 如果不需要care这部分log,可以在log.xml中配置:
+	 * 
+	 * <pre>
+	 * {@code
+	 * 	<category name="com.feilong.taglib.display.pager.PagerUtil">
+	 * 		<priority value="info" />
+	 * 	</category>
+	 * }
+	 * </pre>
+	 * 
+	 * 或者在logback.xml中配置
+	 * 
+	 * <pre>
+	 * {@code
+	 * 		<logger name="com.feilong.taglib.display.pager.PagerUtil" level="info" />
+	 * }
+	 * </pre>
+	 * 
+	 * 将log输出的级别调高
+	 * 
+	 * </p>
+	 * </blockquote>
+	 * 
+	 * <h4>VM中支持国际化</h4>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * VM中支持国际化,您可以见国际化需要的参数 设置到 {@link #I18N_FEILONG_PAGER} 配置文件中, <br>
+	 * 程序会解析该文件所有的key/values到 {@link #VM_KEY_I18NMAP} 变量,您可以在VM中直接使用
+	 * </p>
+	 * </blockquote>
 	 * 
 	 * @param pagerParams
-	 *            带有一系列分页需要的参数
-	 * @return 生成分页html代码
+	 *            构造分页需要的请求参数
+	 * @return if {@link PagerParams#getTotalCount()}{@code <=0} return "" <br>
+	 *         生成分页html代码
+	 * 
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(pagerParams)
 	 */
-	public final static String getPagerContent(PagerParams pagerParams){
+	public final static String getPagerContent(PagerParams pagerParams) throws NullPointerException{
 
 		if (Validator.isNullOrEmpty(pagerParams)){
-			throw new IllegalArgumentException("pagerParams can't be null/empty!");
+			throw new NullPointerException("pagerParams can't be null/empty!");
 		}
 
 		if (log.isDebugEnabled()){
@@ -107,12 +156,12 @@ public final class PagerUtil{
 				String content = VelocityUtil.parseTemplateWithClasspathResourceLoader(vmPath, vmParamMap);
 				return content;
 			}
-		}else{
-			if (log.isDebugEnabled()){
-				log.debug("the param totalCount:{} not >0", totalCount);
-			}
+			return "";
 		}
 
+		if (log.isInfoEnabled()){
+			log.info("the param totalCount:{} not >0", totalCount);
+		}
 		// 如果总数不>0 则直接返回 empty,页面分页地方显示空白
 		return "";
 	}
@@ -304,11 +353,13 @@ public final class PagerUtil{
 	}
 
 	/**
-	 * 如果pagerParams.getCurrentPageNo()<1返回1 否则返回 pagerParams.getCurrentPageNo()
+	 * 解析参数中的当前页面<br>
+	 * 对于<1的情况做 返回1特殊处理
 	 * 
 	 * @param pagerParams
 	 *            the pager params
-	 * @return 如果pagerParams.getCurrentPageNo()<1返回1 否则返回 pagerParams.getCurrentPageNo()
+	 * @return if {@link PagerParams#getCurrentPageNo()}<1 return 1<br>
+	 *         else return {@link PagerParams#getCurrentPageNo()}
 	 * @since 1.0.5
 	 */
 	private final static int getCurrentPageNo(PagerParams pagerParams){
