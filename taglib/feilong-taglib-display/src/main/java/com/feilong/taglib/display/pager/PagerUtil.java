@@ -79,6 +79,10 @@ public final class PagerUtil{
 			throw new IllegalArgumentException("pagerParams can't be null/empty!");
 		}
 
+		if (log.isDebugEnabled()){
+			log.debug("pagerParams:{}", JsonUtil.format(pagerParams));
+		}
+
 		int totalCount = pagerParams.getTotalCount();
 
 		// 有数据,不是空
@@ -98,7 +102,6 @@ public final class PagerUtil{
 
 				if (log.isDebugEnabled()){
 					log.debug("vmParamMap:{}", JsonUtil.format(vmParamMap));
-					log.debug("debugNotParseVM:{}", debugIsNotParseVM);
 				}
 				String vmPath = pagerParams.getVmPath();
 				String content = VelocityUtil.parseTemplateWithClasspathResourceLoader(vmPath, vmParamMap);
@@ -445,6 +448,7 @@ public final class PagerUtil{
 	 * @return 最大显示码
 	 * @deprecated 需要重构
 	 */
+	@Deprecated
 	private final static int getAutoMaxIndexPages(int allPageNo,Integer maxIndexPages){
 		if (Validator.isNullOrEmpty(maxIndexPages) || 0 == maxIndexPages){
 			// 总页数超过1000的时候,自动调节导航数量的作用

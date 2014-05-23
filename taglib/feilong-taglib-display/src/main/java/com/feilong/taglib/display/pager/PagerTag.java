@@ -93,6 +93,7 @@ public class PagerTag extends AbstractCommonTag{
 	 * 
 	 * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
 	 */
+	@Deprecated
 	private Integer				maxIndexPages;
 
 	/** url页码参数,默认 pageNo. */
@@ -205,6 +206,7 @@ public class PagerTag extends AbstractCommonTag{
 	 *            the maxIndexPages to set
 	 * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
 	 */
+	@Deprecated
 	public void setMaxIndexPages(Integer maxIndexPages){
 		this.maxIndexPages = maxIndexPages;
 	}
