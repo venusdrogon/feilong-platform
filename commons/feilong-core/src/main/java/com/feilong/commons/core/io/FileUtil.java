@@ -24,10 +24,12 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * File文件操作.
+ * {@link File}文件操作.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-23 下午5:00:54
+ * @version 1.0.7 2014-5-23 20:27 add {@link #getFileFormatSize(File)}
+ * @see File
  * @since 1.0.0
  */
 public final class FileUtil{
@@ -270,27 +272,6 @@ public final class FileUtil{
 		return !isExistFile(filePath);
 	}
 
-	/**
-	 * 取得文件大小.
-	 * 
-	 * @param file
-	 *            文件
-	 * @return b
-	 */
-	public static long getFileSize(File file){
-
-		// try{
-		// FileInputStream fileInputStream = new FileInputStream(file);
-		// return fileInputStream.available();
-		// }catch (FileNotFoundException e){
-		// e.printStackTrace();
-		// }catch (IOException e){
-		// e.printStackTrace();
-		// }
-		return file.length();
-
-	}
-
 	// ************************************************************************
 	//
 	// 各种判断
@@ -321,35 +302,20 @@ public final class FileUtil{
 		return ArrayUtil.isContain(appointTypes, getFilePostfixName(fileName));
 	}
 
-	// /**
-	// * 判断excel文件是否是2003的版本 不精准
-	// *
-	// * @param fileName
-	// * 文件名称带后缀 或者是路径名称
-	// * @return 判断excel文件是否是2003的版本
-	// */
-	// public final static boolean isExcel2003(String fileName){
-	// return "xls".equalsIgnoreCase(getFilePostfixName(fileName));
-	// }
-	//
-	// /**
-	// * 判断excel文件是否是2007的版本 不精准
-	// *
-	// * @param fileName
-	// * 文件名称带后缀 或者是路径名称
-	// * @return 判断excel文件是否是2007的版本
-	// */
-	// public final static boolean isExcel2007(String fileName){
-	// return "xlsx".equalsIgnoreCase(getFilePostfixName(fileName));
-	// }
-
 	// ************************************************************
 	/**
-	 * 文件大小格式化
+	 * 文件大小格式化.
+	 * <p>
+	 * 目前支持单位有 GB MB KB以及最小单位 Bytes
+	 * </p>
 	 * 
 	 * @param fileSize
 	 *            文件大小 单位byte
 	 * @return 文件大小byte 转换
+	 * @see #getFileSize(File)
+	 * @see IOConstants#GB
+	 * @see IOConstants#MB
+	 * @see IOConstants#KB
 	 */
 	public final static String formatSize(long fileSize){
 		String danwei = "Bytes";
@@ -376,4 +342,74 @@ public final class FileUtil{
 		}
 		return fileSize / chushu + "." + yushu + danwei;
 	}
+
+	/**
+	 * 获得文件格式化大小.
+	 * 
+	 * <p>
+	 * 比如文件3834字节,格式化大小 3.74KB<br>
+	 * 比如文件36830335 字节, 格式化大小:35.12MB<br>
+	 * 比如文件2613122669 字节, 格式化大小 : 2.43GB<br>
+	 * </p>
+	 * 
+	 * <p>
+	 * 目前支持单位有 GB MB KB以及最小单位 Bytes
+	 * </p>
+	 * 
+	 * @param file
+	 *            the file
+	 * @return the file format size
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(file)
+	 * @see #getFileSize(File)
+	 * @see IOConstants#GB
+	 * @see IOConstants#MB
+	 * @see IOConstants#KB
+	 * @since 1.0.7
+	 */
+	public final static String getFileFormatSize(File file) throws NullPointerException{
+		if (Validator.isNullOrEmpty(file)){
+			throw new NullPointerException("file can't be null/empty!");
+		}
+		long fileSize = getFileSize(file);
+		return formatSize(fileSize);
+	}
+
+	/**
+	 * 取得文件大小(单位字节).
+	 * 
+	 * @param file
+	 *            文件
+	 * @return 此抽象路径名表示的文件的长度，以字节为单位；<br>
+	 *         如果文件不存在，则返回 0L。<br>
+	 *         对于表示特定于系统的实体（比如设备或管道）的路径名，某些操作系统可能返回 0L。
+	 * @see File#length()
+	 */
+	public static long getFileSize(File file){
+		// FileInputStream fileInputStream = new FileInputStream(file);
+		// return fileInputStream.available();
+		return file.length();
+	}
+
+	// /**
+	// * 判断excel文件是否是2003的版本 不精准
+	// *
+	// * @param fileName
+	// * 文件名称带后缀 或者是路径名称
+	// * @return 判断excel文件是否是2003的版本
+	// */
+	// public final static boolean isExcel2003(String fileName){
+	// return "xls".equalsIgnoreCase(getFilePostfixName(fileName));
+	// }
+	//
+	// /**
+	// * 判断excel文件是否是2007的版本 不精准
+	// *
+	// * @param fileName
+	// * 文件名称带后缀 或者是路径名称
+	// * @return 判断excel文件是否是2007的版本
+	// */
+	// public final static boolean isExcel2007(String fileName){
+	// return "xlsx".equalsIgnoreCase(getFilePostfixName(fileName));
+	// }
 }

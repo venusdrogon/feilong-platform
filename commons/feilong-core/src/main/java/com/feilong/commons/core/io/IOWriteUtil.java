@@ -30,7 +30,8 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 写文件<br>
+ * 写文件操作
+ * <p>
  * 如果需要覆盖写文件,可以调用 {@link #write(String, String, String, FileWriteMode)}.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -43,7 +44,8 @@ public final class IOWriteUtil{
 	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtil.class);
 
 	/**
-	 * 将inputStream 写到 某个文件夹,名字为fileName <br>
+	 * 将inputStream 写到 某个文件夹,名字为fileName
+	 * <p>
 	 * 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建(支持级联创建 文件夹)
 	 * 
 	 * @param inputStream
@@ -52,7 +54,7 @@ public final class IOWriteUtil{
 	 *            文件夹路径 最后不带"/"
 	 * @param fileName
 	 *            文件名称
-	 * @return 是否成功
+	 * @return 成功返回true 否则返回false
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
@@ -92,73 +94,95 @@ public final class IOWriteUtil{
 	// *******************************************************************************************
 
 	/**
-	 * 将字符串写到文件中,如果文件存在则覆盖旧文件,<br>
-	 * 默认采用GBK 编码 (支持级联创建 文件夹)<br>
-	 * .
+	 * 将字符串写到文件中
+	 * 
+	 * <p>
+	 * <ul>
+	 * <li>如果文件不存在,自动创建;包括其父文件夹(级联创建文件夹)</li>
+	 * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
+	 * <li>如果不设置encode,则默认使用 {@link CharsetType#GBK}编码</li>
+	 * </ul>
 	 * 
 	 * @param filePath
 	 *            文件路径
-	 *            <ul>
-	 *            <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
-	 *            <li>如果文件存在, 如果文件是isDirectory ,throw new IllegalArgumentException</li>
-	 *            <li>如果文件存在, 如果文件是!canWrite ,throw new IllegalArgumentException</li>
-	 *            </ul>
 	 * @param content
 	 *            字符串内容
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
+	 * @throws IllegalArgumentException
+	 *             <ul>
+	 *             <li>如果filePath文件存在,且isDirectory</li> <li>如果filePath文件存在,且是!canWrite</li>
+	 *             </ul>
+	 * @see FileWriteMode
+	 * @see CharsetType
 	 */
-	public static void write(String filePath,String content) throws IOException{
+	public static void write(String filePath,String content) throws IOException,IllegalArgumentException{
 		write(filePath, content, null);
 	}
 
 	/**
-	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹),默认 以覆盖的模式 write内容.
+	 * 将字符串/文字写到文件中.
+	 * <p>
+	 * 
+	 * <ul>
+	 * <li>如果文件不存在,自动创建;包括其父文件夹(级联创建文件夹)</li>
+	 * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
+	 * </ul>
 	 * 
 	 * @param filePath
 	 *            文件路径
-	 *            <ul>
-	 *            <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
-	 *            <li>如果文件存在, 如果文件是isDirectory ,throw new IllegalArgumentException</li>
-	 *            <li>如果文件存在, 如果文件是!canWrite ,throw new IllegalArgumentException</li>
-	 *            </ul>
 	 * @param content
 	 *            字符串内容
 	 * @param encode
-	 *            编码,如果isNullOrEmpty,则默认使用 GBK编码
+	 *            编码,如果isNullOrEmpty,则默认使用 {@link CharsetType#GBK}编码 {@link CharsetType}
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
+	 * @throws IllegalArgumentException
+	 *             <ul>
+	 *             <li>如果filePath文件存在,且isDirectory</li> <li>如果filePath文件存在,且是!canWrite</li>
+	 *             </ul>
+	 * @see FileWriteMode
+	 * @see CharsetType
 	 */
-	public static void write(String filePath,String content,String encode) throws IOException{
+	public static void write(String filePath,String content,String encode) throws IOException,IllegalArgumentException{
 		write(filePath, content, encode, FileWriteMode.COVER);
 	}
 
 	/**
-	 * 将字符串写到文件中,如果文件存在则覆盖旧文件 (支持级联创建 文件夹),可以通过 指定fileWriteMode.append 来表示追加内容而非覆盖
+	 * 将字符串写到文件中.
+	 * <p>
+	 * 
+	 * <ul>
+	 * <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
+	 * <li>如果文件存在则覆盖旧文件,可以通过 指定 {@link FileWriteMode#APPEND}来表示追加内容而非覆盖</li>
+	 * </ul>
 	 * 
 	 * @param filePath
 	 *            文件路径
-	 *            <ul>
-	 *            <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
-	 *            <li>如果文件存在, 如果文件是isDirectory ,throw new IllegalArgumentException</li>
-	 *            <li>如果文件存在, 如果文件是!canWrite ,throw new IllegalArgumentException</li>
-	 *            </ul>
 	 * @param content
 	 *            字符串内容
 	 * @param encode
-	 *            编码,如果isNullOrEmpty,则默认使用 GBK编码
+	 *            编码,如果isNullOrEmpty,则默认使用 {@link CharsetType#GBK}编码 {@link CharsetType}
 	 * @param fileWriteMode
 	 *            写模式
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
+	 * @throws IllegalArgumentException
+	 *             <ul>
+	 *             <li>如果filePath文件存在,且isDirectory</li> <li>如果filePath文件存在,且是!canWrite</li>
+	 *             </ul>
+	 * @see FileWriteMode
+	 * @see CharsetType
 	 */
-	public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws IOException{
+	public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws IOException,
+			IllegalArgumentException{
 		if (Validator.isNullOrEmpty(encode)){
 			encode = CharsetType.GBK;
 		}
 
-		Object[] logArgs = { filePath, encode, fileWriteMode };
-		log.debug("begin write: {},use encode : {},fileWriteMode:{}", logArgs);
+		if (log.isDebugEnabled()){
+			log.debug("begin write: {},use encode:{},fileWriteMode:{}", filePath, encode, fileWriteMode);
+		}
 
 		// **************************************************************************8
 		File file = new File(filePath);
@@ -220,8 +244,12 @@ public final class IOWriteUtil{
 		printWriter.close();
 
 		if (log.isInfoEnabled()){
-			Object[] params = { fileWriteMode, content.length(), FileUtil.formatSize(FileUtil.getFileSize(file)), file.getAbsolutePath() };
-			log.info("fileWriteMode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]", params);
+			log.info(
+					"fileWriteMode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]",
+					fileWriteMode,
+					content.length(),
+					FileUtil.getFileFormatSize(file),
+					file.getAbsolutePath());
 		}
 	}
 }
