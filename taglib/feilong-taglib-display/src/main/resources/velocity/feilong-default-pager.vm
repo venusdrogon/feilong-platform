@@ -12,7 +12,6 @@
     @version 1.0.5 May 3, 2014 1:44:08 PM
     @since 1.0.0
 *#
-
 <div class="div_feilongPager ${pagerVMParam.skin}" style="text-align:left">
 	##总数
 	<span class="span_pagerInfo">${i18nMap.get('feilong-pager.text.totalCount')}${pagerVMParam.totalCount}</span>
@@ -30,7 +29,7 @@
 	#end
 #end
 
-##显示3点
+##开始迭代索引不等于1,并且开始迭代索引不等于2,显示3点
 #if (${pagerVMParam.startIteratorIndex} != 1 && ${pagerVMParam.startIteratorIndex} != 2)
 	<span class="color_666">...</span>
 #end
@@ -42,14 +41,12 @@
 		<span class="current">${entry.key}</span>
     #else
 		##不是当前页面
-<a title="${i18nMap.get('feilong-pager.text.goto')}${entry.key}${i18nMap.get('feilong-pager.text.pager')}" href="${entry.value}">${entry.key}</a>
+		<a title="${i18nMap.get('feilong-pager.text.goto')}${entry.key}${i18nMap.get('feilong-pager.text.pager')}" href="${entry.value}">${entry.key}</a>
     #end
 #end
 
+##如果最后一个迭代索引不等于总页数,且最后一个迭代索引不等于总也是-1,那么 显示3点
 #set($allPageNoTo1=${pagerVMParam.allPageNo} - 1)
-##$endIteratorIndex != $allPageNoTo1
-##$endIteratorIndex != $allPageNo
-## 显示3点
 #if (${pagerVMParam.endIteratorIndex} != ${pagerVMParam.allPageNo} && ${pagerVMParam.endIteratorIndex} != $allPageNoTo1)
 	<span class="color_666">...</span>
 #end
@@ -60,7 +57,7 @@
 	##导航里面是否有最后一页, 如果结束的位置是allPageNo 则已经包含的尾页
 	#if(${pagerVMParam.endIteratorIndex} != ${pagerVMParam.allPageNo})
 		##跳转到最后一页
-<a title="${i18nMap.get('feilong-pager.text.goto.last')}" href="${pagerVMParam.lastUrl}">$!{pagerVMParam.allPageNo}</a>
+		<a title="${i18nMap.get('feilong-pager.text.goto.last')}" href="${pagerVMParam.lastUrl}">$!{pagerVMParam.allPageNo}</a>
 	#end
 
 	##跳转到下一页
