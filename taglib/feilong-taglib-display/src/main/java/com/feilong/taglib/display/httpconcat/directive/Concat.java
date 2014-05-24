@@ -36,8 +36,17 @@ import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 import com.feilong.tools.velocity.directive.AbstractDirective;
 
 /**
- * 融合http concat功能的 Directive.<br>
- * 说明:
+ * http concat功能的 Directive.
+ * 
+ * <h3>作用:</h3>
+ * <p>
+ * <blockquote>此类的主要作用是:解析block块内容,封装成{@link HttpConcatParam},调用{@link HttpConcatUtil#getWriteContent(HttpConcatParam)}方法,获得结果,显示在页面
+ * </blockquote>
+ * </p>
+ * 
+ * <h3>concat Directive的使用:</h3>
+ * 
+ * <h4>语法:</h4>
  * 
  * <pre>
  * {@code
@@ -45,36 +54,12 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * 	#concat(String type,String version)
  * 	#concat(String type,String version,String domain)
  * 	#concat(String type,String version,String domain,String root)
- * 
- * 对于block块内容,每行一个css/js元素
- * 
- * 比如写成:
- * 
- *  #concat("js","20140515","http://www.feilong.com")
- *  
- * 	    ##原来这个文件的script type是text/ecmascript,找不到主人,暂时合并,看看会不会出问题
- * 	    static/marketplace/js/marketplace.js
- * 	
- * 	    static/public/js/cascading/jquery.cascading.data.js
- * 	    static/public/js/cascading/jquery.cascading.js
- * 	
- * 	    static/public/js/jquery.json-2.4.js
- * 	    static/public/js/jquery.form.js
- * 	    static/public/js/jquery.lazyload.min.js
- * 	
- * 	    static/member/messages/messageAddress_$request.getAttribute('locale').js
- * 	    static/trade/messages/messageTrade_$request.getAttribute('locale').js
- * 
- * 
- * 
- *  #end
- * 
- * 
- * 每行一个css/js元素,中间可以有空白行,程序会自动忽视空白行
  * }
  * </pre>
  * 
- * 其中: <blockquote>
+ * <h4>参数说明:</h4>
+ * 
+ * <blockquote>
  * <table border='1' cellspacing='0' cellpadding='4' summary="Chart showing symbol,  location, localized, and meaning.">
  * <tr bgcolor="#ccccff">
  * <th align=left>字段</th>
@@ -104,11 +89,64 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * </table>
  * </blockquote>
  * 
+ * <h4>block块</h4>
+ * 
+ * <blockquote>
+ * 
+ * 对于block块内容,每行一个css/js元素
+ * 比如写成:
+ * 
+ * <h5>样本</h5> <blockquote>
+ * <table border="1" cellspacing="0" cellpadding="4">
+ * <tr valign=top>
+ * <td>
+ * 
+ * <pre>
+ * {@code
+ *  #concat("js","20140515","http://www.feilong.com")
+ *  
+ * 	    ##原来这个文件的script type是text/ecmascript,找不到主人,暂时合并,看看会不会出问题
+ * 	    static/marketplace/js/marketplace.js
+ * 	
+ * 	    static/public/js/cascading/jquery.cascading.data.js
+ * 	    static/public/js/cascading/jquery.cascading.js
+ * 	
+ * 	    static/public/js/jquery.json-2.4.js
+ * 	    static/public/js/jquery.form.js
+ * 	    static/public/js/jquery.lazyload.min.js
+ * 	
+ * 	    static/member/messages/messageAddress_$request.getAttribute('locale').js
+ * 	    static/trade/messages/messageTrade_$request.getAttribute('locale').js
+ * 
+ * 
+ *  #end
+ * }
+ * 
+ * </td>
+ * </tr>
+ * </table>
+ * </blockquote>
+ * </pre>
+ * 
+ * <h5>说明:</h5>
+ * <ol>
+ * <li>每行一个css/js元素</li>
+ * <li>block里面的元素要一致,暂不支持css和js混写</li>
+ * <li>每行开头结尾可以有空格 tab,程序会自动去除</li>
+ * <li>可以有重复元素(不建议),程序会自动去重</li>
+ * <li>按照书写的顺序,进行拼接</li>
+ * <li>可以有空白行,程序会自动忽视空白行</li>
+ * <li>只有一条,不会使用concat,直接输出原生链接</li>
+ * <li>可以写注释,但只支持velocity 的注释格式(行注释 {@code ##} 以及块注释 {@code #* balabalabala *#}),不可使用java注释 //,也不可使用html注释 {@code <!---->}</li>
+ * </ol>
+ * </blockquote>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月14日 下午6:23:50
  * @since 1.0.7
+ * @see HttpConcatUtil
  */
-public class Concat extends AbstractDirective{
+public final class Concat extends AbstractDirective{
 
 	/** The Constant log. */
 	private static final Logger	log				= LoggerFactory.getLogger(Concat.class);
@@ -124,6 +162,7 @@ public class Concat extends AbstractDirective{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.velocity.directive.AbstractDirective#doRender(org.apache.velocity.context.InternalContextAdapter,
 	 * java.io.Writer, org.apache.velocity.runtime.parser.node.Node)
 	 */
@@ -269,6 +308,7 @@ public class Concat extends AbstractDirective{
 	// ***************************************************************
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getName()
 	 */
 	public String getName(){
@@ -280,6 +320,7 @@ public class Concat extends AbstractDirective{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getType()
 	 */
 	public int getType(){

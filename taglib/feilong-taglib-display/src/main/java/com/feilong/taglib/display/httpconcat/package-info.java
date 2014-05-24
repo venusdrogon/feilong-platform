@@ -1,6 +1,4 @@
 /**
- * package feilong,By Jinxin development and maintenance<br>
- * Some commonly used utils <br>
  * 
  * 从原来的  bs tengineConnect css js请求合并标签 移植
  * 

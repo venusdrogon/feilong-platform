@@ -18,13 +18,18 @@ package com.feilong.taglib.display.httpconcat.command;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.feilong.commons.core.util.ListUtil;
+
 /**
- * The Class HttpConcatParam.
+ * 封装解析http concat 用到的参数.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 上午11:13:14
  */
-public class HttpConcatParam implements Serializable{
+public final class HttpConcatParam implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
@@ -154,6 +159,7 @@ public class HttpConcatParam implements Serializable{
 	 */
 	public Boolean getHttpConcatSupport(){
 		return httpConcatSupport;
+
 	}
 
 	/**
@@ -166,4 +172,94 @@ public class HttpConcatParam implements Serializable{
 		this.httpConcatSupport = httpConcatSupport;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode(){
+		//返回该对象的哈希码值  支持此方法是为了提高哈希表（例如 java.util.Hashtable 提供的哈希表）的性能。 
+
+		//当我们向一个集合中添加某个元素，集合会首先调用hashCode方法，这样就可以直接定位它所存储的位置，
+		//若该处没有其他元素，则直接保存。
+
+		//若该处已经有元素存在，
+		//就调用equals方法来匹配这两个元素是否相同，相同则不存，
+		//不同则散列到其他位置（具体情况请参考（Java提高篇（）-----HashMap））。
+
+		//这样处理，当我们存入大量元素时就可以大大减少调用equals()方法的次数，极大地提高了效率。
+
+		//hashCode在上面扮演的角色为寻域（寻找某个对象在集合中区域位置）
+
+		//************************************************************************************
+		//可替代地，存在使用反射来确定测试中的字段的方法。
+		//因为这些字段通常是私有的，该方法中，reflectionHashCode，使用AccessibleObject.setAccessible改变字段的可见性。
+		//这点会在一个安全管理器失败，除非相应的权限设置是否正确。
+		//它也比明确地测试速度较慢。 
+		//HashCodeBuilder.reflectionHashCode(this);
+		//************************************************************************************
+		//你选择一个硬编码，随机选择，不为零，奇数 
+		//理想情况下 每个类不同
+
+		String[] itemSrcArray = null;
+		if (null != this.itemSrcList){
+			itemSrcArray = ListUtil.toArray(this.itemSrcList);
+		}
+
+		HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
+		return hashCodeBuilder//
+				.append(this.domain)//
+				.append(this.httpConcatSupport)//
+				.append(this.root)//
+				.append(this.type)//
+				.append(this.version)//
+				.append(this.domain)//
+				.append(itemSrcArray)//
+				.toHashCode();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object obj){
+		if (obj == null){
+			return false;
+		}
+		if (obj == this){
+			return true;
+		}
+		if (obj.getClass() != getClass()){
+			return false;
+		}
+
+		//存在使用反射来确定测试中的字段的方法。因为这些字段通常是私有的，该方法中，reflectionEquals，使用AccessibleObject.setAccessible改变字段的可见性。
+		//这点会在一个安全管理器失败，除非相应的权限设置是否正确。
+		//它也比明确地测试速度较慢。 
+		//EqualsBuilder.reflectionEquals(this, obj);
+
+		HttpConcatParam t = (HttpConcatParam) obj;
+		EqualsBuilder equalsBuilder = new EqualsBuilder();
+
+		String[] itemSrcArray = null;
+		if (null != this.itemSrcList){
+			itemSrcArray = ListUtil.toArray(this.itemSrcList);
+		}
+
+		String[] itemSrcArray2 = null;
+		if (null != t.getItemSrcList()){
+			itemSrcArray2 = ListUtil.toArray(t.getItemSrcList());
+		}
+
+		return equalsBuilder //
+				//.appendSuper(super.equals(obj))//
+				.append(this.domain, t.getDomain())//
+				.append(this.httpConcatSupport, t.getHttpConcatSupport())//
+				.append(this.root, t.getRoot())//
+				.append(this.type, t.getType())//
+				.append(this.version, t.getVersion())//
+				.append(itemSrcArray, itemSrcArray2)//
+				.isEquals();
+	}
 }

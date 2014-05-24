@@ -16,7 +16,7 @@
 package com.feilong.taglib.display.httpconcat;
 
 /**
- * The Interface HttpConcatConstants.
+ * 解析http concat用到的常量
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月15日 下午2:48:45
@@ -24,21 +24,26 @@ package com.feilong.taglib.display.httpconcat;
  */
 public interface HttpConcatConstants{
 
-	/** 配置文件. */
+	/** 配置文件 <code>{@value}</code>. */
 	String	CONFIG_FILE				= "config/httpconcat";
 
+	//**************************************************************
 	/** css <code>{@value}</code>. */
 	String	TYPE_CSS				= "css";
 
 	/** js <code>{@value}</code>. */
 	String	TYPE_JS					= "js";
 
-	/** The KE y_ httpconca t_ support. */
+	//**************************************************************
+
+	/** <code>{@value}</code>. */
 	String	KEY_HTTPCONCAT_SUPPORT	= "httpconcatSupport";
 
-	/** The KE y_ templat e_ css. */
+	//**************************************************************
+
+	/** <code>{@value}</code>. */
 	String	KEY_TEMPLATE_CSS		= "template.css";
 
-	/** The KE y_ templat e_ js. */
+	/** <code>{@value}</code>. */
 	String	KEY_TEMPLATE_JS			= "template.js";
 }

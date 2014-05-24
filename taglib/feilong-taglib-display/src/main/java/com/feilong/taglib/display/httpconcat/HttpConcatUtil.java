@@ -32,70 +32,100 @@ import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
+import com.feilong.taglib.display.httpconcat.directive.Concat;
 import com.feilong.tools.json.JsonUtil;
 
 /**
  * http concat的核心工具类.
+ * <p>
+ * 类加载的时候,会使用 {@link ResourceBundleUtil} 来读取{@link HttpConcatConstants#CONFIG_FILE} 配置文件中的 {@link HttpConcatConstants#KEY_TEMPLATE_CSS}
+ * css模板 以及 {@link HttpConcatConstants#KEY_TEMPLATE_JS} JS模板<br>
+ * 请确保文件路径中有配置文件,以及正确的key<br>
+ * 如果获取不到,会 throw {@link IllegalArgumentException}
+ * 
+ * <h4>全局合并开关</h4>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月19日 下午2:50:43
+ * @see HttpConcatTag
+ * @see Concat
+ * @see HttpConcatConstants
+ * @see HttpConcatParam
  * @since 1.0.7
  */
-public final class HttpConcatUtil{
+public final class HttpConcatUtil implements HttpConcatConstants{
 
 	/** The Constant log. */
-	private static final Logger			log			= LoggerFactory.getLogger(HttpConcatUtil.class);
+	private static final Logger							log						= LoggerFactory.getLogger(HttpConcatUtil.class);
 
 	/** The Constant TEMPLATE_CSS. */
-	private static final String			TEMPLATE_CSS;
+	private static final String							TEMPLATE_CSS;
 
 	/** The Constant TEMPLATE_JS. */
-	private static final String			TEMPLATE_JS;
+	private static final String							TEMPLATE_JS;
 
 	/** 是否支持 HTTP_CONCAT (全局参数). */
-	private static final Boolean		GLOBAL_HTTP_CONCAT_SUPPORT;
+	private static final Boolean						GLOBAL_HTTP_CONCAT_SUPPORT;
 
-	/** 设置缓存是否开启. */
-	// XXX
-	private boolean						cache		= true;
+	//*****************************************************************************
 
-	/** 缓存视图的映射对象. */
-	// XXX
-	private final Map<String, String>	viewCache	= new HashMap<String, String>();
+	/**
+	 * 设置缓存是否开启.
+	 * 
+	 * @since 1.0.7
+	 */
+	private final static boolean						DEFAULT_CACHEENABLE		= true;
+
+	/**
+	 * cache size 限制,仅当 {@link #DEFAULT_CACHEENABLE}开启生效, 当cache数达到 {@link #DEFAULT_CACHESIZELIMIT},将不会再缓存结果
+	 * 经过测试
+	 * <ul>
+	 * <li>300000 size cache占用 内存 :87.43KB(非精准)</li>
+	 * <li>304850 size cache占用 内存 :87.43KB(非精准)</li>
+	 * <li>400000 size cache占用 内存 :8.36MB(非精准)</li>
+	 * </ul>
+	 * 
+	 * 对于一个正式项目而言,http concat的cache, size极限大小会是 <blockquote><i>页面总数(P)*页面concat标签数(C)*i18N数(I)*版本号(V)</i></blockquote><br>
+	 * 如果一个项目 页面有1000个,每个页面有5个concat块,一共有5种国际化语言,如果应用重启前支持5次版本更新,那么计算公式会是 <blockquote><i>1000*5*5*5=50000</i></blockquote>
+	 * <b>注意:此公式中的页面总数是指,VM/JSP的数量,除非参数不同导致VM/JSP渲染的JS也不同,另当别论</b>
+	 * 
+	 * @since 1.0.7
+	 */
+	private final static int							DEFAULT_CACHESIZELIMIT	= 300000;
+
+	/**
+	 * 将结果缓存到map.<br>
+	 * key是入参 {@link HttpConcatParam}对象,value是解析完的字符串<br>
+	 * 该cache里面value不会存放null/empty
+	 * 
+	 * @since 1.0.7
+	 */
+	private final static Map<HttpConcatParam, String>	cache					= new HashMap<HttpConcatParam, String>();
 
 	// XXX 支持多变量
 	static{
-		GLOBAL_HTTP_CONCAT_SUPPORT = ResourceBundleUtil.getValue(
-				HttpConcatConstants.CONFIG_FILE,
-				HttpConcatConstants.KEY_HTTPCONCAT_SUPPORT,
-				Boolean.class);
+		GLOBAL_HTTP_CONCAT_SUPPORT = ResourceBundleUtil.getValue(CONFIG_FILE, KEY_HTTPCONCAT_SUPPORT, Boolean.class);
 
 		if (Validator.isNullOrEmpty(GLOBAL_HTTP_CONCAT_SUPPORT)){
 			log.warn(
 					"can not find key:[{}],pls ensure you have put the correct configuration file path:[{}]",
-					HttpConcatConstants.KEY_HTTPCONCAT_SUPPORT,
-					HttpConcatConstants.CONFIG_FILE);
+					KEY_HTTPCONCAT_SUPPORT,
+					CONFIG_FILE);
 		}
 	}
 
 	// 加载模板
 	static{
-		TEMPLATE_CSS = ResourceBundleUtil.getValue(HttpConcatConstants.CONFIG_FILE, HttpConcatConstants.KEY_TEMPLATE_CSS);
-		TEMPLATE_JS = ResourceBundleUtil.getValue(HttpConcatConstants.CONFIG_FILE, HttpConcatConstants.KEY_TEMPLATE_JS);
+		TEMPLATE_CSS = ResourceBundleUtil.getValue(CONFIG_FILE, KEY_TEMPLATE_CSS);
+		TEMPLATE_JS = ResourceBundleUtil.getValue(CONFIG_FILE, KEY_TEMPLATE_JS);
 		if (Validator.isNullOrEmpty(TEMPLATE_CSS)){
 			String messagePattern = "can not find key:[{}],pls ensure you have put the correct configuration file path:[{}]";
-			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-					messagePattern,
-					HttpConcatConstants.KEY_HTTPCONCAT_SUPPORT,
-					HttpConcatConstants.CONFIG_FILE));
+			throw new IllegalArgumentException(Slf4jUtil.formatMessage(messagePattern, KEY_HTTPCONCAT_SUPPORT, CONFIG_FILE));
 
 		}
 		if (Validator.isNullOrEmpty(TEMPLATE_JS)){
 			String messagePattern = "can not find key:[{}],pls ensure you have put the correct configuration file path:[{}]";
-			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-					messagePattern,
-					HttpConcatConstants.KEY_HTTPCONCAT_SUPPORT,
-					HttpConcatConstants.CONFIG_FILE));
+			throw new IllegalArgumentException(Slf4jUtil.formatMessage(messagePattern, KEY_HTTPCONCAT_SUPPORT, CONFIG_FILE));
 		}
 	}
 
@@ -106,14 +136,16 @@ public final class HttpConcatUtil{
 	 * @param httpConcatParam
 	 *            the http concat param
 	 * @return <ul>
-	 *         <li>如果 httpConcatParam isNullOrEmpty, throw {@link NullPointerException}</li>
-	 *         <li>如果 httpConcatParam.getItemSrcList() isNullOrEmpty,return null</li>
-	 *         <li>如果 httpConcatParam.getType() 不是 js或者css, throw {@link UnsupportedOperationException}</li>
+	 *         <li>如果 isNullOrEmpty httpConcatParam.getItemSrcList() ,return null</li>
 	 *         <li>如果支持 concat,那么生成concat字符串</li>
 	 *         <li>如果不支持 concat,那么生成多行js/css 原生的字符串</li>
 	 *         </ul>
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(httpConcatParam)
+	 * @throws UnsupportedOperationException
+	 *             if httpConcatParam.getType() 不是 js或者css
 	 */
-	public static String getWriteContent(HttpConcatParam httpConcatParam){
+	public static String getWriteContent(HttpConcatParam httpConcatParam) throws NullPointerException,UnsupportedOperationException{
 		if (Validator.isNullOrEmpty(httpConcatParam)){
 			throw new NullPointerException("the httpConcatParam is null or empty!");
 		}
@@ -122,45 +154,109 @@ public final class HttpConcatUtil{
 			log.debug(JsonUtil.format(httpConcatParam));
 		}
 
-		// ******************************************************************
-		Boolean httpConcatSupport = httpConcatParam.getHttpConcatSupport();
-		if (log.isDebugEnabled()){
-			log.debug("" + httpConcatSupport);
+		// 判断item list
+		List<String> itemSrcList = httpConcatParam.getItemSrcList();
+		if (Validator.isNullOrEmpty(itemSrcList)){
+			log.warn("the param itemSrcList isNullOrEmpty,need itemSrcList to create links,return null");
+			return null;
 		}
 
+		//是否使用cache
+		boolean isWriteCache = DEFAULT_CACHEENABLE;
+
+		int cacheKeyHashCode = httpConcatParam.hashCode();
+		//*************************************************************************************
+		//缓存
+		if (DEFAULT_CACHEENABLE){
+			//返回此映射中的键-值映射关系数。如果该映射包含的元素大于 Integer.MAX_VALUE，则返回 Integer.MAX_VALUE。 
+			int cacheSize = cache.size();
+
+			String content = cache.get(httpConcatParam);
+			//包含
+			if (null != content){
+				if (log.isInfoEnabled()){
+					log.info("hashcode:[{}],get httpConcat info from httpConcatCache,cache.size:[{}]", cacheKeyHashCode, cacheSize);
+				}
+				return content;
+			}else{
+				//超出cache 数量
+				boolean outOfCacheItemSizeLimit = (cacheSize >= DEFAULT_CACHESIZELIMIT);
+				if (outOfCacheItemSizeLimit){
+					log.warn(
+							"hashcode:[{}],cache.size:[{}] >= DEFAULT_CACHESIZELIMIT:[{}],this time will not put result to cache",
+							cacheKeyHashCode,
+							cacheSize,
+							DEFAULT_CACHESIZELIMIT);
+
+					//超过,那么就不记录cache
+					isWriteCache = false;
+				}else{
+
+					if (log.isInfoEnabled()){
+						log.info(
+								"hashcode:[{}],httpConcatCache.size:[{}] not contains httpConcatParam,will do parse",
+								cacheKeyHashCode,
+								cacheSize);
+					}
+				}
+			}
+		}
+
+		// **********是否开启了连接********************************************************
+		Boolean httpConcatSupport = httpConcatParam.getHttpConcatSupport();
+		//如果没有设置就使用默认的全局设置
 		if (null == httpConcatSupport){
-			httpConcatSupport = GLOBAL_HTTP_CONCAT_SUPPORT;
-			// httpConcatParam.setHttpConcatSupport(GLOBAL_HTTP_CONCAT_SUPPORT);
+			httpConcatSupport = (null == GLOBAL_HTTP_CONCAT_SUPPORT) ? false : GLOBAL_HTTP_CONCAT_SUPPORT;
 		}
 
 		// *******************************************************************
 		// 标准化 httpConcatParam,比如list去重,标准化domain等等
-		httpConcatParam = standardHttpConcatParam(httpConcatParam);
+		// 下面的解析均基于standardHttpConcatParam来操作
+		// httpConcatParam只做入参判断,数据转换,以及cache存取
+		HttpConcatParam standardHttpConcatParam = standardHttpConcatParam(httpConcatParam);
 
 		// *********************************************************************************
 
-		String type = httpConcatParam.getType();
+		String type = standardHttpConcatParam.getType();
 		String template = getTemplate(type);
 
 		// *********************************************************************************
-		String returnValue = "";
+		String content = "";
 		if (httpConcatSupport){
 			// concat
-			returnValue = MessageFormatUtil.format(template, getConcatLink(httpConcatParam));
+			String concatLink = getConcatLink(standardHttpConcatParam);
+			content = MessageFormatUtil.format(template, concatLink);
 		}else{ // 本地开发环境支持的.
-			List<String> itemSrcList = httpConcatParam.getItemSrcList();
+			itemSrcList = standardHttpConcatParam.getItemSrcList();
 			StringBuilder sb = new StringBuilder();
 			for (String itemSrc : itemSrcList){
-				sb.append(MessageFormatUtil.format(template, getNoConcatLink(itemSrc, httpConcatParam)));
+				String noConcatLink = getNoConcatLink(itemSrc, standardHttpConcatParam);
+				sb.append(MessageFormatUtil.format(template, noConcatLink));
 			}
-			returnValue = sb.toString();
+			content = sb.toString();
 		}
 
 		// **************************log***************************************************
 		if (log.isDebugEnabled()){
-			log.debug("returnValue:[{}],length:[{}]", returnValue, returnValue.length());
+			log.debug("returnValue:[{}],length:[{}]", content, content.length());
 		}
-		return returnValue;
+		//********************设置cache***********************************************
+		if (isWriteCache){
+			if (log.isInfoEnabled()){
+				log.info("key's hashcode:[{}] put to cache", httpConcatParam.hashCode());
+			}
+			cache.put(httpConcatParam, (null == content) ? "" : content);
+		}else{
+			if (DEFAULT_CACHEENABLE){
+				log.warn(
+						"hashcode:[{}],DEFAULT_CACHEENABLE:[{}],but isWriteCache:[{}],so http concat result not put to cache",
+						cacheKeyHashCode,
+						DEFAULT_CACHEENABLE,
+						isWriteCache);
+			}
+		}
+		//************************************************************************
+		return content;
 	}
 
 	/**
@@ -171,9 +267,9 @@ public final class HttpConcatUtil{
 	 * @return the http concat param
 	 */
 	private static HttpConcatParam standardHttpConcatParam(HttpConcatParam httpConcatParam){
-		String domain = httpConcatParam.getDomain();
-		String root = httpConcatParam.getRoot();
 
+		//******************domain*******************************************
+		String domain = httpConcatParam.getDomain();
 		// 格式化 domain 成 http://www.feilong.com/ 形式
 		if (Validator.isNotNullOrEmpty(domain)){
 			if (!domain.endsWith("/")){
@@ -182,6 +278,9 @@ public final class HttpConcatUtil{
 		}else{
 			domain = "";
 		}
+
+		//********************root*****************************************
+		String root = httpConcatParam.getRoot();
 		// 格式化 root 成 xxxx/xxx/ 形式,
 		if (Validator.isNotNullOrEmpty(root)){
 			if (!root.endsWith("/")){
@@ -194,20 +293,14 @@ public final class HttpConcatUtil{
 			root = "";
 		}
 
-		httpConcatParam.setDomain(domain);
-		httpConcatParam.setRoot(root);
-		// ***************************************************************************
-
+		// ********************itemSrcList*******************************************************
 		// 判断item list
 		List<String> itemSrcList = httpConcatParam.getItemSrcList();
 
-		if (Validator.isNullOrEmpty(itemSrcList)){
-			log.warn("the param itemSrcList isNullOrEmpty,need itemSrcList to create links");
-			return null;
-		}
-
 		// 去重,元素不重复
 		List<String> noRepeatitemList = ListUtil.removeDuplicate(itemSrcList);
+
+		//**************************************************************
 		if (Validator.isNullOrEmpty(noRepeatitemList)){
 			log.warn("the param noRepeatitemList isNullOrEmpty,need noRepeatitemList to create links");
 			return null;
@@ -222,12 +315,21 @@ public final class HttpConcatUtil{
 					itemSrcListSize,
 					JsonUtil.format(httpConcatParam));
 		}
-		httpConcatParam.setItemSrcList(noRepeatitemList);
+
+		// *******************************************************************
+		HttpConcatParam standardHttpConcatParam = new HttpConcatParam();
+		standardHttpConcatParam.setItemSrcList(noRepeatitemList);
+		standardHttpConcatParam.setDomain(domain);
+		standardHttpConcatParam.setRoot(root);
+		standardHttpConcatParam.setHttpConcatSupport(httpConcatParam.getHttpConcatSupport());
+		standardHttpConcatParam.setType(httpConcatParam.getType());
+		standardHttpConcatParam.setVersion(httpConcatParam.getVersion());
+
 		// *******************************************************************
 		if (log.isDebugEnabled()){
-			log.debug("standardHttpConcatParam:{}", JsonUtil.format(httpConcatParam));
+			log.debug("standardHttpConcatParam:{}", JsonUtil.format(standardHttpConcatParam));
 		}
-		return httpConcatParam;
+		return standardHttpConcatParam;
 
 	}
 
@@ -350,11 +452,13 @@ public final class HttpConcatUtil{
 	 *            类型 {@link HttpConcatConstants#TYPE_CSS} 以及{@link HttpConcatConstants#TYPE_JS}
 	 * @return 目前仅支持 {@link HttpConcatConstants#TYPE_CSS} 以及{@link HttpConcatConstants#TYPE_JS},其余不支持,会抛出
 	 *         {@link UnsupportedOperationException}
+	 * @throws UnsupportedOperationException
+	 *             type not css and not js
 	 */
-	private static String getTemplate(String type){
-		if (HttpConcatConstants.TYPE_CSS.equalsIgnoreCase(type)){
+	private static String getTemplate(String type) throws UnsupportedOperationException{
+		if (TYPE_CSS.equalsIgnoreCase(type)){
 			return TEMPLATE_CSS;
-		}else if (HttpConcatConstants.TYPE_JS.equalsIgnoreCase(type)){
+		}else if (TYPE_JS.equalsIgnoreCase(type)){
 			return TEMPLATE_JS;
 		}
 		throw new UnsupportedOperationException("type:[" + type + "] not support!,current time,only support js or css");
