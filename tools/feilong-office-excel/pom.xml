@@ -46,6 +46,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>ooxml-schemas</artifactId>
+			<version>${version.ooxml-schemas}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>loxia2</groupId>
 			<artifactId>loxia2-support</artifactId>
 			<version>${version.loxia}</version>

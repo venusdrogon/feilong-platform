@@ -56,7 +56,7 @@
 		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.outputDirectory>
 		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
-		
+
 		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/commons</maven-javadoc-plugin.javadocDirectory>
 		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
 		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
@@ -106,7 +106,10 @@
 		<version.log4j>1.2.17</version.log4j>
 
 		<version.quartz>1.5.2</version.quartz>
+
 		<version.poi>3.10-FINAL</version.poi>
+		<!-- 新版poi需要这个jar -->
+		<version.ooxml-schemas>1.1</version.ooxml-schemas>
 
 		<version.memcached>2.5.3</version.memcached>
 
@@ -677,7 +680,7 @@
 				<configuration>
 					<verbose>true</verbose>
 					<destDir>${maven-javadoc-plugin.destDir}</destDir>
-					
+
 					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
 					<reportOutputDirectory>${maven-javadoc-plugin.reportOutputDirectory}</reportOutputDirectory>
 
