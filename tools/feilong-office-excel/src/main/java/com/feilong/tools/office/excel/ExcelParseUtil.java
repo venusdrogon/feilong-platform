@@ -26,6 +26,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
+import com.feilong.commons.core.util.NumberPattern;
+import com.feilong.commons.core.util.NumberUtil;
+
 /**
  * 处理Excel文档(POI)
  * 
@@ -94,8 +97,9 @@ public class ExcelParseUtil{
 					returnValue = cell.getCellFormula();
 					break;
 				case Cell.CELL_TYPE_NUMERIC:
-					//TODO 重新定义下格式
-					//returnValue = NumberUtil.toString(cell.getNumericCellValue());
+					//XXX 重新定义下格式
+					double numericCellValue = cell.getNumericCellValue();
+					returnValue = NumberUtil.toString(numericCellValue, NumberPattern.NO_SCALE);
 					break;
 				case Cell.CELL_TYPE_STRING:
 					returnValue = cell.getRichStringCellValue().getString().trim();

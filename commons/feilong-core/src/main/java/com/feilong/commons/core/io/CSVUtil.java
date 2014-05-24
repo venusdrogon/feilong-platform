@@ -19,10 +19,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -33,7 +33,6 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2011-5-26 上午01:26:47
  * @since 1.0.0
  */
-@SuppressWarnings("deprecation")
 public final class CSVUtil{
 
 	/** The Constant log. */
@@ -132,7 +131,8 @@ public final class CSVUtil{
 		// *******************用于扩展**********************************
 		char separator = csvParams.getSeparator();
 		char quotechar = DEFAULT_QUOTE_CHARACTER;
-		String lineEnd = Constants.LINE_SEPARATOR;
+
+		String lineEnd = SystemUtils.LINE_SEPARATOR;
 		// *************************************************************
 		StringBuffer sb = new StringBuffer();
 		int length_line = line.length;

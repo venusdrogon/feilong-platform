@@ -6,7 +6,8 @@ import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
-import com.feilong.commons.core.Constants;
+import org.apache.commons.lang3.SystemUtils;
+
 import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.util.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
@@ -139,7 +140,7 @@ public class TableTag extends HtmlTableTag{
 			stringBuilder.append("<table");
 			innerCommonAttribute(stringBuilder);
 			stringBuilder.append(">");
-			stringBuilder.append(Constants.LINE_SEPARATOR);
+			stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 			print(stringBuilder);
 		}
 		// 是否为空
@@ -174,15 +175,15 @@ public class TableTag extends HtmlTableTag{
 		// 首次
 		if (lengthCount == 1){
 			stringBuilder.append("<tr>");
-			stringBuilder.append(Constants.LINE_SEPARATOR);
+			stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 			for (int i = 0, j = titleList.size(); i < j; i++){
 				stringBuilder.append("<th>");
 				stringBuilder.append(titleList.get(i));
 				stringBuilder.append("</th>");
 			}
-			stringBuilder.append(Constants.LINE_SEPARATOR);
+			stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 			stringBuilder.append("</tr>");
-			stringBuilder.append(Constants.LINE_SEPARATOR);
+			stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 		}
 		// 从这个迭代渲染输出到输出流
 		if (bodyContent != null){
@@ -191,10 +192,10 @@ public class TableTag extends HtmlTableTag{
 				HtmlUtil.addAttribute(stringBuilder, "class", "feilongEvenTrClass");
 			}
 			stringBuilder.append(">");
-			stringBuilder.append(Constants.LINE_SEPARATOR);
+			stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 			stringBuilder.append(bodyContent.getString());
 			stringBuilder.append("</tr>");
-			stringBuilder.append(Constants.LINE_SEPARATOR);
+			stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 			TagUtils.getInstance().writePrevious(pageContext, stringBuilder.toString());
 			bodyContent.clearBody();
 		}

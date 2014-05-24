@@ -30,10 +30,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.awt.toolkit.ClipboardUtil;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.util.StringBuilderUtil;
@@ -148,7 +148,7 @@ public abstract class AbstractPatchUtil{
 				}
 			}
 
-			log.info(builder.insert(0, Constants.LINE_SEPARATOR).toString());
+			log.info(builder.insert(0, SystemUtils.LINE_SEPARATOR).toString());
 		}else{
 			log.error("this map is null!!!Maybe clipboard/file content is null or unrelated with patch!");
 		}

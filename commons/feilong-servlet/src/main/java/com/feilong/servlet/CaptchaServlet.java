@@ -30,7 +30,6 @@ import javax.servlet.jsp.PageContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.Constants;
 import com.feilong.commons.core.awt.ValidateCodeUtil;
 import com.feilong.commons.core.io.ImageType;
 import com.feilong.servlet.http.RequestUtil;
@@ -53,6 +52,7 @@ public class CaptchaServlet extends HttpServlet{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.http.HttpServlet#getLastModified(javax.servlet.http.HttpServletRequest)
 	 */
 	protected long getLastModified(HttpServletRequest request){
@@ -61,6 +61,7 @@ public class CaptchaServlet extends HttpServlet{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
@@ -115,6 +116,7 @@ public class CaptchaServlet extends HttpServlet{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
@@ -123,6 +125,7 @@ public class CaptchaServlet extends HttpServlet{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{

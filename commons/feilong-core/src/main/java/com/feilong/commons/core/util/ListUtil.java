@@ -78,7 +78,7 @@ public final class ListUtil{
 	 * @see <a
 	 *      href="http://www.oschina.net/code/snippet_117714_2991?p=2#comments">http://www.oschina.net/code/snippet_117714_2991?p=2#comments</a>
 	 */
-	// TODO 按照原类型返回
+	// TODO 按照原List类型(ArrayList or linkedList)返回
 	public static <T> List<T> removeDuplicate(List<T> list){
 
 		if (Validator.isNullOrEmpty(list)){
@@ -120,6 +120,7 @@ public final class ListUtil{
 		if (Validator.isNullOrEmpty(list)){
 			return null;
 		}
+		//FIXME 有可能第一个元素是 null
 		Class<? extends Object> firstClass = list.get(0).getClass();
 		Class<? extends Object> compontType = firstClass;
 		// // 所有类型是不是同一个

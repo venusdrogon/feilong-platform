@@ -18,7 +18,8 @@ package yicheng;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.feilong.commons.core.Constants;
+import org.apache.commons.lang3.SystemUtils;
+
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
@@ -84,9 +85,9 @@ public class YiChengPay{
 		// // 密文 MD5序列
 		// stringBuilder.append(HTMLInput.createInputTag("hidden", "merchantDecodedData", YiChengPay
 		// .getMerchantDecodedDataString(feiLongYiChengPayEntity)));
-		stringBuilder.append(Constants.LINE_SEPARATOR);
+		stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 		stringBuilder.append("<input type=\"image\" src=\"/images/netpay/button_001town.gif\" alt=\"点击此处进入新华一城卡付款\">");
-		stringBuilder.append(Constants.LINE_SEPARATOR);
+		stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 		stringBuilder.append("</form>");
 		return stringBuilder.toString();
 	}
