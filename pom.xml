@@ -63,7 +63,7 @@
 		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
 
 		<!--****************************第三方************************************ -->
-		<version.ant>1.8.4</version.ant>
+		<version.ant>1.9.4</version.ant>
 
 		<version.commons-beanutils>1.9.1</version.commons-beanutils>
 		<version.commons-collections>3.2.1</version.commons-collections>
