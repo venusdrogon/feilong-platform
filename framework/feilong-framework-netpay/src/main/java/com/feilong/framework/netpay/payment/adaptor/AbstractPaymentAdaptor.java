@@ -27,30 +27,80 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineNetpayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineScanCodeAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapCreditCardAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapNetpayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.doku.AbstractDokuPayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.doku.CreditCardPayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.doku.MandiriClickPayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 import com.feilong.tools.json.JsonUtil;
 
 /**
- * 所有 Adaptor 的 基础类, 包括了 公共属性/通用的验证等方法.<br>
- * 包含 4个公共属性:
+ * 所有 {@link PaymentAdaptor} 的 基础类,包括了 公共属性/通用的验证等方法.
+ * 
+ * <h4>4个公共属性</h4>
+ * 
+ * <blockquote>
+ * <p>
  * <ul>
- * <li>{@link #minPriceForPay}</li>
- * <li>{@link #maxPriceForPay}</li>
  * <li>{@link #validateMinPrice} 默认false,不验证</li>
  * <li>{@link #validateMaxPrice} 默认false,不验证</li>
+ * <li>{@link #minPriceForPay} 支持支付的最小金额</li>
+ * <li>{@link #maxPriceForPay} 支持支付的最大金额</li>
  * </ul>
- * <b>金额验证规则</b>:
+ * <p>
+ * </blockquote>
+ * 
+ * 
+ * <h4>金额验证规则</h4>
+ * 
+ * <blockquote>
+ * <p>
  * <ol>
  * <li>如果 ,开启了{@link #validateMinPrice},并且 isNotNullOrEmpty({@link #minPriceForPay}),并且 支付金额 <{@link #minPriceForPay},则抛出
  * IllegalArgumentException</li>
  * <li>如果 ,开启了{@link #validateMaxPrice},并且 isNotNullOrEmpty({@link #maxPriceForPay}),并且 支付金额 <{@link #maxPriceForPay},则抛出
  * IllegalArgumentException</li>
  * </ol>
+ * <p>
+ * </blockquote>
+ * 
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 20, 2013 12:29:49 PM
  * @version 1.0.5 2014-5-6 16:47
+ * @see SprintAsiaCreditCardAdaptor
+ * @see SprintAsiaKlikBCAAdaptor
+ * @see SprintAsiaKlikPayAdaptor
+ * @see AbstractDokuPayAdaptor
+ * @see CreditCardPayAdaptor
+ * @see MandiriClickPayAdaptor
+ * @see BRIEPayAdaptor
+ * @see PermataVALITEPayAdaptor
+ * @see ChinapnrAdaptor
+ * @see BaseAlipayAdaptor
+ * @see AlipayOnlineAdaptor
+ * @see AlipayOnlineCreditCardAdaptor
+ * @see AlipayOnlineInternationalCardAdaptor
+ * @see AlipayOnlineNetpayAdaptor
+ * @see AlipayOnlineScanCodeAdaptor
+ * @see AlipayWapAdaptor
+ * @see AlipayWapCreditCardAdaptor
+ * @see AlipayWapNetpayAdaptor
  */
 public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 
@@ -81,13 +131,14 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 	 */
 	@PostConstruct
 	protected void postConstruct() throws IllegalArgumentException,IllegalAccessException{
-		if (log.isDebugEnabled()){
+		if (log.isInfoEnabled()){
 			// FieldCallback fc;
 			// ReflectionUtils.doWithFields(getClass(), fc);
 			// ReflectUtils.
+			//XXX
 			Map<String, Object> map = ReflectUtil.getFieldValueMap(this);
 			Class<? extends AbstractPaymentAdaptor> clz = getClass();
-			log.debug("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
+			log.info("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
 		}
 	}
 
@@ -103,11 +154,23 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 	 * </ul>
 	 * 
 	 * @param payRequest
-	 *            the pay request
+	 *            支付请求 {@link PayRequest}
+	 * @throws IllegalArgumentException
+	 *             <ul>
+	 *             <li>{@code totalFee <=0}</li>
+	 *             <li>{@code validateMinPrice && isNotNullOrEmpty(minPriceForPay) && totalFee < minPriceForPay}</li>
+	 *             <li>{@code validateMaxPrice && isNotNullOrEmpty(maxPriceForPay) && totalFee > maxPriceForPay}</li>
+	 *             </ul>
+	 * @throws NullPointerException
+	 *             <ul>
+	 *             <li>isNullOrEmpty(payRequest)</li>
+	 *             <li>isNullOrEmpty(tradeNo)</li>
+	 *             <li>isNullOrEmpty(totalFee)</li>
+	 *             </ul>
 	 */
-	protected void doCommonValidate(PayRequest payRequest){
+	protected void doCommonValidate(PayRequest payRequest) throws IllegalArgumentException,NullPointerException{
 		if (Validator.isNullOrEmpty(payRequest)){
-			throw new IllegalArgumentException("payRequest can't be null/empty!");
+			throw new NullPointerException("payRequest can't be null/empty!");
 		}
 
 		String tradeNo = payRequest.getTradeNo();
@@ -115,12 +178,12 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 
 		// ******************************************************************
 		if (Validator.isNullOrEmpty(tradeNo)){
-			throw new IllegalArgumentException("tradeNo can't be null/empty!");
+			throw new NullPointerException("tradeNo can't be null/empty!");
 		}
 
 		// **********************验证金额************************************
 		if (Validator.isNullOrEmpty(totalFee)){
-			throw new IllegalArgumentException(Slf4jUtil.formatMessage("totalFee can't be null/empty!,tradeNo:{}", tradeNo));
+			throw new NullPointerException(Slf4jUtil.formatMessage("totalFee can't be null/empty!,tradeNo:{}", tradeNo));
 		}
 
 		// 金额<=0
@@ -167,7 +230,8 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 	 *            method 是get 还是post
 	 * @param hiddenParamMap
 	 *            参数
-	 * @return PaymentFormEntity
+	 * @return paymentFormEntity
+	 * @see PaymentFormEntity
 	 */
 	protected PaymentFormEntity getPaymentFormEntity(String actionGateway,String method,Map<String, String> hiddenParamMap){
 		PaymentFormEntity paymentFormEntity = new PaymentFormEntity();
