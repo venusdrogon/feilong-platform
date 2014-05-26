@@ -1,17 +1,17 @@
- /**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.feilong.tools.solrj;
@@ -32,8 +32,12 @@ import com.feilong.tools.solrj.paramscommand.FacetParamsCommand;
 import com.feilong.tools.solrj.paramscommand.GroupParamsCommand;
 
 /**
- * Solrj核心操作封装.<br>
- * 和 官方商城组4.0相比,有以下改动 <br>
+ * Solrj核心操作封装.
+ * 
+ * <h4>和 官方商城组4.0相比,有以下改动</h4>
+ * 
+ * <blockquote>
+ * <p>
  * <ul>
  * <li>1.所有操作执行的方法 将 SolrException 异常外抛, 业务来控制</li>
  * <li>2.更详细的 参数非空validator</li>
@@ -42,14 +46,23 @@ import com.feilong.tools.solrj.paramscommand.GroupParamsCommand;
  * <li>5.增加适用场景</li>
  * <li>6.删除了以往不调用的方法</li>
  * </ul>
+ * <p>
+ * </blockquote>
  * 
- * @param <T>
- *            the generic type
- * @param <PK>
- *            the generic type
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2012-3-11 下午5:01:26
- * @version 1.1 2013-12-19 23:39
+ * @version 1.0.2 2012-3-11 下午5:01:26
+ * @version 1.0.5 2013-12-19 23:39
+ * @version 1.0.7 2014-5-26 23:23 丰富了javadoc
+ * @param <T>
+ *            T为 和solr schemal对应的对象
+ * @param <PK>
+ *            PK为T的主键,比如id字段
+ * @see org.apache.solr.client.solrj.SolrServer
+ * @see org.apache.solr.client.solrj.impl.LBHttpSolrServer
+ * @see org.apache.solr.client.solrj.impl.CloudSolrServer
+ * @see org.apache.solr.client.solrj.impl.HttpSolrServer
+ * @since 1.0.2
  */
 public interface BaseSolrRepository<T, PK extends Serializable> {
 
@@ -62,7 +75,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 *            the model
 	 * @return the t
 	 * @throws SolrException
-	 *             the solr exception
+	 *             if操作发生异常
 	 */
 	T save(T model) throws SolrException;
 
@@ -72,7 +85,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param modelList
 	 *            the model list
 	 * @throws SolrException
-	 *             the solr exception
+	 *             if操作发生异常
 	 */
 	void batchSave(List<T> modelList) throws SolrException;
 
@@ -83,7 +96,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param primaryKey
 	 *            the primary key
 	 * @throws SolrException
-	 *             the solr exception
+	 *             if操作发生异常
 	 */
 	void delete(PK primaryKey) throws SolrException;
 
@@ -93,7 +106,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param query
 	 *            the query
 	 * @throws SolrException
-	 *             the solr exception
+	 *             if操作发生异常
 	 */
 	void deleteByQuery(String query) throws SolrException;
 
@@ -103,7 +116,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param pkList
 	 *            the pk list
 	 * @throws SolrException
-	 *             the solr exception
+	 *             如果执行的过程中,出现异常,抛出这个异常
 	 */
 	void batchDelete(List<PK> pkList) throws SolrException;
 
@@ -115,33 +128,45 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param solrQuery
 	 *            the solr query
 	 * @param pageNumber
-	 *            第几页 页面,为自然页,从1开始<br>
-	 *            可以为null,系统自动为1<br>
-	 *            如果<1,系统自动为1
+	 *            第几页,为自然页,从1开始
+	 *            <ul>
+	 *            <li>可以为null,系统自动为1</li>
+	 *            <li>如果<1,系统自动为1</li>
+	 *            </ul>
 	 * @param rows
 	 *            每页读取多少数据
 	 * @param sorts
-	 *            排序,如果传入为null 不会增加排序字段
+	 *            排序,如果传入为null 不会增加排序功能
 	 * @return the pagination
+	 * @see #findByQuery(SolrQuery, Integer, int, Sort[], FacetParamsCommand)
+	 * @see Pagination
 	 */
 	Pagination<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts);
 
 	/**
-	 * 这是一个 带facet功能的 solr query,<br>
+	 * 这是一个 带facet功能的 solr query
+	 * <p>
 	 * 可以实现 鞋(20) 带数字的这样的功能<br>
 	 * 如果你的网站不需要显示 类似于 鞋(20) 带数字count 功能的 不需要直接调用这个方法.
+	 * </p>
 	 * 
 	 * @param solrQuery
 	 *            the solr query
 	 * @param pageNumber
-	 *            the page number
+	 *            第几页,为自然页,从1开始
+	 *            <ul>
+	 *            <li>可以为null,系统自动为1</li>
+	 *            <li>如果<1,系统自动为1</li>
+	 *            </ul>
 	 * @param rows
-	 *            the rows
+	 *            每页读取多少数据
 	 * @param sorts
-	 *            排序,如果传入为null 不会增加排序字段
+	 *            排序,如果传入为null 不会增加排序功能
 	 * @param facetFields
-	 *            the facet fields
+	 *            需要facet的字段
 	 * @return the solr data
+	 * @see #findByQuery(SolrQuery, Integer, int, Sort[], FacetParamsCommand)
+	 * @see SolrData
 	 */
 	SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,String[] facetFields);
 
@@ -153,36 +178,48 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param solrQuery
 	 *            the solr query
 	 * @param pageNumber
-	 *            第几页,为自然页,从1开始<br>
+	 *            第几页,为自然页,从1开始
 	 *            <ul>
 	 *            <li>可以为null,系统自动为1</li>
 	 *            <li>如果<1,系统自动为1</li>
 	 *            </ul>
 	 * @param rows
-	 *            the rows
+	 *            每页读取多少数据
 	 * @param sorts
 	 *            排序,如果传入为null 不会增加排序字段
 	 * @param facetParamCommand
 	 *            facetParamCommand 封装了一系列的facet参数
-	 * @return the solr data
+	 * @return the solr data,如果执行的过程中,出现了异常,返回
+	 * @throws NullPointerException
+	 *             if null==solrQuery
 	 */
-	SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand);
+	SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand)
+			throws NullPointerException;
 
 	// **************************************待重新封装(可调用)***********************************************************
 	/**
 	 * 仅仅获得 facetQuerys 信息<br>
-	 * 某些场景下,facetQuery是基于 搜索去掉一些条件 出来的,比如 UA的 价格, .
+	 * 某些场景下,facetQuery是基于 搜索去掉一些条件 出来的,比如 UA的 价格.
 	 * 
 	 * @param solrQuery
 	 *            the solr query
 	 * @param facetQuerys
 	 *            the facet querys
 	 * @param facetQueryMinCount
-	 *            如果 传入的是null,默认为0,当facetquery出来的count 小于这个阀值的时候将被从map中删除掉
-	 * @return the map< string, integer>
-	 * @deprecated 待重新封装(可调用)
+	 *            if (null == facetQueryMinCount || facetQueryMinCount < 0 ) than 自动为0,<br>
+	 *            当facetquery出来的count 小于这个阀值的时候将被从map中删除掉
+	 * @return the map< string, integer><br>
+	 *         出现查询没有facet结果,返回null
+	 * @throws NullPointerException
+	 *             if null == solrQuery or isNullOrEmpty(facetQuerys)
+	 * @throws SolrException
+	 *             如果操作过程中出现了异常
+	 * @deprecated 在未来版本,会重新封装(可调用)
 	 */
-	Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount);
+	@Deprecated
+	//TODO
+	Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount)
+			throws NullPointerException,SolrException;
 
 	// **************************************待重新封装***********************************************************
 	/**
@@ -191,25 +228,33 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 * @param solrQuery
 	 *            the solr query
 	 * @param pageNumber
-	 *            第几页 页面,为自然页,从1开始<br>
-	 *            可以为null,系统自动为1<br>
-	 *            如果<1,系统自动为1
+	 *            第几页,为自然页,从1开始
+	 *            <ul>
+	 *            <li>可以为null,系统自动为1</li>
+	 *            <li>如果<1,系统自动为1</li>
+	 *            </ul>
 	 * @param rows
 	 *            每页读取多少数据
-	 * @param facetFields
-	 *            the facet fields
 	 * @param sorts
 	 *            排序,如果传入为null 不会增加排序字段
+	 * @param facetFields
+	 *            the facet fields
+	 * @param groupParamCommand
+	 *            the group param command
 	 * @return the solr group data
 	 * @throws SolrException
-	 *             the solr exception
-	 * @deprecated 待重新封装,暂不要调用
+	 *             if (solrQuery == null) or if (null == groupParamCommand || groupParamCommand.getIsGroup())
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 * @deprecated 在未来版本,会重新封装(可调用)
 	 */
+	@Deprecated
+	//TODO
 	SolrGroupData<T> findByQueryWithGroup(
 			SolrQuery solrQuery,
 			Integer pageNumber,
 			int rows,
 			Sort[] sorts,
 			String[] facetFields,
-			GroupParamsCommand groupParamCommand) throws SolrException;
+			GroupParamsCommand groupParamCommand) throws SolrException,NullPointerException;
 }

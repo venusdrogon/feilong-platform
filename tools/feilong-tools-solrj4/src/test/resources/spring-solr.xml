@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:loxia="http://loxia.benjamin.cn/schema/core" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://loxia.benjamin.cn/schema/core http://loxia.benjamin.cn/schema/core/loxia-spring-ext.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd	
+		">
+
+	<util:properties id="p_solr" location="classpath:config/solr.properties"></util:properties>
+
+	<!-- Load Balanced HttpSolrServer -->
+	<bean id="solrServer_sku" class="org.apache.solr.client.solrj.impl.LBHttpSolrServer">
+		<constructor-arg>
+			<list>
+				<value>#{p_solr['solr.solrServerUrl.master']}</value>
+				<!--正式环境需要用
+				<value>#{p_solr['solr.solrServerUrl.slave']}</value>
+				-->
+			</list>
+		</constructor-arg>
+		<property name="soTimeout" value="#{p_solr['solr.soTimeout']}" />
+		<property name="connectionTimeout" value="#{p_solr['solr.connectionTimeout']}" />
+	</bean>
+
+	<bean id="skuItemRepository" class="com.jumbo.shop.manager.solr.repository.SkuItemRepositoryImpl">
+		<property name="solrServer" ref="solrServer_sku"></property>
+	</bean>
+</beans>

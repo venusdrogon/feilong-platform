@@ -1,19 +1,18 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package com.feilong.tools.solrj;
 
 import java.io.Serializable;
@@ -61,29 +60,42 @@ import com.feilong.tools.solrj.paramscommand.FacetParamsCommand;
 import com.feilong.tools.solrj.paramscommand.GroupParamsCommand;
 
 /**
- * The Class BaseSolrRepositoryImpl.
+ * 所有solr repo 操作实现的父类.
  * 
- * @param <T>
- *            the generic type
- * @param <PK>
- *            the generic type
- * @author copy from pepsitmall
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2012-2-24 下午2:00:52
- * @version 1.1 2013-12-19 23:39
+ * @version 1.0.2 2012-2-24 下午2:00:52 copy from pepsitmall
+ * @version 1.0.5 2013-12-19 23:39
+ * @version 1.0.7 2014-5-26 23:23 丰富了javadoc
+ * @param <T>
+ *            T为 和solr schemal对应的对象
+ * @param <PK>
+ *            PK为T的主键,比如id字段
+ * @see org.apache.solr.client.solrj.SolrServer
+ * @see org.apache.solr.client.solrj.impl.LBHttpSolrServer
+ * @see org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer
+ * @see org.apache.solr.client.solrj.impl.CloudSolrServer
+ * @see org.apache.solr.client.solrj.impl.HttpSolrServer
+ * @since 1.0.2
  */
 public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> implements BaseSolrRepository<T, PK>{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(BaseSolrRepositoryImpl.class);
 
-	/** The server. */
+	/**
+	 * The server
+	 * 
+	 * @see org.apache.solr.client.solrj.impl.LBHttpSolrServer
+	 * @see org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer
+	 * @see org.apache.solr.client.solrj.impl.CloudSolrServer
+	 * @see org.apache.solr.client.solrj.impl.HttpSolrServer
+	 */
 	// Don't Autowired
 	protected SolrServer		solrServer;
 
 	// *****************************************************************************************
 
-	/** The model class. */
+	/** 和solr schemal对应的对象类型. */
 	protected Class<T>			modelClass;
 
 	/**
@@ -126,9 +138,10 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], com.feilong.tools.solrj.command.FacetParamCommand)
 	 */
-	public SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand){
+	public SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand)
+			throws NullPointerException{
 		if (solrQuery == null){
-			throw new IllegalArgumentException("solrQuery can't be null/empty!");
+			throw new NullPointerException("solrQuery can't be null/empty!");
 		}
 
 		// ***************************************************************
@@ -140,18 +153,27 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		solrQuery = setStartAndRows(solrQuery, pageNumber, rows);
 		solrQuery = setSort(solrQuery, sorts);
 
-		SolrjUtil.showSolrQuery(solrQuery);
+		if (log.isDebugEnabled()){
+			Map<String, Object> solrQueryMapForLog = SolrjUtil.getSolrQueryMapForLog(solrQuery);
+			log.debug("{}", JsonUtil.format(solrQueryMapForLog));
+		}
 
 		try{
 			QueryResponse queryResponse = solrServer.query(solrQuery);
 			SolrDocumentList solrDocumentList = queryResponse.getResults();
 			long numFound = solrDocumentList.getNumFound();
 			List<T> beans = queryResponse.getBeans(modelClass);
-			SolrjUtil.showQueryResponse(queryResponse, modelClass);
-			/******************************************************/
+
+			if (log.isDebugEnabled()){
+				Map<String, Object> queryResponseMapForLog = SolrjUtil.getQueryResponseMapForLog(queryResponse, modelClass);
+				log.debug("{}", JsonUtil.format(queryResponseMapForLog));
+			}
+
+			//******************************************************
 			Pagination<T> page = generatePagination(pageNumber, rows, numFound, beans);
 			SolrData<T> solrData = new SolrData<T>();
 			setFacetData(solrData, queryResponse);
+
 			solrData.setPagination(page);
 			return solrData;
 		}catch (SolrServerException e){
@@ -174,15 +196,15 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			int rows,
 			Sort[] sorts,
 			String[] facetFields,
-			GroupParamsCommand groupParamCommand) throws SolrException{
+			GroupParamsCommand groupParamCommand) throws SolrException,NullPointerException{
 
 		if (solrQuery == null){
-			throw new IllegalArgumentException("solrQuery can't be null/empty!");
+			throw new NullPointerException("solrQuery can't be null/empty!");
 		}
 
 		if (null == groupParamCommand || groupParamCommand.getIsGroup()){
 			log.error("this method is a groupQuery method,if you don't want group ,please use else method ");
-			throw new IllegalArgumentException("null == groupParamCommand || groupParamCommand.getIsGroup()");
+			throw new NullPointerException("null == groupParamCommand || groupParamCommand.getIsGroup()");
 		}
 
 		FacetParamsCommand facetParamCommand = toFacetParamCommand(facetFields);
@@ -197,7 +219,10 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		solrQuery = setStartAndRows(solrQuery, pageNumber, rows);
 		solrQuery = setSort(solrQuery, sorts);
 
-		SolrjUtil.showSolrQuery(solrQuery);
+		if (log.isDebugEnabled()){
+			Map<String, Object> solrQueryMapForLog = SolrjUtil.getSolrQueryMapForLog(solrQuery);
+			log.debug("{}", JsonUtil.format(solrQueryMapForLog));
+		}
 		try{
 			QueryResponse queryResponse = solrServer.query(solrQuery);
 			// log.debug("queryResponse:{}", queryResponse.toString());
@@ -271,51 +296,58 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findFacetQueryMap(org.apache.solr.client.solrj.SolrQuery, java.lang.String[],
 	 * java.lang.Integer)
 	 */
-	public Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount){
-		if (solrQuery == null){
-			throw new IllegalArgumentException("solrQuery can't be null/empty!");
+	@Deprecated
+	public Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount)
+			throws NullPointerException,SolrException{
+		if (null == solrQuery){
+			throw new NullPointerException("solrQuery can't be null/empty!");
 		}
-		if (Validator.isNotNullOrEmpty(facetQuerys)){
-			solrQuery.setFacet(true);
 
-			log.debug("the param facetQuerys:{}", facetQuerys);
-			for (String facetQuery : facetQuerys){
-				solrQuery.addFacetQuery(facetQuery);
-			}
+		if (Validator.isNullOrEmpty(facetQuerys)){
+			throw new NullPointerException("facetQuerys can't be null/empty!");
+		}
 
-			try{
-				QueryResponse queryResponse = solrServer.query(solrQuery);
-				Map<String, Integer> facetQueryMap = queryResponse.getFacetQuery();
+		// 如果 传入的是null,自动为0
+		if (null == facetQueryMinCount || facetQueryMinCount < 0){
+			facetQueryMinCount = 0;
+		}
+		//**************************************************************************************
 
-				// 排除0
-				if (Validator.isNotNullOrEmpty(facetQueryMap)){
-					// 如果 传入的是null,默认为0
-					if (null == facetQueryMinCount){
-						facetQueryMinCount = 0;
+		if (log.isDebugEnabled()){
+			log.debug("facetQuerys:{},facetQueryMinCount:{}", JsonUtil.format(facetQuerys), facetQueryMinCount);
+		}
+		//**************************************************************************************
+		solrQuery.setFacet(true);
+
+		for (String facetQuery : facetQuerys){
+			solrQuery.addFacetQuery(facetQuery);
+		}
+
+		try{
+			QueryResponse queryResponse = solrServer.query(solrQuery);
+			Map<String, Integer> facetQueryMap = queryResponse.getFacetQuery();
+
+			// 排除0
+			if (Validator.isNotNullOrEmpty(facetQueryMap)){
+
+				// 此种删除 不会抛出 ConcurrentModificationException
+				Set<String> keySet = facetQueryMap.keySet();
+				for (Iterator<String> iterator = keySet.iterator(); iterator.hasNext();){
+					String key = iterator.next();
+					Integer value = facetQueryMap.get(key);
+					if (value < facetQueryMinCount){
+						iterator.remove();
 					}
-
-					// 此种删除 不会抛出 ConcurrentModificationException
-					Set<String> keySet = facetQueryMap.keySet();
-					for (Iterator<String> iterator = keySet.iterator(); iterator.hasNext();){
-						String key = iterator.next();
-						Integer value = facetQueryMap.get(key);
-						if (value < facetQueryMinCount){
-							iterator.remove();
-						}
-					}
-
-					if (log.isDebugEnabled()){
-						log.debug(JsonUtil.format(facetQueryMap));
-					}
-					return facetQueryMap;
 				}
 
-			}catch (SolrServerException e){
-				log.error(e.getMessage());
-				e.printStackTrace();
+				if (log.isDebugEnabled()){
+					log.debug(JsonUtil.format(facetQueryMap));
+				}
+				return facetQueryMap;
 			}
-		}else{
-			log.debug("the param facetQuerys is null/empty");
+		}catch (SolrServerException e){
+			e.printStackTrace();
+			throw new SolrException(e);
 		}
 
 		return null;
@@ -328,15 +360,15 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @param facetFields
 	 *            the facet fields
-	 * @return the facet param command
+	 * @return if null==facetFields,return new FacetParamsCommand()<br>
+	 *         否则,内部自动设置 {@link FacetParamsCommand#setMincount(Integer)}为1,如果需要更加精确的,请调用
+	 *         {@link #findByQuery(SolrQuery, Integer, int, Sort[], FacetParamsCommand)}
 	 */
 	private FacetParamsCommand toFacetParamCommand(String[] facetFields){
 		FacetParamsCommand facetParamCommand = new FacetParamsCommand();
 		if (Validator.isNotNullOrEmpty(facetFields)){
 			// 如果 facetFields facetQuerys 只要不都为null 则表示要facet
 			facetParamCommand.setFacet(true);
-			// 默认 mincount至少为1 返回 如果需要更精确的 请调用 com.jumbo.brandstore.manager.solr.BaseSolrRepositoryImpl.findByQuery(Integer, int, SolrQuery,
-			// FacetParamCommand)
 			facetParamCommand.setMincount(1);
 			facetParamCommand.setSort(FacetParams.FACET_SORT_COUNT);
 			facetParamCommand.setFacetFields(facetFields);
@@ -485,7 +517,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		}catch (Exception e){
 			log.error("error:{}", JsonUtil.format(model));
 			e.printStackTrace();
-			throw new SolrException("Save failed for model " + model + "," + e.getMessage());
+			throw new SolrException("Save failed for model " + model + "," + e.getMessage(), e);
 		}
 	}
 
@@ -509,7 +541,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		}catch (Exception e){
 			// log.error("error:{}", JsonUtil.format(modelList));
 			e.printStackTrace();
-			throw new SolrException("Batch save model failed for modelClass " + modelClass + "," + e.getMessage());
+			throw new SolrException("Batch save model failed for modelClass " + modelClass + "," + e.getMessage(), e);
 		}
 	}
 
@@ -531,7 +563,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
-			throw new SolrException("Delete failed for model with PK:" + primaryKey + "," + e.getMessage());
+			throw new SolrException("Delete failed for model with PK:" + primaryKey + "," + e.getMessage(), e);
 		}
 	}
 
@@ -553,7 +585,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
-			throw new SolrException("Delete failed for model with query:" + query + "," + e.getMessage());
+			throw new SolrException("Delete failed for model with query:" + query + "," + e.getMessage(), e);
 		}
 	}
 
@@ -583,52 +615,63 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
-			throw new SolrException("Batch delete model failed for modelClass " + modelClass + "," + e.getMessage());
+			throw new SolrException("Batch delete model failed for modelClass " + modelClass + "," + e.getMessage(), e);
 		}
 	}
 
 	// **********************************************************************************************************
 
 	/**
-	 * 设置facet相关参数.
+	 * 设置facet相关参数
+	 * <p>
+	 * 仅当 {@link FacetParamsCommand#isFacet()}为true的时候,才会设置facet信息
+	 * </p>
+	 * .
 	 * 
 	 * @param solrQuery
 	 *            the solr query
 	 * @param facetParamCommand
 	 *            the facet param command
-	 * @return the solr query
+	 * @return if isNullOrEmpty(facetParamCommand),直接返回SolrQuery;否则封装solrquery facet参数
+	 * @throws IllegalArgumentException
+	 *             如果 facetParamCommand.getFacetQuerys()中有一个是 isNullOrEmpty(facetQuery)
+	 * @see FacetParamsCommand
 	 */
-	private SolrQuery setFacetParam(SolrQuery solrQuery,FacetParamsCommand facetParamCommand){
-		if (Validator.isNotNullOrEmpty(facetParamCommand)){
-			// 转换facet 参数
-			boolean facet = facetParamCommand.isFacet();
-			solrQuery.setFacet(facet);
-			if (facet){
-				String[] facetFields = facetParamCommand.getFacetFields();
-				String[] facetQuerys = facetParamCommand.getFacetQuerys();
-				boolean isFacetFieldsNotNullOrEmpty = Validator.isNotNullOrEmpty(facetFields);
-				boolean isFacetQuerysNotNullOrEmpty = Validator.isNotNullOrEmpty(facetQuerys);
+	private SolrQuery setFacetParam(SolrQuery solrQuery,FacetParamsCommand facetParamCommand) throws IllegalArgumentException{
 
-				if (isFacetFieldsNotNullOrEmpty || isFacetQuerysNotNullOrEmpty){
-					solrQuery.setFacetMinCount(facetParamCommand.getMincount());
-					solrQuery.setFacetLimit(facetParamCommand.getLimit());
-					solrQuery.setFacetSort(facetParamCommand.getSort());
-				}
+		if (Validator.isNullOrEmpty(facetParamCommand)){
+			return solrQuery;
+		}
+		if (log.isDebugEnabled()){
+			log.debug("facetParamCommand:{}", JsonUtil.format(facetParamCommand));
+		}
+		// 转换facet 参数
+		boolean facet = facetParamCommand.isFacet();
+		solrQuery.setFacet(facet);
+		if (facet){
+			String[] facetFields = facetParamCommand.getFacetFields();
+			String[] facetQuerys = facetParamCommand.getFacetQuerys();
+			boolean isFacetFieldsNotNullOrEmpty = Validator.isNotNullOrEmpty(facetFields);
+			boolean isFacetQuerysNotNullOrEmpty = Validator.isNotNullOrEmpty(facetQuerys);
 
-				// FacetFields不是 null or empty
-				if (isFacetFieldsNotNullOrEmpty){
-					solrQuery.addFacetField(facetFields);
-				}
+			if (isFacetFieldsNotNullOrEmpty || isFacetQuerysNotNullOrEmpty){
+				solrQuery.setFacetMinCount(facetParamCommand.getMincount());
+				solrQuery.setFacetLimit(facetParamCommand.getLimit());
+				solrQuery.setFacetSort(facetParamCommand.getSort());
+			}
 
-				// facetQuery不是 null or empty
-				if (isFacetQuerysNotNullOrEmpty){
-					log.debug("the param facetQuerys:{}", facetQuerys);
-					for (String facetQuery : facetQuerys){
-						if (Validator.isNullOrEmpty(facetQuery)){
-							throw new IllegalArgumentException("facetQuery can't be null/empty!");
-						}
-						solrQuery.addFacetQuery(facetQuery);
+			// FacetFields不是 null or empty
+			if (isFacetFieldsNotNullOrEmpty){
+				solrQuery.addFacetField(facetFields);
+			}
+
+			// facetQuery不是 null or empty
+			if (isFacetQuerysNotNullOrEmpty){
+				for (String facetQuery : facetQuerys){
+					if (Validator.isNullOrEmpty(facetQuery)){
+						throw new IllegalArgumentException("facetQuery can't be null/empty!");
 					}
+					solrQuery.addFacetQuery(facetQuery);
 				}
 			}
 		}
@@ -636,29 +679,33 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	}
 
 	/**
-	 * Sets the sort.
+	 * 设置排序信息.
 	 * 
 	 * @param solrQuery
 	 *            the solr query
 	 * @param sorts
-	 *            the sorts
-	 * @return the solr query
+	 *            如果sorts是isNullOrEmpty,直接返回 solrQuery
+	 * @return 带有排序因子的SolrQuery
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(solrQuery)
+	 * @see org.apache.solr.client.solrj.SolrQuery.ORDER
 	 */
-	private SolrQuery setSort(SolrQuery solrQuery,Sort[] sorts){
+	private SolrQuery setSort(SolrQuery solrQuery,Sort[] sorts) throws NullPointerException{
 		if (Validator.isNullOrEmpty(solrQuery)){
-			throw new IllegalArgumentException("solrQuery can't be null/empty!");
+			throw new NullPointerException("solrQuery can't be null/empty!");
 		}
 		if (Validator.isNullOrEmpty(sorts)){
 			log.debug("the param sorts is null~~");
-		}else{
-			for (Sort sort : sorts){
-				if (Validator.isNullOrEmpty(sort)){
-					throw new IllegalArgumentException("sort can't be null/empty!");
-				}
+			return solrQuery;
+		}
 
-				ORDER order = sort.getType().equals(Sort.ASC) ? ORDER.asc : ORDER.desc;
-				solrQuery.addSortField(sort.getField(), order);
+		for (Sort sort : sorts){
+			if (Validator.isNullOrEmpty(sort)){
+				throw new IllegalArgumentException("sort can't be null/empty!");
 			}
+			ORDER order = sort.getType().equals(Sort.ASC) ? ORDER.asc : ORDER.desc;
+			//TODO 使用新的API
+			solrQuery.addSortField(sort.getField(), order);
 		}
 		return solrQuery;
 	}
@@ -669,7 +716,8 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @param solrDocumentList
 	 *            the solr document list
 	 * @return the list
-	 * @see org.apache.solr.client.solrj.response.QueryResponse#getBeans(Class<T>)
+	 * @see org.apache.solr.client.solrj.response.QueryResponse#getBeans(Class)
+	 * @see org.apache.solr.client.solrj.beans.DocumentObjectBinder
 	 */
 	private List<T> convertSolrDocumentListToBeans(SolrDocumentList solrDocumentList){
 		DocumentObjectBinder documentObjectBinder = null;
@@ -678,7 +726,6 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		}else{
 			documentObjectBinder = solrServer.getBinder();
 		}
-		/******************************************************/
 		List<T> beans = documentObjectBinder.getBeans(modelClass, solrDocumentList);
 		return beans;
 	}
@@ -687,7 +734,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 设置start和row.
 	 * 
 	 * @param solrQuery
-	 *            the solr query
+	 *            solrQuery对象 内部调用,必须非空
 	 * @param pageNumber
 	 *            第几页,为自然页,从1开始<br>
 	 *            <ul>
@@ -715,7 +762,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @param <G>
 	 *            the generic type
 	 * @param pageNumber
-	 *            第几页,为自然页,从1开始<br>
+	 *            第几页,为自然页,从1开始
 	 *            <ul>
 	 *            <li>可以为null,系统自动为1</li>
 	 *            <li>如果<1,系统自动为1</li>
@@ -727,6 +774,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @param items
 	 *            the items
 	 * @return the pagination
+	 * @see loxia.dao.Pagination
 	 */
 	private <G> Pagination<G> generatePagination(Integer pageNumber,int rows,long count,List<G> items){
 		Integer start = toStart(pageNumber, rows);
@@ -762,7 +810,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	}
 
 	/**
-	 * 标准化pageNumber参数 ,肯定不会为{@code null},必然{@code >=1}
+	 * 标准化pageNumber参数 ,肯定不会为{@code null},必然{@code >=1}.
 	 * 
 	 * @param pageNumber
 	 *            第几页,为自然页,从1开始
