@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
@@ -97,6 +97,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	// ***********************************************************************************
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[])
 	 */
@@ -110,6 +111,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], java.lang.String[])
 	 */
@@ -120,6 +122,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], com.feilong.tools.solrj.command.FacetParamCommand)
 	 */
@@ -161,6 +164,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQueryWithGroup(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], java.lang.String[], com.feilong.tools.solrj.command.GroupParamCommand)
 	 */
@@ -263,6 +267,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findFacetQueryMap(org.apache.solr.client.solrj.SolrQuery, java.lang.String[],
 	 * java.lang.Integer)
 	 */
@@ -460,6 +465,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#save(java.lang.Object)
 	 */
 	public T save(T model) throws SolrException{
@@ -485,6 +491,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#batchSave(java.util.List)
 	 */
 	public void batchSave(List<T> modelList) throws SolrException{
@@ -509,6 +516,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	// ********************************************删除**************************************************************
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#delete(java.io.Serializable)
 	 */
 	public void delete(PK primaryKey) throws SolrException{
@@ -529,6 +537,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#deleteByQuery(java.lang.String)
 	 */
 	public void deleteByQuery(String query) throws SolrException{
@@ -550,6 +559,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#batchDelete(java.util.List)
 	 */
 	public void batchDelete(List<PK> pkList) throws SolrException{
@@ -674,7 +684,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	}
 
 	/**
-	 * 设置start 和row.
+	 * 设置start和row.
 	 * 
 	 * @param solrQuery
 	 *            the solr query
@@ -693,8 +703,9 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		solrQuery.setStart(start);
 		solrQuery.setRows(rows);
 
-		Object[] args = { pageNumber, start, rows };
-		log.debug("pageNumber:{},start:{},rows:{}", args);
+		if (log.isDebugEnabled()){
+			log.debug("pageNumber:{},start:{},rows:{}", pageNumber, start, rows);
+		}
 		return solrQuery;
 	}
 
@@ -717,7 +728,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 *            the items
 	 * @return the pagination
 	 */
-	private <G> Pagination<G> generatePagination(int pageNumber,int rows,long count,List<G> items){
+	private <G> Pagination<G> generatePagination(Integer pageNumber,int rows,long count,List<G> items){
 		Integer start = toStart(pageNumber, rows);
 
 		Pagination<G> pagination = new Pagination<G>();
@@ -745,13 +756,28 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @return the integer
 	 */
 	private Integer toStart(Integer pageNumber,int rows){
+		Integer standardPageNumber = standardPageNumber(pageNumber);
+		Integer start = (standardPageNumber - 1) * rows;
+		return start;
+	}
+
+	/**
+	 * 标准化pageNumber参数 ,肯定不会为{@code null},必然{@code >=1}
+	 * 
+	 * @param pageNumber
+	 *            第几页,为自然页,从1开始
+	 *            <ul>
+	 *            <li>可以为null,系统自动为1</li>
+	 *            <li>如果<1,系统自动为1</li>
+	 *            </ul>
+	 * @return 标准化的PageNumber
+	 */
+	private Integer standardPageNumber(Integer pageNumber){
 		if (null == pageNumber || pageNumber < 1){
 			// 默认
-			pageNumber = 1;
+			return 1;
 		}
-
-		Integer start = (pageNumber - 1) * rows;
-		return start;
+		return pageNumber;
 	}
 
 	// **********************************************************************************
