@@ -115,7 +115,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 		// *******************************************************
 		String transactionNo = tradeNo;
 		String regexPattern_transactionNo = "^[0-9a-zA-Z]{1,18}+$";
-		if (!RegexUtil.match(regexPattern_transactionNo, transactionNo)){
+		if (!RegexUtil.matches(regexPattern_transactionNo, transactionNo)){
 			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
 					"transactionNo:[{}] ,don't match:[{}]",
 					transactionNo,

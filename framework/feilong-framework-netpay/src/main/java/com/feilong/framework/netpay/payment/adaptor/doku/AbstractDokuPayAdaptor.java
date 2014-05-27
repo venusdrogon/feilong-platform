@@ -113,7 +113,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		String tradeNo = payRequest.getTradeNo();
 		if (tradeNo.length() > 14){ // TRANSIDMERCHANT AN …14 Transaction ID from Merchant
 			throw new IllegalArgumentException("the length of code not more than 14,length is :" + tradeNo.length());
-		}else if (!RegexUtil.match(RegexPattern.AN, tradeNo)){// AN
+		}else if (!RegexUtil.matches(RegexPattern.AN, tradeNo)){// AN
 			throw new IllegalArgumentException("the tradeNo:" + tradeNo + ",must be only with numeric and alpha.");
 		}
 
@@ -145,7 +145,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			throw new IllegalArgumentException("NAME can't be null/empty!");
 		}else if (NAME.length() > 50){
 			throw new IllegalArgumentException("the length of NAME:" + NAME + " not more than 50,length is :" + NAME.length());
-		}else if (!RegexUtil.match(RegexPattern.AN, NAME)){// AN
+		}else if (!RegexUtil.matches(RegexPattern.AN, NAME)){// AN
 			throw new IllegalArgumentException("the NAME:" + NAME + ",must be only with numeric and alpha.");
 		}
 
