@@ -11,16 +11,18 @@
 	<description>feilong-tools-ant</description>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-ant-tasks</artifactId>
-			<version>2.1.3</version>
-		</dependency>
+
 		<!-- ant -->
 		<dependency>
 			<groupId>org.apache.ant</groupId>
 			<artifactId>ant</artifactId>
 			<version>${version.ant}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-ant-tasks</artifactId>
+			<version>${version.maven-ant-tasks}</version>
 		</dependency>
 	</dependencies>
 

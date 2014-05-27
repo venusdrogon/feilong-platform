@@ -27,18 +27,6 @@
 			<artifactId>feilong-spring</artifactId>
 		</dependency>
 
-		<!-- 父 platform中 jsp-api -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-		</dependency>
-
-		<!-- 父 platform 中 servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-		</dependency>
-
 		<!-- hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -52,5 +40,16 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- 父 platform中 jsp-api -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+
+		<!-- 父 platform 中 servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

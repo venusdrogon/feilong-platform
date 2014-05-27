@@ -30,11 +30,15 @@
 		<priority value="debug" />
 	</category>
 	<category name="com.feilong.taglib.display.pager.PagerUtil">
-		<priority value="info" />
+		<priority value="warn" />
+	</category>
+	<category name="com.feilong.taglib.display.httpconcat.HttpConcatUtil">
+		<priority value="warn" />
 	</category>
 	<category name="com.feilong.commons.core.net.URIUtil">
 		<priority value="info" />
 	</category>
+
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>

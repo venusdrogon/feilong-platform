@@ -23,6 +23,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.test.User;
 import com.feilong.tools.json.JsonUtil;
 
 /**
@@ -152,6 +153,19 @@ public class ListUtilTest{
 		testList.add("xinge");
 		testList.add("feilong");
 		log.info(ListUtil.toStringReplaceBrackets(testList));
+	}
+
+	/**
+	 * Convert list to string replace brackets.
+	 */
+	@Test
+	public final void getFieldValueList(){
+		List<User> testList = new ArrayList<User>();
+		testList.add(new User(2L));
+		testList.add(new User(5L));
+
+		List<String> fieldValueList = ListUtil.getFieldValueList(testList, "id");
+		log.info(JsonUtil.format(fieldValueList));
 	}
 
 }

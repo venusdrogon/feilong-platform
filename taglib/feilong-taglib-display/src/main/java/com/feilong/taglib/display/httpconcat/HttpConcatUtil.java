@@ -45,6 +45,8 @@ import com.feilong.tools.json.JsonUtil;
  * 
  * <h4>全局合并开关</h4>
  * 
+ * 
+ * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月19日 下午2:50:43
  * @see HttpConcatTag
@@ -53,6 +55,7 @@ import com.feilong.tools.json.JsonUtil;
  * @see HttpConcatParam
  * @since 1.0.7
  */
+//XXX 丰富 JavaDOC
 public final class HttpConcatUtil implements HttpConcatConstants{
 
 	/** The Constant log. */
@@ -242,10 +245,10 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 		}
 		//********************设置cache***********************************************
 		if (isWriteCache){
-			if (log.isInfoEnabled()){
-				log.info("key's hashcode:[{}] put to cache", httpConcatParam.hashCode());
-			}
 			cache.put(httpConcatParam, (null == content) ? "" : content);
+			if (log.isInfoEnabled()){
+				log.info("key's hashcode:[{}] put to cache,cache size:[{}]", httpConcatParam.hashCode(), cache.size());
+			}
 		}else{
 			if (DEFAULT_CACHEENABLE){
 				log.warn(

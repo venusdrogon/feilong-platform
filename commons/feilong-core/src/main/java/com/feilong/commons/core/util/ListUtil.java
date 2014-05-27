@@ -240,12 +240,11 @@ public final class ListUtil{
 	 * @return <ul>
 	 *         <li>isNotNullOrEmpty(objectList) 返回null</li>
 	 *         <li>解析对象集合,取到对象特殊属性,拼成List(ArrayList)</li>
-	 *         <li></li>
-	 *         <li></li>
 	 *         </ul>
 	 * @throws NullPointerException
 	 *             if isNotNullOrEmpty(objectList) or isNullOrEmpty(propertyName)
 	 */
+	//TODO 级联对象
 	public static <T, O> List<T> getFieldValueList(Iterable<O> objectList,String propertyName) throws NullPointerException{
 
 		if (Validator.isNullOrEmpty(objectList)){
@@ -271,6 +270,5 @@ public final class ListUtil{
 			}
 		}
 		return list;
-
 	}
 }

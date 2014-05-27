@@ -243,6 +243,12 @@ public final class IOWriteUtil{
 		printWriter.write(content);
 		printWriter.close();
 
+		//getAbsolutePath()  得到的是全路径
+
+		//getPath()  得到的是构造file的时候的路径
+
+		//getCanonicalPath()  可以看到CanonicalPath不但是全路径，而且把..或者.这样的符号解析出来。
+
 		if (log.isInfoEnabled()){
 			log.info(
 					"fileWriteMode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]",
