@@ -17,6 +17,7 @@ package com.feilong.tools.json;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -38,10 +39,15 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.json.processor.JsonDateValueProcessor;
 
 /**
- * json 工具类 <br>
- * <b>依赖于下面的jar:</b>
+ * json 工具类
+ * 
+ * <h4>依赖于下面的jar:</h4>
+ * 
+ * <blockquote>
+ * <p>
  * 
  * <pre>
  * {@code
@@ -53,6 +59,8 @@ import com.feilong.commons.core.util.Validator;
  * <artifactId>xom</artifactId>
  * }
  * </pre>
+ * <p>
+ * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.5 Jan 26, 2013 8:02:09 PM
@@ -81,6 +89,10 @@ public final class JsonUtil{
 		morpherRegistry.registerMorpher(dateMorpher);
 	}
 
+	//***************************format********************************************************
+
+	// [start] format
+
 	/**
 	 * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.
 	 * 
@@ -89,7 +101,8 @@ public final class JsonUtil{
 	 * @return the string
 	 */
 	public static String format(Object obj){
-		return format(obj, null);
+		String[] excludes = null;
+		return format(obj, excludes);
 	}
 
 	/**
@@ -108,6 +121,7 @@ public final class JsonUtil{
 		// 排除,避免循环引用 There is a cycle in the hierarchy!
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		jsonConfig.setIgnoreDefaultExcludes(true);
+		jsonConfig.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
 
 		// java.lang.ClassCastException: JSON keys must be strings
 		// see http://feitianbenyue.iteye.com/blog/2046877
@@ -116,9 +130,29 @@ public final class JsonUtil{
 		if (Validator.isNotNullOrEmpty(excludes)){
 			jsonConfig.setExcludes(excludes);
 		}
+		return format(obj, jsonConfig);
+	}
+
+	/**
+	 * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.<br>
+	 * 
+	 * @param obj
+	 *            the obj
+	 * @param jsonConfig
+	 *            the json config
+	 * @return the string
+	 * @since 1.0.7
+	 * @see JsonConfig
+	 */
+	public static String format(Object obj,JsonConfig jsonConfig){
 		String string = JsonUtil.toJSON(obj, jsonConfig).toString(4, 4);
 		return string;
 	}
+
+	// [end]
+	//*****************************************************************************************
+
+	// [start]toBean
 
 	/**
 	 * json串,转换成实体对象.
@@ -186,7 +220,11 @@ public final class JsonUtil{
 		return JSONObject.toBean(jsonObject, jsonConfig);
 	}
 
-	// *****************************Array***************************************************************
+	// [end]
+
+	// *****************************Array******************************************************
+	// [start]toArray
+
 	/**
 	 * 把一个json数组串转换成普通数组.
 	 * 
@@ -240,7 +278,11 @@ public final class JsonUtil{
 		return t;
 	}
 
-	// *****************************List***************************************************************
+	// [end]
+
+	// *****************************List********************************************************
+	// [start]toList
+
 	/**
 	 * 把一个json数组串转换成存放普通类型元素的集合.
 	 * 
@@ -302,7 +344,11 @@ public final class JsonUtil{
 		return list;
 	}
 
-	// ********************************Map*****************************************************************************
+	// [end]
+
+	// ********************************Map******************************************************
+
+	// [start]toMap
 
 	/**
 	 * 把json对象串转换成map对象.
@@ -380,6 +426,10 @@ public final class JsonUtil{
 		return map;
 	}
 
+	// [end]
+
+	// [start]toJSON
+
 	/**
 	 * 把实体Bean、Map对象、数组、列表集合转换成Json串.
 	 * 
@@ -404,8 +454,8 @@ public final class JsonUtil{
 		if (null == jsonConfig){
 			jsonConfig = new JsonConfig();
 			// 注册日期处理器
-			// JsonDateValueProcessor jsonValueProcessor = new JsonDateValueProcessor(DatePattern.commonWithTime);
-			// jsonConfig.registerJsonValueProcessor(Date.class, jsonValueProcessor);
+			JsonDateValueProcessor jsonValueProcessor = new JsonDateValueProcessor(DatePattern.commonWithTime);
+			jsonConfig.registerJsonValueProcessor(Date.class, jsonValueProcessor);
 		}
 		JSON json = null;
 
@@ -419,6 +469,12 @@ public final class JsonUtil{
 		}
 		return json;
 	}
+
+	// [end]
+
+	//*******************************objectToXML*************************************************
+
+	// [start]objectToXML
 
 	/**
 	 * 把json串、数组、集合(collection map)、实体Bean转换成XML<br>
@@ -463,6 +519,10 @@ public final class JsonUtil{
 
 	}
 
+	// [end]
+
+	// [start]xmlToJSON
+
 	/**
 	 * XML转成json串.
 	 * 
@@ -475,4 +535,6 @@ public final class JsonUtil{
 		JSON json = xmlSerializer.read(xml);
 		return json;
 	}
+
+	// [end]
 }
