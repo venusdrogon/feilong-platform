@@ -155,7 +155,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 		if (log.isDebugEnabled()){
 			Map<String, Object> solrQueryMapForLog = SolrjUtil.getSolrQueryMapForLog(solrQuery);
-			log.debug("{}", JsonUtil.format(solrQueryMapForLog));
+			log.debug("solrQueryMapForLog:{}", JsonUtil.format(solrQueryMapForLog));
 		}
 
 		try{
@@ -166,7 +166,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 			if (log.isDebugEnabled()){
 				Map<String, Object> queryResponseMapForLog = SolrjUtil.getQueryResponseMapForLog(queryResponse, modelClass);
-				log.debug("{}", JsonUtil.format(queryResponseMapForLog));
+				log.debug("queryResponseMapForLog:{}", JsonUtil.format(queryResponseMapForLog));
 			}
 
 			//******************************************************
@@ -221,7 +221,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 		if (log.isDebugEnabled()){
 			Map<String, Object> solrQueryMapForLog = SolrjUtil.getSolrQueryMapForLog(solrQuery);
-			log.debug("{}", JsonUtil.format(solrQueryMapForLog));
+			log.debug("solrQueryMapForLog:{}", JsonUtil.format(solrQueryMapForLog));
 		}
 		try{
 			QueryResponse queryResponse = solrServer.query(solrQuery);
@@ -341,7 +341,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 				}
 
 				if (log.isDebugEnabled()){
-					log.debug(JsonUtil.format(facetQueryMap));
+					log.debug("facetQueryMap:{}", JsonUtil.format(facetQueryMap));
 				}
 				return facetQueryMap;
 			}
@@ -420,7 +420,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 				}
 			}
 			if (log.isDebugEnabled()){
-				log.debug(JsonUtil.format(map));
+				log.debug("map:{}", JsonUtil.format(map));
 			}
 		}
 		return map;

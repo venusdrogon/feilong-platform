@@ -65,17 +65,27 @@ public final class SolrjUtil{
 	 */
 	public static Map<String, Object> getSolrQueryMapForLog(SolrQuery solrQuery){
 
-		Map<String, Object> map = new HashMap<String, Object>();
-
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		// solrQuery.setShowDebugInfo(true);
-		map.put("solrQuery.getFields()", solrQuery.getFields());
 
 		map.put("solrQuery.getQuery()", solrQuery.getQuery());
-
 		map.put("solrQuery.getFilterQueries()", solrQuery.getFilterQueries());
+
+		map.put("solrQuery.toString()", solrQuery.toString());
 
 		Map<String, Object> facetMap = getFacetMap(solrQuery);
 		map.put("facetMap", facetMap);
+
+		//排序
+		Map<String, Object> sortMap = getSortMap(solrQuery);
+		map.put("sortMap", sortMap);
+
+		//分页
+		Map<String, Object> pageMap = getPageMap(solrQuery);
+		map.put("pageMap", pageMap);
+		//******************************************************
+
+		map.put("solrQuery.getFields()", solrQuery.getFields());
 
 		//高亮
 		Map<String, Object> highlightMap = getHighlightMap(solrQuery);
@@ -85,14 +95,6 @@ public final class SolrjUtil{
 		Map<String, Object> parameterMap = getParameterMap(solrQuery);
 		map.put("parameterMap", parameterMap);
 
-		//排序
-		Map<String, Object> sortMap = getSortMap(solrQuery);
-		map.put("sortMap", sortMap);
-
-		//分页
-		Map<String, Object> pageMap = getPageMap(solrQuery);
-		map.put("pageMap", pageMap);
-
 		//termsMap
 		Map<String, Object> termsMap = getTermsMap(solrQuery);
 		map.put("termsMap", termsMap);
@@ -100,7 +102,6 @@ public final class SolrjUtil{
 		map.put("solrQuery.getQueryType()", solrQuery.getQueryType());
 		map.put("solrQuery.getTimeAllowed()", solrQuery.getTimeAllowed());
 
-		map.put("solrQuery.toString()", solrQuery.toString());
 		return map;
 	}
 
@@ -112,9 +113,9 @@ public final class SolrjUtil{
 	 * @return the page map
 	 */
 	private static Map<String, Object> getPageMap(SolrQuery solrQuery){
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("solrQuery.getRows()", solrQuery.getRows());
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("solrQuery.getStart()", solrQuery.getStart());
+		map.put("solrQuery.getRows()", solrQuery.getRows());
 		return map;
 	}
 
@@ -126,7 +127,7 @@ public final class SolrjUtil{
 	 * @return the sort map
 	 */
 	private static Map<String, Object> getSortMap(SolrQuery solrQuery){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("solrQuery.getSortField()", solrQuery.getSortField());
 		map.put("solrQuery.getSortFields()", solrQuery.getSortFields());
 		return map;
@@ -140,7 +141,7 @@ public final class SolrjUtil{
 	 * @return the parameter map
 	 */
 	private static Map<String, Object> getParameterMap(SolrQuery solrQuery){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("solrQuery.getParameterNames()", solrQuery.getParameterNames());
 
 		Iterator<String> parameterNamesIterator = solrQuery.getParameterNamesIterator();
@@ -162,7 +163,7 @@ public final class SolrjUtil{
 	 * @return the terms map
 	 */
 	private static Map<String, Object> getTermsMap(SolrQuery solrQuery){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("solrQuery.getTerms()", solrQuery.getTerms());
 		map.put("solrQuery.getTermsFields()", solrQuery.getTermsFields());
 		map.put("solrQuery.getTermsLimit()", solrQuery.getTermsLimit());
@@ -188,7 +189,7 @@ public final class SolrjUtil{
 	 * @return the facet map
 	 */
 	private static Map<String, Object> getFacetMap(SolrQuery solrQuery){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("solrQuery.getFacetFields()", solrQuery.getFacetFields());
 		map.put("solrQuery.getFacetLimit()", solrQuery.getFacetLimit());
 		map.put("solrQuery.getFacetMinCount()", solrQuery.getFacetMinCount());
@@ -206,7 +207,7 @@ public final class SolrjUtil{
 	 * @return the highlight map
 	 */
 	private static Map<String, Object> getHighlightMap(SolrQuery solrQuery){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("solrQuery.getHighlight()", solrQuery.getHighlight());
 		map.put("solrQuery.getHighlightFields()", solrQuery.getHighlightFields());
 		map.put("solrQuery.getHighlightFragsize()", solrQuery.getHighlightFragsize());
@@ -217,6 +218,8 @@ public final class SolrjUtil{
 
 		return map;
 	}
+
+	//**********************************************************************************
 
 	/**
 	 * 显示 SpellCheckResponse信息.
