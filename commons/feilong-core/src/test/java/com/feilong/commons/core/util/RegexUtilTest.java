@@ -15,9 +15,13 @@
  */
 package com.feilong.commons.core.util;
 
+import java.util.Map;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -28,13 +32,38 @@ public class RegexUtilTest{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(RegexUtilTest.class);
 
+	@Test
+	public final void group(){
+		String regexPattern = "(.*?)@(.*?)";
+		String email = "venusdrogon@163.com";
+		log.info(RegexUtil.group(regexPattern, email, 1) + "");
+		log.info(RegexUtil.group(regexPattern, email, 2) + "");
+	}
+
+	@Test
+	public final void group2(){
+		String regexPattern_table = "@Table.*name.*\"(.*?)\".*";
+		//		regexPattern = "@Table[(]*\"(.*?)*[)]";
+		//		regexPattern = "@Table(.*?)";
+		String email = "@Table(name = \"T_MEM_MEMBER_ADDRESS\")";
+		log.info(RegexUtil.group(regexPattern_table, email) + "");
+	}
+
+	@Test
+	public final void group1(){
+		String regexPattern = "(.*?)(?:@)(.*?)";
+		regexPattern = "(.*?)@(.*?)";
+		String email = "venusdrogon@163.com";
+		RegexUtil.group(regexPattern, email);
+	}
+
 	/**
 	 * Test method for {@link com.feilong.commons.core.util.RegexUtil#isEmail(java.lang.String)}.
 	 */
 	@Test
 	public final void testIsEmail(){
 		String email = "venusdrogon@163.com";
-		log.info(RegexUtil.match(RegexPattern.EMAIL, email) + "");
+		log.info(RegexUtil.matches(RegexPattern.EMAIL, email) + "");
 	}
 
 	/**
@@ -42,21 +71,21 @@ public class RegexUtilTest{
 	 */
 	@Test
 	public final void testIsIP(){
-		log.info(RegexUtil.match(RegexPattern.IP, "venusdrogon@163.com") + "");
-		log.info(RegexUtil.match(RegexPattern.IP, "127.0.0.1") + "");
-		log.info(RegexUtil.match(RegexPattern.IP, "127.0.0.*") + "");
-		log.info(RegexUtil.match(RegexPattern.IP, "327.0.0.1") + "");
+		log.info(RegexUtil.matches(RegexPattern.IP, "venusdrogon@163.com") + "");
+		log.info(RegexUtil.matches(RegexPattern.IP, "127.0.0.1") + "");
+		log.info(RegexUtil.matches(RegexPattern.IP, "127.0.0.*") + "");
+		log.info(RegexUtil.matches(RegexPattern.IP, "327.0.0.1") + "");
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.RegexUtil#match(java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.feilong.commons.core.util.RegexUtil#matches(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public final void testMatch(){
 		String iphone = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7";
 
 		String pattern = "^(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC\\-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT\\-)|(SonyEricsson)|(NEC\\-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi\\-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG\\-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC\\-)|(SED\\-)|(EMOL\\-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)$";
-		log.info(RegexUtil.match(pattern, iphone) + "");
+		log.info(RegexUtil.matches(pattern, iphone) + "");
 
 	}
 
@@ -65,11 +94,11 @@ public class RegexUtilTest{
 	 */
 	@Test
 	public final void testMatch1(){
-		log.info(RegexUtil.match(RegexPattern.DECIMAL_TWODIGIT, "2000阿.00") + "");
-		log.info(RegexUtil.match(RegexPattern.DECIMAL_TWODIGIT, "2000.0") + "");
-		log.info(RegexUtil.match(RegexPattern.NUMBER, "2000.0") + "");
-		log.info(RegexUtil.match(RegexPattern.NUMBER, "02125454") + "");
-		log.info(RegexUtil.match(RegexPattern.AN, "02125454") + "");
+		log.info(RegexUtil.matches(RegexPattern.DECIMAL_TWODIGIT, "2000阿.00") + "");
+		log.info(RegexUtil.matches(RegexPattern.DECIMAL_TWODIGIT, "2000.0") + "");
+		log.info(RegexUtil.matches(RegexPattern.NUMBER, "2000.0") + "");
+		log.info(RegexUtil.matches(RegexPattern.NUMBER, "02125454") + "");
+		log.info(RegexUtil.matches(RegexPattern.AN, "02125454") + "");
 
 	}
 
@@ -78,8 +107,8 @@ public class RegexUtilTest{
 	 */
 	@Test
 	public final void AN(){
-		log.info(RegexUtil.match(RegexPattern.AN, "0212545.4") + "");
-		log.info(RegexUtil.match(RegexPattern.AN, "aa02125454") + "");
+		log.info(RegexUtil.matches(RegexPattern.AN, "0212545.4") + "");
+		log.info(RegexUtil.matches(RegexPattern.AN, "aa02125454") + "");
 
 	}
 
@@ -88,7 +117,7 @@ public class RegexUtilTest{
 	 */
 	@Test
 	public final void ANS(){
-		log.info(RegexUtil.match(RegexPattern.ANS, "02125 454") + "");
+		log.info(RegexUtil.matches(RegexPattern.ANS, "02125 454") + "");
 
 	}
 }
