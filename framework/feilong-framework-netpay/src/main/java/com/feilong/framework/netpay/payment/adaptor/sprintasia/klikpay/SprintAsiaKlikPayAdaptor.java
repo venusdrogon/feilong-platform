@@ -84,6 +84,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
@@ -186,9 +187,10 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
-	public PaymentResult verifyNotify(HttpServletRequest request){
+	public PaymentResult verifyNotify(HttpServletRequest request) throws IllegalArgumentException{
 		// Field# Parameter Type Length Format Mandatory
 		// 1 klikPayCode string 10 (AN) TRUE
 		// 2 transactionDate string 19 DD/MM/YYYY hh:mm:ss TRUE
@@ -222,6 +224,14 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 		String currency = request.getParameter("currency");
 		if (Validator.isNullOrEmpty(currency)){
 			throw new IllegalArgumentException("currency can't be null/empty!");
+		}
+
+		//2014-5-28 15:24
+		//when springASia guys test ,they will send <currency>USD</currency> just for test
+		//目前 必须是 IDR
+		if (!currencyDefault.equals(currency)){
+			String messagePattern = "currency now time must be:{},but input is :{}";
+			throw new IllegalArgumentException(Slf4jUtil.formatMessage(messagePattern, currencyDefault, currency));
 		}
 
 		// 5 totalAmount number 12 888888.00 TRUE
@@ -279,6 +289,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	public String getFeedbackTradeNo(HttpServletRequest request){
@@ -287,6 +298,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	public String getFeedbackTotalFee(HttpServletRequest request){
@@ -295,6 +307,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public PaymentResult verifyRedirect(HttpServletRequest request){

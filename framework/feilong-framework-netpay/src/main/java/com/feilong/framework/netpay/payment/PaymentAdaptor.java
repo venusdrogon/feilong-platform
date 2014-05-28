@@ -93,8 +93,10 @@ public interface PaymentAdaptor{
 	 * @param request
 	 *            the request
 	 * @return true, if successful
+	 * @throws IllegalArgumentException
+	 *             参数验证不通过
 	 */
-	PaymentResult verifyNotify(HttpServletRequest request);
+	PaymentResult verifyNotify(HttpServletRequest request) throws IllegalArgumentException;
 
 	/**
 	 * 处理跳转参数的校验,主要是做核实参数是否正确<br>
