@@ -38,7 +38,17 @@ public class CommonTest{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(TestConstants.class);
 
+	@Test
+	public void name(){
 
+		String[] orderNumberArray = { "2", "222" };
+		Long[] orderIdArray = { 1L, 2L };
+
+		if (log.isDebugEnabled()){
+			log.debug("the param orderNumberArray:{},orderIdArray:{}", orderNumberArray, orderIdArray);
+		}
+
+	}
 
 	/**
 	 * Gets the hash code.

@@ -233,7 +233,7 @@ public class MobileUtil{
 	 */
 	public static int getCardType(String mobile){
 		// 移动电话
-		if (RegexUtil.match(mobile, "^\\d{11}$") && mobile.substring(0, 1) != "0"){
+		if (RegexUtil.matches(mobile, "^\\d{11}$") && mobile.substring(0, 1) != "0"){
 			int beginNum = Integer.parseInt(mobile.substring(0, 3));
 			switch (beginNum) {
 				case 134:
@@ -266,7 +266,7 @@ public class MobileUtil{
 				default:
 					return 0;
 			}
-		}else if (RegexUtil.match(mobile, "^\\d{3,4}-{0,1}\\d{7,8}$")){
+		}else if (RegexUtil.matches(mobile, "^\\d{3,4}-{0,1}\\d{7,8}$")){
 			return 4; // 固定电话
 		}else{
 			return 0;// 未知

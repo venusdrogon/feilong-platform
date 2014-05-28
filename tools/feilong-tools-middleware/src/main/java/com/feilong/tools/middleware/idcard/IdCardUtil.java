@@ -172,7 +172,7 @@ public class IdCardUtil{
 		char c[] = null;
 		// 是否都为数字
 
-		if (RegexUtil.match(RegexPattern.NUMBER, idCard17)){
+		if (RegexUtil.matches(RegexPattern.NUMBER, idCard17)){
 			c = idCard17.toCharArray();
 		}else{
 			return false;
@@ -208,7 +208,7 @@ public class IdCardUtil{
 			return false;
 		}
 		// 是否全都为数字
-		if (RegexUtil.match(RegexPattern.NUMBER, idCard)){
+		if (RegexUtil.matches(RegexPattern.NUMBER, idCard)){
 			String provinceid = idCard.substring(0, 2);
 			String birthday = idCard.substring(6, 12);
 			int year = Integer.parseInt(idCard.substring(6, 8));
@@ -291,7 +291,7 @@ public class IdCardUtil{
 		if (idCard.length() != 15){
 			return null;
 		}
-		if (RegexUtil.match(RegexPattern.NUMBER, idCard)){
+		if (RegexUtil.matches(RegexPattern.NUMBER, idCard)){
 			// 获取出生年月日
 			String birthday = idCard.substring(6, 12);
 			Date birthdate = DateFormatUtil.parse(birthday, "yyMMdd");
