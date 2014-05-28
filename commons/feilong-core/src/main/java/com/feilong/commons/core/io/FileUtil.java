@@ -247,6 +247,91 @@ public final class FileUtil{
 	}
 
 	// [end]
+	/**
+	 * 获得文件的最顶层 父文件夹名称
+	 * 
+	 * <pre>
+	 * {@code
+	 *   Example 1:
+	 *      "mp2-product\\mp2-product-impl\\src\\main\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"
+	 *      
+	 *      返回 mp2-product
+	 * }
+	 * </pre>
+	 * 
+	 * @param pathname
+	 *            通过将给定路径名字符串转换为抽象路径名来创建一个新 File 实例。如果给定字符串是空字符串，那么结果是空抽象路径名。
+	 * @return 如果没有父文件夹,返回自己,比如 E:/ 直接返回 E:/
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(fileName)
+	 * 
+	 * @since 1.0.7
+	 */
+	public final static String getFileTopParentName(String pathname) throws NullPointerException{
+		if (Validator.isNullOrEmpty(pathname)){
+			throw new NullPointerException("fileName can't be null/empty!");
+		}
+
+		File file = new File(pathname);
+
+		String parent = file.getParent();
+
+		if (Validator.isNullOrEmpty(parent)){
+			return pathname;
+		}
+
+		//递归
+		String fileTopParentName = getFileTopParentName(file);
+
+		if (log.isDebugEnabled()){
+			log.debug("fileName:[{}],fileTopParentName:[{}]", pathname, fileTopParentName);
+		}
+		return fileTopParentName;
+	}
+
+	/**
+	 * 获得文件的最顶层 父文件夹名称
+	 * 
+	 * <pre>
+	 * {@code
+	 *   Example 1:
+	 *      "mp2-product\\mp2-product-impl\\src\\main\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"
+	 *      
+	 *      返回 mp2-product
+	 * }
+	 * </pre>
+	 * 
+	 * @param file
+	 *            the file
+	 * @return 如果没有父文件夹,返回自己,比如 E:/ 直接返回 E:/
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(fileName)
+	 * @since 1.0.7
+	 */
+	public final static String getFileTopParentName(File file) throws NullPointerException{
+		if (Validator.isNullOrEmpty(file)){
+			throw new NullPointerException("file can't be null/empty!");
+		}
+
+		File parent = file.getParentFile();
+
+		if (Validator.isNullOrEmpty(parent)){
+			String name = file.getPath();//E:/--->E:\
+			//file.getName();
+
+			if (log.isDebugEnabled()){
+				log.debug("parent is isNullOrEmpty,return file name:{}", name);
+			}
+			return name;
+		}
+		//递归
+		String fileTopParentName = getFileTopParentName(parent);
+
+		if (log.isDebugEnabled()){
+			log.debug("file.getAbsolutePath():[{}],fileTopParentName:[{}]", file.getAbsolutePath(), fileTopParentName);
+		}
+		return fileTopParentName;
+	}
 
 	/**
 	 * 判断文件是否存在.

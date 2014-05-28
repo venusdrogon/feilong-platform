@@ -111,6 +111,22 @@ public class FileUtilTest{
 		FileUtil.createDirectory("E:\\test\\1\\2011-07-07\\test\\1\\2011-07-07");
 	}
 
+	@Test
+	public void getFileTopParentName(){
+		assertEquals("E:/", FileUtil.getFileTopParentName("E:/"));
+
+		assertEquals(
+				"mp2-product",
+				FileUtil.getFileTopParentName("mp2-product\\mp2-product-impl\\src\\main\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"));
+
+		assertEquals(
+				"mp2-product",
+				FileUtil.getFileTopParentName("mp2-product\\mp2-product-impl\\src\\..\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"));
+
+		assertEquals("package-info.java", FileUtil.getFileTopParentName("package-info.java"));
+
+	}
+
 	/**
 	 * Gets the file sizes.
 	 * 
