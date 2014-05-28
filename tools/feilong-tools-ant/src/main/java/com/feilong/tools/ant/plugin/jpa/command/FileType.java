@@ -13,32 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.ant;
+package com.feilong.tools.ant.plugin.jpa.command;
 
-import org.apache.tools.ant.Project;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Class AntUtilTest.
  * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Oct 31, 2012 12:36:05 AM
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014年5月26日 下午2:16:59
+ * @since 1.0.7
  */
-public class AntUtilTest{
-
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AntUtilTest.class);
+public enum FileType{
+	/**
+	 * class文件
+	 */
+	CLASS,
 
 	/**
-	 * Test method for {@link com.feilong.tools.ant.AntUtil#executeTarget(java.lang.String, java.lang.String, int)}.
+	 * 枚举文件
 	 */
-	@Test
-	public final void testExecuteTarget(){
-		String antFilePath = "build.xml";
-		String targetName = "test";
-		int messageOutputLevel = Project.MSG_DEBUG;
-		AntUtil.executeTarget(antFilePath, targetName, messageOutputLevel);
-	}
+	ENUM
 }
