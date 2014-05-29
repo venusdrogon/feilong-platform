@@ -37,8 +37,8 @@ import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class SolrUtil.

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package temple.lang.annotation;
 
 import java.lang.annotation.Documented;
@@ -32,6 +22,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * The Interface MyAnnotation.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-5-30 0:25:36
+ */
 @Documented
 // 这个Annotation可以被写入javadoc
 @Inherited
@@ -40,21 +36,27 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation{
 
+	/** The name_english. */
 	public String	name_english	= "venusdrogon";
 
 	/**
-	 * name属性
+	 * name属性.
 	 * 
-	 * @return
+	 * @return the string
 	 */
 	public String name() default "金鑫";
 
 	/**
-	 * 性别 1=男
+	 * 性别 1=男.
 	 * 
-	 * @return
+	 * @return the int
 	 */
 	public int sex() default 1;
 
+	/**
+	 * Love strings.
+	 * 
+	 * @return the string[]
+	 */
 	public String[] loveStrings();
 }

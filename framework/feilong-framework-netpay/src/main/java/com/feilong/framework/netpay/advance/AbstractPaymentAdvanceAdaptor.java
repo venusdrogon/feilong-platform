@@ -23,11 +23,11 @@ import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.advance.command.TradeRole;
-import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**

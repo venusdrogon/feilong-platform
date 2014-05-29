@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.commons.core.io.FileInfoEntity;
-import com.feilong.tools.json.JsonUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

@@ -57,6 +57,11 @@ public class FileUtilTest{
 	/** The string. */
 	private String				fString		= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
 
+	@Test
+	public void getNewFileName(){
+		assertEquals("F:/pie2.gif", FileUtil.getNewFileName(fileName1, "gif"));
+	}
+
 	/**
 	 * List files.
 	 * 

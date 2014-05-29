@@ -27,13 +27,13 @@ import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.text.MessageFormatUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.CollectionUtil;
 import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 import com.feilong.taglib.display.httpconcat.directive.Concat;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * http concat的核心工具类.

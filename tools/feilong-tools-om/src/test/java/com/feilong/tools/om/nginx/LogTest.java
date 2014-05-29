@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.IOReaderUtil;
-import com.feilong.tools.json.JsonUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.tools.om.nginx.command.LogFormatCommand;
 
 /**

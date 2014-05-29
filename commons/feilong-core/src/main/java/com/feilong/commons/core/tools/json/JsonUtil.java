@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.json;
+package com.feilong.commons.core.tools.json;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -38,8 +38,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.tools.json.processor.DateJsonValueProcessor;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.json.processor.JsonDateValueProcessor;
 
 /**
  * json 工具类
@@ -121,7 +121,7 @@ public final class JsonUtil{
 		// 排除,避免循环引用 There is a cycle in the hierarchy!
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		jsonConfig.setIgnoreDefaultExcludes(true);
-		jsonConfig.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor());
 
 		// java.lang.ClassCastException: JSON keys must be strings
 		// see http://feitianbenyue.iteye.com/blog/2046877
@@ -454,7 +454,7 @@ public final class JsonUtil{
 		if (null == jsonConfig){
 			jsonConfig = new JsonConfig();
 			// 注册日期处理器
-			JsonDateValueProcessor jsonValueProcessor = new JsonDateValueProcessor(DatePattern.commonWithTime);
+			DateJsonValueProcessor jsonValueProcessor = new DateJsonValueProcessor(DatePattern.commonWithTime);
 			jsonConfig.registerJsonValueProcessor(Date.class, jsonValueProcessor);
 		}
 		JSON json = null;

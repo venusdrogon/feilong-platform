@@ -24,10 +24,10 @@ import org.dom4j.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.bind.parse.AbstractXmlParse;
 import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult;
 import com.feilong.tools.dom4j.Dom4jUtil;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class DokuQueryResultParse.<br>

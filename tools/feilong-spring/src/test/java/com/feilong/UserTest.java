@@ -16,8 +16,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.entity.User;
-import com.feilong.tools.json.JsonUtil;
 
 
 public class UserTest implements ApplicationContextAware{

@@ -21,11 +21,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.framework.bind.VarCommand;
 import com.feilong.framework.bind.annotation.VarName;
 import com.feilong.framework.bind.exception.BuildCommandException;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class VarClassUtil.

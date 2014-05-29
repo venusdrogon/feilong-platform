@@ -24,7 +24,7 @@ import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.tools.json.JsonUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * The Class JaxWsDynamicClientUtil.

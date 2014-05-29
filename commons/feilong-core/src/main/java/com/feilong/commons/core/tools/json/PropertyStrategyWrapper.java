@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.json;
+package com.feilong.commons.core.tools.json;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

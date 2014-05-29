@@ -31,7 +31,7 @@ import org.apache.velocity.runtime.parser.node.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.tools.json.JsonUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.tools.velocity.NodeUtil;
 
 /**

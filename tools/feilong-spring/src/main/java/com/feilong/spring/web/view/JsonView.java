@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.AbstractView;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.ResponseUtil;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * The Class JsonView.

@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

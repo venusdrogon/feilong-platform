@@ -30,6 +30,7 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.lang.EnumUtil;
 import com.feilong.commons.core.security.oneway.SHA1Util;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult;
@@ -39,7 +40,6 @@ import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.doku.command.Resultmsg;
 import com.feilong.framework.netpay.payment.adaptor.doku.util.DokuAdaptorUtil;
-import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
 

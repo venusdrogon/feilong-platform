@@ -10,7 +10,7 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.tools.json.JsonUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.web.entity.domain.DomainAttributes;
 import com.feilong.web.entity.domain.DomainType;
 import com.feilong.web.entity.domain.DomainUtil;

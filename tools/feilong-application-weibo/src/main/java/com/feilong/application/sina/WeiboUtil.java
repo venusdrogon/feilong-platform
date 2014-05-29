@@ -31,8 +31,8 @@ import weibo4j.model.WeiboException;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.net.URIUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * 微博核心工具类.

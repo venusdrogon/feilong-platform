@@ -32,12 +32,12 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringBuilderUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.ant.DirectoryScannerUtil;
 import com.feilong.tools.ant.plugin.jpa.command.Column;
 import com.feilong.tools.ant.plugin.jpa.command.JpaConstants;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * 

@@ -22,10 +22,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * enum工具类.

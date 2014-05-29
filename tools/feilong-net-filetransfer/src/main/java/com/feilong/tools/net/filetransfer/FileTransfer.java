@@ -27,8 +27,8 @@ import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * 通用的文件传输 ,开放出来的方法有: <br>

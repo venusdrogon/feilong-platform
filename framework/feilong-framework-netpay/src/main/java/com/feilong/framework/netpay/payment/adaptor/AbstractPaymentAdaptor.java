@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ReflectUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
@@ -47,7 +48,6 @@ import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsi
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * 所有 {@link PaymentAdaptor} 的 基础类,包括了 公共属性/通用的验证等方法.

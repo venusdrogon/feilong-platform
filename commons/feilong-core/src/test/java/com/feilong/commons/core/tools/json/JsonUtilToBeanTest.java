@@ -1,4 +1,4 @@
-package com.feilong.tools.json;
+package com.feilong.commons.core.tools.json;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.Order;
 import com.feilong.test.MyBean;
 import com.feilong.test.Person;
