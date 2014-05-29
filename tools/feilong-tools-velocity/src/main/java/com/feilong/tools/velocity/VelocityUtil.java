@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.configure.PropertiesUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -40,8 +41,12 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-8 下午02:01:59
+ * 
+ * @see org.apache.velocity.VelocityContext
+ * @see org.apache.velocity.app.VelocityEngine
+ * @see org.apache.velocity.Template
+ * @see org.apache.velocity.runtime.resource.loader.ResourceLoader
  */
-
 // Properties properties = new Properties();
 // properties.put(Velocity.RESOURCE_LOADER, resource_loader_string);
 // properties.put(resource_loader_string + ".resource.loader.class", StringResourceLoader.class.getName());
@@ -60,7 +65,6 @@ import com.feilong.commons.core.util.Validator;
 // StringResourceRepository stringResourceRepository = StringResourceLoader.getRepository();
 // stringResourceRepository.putStringResource(templateName, vmContent);
 // String parseVMTemplateAfterInitVelocity = parseVMTemplateAfterInitVelocity(templateName, contextKeyValues);
-
 public final class VelocityUtil{
 
 	/** The Constant log. */
@@ -83,6 +87,10 @@ public final class VelocityUtil{
 			String formatMessage = Slf4jUtil.formatMessage(messagePattern, PROPERTIES_PATH);
 			log.error(formatMessage);
 			throw new IllegalArgumentException(formatMessage);
+		}
+
+		if (log.isInfoEnabled()){
+			log.info("velocity init, properties:{}", JsonUtil.format(properties));
 		}
 
 		try{
@@ -112,6 +120,8 @@ public final class VelocityUtil{
 	 * @param contextKeyValues
 	 *            参数
 	 * @return the string
+	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
+	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
 	 */
 	public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues){
 		String encoding = CharsetType.UTF8;
@@ -126,6 +136,8 @@ public final class VelocityUtil{
 	 * @param contextKeyValues
 	 *            vm参数
 	 * @return the string
+	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
+	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
 	 */
 	public static String parseString(String vmContent,Map<String, Object> contextKeyValues){
 		try{
@@ -157,8 +169,11 @@ public final class VelocityUtil{
 	 * @param encoding
 	 *            The character encoding to use for the template
 	 * @return 如果发生异常返回null
+	 * @see Template
+	 * @see VelocityEngine#getTemplate(String)
+	 * @see VelocityEngine#getTemplate(String, String)
+	 * @see Template#merge(org.apache.velocity.context.Context, Writer)
 	 */
-
 	private static String parseVMTemplateAfterInitVelocity(String templateName,Map<String, Object> contextKeyValues,String encoding){
 		try{
 			VelocityContext velocityContext = new VelocityContext(contextKeyValues);
