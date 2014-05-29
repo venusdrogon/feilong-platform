@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.lang;
 
 import static org.junit.Assert.fail;
 
@@ -33,6 +33,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.test.User;
 
 /**
@@ -45,7 +46,7 @@ public class ObjectUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(ObjectUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#equalsNotNull(java.lang.Object, java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equalsNotNull(java.lang.Object, java.lang.Object)}.
 	 */
 	@Test
 	public final void testEqualsNotNull(){
@@ -87,7 +88,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#equals(java.lang.Object, java.lang.Object, boolean)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equals(java.lang.Object, java.lang.Object, boolean)}.
 	 */
 	@Test
 	public final void testEqualsObjectObjectBoolean(){
@@ -95,7 +96,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#equals(java.lang.Object, java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equals(java.lang.Object, java.lang.Object)}.
 	 */
 	@Test
 	public final void testEqualsObjectObject(){
@@ -103,7 +104,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#isBoolean(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#isBoolean(java.lang.Object)}.
 	 */
 	@Test
 	public final void testIsBoolean(){
@@ -111,7 +112,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#isInteger(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#isInteger(java.lang.Object)}.
 	 */
 	@Test
 	public final void testIsInteger(){
@@ -119,7 +120,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toBoolean(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toBoolean(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToBoolean(){
@@ -127,7 +128,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toIterator(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toIterator(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToIterator(){
@@ -183,7 +184,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toInteger(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toInteger(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToInteger(){
@@ -192,7 +193,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toBigDecimal(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toBigDecimal(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToBigDecimal(){
@@ -200,7 +201,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toLong(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toLong(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToLong(){
@@ -208,7 +209,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toDouble(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toDouble(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToDouble(){
@@ -216,7 +217,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toFloat(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toFloat(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToFloat(){
@@ -224,7 +225,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toShort(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toShort(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToShort(){
@@ -232,7 +233,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toString(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toString(java.lang.Object)}.
 	 */
 	@Test
 	public final void testToStringObject(){
@@ -240,7 +241,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#toT(java.lang.Object, java.lang.Class)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toT(java.lang.Object, java.lang.Class)}.
 	 */
 	@Test
 	public final void testToT(){
@@ -248,7 +249,7 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.ObjectUtil#trim(java.lang.Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#trim(java.lang.Object)}.
 	 */
 	@Test
 	public final void testTrim(){
