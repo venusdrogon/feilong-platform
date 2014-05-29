@@ -63,6 +63,7 @@ public final class RegexUtil{
 	 * @see #getMatcher(String, CharSequence)
 	 * @see Matcher#matches()
 	 * @see Pattern#matches(String, CharSequence)
+	 * @see RegexPattern
 	 * @since 1.0.7
 	 */
 	public static boolean matches(String regexPattern,CharSequence input) throws PatternSyntaxException{
@@ -109,18 +110,20 @@ public final class RegexUtil{
 	 * @see StringBuilder
 	 * @see #getMatcher(String, CharSequence)
 	 * @see Matcher#group(int)
+	 * @see RegexPattern
 	 * @since 1.0.7
 	 */
 	public static Map<Integer, String> group(String regexPattern,CharSequence input) throws IllegalStateException,IndexOutOfBoundsException{
-		if (log.isDebugEnabled()){
-			log.debug("regexPattern:[{}],input:[{}]", regexPattern, input);
-		}
 
 		Map<Integer, String> groupMap = new LinkedHashMap<Integer, String>();
 
 		Matcher matcher = getMatcher(regexPattern, input);
 		boolean matches = matcher.matches();
 		if (matches){
+
+			if (log.isDebugEnabled()){
+				log.debug("\n\tregexPattern:[{}],\n\tinput:[{}]", regexPattern, input);
+			}
 			// 捕获组是从 1 开始从左到右的索引。组0表示整个模式，因此表达式 m.group(0) 等效于 m.group()。
 			groupMap.put(0, matcher.group());
 
@@ -143,6 +146,10 @@ public final class RegexUtil{
 
 			if (log.isDebugEnabled()){
 				log.debug("groupMap:{}", JsonUtil.format(groupMap));
+			}
+		}else{
+			if (log.isDebugEnabled()){
+				log.debug("[not matches] ,\n\tregexPattern:[{}] \n\tinput:[{}]", regexPattern, input);
 			}
 		}
 		return groupMap;
@@ -184,6 +191,7 @@ public final class RegexUtil{
 	 * @see StringBuilder
 	 * @see #getMatcher(String, CharSequence)
 	 * @see Matcher#group(int)
+	 * @see RegexPattern
 	 * @since 1.0.7
 	 */
 	public static String group(String regexPattern,CharSequence input,int group) throws IllegalStateException,IndexOutOfBoundsException{
@@ -206,6 +214,7 @@ public final class RegexUtil{
 	 * @see StringBuffer
 	 * @see StringBuilder
 	 * @see Pattern#compile(String)
+	 * @see RegexPattern
 	 * @since 1.0.7
 	 */
 	private static Matcher getMatcher(String regexPattern,CharSequence input) throws PatternSyntaxException{
@@ -245,6 +254,7 @@ public final class RegexUtil{
 	 * @see StringBuffer
 	 * @see StringBuilder
 	 * @see Pattern#compile(String, int)
+	 * @see RegexPattern
 	 * 
 	 * @since 1.0.7
 	 */

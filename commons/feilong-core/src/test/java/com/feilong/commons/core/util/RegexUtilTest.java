@@ -15,13 +15,9 @@
  */
 package com.feilong.commons.core.util;
 
-import java.util.Map;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.feilong.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -55,6 +51,17 @@ public class RegexUtilTest{
 		regexPattern = "(.*?)@(.*?)";
 		String email = "venusdrogon@163.com";
 		RegexUtil.group(regexPattern, email);
+	}
+
+	@Test
+	public final void group22(){
+		String REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\"((?:.*)|(.*length.*(\\d+).*))";
+		//		REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\".*length.*(\\d*).*";
+		//		REGEX_PATTERN_COLUMN = ".*@Column.*(\\d+).*";
+		REGEX_PATTERN_COLUMN = ".*@Column.*?name\\s*=\\s*\"(.*?)\"(?:.*?length\\s*=\\s*(\\d+))?";
+		REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\".*length\\s*=\\s*(\\d+).*";
+		String email = "@Column(name = \"NAME\", length=80)";
+		RegexUtil.group(REGEX_PATTERN_COLUMN, email);
 	}
 
 	/**
