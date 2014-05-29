@@ -30,7 +30,7 @@ import com.feilong.commons.core.date.DateUtil;
  * @version 1.0.5 Jan 26, 2013 3:49:55 PM
  * @since 1.0.5
  */
-public class JsonDateValueProcessor implements JsonValueProcessor{
+public class DateJsonValueProcessor implements JsonValueProcessor{
 
 	/** The date pattern. */
 	private String	datePattern	= DatePattern.commonWithTime;
@@ -38,7 +38,7 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 	/**
 	 * Instantiates a new json date value processor.
 	 */
-	public JsonDateValueProcessor(){}
+	public DateJsonValueProcessor(){}
 
 	/**
 	 * Instantiates a new json date value processor.
@@ -46,7 +46,7 @@ public class JsonDateValueProcessor implements JsonValueProcessor{
 	 * @param datePattern
 	 *            the date pattern
 	 */
-	public JsonDateValueProcessor(String datePattern){
+	public DateJsonValueProcessor(String datePattern){
 		this.datePattern = datePattern;
 	}
 
