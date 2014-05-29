@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
  * StringUtil {@link String}工具类,可以 查询,截取,format,转成16进制码

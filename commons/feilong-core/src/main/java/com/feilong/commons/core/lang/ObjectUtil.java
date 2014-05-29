@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.lang;
 
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+
+import com.feilong.commons.core.util.ArrayUtil;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * object工具类.

@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.feilong.commons.core.entity.JoinStringEntity;
+import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
  * 数组工具类.

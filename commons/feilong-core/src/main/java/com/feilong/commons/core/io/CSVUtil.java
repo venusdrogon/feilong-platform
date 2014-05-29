@@ -23,7 +23,7 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.ObjectUtil;
+import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**

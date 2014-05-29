@@ -30,6 +30,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.lang.ObjectUtil;
+
 /**
  * 反射工具类.
  * 

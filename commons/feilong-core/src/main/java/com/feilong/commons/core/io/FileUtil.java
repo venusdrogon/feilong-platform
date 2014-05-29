@@ -160,15 +160,38 @@ public final class FileUtil{
 	// [start] 解析文件名称
 
 	/**
-	 * 使用新的 后缀名称.
+	 * 将一个文件使用新的文件后缀,其余部分不变
+	 * <p>
+	 * 如果一个文件没有后缀,将会添加 .+newPostfixName
+	 * </p>
+	 * 
+	 * <pre>
+	 * {@code
+	 * Example 1:
+	 * 		String fileName="F:/pie2.png";
+	 *       FileUtil.getNewFileName(fileName, "gif")
+	 *       
+	 *       return F:/pie2.gif
+	 * }
+	 * </pre>
 	 * 
 	 * @param fileName
-	 *            文件名称
+	 *            文件名称,比如 F:/pie2.png
 	 * @param newPostfixName
-	 *            新的文件名
-	 * @return the new file name
+	 *            不带.号, 比如 gif
+	 * @return 新文件名称
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(fileName) or isNullOrEmpty(newPostfixName)
 	 */
-	public final static String getNewFileName(String fileName,String newPostfixName){
+	public final static String getNewFileName(String fileName,String newPostfixName) throws NullPointerException{
+
+		if (Validator.isNullOrEmpty(fileName)){
+			throw new NullPointerException("fileName can't be null/empty!");
+		}
+		if (Validator.isNullOrEmpty(newPostfixName)){
+			throw new NullPointerException("newPostfixName can't be null/empty!");
+		}
+
 		// 有后缀
 		if (hasPostfixName(fileName)){
 			return fileName.substring(0, fileName.lastIndexOf(".") + 1) + newPostfixName;

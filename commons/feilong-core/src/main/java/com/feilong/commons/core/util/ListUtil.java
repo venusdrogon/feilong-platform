@@ -26,6 +26,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.lang.ObjectUtil;
+
 /**
  * ListUtil {@link List}工具类.
  * 

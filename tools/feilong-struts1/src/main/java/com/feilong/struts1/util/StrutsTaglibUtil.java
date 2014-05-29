@@ -22,7 +22,7 @@ import java.util.Iterator;
 
 import org.apache.struts.util.IteratorAdapter;
 
-import com.feilong.commons.core.util.ObjectUtil;
+import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
  *FeiLongStrutsTaglibUtil

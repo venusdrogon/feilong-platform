@@ -3,7 +3,7 @@ package com.feilong.taglib.display.table;
 import javax.servlet.http.HttpServletRequest;
 
 import com.feilong.commons.core.entity.Pager;
-import com.feilong.commons.core.util.ObjectUtil;
+import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.base.AbstractConditionalTag;
 
