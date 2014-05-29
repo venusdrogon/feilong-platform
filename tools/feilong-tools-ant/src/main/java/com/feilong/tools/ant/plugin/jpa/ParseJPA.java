@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.ant.plugin.jpa.command.Column;
 import com.feilong.tools.ant.plugin.jpa.command.JpaConstants;
 import com.feilong.tools.ant.plugin.jpa.command.MyTable;
 
@@ -73,6 +74,9 @@ public class ParseJPA implements Serializable,JpaConstants{
 
 	/** 总的数据表. */
 	private List<String>				totalTable				= new ArrayList<String>();
+
+	/** 总的列. */
+	private List<Column>				columnList				= new ArrayList<Column>();
 
 	/** 总的index. */
 	private List<String>				totalIndex				= new ArrayList<String>();
@@ -153,6 +157,7 @@ public class ParseJPA implements Serializable,JpaConstants{
 
 				setTable(myTable, line);
 
+				setColumn(myTable, line);
 				setId(myTable, line);
 
 				setStrategy(myTable, line);
@@ -167,6 +172,63 @@ public class ParseJPA implements Serializable,JpaConstants{
 		}
 
 		return myTable;
+	}
+
+	/**
+	 * 设置 column.
+	 * 
+	 * @param myTable
+	 *            the my table
+	 * @param line
+	 *            the line
+	 */
+	private void setColumn(MyTable myTable,String line){
+
+		//@Column(name = "SWIFT_NUMBER")
+		//@Column(name = "SHIP_ADDRESS", length=500)
+		//@Column(name = "CONTENT",length=10240)
+		//@Column(name = "USED_SPACE", columnDefinition = "bigint(20)")
+		//   @Column(name = "TPL", columnDefinition = "TEXT")
+		if (line.contains("@Column")){
+
+			//columnList
+			//String indexName = RegexUtil.group(REGEX_PATTERN_INDEX, line, 1);
+			//String lowerCase = indexName.toLowerCase();
+			//			columnList.add(line.trim());
+			String columnName = "";
+			String length = "";
+
+			//不包含length
+			if (!line.contains("length")){
+				Map<Integer, String> group = RegexUtil.group(REGEX_PATTERN_COLUMN_ONLYNAME, line);
+				columnName = group.get(1);
+				length = "";
+			}else{
+				Map<Integer, String> group = RegexUtil.group(REGEX_PATTERN_COLUMN, line);
+				columnName = group.get(1);
+				length = group.get(2);
+			}
+
+			Column column = new Column();
+
+			column.setTableName(myTable.getTableName());
+			column.setColumnName(columnName);
+			column.setLength(length);
+
+			//line.trim() + "  " + columnName + "," + length
+			//String lowerCase = indexName.toLowerCase();
+			columnList.add(column);
+
+			//***************************************************************
+			//			String projectName = myTable.getProjectName();
+			//			List<String> list = indexGroupByProjectMap.get(projectName);
+			//			if (Validator.isNullOrEmpty(list)){
+			//				list = new ArrayList<String>();
+			//			}
+			//			list.add(lowerCase);
+			//			indexGroupByProjectMap.put(projectName, list);
+		}
+
 	}
 
 	/**
@@ -408,6 +470,15 @@ public class ParseJPA implements Serializable,JpaConstants{
 	 */
 	public Map<String, List<String>> getTableGroupByProjectMap(){
 		return tableGroupByProjectMap;
+	}
+
+	/**
+	 * 获得 总的列.
+	 * 
+	 * @return the columnList
+	 */
+	public List<Column> getColumnList(){
+		return columnList;
 	}
 
 }
