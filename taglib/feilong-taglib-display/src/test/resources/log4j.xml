@@ -39,6 +39,14 @@
 		<priority value="info" />
 	</category>
 
+	<category name="com.feilong.tools.velocity.log.SLF4JLogChute" additivity="false">
+		<priority value="info" />
+	</category>
+
+	<category name="feilongVelocityLogger" additivity="false">
+		<priority value="info" />
+	</category>
+
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>
