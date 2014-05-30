@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart;
 
@@ -27,6 +27,7 @@ import com.feilong.commons.core.io.SpecialFolder;
  * <li>height 图片高度</li>
  * <li>imageNameOrOutputStream 输出流/或者圖片名稱</li>
  * </ul>
+ * .
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 2 20:15:58
@@ -36,28 +37,24 @@ public final class ChartInfoEntity{
 	/**
 	 * 目录文件夹路径,默认桌面,<br>
 	 * 仅当输出的是硬盘图片文件时需要设置改值,<br>
-	 * 自动将其拼接成图片路径,转成fileOutputStream
+	 * 自动将其拼接成图片路径,转成fileOutputStream.
 	 */
 	private String	chartPath	= SpecialFolder.getDesktop();
 
-	/**
-	 * 图片宽度 默认500
-	 */
+	/** 图片宽度 默认500. */
 	private int		width		= 500;
 
-	/**
-	 * 图片高度 默认400
-	 */
+	/** 图片高度 默认400. */
 	private int		height		= 400;
 
 	/**
 	 * 输出流,或者图片名称<br>
-	 * 代码中会自动识别
+	 * 代码中会自动识别.
 	 */
 	private Object	imageNameOrOutputStream;
 
 	/**
-	 * 
+	 * Instantiates a new chart info entity.
 	 */
 	public ChartInfoEntity(){
 		super();
@@ -65,9 +62,14 @@ public final class ChartInfoEntity{
 	}
 
 	/**
+	 * Instantiates a new chart info entity.
+	 * 
 	 * @param imageNameOrOutputStream
+	 *            the image name or output stream
 	 * @param width
+	 *            the width
 	 * @param height
+	 *            the height
 	 */
 	public ChartInfoEntity(Object imageNameOrOutputStream, int width, int height){
 		this.imageNameOrOutputStream = imageNameOrOutputStream;
@@ -76,7 +78,7 @@ public final class ChartInfoEntity{
 	}
 
 	/**
-	 * 获得图片宽度 默认500
+	 * 获得图片宽度 默认500.
 	 * 
 	 * @return the width
 	 */
@@ -85,7 +87,7 @@ public final class ChartInfoEntity{
 	}
 
 	/**
-	 * 设置图片宽度
+	 * 设置图片宽度.
 	 * 
 	 * @param width
 	 *            the width to set
@@ -95,7 +97,7 @@ public final class ChartInfoEntity{
 	}
 
 	/**
-	 * 返回图片高度 默认400
+	 * 返回图片高度 默认400.
 	 * 
 	 * @return the height
 	 */
@@ -104,7 +106,7 @@ public final class ChartInfoEntity{
 	}
 
 	/**
-	 * 设置图片高度
+	 * 设置图片高度.
 	 * 
 	 * @param height
 	 *            the height to set
@@ -116,7 +118,7 @@ public final class ChartInfoEntity{
 	/**
 	 * 目录文件夹路径,默认桌面,<br>
 	 * 仅当输出的是硬盘图片文件时需要设置改值,<br>
-	 * 自动将其拼接成图片路径,转成fileOutputStream
+	 * 自动将其拼接成图片路径,转成fileOutputStream.
 	 * 
 	 * @return the chartPath
 	 */
@@ -127,7 +129,7 @@ public final class ChartInfoEntity{
 	/**
 	 * 目录文件夹路径,默认桌面,<br>
 	 * 仅当输出的是硬盘图片文件时需要设置改值,<br>
-	 * 自动将其拼接成图片路径,转成fileOutputStream
+	 * 自动将其拼接成图片路径,转成fileOutputStream.
 	 * 
 	 * @param chartPath
 	 *            the chartPath to set
@@ -138,7 +140,7 @@ public final class ChartInfoEntity{
 
 	/**
 	 * 输出流,或者图片名称<br>
-	 * 代码中会自动识别
+	 * 代码中会自动识别.
 	 * 
 	 * @return the imageNameOrOutputStream
 	 */
@@ -148,7 +150,7 @@ public final class ChartInfoEntity{
 
 	/**
 	 * 输出流,或者图片名称<br>
-	 * 代码中会自动识别
+	 * 代码中会自动识别.
 	 * 
 	 * @param imageNameOrOutputStream
 	 *            the imageNameOrOutputStream to set

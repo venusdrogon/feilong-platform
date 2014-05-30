@@ -37,7 +37,7 @@ public class DefaultCategoryChartUtilTest{
 
 	@Test
 	public void createImage() throws IOException{
-		CategoryChartType chartType = CategoryChartType.stackedBar3D;
+		CategoryChartType chartType = CategoryChartType.STACKEDBAR3D;
 		String[] rowKeys = { "First", "Second", "Third" };
 		LinkedHashMap<String, double[]> categoryAndValues = new LinkedHashMap<String, double[]>();
 		categoryAndValues.put("原始(1 channel)", new double[] { 143, 37, 35 });

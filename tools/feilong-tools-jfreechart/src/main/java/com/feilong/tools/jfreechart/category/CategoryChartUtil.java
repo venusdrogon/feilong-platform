@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart.category;
 
@@ -38,33 +38,43 @@ import com.feilong.tools.jfreechart.ChartDatesetUtil;
 import com.feilong.tools.jfreechart.ChartUtil;
 
 /**
- * 线状图,柱状图等基类
+ * 线状图,柱状图等基类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 3 02:06:10
  */
 public abstract class CategoryChartUtil extends ChartUtil{
 
+	/** The Constant log. */
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(CategoryChartUtil.class);
 
-	/** 图表区域对象 */
+	/** 图表区域对象. */
 	protected CategoryPlot		categoryPlot;
 
+	/** The category axis. */
 	private CategoryAxis		categoryAxis;
 
+	/** The number axis. */
 	private NumberAxis			numberAxis;
 
 	/**
+	 * Instantiates a new category chart util.
+	 * 
 	 * @param categoryChartEntity
-	 * @param line3d
+	 *            the category chart entity
+	 * @param chartType
+	 *            the chart type
 	 */
 	public CategoryChartUtil(CategoryChartEntity categoryChartEntity, CategoryChartType chartType){
 		this(CategoryChartUtil.createJFreeChart(categoryChartEntity, chartType));
 	}
 
 	/**
+	 * Instantiates a new category chart util.
+	 * 
 	 * @param jFreeChart
+	 *            the j free chart
 	 */
 	public CategoryChartUtil(JFreeChart jFreeChart){
 		super(jFreeChart);
@@ -74,6 +84,15 @@ public abstract class CategoryChartUtil extends ChartUtil{
 		setDefaultCategoryItemRenderer();
 	}
 
+	/**
+	 * Creates the j free chart.
+	 * 
+	 * @param categoryChartEntity
+	 *            the category chart entity
+	 * @param chartType
+	 *            the chart type
+	 * @return the j free chart
+	 */
 	public static JFreeChart createJFreeChart(CategoryChartEntity categoryChartEntity,CategoryChartType chartType){
 		// 图表标题
 		String chartTitle = categoryChartEntity.getChartTitle();
@@ -92,10 +111,17 @@ public abstract class CategoryChartUtil extends ChartUtil{
 		// 是否生成URL链接
 		boolean urls = categoryChartEntity.isUrls();
 		switch (chartType) {
-			case line:
-				return ChartFactory
-						.createLineChart(chartTitle, categoryAxisLabel, valueAxisLabel, categoryDataset, plotOrientation, showLegend, tooltips, urls);
-			case line3D:
+			case LINE:
+				return ChartFactory.createLineChart(
+						chartTitle,
+						categoryAxisLabel,
+						valueAxisLabel,
+						categoryDataset,
+						plotOrientation,
+						showLegend,
+						tooltips,
+						urls);
+			case LINE3D:
 				return ChartFactory.createLineChart3D(
 						chartTitle,
 						categoryAxisLabel,
@@ -105,9 +131,17 @@ public abstract class CategoryChartUtil extends ChartUtil{
 						showLegend,
 						tooltips,
 						urls);
-			case bar:
-				return ChartFactory.createBarChart(chartTitle, categoryAxisLabel, valueAxisLabel, categoryDataset, plotOrientation, showLegend, tooltips, urls);
-			case bar3D:
+			case BAR:
+				return ChartFactory.createBarChart(
+						chartTitle,
+						categoryAxisLabel,
+						valueAxisLabel,
+						categoryDataset,
+						plotOrientation,
+						showLegend,
+						tooltips,
+						urls);
+			case BAR3D:
 				return ChartFactory.createBarChart3D(
 						chartTitle,
 						categoryAxisLabel,
@@ -117,10 +151,17 @@ public abstract class CategoryChartUtil extends ChartUtil{
 						showLegend,
 						tooltips,
 						urls);
-			case area:
-				return ChartFactory
-						.createAreaChart(chartTitle, categoryAxisLabel, valueAxisLabel, categoryDataset, plotOrientation, showLegend, tooltips, urls);
-			case stackedArea:
+			case AREA:
+				return ChartFactory.createAreaChart(
+						chartTitle,
+						categoryAxisLabel,
+						valueAxisLabel,
+						categoryDataset,
+						plotOrientation,
+						showLegend,
+						tooltips,
+						urls);
+			case STACKEDAREA:
 				return ChartFactory.createStackedAreaChart(
 						chartTitle,
 						categoryAxisLabel,
@@ -130,7 +171,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 						showLegend,
 						tooltips,
 						urls);
-			case stackedBar:
+			case STACKEDBAR:
 				return ChartFactory.createStackedBarChart(
 						chartTitle,
 						categoryAxisLabel,
@@ -140,7 +181,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 						showLegend,
 						tooltips,
 						urls);
-			case stackedBar3D:
+			case STACKEDBAR3D:
 				return ChartFactory.createStackedBarChart3D(
 						chartTitle,
 						categoryAxisLabel,
@@ -156,11 +197,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 	}
 
 	/**
-	 * 设置CategoryPlot图表区域对象属性
-	 * 
-	 * @param freeChart
-	 * @param freeChartEntity
-	 *            参数
+	 * 设置CategoryPlot图表区域对象属性.
 	 */
 	protected void setDefaultCategoryPlotAttributes(){
 		// 图表区域对象
@@ -203,7 +240,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 	}
 
 	/**
-	 * 设置x轴公共属性
+	 * 设置x轴公共属性.
 	 */
 	protected void setDefaultCategoryAxisAttributes(){
 		// x轴设置
@@ -270,12 +307,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 	}
 
 	/**
-	 * 设置Y轴公共属性
-	 * 
-	 * @param freeChartEntity
-	 *            参数
-	 * @param chartType
-	 *            图片枚举类型
+	 * 设置Y轴公共属性.
 	 */
 	protected void setDefaultValueAxisAttributes(){
 		// y轴设置
@@ -312,29 +344,40 @@ public abstract class CategoryChartUtil extends ChartUtil{
 	}
 
 	/**
-	 *每个独立的chart 可以设置自己默认的CategoryPlot 属性<br>
-	 * can be overwrite
+	 * 每个独立的chart 可以设置自己默认的CategoryPlot 属性<br>
+	 * can be overwrite.
+	 * 
+	 * @param categoryPlot
+	 *            the new child default category plot attributes
 	 */
 	protected abstract void setChildDefaultCategoryPlotAttributes(CategoryPlot categoryPlot);
 
 	/**
-	 *每个独立的chart 可以设置自己默认的CategoryAxis 属性<br>
-	 * can be overwrite
+	 * 每个独立的chart 可以设置自己默认的CategoryAxis 属性<br>
+	 * can be overwrite.
+	 * 
+	 * @param categoryAxis
+	 *            the new child default category axis attributes
 	 */
 	protected abstract void setChildDefaultCategoryAxisAttributes(CategoryAxis categoryAxis);
 
 	/**
-	 *每个独立的chart 可以设置自己默认的numberAxis 属性<br>
-	 * can be overwrite
+	 * 每个独立的chart 可以设置自己默认的numberAxis 属性<br>
+	 * can be overwrite.
+	 * 
+	 * @param numberAxis
+	 *            the new child default number axis attributes
 	 */
 	protected abstract void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis);
 
 	/**
-	 * 设置 CategoryItemRenderer must be overwrite
+	 * 设置 CategoryItemRenderer must be overwrite.
 	 */
 	protected abstract void setDefaultCategoryItemRenderer();
 
 	/**
+	 * Gets the category axis.
+	 * 
 	 * @return the categoryAxis
 	 */
 	public CategoryAxis getCategoryAxis(){
@@ -342,6 +385,8 @@ public abstract class CategoryChartUtil extends ChartUtil{
 	}
 
 	/**
+	 * 获得 图表区域对象.
+	 * 
 	 * @return the categoryPlot
 	 */
 	public CategoryPlot getCategoryPlot(){
@@ -349,6 +394,8 @@ public abstract class CategoryChartUtil extends ChartUtil{
 	}
 
 	/**
+	 * Gets the number axis.
+	 * 
 	 * @return the numberAxis
 	 */
 	public NumberAxis getNumberAxis(){

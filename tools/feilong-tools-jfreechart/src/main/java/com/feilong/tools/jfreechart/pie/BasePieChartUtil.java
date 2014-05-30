@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart.pie;
 
@@ -30,20 +30,25 @@ import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.tools.jfreechart.ChartUtil;
 
 /**
- * pie 饼图
+ * pie 饼图.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 3 02:13:44
  */
 public abstract class BasePieChartUtil extends ChartUtil{
 
+	/** The Constant log. */
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(BasePieChartUtil.class);
 
+	/** The pie plot. */
 	protected PiePlot			piePlot;
 
 	/**
+	 * Instantiates a new base pie chart util.
+	 * 
 	 * @param jFreeChart
+	 *            the j free chart
 	 */
 	public BasePieChartUtil(JFreeChart jFreeChart){
 		super(jFreeChart);
@@ -51,13 +56,20 @@ public abstract class BasePieChartUtil extends ChartUtil{
 	}
 
 	/**
-	 * @param categoryChartEntity
-	 * @param line3d
+	 * Instantiates a new base pie chart util.
+	 * 
+	 * @param pieChartEntity
+	 *            the pie chart entity
+	 * @param pieType
+	 *            the pie type
 	 */
 	public BasePieChartUtil(PieChartEntity pieChartEntity, PieType pieType){
 		this(PieChartFactory.createJFreeChart(pieChartEntity, pieType));
 	}
 
+	/**
+	 * 设置 default pie plot attribute.
+	 */
 	private void setDefaultPiePlotAttribute(){
 		piePlot = (PiePlot) getJFreeChart().getPlot();
 		piePlot.setLabelFont(new Font("SansSerif", Font.TRUETYPE_FONT, 12));
@@ -78,7 +90,8 @@ public abstract class BasePieChartUtil extends ChartUtil{
 		// plot.setBaseSectionOutlinePaint(Color.BLACK);
 		// plot.setBaseSectionPaint(Color.BLACK);
 		// 图片中显示百分比:自定义方式，{0} 表示选项， {1} 表示数值， {2} 表示所占比例 ,小数点后两位
-		piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})", NumberFormat.getNumberInstance(), new DecimalFormat("0.00%")));
+		piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})", NumberFormat.getNumberInstance(), new DecimalFormat(
+				"0.00%")));
 		// 图例显示百分比:自定义方式， {0} 表示选项， {1} 表示数值， {2} 表示所占比例
 		piePlot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})"));
 		// 指定显示的饼图上圆形(false)还椭圆形(true)
@@ -88,6 +101,8 @@ public abstract class BasePieChartUtil extends ChartUtil{
 	}
 
 	/**
+	 * Gets the pie plot.
+	 * 
 	 * @return the piePlot
 	 */
 	public PiePlot getPiePlot(){

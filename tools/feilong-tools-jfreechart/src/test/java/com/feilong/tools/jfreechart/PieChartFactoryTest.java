@@ -38,7 +38,7 @@ public class PieChartFactoryTest{
 
 	@Test
 	public void createImage() throws IOException{
-		PieType pieType = PieType.ring;
+		PieType pieType = PieType.RING;
 		Map<String, Number> keyAndDataMap = new LinkedHashMap<String, Number>();
 		keyAndDataMap.put("失败率", 50);
 		keyAndDataMap.put("成功率", 250);

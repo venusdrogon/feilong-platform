@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart;
 
@@ -33,7 +33,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 import com.feilong.tools.jfreechart.pie.PieChartEntity;
 
 /**
- * ChartDatesetUtil 生成Dateset
+ * ChartDatesetUtil 生成Dateset.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 14 05:59:29
@@ -41,10 +41,11 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
 public final class ChartDatesetUtil{
 
 	/**
-	 * 获得 PieDataset
+	 * 获得 PieDataset.
 	 * 
 	 * @param pieChartEntity
-	 * @return
+	 *            the pie chart entity
+	 * @return the pie dataset
 	 */
 	public final static PieDataset getPieDataset(PieChartEntity pieChartEntity){
 		Map<String, Number> keyAndDataMap = pieChartEntity.getKeyAndDataMap();
@@ -59,10 +60,11 @@ public final class ChartDatesetUtil{
 	}
 
 	/**
-	 * 获得数据集 CategoryDataset
+	 * 获得数据集 CategoryDataset.
 	 * 
 	 * @param freeChartEntity
-	 * @return
+	 *            the free chart entity
+	 * @return the category dataset
 	 */
 	public static CategoryDataset getCategoryDataset(CategoryChartEntity freeChartEntity){
 		Map<String, double[]> categoryAndValues = freeChartEntity.getCategoryAndValues();
@@ -98,11 +100,11 @@ public final class ChartDatesetUtil{
 	}
 
 	/**
-	 * 将list 转换成两个数组(columnKeys,data)并存放到object数组中
+	 * 将list 转换成两个数组(columnKeys,data)并存放到object数组中.
 	 * 
 	 * @param list
 	 *            存放(key,value) 的数组集合 数组的第一个元素存放的是下面的标题,第二个元素存放的是值
-	 * @return
+	 * @return the column keys and data
 	 */
 	private Object[] getColumnKeysAndData(List list){
 		// 返回的数组 包含columnKey 和data
@@ -134,10 +136,11 @@ public final class ChartDatesetUtil{
 	}
 
 	/**
-	 * 用于甘特图
+	 * 用于甘特图.
 	 * 
 	 * @param seriesAndDataMap
-	 * @return
+	 *            the series and data map
+	 * @return the task series collection
 	 */
 	public static TaskSeriesCollection getTaskSeriesCollection(Map<String, List<Task>> seriesAndDataMap){
 		TaskSeriesCollection taskSeriesCollection = new TaskSeriesCollection();

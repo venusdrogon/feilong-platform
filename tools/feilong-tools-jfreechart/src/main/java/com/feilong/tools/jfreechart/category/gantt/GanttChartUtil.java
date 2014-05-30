@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart.category.gantt;
 
@@ -46,34 +46,45 @@ import com.feilong.tools.jfreechart.ChartDatesetUtil;
 import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 
 /**
- * 甘特图
+ * 甘特图.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 21 01:54:44
  */
 public class GanttChartUtil extends CategoryChartUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(GanttChartUtil.class);
 
+	/** The date axis. */
 	private DateAxis			dateAxis;
 
+	/** The gantt renderer. */
 	private GanttRenderer		ganttRenderer;
 
 	/**
+	 * Instantiates a new gantt chart util.
+	 * 
 	 * @param jFreeChart
+	 *            the j free chart
 	 */
 	public GanttChartUtil(JFreeChart jFreeChart){
 		super(jFreeChart);
 	}
 
 	/**
-	 * @param jFreeChart
+	 * Instantiates a new gantt chart util.
+	 * 
+	 * @param ganttChartEntity
+	 *            the gantt chart entity
 	 */
 	public GanttChartUtil(GanttChartEntity ganttChartEntity){
 		this(createJFreeChart(ganttChartEntity));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.jfreechart.xy.FeiLongBaseXYChartEntity#setDefaultCategoryItemRenderer()
 	 */
 	protected void setDefaultCategoryItemRenderer(){
@@ -132,12 +143,7 @@ public class GanttChartUtil extends CategoryChartUtil{
 	}
 
 	/**
-	 * 设置Y轴公共属性
-	 * 
-	 * @param freeChartEntity
-	 *            参数
-	 * @param chartType
-	 *            图片枚举类型
+	 * 设置Y轴公共属性.
 	 */
 	protected void setDefaultValueAxisAttributes(){
 		// 数据轴精度
@@ -170,6 +176,13 @@ public class GanttChartUtil extends CategoryChartUtil{
 		//dateAxis.setDateFormatOverride(dateFormat);
 	}
 
+	/**
+	 * Creates the j free chart.
+	 * 
+	 * @param ganttChartEntity
+	 *            the gantt chart entity
+	 * @return the j free chart
+	 */
 	public static JFreeChart createJFreeChart(GanttChartEntity ganttChartEntity){
 		Map<String, List<Task>> seriesAndDataMap = ganttChartEntity.getSeriesAndDataMap();
 		TaskSeriesCollection taskSeriesCollection = ChartDatesetUtil.getTaskSeriesCollection(seriesAndDataMap);
@@ -185,6 +198,8 @@ public class GanttChartUtil extends CategoryChartUtil{
 	}
 
 	/**
+	 * Gets the date axis.
+	 * 
 	 * @return the dateAxis
 	 */
 	public DateAxis getDateAxis(){
@@ -192,13 +207,17 @@ public class GanttChartUtil extends CategoryChartUtil{
 	}
 
 	/**
+	 * Gets the gantt renderer.
+	 * 
 	 * @return the ganttRenderer
 	 */
 	public GanttRenderer getGanttRenderer(){
 		return ganttRenderer;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.jfreechart.category.CategoryChartUtil#setChildDefaultCategoryAxisAttributes(org.jfree.chart.axis.CategoryAxis)
 	 */
 	@Override
@@ -263,7 +282,9 @@ public class GanttChartUtil extends CategoryChartUtil{
 		categoryAxis.setTickMarkInsideLength(0);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.jfreechart.category.CategoryChartUtil#setChildDefaultCategoryPlotAttributes(org.jfree.chart.plot.CategoryPlot)
 	 */
 	@Override
@@ -300,7 +321,9 @@ public class GanttChartUtil extends CategoryChartUtil{
 		categoryPlot.setRangeAxisLocation(AxisLocation.TOP_OR_LEFT);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.jfreechart.category.CategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
 	 */
 	@Override

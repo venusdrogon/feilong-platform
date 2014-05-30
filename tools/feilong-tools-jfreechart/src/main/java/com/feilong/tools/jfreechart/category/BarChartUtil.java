@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart.category;
 
@@ -32,22 +32,32 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.awt.FontUtil;
 
 /**
- * 柱形图
+ * 柱形图.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:09:42
  */
 public final class BarChartUtil extends CategoryChartUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(BarChartUtil.class);
 
+	/** The bar renderer. */
 	private BarRenderer			barRenderer;
 
+	/**
+	 * Instantiates a new bar chart util.
+	 * 
+	 * @param categoryChartEntity
+	 *            the category chart entity
+	 */
 	public BarChartUtil(CategoryChartEntity categoryChartEntity){
-		super(categoryChartEntity, CategoryChartType.bar);
+		super(categoryChartEntity, CategoryChartType.BAR);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.jfreechart.xy.FeiLongBaseXYChartEntity#setDefaultCategoryItemRenderer()
 	 */
 	protected void setDefaultCategoryItemRenderer(){
@@ -101,18 +111,33 @@ public final class BarChartUtil extends CategoryChartUtil{
 		// barRenderer.setSeriesOutlinePaint(2, Color.RED);// 边框为黑色
 	}
 
+	/**
+	 * The Class CustomBarRenderer.
+	 * 
+	 * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+	 * @version 1.0.7 2014-5-30 15:57:47
+	 */
 	class CustomBarRenderer extends BarRenderer{
 
+		/** The Constant serialVersionUID. */
 		private static final long	serialVersionUID	= 1L;
 
+		/** The paint. */
 		private Paint[]				paint;
 
+		/**
+		 * Instantiates a new custom bar renderer.
+		 * 
+		 * @param paramArrayOfPaint
+		 *            the param array of paint
+		 */
 		public CustomBarRenderer(Paint[] paramArrayOfPaint){
 			this.paint = paramArrayOfPaint;
 		}
 
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see org.jfree.chart.renderer.AbstractRenderer#getItemPaint(int, int)
 		 */
 		public Paint getItemPaint(int paramInt1,int paramInt2){
@@ -122,6 +147,11 @@ public final class BarChartUtil extends CategoryChartUtil{
 		}
 	}
 
+	/**
+	 * Creates the paint.
+	 * 
+	 * @return the paint[]
+	 */
 	protected static Paint[] createPaint(){
 		Paint[] arrayOfPaint = new Paint[5];
 		arrayOfPaint[0] = new GradientPaint(0.0F, 0.0F, Color.red, 0.0F, 0.0F, Color.white);
@@ -132,30 +162,43 @@ public final class BarChartUtil extends CategoryChartUtil{
 		return arrayOfPaint;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryPlotAttributes(org.jfree.chart.plot.CategoryPlot)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryPlotAttributes(org.jfree.chart.plot.CategoryPlot
+	 * )
 	 */
 	@Override
 	protected void setChildDefaultCategoryPlotAttributes(CategoryPlot categoryPlot){
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 	}
 
-	/* (non-Javadoc)
-	 * @see com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryAxisAttributes(org.jfree.chart.axis.CategoryAxis)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryAxisAttributes(org.jfree.chart.axis.CategoryAxis
+	 * )
 	 */
 	@Override
 	protected void setChildDefaultCategoryAxisAttributes(CategoryAxis categoryAxis){
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 	}
 
-	/* (non-Javadoc)
-	 * @see com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
 	 */
 	protected void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis){
 		numberAxis.setAutoRangeIncludesZero(true);
 	}
 
 	/**
+	 * Gets the bar renderer.
+	 * 
 	 * @return the barRenderer
 	 */
 	public BarRenderer getBarRenderer(){

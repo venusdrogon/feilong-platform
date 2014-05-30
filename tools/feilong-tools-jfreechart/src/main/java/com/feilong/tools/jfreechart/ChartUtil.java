@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart;
 
@@ -85,20 +85,33 @@ import com.lowagie.text.pdf.PdfWriter;
  * 
  * </pre>
  * 
+ * .
+ * 
  * @author 金鑫 2010-1-20 下午09:03:11
  */
 public abstract class ChartUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ChartUtil.class);
 
+	/** The jfree chart. */
 	private JFreeChart			jfreeChart;
 
+	/** The rendering hints. */
 	private RenderingHints		renderingHints;
 
+	/** The text title. */
 	private TextTitle			textTitle;
 
+	/** The legend title. */
 	private LegendTitle			legendTitle;
 
+	/**
+	 * Instantiates a new chart util.
+	 * 
+	 * @param jfreeChart
+	 *            the jfree chart
+	 */
 	public ChartUtil(JFreeChart jfreeChart){
 		if (null == jfreeChart){
 			throw new IllegalArgumentException("jFreeChart can't be null/empty!");
@@ -111,9 +124,7 @@ public abstract class ChartUtil{
 	}
 
 	/**
-	 * setFreeChart
-	 * 
-	 * @param freeChartEntity
+	 * setFreeChart.
 	 */
 	private void setDefaultJFreeChart(){
 		// String pathname = "E:\\Data\\Material\\sanguo\\1.印章 32 74.png";
@@ -140,7 +151,7 @@ public abstract class ChartUtil{
 	}
 
 	/**
-	 * 设置RenderingHints 呈现提示
+	 * 设置RenderingHints 呈现提示.
 	 */
 	private void setDefaultRenderingHints(){
 		renderingHints = jfreeChart.getRenderingHints();
@@ -151,9 +162,7 @@ public abstract class ChartUtil{
 	}
 
 	/**
-	 * setTextTitle 设置标题
-	 * 
-	 * @param freeChartEntity
+	 * setTextTitle 设置标题.
 	 */
 	private void setDefaultTextTitle(){
 		// 设置标题的字体
@@ -180,9 +189,7 @@ public abstract class ChartUtil{
 	}
 
 	/**
-	 * setLegendTitle 设置图例
-	 * 
-	 * @param freeChartEntity
+	 * setLegendTitle 设置图例.
 	 */
 	private void setDefaultLegendTitle(){
 		legendTitle = jfreeChart.getLegend();
@@ -210,6 +217,8 @@ public abstract class ChartUtil{
 	}
 
 	/**
+	 * Gets the j free chart.
+	 * 
 	 * @return the jFreeChart
 	 */
 	public JFreeChart getJFreeChart(){
@@ -217,6 +226,8 @@ public abstract class ChartUtil{
 	}
 
 	/**
+	 * Gets the rendering hints.
+	 * 
 	 * @return the renderingHints
 	 */
 	public RenderingHints getRenderingHints(){
@@ -224,6 +235,8 @@ public abstract class ChartUtil{
 	}
 
 	/**
+	 * Gets the text title.
+	 * 
 	 * @return the textTitle
 	 */
 	public TextTitle getTextTitle(){
@@ -231,23 +244,36 @@ public abstract class ChartUtil{
 	}
 
 	/**
+	 * Gets the legend title.
+	 * 
 	 * @return the legendTitle
 	 */
 	public LegendTitle getLegendTitle(){
 		return legendTitle;
 	}
 
+	/**
+	 * Creates the image.
+	 * 
+	 * @param chartInfoEntity
+	 *            the chart info entity
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	public final void createImage(ChartInfoEntity chartInfoEntity) throws IOException{
 		createImage(getJFreeChart(), chartInfoEntity);
 	}
 
 	/**
 	 * 创建图片<br>
-	 * 需要feiLongChartInfoEntity 以及freeChart
+	 * 需要feiLongChartInfoEntity 以及freeChart.
 	 * 
 	 * @param freeChart
+	 *            the free chart
 	 * @param chartInfoEntity
+	 *            the chart info entity
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public final static void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException{
 		if (Validator.isNullOrEmpty(chartInfoEntity)){
@@ -283,6 +309,20 @@ public abstract class ChartUtil{
 		}
 	}
 
+	/**
+	 * Write chart as pdf.
+	 * 
+	 * @param out
+	 *            the out
+	 * @param jFreeChart
+	 *            the j free chart
+	 * @param width
+	 *            the width
+	 * @param height
+	 *            the height
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	public static void writeChartAsPDF(OutputStream out,JFreeChart jFreeChart,int width,int height) throws IOException{
 		Rectangle rectangle = new Rectangle(width, height);
 		Document document = new Document(rectangle, 50, 50, 50, 50);
