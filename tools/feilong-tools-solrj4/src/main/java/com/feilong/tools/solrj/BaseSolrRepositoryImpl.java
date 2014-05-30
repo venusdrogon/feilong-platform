@@ -17,6 +17,7 @@ package com.feilong.tools.solrj;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -42,6 +43,7 @@ import org.apache.solr.client.solrj.response.GroupResponse;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.SolrInputDocument;
 import org.apache.solr.common.params.FacetParams;
 import org.apache.solr.common.params.GroupParams;
 import org.slf4j.Logger;
@@ -83,7 +85,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	private static final Logger	log	= LoggerFactory.getLogger(BaseSolrRepositoryImpl.class);
 
 	/**
-	 * The server
+	 * The solrServer.
 	 * 
 	 * @see org.apache.solr.client.solrj.impl.LBHttpSolrServer
 	 * @see org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer
@@ -104,6 +106,11 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	@PostConstruct
 	public void init(){
 		this.modelClass = ReflectUtil.getGenericModelClass(this.getClass());
+
+		if (null == solrServer){
+			throw new NullPointerException(
+					"solrServer is null or empty! must ioc solrServer property!,you can choose LBHttpSolrServer,ConcurrentUpdateSolrServer,CloudSolrServer,HttpSolrServer");
+		}
 	}
 
 	// ***********************************************************************************
@@ -253,7 +260,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 							String groupValue = group.getGroupValue();
 							SolrDocumentList solrDocumentList = group.getResult();
 
-							List<T> beans = convertSolrDocumentListToBeans(solrDocumentList);
+							List<T> beans = toBeans(solrDocumentList);
 							Long numFound = solrDocumentList.getNumFound();
 
 							SolrGroup<T> solrGroup = new SolrGroup<T>();
@@ -500,49 +507,117 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#save(java.lang.Object)
 	 */
-	public T save(T model) throws SolrException{
-
+	public void save(T model) throws SolrException,NullPointerException{
 		if (Validator.isNullOrEmpty(model)){
-			throw new IllegalArgumentException("model can't be null/empty!");
+			throw new NullPointerException("model can't be null/empty!");
 		}
 
-		log.debug("solrServer.addBean:{}", model);
-
-		try{
-			@SuppressWarnings("unused")
-			UpdateResponse addBeanUpdateResponse = solrServer.addBean(model);
-			@SuppressWarnings("unused")
-			UpdateResponse commitUpdateResponse = solrServer.commit();
-			return model;
-		}catch (Exception e){
-			log.error("error:{}", JsonUtil.format(model));
-			e.printStackTrace();
-			throw new SolrException("Save failed for model " + model + "," + e.getMessage(), e);
+		if (log.isDebugEnabled()){
+			log.debug("save model:{}", model);
 		}
+
+		List<T> list = new ArrayList<T>();
+		list.add(model);
+
+		batchSave(list);
+
+		//UpdateResponse addBeanUpdateResponse = solrServer.addBean(model);
+		//UpdateResponse commitUpdateResponse = solrServer.commit();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.feilong.tools.solrj.BaseSolrRepository#batchSave(java.util.List)
+	 * @see com.feilong.tools.solrj.BaseSolrRepository#batchSave(java.util.Collection)
 	 */
-	public void batchSave(List<T> modelList) throws SolrException{
+	public void batchSave(Collection<T> modelList) throws NullPointerException,SolrException{
 		if (Validator.isNullOrEmpty(modelList)){
-			throw new IllegalArgumentException("modelList can't be null/empty!");
+			throw new NullPointerException("modelList can't be null/empty!");
 		}
 
-		log.debug("solrServer.batchSave:{}", modelList);
+		if (log.isDebugEnabled()){
+			log.debug("batchSave:{}", modelList);
+		}
+
+		Collection<SolrInputDocument> solrInputDocuments = toSolrInputDocumentCollection(modelList);
+		batchUpdate(solrInputDocuments);
+
+		//solrServer.addBeans(modelList) 实现的核心是 将beans转成  Collection<SolrInputDocument> solrInputDocuments
+		//再调用 add(Collection<SolrInputDocument> docs, int commitWithinMs) 方法
+
+		//UpdateResponse addBeansUpdateResponse = solrServer.addBeans(modelList);
+		//UpdateResponse commitUpdateResponse = solrServer.commit();
+	}
+
+	/**
+	 * Batch update.
+	 * 
+	 * @param solrInputDocuments
+	 *            the solr input documents
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(solrInputDocuments)
+	 * @throws SolrException
+	 *             操作异常
+	 */
+	//TODO 
+	private void batchUpdate(Collection<SolrInputDocument> solrInputDocuments) throws NullPointerException,SolrException{
+
+		if (Validator.isNullOrEmpty(solrInputDocuments)){
+			throw new NullPointerException("solrInputDocuments can't be null/empty!");
+		}
+
+		if (log.isDebugEnabled()){
+			log.debug("solrInputDocuments:{}", solrInputDocuments);
+		}
 
 		try{
 			@SuppressWarnings("unused")
-			UpdateResponse addBeansUpdateResponse = solrServer.addBeans(modelList);
+			UpdateResponse addBeanUpdateResponse = solrServer.add(solrInputDocuments);
 			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
-			// log.error("error:{}", JsonUtil.format(modelList));
 			e.printStackTrace();
-			throw new SolrException("Batch save model failed for modelClass " + modelClass + "," + e.getMessage(), e);
+			throw new SolrException("Save failed for model list " + solrInputDocuments.size() + "," + e.getMessage());
 		}
+	}
+
+	/**
+	 * Batch update.
+	 * 
+	 * @param map
+	 *            key为model的主键值,map是需要更新的字段 K/V
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(map)
+	 * @throws SolrException
+	 *             the solr exception
+	 */
+	//TODO
+	private void batchUpdate(Map<PK, Map<String, Object>> map) throws NullPointerException,SolrException{
+		if (Validator.isNullOrEmpty(map)){
+			throw new NullPointerException("map can't be null/empty!");
+		}
+
+		if (log.isDebugEnabled()){
+			log.debug("solrInputDocuments:{}", map);
+		}
+		List<SolrInputDocument> solrInputDocuments = new ArrayList<SolrInputDocument>();
+
+		for (Map.Entry<PK, Map<String, Object>> entry : map.entrySet()){
+			PK pk = entry.getKey();
+			Map<String, Object> value = entry.getValue();
+
+			SolrInputDocument doc = new SolrInputDocument();
+			//TODO
+			doc.setField("id", pk);
+
+			for (Map.Entry<String, Object> entry1 : value.entrySet()){
+				String key = entry1.getKey();
+				Object value1 = entry.getValue();
+				doc.setField(key, value1);
+			}
+			solrInputDocuments.add(doc);
+		}
+		batchUpdate(solrInputDocuments);
 	}
 
 	// ********************************************删除**************************************************************
@@ -577,7 +652,9 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			throw new IllegalArgumentException("query can't be null/empty!");
 		}
 
-		log.debug("solrServer.deleteByQuery:{}", query);
+		if (log.isDebugEnabled()){
+			log.debug("solrServer.deleteByQuery:{}", query);
+		}
 
 		try{
 			@SuppressWarnings("unused")
@@ -719,15 +796,36 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see org.apache.solr.client.solrj.response.QueryResponse#getBeans(Class)
 	 * @see org.apache.solr.client.solrj.beans.DocumentObjectBinder
 	 */
-	private List<T> convertSolrDocumentListToBeans(SolrDocumentList solrDocumentList){
-		DocumentObjectBinder documentObjectBinder = null;
-		if (null == solrServer){
-			documentObjectBinder = new DocumentObjectBinder();
-		}else{
-			documentObjectBinder = solrServer.getBinder();
-		}
+	private List<T> toBeans(SolrDocumentList solrDocumentList){
+		//		DocumentObjectBinder documentObjectBinder = null;
+		//		if (null == solrServer){
+		//			documentObjectBinder = new DocumentObjectBinder();
+		//		}else{
+		//			documentObjectBinder = solrServer.getBinder();
+		//		}
+		DocumentObjectBinder documentObjectBinder = solrServer.getBinder();
 		List<T> beans = documentObjectBinder.getBeans(modelClass, solrDocumentList);
 		return beans;
+	}
+
+	/**
+	 * 将 Collection<T> beans转成 Collection<SolrInputDocument>.
+	 * 
+	 * @param beans
+	 *            the beans
+	 * @return the collection
+	 * @see DocumentObjectBinder
+	 * @see DocumentObjectBinder#toSolrInputDocument(Object)
+	 * @since 1.0.7
+	 */
+	private Collection<SolrInputDocument> toSolrInputDocumentCollection(Collection<T> beans){
+		DocumentObjectBinder documentObjectBinder = solrServer.getBinder();
+		Collection<SolrInputDocument> solrInputDocuments = new ArrayList<SolrInputDocument>(beans.size());
+		for (Object bean : beans){
+			SolrInputDocument solrInputDocument = documentObjectBinder.toSolrInputDocument(bean);
+			solrInputDocuments.add(solrInputDocument);
+		}
+		return solrInputDocuments;
 	}
 
 	/**

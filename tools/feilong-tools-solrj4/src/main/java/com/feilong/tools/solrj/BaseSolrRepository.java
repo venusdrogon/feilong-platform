@@ -17,6 +17,7 @@
 package com.feilong.tools.solrj;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,8 @@ import loxia.dao.Pagination;
 import loxia.dao.Sort;
 
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.request.UpdateRequest;
 
 import com.feilong.tools.solrj.data.SolrData;
 import com.feilong.tools.solrj.data.SolrGroupData;
@@ -69,25 +72,46 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	// *****************************************保存/更新******************************************
 
 	/**
-	 * has save or update function.
+	 * 保存/更新 某个bean对象
+	 * 
+	 * <p>
+	 * 内部会调用 {@link #batchSave(Collection)} 方法,其实 {@link SolrServer#addBean(Object)} {@link SolrServer#addBeans(Collection)}
+	 * {@link SolrServer#add(Collection)} 在底层是相通的,会将对象设置到 {@link UpdateRequest#getDocumentsMap()} 中
+	 * </p>
 	 * 
 	 * @param model
-	 *            the model
-	 * @return the t
+	 *            solr 和schemal关联的对象
 	 * @throws SolrException
 	 *             if操作发生异常
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(model)
+	 * @see SolrServer#addBean(Object)
+	 * @see SolrServer#addBeans(Collection)
+	 * @see SolrServer#add(Collection)
+	 * @see #batchSave(Collection)
+	 * @since solr 3.5
 	 */
-	T save(T model) throws SolrException;
+	void save(T model) throws SolrException,NullPointerException;
 
 	/**
-	 * 批量保存.
+	 * 批量保存/更新
+	 * 
+	 * <p>
+	 * 其实 {@link SolrServer#addBean(Object)} {@link SolrServer#addBeans(Collection)} {@link SolrServer#add(Collection)} 在底层是相通的,会将对象设置到
+	 * {@link UpdateRequest#getDocumentsMap()} 中
+	 * </p>
 	 * 
 	 * @param modelList
-	 *            the model list
+	 *            solr 和schemal关联的对象 集合对象
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(modelList)
 	 * @throws SolrException
 	 *             if操作发生异常
+	 * @see SolrServer#addBeans(Collection)
+	 * @see SolrServer#add(Collection)
+	 * @since solr 3.5
 	 */
-	void batchSave(List<T> modelList) throws SolrException;
+	void batchSave(Collection<T> modelList) throws NullPointerException,SolrException;
 
 	// *****************************************删除***********************************
 	/**
