@@ -220,8 +220,13 @@ public class ClassLoaderUtil{
 	 */
 	public static ClassLoader getClassLoaderByClass(Class<?> callingClass){
 		ClassLoader classLoader = callingClass.getClassLoader();
-		log.debug("classLoader" + classLoader);
-		log.debug(callingClass.getName() + ".class.getClassLoader() classpath is:" + classLoader.getResource(""));
+		if (log.isDebugEnabled()){
+			log.debug(
+					"classLoader:[{}],callingClass:[{}],.class.getClassLoader() classpath is:[{}]",
+					classLoader,
+					callingClass.getName(),
+					classLoader.getResource(""));
+		}
 		return classLoader;
 	}
 

@@ -43,47 +43,15 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-6-11 上午02:06:43
+ * @see java.net.URI
+ * @see java.net.URL
+ * @see URIConstants
  * @since 1.0.0
  */
 public final class URIUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(URIUtil.class);
-
-	/**
-	 * URI uri = new URI(path);<br>
-	 * 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
-	 * 
-	 * @param path
-	 *            the path
-	 * @return the URI
-	 */
-	public static URI getURI(String path){
-		try{
-			// 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
-			URI uri = new URI(path);
-			return uri;
-		}catch (URISyntaxException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
-	 * 验证path是不是绝对路径.
-	 * 
-	 * @param path
-	 *            待验证的字符串
-	 * @return 如果是符合格式的字符串,返回 <b>true </b>,否则为 <b>false </b>
-	 */
-	public static boolean isAbsolutePath(String path){
-		URI uri = getURI(path);
-
-		if (null == uri){
-			return false;
-		}
-		return uri.isAbsolute();
-	}
 
 	/**
 	 * URI.create(url)<br>
@@ -93,12 +61,15 @@ public final class URIUtil{
 	 *            the url
 	 * @param charsetType
 	 *            decode/encode 编码
-	 * @see <a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>
-	 * @return 如果异常 返回null
+	 * @return if isNullOrEmpty(url),return null;<br>
+	 *         if excption,return null
+	 * @see <a
+	 *      href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>
+	 * @see URI#create(String)
 	 */
 	public static URI create(String url,String charsetType){
 		if (log.isDebugEnabled()){
-			log.debug("in url:[{}]", url);
+			log.debug("in url:[{}],charsetType:{}", url, charsetType);
 		}
 
 		if (Validator.isNullOrEmpty(url)){
@@ -142,6 +113,41 @@ public final class URIUtil{
 	}
 
 	/**
+	 * URI uri = new URI(path);<br>
+	 * 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
+	 * 
+	 * @param path
+	 *            the path
+	 * @return the URI
+	 */
+	public static URI getURI(String path){
+		try{
+			// 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
+			URI uri = new URI(path);
+			return uri;
+		}catch (URISyntaxException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 验证path是不是绝对路径.
+	 * 
+	 * @param path
+	 *            待验证的字符串
+	 * @return 如果是符合格式的字符串,返回 <b>true </b>,否则为 <b>false </b>
+	 */
+	public static boolean isAbsolutePath(String path){
+		URI uri = getURI(path);
+
+		if (null == uri){
+			return false;
+		}
+		return uri.isAbsolute();
+	}
+
+	/**
 	 * 拼接url(如果charsetType 是null,则原样拼接,如果不是空,则返回安全的url).
 	 * 
 	 * @param beforeUrl
@@ -175,52 +181,54 @@ public final class URIUtil{
 	 *            参数map value支持数组，类似于 request.getParameterMap
 	 * @param charsetType
 	 *            编码,如果为空 ,name 和value 不进行编码
-	 * @return the encoded url
+	 * @return if isNullOrEmpty(keyAndArrayMap) return beforeUrl;
+	 * @see #combineQueryString(Map, String)
 	 */
 	public static String getEncodedUrlByArrayMap(String beforeUrl,Map<String, String[]> keyAndArrayMap,String charsetType){
-		// map 不是空 表示 有参数
-		if (Validator.isNotNullOrEmpty(keyAndArrayMap)){
-			Map<String, String[]> appendMap = new HashMap<String, String[]>();
-			appendMap.putAll(keyAndArrayMap);
-
-			// 注意 action before 可能带参数
-			// "action": "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest",
-			// "fullEncodedUrl":
-			// "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest?miscFee=0&descp=&klikPayCode=03BELAV220&callback=%2Fpatment1url&totalAmount=60000.00&payType=01&transactionNo=20140323024019&signature=1278794012&transactionDate=23%2F03%2F2014+02%3A40%3A19&currency=IDR",
-
-			// *******************************************
-			String beforePath = beforeUrl;
-
-			// 如果包含?
-			if (StringUtil.isContain(beforeUrl, URIConstants.QUESTIONMARK)){
-				// 问号前面的部分
-				beforePath = getBeforePath(beforeUrl);
-
-				String query = StringUtil.substring(beforeUrl, URIConstants.QUESTIONMARK, 1);
-
-				// 浏览器传递queryString()参数差别
-				// chrome 会将query 进行 encoded 再发送请求
-				// 而ie 原封不动的发送
-
-				// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
-				// 此处不能先转 ,参数就是想传 =是转义符
-				// query = decode(query, charsetType);
-
-				Map<String, String[]> map = parseQueryToArrayMap(query, null);
-				appendMap.putAll(map);
-			}
-
-			StringBuilder builder = new StringBuilder("");
-			builder.append(beforePath);
-			builder.append(URIConstants.QUESTIONMARK);
-
-			// *******************************************
-			String queryString = combineQueryString(appendMap, charsetType);
-			builder.append(queryString);
-
-			return builder.toString();
+		if (Validator.isNullOrEmpty(keyAndArrayMap)){
+			return beforeUrl;
 		}
-		return beforeUrl;
+
+		// map 不是空 表示 有参数
+		Map<String, String[]> appendMap = new HashMap<String, String[]>();
+		appendMap.putAll(keyAndArrayMap);
+
+		// 注意 action before 可能带参数
+		// "action": "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest",
+		// "fullEncodedUrl":
+		// "https://202.6.215.230:8081/purchasing/purchase.do?action=loginRequest?miscFee=0&descp=&klikPayCode=03BELAV220&callback=%2Fpatment1url&totalAmount=60000.00&payType=01&transactionNo=20140323024019&signature=1278794012&transactionDate=23%2F03%2F2014+02%3A40%3A19&currency=IDR",
+
+		// *******************************************
+		String beforePath = beforeUrl;
+
+		// 如果包含?
+		if (StringUtil.isContain(beforeUrl, URIConstants.QUESTIONMARK)){
+			// 问号前面的部分
+			beforePath = getBeforePath(beforeUrl);
+
+			String query = StringUtil.substring(beforeUrl, URIConstants.QUESTIONMARK, 1);
+
+			// 浏览器传递queryString()参数差别
+			// chrome 会将query 进行 encoded 再发送请求
+			// 而ie 原封不动的发送
+
+			// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
+			// 此处不能先转 ,参数就是想传 =是转义符
+			// query = decode(query, charsetType);
+
+			Map<String, String[]> map = parseQueryToArrayMap(query, null);
+			appendMap.putAll(map);
+		}
+
+		StringBuilder builder = new StringBuilder("");
+		builder.append(beforePath);
+		builder.append(URIConstants.QUESTIONMARK);
+
+		// *******************************************
+		String queryString = combineQueryString(appendMap, charsetType);
+		builder.append(queryString);
+
+		return builder.toString();
 	}
 
 	/**
@@ -383,7 +391,7 @@ public final class URIUtil{
 	 * 
 	 * @param url
 	 *            the url
-	 * @return 如果 url 为空 返回 ""
+	 * @return if isNullOrEmpty(url),renturn ""
 	 */
 	public static String getBeforePath(String url){
 		if (Validator.isNullOrEmpty(url)){

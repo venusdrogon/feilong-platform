@@ -26,7 +26,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
- * StringUtil {@link String}工具类,可以 查询,截取,format,转成16进制码
+ * StringUtil {@link String}工具类,可以 查询,截取,format,转成16进制码.
  * 
  * @author 金鑫 2010-2-9 上午09:53:37
  * @since 1.0.0
@@ -209,17 +209,6 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 判断字符串是否包含小数点.
-	 * 
-	 * @param text
-	 *            字符串
-	 * @return 有返回true
-	 */
-	public final static boolean isContainPoint(String text){
-		return isContain(text, ".");
-	}
-
-	/**
 	 * 判断一个字符串内是否包含另外的字符串.
 	 * 
 	 * @param text
@@ -227,6 +216,7 @@ public final class StringUtil{
 	 * @param beIncludedString
 	 *            被包含的字符串 in
 	 * @return 包含返回true,如果text 为null 返回false
+	 * @see String#indexOf(String)
 	 */
 	public final static boolean isContain(Object text,String beIncludedString){
 		if (null == text){
@@ -494,42 +484,43 @@ public final class StringUtil{
 	 *            beginString
 	 * @param shift
 	 *            负数表示向前,整数表示向后,0表示依旧从自己的位置开始算起
-	 * @return <pre>
-	 * Validator.isNull(text),return null
-	 * Validator.isNull(beginString),return null
-	 * text.indexOf(beginString)==-1,return null
-	 * beginIndex + shift<0,throw new IllegalArgumentException
-	 * beginIndex + shift > text.length(),return null 
-	 * else,return text.substring(beginIndex + shift)
-	 * </pre>
+	 * @return <ul>
+	 *         <li>if isNullOrEmpty(text),return null</li>
+	 *         <li>if isNullOrEmpty(beginString),return null</li>
+	 *         <li>if text.indexOf(beginString)==-1,return null</li>
+	 *         <li>beginIndex + shift > text.length(),return null</li>
+	 *         <li>else,return text.substring(beginIndex + shift)</li>
+	 *         </ul>
+	 * @throws IllegalArgumentException
+	 *             if beginIndex + shift<0
 	 */
-	public final static String substring(String text,String beginString,int shift){
+	public final static String substring(String text,String beginString,int shift) throws IllegalArgumentException{
 		if (Validator.isNullOrEmpty(text)){
 			return null;
 		}else if (Validator.isNullOrEmpty(beginString)){
 			return null;
 		}
+		//****************************************************
 		int beginIndex = text.indexOf(beginString);
 		// 查不到指定的字符串
 		if (beginIndex == -1){
 			return null;
 		}
+		//****************************************************
 		int startIndex = beginIndex + shift;
 		if (startIndex < 0){
-
 			String logInfo = StringBuilderUtil.append("beginIndex + shift <0,", "beginIndex:", beginIndex, ",shift:" + shift, ",text:"
 					+ text, ",text.length:", text.length());
+
 			throw new IllegalArgumentException(logInfo);
 		}else if (startIndex > text.length()){
-			String logInfo = StringBuilderUtil.append(
-					"beginIndex + shift > text.length(),",
-					"beginIndex:",
-					beginIndex,
-					",shift:" + shift,
-					",text:" + text,
-					",text.length:",
-					text.length());
-			log.info(logInfo);
+
+			if (log.isInfoEnabled()){
+				String logInfo = StringBuilderUtil.append("beginIndex + shift > text.length(),", "beginIndex:", beginIndex, ",shift:"
+						+ shift, ",text:" + text, ",text.length:", text.length());
+				log.info(logInfo);
+			}
+
 			return null;
 		}
 		// 索引从0 开始
