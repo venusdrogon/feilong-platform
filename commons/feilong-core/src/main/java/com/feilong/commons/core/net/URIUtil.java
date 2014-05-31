@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.ArrayUtil;
+import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -54,11 +55,16 @@ public final class URIUtil{
 	private static final Logger	log	= LoggerFactory.getLogger(URIUtil.class);
 
 	/**
-	 * URI.create(url)<br>
-	 * 如果知道URI是有效的，不会产生URISyntaxException，可以使用静态的create(String uri)方法
+	 * 基于 url字符串和charset创建 {@link URI} <br>
+	 * 内部调用 {@link URI#create(url)}方法<br>
+	 * 
+	 * <p>
+	 * 如果url中不含?等参数,直接调用 {@link URI#create(url)}创建<br>
+	 * 如果如果url中含?等参数,那么内部会调用 {@link #getEncodedUrlByArrayMap(String, Map, String)}获得新的url,再调用 调用 {@link URI#create(url)}创建
+	 * </p>
 	 * 
 	 * @param url
-	 *            the url
+	 *            url
 	 * @param charsetType
 	 *            decode/encode 编码
 	 * @return if isNullOrEmpty(url),return null;<br>
@@ -66,6 +72,7 @@ public final class URIUtil{
 	 * @see <a
 	 *      href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>
 	 * @see URI#create(String)
+	 * @see #getEncodedUrlByArrayMap(String, Map, String)
 	 */
 	public static URI create(String url,String charsetType){
 		if (log.isDebugEnabled()){
@@ -237,70 +244,72 @@ public final class URIUtil{
 	 * @param appendMap
 	 *            类似于 request.getParamMap
 	 * @param charsetType
-	 *            the charset type
-	 * @return the string
+	 *            {@link CharsetType}
+	 * @return if isNullOrEmpty(appendMap) ,return ""
+	 * @see CharsetType
 	 */
 	public static String combineQueryString(Map<String, String[]> appendMap,String charsetType){
+		if (Validator.isNullOrEmpty(appendMap)){
+			return "";
+		}
 
 		StringBuilder sb = new StringBuilder();
 
-		if (Validator.isNotNullOrEmpty(appendMap)){
-			int i = 0;
-			int size = appendMap.size();
-			for (Map.Entry<String, String[]> entry : appendMap.entrySet()){
-				String key = entry.getKey();
-				String[] paramValues = entry.getValue();
+		int i = 0;
+		int size = appendMap.size();
+		for (Map.Entry<String, String[]> entry : appendMap.entrySet()){
+			String key = entry.getKey();
+			String[] paramValues = entry.getValue();
 
-				// **************************************************************
+			// **************************************************************
+			if (Validator.isNotNullOrEmpty(charsetType)){
+				// 统统先强制 decode 再 encode
+				// 浏览器兼容问题
+				key = encode(decode(key, charsetType), charsetType);
+			}
+
+			// **************************************************************
+
+			if (Validator.isNullOrEmpty(paramValues)){
+				log.warn("the param key:[{}] value is null", key);
+				sb.append(key);
+				sb.append("=");
+				sb.append("");
+			}else{
+				List<String> paramValueList = null;
+				// value isNotNullOrEmpty
 				if (Validator.isNotNullOrEmpty(charsetType)){
-					// 统统先强制 decode 再 encode
-					// 浏览器兼容问题
-					key = encode(decode(key, charsetType), charsetType);
+					paramValueList = new ArrayList<String>();
+					for (String value : paramValues){
+						if (Validator.isNotNullOrEmpty(value)){
+							// 统统先强制 decode 再 encode
+							// 浏览器兼容问题
+							paramValueList.add(encode(decode(value.toString(), charsetType), charsetType));
+						}else{
+							paramValueList.add("");
+						}
+					}
+				}else{
+					paramValueList = ArrayUtil.toList(paramValues);
 				}
 
-				// **************************************************************
-
-				if (Validator.isNullOrEmpty(paramValues)){
-					log.warn("the param key:[{}] value is null", key);
+				for (int j = 0, z = paramValueList.size(); j < z; ++j){
+					String value = paramValueList.get(j);
 					sb.append(key);
 					sb.append("=");
-					sb.append("");
-				}else{
-					List<String> list = null;
-					// value isNotNullOrEmpty
-					if (Validator.isNotNullOrEmpty(charsetType)){
-						list = new ArrayList<String>();
-						for (String value : paramValues){
-							if (Validator.isNotNullOrEmpty(value)){
-								// 统统先强制 decode 再 encode
-								// 浏览器兼容问题
-								list.add(encode(decode(value.toString(), charsetType), charsetType));
-							}else{
-								list.add("");
-							}
-						}
-					}else{
-						list = ArrayUtil.toList(paramValues);
-					}
-
-					for (int j = 0, z = list.size(); j < z; ++j){
-						String value = list.get(j);
-						sb.append(key);
-						sb.append("=");
-						sb.append(value);
-						// 最后一个& 不拼接
-						if (j != z - 1){
-							sb.append(URIConstants.AMPERSAND);
-						}
+					sb.append(value);
+					// 最后一个& 不拼接
+					if (j != z - 1){
+						sb.append(URIConstants.AMPERSAND);
 					}
 				}
-
-				// 最后一个& 不拼接
-				if (i != size - 1){
-					sb.append(URIConstants.AMPERSAND);
-				}
-				++i;
 			}
+
+			// 最后一个& 不拼接
+			if (i != size - 1){
+				sb.append(URIConstants.AMPERSAND);
+			}
+			++i;
 		}
 		return sb.toString();
 	}
@@ -468,6 +477,8 @@ public final class URIUtil{
 		return null;
 	}
 
+	// [start] encode/decode
+
 	/**
 	 * iso-8859的方式去除乱码.
 	 * 
@@ -475,20 +486,26 @@ public final class URIUtil{
 	 *            字符串
 	 * @param bianma
 	 *            使用的编码
-	 * @return 原来的字符串
+	 * @return 原来的字符串<br>
+	 *         if isNullOrEmpty(str) return ""
 	 * @deprecated
 	 */
 	@Deprecated
 	public static String decodeLuanMa_ISO8859(String str,String bianma){
-		if (Validator.isNotNullOrEmpty(str)){
-			try{
-				return new String(str.trim().getBytes(CharsetType.ISO_8859_1), bianma);
-			}catch (UnsupportedEncodingException e){
-				e.printStackTrace();
-			}
+		if (Validator.isNullOrEmpty(str)){
+			return "";
+		}
+		//StringUtil.toBytes(value, charsetName)
+
+		try{
+			return new String(str.trim().getBytes(CharsetType.ISO_8859_1), bianma);
+		}catch (UnsupportedEncodingException e){
+			e.printStackTrace();
 		}
 		return "";
 	}
+
+	//**************************************************************************************
 
 	/**
 	 * 加码,对参数值进行编码 <br>
@@ -508,7 +525,9 @@ public final class URIUtil{
 	 * @param charsetType
 	 *            charsetType {@link CharsetType}
 	 * @return 加码之后的值<br>
-	 *         如果 charsetType 是空 原样返回 value
+	 *         if isNullOrEmpty(charsetType), 原样返回 value<br>
+	 *         if Exception ,return null
+	 * @see URLEncoder#encode(String, String)
 	 * @see CharsetType
 	 */
 	public static String encode(String value,String charsetType){
@@ -528,19 +547,20 @@ public final class URIUtil{
 	 * 解码,对参数值进行解码 <br>
 	 * Decodes a <code>application/x-www-form-urlencoded</code> string using a specific encoding scheme. The supplied encoding is used to
 	 * determine what characters are represented by any consecutive sequences of the form "<code>%<i>xy</i></code>".
+	 * 
 	 * <p>
-	 * <em><strong>Note:</strong> The <a href=
-	 * "http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">
-	 * World Wide Web Consortium Recommendation</a> states that
-	 * UTF-8 should be used. Not doing so may introduce
-	 * incompatibilites.</em>
+	 * Not doing so may introduce incompatibilites.</em> <br>
+	 * <em><strong>Note:</strong> 
+	 * 注：<a href="http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">World Wide Web Consortium Recommendation</a>建议指出，UTF-8应该被使用。 不这样做可能会带来兼容性能。</em>
+	 * </p>
 	 * 
 	 * @param value
 	 *            需要被解码的值
 	 * @param charsetType
 	 *            charsetType {@link CharsetType}
 	 * @return the newly decoded <code>String</code> 解码之后的值<br>
-	 *         如果 charsetType 是空 原样返回 value
+	 *         if isNullOrEmpty(charsetType) ,原样返回 value<br>
+	 *         if exception,return null
 	 * @see URLEncoder#encode(java.lang.String, java.lang.String)
 	 * @see CharsetType
 	 */
@@ -555,6 +575,9 @@ public final class URIUtil{
 		}
 		return null;
 	}
+
+	// [end]
+	//*********************************************************************************
 
 	/**
 	 * url中的特殊字符转为16进制代码,用于url传递.

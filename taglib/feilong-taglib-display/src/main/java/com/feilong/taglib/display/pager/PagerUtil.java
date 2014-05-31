@@ -449,7 +449,7 @@ public final class PagerUtil{
 		String charsetType = pagerParams.getCharsetType();
 		String pageParamName = pagerParams.getPageParamName();
 
-		boolean userReplace = true;
+		boolean userReplace = false;
 
 		URI uri = URIUtil.create(pageUrl, charsetType);
 

@@ -59,7 +59,8 @@ public abstract class BasePagerTest{
 		int pageSize = 10;
 		int maxIndexPages = 8;
 		String skin = PagerConstants.DEFAULT_SKIN;
-		String pageUrl = "http://localhost:8888/pager.htm?a=b&b=c&d=a&name=jinxin";
+//		String pageUrl = "http://localhost:8888/pager.htm?a=b&b=c&d=a&name=jinxin";
+		String pageUrl = "http://item.blanja.com/items/search?oneNav=1190&priceTo=&twoNav=101706&priceFrom=100&pageNo=1&keyWords=Samsung";
 //		String pageUrl = "http://localhost:8888/pager.htm";
 
 		// pageUrl =

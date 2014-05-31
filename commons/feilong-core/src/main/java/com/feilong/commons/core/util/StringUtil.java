@@ -600,8 +600,10 @@ public final class StringUtil{
 	 * @param value
 	 *            字符串
 	 * @param charsetName
-	 *            受支持的 charset 名称,比如 utf-8
+	 *            受支持的 charset 名称,比如 utf-8, {@link CharsetType}
 	 * @return 所得 byte 数组
+	 * @see String#getBytes(String)
+	 * @see CharsetType
 	 */
 	public final static byte[] toBytes(String value,String charsetName){
 		try{
