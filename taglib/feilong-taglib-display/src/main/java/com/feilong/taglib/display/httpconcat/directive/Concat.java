@@ -313,7 +313,7 @@ public final class Concat extends AbstractDirective{
 	 */
 	public String getName(){
 		if (log.isDebugEnabled()){
-			log.debug("DIRECTIVE_NAME:{}", DIRECTIVE_NAME);
+			log.debug("DIRECTIVE_NAME:[{}]", DIRECTIVE_NAME);
 		}
 		return DIRECTIVE_NAME;
 	}
@@ -325,7 +325,7 @@ public final class Concat extends AbstractDirective{
 	 */
 	public int getType(){
 		if (log.isDebugEnabled()){
-			log.debug("DIRECTIVE_TYPE:{}", DIRECTIVE_TYPE);
+			log.debug("DIRECTIVE_TYPE:[{}]", DIRECTIVE_TYPE);
 		}
 		return DIRECTIVE_TYPE;
 	}

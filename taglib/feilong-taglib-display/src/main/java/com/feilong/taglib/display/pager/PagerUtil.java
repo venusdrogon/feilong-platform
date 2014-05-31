@@ -30,14 +30,15 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.entity.Pager;
+import com.feilong.commons.core.net.URIConstants;
 import com.feilong.commons.core.net.URIUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.ParamUtil;
 import com.feilong.taglib.display.pager.command.PagerConstants;
 import com.feilong.taglib.display.pager.command.PagerParams;
 import com.feilong.taglib.display.pager.command.PagerUrlTemplate;
 import com.feilong.taglib.display.pager.command.PagerVMParam;
-import com.feilong.tools.json.JsonUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
@@ -56,20 +57,36 @@ import com.feilong.tools.velocity.VelocityUtil;
 public final class PagerUtil{
 
 	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(PagerUtil.class);
+	private static final Logger						log					= LoggerFactory.getLogger(PagerUtil.class);
 
 	/**
 	 * vm里面 pagerVMParam变量名称 <code>{@value}</code>,在vm里面,你可以使用 ${pagerVMParam.xxx} 来获取数据
 	 */
-	private static final String	VM_KEY_PAGERVMPARAM	= "pagerVMParam";
+	private static final String						VM_KEY_PAGERVMPARAM	= "pagerVMParam";
 
 	/**
 	 * vm里面i18n变量名称 <code>{@value}</code>,在vm里面,你可以使用 ${i18nMap.xxx} 来获取数据
 	 */
-	private static final String	VM_KEY_I18NMAP		= "i18nMap";
+	private static final String						VM_KEY_I18NMAP		= "i18nMap";
 
 	/** 国际化配置文件<code>{@value}</code>. */
-	private static final String	I18N_FEILONG_PAGER	= "messages/feilong-pager";
+	private static final String						I18N_FEILONG_PAGER	= "messages/feilong-pager";
+
+	/**
+	 * 设置缓存是否开启.
+	 * 
+	 * @since 1.0.7
+	 */
+	private final static boolean					cacheEnable			= false;
+
+	/**
+	 * 将结果缓存到map.<br>
+	 * key是入参 {@link PagerParams}对象,value是解析完的分页字符串<br>
+	 * 该cache里面value不会存放null/empty
+	 * 
+	 * @since 1.0.7
+	 */
+	private final static Map<PagerParams, String>	cache				= new HashMap<PagerParams, String>();
 
 	/**
 	 * 解析VM模板,生成分页HTML代码.
@@ -114,6 +131,25 @@ public final class PagerUtil{
 	 * </p>
 	 * </blockquote>
 	 * 
+	 * <h4>缓存</h4>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * 作为vm解析,如果是官方商城常用页面渲染,在大流量的场景下,其实开销也是不小的,<br>
+	 * 基于如果传入的参数 {@link PagerParams}是一样的 {@link PagerParams#hashCode()} &&{@link PagerParams#equals(Object)},那么分页结果也应该是相同的<br>
+	 * 因此,如果对性能有很高的要求的话,可以使用cache
+	 * </p>
+	 * </blockquote>
+	 * 
+	 * 
+	 * <h4>缓存清理</h4>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * 当vm模板内容更改,需要清理缓存,由于pagerCache 是基于JVM内存级的,因此重启应用即会生效
+	 * </p>
+	 * </blockquote>
+	 * 
 	 * @param pagerParams
 	 *            构造分页需要的请求参数
 	 * @return if {@link PagerParams#getTotalCount()}{@code <=0} return "" <br>
@@ -129,8 +165,28 @@ public final class PagerUtil{
 		}
 
 		if (log.isDebugEnabled()){
-			log.debug("pagerParams:{}", JsonUtil.format(pagerParams));
+			log.debug("input pagerParams info:{}", JsonUtil.format(pagerParams));
 		}
+
+		//*************************************************************************************
+		//缓存
+		if (cacheEnable){
+			if (log.isDebugEnabled()){
+				log.debug("pagerCache.size:{}", cache.size());
+			}
+			if (cache.containsKey(pagerParams)){
+				if (log.isInfoEnabled()){
+					log.info("hashcode:[{}],get pager info from pagerCache", pagerParams.hashCode());
+				}
+				String content = cache.get(pagerParams);
+				return content;
+			}else{
+				if (log.isInfoEnabled()){
+					log.info("hashcode:[{}],pagerCache not contains pagerParams,will do parse", pagerParams.hashCode());
+				}
+			}
+		}
+		//*************************************************************************************
 
 		int totalCount = pagerParams.getTotalCount();
 
@@ -149,11 +205,17 @@ public final class PagerUtil{
 				vmParamMap.put(VM_KEY_PAGERVMPARAM, pagerVMParam);
 				vmParamMap.put(VM_KEY_I18NMAP, i18nMap);
 
-				if (log.isDebugEnabled()){
-					log.debug("vmParamMap:{}", JsonUtil.format(vmParamMap));
-				}
 				String vmPath = pagerParams.getVmPath();
+				if (log.isDebugEnabled()){
+					log.debug("vmParamMap,will use for parse: {}:{}", vmPath, JsonUtil.format(vmParamMap));
+				}
 				String content = VelocityUtil.parseTemplateWithClasspathResourceLoader(vmPath, vmParamMap);
+
+				//********************设置cache***********************************************
+				if (cacheEnable){
+					cache.put(pagerParams, content);
+				}
+				//************************************************************************
 				return content;
 			}
 			return "";
@@ -354,7 +416,7 @@ public final class PagerUtil{
 
 	/**
 	 * 解析参数中的当前页面<br>
-	 * 对于<1的情况做 返回1特殊处理
+	 * 对于<1的情况做 返回1特殊处理.
 	 * 
 	 * @param pagerParams
 	 *            the pager params
@@ -387,6 +449,8 @@ public final class PagerUtil{
 		String charsetType = pagerParams.getCharsetType();
 		String pageParamName = pagerParams.getPageParamName();
 
+		boolean userReplace = true;
+
 		URI uri = URIUtil.create(pageUrl, charsetType);
 
 		if (null == uri){
@@ -414,17 +478,31 @@ public final class PagerUtil{
 			map.putAll(originalMap);
 		}
 
-		// ***********************************************************************F
+		// *************************************************************************
 		Map<Integer, String> returnMap = new HashMap<Integer, String>();
 
-		// XXX 可以优化 优化成先出 模板链接,然后每个替换, 这样性能要比 循环解析url要快
-		for (Integer index : indexSet){
-
+		String templateEncodedUrl = "";
+		CharSequence target = "";
+		if (userReplace){
 			// 构建一个数组，完全覆盖pageParamName
-			map.put(pageParamName, new String[] { index + "" });
+			map.put(pageParamName, new String[] { "" + PagerConstants.DEFAULT_TEMPLATE_PAGE_NO });
+			target = pageParamName + "=" + PagerConstants.DEFAULT_TEMPLATE_PAGE_NO;
 
-			// 循环里面不再加码,避免 浪费性能
-			String encodedUrl = URIUtil.getEncodedUrlByArrayMap(before, map, null);
+			//  可以优化 优化成先出 模板链接,然后每个替换, 这样性能要比 循环解析url要快
+			// 循环里面不再加码,避免 浪费性能 上面路径before已经经过编码了
+			templateEncodedUrl = URIUtil.getEncodedUrlByArrayMap(before, map, null);
+		}
+
+		for (Integer index : indexSet){
+			String encodedUrl = "";
+			if (userReplace){
+				CharSequence replacement = new StringBuilder().append(pageParamName).append("=").append(index);
+				encodedUrl = templateEncodedUrl.replace(target, replacement);
+			}else{
+				// 构建一个数组，完全覆盖pageParamName
+				map.put(pageParamName, new String[] { "" + index });
+				encodedUrl = URIUtil.getEncodedUrlByArrayMap(before, map, null);
+			}
 			returnMap.put(index, encodedUrl);
 		}
 		return returnMap;

@@ -26,28 +26,28 @@ package com.feilong.taglib.display.pager.command;
  */
 public interface PagerConstants{
 
-	/** 默认分页每页显示数量. */
+	/** 默认分页每页显示数量 <code>{@value}</code>. */
 	Integer	DEFAULT_PAGESIZE						= 20;
 
-	/** <code>{@value}</code>. */
+	/** 默认的皮肤 <code>{@value}</code>. */
 	String	DEFAULT_SKIN							= "digg";
 
-	/** 默认分页参数名称. */
+	/** 默认分页参数名称 <code>{@value}</code>. */
 	String	DEFAULT_PAGE_PARAM_NAME					= "pageNo";
 
-	/** 默认分页使用的vm 脚本. */
+	/** 默认分页使用的vm 脚本 <code>{@value}</code>. */
 	String	DEFAULT_TEMPLATE_IN_CLASSPATH			= "velocity/feilong-default-pager.vm";
 
 	// **************************************************************************************
-	/** 默认将解析出来的htm 的存放在 request 作用域里面的变量. */
+	/** 默认将解析出来的htm 的存放在 request 作用域里面的变量 <code>{@value}</code>. */
 	String	DEFAULT_PAGE_ATTRIBUTE_PAGER_HTML_NAME	= "feilongPagerHtml";
 
 	// ******************************************************************************
 
-	/** url 中特殊变量,如果带有这个变量 将不解析vm,调试使用问题所在 . */
+	/** url 中特殊变量,如果带有这个变量 将不解析vm,调试使用问题所在 <code>{@value}</code> . */
 	String	DEFAULT_PARAM_DEBUG_NOT_PARSEVM			= "debugNotParseVM";
 
-	/** url 中特殊变量,如果带有这个变量 将不解析vm,调试使用问题所在 . */
+	/** url 中特殊变量,如果带有这个变量 将不解析vm,调试使用问题所在 <code>{@value}</code> . */
 	String	DEFAULT_PARAM_DEBUG_NOT_PARSEVM_VALUE	= "true";
 
 	/**
@@ -56,5 +56,5 @@ public interface PagerConstants{
 	 * @since 1.0.5
 	 */
 	// XXX 可修改为 可传递参数
-	Integer	DEFAULT_TEMPLATE_PAGE_NO				= -88888888;
+	int		DEFAULT_TEMPLATE_PAGE_NO				= -88888888;
 }

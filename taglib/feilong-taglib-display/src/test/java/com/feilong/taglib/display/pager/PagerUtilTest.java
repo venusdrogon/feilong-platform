@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.xml.ws.handler.MessageContext;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +27,6 @@ import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
-import com.feilong.taglib.display.pager.command.PagerConstants;
 import com.feilong.taglib.display.pager.command.PagerParams;
 
 /**
@@ -38,26 +35,10 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-23 15:58:19
  */
-public class PagerUtilTest{
+public class PagerUtilTest extends BasePagerTest{
 
 	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(PagerUtilTest.class);
-
-	/** The en loc. */
-	private Locale				enLoc				= new Locale("en", "US");						// 表示美国地区
-
-	/** The fr loc. */
-	private Locale				frLoc				= new Locale("fr", "FR");						// 表示法国地区
-
-	/** The zh loc. */
-	private Locale				zhLoc				= new Locale("zh", "CN");						// 表示中国地区
-
-	// Locale.ENGLISH;
-	/** The locale. */
-	private Locale				locale				= Locale.SIMPLIFIED_CHINESE;
-
-	/** The debug is not parse vm. */
-	boolean						debugIsNotParseVM	= false;
+	private static final Logger	log	= LoggerFactory.getLogger(PagerUtilTest.class);
 
 	/**
 	 * Name.
@@ -84,46 +65,17 @@ public class PagerUtilTest{
 	@SuppressWarnings({ "javadoc", "unused" })
 	@Test
 	public void getPagerContent() throws IOException{
-		int count = 1024;
-		int currentPageNo = -1;
-		int pageSize = 10;
-		int maxIndexPages = 8;
-		String skin = PagerConstants.DEFAULT_SKIN;
-		String pageUrl = "http://localhost:8888/pager.htm";
-
-		// pageUrl =
-		// "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
-
-		String pageParamName = "pageNo";
-		String vmPath = PagerConstants.DEFAULT_TEMPLATE_IN_CLASSPATH;
-
-		// log.debug("===================================================");
-
-		PagerParams pagerParams = new PagerParams(count, pageUrl);
-
-		pagerParams.setCurrentPageNo(currentPageNo);
-		pagerParams.setPageSize(pageSize);
-		pagerParams.setMaxIndexPages(maxIndexPages);
-		pagerParams.setSkin(skin);
-		pagerParams.setPageParamName(pageParamName);
-		pagerParams.setVmPath(vmPath);
-		pagerParams.setCharsetType(CharsetType.UTF8);
-
-		pagerParams.setDebugIsNotParseVM(debugIsNotParseVM);
-
-		pagerParams.setLocale(locale);
+		PagerParams pagerParams = getPagerParams();
 
 		String content = PagerUtil.getPagerContent(pagerParams);
 
-		log.info("the param content:\n\n{}", content);
+		//log.info("the param content:\n\n{}", content);
 
 		if (false){
 			String filePath = "F://pagerTest.html";
-
 			IOWriteUtil.write(filePath, content, CharsetType.UTF8);
 			DesktopUtil.browse(filePath);
 		}
-
 	}
 
 	/**
@@ -138,9 +90,12 @@ public class PagerUtilTest{
 	public void testGetPagerContent() throws IOException{
 		Date beginDate = new Date();
 		int j = 1;// 80000
-		j = 80000;
 		j = 100;
-		j = 800;
+		//		j = 500;
+		//		j = 20000;
+		//		j = 40000;
+		//		j = 80000;
+		j = 80000;
 		for (int i = 0; i < j; ++i){
 			// log.debug("===================================================");
 			getPagerContent();
@@ -148,7 +103,6 @@ public class PagerUtilTest{
 			// log.debug("{} ", i);
 		}
 		Date endDate = new Date();
-		log.info("{}次\t{}", j, DateUtil.getIntervalForView(beginDate, endDate));
+		log.info("{}次\t{}", j, DateUtil.getIntervalTime(beginDate, endDate));
 	}
-
 }

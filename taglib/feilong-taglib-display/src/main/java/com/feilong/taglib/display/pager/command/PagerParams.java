@@ -18,6 +18,9 @@ package com.feilong.taglib.display.pager.command;
 import java.io.Serializable;
 import java.util.Locale;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.taglib.display.pager.PagerUtil;
@@ -48,6 +51,7 @@ public class PagerParams implements Serializable{
 	 * 
 	 * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
 	 */
+	@Deprecated
 	private Integer				maxIndexPages;
 
 	/** 每页显示多少条. */
@@ -339,4 +343,187 @@ public class PagerParams implements Serializable{
 		this.debugIsNotParseVM = debugIsNotParseVM;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode(){
+		//返回该对象的哈希码值  支持此方法是为了提高哈希表（例如 java.util.Hashtable 提供的哈希表）的性能。 
+
+		//当我们向一个集合中添加某个元素，集合会首先调用hashCode方法，这样就可以直接定位它所存储的位置，
+		//若该处没有其他元素，则直接保存。
+
+		//若该处已经有元素存在，
+		//就调用equals方法来匹配这两个元素是否相同，相同则不存，
+		//不同则散列到其他位置（具体情况请参考（Java提高篇（）-----HashMap））。
+
+		//这样处理，当我们存入大量元素时就可以大大减少调用equals()方法的次数，极大地提高了效率。
+
+		//hashCode在上面扮演的角色为寻域（寻找某个对象在集合中区域位置）
+
+		//************************************************************************************
+		//可替代地，存在使用反射来确定测试中的字段的方法。
+		//因为这些字段通常是私有的，该方法中，reflectionHashCode，使用AccessibleObject.setAccessible改变字段的可见性。
+		//这点会在一个安全管理器失败，除非相应的权限设置是否正确。
+		//它也比明确地测试速度较慢。 
+		//HashCodeBuilder.reflectionHashCode(this);
+		//************************************************************************************
+		//你选择一个硬编码，随机选择，不为零，奇数 
+		//理想情况下 每个类不同
+		HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
+		return hashCodeBuilder//
+				.append(debugIsNotParseVM)//
+				.append(charsetType) //
+				.append(locale)//
+				.append(pageParamName)//
+				.append(pageUrl)//
+				.append(skin)//
+				.append(vmPath)//
+
+				.append(debugIsNotParseVM)//
+
+				.append(currentPageNo)//
+				.append(maxIndexPages)//
+				.append(maxShowPageNo)//
+				.append(pageSize)//
+				.append(totalCount)//
+				.toHashCode();
+
+		//		final int prime = 37;
+		//		int hashResult = 1;
+		//		hashResult += (hashResult + getHashCode(charsetType) + getHashCode(locale)) * prime;
+		//		hashResult += getHashCode(pageParamName);
+		//		hashResult += getHashCode(pageUrl);
+		//		hashResult += getHashCode(skin);
+		//		hashResult += getHashCode(vmPath);
+		//
+		//		hashResult += getHashCode(debugIsNotParseVM);
+		//		hashResult += getHashCode(currentPageNo);
+		//		hashResult += getHashCode(maxIndexPages);
+		//		hashResult += getHashCode(maxShowPageNo);
+		//		hashResult += getHashCode(pageSize);
+		//		hashResult += getHashCode(totalCount);
+		//
+		//		//		System.out.println("" + getHashCode(charsetType) + " " + getHashCode(locale) + " " + getHashCode(pageParamName) + " " + " "
+		//		//				+ getHashCode(pageUrl) + " " + getHashCode(skin) + " " + getHashCode(vmPath) + " " + getHashCode(debugIsNotParseVM) + " "
+		//		//				+ getHashCode(currentPageNo) + " " + getHashCode(maxIndexPages) + " " + getHashCode(maxShowPageNo) + " "
+		//		//				+ getHashCode(pageSize) + " " + getHashCode(totalCount));
+		//
+		//		return hashResult;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object obj){
+		if (obj == null){
+			return false;
+		}
+		if (obj == this){
+			return true;
+		}
+		if (obj.getClass() != getClass()){
+			return false;
+		}
+
+		//存在使用反射来确定测试中的字段的方法。因为这些字段通常是私有的，该方法中，reflectionEquals，使用AccessibleObject.setAccessible改变字段的可见性。
+		//这点会在一个安全管理器失败，除非相应的权限设置是否正确。
+		//它也比明确地测试速度较慢。 
+		//EqualsBuilder.reflectionEquals(this, obj);
+
+		PagerParams pagerParams = (PagerParams) obj;
+		EqualsBuilder equalsBuilder = new EqualsBuilder();
+
+		return equalsBuilder //
+				//.appendSuper(super.equals(obj))//
+				.append(this.charsetType, pagerParams.getCharsetType())//
+				.append(this.locale, pagerParams.getLocale())//
+				.append(this.pageParamName, pagerParams.getPageParamName())//
+				.append(this.pageUrl, pagerParams.getPageUrl())//
+				.append(this.skin, pagerParams.getSkin())//
+				.append(this.vmPath, pagerParams.getVmPath())//
+
+				.append(this.debugIsNotParseVM, pagerParams.getDebugIsNotParseVM())//
+				.append(this.currentPageNo, pagerParams.getCurrentPageNo())//
+				.append(this.maxIndexPages, pagerParams.getMaxIndexPages())//
+				.append(this.maxShowPageNo, pagerParams.getMaxShowPageNo())//
+				.append(this.pageSize, pagerParams.getPageSize())//
+				.append(this.totalCount, pagerParams.getTotalCount())//
+				.isEquals();
+
+		//		//先校验null ,否则obj.getClass 会抛出java.lang.NullPointerException
+		//		if (null == obj){
+		//			return false;
+		//		}
+
+		//see String equals
+		//		if (this == obj){
+		//			return true;
+		//		}
+
+		//		if (obj instanceof PagerParams){
+		//			PagerParams pagerParams = (PagerParams) obj;
+		//			if (equals(this.charsetType, pagerParams.getCharsetType())//
+		//					&& equals(this.locale, pagerParams.getLocale())//
+		//					&& equals(this.pageParamName, pagerParams.getPageParamName())//
+		//					&& equals(this.pageUrl, pagerParams.getPageUrl())//
+		//					&& equals(this.skin, pagerParams.getSkin())//
+		//					&& equals(this.vmPath, pagerParams.getVmPath())//
+		//
+		//					&& this.debugIsNotParseVM == pagerParams.getDebugIsNotParseVM()//
+		//
+		//					//注意 Integer ==   ( -128~127) 是可以的,其余需要用equals
+		//					&& equals(this.currentPageNo, pagerParams.getCurrentPageNo())//
+		//					&& equals(this.maxIndexPages, pagerParams.getMaxIndexPages())//
+		//					&& equals(this.maxShowPageNo, pagerParams.getMaxShowPageNo())//
+		//					&& equals(this.pageSize, pagerParams.getPageSize())//
+		//					&& equals(this.totalCount, pagerParams.getTotalCount())//
+		//			){
+		//				return true;
+		//			}
+		//		}
+		//		return false;
+
+	}
+
+	/**
+	 * 如果null==obj1,返回 null==obj2,否则返回 obj1.equals(obj2)
+	 * 
+	 * @param obj1
+	 *            the obj1
+	 * @param obj2
+	 *            the obj2
+	 * @return true, if successful
+	 * @since 1.0.7
+	 */
+	private boolean equals(Object obj1,Object obj2){
+		if (null == obj1){
+			return null == obj2;
+		}
+		return obj1.equals(obj2);
+	}
+
+	/**
+	 * 如果obj是null 返回0 否则 返回obj.hashCode()
+	 * 
+	 * @param obj
+	 *            the obj
+	 * @return 如果obj是null 返回0 否则 返回obj.hashCode()
+	 * @since 1.0.7
+	 */
+	private int getHashCode(Object obj){
+		return (null == obj) ? 0 : obj.hashCode();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		return super.toString();
+	}
 }
