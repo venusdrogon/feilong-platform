@@ -433,6 +433,8 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void getDayOfWeek(){
 		log.debug(DateUtil.getDayOfWeek(new Date()) + "");
+		log.debug(DateUtil.getDayOfWeek(currentYearBegin) + "");
+		log.debug(DateUtil.getDayOfWeek(currentYearEnd) + "");
 	}
 
 	/**
@@ -453,6 +455,7 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void getWeekOfYear(){
 		log.debug(DateUtil.getWeekOfYear(new Date()) + "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2013-12-31 01:30:24.895", DatePattern.commonWithMillisecond)) + "");
 		log.debug(DateUtil.getWeekOfYear(currentYearBegin) + "");
 		log.debug(DateUtil.getWeekOfYear(currentYearEnd) + "");
 		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.commonWithMillisecond)) + "");

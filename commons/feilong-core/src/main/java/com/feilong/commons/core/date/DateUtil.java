@@ -1452,19 +1452,27 @@ public final class DateUtil{
 	// [start]toCalendar
 
 	/**
-	 * 将date转成Calendar.
+	 * 将date转成Calendar,调用 {@link GregorianCalendar}<br>
+	 * <p>
+	 * {@link Calendar#getInstance()}方法,返回用默认的地区和时区的当前日期和当前时间所初始化的GregorianCalendar（标准日历）,<br>
+	 * 最终会调用 java.util.Calendar.createCalendar(TimeZone, Locale) 方法,<br>
+	 * 该方法会判断Locale(日本和泰国),其他国家最终会调用 {@link GregorianCalendar#GregorianCalendar(java.util.TimeZone, java.util.Locale)} 方法
+	 * </p>
 	 * 
 	 * @param date
 	 *            date
 	 * @return Calendar
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(date)
+	 * @see Calendar#getInstance()
 	 * @see GregorianCalendar
 	 * @see Calendar#setTime(Date)
 	 * @see Calendar#setTimeInMillis(long)
 	 */
-	public static Calendar toCalendar(Date date){
-		// Calendar的getInstance( )方法返回用默认的地区和时区的当前日期和当前时间所初始化的GregorianCalendar（标准日历）
-		// 除了日本和泰国,效果等同于 Calendar calendar = Calendar.getInstance();
-
+	public static Calendar toCalendar(Date date) throws NullPointerException{
+		if (Validator.isNullOrEmpty(date)){
+			throw new NullPointerException("date can't be null/empty!");
+		}
 		// GregorianCalendar 标准阳历 格列高利历/公历
 		// 现在的公历是根据罗马人的"儒略历"改编而
 		Calendar calendar = new GregorianCalendar();
@@ -1611,18 +1619,20 @@ public final class DateUtil{
 	/**
 	 * 判断某年是否为闰年
 	 * 
+	 * <h4>闰年原因:</h4>
+	 * 
 	 * <pre>
-	 * 最根本的原因是：地球绕太阳运行周期为365天5小时48分46秒（合365.24219天）即一回归年（tropical year）。
+	 * 地球绕太阳运行周期为365天5小时48分46秒（合365.24219天）即一回归年（tropical year）。
+	 *   
+	 *  公历的平年只有365日，比回归年短约0.2422日，所余下的时间约为四年累计一天，故四年于2月加1天，使当年的历年长度为366日，这一年就为闰年。
+	 *   		
+	 *  现行公历中每400年有97个闰年。按照每四年一个闰年计算，平均每年就要多算出0.0078天，这样经过四百年就会多算出大约3天来，
+	 *  因此，每四百年中要减少三个闰年。
 	 *  
-	 * 公历的平年只有365日，比回归年短约0.2422日，所余下的时间约为四年累计一天，故四年于2月加1天，使当年的历年长度为366日，这一年就为闰年。
-	 *  		
-	 * 现行公历中每400年有97个闰年。按照每四年一个闰年计算，平均每年就要多算出0.0078天，这样经过四百年就会多算出大约3天来，
-	 * 因此，每四百年中要减少三个闰年。
-	 * 
-	 * 所以规定，公历年份是整百数的，必须是400的倍数的才是闰年，不是400的倍数的,虽然是100的倍数，也是平年,
-	 * 这就是通常所说的：四年一闰，百年不闰，四百年再闰。
-	 * 
-	 * 例如，2000年是闰年，1900年则是平年。
+	 *  所以规定，公历年份是整百数的，必须是400的倍数的才是闰年，不是400的倍数的,虽然是100的倍数，也是平年,
+	 *  这就是通常所说的：四年一闰，百年不闰，四百年再闰。
+	 *  
+	 *  例如，2000年是闰年，1900年则是平年。
 	 * </pre>
 	 * 
 	 * @param year
