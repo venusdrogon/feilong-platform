@@ -148,12 +148,12 @@ import com.feilong.commons.core.util.Validator;
  * }
  * </pre>
  * 
- * @see CalendarUtil
- * @see DatePattern
- * @see DateFormatUtil
  * @author <a href="venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-1-27 下午01:53:21
  * @version 1.0.5 2014-5-6 10:04
+ * @see CalendarUtil
+ * @see DatePattern
+ * @see DateFormatUtil
  * @since 1.0.0
  */
 public final class DateUtil{
@@ -228,6 +228,9 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得昨天/ 日期的前一天
+	 * @see #toCalendar(Date)
+	 * @see Calendar#add(int, int)
+	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
 	public final static Date getYesterday(Date date){
@@ -254,6 +257,10 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return 传入date 所在星期的第一天 <code>00:00:00.000</code> 到毫秒
+	 * @see #toCalendar(Date)
+	 * @see Calendar#set(int, int)
+	 * @see #dayBegin(Calendar)
+	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
 	public final static Date getFirstDateOfThisWeek(Date date){
@@ -280,6 +287,10 @@ public final class DateUtil{
 	 * @param date
 	 *            任意date
 	 * @return 传入date 所在星期的最后一天 <code>23:59:59.999</code> 到毫秒
+	 * @see #toCalendar(Date)
+	 * @see Calendar#set(int, int)
+	 * @see #dayEnd(Calendar)
+	 * @see Calendar#getTime()
 	 * @since 1.0.1
 	 */
 	public final static Date getLastDateOfThisWeek(Date date){
@@ -303,6 +314,10 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return Date
+	 * @see #toCalendar(Date)
+	 * @see Calendar#set(int, int)
+	 * @see #dayBegin(Calendar)
+	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
 	public final static Date getFirstDateOfThisMonth(Date date){
@@ -325,6 +340,10 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return Date
+	 * @see #toCalendar(Date)
+	 * @see Calendar#set(int, int)
+	 * @see #dayEnd(Calendar)
+	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
 	public final static Date getLastDateOfThisMonth(Date date){
@@ -346,6 +365,10 @@ public final class DateUtil{
 	 * @param date
 	 *            指定日期
 	 * @return date
+	 * @see #toCalendar(Date)
+	 * @see Calendar#set(int, int)
+	 * @see #dayBegin(Calendar)
+	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
 	public final static Date getFirstDateOfThisYear(Date date){
@@ -368,6 +391,10 @@ public final class DateUtil{
 	 * @param date
 	 *            任意date
 	 * @return Date
+	 * @see #toCalendar(Date)
+	 * @see Calendar#set(int, int)
+	 * @see #dayEnd(Calendar)
+	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
 	public final static Date getLastDateOfThisYear(Date date){
@@ -393,15 +420,15 @@ public final class DateUtil{
 	 * return 20<span style="color:red">07</span>-06-29 00:33:05
 	 * </pre>
 	 * 
-	 * .
 	 * 
 	 * @param date
 	 *            指定时间
 	 * @param year
 	 *            增加年份 可以是负数 表示前面多少
 	 * @return 加减年份后的时间
-	 * @since 1.0
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#YEAR
+	 * @since 1.0
 	 */
 	public final static Date addYear(Date date,int year){
 		return operateDate(date, Calendar.YEAR, year);
@@ -426,6 +453,7 @@ public final class DateUtil{
 	 *            比如-3 表示 3个月之前
 	 * @return 加减月份后的时间
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#MONTH
 	 */
 	public final static Date addMonth(Date date,int month){
 		return operateDate(date, Calendar.MONTH, month);
@@ -454,8 +482,9 @@ public final class DateUtil{
 	 * @param day
 	 *            需要加减的天数 可以为负数
 	 * @return 日期加减天数
-	 * @since 1.0
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#DAY_OF_MONTH
+	 * @since 1.0
 	 */
 	public final static Date addDay(Date date,int day){
 		// Calendar.DAY_OF_MONTH 它与 Calendar.DATE 是同义词。一个月中第一天的值为 1。
@@ -463,13 +492,15 @@ public final class DateUtil{
 	}
 
 	/**
-	 * 日期加减星期 WEEK_OF_YEAR(仅仅week进行加减,不会操作其他字段)<br>
+	 * 日期加减星期 {@link Calendar#WEEK_OF_YEAR}(仅仅week进行加减,不会操作其他字段)<br>
 	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
+	 * Example 1:
 	 * addWeek(2012-06-29 00:45:18,5)
 	 * return 2012-08-03 00:45:18
 	 * 
+	 * Example 2:
 	 * addWeek(2012-06-29 00:45:18,-5)
 	 * return 2012-05-25 00:45:18
 	 * </pre>
@@ -479,15 +510,16 @@ public final class DateUtil{
 	 * @param week
 	 *            需要加减的星期数 可以为负数
 	 * @return 指定时间加减星期
-	 * @since 1.0
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#WEEK_OF_YEAR
+	 * @since 1.0
 	 */
 	public final static Date addWeek(Date date,int week){
 		return operateDate(date, Calendar.WEEK_OF_YEAR, week);
 	}
 
 	/**
-	 * 日期加减小时 Calendar.HOUR_OF_DAY 24小时制(仅仅HOUR进行加减,不会操作其他字段)<br>
+	 * 日期加减小时 {@link Calendar#HOUR_OF_DAY} 24小时制(仅仅HOUR进行加减,不会操作其他字段)<br>
 	 * 结果会自动跨月,跨年计算.
 	 * 
 	 * <pre>
@@ -504,6 +536,7 @@ public final class DateUtil{
 	 *            the hour
 	 * @return the date
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#HOUR_OF_DAY
 	 */
 	public final static Date addHour(Date date,int hour){
 		// Calendar.HOUR——12小时制的小时数
@@ -529,6 +562,7 @@ public final class DateUtil{
 	 *            the minute
 	 * @return the date
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#MINUTE
 	 */
 	public final static Date addMinute(Date date,int minute){
 		return operateDate(date, Calendar.MINUTE, minute);
@@ -552,6 +586,7 @@ public final class DateUtil{
 	 *            加减秒
 	 * @return the date
 	 * @see #operateDate(Date, int, int)
+	 * @see Calendar#SECOND
 	 */
 	public final static Date addSecond(Date date,int second){
 		return operateDate(date, Calendar.SECOND, second);
@@ -575,6 +610,8 @@ public final class DateUtil{
 	 * @see #addHour(Date, int)
 	 * @see #addMinute(Date, int)
 	 * @see #addSecond(Date, int)
+	 * @see #toCalendar(Date)
+	 * @see Calendar#add(int, int)
 	 * @since 1.0
 	 */
 	public final static Date operateDate(Date currentDate,int field,int amount){
@@ -597,8 +634,9 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return 获得任意日期中的年份部分
-	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#YEAR
+	 * @since 1.0
 	 */
 	public final static int getYear(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.YEAR);
@@ -615,11 +653,75 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return 获得任意日期中的月份
-	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#MONTH
+	 * @since 1.0
 	 */
 	public final static int getMonth(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.MONTH) + 1;
+	}
+
+	/**
+	 * 当前年中的星期数,一年中第一个星期的值为 1,一年52(365/7=52.14)个星期<br>
+	 * {@link Calendar#WEEK_OF_YEAR}
+	 * <p>
+	 * 注意:<br>
+	 * 2014年的1-1 1-2 1-3 1-4 得出的WEEK_OF_YEAR 是1; <br>
+	 * 2014年的12-28 12-29 12-30 12-31 得出的WEEK_OF_YEAR 也是1
+	 * 
+	 * <pre>
+	 * 
+	 * Example 1:
+	 * 2014-06-03
+	 * return 23
+	 * 
+	 * Example 2:
+	 * 2014-01-01
+	 * return 1
+	 * 
+	 * Example 3:
+	 * 2014-12-29
+	 * return 23
+	 * 
+	 * Example 4:
+	 * 2014-12-20
+	 * return 51
+	 * 
+	 * Example 5:
+	 * 2014-12-26
+	 * return 52
+	 * </pre>
+	 * 
+	 * {@link Calendar#setMinimalDaysInFirstWeek(int)} 可以来修改第一周最小天数,但是如果设置为7的话
+	 * 
+	 * <pre>
+	 * 
+	 * Example 1:
+	 * 2014-01-01
+	 * return 52
+	 * 
+	 * Example 3:
+	 * 2014-12-31
+	 * return 52
+	 * </pre>
+	 * 
+	 * 可以看出,如果从1月1号算开始第一周的话,这年第一周时间不够我们设置的7天,那么1月1号算上一年的星期
+	 * 
+	 * @param date
+	 *            the date
+	 * @return 当前年中的星期数
+	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#WEEK_OF_YEAR
+	 * @see Calendar#getFirstDayOfWeek()
+	 * @see Calendar#getMinimalDaysInFirstWeek()
+	 * @see Calendar#setMinimalDaysInFirstWeek(int)
+	 * @since 1.0.7
+	 */
+	public final static int getWeekOfYear(Date date){
+		//		Calendar calendar = DateUtil.toCalendar(date);
+		//		calendar.setMinimalDaysInFirstWeek(7);
+		//		return calendar.get(Calendar.WEEK_OF_YEAR);
+		return CalendarUtil.getCalendarFieldValue(date, Calendar.WEEK_OF_YEAR);
 	}
 
 	/**
@@ -636,6 +738,9 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return 获得任意时间中的天(在当年中)
+	 * @see com.feilong.commons.core.date.CalendarUtil#getDayOfYear(int, int, int)
+	 * @see #getFirstDateOfThisYear(Date)
+	 * @see #getIntervalDay(Date, Date)
 	 * @since 1.0.2
 	 */
 	public final static int getDayOfYear(Date date){
@@ -654,8 +759,9 @@ public final class DateUtil{
 	 * @param date
 	 *            the date
 	 * @return 获得任意时间中的天
-	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#DAY_OF_MONTH
+	 * @since 1.0
 	 */
 	public final static int getDayOfMonth(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.DAY_OF_MONTH);
@@ -664,6 +770,12 @@ public final class DateUtil{
 	/**
 	 * 获得当前日期星期几<br>
 	 * 从星期天开始,并且星期天是1.
+	 * 
+	 * <pre>
+	 * SUNDAY、MONDAY、TUESDAY、WEDNESDAY、THURSDAY、FRIDAY 和 SATURDAY
+	 * 
+	 * 分别对应1-7
+	 * </pre>
 	 * 
 	 * <pre>
 	 * 2012-6-29    是星期5
@@ -681,6 +793,7 @@ public final class DateUtil{
 	 * @see Calendar#FRIDAY
 	 * @see Calendar#SATURDAY
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#DAY_OF_WEEK
 	 */
 	public final static int getDayOfWeek(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.DAY_OF_WEEK);
@@ -697,8 +810,9 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得时间中的小时
-	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#HOUR_OF_DAY
+	 * @since 1.0
 	 */
 	public final static int getHourOfDay(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.HOUR_OF_DAY);
@@ -726,6 +840,8 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得date 在它一年中的 小时数
+	 * @see #getFirstDateOfThisYear(Date)
+	 * @see #getIntervalHour(Date, Date)
 	 * @since 1.0.2
 	 */
 	public final static int getHourOfYear(Date date){
@@ -744,8 +860,9 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得时间中的分钟
-	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#MINUTE
+	 * @since 1.0
 	 */
 	public final static int getMinute(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.MINUTE);
@@ -762,8 +879,9 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得时间中的秒
-	 * @since 1.0
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
+	 * @see Calendar#SECOND
+	 * @since 1.0
 	 */
 	public final static int getSecond(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.SECOND);
@@ -780,6 +898,9 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得当前时间在当天中的秒数
+	 * @see TimeInterval#SECONDS_PER_DAY
+	 * @see TimeInterval#SECONDS_PER_HOUR
+	 * @see #getSecondOfHour(Date)
 	 * @since 1.0.2
 	 */
 	public final static int getSecondOfDay(Date date){
@@ -798,12 +919,14 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return 获得时间在当前小时中的秒数
+	 * @see TimeInterval#SECONDS_PER_MINUTE
+	 * @see TimeInterval#SECONDS_PER_HOUR
 	 * @since 1.0.2
 	 */
 	public final static int getSecondOfHour(Date date){
 		int minute = getMinute(date);
 		int second = getSecond(date);
-		return second + minute * 60;
+		return second + minute * TimeInterval.SECONDS_PER_MINUTE;
 	}
 
 	/**
@@ -854,8 +977,8 @@ public final class DateUtil{
 	 * @param datePattern
 	 *            模式 {@link DatePattern}
 	 * @return string
-	 * @since 1.0
 	 * @see DateFormatUtil#format(Date, String)
+	 * @since 1.0
 	 */
 	public final static String date2String(Date date,String datePattern){
 		return DateFormatUtil.format(date, datePattern);
@@ -868,8 +991,10 @@ public final class DateUtil{
 	 *            日期集合
 	 * @param datePattern
 	 *            模式 {@link DatePattern}
+	 * 
 	 * @return 如果 Validator.isNotNullOrEmpty(dateList) return null;<br>
-	 *         否则循环date转成string,返回List<String>
+	 *         否则循环date转成string,返回{@code List<String>}
+	 * 
 	 * @since 1.0
 	 * @deprecated 不适合做api,未来可能会删除
 	 */
@@ -893,8 +1018,8 @@ public final class DateUtil{
 	 * @param datePattern
 	 *            模式,时间字符串的模式{@link DatePattern}
 	 * @return 将string字符串转换成date类型
-	 * @since 1.0
 	 * @see DateFormatUtil#parse(String, String)
+	 * @since 1.0
 	 */
 	public final static Date string2Date(String dateString,String datePattern){
 		return DateFormatUtil.parse(dateString, datePattern);
@@ -1047,11 +1172,12 @@ public final class DateUtil{
 	 * @param date2
 	 *            时间2
 	 * @return 获得两日期之间的间隔,并且转换成直观的表示方式
-	 * @since 1.0
 	 * @see #getIntervalForView(long)
+	 * @see #getIntervalTime(Date, Date)
+	 * @since 1.0
 	 */
 	public final static String getIntervalForView(Date date1,Date date2){
-		long space_time = DateUtil.getIntervalTime(date1, date2);
+		long space_time = getIntervalTime(date1, date2);
 		return getIntervalForView(space_time);
 	}
 
@@ -1072,6 +1198,10 @@ public final class DateUtil{
 	 *            单位毫秒
 	 * @return 将时间(单位毫秒),并且转换成直观的表示方式<br>
 	 *         如果 space_time 是0 直接返回0
+	 * @see #getIntervalDay(long)
+	 * @see #getIntervalHour(long)
+	 * @see #getIntervalMinute(long)
+	 * @see #getIntervalSecond(long)
 	 * @since 1.0
 	 */
 	@SuppressWarnings("deprecation")
@@ -1113,40 +1243,42 @@ public final class DateUtil{
 	/**
 	 * 两个时间相差的小时数.
 	 * 
-	 * @param space_time
+	 * @param space_millisecond
 	 *            间隔毫秒
 	 * @return 相差的小时数
+	 * @see TimeInterval#SECONDS_PER_HOUR
 	 * @since 1.0
 	 */
-	public final static int getIntervalHour(long space_time){
+	public final static int getIntervalHour(long space_millisecond){
 		// 相差小时数
-		return (int) (space_time / (60 * 60 * 1000));
+		return (int) (space_millisecond / (TimeInterval.SECONDS_PER_HOUR * 1000));
 	}
 
 	/**
 	 * 两个时间相差的分数.
 	 * 
-	 * @param space_time
+	 * @param space_millisecond
 	 *            间隔毫秒
 	 * @return 相差的分数
+	 * @see TimeInterval#SECONDS_PER_MINUTE
 	 * @since 1.0
 	 */
-	public final static int getIntervalMinute(long space_time){
+	public final static int getIntervalMinute(long space_millisecond){
 		// 相差分数
-		return (int) (space_time / (60 * 1000));
+		return (int) (space_millisecond / (TimeInterval.SECONDS_PER_MINUTE * 1000));
 	}
 
 	/**
 	 * 两个时间相差的秒数.
 	 * 
-	 * @param space_time
+	 * @param space_millisecond
 	 *            间隔毫秒
 	 * @return 相差的秒数
 	 * @since 1.0
 	 */
-	public final static int getIntervalSecond(long space_time){
+	public final static int getIntervalSecond(long space_millisecond){
 		// 相差秒数
-		return (int) (space_time / 1000);
+		return (int) (space_millisecond / 1000);
 	}
 
 	/**
@@ -1157,11 +1289,14 @@ public final class DateUtil{
 	 * @param date2
 	 *            the date2
 	 * @return 相差的秒数
+	 * @see #getIntervalTime(Date, Date)
+	 * @see #getIntervalSecond(long)
 	 * @since 1.0.2
 	 */
 	public final static int getIntervalSecond(Date date1,Date date2){
 		// 相差秒数
-		return getIntervalSecond(getIntervalTime(date1, date2));
+		long intervalTime = getIntervalTime(date1, date2);
+		return getIntervalSecond(intervalTime);
 	}
 
 	/**
@@ -1172,10 +1307,13 @@ public final class DateUtil{
 	 * @param date2
 	 *            date2
 	 * @return 相差的小时数
+	 * @see #getIntervalTime(Date, Date)
+	 * @see #getIntervalHour(long)
 	 * @since 1.0
 	 */
 	public final static int getIntervalHour(Date date1,Date date2){
-		return getIntervalHour(getIntervalTime(date1, date2));
+		long intervalTime = getIntervalTime(date1, date2);
+		return getIntervalHour(intervalTime);
 	}
 
 	/**
@@ -1184,11 +1322,12 @@ public final class DateUtil{
 	 * @param space_time
 	 *            间隔毫秒
 	 * @return 相差的天数
+	 * @see TimeInterval#SECONDS_PER_DAY
 	 * @since 1.0
 	 */
 	public final static int getIntervalDay(long space_time){
 		// 相差天数
-		return (int) (space_time / (24 * 60 * 60 * 1000));
+		return (int) (space_time / (TimeInterval.SECONDS_PER_DAY * 1000));
 	}
 
 	/**
@@ -1201,12 +1340,16 @@ public final class DateUtil{
 	 * @param datePattern
 	 *            时间模式 {@link DatePattern}
 	 * @return 相差的天数
+	 * @see #string2Date(String, String)
+	 * @see #getIntervalTime(Date, Date)
+	 * @see #getIntervalDay(long)
 	 * @since 1.0
 	 */
 	public final static int getIntervalDay(String date1,String date2,String datePattern){
 		Date date_1 = string2Date(date1, datePattern);
 		Date date_2 = string2Date(date2, datePattern);
-		return getIntervalDay(getIntervalTime(date_1, date_2));
+		long intervalTime = getIntervalTime(date_1, date_2);
+		return getIntervalDay(intervalTime);
 	}
 
 	/**
@@ -1217,10 +1360,13 @@ public final class DateUtil{
 	 * @param date2
 	 *            date2
 	 * @return 相差的天数
+	 * @see #getIntervalTime(Date, Date)
+	 * @see #getIntervalDay(long)
 	 * @since 1.0
 	 */
 	public final static int getIntervalDay(Date date1,Date date2){
-		return getIntervalDay(getIntervalTime(date1, date2));
+		long intervalTime = getIntervalTime(date1, date2);
+		return getIntervalDay(intervalTime);
 	}
 
 	/**
@@ -1248,23 +1394,23 @@ public final class DateUtil{
 	 * @param datePattern
 	 *            时间模式 {@link DatePattern}
 	 * @return the interval day list
-	 * @since 1.0
 	 * @see #getIntervalDay(Date, Date)
+	 * @since 1.0
 	 * @deprecated 不适合做API
 	 */
 	@Deprecated
 	public final static List<Date> getIntervalDayList(String fromDate,String toDate,String datePattern){
 		List<Date> dateList = new LinkedList<Date>();
-		/***************************************************************/
+		//***************************************************************/
 		Date begin_Date = string2Date(fromDate, datePattern);
 		Date end_Date = string2Date(toDate, datePattern);
 		// ******重置时间********
 		Date beginDateReset = CalendarUtil.getResetDate_byDay(begin_Date);
 		Date endDateReset = CalendarUtil.getResetDate_byDay(end_Date);
-		/***************************************************************/
+		//***************************************************************/
 		// 相隔的天数
 		int intervalDay = getIntervalDay(beginDateReset, endDateReset);
-		/***************************************************************/
+		//***************************************************************/
 		Date minDate = beginDateReset;
 		if (beginDateReset.equals(endDateReset)){
 			minDate = beginDateReset;
@@ -1273,15 +1419,15 @@ public final class DateUtil{
 		}else{
 			minDate = endDateReset;
 		}
-		/***************************************************************/
+		//***************************************************************/
 		dateList.add(minDate);
-		/***************************************************************/
+		//***************************************************************/
 		if (intervalDay > 0){
 			for (int i = 0; i < intervalDay; ++i){
 				dateList.add(addDay(minDate, i + 1));
 			}
 		}
-		/***************************************************************/
+		//***************************************************************/
 		return dateList;
 	}
 
@@ -1293,6 +1439,8 @@ public final class DateUtil{
 	 * @param date2
 	 *            date2
 	 * @return 两个时间相差的毫秒数,不管date1是否早于还是晚于date2,均返回绝对值
+	 * @see Math#abs(long)
+	 * @see #getTime(Date)
 	 * @since 1.0
 	 */
 	public final static long getIntervalTime(Date date1,Date date2){
@@ -1309,9 +1457,11 @@ public final class DateUtil{
 	 * @param date
 	 *            date
 	 * @return Calendar
+	 * @see GregorianCalendar
+	 * @see Calendar#setTime(Date)
+	 * @see Calendar#setTimeInMillis(long)
 	 */
 	public static Calendar toCalendar(Date date){
-
 		// Calendar的getInstance( )方法返回用默认的地区和时区的当前日期和当前时间所初始化的GregorianCalendar（标准日历）
 		// 除了日本和泰国,效果等同于 Calendar calendar = Calendar.getInstance();
 
@@ -1340,11 +1490,13 @@ public final class DateUtil{
 	 * @param date_after
 	 *            date_after
 	 * @param datePattern
-	 *            pattern  {@link DatePattern}
+	 *            pattern {@link DatePattern}
 	 * @return 如果date_before 早于 date_after返回 true
+	 * @see #string2Date(String, String)
+	 * @see #isBefore(Date, String, String)
 	 */
 	public final static boolean isBefore(String date_before,String date_after,String datePattern){
-		Date before = DateUtil.string2Date(date_before, datePattern);
+		Date before = string2Date(date_before, datePattern);
 		return isBefore(before, date_after, datePattern);
 	}
 
@@ -1362,11 +1514,14 @@ public final class DateUtil{
 	 * @param date_after
 	 *            date_after
 	 * @param datePattern
-	 *            pattern  {@link DatePattern}
+	 *            pattern {@link DatePattern}
 	 * @return 如果before 早于 date_after返回 true
+	 * @see #string2Date(String, String)
+	 * @see #isBefore(String, String, String)
+	 * @see Date#before(Date)
 	 */
 	public final static boolean isBefore(Date before,String date_after,String datePattern){
-		Date after = DateUtil.string2Date(date_after, datePattern);
+		Date after = string2Date(date_after, datePattern);
 		return before.before(after);
 	}
 
@@ -1394,6 +1549,8 @@ public final class DateUtil{
 	 * @param datePattern
 	 *            开始时间和结束时间的格式{@link DatePattern}
 	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
+	 * @see #string2Date(String, String)
+	 * @see #isInTime(Date, Date, Date)
 	 */
 	public final static boolean isInTime(Date date,String beginTime,String endTime,String datePattern){
 		Date beginTimeDate = string2Date(beginTime, datePattern);
@@ -1419,6 +1576,8 @@ public final class DateUtil{
 	 * @param endTimeDate
 	 *            the end time date
 	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
+	 * @see Date#after(Date)
+	 * @see Date#before(Date)
 	 */
 	public final static boolean isInTime(Date date,Date beginTimeDate,Date endTimeDate){
 		boolean flag = date.after(beginTimeDate) && date.before(endTimeDate);
@@ -1438,6 +1597,7 @@ public final class DateUtil{
 	 * @param datePattern
 	 *            格式 {@link DatePattern}
 	 * @return 相等返回true,不相等则为false
+	 * @see #date2String(Date, String)
 	 * @since 1.0.5 change name from isEqual to isEquals
 	 */
 	public final static boolean isEquals(Date date1,Date date2,String datePattern){
@@ -1468,8 +1628,8 @@ public final class DateUtil{
 	 * @param year
 	 *            年份
 	 * @return 四年一闰，百年不闰，四百年再闰
-	 * @since 1.0
 	 * @see GregorianCalendar#isLeapYear(int)
+	 * @since 1.0
 	 */
 	public final static boolean isLeapYear(int year){
 		// GregorianCalendar calendar = new GregorianCalendar();
@@ -1487,6 +1647,11 @@ public final class DateUtil{
 	 * 
 	 * @param calendar
 	 *            the calendar
+	 * @see Calendar#set(int, int)
+	 * @see Calendar#HOUR_OF_DAY
+	 * @see Calendar#MINUTE
+	 * @see Calendar#SECOND
+	 * @see Calendar#MILLISECOND
 	 */
 	private static void dayBegin(Calendar calendar){
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -1500,6 +1665,11 @@ public final class DateUtil{
 	 * 
 	 * @param calendar
 	 *            the calendar
+	 * @see Calendar#set(int, int)
+	 * @see Calendar#HOUR_OF_DAY
+	 * @see Calendar#MINUTE
+	 * @see Calendar#SECOND
+	 * @see Calendar#MILLISECOND
 	 */
 	private static void dayEnd(Calendar calendar){
 		calendar.set(Calendar.HOUR_OF_DAY, 23);

@@ -23,7 +23,8 @@
 
 		<!-- 设置监视器输出方式 -->
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p (%F:%L) [%M()] %m%n" />
+			<!-- <param name="ConversionPattern" value="%d{HH:mm:ss} %-5p (%F:%L) [%M()] %m%n" /> -->
+			<param name="ConversionPattern" value="%d{mm:ss} %-5p (%F:%L) [%M()] %m%n" />
 		</layout>
 		<!--限制输出级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
