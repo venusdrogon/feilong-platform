@@ -52,7 +52,11 @@ public final class SpecialFolder{
 	 * 获得桌面<br>
 	 * example:win7:C:\Users\venusdrogon\Desktop.
 	 * 
+	 * <br>
+	 * 或者 通过环境变量 USERPROFILE======>C:\Users\venusdrogon 再拼接 Desktop 获得
+	 * 
 	 * @return 桌面地址
+	 * @see FileSystemView#getHomeDirectory()
 	 */
 	public final static String getDesktop(){
 		FileSystemView fileSystemView = FileSystemView.getFileSystemView();
@@ -62,13 +66,13 @@ public final class SpecialFolder{
 	}
 
 	/**
-	 * 获得我的文档,该文件可以通过360等工具更改
+	 * 获得我的文档(返回文件选择器的用户默认起始目录),该文件可以通过360等工具更改.
 	 * <ul>
 	 * <li>win7:D:\noMove\documents</li>
 	 * </ul>
-	 * .
 	 * 
 	 * @return 我的文档地址
+	 * @see FileSystemView#getDefaultDirectory()
 	 */
 	public final static String getMyDocuments(){
 		FileSystemView fileSystemView = FileSystemView.getFileSystemView();
