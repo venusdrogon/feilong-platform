@@ -21,7 +21,7 @@ import java.io.Serializable;
  * 用于 连接object 成为字符串.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Mar 11, 2011 2:37:57 PM
+ * @version 1.0.0 Mar 11, 2011 2:37:57 PM
  * @since 1.0.0
  */
 public final class JoinStringEntity implements Serializable{
