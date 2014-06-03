@@ -52,6 +52,7 @@ public enum SymmetricType{
 	 * 
 	 * @deprecated please use {@link #DESede}
 	 */
+	@SuppressWarnings("dep-ann")
 	TripleDES("TripleDES","TripleDES"),
 
 	/**
