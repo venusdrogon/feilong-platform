@@ -19,7 +19,7 @@ package com.feilong.commons.core.enumeration;
  * http请求方法,目前仅支持通用的get和post 其他不支持
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-12-16 下午01:11:27
+ * @version 1.0.0 2010-12-16 下午01:11:27
  * @version 1.0.6 2014-5-8 03:27
  * @since 1.0.0
  */

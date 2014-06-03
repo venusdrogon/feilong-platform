@@ -25,18 +25,18 @@ package com.feilong.commons.core.enumeration;
  */
 public interface FontType{
 
-	/** The KAITI. */
+	/** <code>{@value}</code>. */
 	String	KAITI		= "楷体_gb2312";
 
-	/** The SONGTI. */
+	/** <code>{@value}</code>. */
 	String	SONGTI		= "宋体";
 
-	/** The YAHEI. */
+	/** <code>{@value}</code>. */
 	String	YAHEI		= "微软雅黑";
 
-	/** The VERDANA. */
+	/** <code>{@value}</code>. */
 	String	VERDANA		= "Verdana";
 
-	/** The COURIE r_ new. */
+	/** <code>{@value}</code>. */
 	String	COURIER_NEW	= "Courier New";
 }
