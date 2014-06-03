@@ -25,12 +25,13 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
+//import sun.misc.BASE64Decoder;
+//import sun.misc.BASE64Encoder;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ByteUtil;
@@ -140,14 +141,19 @@ public final class SymmetricEncryption{
 	 * @param charsetName
 	 *            编码集 {@link CharsetType}
 	 * @return 加密之后的字符串
+	 * @see sun.misc.BASE64Encoder
+	 * @see org.apache.commons.codec.binary.Base64
 	 */
+	@SuppressWarnings("restriction")
 	public String encrypBase64(String original,String charsetName){
 		try{
 			byte[] bs1 = original.getBytes(charsetName);
 			byte[] bs = opBytes(bs1, Cipher.ENCRYPT_MODE);
 
-			BASE64Encoder base64Encoder = new BASE64Encoder();
-			String encode = base64Encoder.encode(bs);
+			//			BASE64Encoder base64Encoder = new BASE64Encoder();
+			//			String encode = base64Encoder.encode(bs);
+
+			String encode = new String(Base64.encodeBase64(bs));
 
 			if (log.isDebugEnabled()){
 				Map<String, String> map = new HashMap<String, String>();
@@ -176,7 +182,7 @@ public final class SymmetricEncryption{
 	}
 
 	/**
-	 * des Base64解密
+	 * des Base64解密.
 	 * 
 	 * <pre>
 	 * keyString=feilong
@@ -184,18 +190,22 @@ public final class SymmetricEncryption{
 	 * 
 	 * </pre>
 	 * 
-	 * .
-	 * 
 	 * @param base64String
 	 *            加密后的字符串
 	 * @param charsetName
 	 *            编码集 {@link CharsetType}
 	 * @return 解密返回的原始密码
+	 * @see sun.misc.BASE64Decoder
+	 * @see sun.misc.BASE64Decoder#decodeBuffer(String)
+	 * @see org.apache.commons.codec.binary.Base64
+	 * @see org.apache.commons.codec.binary.Base64#decodeBase64(byte[])
 	 */
+	@SuppressWarnings("restriction")
 	public String decryptBase64(String base64String,String charsetName){
 		try{
-			BASE64Decoder base64Decoder = new BASE64Decoder();
-			byte[] byteMi = base64Decoder.decodeBuffer(base64String);
+			//			BASE64Decoder base64Decoder = new BASE64Decoder();
+			//			byte[] byteMi = base64Decoder.decodeBuffer(base64String);
+			byte[] byteMi = Base64.decodeBase64(base64String);
 			byte[] bs = opBytes(byteMi, Cipher.DECRYPT_MODE);
 			String original = new String(bs, charsetName);
 
@@ -327,12 +337,12 @@ public final class SymmetricEncryption{
 	 * 
 	 * @param algorithm
 	 *            定义 加密算法 可用 DES,DESede,Blowfish
-	 * @param keyString
+	 * @param _keyString
 	 *            自定义的密钥字符串
 	 * @return Key
 	 * @see <a href="http://blog.csdn.net/hbcui1984/article/details/5753083">解决Linux操作系统下AES解密失败的问题</a>
 	 */
-	private Key getKey(String algorithm,String keyString){
+	private Key getKey(String algorithm,String _keyString){
 		try{
 			// KeyGenerator 对象可重复使用，也就是说，在生成密钥后，可以重复使用同一个 KeyGenerator 对象来生成更多的密钥。
 			KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm);
@@ -346,13 +356,13 @@ public final class SymmetricEncryption{
 			// SecureRandom 实现完全隨操作系统本身的內部狀態，除非調用方在調用 getInstance 方法之後又調用了 setSeed 方法
 			// 解决 :windows上加解密正常，linux上加密正常，解密时发生如下异常：
 			// javax.crypto.BadPaddingException: Given final block not properly padded
-			secureRandom.setSeed(keyString.getBytes());
+			secureRandom.setSeed(_keyString.getBytes());
 
 			keyGenerator.init(secureRandom);
 
-			Key key = keyGenerator.generateKey();
+			Key _key = keyGenerator.generateKey();
 			keyGenerator = null;
-			return key;
+			return _key;
 		}catch (NoSuchAlgorithmException e){
 			e.printStackTrace();
 		}
@@ -368,6 +378,7 @@ public final class SymmetricEncryption{
 	 *            the key rule
 	 * @return the key2
 	 */
+	@SuppressWarnings("unused")
 	private Key getKey2(String algorithm,String keyRule){
 		byte[] keyByte = keyRule.getBytes();
 		// 创建一个空的八位数组,默认情况下为0
@@ -377,8 +388,8 @@ public final class SymmetricEncryption{
 		for (int i = 0; i < byteTemp.length && i < keyByteLenth; ++i){
 			byteTemp[i] = keyByte[i];
 		}
-		Key key = new SecretKeySpec(byteTemp, algorithm);
-		return key;
+		Key _key = new SecretKeySpec(byteTemp, algorithm);
+		return _key;
 	}
 
 	/**
@@ -403,7 +414,7 @@ public final class SymmetricEncryption{
 
 		// 使用 CFB 和 OFB 之类的模式，Cipher 块可以加密单元中小于该 Cipher 的实际块大小的数据。
 		// 请求这样一个模式时，可以指定一次处理的位数（可选）：将此数添加到模式名称中，正如 "DES/CFB8/NoPadding" 和 "DES/OFB32/PKCS5Padding" 转换所示。
-		
+
 		// 如果未指定该数，则将使用特定于提供者的默认值。（例如，SunJCE 提供者对 DES 使用默认的 64 位）。
 		// 因此，通过使用如 CFB8 或 OFB8 的 8 位模式，Cipher 块可以被转换为面向字节的 Cipher 流。
 		Cipher cipher = Cipher.getInstance(transformation);

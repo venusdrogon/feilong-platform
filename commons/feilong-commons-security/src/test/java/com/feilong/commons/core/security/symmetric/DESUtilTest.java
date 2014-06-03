@@ -51,19 +51,18 @@ public class DESUtilTest extends BaseSecurityTest{
 	 */
 	@Test
 	public final void decryptBase64(){
-		SymmetricType symmetricType = SymmetricType.DES;
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, config_security_key_des_default);
-		String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==", CharsetType.UTF8);
-		log.debug(mingsString);
-		assertEquals(TestConstants.testString, mingsString);
+		assertEquals(TestConstants.testString, new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).decryptBase64(
+				"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
+				CharsetType.UTF8));
 	}
 
 	@Test
 	public final void encrypBase641(){
-		String aString = "06123246FFFEFFEE";
-		String key = "1234567890ABCDEF";
-		SymmetricEncryption dESUtil = new SymmetricEncryption(SymmetricType.DES, key);
-		log.debug(dESUtil.encrypBase64(aString, CharsetType.UTF8));
+		assertEquals(
+				"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
+				new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).encrypBase64(
+						TestConstants.testString,
+						CharsetType.UTF8));
 	}
 
 	/**

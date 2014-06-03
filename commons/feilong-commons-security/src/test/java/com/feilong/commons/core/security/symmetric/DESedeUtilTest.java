@@ -70,7 +70,9 @@ public class DESedeUtilTest extends BaseSecurityTest{
 	// @Ignore
 	public final void encrypBase64(){
 		SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_hex);
-		// LdCGo0dplVASWwJrvlHqpw==
+		//	assertEquals(expected, actual);
+		// oKLAr5N7UK2VzL0kLwnKDA9BoaAU62rV
+		//oKLAr5N7UK2VzL0kLwnKDPg/nQZBlrXn
 		log.debug(dESUtil.encrypBase64(TestConstants.testString, CharsetType.UTF8));
 	}
 
