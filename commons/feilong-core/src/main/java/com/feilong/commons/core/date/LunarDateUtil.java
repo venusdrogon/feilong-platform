@@ -27,6 +27,7 @@ import com.feilong.commons.core.PropertiesConstants;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:32
+ * @see SolarDateUtil
  * @since 1.0.0
  */
 @SuppressWarnings("deprecation")

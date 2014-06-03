@@ -22,6 +22,7 @@ import java.util.Date;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:48
+ * @see LunarDateUtil
  * @since 1.0.0
  */
 public final class SolarDateUtil{

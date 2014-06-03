@@ -47,14 +47,18 @@ public class DateFormatUtil{
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(DateFormatUtil.class);
 
+	// [start] format
+
 	/**
-	 * format 日期类型 格式化成字符串类型.
+	 * format 日期类型 格式化成字符串类型,调用的是 {@link #format(Date, String, Locale)},locale使用 {@link Locale#getDefault()}.<br>
+	 * {@link SimpleDateFormat#SimpleDateFormat()} 默认使用的locale就是 {@link Locale#getDefault()}
 	 * 
 	 * @param date
 	 *            the date
 	 * @param pattern
 	 *            the pattern
 	 * @return the string
+	 * @see #format(Date, String, Locale)
 	 */
 	public static String format(Date date,String pattern){
 		return format(date, pattern, Locale.getDefault());
@@ -70,6 +74,7 @@ public class DateFormatUtil{
 	 * @param locale
 	 *            the locale
 	 * @return the string
+	 * @see SimpleDateFormat#format(Date)
 	 */
 	public static String format(Date date,String pattern,Locale locale){
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, locale);
@@ -77,16 +82,26 @@ public class DateFormatUtil{
 		return format;
 	}
 
+	// [end]
+	//*************************************************************************************************
+
+	// [start]parse
+
 	/**
-	 * parse 字符串类型转成日期类型.
+	 * parse 字符串类型转成日期类型,调用的是 {@link #parse(String, String, Locale)},locale使用 {@link Locale#getDefault()},<br>
+	 * {@link SimpleDateFormat#SimpleDateFormat()} 默认使用的locale就是 {@link Locale#getDefault()}
 	 * 
 	 * @param dateString
 	 *            the date string
 	 * @param pattern
 	 *            the pattern
 	 * @return the date
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(dateString)
+	 * @see SimpleDateFormat
+	 * @see #parse(String, String, Locale)
 	 */
-	public static Date parse(String dateString,String pattern){
+	public static Date parse(String dateString,String pattern) throws NullPointerException{
 		return parse(dateString, pattern, Locale.getDefault());
 	}
 
@@ -100,16 +115,23 @@ public class DateFormatUtil{
 	 * @param locale
 	 *            the locale
 	 * @return the date
+	 * @throws NullPointerException
+	 *             isNullOrEmpty(dateString)
+	 * @see SimpleDateFormat
+	 * @see SimpleDateFormat#parse(String)
+	 * @see SimpleDateFormat#parse(String, ParsePosition)
 	 */
-	public static Date parse(String dateString,String pattern,Locale locale){
-		if (Validator.isNotNullOrEmpty(dateString)){
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, locale);
-			ParsePosition parsePosition = new ParsePosition(0);
-			Date date = simpleDateFormat.parse(dateString, parsePosition);
-			// Object[] objects = { dateString, pattern, parsePosition };
-			// log.debug("dateString:[{}], pattern:[{}], parsePosition:[{}]", objects);
-			return date;
+	public static Date parse(String dateString,String pattern,Locale locale) throws NullPointerException{
+		if (Validator.isNullOrEmpty(dateString)){
+			throw new NullPointerException("param dateString can not NullOrEmpty");
 		}
-		throw new IllegalArgumentException("param dateString can not be null");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, locale);
+		ParsePosition parsePosition = new ParsePosition(0);
+		Date date = simpleDateFormat.parse(dateString, parsePosition);
+		// Object[] objects = { dateString, pattern, parsePosition };
+		// log.debug("dateString:[{}], pattern:[{}], parsePosition:[{}]", objects);
+		return date;
 	}
+
+	// [end]
 }
