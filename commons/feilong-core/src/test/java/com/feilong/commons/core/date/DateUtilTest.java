@@ -98,7 +98,7 @@ public class DateUtilTest{
 
 			for (int j = 0; j < 60; ++j){
 
-				System.out.println("0" + i + ":" + StringUtil.format("%02d", j));
+				log.info("0" + i + ":" + StringUtil.format("%02d", j));
 			}
 
 		}
@@ -525,6 +525,6 @@ public class DateUtilTest{
 
 	@Test
 	public final void testToCalendar1(){
-		System.out.println((new Date().getTime() + "").length());
+		log.info((new Date().getTime() + "").length()+"");
 	}
 }

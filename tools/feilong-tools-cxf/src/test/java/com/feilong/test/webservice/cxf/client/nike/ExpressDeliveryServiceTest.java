@@ -16,6 +16,8 @@
 package com.feilong.test.webservice.cxf.client.nike;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -23,6 +25,8 @@ import org.junit.Test;
  * @since 1.0
  */
 public class ExpressDeliveryServiceTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(ExpressDeliveryServiceTest.class);
 
 	@Test
 	public void testTransferOrderSign(){
@@ -66,6 +70,6 @@ public class ExpressDeliveryServiceTest{
 		expressDeliveryService = expressDeliveryServiceService.getExpressDeliveryServicePort();
 		//service.getPort(ExpressDeliveryService.class);
 		String returnInfo = expressDeliveryService.transferOrderSign(orderSignXml.toString(), "5d4db27d92073e85bfb307cf42738308");
-		System.out.println(returnInfo);
+		log.info(returnInfo);
 	}
 }

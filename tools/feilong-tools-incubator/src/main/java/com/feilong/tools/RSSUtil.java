@@ -15,6 +15,9 @@
  */
 package com.feilong.tools;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.rsslibj.elements.Channel;
 
 /**
@@ -23,6 +26,8 @@ import com.rsslibj.elements.Channel;
  * @since 1.0
  */
 public class RSSUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(RSSUtil.class);
 
 	public static void main(String[] args){
 		Channel channel = new Channel();
@@ -34,7 +39,7 @@ public class RSSUtil{
 		channel.addItem("http://localhost/item1", "The First 金鑫>", "The First Item").setDcContributor("Joseph B. Ottinger");
 		channel.addItem("http://localhost/item2", "The Second 金鑫", "The Second Item").setDcCreator("Jason Bell");
 		try{
-			System.out.println("The feed in RDF: " + channel.getFeed("rss"));
+			log.info("The feed in RDF: " + channel.getFeed("rss"));
 		}catch (InstantiationException e){
 			e.printStackTrace();
 		}catch (IllegalAccessException e){

@@ -19,6 +19,9 @@ import java.lang.reflect.ParameterizedType;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class GenericTest1.
  * 
@@ -27,8 +30,10 @@ import java.util.List;
  */
 public class GenericTest1{
 
+	private static final Logger	log		= LoggerFactory.getLogger(GenericTest1.class);
+
 	/** The list. */
-	public List<String>	list	= new LinkedList<String>();
+	public List<String>			list	= new LinkedList<String>();
 
 	/**
 	 * The main method.
@@ -42,7 +47,7 @@ public class GenericTest1{
 	 */
 	public static void main(String[] args) throws SecurityException,NoSuchFieldException{
 		ParameterizedType pt = (ParameterizedType) GenericTest1.class.getField("list").getGenericType();
-		System.out.println(pt.getActualTypeArguments().length);
-		System.out.println(pt.getActualTypeArguments()[0]);
+		log.info("" + pt.getActualTypeArguments().length);
+		log.info("" + pt.getActualTypeArguments()[0]);
 	}
 }

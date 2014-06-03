@@ -128,8 +128,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			log.info(JsonUtil.format(paymentFormEntity));
 
 			String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
-			System.out.println(fullEncodedUrl);
-			System.out.println();
+			log.info(fullEncodedUrl);
 
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("paymentFormEntity", paymentFormEntity);

@@ -55,103 +55,104 @@ import junit.framework.TestSuite;
 import org.jfree.chart.axis.ColorBar;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.GreyPalette;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the <code>ColorBar</code> class.
  */
-public class ColorBarTests extends TestCase {
+public class ColorBarTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(ColorBarTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(ColorBarTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public ColorBarTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(ColorBarTests.class);
+	}
 
-    /**
-     * Check that the equals() method can distinguish all fields.
-     */
-    public void testEquals() {
-        ColorBar c1 = new ColorBar("Test");
-        ColorBar c2 = new ColorBar("Test");
-        assertEquals(c1, c2);
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public ColorBarTests(String name){
+		super(name);
+	}
 
-        c1.setAxis(new NumberAxis("Axis 1"));
-        assertTrue(!c1.equals(c2));
-        c2.setAxis(new NumberAxis("Axis 1"));
-        assertTrue(c1.equals(c2));
+	/**
+	 * Check that the equals() method can distinguish all fields.
+	 */
+	public void testEquals(){
+		ColorBar c1 = new ColorBar("Test");
+		ColorBar c2 = new ColorBar("Test");
+		assertEquals(c1, c2);
 
-        c1.setColorPalette(new GreyPalette());
-        assertTrue(!c1.equals(c2));
-        c2.setColorPalette(new GreyPalette());
-        assertTrue(c1.equals(c2));
-    }
+		c1.setAxis(new NumberAxis("Axis 1"));
+		assertTrue(!c1.equals(c2));
+		c2.setAxis(new NumberAxis("Axis 1"));
+		assertTrue(c1.equals(c2));
 
-    /**
-     * Two objects that are equal are required to return the same hashCode.
-     */
-    public void testHashCode() {
-        ColorBar c1 = new ColorBar("Test");
-        ColorBar c2 = new ColorBar("Test");
-        assertTrue(c1.equals(c2));
-        int h1 = c1.hashCode();
-        int h2 = c2.hashCode();
-        assertEquals(h1, h2);
-    }
+		c1.setColorPalette(new GreyPalette());
+		assertTrue(!c1.equals(c2));
+		c2.setColorPalette(new GreyPalette());
+		assertTrue(c1.equals(c2));
+	}
 
-    /**
-     * Confirm that cloning works.
-     */
-    public void testCloning() {
-        ColorBar c1 = new ColorBar("Test");
-        ColorBar c2 = null;
-        try {
-            c2 = (ColorBar) c1.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            System.err.println("Failed to clone.");
-        }
-        assertTrue(c1 != c2);
-        assertTrue(c1.getClass() == c2.getClass());
-        assertTrue(c1.equals(c2));
-    }
+	/**
+	 * Two objects that are equal are required to return the same hashCode.
+	 */
+	public void testHashCode(){
+		ColorBar c1 = new ColorBar("Test");
+		ColorBar c2 = new ColorBar("Test");
+		assertTrue(c1.equals(c2));
+		int h1 = c1.hashCode();
+		int h2 = c2.hashCode();
+		assertEquals(h1, h2);
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * Confirm that cloning works.
+	 */
+	public void testCloning(){
+		ColorBar c1 = new ColorBar("Test");
+		ColorBar c2 = null;
+		try{
+			c2 = (ColorBar) c1.clone();
+		}catch (CloneNotSupportedException e){
+			System.err.println("Failed to clone.");
+		}
+		assertTrue(c1 != c2);
+		assertTrue(c1.getClass() == c2.getClass());
+		assertTrue(c1.equals(c2));
+	}
 
-        ColorBar a1 = new ColorBar("Test Axis");
-        ColorBar a2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(a1);
-            out.close();
+		ColorBar a1 = new ColorBar("Test Axis");
+		ColorBar a2 = null;
 
-            ObjectInput in = new ObjectInputStream(
-                new ByteArrayInputStream(buffer.toByteArray())
-            );
-            a2 = (ColorBar) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(a1, a2);
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(a1);
+			out.close();
 
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			a2 = (ColorBar) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(a1, a2);
+
+	}
 
 }

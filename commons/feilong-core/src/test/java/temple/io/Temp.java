@@ -7,19 +7,19 @@ public class Temp{
 	// // 文件属性的取得
 	// File af = new File(%%1);
 	// if (af.exists()) {
-	// System.out.println(f.getName() + "的属性如下： 文件长度为：" + f.length());
-	// System.out.println(f.isFile() ? "是文件" : "不是文件");
-	// System.out.println(f.isDirectory() ? "是目录" : "不是目录");
-	// System.out.println(f.canRead() ? "可读取" : "不");
-	// System.out.println(f.canWrite() ? "是隐藏文件" : "");
-	// System.out.println("文件夹的最后修改日期为：" + new Date(f.lastModified()));
+	// log.info(f.getName() + "的属性如下： 文件长度为：" + f.length());
+	// log.info(f.isFile() ? "是文件" : "不是文件");
+	// log.info(f.isDirectory() ? "是目录" : "不是目录");
+	// log.info(f.canRead() ? "可读取" : "不");
+	// log.info(f.canWrite() ? "是隐藏文件" : "");
+	// log.info("文件夹的最后修改日期为：" + new Date(f.lastModified()));
 	// } else {
-	// System.out.println(f.getName() + "的属性如下：");
-	// System.out.println(f.isFile() ? "是文件" : "不是文件");
-	// System.out.println(f.isDirectory() ? "是目录" : "不是目录");
-	// System.out.println(f.canRead() ? "可读取" : "不");
-	// System.out.println(f.canWrite() ? "是隐藏文件" : "");
-	// System.out.println("文件的最后修改日期为：" + new Date(f.lastModified()));
+	// log.info(f.getName() + "的属性如下：");
+	// log.info(f.isFile() ? "是文件" : "不是文件");
+	// log.info(f.isDirectory() ? "是目录" : "不是目录");
+	// log.info(f.canRead() ? "可读取" : "不");
+	// log.info(f.canWrite() ? "是隐藏文件" : "");
+	// log.info("文件的最后修改日期为：" + new Date(f.lastModified()));
 	// }
 	// if(f.canRead()){
 	// %%2
@@ -35,7 +35,7 @@ public class Temp{
 	// boolean b=filereadonly.setReadOnly();
 	// }
 	// catch (Exception e) {
-	// System.out.println("拒绝写访问："+e.printStackTrace());
+	// log.info("拒绝写访问："+e.printStackTrace());
 	// }
 	//
 	//
@@ -119,7 +119,7 @@ public class Temp{
 	// while ((line = br.readLine()) != null) { // 读入一行，直到文件结束
 	// matcher.reset (line); // 匹配字符串
 	// if (matcher.find()) { // 如果有匹配的字符串，则输出
-	// System.out.println (file + ": " + line);
+	// log.info (file + ": " + line);
 	// }
 	// }
 	// br.close(); // 关闭文件
@@ -248,7 +248,7 @@ public class Temp{
 	// if (isFolerNull(f)) {
 	// for (File file :f.listFiles()) {
 	// if (file.list().length == 0) {
-	// System.out.println(file.getPath());
+	// log.info(file.getPath());
 	// file.delete();
 	// }
 	// }
@@ -340,7 +340,7 @@ public class Temp{
 	// String s = (String) t.getTransferData(DataFlavor.stringFlavor);
 	// // 同样, 因为Transferable中的DataFlavor是多种类型的,
 	// // 所以传入DataFlavor这个参数, 指定要取得哪种类型的Data.
-	// System.out.println(s);
+	// log.info(s);
 	// int bytesum = 0;
 	// int byteread = 0;
 	// File oldfile = new File(s);
@@ -359,7 +359,7 @@ public class Temp{
 	// inStream.close();
 	// }
 	// } catch (Exception e) {
-	// System.out.println("复制单个文件操作出错");
+	// log.info("复制单个文件操作出错");
 	// e.printStackTrace();
 	// }
 	// }
@@ -647,9 +647,9 @@ public class Temp{
 	// .map(FileChannel.MapMode.READ_WRITE, 0, length);
 	// for(int i = 0; i < length; i++)
 	// out.put((byte)'x');
-	// System.out.println("Finished writing");
+	// log.info("Finished writing");
 	// for(int i = length/2; i < length/2 + 6; i++)
-	// System.out.print((char)out.get(i));
+	// log.info((char)out.get(i));
 	//
 	//
 	// 99.计算获取文件夹中文件的MD5值

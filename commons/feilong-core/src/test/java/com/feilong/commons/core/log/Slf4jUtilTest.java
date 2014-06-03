@@ -16,6 +16,6 @@ public class Slf4jUtilTest{
 
 	@Test
 	public final void test(){
-		System.out.println(Slf4jUtil.formatMessage("{},{}", "今天", "aaaa"));
+		log.info(Slf4jUtil.formatMessage("{},{}", "今天", "aaaa"));
 	}
 }

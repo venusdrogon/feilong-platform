@@ -127,6 +127,6 @@ public class SymmetricEncryptionTest extends BaseSecurityTest{
 		KeyGenerator keyGenerator = KeyGenerator.getInstance("RSA");
 		// kg.init(561);
 		Provider provider = keyGenerator.getProvider();
-		System.out.println(provider.getInfo());
+		log.info(provider.getInfo());
 	}
 }

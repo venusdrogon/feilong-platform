@@ -18,6 +18,8 @@ package temple.lang.annotation;
 import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class AnnotationTest.
@@ -27,6 +29,8 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 @MyAnnotation(name = "feilong",sex = 0,loveStrings = { "胡伟立", "三国" })
 public class AnnotationTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(AnnotationTest.class);
 
 	/**
 	 * Limei.
@@ -47,16 +51,16 @@ public class AnnotationTest{
 	 *            the arguments
 	 */
 	public static void main(String[] args){
-		System.out.println(AnnotationTest.class.isAnnotationPresent(MyAnnotation.class));
+		log.info("" + AnnotationTest.class.isAnnotationPresent(MyAnnotation.class));
 		MyAnnotation myAnnotation = AnnotationTest.class.getAnnotation(MyAnnotation.class);
-		System.out.println(myAnnotation.name());
+		log.info(myAnnotation.name());
 		// *************************************************************
 		Method[] methods = AnnotationTest.class.getDeclaredMethods();
 		for (Method method : methods){
 			if (method.isAnnotationPresent(MyAnnotation.class)){
-				System.out.println("[Test." + method.getName() + "].annotation:");
+				log.info("[Test." + method.getName() + "].annotation:");
 				MyAnnotation fieldAnnotation = method.getAnnotation(MyAnnotation.class);
-				System.out.println(ArrayUtils.toString(fieldAnnotation.loveStrings()));
+				log.info(ArrayUtils.toString(fieldAnnotation.loveStrings()));
 			}
 		}
 	}

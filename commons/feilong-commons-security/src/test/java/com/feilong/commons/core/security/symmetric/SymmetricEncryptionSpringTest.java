@@ -80,6 +80,6 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 		KeyGenerator kg = KeyGenerator.getInstance("Blowfish");
 		// kg.init(561);
 		Provider provider = kg.getProvider();
-		System.out.println(provider.getInfo());
+		log.info(provider.getInfo());
 	}
 }

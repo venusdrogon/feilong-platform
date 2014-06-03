@@ -23,6 +23,8 @@ import java.util.Properties;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * ZookeeperUtil ZooKeeper服务上传工具类.
@@ -31,6 +33,8 @@ import org.apache.zookeeper.ZooKeeper;
  * @date 2013年11月6日 上午10:21:28
  */
 public class ZookeeperUtil{
+
+	private static final Logger		log						= LoggerFactory.getLogger(ZookeeperUtil.class);
 
 	/** ZooKeeper 服务连接超时时间. */
 	private static final Integer	ZK_CONNECTION_TIMEROUT	= 30000;
@@ -55,8 +59,8 @@ public class ZookeeperUtil{
 			Properties properties = new Properties();
 
 			// ZookeeperManager
-			System.out.println("From:" + new File(localPath).getCanonicalPath());
-			System.out.println("To:" + zooPath);
+			log.info("From:" + new File(localPath).getCanonicalPath());
+			log.info("To:" + zooPath);
 
 			// 读取localPath目录下的全部properties文件
 			File file = new File(localPath);
@@ -64,7 +68,7 @@ public class ZookeeperUtil{
 			for (int i = 0; i < files.length; i++){
 				if (!files[i].isDirectory() && files[i].getPath().endsWith(".properties")
 						&& !files[i].getPath().endsWith("init.properties")){
-					System.out.println("File:" + files[i].getCanonicalPath());
+					log.info("File:" + files[i].getCanonicalPath());
 					properties.load(new FileInputStream(files[i]));
 				}
 			}
@@ -91,7 +95,7 @@ public class ZookeeperUtil{
 			// 将properties文件内容写入zk节点
 			for (Object objKey : properties.keySet()){
 				String key = objKey.toString();
-				System.out.println(key + "\t" + properties.getProperty(key));
+				log.info(key + "\t" + properties.getProperty(key));
 				zooKeeper
 						.create(zooPath + "/" + key, properties.get(key).toString().getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 			}
@@ -114,7 +118,7 @@ public class ZookeeperUtil{
 			ZooKeeper zk = new ZooKeeper(zooHost, ZK_CONNECTION_TIMEROUT, null);
 			List<String> children = zk.getChildren(path, true);
 			for (String child : children){
-				System.out.println(child + "\t" + new String(zk.getData(path + "/" + child, null, null)));
+				log.info(child + "\t" + new String(zk.getData(path + "/" + child, null, null)));
 			}
 
 		}catch (Exception e){

@@ -26,6 +26,8 @@
 package com.feilong.commons.core.lang;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -33,18 +35,20 @@ import org.junit.Test;
  */
 public class ClassLoaderUtilTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(ClassLoaderUtilTest.class);
+
 	/**
 	 * {@link com.feilong.commons.core.lang.ClassLoaderUtil#getResource(java.lang.String)} 的测试方法。
 	 */
 	@Test
 	public void testGetResource(){
-		System.out.println(ClassLoaderUtil.getResource(""));
-		System.out.println(ClassLoaderUtil.getResource("com"));
+		log.info(ClassLoaderUtil.getResource("") + "");
+		log.info("" + ClassLoaderUtil.getResource("com"));
 	}
 
 	@Test
 	public void getClassPath(){
-		System.out.println(ClassLoaderUtil.getClassPath());
+		log.info("" + ClassLoaderUtil.getClassPath());
 	}
 
 	@Test

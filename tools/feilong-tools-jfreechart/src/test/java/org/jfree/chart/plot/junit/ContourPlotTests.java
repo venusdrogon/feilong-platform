@@ -52,55 +52,57 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.plot.ContourPlot;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the <code>ContourPlot</code> class.
  */
-public class ContourPlotTests extends TestCase {
+public class ContourPlotTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(ContourPlotTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(ContourPlotTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public ContourPlotTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(ContourPlotTests.class);
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public ContourPlotTests(String name){
+		super(name);
+	}
 
-        ContourPlot p1 = new ContourPlot(null, null, null, null);
-        ContourPlot p2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(p1);
-            out.close();
+		ContourPlot p1 = new ContourPlot(null, null, null, null);
+		ContourPlot p2 = null;
 
-            ObjectInput in = new ObjectInputStream(
-                new ByteArrayInputStream(buffer.toByteArray())
-            );
-            p2 = (ContourPlot) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(p1, p2);
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(p1);
+			out.close();
 
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			p2 = (ContourPlot) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(p1, p2);
+
+	}
 
 }

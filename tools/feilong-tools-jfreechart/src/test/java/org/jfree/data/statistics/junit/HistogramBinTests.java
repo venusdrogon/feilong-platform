@@ -52,91 +52,92 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.data.statistics.HistogramBin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link HistogramBin} class.
  */
-public class HistogramBinTests extends TestCase {
+public class HistogramBinTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(HistogramBinTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(HistogramBinTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public HistogramBinTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(HistogramBinTests.class);
+	}
 
-    /**
-     * Confirm that the equals method can distinguish all the required fields.
-     */
-    public void testEquals() {
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public HistogramBinTests(String name){
+		super(name);
+	}
 
-        double start = 10.0;
-        double end = 20.0;
-        HistogramBin b1 = new HistogramBin(start, end);
-        HistogramBin b2 = new HistogramBin(start, end);
+	/**
+	 * Confirm that the equals method can distinguish all the required fields.
+	 */
+	public void testEquals(){
 
-        assertTrue(b1.equals(b2));
-        assertTrue(b2.equals(b1));
+		double start = 10.0;
+		double end = 20.0;
+		HistogramBin b1 = new HistogramBin(start, end);
+		HistogramBin b2 = new HistogramBin(start, end);
 
-    }
+		assertTrue(b1.equals(b2));
+		assertTrue(b2.equals(b1));
 
-    /**
-     * Confirm that cloning works.
-     */
-    public void testCloning() {
-        double start = 10.0;
-        double end = 20.0;
-        HistogramBin b1 = new HistogramBin(start, end);
-        HistogramBin b2 = null;
-        try {
-            b2 = (HistogramBin) b1.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            System.err.println("Failed to clone.");
-        }
-        assertTrue(b1 != b2);
-        assertTrue(b1.getClass() == b2.getClass());
-        assertTrue(b1.equals(b2));
-    }
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * Confirm that cloning works.
+	 */
+	public void testCloning(){
+		double start = 10.0;
+		double end = 20.0;
+		HistogramBin b1 = new HistogramBin(start, end);
+		HistogramBin b2 = null;
+		try{
+			b2 = (HistogramBin) b1.clone();
+		}catch (CloneNotSupportedException e){
+			System.err.println("Failed to clone.");
+		}
+		assertTrue(b1 != b2);
+		assertTrue(b1.getClass() == b2.getClass());
+		assertTrue(b1.equals(b2));
+	}
 
-        double start = 10.0;
-        double end = 20.0;
-        HistogramBin b1 = new HistogramBin(start, end);
-        HistogramBin b2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(b1);
-            out.close();
+		double start = 10.0;
+		double end = 20.0;
+		HistogramBin b1 = new HistogramBin(start, end);
+		HistogramBin b2 = null;
 
-            ObjectInput in = new ObjectInputStream(
-                new ByteArrayInputStream(buffer.toByteArray())
-            );
-            b2 = (HistogramBin) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(b1, b2);
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(b1);
+			out.close();
 
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			b2 = (HistogramBin) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(b1, b2);
+
+	}
 
 }

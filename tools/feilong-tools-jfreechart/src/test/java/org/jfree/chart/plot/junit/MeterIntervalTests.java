@@ -55,92 +55,82 @@ import junit.framework.TestSuite;
 
 import org.jfree.chart.plot.MeterInterval;
 import org.jfree.data.Range;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link MeterInterval} class.
  */
-public class MeterIntervalTests extends TestCase {
+public class MeterIntervalTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(MeterIntervalTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(MeterIntervalTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public MeterIntervalTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(MeterIntervalTests.class);
+	}
 
-    /**
-     * Confirm that the equals method can distinguish all the required fields.
-     */
-    public void testEquals() {
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public MeterIntervalTests(String name){
+		super(name);
+	}
 
-        MeterInterval m1 = new MeterInterval(
-            "Label 1", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f),
-            Color.blue
-        );
-        MeterInterval m2 = new MeterInterval(
-            "Label 1", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f),
-            Color.blue
-        );
-        assertTrue(m1.equals(m2));
-        assertTrue(m2.equals(m1));
+	/**
+	 * Confirm that the equals method can distinguish all the required fields.
+	 */
+	public void testEquals(){
 
-        m1 = new MeterInterval(
-            "Label 2", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f),
-            Color.blue
-        );
-        assertFalse(m1.equals(m2));
-        m2 = new MeterInterval(
-            "Label 2", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f),
-            Color.blue
-        );
-        assertTrue(m1.equals(m2));
+		MeterInterval m1 = new MeterInterval("Label 1", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f), Color.blue);
+		MeterInterval m2 = new MeterInterval("Label 1", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f), Color.blue);
+		assertTrue(m1.equals(m2));
+		assertTrue(m2.equals(m1));
 
-    }
+		m1 = new MeterInterval("Label 2", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f), Color.blue);
+		assertFalse(m1.equals(m2));
+		m2 = new MeterInterval("Label 2", new Range(1.2, 3.4), Color.red, new BasicStroke(1.0f), Color.blue);
+		assertTrue(m1.equals(m2));
 
-    /**
-     * This class is immutable so cloning isn't required.
-     */
-    public void testCloning() {
-        MeterInterval m1 = new MeterInterval("X", new Range(1.0, 2.0));
-        assertFalse(m1 instanceof Cloneable);
-    }
+	}
 
-   /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * This class is immutable so cloning isn't required.
+	 */
+	public void testCloning(){
+		MeterInterval m1 = new MeterInterval("X", new Range(1.0, 2.0));
+		assertFalse(m1 instanceof Cloneable);
+	}
 
-        MeterInterval m1 = new MeterInterval("X", new Range(1.0, 2.0));
-        MeterInterval m2 = null;
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(m1);
-            out.close();
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-            ObjectInput in = new ObjectInputStream(
-                new ByteArrayInputStream(buffer.toByteArray())
-            );
-            m2 = (MeterInterval) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        boolean b = m1.equals(m2);
-        assertTrue(b);
+		MeterInterval m1 = new MeterInterval("X", new Range(1.0, 2.0));
+		MeterInterval m2 = null;
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(m1);
+			out.close();
 
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			m2 = (MeterInterval) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		boolean b = m1.equals(m2);
+		assertTrue(b);
+
+	}
 
 }

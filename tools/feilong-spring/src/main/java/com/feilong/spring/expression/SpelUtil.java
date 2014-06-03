@@ -35,7 +35,7 @@ public class SpelUtil{
 	public static Object getValue(String expressionString){
 		Expression expression = expressionParser.parseExpression(expressionString);
 //		String message = expression.getValue(String.class);
-//		System.out.println(message);
+//		log.info(message);
 		return expression.getValue();
 	}
 }

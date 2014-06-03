@@ -59,10 +59,10 @@ public class JobCrawler{
 			}
 			//************************************************************
 			for (Enterprise enterprise : list){
-				System.out.println(enterprise.getName());
-				System.out.println(enterprise.getEmail());
-				System.out.println(enterprise.getLinkMan());
-				System.out.println(enterprise.getTelephone());
+				log.info(enterprise.getName());
+				log.info(enterprise.getEmail());
+				log.info(enterprise.getLinkMan());
+				log.info(enterprise.getTelephone());
 			}
 		}catch (IOException e){
 			e.printStackTrace();

@@ -53,12 +53,15 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.data.Range;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link Range} class.
  */
 public class RangeTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(RangeTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -320,7 +323,7 @@ public class RangeTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
             fail("Serialization is not supported");
         }
         assertEquals(r1, r2);

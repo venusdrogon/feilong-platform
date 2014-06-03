@@ -8,15 +8,19 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.PinYinUtil;
 
 public class PinYinUtilTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(PinYinUtilTest.class);
+
 	@Test
 	public void convertChineseToPinYin(){
 		String chinese = "金鑫 ai feilong  奔";
-		System.out.println(PinYinUtil.convertChineseToPinYin(chinese));
+		log.info(PinYinUtil.convertChineseToPinYin(chinese));
 	}
 
 	@Test
@@ -41,6 +45,6 @@ public class PinYinUtilTest{
 		}catch (BadHanyuPinyinOutputFormatCombination e){
 			e.printStackTrace();
 		}
-		System.out.println(buffer.toString());
+		log.info(buffer.toString());
 	}
 }

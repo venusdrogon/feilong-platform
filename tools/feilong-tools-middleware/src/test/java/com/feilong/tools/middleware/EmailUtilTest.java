@@ -37,7 +37,7 @@ public class EmailUtilTest{
 	 */
 	// @Test
 	// public void testGetEmailLoginHrefByEmail(){
-	// System.out.println(EmailUtil.getEmailLoginHrefByEmail(email));
+	// log.info(EmailUtil.getEmailLoginHrefByEmail(email));
 	// }
 
 	/**

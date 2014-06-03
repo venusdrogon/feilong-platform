@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 import com.feilong.entity.user.User;
@@ -26,15 +28,17 @@ import com.feilong.spring.expression.SpelUtil;
 
 public class ExpressionParserTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(ExpressionParserTest.class);
+
 	@Test
 	public void getValue(){
 		String ex = "'Hello,World'";
-		System.out.println(SpelUtil.getValue(ex));
-		System.out.println(SpelUtil.getValue(ex + ".length()"));
-		System.out.println(SpelUtil.getValue(ex + ".concat('!')"));
-		System.out.println(SpelUtil.getValue(ex + ".class"));
-		System.out.println(SpelUtil.getValue(ex + ".bytes.length"));
-		System.out.println(SpelUtil.getValue("new String(" + ex + ").toUpperCase()"));
+		log.info("" + SpelUtil.getValue(ex));
+		log.info("" + SpelUtil.getValue(ex + ".length()"));
+		log.info("" + SpelUtil.getValue(ex + ".concat('!')"));
+		log.info("" + SpelUtil.getValue(ex + ".class"));
+		log.info("" + SpelUtil.getValue(ex + ".bytes.length"));
+		log.info("" + SpelUtil.getValue("new String(" + ex + ").toUpperCase()"));
 	}
 
 	@Test
@@ -50,9 +54,9 @@ public class ExpressionParserTest{
 		Object name = null;
 		//		EvaluationContext context = new StandardEvaluationContext(user);
 		//		  name = exp.getValue(context);
-		//System.out.println(name);
+		//log.info(name);
 		//exp = parser.parseExpression("name");
 		name = exp.getValue(user, Boolean.class);
-		System.out.println(name);
+		log.info("" + name);
 	}
 }

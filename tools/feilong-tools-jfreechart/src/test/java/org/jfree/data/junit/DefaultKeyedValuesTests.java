@@ -61,12 +61,15 @@ import junit.framework.TestSuite;
 import org.jfree.data.DefaultKeyedValues;
 import org.jfree.data.UnknownKeyException;
 import org.jfree.util.SortOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link DefaultKeyedValues} class.
  */
 public class DefaultKeyedValuesTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(DefaultKeyedValuesTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -528,7 +531,7 @@ public class DefaultKeyedValuesTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(v1, v2);
 

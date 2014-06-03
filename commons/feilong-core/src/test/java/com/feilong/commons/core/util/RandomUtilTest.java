@@ -59,7 +59,7 @@ public class RandomUtilTest{
 	public final void createRandomWithLength2(){
 		for (int i = 0, j = 100; i < j; ++i){
 			Random rand = new Random();
-			System.out.println(rand.nextDouble());
+			log.info("" + rand.nextDouble());
 		}
 	}
 

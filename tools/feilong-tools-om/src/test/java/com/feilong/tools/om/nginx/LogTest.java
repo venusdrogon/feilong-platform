@@ -38,7 +38,7 @@ public class LogTest{
 		String content = IOReaderUtil.getFileContent(fileName);
 		// 将内容以换行符转成数组
 		// String[] rowsContents = content.split("\r\n");
-		System.out.println(content);
+		log.info(content);
 	}
 
 	@Test

@@ -11,7 +11,12 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Util{
+
+	private static final Logger	log	= LoggerFactory.getLogger(Util.class);
 
 	public static boolean copyFile(String fileName,String newFileName){
 		BufferedOutputStream bos = null;
@@ -63,7 +68,7 @@ public class Util{
 			Process process = Runtime.getRuntime().exec(cmd);
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			while ((line = bufferedReader.readLine()) != null){
-				System.out.println(line);
+				log.info(line);
 			}
 			process.waitFor();
 			ret = process.exitValue();

@@ -15,6 +15,9 @@
  */
 package com.feilong.tools.office.word;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
@@ -25,6 +28,8 @@ import com.jacob.com.Variant;
  * @author 金鑫 2010-3-1 下午02:42:31
  */
 public class MSWordManager{
+
+	private static final Logger	log	= LoggerFactory.getLogger(MSWordManager.class);
 
 	/**
 	 * 文档转换函数
@@ -41,8 +46,12 @@ public class MSWordManager{
 			app.setProperty("Visible", new Variant(false));
 			// 设置word不可见
 			Dispatch docs = app.getProperty("Documents").toDispatch();
-			Dispatch doc = Dispatch.invoke(docs, "Open", Dispatch.Method, new Object[] { docfile, new Variant(false), new Variant(true) }, new int[1])
-					.toDispatch();
+			Dispatch doc = Dispatch.invoke(
+					docs,
+					"Open",
+					Dispatch.Method,
+					new Object[] { docfile, new Variant(false), new Variant(true) },
+					new int[1]).toDispatch();
 			// 打开word文件
 			Dispatch.invoke(doc, "SaveAs", Dispatch.Method, new Object[] { htmlfile, new Variant(8) }, new int[1]);
 			// 作为html格式保存到临时文件
@@ -629,7 +638,7 @@ public class MSWordManager{
 		Dispatch table = Dispatch.call(tables, "Item", new Variant(tableIndex)).toDispatch();
 		// 表格的所有行
 		Dispatch cols = Dispatch.get(table, "Columns").toDispatch();
-		System.out.println(Dispatch.get(cols, "Count"));
+		log.info("" + Dispatch.get(cols, "Count"));
 		Dispatch col = Dispatch.call(cols, "Item", new Variant(colIndex)).toDispatch();
 		// Dispatch col = Dispatch.get(cols, "First").toDispatch();
 		Dispatch.call(cols, "Add", col).toDispatch();

@@ -127,12 +127,12 @@ public class JaxWsDynamicClientUtilTest{
 		// factory.setAddress("https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl");
 		// factory.getServiceFactory().setDataBinding(new AegisDatabinding());
 		// HelloWorld client = factory.create(HelloWorld.class);
-		// System.out.println("Invoke sayHi()....");
-		// System.out.println(client.sayHi(System.getProperty("user.name")));
+		// log.info("Invoke sayHi()....");
+		// log.info(client.sayHi(System.getProperty("user.name")));
 		// Document doc = client.getADocument();
 		// Element e = (Element) doc.getFirstChild();
-		// System.out.println(e.getTagName());
+		// log.info(e.getTagName());
 		// Text t = (Text) e.getFirstChild();
-		// System.out.println(t);
+		// log.info(t);
 	}
 }

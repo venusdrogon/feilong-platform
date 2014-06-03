@@ -44,7 +44,7 @@ public class ClipboardUtilTest{
 	@Test
 	public final void testSetClipboardContents(){
 		// FeiLongToolkit.setClipboardContents("金鑫data,2011-05-23");
-		System.out.println(ClipboardUtil.getClipboardContent());
+		log.info(ClipboardUtil.getClipboardContent());
 	}
 
 	@Test

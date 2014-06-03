@@ -6,6 +6,8 @@ package com.feilong.tools.middleware.mobile;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.middleware.mobile.MobileUtil;
 
@@ -17,7 +19,9 @@ import com.feilong.tools.middleware.mobile.MobileUtil;
  */
 public class MobileTest{
 
-	String	mobileNumber	= "15001841318";
+	private static final Logger	log				= LoggerFactory.getLogger(MobileTest.class);
+
+	String						mobileNumber	= "15001841318";
 
 	/**
 	 * {@link com.feilong.tools.middleware.mobile.MobileUtil#getMobileNumberHided(java.lang.String)} 的测试方法。
@@ -34,7 +38,7 @@ public class MobileTest{
 
 	@Test
 	public void getMobileNumberHided(){
-		System.out.println(MobileUtil.getMobileNumberHided(mobileNumber, 15));
+		log.info(MobileUtil.getMobileNumberHided(mobileNumber, 15));
 		// assertEquals(mobileNumber, FeiLongMobile.getMobileNumberHided(mobileNumber,4));
 	}
 }

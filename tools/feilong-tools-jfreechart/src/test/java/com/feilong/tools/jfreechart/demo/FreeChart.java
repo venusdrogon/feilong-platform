@@ -45,6 +45,8 @@ import org.jfree.data.xy.WindDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYZDataset;
 import org.jfree.util.TableOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.commons.core.date.DatePattern;
@@ -53,6 +55,8 @@ import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
 public class FreeChart{
+
+	private static final Logger					log								= LoggerFactory.getLogger(FreeChart.class);
 
 	/* 定义各类图表所需的Dataset */
 	private DefaultCategoryDataset				vDefaultCategoryDataset			= null;
@@ -208,7 +212,7 @@ public class FreeChart{
 								Double.parseDouble(strElementArray[nIndex]));
 					}
 				}catch (Exception e){
-					System.out.println(e.getMessage());
+					log.info(e.getMessage());
 				}
 			}
 			vTimeSeriesCollection.addSeries(vTimeSeries);

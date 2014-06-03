@@ -53,12 +53,15 @@ import junit.framework.TestSuite;
 
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimePeriodValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link TimePeriodValue} class.
  */
 public class TimePeriodValueTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(TimePeriodValueTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -123,7 +126,7 @@ public class TimePeriodValueTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(tpv1, tpv2);
 

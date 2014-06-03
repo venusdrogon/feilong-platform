@@ -37,6 +37,9 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.ImageType;
@@ -44,7 +47,9 @@ import com.feilong.commons.core.io.ImageType;
 //97.区域截幕
 public class ScreenDumpHelper{
 
-	private Rectangle	screenArea;
+	private static final Logger	log	= LoggerFactory.getLogger(ScreenDumpHelper.class);
+
+	private Rectangle			screenArea;
 
 	public Rectangle getScreenArea(){
 		return this.screenArea;
@@ -92,7 +97,7 @@ public class ScreenDumpHelper{
 			FileOutputStream fos = new FileOutputStream(fileName);
 			this.saveToOutputStream(fileFormat, fos);
 		}catch (FileNotFoundException e){
-			System.out.println("非常规文件或不能创建抑或覆盖此文件: " + fileName);
+			log.info("非常规文件或不能创建抑或覆盖此文件: " + fileName);
 			e.printStackTrace();
 		}
 		return true;

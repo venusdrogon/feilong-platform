@@ -15,14 +15,18 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- *用jsoup分析下载巨鲸的mp3
+ * 用jsoup分析下载巨鲸的mp3
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-28 上午10:31:02
  */
 public class Top100Mp3Downloader{
+
+	private static final Logger	log	= LoggerFactory.getLogger(Top100Mp3Downloader.class);
 
 	public static void main(String[] args){
 		Top100Mp3Downloader m = new Top100Mp3Downloader();
@@ -31,7 +35,7 @@ public class Top100Mp3Downloader{
 			String name = e.getKey();
 			String path = m.findDownPathById(e.getValue());
 			m.downByPath("F:\\music\\files\\Michael Jackson", name, path);
-			System.out.println(name + " from " + path + " has down!");
+			log.info(name + " from " + path + " has down!");
 		}
 	}
 
@@ -137,7 +141,7 @@ public class Top100Mp3Downloader{
 				os.close();
 				is.close();
 			}else{
-				System.out.println("服务器返回:" + httpURLConnection.getResponseCode());
+				log.info("服务器返回:" + httpURLConnection.getResponseCode());
 			}
 		}catch (MalformedURLException e){
 			e.printStackTrace();

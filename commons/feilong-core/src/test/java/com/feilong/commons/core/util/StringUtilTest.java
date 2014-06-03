@@ -116,18 +116,18 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void format(){
-		System.out.println(StringUtil.format("%03d", 1));
-		System.out.println(StringUtil.format("%s%n%s%h", 1.2d, 2, "feilong"));
-		System.out.println(StringUtil.format("%+d", -5));
-		System.out.println(StringUtil.format("%-5d", -5));
-		System.out.println(StringUtil.format("%05d", -5));
-		System.out.println(StringUtil.format("% 5d", -5));
-		System.out.println(StringUtil.format("%,f", 5585458.254f));
-		System.out.println(StringUtil.format("%(f", -5585458.254f));
-		System.out.println(StringUtil.format("%#f", -5585458.254f));
-		System.out.println(StringUtil.format("%f和%<3.3f", 9.45));
-		System.out.println(StringUtil.format("%2$s,%1$s", 99, "abc"));
-		System.out.println(StringUtil.format("%1$s,%1$s", 99));
+		log.info(StringUtil.format("%03d", 1));
+		log.info(StringUtil.format("%s%n%s%h", 1.2d, 2, "feilong"));
+		log.info(StringUtil.format("%+d", -5));
+		log.info(StringUtil.format("%-5d", -5));
+		log.info(StringUtil.format("%05d", -5));
+		log.info(StringUtil.format("% 5d", -5));
+		log.info(StringUtil.format("%,f", 5585458.254f));
+		log.info(StringUtil.format("%(f", -5585458.254f));
+		log.info(StringUtil.format("%#f", -5585458.254f));
+		log.info(StringUtil.format("%f和%<3.3f", 9.45));
+		log.info(StringUtil.format("%2$s,%1$s", 99, "abc"));
+		log.info(StringUtil.format("%1$s,%1$s", 99));
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class StringUtilTest{
 	@Test
 	public void substring1(){
 		log.info("3999e85461ce7271dd5292c88f18567e".length() + "");
-		System.out.println(StringUtil.substring(text, 6));
+		log.info(StringUtil.substring(text, 6));
 	}
 
 	/**
@@ -188,13 +188,13 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void substring2(){
-		System.out.println(StringUtil.substring(null, 6, 8));
-		System.out.println(StringUtil.substring(text, text.length(), 8));
-		System.out.println(StringUtil.substring(text, text.length() - 1, 8));
-		System.out.println(StringUtil.substring(text, 1, 0));
-		System.out.println(StringUtil.substring(text, 0, 5));
-		System.out.println(StringUtil.substring(text, 6, 2));
-		System.out.println(StringUtil.substring(text, 6, 20));
+		log.info(StringUtil.substring(null, 6, 8));
+		log.info(StringUtil.substring(text, text.length(), 8));
+		log.info(StringUtil.substring(text, text.length() - 1, 8));
+		log.info(StringUtil.substring(text, 1, 0));
+		log.info(StringUtil.substring(text, 0, 5));
+		log.info(StringUtil.substring(text, 6, 2));
+		log.info(StringUtil.substring(text, 6, 20));
 	}
 
 	/**
@@ -202,14 +202,14 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void substring3(){
-		System.out.println(StringUtil.substring(null, "in", 8));
-		System.out.println(StringUtil.substring(text, null, 8));
-		System.out.println(StringUtil.substring(text, "sin", 8));
-		System.out.println(StringUtil.substring(text, "in", 0));
-		System.out.println(StringUtil.substring(text, "in", 5));
-		// System.out.println(StringUtil.substring(text, "in", -2));
-		System.out.println(StringUtil.substring(text, "in", 20));
-		System.out.println(StringUtil.substring(text, "j", text.length() - 1));
+		log.info(StringUtil.substring(null, "in", 8));
+		log.info(StringUtil.substring(text, null, 8));
+		log.info(StringUtil.substring(text, "sin", 8));
+		log.info(StringUtil.substring(text, "in", 0));
+		log.info(StringUtil.substring(text, "in", 5));
+		// log.info(StringUtil.substring(text, "in", -2));
+		log.info(StringUtil.substring(text, "in", 20));
+		log.info(StringUtil.substring(text, "j", text.length() - 1));
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class StringUtilTest{
 	 */
 	public void testA(){
 		String a = "SH1265,SH5951,SH6766,SH7235,SH1265,SH5951,SH6766,SH7235";
-		System.out.println(a.replaceAll("([a-zA-Z]+[0-9]+)", "'$1'"));
+		log.info(a.replaceAll("([a-zA-Z]+[0-9]+)", "'$1'"));
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class StringUtilTest{
 				stringBuilder.append(",");
 			}
 		}
-		System.out.println(stringBuilder.toString());
+		log.info(stringBuilder.toString());
 	}
 
 	/**

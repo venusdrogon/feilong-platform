@@ -3,6 +3,9 @@ package com.geek.tutorial.itext.bookmarks;
 import java.awt.Color;
 import java.io.FileOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
@@ -13,6 +16,8 @@ import com.lowagie.text.pdf.PdfWriter;
  * iText 生成pdf内部链接
  */
 public class Anchor{
+
+	private static final Logger	log	= LoggerFactory.getLogger(Anchor.class);
 
 	public Anchor() throws Exception{
 
@@ -41,11 +46,10 @@ public class Anchor{
 	}
 
 	public static void main(String[] args){
-
 		try{
 			Anchor anchor = new Anchor();
 		}catch (Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 }

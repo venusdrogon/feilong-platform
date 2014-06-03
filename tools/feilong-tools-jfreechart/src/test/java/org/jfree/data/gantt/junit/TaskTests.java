@@ -54,12 +54,15 @@ import junit.framework.TestSuite;
 
 import org.jfree.data.gantt.Task;
 import org.jfree.data.time.SimpleTimePeriod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link Task} class.
  */
 public class TaskTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(TaskTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -149,7 +152,7 @@ public class TaskTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(t1, t2);
 

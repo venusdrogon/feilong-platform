@@ -42,7 +42,7 @@ package com.feilong.tools.cxf;
 //		}catch (IOException e){
 //			e.printStackTrace();
 //		}
-//		System.out.println(responseBody);
+//		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
 //	}
 //
@@ -73,7 +73,7 @@ package com.feilong.tools.cxf;
 //		}catch (IOException e){
 //			e.printStackTrace();
 //		}
-//		System.out.println(responseBody);
+//		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
 //	}
 //
@@ -107,7 +107,7 @@ package com.feilong.tools.cxf;
 //		}catch (IOException e){
 //			e.printStackTrace();
 //		}
-//		System.out.println(responseBody);
+//		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
 //	}
 //

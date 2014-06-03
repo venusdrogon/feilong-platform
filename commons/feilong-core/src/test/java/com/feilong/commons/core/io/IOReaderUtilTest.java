@@ -43,8 +43,8 @@ public class IOReaderUtilTest{
 		String content = IOReaderUtil.getFileContent(fileName);
 		// 将内容以换行符转成数组
 		String[] rowsContents = content.split("\r\n");
-		System.out.println(content);
-		System.out.println(rowsContents.length);
+		log.info(content);
+		log.info("" + rowsContents.length);
 	}
 
 	@Test
@@ -56,12 +56,12 @@ public class IOReaderUtilTest{
 
 		// 将内容以换行符转成数组
 		// String[] rowsContents = content.split("\r\n");
-		System.out.println(content);
+		log.info(content);
 	}
 
 	@Test
 	public void getFileContent(){
 		String propertiesPath = "I:/Ebook/book.properties";
-		System.out.println(IOReaderUtil.getFileContent(propertiesPath));
+		log.info(IOReaderUtil.getFileContent(propertiesPath));
 	}
 }

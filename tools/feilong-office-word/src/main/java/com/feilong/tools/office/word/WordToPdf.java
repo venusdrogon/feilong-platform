@@ -19,6 +19,9 @@ package com.feilong.tools.office.word;
 
 import java.io.File;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
@@ -35,6 +38,8 @@ import com.jacob.com.Variant;
  * 使用jacob框架，把dll文件放到jre/bin目录下 
  */
 public class WordToPdf{
+
+	private static final Logger	log		= LoggerFactory.getLogger(WordToPdf.class);
 
 	private ActiveXComponent	wordCom	= null;
 
@@ -112,7 +117,7 @@ public class WordToPdf{
 			//输出的postscript文件的路径  
 			Variant OutputFileName = new Variant(destinPSFilePath);
 			Dispatch.callN((Dispatch) wordDoc, "PrintOut", new Variant[] { Background, Append, Range, OutputFileName });
-			System.out.println("由word文档打印为ps文档成功！");
+			log.info("由word文档打印为ps文档成功！");
 			//调用Distiller对象的FileToPDF方法所用的参数，具体内容参考Distiller Api手册  
 			//作为输入的ps文档路径  
 			Variant inputPostScriptFilePath = new Variant(destinPSFilePath);
@@ -122,7 +127,7 @@ public class WordToPdf{
 			Variant PDFOption = new Variant("");
 			//调用FileToPDF方法将ps文档转换为pdf文档  
 			Dispatch.callN(distiller, "FileToPDF", new Variant[] { inputPostScriptFilePath, outputPDFFilePath, PDFOption });
-			System.out.println("由ps文档转换为pdf文档成功！");
+			log.info("由ps文档转换为pdf文档成功！");
 		}catch (Exception ex){
 			ex.printStackTrace();
 		}finally{
@@ -135,7 +140,7 @@ public class WordToPdf{
 		d2p.docToPDF("D:\\test.doc", "D:\\test.ps", "D:\\test.pdf");
 		boolean success = (new File("D:\\test.ps")).delete();
 		if (success){
-			System.out.println("删除打印机文件成功");
+			log.info("删除打印机文件成功");
 		}
 	}
 }

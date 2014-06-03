@@ -94,26 +94,26 @@ public class JexlUtilTest{
 				"map['people'].name.length()" };
 		for (String expression : expressions){
 			Object obj = JexlUtil.evaluate(expression, mapContext);
-			System.out.println(expression + " = " + obj);
+			log.info(expression + " = " + obj);
 		}
 	}
 
 	@Test
 	public void name1(){
-		System.out.println(JexlUtil.evaluate("5+7", null));
+		log.info("" + JexlUtil.evaluate("5+7", null));
 		Map<String, Object> mapContext = new HashMap<String, Object>();
 		/*
 		 * 向执行JEXL表达式的上下文环境的变量字典中存入两个变量 键值 "tom" 对应变量 cat 键值 "array" 对应变量 list
 		 */
 		mapContext.put("a", 56);
 		mapContext.put("b", 45);
-		System.out.println(JexlUtil.evaluate("a==56 && b<10", mapContext));
-		System.out.println(JexlUtil.evaluate("a==56 || b<10", mapContext));
-		// System.out.println(FeiLongJexlUtil.evaluate("", mapContext));
+		log.info("" + JexlUtil.evaluate("a==56 && b<10", mapContext));
+		log.info("" + JexlUtil.evaluate("a==56 || b<10", mapContext));
+		// log.info(FeiLongJexlUtil.evaluate("", mapContext));
 	}
 
 	@Test
 	public void test(){
-		System.out.println(JexlUtil.evaluate("1+1+1+1+1+1+1+1+1+1+1+1*0+1", null));
+		log.info("" + JexlUtil.evaluate("1+1+1+1+1+1+1+1+1+1+1+1*0+1", null));
 	}
 }

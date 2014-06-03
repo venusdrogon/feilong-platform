@@ -64,12 +64,15 @@ import junit.framework.TestSuite;
 import org.jfree.data.time.Quarter;
 import org.jfree.data.time.TimePeriodFormatException;
 import org.jfree.data.time.Year;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {link Quarter} class.
  */
 public class QuarterTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(QuarterTests.class);
     /** A quarter. */
     private Quarter q1Y1900;
 
@@ -261,7 +264,7 @@ public class QuarterTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(q1, q2);
 

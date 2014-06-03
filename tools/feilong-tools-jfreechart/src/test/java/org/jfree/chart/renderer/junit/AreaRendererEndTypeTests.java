@@ -52,67 +52,67 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.renderer.AreaRendererEndType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link AreaRendererEndType} class.
  */
-public class AreaRendererEndTypeTests extends TestCase {
+public class AreaRendererEndTypeTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(AreaRendererEndTypeTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(AreaRendererEndTypeTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public AreaRendererEndTypeTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(AreaRendererEndTypeTests.class);
+	}
 
-    /**
-     * A test for the equals() method.
-     */
-    public void testEquals() {
-        assertEquals(AreaRendererEndType.LEVEL, AreaRendererEndType.LEVEL);
-        assertEquals(AreaRendererEndType.TAPER, AreaRendererEndType.TAPER);
-        assertEquals(
-            AreaRendererEndType.TRUNCATE, AreaRendererEndType.TRUNCATE
-        );
-    }
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public AreaRendererEndTypeTests(String name){
+		super(name);
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * A test for the equals() method.
+	 */
+	public void testEquals(){
+		assertEquals(AreaRendererEndType.LEVEL, AreaRendererEndType.LEVEL);
+		assertEquals(AreaRendererEndType.TAPER, AreaRendererEndType.TAPER);
+		assertEquals(AreaRendererEndType.TRUNCATE, AreaRendererEndType.TRUNCATE);
+	}
 
-        AreaRendererEndType t1 = AreaRendererEndType.TAPER;
-        AreaRendererEndType t2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(t1);
-            out.close();
+		AreaRendererEndType t1 = AreaRendererEndType.TAPER;
+		AreaRendererEndType t2 = null;
 
-            ObjectInput in = new ObjectInputStream(
-                new ByteArrayInputStream(buffer.toByteArray())
-            );
-            t2 = (AreaRendererEndType) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(t1, t2);
-        boolean same = t1 == t2;
-        assertEquals(true, same);
-    }
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(t1);
+			out.close();
+
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			t2 = (AreaRendererEndType) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(t1, t2);
+		boolean same = t1 == t2;
+		assertEquals(true, same);
+	}
 
 }

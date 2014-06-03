@@ -2,9 +2,14 @@ package temple;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.io.RegeditUtil;
 
 public class RegQuery{
+
+	private static final Logger	log					= LoggerFactory.getLogger(RegQuery.class);
 
 	private static final String	REGQUERY_UTIL		= "reg query ";
 
@@ -15,7 +20,8 @@ public class RegQuery{
 	private static final String	PERSONAL_FOLDER_CMD	= REGQUERY_UTIL + "\"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\"
 															+ "Explorer\\Shell Folders\" /v Personal";
 
-	private static final String	CPU_SPEED_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\"" + " /v ~MHz";
+	private static final String	CPU_SPEED_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
+															+ " /v ~MHz";
 
 	private static final String	CPU_NAME_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
 															+ " /v ProcessorNameString";
@@ -50,8 +56,8 @@ public class RegQuery{
 	}
 
 	public static void main(String s[]) throws IOException{
-		System.out.println("Personal directory : " + getCurrentUserPersonalFolderPath());
-		System.out.println("CPU Name : " + getCPUName());
-		System.out.println("CPU Speed : " + getCPUSpeed() + " Mhz");
+		log.info("Personal directory : " + getCurrentUserPersonalFolderPath());
+		log.info("CPU Name : " + getCPUName());
+		log.info("CPU Speed : " + getCPUSpeed() + " Mhz");
 	}
 }

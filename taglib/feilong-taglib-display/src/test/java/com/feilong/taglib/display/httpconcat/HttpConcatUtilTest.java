@@ -73,7 +73,7 @@ public class HttpConcatUtilTest extends BaseHttpConcatTest{
 		for (Integer j : list){
 			Date beginDate = new Date();
 			for (int i = 0; i < j; ++i){
-				//System.out.println(i);
+				//log.info(i);
 				HttpConcatParam httpConcatParam = getHttpConcatParamByI(null);
 				HttpConcatUtil.getWriteContent(httpConcatParam);
 //				httpConcatParam = null;

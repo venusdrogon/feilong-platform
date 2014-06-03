@@ -57,7 +57,7 @@ public class URIUtilTest{
 		value = "http://xy2.cbg.163.com/cgi-bin/equipquery.py?server_name=风花雪月&query_order=selling_time DESC&search_page&areaid=2&server_id=63&act=search_browse&equip_type_ids&search_text=斩妖剑";
 		value = "斩妖剑";
 		value = "风花雪月";
-		System.out.println(URIUtil.encode(value, CharsetType.GBK));
+		log.info(URIUtil.encode(value, CharsetType.GBK));
 	}
 
 	@Test
@@ -76,7 +76,7 @@ public class URIUtilTest{
 	@Test
 	public void testGetUnionUrl(){
 		result = URIUtil.getUnionUrl("E:\\test", "sanguo");
-		System.out.println(result);
+		log.info(result);
 	}
 
 	@Test
@@ -84,7 +84,7 @@ public class URIUtilTest{
 		try{
 			URL url = new URL("http://www.exiaoshuo.com/jinyiyexing/");
 			result = URIUtil.getUnionUrl(url, "/jinyiyexing/1173348/");
-			System.out.println(result);
+			log.info(result);
 		}catch (MalformedURLException e){
 			e.printStackTrace();
 		}

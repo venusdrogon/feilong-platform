@@ -67,12 +67,15 @@ import org.jfree.data.time.Day;
 import org.jfree.data.time.Hour;
 import org.jfree.data.time.Minute;
 import org.jfree.date.MonthConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link Minute} class.
  */
 public class MinuteTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(MinuteTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -175,7 +178,7 @@ public class MinuteTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(m1, m2);
     }

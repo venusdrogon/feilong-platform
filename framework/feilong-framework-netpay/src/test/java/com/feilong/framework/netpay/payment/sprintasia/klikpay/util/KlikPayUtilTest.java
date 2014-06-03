@@ -45,24 +45,6 @@ public class KlikPayUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(KlikPayUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.util.KlikPayUtil#getKeyId(java.lang.String)}.
-	 */
-	@Test
-	public final void testGetKeyId(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for.
-	 * {@link com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.util.KlikPayUtil#getSignature(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public final void testGetSignature(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
 	 * Test method for.
 	 * {@link com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.util.KlikPayUtil#getAuthKey(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String)}
 	 * .
@@ -79,6 +61,11 @@ public class KlikPayUtilTest{
 		log.info(sign);
 
 		Assert.assertEquals("BF81501C562D6FEA2FCB905D392D5851", sign);
+	}
+
+	@Test
+	public final void getKeyId(){
+		Assert.assertEquals("30394D33545230324F374B3359503459", KlikPayUtil.getKeyId("09M3TR02O7K3YP4Y"));
 	}
 
 	/**

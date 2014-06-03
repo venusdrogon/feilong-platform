@@ -1,6 +1,8 @@
 package temple;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.childandparent.Child;
 import com.feilong.childandparent.Parent;
@@ -12,6 +14,8 @@ import com.feilong.commons.core.bean.BeanUtil;
  * @since 1.0
  */
 public class MyTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(MyTest.class);
 
 	public static void main(String[] args){
 		Parent parent = new Parent();
@@ -29,11 +33,11 @@ public class MyTest{
 		parent.setName("飞天奔月");
 		Child child = new Child();
 		BeanUtil.copyProperties(child, parent);
-		System.out.println(child.getName());
+		log.info("" + child.getName());
 	}
 
 	@Test
 	public void name(){
-		System.out.println(SizeOfAgent.fullSizeOf(1));
+		log.info("" + SizeOfAgent.fullSizeOf(1));
 	}
 }

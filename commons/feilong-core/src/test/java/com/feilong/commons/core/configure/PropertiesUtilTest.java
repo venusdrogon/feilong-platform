@@ -31,6 +31,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOUtil;
@@ -42,6 +44,8 @@ import com.feilong.commons.core.io.IOUtil;
  */
 public class PropertiesUtilTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtilTest.class);
+
 	@Test
 	public void getPropertiesValue() throws IOException{
 		String propertiesPath = "I:/Ebook/book.properties";
@@ -51,7 +55,7 @@ public class PropertiesUtilTest{
 		String value = properties.getProperty(key);
 		try{
 			for (Object iterable_element : properties.keySet()){
-				System.out.println(new String(iterable_element.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
+				log.info(new String(iterable_element.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
 			}
 		}catch (UnsupportedEncodingException e1){
 			e1.printStackTrace();

@@ -27,14 +27,19 @@ package jdk.java.util;
 
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LocaleTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(LocaleTest.class);
 
 	public static void main(String[] args){
 		Locale myLocale = Locale.getDefault();
-		System.out.println(myLocale.getCountry());
-		System.out.println(myLocale.getLanguage());
-		System.out.println(myLocale.getDisplayCountry());
-		System.out.println(myLocale.getDisplayLanguage());
-		System.out.println(2.00 - 1.10);
+		log.info(myLocale.getCountry());
+		log.info(myLocale.getLanguage());
+		log.info(myLocale.getDisplayCountry());
+		log.info(myLocale.getDisplayLanguage());
+		log.info("" + (2.00 - 1.10));
 	}
 }

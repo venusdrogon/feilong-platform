@@ -52,12 +52,15 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.data.general.DatasetGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link DatasetGroup} class.
  */
 public class DatasetGroupTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(DatasetGroupTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -97,7 +100,7 @@ public class DatasetGroupTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(g1, g2);
 

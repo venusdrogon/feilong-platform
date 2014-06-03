@@ -52,71 +52,69 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.chart.plot.PlotOrientation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link PlotOrientation} class.
- *
+ * 
  */
-public class PlotOrientationTests extends TestCase {
+public class PlotOrientationTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(PlotOrientationTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(PlotOrientationTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public PlotOrientationTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(PlotOrientationTests.class);
+	}
 
-    /**
-     * Some checks for the equals() method.
-     */
-    public void testEquals() {
-        assertEquals(PlotOrientation.HORIZONTAL, PlotOrientation.HORIZONTAL);
-        assertEquals(PlotOrientation.VERTICAL, PlotOrientation.VERTICAL);
-        assertFalse(
-            PlotOrientation.HORIZONTAL.equals(PlotOrientation.VERTICAL)
-        );
-        assertFalse(
-            PlotOrientation.VERTICAL.equals(PlotOrientation.HORIZONTAL)
-        );
-    }
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public PlotOrientationTests(String name){
+		super(name);
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * Some checks for the equals() method.
+	 */
+	public void testEquals(){
+		assertEquals(PlotOrientation.HORIZONTAL, PlotOrientation.HORIZONTAL);
+		assertEquals(PlotOrientation.VERTICAL, PlotOrientation.VERTICAL);
+		assertFalse(PlotOrientation.HORIZONTAL.equals(PlotOrientation.VERTICAL));
+		assertFalse(PlotOrientation.VERTICAL.equals(PlotOrientation.HORIZONTAL));
+	}
 
-        PlotOrientation orientation1 = PlotOrientation.HORIZONTAL;
-        PlotOrientation orientation2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(orientation1);
-            out.close();
+		PlotOrientation orientation1 = PlotOrientation.HORIZONTAL;
+		PlotOrientation orientation2 = null;
 
-            ObjectInput in = new ObjectInputStream(
-                new ByteArrayInputStream(buffer.toByteArray())
-            );
-            orientation2 = (PlotOrientation) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(orientation1, orientation2);
-        boolean same = orientation1 == orientation2;
-        assertEquals(true, same);
-    }
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(orientation1);
+			out.close();
+
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			orientation2 = (PlotOrientation) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(orientation1, orientation2);
+		boolean same = orientation1 == orientation2;
+		assertEquals(true, same);
+	}
 
 }

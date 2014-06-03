@@ -7,6 +7,9 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sun.management.OperatingSystemMXBean;
 
 /**
@@ -16,6 +19,8 @@ import com.sun.management.OperatingSystemMXBean;
  */
 public class WindowsInfoUtil{
 
+	private static final Logger	log			= LoggerFactory.getLogger(WindowsInfoUtil.class);
+
 	private static final int	CPUTIME		= 500;
 
 	private static final int	PERCENT		= 100;
@@ -23,9 +28,9 @@ public class WindowsInfoUtil{
 	private static final int	FAULTLENGTH	= 10;
 
 	public static void main(String[] args){
-		System.out.println(getCpuRatioForWindows());
-		System.out.println(getMemery());
-		System.out.println(getDisk());
+		log.info(getCpuRatioForWindows());
+		log.info(getMemery());
+		log.info("" + getDisk());
 	}
 
 	//获取内存使用率 

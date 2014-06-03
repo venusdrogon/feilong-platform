@@ -63,183 +63,174 @@ import org.jfree.chart.renderer.category.StatisticalLineAndShapeRenderer;
 import org.jfree.data.Range;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
 import org.jfree.util.PublicCloneable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link StatisticalLineAndShapeRenderer} class.
  */
-public class StatisticalLineAndShapeRendererTests extends TestCase {
+public class StatisticalLineAndShapeRendererTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(StatisticalLineAndShapeRendererTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(StatisticalLineAndShapeRendererTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public StatisticalLineAndShapeRendererTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(StatisticalLineAndShapeRendererTests.class);
+	}
 
-    /**
-     * Check that the equals() method distinguishes all fields.
-     */
-    public void testEquals() {
-        StatisticalLineAndShapeRenderer r1
-            = new StatisticalLineAndShapeRenderer();
-        StatisticalLineAndShapeRenderer r2
-            = new StatisticalLineAndShapeRenderer();
-        assertTrue(r1.equals(r2));
-        assertTrue(r2.equals(r1));
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public StatisticalLineAndShapeRendererTests(String name){
+		super(name);
+	}
 
-        r1.setErrorIndicatorPaint(Color.red);
-        assertFalse(r1.equals(r2));
-        r2.setErrorIndicatorPaint(Color.red);
-        assertTrue(r2.equals(r1));
-    }
+	/**
+	 * Check that the equals() method distinguishes all fields.
+	 */
+	public void testEquals(){
+		StatisticalLineAndShapeRenderer r1 = new StatisticalLineAndShapeRenderer();
+		StatisticalLineAndShapeRenderer r2 = new StatisticalLineAndShapeRenderer();
+		assertTrue(r1.equals(r2));
+		assertTrue(r2.equals(r1));
 
-    /**
-     * Two objects that are equal are required to return the same hashCode.
-     */
-    public void testHashcode() {
-        StatisticalLineAndShapeRenderer r1
-            = new StatisticalLineAndShapeRenderer();
-        StatisticalLineAndShapeRenderer r2
-            = new StatisticalLineAndShapeRenderer();
-        assertTrue(r1.equals(r2));
-        int h1 = r1.hashCode();
-        int h2 = r2.hashCode();
-        assertEquals(h1, h2);
-    }
+		r1.setErrorIndicatorPaint(Color.red);
+		assertFalse(r1.equals(r2));
+		r2.setErrorIndicatorPaint(Color.red);
+		assertTrue(r2.equals(r1));
+	}
 
-    /**
-     * Confirm that cloning works.
-     */
-    public void testCloning() {
-        StatisticalLineAndShapeRenderer r1
-                = new StatisticalLineAndShapeRenderer();
-        StatisticalLineAndShapeRenderer r2 = null;
-        try {
-            r2 = (StatisticalLineAndShapeRenderer) r1.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            System.err.println("Failed to clone.");
-        }
-        assertTrue(r1 != r2);
-        assertTrue(r1.getClass() == r2.getClass());
-        assertTrue(r1.equals(r2));
-    }
+	/**
+	 * Two objects that are equal are required to return the same hashCode.
+	 */
+	public void testHashcode(){
+		StatisticalLineAndShapeRenderer r1 = new StatisticalLineAndShapeRenderer();
+		StatisticalLineAndShapeRenderer r2 = new StatisticalLineAndShapeRenderer();
+		assertTrue(r1.equals(r2));
+		int h1 = r1.hashCode();
+		int h2 = r2.hashCode();
+		assertEquals(h1, h2);
+	}
 
-    /**
-     * Check that this class implements PublicCloneable.
-     */
-    public void testPublicCloneable() {
-        StatisticalLineAndShapeRenderer r1
-                = new StatisticalLineAndShapeRenderer();
-        assertTrue(r1 instanceof PublicCloneable);
-    }
+	/**
+	 * Confirm that cloning works.
+	 */
+	public void testCloning(){
+		StatisticalLineAndShapeRenderer r1 = new StatisticalLineAndShapeRenderer();
+		StatisticalLineAndShapeRenderer r2 = null;
+		try{
+			r2 = (StatisticalLineAndShapeRenderer) r1.clone();
+		}catch (CloneNotSupportedException e){
+			System.err.println("Failed to clone.");
+		}
+		assertTrue(r1 != r2);
+		assertTrue(r1.getClass() == r2.getClass());
+		assertTrue(r1.equals(r2));
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * Check that this class implements PublicCloneable.
+	 */
+	public void testPublicCloneable(){
+		StatisticalLineAndShapeRenderer r1 = new StatisticalLineAndShapeRenderer();
+		assertTrue(r1 instanceof PublicCloneable);
+	}
 
-        StatisticalLineAndShapeRenderer r1
-            = new StatisticalLineAndShapeRenderer();
-        StatisticalLineAndShapeRenderer r2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(r1);
-            out.close();
+		StatisticalLineAndShapeRenderer r1 = new StatisticalLineAndShapeRenderer();
+		StatisticalLineAndShapeRenderer r2 = null;
 
-            ObjectInput in = new ObjectInputStream(
-                    new ByteArrayInputStream(buffer.toByteArray()));
-            r2 = (StatisticalLineAndShapeRenderer) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(r1, r2);
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(r1);
+			out.close();
 
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			r2 = (StatisticalLineAndShapeRenderer) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(r1, r2);
 
-    /**
-     * Draws the chart with a <code>null</code> info object to make sure that
-     * no exceptions are thrown (particularly by code in the renderer).
-     */
-    public void testDrawWithNullInfo() {
-        boolean success = false;
-        try {
-            DefaultStatisticalCategoryDataset dataset
-                = new DefaultStatisticalCategoryDataset();
-            dataset.add(1.0, 2.0, "S1", "C1");
-            dataset.add(3.0, 4.0, "S1", "C2");
-            CategoryPlot plot = new CategoryPlot(dataset,
-                    new CategoryAxis("Category"), new NumberAxis("Value"),
-                    new StatisticalLineAndShapeRenderer());
-            JFreeChart chart = new JFreeChart(plot);
-            /* BufferedImage image = */ chart.createBufferedImage(300, 200,
-                    null);
-            success = true;
-        }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            success = false;
-        }
-        assertTrue(success);
-    }
+	}
 
-    /**
-     * A simple test for bug report 1562759.
-     */
-    public void test1562759() {
-        StatisticalLineAndShapeRenderer r
-            = new StatisticalLineAndShapeRenderer(true, false);
-        assertTrue(r.getBaseLinesVisible());
-        assertFalse(r.getBaseShapesVisible());
+	/**
+	 * Draws the chart with a <code>null</code> info object to make sure that
+	 * no exceptions are thrown (particularly by code in the renderer).
+	 */
+	public void testDrawWithNullInfo(){
+		boolean success = false;
+		try{
+			DefaultStatisticalCategoryDataset dataset = new DefaultStatisticalCategoryDataset();
+			dataset.add(1.0, 2.0, "S1", "C1");
+			dataset.add(3.0, 4.0, "S1", "C2");
+			CategoryPlot plot = new CategoryPlot(
+					dataset,
+					new CategoryAxis("Category"),
+					new NumberAxis("Value"),
+					new StatisticalLineAndShapeRenderer());
+			JFreeChart chart = new JFreeChart(plot);
+			/* BufferedImage image = */chart.createBufferedImage(300, 200, null);
+			success = true;
+		}catch (NullPointerException e){
+			e.printStackTrace();
+			success = false;
+		}
+		assertTrue(success);
+	}
 
-        r = new StatisticalLineAndShapeRenderer(false, true);
-        assertFalse(r.getBaseLinesVisible());
-        assertTrue(r.getBaseShapesVisible());
-    }
+	/**
+	 * A simple test for bug report 1562759.
+	 */
+	public void test1562759(){
+		StatisticalLineAndShapeRenderer r = new StatisticalLineAndShapeRenderer(true, false);
+		assertTrue(r.getBaseLinesVisible());
+		assertFalse(r.getBaseShapesVisible());
 
-    /**
-     * Some checks for the findRangeBounds() method.
-     */
-    public void testFindRangeBounds() {
-        StatisticalLineAndShapeRenderer r
-                = new StatisticalLineAndShapeRenderer();
-        assertNull(r.findRangeBounds(null));
+		r = new StatisticalLineAndShapeRenderer(false, true);
+		assertFalse(r.getBaseLinesVisible());
+		assertTrue(r.getBaseShapesVisible());
+	}
 
-        // an empty dataset should return a null range
-        DefaultStatisticalCategoryDataset dataset
-                = new DefaultStatisticalCategoryDataset();
-        assertNull(r.findRangeBounds(dataset));
+	/**
+	 * Some checks for the findRangeBounds() method.
+	 */
+	public void testFindRangeBounds(){
+		StatisticalLineAndShapeRenderer r = new StatisticalLineAndShapeRenderer();
+		assertNull(r.findRangeBounds(null));
 
-        dataset.add(1.0, 0.5, "R1", "C1");
-        assertEquals(new Range(0.5, 1.5), r.findRangeBounds(dataset));
+		// an empty dataset should return a null range
+		DefaultStatisticalCategoryDataset dataset = new DefaultStatisticalCategoryDataset();
+		assertNull(r.findRangeBounds(dataset));
 
-        dataset.add(-2.0, 0.2, "R1", "C2");
-        assertEquals(new Range(-2.2, 1.5), r.findRangeBounds(dataset));
+		dataset.add(1.0, 0.5, "R1", "C1");
+		assertEquals(new Range(0.5, 1.5), r.findRangeBounds(dataset));
 
-        dataset.add(null, null, "R1", "C3");
-        assertEquals(new Range(-2.2, 1.5), r.findRangeBounds(dataset));
+		dataset.add(-2.0, 0.2, "R1", "C2");
+		assertEquals(new Range(-2.2, 1.5), r.findRangeBounds(dataset));
 
-        dataset.add(5.0, 1.0, "R2", "C3");
-        assertEquals(new Range(-2.2, 6.0), r.findRangeBounds(dataset));
+		dataset.add(null, null, "R1", "C3");
+		assertEquals(new Range(-2.2, 1.5), r.findRangeBounds(dataset));
 
-        // check that the series visible flag is observed
-        r.setSeriesVisible(1, Boolean.FALSE);
-        assertEquals(new Range(-2.2, 1.5), r.findRangeBounds(dataset));
-    }
+		dataset.add(5.0, 1.0, "R2", "C3");
+		assertEquals(new Range(-2.2, 6.0), r.findRangeBounds(dataset));
+
+		// check that the series visible flag is observed
+		r.setSeriesVisible(1, Boolean.FALSE);
+		assertEquals(new Range(-2.2, 1.5), r.findRangeBounds(dataset));
+	}
 
 }

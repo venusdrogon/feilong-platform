@@ -52,12 +52,15 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.data.DomainOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link DomainOrder} class.
  */
 public class DomainOrderTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(DomainOrderTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -125,7 +128,7 @@ public class DomainOrderTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(d1, d2);
         boolean same = d1 == d2;

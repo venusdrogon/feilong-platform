@@ -31,17 +31,21 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 
 public class CSVUtilTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(CSVUtilTest.class);
+
 	@Test
 	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_demand.csv";
 		path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.onlyDate));
-		System.out.println(path);
+		log.info(path);
 		String[] columnTitles = { "a", "b" };
 		List<Object[]> linkedList = new ArrayList<Object[]>();
 		for (int i = 0; i < 20; i++){

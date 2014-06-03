@@ -314,10 +314,10 @@ public class PeriodAxisTests extends TestCase implements AxisChangeListener {
             GregorianCalendar c0 = new GregorianCalendar();
             c0.clear();
             /* c0.set(2009, Calendar.JANUARY, 16, 12, 34, 56);
-            System.out.println(c0.getTime().getTime());
+            log.info(c0.getTime().getTime());
             c0.clear();
             c0.set(2009, Calendar.JANUARY, 17, 12, 34, 56);
-            System.out.println(c0.getTime().getTime()); */
+            log.info(c0.getTime().getTime()); */
             PeriodAxis axis = new PeriodAxis("TestAxis");
             axis.setRange(new Range(1232105696000L, 1232192096000L), false,
                     false);

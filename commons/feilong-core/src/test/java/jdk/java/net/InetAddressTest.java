@@ -29,6 +29,9 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.net.InetAddressUtil;
 
 /**
@@ -36,6 +39,8 @@ import com.feilong.commons.core.net.InetAddressUtil;
  * @version 1.0 2011-1-12 上午09:44:38
  */
 public class InetAddressTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(InetAddressTest.class);
 
 	public static void main(String[] args){
 		String ipString = "127.0.0.1";
@@ -50,11 +55,11 @@ public class InetAddressTest{
 			netInterfaces = NetworkInterface.getNetworkInterfaces();
 			while (netInterfaces.hasMoreElements()){
 				NetworkInterface ni = netInterfaces.nextElement();
-				System.out.println("DisplayName:" + ni.getDisplayName());
-				System.out.println("Name:" + ni.getName());
+				log.info("DisplayName:" + ni.getDisplayName());
+				log.info("Name:" + ni.getName());
 				Enumeration<InetAddress> ips = ni.getInetAddresses();
 				while (ips.hasMoreElements()){
-					System.out.println("IP:" + ips.nextElement().getHostAddress());
+					log.info("IP:" + ips.nextElement().getHostAddress());
 				}
 			}
 		}catch (Exception e){
@@ -73,9 +78,9 @@ public class InetAddressTest{
 			for (int i = 0; i < retry; i++){
 				// 测试是否可以达到该地址。
 				if (address.isReachable(timeOut)){
-					System.out.println(i + " OK");
+					log.info(i + " OK");
 				}else{
-					System.out.println(i + " LOSS");
+					log.info(i + " LOSS");
 				}
 			}
 		}catch (Exception e){

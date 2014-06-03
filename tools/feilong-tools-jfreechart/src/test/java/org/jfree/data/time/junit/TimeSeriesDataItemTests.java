@@ -53,12 +53,15 @@ import junit.framework.TestSuite;
 
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeriesDataItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link TimeSeriesDataItem} class.
  */
 public class TimeSeriesDataItemTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(TimeSeriesDataItemTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -138,7 +141,7 @@ public class TimeSeriesDataItemTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(item1, item2);
 

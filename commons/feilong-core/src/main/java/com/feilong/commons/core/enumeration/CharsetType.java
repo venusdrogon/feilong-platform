@@ -15,23 +15,25 @@
  */
 package com.feilong.commons.core.enumeration;
 
-import org.apache.commons.lang3.CharEncoding;
-
 /**
  * 常用编码的枚举.建议不要自己硬编码,直接调用这里预声明的常量
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-4-5 下午4:51:08
  * @version 1.0.5 2014-5-4 14:35 改成interface
- * @see CharEncoding
+ * @see org.apache.commons.lang3.CharEncoding
+ * @see org.apache.commons.lang3.CharEncoding#isSupported(String)
+ * @see java.nio.charset.Charset#availableCharsets()
+ * @see java.nio.charset.Charset#isSupported(String)
+ * @see java.nio.charset.Charset#defaultCharset()
  * @since 1.0.0
  */
 public interface CharsetType{
 
-	/** <code>{@value}</code>. */
+	/** GBK可以表示简体中文和繁体中文 <code>{@value}</code>. */
 	String	GBK			= "GBK";
 
-	/** <code>{@value}</code>. */
+	/** GB2312只能表示简体中文 <code>{@value}</code>. */
 	String	GB2312		= "GB2312";
 
 	/** <code>{@value}</code>. */
@@ -42,10 +44,9 @@ public interface CharsetType{
 	String	UTF8		= "UTF-8";
 
 	/**
+	 * <code>{@value}</code>
 	 * <p>
-	 * ISO Latin Alphabet #1, also known as ISO-LATIN-1.
-	 * </p>
-	 * <p>
+	 * ISO Latin Alphabet #1, also known as ISO-LATIN-1.<br>
 	 * Every implementation of the Java platform is required to support this character encoding.
 	 * </p>
 	 * 　ISO/IEC 8859-1，又称Latin-1或“西欧语言”，是国际标准化组织内ISO/IEC 8859的第一个8位字符集。<br>
@@ -56,29 +57,4 @@ public interface CharsetType{
 	 * 法语及芬兰语本来也使用ISO 8859-1来表示。但因它没有法语使用的 œ、Œ、 Ÿ 三个字母及芬兰语使用的 Š、š、Ž、ž ，故于1998年被ISO/IEC 8859-15所取代。（ISO 8859-15同时加入了欧元符号）
 	 */
 	String	ISO_8859_1	= "ISO-8859-1";
-
-	// /**
-	// * <p>
-	// * Returns whether the named charset is supported.
-	// * </p>
-	// * <p>
-	// * This is similar to <a
-	// * href="http://download.oracle.com/javase/1.4.2/docs/api/java/nio/charset/Charset.html#isSupported%28java.lang.String%29">
-	// * java.nio.charset.Charset.isSupported(String)</a> but handles more formats
-	// * </p>
-	// *
-	// * @param name
-	// * the name of the requested charset; may be either a canonical name or an alias, null returns false
-	// * @return {@code true} if the charset is available in the current Java virtual machine
-	// */
-	// public static boolean isSupported(String name){
-	// if (name == null){
-	// return false;
-	// }
-	// try{
-	// return Charset.isSupported(name);
-	// }catch (IllegalCharsetNameException ex){
-	// return false;
-	// }
-	// }
 }

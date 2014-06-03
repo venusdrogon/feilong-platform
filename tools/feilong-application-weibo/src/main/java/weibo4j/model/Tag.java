@@ -7,6 +7,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weibo4j.Weibo;
 import weibo4j.http.Response;
@@ -15,88 +17,92 @@ import weibo4j.http.Response;
  * @author sinaWeibo
  * 
  */
-public class Tag extends WeiboResponse implements java.io.Serializable {
+public class Tag extends WeiboResponse implements java.io.Serializable{
 
-	private static final long serialVersionUID = 2177657076940291492L;
+	private static final Logger	log					= LoggerFactory.getLogger(Tag.class);
 
-	private String id;           //标签id
+	private static final long	serialVersionUID	= 2177657076940291492L;
 
-	private String value;        //标签value
-	
-	private String weight;
+	private String				id;														//标签id
 
-	public Tag(JSONObject json) throws WeiboException, JSONException {			
-			if (!json.getString("id").isEmpty()) {
-				id = json.getString("id"); 
+	private String				value;														//标签value
+
+	private String				weight;
+
+	public Tag(JSONObject json) throws WeiboException,JSONException{
+		if (!json.getString("id").isEmpty()){
+			id = json.getString("id");
+		}
+		if (!json.getString("value").isEmpty()){
+			value = json.getString("value");
+		}else{
+			Iterator<String> keys = json.sortedKeys();
+			if (keys.hasNext()){
+				id = keys.next();
+				value = json.getString(id);
 			}
-			if(!json.getString("value").isEmpty()) {
-				value = json.getString("value");
-			}else {
-				Iterator<String> keys = json.sortedKeys();
-				if (keys.hasNext()) {
-					id = keys.next();
-					value = json.getString(id);	
-				}
-			}
-			weight= json.getString("weight");
+		}
+		weight = json.getString("weight");
 	}
-	public Tag(JSONObject json , Weibo weibo) throws WeiboException,JSONException {
-		System.out.println(json);
+
+	public Tag(JSONObject json, Weibo weibo) throws WeiboException,JSONException{
+		log.info("" + json);
 		id = json.getString("id");
 		value = json.getString("count");
-		weight= json.getString("weight");
+		weight = json.getString("weight");
 	}
 
-
-	public static List<Tag> constructTags(Response res) throws WeiboException {
-		try {
+	public static List<Tag> constructTags(Response res) throws WeiboException{
+		try{
 			JSONArray list = res.asJSONArray();
 			int size = list.length();
 			List<Tag> tags = new ArrayList<Tag>(size);
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++){
 				tags.add(new Tag(list.getJSONObject(i)));
 			}
 			return tags;
-		} catch (JSONException jsone) {
+		}catch (JSONException jsone){
 			throw new WeiboException(jsone);
-		} catch (WeiboException te) {
+		}catch (WeiboException te){
 			throw te;
 		}
 	}
+
 	public static TagWapper constructTagWapper(Response res){
-		try {
+		try{
 			JSONArray tags = res.asJSONArray();
 			List<Tag> tagList = new ArrayList<Tag>();
-			for(int i=0;i<tags.getJSONObject(0).getJSONArray("tags").length();i++){
+			for (int i = 0; i < tags.getJSONObject(0).getJSONArray("tags").length(); i++){
 				tagList.add(new Tag(tags.getJSONObject(0).getJSONArray("tags").getJSONObject(i)));
 			}
 			String id = tags.getJSONObject(0).getString("id");
 			return new TagWapper(tagList, id);
-		} catch (JSONException e) {
+		}catch (JSONException e){
 			e.printStackTrace();
-		} catch (WeiboException e) {
+		}catch (WeiboException e){
 			e.printStackTrace();
 		}
 		return null;
 	}
-	public static List<FavoritesTag> constructTag(Response res) throws WeiboException {
-		try {
+
+	public static List<FavoritesTag> constructTag(Response res) throws WeiboException{
+		try{
 			JSONArray list = res.asJSONObject().getJSONArray("tags");
 			int size = list.length();
 			List<FavoritesTag> tags = new ArrayList<FavoritesTag>(size);
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++){
 				tags.add(new FavoritesTag(list.getJSONObject(i)));
 			}
 			return tags;
-		} catch (JSONException jsone) {
+		}catch (JSONException jsone){
 			throw new WeiboException(jsone);
-		} catch (WeiboException te) {
+		}catch (WeiboException te){
 			throw te;
 		}
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -105,7 +111,7 @@ public class Tag extends WeiboResponse implements java.io.Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj){
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -113,15 +119,15 @@ public class Tag extends WeiboResponse implements java.io.Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Tag other = (Tag) obj;
-		if (id == null) {
+		if (id == null){
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		}else if (!id.equals(other.id))
 			return false;
-		if (value == null) {
+		if (value == null){
 			if (other.value != null)
 				return false;
-		} else if (!value.equals(other.value))
+		}else if (!value.equals(other.value))
 			return false;
 		return true;
 	}
@@ -129,32 +135,36 @@ public class Tag extends WeiboResponse implements java.io.Serializable {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public String getId(){
 		return id;
 	}
 
-	public String getWeight() {
+	public String getWeight(){
 		return weight;
 	}
-	public void setWeight(String weight) {
+
+	public void setWeight(String weight){
 		this.weight = weight;
 	}
-	public void setId(String id) {
+
+	public void setId(String id){
 		this.id = id;
 	}
-	public void setValue(String value) {
+
+	public void setValue(String value){
 		this.value = value;
 	}
+
 	/**
 	 * @return the value
 	 */
-	public String getValue() {
+	public String getValue(){
 		return value;
 	}
+
 	@Override
-	public String toString() {
-		return "Tag [id=" + id + ", value=" + value + ", weight=" + weight
-				+ "]";
+	public String toString(){
+		return "Tag [id=" + id + ", value=" + value + ", weight=" + weight + "]";
 	}
 
 }

@@ -59,13 +59,13 @@ public class 系统级热键{
 	// public void onHotKey(int key) {
 	// switch (key) {
 	// case KEY_1:
-	// System.out.println("ctrl+alt+I 按下.........");
+	// log.info("ctrl+alt+I 按下.........");
 	// break;
 	// case KEY_2:
-	// System.out.println("ctrl+alt+O 按下.........");
+	// log.info("ctrl+alt+O 按下.........");
 	// break;
 	// case KEY_3:
-	// System.out.println("系统退出..........");
+	// log.info("系统退出..........");
 	// destroy();
 	// }
 	//

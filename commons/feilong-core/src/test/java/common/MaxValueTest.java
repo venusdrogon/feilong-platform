@@ -79,7 +79,7 @@ public class MaxValueTest{
 		//从32个0，到32个1这是整形的范围，首位0表示正数，1表示复数。所以最大值就是0111 1111 1111 1111 1111 1111 1111 1111，如果加一，就变成了1000 0000 0000 0000 0000 0000 0000 0000 这一下就天堂到地狱，这个是最小值了（这里有负数的补码运算，不是直接二进制加出来的）。
 		//-2^31.你继续加那么就是-2^31+1，这是二进制运算的原理，你加过头了就会溢出，如果你变成long，那么就用最高位去补。
 		//但是还有一点，复数补码显示是反码加一，-1 二进制是1000 0000 0000 0000 0000 0000 0000 0001，但是补码是1111 1111 1111 1111 1111 1111 1111 1111 ，
-		//你可以System.out.println(Integer.toBinaryString(-1));打印出来就是这样，另外Int 到Long是最高位往前补位的。
+		//你可以log.info(Integer.toBinaryString(-1));打印出来就是这样，另外Int 到Long是最高位往前补位的。
 		log.info("" + ((Integer.MAX_VALUE + 1) == Integer.MIN_VALUE));//-2147483643
 		log.info("" + ((Integer.MIN_VALUE - 1) == Integer.MAX_VALUE));//-2147483643
 		log.info("" + (Long.MAX_VALUE < Float.MAX_VALUE));

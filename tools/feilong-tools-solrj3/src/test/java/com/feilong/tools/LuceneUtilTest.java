@@ -82,7 +82,7 @@ public class LuceneUtilTest{
 			indexWriter.addDocument(document);
 		}
 		// 查看IndexWriter里面有多少个索引
-		System.out.println("indexWriter.numDocs:" + indexWriter.numDocs());
+		log.info("indexWriter.numDocs:" + indexWriter.numDocs());
 		//indexWriter.optimize();
 		indexWriter.close();
 	}
@@ -111,14 +111,14 @@ public class LuceneUtilTest{
 		//搜索结果 TopDocs里面有scoreDocs[]数组，里面保存着索引值  
 		TopDocs topDocs = indexSearch.search(query, 10);
 		//topDocs.totalHits表示一共搜到多少个  
-		System.out.println("找到了" + topDocs.totalHits + "个");
+		log.info("找到了" + topDocs.totalHits + "个");
 		//循环topDocs.scoreDocs数据，并使用indexSearch.doc方法把Document还原，再拿出对应的字段的值  
 		for (int i = 0; i < topDocs.scoreDocs.length; i++){
 			ScoreDoc scoreDoc = topDocs.scoreDocs[i];
 			Document document = indexSearch.doc(scoreDoc.doc);
-			System.out.println(document.get("filename"));
-			System.out.println(document.get("indexDate"));
-			//System.out.println(document.get("contents"));
+			log.info(document.get("filename"));
+			log.info(document.get("indexDate"));
+			//log.info(document.get("contents"));
 		}
 		indexSearch.close();
 	}

@@ -39,10 +39,10 @@ public class JsonUtilToBeanTest{
 		String json = "{'name':'get','dateAttr':'2009-11-12'}";
 		Person ps = (Person) JsonUtil.toBean(json, Person.class);
 		// print: get
-		System.out.println(ps.getName());
+		log.info(ps.getName());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		// print: 2009-11-12
-		System.out.println(sdf.format(ps.getDateAttr()));
+		log.info(sdf.format(ps.getDateAttr()));
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class JsonUtilToBeanTest{
 		String json = "['get',1,true,null]";
 		Object[] objArr = JsonUtil.toArray(json);
 		for (int i = 0; i < objArr.length; i++){
-			System.out.println(objArr[i].getClass() + " " + objArr[i]);
+			log.info(objArr[i].getClass() + " " + objArr[i]);
 		}
 		/*
 		 * print: class java.lang.String get class java.lang.Integer 1 class java.lang.Boolean true class net.sf.json.JSONNull null
@@ -121,7 +121,7 @@ public class JsonUtilToBeanTest{
 
 		Object[] objArr = JsonUtil.toArray(json, MyBean.class, classMap);
 		for (int i = 0; i < objArr.length; i++){
-			System.out.println(((MyBean) objArr[i]).getData().get(0).getClass() + " name = "
+			log.info(((MyBean) objArr[i]).getData().get(0).getClass() + " name = "
 					+ ((Person) ((MyBean) objArr[i]).getData().get(0)).getName());
 		}
 		/*
@@ -137,7 +137,7 @@ public class JsonUtilToBeanTest{
 		String json = "['get',1,true,null]";
 		List list = JsonUtil.toList(json);
 		for (int i = 0; i < list.size(); i++){
-			System.out.println(list.get(i).getClass() + " " + list.get(i));
+			log.info(list.get(i).getClass() + " " + list.get(i));
 		}
 
 		/*
@@ -166,7 +166,7 @@ public class JsonUtilToBeanTest{
 		classMap.put("data", Person.class);
 		List list = JsonUtil.toList(json, MyBean.class, classMap);
 		for (int i = 0; i < list.size(); i++){
-			System.out.println(((MyBean) list.get(i)).getData().get(0).getClass() + " name = "
+			log.info(((MyBean) list.get(i)).getData().get(0).getClass() + " name = "
 					+ ((Person) ((MyBean) list.get(i)).getData().get(0)).getName());
 		}
 		/*
@@ -257,7 +257,7 @@ public class JsonUtilToBeanTest{
 		for (Iterator iter = map.keySet().iterator(); iter.hasNext();){
 			String key = (String) iter.next();
 			Object o = ((MyBean) map.get(key)).getData().get(0);
-			System.out.println(o.getClass() + " name=" + ((Person) o).getName());
+			log.info(o.getClass() + " name=" + ((Person) o).getName());
 		}
 		/*
 		 * print: class comm.test.Person name=get
@@ -278,7 +278,7 @@ public class JsonUtilToBeanTest{
 
 		myBean.setData(list);
 		// print: {"data":[{"dateAttr":"2009-09-12 07:24:54","name":"get"}]}
-		System.out.println(JsonUtil.toJSON(myBean));
+		log.info(""+JsonUtil.toJSON(myBean));
 	}
 
 	/**
@@ -293,24 +293,23 @@ public class JsonUtilToBeanTest{
 		list.add(ps);
 
 		// print: [{"dateAttr":"2009-09-12 07:22:49","name":"get"}]
-		System.out.println(JsonUtil.toJSON(list));
+		log.info("" + JsonUtil.toJSON(list));
 
 		Set set = new LinkedHashSet();
 		set.add(ps);
 
 		// print: [{"dateAttr":"2009-09-12 07:22:16","name":"get"}]
-		System.out.println(JsonUtil.toJSON(set));
+		log.info("" + JsonUtil.toJSON(set));
 
 		Person[] personArr = new Person[1];
 		personArr[0] = ps;
 		// print: [{"dateAttr":"2009-09-12 07:23:54","name":"get"}]
-		System.out.println(JsonUtil.toJSON(personArr));
+		log.info("" + JsonUtil.toJSON(personArr));
 
 		Map map = new LinkedHashMap();
 		map.put("person1", ps);
 
 		// print: {"person1":{"dateAttr":"2009-09-12 07:24:27","name":"get"}}
-		System.out.println(JsonUtil.toJSON(map));
+		log.info("" + JsonUtil.toJSON(map));
 	}
-
 }

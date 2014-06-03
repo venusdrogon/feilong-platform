@@ -218,10 +218,10 @@ import com.feilong.commons.core.enumeration.CharsetType;
 //				;
 //			}
 //		}catch (IOException ex){
-//			System.out.println("未找到包路径");
+//			log.info("未找到包路径");
 //			ex.printStackTrace();
 //		}catch (ClassNotFoundException ex){
-//			System.out.println("未找到需要加载的类");
+//			log.info("未找到需要加载的类");
 //			ex.printStackTrace();
 //		}
 //		Class[] result = new Class[classes.size()];

@@ -287,7 +287,7 @@ public class XYSmoothLineAndShapeRenderer extends XYLineAndShapeRenderer {
                     * Math.pow(step, 2) + C.x * step + point1.x, A.y
                     * Math.pow(step, 3) + B.y * Math.pow(step, 2) + C.y * step
                     + point1.y);
-            //System.out.println(step + " : " + res[i]);
+            //log.info(step + " : " + res[i]);
             step += stepSize;
         }
         res[steps] = point2;

@@ -151,10 +151,10 @@ package com.feilong.tools.cxf;
 //
 //				message.writeTo(respSoap);
 //			}else{
-//				System.out.println("the message is null.");
+//				log.info("the message is null.");
 //			}
 //		}catch (Exception e){
-//			System.out.println("Error");
+//			log.info("Error");
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}

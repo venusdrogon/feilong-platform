@@ -29,6 +29,8 @@ import org.jfree.data.time.Month;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.jfreechart.ChartUtil;
 
@@ -41,6 +43,8 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @version 1.0.7 2014-5-30 16:00:43
  */
 public class CreatePDF{
+
+	private static final Logger	log	= LoggerFactory.getLogger(CreatePDF.class);
 
 	/**
 	 * Creates a dataset, consisting of two series of monthly data. * *
@@ -142,7 +146,7 @@ public class CreatePDF{
 			ChartUtil.writeChartAsPDF(out, chart, 400, 300);
 			out.close();
 		}catch (IOException e){
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 		}
 	}
 }

@@ -65,12 +65,15 @@ import junit.framework.TestSuite;
 
 import org.jfree.data.time.TimePeriodFormatException;
 import org.jfree.data.time.Year;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link Year} class.
  */
 public class YearTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(YearTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -253,7 +256,7 @@ public class YearTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(y1, y2);
 

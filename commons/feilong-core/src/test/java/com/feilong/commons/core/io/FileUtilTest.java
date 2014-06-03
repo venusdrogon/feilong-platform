@@ -75,7 +75,7 @@ public class FileUtilTest{
 		File file = new File(localPath);
 		File[] files = file.listFiles();
 		for (int i = 0; i < files.length; i++){
-			System.out.println("File:" + files[i].getCanonicalPath());
+			log.info("File:" + files[i].getCanonicalPath());
 		}
 	}
 
@@ -179,8 +179,8 @@ public class FileUtilTest{
 	@Ignore
 	public void testGetFilePostfixName(){
 		assertEquals("png", FileUtil.getFilePostfixName(fileName1));
-		System.out.println(fileName1.substring(fileName1.lastIndexOf(".")));
-		System.out.println(fileName1.substring(fileName1.lastIndexOf("\\") + 1));
+		log.info(fileName1.substring(fileName1.lastIndexOf(".")));
+		log.info(fileName1.substring(fileName1.lastIndexOf("\\") + 1));
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class FileUtilTest{
 	 */
 	@Test
 	public void testGetFileName(){
-		System.out.println(FileUtil.getFileName(fileName1));
+		log.info(FileUtil.getFileName(fileName1));
 	}
 
 	/**

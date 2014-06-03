@@ -69,12 +69,15 @@ import org.jfree.data.time.Month;
 import org.jfree.data.time.TimePeriodFormatException;
 import org.jfree.data.time.Year;
 import org.jfree.date.MonthConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link Month} class.
  */
 public class MonthTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(MonthTests.class);
     /** A month. */
     private Month jan1900;
 
@@ -266,7 +269,7 @@ public class MonthTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(m1, m2);
 

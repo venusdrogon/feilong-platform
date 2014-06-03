@@ -26,6 +26,8 @@
 package com.feilong.commons.core.awt;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -33,11 +35,13 @@ import org.junit.Test;
  */
 public class ValidateCodeUtilTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(ValidateCodeUtilTest.class);
+
 	/**
 	 * {@link com.feilong.commons.core.awt.ValidateCodeUtil#generateValidateCode(int)} 的测试方法。
 	 */
 	@Test
 	public final void testGenerateValidateCode(){
-		System.out.println(ValidateCodeUtil.generateValidateCode(4));
+		log.info(ValidateCodeUtil.generateValidateCode(4));
 	}
 }

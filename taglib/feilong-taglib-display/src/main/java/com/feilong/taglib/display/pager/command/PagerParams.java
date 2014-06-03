@@ -405,7 +405,7 @@ public class PagerParams implements Serializable{
 		//		hashResult += getHashCode(pageSize);
 		//		hashResult += getHashCode(totalCount);
 		//
-		//		//		System.out.println("" + getHashCode(charsetType) + " " + getHashCode(locale) + " " + getHashCode(pageParamName) + " " + " "
+		//		//		log.info("" + getHashCode(charsetType) + " " + getHashCode(locale) + " " + getHashCode(pageParamName) + " " + " "
 		//		//				+ getHashCode(pageUrl) + " " + getHashCode(skin) + " " + getHashCode(vmPath) + " " + getHashCode(debugIsNotParseVM) + " "
 		//		//				+ getHashCode(currentPageNo) + " " + getHashCode(maxIndexPages) + " " + getHashCode(maxShowPageNo) + " "
 		//		//				+ getHashCode(pageSize) + " " + getHashCode(totalCount));

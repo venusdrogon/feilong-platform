@@ -72,6 +72,6 @@ public class SiteMapTagTest{
 		contextKeyValues.put("siteMapEntityList", allParentSiteMapEntityList);
 		contextKeyValues.put("connector", ">");
 		String siteMapString = VelocityUtil.parseTemplateWithClasspathResourceLoader("velocity/sitemap.vm", contextKeyValues);
-		System.out.println(siteMapString);
+		log.info(siteMapString);
 	}
 }

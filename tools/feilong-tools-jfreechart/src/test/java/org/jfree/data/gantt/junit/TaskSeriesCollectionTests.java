@@ -58,12 +58,15 @@ import org.jfree.data.gantt.Task;
 import org.jfree.data.gantt.TaskSeries;
 import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.data.time.SimpleTimePeriod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link TaskSeriesCollection} class.
  */
 public class TaskSeriesCollectionTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(TaskSeriesCollectionTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -522,7 +525,7 @@ public class TaskSeriesCollectionTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(c1, c2);
 

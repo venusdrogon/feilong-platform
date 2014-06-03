@@ -18,6 +18,9 @@ package temple.lang.generic;
 import java.lang.reflect.Method;
 import java.lang.reflect.TypeVariable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 泛型.
  * 
@@ -26,6 +29,8 @@ import java.lang.reflect.TypeVariable;
  * @since 1.0
  */
 public class GenericTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(GenericTest.class);
 
 	/**
 	 * Gets the value.
@@ -39,17 +44,17 @@ public class GenericTest{
 	 * @return the value
 	 */
 	public static <T> T getValue(String a,Class clz){
-		System.out.println(clz == String.class);
+		log.info("" + (clz == String.class));
 		T aT = null;
 		try{
 			Method method = GenericTest.class.getMethod("getValue", String.class, Class.class);
 			TypeVariable typeVariable = (TypeVariable) method.getGenericReturnType();
-			System.out.println(typeVariable.toString());
-			System.out.println(typeVariable.getName());
-			System.out.println(typeVariable.getBounds()[0]);
-			System.out.println(typeVariable.getGenericDeclaration().toString());
-			System.out.println(method.toGenericString());
-			System.out.println(method.toString());
+			log.info(typeVariable.toString());
+			log.info(typeVariable.getName());
+			log.info("" + typeVariable.getBounds()[0]);
+			log.info(typeVariable.getGenericDeclaration().toString());
+			log.info(method.toGenericString());
+			log.info(method.toString());
 		}catch (SecurityException e){
 			e.printStackTrace();
 		}catch (NoSuchMethodException e){

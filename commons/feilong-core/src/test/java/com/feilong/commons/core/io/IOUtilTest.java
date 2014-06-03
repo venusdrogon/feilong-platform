@@ -65,7 +65,7 @@ public class IOUtilTest{
 			URL url = new URL("http://www.jinbaowang.cn/images//20110722/096718c3d1c9b4a1.jpg");
 			URLConnection urlConnection = url.openConnection();
 			int contentLength = urlConnection.getContentLength();
-			System.out.println(FileUtil.formatSize(contentLength));
+			log.info(FileUtil.formatSize(contentLength));
 		}catch (IOException e){
 			e.printStackTrace();
 		}
@@ -85,7 +85,7 @@ public class IOUtilTest{
 	@Ignore
 	public void testGetFullName(){
 		Class class1 = IOUtil.class;
-		System.out.println(class1.getName());
+		log.info(class1.getName());
 	}
 
 	@Test
@@ -93,7 +93,7 @@ public class IOUtilTest{
 	public void testGetP(){
 		File file = new File(fString);
 		log.info(file.getAbsolutePath());
-		System.out.println(file.getParent());
+		log.info(file.getParent());
 	}
 
 }

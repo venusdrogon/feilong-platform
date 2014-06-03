@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
@@ -32,15 +34,17 @@ import com.feilong.tools.ant.ZipUtil;
  */
 public class ZipUtilTest{
 
+	private static final Logger	log				= LoggerFactory.getLogger(ZipUtilTest.class);
+
 	/**
 	 * 需要被解压的zip文件
 	 */
-	String	unZipFileName	= "E:\\test.zip";
+	String						unZipFileName	= "E:\\test.zip";
 
 	/**
 	 * 解压到哪个目录
 	 */
-	String	outputFileName	= "E:\\test" + DateUtil.date2String(new Date(), DatePattern.timestamp);	// 解压到文件路径
+	String						outputFileName	= "E:\\test" + DateUtil.date2String(new Date(), DatePattern.timestamp); // 解压到文件路径
 
 	//@Test
 	public void testZip() throws IOException{
@@ -50,7 +54,7 @@ public class ZipUtilTest{
 		ZipUtil feiLongZip = new ZipUtil();
 		feiLongZip.zip(inputFileName, zipFileName);
 		Date date2 = new Date();
-		System.out.println("耗时：" + DateUtil.getIntervalForView(date1, date2));
+		log.info("耗时：" + DateUtil.getIntervalForView(date1, date2));
 		// ,/select E:/Workspaces
 		// Command.execFileOrDirectoryFocus("E:\\test,E:\\Project");
 	}
@@ -62,6 +66,6 @@ public class ZipUtilTest{
 		ZipUtil feiLongZip = new ZipUtil();
 		feiLongZip.unZip(unZipFileName, outputFileName);
 		Date date2 = new Date();
-		System.out.println("耗时：" + DateUtil.getIntervalForView(date1, date2));
+		log.info("耗时：" + DateUtil.getIntervalForView(date1, date2));
 	}
 }

@@ -32,12 +32,16 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SystemTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(SystemTest.class);
+
 	@Test
 	public void getProperty(){
-		System.out.println(System.getProperty("path"));
+		log.info(System.getProperty("path"));
 		System.getProperties().list(System.out);
 	}
 
@@ -47,24 +51,24 @@ public class SystemTest{
 		Object[] key = map.keySet().toArray();
 		Arrays.sort(key);
 		for (int i = 0; i < key.length; i++){
-			System.out.println(key[i] + "======>" + map.get(key[i]));
+			log.info(key[i] + "======>" + map.get(key[i]));
 		}
 	}
 
 	@Test
 	public void path(){
 		String path = System.getenv("Path");
-		// System.out.println(path);
+		// log.info(path);
 		String[] strings = path.split(";");
 		Arrays.sort(strings);
 		for (String p : strings){
-			System.out.println(p);
+			log.info(p);
 		}
 	}
 
 	@Test
 	public void currentTimeMillis(){
-		System.out.println(System.currentTimeMillis());
+		log.info("" + System.currentTimeMillis());
 	}
 
 	@Test
@@ -73,7 +77,7 @@ public class SystemTest{
 		Object[] key = properties.keySet().toArray();
 		Arrays.sort(key);
 		for (int i = 0; i < key.length; i++){
-			System.out.println(key[i] + "======>" + properties.get(key[i]));
+			log.info(key[i] + "======>" + properties.get(key[i]));
 		}
 		// OutputStream os = IOUtil.getFileOutputStream("E:/1.xml");
 		// try{
@@ -95,13 +99,13 @@ public class SystemTest{
 		while (iterator.hasNext()){
 			Object key = iterator.next();
 			Object obj = map.get(key);
-			System.out.println(obj);
+			log.info("" + obj);
 		}
-		System.out.println("---------------------------");
+		log.info("---------------------------");
 		Object[] key = map.keySet().toArray();
 		Arrays.sort(key);
 		for (int i = 0; i < key.length; i++){
-			System.out.println(map.get(key[i]));
+			log.info(map.get(key[i]));
 		}
 	}
 }

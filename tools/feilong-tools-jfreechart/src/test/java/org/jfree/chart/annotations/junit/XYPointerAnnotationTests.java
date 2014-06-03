@@ -60,173 +60,168 @@ import junit.framework.TestSuite;
 
 import org.jfree.chart.annotations.XYPointerAnnotation;
 import org.jfree.util.PublicCloneable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link XYPointerAnnotation} class.
  */
-public class XYPointerAnnotationTests extends TestCase {
+public class XYPointerAnnotationTests extends TestCase{
 
-    /**
-     * Returns the tests as a test suite.
-     *
-     * @return The test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(XYPointerAnnotationTests.class);
-    }
+	private static final Logger	log	= LoggerFactory.getLogger(XYPointerAnnotationTests.class);
 
-    /**
-     * Constructs a new set of tests.
-     *
-     * @param name  the name of the tests.
-     */
-    public XYPointerAnnotationTests(String name) {
-        super(name);
-    }
+	/**
+	 * Returns the tests as a test suite.
+	 * 
+	 * @return The test suite.
+	 */
+	public static Test suite(){
+		return new TestSuite(XYPointerAnnotationTests.class);
+	}
 
-    /**
-     * Confirm that the equals method can distinguish all the required fields.
-     */
-    public void testEquals() {
+	/**
+	 * Constructs a new set of tests.
+	 * 
+	 * @param name
+	 *            the name of the tests.
+	 */
+	public XYPointerAnnotationTests(String name){
+		super(name);
+	}
 
-        XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        XYPointerAnnotation a2 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        assertTrue(a1.equals(a2));
+	/**
+	 * Confirm that the equals method can distinguish all the required fields.
+	 */
+	public void testEquals(){
 
-        a1 = new XYPointerAnnotation("Label2", 10.0, 20.0, Math.PI);
-        assertFalse(a1.equals(a2));
-        a2 = new XYPointerAnnotation("Label2", 10.0, 20.0, Math.PI);
-        assertTrue(a1.equals(a2));
+		XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		XYPointerAnnotation a2 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		assertTrue(a1.equals(a2));
 
-        a1.setX(11.0);
-        assertFalse(a1.equals(a2));
-        a2.setX(11.0);
-        assertTrue(a1.equals(a2));
+		a1 = new XYPointerAnnotation("Label2", 10.0, 20.0, Math.PI);
+		assertFalse(a1.equals(a2));
+		a2 = new XYPointerAnnotation("Label2", 10.0, 20.0, Math.PI);
+		assertTrue(a1.equals(a2));
 
-        a1.setY(22.0);
-        assertFalse(a1.equals(a2));
-        a2.setY(22.0);
-        assertTrue(a1.equals(a2));
+		a1.setX(11.0);
+		assertFalse(a1.equals(a2));
+		a2.setX(11.0);
+		assertTrue(a1.equals(a2));
 
-        //private double angle;
-        a1.setAngle(Math.PI / 4.0);
-        assertFalse(a1.equals(a2));
-        a2.setAngle(Math.PI / 4.0);
-        assertTrue(a1.equals(a2));
+		a1.setY(22.0);
+		assertFalse(a1.equals(a2));
+		a2.setY(22.0);
+		assertTrue(a1.equals(a2));
 
-        //private double tipRadius;
-        a1.setTipRadius(20.0);
-        assertFalse(a1.equals(a2));
-        a2.setTipRadius(20.0);
-        assertTrue(a1.equals(a2));
+		//private double angle;
+		a1.setAngle(Math.PI / 4.0);
+		assertFalse(a1.equals(a2));
+		a2.setAngle(Math.PI / 4.0);
+		assertTrue(a1.equals(a2));
 
-        //private double baseRadius;
-        a1.setBaseRadius(5.0);
-        assertFalse(a1.equals(a2));
-        a2.setBaseRadius(5.0);
-        assertTrue(a1.equals(a2));
+		//private double tipRadius;
+		a1.setTipRadius(20.0);
+		assertFalse(a1.equals(a2));
+		a2.setTipRadius(20.0);
+		assertTrue(a1.equals(a2));
 
-        //private double arrowLength;
-        a1.setArrowLength(33.0);
-        assertFalse(a1.equals(a2));
-        a2.setArrowLength(33.0);
-        assertTrue(a1.equals(a2));
+		//private double baseRadius;
+		a1.setBaseRadius(5.0);
+		assertFalse(a1.equals(a2));
+		a2.setBaseRadius(5.0);
+		assertTrue(a1.equals(a2));
 
-        //private double arrowWidth;
-        a1.setArrowWidth(9.0);
-        assertFalse(a1.equals(a2));
-        a2.setArrowWidth(9.0);
-        assertTrue(a1.equals(a2));
+		//private double arrowLength;
+		a1.setArrowLength(33.0);
+		assertFalse(a1.equals(a2));
+		a2.setArrowLength(33.0);
+		assertTrue(a1.equals(a2));
 
-        //private Stroke arrowStroke;
-        Stroke stroke = new BasicStroke(1.5f);
-        a1.setArrowStroke(stroke);
-        assertFalse(a1.equals(a2));
-        a2.setArrowStroke(stroke);
-        assertTrue(a1.equals(a2));
+		//private double arrowWidth;
+		a1.setArrowWidth(9.0);
+		assertFalse(a1.equals(a2));
+		a2.setArrowWidth(9.0);
+		assertTrue(a1.equals(a2));
 
-        //private Paint arrowPaint;
-        a1.setArrowPaint(Color.blue);
-        assertFalse(a1.equals(a2));
-        a2.setArrowPaint(Color.blue);
-        assertTrue(a1.equals(a2));
+		//private Stroke arrowStroke;
+		Stroke stroke = new BasicStroke(1.5f);
+		a1.setArrowStroke(stroke);
+		assertFalse(a1.equals(a2));
+		a2.setArrowStroke(stroke);
+		assertTrue(a1.equals(a2));
 
-        //private double labelOffset;
-        a1.setLabelOffset(10.0);
-        assertFalse(a1.equals(a2));
-        a2.setLabelOffset(10.0);
-        assertTrue(a1.equals(a2));
+		//private Paint arrowPaint;
+		a1.setArrowPaint(Color.blue);
+		assertFalse(a1.equals(a2));
+		a2.setArrowPaint(Color.blue);
+		assertTrue(a1.equals(a2));
 
-    }
+		//private double labelOffset;
+		a1.setLabelOffset(10.0);
+		assertFalse(a1.equals(a2));
+		a2.setLabelOffset(10.0);
+		assertTrue(a1.equals(a2));
 
-    /**
-     * Two objects that are equal are required to return the same hashCode.
-     */
-    public void testHashCode() {
-        XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        XYPointerAnnotation a2 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        assertTrue(a1.equals(a2));
-        int h1 = a1.hashCode();
-        int h2 = a2.hashCode();
-        assertEquals(h1, h2);
-    }
+	}
 
-    /**
-     * Confirm that cloning works.
-     */
-    public void testCloning() {
-        XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        XYPointerAnnotation a2 = null;
-        try {
-            a2 = (XYPointerAnnotation) a1.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            System.err.println("Failed to clone.");
-        }
-        assertTrue(a1 != a2);
-        assertTrue(a1.getClass() == a2.getClass());
-        assertTrue(a1.equals(a2));
-    }
+	/**
+	 * Two objects that are equal are required to return the same hashCode.
+	 */
+	public void testHashCode(){
+		XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		XYPointerAnnotation a2 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		assertTrue(a1.equals(a2));
+		int h1 = a1.hashCode();
+		int h2 = a2.hashCode();
+		assertEquals(h1, h2);
+	}
 
-    /**
-     * Checks that this class implements PublicCloneable.
-     */
-    public void testPublicCloneable() {
-        XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        assertTrue(a1 instanceof PublicCloneable);
-    }
+	/**
+	 * Confirm that cloning works.
+	 */
+	public void testCloning(){
+		XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		XYPointerAnnotation a2 = null;
+		try{
+			a2 = (XYPointerAnnotation) a1.clone();
+		}catch (CloneNotSupportedException e){
+			System.err.println("Failed to clone.");
+		}
+		assertTrue(a1 != a2);
+		assertTrue(a1.getClass() == a2.getClass());
+		assertTrue(a1.equals(a2));
+	}
 
-    /**
-     * Serialize an instance, restore it, and check for equality.
-     */
-    public void testSerialization() {
+	/**
+	 * Checks that this class implements PublicCloneable.
+	 */
+	public void testPublicCloneable(){
+		XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		assertTrue(a1 instanceof PublicCloneable);
+	}
 
-        XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0,
-                Math.PI);
-        XYPointerAnnotation a2 = null;
+	/**
+	 * Serialize an instance, restore it, and check for equality.
+	 */
+	public void testSerialization(){
 
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            ObjectOutput out = new ObjectOutputStream(buffer);
-            out.writeObject(a1);
-            out.close();
+		XYPointerAnnotation a1 = new XYPointerAnnotation("Label", 10.0, 20.0, Math.PI);
+		XYPointerAnnotation a2 = null;
 
-            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(
-                    buffer.toByteArray()));
-            a2 = (XYPointerAnnotation) in.readObject();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        assertEquals(a1, a2);
+		try{
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			ObjectOutput out = new ObjectOutputStream(buffer);
+			out.writeObject(a1);
+			out.close();
 
-    }
+			ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+			a2 = (XYPointerAnnotation) in.readObject();
+			in.close();
+		}catch (Exception e){
+			log.info(e.toString());
+		}
+		assertEquals(a1, a2);
+
+	}
 
 }

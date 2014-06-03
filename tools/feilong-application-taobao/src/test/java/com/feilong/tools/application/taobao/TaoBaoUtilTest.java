@@ -18,6 +18,8 @@ package com.feilong.tools.application.taobao;
 import java.util.Date;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.application.taobao.TaoBaoUtil;
 import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForCodeEntity;
@@ -46,26 +48,25 @@ import com.taobao.api.response.TradesSoldGetResponse;
  */
 public class TaoBaoUtilTest{
 
+	private static final Logger	log			= LoggerFactory.getLogger(TaoBaoUtilTest.class);
+
 	public final static String	APP_KEY		= "12398690";
 
 	public final static String	APP_SERCET	= "91d2fc6d34b01f954f44a6751fa2c114";
 
-	TaobaoClient				client		= new DefaultTaobaoClient(
-													"http://gw.api.taobao.com/router/rest",
-													APP_KEY,
-													APP_SERCET);
+	TaobaoClient				client		= new DefaultTaobaoClient("http://gw.api.taobao.com/router/rest", APP_KEY, APP_SERCET);
 
 	@Test
 	public void getCode(){
 		String url = "http://my.open.taobao.com/auth/authorize.htm?appkey=" + APP_KEY;
-		System.out.println(url);
+		log.info(url);
 	}
 
 	@Test
 	public void getUrl(){
 		String code = "TOP-10ff7fc2f1e78b2989828a72ac7efc5e5ctTzMHr3MezjxHpRUwvreaUnd8zTMlT-END";
 		String url = "http://container.open.taobao.com/container?authcode=" + code;
-		System.out.println(url);
+		log.info(url);
 		// top_session
 	}
 
@@ -80,7 +81,7 @@ public class TaoBaoUtilTest{
 		String sessionKey = "4122435f86fb3e8017b2ebda2eb495c20662e547552cbCMX872773211";
 		try{
 			TopatsTradesFullinfoGetResponse response = client.execute(req, sessionKey);
-			System.out.println(response.getBody());
+			log.info(response.getBody());
 			// {"topats_trades_fullinfo_get_response":{"task":{"created":"2011-12-24 17:06:55","task_id":4219310}}}
 		}catch (ApiException e){
 			e.printStackTrace();
@@ -96,7 +97,7 @@ public class TaoBaoUtilTest{
 		req.setTaskId(4219310L);
 		try{
 			TopatsResultGetResponse response = client.execute(req);
-			System.out.println(response.getBody());
+			log.info(response.getBody());
 		}catch (ApiException e){
 			e.printStackTrace();
 		}
@@ -124,7 +125,7 @@ public class TaoBaoUtilTest{
 		// req.setUseHasNext(true);
 		try{
 			TradesSoldGetResponse response = client.execute(req, sessionKey);
-			System.out.println(response.getBody());
+			log.info(response.getBody());
 		}catch (ApiException e){
 			e.printStackTrace();
 		}
@@ -140,10 +141,8 @@ public class TaoBaoUtilTest{
 		taoBaoStandardLoginEntity.setApp_key(APP_KEY);
 		taoBaoStandardLoginEntity.setApp_secret(APP_SERCET);
 		taoBaoStandardLoginEntity.setSign_method("md5");
-		taoBaoStandardLoginEntity.setTimestamp(DateUtil.date2String(
-				new Date(),
-				DatePattern.commonWithTime));
-		System.out.println(TaoBaoUtil.getTaoBaoStandardLoginUrl(taoBaoStandardLoginEntity));
+		taoBaoStandardLoginEntity.setTimestamp(DateUtil.date2String(new Date(), DatePattern.commonWithTime));
+		log.info(TaoBaoUtil.getTaoBaoStandardLoginUrl(taoBaoStandardLoginEntity));
 	}
 
 	/**
@@ -156,10 +155,8 @@ public class TaoBaoUtilTest{
 		taoBaoStandardLoginOutEntity.setApp_key(APP_KEY);
 		taoBaoStandardLoginOutEntity.setApp_secret(APP_SERCET);
 		taoBaoStandardLoginOutEntity.setSign_method("md5");
-		taoBaoStandardLoginOutEntity.setTimestamp(DateUtil.date2String(
-				new Date(),
-				DatePattern.commonWithTime));
-		System.out.println(TaoBaoUtil.getTaoBaoStandardLoginOutUrl(taoBaoStandardLoginOutEntity));
+		taoBaoStandardLoginOutEntity.setTimestamp(DateUtil.date2String(new Date(), DatePattern.commonWithTime));
+		log.info(TaoBaoUtil.getTaoBaoStandardLoginOutUrl(taoBaoStandardLoginOutEntity));
 	}
 
 	/**
@@ -173,7 +170,7 @@ public class TaoBaoUtilTest{
 		taoBaoOAuthLoginForCodeEntity.setClient_id(APP_KEY);
 		taoBaoOAuthLoginForCodeEntity.setResponse_type("code");
 		taoBaoOAuthLoginForCodeEntity.setState("11111");
-		System.out.println(TaoBaoUtil.getTaoBaoOAuthLoginUrlForGetCode(taoBaoOAuthLoginForCodeEntity));
+		log.info(TaoBaoUtil.getTaoBaoOAuthLoginUrlForGetCode(taoBaoOAuthLoginForCodeEntity));
 		// 成功返回
 		// http://www.feilong.com/taobao?code=Agx2k1jZZ8PSFLg3Z49NVdIl792&state=11111
 		// http://www.feilong.com/taobao?error=invalid_client&error_description=The%20Application%20already%20Bind%20the%20user:%DE)T%08&state=11111
@@ -183,7 +180,7 @@ public class TaoBaoUtilTest{
 	public final void getTaoBaoOAuthLoginOutUrl(){
 		String client_id = APP_KEY;
 		String redirect_uri = "http://www.feilong.com/usercenter";
-		System.out.println(TaoBaoUtil.getTaoBaoOAuthLoginOutUrl(client_id, redirect_uri));
+		log.info(TaoBaoUtil.getTaoBaoOAuthLoginOutUrl(client_id, redirect_uri));
 	}
 
 	@Test
@@ -236,11 +233,11 @@ public class TaoBaoUtilTest{
 		User user = TaoBaoUtil.getUserByAccessToken(access_token, serverUrl, APP_KEY, APP_SERCET, fields);
 		// 获取当前登录用户nick等数据，
 		// 获取nick
-		System.out.println(user.getNick());
+		log.info(user.getNick());
 	}
 
 	public static void main(String[] args){
 		String str = "%E9%A3%9E%E5%A4%A9%E5%A5%94%E6%9C%88";
-		System.out.println(URIUtil.decode(str, "utf-8"));
+		log.info(URIUtil.decode(str, "utf-8"));
 	}
 }

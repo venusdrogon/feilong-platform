@@ -71,7 +71,7 @@ public class CollectionUtilTest{
 		map = null;
 		StringBuilder builder = new StringBuilder();
 		builder.append(map);
-		System.out.println(builder.toString());
+		log.info(builder.toString());
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class CollectionUtilTest{
 		map.put(41, 4);
 		Enumeration<Object> enumeration = CollectionUtil.toEnumeration(map.keySet());
 		while (enumeration.hasMoreElements()){
-			System.out.println(enumeration.nextElement());
+			log.info("" + enumeration.nextElement());
 		}
 	}
 
@@ -106,7 +106,7 @@ public class CollectionUtilTest{
 		JoinStringEntity joinStringEntity = new JoinStringEntity(",");
 
 		String string = CollectionUtil.toString(list, joinStringEntity);
-		System.out.println(string);
+		log.info(string);
 	}
 
 	/**

@@ -52,12 +52,15 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.jfree.data.general.DefaultKeyedValueDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for the {@link DefaultKeyedValueDataset} class.
  */
 public class DefaultKeyedValueDatasetTests extends TestCase {
 
+private static final Logger log = LoggerFactory.getLogger(DefaultKeyedValueDatasetTests.class);
     /**
      * Returns the tests as a test suite.
      *
@@ -158,7 +161,7 @@ public class DefaultKeyedValueDatasetTests extends TestCase {
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            log.info(e.toString());
         }
         assertEquals(d1, d2);
     }

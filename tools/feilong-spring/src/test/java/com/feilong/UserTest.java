@@ -32,13 +32,13 @@ public class UserTest implements ApplicationContextAware{
 	public void test(){
 		ApplicationContext context = new FileSystemXmlApplicationContext("classpath:spring.xml");
 		Properties props = context.getBean("testProperties", Properties.class);
-		// System.out.println(aString);
+		// log.info(aString);
 
 		log.info("props:{}", JsonUtil.format(props));
 		// Locale locale = new Locale("zh", "CN");
 		// log.info("================" + context.getMessage("name", null, locale));
 		User user = (User) context.getBean("feitian@");
-		System.out.println(user.getUserName());
+		log.info(user.getUserName());
 		// -----------------------------
 		List<String> list = user.getList();
 		log.info("list:{}", JsonUtil.format(list));
@@ -67,7 +67,7 @@ public class UserTest implements ApplicationContextAware{
 		vector.add(3333);
 		vector.add(55555);
 		log.info("vector:{}", JsonUtil.format(vector));
-		System.out.println(vector.get(0));
+		log.info("" + vector.get(0));
 		// /********************************************
 		Hashtable<String, Object> hashtable = new Hashtable<String, Object>();
 		hashtable.put("a", "a");

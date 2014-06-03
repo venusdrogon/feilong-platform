@@ -34,7 +34,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.ArrayUtil;
-import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
