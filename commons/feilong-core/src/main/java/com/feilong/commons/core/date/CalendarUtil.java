@@ -87,9 +87,19 @@ public final class CalendarUtil{
 	 *            年份:Calendar.YEAR<br>
 	 *            ...
 	 * @return 获得日历字段值
+	 * @see Calendar#YEAR
+	 * @see Calendar#MONTH
+	 * @see Calendar#DAY_OF_MONTH
+	 * @see Calendar#DATE
+	 * @see Calendar#HOUR
+	 * @see Calendar#HOUR_OF_DAY
+	 * @see Calendar#MINUTE
+	 * @see Calendar#SECOND
+	 * @see Calendar#DAY_OF_WEEK
 	 */
 	public static int getCalendarFieldValue(Date date,int field){
-		return DateUtil.toCalendar(date).get(field);
+		Calendar calendar = DateUtil.toCalendar(date);
+		return calendar.get(field);
 	}
 
 	/**
@@ -166,121 +176,11 @@ public final class CalendarUtil{
 	 * @param day
 	 *            日
 	 * @return 获得这一天在这一年中的偏移量
+	 * @see com.feilong.commons.core.date.DateUtil#getDayOfYear(Date)
 	 */
 	public static int getDayOfYear(int year,int month,int day){
 		Calendar calendar = toCalendar(year, month, day);
 		return calendar.get(Calendar.DAY_OF_YEAR);// - 1
-	}
-
-	/**
-	 * 获得某个时间在年份中的周数.
-	 * 
-	 * @param dateString
-	 *            日期字符串
-	 * @param datePattern
-	 *            模式
-	 * @return 获得某个时间在年份中的周数
-	 */
-	public static int getWeekofYear(String dateString,String datePattern){
-		Date date = DateUtil.string2Date(dateString, datePattern);
-		return getWeekofYear(date);
-	}
-
-	/**
-	 * 获得某个时间在年份中的周数.
-	 * 
-	 * @param date
-	 *            date
-	 * @return 获得某个时间在年份中的周数
-	 */
-	public static int getWeekofYear(Date date){
-		Calendar calendar = DateUtil.toCalendar(date);
-		return calendar.get(Calendar.WEEK_OF_YEAR);
-	}
-
-	/**
-	 * 获得一个日期是周几
-	 * 
-	 * <pre>
-	 * SUNDAY、MONDAY、TUESDAY、WEDNESDAY、THURSDAY、FRIDAY 和 SATURDAY
-	 * 
-	 * 分别对应1-7
-	 * </pre>
-	 * 
-	 * .
-	 * 
-	 * @param dateString
-	 *            dateString 2010-08-09
-	 * @param datePattern
-	 *            模式 yyyy-MM-dd
-	 * @return 周几
-	 */
-	public static int getWeek(String dateString,String datePattern){
-		return getWeek(DateUtil.string2Date(dateString, datePattern));
-	}
-
-	/**
-	 * 获得一个日期是周几
-	 * 
-	 * <pre>
-	 * SUNDAY、MONDAY、TUESDAY、WEDNESDAY、THURSDAY、FRIDAY 和 SATURDAY
-	 * 
-	 * 分别对应1-7
-	 * </pre>
-	 * 
-	 * .
-	 * 
-	 * @param date
-	 *            date
-	 * @return 周几
-	 */
-	public static int getWeek(Date date){
-		Calendar calendar = DateUtil.toCalendar(date);
-		return calendar.get(Calendar.DAY_OF_WEEK);
-	}
-
-	/**
-	 * 月份偏移量的日期,支持负数表示前
-	 * 
-	 * <pre>
-	 * 比如:三个月之后的现在 getDateOffsetByMonth(new Date(),3);
-	 * 
-	 * </pre>
-	 * 
-	 * .
-	 * 
-	 * @param date
-	 *            date
-	 * @param monthOffset
-	 *            月份
-	 * @return 月份偏移量的日期
-	 */
-	public static Date getDateOffsetByMonth(Date date,int monthOffset){
-		Calendar calendar = DateUtil.toCalendar(date);
-		calendar.set(Calendar.MONTH, getCalendarFieldValue(date, Calendar.MONTH) + monthOffset);
-		return toDate(calendar);
-	}
-
-	/**
-	 * 星期偏移量的日期,支持负数表示前
-	 * 
-	 * <pre>
-	 * 比如:三个星期之后的现在 getDateOffsetByWeek(new Date(),3);
-	 * 
-	 * </pre>
-	 * 
-	 * .
-	 * 
-	 * @param date
-	 *            date
-	 * @param weekOffset
-	 *            星期偏移量
-	 * @return 星期偏移量的日期,支持负数表示前
-	 */
-	public static Date getDateOffsetByWeek(Date date,int weekOffset){
-		Calendar calendar = DateUtil.toCalendar(date);
-		calendar.set(Calendar.WEEK_OF_YEAR, getCalendarFieldValue(date, Calendar.WEEK_OF_YEAR) + weekOffset);
-		return toDate(calendar);
 	}
 
 	/**
@@ -379,6 +279,7 @@ public final class CalendarUtil{
 	 * @param day
 	 *            用来设置 DAY_OF_MONTH 日历字段的值。
 	 * @return the calendar
+	 * @see Calendar#clear()
 	 */
 	public static Calendar toCalendar(int year,int month,int day){
 		Calendar calendar = new GregorianCalendar();
