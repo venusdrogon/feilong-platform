@@ -55,11 +55,11 @@ public final class URIUtil{
 
 	/**
 	 * 基于 url字符串和charset创建 {@link URI} <br>
-	 * 内部调用 {@link URI#create(url)}方法<br>
+	 * 内部调用 {@link URI#create(String)}方法<br>
 	 * 
 	 * <p>
-	 * 如果url中不含?等参数,直接调用 {@link URI#create(url)}创建<br>
-	 * 如果如果url中含?等参数,那么内部会调用 {@link #getEncodedUrlByArrayMap(String, Map, String)}获得新的url,再调用 调用 {@link URI#create(url)}创建
+	 * 如果url中不含?等参数,直接调用 {@link URI#create(String)}创建<br>
+	 * 如果如果url中含?等参数,那么内部会调用 {@link #getEncodedUrlByArrayMap(String, Map, String)}获得新的url,再调用 调用 {@link URI#create(String)}创建
 	 * </p>
 	 * 
 	 * @param url
