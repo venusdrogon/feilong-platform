@@ -15,20 +15,23 @@
  */
 package com.feilong.commons.core.security.symmetric;
 
+import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
@@ -38,51 +41,103 @@ import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
+//}${person}{@code
+//&#125;
+//$&#123;person&#125; == ${person}
 /**
- * 对称加密,支持的类型,详见 {@link SymmetricType}<br>
+ * 对称加密解密工具
+ * 
+ * <h4>特点:</h4> <blockquote>
  * <ul>
- * <li>支持spring 注入</li>
- * <li>支持多种双向加密类型:@see SymmetricType
- * <ul>
- * <li>DES</li>
- * <li>DESede</li>
- * <li>AES</li>
- * <li>Blowfish</li>
- * <li>RC2</li>
- * <li>RC4</li>
- * <li>ARCFOUR</li>
- * </ul>
- * </li>
- * <li>支持两套 对称加密
- * <ul>
- * <li>encryptToBase64String,decryptBase64String,使用 Base64来加密解密</li>
- * <li>encryptToHexString,decryptHexString,使用大写的 十六进制码 加密解密,<b>(推荐使用这种,生成的字符串不会有特殊字符比如=号)</b></li>
- * </ul>
- * </li>
- * </ul>
+ * <li>支持spring 参数注入
+ * 
+ * 
  * 
  * <pre>
- * 使用示例:
- * 
- * 加密:
- * 		String original = "鑫哥爱feilong";
- * 		String keyString = "feilong";
- * 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
- * 		log.info("SymmetricType.Blowfish:{}", symmetricEncryption.encryptHex(original,CharsetType.UTF8));
- * 		
- * 		返回:055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
- * 
- * 解密:
- * 		String keyString = "feilong";
- * 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
- * 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
- * 		log.info(symmetricEncryption.decryptHex(hexString,CharsetType.UTF8));
- * 		返回:鑫哥爱feilong
+ * {@code
+ * 	<bean id="blowfishForPassword" class="com.feilong.commons.core.security.symmetric.SymmetricEncryption" lazy-init="true">
+ * 		<!-- 第1个参数是加密解密方式 -->
+ * 		<constructor-arg index="0" value="Blowfish" />
+ * 		<!-- 第2个参数是密钥字符串 -->
+ * 		<constructor-arg index="1" value="feilong" />
+ * 	</bean>
+ * }
  * </pre>
  * 
+ * </li>
+ * <li>支持多种双向加密类型:{@link SymmetricType}</li>
+ * </ul>
+ * </blockquote>
+ * 
+ * 
+ * <h4>支持的类型:</h4> <blockquote>
+ * <ul>
+ * <li>{@link SymmetricType#DES}</li>
+ * <li>{@link SymmetricType#DESede}</li>
+ * <li>{@link SymmetricType#AES}</li>
+ * <li>{@link SymmetricType#Blowfish}</li>
+ * <li>{@link SymmetricType#RC2}</li>
+ * <li>{@link SymmetricType#RC4}</li>
+ * <li>{@link SymmetricType#ARCFOUR}</li>
+ * </ul>
+ * </blockquote>
+ * 
+ * 
+ * <h4>两种对称加密解密方式:</h4>
+ * 
+ * <blockquote>
+ * <ul>
+ * <li>{@link #encryptBase64(String, String)},{@link #decryptBase64(String, String)}<br>
+ * 将加密之后的字节码,使用 Base64封装返回.</li>
+ * <li>{@link #encryptHex(Object, String)},{@link #decryptHex(String, String)}<br>
+ * 将加密之后的字节码,使用<b>大写的</b> Hex十六进制码形式封装返回<b>(推荐使用这种,生成的字符串不会有特殊字符比如=号,可用于url参数传递)</b></li>
+ * </ul>
+ * </blockquote>
+ * 
+ * 
+ * <h4>使用示例:</h4>
+ * 
+ * <blockquote>
+ * 
+ * <pre>
+ * {@code
+ * Example 1,encryptHex加密:
+ * 		String original = "鑫哥爱feilong";
+ * 		String keyString = "feilong";
+ * 
+ * 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
+ * 		log.info(symmetricEncryption.encryptHex(original,CharsetType.UTF8));
+ * 		
+ * 		输出:055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
+ * 
+ * Example 2,decryptHex解密:
+ * 		String keyString = "feilong";
+ * 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
+ * 
+ * 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
+ * 		log.info(symmetricEncryption.decryptHex(hexString,CharsetType.UTF8));
+ * 
+ * 		输出:鑫哥爱feilong
+ * }
+ * </pre>
+ * 
+ * </blockquote>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2011-12-26 上午11:05:53
+ * @version 1.0.0 2011-12-26 上午11:05:53
  * @version 1.0.1 2013-1-15 15:18 json log
+ * @version 1.0.7 2014-6-5 16:26 丰富了javadoc
+ * @see javax.crypto.Cipher
+ * @see javax.crypto.Cipher#ENCRYPT_MODE
+ * @see javax.crypto.Cipher#DECRYPT_MODE
+ * @see javax.crypto.KeyGenerator
+ * @see java.security.Key
+ * @see org.apache.commons.codec.binary.Base64
+ * @see SymmetricType
+ * @see #encryptBase64(String, String)
+ * @see #decryptBase64(String, String)
+ * @see #encryptHex(Object, String)
+ * @see #decryptHex(String, String)
  */
 public final class SymmetricEncryption{
 
@@ -99,23 +154,23 @@ public final class SymmetricEncryption{
 	private SymmetricType			symmetricType;
 
 	/**
-	 * 构造函数(固定枚举支持范围,取消灵活性).
+	 * 构造函数(固定枚举支持范围).
 	 * 
 	 * @param symmetricType
 	 *            the symmetric type
 	 * @param keyString
 	 *            自定义密钥
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(symmetricType) or isNullOrEmpty(keyString)
+	 * @see SymmetricType
 	 */
-	public SymmetricEncryption(SymmetricType symmetricType, String keyString){
+	public SymmetricEncryption(SymmetricType symmetricType, String keyString) throws NullPointerException{
 		if (Validator.isNullOrEmpty(keyString)){
-			throw new IllegalArgumentException("the keyString can't be null");
+			throw new NullPointerException("the keyString can't be null");
 		}
 		if (Validator.isNullOrEmpty(symmetricType)){
-			throw new IllegalArgumentException("the symmetricType can't be null");
+			throw new NullPointerException("the symmetricType can't be null");
 		}
-		this.keyString = keyString;
-		this.symmetricType = symmetricType;
-		this.key = getKey(symmetricType.getAlgorithm(), keyString);
 
 		if (log.isDebugEnabled()){
 			log.debug(
@@ -124,17 +179,25 @@ public final class SymmetricEncryption{
 					symmetricType.getAlgorithm(),
 					symmetricType.getTransformation());
 		}
+
+		this.keyString = keyString;
+		this.symmetricType = symmetricType;
+
+		//由于是固定的类型枚举,枚举里面的加密类型都经过测试过的,所以理论上来说不会再出现   NoSuchAlgorithmException
+		try{
+			this.key = getKey(symmetricType.getAlgorithm(), keyString);
+		}catch (NoSuchAlgorithmException e){
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * des Base64加密
+	 * 将加密之后的字节码,使用 Base64封装返回.
 	 * 
 	 * <pre>
 	 * keyString=feilong
 	 * encrypBase64("鑫哥爱feilong") ---->BVl2k0U5+qokOeI6ufFlVS8XnkwEwff2
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param original
 	 *            原字符串
@@ -143,9 +206,10 @@ public final class SymmetricEncryption{
 	 * @return 加密之后的字符串
 	 * @see sun.misc.BASE64Encoder
 	 * @see org.apache.commons.codec.binary.Base64
+	 * @see CharsetType
 	 */
 	@SuppressWarnings("restriction")
-	public String encrypBase64(String original,String charsetName){
+	public String encryptBase64(String original,String charsetName){
 		try{
 			byte[] bs1 = original.getBytes(charsetName);
 			byte[] bs = opBytes(bs1, Cipher.ENCRYPT_MODE);
@@ -156,19 +220,20 @@ public final class SymmetricEncryption{
 			String encode = new String(Base64.encodeBase64(bs));
 
 			if (log.isDebugEnabled()){
-				Map<String, String> map = new HashMap<String, String>();
+				Map<String, String> map = new LinkedHashMap<String, String>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
-				map.put("keyString", keyString);
 				map.put("original", original);
-				map.put("encode", encode);
+				map.put("keyString", keyString);
+				map.put("encrypBase64", encode);
+				map.put("encrypBase64Length", "" + encode.length());
 
 				log.debug(JsonUtil.format(map));
 			}
 			return encode;
 		}catch (Exception e){
 			if (log.isDebugEnabled()){
-				Map<String, String> map = new HashMap<String, String>();
+				Map<String, String> map = new LinkedHashMap<String, String>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -199,6 +264,7 @@ public final class SymmetricEncryption{
 	 * @see sun.misc.BASE64Decoder#decodeBuffer(String)
 	 * @see org.apache.commons.codec.binary.Base64
 	 * @see org.apache.commons.codec.binary.Base64#decodeBase64(byte[])
+	 * @see CharsetType
 	 */
 	@SuppressWarnings("restriction")
 	public String decryptBase64(String base64String,String charsetName){
@@ -210,7 +276,7 @@ public final class SymmetricEncryption{
 			String original = new String(bs, charsetName);
 
 			if (log.isDebugEnabled()){
-				Map<String, String> map = new HashMap<String, String>();
+				Map<String, String> map = new LinkedHashMap<String, String>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -222,7 +288,7 @@ public final class SymmetricEncryption{
 			return original;
 		}catch (Exception e){
 			if (log.isDebugEnabled()){
-				Map<String, String> map = new HashMap<String, String>();
+				Map<String, String> map = new LinkedHashMap<String, String>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -236,20 +302,22 @@ public final class SymmetricEncryption{
 	}
 
 	/**
-	 * 16进制 des加密,加密String明文输入,String密文输出 <br>
-	 * 例如:key=feilong
+	 * 将加密之后的字节码,使用 Hex形式封装返回.
+	 * 
 	 * 
 	 * <pre>
+	 * 例如:key=feilong
 	 * encryptHex("鑫哥爱feilong")---->055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param original
 	 *            明文,原始内容
 	 * @param charsetName
 	 *            编码集 {@link CharsetType}
 	 * @return 加密String明文输入,String密文输出
+	 * @see StringUtil#toBytes(String, String)
+	 * @see #opBytes(byte[], int)
+	 * @see ByteUtil#bytesToHexStringUpperCase(byte[])
 	 */
 	public String encryptHex(Object original,String charsetName){
 		try{
@@ -258,7 +326,7 @@ public final class SymmetricEncryption{
 			String hexStringUpperCase = ByteUtil.bytesToHexStringUpperCase(bs2);
 
 			if (log.isDebugEnabled()){
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -270,7 +338,7 @@ public final class SymmetricEncryption{
 			return hexStringUpperCase;
 		}catch (Exception e){
 			if (log.isDebugEnabled()){
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -284,20 +352,19 @@ public final class SymmetricEncryption{
 	}
 
 	/**
-	 * 16进制 des 解密,解密 以String密文输入,String明文输出 <br>
-	 * 例如:key=feilong
+	 * 16进制 des 解密,解密 以String密文输入,String明文输出.
 	 * 
 	 * <pre>
+	 * 例如:key=feilong
 	 * decryptHex("055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6")---->"鑫哥爱feilong"
 	 * </pre>
-	 * 
-	 * .
 	 * 
 	 * @param hexString
 	 *            一串经过加密的16进制形式字符串,例如 055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
 	 * @param charsetName
 	 *            编码集 {@link CharsetType}
 	 * @return 解密 String明文输出
+	 * @see #opBytes(byte[], int)
 	 */
 	public String decryptHex(String hexString,String charsetName){
 		try{
@@ -306,7 +373,7 @@ public final class SymmetricEncryption{
 			String original = new String(bs2);
 
 			if (log.isDebugEnabled()){
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -318,7 +385,7 @@ public final class SymmetricEncryption{
 			return original;
 		}catch (Exception e){
 			if (log.isDebugEnabled()){
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 				map.put("algorithm", symmetricType.getAlgorithm());
 				map.put("keyString", keyString);
@@ -340,33 +407,33 @@ public final class SymmetricEncryption{
 	 * @param _keyString
 	 *            自定义的密钥字符串
 	 * @return Key
+	 * @throws NoSuchAlgorithmException
+	 *             the no such algorithm exception
 	 * @see <a href="http://blog.csdn.net/hbcui1984/article/details/5753083">解决Linux操作系统下AES解密失败的问题</a>
+	 * @see KeyGenerator
+	 * @see SecureRandom
 	 */
-	private Key getKey(String algorithm,String _keyString){
-		try{
-			// KeyGenerator 对象可重复使用，也就是说，在生成密钥后，可以重复使用同一个 KeyGenerator 对象来生成更多的密钥。
-			KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm);
+	private Key getKey(String algorithm,String _keyString) throws NoSuchAlgorithmException{
+		// KeyGenerator 对象可重复使用，也就是说，在生成密钥后，可以重复使用同一个 KeyGenerator 对象来生成更多的密钥。
+		KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm);
 
-			// SHA1PRNG: It is just ensuring the random number generated is as close to "truly random" as possible.
-			// Easily guessable random numbers break encryption.
+		// SHA1PRNG: It is just ensuring the random number generated is as close to "truly random" as possible.
+		// Easily guessable random numbers break encryption.
 
-			// 此类提供强加密随机数生成器 (RNG)。 创建一个可信任的随机数源
-			SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+		// 此类提供强加密随机数生成器 (RNG)。 创建一个可信任的随机数源
+		//TODO
+		SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
 
-			// SecureRandom 实现完全隨操作系统本身的內部狀態，除非調用方在調用 getInstance 方法之後又調用了 setSeed 方法
-			// 解决 :windows上加解密正常，linux上加密正常，解密时发生如下异常：
-			// javax.crypto.BadPaddingException: Given final block not properly padded
-			secureRandom.setSeed(_keyString.getBytes());
+		// SecureRandom 实现完全隨操作系统本身的內部狀態，除非調用方在調用 getInstance 方法之後又調用了 setSeed 方法
+		// 解决 :windows上加解密正常，linux上加密正常，解密时发生如下异常：
+		// javax.crypto.BadPaddingException: Given final block not properly padded
+		secureRandom.setSeed(_keyString.getBytes());
 
-			keyGenerator.init(secureRandom);
+		keyGenerator.init(secureRandom);
 
-			Key _key = keyGenerator.generateKey();
-			keyGenerator = null;
-			return _key;
-		}catch (NoSuchAlgorithmException e){
-			e.printStackTrace();
-		}
-		return null;
+		Key _key = keyGenerator.generateKey();
+		keyGenerator = null;
+		return _key;
 	}
 
 	/**
@@ -393,17 +460,31 @@ public final class SymmetricEncryption{
 	}
 
 	/**
-	 * 操作.
+	 * 操作字节数组.
 	 * 
 	 * @param bytes
 	 *            the bytes
 	 * @param opmode
-	 *            模式
-	 * @return the byte[]
-	 * @throws Exception
-	 *             the exception
+	 *            模式,{@link Cipher#ENCRYPT_MODE} or {@link Cipher#DECRYPT_MODE}
+	 * @return the new buffer with the result
+	 * 
+	 * @throws NoSuchAlgorithmException
+	 *             the no such algorithm exception
+	 * @throws NoSuchPaddingException
+	 *             the no such padding exception
+	 * @throws InvalidKeyException
+	 *             the invalid key exception
+	 * @throws IllegalBlockSizeException
+	 *             the illegal block size exception
+	 * @throws BadPaddingException
+	 *             the bad padding exception
+	 * @see Cipher
+	 * @see Cipher#getInstance(String)
+	 * @see Cipher#init(int, Key)
+	 * @see Cipher#doFinal(byte[])
 	 */
-	private byte[] opBytes(byte[] bytes,int opmode) throws Exception{
+	private byte[] opBytes(byte[] bytes,int opmode) throws NoSuchAlgorithmException,NoSuchPaddingException,InvalidKeyException,
+			IllegalBlockSizeException,BadPaddingException{
 		// DESede/ECB/NoPadding
 		// DESede/ECB/PKCS5Padding
 		// DESede/ECB/ISO10126Padding

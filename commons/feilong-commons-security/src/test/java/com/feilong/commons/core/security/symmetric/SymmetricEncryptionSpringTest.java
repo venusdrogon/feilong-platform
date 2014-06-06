@@ -42,7 +42,7 @@ public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTe
 	@Test
 	public void base64String() throws SecurityException{
 		String original = TestConstants.testString;
-		String base64 = symmetricEncryption.encrypBase64(original, CharsetType.UTF8);
+		String base64 = symmetricEncryption.encryptBase64(original, CharsetType.UTF8);
 		log.info(base64);
 	}
 

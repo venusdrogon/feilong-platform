@@ -25,6 +25,7 @@ import com.feilong.taglib.display.pager.command.PagerConstants;
 import com.feilong.taglib.display.pager.command.PagerParams;
 
 /**
+ * The Class BasePagerTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月24日 下午11:50:17
@@ -32,16 +33,9 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  */
 public abstract class BasePagerTest{
 
+	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log					= LoggerFactory.getLogger(BasePagerTest.class);
-
-	/** The en loc. */
-	private Locale				enLoc				= new Locale("en", "US");						// 表示美国地区
-
-	/** The fr loc. */
-	private Locale				frLoc				= new Locale("fr", "FR");						// 表示法国地区
-
-	/** The zh loc. */
-	private Locale				zhLoc				= new Locale("zh", "CN");						// 表示中国地区
 
 	// Locale.ENGLISH;
 	/** The locale. */
@@ -51,7 +45,9 @@ public abstract class BasePagerTest{
 	boolean						debugIsNotParseVM	= false;
 
 	/**
-	 * @return
+	 * Gets the pager params.
+	 * 
+	 * @return the pager params
 	 */
 	protected PagerParams getPagerParams(){
 		int count = 1024;
@@ -59,9 +55,9 @@ public abstract class BasePagerTest{
 		int pageSize = 10;
 		int maxIndexPages = 8;
 		String skin = PagerConstants.DEFAULT_SKIN;
-//		String pageUrl = "http://localhost:8888/pager.htm?a=b&b=c&d=a&name=jinxin";
+		//		String pageUrl = "http://localhost:8888/pager.htm?a=b&b=c&d=a&name=jinxin";
 		String pageUrl = "http://item.blanja.com/items/search?oneNav=1190&priceTo=&twoNav=101706&priceFrom=100&pageNo=1&keyWords=Samsung";
-//		String pageUrl = "http://localhost:8888/pager.htm";
+		//		String pageUrl = "http://localhost:8888/pager.htm";
 
 		// pageUrl =
 		// "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
@@ -85,5 +81,4 @@ public abstract class BasePagerTest{
 		pagerParams.setLocale(locale);
 		return pagerParams;
 	}
-
 }

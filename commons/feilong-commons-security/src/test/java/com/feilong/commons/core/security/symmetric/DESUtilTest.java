@@ -60,7 +60,7 @@ public class DESUtilTest extends BaseSecurityTest{
 	public final void encrypBase641(){
 		assertEquals(
 				"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
-				new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).encrypBase64(
+				new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).encryptBase64(
 						TestConstants.testString,
 						CharsetType.UTF8));
 	}
@@ -74,7 +74,7 @@ public class DESUtilTest extends BaseSecurityTest{
 		SymmetricType des = SymmetricType.DES;
 		SymmetricEncryption dESUtil = new SymmetricEncryption(des, config_security_key_des_hex);
 		// LdCGo0dplVASWwJrvlHqpw==
-		log.debug(dESUtil.encrypBase64(TestConstants.testString, CharsetType.UTF8));
+		log.debug(dESUtil.encryptBase64(TestConstants.testString, CharsetType.UTF8));
 	}
 
 	@Test

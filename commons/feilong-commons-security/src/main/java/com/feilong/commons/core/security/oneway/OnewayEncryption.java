@@ -49,7 +49,7 @@ public abstract class OnewayEncryption{
 	 *            单向加密
 	 * @param origin
 	 *            原始字符串,将使用默认的 value.getBytes() 转成字节数组<br>
-	 *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(byte[])}
+	 *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(OnewayType, byte[])}
 	 * @return 加密之后的转成小写的16进制字符串
 	 */
 	public static String encode(OnewayType onewayType,String origin){
@@ -64,7 +64,7 @@ public abstract class OnewayEncryption{
 	 *            单向加密
 	 * @param origin
 	 *            原始字符串,将使用默认的 value.getBytes() 转成字节数组<br>
-	 *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(byte[])}
+	 *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(OnewayType, byte[])}
 	 * @param charsetName
 	 *            受支持的 charset 名称,比如 utf-8
 	 * @return 加密之后的转成小写的16进制字符串

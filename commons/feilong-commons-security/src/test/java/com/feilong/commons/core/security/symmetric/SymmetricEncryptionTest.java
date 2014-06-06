@@ -45,33 +45,20 @@ public class SymmetricEncryptionTest extends BaseSecurityTest{
 	private String				keyString	= "feilong";
 
 	@Test
-	public void base64String() throws SecurityException,NoSuchMethodException{
+	public void base64String() throws SecurityException,NoSuchMethodException,NullPointerException,NoSuchAlgorithmException{
 
-		log.info(
-				"SymmetricType.AES:{}",
-				debugSecurityValue(new SymmetricEncryption(SymmetricType.AES, keyString).encrypBase64(original, CharsetType.UTF8)));
+		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info(
 				"SymmetricType.ARCFOUR:{}",
-				debugSecurityValue(new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encrypBase64(original, CharsetType.UTF8)));
+				new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info(
 				"SymmetricType.Blowfish:{}",
-				debugSecurityValue(new SymmetricEncryption(SymmetricType.Blowfish, keyString).encrypBase64(original, CharsetType.UTF8)));
-		log.info(
-				"SymmetricType.DES:{}",
-				debugSecurityValue(new SymmetricEncryption(SymmetricType.DES, keyString).encrypBase64(original, CharsetType.UTF8)));
+				new SymmetricEncryption(SymmetricType.Blowfish, keyString).encryptBase64(original, CharsetType.UTF8));
+		log.info("SymmetricType.DES:{}", new SymmetricEncryption(SymmetricType.DES, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info(
 				"SymmetricType.DESede:{}",
-				debugSecurityValue(new SymmetricEncryption(SymmetricType.DESede, keyString).encrypBase64(original, CharsetType.UTF8)));
+				new SymmetricEncryption(SymmetricType.DESede, keyString).encryptBase64(original, CharsetType.UTF8));
 
-	}
-
-	@Test
-	public void blowfish() throws SecurityException,NoSuchMethodException{
-		String original = "鑫哥爱feilong";
-		String keyString = "feilong";
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		log.info("SymmetricType.Blowfish:{}", symmetricEncryption.encryptHex(original, CharsetType.UTF8));
-		// 055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
 	}
 
 	@Test
@@ -88,27 +75,10 @@ public class SymmetricEncryptionTest extends BaseSecurityTest{
 	}
 
 	@Test
-	public void base64String221() throws SecurityException,NoSuchMethodException{
-		String keyString = "feilong";
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
-		log.info(symmetricEncryption.decryptHex(hexString, CharsetType.UTF8));
-	}
-
-	@Test
-	public void decryptBase64String(){
+	public void decryptBase64String() throws NullPointerException,NoSuchAlgorithmException{
 		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).decryptBase64(
 				"NvHLVz3ADOlx3K2dMa8TZjjP5fkAPus2ienTEkOdUX4=",
 				CharsetType.UTF8));
-	}
-
-	@Test
-	public void encryptToHexString() throws SecurityException,NoSuchMethodException{
-		String original = TestConstants.testString;
-
-		symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		String base64 = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
-		log.info(base64);
 	}
 
 	@Test

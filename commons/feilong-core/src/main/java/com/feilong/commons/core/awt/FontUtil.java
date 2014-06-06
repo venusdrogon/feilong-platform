@@ -46,47 +46,56 @@ public final class FontUtil{
 	public final static Font	SONG_PLAIN_9	= getFont(FontType.SONGTI, 9);
 
 	/**
-	 * 获得courier_New字体(默认 Font.PLAIN)
+	 * 获得courier_New字体(默认 {@link Font#PLAIN})
 	 * 
 	 * @param size
 	 *            the size
 	 * @return the font_courier_ new_ plain
+	 * @see Font#PLAIN
+	 * @see FontType#COURIER_NEW
 	 */
 	public final static Font getFont_courier_New_Plain(int size){
 		return getFont(FontType.COURIER_NEW, size);
 	}
 
 	/**
-	 * 获得verdana字体(默认 Font.PLAIN)
+	 * 获得verdana字体(默认 {@link Font#PLAIN})
 	 * 
 	 * @param size
 	 *            the size
 	 * @return the font_verdana_ plain
+	 * @see Font#PLAIN
+	 * @see FontType#VERDANA
 	 */
 	public final static Font getFont_verdana_Plain(int size){
 		return getFont(FontType.VERDANA, size);
 	}
 
 	/**
-	 * 获得微软雅黑字体(默认 Font.PLAIN)
+	 * 获得微软雅黑字体(默认 {@link Font#PLAIN})
 	 * 
 	 * @param size
 	 *            the size
 	 * @return the font_ ya hei_ plain
+	 * @see Font#PLAIN
+	 * @see FontType#YAHEI
 	 */
 	public final static Font getFont_YaHei_Plain(int size){
 		return getFont(FontType.YAHEI, size);
 	}
 
 	/**
-	 * 获得字体(默认 Font.PLAIN)
+	 * 获得字体(默认 {@link Font#PLAIN})
 	 * 
 	 * @param fontName
-	 *            字体名称。可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。 <li>逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或
-	 *            SansSerif。</li> 如果 name 为 null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
+	 *            字体名称。<br>
+	 *            可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。<br>
+	 *            逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或 SansSerif。 <br>
+	 *            如果 name 为 null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
 	 * @param size
 	 *            the size
 	 * @return 字体
+	 * @see Font#PLAIN
 	 */
 	public final static Font getFont(String fontName,int size){
 		// 普通样式常量
@@ -97,11 +106,15 @@ public final class FontUtil{
 	 * 获得字体.
 	 * 
 	 * @param fontName
-	 *            字体名称。可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。 <li>逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或
-	 *            SansSerif。</li> 如果 name 为 null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
+	 *            字体名称。<br>
+	 *            可以是字体外观名称或字体系列名称，并可表示此 GraphicsEnvironment 中找到的逻辑字体或物理字体。<br>
+	 *            逻辑字体的系列名称有：Dialog、DialogInput、Monospaced、Serif 或 SansSerif。 <br>
+	 *            如果 name 为 null，则将新 Font 的 逻辑字体名称（由 getName() 返回）设置为 "Default"。
 	 * @param fontStyle
-	 *            字体样式 粗体BOLD 斜体ITALIC 普通样式常量PLAIN <li>Font 的样式常量。样式参数是整数位掩码，可以为 PLAIN，或 BOLD 和 ITALIC 的按位或（例如，ITALIC 或 BOLD|ITALIC）。</li>
-	 *            <li>如果样式参数不符合任何一个期望的整数位掩码，则将样式设置为 PLAIN。</li>
+	 *            字体样式<br>
+	 *            粗体 {@link Font#BOLD} 斜体 {@link Font#ITALIC} 普通样式常量 {@link Font#PLAIN} <br>
+	 *            Font 的样式常量。样式参数是整数位掩码，可以为 PLAIN，或 BOLD 和 ITALIC 的按位或（例如，ITALIC 或 BOLD|ITALIC）。<br>
+	 *            如果样式参数不符合任何一个期望的整数位掩码，则将样式设置为 PLAIN。
 	 * @param fontSize
 	 *            字体磅值大小 9pt=12px
 	 * @return 字体

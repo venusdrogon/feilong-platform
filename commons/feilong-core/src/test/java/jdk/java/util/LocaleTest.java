@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,27 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package jdk.java.util;
 
 import java.util.Locale;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The Class LocaleTest.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-4 4:13:48
+ */
 public class LocaleTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(LocaleTest.class);
+	/** The Constant log. */
+	private static final Logger	log		= LoggerFactory.getLogger(LocaleTest.class);
 
+	/** The en loc. */
+	private Locale				enLoc	= new Locale("en", "US");						// 表示美国地区
+
+	/** The fr loc. */
+	private Locale				frLoc	= new Locale("fr", "FR");						// 表示法国地区
+
+	/** The zh loc. */
+	private Locale				zhLoc	= new Locale("zh", "CN");						// 表示中国地区
+
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args){
 		Locale myLocale = Locale.getDefault();
 		log.info(myLocale.getCountry());
@@ -41,5 +54,20 @@ public class LocaleTest{
 		log.info(myLocale.getDisplayCountry());
 		log.info(myLocale.getDisplayLanguage());
 		log.info("" + (2.00 - 1.10));
+	}
+
+	/**
+	 * Name.
+	 */
+	@Test
+	public void name(){
+		if (log.isInfoEnabled()){
+			log.info(new Locale("en", "US").toString());
+			log.info(Locale.ENGLISH.toString());
+			log.info(Locale.US.toString());
+			log.info(Locale.CHINA.toString());
+			log.info(Locale.CHINESE.toString());
+			log.info(Locale.SIMPLIFIED_CHINESE.toString());
+		}
 	}
 }

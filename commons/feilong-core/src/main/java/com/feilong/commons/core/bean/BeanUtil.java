@@ -131,7 +131,7 @@ public final class BeanUtil{
 	}
 
 	/**
-	 * 对象值的复制 fromObj-->toObj
+	 * 对象值的复制 {@code fromObj-->toObj}
 	 * 
 	 * <pre>
 	 * 如果有java.util.Date 类型的 需要copy,那么 需要先这么着
@@ -175,7 +175,7 @@ public final class BeanUtil{
 	}
 
 	/**
-	 * 对象值的复制 fromObj-->toObj
+	 * 对象值的复制  {@code fromObj-->toObj}
 	 * 
 	 * <pre>
 	 * 如果有java.util.Date 类型的 需要copy,那么 需要先这么着
