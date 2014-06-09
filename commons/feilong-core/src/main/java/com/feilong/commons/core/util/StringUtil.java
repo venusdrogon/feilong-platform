@@ -173,7 +173,9 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 单词首字母大写 比如jinxin---->Jinxin
+	 * 单词首字母大写 比如jinxin
+	 * 
+	 * return Jinxin
 	 * 
 	 * <pre>
 	 * StringUtils.capitalize(null)  = null
@@ -191,7 +193,9 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 单词首字母小写 比如Jinxin---->jinxin
+	 * 单词首字母小写 比如Jinxin
+	 * 
+	 * return jinxin
 	 * 
 	 * <pre>
 	 * StringUtils.capitalize(null)  = null
@@ -373,7 +377,9 @@ public final class StringUtil{
 	 * 调用text.substring(beginIndex)
 	 * 
 	 * <pre>
-	 * substring("jinxin.feilong",6)=====>.feilong
+	 * substring("jinxin.feilong",6) 
+	 * 
+	 * return .feilong
 	 * </pre>
 	 * 
 	 * @param text
@@ -397,7 +403,9 @@ public final class StringUtil{
 	 * [截取]从开始位置(startIndex),截取固定长度(length)字符串<br>
 	 * 
 	 * <pre>
-	 * StringUtil.substring("jinxin.feilong", 6, 2)=====>.m
+	 * StringUtil.substring("jinxin.feilong", 6, 2)
+	 * 
+	 * renturn .f
 	 * </pre>
 	 * 
 	 * @param textObject
@@ -405,16 +413,19 @@ public final class StringUtil{
 	 * @param startIndex
 	 *            索引开始位置,0开始
 	 * @param length
-	 *            长度 >=1 1个 即本身 <br>
+	 *            长度 {@code >=1} 1个 即本身 <br>
 	 *            正常情况下,即返回出来的字符串长度
-	 * @return <pre>
-	 * Validator.isNull(textValue),	return null
-	 * startIndex>textLength - 1,			return null
-	 * startIndex==textLength - 1,			return substringLast(textString, 1)
-	 * length<1,							return null
-	 * 1 == length,							return textString.substring(startIndex, startIndex + 1)
-	 * remainLength > length,				return textString.substring(startIndex, startIndex + length)
-	 * remainLength <= length,				return textString.substring(startIndex)
+	 * @return
+	 *         <pre>
+	 * {@code
+	 * 		Validator.isNullOrEmpty(textValue),	return null
+	 * 		startIndex>textLength - 1,			return null
+	 * 		startIndex==textLength - 1,			return substringLast(textString, 1)
+	 * 		length<1,							return null
+	 * 		1 == length,							return textString.substring(startIndex, startIndex + 1)
+	 * 		remainLength > length,				return textString.substring(startIndex, startIndex + length)
+	 * 		remainLength <= length,				return textString.substring(startIndex)
+	 * }
 	 * </pre>
 	 */
 	public final static String substring(Object textObject,int startIndex,int length){
@@ -488,11 +499,12 @@ public final class StringUtil{
 	 *         <li>if isNullOrEmpty(text),return null</li>
 	 *         <li>if isNullOrEmpty(beginString),return null</li>
 	 *         <li>if text.indexOf(beginString)==-1,return null</li>
-	 *         <li>beginIndex + shift > text.length(),return null</li>
+	 *         <li>{@code  beginIndex + shift > text.length()},return null</li>
 	 *         <li>else,return text.substring(beginIndex + shift)</li>
 	 *         </ul>
 	 * @throws IllegalArgumentException
-	 *             if beginIndex + shift<0
+	 *             {@code  if beginIndex + shift<0}
+	 * 
 	 */
 	public final static String substring(String text,String beginString,int shift) throws IllegalArgumentException{
 		if (Validator.isNullOrEmpty(text)){
@@ -728,6 +740,7 @@ public final class StringUtil{
 	 * <h4>标志</h4>
 	 * 
 	 * <pre>
+	 * {@code
 	 * +	为正数或者负数添加符号	("%+d",15)	+15
 	 * -	左对齐	("%-5d",15)	|15   |  不可以与“用0填充”同时使用
 	 * 0	数字前面补0	("%04d", 99)	0099
@@ -737,6 +750,7 @@ public final class StringUtil{
 	 * #	如果是浮点数则包含小数点，如果是16进制或8进制则添加0x或0
 	 * <	格式化前一个转换符所描述的参数	("%f和%<3.2f", 99.45)	99.450000和99.45
 	 * $	被格式化的参数索引	("%1$d,%2$s", 99,"abc")	99,abc
+	 * }
 	 * </pre>
 	 * 
 	 * @param format

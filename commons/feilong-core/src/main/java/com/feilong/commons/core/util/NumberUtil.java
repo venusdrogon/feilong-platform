@@ -71,7 +71,7 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * <td>精确舍入,银行家舍入法。 <br>
  * 四舍六入;五分两种情况,如果前一位为奇数，则入位，否则舍去。 <br>
  * 以下例子为保留小数点1位，那么这种舍入方式下的结果:  <br>
- *     1.15>1.2    1.25>1.2 </td>
+ *   {@code 1.15 return 1.2} {@code 1.25 return 1.2}</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
  * <td>ROUND_UNNECESSARY</td>
@@ -167,7 +167,7 @@ public final class NumberUtil{
 	 * @throws NullPointerException
 	 *             if total==null or if current==null
 	 * @throws IllegalArgumentException
-	 *             if total<=0 or if current<=0 or if current>total
+	 *             {@code if total<=0 or if current<=0 or if current>total}
 	 * @see NumberPattern
 	 * @since 1.0.7
 	 */
@@ -189,7 +189,7 @@ public final class NumberUtil{
 	 * @throws NullPointerException
 	 *             if total==null or if current==null
 	 * @throws IllegalArgumentException
-	 *             if total<=0 or if current<=0 or if current>total
+	 *             {@code if total<=0 or if current<=0 or if current>total}
 	 * @see NumberPattern
 	 * @since 1.0.7
 	 */

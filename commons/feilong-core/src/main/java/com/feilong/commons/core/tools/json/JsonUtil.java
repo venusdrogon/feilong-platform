@@ -47,7 +47,6 @@ import com.feilong.commons.core.util.Validator;
  * <h4>依赖于下面的jar:</h4>
  * 
  * <blockquote>
- * <p>
  * 
  * <pre>
  * {@code
@@ -59,7 +58,7 @@ import com.feilong.commons.core.util.Validator;
  * <artifactId>xom</artifactId>
  * }
  * </pre>
- * <p>
+ * 
  * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -494,9 +493,9 @@ public final class JsonUtil{
 	 * Object to xml<br>
 	 * 缺点:
 	 * <ul>
-	 * <li>不能去掉 < ?xml version="1.0" encoding="UTF-8"? ></li>
+	 * <li>不能去掉 {@code <?xml version="1.0" encoding="UTF-8"? >}</li>
 	 * <li>不能格式化输出</li>
-	 * <li>对于空元素,不能输出 < additionalData> < /additionalData>,只能输出< additionalData/></li>
+	 * <li>对于空元素,不能输出 {@code <additionalData></additionalData>} ,只能输出 {@code <additionalData/>}</li>
 	 * </ul>
 	 * 
 	 * @param object

@@ -344,7 +344,7 @@ public final class URIUtil{
 	 * @param charsetType
 	 *            何种编码，如果是null或者 empty,那么不参数部分原样返回,自己去处理兼容性问题<br>
 	 *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
-	 * @return map value的处理 （LinkedHashMap<String, String[]>）
+	 * @return map value的处理 （{@link LinkedHashMap#LinkedHashMap(int, float)}
 	 *         <ul>
 	 *         <li>没有Validator.isNullOrEmpty(bianma) 那么就原样返回</li>
 	 *         <li>如果有编码,统统先强制 decode 再 encode</li>
@@ -436,11 +436,15 @@ public final class URIUtil{
 	/**
 	 * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL。 新的 URL 从给定的上下文 URL 和 spec 参数创建<br>
 	 * 网站地址拼接,请使用这个method
-	 * <p>
-	 * 示例: URIUtil.getUnionUrl("E:\\test", "sanguo")------------->file:/E:/test/sanguo<br>
-	 * URL url = new URL("http://www.exiaoshuo.com/jinyiyexing/");<br>
-	 * result = URIUtil.getUnionUrl(url, "/jinyiyexing/1173348/");<br>
+	 * 
+	 * <pre>
+	 * {@code
+	 * 示例: URIUtil.getUnionUrl("E:\\test", "sanguo")------------->file:/E:/test/sanguo
+	 * URL url = new URL("http://www.exiaoshuo.com/jinyiyexing/");
+	 * result = URIUtil.getUnionUrl(url, "/jinyiyexing/1173348/");
 	 * http://www.exiaoshuo.com/jinyiyexing/1173348/
+	 * }
+	 * </pre>
 	 * 
 	 * @param context
 	 *            要解析规范的上下文

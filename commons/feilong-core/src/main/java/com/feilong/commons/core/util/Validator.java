@@ -58,7 +58,7 @@ public final class Validator{
 	 * <ol>
 	 * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
 	 * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
-	 * <li>{@link String},使用 {@link String#trim()}.length()<=0效率高</li>
+	 * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高</li>
 	 * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()}</li>
 	 * <li>{@link Iterator},使用 {@link Iterator#hasNext()}</li>
 	 * <li><code>Object[]</code>,判断length==0,注二维数组不管是primitive 还是包装类型,都instanceof Object[]</li>
@@ -140,7 +140,7 @@ public final class Validator{
 	 * <ol>
 	 * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
 	 * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
-	 * <li>{@link String},使用 {@link String#trim()}.length()<=0效率高</li>
+	 * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高</li>
 	 * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()}</li>
 	 * <li>{@link Iterator},使用 {@link Iterator#hasNext()}</li>
 	 * <li><code>Object[]</code>,判断length==0</li>

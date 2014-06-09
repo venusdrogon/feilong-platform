@@ -37,18 +37,22 @@ import com.feilong.commons.core.util.Validator;
  * Date 操作工具类(feilong-core 核心类之一)
  * </p>
  * 包括:
+ * 
  * <ul>
+ * 
  * <li>字符串转日期
  * <ul>
  * <li>{@link DateUtil#string2Date(String, String)}</li>
  * </ul>
  * </li>
+ * 
  * <li>日期转字符串
  * <ul>
  * <li>{@link DateUtil#date2String(Date)}</li>
  * <li>{@link DateUtil#date2String(Date, String)}</li>
  * </ul>
  * </li>
+ * 
  * <li>日期加减
  * <ul>
  * <li>{@link DateUtil#addDay(Date, int)}</li>
@@ -60,6 +64,7 @@ import com.feilong.commons.core.util.Validator;
  * <li>{@link DateUtil#addYear(Date, int)}</li>
  * </ul>
  * </li>
+ * 
  * <li>获得日期某部值
  * <ul>
  * <li>{@link DateUtil#getDayOfMonth(Date)}</li>
@@ -74,6 +79,7 @@ import com.feilong.commons.core.util.Validator;
  * <li>{@link DateUtil#getTime(Date)}</li>
  * </ul>
  * </li>
+ * 
  * <li>获得两个日期间隔
  * <ul>
  * <li>{@link DateUtil#getIntervalDay(long)}</li>
@@ -90,21 +96,26 @@ import com.feilong.commons.core.util.Validator;
  * <li>{@link DateUtil#getIntervalTime(Date, Date)}</li>
  * </ul>
  * </li>
- * <li>判断闰年 {@link DateUtil#isLeapYear(int)}</i>
- * <li>判断相等 {@link DateUtil#isEquals(Date, Date, String)}</i>
+ * 
+ * <li>判断闰年 {@link DateUtil#isLeapYear(int)}</li>
+ * <li>判断相等 {@link DateUtil#isEquals(Date, Date, String)}</li>
+ * 
  * <li>判断早晚
  * <ul>
  * <li>{@link DateUtil#isBefore(Date, String, String)}</li>
  * <li>{@link DateUtil#isBefore(String, String, String)}</li>
  * </ul>
- * </i>
+ * </li>
+ * 
  * <li>判断日期区间
  * <ul>
  * <li>{@link DateUtil#isInTime(Date, Date, Date)}</li>
  * <li>{@link DateUtil#isInTime(Date, String, String, String)}</li>
  * </ul>
- * </i>
+ * </li>
+ * 
  * </ul>
+ * 
  * 通过这个类,还可以获得以下数据:
  * 
  * <pre>
@@ -951,7 +962,7 @@ public final class DateUtil{
 	// [start]date2String/string2Date 类型转换
 
 	/**
-	 * 不带参数pattern的 的method,采用默认 pattern--->{@link DatePattern#commonWithTime}.
+	 * 不带参数pattern的 的method,采用默认 pattern:{@link DatePattern#commonWithTime}.
 	 * 
 	 * @param date
 	 *            任意时间
@@ -1050,12 +1061,12 @@ public final class DateUtil{
 	 * 2).如果inDate的year和currentDate的year不相等,则显示"yyyy-MM-dd HH:mm"</li>
 	 * <li>如果时间差大于2天<br>
 	 * 1).如果inDate的year和currentDate的year相等,则显示"MM-dd HH:mm"<br>
-	 * 2).如果inDate的year和currentDate的year不相等,则显示"yyyy-MM-dd HH:mm"</li> </li>
+	 * 2).如果inDate的year和currentDate的year不相等,则显示"yyyy-MM-dd HH:mm"</li>
 	 * </ul>
 	 * 
 	 * @param inDate
 	 *            任意日期<br>
-	 *            <i>warn:一般inDate<=当前时间 ,暂时不支持大于当前时间</i>
+	 *            warn:{@code 一般inDate<=当前时间} ,暂时不支持大于当前时间
 	 * @return 人性化显示date时间
 	 * @see #date2String(Date, String)
 	 * @see #getYear(Date)

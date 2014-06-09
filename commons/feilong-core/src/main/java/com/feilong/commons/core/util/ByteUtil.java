@@ -130,13 +130,13 @@ public final class ByteUtil{
 
 	// *****************************************************************************************************
 	/**
-	 * 将两个ASCII字符合成一个字节； 如："EF"--> 0xEF.
+	 * 将两个ASCII字符合成一个字节； 如：{@code "EF"--> 0xEF} .
 	 * 
 	 * @param byte1
 	 *            the byte1
 	 * @param byte2
 	 *            the byte2
-	 * @return 将两个ASCII字符合成一个字节； 如："EF"--> 0xEF
+	 * @return 将两个ASCII字符合成一个字节； 如：{@code "EF"--> 0xEF}
 	 */
 	public final static byte uniteBytes(byte byte1,byte byte2){
 		byte _b0 = Byte.decode("0x" + new String(new byte[] { byte1 })).byteValue();

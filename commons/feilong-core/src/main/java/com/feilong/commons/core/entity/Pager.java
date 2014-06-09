@@ -147,7 +147,7 @@ public final class Pager implements Serializable{
 	 * 上一页页码.
 	 * 
 	 * @return <ul>
-	 *         <li>如果 currentPageNo - 1<=1 返回1</li>
+	 *         <li>如果{@code currentPageNo - 1<=1} 返回1</li>
 	 *         <li>否则返回 currentPageNo - 1</li>
 	 *         </ul>
 	 */
@@ -163,7 +163,7 @@ public final class Pager implements Serializable{
 	 * 下一页页码.
 	 * 
 	 * @return <ul>
-	 *         <li>如果 currentPageNo+1>= {@link #getAllPageNo()} 返回 {@link #getAllPageNo()}</li>
+	 *         <li>如果 currentPageNo+1 {@code >=} {@link #getAllPageNo()} 返回 {@link #getAllPageNo()}</li>
 	 *         <li>否则返回 currentPageNo+1</li>
 	 *         </ul>
 	 */
@@ -181,7 +181,7 @@ public final class Pager implements Serializable{
 	 * 在 原始的总页数 基础上 进行解析的下一页页码(通过这个值 可以实现一些特殊的功能,一般用不到)
 	 * 
 	 * @return <ul>
-	 *         <li>如果 currentPageNo+1>= {@link #getOriginatingAllPageNo()} 返回 {@link #getOriginatingAllPageNo()}</li>
+	 *         <li>如果 currentPageNo+1{@code >=} {@link #getOriginatingAllPageNo()} 返回 {@link #getOriginatingAllPageNo()}</li>
 	 *         <li>否则返回 currentPageNo+1</li>
 	 *         </ul>
 	 */

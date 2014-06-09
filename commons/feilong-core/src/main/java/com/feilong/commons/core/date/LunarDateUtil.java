@@ -191,7 +191,7 @@ public final class LunarDateUtil{
 	}
 
 	/**
-	 * 年份转成中文 2010--->二零一零.
+	 * 年份转成中文 {@code 2010--->二零一零} .
 	 * 
 	 * @param year
 	 *            年份 2010

@@ -186,11 +186,14 @@ public final class ListUtil{
 	 * 如:
 	 * 
 	 * <pre>
+	 * {@code
+	 * 
 	 * List&lt;String&gt; testList = new ArrayList&lt;String&gt;();
 	 * testList.add(&quot;xinge&quot;);
 	 * testList.add(&quot;feilong&quot;);
 	 * 
 	 * toStringRemoveBrackets(testList)----->xinge,feilong
+	 * }
 	 * </pre>
 	 * 
 	 * @param list
@@ -206,12 +209,15 @@ public final class ListUtil{
 	 * list集合转换成字符串 如:
 	 * 
 	 * <pre>
+	 * {@code
+	 * 
 	 * List&lt;String&gt; testList = new ArrayList&lt;String&gt;();
 	 * testList.add(&quot;xinge&quot;);
 	 * testList.add(&quot;feilong&quot;);
 	 * 
 	 * toString(testList,true)----->'xinge','feilong'
 	 * toString(testList,false)----->xinge,feilong
+	 * }
 	 * </pre>
 	 * 
 	 * @param list

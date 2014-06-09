@@ -50,7 +50,7 @@ public final class IOUtil{
 	 * 
 	 * @param inputStream
 	 *            the input stream
-	 * @return 将 InputStream 转成string，如果出现异常， 返回null<br/>
+	 * @return 将 InputStream 转成string，如果出现异常， 返回null<br>
 	 *         已经处理了 inputStream 的关闭
 	 * @since 1.0.2
 	 */
@@ -69,7 +69,7 @@ public final class IOUtil{
 	 *            the input stream
 	 * @param charsetName
 	 *            指定受支持的 charset 的名称
-	 * @return 将 InputStream 转成string，如果出现异常， 返回null<br/>
+	 * @return 将 InputStream 转成string，如果出现异常， 返回null<br>
 	 *         已经处理了 inputStream 的关闭
 	 * @since 1.0.2
 	 */

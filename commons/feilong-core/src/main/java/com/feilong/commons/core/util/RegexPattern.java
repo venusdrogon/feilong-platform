@@ -166,7 +166,7 @@ import java.util.regex.Pattern;
  * </tr>
  * <tr valign=top>
  * <td>{n,m}</td>
- * <td>m 和 n 均为非负整数，其中n <= m。最少匹配 n 次且最多匹配 m 次。例如，"o{1,3}" 将匹配 "fooooood" 中的前三个 o。'o{0,1}' 等价于 'o?'。请注意在逗号和两个数之间不能有空格。</td>
+ * <td>m 和 n 均为非负整数，其中 {@code n <= m}。最少匹配 n 次且最多匹配 m 次。例如，"o{1,3}" 将匹配 "fooooood" 中的前三个 o。'o{0,1}' 等价于 'o?'。请注意在逗号和两个数之间不能有空格。</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
  * <td>?</td>

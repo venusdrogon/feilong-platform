@@ -32,8 +32,8 @@ public class StringUtilTest{
 	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(StringUtilTest.class);
 
-	/** The text. */
-	private String				text	= "jinxin.feilong";
+	/** <code>{@value}</code> */
+	private final static String	text	= "jinxin.feilong";
 
 	/**
 	 * Search count.
@@ -57,7 +57,6 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void addDoubleQuotes(){
-		String text = "jinxin.feilong";
 		log.info(StringUtil.addDoubleQuotes(text));
 	}
 
@@ -66,7 +65,6 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void isContainIgnoreCase(){
-		String text = "jinxin.feilong";
 		log.info(StringUtil.isContainIgnoreCase(null, "") + "");
 		log.info(StringUtil.isContainIgnoreCase(text, null) + "");
 		log.info(StringUtil.isContainIgnoreCase(text, "") + "");
@@ -193,7 +191,7 @@ public class StringUtilTest{
 		log.info(StringUtil.substring(text, text.length() - 1, 8));
 		log.info(StringUtil.substring(text, 1, 0));
 		log.info(StringUtil.substring(text, 0, 5));
-		log.info(StringUtil.substring(text, 6, 2));
+		junit.framework.Assert.assertEquals(".f", StringUtil.substring(text, 6, 2));
 		log.info(StringUtil.substring(text, 6, 20));
 	}
 

@@ -50,7 +50,7 @@ public final class ReflectUtil{
 
 	/**
 	 * Gets the generic model class.<br>
-	 * public class SkuItemRepositoryImpl extends BaseSolrRepositoryImpl<SkuItem, Long> implements SkuItemRepository<br>
+	 * {@code  public class SkuItemRepositoryImpl extends BaseSolrRepositoryImpl<SkuItem, Long> implements SkuItemRepository}<br>
 	 * 这样的类,取到泛型里面第一个参数 SkuItem.class
 	 * 
 	 * @param <T>
@@ -420,7 +420,8 @@ public final class ReflectUtil{
 	 * }
 	 * </pre>
 	 * 
-	 * @param <T> t
+	 * @param <T>
+	 *            t
 	 * @param className
 	 *            类得名称,比如 com.feilong.test.User
 	 * @param parameterValues
@@ -462,7 +463,7 @@ public final class ReflectUtil{
 	 *            构造函数的参数值, 比如100L
 	 * @return <ol>
 	 *         <li>if null==klass,抛出 {@link IllegalArgumentException}</li>
-	 *         <li>如果 args isNotNullOrEmpty,则构建 Class<?>[] parameterTypes</li>
+	 *         <li>如果 args isNotNullOrEmpty,则构建{@code Class<?>[] parameterTypes}</li>
 	 *         <li>{@link Class#getConstructor(Class...)} 获得构造函数</li>
 	 *         <li>{@link Constructor#newInstance(Object...)}实例化</li>
 	 *         </ol>

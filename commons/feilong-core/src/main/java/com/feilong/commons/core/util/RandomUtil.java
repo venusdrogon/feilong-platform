@@ -74,7 +74,7 @@ public final class RandomUtil{
 	 *            最大值
 	 * @return 创建最小值和最大值之间的随机数
 	 * @throws IllegalArgumentException
-	 *             if (maxLong < minLong)
+	 *             {@code if (maxLong < minLong)}
 	 */
 	public static long createRandom(Number min,Number max) throws IllegalArgumentException{
 		long maxLong = max.longValue();
@@ -130,7 +130,7 @@ public final class RandomUtil{
 	 * @throws NullPointerException
 	 *             if isNullOrEmpty(str)
 	 * @throws IllegalArgumentException
-	 *             if maxLength<=0 or if (maxLength < minLength)
+	 *             {@code if maxLength<=0 or if (maxLength < minLength)}
 	 */
 	public static String createRandomFromString(String str,int minLength,int maxLength) throws IllegalArgumentException,
 			NullPointerException{
@@ -163,7 +163,7 @@ public final class RandomUtil{
 	 * @throws NullPointerException
 	 *             if isNullOrEmpty(str)
 	 * @throws IllegalArgumentException
-	 *             if length<=0
+	 *             {@code if length<=0}
 	 */
 	public static String createRandomFromString(String str,int length) throws IllegalArgumentException,NullPointerException{
 		if (Validator.isNullOrEmpty(str)){

@@ -73,8 +73,8 @@ public class MapUtil{
 	 * @param keys
 	 *            指定key,如果key 不在map key 里面 ,则返回的map 中忽略该key
 	 * @return the sub map<br>
-	 *         如果 Validator.isNull(keys) 返回null<br>
-	 *         如果 Validator.isNull(map) 返回null
+	 *         如果isNullOrEmpty(keys) 返回null<br>
+	 *         如果 isNullOrEmpty(map) 返回null
 	 */
 	public static <K, T> Map<K, T> getSubMap(Map<K, T> map,K[] keys){
 		if (Validator.isNullOrEmpty(keys)){
