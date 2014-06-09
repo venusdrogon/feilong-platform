@@ -57,7 +57,8 @@
 		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
 
-		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/commons</maven-javadoc-plugin.javadocDirectory>
+		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
+		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
 		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
 		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
 		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
@@ -689,14 +690,14 @@
 					<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
 					<!-- <stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet> -->
 
-					<stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile>
+					<!-- <stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile> -->
 
 					<overview>src/main/java/overview.html</overview>
 
 					<!-- -->
 					<docfilessubdirs>true</docfilessubdirs>
-					<javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory>
-					<javadocVersion>1.6</javadocVersion>
+					<!-- <javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory> -->
+					<javadocVersion>${maven-javadoc-plugin.javadocVersion}</javadocVersion>
 
 					<!-- Specifies the title to be placed in the HTML title tag.  -->
 					<windowtitle>${project.name} ${project.version} API create by feilong</windowtitle>
