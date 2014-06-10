@@ -1567,7 +1567,7 @@ public final class DateUtil{
 	 *            结束时间
 	 * @param datePattern
 	 *            开始时间和结束时间的格式{@link DatePattern}
-	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
+	 * @return {@code 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true}
 	 * @see #string2Date(String, String)
 	 * @see #isInTime(Date, Date, Date)
 	 */
@@ -1594,7 +1594,7 @@ public final class DateUtil{
 	 *            the begin time date
 	 * @param endTimeDate
 	 *            the end time date
-	 * @return 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true
+	 * @return {@code 如果 date after beginTimeDate&&当前时间before endTimeDate,返回true}
 	 * @see Date#after(Date)
 	 * @see Date#before(Date)
 	 */

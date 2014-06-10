@@ -40,8 +40,8 @@ public class ClassLoaderUtil{
 	 * "",表示classes 的根目录<br>
 	 * e.q:<br>
 	 * <ul>
-	 * <li>getResource("")--->(maven)测试--->file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/</li>
-	 * <li>getResource("com")--->(maven)测试--->file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/com</li>
+	 * <li>{@code getResource("")--->(maven)测试--->file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/}</li>
+	 * <li>{@code getResource("com")--->(maven)测试--->file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/com}</li>
 	 * </ul>
 	 * <br>
 	 * 在web环境中,(即使打成jar的情形):<br>
@@ -76,7 +76,7 @@ public class ClassLoaderUtil{
 	// *****************************************************
 	/**
 	 * This is a convenience method to load a resource as a stream.
-	 * <p/>
+	 * <br>
 	 * The algorithm used to find the resource is given in getResource()
 	 * 
 	 * @param resourceName
@@ -97,7 +97,7 @@ public class ClassLoaderUtil{
 
 	/**
 	 * Load a given resource.
-	 * <p/>
+	 * <br>
 	 * This method will try to load the resource using the following methods (in order):
 	 * <ul>
 	 * <li>From {@link Thread#getContextClassLoader() Thread.currentThread().getContextClassLoader()}
@@ -162,7 +162,7 @@ public class ClassLoaderUtil{
 
 	/**
 	 * Load a class with a given name.
-	 * <p/>
+	 * <br>
 	 * It will try to load the class in the following order:
 	 * <ul>
 	 * <li>From {@link Thread#getContextClassLoader() Thread.currentThread().getContextClassLoader()}

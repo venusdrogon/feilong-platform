@@ -53,7 +53,8 @@ public final class SpecialFolder{
 	 * example:win7:C:\Users\venusdrogon\Desktop.
 	 * 
 	 * <br>
-	 * 或者 通过环境变量 USERPROFILE======>C:\Users\venusdrogon 再拼接 Desktop 获得
+	 * 或者 通过环境变量 USERPROFILE<br>
+	 * return C:\Users\venusdrogon 再拼接 Desktop 获得
 	 * 
 	 * @return 桌面地址
 	 * @see FileSystemView#getHomeDirectory()

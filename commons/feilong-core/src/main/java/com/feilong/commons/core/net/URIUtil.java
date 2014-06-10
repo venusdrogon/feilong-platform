@@ -314,13 +314,13 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 将a=1&b=2这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
+	 * 将{@code a=1&b=2}这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
 	 * 
 	 * @param query
 	 *            the query
 	 * @param charsetType
 	 *            the charset type
-	 * @return the map< string, string>
+	 * @return the {@code map<string, string>}
 	 * @see #parseQueryToArrayMap(String, String)
 	 */
 	public static Map<String, String> parseQueryToValueMap(String query,String charsetType){
@@ -337,10 +337,10 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 将a=1&b=2这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
+	 * 将{@code a=1&b=2}这样格式的数据转换成map (如果charsetType 不是null或者empty 返回安全的 key和value).
 	 * 
 	 * @param query
-	 *            a=1&b=2类型的数据,支持a=1&a=1的形式， 返回map的值是数组
+	 *            {@code a=1&b=2}类型的数据,支持{@code a=1&a=1}的形式， 返回map的值是数组
 	 * @param charsetType
 	 *            何种编码，如果是null或者 empty,那么不参数部分原样返回,自己去处理兼容性问题<br>
 	 *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
@@ -420,7 +420,7 @@ public final class URIUtil{
 	 * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL。 新的 URL 从给定的上下文 URL 和 spec 参数创建<br>
 	 * 网站地址拼接,请使用{@link #getUnionUrl(URL, String)}
 	 * <p>
-	 * 示例: URIUtil.getUnionUrl("E:\\test", "sanguo")------------->file:/E:/test/sanguo
+	 * 示例: URIUtil.getUnionUrl("E:\\test", "sanguo")-------------{@code >}file:/E:/test/sanguo
 	 * 
 	 * @param context
 	 *            要解析规范的上下文
@@ -552,7 +552,7 @@ public final class URIUtil{
 	 * determine what characters are represented by any consecutive sequences of the form "<code>%<i>xy</i></code>".
 	 * 
 	 * <p>
-	 * Not doing so may introduce incompatibilites.</em> <br>
+	 * Not doing so may introduce incompatibilites.<br>
 	 * <em><strong>Note:</strong> 
 	 * 注：<a href="http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">World Wide Web Consortium Recommendation</a>建议指出，UTF-8应该被使用。 不这样做可能会带来兼容性能。</em>
 	 * </p>

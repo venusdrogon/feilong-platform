@@ -37,41 +37,41 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <th align=left>说明</th>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
- * <td>file.encoding <br/>
+ * <td>file.encoding <br>
  * {@link SystemUtils#FILE_ENCODING}</td>
  * <td>utf-8</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
- * <td>file.separator <br/>
+ * <td>file.separator <br>
  * {@link SystemUtils#FILE_SEPARATOR}</td>
  * <td>\\</td>
  * <tr valign=top>
- * <td>java.home <br/>
+ * <td>java.home <br>
  * {@link SystemUtils#JAVA_HOME}</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
- * <td>java.io.tmpdir <br/>
+ * <td>java.io.tmpdir <br>
  * {@link SystemUtils#JAVA_IO_TMPDIR}</td>
  * <td>C:\\Users\\feilong\\AppData\\Local\\Temp\\</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
- * <td>java.version <br/>
+ * <td>java.version <br>
  * {@link SystemUtils#JAVA_VERSION}</td>
  * <td>1.6.0_37</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
- * <td>line.separator <br/>
+ * <td>line.separator <br>
  * {@link SystemUtils#LINE_SEPARATOR}</td>
  * <td>\r\n</td>
  * </tr>
  * <tr valign=top bgcolor="#eeeeff">
- * <td>user.dir <br/>
+ * <td>user.dir <br>
  * {@link SystemUtils#USER_DIR}</td>
  * <td>E:\\Workspaces\\feilong\\feilong-platform\\commons\\feilong-core</td>
  * </tr>
  * <tr valign=top>
- * <td>user.home<br/>
+ * <td>user.home<br>
  * {@link SystemUtils#USER_HOME}</td>
  * <td>C:\\Users\\feilong</td>
  * </tr>

@@ -77,7 +77,7 @@ public final class NumberFormatUtil{
 	 * @param numberPattern
 	 *            the pattern {@link NumberPattern}
 	 * @param roundingMode
-	 *            四舍五入的方法{@link RoundingMode} 参考:{@link <a href="../util/NumberUtil.html#RoundingMode">JAVA 8种舍入法</a>}
+	 *            四舍五入的方法{@link RoundingMode}
 	 * @return 如果有异常 将返回null
 	 * @throws NullPointerException
 	 *             if null == value or null == numberPattern

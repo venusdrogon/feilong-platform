@@ -48,7 +48,7 @@ public final class Slf4jUtil{
 	 * <pre>
 	 * 比如
 	 * throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-	 * 	"callbackUrl:[{}] ,length:[{}] can't >{}",
+	 * 	"callbackUrl:[{}] ,length:[{}] can't {@code >}{}",
 	 * 	callbackUrl,
 	 * 	callbackUrlLength,
 	 * 	callbackUrlMaxLength)

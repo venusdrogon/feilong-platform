@@ -41,7 +41,7 @@ public final class InetAddressUtil{
 	 * 将域名转成IP
 	 * 
 	 * <pre>
-	 * domainName2IpAddress("www.e-lining.com")----->"210.14.70.88"
+	 * domainName2IpAddress("www.e-lining.com")-----{@code >}"210.14.70.88"
 	 * </pre>
 	 * 
 	 * @param domainName

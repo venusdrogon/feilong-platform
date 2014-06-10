@@ -170,7 +170,7 @@ public final class ListUtil{
 	 * testList.add(&quot;xinge&quot;);
 	 * testList.add(&quot;feilong&quot;);
 	 * 
-	 * toStringReplaceBrackets(testList)----->(xinge, feilong)
+	 * toStringReplaceBrackets(testList)-----{@code >}(xinge, feilong)
 	 * </pre>
 	 * 
 	 * @param list

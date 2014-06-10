@@ -35,7 +35,6 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  * @see Pattern
  * @see Matcher
  * @see RegexPattern
- * @see org.apache.oro.text.regex.Perl5Matcher
  * @since 1.0.0
  * @since jdk1.4
  */

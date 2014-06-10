@@ -79,6 +79,7 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * </tr>
  * </table>
  * </blockquote>
+ * </p>
  * 
  * @author 金鑫 2010-3-11 下午02:27:59
  * @see Integer
@@ -258,7 +259,7 @@ public final class NumberUtil{
 	 * @param scale
 	 *            要返回的 BigDecimal 商的标度,小数的位数
 	 * @param roundingMode
-	 *            舍入法 {@link RoundingMode},参考: {@link <a href="#RoundingMode">JAVA 8种舍入法</a>}
+	 *            舍入法 {@link RoundingMode}
 	 * @return 当two 是空或者是0的时候,直接返回one<br>
 	 *         否则返回除法结果one/two,依据舍入法 {@link RoundingMode},小数位数指定
 	 * @throws NullPointerException

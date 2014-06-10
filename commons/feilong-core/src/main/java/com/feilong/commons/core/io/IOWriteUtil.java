@@ -72,7 +72,7 @@ public final class IOWriteUtil{
 	}
 
 	/**
-	 * 写资源,速度最快的方法,速度比较请看 电脑资料<<压缩解压性能探究>>.
+	 * 写资源,速度最快的方法,速度比较请看 电脑资料 {@code  <<压缩解压性能探究>>}.
 	 * 
 	 * @param inputStream
 	 *            inputStream
@@ -102,6 +102,7 @@ public final class IOWriteUtil{
 	 * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
 	 * <li>如果不设置encode,则默认使用 {@link CharsetType#GBK}编码</li>
 	 * </ul>
+	 * </p>
 	 * 
 	 * @param filePath
 	 *            文件路径
@@ -111,7 +112,8 @@ public final class IOWriteUtil{
 	 *             Signals that an I/O exception has occurred.
 	 * @throws IllegalArgumentException
 	 *             <ul>
-	 *             <li>如果filePath文件存在,且isDirectory</li> <li>如果filePath文件存在,且是!canWrite</li>
+	 *             <li>如果filePath文件存在,且isDirectory</li>
+	 *             <li>如果filePath文件存在,且是!canWrite</li>
 	 *             </ul>
 	 * @see FileWriteMode
 	 * @see CharsetType
@@ -122,12 +124,13 @@ public final class IOWriteUtil{
 
 	/**
 	 * 将字符串/文字写到文件中.
-	 * <p>
 	 * 
+	 * <p>
 	 * <ul>
 	 * <li>如果文件不存在,自动创建;包括其父文件夹(级联创建文件夹)</li>
 	 * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
 	 * </ul>
+	 * </p>
 	 * 
 	 * @param filePath
 	 *            文件路径
@@ -139,7 +142,8 @@ public final class IOWriteUtil{
 	 *             Signals that an I/O exception has occurred.
 	 * @throws IllegalArgumentException
 	 *             <ul>
-	 *             <li>如果filePath文件存在,且isDirectory</li> <li>如果filePath文件存在,且是!canWrite</li>
+	 *             <li>如果filePath文件存在,且isDirectory</li>
+	 *             <li>如果filePath文件存在,且是!canWrite</li>
 	 *             </ul>
 	 * @see FileWriteMode
 	 * @see CharsetType
@@ -150,12 +154,13 @@ public final class IOWriteUtil{
 
 	/**
 	 * 将字符串写到文件中.
-	 * <p>
 	 * 
+	 * <p>
 	 * <ul>
 	 * <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
 	 * <li>如果文件存在则覆盖旧文件,可以通过 指定 {@link FileWriteMode#APPEND}来表示追加内容而非覆盖</li>
 	 * </ul>
+	 * </p>
 	 * 
 	 * @param filePath
 	 *            文件路径
@@ -169,7 +174,8 @@ public final class IOWriteUtil{
 	 *             Signals that an I/O exception has occurred.
 	 * @throws IllegalArgumentException
 	 *             <ul>
-	 *             <li>如果filePath文件存在,且isDirectory</li> <li>如果filePath文件存在,且是!canWrite</li>
+	 *             <li>如果filePath文件存在,且isDirectory</li>
+	 *             <li>如果filePath文件存在,且是!canWrite</li>
 	 *             </ul>
 	 * @see FileWriteMode
 	 * @see CharsetType
