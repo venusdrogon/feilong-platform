@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * lang包封装
+ * 对 {@code java.lang} 包的封装
  * @since 1.0.0
  */
 package com.feilong.commons.core.lang;

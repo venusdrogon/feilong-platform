@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * util包,包含基础类型操作,各种转换,和 java.util包相对应
+ * util包,包含基础类型操作,各种转换,和 {@link java.util}包相对应
  * @since 1.0.0
  */
 package com.feilong.commons.core.util;
