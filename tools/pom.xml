@@ -41,7 +41,6 @@
 		<module>feilong-tools-om</module>
 		<module>feilong-tools-scm</module>
 		<module>feilong-tools-xstream</module>
-		<module>feilong-tools-cxf</module>
 		<module>feilong-application-weather</module>
 		<module>feilong-tools-zookeeper</module>
 	</modules>

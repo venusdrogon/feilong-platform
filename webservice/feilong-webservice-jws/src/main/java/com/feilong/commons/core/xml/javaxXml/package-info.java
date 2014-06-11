@@ -1,6 +1,3 @@
-package com.feilong.tools.cxf;
-import javax.jws.WebService;
-
 /*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
@@ -16,18 +13,8 @@ import javax.jws.WebService;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2014年5月5日 下午5:12:05
+ * {@code javax.xml}包操作
+ *@since 1.0.0
  */
-@WebService
-public interface BCAOperation{
-
-	public String transactionQuery(
-			String merchantTransactionID,
-			String serviceVersion,
-			String siteID,
-			String transactionID,
-			String transactionType);
-}
+package com.feilong.commons.core.xml.javaxXml;

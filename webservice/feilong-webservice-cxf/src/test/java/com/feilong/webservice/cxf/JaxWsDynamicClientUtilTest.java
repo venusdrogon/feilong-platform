@@ -1,4 +1,4 @@
-package com.feilong.tools.cxf;
+package com.feilong.webservice.cxf;
 
 /**
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
@@ -31,6 +31,8 @@ import javax.xml.ws.Service;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.webservice.cxf.JaxWsDynamicClientUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

@@ -190,6 +190,7 @@
 		<module>taglib</module>
 		<module>tools</module>
 		<module>framework</module>
+		<module>webservice</module>
 	</modules>
 
 	<!--*******************************junit******************************************* -->
@@ -726,6 +727,21 @@
 						<group>
 							<title>Date package 日期</title>
 							<packages>com.feilong.commons.core.date</packages>
+						</group>
+						
+						<group>
+							<title>IO package</title>
+							<packages>com.feilong.commons.core.io</packages>
+						</group>
+						
+						<group>
+							<title>net package</title>
+							<packages>com.feilong.commons.core.net</packages>
+						</group>
+						
+						<group>
+							<title>util package</title>
+							<packages>com.feilong.commons.core.util</packages>
 						</group>
 					</groups>
 				</configuration>

@@ -1,4 +1,4 @@
-package com.feilong.tools.cxf;
+package com.feilong.webservice.cxf;
 //
 //
 //import java.io.IOException;
