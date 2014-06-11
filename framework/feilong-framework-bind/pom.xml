@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.feilong.platform.framework</groupId>
-		<artifactId>feilong-framework-parent</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.0.7-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>

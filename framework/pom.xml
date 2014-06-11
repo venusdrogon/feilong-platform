@@ -8,7 +8,7 @@
 	</parent>
 
 	<groupId>com.feilong.platform.framework</groupId>
-	<artifactId>feilong-framework-parent</artifactId>
+	<artifactId>parent</artifactId>
 
 	<packaging>pom</packaging>
 
