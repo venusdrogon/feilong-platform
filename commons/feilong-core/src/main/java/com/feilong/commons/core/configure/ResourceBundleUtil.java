@@ -59,7 +59,7 @@ public final class ResourceBundleUtil{
 	@SuppressWarnings("unchecked")
 	public static <T> T getValue(String baseName,String key,Class<?> typeClass){
 		String value = getValue(baseName, key);
-		return (T) StringUtil.convertStringToT(value, typeClass);
+		return (T) StringUtil.toT(value, typeClass);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public final class ResourceBundleUtil{
 	@SuppressWarnings("unchecked")
 	public static <T> T getValue(ResourceBundle resourceBundle,String key,Class<?> typeClass){
 		String value = getValue(resourceBundle, key);
-		return (T) StringUtil.convertStringToT(value, typeClass);
+		return (T) StringUtil.toT(value, typeClass);
 	}
 
 	/**

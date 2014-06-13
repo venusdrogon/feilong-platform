@@ -30,6 +30,8 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * 
  * @author 金鑫 2010-2-9 上午09:53:37
  * @since 1.0.0
+ * @see org.springframework.util.StringUtils#tokenizeToStringArray(String, String)
+ * @see org.springframework.beans.factory.xml.BeanDefinitionParserDelegate#MULTI_VALUE_ATTRIBUTE_DELIMITERS
  */
 public final class StringUtil{
 
@@ -38,6 +40,8 @@ public final class StringUtil{
 
 	/** Don't let anyone instantiate this class. */
 	private StringUtil(){}
+
+	// [start] search
 
 	/**
 	 * 查找子字符串在 字符串中出现的 次数
@@ -101,6 +105,7 @@ public final class StringUtil{
 		return count;
 	}
 
+	// [end]
 	/**
 	 * 给一串字符串前后增加两个引号<br>
 	 * 
@@ -212,6 +217,8 @@ public final class StringUtil{
 		return StringUtils.uncapitalize(word);
 	}
 
+	// [start]Contain
+
 	/**
 	 * 判断一个字符串内是否包含另外的字符串.
 	 * 
@@ -265,6 +272,10 @@ public final class StringUtil{
 		}
 		return isContain(text.toString().toLowerCase(), beIncludedString.toLowerCase());
 	}
+
+	// [end] 
+
+	// [start]replace
 
 	// ********************************replace************************************************
 	/**
@@ -339,7 +350,10 @@ public final class StringUtil{
 		return replace(content, target, replacement);
 	}
 
-	// ********************************replace************************************************
+	// [end]
+
+	// [start]startsWith
+
 	/**
 	 * 测试此字符串是否以指定的前缀开始。.
 	 * 
@@ -353,6 +367,7 @@ public final class StringUtil{
 		return ObjectUtil.toString(value).startsWith(prefix);
 	}
 
+	// [end]
 	/**
 	 * 字符串和数字相加(一般生成流水号使用).
 	 * 
@@ -370,6 +385,8 @@ public final class StringUtil{
 		}
 		return NumberUtil.toString(Integer.parseInt(str) + i, pattern);
 	}
+
+	// [start]substring
 
 	// ********************************substring************************************************
 	/**
@@ -594,6 +611,10 @@ public final class StringUtil{
 		return text.substring(0, text.length() - lastLenth);
 	}
 
+	// [end]
+
+	// [start]toBytes
+
 	// ********************************************************************************
 	/**
 	 * 字符串转换成byte数组.
@@ -626,6 +647,7 @@ public final class StringUtil{
 		return null;
 	}
 
+	// [end]
 	/**
 	 * 将string 类型值转成泛型,一般用于配置文件读取数据.
 	 * 
@@ -646,9 +668,11 @@ public final class StringUtil{
 	 * </pre>
 	 */
 	@SuppressWarnings("unchecked")
-	public final static <T> T convertStringToT(String value,Class<?> class1){
+	public final static <T> T toT(String value,Class<?> class1){
 		return (T) ObjectUtil.toT(value, class1);
 	}
+
+	// [start]splitToT
 
 	/**
 	 * 将字符串分隔成 字符串数组.
@@ -659,7 +683,7 @@ public final class StringUtil{
 	 *            分隔符
 	 * @return 如果value 是null,返回null
 	 */
-	public final static String[] splitToStrings(String value,String spliter){
+	public final static String[] splitToStringArray(String value,String spliter){
 		if (null != value){
 			String[] strings = value.split(spliter);
 			return strings;
@@ -676,7 +700,7 @@ public final class StringUtil{
 	 *            分隔符
 	 * @return 如果value 是null,返回null
 	 */
-	public final static Integer[] splitToIntegers(String value,String spliter){
+	public final static Integer[] splitToIntegerArray(String value,String spliter){
 		if (null != value){
 			String[] strings = value.split(spliter);
 			return ArrayUtil.toIntegers(strings);
@@ -701,12 +725,16 @@ public final class StringUtil{
 	@SuppressWarnings("unchecked")
 	public final static <T> T[] splitToT(String value,String spliter,Class<?> typeClass){
 		if (typeClass == String.class){
-			return (T[]) splitToStrings(value, spliter);
+			return (T[]) splitToStringArray(value, spliter);
 		}else if (typeClass == Integer.class){
-			return (T[]) splitToIntegers(value, spliter);
+			return (T[]) splitToIntegerArray(value, spliter);
 		}
 		throw new IllegalArgumentException("Param typeClass don't support,Temp support only:String.class and Integer.class");
 	}
+
+	// [end]
+
+	// [start]format
 
 	/**
 	 * 格式化字符串
@@ -760,11 +788,16 @@ public final class StringUtil{
 	 * @return A formatted string
 	 * @see java.util.Formatter
 	 * @see String#format(String, Object...)
+	 * @see String#format(java.util.Locale, String, Object...)
 	 * @since JDK 1.5
 	 */
 	public static String format(String format,Object...args){
 		return String.format(format, args);
 	}
+
+	// [end]
+
+	// [start]toHexStringUpperCase/toOriginal
 
 	/**
 	 * 将原始字符串 转成 大写的HexString 网友gdpglc的思路.
@@ -834,4 +867,6 @@ public final class StringUtil{
 		log.debug("hexStringUpperCase:{},original:{}", hexStringUpperCase, original);
 		return original;
 	}
+
+	// [end]
 }
