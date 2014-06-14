@@ -15,6 +15,7 @@
  */
 package com.feilong.commons.core.util;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.junit.Assert;
@@ -22,6 +23,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -284,5 +288,63 @@ public class StringUtilTest{
 			// 0.235
 			// aString = FeiLongString.str2HexString_5(inputString);
 		}
+	}
+
+	@Test
+	public void tokenizeToStringArray2(){
+		String str = "jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong";
+		String delimiters = "h";
+		String[] tokenizeToStringArray = StringUtil.tokenizeToStringArray(str, delimiters, false, false);
+		if (log.isInfoEnabled()){
+			log.info(JsonUtil.format(tokenizeToStringArray));
+		}
+	}
+
+	@Test
+	public void tokenizeToStringArray(){
+		String str = "jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong";
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 1; ++i){
+			sb.append(str);
+		}
+		str = sb.toString();
+		String delimiters = ";, .";
+		String[] tokenizeToStringArray = StringUtil.tokenizeToStringArray(str, delimiters);
+		if (log.isInfoEnabled()){
+			log.info(JsonUtil.format(tokenizeToStringArray));
+		}
+		Date beginDate = new Date();
+
+		for (int i = 0; i < 100000; ++i){
+			StringUtil.tokenizeToStringArray(str, delimiters);
+		}
+
+		Date endDate = new Date();
+		log.info("time:{}", DateUtil.getIntervalTime(beginDate, endDate));
+	}
+
+	@Test
+	public void splitToStringArray(){
+		String str = "jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong";
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 1; ++i){
+			sb.append(str);
+		}
+		str = sb.toString();
+
+		String regexSpliter = "[;, \\.]";
+		String[] tokenizeToStringArray = StringUtil.splitToStringArray(str, regexSpliter);
+		if (log.isInfoEnabled()){
+			log.info(JsonUtil.format(tokenizeToStringArray));
+		}
+
+		Date beginDate = new Date();
+
+		for (int i = 0; i < 100000; ++i){
+			StringUtil.splitToStringArray(str, regexSpliter);
+		}
+
+		Date endDate = new Date();
+		log.info("time:{}", DateUtil.getIntervalTime(beginDate, endDate));
 	}
 }

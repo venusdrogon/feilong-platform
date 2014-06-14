@@ -16,6 +16,10 @@
 package com.feilong.commons.core.util;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -28,10 +32,32 @@ import com.feilong.commons.core.lang.ObjectUtil;
 /**
  * StringUtil {@link String}工具类,可以 查询,截取,format,转成16进制码.
  * 
+ * <h4>分隔(split)</h4>
+ * 
+ * <blockquote>
+ * <ul>
+ * <li>{@link #splitToTArray(String, String, Class)}</li>
+ * <li>{@link #splitToStringArray(String, String)}</li>
+ * <li>{@link #splitToIntegerArray(String, String)}</li>
+ * </ul>
+ * </blockquote>
+ * 
+ * <h4>分隔(tokenize)</h4> <blockquote>
+ * <ul>
+ * <li>{@link #tokenizeToStringArray(String, String)}</li>
+ * <li>{@link #tokenizeToStringArray(String, String, boolean, boolean)}</li>
+ * </ul>
+ * </blockquote>
+ * 
+ * 区别在于,split 使用的是 正则表达式 {@link Pattern#split(CharSequence)} 分隔(特别注意,一些特殊字符 $|()[{^?*+\\ 需要转义才能做分隔符),而 {@link StringTokenizer} 使用索引机制,在性能上
+ * StringTokenizer更高<br>
+ * 因此,在注重性能的场景,还是建议使用{@link StringTokenizer}
+ * 
  * @author 金鑫 2010-2-9 上午09:53:37
- * @since 1.0.0
  * @see org.springframework.util.StringUtils#tokenizeToStringArray(String, String)
  * @see org.springframework.beans.factory.xml.BeanDefinitionParserDelegate#MULTI_VALUE_ATTRIBUTE_DELIMITERS
+ * @see java.util.StringTokenizer
+ * @since 1.0.0
  */
 public final class StringUtil{
 
@@ -679,13 +705,18 @@ public final class StringUtil{
 	 * 
 	 * @param value
 	 *            value
-	 * @param spliter
-	 *            分隔符
+	 * @param regexSpliter
+	 *            分隔符,注意此处不是简单的分隔符是正则表达式, .$|()[{^?*+\\ 在正则表达式中有特殊的含义，因此我们使用.的时候必须进行转义,<br>
+	 *            要注意的是，"\"转义时要写成"\\\\"<br>
+	 *            最终调用了 {@link java.util.regex.Pattern#split(CharSequence)}
 	 * @return 如果value 是null,返回null
+	 * @see String#split(String)
+	 * @see String#split(String, int)
+	 * @see java.util.regex.Pattern#split(CharSequence)
 	 */
-	public final static String[] splitToStringArray(String value,String spliter){
+	public final static String[] splitToStringArray(String value,String regexSpliter){
 		if (null != value){
-			String[] strings = value.split(spliter);
+			String[] strings = value.split(regexSpliter);
 			return strings;
 		}
 		return null;
@@ -696,44 +727,135 @@ public final class StringUtil{
 	 * 
 	 * @param value
 	 *            value
-	 * @param spliter
-	 *            分隔符
+	 * @param regexSpliter
+	 *            分隔符,注意此处不是简单的分隔符是正则表达式, .$|()[{^?*+\\ 在正则表达式中有特殊的含义，因此我们使用.的时候必须进行转义,<br>
+	 *            要注意的是，"\"转义时要写成"\\\\"<br>
+	 *            最终调用了 {@link java.util.regex.Pattern#split(CharSequence)}
 	 * @return 如果value 是null,返回null
+	 * @see String#split(String)
+	 * @see String#split(String, int)
+	 * @see ArrayUtil#toIntegers(Object[])
+	 * @see java.util.regex.Pattern#split(CharSequence)
 	 */
-	public final static Integer[] splitToIntegerArray(String value,String spliter){
+	public final static Integer[] splitToIntegerArray(String value,String regexSpliter){
 		if (null != value){
-			String[] strings = value.split(spliter);
+			String[] strings = value.split(regexSpliter);
 			return ArrayUtil.toIntegers(strings);
 		}
 		return null;
 	}
 
 	/**
-	 * 转成T.
+	 * 转成T数组.
 	 * 
 	 * @param <T>
 	 *            the generic type
 	 * @param value
 	 *            字符串
-	 * @param spliter
-	 *            分隔符
+	 * @param regexSpliter
+	 *            分隔符,注意此处不是简单的分隔符是正则表达式, .$|()[{^?*+\\ 在正则表达式中有特殊的含义，因此我们使用.的时候必须进行转义,<br>
+	 *            要注意的是，"\"转义时要写成"\\\\"<br>
+	 *            最终调用了 {@link java.util.regex.Pattern#split(CharSequence)}
 	 * @param typeClass
 	 *            类型,指明 T 类型<br>
 	 *            Temp support only:String.class and Integer.class
 	 * @return 泛型数组
+	 * @throws IllegalArgumentException
+	 *             目前仅仅支持String Integer转换,其余类型会抛出异常
+	 * @see java.util.regex.Pattern#split(CharSequence)
+	 * @see #splitToIntegerArray(String, String)
+	 * @see #splitToStringArray(String, String)
 	 */
 	@SuppressWarnings("unchecked")
-	public final static <T> T[] splitToT(String value,String spliter,Class<?> typeClass){
+	public final static <T> T[] splitToTArray(String value,String regexSpliter,Class<?> typeClass) throws IllegalArgumentException{
 		if (typeClass == String.class){
-			return (T[]) splitToStringArray(value, spliter);
+			return (T[]) splitToStringArray(value, regexSpliter);
 		}else if (typeClass == Integer.class){
-			return (T[]) splitToIntegerArray(value, spliter);
+			return (T[]) splitToIntegerArray(value, regexSpliter);
 		}
 		throw new IllegalArgumentException("Param typeClass don't support,Temp support only:String.class and Integer.class");
 	}
 
 	// [end]
 
+	// [start]tokenizeToStringArray
+
+	/**
+	 * (此方法借鉴 {@link org.springframework.util.StringUtils#tokenizeToStringArray})<br>
+	 * Tokenize the given String into a String array via a StringTokenizer.
+	 * Trims tokens and omits empty tokens.
+	 * <p>
+	 * The given delimiters string is supposed to consist of any number of delimiter characters. Each of those characters can be used to
+	 * separate tokens. A delimiter is always a single character; for multi-character delimiters, consider using
+	 * {@code delimitedListToStringArray}
+	 * 
+	 * @param str
+	 *            the String to tokenize
+	 * @param delimiters
+	 *            the delimiter characters, assembled as String<br>
+	 *            参数中的所有字符都是分隔标记的分隔符,比如这里可以设置成 ";, " ,spring就是使用这样的字符串来分隔数组/集合的
+	 * @return an array of the tokens
+	 * @see java.util.StringTokenizer
+	 * @see String#trim()
+	 * @see org.springframework.util.StringUtils#delimitedListToStringArray
+	 * @see org.springframework.util.StringUtils#tokenizeToStringArray
+	 * @since 1.0.7
+	 */
+	public static String[] tokenizeToStringArray(String str,String delimiters){
+		boolean trimTokens = true;
+		boolean ignoreEmptyTokens = true;
+		return tokenizeToStringArray(str, delimiters, trimTokens, ignoreEmptyTokens);
+	}
+
+	/**
+	 * (此方法借鉴 {@link org.springframework.util.StringUtils#tokenizeToStringArray})<br>
+	 * Tokenize the given String into a String array via a StringTokenizer.
+	 * <p>
+	 * The given delimiters string is supposed to consist of any number of delimiter characters. <br>
+	 * Each of those characters can be used to separate tokens. <br>
+	 * A delimiter is always a single character; <br>
+	 * for multi-character delimiters, consider using {@code delimitedListToStringArray}
+	 * 
+	 * @param str
+	 *            the String to tokenize
+	 * @param delimiters
+	 *            the delimiter characters, assembled as String<br>
+	 *            参数中的所有字符都是分隔标记的分隔符,比如这里可以设置成 ";, " ,spring就是使用这样的字符串来分隔数组/集合的
+	 * @param trimTokens
+	 *            是否使用 {@link String#trim()}操作token
+	 * @param ignoreEmptyTokens
+	 *            是否忽视空白的token,如果为true,那么token必须长度>0;如果为false会包含长度=0 空白的字符<br>
+	 *            omit empty tokens from the result array
+	 *            (only applies to tokens that are empty after trimming; StringTokenizer
+	 *            will not consider subsequent delimiters as token in the first place).
+	 * @return an array of the tokens ({@code null} if the input String
+	 *         was {@code null})
+	 * @see java.util.StringTokenizer
+	 * @see String#trim()
+	 * @see org.springframework.util.StringUtils#delimitedListToStringArray
+	 * @see org.springframework.util.StringUtils#tokenizeToStringArray
+	 * @since 1.0.7
+	 */
+	public static String[] tokenizeToStringArray(String str,String delimiters,boolean trimTokens,boolean ignoreEmptyTokens){
+
+		if (str == null){
+			return null;
+		}
+		StringTokenizer st = new StringTokenizer(str, delimiters);
+		List<String> tokens = new ArrayList<String>();
+		while (st.hasMoreTokens()){
+			String token = st.nextToken();
+			if (trimTokens){
+				token = token.trim();
+			}
+			if (!ignoreEmptyTokens || token.length() > 0){
+				tokens.add(token);
+			}
+		}
+		return ListUtil.toArray(tokens);
+	}
+
+	// [end]
 	// [start]format
 
 	/**

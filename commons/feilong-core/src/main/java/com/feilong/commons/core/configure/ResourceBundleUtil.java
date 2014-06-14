@@ -264,7 +264,7 @@ public final class ResourceBundleUtil{
 	@SuppressWarnings("unchecked")
 	public static <T> T[] getArray(ResourceBundle resourceBundle,String key,String spliter,Class<?> typeClass){
 		String value = getValue(resourceBundle, key);
-		return (T[]) StringUtil.splitToT(value, spliter, typeClass);
+		return (T[]) StringUtil.splitToTArray(value, spliter, typeClass);
 	}
 
 	// **************************************************************************

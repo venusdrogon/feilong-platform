@@ -44,7 +44,7 @@ public class StringTokenizerTest{
 		StringTokenizer stringTokenizer = new StringTokenizer("a b");
 
 		while (stringTokenizer.hasMoreElements()){
-			Object object = (Object) stringTokenizer.nextElement();
+			Object object = stringTokenizer.nextElement();
 			log.info(object.toString());
 		}
 	}
