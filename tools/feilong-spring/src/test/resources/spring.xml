@@ -8,7 +8,7 @@
 			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		">
-	<!--<beans default-autowire="no" default-dependency-check="simple" default-lazy-init="true">-->
+	<!--<beans default-autowire="no" default-dependency-check="simple" default-lazy-init="true"> -->
 
 	<description>^_^,测试</description>
 
@@ -28,20 +28,21 @@
 		<aop:aspect id="securityAspect" ref="mySecurityManagerImpl">
 			<aop:pointcut id="addAllMethod" expression="execution(* com.feilong.spring.aspects.UserManager.add*(..))" />
 			<aop:before pointcut-ref="addAllMethod" method="security" />
-		<!-- 	<aop:aroundbefore pointcut-ref="addAllMethod" method="security2" /> -->
+			<!-- <aop:aroundbefore pointcut-ref="addAllMethod" method="security2" /> -->
 
 			<!--
-				pointcut-ref 是表示对哪个 pointcut 的引用，当 pointcue 比较多的时候可以加以区分。这里跟Annotation 中的 @Before("addAllMethod()") 作用一致，而 pointcut id="addAllMethod" 这里就如同 Annotation 中这个 private void
+				pointcut-ref 是表示对哪个 pointcut 的引用，当 pointcue 比较多的时候可以加以区分。这里跟Annotation 中的 @Before("addAllMethod()") 作用一致，而 pointcut id="addAllMethod" 这里就如同 Annotation 中这个 private
+				void
 				addAllMethod() {} 无返回值的方法的，该方法就是起到标识的作用 ( 被引用 )
 			-->
 		</aop:aspect>
 	</aop:config>
 
 
-	<util:properties id="testProperties" location="classpath:test.properties" />
+	<!-- <util:properties id="testProperties" location="classpath:test.properties" /> -->
 	<context:property-placeholder location="classpath*:*.properties" />
 
-	<bean id="userTest" class="com.feilong.UserTest" /><!--singleton="true" dependency-check="default" 	-->
+	<bean id="userTest" class="com.feilong.UserTest" /><!--singleton="true" dependency-check="default" -->
 
 	<bean name="useraaa,feitian@" class="com.feilong.entity.User" abstract="false" lazy-init="default" autowire="byType" init-method="init" destroy-method="destroy">
 
@@ -104,9 +105,16 @@
 				<value>a</value>
 			</set>
 		</property>
+
+		<property name="array">
+			<array>
+				<value>a1</value>
+				<value>a2</value>
+			</array>
+		</property>
 	</bean>
-	<import resource="classpath*:feilong-aop.xml"/>
-	<!--	 
-	<alias name="" alias="" />
--->
+	<import resource="classpath*:feilong-aop.xml" />
+	<!--
+		<alias name="" alias="" />
+	-->
 </beans>
