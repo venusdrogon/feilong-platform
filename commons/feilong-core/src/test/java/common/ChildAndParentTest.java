@@ -1,4 +1,4 @@
-package temple;
+package common;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -13,11 +13,13 @@ import com.feilong.commons.core.bean.BeanUtil;
  * @version 1.0 2011-9-16 上午11:13:41
  * @since 1.0
  */
-public class MyTest{
+public class ChildAndParentTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(MyTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ChildAndParentTest.class);
 
-	public static void main(String[] args){
+	@Test
+	public void name(){
+
 		Parent parent = new Parent();
 		//In the code, by inherting from parent, you're saying "Child is a kind of Parent". 
 		//Okay, sounds weird due to the names, but perfectly acceptable. 
@@ -31,13 +33,10 @@ public class MyTest{
 		//then just have the two of them implement the same interface, or type the function parameter as the base class and make sure the methods exist on the base class. 
 		//parent = new Child();
 		parent.setName("飞天奔月");
+
 		Child child = new Child();
 		BeanUtil.copyProperties(child, parent);
 		log.info("" + child.getName());
 	}
 
-	@Test
-	public void name(){
-		log.info("" + SizeOfAgent.fullSizeOf(1));
-	}
 }

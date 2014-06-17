@@ -8,8 +8,19 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /** Instrumentation agent used */
 public class SizeOfAgent{
+
+	private static final Logger	log	= LoggerFactory.getLogger(SizeOfAgent.class);
+
+	@Test
+	public void name1(){
+		log.info("" + SizeOfAgent.fullSizeOf(1));
+	}
 
 	static Instrumentation	inst;
 

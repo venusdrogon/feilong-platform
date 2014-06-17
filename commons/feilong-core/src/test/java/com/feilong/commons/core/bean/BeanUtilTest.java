@@ -67,7 +67,7 @@ public class BeanUtilTest{
 		Date now = new Date();
 		a.setDate(now);
 		Map<String, String> map = BeanUtil.describe(a);
-		
+
 		log.info("map:{}", JsonUtil.format(map));
 	}
 
@@ -83,7 +83,6 @@ public class BeanUtilTest{
 		properties.put("id", 8L);
 		// properties.put("date", 2010);
 		BeanUtil.populate(a, properties);
-		log.info(a.getId() + "");
-		// log.info(a.getDate() + "");
+		log.info(JsonUtil.format(a));
 	}
 }
