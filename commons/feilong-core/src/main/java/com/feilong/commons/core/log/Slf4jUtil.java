@@ -35,13 +35,18 @@ public final class Slf4jUtil{
 
 	/**
 	 * 格式化字符串,此方法就是抽取slf4j的核心方法<br>
+	 * 
+	 * <p>
 	 * 在java中,常会拼接字符串生成新的字符串值,在字符串拼接过程中 容易写错或者位置写错<br>
-	 * slf4j的log支持格式化输出log ,比如<br>
+	 * <br>
+	 * slf4j的log支持格式化输出log,比如:<br>
 	 * <ul>
 	 * <li>log.error("{}","feilong");</li>
 	 * <li>log.info("{},{}","feilong","hello");</li>
 	 * </ul>
-	 * 这些写法非常简洁且有效,不易出错 <br>
+	 * 这些写法非常简洁且有效,不易出错
+	 * </p>
+	 * 
 	 * <br>
 	 * 因此,你可以在代码中出现这样的写法:
 	 * 
@@ -58,13 +63,16 @@ public final class Slf4jUtil{
 	 * </pre>
 	 * 
 	 * @param messagePattern
-	 *            the message pattern
+	 *            message的格式,比如 callbackUrl:[{}] ,length:[{}]
 	 * @param args
-	 *            the args
-	 * @return the string
+	 *            参数
+	 * @return format之后的结果
+	 * @see org.slf4j.helpers.FormattingTuple
+	 * @see org.slf4j.helpers.MessageFormatter#arrayFormat(String, Object[])
+	 * @see org.slf4j.helpers.MessageFormatter#arrayFormat(String, Object[])
+	 * @see org.slf4j.helpers.FormattingTuple#getMessage()
 	 */
 	public static String formatMessage(String messagePattern,Object...args){
-		// FormattingTuple formattingTuple = MessageFormatter.format(messagePattern, args);
 		FormattingTuple formattingTuple = MessageFormatter.arrayFormat(messagePattern, args);
 		String formatMessage = formattingTuple.getMessage();
 		return formatMessage;

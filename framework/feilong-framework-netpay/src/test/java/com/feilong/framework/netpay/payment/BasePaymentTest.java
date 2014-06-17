@@ -88,6 +88,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		BigDecimal total_fee = new BigDecimal(60000.00f);
 
 		PayRequest payRequest = new PayRequest();
+		//code="feilong1111";
 		payRequest.setTradeNo(code);
 		payRequest.setTotalFee(total_fee);
 		payRequest.setBuyerEmail("venusdrogon@163.com");

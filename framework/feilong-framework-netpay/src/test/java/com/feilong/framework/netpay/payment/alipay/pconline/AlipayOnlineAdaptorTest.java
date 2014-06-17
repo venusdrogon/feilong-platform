@@ -63,7 +63,7 @@ public class AlipayOnlineAdaptorTest extends BasePaymentTest{
 		// m-分钟， h-小时， d-天， 1c-当天（无论交易何时创建，都在 0 点关闭）。
 		// 该参数数值不接受小数点，如1.5h，可转换为90m。
 		// 该功能需要联系技术支持来配置关闭时间。
-		specialSignMap.put("it_b_pay", "1m");
+		specialSignMap.put("it_b_pay", "2m");
 
 		createPaymentForm(paymentAdaptor, specialSignMap);
 	}

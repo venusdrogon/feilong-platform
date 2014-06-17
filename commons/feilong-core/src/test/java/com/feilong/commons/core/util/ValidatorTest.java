@@ -93,7 +93,7 @@ public class ValidatorTest{
 		assertEquals(false, Validator.isNullOrEmpty(new short[] { 5 }));
 
 		assertEquals(true, Validator.isNullOrEmpty(list.iterator()));
-		assertEquals(true, Validator.isNullOrEmpty(CollectionUtil.toEnumeration(list)));
+		assertEquals(true, Validator.isNullOrEmpty(CollectionsUtil.toEnumeration(list)));
 		assertEquals(true, Validator.isNullOrEmpty(new Iterator<User>(){
 
 			public boolean hasNext(){
