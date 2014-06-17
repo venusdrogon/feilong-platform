@@ -32,6 +32,7 @@ import com.feilong.commons.core.util.Validator;
  * @version 2010-7-9 下午02:44:36
  * @version 2012-5-15 15:07
  * @version 1.0.7 2014年5月21日 下午12:24:53 move to om.feilong.commons.core.bean package
+ * @see org.apache.commons.beanutils.BeanUtils
  * @since 1.0.0
  */
 public final class BeanUtil{
@@ -42,12 +43,25 @@ public final class BeanUtil{
 	/** Don't let anyone instantiate this class. */
 	private BeanUtil(){}
 
+	// [start] cloneBean
+
 	/**
-	 * 调用org.apache.commons.beanutils.cloneBean
+	 * 调用 {@link org.apache.commons.beanutils.BeanUtils#cloneBean(Object)},<br>
+	 * 这个方法通过默认构造函数建立一个bean的新实例,然后拷贝每一个属性到这个新的bean中<br>
+	 * 
+	 * <p>
+	 * {@link org.apache.commons.beanutils.BeanUtils#cloneBean(Object)} 在源码上看是调用了 getPropertyUtils().copyProperties(newBean, bean);<br>
+	 * 最后实际上还是复制的引用 ，无法实现深clone<br>
+	 * 
+	 * 但BeanUtils还是可以帮助我们减少工作量的，假如类的属性不是基础类型的话（即自定义类），可以先clone出那个自定义类，在把他付给新的类，覆盖原来类的引用<br>
+	 * 是为那些本身没有实现clone方法的类准备的 
+	 * </p>
 	 * 
 	 * @param bean
 	 *            the bean
-	 * @return the object
+	 * @return the object,如果发生异常,return null
+	 * @see org.apache.commons.beanutils.BeanUtils#cloneBean(Object)
+	 * @see org.apache.commons.beanutils.PropertyUtilsBean#copyProperties(Object, Object)
 	 * @since 1.0
 	 */
 	public static Object cloneBean(Object bean){
@@ -55,25 +69,33 @@ public final class BeanUtil{
 			Object cloneBean = BeanUtils.cloneBean(bean);
 			return cloneBean;
 		}catch (IllegalAccessException e){
-			log.debug(e.getMessage());
+			e.printStackTrace();
 		}catch (InstantiationException e){
-			log.debug(e.getMessage());
+			e.printStackTrace();
 		}catch (InvocationTargetException e){
-			log.debug(e.getMessage());
+			e.printStackTrace();
 		}catch (NoSuchMethodException e){
-			log.debug(e.getMessage());
+			e.printStackTrace();
 		}
 		return null;
 	}
 
+	// [end]
+
+	// [start] describe 把Bean的属性值放入到一个Map里面
+
 	/**
-	 * 把Bean的属性值放入到一个Map里面。<br>
+	 * <p>
+	 * 把Bean的属性值放入到一个Map里面。
+	 * </p>
+	 * 
 	 * 这个方法返回一个Object中所有的可读属性，并将属性名/属性值放入一个Map中，<br>
 	 * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性
 	 * 
 	 * @param bean
 	 *            the bean
-	 * @return the map
+	 * @return the map,如果发生异常,返回null
+	 * @see org.apache.commons.beanutils.BeanUtils#describe(Object)
 	 */
 	public static Map<String, String> describe(Object bean){
 		try{
@@ -89,13 +111,18 @@ public final class BeanUtil{
 		return null;
 	}
 
+	// [end]
+
+	// [start] populate 把properties/map里面的值放入bean中
+
 	/**
-	 * 把properties里面的值放入bean中.
+	 * 把properties/map里面的值放入bean中.
 	 * 
 	 * @param bean
 	 *            the bean
 	 * @param properties
 	 *            the properties
+	 * @see org.apache.commons.beanutils.BeanUtils#populate(Object, Map)
 	 */
 	public static void populate(Object bean,Map<String, ?> properties){
 		try{
@@ -107,7 +134,9 @@ public final class BeanUtil{
 		}
 	}
 
-	// ****************************copy**************************************************************************
+	// [end]
+
+	// [start] copyProperties
 	/**
 	 * 对象Properties的复制<br>
 	 * 注意:这种copy都是浅拷贝，复制后的2个Bean的同一个属性可能拥有同一个对象的ref，<br>
@@ -117,6 +146,8 @@ public final class BeanUtil{
 	 *            目标对象
 	 * @param fromObj
 	 *            原始对象
+	 * @see org.apache.commons.beanutils.BeanUtils#copyProperties(Object, Object)
+	 * @see org.apache.commons.beanutils.BeanUtils#copyProperty(Object, String, Object)
 	 */
 	public static void copyProperties(Object toObj,Object fromObj){
 		try{
@@ -153,29 +184,34 @@ public final class BeanUtil{
 	 * BeanUtil.copyProperties(enterpriseSales,enterpriseSales_form,new String[]{&quot;enterpriseName&quot;,&quot;linkMan&quot;,&quot;phone&quot;});
 	 * </pre>
 	 * 
-	 * *
-	 * 
 	 * @param toObj
 	 *            目标对象
 	 * @param fromObj
 	 *            原始对象
 	 * @param filedNames
 	 *            字段数组, can't be null/empty!
+	 * @throws NullPointerException
+	 *             if Validator.isNullOrEmpty(filedNames)
+	 * @see #copyProperty(Object, Object, String)
 	 */
-	public static void copyProperties(Object toObj,Object fromObj,String[] filedNames){
-		if (Validator.isNotNullOrEmpty(filedNames)){
-			int length = filedNames.length;
-			for (int i = 0; i < length; ++i){
-				String filedName = filedNames[i];
-				copyProperty(toObj, fromObj, filedName);
-			}
-		}else{
-			throw new IllegalArgumentException("filedNames can't be null/empty!");
+	public static void copyProperties(Object toObj,Object fromObj,String[] filedNames) throws NullPointerException{
+
+		if (Validator.isNullOrEmpty(filedNames)){
+			throw new NullPointerException("filedNames can't be null/empty!");
+		}
+
+		int length = filedNames.length;
+		for (int i = 0; i < length; ++i){
+			String filedName = filedNames[i];
+			copyProperty(toObj, fromObj, filedName);
 		}
 	}
 
+	// [end]
+
+	// [start] copyProperty
 	/**
-	 * 对象值的复制  {@code fromObj-->toObj}
+	 * 对象值的复制 {@code fromObj-->toObj}
 	 * 
 	 * <pre>
 	 * 如果有java.util.Date 类型的 需要copy,那么 需要先这么着
@@ -196,7 +232,6 @@ public final class BeanUtil{
 	 * BeanUtil.copyProperty(enterpriseSales,enterpriseSales_form,&quot;enterpriseName&quot;);
 	 * </pre>
 	 * 
-	 * *
 	 * 
 	 * @param toObj
 	 *            目标对象
@@ -204,6 +239,8 @@ public final class BeanUtil{
 	 *            原始对象
 	 * @param filedName
 	 *            字段名称
+	 * @see #getProperty(Object, String)
+	 * @see #copyProperty(Object, String, Object)
 	 */
 	public static void copyProperty(Object toObj,Object fromObj,String filedName){
 		Object value = getProperty(fromObj, filedName);
@@ -237,6 +274,7 @@ public final class BeanUtil{
 	 *            成员变量name
 	 * @param value
 	 *            赋值为value
+	 * @see org.apache.commons.beanutils.BeanUtils#copyProperty(Object, String, Object)
 	 */
 	public static void copyProperty(Object bean,String name,Object value){
 		try{
@@ -248,7 +286,10 @@ public final class BeanUtil{
 		}
 	}
 
-	// ******************************************************************************************************
+	// [end]
+
+	// [start] setProperty
+
 	/**
 	 * 使用 BeanUtils PropertyUtils来设置属性值.
 	 * 
@@ -266,12 +307,13 @@ public final class BeanUtil{
 	 * @param value
 	 *            value
 	 * @param isNeedConvertType
-	 *            是否需要类型转换 <br>
+	 *            是否需要类型转换
 	 *            <ul>
 	 *            <li>true调用 BeanUtils.setProperty(bean, name, value)</li>
 	 *            <li>false调用PropertyUtils.setProperty(bean, name, value)</li>
 	 *            </ul>
-	 * <br>
+	 * @see org.apache.commons.beanutils.BeanUtils#setProperty(Object, String, Object)
+	 * @see org.apache.commons.beanutils.PropertyUtils#setProperty(Object, String, Object)
 	 */
 	public static void setProperty(Object bean,String name,Object value,boolean isNeedConvertType){
 		try{
@@ -292,8 +334,12 @@ public final class BeanUtil{
 		}
 	}
 
+	// [end]
+
+	// [start] getProperty
+
 	/**
-	 * 使用BeanUtils类从对象中取得属性值.
+	 * 使用 {@link BeanUtils#getProperty(Object, String)} 类从对象中取得属性值.
 	 * 
 	 * @param bean
 	 *            bean
@@ -301,7 +347,7 @@ public final class BeanUtil{
 	 *            属性名称
 	 * @return 使用BeanUtils类从对象中取得属性值<br>
 	 *         如果方法内部出现异常,return null
-	 * @see BeanUtils
+	 * @see org.apache.commons.beanutils.BeanUtils#getProperty(Object, String)
 	 */
 	public static String getProperty(Object bean,String name){
 		try{
@@ -318,4 +364,6 @@ public final class BeanUtil{
 		}
 		return null;
 	}
+
+	// [end]
 }

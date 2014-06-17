@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.bean;
+package com.feilong.commons.core.bean.converters;
 
 import java.util.Date;
 import java.util.Locale;
@@ -25,7 +25,9 @@ import com.feilong.commons.core.text.DateFormatUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * The Class DateConverter,for example:
+ * The Class DateConverter,依赖apache commons-beanutils工具包<br>
+ * 
+ * for example:
  * 
  * <pre>
  * User a = new User();
@@ -33,14 +35,21 @@ import com.feilong.commons.core.util.Validator;
  * Date now = new Date();
  * a.setDate(now);
  * User b = new User();
+ * 
  * DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
  * ConvertUtils.register(converter, Date.class);
+ * 
  * BeanUtil.copyProperty(b, a, &quot;date&quot;);
  * </pre>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014-5-4 0:35:31
  * @since 1.0.0
+ * @see org.apache.commons.beanutils.converters.DateConverter
+ * @see org.apache.commons.beanutils.converters.DateTimeConverter
+ * @see org.apache.commons.beanutils.converters.AbstractConverter
+ * @see org.apache.commons.beanutils.Converter
+ * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
  */
 public class DateConverter extends DateTimeConverter{
 
