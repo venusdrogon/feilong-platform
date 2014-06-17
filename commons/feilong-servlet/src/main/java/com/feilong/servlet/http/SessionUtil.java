@@ -1,23 +1,25 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.servlet.http;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,29 +28,105 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.lang.ObjectUtil;
+import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.util.CollectionsUtil;
 
 /**
- * SessionUtil 操作session
+ * SessionUtil 操作session.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-7-6 下午02:10:33
- * @version 1.1 Jan 15, 2013 2:31:32 PM 进行精简
+ * @version 1.0.0 2010-7-6 下午02:10:33
+ * @version 1.0.1 Jan 15, 2013 2:31:32 PM 进行精简
+ * @version 1.0.7 2014-6-17 14:32 删除历史不用的方法
+ * @since 1.0.0
  */
 public final class SessionUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(SessionUtil.class);
 
+	/**
+	 * Instantiates a new session util.
+	 */
 	private SessionUtil(){}
 
 	/**
-	 * 遍历显示session的attribute,将 name /attributeValue 存入到map
+	 * Gets the session map for log(仅仅用于log和debug使用).
 	 * 
 	 * @param session
+	 *            the session
+	 * @return the session map for log,如果session is null,则返回 empty的{@link LinkedHashMap}
+	 * @see HttpSession#getId()
+	 * @see HttpSession#getCreationTime()
+	 * @see HttpSession#getLastAccessedTime()
+	 * @see HttpSession#getMaxInactiveInterval()
+	 * @see HttpSession#getAttributeNames()
+	 * @see HttpSession#isNew()
 	 */
+	@SuppressWarnings({ "cast", "unchecked" })
+	public static Map<String, Object> getSessionMapForLog(HttpSession session){
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+		if (null != session){
+
+			Date now = new Date();
+
+			// 返回SESSION创建时JSP引擎为它设的惟一ID号 
+			map.put("session.getId()", session.getId());
+
+			//返回SESSION创建时间
+			long creationTime = session.getCreationTime();
+			Date creationTimeDate = new Date(creationTime);
+			map.put(
+					"session.getCreationTime()",
+					Slf4jUtil.formatMessage(
+							"[{}],format:[{}],intervalToNow:[{}]",
+							creationTime,
+							DateUtil.date2String(creationTimeDate, DatePattern.commonWithMillisecond),
+							DateUtil.getIntervalForView(creationTimeDate, now)));
+
+			//返回此SESSION里客户端最近一次请求时间 
+			long lastAccessedTime = session.getLastAccessedTime();
+			Date lastAccessedTimeDate = new Date(lastAccessedTime);
+			map.put(
+					"session.getLastAccessedTime()",
+					Slf4jUtil.formatMessage(
+							"[{}],format:[{}],intervalToNow:[{}]",
+							lastAccessedTime,
+							DateUtil.date2String(lastAccessedTimeDate, DatePattern.commonWithMillisecond),
+							DateUtil.getIntervalForView(lastAccessedTimeDate, now)));
+
+			//返回两次请求间隔多长时间此SESSION被取消(ms) 
+			int maxInactiveInterval = session.getMaxInactiveInterval();
+			map.put(
+					"session.getMaxInactiveInterval()",
+					maxInactiveInterval + "s,format:" + DateUtil.getIntervalForView(maxInactiveInterval * 1000));
+
+			// 返回服务器创建的一个SESSION,客户端是否已经加入 
+			map.put("session.isNew()", session.isNew());
+
+			Enumeration<String> attributeNames = (Enumeration<String>) session.getAttributeNames();
+			map.put("session.getAttributeNames()", CollectionsUtil.toList(attributeNames));
+		}
+
+		return map;
+	}
+
+	// [start] getAttributeMap
+
+	/**
+	 * 遍历显示session的attribute,将 name /attributeValue 存入到map.
+	 * 
+	 * @param session
+	 *            the session
+	 * @return the attribute map
+	 */
+	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getAttributeMap(HttpSession session){
 		Map<String, Object> map = new HashMap<String, Object>();
-		@SuppressWarnings("unchecked")
 		Enumeration<String> attributeNames = session.getAttributeNames();
 		while (attributeNames.hasMoreElements()){
 			String name = attributeNames.nextElement();
@@ -58,10 +136,48 @@ public final class SessionUtil{
 		return map;
 	}
 
-	// *********************************************************************************************************
+	// [end]
+
+	// [start] replaceSession
 
 	/**
-	 * 获取属性值Integer类型
+	 * 替换session,防止利用JSESSIONID 伪造url进行session hack.
+	 * 
+	 * @param request
+	 *            request
+	 * @return the http session
+	 * @see org.springframework.security.util.SessionUtils#startNewSessionIfRequired(HttpServletRequest, boolean, SessionRegistry)
+	 */
+	public static HttpSession replaceSession(HttpServletRequest request){
+		// 当session存在时返回该session，否则不会新建session，返回null
+		HttpSession session = request.getSession(false);
+		if (null != session){
+			// getSession()/getSession(true)：当session存在时返回该session，否则新建一个session并返回该对象
+			session = request.getSession();
+			Map<String, Object> map = getAttributeMap(session);
+			log.debug("old session: {}", session.getId());
+
+			session.invalidate();
+
+			session = request.getSession();
+			log.debug("new session: {}", session.getId());
+
+			for (String key : map.keySet()){
+				session.setAttribute(key, map.get(key));
+			}
+		}else{
+			// 是null 新建一个
+			session = request.getSession();
+		}
+		return session;
+	}
+
+	// [end]
+
+	// [start] getAttribute
+
+	/**
+	 * 获取属性值Integer类型.
 	 * 
 	 * @param attributeName
 	 *            session里面的 属性名称
@@ -75,7 +191,7 @@ public final class SessionUtil{
 	}
 
 	/**
-	 * 获取属性值BigDecimal类型
+	 * 获取属性值BigDecimal类型.
 	 * 
 	 * @param attributeName
 	 *            session里面的 属性名称
@@ -89,7 +205,7 @@ public final class SessionUtil{
 	}
 
 	/**
-	 * 将属性值转换成字符串
+	 * 将属性值转换成字符串.
 	 * 
 	 * @param attributeName
 	 *            属性名称
@@ -102,7 +218,7 @@ public final class SessionUtil{
 	}
 
 	/**
-	 * 直接获取属性值
+	 * 直接获取属性值.
 	 * 
 	 * @param attributeName
 	 *            属性名称
@@ -121,115 +237,5 @@ public final class SessionUtil{
 		}
 		return session.getAttribute(attributeName);
 	}
-
-	/**
-	 * 替换session,防止利用JSESSIONID 伪造url进行session hack
-	 * 
-	 * @param request
-	 *            request
-	 */
-	public static HttpSession replaceSession(HttpServletRequest request){
-		// 当session存在时返回该session，否则不会新建session，返回null
-		HttpSession session = request.getSession(false);
-		if (null != session){
-			// getSession()/getSession(true)：当session存在时返回该session，否则新建一个session并返回该对象
-			session = request.getSession();
-			log.debug("old session: {}", session.getId());
-			Map<String, Object> map = new HashMap<String, Object>();
-			Enumeration enumeration = session.getAttributeNames();
-			while (enumeration.hasMoreElements()){
-				String key = (String) enumeration.nextElement();
-				map.put(key, session.getAttribute(key));
-			}
-			session.invalidate();
-			session = request.getSession();
-			log.debug("new session: {}", session.getId());
-			for (String key : map.keySet()){
-				session.setAttribute(key, map.get(key));
-			}
-		}else{
-			// 是null 新建一个
-			session = request.getSession();
-		}
-		return session;
-	}
-	// ********************下面4个方法不建议在这里使用 **********************************************************************
-	// /**
-	// * ajax验证是否通过验证码
-	// *
-	// * @param session
-	// * @return 通过返回true
-	// */
-	// public boolean isPassValidateCode_ajax(String code,HttpSession session){
-	// return isPassValidateCode(code, session);
-	// }
-
-	// /**
-	// * 是否通过验证码
-	// *
-	// * <pre>
-	// * 验证码的文本框 name 为 code
-	// * 验证码作用域 属性名为FeiLongConstants.session.validateCode
-	// * </pre>
-	// *
-	// * @param request
-	// * 当前请求
-	// * @return 通过返回true
-	// */
-	// public static boolean isPassValidateCode(HttpServletRequest request){
-	// String code = request.getParameter("code");
-	// return isPassValidateCode(code, request.getSession());
-	// }
-
-	// /**
-	// * 验证是否通过验证码
-	// *
-	// * @param code
-	// * 验证码
-	// * @param session
-	// * session
-	// * @return 通过返回true
-	// */
-	// public static boolean isPassValidateCode(String code,HttpSession session){
-	// String validateCode = SessionUtil.getAttributeObjectToString(Constants.Session.validateCode, session);
-	// return ObjectUtil.equalsNotNull(code, validateCode);
-	// }
-
-	// /**
-	// * 获得验证码,一般用于dwr调用
-	// *
-	// * @param session
-	// * session
-	// * @return 获得验证码
-	// */
-	// public String getValidateCode_ajax(HttpSession session){
-	// return getAttributeObjectToString(Constants.Session.validateCode, session);
-	// }
-
-	// ********************这两个方法不准 以后需要的话 重新写 **********************************************************************
-	// /**
-	// * 是否不存在属性名
-	// *
-	// * @param attributeName
-	// * 属性名
-	// * @param object
-	// * request or session
-	// * @return 不存在返回true
-	// */
-	// public static boolean isNotExistAttributeName(String attributeName,Object object){
-	// return !isExistAttributeName(attributeName, object);
-	// }
-
-	// /**
-	// * 是否存在属性名
-	// *
-	// * @param attributeName
-	// * 属性名
-	// * @param object
-	// * request or session
-	// * @return 存在返回true
-	// */
-	// public static boolean isExistAttributeName(String attributeName,Object object){
-	// return Validator.isNotNullOrEmpty(getAttributeObject(attributeName, object));
-	// }
+	// [end]
 }
