@@ -29,7 +29,7 @@ import org.springframework.web.util.UrlPathHelper;
 
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.CollectionUtil;
+import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.RequestUtil;
 
@@ -174,7 +174,7 @@ public class MultiUriTemplateUtil{
 				list.add(value);
 			}
 			JoinStringEntity joinStringEntity = new JoinStringEntity(valueSeparator);
-			map.put(variableName, CollectionUtil.toString(list, joinStringEntity));
+			map.put(variableName, CollectionsUtil.toString(list, joinStringEntity));
 		}
 		return UriTemplateUtil.expand(matchingPatternPath, map);
 	}
@@ -234,7 +234,7 @@ public class MultiUriTemplateUtil{
 				list.remove(value);
 
 				JoinStringEntity joinStringEntity = new JoinStringEntity(valueSeparator);
-				map.put(variableName, CollectionUtil.toString(list, joinStringEntity));
+				map.put(variableName, CollectionsUtil.toString(list, joinStringEntity));
 
 				return UriTemplateUtil.expand(matchingPatternPath, map);
 			}else{

@@ -28,7 +28,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.text.MessageFormatUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.CollectionUtil;
+import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -384,7 +384,7 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 			sb.append("??");
 
 			JoinStringEntity joinStringEntity = new JoinStringEntity(JoinStringEntity.DEFAULT_CONNECTOR);
-			sb.append(CollectionUtil.toString(itemSrcList, joinStringEntity));
+			sb.append(CollectionsUtil.toString(itemSrcList, joinStringEntity));
 		}
 		appendVersion(version, sb);
 

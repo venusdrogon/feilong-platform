@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.CollectionUtil;
+import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.ListUtil;
 import com.feilong.tools.reference.ip.IpUtil;
 
@@ -52,7 +52,7 @@ public class IpUtilTest{
 		}
 
 		JoinStringEntity joinStringEntity = new JoinStringEntity(";");
-		String ipgWhiteListIPs = CollectionUtil.toString(list, joinStringEntity);
+		String ipgWhiteListIPs = CollectionsUtil.toString(list, joinStringEntity);
 		String[] array = ipgWhiteListIPs.split(";");
 
 		if (log.isDebugEnabled()){

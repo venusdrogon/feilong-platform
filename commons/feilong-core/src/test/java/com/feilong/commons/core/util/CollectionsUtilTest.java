@@ -17,6 +17,7 @@ package com.feilong.commons.core.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
@@ -32,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
 
 /**
@@ -40,10 +42,10 @@ import com.feilong.test.User;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-22 21:55:38
  */
-public class CollectionUtilTest{
+public class CollectionsUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(CollectionUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(CollectionsUtilTest.class);
 
 	/**
 	 * Test tree set.
@@ -88,7 +90,7 @@ public class CollectionUtilTest{
 		map.put(21, 2);
 		map.put("甲1", 3);
 		map.put(41, 4);
-		Enumeration<Object> enumeration = CollectionUtil.toEnumeration(map.keySet());
+		Enumeration<Object> enumeration = CollectionsUtil.toEnumeration(map.keySet());
 		while (enumeration.hasMoreElements()){
 			log.info("" + enumeration.nextElement());
 		}
@@ -105,15 +107,29 @@ public class CollectionUtilTest{
 
 		JoinStringEntity joinStringEntity = new JoinStringEntity(",");
 
-		String string = CollectionUtil.toString(list, joinStringEntity);
+		String string = CollectionsUtil.toString(list, joinStringEntity);
 		log.info(string);
+	}
+
+	@Test
+	public void toList(){
+		List<String> list = new ArrayList<String>();
+		Collections.addAll(list, "a", "b");
+		Enumeration<String> enumeration = CollectionsUtil.toEnumeration(list);
+		List<String> list2 = CollectionsUtil.toList(enumeration);
+		log.info(JsonUtil.format(list2));
+
+		enumeration = null;
+		list2 = CollectionsUtil.toList(enumeration);
+		log.info(JsonUtil.format(list2));
 	}
 
 	/**
 	 * Test.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void test(){
+	@Test
+	public void test(){
 		try{
 			Class clz = User.class;
 			Collection collection = CollectionUtils.typedCollection(new ArrayList(), clz);
@@ -141,13 +157,4 @@ public class CollectionUtilTest{
 		}
 	}
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(String[] args){
-		test();
-	}
 }

@@ -16,9 +16,11 @@
 package com.feilong.commons.core.util;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 
 import com.feilong.commons.core.entity.JoinStringEntity;
 
@@ -29,10 +31,10 @@ import com.feilong.commons.core.entity.JoinStringEntity;
  * @version 1.0 Sep 2, 2010 8:08:40 PM
  * @since 1.0.0
  */
-public final class CollectionUtil{
+public final class CollectionsUtil{
 
 	/** Don't let anyone instantiate this class. */
-	private CollectionUtil(){}
+	private CollectionsUtil(){}
 
 	/**
 	 * 将集合使用连接符号链接成字符串.
@@ -80,8 +82,33 @@ public final class CollectionUtil{
 	 * @param collection
 	 *            集合
 	 * @return Enumeration
+	 * @see Collections#enumeration(Collection)
 	 */
 	public final static <T> Enumeration<T> toEnumeration(final Collection<T> collection){
 		return Collections.enumeration(collection);
+	}
+
+	/**
+	 * 将枚举转成集合.
+	 * 
+	 * @param <T>
+	 *            the generic type
+	 * @param enumeration
+	 *            the enumeration
+	 * @return if Validator.isNullOrEmpty(enumeration), return {@link Collections#emptyList()},该emptyList不可以操作<br>
+	 *         else return {@link Collections#list(Enumeration)}
+	 * @see Collections#emptyList()
+	 * @see Collections#EMPTY_LIST
+	 * @see Collections#list(Enumeration)
+	 * @see org.apache.commons.collections.EnumerationUtils#toList(Enumeration)
+	 * @since 1.0.7
+	 * @since JDK 1.5
+	 */
+	public final static <T> List<T> toList(final Enumeration<T> enumeration){
+		if (Validator.isNullOrEmpty(enumeration)){
+			return Collections.emptyList();
+		}
+		ArrayList<T> list = Collections.list(enumeration);
+		return list;
 	}
 }
