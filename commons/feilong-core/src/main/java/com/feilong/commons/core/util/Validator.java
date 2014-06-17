@@ -20,22 +20,18 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
-
 /**
  * <p>
  * 判断对象是否为null或者Empty,feilong-core核心类之一.
  * </p>
+ * 
  * <ol>
  * <li>{@link #isNullOrEmpty(Object)} 判断对象是否是null或者空</li>
  * <li>{@link #isNotNullOrEmpty(Object)}判断对象是否不是null或者不是空</li>
  * </ol>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Sep 2, 2010 8:35:28 PM
+ * @version 1.0.0 Sep 2, 2010 8:35:28 PM
  * @version 1.0.1 2012-9-23 21:34 rename method,isNullOrEmpty替代isNull
  * @version 1.0.7 2014-5-22 15:57 add {@link #arrayIsNullOrEmpty(Object)}
  * @see String#trim()
@@ -52,9 +48,11 @@ public final class Validator{
 
 	/**
 	 * 判断对象是否为Null或者Empty
+	 * 
 	 * <p>
-	 * 对于empty的判断:
+	 * 对于empty的判断,使用以下逻辑/语法/规则:
 	 * </p>
+	 * 
 	 * <ol>
 	 * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
 	 * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
@@ -77,21 +75,21 @@ public final class Validator{
 	 *         如果是empty也返回true<br>
 	 *         其他情况返回false<br>
 	 *         如果不是上述类型,不判断empty,返回false
-	 * @see CollectionUtils#isEmpty(Collection)
-	 * @see CollectionUtils#isNotEmpty(Collection)
-	 * @see StringUtils#isBlank(String)
-	 * @see StringUtils#isEmpty(String)
-	 * @see MapUtils#isEmpty(Map)
-	 * @see MapUtils#isNotEmpty(Map)
-	 * @see ArrayUtils#isEmpty(byte[])
-	 * @see ArrayUtils#isEmpty(boolean[])
-	 * @see ArrayUtils#isEmpty(char[])
-	 * @see ArrayUtils#isEmpty(int[])
-	 * @see ArrayUtils#isEmpty(long[])
-	 * @see ArrayUtils#isEmpty(short[])
-	 * @see ArrayUtils#isEmpty(float[])
-	 * @see ArrayUtils#isEmpty(double[])
-	 * @see ArrayUtils#isEmpty(Object[])
+	 * @see org.apache.commons.collections.CollectionUtils#isEmpty(Collection)
+	 * @see org.apache.commons.collections.CollectionUtils#isNotEmpty(Collection)
+	 * @see org.apache.commons.collections.MapUtils#isEmpty(Map)
+	 * @see org.apache.commons.collections.MapUtils#isNotEmpty(Map)
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(byte[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(boolean[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(char[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(int[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(long[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(short[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(float[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(double[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(Object[])
+	 * @see org.apache.commons.lang.StringUtils#isBlank(String)
+	 * @see org.apache.commons.lang.StringUtils#isEmpty(String)
 	 */
 	public final static boolean isNullOrEmpty(Object value){
 		if (null == value){
@@ -134,9 +132,11 @@ public final class Validator{
 
 	/**
 	 * 判断对象是否不为Null或者Empty,调用 !{@link #isNullOrEmpty(Object)} 方法 <br>
+	 * 
 	 * <p>
-	 * 对于empty的判断:
+	 * 对于empty的判断,使用以下逻辑/语法/规则:
 	 * </p>
+	 * 
 	 * <ol>
 	 * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
 	 * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
@@ -159,21 +159,21 @@ public final class Validator{
 	 *         如果是空也返回false<br>
 	 *         其他情况返回true<br>
 	 *         如果不是上述类型,不判断empty,返回true
-	 * @see CollectionUtils#isEmpty(Collection)
-	 * @see CollectionUtils#isNotEmpty(Collection)
-	 * @see StringUtils#isBlank(String)
-	 * @see StringUtils#isEmpty(String)
-	 * @see MapUtils#isEmpty(Map)
-	 * @see MapUtils#isNotEmpty(Map)
-	 * @see ArrayUtils#isEmpty(byte[])
-	 * @see ArrayUtils#isEmpty(boolean[])
-	 * @see ArrayUtils#isEmpty(char[])
-	 * @see ArrayUtils#isEmpty(int[])
-	 * @see ArrayUtils#isEmpty(long[])
-	 * @see ArrayUtils#isEmpty(short[])
-	 * @see ArrayUtils#isEmpty(float[])
-	 * @see ArrayUtils#isEmpty(double[])
-	 * @see ArrayUtils#isEmpty(Object[])
+	 * @see org.apache.commons.collections.CollectionUtils#isEmpty(Collection)
+	 * @see org.apache.commons.collections.CollectionUtils#isNotEmpty(Collection)
+	 * @see org.apache.commons.collections.MapUtils#isEmpty(Map)
+	 * @see org.apache.commons.collections.MapUtils#isNotEmpty(Map)
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(byte[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(boolean[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(char[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(int[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(long[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(short[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(float[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(double[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(Object[])
+	 * @see org.apache.commons.lang.StringUtils#isBlank(String)
+	 * @see org.apache.commons.lang.StringUtils#isEmpty(String)
 	 */
 	public final static boolean isNotNullOrEmpty(Object value){
 		return !isNullOrEmpty(value);
@@ -197,88 +197,62 @@ public final class Validator{
 	 *            </ul>
 	 * @return 如果是数组类型(区分 primitive和包装类型),判断其length==0;<br>
 	 *         如果不是 直接返回false
-	 * @see ArrayUtils#isEmpty(byte[])
-	 * @see ArrayUtils#isEmpty(boolean[])
-	 * @see ArrayUtils#isEmpty(char[])
-	 * @see ArrayUtils#isEmpty(int[])
-	 * @see ArrayUtils#isEmpty(long[])
-	 * @see ArrayUtils#isEmpty(short[])
-	 * @see ArrayUtils#isEmpty(float[])
-	 * @see ArrayUtils#isEmpty(double[])
-	 * @see ArrayUtils#isEmpty(Object[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(byte[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(boolean[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(char[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(int[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(long[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(short[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(float[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(double[])
+	 * @see org.apache.commons.lang.ArrayUtils#isEmpty(Object[])
 	 * @since 1.0.7
 	 */
 	private static boolean arrayIsNullOrEmpty(Object value){
 		// ***********************************************************
 		// 数组 Integer/String...自定义的对象User.等数组也 instanceof Object[]
 		if (value instanceof Object[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof Object[]", JsonUtil.format(value));
-			// }
 			return ((Object[]) value).length == 0;
 		}
 
+		// ***********************************************************
 		// primitive ints
 		if (value instanceof int[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof int[]", value);
-			// }
 			return ((int[]) value).length == 0;
 		}
 
 		// primitive long
 		if (value instanceof long[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof long[]", value);
-			// }
 			return ((long[]) value).length == 0;
 		}
 
 		// primitive float
 		if (value instanceof float[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof float[]", value);
-			// }
 			return ((float[]) value).length == 0;
 		}
 
 		// primitive double
 		if (value instanceof double[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof double[]", value);
-			// }
 			return ((double[]) value).length == 0;
 		}
 
 		// primitive char
 		if (value instanceof char[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof char[]", value);
-			// }
 			return ((char[]) value).length == 0;
 		}
 
 		// primitive boolean
 		if (value instanceof boolean[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof boolean[]", value);
-			// }
 			return ((boolean[]) value).length == 0;
 		}
 
 		// primitive byte
 		if (value instanceof byte[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof byte[]", value);
-			// }
 			return ((byte[]) value).length == 0;
 		}
 
 		// primitive short
 		if (value instanceof short[]){
-			// if (log.isDebugEnabled()){
-			// log.debug("value:{} instanceof short[]", value);
-			// }
 			return ((short[]) value).length == 0;
 		}
 		return false;
