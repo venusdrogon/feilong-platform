@@ -44,7 +44,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * 注意，这个文件里的ip地址和所有的偏移量均采用little-endian格式，而java是采用big-endian格式的，要注意转换
  * </pre>
  */
-public class IPSeeker{
+@SuppressWarnings("all")public class IPSeeker{
 
 	private final static Logger	log					= LoggerFactory.getLogger(IPSeeker.class);
 

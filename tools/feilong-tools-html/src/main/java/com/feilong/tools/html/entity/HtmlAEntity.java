@@ -20,7 +20,7 @@ package com.feilong.tools.html.entity;
  * 
  * @author 金鑫 2010-1-3 上午10:49:47
  */
-public class HtmlAEntity extends BaseHTMLEntity{
+@SuppressWarnings("all")public class HtmlAEntity extends BaseHTMLEntity{
 
 	public static final String	target_blank	= "_blank";
 

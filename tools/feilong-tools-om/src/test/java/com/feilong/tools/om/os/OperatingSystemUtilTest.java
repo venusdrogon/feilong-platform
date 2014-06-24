@@ -28,7 +28,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-23 上午11:52:07
  */
-public class OperatingSystemUtilTest{
+@SuppressWarnings("all")public class OperatingSystemUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(OperatingSystemUtilTest.class);
 

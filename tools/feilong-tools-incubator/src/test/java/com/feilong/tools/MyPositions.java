@@ -15,7 +15,7 @@ import net.coobird.thumbnailator.geometry.Position;
  * 
  * @author coobird
  */
-public class MyPositions implements Position{
+@SuppressWarnings("all")public class MyPositions implements Position{
 
 	private Point	point;
 

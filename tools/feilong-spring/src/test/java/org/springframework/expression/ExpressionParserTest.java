@@ -26,7 +26,7 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import com.feilong.entity.user.User;
 import com.feilong.spring.expression.SpelUtil;
 
-public class ExpressionParserTest{
+@SuppressWarnings("all")public class ExpressionParserTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(ExpressionParserTest.class);
 

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import cn.javass.spring.chapter6.service.IHelloWorldService;
 
-public class HelloWorldService implements IHelloWorldService{
+@SuppressWarnings("all")public class HelloWorldService implements IHelloWorldService{
 
 	private static final Logger	log	= LoggerFactory.getLogger(HelloWorldService.class);
 

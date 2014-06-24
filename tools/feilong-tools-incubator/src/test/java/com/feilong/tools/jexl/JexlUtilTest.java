@@ -30,7 +30,7 @@ import com.feilong.tools.JexlUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 25, 2011 2:31:24 PM
  */
-public class JexlUtilTest{
+@SuppressWarnings("all")public class JexlUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(JexlUtilTest.class);
 

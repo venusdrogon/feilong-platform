@@ -20,7 +20,7 @@ import com.feilong.commons.core.util.RandomUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 10, 2013 10:06:45 AM
  */
-public class ThumbnailatorTest{
+@SuppressWarnings("all")public class ThumbnailatorTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(ThumbnailatorTest.class);
 

@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 11, 2013 12:57:10 AM
  */
-public class ImageProductTemplate implements Serializable{
+@SuppressWarnings("all")public class ImageProductTemplate implements Serializable{
 
 	private static final long	serialVersionUID	= 288232184048495608L;
 

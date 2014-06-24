@@ -32,7 +32,7 @@ import com.feilong.tools.ant.ZipUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-27 下午04:14:11
  */
-public class ZipUtilTest{
+@SuppressWarnings("all")public class ZipUtilTest{
 
 	private static final Logger	log				= LoggerFactory.getLogger(ZipUtilTest.class);
 

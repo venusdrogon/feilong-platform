@@ -30,7 +30,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-15 下午3:48:51
  */
-public class ParamUtilTest{
+@SuppressWarnings("all")public class ParamUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(ParamUtilTest.class);
 

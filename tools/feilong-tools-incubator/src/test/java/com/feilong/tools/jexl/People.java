@@ -19,7 +19,7 @@ package com.feilong.tools.jexl;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 25, 2011 2:36:36 PM
  */
-public class People{
+@SuppressWarnings("all")public class People{
 
 	private int		age;
 

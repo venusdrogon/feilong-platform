@@ -3,7 +3,7 @@ package org.springframework.expression.inventor;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Inventor{
+@SuppressWarnings("all")public class Inventor{
 
 	private String			name;
 

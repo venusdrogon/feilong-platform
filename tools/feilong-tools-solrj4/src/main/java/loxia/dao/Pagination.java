@@ -3,7 +3,7 @@ package loxia.dao;
 import java.io.Serializable;
 import java.util.List;
 
-public class Pagination<T> implements Serializable{
+@SuppressWarnings("all")public class Pagination<T> implements Serializable{
 	/**
 	 * 
 	 */

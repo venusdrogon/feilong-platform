@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateUtil;
 
-public class HelloWorldAspect{
+@SuppressWarnings("all")public class HelloWorldAspect{
 
 	private static final Logger	log	= LoggerFactory.getLogger(HelloWorldAspect.class);
 

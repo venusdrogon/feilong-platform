@@ -30,7 +30,7 @@ import com.feilong.tools.jfreechart.category.DefaultCategoryChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 16 00:32:41
  */
-public class DefaultCategoryChartUtilTest{
+@SuppressWarnings("all")public class DefaultCategoryChartUtilTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(DefaultCategoryChartUtilTest.class);

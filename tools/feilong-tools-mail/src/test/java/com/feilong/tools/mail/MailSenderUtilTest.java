@@ -47,7 +47,7 @@ import com.feilong.tools.velocity.VelocityUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2011 11:57:48 PM
  */
-public class MailSenderUtilTest{
+@SuppressWarnings("all")public class MailSenderUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log			= LoggerFactory.getLogger(MailSenderUtilTest.class);

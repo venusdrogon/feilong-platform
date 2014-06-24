@@ -25,7 +25,7 @@ import org.jfree.ui.RefineryUtilities;
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
-public class GanttDemo2 extends ApplicationFrame{
+@SuppressWarnings("all")public class GanttDemo2 extends ApplicationFrame{
 
 	/**
 	 * Creates a new demo.

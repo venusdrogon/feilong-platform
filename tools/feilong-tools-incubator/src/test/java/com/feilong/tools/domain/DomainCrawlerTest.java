@@ -27,7 +27,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-26 上午12:39:55
  */
-public class DomainCrawlerTest{
+@SuppressWarnings("all")public class DomainCrawlerTest{
 
 	private static final Logger	log				= LoggerFactory.getLogger(DomainCrawlerTest.class);
 

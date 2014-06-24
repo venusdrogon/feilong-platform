@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 
-public class EncodeUtil{
+@SuppressWarnings("all")public class EncodeUtil{
 
 	private static char[]	encodes	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".toCharArray();
 

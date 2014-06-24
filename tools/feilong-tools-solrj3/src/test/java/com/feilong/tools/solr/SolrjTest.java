@@ -38,7 +38,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-18 下午8:17:03
  */
-public class SolrjTest{
+@SuppressWarnings("all")public class SolrjTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(SolrjTest.class);
 

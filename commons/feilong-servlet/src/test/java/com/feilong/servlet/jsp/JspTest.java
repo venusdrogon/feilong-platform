@@ -17,7 +17,7 @@ package com.feilong.servlet.jsp;
 
 import org.junit.Test;
 
-public class JspTest{
+@SuppressWarnings("all")public class JspTest{
 
 	@Test
 	public void test(){

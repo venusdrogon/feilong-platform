@@ -15,7 +15,7 @@ import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.runtime.parser.node.ASTBlock;
 import org.apache.velocity.runtime.parser.node.Node;
 
-public class TruncateBlockDirective extends Directive{
+@SuppressWarnings("all")public class TruncateBlockDirective extends Directive{
 
 	private Log		log;
 

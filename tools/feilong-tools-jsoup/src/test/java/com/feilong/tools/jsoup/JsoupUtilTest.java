@@ -3,7 +3,7 @@ package com.feilong.tools.jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
-public class JsoupUtilTest{
+@SuppressWarnings("all")public class JsoupUtilTest{
 
 	@Test
 	public void getDocument(){

@@ -1,6 +1,6 @@
 package org.springframework.expression.inventor;
 
-public class PlaceOfBirth{
+@SuppressWarnings("all")public class PlaceOfBirth{
 
 	private String	city;
 

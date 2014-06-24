@@ -26,7 +26,7 @@ import com.feilong.tools.html.entity.HtmlSpanEntity;
  * 
  * @author 金鑫 2010年5月29日 00:46:26
  */
-public final class HTMLSpan{
+@SuppressWarnings("all")public final class HTMLSpan{
 
 	/**
 	 * 创建span标签

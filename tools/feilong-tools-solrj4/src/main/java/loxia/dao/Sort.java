@@ -2,7 +2,7 @@ package loxia.dao;
 
 import java.io.Serializable;
 
-public class Sort implements Serializable{
+@SuppressWarnings("all")public class Sort implements Serializable{
 
  
 	private static final long	serialVersionUID	= -1392714341585793291L;

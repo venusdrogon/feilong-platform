@@ -29,7 +29,7 @@ import org.junit.Test;
  * @date: 2013年10月15日
  */
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class ZookeeperManager{
 
 	/******************************************************************

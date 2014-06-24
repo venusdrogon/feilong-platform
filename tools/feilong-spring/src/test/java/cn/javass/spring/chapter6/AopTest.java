@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.javass.spring.chapter6.service.IHelloWorldService;
 
-public class AopTest{
+@SuppressWarnings("all")public class AopTest{
 
 	@Test
 	public void testHelloworld(){
