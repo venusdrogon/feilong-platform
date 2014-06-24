@@ -1,6 +1,6 @@
 package com.feilong.taglib.pager.parser;
 
-public final class IndexTagExport{
+@SuppressWarnings("all")public final class IndexTagExport{
 
 	public static final String	ITEM_COUNT	= "itemCount", PAGE_COUNT = "pageCount";
 

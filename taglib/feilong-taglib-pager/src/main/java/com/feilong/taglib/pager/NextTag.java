@@ -2,7 +2,7 @@ package com.feilong.taglib.pager;
 
 import com.feilong.taglib.pager.support.SkipTagSupport;
 
-public final class NextTag extends SkipTagSupport{
+@SuppressWarnings("all")public final class NextTag extends SkipTagSupport{
 
 	/**
 	 * 

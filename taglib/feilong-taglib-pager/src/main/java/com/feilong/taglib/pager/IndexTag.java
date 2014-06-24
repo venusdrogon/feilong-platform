@@ -28,7 +28,7 @@ import com.feilong.taglib.pager.support.PagerTagSupport;
  * 
  * @author James Klicman
  */
-public final class IndexTag extends PagerTagSupport{
+@SuppressWarnings("all")public final class IndexTag extends PagerTagSupport{
 
 	private static final long	serialVersionUID	= 1L;
 

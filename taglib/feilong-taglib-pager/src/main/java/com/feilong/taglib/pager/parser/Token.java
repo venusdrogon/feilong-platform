@@ -4,7 +4,7 @@ package com.feilong.taglib.pager.parser;
 /**
  * Describes the input token stream.
  */
-public class Token{
+@SuppressWarnings("all")public class Token{
 
 	/**
 	 * An integer that describes the kind of this token. This numbering system is determined by JavaCCParser, and a table of these numbers is stored in the file

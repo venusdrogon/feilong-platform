@@ -22,7 +22,7 @@ import com.feilong.taglib.pager.parser.TagExportParser;
  * 
  * @author James Klicman
  */
-public final class PagerTag extends TagSupport{
+@SuppressWarnings("all")public final class PagerTag extends TagSupport{
 
 	private static final long	serialVersionUID		= 1L;
 

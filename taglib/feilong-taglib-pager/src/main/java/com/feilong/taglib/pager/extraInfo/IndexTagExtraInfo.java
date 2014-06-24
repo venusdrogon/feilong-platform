@@ -8,7 +8,7 @@ import com.feilong.taglib.pager.parser.IndexTagExport;
 import com.feilong.taglib.pager.parser.ParseException;
 import com.feilong.taglib.pager.parser.TagExportParser;
 
-public final class IndexTagExtraInfo extends TagExtraInfo{
+@SuppressWarnings("all")public final class IndexTagExtraInfo extends TagExtraInfo{
 
 	@Override
 	public VariableInfo[] getVariableInfo(TagData tagData){

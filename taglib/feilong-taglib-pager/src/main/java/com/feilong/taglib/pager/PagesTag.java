@@ -9,7 +9,7 @@ import javax.servlet.jsp.tagext.BodyTag;
 
 import com.feilong.taglib.pager.support.PageTagSupport;
 
-public final class PagesTag extends PageTagSupport implements BodyTag{
+@SuppressWarnings("all")public final class PagesTag extends PageTagSupport implements BodyTag{
 
 	/**
 	 * 

@@ -2,7 +2,7 @@ package com.feilong.taglib.pager.support;
 
 import javax.servlet.jsp.JspException;
 
-public abstract class SkipTagSupport extends PageTagSupport{
+@SuppressWarnings("all")public abstract class SkipTagSupport extends PageTagSupport{
 
 	private static final long	serialVersionUID	= 1L;
 

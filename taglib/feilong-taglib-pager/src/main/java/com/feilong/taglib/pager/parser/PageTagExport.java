@@ -15,7 +15,7 @@
  */
 package com.feilong.taglib.pager.parser;
 
-public final class PageTagExport{
+@SuppressWarnings("all")public final class PageTagExport{
 
 	public static final String	PAGE_URL	= "pageUrl", PAGE_NUMBER = "pageNumber", FIRST_ITEM = "firstItem", LAST_ITEM = "lastItem";
 

@@ -9,7 +9,7 @@ import com.feilong.taglib.pager.support.PagerTagSupport;
  * 
  * @author James Klicman 2010-1-25 下午01:47:53
  */
-public final class ParamTag extends PagerTagSupport{
+@SuppressWarnings("all")public final class ParamTag extends PagerTagSupport{
 
 	private static final long	serialVersionUID	= 1L;
 

@@ -15,7 +15,7 @@
  */
 package com.feilong.taglib.pager.parser;
 
-public final class PagerTagExport{
+@SuppressWarnings("all")public final class PagerTagExport{
 
 	public static final String	PAGE_OFFSET	= "pageOffset", PAGE_NUMBER = "pageNumber";
 

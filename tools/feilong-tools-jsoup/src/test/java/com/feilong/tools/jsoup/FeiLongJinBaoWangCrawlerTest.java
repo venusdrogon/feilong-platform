@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.StringUtil;
-
+@SuppressWarnings("all")
 public class FeiLongJinBaoWangCrawlerTest{
 
 	private static final Logger	log				= LoggerFactory.getLogger(FeiLongJinBaoWangCrawlerTest.class);

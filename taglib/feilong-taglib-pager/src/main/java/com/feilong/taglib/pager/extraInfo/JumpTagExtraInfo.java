@@ -19,7 +19,7 @@ import javax.servlet.jsp.tagext.TagData;
 
 import com.feilong.taglib.pager.support.JumpTagSupport;
 
-public final class JumpTagExtraInfo extends PageTagExtraInfo{
+@SuppressWarnings("all")public final class JumpTagExtraInfo extends PageTagExtraInfo{
 
 	@Override
 	public boolean isValid(TagData tagData){

@@ -4,7 +4,7 @@ package com.feilong.taglib.pager.parser;
 /**
  * An implementation of interface CharStream, where the stream is assumed to contain only ASCII characters (with java-like unicode escape processing).
  */
-public final class JavaCharStream{
+@SuppressWarnings("all")public final class JavaCharStream{
 
 	public static final boolean	staticFlag	= false;
 

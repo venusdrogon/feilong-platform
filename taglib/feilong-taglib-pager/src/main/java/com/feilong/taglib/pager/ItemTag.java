@@ -4,7 +4,7 @@ import javax.servlet.jsp.JspException;
 
 import com.feilong.taglib.pager.support.PagerTagSupport;
 
-public final class ItemTag extends PagerTagSupport{
+@SuppressWarnings("all")public final class ItemTag extends PagerTagSupport{
 
 	/**
 	 * 

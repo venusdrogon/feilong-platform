@@ -22,7 +22,7 @@ import com.feilong.taglib.pager.parser.PageTagExport;
 import com.feilong.taglib.pager.parser.ParseException;
 import com.feilong.taglib.pager.parser.TagExportParser;
 
-public abstract class PageTagSupport extends PagerTagSupport{
+@SuppressWarnings("all")public abstract class PageTagSupport extends PagerTagSupport{
 
 	private static final long	serialVersionUID	= 1L;
 
