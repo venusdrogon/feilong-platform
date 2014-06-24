@@ -15,6 +15,9 @@
  */
 package com.feilong.commons.core.lang;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
@@ -33,6 +36,24 @@ public final class ObjectUtil{
 
 	/** Don't let anyone instantiate this class. */
 	private ObjectUtil(){}
+
+	/**
+	 * 返回对象内存大小.
+	 * 
+	 * @param serializable
+	 *            the object
+	 * @return the int
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	//TODO 这个需要check下,可能有更好的方案
+	public static int size(Object serializable) throws IOException{
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+		objectOutputStream.writeObject(serializable);
+		objectOutputStream.close();
+		return byteArrayOutputStream.size();
+	}
 
 	/**
 	 * 支持将
@@ -56,8 +77,6 @@ public final class ObjectUtil{
 	 * @return <ul>
 	 *         <li>如果 null == currentCollection 返回null,</li>
 	 *         <li>否则转成Iterator</li>
-	 *         <li></li>
-	 *         <li></li>
 	 *         </ul>
 	 */
 	@SuppressWarnings("rawtypes")
@@ -323,9 +342,9 @@ public final class ObjectUtil{
 	 * @param value
 	 *            参数值
 	 * @return <ul>
-	 *         <li>(null == value) =====>return null</li>
-	 *         <li>(value instanceof String) =====>return (String) value</li>
-	 *         <li>return value.toString()</li>
+	 *         <li>{@code (null == value) =====>return null}</li>
+	 *         <li>{@code (value instanceof String) =====>return (String) value}</li>
+	 *         <li>{@code return value.toString()}</li>
 	 *         </ul>
 	 * @since 1.0
 	 */
