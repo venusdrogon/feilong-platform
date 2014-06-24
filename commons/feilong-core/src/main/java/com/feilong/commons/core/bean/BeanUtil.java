@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 封装了org.apache.commons.beanutils包下面的类
+ * 封装了 org.apache.commons.beanutils包下面的类
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 2010-7-9 下午02:44:36
@@ -65,6 +65,8 @@ public final class BeanUtil{
 	 * @since 1.0
 	 */
 	public static Object cloneBean(Object bean){
+
+		//BeanUtils.createCache();
 		try{
 			Object cloneBean = BeanUtils.cloneBean(bean);
 			return cloneBean;
@@ -138,26 +140,47 @@ public final class BeanUtil{
 
 	// [start] copyProperties
 	/**
-	 * 对象Properties的复制<br>
+	 * 对象Properties的复制,调用了 {@link BeanUtils#copyProperties(Object, Object)}<br>
 	 * 注意:这种copy都是浅拷贝，复制后的2个Bean的同一个属性可能拥有同一个对象的ref，<br>
 	 * 这个在使用时要小心，特别是对于属性为自定义类的情况 .
+	 * 
+	 * <h4>{@link BeanUtils#copyProperties(Object, Object)}与 {@link PropertyUtils#copyProperties(Object, Object)}区别</h4>
+	 * 
+	 * <blockquote>
+	 * <ul>
+	 * <li>{@link BeanUtils#copyProperties(Object, Object)}能给不同的两个成员变量相同的，但类名不同的两个类之间相互赋值</li>
+	 * <li>{@link PropertyUtils#copyProperties(Object, Object)} 提供类型转换功能，即发现两个JavaBean的同名属性为不同类型时，在支持的数据类型范围内进行转换，而前者不支持这个功能，但是速度会更快一些。</li>
+	 * <li>commons-beanutils v1.9.0以前的版本 BeanUtils 不允许对象的属性值为 null，PropertyUtils 可以拷贝属性值 null 的对象。<br>
+	 * (<b>注:</b>commons-beanutils v1.9.0+修复了这个情况,BeanUtilsBean.copyProperties() no longer throws a ConversionException for null properties
+	 * of certain data types),具体信息,可以参阅commons-beanutils的
+	 * {@link <a href="http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.2/RELEASE-NOTES.txt">RELEASE-NOTES.txt</a>}</li>
+	 * </ul>
+	 * </p>
+	 * </blockquote>
 	 * 
 	 * @param toObj
 	 *            目标对象
 	 * @param fromObj
 	 *            原始对象
+	 * @throws IllegalArgumentException
+	 *             if (null == toObj) or if (null == fromObj)
 	 * @see org.apache.commons.beanutils.BeanUtils#copyProperties(Object, Object)
 	 * @see org.apache.commons.beanutils.BeanUtils#copyProperty(Object, String, Object)
+	 * 
 	 */
-	public static void copyProperties(Object toObj,Object fromObj){
+	public static void copyProperties(Object toObj,Object fromObj) throws IllegalArgumentException{
+		if (null == toObj){
+			throw new IllegalArgumentException("No destination bean/toObj specified");
+		}
+		if (null == fromObj){
+			throw new IllegalArgumentException("No origin bean/fromObj specified");
+		}
 		try{
 			BeanUtils.copyProperties(toObj, fromObj);
 		}catch (IllegalAccessException e){
 			e.printStackTrace();
-			log.error(e.getMessage());
 		}catch (InvocationTargetException e){
 			e.printStackTrace();
-			log.error(e.getMessage());
 		}
 	}
 
@@ -195,7 +218,6 @@ public final class BeanUtil{
 	 * @see #copyProperty(Object, Object, String)
 	 */
 	public static void copyProperties(Object toObj,Object fromObj,String[] filedNames) throws NullPointerException{
-
 		if (Validator.isNullOrEmpty(filedNames)){
 			throw new NullPointerException("filedNames can't be null/empty!");
 		}
@@ -270,15 +292,15 @@ public final class BeanUtil{
 	 * 
 	 * @param bean
 	 *            bean
-	 * @param name
-	 *            成员变量name
+	 * @param propertyName
+	 *            成员Property name (can be nested/indexed/mapped/combo)
 	 * @param value
 	 *            赋值为value
 	 * @see org.apache.commons.beanutils.BeanUtils#copyProperty(Object, String, Object)
 	 */
-	public static void copyProperty(Object bean,String name,Object value){
+	public static void copyProperty(Object bean,String propertyName,Object value){
 		try{
-			BeanUtils.copyProperty(bean, name, value);
+			BeanUtils.copyProperty(bean, propertyName, value);
 		}catch (IllegalAccessException e){
 			e.printStackTrace();
 		}catch (InvocationTargetException e){
@@ -298,6 +320,39 @@ public final class BeanUtil{
 	 * BeanUtils.setProperty(pt1, &quot;x&quot;, &quot;9&quot;); // 这里的9是String类型
 	 * PropertyUtils.setProperty(pt1, &quot;x&quot;, 9); // 这里的是int类型
 	 * // 这两个类BeanUtils和PropertyUtils,前者能自动将int类型转化，后者不能
+	 * </pre>
+	 * 
+	 * 
+	 * <pre>
+	 * {@code
+	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名。
+	 * Company c = new Company();
+	 * c.setName("Simple");
+	 *  
+	 * 对于Simple类型，参数二直接是属性名即可
+	 * //Simple
+	 * System.out.println(BeanUtils.getProperty(c, "name"));
+	 *  
+	 * 对于Map类型，则需要以“属性名（key值）”的形式
+	 * //Map
+	 *     System.out.println(BeanUtils.getProperty(c, "address (A2)"));
+	 *     HashMap am = new HashMap();
+	 *     am.put("1","234-222-1222211");
+	 *     am.put("2","021-086-1232323");
+	 *     BeanUtils.setProperty(c,"telephone",am);
+	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
+	 *  
+	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作。
+	 * //index
+	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
+	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");
+	 *     System.out.println(BeanUtils.getProperty(c, "product[1]"));
+	 *  
+	 * 当然这3种类也可以组合使用啦！
+	 * //nest
+	 *     System.out.println(BeanUtils.getProperty(c, "employee[1].name"));
+	 * 
+	 * }
 	 * </pre>
 	 * 
 	 * @param bean
@@ -339,7 +394,48 @@ public final class BeanUtil{
 	// [start] getProperty
 
 	/**
-	 * 使用 {@link BeanUtils#getProperty(Object, String)} 类从对象中取得属性值.
+	 * 使用 {@link org.apache.commons.beanutils.BeanUtils#getProperty(Object, String)} 类从对象中取得属性值.
+	 * 
+	 * <pre>
+	 * {@code
+	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名。
+	 * Company c = new Company();
+	 * c.setName("Simple");
+	 *  
+	 * 对于Simple类型，参数二直接是属性名即可
+	 * //Simple
+	 * System.out.println(BeanUtils.getProperty(c, "name"));
+	 *  
+	 * 对于Map类型，则需要以“属性名（key值）”的形式
+	 * //Map
+	 *     System.out.println(BeanUtils.getProperty(c, "address (A2)"));
+	 *     HashMap am = new HashMap();
+	 *     am.put("1","234-222-1222211");
+	 *     am.put("2","021-086-1232323");
+	 *     BeanUtils.setProperty(c,"telephone",am);
+	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
+	 *  
+	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作。
+	 * //index
+	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
+	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");
+	 *     System.out.println(BeanUtils.getProperty(c, "product[1]"));
+	 *  
+	 * 当然这3种类也可以组合使用啦！
+	 * //nest
+	 *     System.out.println(BeanUtils.getProperty(c, "employee[1].name"));
+	 * 
+	 * }
+	 * </pre>
+	 * 
+	 * <h4>{@link BeanUtils#getProperty(Object, String)}&{@link PropertyUtils#getProperty(Object, String)}的区别</h4>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * {@link BeanUtils#getProperty(Object, String)} 会将结果转成String返回,<br>
+	 * {@link PropertyUtils#getProperty(Object, String)}结果是Object类型,不会做类型转换
+	 * </p>
+	 * </blockquote>
 	 * 
 	 * @param bean
 	 *            bean
@@ -348,6 +444,7 @@ public final class BeanUtil{
 	 * @return 使用BeanUtils类从对象中取得属性值<br>
 	 *         如果方法内部出现异常,return null
 	 * @see org.apache.commons.beanutils.BeanUtils#getProperty(Object, String)
+	 * @see org.apache.commons.beanutils.PropertyUtils#getProperty(Object, String)
 	 */
 	public static String getProperty(Object bean,String name){
 		try{

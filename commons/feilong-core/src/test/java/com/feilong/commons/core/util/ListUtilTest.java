@@ -16,8 +16,10 @@
 package com.feilong.commons.core.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -25,6 +27,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
+import com.feilong.test.UserAddress;
+import com.feilong.test.UserInfo;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -163,9 +167,72 @@ public class ListUtilTest{
 		List<User> testList = new ArrayList<User>();
 		testList.add(new User(2L));
 		testList.add(new User(5L));
+		testList.add(new User(5L));
 
 		List<String> fieldValueList = ListUtil.getFieldValueList(testList, "id");
+		fieldValueList.add("7");
+		fieldValueList.add("8");
 		log.info(JsonUtil.format(fieldValueList));
 	}
 
+	@Test
+	public final void getFieldValueList1(){
+		List<User> testList = new ArrayList<User>();
+
+		User user;
+		UserInfo userInfo;
+
+		//*******************************************************
+		List<UserAddress> userAddresseList = new ArrayList<UserAddress>();
+		UserAddress userAddress = new UserAddress();
+		userAddress.setAddress("中南海");
+		userAddresseList.add(userAddress);
+
+		//*******************************************************
+		Map<String, String> attrMap = new HashMap<String, String>();
+		attrMap.put("蜀国", "赵子龙");
+		attrMap.put("魏国", "张文远");
+		attrMap.put("吴国", "甘兴霸");
+
+		//*******************************************************
+		String[] lovesStrings1 = { "sanguo1", "xiaoshuo1" };
+		userInfo = new UserInfo();
+		userInfo.setAge(28);
+
+		user = new User(2L);
+		user.setLoves(lovesStrings1);
+		user.setUserInfo(userInfo);
+		user.setUserAddresseList(userAddresseList);
+
+		user.setAttrMap(attrMap);
+		testList.add(user);
+
+		//*****************************************************
+		String[] lovesStrings2 = { "sanguo2", "xiaoshuo2" };
+		userInfo = new UserInfo();
+		userInfo.setAge(null);
+
+		user = new User(3L);
+		user.setLoves(lovesStrings2);
+		user.setUserInfo(userInfo);
+		user.setUserAddresseList(userAddresseList);
+		user.setAttrMap(attrMap);
+		testList.add(user);
+
+		//数组
+		List<String> fieldValueList1 = ListUtil.getFieldValueList(testList, "loves[1]");
+		log.info(JsonUtil.format(fieldValueList1));
+
+		//级联对象
+		List<Integer> fieldValueList2 = ListUtil.getFieldValueList(testList, "userInfo.age");
+		log.info(JsonUtil.format(fieldValueList2));
+
+		//Map
+		List<Integer> attrList = ListUtil.getFieldValueList(testList, "attrMap(蜀国)");
+		log.info(JsonUtil.format(attrList));
+
+		//集合
+		List<String> addressList = ListUtil.getFieldValueList(testList, "userAddresseList[0]");
+		log.info(JsonUtil.format(addressList));
+	}
 }

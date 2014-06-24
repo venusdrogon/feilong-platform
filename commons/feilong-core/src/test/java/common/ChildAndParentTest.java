@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.childandparent.Child;
 import com.feilong.childandparent.Parent;
 import com.feilong.commons.core.bean.BeanUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -36,7 +37,9 @@ public class ChildAndParentTest{
 
 		Child child = new Child();
 		BeanUtil.copyProperties(child, parent);
-		log.info("" + child.getName());
-	}
 
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(child));
+		}
+	}
 }

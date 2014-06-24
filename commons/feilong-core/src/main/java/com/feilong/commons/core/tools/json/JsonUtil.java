@@ -77,6 +77,7 @@ public final class JsonUtil{
 
 	/**
 	 * 设置日期转换格式
+	 * 
 	 */
 	static{
 		// 可转换的日期格式，即Json串中可以出现以下格式的日期与时间
@@ -98,6 +99,8 @@ public final class JsonUtil{
 	 * @param obj
 	 *            任何对象
 	 * @return the string
+	 * @see #format(Object, String[])
+	 * @see #format(Object, JsonConfig)
 	 */
 	public static String format(Object obj){
 		String[] excludes = null;
@@ -112,6 +115,7 @@ public final class JsonUtil{
 	 * @param excludes
 	 *            排除需要序列化成json的属性,如果 excludes isNotNullOrEmpty,那么不会setExcludes
 	 * @return the string
+	 * @see #format(Object, JsonConfig)
 	 * @see <a href="http://feitianbenyue.iteye.com/blog/2046877">java.lang.ClassCastException: JSON keys must be strings</a>
 	 */
 	public static String format(Object obj,String[] excludes){
@@ -140,8 +144,10 @@ public final class JsonUtil{
 	 * @param jsonConfig
 	 *            the json config
 	 * @return the string
+	 * @see net.sf.json.JsonConfig
+	 * @see #toJSON(Object, JsonConfig)
+	 * @see net.sf.json.JSON#toString(int, int)
 	 * @since 1.0.7
-	 * @see JsonConfig
 	 */
 	public static String format(Object obj,JsonConfig jsonConfig){
 		String string = JsonUtil.toJSON(obj, jsonConfig).toString(4, 4);
@@ -149,7 +155,6 @@ public final class JsonUtil{
 	}
 
 	// [end]
-	//*****************************************************************************************
 
 	// [start]toBean
 
@@ -184,6 +189,7 @@ public final class JsonUtil{
 	 * @param classMap
 	 *            e.g. classMap.put("data", Person.class)
 	 * @return Object
+	 * @see #toBean(Object, JsonConfig)
 	 */
 	// TODO
 	@SuppressWarnings("unchecked")
@@ -207,6 +213,7 @@ public final class JsonUtil{
 	 * @param jsonConfig
 	 *            the json config
 	 * @return the object
+	 * @see net.sf.json.JSONObject#toBean(JSONObject, JsonConfig)
 	 */
 	public static Object toBean(Object json,JsonConfig jsonConfig){
 		JSONObject jsonObject = JSONObject.fromObject(json);
@@ -230,6 +237,8 @@ public final class JsonUtil{
 	 * @param json
 	 *            e.g. ['get',1,true,null]
 	 * @return Object[]
+	 * @see net.sf.json.JSONArray#fromObject(Object)
+	 * @see net.sf.json.JSONArray#toArray()
 	 */
 	public static Object[] toArray(String json){
 		return JSONArray.fromObject(json).toArray();
@@ -245,6 +254,7 @@ public final class JsonUtil{
 	 * @param clazz
 	 *            e.g. Person.class
 	 * @return Object[]
+	 * @see #toArray(String, Class, Map)
 	 */
 	public static <T> T[] toArray(String json,Class<T> clazz){
 		return toArray(json, clazz, null);
@@ -262,6 +272,10 @@ public final class JsonUtil{
 	 * @param classMap
 	 *            e.g. classMap.put("data", Person.class)
 	 * @return T[]
+	 * @see net.sf.json.JSONArray#fromObject(Object)
+	 * @see net.sf.json.JSONArray#getJSONObject(int)
+	 * @see #toBean(Object, Class, Map)
+	 * @see java.lang.reflect.Array#newInstance(Class, int)
 	 */
 	public static <T> T[] toArray(String json,Class<T> clazz,Map<String, Class<?>> classMap){
 		JSONArray jsonArray = JSONArray.fromObject(json);
@@ -288,6 +302,7 @@ public final class JsonUtil{
 	 * @param json
 	 *            e.g. ['get',1,true,null]
 	 * @return List
+	 * @see net.sf.json.JSONArray#get(int)
 	 */
 	public static List<Object> toList(String json){
 		JSONArray jsonArr = JSONArray.fromObject(json);
@@ -311,6 +326,7 @@ public final class JsonUtil{
 	 * @param clazz
 	 *            the clazz
 	 * @return List
+	 * @see #toList(String, Class, Map)
 	 */
 	public static <T> List<T> toList(String json,Class<T> clazz){
 		return toList(json, clazz, null);
@@ -328,6 +344,9 @@ public final class JsonUtil{
 	 * @param classMap
 	 *            e.g. classMap.put("data", Person.class)
 	 * @return List
+	 * @see net.sf.json.JSONArray#getJSONObject(int)
+	 * @see net.sf.json.JSONArray#fromObject(Object)
+	 * @see #toBean(Object, Class, Map)
 	 */
 	// TODO
 	@SuppressWarnings("cast")
@@ -355,6 +374,8 @@ public final class JsonUtil{
 	 * @param json
 	 *            e.g. {'name':'get','int':1,'double',1.1,'null':null}
 	 * @return Map
+	 * @see net.sf.json.JSONObject#get(String)
+	 * @see net.sf.json.JSONObject#fromObject(Object)
 	 */
 	public static Map<String, Object> toMap(String json){
 		JSONObject jsonObject = JSONObject.fromObject(json);
@@ -382,6 +403,7 @@ public final class JsonUtil{
 	 * @param clazz
 	 *            e.g. Person.class
 	 * @return Map
+	 * @see #toMap(String, Class, Map)
 	 */
 	public static <T> Map<String, T> toMap(String json,Class<T> clazz){
 		return toMap(json, clazz, null);
@@ -399,6 +421,8 @@ public final class JsonUtil{
 	 * @param classMap
 	 *            e.g. classMap.put("data", Person.class)
 	 * @return Map
+	 * @see net.sf.json.JSONObject#keys()
+	 * @see #toBean(Object, Class, Map)
 	 */
 	// TODO
 	@SuppressWarnings("cast")
@@ -435,6 +459,7 @@ public final class JsonUtil{
 	 * @param obj
 	 *            the obj
 	 * @return the jSON
+	 * @see #toJSON(Object, JsonConfig)
 	 */
 	public static JSON toJSON(Object obj){
 		return toJSON(obj, null);
@@ -448,6 +473,11 @@ public final class JsonUtil{
 	 * @param jsonConfig
 	 *            the json config
 	 * @return the jSON
+	 * @see net.sf.json.JSONArray#fromObject(Object, JsonConfig)
+	 * @see net.sf.json.JSONObject#fromObject(Object, JsonConfig)
+	 * @see net.sf.json.util.JSONUtils#isArray(Object)
+	 * @see java.lang.Class#isEnum()
+	 * @see net.sf.json.JsonConfig#registerJsonValueProcessor(Class, JsonValueProcessor)
 	 */
 	public static JSON toJSON(Object obj,JsonConfig jsonConfig){
 		if (null == jsonConfig){
@@ -484,6 +514,7 @@ public final class JsonUtil{
 	 * @param object
 	 *            the object
 	 * @return xml
+	 * @see #objectToXML(Object, String)
 	 */
 	public static String objectToXML(Object object){
 		return objectToXML(object, null);
@@ -503,6 +534,9 @@ public final class JsonUtil{
 	 * @param encoding
 	 *            the encoding
 	 * @return the string
+	 * @see #toJSON(Object)
+	 * @see net.sf.json.xml.XMLSerializer#write(JSON)
+	 * @see net.sf.json.xml.XMLSerializer#write(JSON, String)
 	 */
 	public static String objectToXML(Object object,String encoding){
 		JSON json = toJSON(object);
@@ -528,6 +562,7 @@ public final class JsonUtil{
 	 * @param xml
 	 *            the xml
 	 * @return String
+	 * @see net.sf.json.xml.XMLSerializer#read(String)
 	 */
 	public static JSON xmlToJSON(String xml){
 		XMLSerializer xmlSerializer = new XMLSerializer();
