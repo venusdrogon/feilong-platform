@@ -28,7 +28,7 @@ package weibo4j.http;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@SuppressWarnings("javadoc")
 public class HTMLEntity {
     public static String escape(String original) {
         StringBuffer buf = new StringBuffer(original);

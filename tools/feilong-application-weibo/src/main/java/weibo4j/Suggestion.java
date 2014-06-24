@@ -11,7 +11,7 @@ import weibo4j.model.UserWapper;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Suggestion extends Weibo{
+@SuppressWarnings("all")public class Suggestion extends Weibo{
 /**
 	 * 
 	 */

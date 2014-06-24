@@ -34,7 +34,7 @@ import java.util.Properties;
 
 /**
  * @author Yusuke Yamamoto - yusuke at mac.com
- */
+ */@SuppressWarnings("all")
 public class Configuration {
     private static Properties defaultProperty;
 

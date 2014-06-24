@@ -1,5 +1,5 @@
 package com.feilong.commons.core.bean.command;
-
+@SuppressWarnings("all")
 public class Customer{
 
 	private long		id;

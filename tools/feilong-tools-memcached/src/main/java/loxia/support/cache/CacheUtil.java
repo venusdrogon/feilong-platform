@@ -5,7 +5,7 @@ import java.util.Set;
 import net.spy.memcached.MemcachedClient;
 import net.spy.memcached.transcoders.Transcoder;
 
-public class CacheUtil{
+@SuppressWarnings("all")public class CacheUtil{
 
 	public static String getParamKey(String name,Object value){
 		return "_p::" + name + ":" + CacheValueConvertor.convert(value);

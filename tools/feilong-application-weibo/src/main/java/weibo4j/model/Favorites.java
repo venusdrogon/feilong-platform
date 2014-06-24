@@ -9,7 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import weibo4j.http.Response;
-
+@SuppressWarnings("all")
 public class Favorites extends WeiboResponse implements java.io.Serializable{
 
 	private static final long serialVersionUID = 3355536191107298448L;

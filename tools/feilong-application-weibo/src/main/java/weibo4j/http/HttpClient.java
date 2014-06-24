@@ -41,7 +41,7 @@ import weibo4j.model.WeiboException;
 /**
  * @author sinaWeibo
  * 
- */
+ */	@SuppressWarnings("all")
 public class HttpClient implements java.io.Serializable {
 
 	private static final long serialVersionUID = -176092625883595547L;

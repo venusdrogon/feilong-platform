@@ -89,7 +89,7 @@ import com.lowagie.text.pdf.PdfWriter;
  * 
  * @author 金鑫 2010-1-20 下午09:03:11
  */
-public abstract class ChartUtil{
+@SuppressWarnings("all")public abstract class ChartUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ChartUtil.class);

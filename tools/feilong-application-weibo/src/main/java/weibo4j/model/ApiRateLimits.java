@@ -2,7 +2,7 @@ package weibo4j.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+@SuppressWarnings("all")
 public class ApiRateLimits implements java.io.Serializable{
 
 	private static final long serialVersionUID = 8550645887134692311L;

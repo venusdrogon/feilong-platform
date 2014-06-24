@@ -40,7 +40,7 @@ import weibo4j.http.Response;
  *
  * @author Yusuke Yamamoto - yusuke at mac.com
  * @editor SinaWeibo
- */
+ */@SuppressWarnings("all")
 public class IDs extends WeiboResponse {
     private long[] ids;           //ids
     private long previousCursor;  //当前cursor

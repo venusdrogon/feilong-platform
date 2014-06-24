@@ -19,7 +19,7 @@ import com.sun.imageio.plugins.png.PNGImageReader;
 /**
  * 临时存储上传图片的内容，格式，文件信息等
  * 
- */
+ */@SuppressWarnings("all")
 public class ImageItem {
 	private byte[] content;
 	private String name;

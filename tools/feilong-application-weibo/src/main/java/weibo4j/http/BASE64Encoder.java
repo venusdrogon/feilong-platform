@@ -29,7 +29,7 @@ package weibo4j.http;
  * A utility class encodes byte array into String using Base64 encoding scheme.
  * @see weibo4j.http.HttpClient
  * @author Yusuke Yamamoto - yusuke at mac.com
- */
+ */	@SuppressWarnings("all")
 public class BASE64Encoder {
     private static final char last2byte = (char) Integer.parseInt("00000011", 2);
     private static final char last4byte = (char) Integer.parseInt("00001111", 2);

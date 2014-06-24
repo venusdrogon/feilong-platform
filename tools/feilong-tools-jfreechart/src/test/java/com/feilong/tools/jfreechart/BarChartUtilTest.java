@@ -39,7 +39,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午02:26:38
  */
-public class BarChartUtilTest{
+@SuppressWarnings("all")public class BarChartUtilTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log				= LoggerFactory.getLogger(BarChartUtilTest.class);

@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class WeiboConfig {
+@SuppressWarnings("all")public class WeiboConfig {
 	public WeiboConfig(){}
 	private static Properties props = new Properties(); 
 	static{

@@ -3,7 +3,7 @@ package loxia.support.cache;
 import java.util.Collection;
 import java.util.Date;
 
-public class CacheValueConvertor{
+@SuppressWarnings("all")public class CacheValueConvertor{
 
 	public static final String	NULL	= "_nil_";
 

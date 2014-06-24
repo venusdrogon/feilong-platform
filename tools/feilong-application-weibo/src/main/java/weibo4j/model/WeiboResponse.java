@@ -54,7 +54,7 @@ import weibo4j.http.Response;
  * @see weibo4j.model.User
  * @author Yusuke Yamamoto - yusuke at mac.com
  */
-public class WeiboResponse implements java.io.Serializable {
+@SuppressWarnings("all")public class WeiboResponse implements java.io.Serializable {
     private static Map<String,SimpleDateFormat> formatMap = new HashMap<String,SimpleDateFormat>();
     private static final long serialVersionUID = 3519962197957449562L;
     private transient int rateLimitLimit = -1;

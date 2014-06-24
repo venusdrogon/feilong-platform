@@ -48,6 +48,7 @@ public class SVNPatchUtil extends AbstractPatchUtil{
 	 *            the buffered reader
 	 * @return the map
 	 */
+	@SuppressWarnings("null")
 	protected Map<PatchType, List<? extends BasePatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader){
 		String line = null;
 		SVNPatchCommand patchCommand = null;

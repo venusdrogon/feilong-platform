@@ -30,7 +30,7 @@ package weibo4j.model;
  * Controlls pagination
  *
  * @author Yusuke Yamamoto - yusuke at mac.com
- */
+ */	@SuppressWarnings("all")
 public class Paging implements java.io.Serializable {
 	private static final long serialVersionUID = -3285857427993796670L;
    

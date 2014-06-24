@@ -6,7 +6,7 @@ import weibo4j.model.PostParameter;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Search extends Weibo{
+@SuppressWarnings("all")public class Search extends Weibo{
 	//---------------------------------搜索接口-----------------------------------------------
 	
 	/**

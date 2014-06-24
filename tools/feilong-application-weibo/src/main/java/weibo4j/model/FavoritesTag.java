@@ -12,7 +12,7 @@ import weibo4j.http.Response;
 /**
  * @author sinaWeibo
  * 
- */
+ */	@SuppressWarnings("all")
 public class FavoritesTag extends WeiboResponse implements java.io.Serializable {
 
 	private static final long serialVersionUID = 2177657076940291492L;

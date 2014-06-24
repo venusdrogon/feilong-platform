@@ -9,7 +9,7 @@ import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Place extends Weibo{
+@SuppressWarnings("all")public class Place extends Weibo{
 
 	/**
 	 * 

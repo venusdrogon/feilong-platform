@@ -54,7 +54,7 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
-public class FreeChart{
+@SuppressWarnings("all")public class FreeChart{
 
 	private static final Logger					log								= LoggerFactory.getLogger(FreeChart.class);
 

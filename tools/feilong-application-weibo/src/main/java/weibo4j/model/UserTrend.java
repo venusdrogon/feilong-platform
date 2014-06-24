@@ -15,7 +15,7 @@ import weibo4j.http.Response;
  * @author SinaWeibo
  * @since weibo4j-V2 1.0.0
  */
-public class UserTrend extends WeiboResponse{
+@SuppressWarnings("all")public class UserTrend extends WeiboResponse{
     private String num;               
     private String hotword = null;
     private String trendId = null;

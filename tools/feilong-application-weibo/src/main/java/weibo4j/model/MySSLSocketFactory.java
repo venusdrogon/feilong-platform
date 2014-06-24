@@ -26,7 +26,7 @@ The socket factory is responsible for opening a socket to the target server usin
 SSL library and performing any required initialization such as performing the connection handshake. Generally the initialization 
 is performed automatically when the socket is created. 
 @author sinaWeibo
-*/
+*/	@SuppressWarnings("all")
 public class MySSLSocketFactory implements ProtocolSocketFactory {
 	private SSLContext sslcontext = null;
 	private SSLContext createSSLContext() {

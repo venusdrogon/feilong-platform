@@ -7,7 +7,7 @@ import java.util.BitSet;
  * @author sinaWeibo
  * 
  */
-public class URLEncodeUtils {
+@SuppressWarnings("all")public class URLEncodeUtils {
 
 	static BitSet dontNeedEncoding;
 

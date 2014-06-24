@@ -9,7 +9,7 @@ import weibo4j.model.PostParameter;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Comments extends Weibo{
+@SuppressWarnings("all")public class Comments extends Weibo{
 
 	private static final long serialVersionUID = 3321231200237418256L;
 

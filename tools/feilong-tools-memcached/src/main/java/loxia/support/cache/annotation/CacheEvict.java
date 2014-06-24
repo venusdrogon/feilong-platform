@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CacheEvict{
+@SuppressWarnings("all")public @interface CacheEvict{
 
 	String[] value() default "";
 

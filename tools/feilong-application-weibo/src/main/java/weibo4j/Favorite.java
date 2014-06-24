@@ -13,7 +13,7 @@ import weibo4j.model.Tag;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Favorite extends Weibo{
+@SuppressWarnings("all")public class Favorite extends Weibo{
 	/**
 	 * 
 	 */

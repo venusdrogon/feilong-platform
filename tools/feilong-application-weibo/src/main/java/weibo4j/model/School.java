@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 import weibo4j.http.Response;
 
-public class School extends WeiboResponse {
+@SuppressWarnings("all")public class School extends WeiboResponse {
 
 	private static final long serialVersionUID = -5991828656755790609L;
 	private int id; // 学校id

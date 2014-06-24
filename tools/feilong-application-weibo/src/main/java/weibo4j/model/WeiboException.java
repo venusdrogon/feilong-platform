@@ -34,7 +34,7 @@ import org.json.JSONObject;
  * In case the Weibo server returned HTTP error code, you can get the HTTP status code using getStatusCode() method.
  * @author Yusuke Yamamoto - yusuke at mac.com
  */
-public class WeiboException extends Exception {
+@SuppressWarnings("all")public class WeiboException extends Exception {
     private int statusCode = -1;
     private int errorCode = -1;
     private String request;

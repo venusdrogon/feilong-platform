@@ -14,7 +14,7 @@ import weibo4j.model.StatusWapper;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Timeline extends Weibo{
+@SuppressWarnings("all")public class Timeline extends Weibo{
 
 	/*----------------------------读取接口----------------------------------------*/
 

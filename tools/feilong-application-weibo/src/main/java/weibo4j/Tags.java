@@ -13,7 +13,7 @@ import weibo4j.model.TagWapper;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Tags extends Weibo{
+@SuppressWarnings("all")public class Tags extends Weibo{
 	/**
 	 * 
 	 */

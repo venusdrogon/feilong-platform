@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 
 import javax.swing.JOptionPane;
 
-public class BareBonesBrowserLaunch {
+@SuppressWarnings("all")public class BareBonesBrowserLaunch {
 
     public static void openURL(String url) {
         try {

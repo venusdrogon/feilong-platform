@@ -10,7 +10,7 @@ import weibo4j.model.School;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class Account extends Weibo{
+@SuppressWarnings("all")public class Account extends Weibo{
 
 	private static final long serialVersionUID = 3816005087976772682L;
 

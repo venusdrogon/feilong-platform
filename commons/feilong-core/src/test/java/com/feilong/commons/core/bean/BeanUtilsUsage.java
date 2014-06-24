@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import com.feilong.commons.core.bean.command.Address;
 import com.feilong.commons.core.bean.command.Customer;
 
+@SuppressWarnings("all")
 public class BeanUtilsUsage{
 
 	public static void main(String[] args) throws Exception{

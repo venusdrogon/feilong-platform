@@ -34,7 +34,7 @@ import org.junit.Test;
  * @version 1.0 2011-5-19 下午03:51:40
  * @since 1.0
  */
-public class CommandTest{
+@SuppressWarnings("all")public class CommandTest{
 
 	@Test
 	public void assoc() throws IOException{

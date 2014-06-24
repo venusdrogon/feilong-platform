@@ -36,6 +36,7 @@ import com.feilong.commons.core.util.StringUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-19 下午4:17:03
  */
+@SuppressWarnings("all")
 public class DateUtilTest extends BaseDateUtil{
 
 	/** The Constant log. */

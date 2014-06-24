@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 
 @Aspect
-public class CacheAspect implements Ordered{
+@SuppressWarnings("all")public class CacheAspect implements Ordered{
 
 	private static final Logger				logger	= LoggerFactory.getLogger(CacheAspect.class);
 

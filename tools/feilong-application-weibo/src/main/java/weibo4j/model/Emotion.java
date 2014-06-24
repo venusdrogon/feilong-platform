@@ -12,7 +12,7 @@ import weibo4j.http.Response;
 /**
  * @author SinaWeibo
  * 
- */
+ */	@SuppressWarnings("javadoc")
 public class Emotion extends WeiboResponse {
 	private static final long serialVersionUID = -4096813631691846494L;
 	private String phrase; // 表情使用的替代文字

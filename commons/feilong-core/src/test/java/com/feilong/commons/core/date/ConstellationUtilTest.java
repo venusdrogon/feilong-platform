@@ -45,7 +45,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2011-1-5 上午11:49:13
  */
 @RunWith(Parameterized.class)
-public class ConstellationUtilTest extends TestCase{
+@SuppressWarnings("all")public class ConstellationUtilTest extends TestCase{
 
 	private static final Logger	log	= LoggerFactory.getLogger(ConstellationUtilTest.class);
 

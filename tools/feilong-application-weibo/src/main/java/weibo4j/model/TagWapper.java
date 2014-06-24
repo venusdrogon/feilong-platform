@@ -2,7 +2,7 @@ package weibo4j.model;
 
 import java.util.List;
 
-public class TagWapper {
+@SuppressWarnings("all")public class TagWapper {
 	private List<Tag> tags;
 	private String id;
 	

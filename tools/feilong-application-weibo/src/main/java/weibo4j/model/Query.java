@@ -36,7 +36,7 @@ import java.util.List;
  * 搜索条件
  * @author SinaWeibo
  *
- */
+ */	@SuppressWarnings("javadoc")
 public class Query {
     private String q; //搜索的关键字。
     private Boolean snick=null;//搜索范围是否包含昵称

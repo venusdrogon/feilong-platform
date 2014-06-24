@@ -35,7 +35,7 @@ import org.json.JSONObject;
  * @author Yusuke Yamamoto - yusuke at mac.com
  * @since Weibo4J 1.2.1
  */
-public class Trend implements java.io.Serializable{
+@SuppressWarnings("all")public class Trend implements java.io.Serializable{
     private String name;
     private String query = null;
     private long amount;

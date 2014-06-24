@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * A data class representing HTTP Post parameter
  * @author Yusuke Yamamoto - yusuke at mac.com
- */
+ */	@SuppressWarnings("javadoc")
 public class PostParameter implements java.io.Serializable{
     String name;
     String value;

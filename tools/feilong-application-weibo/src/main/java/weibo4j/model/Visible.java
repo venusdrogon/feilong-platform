@@ -3,7 +3,7 @@ package weibo4j.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Visible {
+@SuppressWarnings("all")public class Visible {
 	private int type;
 	private int list_id;
 	

@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Yusuke Yamamoto - yusuke at mac.com
  */
-public class Version{
+@SuppressWarnings("all")public class Version{
 
 	private static final Logger	log		= LoggerFactory.getLogger(Version.class);
 

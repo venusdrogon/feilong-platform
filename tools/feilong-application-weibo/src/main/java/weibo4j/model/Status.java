@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import weibo4j.http.Response;
 
-public class Status extends WeiboResponse implements java.io.Serializable {
+@SuppressWarnings("all")public class Status extends WeiboResponse implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8795691786466526420L;
 

@@ -68,6 +68,7 @@ public final class CVSPatchUtil extends AbstractPatchUtil{
 	 *            the buffered reader
 	 * @return the map
 	 */
+	@SuppressWarnings("null")
 	protected Map<PatchType, List<? extends BasePatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader){
 		String line = null;
 		CVSPatchCommand patchCommand = null;

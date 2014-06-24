@@ -29,7 +29,7 @@ import com.feilong.tools.jfreechart.category.Line3DChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 16 00:07:18
  */
-public class BarChart3DUtilTest{
+@SuppressWarnings("all")public class BarChart3DUtilTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(BarChart3DUtilTest.class);

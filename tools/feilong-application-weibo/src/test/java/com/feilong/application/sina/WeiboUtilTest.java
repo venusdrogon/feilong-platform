@@ -31,7 +31,7 @@ import com.feilong.commons.core.date.DateUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 11, 2013 12:23:54 AM
  */
-public class WeiboUtilTest{
+@SuppressWarnings("all")public class WeiboUtilTest{
 
 	private static final Logger	log				= LoggerFactory.getLogger(WeiboUtilTest.class);
 

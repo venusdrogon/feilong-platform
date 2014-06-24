@@ -54,7 +54,7 @@ import weibo4j.model.WeiboException;
  * A data class representing HTTP Response
  *
  * @author Yusuke Yamamoto - yusuke at mac.com
- */
+ */	@SuppressWarnings("all")
 public class Response {
     private final static boolean DEBUG = Configuration.getDebug();
     static Logger log = Logger.getLogger(Response.class.getName());

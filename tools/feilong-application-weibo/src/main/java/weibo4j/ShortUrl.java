@@ -6,7 +6,7 @@ import weibo4j.model.PostParameter;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class ShortUrl extends Weibo{
+@SuppressWarnings("all")public class ShortUrl extends Weibo{
 	/**
 	 * 
 	 */

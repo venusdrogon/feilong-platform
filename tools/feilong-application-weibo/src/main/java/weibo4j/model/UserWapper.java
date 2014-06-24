@@ -11,7 +11,7 @@ import java.util.List;
  * 对User对象列表进行的包装，以支持cursor相关信息传递
  * @author sinaWeibo
  */
-public class UserWapper implements Serializable {
+@SuppressWarnings("all")public class UserWapper implements Serializable {
 
 	private static final long serialVersionUID = -3119107701303920284L;
 

@@ -6,7 +6,7 @@ import net.spy.memcached.CachedData;
 import net.spy.memcached.transcoders.BaseSerializingTranscoder;
 import net.spy.memcached.transcoders.Transcoder;
 
-public class SerializingStringSetTranscoder extends BaseSerializingTranscoder implements Transcoder<Set<String>>{
+@SuppressWarnings("all")public class SerializingStringSetTranscoder extends BaseSerializingTranscoder implements Transcoder<Set<String>>{
 
 	// General flags
 	static final int	SERIALIZED			= 1;

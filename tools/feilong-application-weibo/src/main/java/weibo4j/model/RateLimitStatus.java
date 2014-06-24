@@ -34,7 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import weibo4j.http.Response;
-
+@SuppressWarnings("all")
 public class RateLimitStatus extends WeiboResponse implements
 		java.io.Serializable {
 

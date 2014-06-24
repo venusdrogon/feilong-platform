@@ -1,7 +1,7 @@
 package weibo4j.model;
 
 import java.util.List;
-
+@SuppressWarnings("all")
 public class CommentWapper {
 	private List<Comment> comments;
 

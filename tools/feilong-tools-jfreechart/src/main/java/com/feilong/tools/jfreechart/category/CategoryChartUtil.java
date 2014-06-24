@@ -43,7 +43,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 3 02:06:10
  */
-public abstract class CategoryChartUtil extends ChartUtil{
+@SuppressWarnings("all")public abstract class CategoryChartUtil extends ChartUtil{
 
 	/** The Constant log. */
 	@SuppressWarnings("unused")

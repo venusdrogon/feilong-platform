@@ -2,7 +2,7 @@ package weibo4j.model;
 
 import java.util.List;
 
-public class StatusWapper {
+@SuppressWarnings("all")public class StatusWapper {
 
 	private List<Status> statuses;
 

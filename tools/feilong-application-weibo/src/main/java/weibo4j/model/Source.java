@@ -1,6 +1,6 @@
 package weibo4j.model;
 
-public class Source implements java.io.Serializable{
+@SuppressWarnings("all")public class Source implements java.io.Serializable{
 
 	private static final long serialVersionUID = -8972443458374235866L;
     private String url;               //来源连接

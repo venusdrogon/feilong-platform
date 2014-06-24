@@ -7,7 +7,7 @@ import weibo4j.model.PostParameter;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-public class PublicService extends Weibo{
+@SuppressWarnings("all")public class PublicService extends Weibo{
 
 	private static final long serialVersionUID = 1L;
 

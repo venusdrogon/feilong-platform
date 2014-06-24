@@ -27,6 +27,7 @@ import com.feilong.test.User;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-15 上午10:45:34
  */
+@SuppressWarnings("all")
 public class BeanUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(BeanUtilTest.class);

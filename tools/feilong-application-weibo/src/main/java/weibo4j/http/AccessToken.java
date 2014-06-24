@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import weibo4j.model.WeiboException;
 import weibo4j.model.WeiboResponse;
 
-
+@SuppressWarnings("all")
 public class AccessToken extends WeiboResponse implements Serializable {
 
 	private static final long serialVersionUID = 6986530164134648944L;

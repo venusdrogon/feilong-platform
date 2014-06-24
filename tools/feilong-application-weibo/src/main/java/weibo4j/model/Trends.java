@@ -45,7 +45,7 @@ import weibo4j.http.Response;
  * @author Yusuke Yamamoto - yusuke at mac.com
  * @since weibo4j-V2 1.0.1
  */
-public class Trends extends WeiboResponse implements Comparable<Trends> {
+@SuppressWarnings("all")public class Trends extends WeiboResponse implements Comparable<Trends> {
 	private Date asOf; // asof
 	private Date trendAt; // 话题时间
 	private Trend[] trends; // 话题对象

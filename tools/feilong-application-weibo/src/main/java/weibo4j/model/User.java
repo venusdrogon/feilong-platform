@@ -41,7 +41,7 @@ import weibo4j.http.Response;
 /**
  * A data class representing Basic user information element
  */
-public class User extends WeiboResponse implements java.io.Serializable {
+@SuppressWarnings("all")public class User extends WeiboResponse implements java.io.Serializable {
 
 	private static final long serialVersionUID = -332738032648843482L;
 	private String id;                      //用户UID
