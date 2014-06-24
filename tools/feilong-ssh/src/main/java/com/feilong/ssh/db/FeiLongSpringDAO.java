@@ -50,6 +50,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            查询信息的主键
 	 * @return 存储这条信息的对象
 	 */
+	@SuppressWarnings("cast")
 	public T load(Class<T> clz,Serializable id){
 		try{
 			// 如果找不到符合条件的纪录，而load()将会报出ObjectNotFoundEcception
@@ -95,6 +96,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            查询信息的主键
 	 * @return 存储这条信息的对象
 	 */
+	@SuppressWarnings("cast")
 	public T get(Class<T> clz,Serializable id){
 		// 如果找不到符合条件的纪录，get()方法将返回null．
 		// 根据主键加载特定持久化类的实例

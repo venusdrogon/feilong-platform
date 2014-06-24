@@ -119,7 +119,7 @@ public class ArrayUtilTest{
 		Iterator<String> iterator = ArrayUtil.toIterator(array);
 
 		while (iterator.hasNext()){
-			Object object = (Object) iterator.next();
+			Object object =   iterator.next();
 			log.debug("{}", object);
 		}
 	}
@@ -139,7 +139,7 @@ public class ArrayUtilTest{
 		Iterator<User> iterator = ArrayUtil.toIterator(users);
 
 		while (iterator.hasNext()){
-			User user = (User) iterator.next();
+			User user = iterator.next();
 			log.debug("{}", user.getId());
 		}
 	}

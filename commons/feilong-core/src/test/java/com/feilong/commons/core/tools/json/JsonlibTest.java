@@ -51,7 +51,7 @@ public class JsonlibTest{
 		Assert.assertEquals(jsonObject.get("double"), PropertyUtils.getProperty(bean, "double"));
 		Assert.assertEquals(jsonObject.get("func"), PropertyUtils.getProperty(bean, "func"));
 		List expected = JSONArray.toList(jsonObject.getJSONArray("array"));
-		Assert.assertEquals(expected, (List) PropertyUtils.getProperty(bean, "array"));
+		Assert.assertEquals(expected, PropertyUtils.getProperty(bean, "array"));
 	}
 
 	@Test

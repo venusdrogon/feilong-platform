@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.application.taobao;
 
@@ -41,29 +41,41 @@ import com.taobao.api.response.TopatsTradesFullinfoGetResponse;
 import com.taobao.api.response.TradesSoldGetResponse;
 
 /**
- * 飞龙淘宝包
+ * 飞龙淘宝包.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-17 下午01:31:02
  */
 public class TaoBaoUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log			= LoggerFactory.getLogger(TaoBaoUtilTest.class);
 
+	/** The Constant APP_KEY. */
 	public final static String	APP_KEY		= "12398690";
 
+	/** The Constant APP_SERCET. */
 	public final static String	APP_SERCET	= "91d2fc6d34b01f954f44a6751fa2c114";
 
+	/** The client. */
 	TaobaoClient				client		= new DefaultTaobaoClient("http://gw.api.taobao.com/router/rest", APP_KEY, APP_SERCET);
 
+	/**
+	 * Gets the code.
+	 * 
+	 */
 	@Test
-	public void getCode(){
+	public void testGetCode(){
 		String url = "http://my.open.taobao.com/auth/authorize.htm?appkey=" + APP_KEY;
 		log.info(url);
 	}
 
+	/**
+	 * Gets the url.
+	 * 
+	 */
 	@Test
-	public void getUrl(){
+	public void testGetUrl(){
 		String code = "TOP-10ff7fc2f1e78b2989828a72ac7efc5e5ctTzMHr3MezjxHpRUwvreaUnd8zTMlT-END";
 		String url = "http://container.open.taobao.com/container?authcode=" + code;
 		log.info(url);
@@ -132,10 +144,11 @@ public class TaoBaoUtilTest{
 	}
 
 	/**
-	 * 标准登录
+	 * 标准登录.
+	 * 
 	 */
 	@Test
-	public void getTaoBaoStandardLoginUrlTest(){
+	public void testGetTaoBaoStandardLoginUrlTest(){
 		TaoBaoStandardLoginEntity taoBaoStandardLoginEntity = new TaoBaoStandardLoginEntity();
 		taoBaoStandardLoginEntity.setRequestUrl("http://container.api.taobao.com/container/identify");
 		taoBaoStandardLoginEntity.setApp_key(APP_KEY);
@@ -146,10 +159,11 @@ public class TaoBaoUtilTest{
 	}
 
 	/**
-	 * 标准退出
+	 * 标准退出.
+	 * 
 	 */
 	@Test
-	public void getTaoBaoStandardLoginOutUrlTest(){
+	public void testGetTaoBaoStandardLoginOutUrl(){
 		TaoBaoStandardLoginOutEntity taoBaoStandardLoginOutEntity = new TaoBaoStandardLoginOutEntity();
 		taoBaoStandardLoginOutEntity.setRequestUrl("http://container.api.taobao.com/container/logoff");
 		taoBaoStandardLoginOutEntity.setApp_key(APP_KEY);
@@ -161,9 +175,10 @@ public class TaoBaoUtilTest{
 
 	/**
 	 * OAuth2.0:获取授权码Code
+	 * 
 	 */
 	@Test
-	public void getTaoBaoOAuthLoginUrlForGetCodeTest(){
+	public void testGetTaoBaoOAuthLoginUrlForGetCodeTest(){
 		TaoBaoOAuthLoginForCodeEntity taoBaoOAuthLoginForCodeEntity = new TaoBaoOAuthLoginForCodeEntity();
 		taoBaoOAuthLoginForCodeEntity.setRequestUrl("https://oauth.taobao.com/authorize");
 		taoBaoOAuthLoginForCodeEntity.setRedirect_uri("http://www.feilong.com/taobao");
@@ -176,13 +191,20 @@ public class TaoBaoUtilTest{
 		// http://www.feilong.com/taobao?error=invalid_client&error_description=The%20Application%20already%20Bind%20the%20user:%DE)T%08&state=11111
 	}
 
+	/**
+	 * Gets the tao bao o auth login out url.
+	 * 
+	 */
 	@Test
-	public final void getTaoBaoOAuthLoginOutUrl(){
+	public final void testGetTaoBaoOAuthLoginOutUrl(){
 		String client_id = APP_KEY;
 		String redirect_uri = "http://www.feilong.com/usercenter";
 		log.info(TaoBaoUtil.getTaoBaoOAuthLoginOutUrl(client_id, redirect_uri));
 	}
 
+	/**
+	 * Test browse tao bao login out1.
+	 */
 	@Test
 	public final void testBrowseTaoBaoLoginOut1(){
 		String code = "uOZLczuR7xDJAUV4blD46Vra1219";
@@ -236,6 +258,12 @@ public class TaoBaoUtilTest{
 		log.info(user.getNick());
 	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args){
 		String str = "%E9%A3%9E%E5%A4%A9%E5%A5%94%E6%9C%88";
 		log.info(URIUtil.decode(str, "utf-8"));

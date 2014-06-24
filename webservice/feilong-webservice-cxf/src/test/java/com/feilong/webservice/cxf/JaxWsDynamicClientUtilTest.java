@@ -85,7 +85,7 @@ public class JaxWsDynamicClientUtilTest{
 			Iterator<QName> ports = service.getPorts();
 
 			while (ports.hasNext()){
-				QName qName2 = (QName) ports.next();
+				QName qName2 = ports.next();
 				log.info(qName2.toString());
 			}
 		}

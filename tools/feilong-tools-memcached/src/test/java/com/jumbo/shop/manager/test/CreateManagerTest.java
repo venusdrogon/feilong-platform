@@ -31,7 +31,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @TransactionConfiguration(defaultRollback = false)
 public class CreateManagerTest extends AbstractJUnit4SpringContextTests{
 
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(CreateManagerTest.class);
 
 	@Autowired

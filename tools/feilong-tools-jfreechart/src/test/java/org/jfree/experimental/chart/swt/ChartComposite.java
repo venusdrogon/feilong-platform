@@ -296,7 +296,6 @@ public class ChartComposite extends Composite implements ChartChangeListener,
     private transient Rectangle zoomRectangle = null;
 
     /** Controls if the zoom rectangle is drawn as an outline or filled. */
-    //TODO private boolean fillZoomRectangle = true;
 
     /** The minimum distance required to drag the mouse to trigger a zoom. */
     private int zoomTriggerDistance;
@@ -789,7 +788,6 @@ public class ChartComposite extends Composite implements ChartChangeListener,
                     filename = filename + ".png";
                 }
             }
-            //TODO replace getSize by getBounds ?
             ChartUtilities.saveChartAsPNG(new File(filename), this.chart,
                     this.canvas.getSize().x, this.canvas.getSize().y);
         }
@@ -1281,7 +1279,6 @@ public class ChartComposite extends Composite implements ChartChangeListener,
      * Creates a print job for the chart.
      */
     public void createChartPrintJob() {
-        //FIXME try to replace swing print stuff by swt
         PrinterJob job = PrinterJob.getPrinterJob();
         PageFormat pf = job.defaultPage();
         PageFormat pf2 = job.pageDialog(pf);
@@ -1771,7 +1768,6 @@ public class ChartComposite extends Composite implements ChartChangeListener,
      */
     public void paintControl(PaintEvent e) {
         // first determine the size of the chart rendering area...
-        // TODO workout insets for SWT
         Rectangle available = getBounds();
         // skip if chart is null
         if (this.chart == null) {
@@ -1873,7 +1869,6 @@ public class ChartComposite extends Composite implements ChartChangeListener,
                     this.info);
         }
         Rectangle area = getScreenDataArea();
-        // TODO see if we need to apply some line color and style to the
         // axis traces
         if (this.horizontalAxisTrace && area.x < this.verticalTraceLineX
                 && area.x + area.width > this.verticalTraceLineX) {

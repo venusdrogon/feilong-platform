@@ -37,7 +37,7 @@ public class JsonUtilToBeanTest{
 	@Test
 	public void toBean1(){
 		String json = "{'name':'get','dateAttr':'2009-11-12'}";
-		Person ps = (Person) JsonUtil.toBean(json, Person.class);
+		Person ps =  JsonUtil.toBean(json, Person.class);
 		// print: get
 		log.info(ps.getName());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

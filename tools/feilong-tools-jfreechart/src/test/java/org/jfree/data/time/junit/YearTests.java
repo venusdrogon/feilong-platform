@@ -291,7 +291,6 @@ private static final Logger log = LoggerFactory.getLogger(YearTests.class);
         TimeZone savedZone = TimeZone.getDefault();
         TimeZone.setDefault(TimeZone.getTimeZone("Europe/London"));
         Year y = new Year(1970);
-        // TODO: Check this result...
         assertEquals(-3600000L, y.getFirstMillisecond());
         Locale.setDefault(saved);
         TimeZone.setDefault(savedZone);
@@ -345,7 +344,6 @@ private static final Logger log = LoggerFactory.getLogger(YearTests.class);
         TimeZone savedZone = TimeZone.getDefault();
         TimeZone.setDefault(TimeZone.getTimeZone("Europe/London"));
         Year y = new Year(1970);
-        // TODO: Check this result...
         assertEquals(31532399999L, y.getLastMillisecond());
         Locale.setDefault(saved);
         TimeZone.setDefault(savedZone);

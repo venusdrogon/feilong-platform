@@ -100,7 +100,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testEqualsObjectObjectBoolean(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -108,7 +107,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testEqualsObjectObject(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -116,7 +114,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testIsBoolean(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -124,7 +121,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testIsInteger(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -132,7 +128,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToBoolean(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -186,7 +181,7 @@ public class ObjectUtilTest{
 	 */
 	private void printIterator(Iterator iterator){
 		while (iterator.hasNext()){
-			Object object = (Object) iterator.next();
+			Object object = iterator.next();
 			log.info(object.toString());
 		}
 	}
@@ -205,7 +200,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToBigDecimal(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -213,7 +207,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToLong(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -221,7 +214,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToDouble(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -229,7 +221,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToFloat(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -237,7 +228,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToShort(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -245,7 +235,6 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testToStringObject(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -261,6 +250,5 @@ public class ObjectUtilTest{
 	 */
 	@Test
 	public final void testTrim(){
-		fail("Not yet implemented"); // TODO
 	}
 }

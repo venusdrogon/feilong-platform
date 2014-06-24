@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 public class PagerTagTest{
 
-	@SuppressWarnings("unused")
 	private static final Logger	log			= LoggerFactory.getLogger(PagerTagTest.class);
 
 	private PagerTag			pagerTag	= new PagerTag();

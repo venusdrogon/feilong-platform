@@ -1,31 +1,48 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.application.taobao.entity;
 
 import java.io.Serializable;
 
 /**
- *基于OAuth2.0的登录验证授权,用授权码Code换取Token
+ * 基于OAuth2.0的登录验证授权,用授权码Code换取Token
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-17 15:55:56
  */
 public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 
-	public TaoBaoOAuthLoginForTokenEntity(String requestUrl, String clientId, String redirectUri, String grantType, String code, String clientSecret){
+	/**
+	 * Instantiates a new tao bao o auth login for token entity.
+	 * 
+	 * @param requestUrl
+	 *            the request url
+	 * @param clientId
+	 *            the client id
+	 * @param redirectUri
+	 *            the redirect uri
+	 * @param grantType
+	 *            the grant type
+	 * @param code
+	 *            the code
+	 * @param clientSecret
+	 *            the client secret
+	 */
+	public TaoBaoOAuthLoginForTokenEntity(String requestUrl, String clientId, String redirectUri, String grantType, String code,
+			String clientSecret){
 		super();
 		this.requestUrl = requestUrl;
 		client_id = clientId;
@@ -35,10 +52,14 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 		client_secret = clientSecret;
 	}
 
+	/**
+	 * Instantiates a new tao bao o auth login for token entity.
+	 */
 	public TaoBaoOAuthLoginForTokenEntity(){
 		super();
 	}
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 4087772680781105962L;
 
 	/**
@@ -46,33 +67,23 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	 */
 	private String				requestUrl;
 
-	/**
-	 * Y 即创建应用时的Appkey
-	 */
+	/** Y 即创建应用时的Appkey. */
 	private String				client_id;
 
-	/**
-	 * Y 登录后的回调地址，（注意：此地址必须要与注册应用时的回调地址相匹配，匹配规则是：注域名完全匹配
-	 */
+	/** Y 登录后的回调地址，（注意：此地址必须要与注册应用时的回调地址相匹配，匹配规则是：注域名完全匹配. */
 	private String				redirect_uri;
 
-	/**
-	 * Y 授权类型 authorization_code 或者 refresh_token
-	 */
+	/** Y 授权类型 authorization_code 或者 refresh_token. */
 	private String				grant_type;
 
-	/**
-	 * Y 授权请求中的授权码,即第一步获取到的code
-	 */
+	/** Y 授权请求中的授权码,即第一步获取到的code. */
 	private String				code;
 
-	/**
-	 * Y 客户密钥，即appsecret
-	 */
+	/** Y 客户密钥，即appsecret. */
 	private String				client_secret;
 
 	/**
-	 * Y 即创建应用时的Appkey
+	 * Y 即创建应用时的Appkey.
 	 * 
 	 * @return the client_id
 	 */
@@ -81,7 +92,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 即创建应用时的Appkey
+	 * Y 即创建应用时的Appkey.
 	 * 
 	 * @param clientId
 	 *            the client_id to set
@@ -91,7 +102,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 登录后的回调地址，（注意：此地址必须要与注册应用时的回调地址相匹配，匹配规则是：注域名完全匹配
+	 * Y 登录后的回调地址，（注意：此地址必须要与注册应用时的回调地址相匹配，匹配规则是：注域名完全匹配.
 	 * 
 	 * @return the redirect_uri
 	 */
@@ -100,7 +111,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 登录后的回调地址，（注意：此地址必须要与注册应用时的回调地址相匹配，匹配规则是：注域名完全匹配
+	 * Y 登录后的回调地址，（注意：此地址必须要与注册应用时的回调地址相匹配，匹配规则是：注域名完全匹配.
 	 * 
 	 * @param redirectUri
 	 *            the redirect_uri to set
@@ -129,7 +140,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 授权类型 authorization_code 或者 refresh_token
+	 * Y 授权类型 authorization_code 或者 refresh_token.
 	 * 
 	 * @return the grant_type
 	 */
@@ -138,7 +149,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 授权类型 authorization_code 或者 refresh_token
+	 * Y 授权类型 authorization_code 或者 refresh_token.
 	 * 
 	 * @param grantType
 	 *            the grant_type to set
@@ -148,7 +159,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 授权请求中的授权码,即第一步获取到的code
+	 * Y 授权请求中的授权码,即第一步获取到的code.
 	 * 
 	 * @return the code
 	 */
@@ -157,7 +168,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 授权请求中的授权码,即第一步获取到的code
+	 * Y 授权请求中的授权码,即第一步获取到的code.
 	 * 
 	 * @param code
 	 *            the code to set
@@ -167,7 +178,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 客户密钥，即appsecret
+	 * Y 客户密钥，即appsecret.
 	 * 
 	 * @return the client_secret
 	 */
@@ -176,7 +187,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	}
 
 	/**
-	 * Y 客户密钥，即appsecret
+	 * Y 客户密钥，即appsecret.
 	 * 
 	 * @param clientSecret
 	 *            the client_secret to set

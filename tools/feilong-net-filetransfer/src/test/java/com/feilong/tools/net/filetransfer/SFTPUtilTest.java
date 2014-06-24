@@ -119,7 +119,6 @@ public class SFTPUtilTest extends FileTransferTest{
 	 */
 	@Override
 	public void sendLocalFileToRemote_dir_chinese() throws Exception{
-		// TODO Auto-generated method stub
 	}
 
 	@Test

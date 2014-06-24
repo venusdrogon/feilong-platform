@@ -21,7 +21,7 @@ public class ListResourceBundleTest{
 		Enumeration<String> keys = listResourceBundle.getKeys();
 
 		while (keys.hasMoreElements()){
-			String key = (String) keys.nextElement();
+			String key = keys.nextElement();
 			log.info(key + ":" + listResourceBundle.getObject(key));
 		}
 

@@ -42,7 +42,6 @@ public class LogAspect extends AbstractAspect{
 
 	private Log		_log;
 
-	@SuppressWarnings("unused")
 	// && @annotation(com.feilong.commons.core.aop.Log)
 	@Pointcut("execution(* com.feilong.spring.aspects.**.*(..))")
 	// @Pointcut("execution(* @annotation(com.feilong.commons.core.aop.Log))")

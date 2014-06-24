@@ -128,7 +128,6 @@ public class XYPlotTests extends TestCase {
         super(name);
     }
 
-// FIXME: the getDatasetCount() method is returning a count of the slots
 // available for datasets, rather than the number of datasets actually
 // specified...see if there is some way to clean this up.
 //    /**

@@ -4,6 +4,7 @@ package com.feilong.taglib.pager.parser;
 import java.io.StringReader;
 import java.util.Hashtable;
 
+@SuppressWarnings("rawtypes")
 public class TagExportParser implements TagExportParserConstants{
 
 	private static Hashtable	pagerTagExportCache	= new Hashtable();

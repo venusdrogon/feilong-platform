@@ -205,7 +205,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 //				}
 //				classIndex = classFileName.lastIndexOf('.');
 //				classFileName = classFileName.substring(0, classIndex);
-//				// 在jar中运行时，取得的classFileName为XXX/XXX/...../ActivityState
+//				// 在jar中运行时，取得的classFileName为XXX/XX/...../ActivityState
 //				// 在开发环境时 是 ActivityState
 //				if (isInJar){
 //					className = classFileName.replace('/', '.');

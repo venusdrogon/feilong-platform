@@ -132,7 +132,6 @@ public class XYImageAnnotationTests extends TestCase {
         assertTrue(a1 instanceof PublicCloneable);
     }
 
-// FIXME: Make this test pass
 //    /**
 //     * Serialize an instance, restore it, and check for equality.
 //     */

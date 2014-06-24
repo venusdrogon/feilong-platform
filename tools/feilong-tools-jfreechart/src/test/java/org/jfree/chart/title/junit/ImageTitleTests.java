@@ -87,7 +87,6 @@ public class ImageTitleTests extends TestCase {
         assertFalse(t1.equals(t2));
         t2.setImage(new BufferedImage(2, 1, BufferedImage.TYPE_INT_RGB));
         // images considered equal only if they're the SAME object
-        // TODO: is there a way to do a better test?
         assertFalse(t1.equals(t2));
     }
 
@@ -124,7 +123,6 @@ public class ImageTitleTests extends TestCase {
      * Serialize an instance, restore it, and check for equality.
      */
     public void testSerialization() {
-        // TODO: add serialization support for images
     }
 
     private static final double EPSILON = 0.00000001;

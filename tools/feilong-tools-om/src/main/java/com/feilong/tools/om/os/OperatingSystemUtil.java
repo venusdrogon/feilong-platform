@@ -198,7 +198,7 @@ public final class OperatingSystemUtil{
 
 						int i = 0;
 						while (inetAddresses.hasMoreElements()){
-							InetAddress inetAddress = (InetAddress) inetAddresses.nextElement();
+							InetAddress inetAddress = inetAddresses.nextElement();
 
 							// 只输出ip4,ip6尚未普及
 							if (inetAddress instanceof Inet4Address){

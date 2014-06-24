@@ -56,7 +56,7 @@ public final class PDFUtil{
 			styleSheet.loadTagStyle("body", "leading", "16,0");
 
 			@SuppressWarnings("unchecked")
-			ArrayList<Element> arrayList = (ArrayList<Element>) HTMLWorker.parseToList(reader, styleSheet);
+			ArrayList<Element> arrayList = HTMLWorker.parseToList(reader, styleSheet);
 			write(outputFileName, arrayList);
 		}catch (FileNotFoundException e){
 			e.printStackTrace();

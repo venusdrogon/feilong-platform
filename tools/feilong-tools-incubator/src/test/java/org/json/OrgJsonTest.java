@@ -30,7 +30,7 @@ public class OrgJsonTest{
 		String a = "{user:{name:'张三'},user2:{name:'张三'}}";
 		try{
 			JSONObject jsonObject = new JSONObject(a);
-			JSONObject jSONArray_user = (JSONObject) jsonObject.getJSONObject("user");
+			JSONObject jSONArray_user = jsonObject.getJSONObject("user");
 
 			log.debug("jSONArray_user.length():{}", jSONArray_user.length());
 			log.debug("jsonObject:{}", jsonObject);

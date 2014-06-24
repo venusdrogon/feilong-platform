@@ -46,7 +46,6 @@ import org.slf4j.LoggerFactory;
  */
 public class LuceneUtilTest{
 
-	@SuppressWarnings("unused")
 	private static final Logger	log			= LoggerFactory.getLogger(LuceneUtilTest.class);
 
 	// 保存索引文件的地方

@@ -307,6 +307,7 @@ public class HttpClient implements java.io.Serializable {
 	 * 支持multipart方式上传图片
 	 * 
 	 */
+	@SuppressWarnings("cast")
 	public Response multPartURL(String url, PostParameter[] params,
 			ImageItem item) throws WeiboException {
 		PostMethod postMethod = new PostMethod(url);
@@ -335,6 +336,7 @@ public class HttpClient implements java.io.Serializable {
 		}
 	}
 
+	@SuppressWarnings("cast")
 	public Response multPartURL(String fileParamName, String url,
 			PostParameter[] params, File file, boolean authenticated)
 			throws WeiboException {

@@ -157,7 +157,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @return <code>null</code>.
 	 */
 	public Graphics create(){
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -167,7 +166,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @return <code>null</code>.
 	 */
 	public GraphicsConfiguration getDeviceConfiguration(){
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -250,7 +248,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @see #setPaint(Paint)
 	 */
 	public Paint getPaint(){
-		// TODO: it might be a good idea to keep a reference to the color
 		// specified in setPaint() or setColor(), rather than creating a
 		// new object every time getPaint() is called.
 		return SWTUtils.toAwtColor(this.gc.getForeground());
@@ -286,7 +283,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @see #setColor(Color)
 	 */
 	public Color getColor(){
-		// TODO: it might be a good idea to keep a reference to the color
 		// specified in setPaint() or setColor(), rather than creating a
 		// new object every time getPaint() is called.
 		return SWTUtils.toAwtColor(this.gc.getForeground());
@@ -341,7 +337,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * Not implemented - see {@link Graphics#setPaintMode()}.
 	 */
 	public void setPaintMode(){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -351,7 +346,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 *            the colour.
 	 */
 	public void setXORMode(Color color){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -619,7 +613,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @see java.awt.Graphics2D#rotate(double, double, double)
 	 */
 	public void rotate(double theta,double x,double y){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -1005,7 +998,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * Not implemented - see {@link Graphics2D#drawGlyphVector(GlyphVector, float, float)}.
 	 */
 	public void drawGlyphVector(GlyphVector g,float x,float y){
-		// TODO Auto-generated method stub
 
 	}
 
@@ -1047,7 +1039,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 *            the y-coordinate.
 	 */
 	public void drawString(AttributedCharacterIterator iterator,int x,int y){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -1061,7 +1052,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 *            the y-coordinate.
 	 */
 	public void drawString(AttributedCharacterIterator iterator,float x,float y){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -1070,7 +1060,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @return <code>false</code>.
 	 */
 	public boolean hit(Rectangle rect,Shape text,boolean onStroke){
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -1078,7 +1067,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * Not implemented - see {@link Graphics#copyArea(int, int, int, int, int, int)}.
 	 */
 	public void copyArea(int x,int y,int width,int height,int dx,int dy){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -1094,7 +1082,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @return A boolean.
 	 */
 	public boolean drawImage(Image image,AffineTransform xform,ImageObserver obs){
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -1140,7 +1127,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 *            the transform.
 	 */
 	public void drawRenderedImage(RenderedImage image,AffineTransform xform){
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -1152,7 +1138,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 *            the transform.
 	 */
 	public void drawRenderableImage(RenderableImage image,AffineTransform xform){
-		// TODO Auto-generated method stub
 
 	}
 
@@ -1294,7 +1279,6 @@ public class SWTGraphics2D extends Graphics2D{
 	 * @param observer
 	 */
 	public boolean drawImage(Image image,int dx1,int dy1,int dx2,int dy2,int sx1,int sy1,int sx2,int sy2,ImageObserver observer){
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -1326,7 +1310,6 @@ public class SWTGraphics2D extends Graphics2D{
 			int sy2,
 			Color bgcolor,
 			ImageObserver observer){
-		// TODO Auto-generated method stub
 		return false;
 	}
 

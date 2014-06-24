@@ -27,7 +27,6 @@ import org.slf4j.LoggerFactory;
  */
 public class FeiLongYiTaoCrawler{
 
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(FeiLongYiTaoCrawler.class);
 
 	String						url	= "http://s.etao.com/search?q=439182-452&tbpm=t";

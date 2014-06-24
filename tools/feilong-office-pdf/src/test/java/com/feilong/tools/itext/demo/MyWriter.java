@@ -1,8 +1,5 @@
 /* 
  * Created on 2005-7-1 
- * 
- * TODO To change the template for this generated file go to 
- * Window - Preferences - Java - Code Style - Code Templates 
  */
 package com.feilong.tools.itext.demo;
 
@@ -11,7 +8,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Table;
 
 /**
- * @author jcoder TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
+ * @author jcoder 
  */
 public class MyWriter extends PDFWriter{
 
@@ -58,10 +55,8 @@ public class MyWriter extends PDFWriter{
 			document.add(table);
 			close();//别忘记关闭 
 		}catch (BadElementException e){
-			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}catch (DocumentException e){
-			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}
 	}

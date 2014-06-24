@@ -223,8 +223,8 @@ public class FreeChart{
 			vPieDataset = DatasetUtilities.createPieDatasetForRow(vCategoryDataset, 0);
 			// vWaferMapDataset=(WaferMapDataset)vCategoryDataset;
 			vTableXYDataset = (TableXYDataset) vTimeSeriesCollection;
-			vIntervalXYDataset = (IntervalXYDataset) vTimeSeriesCollection;
-			vXYDataset = (XYDataset) vTimeSeriesCollection;
+			vIntervalXYDataset = vTimeSeriesCollection;
+			vXYDataset = vTimeSeriesCollection;
 			/*
 			 * vXYZDataset=(XYZDataset)vTimeSeriesCollection; //vWaferMapDataset=(WaferMapDataset)vTimeSeriesCollection;
 			 * vWindDataset=(WindDataset)vTimeSeriesCollection; vOHLCDataset=(OHLCDataset)vTimeSeriesCollection;

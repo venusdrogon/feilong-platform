@@ -35,7 +35,6 @@ public class Dom4jUtilTest{
 	 */
 	@Test
 	public final void testGetDocumentString(){
-		fail("Not yet implemented"); // TODO
 	}
 
 }

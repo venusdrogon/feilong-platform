@@ -33,6 +33,7 @@ public class Oauth extends Weibo{
 	/*
 	 * 解析站内应用post的SignedRequest split为part1和part2两部分
 	 */
+	@SuppressWarnings({ "restriction", "javadoc" })
 	public String parseSignedRequest(String signed_request) throws IOException,
 			InvalidKeyException, NoSuchAlgorithmException {
 		String[] t = signed_request.split("\\.", 2);

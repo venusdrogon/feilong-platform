@@ -57,7 +57,7 @@ public class ListUtilTest{
 		list.add("feilong5");
 		log.info(list.indexOf("xinge") + "");
 		for (Iterator<String> iterator = list.iterator(); iterator.hasNext();){
-			String string = (String) iterator.next();
+			String string = iterator.next();
 			if (string.equals("feilong1")){
 				iterator.remove();
 			}

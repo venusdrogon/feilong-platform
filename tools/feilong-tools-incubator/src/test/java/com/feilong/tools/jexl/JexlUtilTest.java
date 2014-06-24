@@ -32,7 +32,6 @@ import com.feilong.tools.JexlUtil;
  */
 public class JexlUtilTest{
 
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(JexlUtilTest.class);
 
 	@Test
