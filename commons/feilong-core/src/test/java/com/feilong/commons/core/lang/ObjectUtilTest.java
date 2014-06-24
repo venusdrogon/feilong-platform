@@ -17,8 +17,10 @@ package com.feilong.commons.core.lang;
 
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -33,7 +35,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.test.User;
 
 /**
@@ -44,6 +45,13 @@ public class ObjectUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ObjectUtilTest.class);
+
+	@Test
+	public void name() throws IOException{
+		//		 log.info("Size of Object: " + ObjectUtil.size(new Object()));
+		log.info("Size of Calendar: " + ObjectUtil.size(Calendar.getInstance()));
+		log.info("Size of HashMap: " + ObjectUtil.size(new HashMap<String, String>()));
+	}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equalsNotNull(java.lang.Object, java.lang.Object)}.
