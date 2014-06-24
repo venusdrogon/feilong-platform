@@ -97,15 +97,15 @@ public final class PropertiesUtil extends BaseConfigure{
 	 * @param klass
 	 *            klass,通过 klass 获得 ClassLoader,然后获得 getResourceAsStream
 	 * @param propertiesPath
-	 *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-exception_en_US.properties<br>
+	 *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties<br>
 	 *            <ul>
 	 *            <li>那么使用 {@link #getProperties(Class, String)} 需要这么写
-	 *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-exception_en_US.properties")} <br>
-	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-exception_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
+	 *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-message_en_US.properties")} <br>
+	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-message_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
 	 *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
-	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-exception_en_US.properties")}<br>
-	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-exception_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
-	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-exception_en_US.properties"(不需要“/”)</li>
+	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
+	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
+	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties"(不需要“/”)</li>
 	 *            </ul>
 	 * @return Properties
 	 */
@@ -121,15 +121,15 @@ public final class PropertiesUtil extends BaseConfigure{
 	 * @param klass
 	 *            类,会通过 klass 调用
 	 * @param propertiesPath
-	 *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-exception_en_US.properties<br>
+	 *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties<br>
 	 *            <ul>
 	 *            <li>那么使用 {@link #getProperties(Class, String)} 需要这么写
-	 *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-exception_en_US.properties")} <br>
-	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-exception_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
+	 *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-message_en_US.properties")} <br>
+	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-message_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
 	 *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
-	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-exception_en_US.properties")}<br>
-	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-exception_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
-	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-exception_en_US.properties"(不需要“/”)</li>
+	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
+	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
+	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties"(不需要“/”)</li>
 	 *            </ul>
 	 * @return 获取Properties
 	 */

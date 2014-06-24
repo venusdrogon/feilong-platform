@@ -22,7 +22,6 @@ public class PropertiesConstantsTest{
 
 	@Test
 	public void test(){
-		log.debug(ExceptionConstants.EXCEPTION_UNKNOWN_TYPE_EMAIL);
 		log.debug(PropertiesConstants.CONFIG_DATE_MINUTE);
 	}
 

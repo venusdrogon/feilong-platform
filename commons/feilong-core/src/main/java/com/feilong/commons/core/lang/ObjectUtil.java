@@ -45,6 +45,8 @@ public final class ObjectUtil{
 	 * @return the int
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
+	 * @since 1.0.7
+	 * @see ByteArrayOutputStream#size()
 	 */
 	//TODO 这个需要check下,可能有更好的方案
 	public static int size(Object serializable) throws IOException{

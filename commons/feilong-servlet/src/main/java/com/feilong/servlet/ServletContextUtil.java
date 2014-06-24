@@ -24,7 +24,6 @@ import javax.servlet.ServletContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.ExceptionConstants;
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -113,7 +112,7 @@ public final class ServletContextUtil{
 	public static String getFileContent(ServletContext servletContext,String directoryName,String fileName){
 		String filePathString = servletContext.getRealPath("/");
 		if (Validator.isNullOrEmpty(fileName)){
-			throw new IllegalArgumentException(ExceptionConstants.EXCEPTION_FILENAME_NULL);
+			throw new IllegalArgumentException("fileName can't be null/empty");
 		}
 		if (Validator.isNullOrEmpty(directoryName)){
 			filePathString = filePathString + fileName;

@@ -15,7 +15,6 @@
  */
 package com.feilong.tools.middleware.email;
 
-import com.feilong.commons.core.ExceptionConstants;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
@@ -39,7 +38,8 @@ public final class EmailUtil{
 		if (null != emailType){
 			return emailType.getChineseName();
 		}
-		return ExceptionConstants.EXCEPTION_UNKNOWN_TYPE_EMAIL;
+		//TODO 此处应该在前端做国际化
+		return "unkown type email";
 	}
 
 	/**

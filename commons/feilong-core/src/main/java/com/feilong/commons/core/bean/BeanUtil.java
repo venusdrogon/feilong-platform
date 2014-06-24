@@ -38,6 +38,7 @@ import com.feilong.commons.core.util.Validator;
 public final class BeanUtil{
 
 	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private final static Logger	log	= LoggerFactory.getLogger(BeanUtil.class);
 
 	/** Don't let anyone instantiate this class. */
