@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class MaxValueTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月23日 下午10:54:46
@@ -27,13 +28,14 @@ import org.slf4j.LoggerFactory;
  */
 public class MaxValueTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MaxValueTest.class);
 
 	/**
 	 * Max value.
 	 */
 	@Test
-	public void MAX_VALUE(){
+	@SuppressWarnings("all")public void MAX_VALUE(){
 
 		//**************Byte*******************************
 		//127

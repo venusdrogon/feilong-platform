@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.excel;
 
@@ -23,7 +23,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 
 /**
- * 生成 excel cell style
+ * 生成 excel cell style.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Feb 10, 2014 2:51:03 AM
@@ -31,12 +31,13 @@ import org.apache.poi.ss.usermodel.Font;
 public final class ExcelCellStyleUtil{
 
 	/**
-	 * 获得强调的字体
+	 * 获得强调的字体.
 	 * 
-	 * @param workbook
-	 * @return 获得强调的字体
 	 * @author 金鑫
 	 * @version 1.0 2010-7-12 下午11:06:52
+	 * @param workbook
+	 *            the workbook
+	 * @return 获得强调的字体
 	 */
 	public static HSSFFont getStressHSSFFont(HSSFWorkbook workbook){
 		HSSFFont font = workbook.createFont();
@@ -46,12 +47,13 @@ public final class ExcelCellStyleUtil{
 	}
 
 	/**
-	 * 高亮样式
+	 * 高亮样式.
 	 * 
-	 * @param workbook
-	 * @return 高亮样式
 	 * @author 金鑫
 	 * @version 1.0 2010-7-16 上午10:34:20
+	 * @param workbook
+	 *            the workbook
+	 * @return 高亮样式
 	 */
 	public static HSSFCellStyle getHSSFCellStyle_HightLight(HSSFWorkbook workbook){
 		HSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -59,6 +61,13 @@ public final class ExcelCellStyleUtil{
 		return cellStyle;
 	}
 
+	/**
+	 * Gets the HSSF cell style for title row cell.
+	 * 
+	 * @param workbook
+	 *            the workbook
+	 * @return the HSSF cell style for title row cell
+	 */
 	public static HSSFCellStyle getHSSFCellStyleForTitleRowCell(HSSFWorkbook workbook){
 		HSSFCellStyle cellStyle = workbook.createCellStyle();
 		// 指定的填充模式
@@ -76,12 +85,13 @@ public final class ExcelCellStyleUtil{
 	}
 
 	/**
-	 * 隔行变色 样式
+	 * 隔行变色 样式.
 	 * 
-	 * @param workbook
-	 * @return 隔行变色
 	 * @author 金鑫
 	 * @version 1.0 2010-7-16 上午10:29:07
+	 * @param workbook
+	 *            the workbook
+	 * @return 隔行变色
 	 */
 	public static HSSFCellStyle getHSSFCellStyle_ChangeRowColor(HSSFWorkbook workbook){
 		HSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -92,12 +102,13 @@ public final class ExcelCellStyleUtil{
 	}
 
 	/**
-	 * 隔行变色 样式,并且高亮
+	 * 隔行变色 样式,并且高亮.
 	 * 
-	 * @param workbook
-	 * @return 隔行变色 样式,并且高亮
 	 * @author 金鑫
 	 * @version 1.0 2010-7-16 上午10:29:07
+	 * @param workbook
+	 *            the workbook
+	 * @return 隔行变色 样式,并且高亮
 	 */
 	public static HSSFCellStyle getHSSFCellStyle_ChangeRowColorAndHightLight(HSSFWorkbook workbook){
 		HSSFCellStyle cellStyle = getHSSFCellStyle_ChangeRowColor(workbook);
@@ -106,13 +117,13 @@ public final class ExcelCellStyleUtil{
 	}
 
 	/**
-	 * 获得隔行变色的样式
+	 * 获得隔行变色的样式.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-7-7 下午03:01:23
 	 * @param workbook
 	 *            workbook
 	 * @return 获得隔行变色的样式
-	 * @author 金鑫
-	 * @version 1.0 2010-7-7 下午03:01:23
 	 */
 	public HSSFCellStyle getRowChangeHSSFCellStyle(HSSFWorkbook workbook){
 		HSSFCellStyle cellStyle = workbook.createCellStyle();

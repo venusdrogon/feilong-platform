@@ -17,7 +17,6 @@ package com.feilong.commons.core.util;
 
 import java.util.Random;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +28,7 @@ import com.feilong.commons.core.PropertiesConstants;
  * @version 1.0 2011-7-25 下午04:24:50
  * @since 1.0
  */
+@SuppressWarnings("deprecation")
 public class RandomUtilTest{
 
 	/** The Constant log. */

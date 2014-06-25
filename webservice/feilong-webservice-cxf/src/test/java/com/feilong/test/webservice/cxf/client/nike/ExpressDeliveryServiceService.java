@@ -1,6 +1,18 @@
 
 /*
- * 
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.feilong.test.webservice.cxf.client.nike;
@@ -19,6 +31,8 @@ import javax.xml.ws.WebServiceFeature;
  * 2011-04-28T18:44:13.378+08:00
  * Generated source version: 2.4.0
  * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 16:25:35
  */
 
 
@@ -27,9 +41,13 @@ import javax.xml.ws.WebServiceFeature;
                   targetNamespace = "http://www.nikestore.com.cn/webService") 
 public class ExpressDeliveryServiceService extends Service {
 
+    /** The Constant WSDL_LOCATION. */
     public final static URL WSDL_LOCATION;
 
+    /** The Constant SERVICE. */
     public final static QName SERVICE = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServiceService");
+    
+    /** The Constant ExpressDeliveryServicePort. */
     public final static QName ExpressDeliveryServicePort = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServicePort");
     static {
         URL url = null;
@@ -43,36 +61,54 @@ public class ExpressDeliveryServiceService extends Service {
         WSDL_LOCATION = url;
     }
 
+    /**
+	 * Instantiates a new express delivery service service.
+	 * 
+	 * @param wsdlLocation
+	 *            the wsdl location
+	 */
     public ExpressDeliveryServiceService(URL wsdlLocation) {
         super(wsdlLocation, SERVICE);
     }
 
+    /**
+	 * Instantiates a new express delivery service service.
+	 * 
+	 * @param wsdlLocation
+	 *            the wsdl location
+	 * @param serviceName
+	 *            the service name
+	 */
     public ExpressDeliveryServiceService(URL wsdlLocation, QName serviceName) {
         super(wsdlLocation, serviceName);
     }
 
+    /**
+	 * Instantiates a new express delivery service service.
+	 */
     public ExpressDeliveryServiceService() {
         super(WSDL_LOCATION, SERVICE);
     }
     
 
     /**
-     * 
-     * @return
-     *     returns ExpressDeliveryService
-     */
+	 * Gets the express delivery service port.
+	 * 
+	 * @return returns ExpressDeliveryService
+	 */
     @WebEndpoint(name = "ExpressDeliveryServicePort")
     public ExpressDeliveryService getExpressDeliveryServicePort() {
         return super.getPort(ExpressDeliveryServicePort, ExpressDeliveryService.class);
     }
 
     /**
-     * 
-     * @param features
-     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
-     * @return
-     *     returns ExpressDeliveryService
-     */
+	 * Gets the express delivery service port.
+	 * 
+	 * @param features
+	 *            A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy. Supported features not in the
+	 *            <code>features</code> parameter will have their default values.
+	 * @return returns ExpressDeliveryService
+	 */
     @WebEndpoint(name = "ExpressDeliveryServicePort")
     public ExpressDeliveryService getExpressDeliveryServicePort(WebServiceFeature... features) {
         return super.getPort(ExpressDeliveryServicePort, ExpressDeliveryService.class, features);

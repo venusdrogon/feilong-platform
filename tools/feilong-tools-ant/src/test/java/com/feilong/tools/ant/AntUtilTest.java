@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 public class AntUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AntUtilTest.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(AntUtilTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.tools.ant.AntUtil#executeTarget(java.lang.String, java.lang.String, int)}.

@@ -97,7 +97,7 @@ public class CollectionsUtilTest{
 	}
 
 	/**
-	 * 集合转成字符串
+	 * 集合转成字符串.
 	 */
 	@Test
 	public void testCollectionToString(){
@@ -111,6 +111,9 @@ public class CollectionsUtilTest{
 		log.info(string);
 	}
 
+	/**
+	 * To list.
+	 */
 	@Test
 	public void toList(){
 		List<String> list = new ArrayList<String>();

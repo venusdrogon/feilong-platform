@@ -18,12 +18,15 @@ public class LocaleTest{
 	private static final Logger	log		= LoggerFactory.getLogger(LocaleTest.class);
 
 	/** The en loc. */
+	@SuppressWarnings("unused")
 	private Locale				enLoc	= new Locale("en", "US");						// 表示美国地区
 
 	/** The fr loc. */
+	@SuppressWarnings("unused")
 	private Locale				frLoc	= new Locale("fr", "FR");						// 表示法国地区
 
 	/** The zh loc. */
+	@SuppressWarnings("unused")
 	private Locale				zhLoc	= new Locale("zh", "CN");						// 表示中国地区
 
 	/**

@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.test.Person;
 import com.feilong.test.User;
 
 /**
@@ -64,14 +63,13 @@ public class ReflectUtilTest{
 	/**
 	 * Creates the payment form.
 	 * 
-	 * @return the field value map
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
 	 * @throws IllegalAccessException
 	 *             the illegal access exception
 	 */
 	@Test
-	public final void getFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
+	public final void testGetFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
 
 		User user = new User(12L);
 

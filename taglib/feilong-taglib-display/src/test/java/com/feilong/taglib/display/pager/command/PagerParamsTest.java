@@ -49,6 +49,7 @@ public class PagerParamsTest{
 	/**
 	 * Test method for {@link com.feilong.taglib.display.pager.command.PagerParams#equals(java.lang.Object)}.
 	 */
+	@SuppressWarnings("cast")
 	@Test
 	public final void testEqualsObject(){
 		PagerParams pagerParams1 = new PagerParams(0, "a");

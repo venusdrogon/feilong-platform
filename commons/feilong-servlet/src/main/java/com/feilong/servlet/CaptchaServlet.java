@@ -41,6 +41,7 @@ import com.feilong.servlet.http.ResponseUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 14, 2013 10:58:37 PM
  */
+@SuppressWarnings("deprecation")
 public class CaptchaServlet extends HttpServlet{
 
 	private static final long	serialVersionUID	= -5495378311081182425L;

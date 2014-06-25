@@ -30,5 +30,5 @@ public class ParseJPAResult implements Serializable{
 
 	private static final long	serialVersionUID	= 288232184048495608L;
 
-	private static final Logger	log					= LoggerFactory.getLogger(ParseJPAResult.class);
+	@SuppressWarnings("unused")private static final Logger	log					= LoggerFactory.getLogger(ParseJPAResult.class);
 }

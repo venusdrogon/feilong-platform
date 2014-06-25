@@ -1,6 +1,5 @@
 package temple.io;
 
-import com.feilong.commons.core.enumeration.CharsetType;
 //package com.feilong.commons.core.temple.io;
 //
 //import java.io.BufferedInputStream;
@@ -228,3 +227,4 @@ import com.feilong.commons.core.enumeration.CharsetType;
 //		return result;
 //	}
 //}
+

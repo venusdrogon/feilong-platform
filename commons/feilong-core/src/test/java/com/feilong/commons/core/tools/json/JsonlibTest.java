@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.commons.core.tools.json;
 
@@ -35,10 +35,28 @@ import com.feilong.test.User;
 import com.feilong.test.UserAddress;
 import com.feilong.test.UserInfo;
 
+/**
+ * The Class JsonlibTest.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:31:11
+ */
 public class JsonlibTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(JsonlibTest.class);
 
+	/**
+	 * Name.
+	 * 
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 */
+	@SuppressWarnings({ "deprecation", "rawtypes" })
 	@Test
 	public void name() throws IllegalAccessException,InvocationTargetException,NoSuchMethodException{
 		String json = "{name=\"json\",bool:true,int:1,double:2.2,func:function(a){ return a; },array:[1,2]}";
@@ -54,6 +72,9 @@ public class JsonlibTest{
 		Assert.assertEquals(expected, PropertyUtils.getProperty(bean, "array"));
 	}
 
+	/**
+	 * Name1.
+	 */
 	@Test
 	public void name1(){
 		String json = getJsonString();
@@ -64,6 +85,9 @@ public class JsonlibTest{
 		log.info(json);
 	}
 
+	/**
+	 * To bean.
+	 */
 	@Test
 	public void toBean(){
 		String json = getJsonString();
@@ -76,7 +100,7 @@ public class JsonlibTest{
 	}
 
 	/**
-	 * @return
+	 * Test json string.
 	 */
 	@Test
 	public void testJsonString(){
@@ -84,7 +108,9 @@ public class JsonlibTest{
 	}
 
 	/**
-	 * @return
+	 * Gets the json string.
+	 * 
+	 * @return the json string
 	 */
 	private String getJsonString(){
 		User user = new User();

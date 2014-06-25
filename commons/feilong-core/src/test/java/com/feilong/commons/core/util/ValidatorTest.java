@@ -42,6 +42,7 @@ public class ValidatorTest{
 	/**
 	 * Name.
 	 */
+	@SuppressWarnings("cast")
 	@Test
 	public void name(){
 		assertEquals(true, new Integer[][] {} instanceof Object[]);

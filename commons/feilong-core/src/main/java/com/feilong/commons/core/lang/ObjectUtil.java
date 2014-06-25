@@ -82,6 +82,7 @@ public final class ObjectUtil{
 	 *         </ul>
 	 */
 	@SuppressWarnings("rawtypes")
+	//XXX 转成 Iterator<T>
 	public final static Iterator toIterator(Object object){
 		Iterator iterator = null;
 		// object 不是空

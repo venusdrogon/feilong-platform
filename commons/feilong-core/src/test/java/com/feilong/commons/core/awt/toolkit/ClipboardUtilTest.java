@@ -30,12 +30,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class ClipboardUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-23 下午02:43:35
  * @since 1.0
  */
 public class ClipboardUtilTest{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ClipboardUtilTest.class);
 
 	/**
@@ -47,6 +50,9 @@ public class ClipboardUtilTest{
 		log.info(ClipboardUtil.getClipboardContent());
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test(){
 		String aString = "L,M,S,XL,XS,XXL";

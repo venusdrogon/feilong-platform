@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.spring.util;
 
@@ -96,10 +96,11 @@ public class UriTemplateUtil{
 	}
 
 	/**
-	 * 获得最佳的HandlerMapping映射内的匹配模式。
+	 * 获得最佳的HandlerMapping映射内的匹配模式。.
 	 * 
 	 * @param request
-	 * @return
+	 *            the request
+	 * @return the best matching pattern
 	 */
 	public static String getBestMatchingPattern(HttpServletRequest request){
 		String bestMatchingPattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
@@ -111,9 +112,11 @@ public class UriTemplateUtil{
 	 * urlPathHelper.getOriginatingContextPath(request) + expandUrl + (Validator.isNotNull(queryString) ? "?" + queryString : "");
 	 * 
 	 * @param request
+	 *            the request
 	 * @param variableName
 	 *            模板变量
 	 * @param value
+	 *            the value
 	 * @return 获得一个新的url,参数部分会被原样返回<br>
 	 *         urlPathHelper.getOriginatingContextPath(request) + expandUrl + (Validator.isNotNull(queryString) ? "?" + queryString : "");
 	 */
@@ -145,7 +148,9 @@ public class UriTemplateUtil{
 	 * </pre>
 	 * 
 	 * @param requestPath
+	 *            the request path
 	 * @param matchingPatternPath
+	 *            the matching pattern path
 	 * @param variableName
 	 *            模板变量名称
 	 * @param value
@@ -165,8 +170,10 @@ public class UriTemplateUtil{
 	 * For example: For pattern "/hotels/{hotel}" and path "/hotels/1", this method will return a map containing "hotel"->"1".
 	 * 
 	 * @param requestPath
+	 *            the request path
 	 * @param matchingPatternPath
-	 * @return
+	 *            the matching pattern path
+	 * @return the map
 	 */
 	public static Map<String, String> extractUriTemplateVariables(String requestPath,String matchingPatternPath){
 		log.debug("the param requestPath:{}", requestPath);
@@ -188,9 +195,12 @@ public class UriTemplateUtil{
 	 * </pre>
 	 * 
 	 * @param matchingPatternPath
+	 *            the matching pattern path
 	 * @param variableName
+	 *            the variable name
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the string
 	 */
 	public static String expandWithVariable(String matchingPatternPath,String variableName,String value){
 		Map<String, String> map = new HashMap<String, String>();
@@ -217,7 +227,7 @@ public class UriTemplateUtil{
 	 *            匹配模式
 	 * @param variableNames
 	 *            变量数组
-	 * @return
+	 * @return the string
 	 */
 	public static String clearVariablesValue(String requestPath,String matchingPatternPath,String[] variableNames){
 		Map<String, String> map = extractUriTemplateVariables(requestPath, matchingPatternPath);
@@ -249,8 +259,8 @@ public class UriTemplateUtil{
 	 *            匹配模式
 	 * @param variableNames
 	 *            变量数组
+	 * @return the string
 	 * @see #clearVariablesValue(String, String, String[])
-	 * @return
 	 */
 	public static String retainVariablesValue(String requestPath,String matchingPatternPath,String[] variableNames){
 
@@ -283,7 +293,7 @@ public class UriTemplateUtil{
 	 *            变量-值 map <br>
 	 *            如果 传入的map 中的key 不在模板中,自动忽略<br>
 	 *            即只处理 模板中有的key
-	 * @return
+	 * @return the string
 	 */
 	public static String expand(String uriTemplatePath,Map<String, String> map){
 		// 所有的变量
@@ -305,7 +315,8 @@ public class UriTemplateUtil{
 	 * 变量名称 Return the names of the variables in the template, in order.
 	 * 
 	 * @param uriTemplatePath
-	 * @return
+	 *            the uri template path
+	 * @return the variable names
 	 */
 	public static List<String> getVariableNames(String uriTemplatePath){
 		UriTemplate uriTemplate = new UriTemplate(uriTemplatePath);

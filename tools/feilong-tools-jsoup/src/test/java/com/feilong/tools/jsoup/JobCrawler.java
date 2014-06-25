@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jsoup;
 
@@ -30,20 +30,22 @@ import org.slf4j.LoggerFactory;
 import com.feilong.tools.jsoup.entity.Enterprise;
 
 /**
- *网页爬虫---招聘信息
+ * 网页爬虫---招聘信息.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-12 上午12:40:50
  */
 public class JobCrawler{
 
+	/** The Constant log. */
 	private final static Logger	log					= LoggerFactory.getLogger(JobCrawler.class);
 
-	/**
-	 * 上海所有工作
-	 */
+	/** 上海所有工作. */
 	public static String		enterprise_ShangHai	= "http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=0200&district=0000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keywordtype=2&curr_page=6&lang=c&stype=2&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=01&lonlat=0,0&radius=-1&ord_field=0&list_type=0&fromType=14";
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test(){
 		try{
@@ -69,8 +71,16 @@ public class JobCrawler{
 		}
 	}
 
+	/** The url. */
 	String	url	= "http://search.51job.com/list/co,c,214871,0000,10,1.html";
 
+	/**
+	 * Gets the enterprise info.
+	 * 
+	 * @param enterpriseUrl
+	 *            the enterprise url
+	 * @return the enterprise info
+	 */
 	public Enterprise getEnterpriseInfo(String enterpriseUrl){
 		//www.51job.com
 		//zhaopin.com
@@ -103,7 +113,11 @@ public class JobCrawler{
 
 	//	@Test
 	//	@Ignore
-	public void getEnterpriseInfo(){
+	/**
+	 * Gets the enterprise info.
+	 * 
+	 */
+	public void testGetEnterpriseInfo(){
 		getEnterpriseInfo(url);
 	}
 }

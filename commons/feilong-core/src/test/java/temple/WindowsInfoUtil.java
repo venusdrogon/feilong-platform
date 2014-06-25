@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package temple;
 
 import java.io.File;
@@ -13,20 +28,31 @@ import org.slf4j.LoggerFactory;
 import com.sun.management.OperatingSystemMXBean;
 
 /**
- * 获取windows系统信息（CPU,内存,文件系统）
+ * 获取windows系统信息（CPU,内存,文件系统）.
  * 
  * @author libing
  */
+@SuppressWarnings("restriction")
 public class WindowsInfoUtil{
 
+	/** The Constant log. */
 	private static final Logger	log			= LoggerFactory.getLogger(WindowsInfoUtil.class);
 
+	/** The Constant CPUTIME. */
 	private static final int	CPUTIME		= 500;
 
+	/** The Constant PERCENT. */
 	private static final int	PERCENT		= 100;
 
+	/** The Constant FAULTLENGTH. */
 	private static final int	FAULTLENGTH	= 10;
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args){
 		log.info(getCpuRatioForWindows());
 		log.info(getMemery());
@@ -34,6 +60,11 @@ public class WindowsInfoUtil{
 	}
 
 	//获取内存使用率 
+	/**
+	 * Gets the memery.
+	 * 
+	 * @return the memery
+	 */
 	public static String getMemery(){
 		OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 		// 总的物理内存+虚拟内存 
@@ -46,6 +77,11 @@ public class WindowsInfoUtil{
 	}
 
 	//获取文件系统使用率 
+	/**
+	 * Gets the disk.
+	 * 
+	 * @return the disk
+	 */
 	public static List<String> getDisk(){
 		// 操作系统 
 		List<String> list = new ArrayList<String>();
@@ -64,6 +100,11 @@ public class WindowsInfoUtil{
 	}
 
 	//获得cpu使用率 
+	/**
+	 * Gets the cpu ratio for windows.
+	 * 
+	 * @return the cpu ratio for windows
+	 */
 	public static String getCpuRatioForWindows(){
 		try{
 			String procCmd = System.getenv("windir")
@@ -86,6 +127,13 @@ public class WindowsInfoUtil{
 	}
 
 	//读取cpu相关信息 
+	/**
+	 * Read cpu.
+	 * 
+	 * @param proc
+	 *            the proc
+	 * @return the long[]
+	 */
 	private static long[] readCpu(final Process proc){
 		long[] retn = new long[2];
 		try{
@@ -158,7 +206,7 @@ public class WindowsInfoUtil{
 	 *            开始坐标（包括该坐标)
 	 * @param end_idx
 	 *            截止坐标（包括该坐标）
-	 * @return
+	 * @return the string
 	 */
 	private static String substring(String src,int start_idx,int end_idx){
 		byte[] b = src.getBytes();

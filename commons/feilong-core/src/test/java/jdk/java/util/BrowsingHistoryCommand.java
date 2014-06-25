@@ -94,4 +94,11 @@ public class BrowsingHistoryCommand implements Serializable,Comparable<BrowsingH
 	public void setDate(long date){
 		this.date = date;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode(){
+		return super.hashCode();
+	}
 }

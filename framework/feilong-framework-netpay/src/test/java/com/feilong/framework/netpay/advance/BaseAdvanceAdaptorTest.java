@@ -37,7 +37,7 @@ import com.feilong.framework.netpay.advance.command.QueryResult;
 public class BaseAdvanceAdaptorTest extends AbstractJUnit4SpringContextTests{
 
 	/** The Constant log. */
-	protected static final Logger	log	= LoggerFactory.getLogger(BaseAdvanceAdaptorTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(BaseAdvanceAdaptorTest.class);
 
 	// private String code = "44";
 

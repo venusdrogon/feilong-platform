@@ -41,7 +41,7 @@ import com.feilong.tools.solrj.paramscommand.SpellingParamCommand;
  */
 public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepository{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BaseSuggestionRepositoryImpl.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(BaseSuggestionRepositoryImpl.class);
 
 	// Don't Autowired
 	protected SolrServer		solrServer;

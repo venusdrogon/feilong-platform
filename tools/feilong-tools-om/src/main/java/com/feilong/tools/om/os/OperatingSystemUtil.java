@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.om.os;
 
@@ -37,18 +37,20 @@ import com.feilong.commons.core.util.ByteUtil;
 import com.sun.management.OperatingSystemMXBean;
 
 /**
- * 飞龙操作系统相关类,可以读取操作系统相关数据
+ * 飞龙操作系统相关类,可以读取操作系统相关数据.
  * 
  * @author 金鑫 2010-2-4 上午10:50:47
  */
+@SuppressWarnings({ "restriction", "deprecation" })
 public final class OperatingSystemUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(OperatingSystemUtil.class);
 
 	/**
 	 * 获得当前的监控对象.
 	 * 
-	 * @return
+	 * @return the monitor info entity
 	 */
 	public static MonitorInfoEntity getMonitorInfoEntity(){
 		Runtime runtime = Runtime.getRuntime();
@@ -99,9 +101,9 @@ public final class OperatingSystemUtil{
 	}
 
 	/**
-	 * 获取本机IP地址
+	 * 获取本机IP地址.
 	 * 
-	 * @return
+	 * @return the local host address
 	 */
 	public static String getLocalHostAddress(){
 		InetAddress inetAddress = null;
@@ -135,9 +137,9 @@ public final class OperatingSystemUtil{
 	}
 
 	/**
-	 * 获取本机,计算机名
+	 * 获取本机,计算机名.
 	 * 
-	 * @return
+	 * @return the local host name
 	 */
 	public static String getLocalHostName(){
 		// Gets the host name for this IP address.
@@ -145,7 +147,7 @@ public final class OperatingSystemUtil{
 	}
 
 	/**
-	 * 获取所有开启的，正常的网卡的(本机)MAC地址
+	 * 获取所有开启的，正常的网卡的(本机)MAC地址.
 	 * 
 	 * @return key是小写的mac地址，value 是对应的NetworkInterface
 	 * @since jdk 1.6
@@ -241,7 +243,8 @@ public final class OperatingSystemUtil{
 	 * OperatingSystemUtil.getMacAddressByHost("10.8.17.84")
 	 * 
 	 * @param host
-	 * @return
+	 *            the host
+	 * @return the mac address by host
 	 */
 	public static String getMacAddressByHost(String host){
 		InetAddress inetAddress = InetAddressUtil.getInetAddress(host);
@@ -266,7 +269,7 @@ public final class OperatingSystemUtil{
 	 * 
 	 * @param name
 	 *            网络接口的名称
-	 * @return
+	 * @return the mac address by name
 	 */
 	public static String getMacAddressByName(String name){
 		try{
@@ -280,7 +283,7 @@ public final class OperatingSystemUtil{
 	}
 
 	/**
-	 * 从networkInterface 取到 macAddress
+	 * 从networkInterface 取到 macAddress.
 	 * 
 	 * @param networkInterface
 	 *            由名称和分配给此接口的 IP 地址列表组成的网络接口。<br>
@@ -321,9 +324,9 @@ public final class OperatingSystemUtil{
 	// ********************************************************************************************************
 
 	/**
-	 * 显示 程序运行的 系统环境 信息
+	 * 显示 程序运行的 系统环境 信息.
 	 * 
-	 * @return
+	 * @return the system properties log
 	 */
 	public static String getSystemPropertiesLog(){
 		Properties props = System.getProperties();
@@ -346,7 +349,11 @@ public final class OperatingSystemUtil{
 		return JsonUtil.format(props);
 	}
 
-	/** 记录磁盘信息 */
+	/**
+	 * 记录磁盘信息.
+	 * 
+	 * @return the disk info log
+	 */
 	public static String getDiskInfoLog(){
 
 		Map<String, Map<String, Object>> map = new HashMap<String, Map<String, Object>>();

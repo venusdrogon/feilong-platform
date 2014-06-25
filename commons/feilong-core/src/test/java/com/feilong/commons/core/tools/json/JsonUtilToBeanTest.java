@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.commons.core.tools.json;
 
 import java.text.SimpleDateFormat;
@@ -25,14 +40,18 @@ import com.feilong.test.User;
 import com.feilong.test.UserInfo;
 
 /**
- * JsonUtil测试类 (C) 2009-9-11, jzj
+ * JsonUtil测试类 (C) 2009-9-11, jzj.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:31:51
  */
-public class JsonUtilToBeanTest{
+@SuppressWarnings("all")public class JsonUtilToBeanTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(JsonUtilToBeanTest.class);
 
 	/**
-	 * 从json串转换成实体对象，且实体中Date属性能正确转换 void
+	 * 从json串转换成实体对象，且实体中Date属性能正确转换 void.
 	 */
 	@Test
 	public void toBean1(){
@@ -46,7 +65,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 从json串转换成实体对象，并且实体集合属性存有另外实体Bean void
+	 * 从json串转换成实体对象，并且实体集合属性存有另外实体Bean void.
 	 */
 	@Test
 	public void toBean(){
@@ -58,11 +77,17 @@ public class JsonUtilToBeanTest{
 		log.info(JsonUtil.toJSON(myBean).toString(4, 4));
 	}
 
+	/**
+	 * To bean n ull.
+	 */
 	@Test
 	public void toBeanNUll(){
 		log.info(JsonUtil.toJSON(null, null).toString(4, 4));
 	}
 
+	/**
+	 * To bean n ulluser.
+	 */
 	@Test
 	public void toBeanNUlluser(){
 		User user = new User();
@@ -74,14 +99,14 @@ public class JsonUtilToBeanTest{
 		// String[] excludes = { "userInfo" };
 		// jsonConfig.setExcludes(excludes);
 
-		Class target = UserInfo.class;
+		Class<UserInfo> target = UserInfo.class;
 		String[] properties = { "age" };
 		jsonConfig.registerPropertyExclusions(target, properties);
 		log.info(JsonUtil.toJSON(user, jsonConfig).toString(4, 4));
 	}
 
 	/**
-	 * 把一个json数组串转换成普通数组 void
+	 * 把一个json数组串转换成普通数组 void.
 	 */
 	@Test
 	public void toArray(){
@@ -96,7 +121,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把一个json数组串转换成实体数组 void
+	 * 把一个json数组串转换成实体数组 void.
 	 */
 	@Test
 	public void toArray2(){
@@ -111,7 +136,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把一个json数组串转换成实体数组，且数组元素的属性含有另外实例Bean void
+	 * 把一个json数组串转换成实体数组，且数组元素的属性含有另外实例Bean void.
 	 */
 	@Test
 	public void toArray3(){
@@ -130,7 +155,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把一个json数组串转换成存放普通类型元素的集合 void
+	 * 把一个json数组串转换成存放普通类型元素的集合 void.
 	 */
 	@Test
 	public void toList1(){
@@ -146,7 +171,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把一个json数组串转换成集合，且集合里存放的为实例Bean void
+	 * 把一个json数组串转换成集合，且集合里存放的为实例Bean void.
 	 */
 	@Test
 	public void toList(){
@@ -157,7 +182,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把一个json数组串转换成集合，且集合里的对象的属性含有另外实例Bean void
+	 * 把一个json数组串转换成集合，且集合里的对象的属性含有另外实例Bean void.
 	 */
 	@Test
 	public void toList3(){
@@ -175,7 +200,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把json对象串转换成map对象 void
+	 * 把json对象串转换成map对象 void.
 	 */
 	@Test
 	public void testGetMapFromJsonObjStr(){
@@ -191,7 +216,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把json对象串转换成map对象，且map对象里存放的为其他实体Bean void
+	 * 把json对象串转换成map对象，且map对象里存放的为其他实体Bean void.
 	 */
 	@Test
 	public void toMap(){
@@ -201,6 +226,9 @@ public class JsonUtilToBeanTest{
 		log.info(JsonUtil.toJSON(map).toString(4, 4));
 	}
 
+	/**
+	 * Name.
+	 */
 	@Test
 	public void name(){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -219,6 +247,9 @@ public class JsonUtilToBeanTest{
 		//log.info(JsonUtil.format(map,"a.b"));
 	}
 
+	/**
+	 * To map1.
+	 */
 	@Test
 	public void toMap1(){
 
@@ -245,7 +276,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 把json对象串转换成map对象，且map对象里 存放的其他实体Bean还含有另外实体Bean void
+	 * 把json对象串转换成map对象，且map对象里 存放的其他实体Bean还含有另外实体Bean void.
 	 */
 	@Test
 	public void toMap3(){
@@ -265,7 +296,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * 实体Bean转json串 void
+	 * 实体Bean转json串 void.
 	 */
 	@Test
 	public void testgetJsonStr1(){
@@ -282,7 +313,7 @@ public class JsonUtilToBeanTest{
 	}
 
 	/**
-	 * list转json串 void
+	 * list转json串 void.
 	 */
 	@Test
 	public void testgetJsonStr4(){

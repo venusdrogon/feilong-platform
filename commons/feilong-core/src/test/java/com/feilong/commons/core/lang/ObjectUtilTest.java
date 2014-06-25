@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.lang;
 
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -38,6 +36,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.test.User;
 
 /**
+ * The Class ObjectUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 4, 2013 1:58:05 PM
  */
@@ -46,6 +46,12 @@ public class ObjectUtilTest{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ObjectUtilTest.class);
 
+	/**
+	 * Name.
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	@Test
 	public void name() throws IOException{
 		//		 log.info("Size of Object: " + ObjectUtil.size(new Object()));
@@ -72,7 +78,7 @@ public class ObjectUtilTest{
 	 * Assert equals.
 	 */
 	@Test
-	public final void assertEquals(){
+	@SuppressWarnings("all")public final void assertEquals(){
 
 		Long a = new Long(1L);
 		Long b = new Long(1L);
@@ -177,7 +183,10 @@ public class ObjectUtilTest{
 	}
 
 	/**
+	 * Prints the iterator.
+	 * 
 	 * @param iterator
+	 *            the iterator
 	 */
 	private void printIterator(Iterator iterator){
 		while (iterator.hasNext()){

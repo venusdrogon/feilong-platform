@@ -140,7 +140,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	}
 
 	@Test
-	public void getFileEntityMap() throws Exception{
+	public void testGetFileEntityMap() throws Exception{
 		String remoteAbsolutePath = "/home/appuser/test/2013-12-04-1938";
 		String[] fileNames = { "SportActivity.dat", "SubCategory.dat", "aaa" };
 		Map<String, FileInfoEntity> fileEntityMap = fileTransfer.getFileEntityMap(remoteAbsolutePath, fileNames);

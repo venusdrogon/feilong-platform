@@ -21,8 +21,6 @@ import javax.swing.filechooser.FileSystemView;
 
 import org.apache.commons.lang3.SystemUtils;
 
-import com.feilong.commons.core.lang.SystemUtil;
-
 /**
  * 特殊文件夹.
  * 

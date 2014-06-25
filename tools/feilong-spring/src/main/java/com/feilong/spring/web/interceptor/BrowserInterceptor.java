@@ -35,7 +35,7 @@ import com.feilong.web.entity.browser.Browser;
 public class BrowserInterceptor extends HandlerInterceptorAdapter{
 
 	/** The Constant log. */
-	private static final Logger	log								= LoggerFactory.getLogger(BrowserInterceptor.class);
+	@SuppressWarnings("unused")private static final Logger	log								= LoggerFactory.getLogger(BrowserInterceptor.class);
 
 	/** 默认的 变量名称 <code>{@value}</code>. */
 	public static final String	default_Browser_Request_Name	= "feilongBrowser";

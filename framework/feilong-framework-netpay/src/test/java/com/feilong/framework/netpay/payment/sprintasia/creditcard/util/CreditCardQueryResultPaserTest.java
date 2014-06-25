@@ -48,6 +48,7 @@ public class CreditCardQueryResultPaserTest{
 		wddxPacketXML = "<wddxPacket version='1.0'><header/><data><struct><var name='TRANSACTIONID'><string>806809A2-0485-9D54-222DDF9928ED7AEC</string></var><var name='ACQUIRERRESPONSECODE'><string>000</string></var><var name='SCRUBMESSAGE'><string></string></var><var name='AMOUNT'><number>9011999.0</number></var><var name='SERVICEVERSION'><string>2.0</string></var><var name='TRANSACTIONSCRUBCODE'><string></string></var><var name='MERCHANTTRANSACTIONID'><string>010003160001</string></var><var name='CURRENCY'><string>IDR</string></var><var name='TRANSACTIONSTATUS'><string>APPROVED</string></var><var name='SITEID'><string>Blanja2</string></var><var name='TRANSACTIONDATE'><string>2014-04-23 12:27:47</string></var><var name='ACQUIRERCODE'><string>AUTH20140423122829PM</string></var><var name='SCRUBCODE'><string></string></var><var name='TRANSACTIONSCRUBMESSAGE'><string></string></var><var name='ACQUIRERAPPROVALCODE'><string>932785</string></var><var name='TRANSACTIONTYPE'><string>AUTHORIZATION</string></var></struct></data></wddxPacket>";
 
 		CommandXmlParse<CreditCardQueryResult> queryResultXmlParse = new CreditCardQueryResultPaser();
+		@SuppressWarnings("unused")
 		VarCommand varCommand = queryResultXmlParse.parseXML(wddxPacketXML);
 	}
 

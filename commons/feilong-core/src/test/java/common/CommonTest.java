@@ -16,10 +16,7 @@
 package common;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.DecimalFormat;
-
-import junit.framework.Assert;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -38,6 +35,9 @@ public class CommonTest{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(TestConstants.class);
 
+	/**
+	 * Name.
+	 */
 	@Test
 	public void name(){
 
@@ -55,7 +55,7 @@ public class CommonTest{
 	 * 
 	 */
 	@Test
-	public void getHashCode(){
+	public void testGetHashCode(){
 		//		对于boolean值	value ? 1231 : 1237;
 		log.info("" + getHashCode(true));
 		log.info("" + getHashCode(false));

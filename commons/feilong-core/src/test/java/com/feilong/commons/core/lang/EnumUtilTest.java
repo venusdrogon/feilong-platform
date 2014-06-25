@@ -15,9 +15,7 @@
  */
 package com.feilong.commons.core.lang;
 
-import static org.junit.Assert.*;
-
-import java.lang.reflect.InvocationTargetException;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -35,7 +33,7 @@ public class EnumUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(EnumUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByField(java.lang.Enum, java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByField(Class, String, String)}.
 	 */
 	@Test
 	public final void testGetEnum(){

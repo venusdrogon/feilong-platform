@@ -22,13 +22,19 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class PagerTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 May 3, 2014 2:41:11 PM
  */
 public class PagerTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PagerTest.class);
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public final void test(){
 		Pager pager = new Pager(2, 10, 10000);

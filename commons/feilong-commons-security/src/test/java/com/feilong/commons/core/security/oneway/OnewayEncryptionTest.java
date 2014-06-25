@@ -29,7 +29,7 @@ import com.feilong.commons.core.security.oneway.OnewayType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 14, 2013 8:14:12 PM
  */
-public class OnewayEncryptionTest extends BaseSecurityTest{
+@SuppressWarnings("all")public class OnewayEncryptionTest extends BaseSecurityTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(OnewayEncryptionTest.class);
 

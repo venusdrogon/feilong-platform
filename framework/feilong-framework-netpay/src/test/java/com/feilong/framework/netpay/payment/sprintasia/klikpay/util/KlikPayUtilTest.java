@@ -15,8 +15,6 @@
  */
 package com.feilong.framework.netpay.payment.sprintasia.klikpay.util;
 
-import static org.junit.Assert.fail;
-
 import java.util.Date;
 
 import junit.framework.Assert;
@@ -63,8 +61,11 @@ public class KlikPayUtilTest{
 		Assert.assertEquals("BF81501C562D6FEA2FCB905D392D5851", sign);
 	}
 
+	/**
+	 * Test get key id.
+	 */
 	@Test
-	public final void getKeyId(){
+	public final void testGetKeyId(){
 		Assert.assertEquals("30394D33545230324F374B3359503459", KlikPayUtil.getKeyId("09M3TR02O7K3YP4Y"));
 	}
 

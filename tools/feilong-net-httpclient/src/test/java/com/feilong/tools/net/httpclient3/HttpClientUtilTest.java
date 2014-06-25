@@ -19,15 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
-import com.feilong.tools.net.httpclient3.HttpClientConfig;
-import com.feilong.tools.net.httpclient3.HttpClientUtil;
-import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * The Class HttpClientUtilTest.

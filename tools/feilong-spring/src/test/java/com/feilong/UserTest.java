@@ -23,7 +23,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -50,10 +49,14 @@ public class UserTest implements ApplicationContextAware{
 	/** The context. */
 	private static ApplicationContext	context1	= null;
 
+	/** The file system context. */
 	private static ApplicationContext	fileSystemContext;
 
 	// @Value("#{testProperties['name']}")
 	// private String aString;
+	/**
+	 * Before class.
+	 */
 	@BeforeClass
 	public static void beforeClass(){
 		fileSystemContext = new FileSystemXmlApplicationContext("classpath:spring.xml");
@@ -90,6 +93,9 @@ public class UserTest implements ApplicationContextAware{
 		log.info("set:{}", JsonUtil.format(set));
 	}
 
+	/**
+	 * Test vector.
+	 */
 	@Test
 	public void testVector(){
 		Vector<Integer> vector = new Vector<Integer>();
@@ -101,6 +107,9 @@ public class UserTest implements ApplicationContextAware{
 		log.info("" + vector.get(0));
 	}
 
+	/**
+	 * Test hashtable.
+	 */
 	@Test
 	public void testHashtable(){
 		Hashtable<String, Object> hashtable = new Hashtable<String, Object>();
@@ -110,8 +119,8 @@ public class UserTest implements ApplicationContextAware{
 	}
 
 	/**
-	* 
-	*/
+	 * Test util properties.
+	 */
 	@Test
 	public void testUtilProperties(){
 		Properties props = fileSystemContext.getBean("testProperties", Properties.class);

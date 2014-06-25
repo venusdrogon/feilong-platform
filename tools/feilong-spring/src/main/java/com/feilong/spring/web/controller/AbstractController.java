@@ -32,7 +32,7 @@ import com.feilong.servlet.http.RequestConstants;
 public abstract class AbstractController{
 
 	/** The Constant log. */
-	protected static final Logger	log							= LoggerFactory.getLogger(AbstractController.class);
+	@SuppressWarnings("unused")private static final Logger	log							= LoggerFactory.getLogger(AbstractController.class);
 
 	/** 包装的单价. */
 	public static final Double		PACK_PRICE					= 20.0;

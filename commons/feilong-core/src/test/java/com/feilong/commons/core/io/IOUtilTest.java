@@ -38,20 +38,31 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class IOUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午11:55:46
  * @since 1.0
  */
 public class IOUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log			= LoggerFactory.getLogger(IOUtilTest.class);
 
+	/** The file name1. */
+	@SuppressWarnings("unused")
 	private String				fileName1	= "F:/pie2.png";
 
+	/** The file name. */
+	@SuppressWarnings("unused")
 	private String				fileName	= "E:\\Data\\Java\\Taglib\\Apache Commons 非常有用的工具包\\commons-net\\ftp";
 
+	/** The string. */
 	private String				fString		= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
 
+	/**
+	 * Down.
+	 */
 	@Test
 	public void down(){
 		String url = "http://www.kenwen.com/egbk/31/31186/4395342.txt";
@@ -59,8 +70,11 @@ public class IOUtilTest{
 		IOUtil.down(url, directoryName);
 	}
 
+	/**
+	 * Test get content length.
+	 */
 	@Test
-	public void getContentLength(){
+	public void testGetContentLength(){
 		try{
 			URL url = new URL("http://www.jinbaowang.cn/images//20110722/096718c3d1c9b4a1.jpg");
 			URLConnection urlConnection = url.openConnection();
@@ -73,6 +87,7 @@ public class IOUtilTest{
 			URL url = new URL("http://localhost:8080/TestHttpURLConnectionPro/index.jsp");
 			URLConnection rulConnection = url.openConnection();
 
+			@SuppressWarnings("unused")
 			HttpURLConnection httpUrlConnection = (HttpURLConnection) rulConnection;
 		}catch (MalformedURLException e){
 			e.printStackTrace();
@@ -81,13 +96,19 @@ public class IOUtilTest{
 		}
 	}
 
+	/**
+	 * Test get full name.
+	 */
 	@Test
 	@Ignore
 	public void testGetFullName(){
-		Class class1 = IOUtil.class;
+		Class<IOUtil> class1 = IOUtil.class;
 		log.info(class1.getName());
 	}
 
+	/**
+	 * Test get p.
+	 */
 	@Test
 	// @Ignore
 	public void testGetP(){

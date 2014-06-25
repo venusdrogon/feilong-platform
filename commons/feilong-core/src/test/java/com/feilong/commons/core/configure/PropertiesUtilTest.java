@@ -38,20 +38,30 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOUtil;
 
 /**
+ * The Class PropertiesUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-19 下午03:41:14
  * @since 1.0
  */
 public class PropertiesUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtilTest.class);
 
+	/**
+	 * Gets the properties value.
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	@Test
-	public void getPropertiesValue() throws IOException{
+	public void testGetPropertiesValue() throws IOException{
 		String propertiesPath = "I:/Ebook/book.properties";
 		InputStream inputStream = IOUtil.getFileInputStream(propertiesPath);
 		Properties properties = PropertiesUtil.getProperties(inputStream);
 		String key = "锦衣夜行";
+		@SuppressWarnings("unused")
 		String value = properties.getProperty(key);
 		try{
 			for (Object iterable_element : properties.keySet()){

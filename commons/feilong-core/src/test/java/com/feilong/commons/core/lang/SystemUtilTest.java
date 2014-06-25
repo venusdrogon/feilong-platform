@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.lang;
 
-import static org.junit.Assert.*;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class SystemUtilTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年6月3日 下午2:31:50
@@ -37,8 +36,12 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class SystemUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(SystemUtilTest.class);
 
+	/**
+	 * Nano time.
+	 */
 	@Test
 	public void nanoTime(){
 		//返回最准确的可用系统计时器的当前值，以毫微秒为单位。
@@ -49,14 +52,22 @@ public class SystemUtilTest{
 
 	}
 
+	/**
+	 * Gets the property.
+	 * 
+	 */
 	@Test
-	public void getProperty(){
+	public void testGetProperty(){
 		log.info(System.getProperty("path"));
 
 	}
 
+	/**
+	 * Gets the env.
+	 * 
+	 */
 	@Test
-	public void getenv(){
+	public void testGetenv(){
 		Map<String, String> map = System.getenv();
 		Object[] key = map.keySet().toArray();
 		Arrays.sort(key);
@@ -65,14 +76,21 @@ public class SystemUtilTest{
 		}
 	}
 
+	/**
+	 * Gets the env map for log.
+	 * 
+	 */
 	@Test
-	public void getEnvMapForLog(){
+	public void testGetEnvMapForLog(){
 		Map<String, String> envMapForLog = SystemUtil.getEnvMapForLog();
 		if (log.isInfoEnabled()){
 			log.info(JsonUtil.format(envMapForLog));
 		}
 	}
 
+	/**
+	 * Path.
+	 */
 	@Test
 	public void path(){
 		String path = System.getenv("Path");
@@ -84,11 +102,17 @@ public class SystemUtilTest{
 		}
 	}
 
+	/**
+	 * Current time millis.
+	 */
 	@Test
 	public void currentTimeMillis(){
 		log.info("" + System.currentTimeMillis());
 	}
 
+	/**
+	 * Test system.
+	 */
 	@Test
 	public void testSystem(){
 
@@ -110,14 +134,21 @@ public class SystemUtilTest{
 
 	}
 
+	/**
+	 * Gets the properties map for log.
+	 * 
+	 */
 	@Test
-	public void getPropertiesMapForLog(){
+	public void testGetPropertiesMapForLog(){
 		Map<String, String> propertiesMapForLog = SystemUtil.getPropertiesMapForLog();
 		if (log.isInfoEnabled()){
 			log.info(JsonUtil.format(propertiesMapForLog));
 		}
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test(){
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -125,7 +156,7 @@ public class SystemUtilTest{
 		map.put("cccc", "cccc");
 		map.put("bbbb", "bbbb");
 		map.put("dddd", "dddd");
-		Iterator iterator = map.keySet().iterator();
+		Iterator<String> iterator = map.keySet().iterator();
 		while (iterator.hasNext()){
 			Object key = iterator.next();
 			Object obj = map.get(key);

@@ -28,6 +28,8 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class StringUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-7 下午02:41:08
  */
@@ -36,7 +38,7 @@ public class StringUtilTest{
 	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(StringUtilTest.class);
 
-	/** <code>{@value}</code> */
+	/** <code>{@value}</code>. */
 	private final static String	text	= "jinxin.feilong";
 
 	/**
@@ -220,6 +222,7 @@ public class StringUtilTest{
 	@Test
 	public void substring(){
 		log.info(StringUtil.substring(text, "jinxin".length()));
+		@SuppressWarnings("hiding")
 		String text = "Index: src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java";
 		log.info(StringUtil.substring(text, "Index: ".length()));
 	}
@@ -242,7 +245,7 @@ public class StringUtilTest{
 	}
 
 	/**
-	 * 分隔字符串并添加引号
+	 * 分隔字符串并添加引号.
 	 */
 	@Test
 	@Ignore
@@ -261,7 +264,9 @@ public class StringUtilTest{
 	}
 
 	/**
-	 * 返回一个随机的字符串。150是基于该程序使用场景的抽样得到的长度。
+	 * 返回一个随机的字符串。150是基于该程序使用场景的抽样得到的长度。.
+	 * 
+	 * @return the random string
 	 */
 	private static String getRandomString(){
 		StringBuilder sb = new StringBuilder();
@@ -276,6 +281,7 @@ public class StringUtilTest{
 	/**
 	 * Test.
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	@Ignore
 	public void test(){
@@ -290,6 +296,9 @@ public class StringUtilTest{
 		}
 	}
 
+	/**
+	 * Tokenize to string array2.
+	 */
 	@Test
 	public void tokenizeToStringArray2(){
 		String str = "jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong";
@@ -300,6 +309,9 @@ public class StringUtilTest{
 		}
 	}
 
+	/**
+	 * Tokenize to string array.
+	 */
 	@Test
 	public void tokenizeToStringArray(){
 		String str = "jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong";
@@ -323,6 +335,9 @@ public class StringUtilTest{
 		log.info("time:{}", DateUtil.getIntervalTime(beginDate, endDate));
 	}
 
+	/**
+	 * Split to string array.
+	 */
 	@Test
 	public void splitToStringArray(){
 		String str = "jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong;jin.xin  h hhaha ,lala;feilong";

@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.tools.jsoup;
 
 import java.io.File;
@@ -19,15 +34,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 用jsoup分析下载巨鲸的mp3
+ * 用jsoup分析下载巨鲸的mp3.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-28 上午10:31:02
  */
 public class Top100Mp3Downloader{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(Top100Mp3Downloader.class);
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args){
 		Top100Mp3Downloader m = new Top100Mp3Downloader();
 		Map<String, String> map = m.findIds("http://www.top100.cn/artist/info-agr5dcqe.shtml");
@@ -41,7 +63,7 @@ public class Top100Mp3Downloader{
 
 	//***************************************************************************
 	/**
-	 * 给定歌曲列表页面,返回歌曲名称和加密id的键值对
+	 * 给定歌曲列表页面,返回歌曲名称和加密id的键值对.
 	 * 
 	 * @param url
 	 *            歌曲列表地址,如:http://www.top100.cn/artist/info-agr5dcqe.shtml
@@ -73,7 +95,7 @@ public class Top100Mp3Downloader{
 	}
 
 	/**
-	 * 从歌曲的加密id获取歌曲的下载页面,并分析得到下载地址
+	 * 从歌曲的加密id获取歌曲的下载页面,并分析得到下载地址.
 	 * 
 	 * @param id
 	 *            加密id
@@ -105,7 +127,7 @@ public class Top100Mp3Downloader{
 	}
 
 	/**
-	 * 从获取的下载地址获取歌曲内容
+	 * 从获取的下载地址获取歌曲内容.
 	 * 
 	 * @param dir
 	 *            保存到目录

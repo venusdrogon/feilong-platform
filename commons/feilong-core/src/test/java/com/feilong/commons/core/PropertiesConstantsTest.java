@@ -16,7 +16,7 @@ import com.feilong.test.User;
  * @version 1.0 2011-6-1 上午11:50:45
  * @since 1.0
  */
-public class PropertiesConstantsTest{
+@SuppressWarnings("all")public class PropertiesConstantsTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(PropertiesConstantsTest.class);
 

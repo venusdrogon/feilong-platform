@@ -53,6 +53,9 @@ public class HttpConcatUtilTest extends BaseHttpConcatTest{
 		log.info(writeContent);
 	}
 
+	/**
+	 * Performance test.
+	 */
 	@Test
 	public void performanceTest(){
 		List<Integer> list = new ArrayList<Integer>();

@@ -15,8 +15,6 @@
  */
 package com.feilong.framework.netpay.payment.sprintasia.klikbca.util;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
 
 import org.junit.Test;

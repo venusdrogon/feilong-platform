@@ -32,7 +32,7 @@ import com.feilong.commons.core.util.Validator;
 public class DokuAdaptorUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DokuAdaptorUtil.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(DokuAdaptorUtil.class);
 
 	/**
 	 * 生成session id 参数<br>

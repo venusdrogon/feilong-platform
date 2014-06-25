@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.tools.middleware.mobile;
 
 import java.util.ArrayList;
@@ -22,12 +37,15 @@ import com.feilong.commons.core.util.Validator;
  * 前三位没什么区别,130-133是联通的,134-139还有159是移动的,接下来的4位有特殊含义了,与地区有关,每个地区都有自己的号段,现在为什么有些软件可以查手机的归属地,就是靠这4位,最后4位可以重复,用与区分个人!
  * </pre>
  * 
+ * .
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-25 下午03:32:04
  * @since 1.0
  */
 public class MobileUtil{
 
+	/** The mobile entity list. */
 	private List<MobileEntity>	mobileEntityList;
 
 	/**
@@ -132,11 +150,12 @@ public class MobileUtil{
 		return mobileNumber.substring(0, 3);
 	}
 
-	/**
-	 * 运营商
-	 */
+	/** 运营商. */
 	private String[]	operators	= { "移动", "联通", "电信" };
 
+	/**
+	 * Instantiates a new mobile util.
+	 */
 	public MobileUtil(){
 		mobileEntityList = new ArrayList<MobileEntity>();
 		// 移动
@@ -169,11 +188,11 @@ public class MobileUtil{
 	}
 
 	/**
-	 * 根据手机号码获得其信息
+	 * 根据手机号码获得其信息.
 	 * 
 	 * @param mobile
 	 *            手机号码
-	 * @return
+	 * @return the mobile entity
 	 */
 	public MobileEntity getMobileEntity(String mobile){
 		MobileEntity entity = null;
@@ -229,6 +248,7 @@ public class MobileUtil{
 	 * </pre>
 	 * 
 	 * @param mobile
+	 *            the mobile
 	 * @return 返回值： 1 移动手机 2 联通手机 3 电信手机 4 固定电话、小灵通 0 未知
 	 */
 	public static int getCardType(String mobile){

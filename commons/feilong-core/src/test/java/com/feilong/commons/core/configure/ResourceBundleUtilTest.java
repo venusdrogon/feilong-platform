@@ -38,7 +38,11 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * The Class ResourceBundleUtilTest.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:21:15
  */
+@SuppressWarnings("deprecation")
 public class ResourceBundleUtilTest{
 
 	/** The Constant log. */
@@ -53,11 +57,10 @@ public class ResourceBundleUtilTest{
 	/**
 	 * Gets the value.
 	 * 
-	 * @return the value
 	 */
 	@Test
 	// "/WEB-INF/classes/feilong.user.properties"
-	public final void getValue(){
+	public final void testGetValue(){
 		String aString = ResourceBundleUtil.getValue(baseName, "config_test_array");
 		log.debug(aString);
 		log.debug(PropertiesConstants.CONFIG_DATE_DAY);
@@ -66,10 +69,9 @@ public class ResourceBundleUtilTest{
 	/**
 	 * Gets the value with arguments.
 	 * 
-	 * @return the value with arguments
 	 */
 	@Test
-	public final void getValueWithArguments(){
+	public final void testGetValueWithArguments(){
 		String aString = ResourceBundleUtil.getValueWithArguments(resourceBundle, "test", "2", "22");
 		log.debug(aString);
 	}
@@ -107,9 +109,10 @@ public class ResourceBundleUtilTest{
 
 	/**
 	 * Read all properties to map.
+	 * 
 	 */
 	@Test
-	public final void getValue1(){
+	public final void testGetValue1(){
 		Locale locale = Locale.ENGLISH;
 		baseName = "messages/feilong-core-message";
 		log.info(ResourceBundleUtil.getValue(baseName, "config_date_hour", locale));

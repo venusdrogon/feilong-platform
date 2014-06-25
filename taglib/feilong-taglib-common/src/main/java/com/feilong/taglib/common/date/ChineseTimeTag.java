@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.taglib.common.date;
 
@@ -22,39 +22,33 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.base.AbstractCommonTag;
 
 /**
- * 日期转换成中国特色日期
+ * 日期转换成中国特色日期.
  * 
  * @author 金鑫 2009-9-7上午11:49:48
  */
 public class ChineseTimeTag extends AbstractCommonTag{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
 
-	/**
-	 * 日期
-	 */
+	/** 日期. */
 	private Date				date				= null;
 
-	/**
-	 * 日期字符串 dateString和pattern结合使用,dateString优先于date
-	 */
+	/** 日期字符串 dateString和pattern结合使用,dateString优先于date. */
 	private String				dateString			= null;
 
-	/**
-	 * 日期字符串模式pattern结合使用
-	 */
+	/** 日期字符串模式pattern结合使用. */
 	private String				pattern				= null;
 
-	/**
-	 * 仅仅显示日期
-	 */
+	/** 仅仅显示日期. */
 	private boolean				onlyChinese;
 
-	/**
-	 * 带不带颜色
-	 */
+	/** 带不带颜色. */
 	private boolean				hasColor;
 
+	/* (non-Javadoc)
+	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
+	 */
 	@Override
 	public String writeContent(){
 		/**
@@ -77,6 +71,8 @@ public class ChineseTimeTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 日期.
+	 * 
 	 * @param date
 	 *            the date to set
 	 */
@@ -85,6 +81,8 @@ public class ChineseTimeTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 仅仅显示日期.
+	 * 
 	 * @param onlyChinese
 	 *            the onlyChinese to set
 	 */
@@ -93,6 +91,8 @@ public class ChineseTimeTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 带不带颜色.
+	 * 
 	 * @param hasColor
 	 *            the hasColor to set
 	 */
@@ -101,6 +101,8 @@ public class ChineseTimeTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 日期字符串 dateString和pattern结合使用,dateString优先于date.
+	 * 
 	 * @param dateString
 	 *            the dateString to set
 	 */
@@ -109,6 +111,8 @@ public class ChineseTimeTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 日期字符串模式pattern结合使用.
+	 * 
 	 * @param pattern
 	 *            the pattern to set
 	 */

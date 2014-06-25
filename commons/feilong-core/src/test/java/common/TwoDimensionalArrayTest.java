@@ -24,6 +24,7 @@ import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.util.ArrayUtil;
 
 /**
+ * The Class TwoDimensionalArrayTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年6月13日 下午8:41:24
@@ -31,10 +32,15 @@ import com.feilong.commons.core.util.ArrayUtil;
  */
 public class TwoDimensionalArrayTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(TwoDimensionalArrayTest.class);
 
+	/** The array. */
 	private Integer[][]			array;
 
+	/**
+	 * Inits the.
+	 */
 	@Before
 	public void init(){
 		int i = 9;
@@ -63,6 +69,9 @@ public class TwoDimensionalArrayTest{
 		//***************************************************************
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public final void test(){
 		//总行数
@@ -82,7 +91,7 @@ public class TwoDimensionalArrayTest{
 	}
 
 	/**
-	 * 获得这行输出的结果
+	 * 获得这行输出的结果.
 	 * 
 	 * @param rows
 	 *            总行数
@@ -90,7 +99,7 @@ public class TwoDimensionalArrayTest{
 	 *            输出起始行
 	 * @param column
 	 *            输出起始列
-	 * @return
+	 * @return the current line string
 	 */
 	private StringBuilder getCurrentLineString(int rows,int row,int column){
 		//-------------------------------------------------------------------
@@ -110,11 +119,13 @@ public class TwoDimensionalArrayTest{
 	}
 
 	/**
-	 * 倒序开始迭代索引,第一行会从 i-1开始,其余行都会从0开始
+	 * 倒序开始迭代索引,第一行会从 i-1开始,其余行都会从0开始.
 	 * 
 	 * @param i
+	 *            the i
 	 * @param totalLine
-	 * @return
+	 *            the total line
+	 * @return the int
 	 */
 	private int beginColumns(int i,int totalLine){
 		//这一行可用循环倒序 索引
@@ -126,6 +137,9 @@ public class TwoDimensionalArrayTest{
 		return 0;
 	}
 
+	/**
+	 * Prints the array.
+	 */
 	@Test
 	public void printArray(){
 		int n = array[0].length;

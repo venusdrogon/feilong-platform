@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.feilong.tools.memcached;
@@ -28,7 +28,7 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
 
 /**
  * memcached util<br>
- * Reference from dianchao
+ * Reference from dianchao.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-11 下午02:57:05
@@ -36,50 +36,56 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
  */
 public class MemCachedUtil{
 
+	/** The Constant log. */
 	private final static Logger		log				= LoggerFactory.getLogger(MemCachedUtil.class);
 
+	/** The config. */
 	private static ResourceBundle	config			= ResourceBundle.getBundle("memcached");
 
+	/** The poolname. */
 	private final String			poolname		= config.getString("memcached.poolname");
 
+	/** The expire time. */
 	private final Integer			EXPIRE_TIME		= ResourceBundleUtil.getValue(config, "memcached.expiretime", Integer.class);
 
+	/** The serverlist. */
 	private final String[]			serverlist		= ResourceBundleUtil.getArray(config, "memcached.serverlist", ",");
 
-	/**
-	 * 权重
-	 */
+	/** 权重. */
 	private final Integer[]			weight			= ResourceBundleUtil.getArray(config, "memcached.serverweight", ",", Integer.class);
 
+	/** The init connection. */
 	private final Integer			INIT_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.initconnection", Integer.class);
 
+	/** The min connection. */
 	private final Integer			MIN_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.minconnection", Integer.class);
 
+	/** The max connection. */
 	private final Integer			MAX_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.maxconnection", Integer.class);
 
-	/**
-	 * 设置主线程睡眠时间，每30秒苏醒一次，维持连接池大小
-	 */
+	/** 设置主线程睡眠时间，每30秒苏醒一次，维持连接池大小. */
 	private final Integer			maintSleep		= ResourceBundleUtil.getValue(config, "memcached.maintSleep", Integer.class);
 
-	/**
-	 * 关闭套接字缓存
-	 */
+	/** 关闭套接字缓存. */
 	private final Boolean			NAGLE			= ResourceBundleUtil.getValue(config, "memcached.nagle", Boolean.class);
 
-	/**
-	 * 连接建立后的超时时间
-	 */
+	/** 连接建立后的超时时间. */
 	private final Integer			SOCKET_TO		= ResourceBundleUtil.getValue(config, "memcached.socketto", Integer.class);
 
+	/** The alive check. */
 	private final Boolean			ALIVE_CHECK		= ResourceBundleUtil.getValue(config, "memcached.alivecheck", Boolean.class);
 
-	/**************************************************************************************/
+	/** ***********************************************************************************. */
 	private static MemCachedUtil	memCachedUtil	= null;
 
+	/** The sock io pool. */
 	private SockIOPool				sockIOPool		= null;
 
-	/****************************************************************************/
+	/**
+	 * *************************************************************************.
+	 * 
+	 * @return single instance of MemCachedUtil
+	 */
 	public static synchronized MemCachedUtil getInstance(){
 		if (memCachedUtil == null){
 			memCachedUtil = new MemCachedUtil();
@@ -87,12 +93,15 @@ public class MemCachedUtil{
 		return memCachedUtil;
 	}
 
+	/**
+	 * Instantiates a new mem cached util.
+	 */
 	public MemCachedUtil(){
 		initialize();
 	}
 
 	/**
-	 * 初始化
+	 * 初始化.
 	 */
 	private void initialize(){
 		// ******************************************************************
@@ -146,18 +155,40 @@ public class MemCachedUtil{
 		// mcc.setCompressThreshold(64 * 1024);
 	}
 
-	/*************************************************************************************/
+	/**
+	 * **********************************************************************************.
+	 * 
+	 * @param id
+	 *            the id
+	 * @return true, if successful
+	 */
 	public boolean exists(String id){
 		MemCachedClient memCachedClient = this.getMemCachedClient();
 		return memCachedClient.keyExists(id);
 	}
 
+	/**
+	 * 获得.
+	 * 
+	 * @param id
+	 *            the id
+	 * @return the object
+	 */
 	public Object get(String id){
 		MemCachedClient memCachedClient = this.getMemCachedClient();
 		Object data = memCachedClient.get(id);
 		return data;
 	}
 
+	/**
+	 * Adds the.
+	 * 
+	 * @param id
+	 *            the id
+	 * @param data
+	 *            the data
+	 * @return true, if successful
+	 */
 	public boolean add(String id,Object data){
 		return add(id, data, null);
 	}
@@ -175,10 +206,12 @@ public class MemCachedUtil{
 	 * </pre>
 	 * 
 	 * @param id
+	 *            the id
 	 * @param data
+	 *            the data
 	 * @param expiryDate
 	 *            过期时间
-	 * @return
+	 * @return true, if successful
 	 */
 	public boolean add(String id,Object data,Date expiryDate){
 		MemCachedClient memCachedClient = this.getMemCachedClient();
@@ -191,15 +224,21 @@ public class MemCachedUtil{
 		return flag;
 	}
 
+	/**
+	 * Delete.
+	 * 
+	 * @param id
+	 *            the id
+	 */
 	public void delete(String id){
 		MemCachedClient memCachedClient = this.getMemCachedClient();
 		memCachedClient.delete(id);
 	}
 
 	/**
-	 * MemCachedClient
+	 * MemCachedClient.
 	 * 
-	 * @return
+	 * @return the mem cached client
 	 */
 	private MemCachedClient getMemCachedClient(){
 		MemCachedClient memCachedClient = new MemCachedClient(poolname);
@@ -208,15 +247,18 @@ public class MemCachedUtil{
 	}
 
 	/**
-	 * 让缓存内的所有当前条目无效（或到期失效）
+	 * 让缓存内的所有当前条目无效（或到期失效）.
 	 * 
-	 * @return
+	 * @return true, if successful
 	 */
 	public boolean flushAll(){
 		MemCachedClient memCachedClient = this.getMemCachedClient();
 		return memCachedClient.flushAll();
 	}
 
+	/**
+	 * Shut down.
+	 */
 	protected void shutDown(){
 		if (null != this.sockIOPool){
 			this.sockIOPool.shutDown();

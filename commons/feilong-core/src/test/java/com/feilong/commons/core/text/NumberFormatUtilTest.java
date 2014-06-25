@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
  */
 public class NumberFormatUtilTest{
 
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(NumberFormatUtilTest.class);
 
 	/**

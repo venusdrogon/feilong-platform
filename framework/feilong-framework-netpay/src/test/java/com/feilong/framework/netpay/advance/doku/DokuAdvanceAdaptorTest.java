@@ -32,6 +32,7 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
  */
 public class DokuAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
 
+	@SuppressWarnings({ "unused" })
 	private static final Logger		log	= LoggerFactory.getLogger(DokuAdvanceAdaptorTest.class);
 
 	/** The payment adaptor. */

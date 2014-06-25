@@ -37,13 +37,23 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 
 /**
+ * The Class IOWriteUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:29:11 PM
  */
 public class IOWriteUtilTest{
 
+	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtilTest.class);
 
+	/**
+	 * Write.
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	@Test
 	public void write() throws IOException{
 		String url = "F:\\test.txt";
@@ -51,6 +61,12 @@ public class IOWriteUtilTest{
 		IOWriteUtil.write(url, directoryName);
 	}
 
+	/**
+	 * Test write.
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	@Test
 	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log";

@@ -33,7 +33,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @version 1.0.7 2014年6月5日 下午3:55:06
  * @since 1.0.7
  */
-public class BlowfishTest implements TestConstants{
+@SuppressWarnings("all")public class BlowfishTest implements TestConstants{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(BlowfishTest.class);

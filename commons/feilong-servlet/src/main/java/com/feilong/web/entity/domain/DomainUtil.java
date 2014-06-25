@@ -15,9 +15,6 @@
  */
 package com.feilong.web.entity.domain;
 
-import java.io.File;
-import java.net.URL;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 

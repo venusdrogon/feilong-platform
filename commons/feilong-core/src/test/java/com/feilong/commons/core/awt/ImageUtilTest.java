@@ -47,6 +47,7 @@ public class ImageUtilTest{
 	public void getBufferedImage(){
 		String targetImg = "C:\\Users\\venusdrogon\\Desktop\\c\\饼状图pie.png";
 		// 原始图片
+		@SuppressWarnings("unused")
 		BufferedImage image_target = ImageUtil.getBufferedImage(targetImg);
 	}
 }

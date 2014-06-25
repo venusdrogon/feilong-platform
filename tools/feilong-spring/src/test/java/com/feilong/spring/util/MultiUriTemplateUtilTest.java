@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.spring.util;
 
@@ -28,11 +28,14 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 
 /**
+ * The Class MultiUriTemplateUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 17, 2012 7:56:33 PM
  */
 public class MultiUriTemplateUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MultiUriTemplateUtilTest.class);
 
 	/**
@@ -59,6 +62,9 @@ public class MultiUriTemplateUtilTest{
 		log.info(MultiUriTemplateUtil.expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator));
 	}
 
+	/**
+	 * Expand with multi variable map.
+	 */
 	@Test
 	public void expandWithMultiVariableMap(){
 
@@ -74,6 +80,9 @@ public class MultiUriTemplateUtilTest{
 		log.info(MultiUriTemplateUtil.expandWithMultiVariable(matchingPatternPath, map, variableName, value, valueSeparator));
 	}
 
+	/**
+	 * Test expand with multi variable2.
+	 */
 	@Test
 	public void testExpandWithMultiVariable2(){
 		String requestPath = "/s/c-m-c-s-k-s100,200-o.htm";
@@ -84,6 +93,9 @@ public class MultiUriTemplateUtilTest{
 		log.info(MultiUriTemplateUtil.expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator));
 	}
 
+	/**
+	 * Removes the multi variable value.
+	 */
 	@Test
 	public void removeMultiVariableValue(){
 		String requestPath = "/s/c-m-c-s-k-s500,100,200,9000-o.htm";
@@ -94,6 +106,9 @@ public class MultiUriTemplateUtilTest{
 		log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
 	}
 
+	/**
+	 * Removes the multi variable value222.
+	 */
 	@Test
 	public void removeMultiVariableValue222(){
 		String requestPath = "/s/c-m-c-s-k-s-o.htm";
@@ -104,6 +119,9 @@ public class MultiUriTemplateUtilTest{
 		log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
 	}
 
+	/**
+	 * Removes the multi variable value2222.
+	 */
 	@Test
 	public void removeMultiVariableValue2222(){
 		String requestPath = "/s/c-m-c-s-k-s500,100,200,9000-o.htm";

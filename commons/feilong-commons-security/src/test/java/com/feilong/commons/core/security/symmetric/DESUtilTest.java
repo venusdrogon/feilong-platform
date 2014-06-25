@@ -34,7 +34,7 @@ import com.feilong.commons.core.security.symmetric.SymmetricType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 21, 2011 4:55:43 PM
  */
-public class DESUtilTest extends BaseSecurityTest{
+@SuppressWarnings("all")public class DESUtilTest extends BaseSecurityTest{
 
 	private static final Logger	log								= LoggerFactory.getLogger(DESUtilTest.class);
 

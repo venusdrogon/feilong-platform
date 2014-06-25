@@ -15,9 +15,6 @@
  */
 package com.feilong.tools.dom4j;
 
-import static org.junit.Assert.*;
-
-import org.dom4j.Document;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +25,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Dom4jUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(Dom4jUtilTest.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(Dom4jUtilTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.tools.dom4j.Dom4jUtil#getDocument(java.lang.String)}.

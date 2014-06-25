@@ -33,32 +33,44 @@ public class DefaultValueTest{
 	private static final Logger	log	= LoggerFactory.getLogger(DefaultValueTest.class);
 
 	//0
+	/** The i. */
 	private int					i;
 
 	//0
+	/** The l. */
 	private long				l;
 
 	//0.0
+	/** The f. */
 	private float				f;
 
 	//0.0
+	/** The d. */
 	private double				d;
 
 	//0
+	/** The sh. */
 	private short				sh;
 
 	//0
+	/** The by. */
 	private byte				by;
 
 	//false
+	/** The b. */
 	private boolean				b;
 
 	//null
+	/** The bb. */
 	private Boolean				bb;
 
 	//null
+	/** The s. */
 	private String				s;
 
+	/**
+	 * Name.
+	 */
 	@Test
 	public void name(){
 		//java.lang.NullPointerException 

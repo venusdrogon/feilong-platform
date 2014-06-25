@@ -1,9 +1,31 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package temple.awt;
 
 import java.awt.color.ColorSpace;
 
+/**
+ * The Class CMYKColorSpace.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:38:25
+ */
 public class CMYKColorSpace extends ColorSpace{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -5982040365555064012L;
 
 	/**
@@ -22,6 +44,9 @@ public class CMYKColorSpace extends ColorSpace{
 	 * this is supposed to work, which may be implemented in the future.
 	 * </pre>
 	 * 
+	 * @param p_colorvalue
+	 *            the p_colorvalue
+	 * @return the float[]
 	 * @see java.awt.color.ColorSpace#fromCIEXYZ(float[])
 	 * @see org.scantegrity.lib.CMYKColorSpace#toCIEXYZ
 	 */
@@ -87,6 +112,9 @@ public class CMYKColorSpace extends ColorSpace{
 	 * Z   01.9334 11.9193 95.0227 | 1-Y'
 	 * </pre>
 	 * 
+	 * @param p_colorvalue
+	 *            the p_colorvalue
+	 * @return the float[]
 	 * @see java.awt.color.ColorSpace#toCIEXYZ(float[])
 	 */
 	@Override
@@ -109,6 +137,7 @@ public class CMYKColorSpace extends ColorSpace{
 	 * 
 	 * @param p_colorvalue
 	 *            The color in CMYK.
+	 * @return the float[]
 	 * @see java.awt.color.ColorSpace#toRGB(float[])
 	 */
 	@Override
@@ -129,6 +158,7 @@ public class CMYKColorSpace extends ColorSpace{
 	 * </pre>
 	 * 
 	 * @param p_colors
+	 *            the p_colors
 	 * @return p_colors, with any values greater than 1 set to 1, and less than 0 set to 0.
 	 */
 	private float[] normalize(float[] p_colors){

@@ -37,10 +37,23 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 
+/**
+ * The Class CSVUtilTest.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:24:05
+ */
 public class CSVUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CSVUtilTest.class);
 
+	/**
+	 * Test write.
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	@Test
 	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_demand.csv";

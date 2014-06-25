@@ -11,7 +11,7 @@ import com.feilong.commons.core.date.DateUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 3, 2013 5:14:45 PM
  */
-public class CodeGeneratorTest{
+@SuppressWarnings("all")public class CodeGeneratorTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(CodeGeneratorTest.class);
 

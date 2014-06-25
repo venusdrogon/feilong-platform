@@ -32,18 +32,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class LunarDateUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-19 下午4:21:32
  */
 public class LunarDateUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(LunarDateUtilTest.class);
 
+	/**
+	 * Gets the lunar date string.
+	 * 
+	 */
 	@Test
-	public void getLunarDateString(){
+	public void testGetLunarDateString(){
 		log.info(LunarDateUtil.getLunarDateString(new Date()));
 	}
 
+	/**
+	 * Convert lundar calendar to solar.
+	 */
 	@Test
 	public void convertLundarCalendarToSolar(){
 		log.info(LunarDateUtil.toSolar(2012, 2, 19));

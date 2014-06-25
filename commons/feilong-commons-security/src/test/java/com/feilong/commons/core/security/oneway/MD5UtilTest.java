@@ -17,7 +17,7 @@ import com.feilong.commons.core.security.oneway.MD5Util;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-7 上午01:12:36
  */
-public class MD5UtilTest extends BaseSecurityTest{
+@SuppressWarnings("all")public class MD5UtilTest extends BaseSecurityTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(MD5UtilTest.class);
 

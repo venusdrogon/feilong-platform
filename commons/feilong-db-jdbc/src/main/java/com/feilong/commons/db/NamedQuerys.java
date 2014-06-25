@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.commons.db;
 
 import java.io.File;
@@ -29,35 +44,53 @@ import org.xml.sax.SAXException;
 
 import com.feilong.commons.core.lang.ClassLoaderUtil;
 
+/**
+ * The Class NamedQuerys.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 16:09:26
+ */
 public class NamedQuerys implements Serializable{
 
+	/** The Constant log. */
 	private final static Logger	log					= LoggerFactory.getLogger(NamedQuerys.class);
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -3041827711013056715L;
 
-	/**
-	 * classpath 下面 对应的xsd 资源名称
-	 */
+	/** classpath 下面 对应的xsd 资源名称. */
 	public static final String	xsd_file_path		= "namedquerys-1.0.xsd";
 
-	/**
-	 * sql 文件夹在classpath 下面的路径
-	 */
+	/** sql 文件夹在classpath 下面的路径. */
 	public static final String	sql_directory_path	= "namedsql";
 
+	/** The xpath expression. */
 	private static String		xpathExpression		= "//query";
 
+	/** The element_name. */
 	private static String		element_name		= "name";
 
+	/** The element_ql. */
 	private static String		element_ql			= "ql";
 
+	/** The querys. */
 	private Map<String, String>	querys				= new HashMap<String, String>();
 
 	// ******************************************************************************************************
+	/**
+	 * Instantiates a new named querys.
+	 */
 	public NamedQuerys(){
 		init();
 	}
 
+	/**
+	 * Gets the query by name.
+	 * 
+	 * @param name
+	 *            the name
+	 * @return the query by name
+	 */
 	public String getQueryByName(String name){
 		String result = querys.get(name);
 		if (null == result){
@@ -66,6 +99,9 @@ public class NamedQuerys implements Serializable{
 		return result;
 	}
 
+	/**
+	 * Inits the.
+	 */
 	public void init(){
 		// init inner query
 		SAXReader saxReader = new SAXReader();
@@ -94,7 +130,16 @@ public class NamedQuerys implements Serializable{
 		}
 	}
 
-	/*********************************************************************************************/
+	/**
+	 * ******************************************************************************************.
+	 * 
+	 * @param file
+	 *            the file
+	 * @param saxReader
+	 *            the sax reader
+	 * @param validator
+	 *            the validator
+	 */
 	private void convertFileToMap(File file,SAXReader saxReader,Validator validator){
 		log.debug("begin convert file:" + file.getAbsolutePath());
 		if (file.isDirectory()){
@@ -119,9 +164,10 @@ public class NamedQuerys implements Serializable{
 	}
 
 	/**
-	 * 解析document
+	 * 解析document.
 	 * 
 	 * @param document
+	 *            the document
 	 */
 	@SuppressWarnings("unchecked")
 	private void convertDocumentToMap(Document document){

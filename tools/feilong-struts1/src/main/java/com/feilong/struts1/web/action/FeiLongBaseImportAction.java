@@ -27,7 +27,6 @@ import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 
 import com.feilong.commons.core.io.FileUtil;
-import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.struts1.web.form.ImportForm;
 

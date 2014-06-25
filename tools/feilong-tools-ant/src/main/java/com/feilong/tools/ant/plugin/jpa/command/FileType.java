@@ -15,8 +15,6 @@
  */
 package com.feilong.tools.ant.plugin.jpa.command;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 

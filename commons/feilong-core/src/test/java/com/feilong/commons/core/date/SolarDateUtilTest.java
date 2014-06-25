@@ -30,13 +30,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class SolarDateUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-19 下午4:25:28
  */
 public class SolarDateUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(SolarDateUtilTest.class);
 
+	/**
+	 * To lundar.
+	 */
 	@Test
 	public void toLundar(){
 		log.info(SolarDateUtil.toLundar(2013, 1, 8));

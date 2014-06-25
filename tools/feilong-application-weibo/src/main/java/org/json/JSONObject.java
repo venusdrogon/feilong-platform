@@ -85,7 +85,7 @@ import java.util.TreeSet;
  * @author JSON.org
  * @version 2008-09-18
  */
-public class JSONObject {
+@SuppressWarnings("all")public class JSONObject {
 
     /**
      * JSONObject.NULL is equivalent to the value that JavaScript calls null,

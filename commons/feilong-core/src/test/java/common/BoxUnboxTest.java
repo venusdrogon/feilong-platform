@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 public class BoxUnboxTest{
 
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(BoxUnboxTest.class);
 
 	/**

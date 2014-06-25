@@ -7,7 +7,7 @@ import org.junit.Test;
  * @version 1.0 2011-5-5 下午05:15:42
  * @since 1.0
  */
-public class DesktopUtilTest{
+@SuppressWarnings("all")public class DesktopUtilTest{
 
 	@Test
 	public final void testBrowse1(){

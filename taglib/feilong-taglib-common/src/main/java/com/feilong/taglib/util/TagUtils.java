@@ -1,19 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p/>
- * This software is the confidential and proprietary information of FeiLong
- * Network Technology, Inc. ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with FeiLong.
- * <p/>
- * FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
- * <p/>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.taglib.util;
 
@@ -43,6 +41,7 @@ import org.slf4j.LoggerFactory;
  */
 public class TagUtils{
 
+	/** The Constant log. */
 	private final static Logger		log			= LoggerFactory.getLogger(TagUtils.class);
 
 	/**
@@ -75,6 +74,8 @@ public class TagUtils{
 
 	/**
 	 * Returns the Singleton instance of TagUtils.
+	 * 
+	 * @return the Singleton instance
 	 */
 	public static TagUtils getInstance(){
 		return instance;
@@ -83,21 +84,26 @@ public class TagUtils{
 	/**
 	 * Set the instance. This blatently violates the Singleton pattern, but then some say Singletons are an anti-pattern.
 	 * 
-	 * @since 1.3.5 Changed to non-final and added setInstance() so TagUtils may be overridden, use at your own risk (you've been warned!!)
 	 * @param instance
 	 *            The instance to set.
+	 * @since 1.3.5 Changed to non-final and added setInstance() so TagUtils may be overridden, use at your own risk (you've been warned!!)
 	 */
 	public static void setInstance(TagUtils instance){
 		TagUtils.instance = instance;
 	}
 
 	/**
-	 * Return the form action converted into an action mapping path. The value of the <code>action</code> property is manipulated as follows in computing the
+	 * Return the form action converted into an action mapping path. The value of the <code>action</code> property is manipulated as follows
+	 * in computing the
 	 * name of the requested mapping:
 	 * <ul>
 	 * <li>Any filename extension is removed (on the theory that extension mapping is being used to select the controller servlet).</li>
 	 * <li>If the resulting value does not start with a slash, then a slash is prepended.</li>
 	 * </ul>
+	 * 
+	 * @param action
+	 *            the action
+	 * @return the action mapping name
 	 */
 	public String getActionMappingName(String action){
 		String value = action;
@@ -158,7 +164,8 @@ public class TagUtils{
 	}
 
 	/**
-	 * Locate and return the specified property of the specified bean, from an optionally specified scope, in the specified page context. If an exception is
+	 * Locate and return the specified property of the specified bean, from an optionally specified scope, in the specified page context. If
+	 * an exception is
 	 * thrown, it will have already been saved via a call to <code>saveException()</code>.
 	 * 
 	 * @param pageContext
@@ -168,14 +175,12 @@ public class TagUtils{
 	 * @param property
 	 *            Name of the property to be retrieved, or <code>null</code> to retrieve the bean itself
 	 * @param scope
-	 *            Scope to be searched (page, request, session, application) or <code>null</code> to use <code>findAttribute()</code> instead
+	 *            Scope to be searched (page, request, session, application) or <code>null</code> to use <code>findAttribute()</code>
+	 *            instead
 	 * @return property of specified JavaBean
 	 * @throws JspException
-	 *             if an invalid scope name is requested
-	 * @throws JspException
-	 *             if the specified bean is not found
-	 * @throws JspException
-	 *             if accessing this property causes an IllegalAccessException, IllegalArgumentException, InvocationTargetException, or NoSuchMethodException
+	 *             if accessing this property causes an IllegalAccessException, IllegalArgumentException, InvocationTargetException, or
+	 *             NoSuchMethodException
 	 */
 	public Object lookup(PageContext pageContext,String name,String property,String scope) throws JspException{
 		// Look up the requested bean, and return if requested

@@ -1,19 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p/>
- * This software is the confidential and proprietary information of FeiLong
- * Network Technology, Inc. ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with FeiLong.
- * <p/>
- * FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
- * <p/>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.word;
 
@@ -37,20 +35,31 @@ import com.jacob.com.Variant;
  * 注意word转pdf要安装虚拟打印机，且要配置 
  * 使用jacob框架，把dll文件放到jre/bin目录下 
  */
+/**
+ * The Class WordToPdf.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 16:22:21
+ */
 public class WordToPdf{
 
+	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(WordToPdf.class);
 
+	/** The word com. */
 	private ActiveXComponent	wordCom	= null;
 
+	/** The word doc. */
 	private Object				wordDoc	= null;
 
+	/** The False. */
 	private final Variant		False	= new Variant(false);
 
+	/** The True. */
 	private final Variant		True	= new Variant(true);
 
 	/**
-	 * 打开word文档
+	 * 打开word文档.
 	 * 
 	 * @param filePath
 	 *            word文档
@@ -72,7 +81,10 @@ public class WordToPdf{
 	}
 
 	/**
-	 * 关闭word文档
+	 * 关闭word文档.
+	 * 
+	 * @param saveOnExit
+	 *            the save on exit
 	 */
 	public void closeWord(boolean saveOnExit){
 		if (wordCom != null){
@@ -87,7 +99,7 @@ public class WordToPdf{
 	}
 
 	/**
-	 * 将word文档打印为PS文件后，使用Distiller将PS文件转换为PDF文件
+	 * 将word文档打印为PS文件后，使用Distiller将PS文件转换为PDF文件.
 	 * 
 	 * @param sourceFilePath
 	 *            源文件路径
@@ -135,6 +147,12 @@ public class WordToPdf{
 		}
 	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param argv
+	 *            the arguments
+	 */
 	public static void main(String[] argv){
 		WordToPdf d2p = new WordToPdf();
 		d2p.docToPDF("D:\\test.doc", "D:\\test.ps", "D:\\test.pdf");

@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.taglib.display.httpconcat.BaseHttpConcatTest;
 
 /**
+ * The Class HttpConcatParamTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月24日 下午6:22:48
@@ -32,10 +33,15 @@ import com.feilong.taglib.display.httpconcat.BaseHttpConcatTest;
  */
 public class HttpConcatParamTest extends BaseHttpConcatTest{
 
+	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(HttpConcatParamTest.class);
 
+	/** The domain. */
 	String						domain	= "http://www.feilong.com";
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public final void testHashCode(){
 		HttpConcatParam t = new HttpConcatParam();
@@ -47,6 +53,9 @@ public class HttpConcatParamTest extends BaseHttpConcatTest{
 		}
 	}
 
+	/**
+	 * Test equals object.
+	 */
 	@Test
 	public final void testEqualsObject(){
 		HttpConcatParam pagerParams1 = new HttpConcatParam();
@@ -79,6 +88,9 @@ public class HttpConcatParamTest extends BaseHttpConcatTest{
 		}
 	}
 
+	/**
+	 * Name.
+	 */
 	@Test
 	public void name(){
 		HttpConcatParam httpConcatParam1 = getHttpConcatParam();

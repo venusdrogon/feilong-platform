@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.excel;
 
@@ -30,7 +30,7 @@ import com.feilong.commons.core.util.NumberPattern;
 import com.feilong.commons.core.util.NumberUtil;
 
 /**
- * 处理Excel文档(POI)
+ * 处理Excel文档(POI).
  * 
  * @author 金鑫
  * @version 1.0 2009-5-19下午08:08:37
@@ -40,15 +40,15 @@ import com.feilong.commons.core.util.NumberUtil;
 public class ExcelParseUtil{
 
 	/**
-	 * 获得表格值 通过"A4" "D5"的方式
+	 * 获得表格值 通过"A4" "D5"的方式.
 	 * 
-	 * @param sheet
-	 *            sheet
-	 * @param cellLogo
-	 *            "A4" "D5"的方式
-	 * @return 获得表格值 通过"A4" "D5"的方式
 	 * @author 金鑫
 	 * @version 1.0 Jul 9, 2010 1:20:08 AM
+	 * @param row
+	 *            the row
+	 * @param cellNum
+	 *            the cell num
+	 * @return 获得表格值 通过"A4" "D5"的方式
 	 */
 	// public static String getCellValue(HSSFSheet sheet,String cellLogo){
 	// int cellNum = 0;
@@ -75,13 +75,13 @@ public class ExcelParseUtil{
 	}
 
 	/**
-	 * 获得单元格值 当null==cell时,返回""
+	 * 获得单元格值 当null==cell时,返回"".
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 Jul 9, 2010 1:24:07 AM
 	 * @param cell
 	 *            cell
 	 * @return 获得单元格值
-	 * @author 金鑫
-	 * @version 1.0 Jul 9, 2010 1:24:07 AM
 	 */
 	public static String getCellValue(Cell cell){
 		String returnValue = "";
@@ -115,9 +115,12 @@ public class ExcelParseUtil{
 	}
 
 	/**
-	 * 通过主键值 主键列位置 找到第一个匹配的行
+	 * 通过主键值 主键列位置 找到第一个匹配的行.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 Jul 9, 2010 3:31:22 AM
 	 * @param sheet
+	 *            the sheet
 	 * @param beginRowIndex
 	 *            开始行号
 	 * @param primaryKeyValue
@@ -125,8 +128,6 @@ public class ExcelParseUtil{
 	 * @param primaryKeyColumnNum
 	 *            主键列位置
 	 * @return 通过主键值 主键列位置 找到第一个匹配的行
-	 * @author 金鑫
-	 * @version 1.0 Jul 9, 2010 3:31:22 AM
 	 */
 	public static Row getRowByPrimaryKey(Sheet sheet,int beginRowIndex,String primaryKeyValue,int primaryKeyColumnNum){
 		int rowCount = getPhysicalNumberOfRows(sheet);
@@ -143,13 +144,13 @@ public class ExcelParseUtil{
 
 	// **************************************************************************
 	/**
-	 * 创建excel,已经处理了异常
+	 * 创建excel,已经处理了异常.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-7-8 下午05:15:54
 	 * @param inputStream
 	 *            inputStream
 	 * @return HSSFWorkbook
-	 * @author 金鑫
-	 * @version 1.0 2010-7-8 下午05:15:54
 	 */
 	public HSSFWorkbook createHSSFWorkbook(InputStream inputStream){
 		try{
@@ -161,20 +162,24 @@ public class ExcelParseUtil{
 	}
 
 	/**
-	 * 获得sheet 总行数
+	 * 获得sheet 总行数.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 Jul 9, 2010 1:56:02 AM
 	 * @param sheet
 	 *            sheet
 	 * @return 获得sheet 总行数
-	 * @author 金鑫
-	 * @version 1.0 Jul 9, 2010 1:56:02 AM
 	 */
 	public static int getPhysicalNumberOfRows(Sheet sheet){
 		return sheet.getPhysicalNumberOfRows();
 	}
 
 	/**
-	 * @param row
+	 * Gets the cell map for log.
+	 * 
+	 * @param cell
+	 *            the cell
+	 * @return the cell map for log
 	 */
 	public static Map<String, Object> getCellMapForLog(Cell cell){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -217,7 +222,11 @@ public class ExcelParseUtil{
 	}
 
 	/**
+	 * Gets the row map for log.
+	 * 
 	 * @param row
+	 *            the row
+	 * @return the row map for log
 	 */
 	public static Map<String, Object> getRowMapForLog(Row row){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -235,8 +244,11 @@ public class ExcelParseUtil{
 	}
 
 	/**
+	 * Gets the sheet map for log.
+	 * 
 	 * @param sheet
-	 * @return
+	 *            the sheet
+	 * @return the sheet map for log
 	 */
 	public static Map<String, Object> getSheetMapForLog(Sheet sheet){
 		int lastRowNum = sheet.getLastRowNum();

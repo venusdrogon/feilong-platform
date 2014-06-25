@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.lang;
 
 import org.junit.Test;
@@ -30,11 +20,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class ClassLoaderUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午12:42:55
  */
 public class ClassLoaderUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ClassLoaderUtilTest.class);
 
 	/**
@@ -44,15 +37,15 @@ public class ClassLoaderUtilTest{
 	public void testGetResource(){
 		log.info(ClassLoaderUtil.getResource("") + "");
 		log.info("" + ClassLoaderUtil.getResource("com"));
+		ClassLoaderUtil.getResource("jstl-1.2", this.getClass());
 	}
 
+	/**
+	 * Test get class path.
+	 */
 	@Test
-	public void getClassPath(){
+	public void testGetClassPath(){
 		log.info("" + ClassLoaderUtil.getClassPath());
 	}
 
-	@Test
-	public void getResource(){
-		ClassLoaderUtil.getResource("jstl-1.2", this.getClass());
-	}
 }

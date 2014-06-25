@@ -80,13 +80,14 @@ import java.util.Map;
  * @author JSON.org
  * @version 2008-09-18
  */
-public class JSONArray {
+@SuppressWarnings("all")public class JSONArray {
 
 
     /**
      * The arrayList where the JSONArray's properties are kept.
      */
-    private ArrayList myArrayList;
+    
+	private ArrayList myArrayList;
 
 
     /**

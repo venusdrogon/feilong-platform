@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package temple.awt;
 
@@ -45,30 +35,63 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.ImageType;
 
 //97.区域截幕
+/**
+ * The Class ScreenDumpHelper.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:38:52
+ */
 public class ScreenDumpHelper{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ScreenDumpHelper.class);
 
+	/** The screen area. */
 	private Rectangle			screenArea;
 
+	/**
+	 * Gets the screen area.
+	 * 
+	 * @return the screen area
+	 */
 	public Rectangle getScreenArea(){
 		return this.screenArea;
 	}
 
+	/**
+	 * Sets the screen area.
+	 * 
+	 * @param screenArea
+	 *            the new screen area
+	 */
 	public void setScreenArea(Rectangle screenArea){
 		this.screenArea = screenArea;
 	}
 
+	/**
+	 * 设置 screen area.
+	 * 
+	 * @param x
+	 *            the x
+	 * @param y
+	 *            the y
+	 * @param width
+	 *            the width
+	 * @param height
+	 *            the height
+	 */
 	public void setScreenArea(int x,int y,int width,int height){
 		this.screenArea = new Rectangle(x, y, width, height);
 	}
 
 	/**
-	 * 将 图像数据写到 输出流中去,方便再处理
+	 * 将 图像数据写到 输出流中去,方便再处理.
 	 * 
 	 * @param fileFormat
+	 *            the file format
 	 * @param output
-	 * @return
+	 *            the output
+	 * @return true, if successful
 	 */
 	public boolean saveToOutputStream(String fileFormat,OutputStream output){
 		try{
@@ -87,7 +110,9 @@ public class ScreenDumpHelper{
 	 * 图片的编码并不是以后缀名来判断: 比如s.jpg 如果其采用png编码,那么这个图片就是png格式的
 	 * 
 	 * @param fileName
+	 *            the file name
 	 * @param fileFormat
+	 *            the file format
 	 * @return boolean
 	 */
 	public boolean saveToFile(String fileName,String fileFormat){
@@ -104,27 +129,37 @@ public class ScreenDumpHelper{
 	}
 
 	/**
-	 * 抓取 指定 Rectangle 区域的截图 到指定格式的文件中
+	 * 抓取 指定 Rectangle 区域的截图 到指定格式的文件中.
 	 * 
 	 * @param fileName
+	 *            the file name
 	 * @param fileFormat
+	 *            the file format
 	 * @param screenArea
-	 * @return
+	 *            the screen area
+	 * @return true, if successful
 	 */
-	public boolean saveToFile(String fileName,String fileFormat,Rectangle screenArea){
+	public boolean saveToFile(String fileName,String fileFormat,@SuppressWarnings("hiding") Rectangle screenArea){
 		this.setScreenArea(screenArea);
 		return this.saveToFile(fileName, fileFormat);
 	}
 
 	/**
-	 * 抓取 指定区域的截图 到指定格式的文件中
+	 * 抓取 指定区域的截图 到指定格式的文件中.
 	 * 
 	 * @param fileName
+	 *            the file name
 	 * @param fileFormat
+	 *            the file format
 	 * @param x
+	 *            the x
 	 * @param y
+	 *            the y
 	 * @param width
+	 *            the width
 	 * @param height
+	 *            the height
+	 * @return true, if successful
 	 */
 	public boolean saveToFile(String fileName,String fileFormat,int x,int y,int width,int height){
 		this.setScreenArea(x, y, width, height);
@@ -132,7 +167,10 @@ public class ScreenDumpHelper{
 	}
 
 	/**
+	 * The main method.
+	 * 
 	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args){
 		for (int i = 0; i < 5; i++)

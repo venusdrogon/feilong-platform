@@ -52,13 +52,18 @@ public class FileUtilTest{
 	private String				fileName1	= "F:/pie2.png";
 
 	/** The file name. */
+	@SuppressWarnings("unused")
 	private String				fileName	= "E:\\Data\\Java\\Taglib\\Apache Commons 非常有用的工具包\\commons-net\\ftp";
 
 	/** The string. */
+	@SuppressWarnings("unused")
 	private String				fString		= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
 
+	/**
+	 * Test get new file name.
+	 */
 	@Test
-	public void getNewFileName(){
+	public void testGetNewFileName(){
 		assertEquals("F:/pie2.gif", FileUtil.getNewFileName(fileName1, "gif"));
 	}
 
@@ -116,8 +121,11 @@ public class FileUtilTest{
 		FileUtil.createDirectory("E:\\test\\1\\2011-07-07\\test\\1\\2011-07-07");
 	}
 
+	/**
+	 * Test get file top parent name.
+	 */
 	@Test
-	public void getFileTopParentName(){
+	public void testGetFileTopParentName(){
 		assertEquals("E:/", FileUtil.getFileTopParentName("E:/"));
 
 		assertEquals(
@@ -139,7 +147,7 @@ public class FileUtilTest{
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void getFileSizes() throws IOException{
+	public void testGetFileSizes() throws IOException{
 
 		String _file = "E:\\DataCommon\\test\\1.png";
 		_file = "E:\\DataCommon\\Java\\JDK API 1.6.0 中文版.CHM";
@@ -212,10 +220,9 @@ public class FileUtilTest{
 	/**
 	 * Gets the file postfix name lower case.
 	 * 
-	 * @return the file postfix name lower case
 	 */
 	@Test
-	public void getFilePostfixNameLowerCase(){
+	public void tstGetFilePostfixNameLowerCase(){
 		fileName1 = "a.A";
 		log.debug(FileUtil.getFilePostfixNameLowerCase(fileName1) + "");
 	}

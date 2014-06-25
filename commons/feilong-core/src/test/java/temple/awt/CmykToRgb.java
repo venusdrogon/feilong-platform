@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package temple.awt;
 
 import java.awt.color.ColorSpace;
@@ -15,15 +30,23 @@ import com.feilong.commons.core.awt.ImageUtil;
 
 
 /**
- * CMYK转RGB 图片格式转换
+ * CMYK转RGB 图片格式转换.
  * 
  * @author 徐新望 Jul 9, 2010
  */
 public class CmykToRgb{
+	
+	/** The Constant log. */
 	private final static Logger	log					= LoggerFactory.getLogger(CmykToRgb.class);
+	
 	/**
-	 * Creates new RGB images from all the CMYK images passed in on the command line. The new filename generated is, for example "GIF_original_filename.gif".
+	 * Creates new RGB images from all the CMYK images passed in on the command line. The new filename generated is, for example
+	 * "GIF_original_filename.gif".
+	 * 
+	 * @param args
+	 *            the arguments
 	 */
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args){
 		String filename = "E:\\workspaces\\project\\cmyk.jpg";
 		boolean isCmykType = ImageUtil.isCMYKType(filename);
@@ -41,6 +64,10 @@ public class CmykToRgb{
 	 * CMYK转RGB If 'filename' is a CMYK file, then convert the image into RGB, store it into a JPEG file, and return the new filename.
 	 * 
 	 * @param filename
+	 *            the filename
+	 * @return the string
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	private static String cmyk2rgb(String filename) throws IOException{
 		// Change this format into any ImageIO supported format.
@@ -66,7 +93,9 @@ public class CmykToRgb{
 	 * Change the extension of 'filename' to 'newExtension'.
 	 * 
 	 * @param filename
+	 *            the filename
 	 * @param newExtension
+	 *            the new extension
 	 * @return filename with new extension
 	 */
 	private static String changeExtension(String filename,String newExtension){

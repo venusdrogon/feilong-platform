@@ -15,6 +15,7 @@ import com.feilong.commons.core.util.Validator;
  */
 public class JdbcUtil{
 
+	@SuppressWarnings("unused")
 	private final static Logger	log	= LoggerFactory.getLogger(JdbcUtil.class);
 
 	/**

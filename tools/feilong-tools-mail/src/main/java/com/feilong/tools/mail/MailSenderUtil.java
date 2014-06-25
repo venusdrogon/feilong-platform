@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.mail;
 
@@ -46,37 +46,37 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 邮件发送器
+ * 邮件发送器.
  * 
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 金鑫 2010-1-23 下午04:22:24
  * @version 金鑫 2011-12-24 01:54
  * @version 1.0 Dec 7, 2013 9:04:22 PM
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  */
 public final class MailSenderUtil{
 
+	/** The Constant log. */
 	private static final Logger	log					= LoggerFactory.getLogger(MailSenderUtil.class);
 
+	/** The message. */
 	private Message				message				= null;
 
-	/**
-	 * 版本
-	 */
+	/** 版本. */
 	private static final String	VERSION				= "1.0.3";
 
-	/**
-	 * contentId前缀
-	 */
+	/** contentId前缀. */
 	public static final String	PREFIX_CONTENTID	= "image";
 
 	// 以纯文本格式发送邮件 （不带附件的邮件）
 	/**
-	 * 发送邮件
+	 * 发送邮件.
 	 * 
 	 * @param mailEntity
-	 * @return
+	 *            the mail entity
 	 * @throws MessagingException
+	 *             the messaging exception
 	 * @throws UnsupportedEncodingException
+	 *             the unsupported encoding exception
 	 */
 	public void sendMail(MailEntity mailEntity) throws MessagingException,UnsupportedEncodingException{
 		// ************************validator*****************************************************************
@@ -174,12 +174,15 @@ public final class MailSenderUtil{
 
 	// ****************************************************************************************
 	/**
-	 * 根据session创建一个邮件消息
+	 * 根据session创建一个邮件消息.
 	 * 
 	 * @param mailEntity
+	 *            the mail entity
 	 * @return Message
-	 * @throws MessagingException
 	 * @throws UnsupportedEncodingException
+	 *             the unsupported encoding exception
+	 * @throws MessagingException
+	 *             the messaging exception
 	 */
 	private Message getMessageAndSetAttribute(MailEntity mailEntity) throws UnsupportedEncodingException,MessagingException{
 		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
@@ -191,14 +194,14 @@ public final class MailSenderUtil{
 	}
 
 	/**
-	 * 设置message公共属性
+	 * 设置message公共属性.
 	 * 
-	 * @param message
-	 *            message
 	 * @param mailEntity
 	 *            属性
 	 * @throws UnsupportedEncodingException
+	 *             the unsupported encoding exception
 	 * @throws MessagingException
+	 *             the messaging exception
 	 */
 	private void setMessageAttribute(MailEntity mailEntity) throws UnsupportedEncodingException,MessagingException{
 		// ***************************************************************************
@@ -238,11 +241,14 @@ public final class MailSenderUtil{
 
 	/**
 	 * 设置邮件接受人群<br>
-	 * 支持 to cc bcc
+	 * 支持 to cc bcc.
 	 * 
 	 * @param mailEntity
+	 *            the new recipients
 	 * @throws AddressException
+	 *             the address exception
 	 * @throws MessagingException
+	 *             the messaging exception
 	 */
 	private void setRecipients(MailEntity mailEntity) throws AddressException,MessagingException{
 		// *********************to******************************************************
@@ -278,7 +284,7 @@ public final class MailSenderUtil{
 	}
 
 	/**
-	 * 根据邮件会话属性和密码验证器构造一个发送邮件的session
+	 * 根据邮件会话属性和密码验证器构造一个发送邮件的session.
 	 * 
 	 * @param mailEntity
 	 *            mailSenderInfo

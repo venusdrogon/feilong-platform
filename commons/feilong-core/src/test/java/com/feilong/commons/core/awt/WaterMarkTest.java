@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 26 18:48:11
  */
-public class WaterMarkTest{
+@SuppressWarnings("all")public class WaterMarkTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log			= LoggerFactory.getLogger(WaterMarkTest.class);

@@ -25,8 +25,6 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
-import com.feilong.commons.core.util.ListUtil;
-import com.feilong.tools.reference.ip.IpUtil;
 
 /**
  * The Class IpUtilTest.

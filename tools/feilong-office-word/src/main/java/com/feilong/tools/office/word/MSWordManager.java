@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.word;
 
@@ -23,16 +23,17 @@ import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
 
 /**
- * 是jacob官方发布的工具类，里面有大多数Java操作MS Office的工具
+ * 是jacob官方发布的工具类，里面有大多数Java操作MS Office的工具.
  * 
  * @author 金鑫 2010-3-1 下午02:42:31
  */
 public class MSWordManager{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MSWordManager.class);
 
 	/**
-	 * 文档转换函数
+	 * 文档转换函数.
 	 * 
 	 * @param docfile
 	 *            word文档的绝对路径加文件名(包含扩展名)
@@ -64,6 +65,14 @@ public class MSWordManager{
 		}
 	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 * @throws Exception
+	 *             the exception
+	 */
 	public static void main(String args[]) throws Exception{
 		MSWordManager.change("E:\\Data\\java\\Taglib\\Apache开源项目分类列表.doc", "E:\\a");
 		// MSWordManager msWordManager = new MSWordManager(true);
@@ -84,20 +93,27 @@ public class MSWordManager{
 	}
 
 	// word文档
+	/** The doc. */
 	private Dispatch			doc;
 
 	// word运行程序对象
+	/** The word. */
 	private ActiveXComponent	word;
 
 	// 所有word文档集合
+	/** The documents. */
 	private Dispatch			documents;
 
 	// 选定的范围或插入点
+	/** The selection. */
 	private Dispatch			selection;
 
+	/** The save on exit. */
 	private boolean				saveOnExit	= true;
 
 	/**
+	 * Instantiates a new MS word manager.
+	 * 
 	 * @param visible
 	 *            为true表示word应用程序可见
 	 */
@@ -112,7 +128,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 设置退出时参数
+	 * 设置退出时参数.
 	 * 
 	 * @param saveOnExit
 	 *            boolean true-退出时保存文件，false-退出时不保存文件
@@ -122,7 +138,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 创建一个新的word文档
+	 * 创建一个新的word文档.
 	 */
 	public void createNewDocument(){
 		doc = Dispatch.call(documents, "Add").toDispatch();
@@ -130,9 +146,10 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 打开一个已存在的文档
+	 * 打开一个已存在的文档.
 	 * 
 	 * @param docPath
+	 *            the doc path
 	 */
 	public void openDocument(String docPath){
 		closeDocument();
@@ -141,7 +158,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 把选定的内容或插入点向上移动
+	 * 把选定的内容或插入点向上移动.
 	 * 
 	 * @param pos
 	 *            移动的距离
@@ -156,7 +173,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 把选定的内容或者插入点向下移动
+	 * 把选定的内容或者插入点向下移动.
 	 * 
 	 * @param pos
 	 *            移动的距离
@@ -171,7 +188,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 把选定的内容或者插入点向左移动
+	 * 把选定的内容或者插入点向左移动.
 	 * 
 	 * @param pos
 	 *            移动的距离
@@ -186,7 +203,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 把选定的内容或者插入点向右移动
+	 * 把选定的内容或者插入点向右移动.
 	 * 
 	 * @param pos
 	 *            移动的距离
@@ -201,7 +218,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 把插入点移动到文件首位置
+	 * 把插入点移动到文件首位置.
 	 */
 	public void moveStart(){
 		if (selection == null){
@@ -210,6 +227,9 @@ public class MSWordManager{
 		Dispatch.call(selection, "HomeKey", new Variant(6));
 	}
 
+	/**
+	 * Move end.
+	 */
 	public void moveEnd(){
 		if (selection == null){
 			selection = Dispatch.get(word, "Selection").toDispatch();
@@ -218,7 +238,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 从选定内容或插入点开始查找文本
+	 * 从选定内容或插入点开始查找文本.
 	 * 
 	 * @param toFindText
 	 *            要查找的文本
@@ -245,13 +265,13 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 把选定选定内容设定为替换文本
+	 * 把选定选定内容设定为替换文本.
 	 * 
 	 * @param toFindText
 	 *            查找字符串
 	 * @param newText
 	 *            要替换的内容
-	 * @return
+	 * @return true, if successful
 	 */
 	public boolean replaceText(String toFindText,String newText){
 		if (!find(toFindText)){
@@ -262,7 +282,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 全局替换文本
+	 * 全局替换文本.
 	 * 
 	 * @param toFindText
 	 *            查找字符串
@@ -277,7 +297,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前插入点插入字符串
+	 * 在当前插入点插入字符串.
 	 * 
 	 * @param newText
 	 *            要插入的新字符串
@@ -287,11 +307,13 @@ public class MSWordManager{
 	}
 
 	/**
+	 * Replace image.
+	 * 
 	 * @param toFindText
 	 *            要查找的字符串
 	 * @param imagePath
 	 *            图片路径
-	 * @return
+	 * @return true, if successful
 	 */
 	public boolean replaceImage(String toFindText,String imagePath){
 		if (!find(toFindText)){
@@ -302,7 +324,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 全局替换图片
+	 * 全局替换图片.
 	 * 
 	 * @param toFindText
 	 *            查找字符串
@@ -317,7 +339,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前插入点插入图片
+	 * 在当前插入点插入图片.
 	 * 
 	 * @param imagePath
 	 *            图片路径
@@ -327,13 +349,18 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 合并单元格
+	 * 合并单元格.
 	 * 
 	 * @param tableIndex
+	 *            the table index
 	 * @param fstCellRowIdx
+	 *            the fst cell row idx
 	 * @param fstCellColIdx
+	 *            the fst cell col idx
 	 * @param secCellRowIdx
+	 *            the sec cell row idx
 	 * @param secCellColIdx
+	 *            the sec cell col idx
 	 */
 	public void mergeCell(int tableIndex,int fstCellRowIdx,int fstCellColIdx,int secCellRowIdx,int secCellColIdx){
 		// 所有表格
@@ -346,12 +373,16 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在指定的单元格里填写数据
+	 * 在指定的单元格里填写数据.
 	 * 
 	 * @param tableIndex
+	 *            the table index
 	 * @param cellRowIdx
+	 *            the cell row idx
 	 * @param cellColIdx
+	 *            the cell col idx
 	 * @param txt
+	 *            the txt
 	 */
 	public void putTxtToCell(int tableIndex,int cellRowIdx,int cellColIdx,String txt){
 		// 所有表格
@@ -364,9 +395,10 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档拷贝数据
+	 * 在当前文档拷贝数据.
 	 * 
-	 * @param pos
+	 * @param toCopyText
+	 *            the to copy text
 	 */
 	public void copy(String toCopyText){
 		moveStart();
@@ -377,9 +409,10 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档粘帖剪贴板数据
+	 * 在当前文档粘帖剪贴板数据.
 	 * 
 	 * @param pos
+	 *            the pos
 	 */
 	public void paste(String pos){
 		moveStart();
@@ -390,7 +423,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档指定的位置拷贝表格
+	 * 在当前文档指定的位置拷贝表格.
 	 * 
 	 * @param pos
 	 *            当前文档指定的位置
@@ -409,12 +442,12 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档末尾拷贝来自另一个文档中的段落
+	 * 在当前文档末尾拷贝来自另一个文档中的段落.
 	 * 
 	 * @param anotherDocPath
 	 *            另一个文档的磁盘路径
-	 * @param tableIndex
-	 *            被拷贝的段落在另一格文档中的序号(从1开始)
+	 * @param paragraphIndex
+	 *            the paragraph index
 	 */
 	public void copyParagraphFromAnotherDoc(String anotherDocPath,int paragraphIndex){
 		Dispatch wordContent = Dispatch.get(doc, "Content").toDispatch(); // 取得当前文档的内容
@@ -423,12 +456,12 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档指定的位置拷贝来自另一个文档中的段落
+	 * 在当前文档指定的位置拷贝来自另一个文档中的段落.
 	 * 
 	 * @param anotherDocPath
 	 *            另一个文档的磁盘路径
-	 * @param tableIndex
-	 *            被拷贝的段落在另一格文档中的序号(从1开始)
+	 * @param paragraphIndex
+	 *            the paragraph index
 	 * @param pos
 	 *            当前文档指定的位置
 	 */
@@ -455,7 +488,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档指定的位置拷贝来自另一个文档中的表格
+	 * 在当前文档指定的位置拷贝来自另一个文档中的表格.
 	 * 
 	 * @param anotherDocPath
 	 *            另一个文档的磁盘路径
@@ -487,7 +520,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在当前文档指定的位置拷贝来自另一个文档中的图片
+	 * 在当前文档指定的位置拷贝来自另一个文档中的图片.
 	 * 
 	 * @param anotherDocPath
 	 *            另一个文档的磁盘路径
@@ -519,14 +552,12 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 创建表格
+	 * 创建表格.
 	 * 
-	 * @param pos
-	 *            位置
-	 * @param cols
-	 *            列数
-	 * @param rows
-	 *            行数
+	 * @param numCols
+	 *            the num cols
+	 * @param numRows
+	 *            the num rows
 	 */
 	public void createTable(int numCols,int numRows){// (String pos, int numCols, int numRows) {
 		// if (!find(pos)) {
@@ -539,7 +570,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在指定行前面增加行
+	 * 在指定行前面增加行.
 	 * 
 	 * @param tableIndex
 	 *            word文件中的第N张表(从1开始)
@@ -558,7 +589,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在第1行前增加一行
+	 * 在第1行前增加一行.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -575,7 +606,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在最后1行前增加一行
+	 * 在最后1行前增加一行.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -592,7 +623,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 增加一行
+	 * 增加一行.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -607,7 +638,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 增加一列
+	 * 增加一列.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -624,7 +655,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在指定列前面增加表格的列
+	 * 在指定列前面增加表格的列.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -646,7 +677,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在第1列前增加一列
+	 * 在第1列前增加一列.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -663,7 +694,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 在最后一列前增加一列
+	 * 在最后一列前增加一列.
 	 * 
 	 * @param tableIndex
 	 *            word文档中的第N张表(从1开始)
@@ -680,7 +711,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 自动调整表格
+	 * 自动调整表格.
 	 */
 	public void autoFitTable(){
 		Dispatch tables = Dispatch.get(doc, "Tables").toDispatch();
@@ -693,7 +724,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 调用word里的宏以调整表格的宽度,其中宏保存在document下
+	 * 调用word里的宏以调整表格的宽度,其中宏保存在document下.
 	 */
 	public void callWordMacro(){
 		Dispatch tables = Dispatch.get(doc, "Tables").toDispatch();
@@ -709,12 +740,14 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 设置当前选定内容的字体
+	 * 设置当前选定内容的字体.
 	 * 
-	 * @param boldSize
-	 * @param italicSize
-	 * @param underLineSize
-	 *            下划线
+	 * @param bold
+	 *            the bold
+	 * @param italic
+	 *            the italic
+	 * @param underLine
+	 *            the under line
 	 * @param colorSize
 	 *            字体颜色
 	 * @param size
@@ -733,7 +766,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 文件保存或另存为
+	 * 文件保存或另存为.
 	 * 
 	 * @param savePath
 	 *            保存或另存为路径
@@ -742,7 +775,9 @@ public class MSWordManager{
 		Dispatch.call(Dispatch.call(word, "WordBasic").getDispatch(), "FileSaveAs", savePath);
 	}
 
-	/** */
+	/**
+	 * Close document.
+	 */
 	/**
 	 * 关闭当前word文档
 	 */
@@ -755,7 +790,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 关闭全部应用
+	 * 关闭全部应用.
 	 */
 	public void close(){
 		closeDocument();
@@ -768,7 +803,7 @@ public class MSWordManager{
 	}
 
 	/**
-	 * 打印当前word文档
+	 * 打印当前word文档.
 	 */
 	public void printFile(){
 		if (doc != null){

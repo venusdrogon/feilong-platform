@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,36 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.io;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The Class SpecialFolderTest.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:25:17
+ */
 public class SpecialFolderTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(SpecialFolderTest.class);
 
+	/**
+	 * Test get desktop.
+	 */
 	@Test
 	public void testGetDesktop(){
 		log.info("桌面地址:" + SpecialFolder.getDesktop());
 	}
 
+	/**
+	 * Test get my documents.
+	 */
 	@Test
 	public void testGetMyDocuments(){
 		log.info("我的文档:" + SpecialFolder.getMyDocuments());
 	}
 
+	/**
+	 * Test get temp.
+	 */
 	@Test
 	public void testGetTemp(){
 		log.info("临时文件夹:" + SpecialFolder.getTemp());

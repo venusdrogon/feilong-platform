@@ -7,16 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.security.BaseSecurityTest;
-import com.feilong.commons.core.security.oneway.SHA1Util;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-7 上午01:12:36
  */
-public class SHA1UtilTest extends BaseSecurityTest{
+@SuppressWarnings("all")public class SHA1UtilTest extends BaseSecurityTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(SHA1UtilTest.class);
 

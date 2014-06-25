@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.taglib.common.middleware;
 
@@ -21,39 +21,33 @@ import com.feilong.taglib.base.AbstractCommonTag;
 import com.feilong.tools.middleware.RegionUtil;
 
 /**
- * 显示地区(除去直辖市中的城市)
+ * 显示地区(除去直辖市中的城市).
  * 
  * @author 金鑫 2009-12-4下午01:54:34
  */
 public class ShowRegionTag extends AbstractCommonTag{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
 
-	/**
-	 * 省份名称
-	 */
+	/** 省份名称. */
 	private String				provinceName;
 
-	/**
-	 * 城市名称
-	 */
+	/** 城市名称. */
 	private String				cityName;
 
-	/**
-	 * 地区名称
-	 */
+	/** 地区名称. */
 	private String				districtName;
 
-	/**
-	 * 省份id
-	 */
+	/** 省份id. */
 	private BigDecimal			provinceId;
 
-	/**
-	 * 显示等级 支持 3全部显示,2 如果是省份显示省份+城市,如果是直辖市,显示直辖市+区县 默认3(省份+城市+区县)
-	 */
+	/** 显示等级 支持 3全部显示,2 如果是省份显示省份+城市,如果是直辖市,显示直辖市+区县 默认3(省份+城市+区县). */
 	private int					showLevel			= 3;
 
+	/* (non-Javadoc)
+	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
+	 */
 	@Override
 	public String writeContent(){
 		/**
@@ -74,6 +68,8 @@ public class ShowRegionTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 省份名称.
+	 * 
 	 * @param provinceName
 	 *            the provinceName to set
 	 */
@@ -82,6 +78,8 @@ public class ShowRegionTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 城市名称.
+	 * 
 	 * @param cityName
 	 *            the cityName to set
 	 */
@@ -90,6 +88,8 @@ public class ShowRegionTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 地区名称.
+	 * 
 	 * @param districtName
 	 *            the districtName to set
 	 */
@@ -98,6 +98,8 @@ public class ShowRegionTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 省份id.
+	 * 
 	 * @param provinceId
 	 *            the provinceId to set
 	 */
@@ -106,6 +108,8 @@ public class ShowRegionTag extends AbstractCommonTag{
 	}
 
 	/**
+	 * 设置 显示等级 支持 3全部显示,2 如果是省份显示省份+城市,如果是直辖市,显示直辖市+区县 默认3(省份+城市+区县).
+	 * 
 	 * @param showLevel
 	 *            the showLevel to set
 	 */

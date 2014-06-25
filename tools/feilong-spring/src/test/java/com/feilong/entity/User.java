@@ -32,6 +32,7 @@ import org.springframework.beans.factory.InitializingBean;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-16 0:42:08
  */
+@Deprecated
 public class User implements InitializingBean,DisposableBean{
 
 	/** The Constant log. */

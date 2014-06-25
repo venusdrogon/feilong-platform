@@ -36,7 +36,7 @@ import com.feilong.commons.core.util.Validator;
  */
 public final class ServletContextUtil{
 
-	private static final Logger	log	= LoggerFactory.getLogger(ServletContextUtil.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(ServletContextUtil.class);
 
 	/**
 	 * servletContext.log servletContext相关信息,一般 启动时 调用

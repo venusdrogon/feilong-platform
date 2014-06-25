@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package temple.io;
 
 import java.io.BufferedOutputStream;
@@ -14,10 +29,26 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The Class Util.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 15:40:45
+ */
 public class Util{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(Util.class);
 
+	/**
+	 * Copy file.
+	 * 
+	 * @param fileName
+	 *            the file name
+	 * @param newFileName
+	 *            the new file name
+	 * @return true, if successful
+	 */
 	public static boolean copyFile(String fileName,String newFileName){
 		BufferedOutputStream bos = null;
 		FileInputStream in = null;
@@ -56,10 +87,11 @@ public class Util{
 	}
 
 	/**
-	 * 执行命令
+	 * 执行命令.
 	 * 
 	 * @param cmd
-	 * @return
+	 *            the cmd
+	 * @return the int
 	 */
 	public static int executeCommand(String cmd){
 		int ret = 0;
@@ -79,7 +111,13 @@ public class Util{
 		return ret;
 	}
 
-	/** 转换 byte数组 为 char数组 */
+	/**
+	 * 转换 byte数组 为 char数组.
+	 * 
+	 * @param bytes
+	 *            the bytes
+	 * @return the char[]
+	 */
 	public static char[] bytesToChars(byte[] bytes){
 		String s = new String(bytes);
 		char[] c = s.toCharArray();
@@ -87,10 +125,11 @@ public class Util{
 	}
 
 	/**
-	 * 从一段文字中提取IP地址
+	 * 从一段文字中提取IP地址.
 	 * 
 	 * @param str
-	 * @return
+	 *            the str
+	 * @return the ip
 	 */
 	public static String getIP(String str){
 		Pattern p = Pattern.compile("\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}");

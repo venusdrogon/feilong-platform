@@ -31,6 +31,8 @@ import com.feilong.test.UserAddress;
 import com.feilong.test.UserInfo;
 
 /**
+ * The Class ListUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-12 上午11:40:44
  * @since 1.0
@@ -41,6 +43,7 @@ public class ListUtilTest{
 	private static final Logger	log			= LoggerFactory.getLogger(ListUtilTest.class);
 
 	/** The a strings. */
+	@SuppressWarnings("unused")
 	private String[]			aStrings	= { "a", "b" };
 
 	/**
@@ -102,10 +105,9 @@ public class ListUtilTest{
 	/**
 	 * Gets the first item.
 	 * 
-	 * @return the first item
 	 */
 	@Test
-	public final void getFirstItem(){
+	public final void testGetFirstItem(){
 		List<String> testList = new ArrayList<String>();
 		testList.add("xinge");
 		testList.add("feilong");
@@ -161,9 +163,10 @@ public class ListUtilTest{
 
 	/**
 	 * Convert list to string replace brackets.
+	 * 
 	 */
 	@Test
-	public final void getFieldValueList(){
+	public final void testGetFieldValueList(){
 		List<User> testList = new ArrayList<User>();
 		testList.add(new User(2L));
 		testList.add(new User(5L));
@@ -175,8 +178,12 @@ public class ListUtilTest{
 		log.info(JsonUtil.format(fieldValueList));
 	}
 
+	/**
+	 * Gets the field value list1.
+	 * 
+	 */
 	@Test
-	public final void getFieldValueList1(){
+	public final void testGetFieldValueList1(){
 		List<User> testList = new ArrayList<User>();
 
 		User user;

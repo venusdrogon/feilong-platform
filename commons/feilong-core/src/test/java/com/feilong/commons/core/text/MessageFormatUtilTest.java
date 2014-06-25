@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.text;
 
@@ -38,13 +28,22 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class MessageFormatUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-27 上午1:36:55
  */
 public class MessageFormatUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MessageFormatUtilTest.class);
 
+	/**
+	 * Format.
+	 * 
+	 * @throws ParseException
+	 *             the parse exception
+	 */
 	@Test
 	public final void format() throws ParseException{
 		log.info(MessageFormatUtil.format("name=张三{0}a{1}", "jin", "xin"));
@@ -52,8 +51,14 @@ public class MessageFormatUtilTest{
 		log.info(MessageFormatUtil.format("name=张三{0,date}a{1}", 15, "xin"));
 	}
 
+	/**
+	 * Test get value with arguments1.
+	 * 
+	 * @throws ParseException
+	 *             the parse exception
+	 */
 	@Test
-	public final void getValueWithArguments1() throws ParseException{
+	public final void testGetValueWithArguments1() throws ParseException{
 		MessageFormat mf = new MessageFormat("{0}, {0}, {0}");
 		String forParsing = "x, y, z";
 		Object[] objs = mf.parse(forParsing, new ParsePosition(0));

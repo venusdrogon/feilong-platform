@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
  */
 package com.feilong.commons.core.net;
 
@@ -39,13 +29,17 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class URIUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-4-5 下午4:11:17
  */
 public class URIUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(URIUtilTest.class);
 
+	/** The result. */
 	private String				result	= null;
 
 	/**
@@ -60,6 +54,9 @@ public class URIUtilTest{
 		log.info(URIUtil.encode(value, CharsetType.GBK));
 	}
 
+	/**
+	 * Encode.
+	 */
 	@Test
 	public void encode(){
 		String value = "白色/黑色/纹理浅麻灰";
@@ -73,12 +70,18 @@ public class URIUtilTest{
 		log.info(result);
 	}
 
+	/**
+	 * Test get union url.
+	 */
 	@Test
 	public void testGetUnionUrl(){
 		result = URIUtil.getUnionUrl("E:\\test", "sanguo");
 		log.info(result);
 	}
 
+	/**
+	 * Test get union url2.
+	 */
 	@Test
 	public void testGetUnionUrl2(){
 		try{
@@ -90,6 +93,9 @@ public class URIUtilTest{
 		}
 	}
 
+	/**
+	 * Decode.
+	 */
 	@Test
 	public void decode(){
 		result = URIUtil.decode("上海", CharsetType.GBK);
@@ -101,17 +107,25 @@ public class URIUtilTest{
 
 	}
 
+	/**
+	 * Special char to hex string.
+	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void specialCharToHexString(){
 		result = URIUtil.specialCharToHexString(" ");
 		log.info(result);
 	}
 
+	/**
+	 * Creates the.
+	 */
 	@Test
 	public void create(){
 		String url = "http://127.0.0.1/cmens/t-b-f-a-c-s-f-p-g-e-i-o.htm?a=1&a=2";
 		// url = "/cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm";
 
+		@SuppressWarnings("unused")
 		String queryString = null;
 		queryString = "'\"--></style></script><script>netsparker(0x0000E1)</script>=";
 		// queryString = "'%22--%3E%3C/style%3E%3C/script%3E%3Cscript%3Enetsparker(0x0000E1)%3C/script%3E=";
@@ -131,8 +145,12 @@ public class URIUtilTest{
 		log.info(uri.toString());
 	}
 
+	/**
+	 * Gets the encoded url by value map.
+	 * 
+	 */
 	@Test
-	public void getEncodedUrlByValueMap(){
+	public void testGetEncodedUrlByValueMap(){
 		String beforeUrl = "www.baidu.com";
 		Map<String, String> keyAndValueMap = new HashMap<String, String>();
 		keyAndValueMap.put("a", "aaaa");
@@ -142,8 +160,12 @@ public class URIUtilTest{
 		log.info(URIUtil.getEncodedUrlByValueMap(beforeUrl, null, null));
 	}
 
+	/**
+	 * Gets the encoded url by array map.
+	 * 
+	 */
 	@Test
-	public void getEncodedUrlByArrayMap(){
+	public void testGetEncodedUrlByArrayMap(){
 		String beforeUrl = "www.baidu.com";
 		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
 		keyAndArrayMap.put("a", new String[] { "aaaa", "bbbb" });
@@ -154,8 +176,12 @@ public class URIUtilTest{
 		log.info(URIUtil.getEncodedUrlByArrayMap(null, keyAndArrayMap, null));
 	}
 
+	/**
+	 * Combine query string.
+	 */
 	@Test
 	public void combineQueryString(){
+		@SuppressWarnings("unused")
 		String beforeUrl = "www.baidu.com";
 		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
 		keyAndArrayMap.put("a", new String[] { "aaaa", "bbbb" });
@@ -166,6 +192,9 @@ public class URIUtilTest{
 		log.info(URIUtil.combineQueryString(keyAndArrayMap, null));
 	}
 
+	/**
+	 * Parses the query to value map.
+	 */
 	@Test
 	public void parseQueryToValueMap(){
 		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("a=1&b=2&a=3", CharsetType.UTF8)));
@@ -175,6 +204,9 @@ public class URIUtilTest{
 
 	}
 
+	/**
+	 * Parses the query to value map1.
+	 */
 	@Test
 	public void parseQueryToValueMap1(){
 		log.info(JsonUtil.format(URIUtil.parseQueryToArrayMap("a=1&b=2&a", CharsetType.UTF8)));

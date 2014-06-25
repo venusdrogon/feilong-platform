@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package temple.awt;
 
 import java.awt.Toolkit;
@@ -34,6 +24,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 /**
+ * The Class 剪贴扳.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-23 下午02:32:29
  * @since 1.0
@@ -41,6 +33,12 @@ import java.io.IOException;
 public class 剪贴扳{
 
 	// 81.剪贴扳转换成打印字符
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args){
 		// 取得系统剪贴板里可传输的数据构造的Java对象
 		Transferable transferable = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);

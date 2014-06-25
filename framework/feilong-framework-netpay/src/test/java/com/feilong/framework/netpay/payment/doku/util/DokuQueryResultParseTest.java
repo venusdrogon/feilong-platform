@@ -25,12 +25,16 @@ import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult
 import com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultParse;
 
 /**
+ * The Class DokuQueryResultParseTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月8日 上午10:11:19
  * @since 1.0.6
  */
 public class DokuQueryResultParseTest{
 
+	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(DokuQueryResultParseTest.class);
 
 	/**
@@ -41,6 +45,7 @@ public class DokuQueryResultParseTest{
 		String xml = "<?xml version=\"1.0\"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>";
 
 		CommandXmlParse<DokuQueryResult> queryResultXmlParse = new DokuQueryResultParse();
+		@SuppressWarnings("unused")
 		VarCommand varCommand = queryResultXmlParse.parseXML(xml);
 	}
 }

@@ -31,7 +31,7 @@ import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
  */
 public abstract class BaseHttpConcatTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BaseHttpConcatTest.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(BaseHttpConcatTest.class);
 
 	/**
 	 * @return

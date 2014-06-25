@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 public class SVNPatchUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(SVNPatchUtilTest.class);
+	@SuppressWarnings("unused")private static final Logger	log					= LoggerFactory.getLogger(SVNPatchUtilTest.class);
 
 	/**
 	 * 过滤不想传的文件 采用 endWith 来 匹配<br>

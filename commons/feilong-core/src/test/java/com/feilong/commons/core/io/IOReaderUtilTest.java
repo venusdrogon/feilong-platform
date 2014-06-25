@@ -30,13 +30,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class IOReaderUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:28:59 PM
  */
 public class IOReaderUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(IOReaderUtilTest.class);
 
+	/**
+	 * Testname.
+	 */
 	@Test
 	public void testname(){
 		String fileName = "F:\\Life 生活\\Job 工作\\淘宝开店\\商家编码.txt";
@@ -47,6 +53,9 @@ public class IOReaderUtilTest{
 		log.info("" + rowsContents.length);
 	}
 
+	/**
+	 * Parses the nginx.
+	 */
 	@Test
 	public void parseNginx(){
 		String fileName = "C:\\Users\\feilong\\Documents\\AJ11\\AJ11\\1.txt";
@@ -59,8 +68,12 @@ public class IOReaderUtilTest{
 		log.info(content);
 	}
 
+	/**
+	 * Gets the file content.
+	 * 
+	 */
 	@Test
-	public void getFileContent(){
+	public void testGetFileContent(){
 		String propertiesPath = "I:/Ebook/book.properties";
 		log.info(IOReaderUtil.getFileContent(propertiesPath));
 	}

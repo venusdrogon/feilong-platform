@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.taglib.display.table;
 
 import java.util.Iterator;
@@ -16,50 +31,41 @@ import com.feilong.taglib.util.TagUtils;
 import com.feilong.tools.html.HtmlUtil;
 
 /**
- * table标签
+ * table标签.
  * 
  * @author 金鑫 2010-4-16 下午03:03:32
  */
 public class TableTag extends HtmlTableTag{
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
 
-	/** *****************begin 声明变量***************************** */
+	/** *****************begin 声明变量*****************************. */
 	/**
 	 * 实际处理的iterator
 	 */
 	protected Iterator			iterator			= null;
 
-	/**
-	 * 呈现出元素的数目
-	 */
+	/** 呈现出元素的数目. */
 	protected int				lengthCount			= 0;
 
-	/**
-	 * 标签实例是否开始
-	 */
+	/** 标签实例是否开始. */
 	protected boolean			started				= false;
 
-	/**
-	 * 分页参数
-	 */
+	/** 分页参数. */
 	private Integer				pageNo;
 
-	/**
-	 * 每页的大小
-	 */
+	/** 每页的大小. */
 	private int					maxPageItems;
 
-	/** ********************end************************** */
+	/** ********************end**************************. */
 	// -------------------------------------------------------------begin Properties
 	/**
 	 * The collection over which we will be iterating.
 	 */
 	protected Object			collection			= null;
 
-	/**
-	 * 每次循环变量名字
-	 */
+	/** 每次循环变量名字. */
 	protected String			id					= null;
 
 	/**
@@ -85,26 +91,25 @@ public class TableTag extends HtmlTableTag{
 	 */
 	protected String			scope				= null;
 
-	/**
-	 * 标题集合
-	 */
+	/** 标题集合. */
 	private LinkedList<String>	titleList			= new LinkedList<String>();
 
 	// -------------------------------------------------------------end
 	// [start] 子标签调用
 	/**
-	 * 添加标题
+	 * 添加标题.
 	 * 
-	 * @param title
 	 * @author 金鑫
 	 * @version 1.0 2010-5-7 下午03:03:03
+	 * @param title
+	 *            the title
 	 */
 	public void addTitle(String title){
 		titleList.add(title);
 	}
 
 	/**
-	 * 获得呈现出的长度,即循环次数
+	 * 获得呈现出的长度,即循环次数.
 	 * 
 	 * @return the lengthCount
 	 */
@@ -114,6 +119,9 @@ public class TableTag extends HtmlTableTag{
 
 	// -------------------------------------------------------------end
 	// [end]
+	/* (non-Javadoc)
+	 * @see com.feilong.taglib.base.AbstractCommonTag#doStartTag()
+	 */
 	@Override
 	public int doStartTag(){
 		iterator = getIterator();
@@ -168,6 +176,10 @@ public class TableTag extends HtmlTableTag{
 	/**
 	 * Make the next collection element available and loop, or finish the iterations if there are no more elements. <br>
 	 * 充分利用现有和未来集合元素循环，或完成迭代如果没有更多的元素
+	 * 
+	 * @return the int
+	 * @throws JspException
+	 *             the jsp exception
 	 */
 	@Override
 	public int doAfterBody() throws JspException{
@@ -218,6 +230,8 @@ public class TableTag extends HtmlTableTag{
 
 	/**
 	 * Clean up after processing this enumeration.
+	 * 
+	 * @return the int
 	 */
 	@Override
 	public int doEndTag(){
@@ -231,11 +245,11 @@ public class TableTag extends HtmlTableTag{
 	}
 
 	/**
-	 * 产生Iterator迭代器
+	 * 产生Iterator迭代器.
 	 * 
-	 * @return
 	 * @author 金鑫
 	 * @version 1.0 2010-5-6 下午04:04:05
+	 * @return the *****************begin 声明变量*****************************
 	 */
 	private Iterator getIterator(){
 		// 获取集合我们要遍历
@@ -250,33 +264,60 @@ public class TableTag extends HtmlTableTag{
 		return ObjectUtil.toIterator(currentCollection);
 	}
 
+	/**
+	 * 设置 ********************end**************************.
+	 * 
+	 * @param collection
+	 *            the new ********************end**************************
+	 */
 	public void setCollection(Object collection){
 		this.collection = collection;
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.jsp.tagext.TagSupport#setId(java.lang.String)
+	 */
 	@Override
 	public void setId(String id){
 		this.id = id;
 	}
 
+	/**
+	 * 设置 the name of the collection or owning bean.
+	 * 
+	 * @param name
+	 *            the new name of the collection or owning bean
+	 */
 	public void setName(String name){
 		this.name = name;
 	}
 
+	/**
+	 * 设置 the property name containing the collection.
+	 * 
+	 * @param property
+	 *            the new property name containing the collection
+	 */
 	public void setProperty(String property){
 		this.property = property;
 	}
 
+	/**
+	 * 设置 the scope of the bean specified by the name property, if any.
+	 * 
+	 * @param scope
+	 *            the new scope of the bean specified by the name property, if any
+	 */
 	public void setScope(String scope){
 		this.scope = scope;
 	}
 
 	/**
-	 * 取得循环编号
+	 * 取得循环编号.
 	 * 
-	 * @return 循环编号
 	 * @author 金鑫
 	 * @version 1.0 2010-6-7 上午10:03:02
+	 * @return 循环编号
 	 */
 	public int getIndex(){
 		if (started){
@@ -288,10 +329,21 @@ public class TableTag extends HtmlTableTag{
 		return 0;
 	}
 
+	/**
+	 * 设置 定义代表当前被遍历元素序号 <br>
+	 * 通过循环返回当前迭代零相对指标.
+	 * 
+	 * @param indexId
+	 *            the new 定义代表当前被遍历元素序号 <br>
+	 *            通过循环返回当前迭代零相对指标
+	 */
 	public void setIndexId(String indexId){
 		this.indexId = indexId;
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.jsp.tagext.BodyTagSupport#release()
+	 */
 	@Override
 	public void release(){
 		super.release();

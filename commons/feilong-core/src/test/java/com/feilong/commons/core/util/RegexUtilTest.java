@@ -20,6 +20,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class RegexUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 29, 2013 6:54:30 PM
  */
@@ -28,6 +30,9 @@ public class RegexUtilTest{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(RegexUtilTest.class);
 
+	/**
+	 * Group.
+	 */
 	@Test
 	public final void group(){
 		String regexPattern = "(.*?)@(.*?)";
@@ -36,6 +41,9 @@ public class RegexUtilTest{
 		log.info(RegexUtil.group(regexPattern, email, 2) + "");
 	}
 
+	/**
+	 * Group2.
+	 */
 	@Test
 	public final void group2(){
 		String regexPattern_table = "@Table.*name.*\"(.*?)\".*";
@@ -45,6 +53,9 @@ public class RegexUtilTest{
 		log.info(RegexUtil.group(regexPattern_table, email) + "");
 	}
 
+	/**
+	 * Group1.
+	 */
 	@Test
 	public final void group1(){
 		String regexPattern = "(.*?)(?:@)(.*?)";
@@ -53,6 +64,9 @@ public class RegexUtilTest{
 		RegexUtil.group(regexPattern, email);
 	}
 
+	/**
+	 * Group22.
+	 */
 	@Test
 	public final void group22(){
 		String REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\"((?:.*)|(.*length.*(\\d+).*))";

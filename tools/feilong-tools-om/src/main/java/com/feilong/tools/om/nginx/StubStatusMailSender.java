@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.om.nginx;
 
@@ -43,27 +43,31 @@ import com.feilong.tools.om.nginx.comparator.ActiveConnectionsComparator;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
- * StubStatusMailSender
+ * StubStatusMailSender.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 7:58:34 PM
  */
 public class StubStatusMailSender{
 
+	/** The Constant log. */
 	private static final Logger	log					= LoggerFactory.getLogger(StubStatusMailSender.class);
 
 	/** 发送. */
 	private static String[]		tos					= { "xin.jin@baozun.com" };
 
+	/** The template in class path. */
 	private static String		templateInClassPath	= "velocity/nginxStubStatusMail.vm";
 
 	/**
-	 * 发送监控邮件
+	 * 发送监控邮件.
 	 * 
 	 * @param filePath
 	 *            文件路径
 	 * @throws MessagingException
+	 *             the messaging exception
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void sendMonitorMail(String filePath) throws MessagingException,IOException{
 
@@ -104,11 +108,13 @@ public class StubStatusMailSender{
 	}
 
 	/**
-	 * 基于文件 获得要发送邮件的内容
+	 * 基于文件 获得要发送邮件的内容.
 	 * 
 	 * @param filePath
-	 * @return
+	 *            the file path
+	 * @return the text content for email
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static String getTextContentForEmail(String filePath) throws IOException{
 
@@ -164,10 +170,11 @@ public class StubStatusMailSender{
 	}
 
 	/**
-	 * 将line 解析成 NginxStubStatusCommand
+	 * 将line 解析成 NginxStubStatusCommand.
 	 * 
 	 * @param line
-	 * @return
+	 *            the line
+	 * @return the stub status command
 	 */
 	private static StubStatusCommand toNginxStubStatusCommand(String line){
 		String[] split = line.split("	");

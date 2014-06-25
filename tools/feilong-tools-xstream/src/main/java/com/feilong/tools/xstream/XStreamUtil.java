@@ -32,7 +32,7 @@ import com.thoughtworks.xstream.XStream;
 public class XStreamUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(XStreamUtil.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(XStreamUtil.class);
 
 	/**
 	 * To xml.

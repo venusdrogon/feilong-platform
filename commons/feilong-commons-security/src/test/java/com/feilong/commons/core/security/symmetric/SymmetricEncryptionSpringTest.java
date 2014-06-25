@@ -32,7 +32,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.security.symmetric.SymmetricEncryption;
 
 @ContextConfiguration(locations = { "classpath:feilong-security.xml" })
-public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTests{
+@SuppressWarnings("all")public class SymmetricEncryptionSpringTest extends AbstractJUnit4SpringContextTests{
 
 	private static final Logger	log	= LoggerFactory.getLogger(SymmetricEncryptionSpringTest.class);
 

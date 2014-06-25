@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.pdf;
 
@@ -34,13 +34,19 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.Section;
 
 /**
+ * The Class PDFUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Feb 10, 2013 4:41:07 PM
  */
 public class PDFUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(PDFUtilTest.class);
+	/** The Constant log. */
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(PDFUtilTest.class);
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public final void test(){
 		String outputFileName = "e://html.pdf";
@@ -48,6 +54,9 @@ public class PDFUtilTest{
 		PDFUtil.htmlToPDF(htmlPath, outputFileName);
 	}
 
+	/**
+	 * Write.
+	 */
 	@Test
 	public void write(){
 		// 定义输出位置并把文档对象装入输出对象中
@@ -70,6 +79,9 @@ public class PDFUtilTest{
 		PDFUtil.write(outputFileName, arrayList);
 	}
 
+	/**
+	 * Write1.
+	 */
 	@Test
 	public void write1(){
 		Paragraph title2 = new Paragraph("This is Chapter 2", FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new Color(0, 0, 255)));

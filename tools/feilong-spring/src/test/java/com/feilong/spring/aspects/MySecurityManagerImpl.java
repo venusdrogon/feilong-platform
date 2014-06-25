@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.spring.aspects;
 
 import org.aspectj.lang.JoinPoint;
@@ -6,9 +21,16 @@ import org.slf4j.LoggerFactory;
 
 //@Aspect
 // 使用@Aspect之前记得要引入aspectjrt.jar和aspectjweaver.jar
+/**
+ * The Class MySecurityManagerImpl.
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.7 2014-6-25 16:22:49
+ */
 public class MySecurityManagerImpl implements MySecurityManager{
 
-	private static final Logger	log	= LoggerFactory.getLogger(MySecurityManagerImpl.class);
+	/** The Constant log. */
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(MySecurityManagerImpl.class);
 
 	/**
 	 * 定义切入点,切入该方法只是一个标识（而且只作为标识并不是常态下的方法， 并不供人调用所以该方法返回值为void,最好设置为private）,该方法只是一个标识，就象配置文件的id<br>
@@ -21,6 +43,9 @@ public class MySecurityManagerImpl implements MySecurityManager{
 	 * <li>(..)这两个就是表示方法里所传递的参数类型也是任意匹配。</li>
 	 * </ul>
 	 * 具体的请参考spring的开发手册, 这一点Spring讲的比较清楚。
+	 * 
+	 * @param joinPoint
+	 *            the join point
 	 */
 	// @SuppressWarnings("unused")
 	// @Pointcut("execution(* add*(..))")
@@ -48,7 +73,7 @@ public class MySecurityManagerImpl implements MySecurityManager{
 	}
 
 	/**
-	 * 这里也可以添加一些其他的前置方法
+	 * 这里也可以添加一些其他的前置方法.
 	 */
 	// @Before("addAllMethod()")
 	public void security2(){

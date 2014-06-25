@@ -67,6 +67,7 @@ public class CodeGenerator{
 	 * @return 订单号码
 	 * @deprecated
 	 */
+	@Deprecated
 	public static String createOrderCode(Long buyId){
 		Long sellerId = null;
 		return createOrderCode(buyId, sellerId);
@@ -96,6 +97,7 @@ public class CodeGenerator{
 	 * @return the string
 	 * @deprecated
 	 */
+	@Deprecated
 	public static String createOrderCode(Date date,Long buyerId){
 		Long sellerId = null;
 		return createOrderCode(date, buyerId, sellerId);

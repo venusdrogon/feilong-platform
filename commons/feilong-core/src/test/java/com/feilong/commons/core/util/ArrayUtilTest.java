@@ -115,6 +115,7 @@ public class ArrayUtilTest{
 	@Test
 	public final void toIterator(){
 		String[] array = { "1", "223" };
+		@SuppressWarnings("unused")
 		int[] arrays = { 1, 2 };
 		Iterator<String> iterator = ArrayUtil.toIterator(array);
 
