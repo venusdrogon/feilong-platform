@@ -18,8 +18,6 @@ package com.feilong.ssh.dialect;
 import java.sql.Types;
 
 import org.hibernate.dialect.MySQL5Dialect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 基于utf-8 编码集 mysql数据库定义的Dialect.
@@ -62,9 +60,6 @@ import org.slf4j.LoggerFactory;
  * @see <a href="http://www.oschina.net/question/54100_25242">关于 mysql varchar 字段的长度</a>
  */
 public class MySQL5UTF8Dialect extends MySQL5Dialect{
-
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MySQL5UTF8Dialect.class);
 
 	/*
 	 * (non-Javadoc)

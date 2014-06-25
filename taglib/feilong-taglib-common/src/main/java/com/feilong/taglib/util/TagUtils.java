@@ -26,8 +26,6 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 提供jsp 标签帮助menthods
@@ -41,20 +39,17 @@ import org.slf4j.LoggerFactory;
  */
 public class TagUtils{
 
-	/** The Constant log. */
-	private final static Logger		log			= LoggerFactory.getLogger(TagUtils.class);
-
 	/**
 	 * The Singleton instance.
 	 * 
 	 * @since 1.3.5 Changed to non-final so it may be overridden, use at your own risk (you've been warned!!)
 	 */
-	private static TagUtils	instance	= new TagUtils();
+	private static TagUtils		instance	= new TagUtils();
 
 	/**
 	 * Maps lowercase JSP scope names to their PageContext integer constant values.
 	 */
-	private static final Map		scopes		= new HashMap();
+	private static final Map	scopes		= new HashMap();
 	/**
 	 * Initialize the scope names map and the encode variable with the Java 1.4 method if available.
 	 */
@@ -139,15 +134,17 @@ public class TagUtils{
 	}
 
 	/**
-	 * Locate and return the specified bean, from an optionally specified scope, in the specified page context. If no such bean is found, return
-	 * <code>null</code> instead. If an exception is thrown, it will have already been saved via a call to <code>saveException()</code>.
+	 * Locate and return the specified bean, from an optionally specified scope, in the specified page context. If no such bean is found,
+	 * return <code>null</code> instead. If an exception is thrown, it will have already been saved via a call to
+	 * <code>saveException()</code>.
 	 * 
 	 * @param pageContext
 	 *            Page context to be searched
 	 * @param name
 	 *            Name of the bean to be retrieved
 	 * @param scopeName
-	 *            Scope to be searched (page, request, session, application) or <code>null</code> to use <code>findAttribute()</code> instead
+	 *            Scope to be searched (page, request, session, application) or <code>null</code> to use <code>findAttribute()</code>
+	 *            instead
 	 * @return JavaBean in the specified page context
 	 * @throws JspException
 	 *             if an invalid scope name is requested
@@ -202,8 +199,9 @@ public class TagUtils{
 	}
 
 	/**
-	 * Write the specified text as the response to the writer associated with this page. <strong>WARNING</strong> - If you are writing body content from the
-	 * <code>doAfterBody()</code> method of a custom tag class that implements <code>BodyTag</code>, you should be calling <code>writePrevious()</code> instead.
+	 * Write the specified text as the response to the writer associated with this page. <strong>WARNING</strong> - If you are writing body
+	 * content from the <code>doAfterBody()</code> method of a custom tag class that implements <code>BodyTag</code>, you should be calling
+	 * <code>writePrevious()</code> instead.
 	 * 
 	 * @param pageContext
 	 *            The PageContext object for this page
@@ -220,7 +218,8 @@ public class TagUtils{
 	}
 
 	/**
-	 * Write the specified text as the response to the writer associated with the body content for the tag within which we are currently nested.
+	 * Write the specified text as the response to the writer associated with the body content for the tag within which we are currently
+	 * nested.
 	 * 
 	 * @param pageContext
 	 *            The PageContext object for this page

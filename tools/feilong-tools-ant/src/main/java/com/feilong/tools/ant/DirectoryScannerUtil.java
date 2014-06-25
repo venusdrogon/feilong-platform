@@ -20,8 +20,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.tools.ant.DirectoryScanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -30,8 +28,6 @@ import org.slf4j.LoggerFactory;
  * @since 1.0.7
  */
 public class DirectoryScannerUtil{
-
-	private static final Logger	log	= LoggerFactory.getLogger(DirectoryScannerUtil.class);
 
 	/**
 	 * Gets the directory scanner map for log.
