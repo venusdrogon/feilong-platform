@@ -16,6 +16,7 @@
 package com.feilong.commons.core.io;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,8 @@ public final class Command{
 	 */
 	public static String callCmd(String[] cmdarray) throws IOException{
 		Process process = Command.exec(cmdarray);
-		return IOUtil.inputStream2String(process.getInputStream());
+		InputStream inputStream = process.getInputStream();
+		return IOUtil.inputStream2String(inputStream);
 	}
 
 	/**
@@ -61,7 +63,8 @@ public final class Command{
 	 */
 	public static String callCmd(String command) throws IOException{
 		Process process = Command.exec(command);
-		return IOUtil.inputStream2String(process.getInputStream());
+		InputStream inputStream = process.getInputStream();
+		return IOUtil.inputStream2String(inputStream);
 	}
 
 	/**
@@ -76,22 +79,36 @@ public final class Command{
 	 *             Signals that an I/O exception has occurred.
 	 * @throws InterruptedException
 	 *             the interrupted exception
+	 * @see java.lang.Runtime#getRuntime()
+	 * @see java.lang.Runtime#exec(String[])
+	 * @see java.lang.Process#waitFor()
+	 * @see IOUtil#inputStream2String(InputStream)
 	 */
 	public static String callCmd(String[] cmdarray,String[] anothercmdarray) throws IOException,InterruptedException{
 
 		Runtime runtime = Runtime.getRuntime();
 
-		log.debug("[cmdarray]: " + ArrayUtil.toString(cmdarray, new JoinStringEntity(" ")));
+		if (log.isDebugEnabled()){
+			log.debug("[cmdarray]: " + ArrayUtil.toString(cmdarray, new JoinStringEntity(" ")));
+		}
+
 		Process process = runtime.exec(cmdarray);
 
 		// 已经执行完第一个命令，准备执行第二个命令
 		// 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止。如果已终止该子进程，此方法立即返回。如果没有终止该子进程，调用的线程将被阻塞，直到退出子进程。
 		process.waitFor();
 
-		log.debug("[another]: " + ArrayUtil.toString(anothercmdarray, new JoinStringEntity(" ")));
-		process = runtime.exec(anothercmdarray);
+		if (log.isDebugEnabled()){
+			log.debug("[another]: " + ArrayUtil.toString(anothercmdarray, new JoinStringEntity(" ")));
+		}
 
-		return IOUtil.inputStream2String(process.getInputStream());
+		process = runtime.exec(anothercmdarray);
+		
+//		process.waitFor();
+//		ret = process.exitValue();
+
+		InputStream inputStream = process.getInputStream();
+		return IOUtil.inputStream2String(inputStream);
 	}
 
 	/**
@@ -106,7 +123,11 @@ public final class Command{
 	 */
 	public static Process exec(String command) throws IOException{
 		Runtime runtime = Runtime.getRuntime();
-		log.debug("[command]:{}", command);
+
+		if (log.isDebugEnabled()){
+			log.debug("[command]:{}", command);
+		}
+
 		Process process = runtime.exec(command);
 		return process;
 	}
@@ -123,7 +144,11 @@ public final class Command{
 	 */
 	public static Process exec(String[] cmdarray) throws IOException{
 		Runtime runtime = Runtime.getRuntime();
-		log.debug("[cmdarray]: " + ArrayUtil.toString(cmdarray, new JoinStringEntity(" ")));
+
+		if (log.isDebugEnabled()){
+			log.debug("[cmdarray]: " + ArrayUtil.toString(cmdarray, new JoinStringEntity(" ")));
+		}
+
 		Process process = runtime.exec(cmdarray);
 		return process;
 	}

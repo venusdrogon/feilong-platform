@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package temple;
+package com.feilong.commons.core.io;
 
 import java.io.IOException;
 

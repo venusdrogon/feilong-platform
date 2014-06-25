@@ -35,4 +35,39 @@ public class RegeditUtilTest{
 		//		return null;
 		//	return result.substring(p + REGSTR_TOKEN.length()).trim();
 	}
+
+	//
+	// //http://sourceforge.net/projects/jregistrykey/
+	// //import ca.beq.util.win32.registry.*;
+	// //import java.util.*;
+	// 1.打开键
+	// RegistryKey r = new RegistryKey(RootKey.HKEY_LOCAL_MACHINE,
+	// "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders");
+	// 2.添加键
+	// RegistryKey r = new RegistryKey(RootKey.HKEY_CURRENT_USER,
+	// "Software\\BEQ Technologies");
+	// r.create();
+	// 9.写入字符串值
+	// RegistryKey r = new RegistryKey(RootKey.HKEY_CURRENT_USER,
+	// "Software\\BEQ Technologies");
+	// RegistryValue v = new RegistryValue("myVal", ValueType.REG_SZ, "data");
+	// r.setValue(v);
+	// 6.获取DWORD值
+	// RegistryKey r = new RegistryKey(RootKey.HKEY_CURRENT_USER,
+	// "Software\\BEQ Technologies");
+	// if(r.hasValue("myValue")) {
+	// RegistryValue v = r.getValue("myValue");
+	// v.setType(ValueType.REG_DWORD);
+	// } // if
+	
+	
+	//
+	// 87.菜单勾选/取消开机自启动程序
+	// //http://sourceforge.net/projects/jregistrykey/
+	// //import ca.beq.util.win32.registry.*;
+	// //import java.util.*;
+	// RegistryKey r = new RegistryKey(RootKey.HKEY_CURRENT_USER,
+	// "Software\\BEQ Technologies");
+	// RegistryValue v = new RegistryValue("run", ValueType.REG_SZ, "data");
+	// r.setValue(v);
 }
