@@ -20,8 +20,12 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.collections.iterators.EnumerationIterator;
 
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
@@ -62,11 +66,14 @@ public final class ObjectUtil{
 	 * <ul>
 	 * <li>逗号分隔的字符串</li>
 	 * <li>数组</li>
-	 * <li>map,将key 转成Iterator</li>
-	 * <li>Collection</li>
-	 * <li>Iterator</li>
+	 * <li>{@link java.util.Map},将key 转成{@link java.util.Iterator}</li>
+	 * <li>{@link java.util.Collection}</li>
+	 * <li>{@link java.util.Iterator}</li>
+	 * <li>{@link java.util.Enumeration}</li>
 	 * </ul>
 	 * 转成Iterator.
+	 * 
+	 * @param <T>
 	 * 
 	 * @param object
 	 *            <ul>
@@ -75,44 +82,57 @@ public final class ObjectUtil{
 	 *            <li>map,将key 转成Iterator</li>
 	 *            <li>Collection</li>
 	 *            <li>Iterator</li>
+	 *            <li>Enumeration</li>
 	 *            </ul>
 	 * @return <ul>
-	 *         <li>如果 null == currentCollection 返回null,</li>
+	 *         <li>如果 null == object 返回null,</li>
 	 *         <li>否则转成Iterator</li>
 	 *         </ul>
+	 * 
+	 * @see ArrayUtil#toIterator(Object)
+	 * @see Collection#iterator()
+	 * @see Iterator
+	 * @see Map#keySet()
+	 * @see Set#iterator()
+	 * @see org.apache.commons.collections.iterators.EnumerationIterator#EnumerationIterator(Enumeration)
+	 * @since Commons Collections 1.0
 	 */
-	@SuppressWarnings("rawtypes")
-	//XXX 转成 Iterator<T>
-	public final static Iterator toIterator(Object object){
-		Iterator iterator = null;
-		// object 不是空
-		if (null != object){
-			// 数组
-			if (object.getClass().isArray()){
-				iterator = ArrayUtil.toIterator(object);
-			}
-			// Collection
-			else if (object instanceof Collection){
-				iterator = ((Collection) object).iterator();
-			}
-			// Iterator
-			else if (object instanceof Iterator){
-				iterator = (Iterator) object;
-			}
-			// map
-			else if (object instanceof Map){
-				iterator = ((Map) object).keySet().iterator();
-			}
-			// 逗号分隔的字符串
-			else if (object instanceof String){
-				String[] strings = object.toString().split(",");
-				iterator = ArrayUtil.toIterator(strings);
-			}else{
-				throw new IllegalArgumentException("param object:" + object + " don't support convert to Iterator.");
-			}
-			// TODO Enumeration todo
+	@SuppressWarnings("unchecked")
+	public final static <T> Iterator<T> toIterator(Object object){
+		if (null == object){
+			return null;
 		}
-		return iterator;
+		// object 不是空
+		// 数组
+		if (object.getClass().isArray()){
+			return ArrayUtil.toIterator(object);
+		}
+		// Collection
+		else if (object instanceof Collection){
+			return ((Collection<T>) object).iterator();
+		}
+		// Iterator
+		else if (object instanceof Iterator){
+			return (Iterator<T>) object;
+		}
+		// Enumeration
+		else if (object instanceof Enumeration){
+			Enumeration<T> enumeration = (Enumeration<T>) object;
+			EnumerationIterator enumerationIterator = new EnumerationIterator(enumeration);
+			return enumerationIterator;
+		}
+		// map
+		else if (object instanceof Map){
+			Set<T> keySet = ((Map<T, ?>) object).keySet();
+			return keySet.iterator();
+		}
+		// 逗号分隔的字符串
+		else if (object instanceof String){
+			String[] strings = object.toString().split(",");
+			return ArrayUtil.toIterator(strings);
+		}else{
+			throw new IllegalArgumentException("param object:[" + object + "] don't support convert to Iterator.");
+		}
 	}
 
 	/**
