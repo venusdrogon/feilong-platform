@@ -29,6 +29,7 @@ import java.util.StringTokenizer;
 
 import junit.framework.Assert;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,7 +79,8 @@ public class ObjectUtilTest{
 	 * Assert equals.
 	 */
 	@Test
-	@SuppressWarnings("all")public final void assertEquals(){
+	@SuppressWarnings("all")
+	public final void assertEquals(){
 
 		Long a = new Long(1L);
 		Long b = new Long(1L);
@@ -105,36 +107,31 @@ public class ObjectUtilTest{
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equals(java.lang.Object, java.lang.Object, boolean)}.
 	 */
 	@Test
-	public final void testEqualsObjectObjectBoolean(){
-	}
+	public final void testEqualsObjectObjectBoolean(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equals(java.lang.Object, java.lang.Object)}.
 	 */
 	@Test
-	public final void testEqualsObjectObject(){
-	}
+	public final void testEqualsObjectObject(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#isBoolean(java.lang.Object)}.
 	 */
 	@Test
-	public final void testIsBoolean(){
-	}
+	public final void testIsBoolean(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#isInteger(java.lang.Object)}.
 	 */
 	@Test
-	public final void testIsInteger(){
-	}
+	public final void testIsInteger(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toBoolean(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToBoolean(){
-	}
+	public final void testToBoolean(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toIterator(java.lang.Object)}.
@@ -143,12 +140,12 @@ public class ObjectUtilTest{
 	public final void testToIterator(){
 
 		// *************************逗号分隔的数组********************************
-		log.info("*************************逗号分隔的数组********************************");
-		Iterator iterator = ObjectUtil.toIterator("1,2");
+		log.info(StringUtils.center("逗号分隔的数组", 60, "*"));
+		Iterator<?> iterator = ObjectUtil.toIterator("1,2");
 		printIterator(iterator);
 
 		// ************************map*********************************
-		log.info("************************map*********************************");
+		log.info(StringUtils.center("map", 60, "*"));
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("a", "1");
@@ -158,12 +155,12 @@ public class ObjectUtilTest{
 		printIterator(iterator);
 
 		// ***************************array******************************
-		log.info("***************************array******************************");
+		log.info(StringUtils.center("array", 60, "*"));
 		Object[] array = { "5", 8 };
 		iterator = ObjectUtil.toIterator(array);
 		printIterator(iterator);
 		// ***************************collection******************************
-		log.info("***************************collection******************************");
+		log.info(StringUtils.center("collection", 60, "*"));
 		Collection<String> collection = new ArrayList<String>();
 		collection.add("aaaa");
 		collection.add("nnnnn");
@@ -171,8 +168,9 @@ public class ObjectUtilTest{
 		iterator = ObjectUtil.toIterator(collection);
 		printIterator(iterator);
 		try{
-			// ***************************enumeration******************************
-			log.info("***************************enumeration******************************");
+			// **********************enumeration***********************************
+			log.info(StringUtils.center("enumeration", 60, "*"));
+			//TODO
 			Enumeration<Object> enumeration = new StringTokenizer("this is a test");
 
 			iterator = ObjectUtil.toIterator(enumeration);
@@ -188,7 +186,7 @@ public class ObjectUtilTest{
 	 * @param iterator
 	 *            the iterator
 	 */
-	private void printIterator(Iterator iterator){
+	private void printIterator(Iterator<?> iterator){
 		while (iterator.hasNext()){
 			Object object = iterator.next();
 			log.info(object.toString());
@@ -208,43 +206,37 @@ public class ObjectUtilTest{
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toBigDecimal(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToBigDecimal(){
-	}
+	public final void testToBigDecimal(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toLong(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToLong(){
-	}
+	public final void testToLong(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toDouble(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToDouble(){
-	}
+	public final void testToDouble(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toFloat(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToFloat(){
-	}
+	public final void testToFloat(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toShort(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToShort(){
-	}
+	public final void testToShort(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toString(java.lang.Object)}.
 	 */
 	@Test
-	public final void testToStringObject(){
-	}
+	public final void testToStringObject(){}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toT(java.lang.Object, java.lang.Class)}.
@@ -258,6 +250,5 @@ public class ObjectUtilTest{
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#trim(java.lang.Object)}.
 	 */
 	@Test
-	public final void testTrim(){
-	}
+	public final void testTrim(){}
 }

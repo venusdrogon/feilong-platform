@@ -32,16 +32,20 @@ import com.thoughtworks.xstream.XStream;
 public class XStreamUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(XStreamUtil.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(XStreamUtil.class);
 
 	/**
-	 * To xml.
+	 * 将object转成xml字符串.
 	 * 
 	 * @param obj
 	 *            the obj
 	 * @param toXmlConfig
 	 *            the to xml config
 	 * @return the string
+	 * @see com.thoughtworks.xstream.XStream#toXML(Object)
+	 * @see com.thoughtworks.xstream.XStream#alias(String, Class)
+	 * @see com.thoughtworks.xstream.XStream#addImplicitCollection(Class, String)
 	 */
 	public static String toXML(Object obj,ToXmlConfig toXmlConfig){
 		XStream xstream = new XStream();

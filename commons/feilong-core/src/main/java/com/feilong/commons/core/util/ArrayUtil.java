@@ -22,6 +22,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.lang.ObjectUtil;
 
@@ -34,6 +37,8 @@ import com.feilong.commons.core.lang.ObjectUtil;
  */
 public final class ArrayUtil{
 
+	private static final Logger	log	= LoggerFactory.getLogger(ArrayUtil.class);
+
 	/** Don't let anyone instantiate this class. */
 	private ArrayUtil(){}
 
@@ -42,28 +47,50 @@ public final class ArrayUtil{
 	 * 如果我们幸运的话，它是一个对象数组,我们可以遍历并with no copying<br>
 	 * 否则,异常 ClassCastException 中 ,Rats -- 它是一个基本类型数组,循环放入arrayList 转成arrayList.iterator()
 	 * 
+	 * <p>
+	 * <b>注:</b>{@link Arrays#asList(Object...)} 转的list是 {@link Array} 的内部类 ArrayList,这个类没有实现
+	 * {@link java.util.AbstractList#add(int, Object)} 这个方法, 如果拿这个list进行add操作,会出现 {@link java.lang.UnsupportedOperationException}
+	 * </p>
+	 * 
+	 * 
 	 * @param <T>
 	 *            the generic type
 	 * @param arrays
 	 *            数组,可以是 对象数组,或者是 基本类型数组
-	 * @return Iterator
+	 * @return if (null == arrays) return null;<br>
+	 *         否则会先将arrays转成Object[]数组,调用 {@link Arrays#asList(Object...)}转成list,再调用 {@link List#iterator()
+	 *         t}<br>
+	 *         对于基本类型的数组,由于不是 Object[],会有类型转换异常,此时先通过 {@link Array#getLength(Object)}取到数组长度,循环调用 {@link Array#get(Object, int)}设置到 list中
+	 * @see Arrays#asList(Object...)
+	 * @see Array#getLength(Object)
+	 * @see Array#get(Object, int)
+	 * @see List#iterator()
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked" })
 	public static <T> Iterator<T> toIterator(Object arrays){
-		Iterator<T> iterator = null;
+		if (null == arrays){
+			return null;
+		}
 		try{
 			// 如果我们幸运的话，它是一个对象数组,我们可以遍历并with no copying
-			iterator = (Iterator<T>) Arrays.asList((Object[]) arrays).iterator();
+			Object[] objArrays = (Object[]) arrays;
+			List<T> list = (List<T>) Arrays.asList(objArrays);
+			return list.iterator();
 		}catch (ClassCastException e){
+
+			if (log.isDebugEnabled()){
+				log.debug("arrays can not cast to Object[],maybe primitive type,values is:{}", arrays);
+			}
+
 			// Rats -- 它是一个基本类型数组
 			int length = Array.getLength(arrays);
-			ArrayList<Object> arrayList = new ArrayList<Object>(length);
+			List<T> list = new ArrayList<T>(length);
 			for (int i = 0; i < length; ++i){
-				arrayList.add(Array.get(arrays, i));
+				Object object = Array.get(arrays, i);
+				list.add((T) object);
 			}
-			iterator = (Iterator<T>) arrayList.iterator();
+			return list.iterator();
 		}
-		return iterator;
 	}
 
 	/**
