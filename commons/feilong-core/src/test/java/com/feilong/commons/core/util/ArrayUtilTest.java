@@ -115,14 +115,22 @@ public class ArrayUtilTest{
 	@Test
 	public final void toIterator(){
 		String[] array = { "1", "223" };
-		@SuppressWarnings("unused")
-		int[] arrays = { 1, 2 };
 		Iterator<String> iterator = ArrayUtil.toIterator(array);
 
 		while (iterator.hasNext()){
-			Object object =   iterator.next();
-			log.debug("{}", object);
+			log.debug(iterator.next());
 		}
+
+		int[] arrays = { 1, 2 };
+		Iterator<Integer> iterator1 = ArrayUtil.toIterator(arrays);
+
+//		while (iterator1.hasNext()){
+//			log.debug("" + iterator1.next());
+//		}
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(iterator1));
+		}
+
 	}
 
 	/**

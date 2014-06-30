@@ -17,6 +17,7 @@ package com.feilong.commons.core.tools.json;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,11 +30,13 @@ import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import net.sf.json.processors.JsonValueProcessor;
 import net.sf.json.util.CycleDetectionStrategy;
 import net.sf.json.util.JSONUtils;
 import net.sf.json.util.PropertySetStrategy;
 import net.sf.json.xml.XMLSerializer;
 
+import org.apache.commons.collections.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -150,7 +153,7 @@ public final class JsonUtil{
 	 * @since 1.0.7
 	 */
 	public static String format(Object obj,JsonConfig jsonConfig){
-		String string = JsonUtil.toJSON(obj, jsonConfig).toString(4, 4);
+		String string = toJSON(obj, jsonConfig).toString(4, 4);
 		return string;
 	}
 
@@ -478,6 +481,8 @@ public final class JsonUtil{
 	 * @see net.sf.json.util.JSONUtils#isArray(Object)
 	 * @see java.lang.Class#isEnum()
 	 * @see net.sf.json.JsonConfig#registerJsonValueProcessor(Class, JsonValueProcessor)
+	 * @see org.apache.commons.collections.IteratorUtils#toList(Iterator)
+	 * @see org.apache.commons.collections.IteratorUtils#toList(Iterator, int)
 	 */
 	public static JSON toJSON(Object obj,JsonConfig jsonConfig){
 		if (null == jsonConfig){
@@ -486,17 +491,21 @@ public final class JsonUtil{
 			DateJsonValueProcessor jsonValueProcessor = new DateJsonValueProcessor(DatePattern.commonWithTime);
 			jsonConfig.registerJsonValueProcessor(Date.class, jsonValueProcessor);
 		}
-		JSON json = null;
 
 		// obj instanceof Collection || obj instanceof Object[]
 		if (JSONUtils.isArray(obj) || //
-				obj.getClass().isEnum()// object' is an Enum. Use JSONArray instead
-		){
-			json = JSONArray.fromObject(obj, jsonConfig);
-		}else{
-			json = JSONObject.fromObject(obj, jsonConfig);
+				obj instanceof Enum || // obj.getClass().isEnum()这么些 null会报错// object' is an Enum. Use JSONArray instead
+				obj instanceof Iterator){
+
+			if (obj instanceof Iterator){
+				Collection<?> list = IteratorUtils.toList((Iterator<?>) obj);
+				obj = list;
+			}
+			//Accepts JSON formatted strings, arrays, Collections and Enums.
+			return JSONArray.fromObject(obj, jsonConfig);
 		}
-		return json;
+		//Accepts JSON formatted strings, Maps, DynaBeans and JavaBeans.
+		return JSONObject.fromObject(obj, jsonConfig);
 	}
 
 	// [end]

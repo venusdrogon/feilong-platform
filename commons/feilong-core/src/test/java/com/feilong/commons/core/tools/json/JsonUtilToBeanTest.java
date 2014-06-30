@@ -32,6 +32,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.Order;
 import com.feilong.test.MyBean;
@@ -45,7 +46,8 @@ import com.feilong.test.UserInfo;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 15:31:51
  */
-@SuppressWarnings("all")public class JsonUtilToBeanTest{
+@SuppressWarnings("all")
+public class JsonUtilToBeanTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(JsonUtilToBeanTest.class);
@@ -56,7 +58,7 @@ import com.feilong.test.UserInfo;
 	@Test
 	public void toBean1(){
 		String json = "{'name':'get','dateAttr':'2009-11-12'}";
-		Person ps =  JsonUtil.toBean(json, Person.class);
+		Person ps = JsonUtil.toBean(json, Person.class);
 		// print: get
 		log.info(ps.getName());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -83,6 +85,12 @@ import com.feilong.test.UserInfo;
 	@Test
 	public void toBeanNUll(){
 		log.info(JsonUtil.toJSON(null, null).toString(4, 4));
+	}
+
+	@Test
+	public void toJSON(){
+		HttpMethodType httpMethodType = HttpMethodType.GET;
+		log.info(JsonUtil.toJSON(httpMethodType, null).toString(4, 4));
 	}
 
 	/**
@@ -309,7 +317,7 @@ import com.feilong.test.UserInfo;
 
 		myBean.setData(list);
 		// print: {"data":[{"dateAttr":"2009-09-12 07:24:54","name":"get"}]}
-		log.info(""+JsonUtil.toJSON(myBean));
+		log.info("" + JsonUtil.toJSON(myBean));
 	}
 
 	/**
