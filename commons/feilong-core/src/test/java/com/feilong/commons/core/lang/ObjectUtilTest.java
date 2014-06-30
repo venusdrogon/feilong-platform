@@ -34,6 +34,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
 
 /**
@@ -167,17 +168,11 @@ public class ObjectUtilTest{
 
 		iterator = ObjectUtil.toIterator(collection);
 		printIterator(iterator);
-		try{
-			// **********************enumeration***********************************
-			log.info(StringUtils.center("enumeration", 60, "*"));
-			//TODO
-			Enumeration<Object> enumeration = new StringTokenizer("this is a test");
 
-			iterator = ObjectUtil.toIterator(enumeration);
-			printIterator(iterator);
-		}catch (Exception e){
-			e.printStackTrace();
-		}
+		// **********************enumeration***********************************
+		log.info(StringUtils.center("enumeration", 60, "*"));
+		Enumeration<Object> enumeration = new StringTokenizer("this is a test");
+		log.debug(JsonUtil.format(ObjectUtil.toIterator(enumeration)));
 	}
 
 	/**
