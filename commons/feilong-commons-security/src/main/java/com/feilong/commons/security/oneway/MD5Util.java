@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.security.oneway;
+package com.feilong.commons.security.oneway;
 
 /**
  * Message Digest algorithm 5，信息摘要算法 <br>
@@ -32,62 +32,24 @@ package com.feilong.commons.core.security.oneway;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010年10月26日 17:13:58
  * @version 1.1 2011-10-18 16:49
+ * @see <a href="http://www.cmd5.com/">MD5解密网站</a>
  * @since 1.0
+ * @see AbstractOnewayEncryption
+ * @see OnewayType
  */
-public final class MD5Util{
-
-	/** The oneway type. */
-	private static OnewayType	onewayType	= OnewayType.MD5;
+public final class MD5Util extends AbstractOnewayEncryption{
 
 	/**
-	 * private.
+	 * Instantiates a new m d5 util.
 	 */
 	private MD5Util(){}
 
-	/**
-	 * 加密字符串.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param origin
-	 *            原始字符串
-	 * @return 加密之后的转成小写的16进制字符串
+	 * @see com.feilong.commons.core.security.oneway.OnewayEncryption#getOnewayType()
 	 */
-	public static String encode(String origin){
-		return OnewayEncryption.encode(onewayType, origin);
-	}
-
-	/**
-	 * 加密字符串.
-	 * 
-	 * @param origin
-	 *            原始字符串
-	 * @param charsetName
-	 *            受支持的 charset 名称,比如 utf-8
-	 * @return 加密之后的转成小写的16进制字符串
-	 */
-
-	public static String encode(String origin,String charsetName){
-		return OnewayEncryption.encode(onewayType, origin, charsetName);
-	}
-
-	/**
-	 * 加密,byte[] 便于自定义编码.
-	 * 
-	 * @param inputBytes
-	 *            the input bytes
-	 * @return 加密之后的转成小写的16进制字符串
-	 */
-	public static String encode(byte[] inputBytes){
-		return OnewayEncryption.encode(onewayType, inputBytes);
-	}
-
-	/**
-	 * 计算文件 algorithm值.
-	 * 
-	 * @param filePath
-	 *            the file path
-	 * @return the string
-	 */
-	public static String encodeFile(String filePath){
-		return OnewayEncryption.encodeFile(onewayType, filePath);
+	protected OnewayType getOnewayType(){
+		return OnewayType.MD5;
 	}
 }

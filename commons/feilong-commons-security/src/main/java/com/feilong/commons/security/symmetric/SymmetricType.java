@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.security.symmetric;
+package com.feilong.commons.security.symmetric;
 
 /**
  * 对称加密的类型.<br>
@@ -24,12 +24,18 @@ package com.feilong.commons.core.security.symmetric;
  */
 public enum SymmetricType{
 	/**
+	 * Data Encryption Standard，即数据加密算法<br>
+	 * 它是IBM公司于1975年研究成功并公开发表的<br>
+	 * <p>
+	 * DES算法把64位的明文输入块变为64位的密文输出块，它所使用的密钥也是64位<br>
+	 * DES共有四种工作模式-->>ECB：电子密码本模式、CBC：加密分组链接模式、CFB：加密反馈模式、OFB：输出反馈模式
+	 * </p>
 	 * LdCGo0dplVASWwJrvlHqpw==<br>
 	 * key size must be equal to 56<br>
 	 * 最常用的对称加密算法，安全性较差,<br>
 	 * The Digital Encryption Standard as described in FIPS PUB 46-2.
 	 */
-	DES("DES","DES"),
+	DES("DES"),
 
 	/**
 	 * sIVcl7DB9hzAsiGKGFVJ2g==<br>
@@ -41,11 +47,13 @@ public enum SymmetricType{
 	 * 3DES（或称为Triple DES）是三重数据加密算法（TDEA，Triple Data Encryption Algorithm）块密码的通称。<br>
 	 * 它相当于是对每个数据块应用三次DES加密算法。由于计算机运算能力的增强，原版DES密码的密钥长度变得容易被暴力破解；<br>
 	 * 3DES即是设计用来提供一种相对简单的方法，即通过增加DES的密钥长度来避免类似的攻击，而不是设计一种全新的块密码算法。
+	 * 
+	 * @see <a href="http://tripledes.online-domain-tools.com/">加解密在线测试网站</a>
 	 */
 	// DESede/ECB/NoPadding
 	// DESede/ECB/PKCS5Padding
 	// DESede/ECB/ISO10126Padding
-	DESede("DESede","DESede/ECB/ISO10126Padding"),
+	DESede("DESede"),
 
 	/**
 	 * The Triple des.
@@ -53,7 +61,7 @@ public enum SymmetricType{
 	 * @deprecated please use {@link #DESede}
 	 */
 	@SuppressWarnings("dep-ann")
-	TripleDES("TripleDES","TripleDES"),
+	TripleDES("TripleDES"),
 
 	/**
 	 * MKNbK/ieTaepCk8SefgPMw==<br>
@@ -62,29 +70,29 @@ public enum SymmetricType{
 	 * AES is a 128-bit block cipher supporting keys of 128, 192, and 256 bits<br>
 	 * 是一种替代DES算法的新算法，可提供很好的安全性.
 	 */
-	AES("AES","AES"),
+	AES("AES"),
 
 	/**
 	 * BVl2k0U5+qrX8Otcg/4NXQ==<br>
 	 * The block cipher designed by Bruce Schneier,key size must be multiple of 8, and can only range from 32 to 448 (inclusive)<br>
 	 * 密钥长度可达448位.
 	 */
-	Blowfish("Blowfish","Blowfish"),
+	Blowfish("Blowfish"),
 
 	/**
 	 * CyJ22S/ct5YAhv5wMCTFZQ==<br>
 	 * key size must be between 40 and 1024 bits.
 	 */
-	RC2("RC2","RC2"),
+	RC2("RC2"),
 
 	/**
 	 * Jo5UARgjNRbDaL0VW77a<br>
 	 * s key size must be between 40 and 1024 bits.
 	 */
-	RC4("RC4","RC4"),
+	RC4("RC4"),
 
 	/** R1qRmIN8s4VY7OTRspIA. */
-	ARCFOUR("ARCFOUR","ARCFOUR");
+	ARCFOUR("ARCFOUR");
 
 	// java.security.NoSuchAlgorithmException: RSA KeyGenerator not available
 	// java.security.InvalidKeyException: No installed provider supports this key: (null)
@@ -122,12 +130,6 @@ public enum SymmetricType{
 	private String	algorithm;
 
 	/**
-	 * 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
-	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
-	 */
-	private String	transformation;
-
-	/**
 	 * Instantiates a new symmetric type.
 	 * 
 	 * @param algorithm
@@ -135,9 +137,8 @@ public enum SymmetricType{
 	 * @param transformation
 	 *            the transformation
 	 */
-	private SymmetricType(String algorithm, String transformation){
+	private SymmetricType(String algorithm){
 		this.algorithm = algorithm;
-		this.transformation = transformation;
 	}
 
 	/**
@@ -157,26 +158,5 @@ public enum SymmetricType{
 	 */
 	public void setAlgorithm(String algorithm){
 		this.algorithm = algorithm;
-	}
-
-	/**
-	 * Gets the 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
-	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
-	 * 
-	 * @return the transformation
-	 */
-	public String getTransformation(){
-		return transformation;
-	}
-
-	/**
-	 * Sets the 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
-	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
-	 * 
-	 * @param transformation
-	 *            the transformation to set
-	 */
-	public void setTransformation(String transformation){
-		this.transformation = transformation;
 	}
 }

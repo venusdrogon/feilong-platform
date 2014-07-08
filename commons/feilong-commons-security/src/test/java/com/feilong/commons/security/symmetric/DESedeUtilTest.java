@@ -1,21 +1,19 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p/>
- * This software is the confidential and proprietary information of FeiLong
- * Network Technology, Inc. ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with FeiLong.
- * <p/>
- * FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
- * <p/>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package com.feilong.commons.core.security.symmetric;
+package com.feilong.commons.security.symmetric;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,14 +24,21 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.security.BaseSecurityTest;
+import com.feilong.commons.security.BaseSecurityTest;
+import com.feilong.commons.security.EncryptionException;
+import com.feilong.commons.security.symmetric.SymmetricEncryption;
+import com.feilong.commons.security.symmetric.SymmetricType;
 
 /**
+ * The Class DESedeUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 21, 2011 4:55:43 PM
  */
-@SuppressWarnings("all")public class DESedeUtilTest extends BaseSecurityTest{
+@SuppressWarnings("all")
+public class DESedeUtilTest extends BaseSecurityTest{
 
+	/** The Constant log. */
 	private static final Logger	log								= LoggerFactory.getLogger(DESedeUtilTest.class);
 
 	// ******************************************************************************************************
@@ -44,31 +49,43 @@ import com.feilong.commons.core.security.BaseSecurityTest;
 	/** #des 16进制加密解密. */
 	public final static String	config_security_key_des_hex		= "jinxin";
 
+	/** The symmetric type. */
 	private SymmetricType		symmetricType					= SymmetricType.DESede;
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.
+	 * 
+	 * @throws EncryptionException
 	 */
 	@Test
-	public final void decryptBase64(){
+	public final void decryptBase64() throws EncryptionException{
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, config_security_key_des_default);
 		String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==", CharsetType.UTF8);
 		log.debug(mingsString);
 		assertEquals(TestConstants.testString, mingsString);
 	}
 
+	/**
+	 * Encryp base641.
+	 * 
+	 * @throws EncryptionException
+	 * @throws NullPointerException
+	 */
 	@Test
-	public final void encrypBase641(){
+	public final void encrypBase641() throws NullPointerException,EncryptionException{
 		SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_default);
 		log.debug(dESUtil.encryptBase64("金鑫金鑫金鑫", CharsetType.UTF8));
 	}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.security.DESUtil#decryptBase64(java.lang.String)}.
+	 * 
+	 * @throws EncryptionException
+	 * @throws NullPointerException
 	 */
 	@Test
 	// @Ignore
-	public final void encrypBase64(){
+	public final void encrypBase64() throws NullPointerException,EncryptionException{
 		SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_hex);
 		//	assertEquals(expected, actual);
 		// oKLAr5N7UK2VzL0kLwnKDA9BoaAU62rV
@@ -76,8 +93,14 @@ import com.feilong.commons.core.security.BaseSecurityTest;
 		log.debug(dESUtil.encryptBase64(TestConstants.testString, CharsetType.UTF8));
 	}
 
+	/**
+	 * Encrypt hex.
+	 * 
+	 * @throws EncryptionException
+	 * @throws NullPointerException
+	 */
 	@Test
-	public void encryptHex(){
+	public void encryptHex() throws NullPointerException,EncryptionException{
 		String keyString = "jinxin";
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
 		String miString = symmetricEncryption.encryptHex(TestConstants.testString, CharsetType.UTF8);

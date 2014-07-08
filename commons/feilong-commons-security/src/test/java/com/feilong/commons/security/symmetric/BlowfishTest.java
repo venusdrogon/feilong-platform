@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.security.symmetric;
+package com.feilong.commons.security.symmetric;
 
 import static org.junit.Assert.*;
 
@@ -25,6 +25,9 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.security.EncryptionException;
+import com.feilong.commons.security.symmetric.SymmetricEncryption;
+import com.feilong.commons.security.symmetric.SymmetricType;
 
 /**
  * The Class BlowfishTest.
@@ -33,7 +36,8 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @version 1.0.7 2014年6月5日 下午3:55:06
  * @since 1.0.7
  */
-@SuppressWarnings("all")public class BlowfishTest implements TestConstants{
+@SuppressWarnings("all")
+public class BlowfishTest implements TestConstants{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(BlowfishTest.class);
@@ -44,17 +48,13 @@ import com.feilong.commons.core.enumeration.CharsetType;
 	/**
 	 * Blowfish.
 	 * 
-	 * @throws SecurityException
-	 *             the security exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
 	 * @throws NullPointerException
 	 *             the null pointer exception
-	 * @throws NoSuchAlgorithmException
-	 *             the no such algorithm exception
+	 * @throws EncryptionException
+	 *             the encryption exception
 	 */
 	@Test
-	public void blowfishEncryptHex() throws SecurityException,NoSuchMethodException,NullPointerException,NoSuchAlgorithmException{
+	public void blowfishEncryptHex() throws NullPointerException,EncryptionException{
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
 		String encryptHex = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
 		log.info("SymmetricType.Blowfish:{}", encryptHex);
@@ -65,17 +65,13 @@ import com.feilong.commons.core.enumeration.CharsetType;
 	/**
 	 * Base64 string221.
 	 * 
-	 * @throws SecurityException
-	 *             the security exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
 	 * @throws NullPointerException
 	 *             the null pointer exception
-	 * @throws NoSuchAlgorithmException
-	 *             the no such algorithm exception
+	 * @throws EncryptionException
+	 *             the encryption exception
 	 */
 	@Test
-	public void blowfishDecryptHex() throws SecurityException,NoSuchMethodException,NullPointerException,NoSuchAlgorithmException{
+	public void blowfishDecryptHex() throws NullPointerException,EncryptionException{
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
 		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
 		String decryptHex = symmetricEncryption.decryptHex(hexString, CharsetType.UTF8);
@@ -85,17 +81,13 @@ import com.feilong.commons.core.enumeration.CharsetType;
 	/**
 	 * Encrypt to hex string.
 	 * 
-	 * @throws SecurityException
-	 *             the security exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
 	 * @throws NullPointerException
 	 *             the null pointer exception
-	 * @throws NoSuchAlgorithmException
-	 *             the no such algorithm exception
+	 * @throws EncryptionException
+	 *             the encryption exception
 	 */
 	@Test
-	public void encryptToHexString() throws SecurityException,NoSuchMethodException,NullPointerException,NoSuchAlgorithmException{
+	public void encryptToHexString() throws NullPointerException,EncryptionException{
 		String original = TestConstants.testString;
 
 		symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);

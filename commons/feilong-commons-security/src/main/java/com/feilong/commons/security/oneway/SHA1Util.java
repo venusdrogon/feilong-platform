@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.security.oneway;
+package com.feilong.commons.security.oneway;
 
 /**
  * Secure Hash Algorithm，安全散列算法 （单向加密）
@@ -38,62 +38,23 @@ package com.feilong.commons.core.security.oneway;
  * @version 1.0.0 2010年10月26日 17:13:58
  * @version 1.0.1 2011-10-18 16:49
  * @version 1.0.2 2013-7-18 17:01 修改了javadoc 和类关系
- * @since 1.0
+ * @since 1.0.0
+ * @see AbstractOnewayEncryption
+ * @see OnewayType
  */
-public final class SHA1Util{
-
-	/** The oneway type. */
-	private static OnewayType	onewayType	= OnewayType.SHA1;
+public final class SHA1Util extends AbstractOnewayEncryption{
 
 	/**
-	 * private.
+	 * Instantiates a new SH a1 util.
 	 */
 	private SHA1Util(){}
 
-	/**
-	 * 加密字符串.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param origin
-	 *            原始字符串
-	 * @return 加密之后的转成小写的16进制字符串
+	 * @see com.feilong.commons.security.oneway.OnewayEncryption#getOnewayType()
 	 */
-	public static String encode(String origin){
-		return OnewayEncryption.encode(onewayType, origin);
-	}
-
-	/**
-	 * 加密字符串.
-	 * 
-	 * @param origin
-	 *            原始字符串
-	 * @param charsetName
-	 *            受支持的 charset 名称,比如 utf-8
-	 * @return 加密之后的转成小写的16进制字符串
-	 */
-
-	public static String encode(String origin,String charsetName){
-		return OnewayEncryption.encode(onewayType, origin, charsetName);
-	}
-
-	/**
-	 * 加密,byte[] 便于自定义编码.
-	 * 
-	 * @param inputBytes
-	 *            the input bytes
-	 * @return 加密之后的转成小写的16进制字符串
-	 */
-	public static String encode(byte[] inputBytes){
-		return OnewayEncryption.encode(onewayType, inputBytes);
-	}
-
-	/**
-	 * 计算文件 algorithm值.
-	 * 
-	 * @param filePath
-	 *            the file path
-	 * @return the string
-	 */
-	public static String encodeFile(String filePath){
-		return OnewayEncryption.encodeFile(onewayType, filePath);
+	protected OnewayType getOnewayType(){
+		return OnewayType.SHA1;
 	}
 }
