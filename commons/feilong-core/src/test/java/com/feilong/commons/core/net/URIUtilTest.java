@@ -51,19 +51,13 @@ public class URIUtilTest{
 		value = "http://xy2.cbg.163.com/cgi-bin/equipquery.py?server_name=风花雪月&query_order=selling_time DESC&search_page&areaid=2&server_id=63&act=search_browse&equip_type_ids&search_text=斩妖剑";
 		value = "斩妖剑";
 		value = "风花雪月";
-		log.info(URIUtil.encode(value, CharsetType.GBK));
-	}
+		log.info(URIUtil.encode(value, CharsetType.UTF8));
+		value = "景儿,么么哒";
+		log.info(URIUtil.encode(value, CharsetType.UTF8));
 
-	/**
-	 * Encode.
-	 */
-	@Test
-	public void encode(){
-		String value = "白色/黑色/纹理浅麻灰";
+		value = "白色/黑色/纹理浅麻灰";
 		result = URIUtil.encode(value, CharsetType.UTF8);
 		log.info(result);
-		// Assert.assertEquals("%E5%8D%97%E6%9E%81%E4%BA%BA%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0", result);
-		// value = "杜冲";
 		log.info(URIUtil.encode(value, CharsetType.GBK));
 
 		result = URIUtil.encode("Lifestyle / Graphic,", CharsetType.UTF8);
@@ -98,11 +92,15 @@ public class URIUtilTest{
 	 */
 	@Test
 	public void decode(){
-		result = URIUtil.decode("上海", CharsetType.GBK);
-		log.info(result);
-		result = URIUtil.decode("Lifestyle+%2F+Graphic,", CharsetType.UTF8);
-		log.info(result);
-		result = URIUtil.decode("%E6%88%91%E7%88%B1%E5%BC%A0%E5%85%88%E6%B3%BD%7E%7E%7E%40%E5%BC%A0%E5%85%88%E6%B3%BD", CharsetType.UTF8);
+//		result = URIUtil.decode("上海", CharsetType.GBK);
+//		log.info(result);
+//		result = URIUtil.decode("Lifestyle+%2F+Graphic,", CharsetType.UTF8);
+//		log.info(result);
+//		result = URIUtil.decode("%E6%88%91%E7%88%B1%E5%BC%A0%E5%85%88%E6%B3%BD%7E%7E%7E%40%E5%BC%A0%E5%85%88%E6%B3%BD", CharsetType.UTF8);
+//		log.info(result);
+		result = URIUtil.decode(
+				"%E9%87%91%E6%80%BB%EF%BC%8C%E4%BD%A0%E6%83%B3%E6%80%8E%E4%B9%88%E4%B9%88%EF%BC%8C%E5%B0%B1%E6%80%8E%E4%B9%88%E4%B9%88",
+				CharsetType.UTF8);
 		log.info(result);
 
 	}
