@@ -78,7 +78,8 @@ package com.feilong.commons.security.oneway;
  * @version 1.0.2 2013-1-14 20:27 增加 SHA-1、 SHA-256、SHA-384，和SHA-512
  * @see java.security.MessageDigestSpi
  */
-public enum OnewayType{
+//无访问控制符修饰的内容可以被同一个包中的类访问，
+enum OnewayType{
 
 	/**
 	 * Message Digest algorithm 5，信息摘要算法<br>

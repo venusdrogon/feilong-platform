@@ -46,7 +46,8 @@ import com.feilong.commons.security.EncryptionException;
  * @version 1.0.7 2014-7-10 14:30 update class type is final
  * @see OnewayType
  */
-public final class OnewayEncryption{
+//无访问控制符修饰的内容可以被同一个包中的类访问，
+final class OnewayEncryption{
 
 	/**
 	 * Instantiates a new oneway encryption.

@@ -32,7 +32,8 @@ import com.feilong.commons.security.oneway.MD5Util;
  * @version 1.0 2011-2-7 上午01:12:36
  */
 @SuppressWarnings("all")
-public class MD5UtilTest extends BaseSecurityTest{
+//无访问控制符修饰的内容可以被同一个包中的类访问，
+class MD5UtilTest extends BaseSecurityTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MD5UtilTest.class);

@@ -33,7 +33,8 @@ import com.feilong.commons.security.oneway.OnewayType;
  * @version 1.0 Jan 14, 2013 8:14:12 PM
  */
 @SuppressWarnings("all")
-public class OnewayEncryptionTest extends BaseSecurityTest{
+//无访问控制符修饰的内容可以被同一个包中的类访问，
+class OnewayEncryptionTest extends BaseSecurityTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(OnewayEncryptionTest.class);
