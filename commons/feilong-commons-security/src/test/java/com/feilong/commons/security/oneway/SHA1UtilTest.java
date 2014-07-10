@@ -47,16 +47,6 @@ public class SHA1UtilTest extends BaseSecurityTest{
 	}
 
 	/**
-	 * Encode.
-	 */
-	@Test
-	public void encode(){
-		// Assert.assertEquals("bbed833d2c7805c4bf039b140bec7e7452125a04efa9e0b296395a9b95c2d44c", SHAUtil.encode("passwordhunter"));
-		byte[] bytes = StringUtil.toBytes("你好", CharsetType.UTF8);
-		Assert.assertEquals("440ee0853ad1e99f962b63e459ef992d7c211722", SHA1Util.encode(bytes));
-	}
-
-	/**
 	 * Encode1.
 	 */
 	@Test

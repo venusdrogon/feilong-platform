@@ -15,6 +15,9 @@
  */
 package com.feilong.commons.security.oneway;
 
+import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.security.EncryptionException;
+
 /**
  * Message Digest algorithm 5，信息摘要算法 <br>
  * 将任意长度的"字节串"变换成一个128bit的大整数.
@@ -30,26 +33,67 @@ package com.feilong.commons.security.oneway;
  * 
  * @author 腾讯通
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010年10月26日 17:13:58
- * @version 1.1 2011-10-18 16:49
+ * @version 1.0.0 2010年10月26日 17:13:58
+ * @version 1.0.1 2011-10-18 16:49
+ * @version 1.0.7 2014-7-10 14:28 update javadoc and remove extends
  * @see <a href="http://www.cmd5.com/">MD5解密网站</a>
- * @since 1.0
- * @see AbstractOnewayEncryption
+ * @see OnewayEncryption
  * @see OnewayType
+ * @since 1.0.0
  */
-public final class MD5Util extends AbstractOnewayEncryption{
+public final class MD5Util{
 
 	/**
 	 * Instantiates a new m d5 util.
 	 */
 	private MD5Util(){}
 
-	/*
-	 * (non-Javadoc)
+	/** The oneway type. */
+	private static OnewayType	onewayType	= OnewayType.MD5;
+
+	/**
+	 * 使用算法 单向加密字符串.
 	 * 
-	 * @see com.feilong.commons.core.security.oneway.OnewayEncryption#getOnewayType()
+	 * @param origin
+	 *            原始字符串,将使用默认的 {@link String#getBytes()} 转成字节数组<br>
+	 * @return 加密之后的转成小写的16进制字符串
+	 * @throws EncryptionException
+	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+	 * @see OnewayEncryption#encode(OnewayType, String)
 	 */
-	protected OnewayType getOnewayType(){
-		return OnewayType.MD5;
+	public static String encode(String origin) throws EncryptionException{
+		return OnewayEncryption.encode(onewayType, origin);
+	}
+
+	/**
+	 * 使用算法 单向加密字符串.
+	 * 
+	 * @param origin
+	 *            原始字符串,将使用默认的 value.getBytes() 转成字节数组<br>
+	 *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(OnewayType, byte[])}
+	 * @param charsetName
+	 *            受支持的 {@link CharsetType} 名称,比如 utf-8
+	 * @return 加密之后的转成小写的16进制字符串
+	 * @throws EncryptionException
+	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+	 * @see CharsetType
+	 * @see OnewayEncryption#encode(OnewayType, String, String)
+	 */
+	public static String encode(String origin,String charsetName) throws EncryptionException{
+		return OnewayEncryption.encode(onewayType, origin, charsetName);
+	}
+
+	/**
+	 * 计算文件的单向加密值.
+	 * 
+	 * @param filePath
+	 *            文件路径 {@link java.io.File#File(String)}
+	 * @return the string
+	 * @throws EncryptionException
+	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+	 * @see OnewayEncryption#encodeFile(OnewayType, String)
+	 */
+	public static String encodeFile(String filePath) throws EncryptionException{
+		return OnewayEncryption.encodeFile(onewayType, filePath);
 	}
 }

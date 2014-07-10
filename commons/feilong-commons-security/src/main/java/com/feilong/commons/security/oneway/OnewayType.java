@@ -21,7 +21,7 @@ package com.feilong.commons.security.oneway;
  * 支持以下的类型:
  * </p>
  * <ul>
- * <li>{@link #MD5},Message Digest algorithm 5(信息摘要算法)</li>
+ * <li>{@link #MD5},Message Digest algorithm 5(信息摘要算法),if</li>
  * <li>{@link #SHA},Secure Hash Algorithm(安全散列算法)</li>
  * <li>{@link #SHA1},Secure Hash Algorithm(安全散列算法)</li>
  * <li>{@link #SHA256},Secure Hash Algorithm(安全散列算法)</li>
@@ -30,6 +30,29 @@ package com.feilong.commons.security.oneway;
  * </ul>
  * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512<br>
  * 支持的单向加密类型,也可以参阅 {@link java.security.MessageDigestSpi}的实现类
+ * 
+ * <h4>String origin = "你好"; 结果对比:</h4>
+ * 
+ * <blockquote>
+ * 
+ * <pre>
+ * String origin = &quot;你好&quot;;
+ * OnewayEncryption.encode(OnewayType.MD5, origin, CharsetType.UTF8)));
+ * OnewayEncryption.encode(OnewayType.SHA, origin, CharsetType.UTF8)));
+ * OnewayEncryption.encode(OnewayType.SHA1, origin, CharsetType.UTF8)));
+ * OnewayEncryption.encode(OnewayType.SHA256, origin, CharsetType.UTF8)));
+ * OnewayEncryption.encode(OnewayType.SHA384, origin, CharsetType.UTF8)));
+ * OnewayEncryption.encode(OnewayType.SHA512, origin, CharsetType.UTF8)));
+ *  
+ * MD5:		7eca689f0d3389d9dea66ae112e5cfd7 [32]
+ * SHA:		440ee0853ad1e99f962b63e459ef992d7c211722 [40]
+ * SHA1:	440ee0853ad1e99f962b63e459ef992d7c211722 [40]
+ * SHA256:	670d9743542cae3ea7ebe36af56bd53648b0a1126162e78d81a32934a711302e [64]
+ * SHA384:	05f076c7d180e91d80a56d70b226fca01e2353554c315ac1e8caaaeca2ce0dc0d9d84e206a2bf1143a0ae1b9be9bcfa8 [96]
+ * SHA512:	5232181bc0d9888f5c9746e410b4740eb461706ba5dacfbc93587cecfc8d068bac7737e92870d6745b11a25e9cd78b55f4ffc706f73cfcae5345f1b53fb8f6b5 [128]
+ * </pre>
+ * 
+ * </blockquote>
  * 
  * <h4>SHA-1与MD5的比较</h4>
  * 
