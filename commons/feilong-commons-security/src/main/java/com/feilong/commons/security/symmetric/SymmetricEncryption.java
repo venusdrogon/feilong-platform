@@ -141,7 +141,7 @@ import com.feilong.commons.security.EncryptionException;
 public final class SymmetricEncryption{
 
 	/** The Constant log. */
-	protected static final Logger	log				= LoggerFactory.getLogger(SymmetricEncryption.class);
+	protected static final Logger	log	= LoggerFactory.getLogger(SymmetricEncryption.class);
 
 	/** 对称加密key. */
 	private Key						key;
@@ -149,13 +149,16 @@ public final class SymmetricEncryption{
 	/** The key string. */
 	private String					keyString;
 
+	/** The algorithm. */
 	private String					algorithm;
 
 	/**
 	 * 转换的名称，例如 DES/CBC/PKCS5Padding。<br>
 	 * 有关标准转换名称的信息，请参见 Java Cryptography Architecture Reference Guide 的附录 A.
+	 * 
+	 * @see <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html">StandardNames</a>
 	 */
-	private String					transformation	= "DES/ECB/NoPadding";
+	private String					transformation;
 
 	/**
 	 * 构造函数(固定枚举支持范围).
@@ -169,8 +172,33 @@ public final class SymmetricEncryption{
 	 * @throws EncryptionException
 	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
 	 * @see SymmetricType
+	 * @see #SymmetricEncryption(SymmetricType, String, CipherMode, CipherPadding)
 	 */
 	public SymmetricEncryption(SymmetricType symmetricType, String keyString) throws NullPointerException,EncryptionException{
+		this(symmetricType, keyString, null, null);
+	}
+
+	/**
+	 * 构造函数(固定枚举支持范围).
+	 * 
+	 * @param symmetricType
+	 *            the symmetric type
+	 * @param keyString
+	 *            the key string
+	 * @param cipherMode
+	 *            the cipher mode
+	 * @param cipherPadding
+	 *            the cipher padding
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(symmetricType) or isNullOrEmpty(keyString)
+	 * @throws EncryptionException
+	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+	 * @see SymmetricType
+	 * @see javax.crypto.Cipher#tokenizeTransformation(String)
+	 * @since 1.0.7
+	 */
+	public SymmetricEncryption(SymmetricType symmetricType, String keyString, CipherMode cipherMode, CipherPadding cipherPadding)
+			throws NullPointerException,EncryptionException{
 		if (Validator.isNullOrEmpty(keyString)){
 			throw new NullPointerException("the keyString can't be null");
 		}
@@ -178,14 +206,24 @@ public final class SymmetricEncryption{
 			throw new NullPointerException("the symmetricType can't be null");
 		}
 
-		String _algorithm = symmetricType.getAlgorithm();
+		this.keyString = keyString;
+		this.algorithm = symmetricType.getAlgorithm();
 
-		if (log.isDebugEnabled()){
-			log.debug("symmetricType:[{}],getAlgorithm:[{}] ", symmetricType.toString(), _algorithm);
+		if (null == cipherMode && null == cipherPadding){
+			this.transformation = algorithm;
+		}else{
+			this.transformation = algorithm;
+			if (null != cipherMode){
+				transformation += "/" + cipherMode;
+			}
+			if (null != cipherPadding){
+				transformation += "/" + cipherPadding;
+			}
 		}
 
-		this.keyString = keyString;
-		this.algorithm = _algorithm;
+		if (log.isDebugEnabled()){
+			log.debug("algorithm:[{}],keyString:[{}],transformation:[{}]", algorithm, keyString, transformation);
+		}
 
 		//由于是固定的类型枚举,枚举里面的加密类型都经过测试过的,所以理论上来说不会再出现   NoSuchAlgorithmException
 		try{
@@ -220,9 +258,6 @@ public final class SymmetricEncryption{
 		try{
 			byte[] bs1 = original.getBytes(charsetName);
 			byte[] bs = opBytes(bs1, Cipher.ENCRYPT_MODE);
-
-			//			BASE64Encoder base64Encoder = new BASE64Encoder();
-			//			String encode = base64Encoder.encode(bs);
 
 			String encode = new String(Base64.encodeBase64(bs));
 
@@ -280,8 +315,6 @@ public final class SymmetricEncryption{
 	@SuppressWarnings("restriction")
 	public String decryptBase64(String base64String,String charsetName) throws EncryptionException{
 		try{
-			//			BASE64Decoder base64Decoder = new BASE64Decoder();
-			//			byte[] byteMi = base64Decoder.decodeBuffer(base64String);
 			byte[] byteMi = Base64.decodeBase64(base64String);
 			byte[] bs = opBytes(byteMi, Cipher.DECRYPT_MODE);
 			String original = new String(bs, charsetName);
@@ -345,6 +378,7 @@ public final class SymmetricEncryption{
 				map.put("keyString", keyString);
 				map.put("original", original);
 				map.put("hexStringUpperCase", hexStringUpperCase);
+				map.put("hexStringUpperCaseLength", hexStringUpperCase.length());
 
 				log.debug(JsonUtil.format(map));
 			}
@@ -393,8 +427,8 @@ public final class SymmetricEncryption{
 
 				map.put("algorithm", algorithm);
 				map.put("keyString", keyString);
-				map.put("original", original);
 				map.put("hexString", hexString);
+				map.put("original", original);
 
 				log.debug(JsonUtil.format(map));
 			}
@@ -418,8 +452,6 @@ public final class SymmetricEncryption{
 	/**
 	 * 生成密钥.
 	 * 
-	 * @param algorithm
-	 *            定义 加密算法 可用 DES,DESede,Blowfish
 	 * @param _keyString
 	 *            自定义的密钥字符串
 	 * @return Key
@@ -455,8 +487,6 @@ public final class SymmetricEncryption{
 	/**
 	 * 自定义一个key.
 	 * 
-	 * @param algorithm
-	 *            the algorithm
 	 * @param keyRule
 	 *            the key rule
 	 * @return the key2

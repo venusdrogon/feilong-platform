@@ -22,7 +22,7 @@ package com.feilong.commons.security.symmetric;
  * @version 1.0.7 2014年7月8日 下午5:12:49
  * @since 1.0.7
  */
-public enum SymmetricPadding{
+public enum CipherPadding{
 	/**
 	 * （不填充）
 	 */
@@ -48,13 +48,13 @@ public enum SymmetricPadding{
 	 * <pre>
 	 * {@code
 	 * The padding scheme defined in the SSL Protocol Version 3.0, November 18, 1996, section 5.2.3.2 (CBC block cipher):
-	 *     block-ciphered struct {
+	 *     block-ciphered struct} {{@code
 	 * 	opaque content[SSLCompressed.length];
 	 * 	opaque MAC[CipherSpec.hash_size];
 	 * 	uint8 padding[
 	 * 	    GenericBlockCipher.padding_length];
 	 * 	uint8 padding_length;
-	 *     } GenericBlockCipher;
+	 *     }}{@code GenericBlockCipher;
 	 * The size of an instance of a GenericBlockCipher must be a multiple of the block cipher's block length. 
 	 * 
 	 * The padding length, which is always present, contributes to the padding, which implies that if:

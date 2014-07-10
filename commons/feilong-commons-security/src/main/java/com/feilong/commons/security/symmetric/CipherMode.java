@@ -16,13 +16,18 @@
 package com.feilong.commons.security.symmetric;
 
 /**
- * 分组模式
+ * 分组模式(The following names can be specified as the mode component in a transformation when requesting an instance of Cipher.)
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月8日 下午4:45:24
  * @since 1.0.7
  */
-public enum SymmetricMode{
+public enum CipherMode{
+	/**
+	 * No mode.
+	 */
+	NONE,
+
 	/**
 	 * (electronic codebook)
 	 * 

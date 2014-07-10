@@ -16,11 +16,14 @@
 package com.feilong.commons.security.symmetric;
 
 /**
- * 对称加密的类型.<br>
- * where key is feilong,and string is 鑫哥爱feilong,encryptToBase64String
+ * 对称加密的类型.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-24 下午11:36:22
+ * @see <a href="http://tripledes.online-domain-tools.com/">加解密在线测试网站</a>
+ * @see <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/crypto/CryptoSpec.html#AppA">JCA Reference Guide</a>
+ * @see <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html">JCA Standard Algorithm Name
+ *      Documentation</a>
  */
 public enum SymmetricType{
 	/**
@@ -50,9 +53,6 @@ public enum SymmetricType{
 	 * 
 	 * @see <a href="http://tripledes.online-domain-tools.com/">加解密在线测试网站</a>
 	 */
-	// DESede/ECB/NoPadding
-	// DESede/ECB/PKCS5Padding
-	// DESede/ECB/ISO10126Padding
 	DESede("DESede"),
 
 	/**
