@@ -38,8 +38,8 @@ import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;

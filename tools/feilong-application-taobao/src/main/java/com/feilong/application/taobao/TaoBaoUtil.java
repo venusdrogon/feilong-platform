@@ -31,9 +31,9 @@ import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForTokenEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginOutEntity;
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.servlet.http.ParamUtil;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
@@ -336,8 +336,7 @@ public class TaoBaoUtil{
 			sb.append(null == entry.getValue() ? "" : entry.getValue());
 		}
 		sb.append(secret);
-		// 签名(utf-8编码)
-		byte[] bytes = StringUtil.toBytes(sb.toString(), CharsetType.UTF8);
-		return MD5Util.encode(bytes).toUpperCase();
+
+		return MD5Util.encode(sb.toString(), CharsetType.UTF8).toUpperCase();
 	}
 }

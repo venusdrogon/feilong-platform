@@ -21,9 +21,9 @@ import java.util.Date;
 import org.apache.commons.lang3.SystemUtils;
 
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.commons.security.oneway.MD5Util;
 
 /**
  * 飞龙"新华一城网"支付.

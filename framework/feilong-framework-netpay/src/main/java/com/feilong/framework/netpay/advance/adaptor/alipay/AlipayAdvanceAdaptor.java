@@ -30,8 +30,8 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
-import com.feilong.commons.core.security.oneway.MD5Util;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.command.TradeRole;
 import com.feilong.servlet.http.ParamUtil;
