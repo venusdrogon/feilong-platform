@@ -115,15 +115,19 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 数组转成 List(ArrayList)，此方法通过循环遍历创建， 返回的list可以操作<br>
-	 * 注意 Arrays.asList(arrays)返回的list不含add方法，
+	 * 数组转成 List(ArrayList)，此方法返回的list可以进行add操作
+	 * <p>
+	 * 注意 :{@link java.util.Arrays#asList(Object...)}返回的list,没有实现 {@link java.util.Collection#add(Object)}方法<br>
+	 * 因此,会使用 {@link ArrayList#ArrayList(java.util.Collection)} 来进行重新封装返回
+	 * </p>
 	 * 
 	 * @param <T>
 	 *            the generic type
 	 * @param arrays
 	 *            T数组
 	 * @return 数组转成 List(ArrayList)<br>
-	 *         如果 Validator.isNullOrEmpty(arrays) return null
+	 *         if Validator.isNullOrEmpty(arrays), return null,else return new ArrayList<T>(Arrays.asList(arrays));
+	 * @see java.util.Arrays#asList(Object...)
 	 */
 	public static <T> List<T> toList(T[] arrays){
 		if (Validator.isNullOrEmpty(arrays)){
@@ -133,10 +137,6 @@ public final class ArrayUtil{
 		// return Arrays.asList(arrays);
 
 		List<T> list = new ArrayList<T>(Arrays.asList(arrays));
-		// List<T> list = new ArrayList<T>();
-		// for (T t : arrays){
-		// list.add(t);
-		// }
 		return list;
 	}
 
