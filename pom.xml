@@ -481,6 +481,14 @@
 				<version>${version.servlet-api}</version>
 				<scope>provided</scope>
 			</dependency>
+
+			<!-- spring-test -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${version.spring}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -728,17 +736,17 @@
 							<title>Date package 日期</title>
 							<packages>com.feilong.commons.core.date</packages>
 						</group>
-						
+
 						<group>
 							<title>IO package</title>
 							<packages>com.feilong.commons.core.io</packages>
 						</group>
-						
+
 						<group>
 							<title>net package</title>
 							<packages>com.feilong.commons.core.net</packages>
 						</group>
-						
+
 						<group>
 							<title>util package</title>
 							<packages>com.feilong.commons.core.util</packages>

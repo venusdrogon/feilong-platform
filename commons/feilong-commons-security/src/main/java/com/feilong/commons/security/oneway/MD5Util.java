@@ -39,6 +39,7 @@ import com.feilong.commons.security.EncryptionException;
  * @see <a href="http://www.cmd5.com/">MD5解密网站</a>
  * @see OnewayEncryption
  * @see OnewayType
+ * @see org.apache.commons.codec.digest.Md5Crypt#md5Crypt(byte[])
  * @since 1.0.0
  */
 public final class MD5Util{

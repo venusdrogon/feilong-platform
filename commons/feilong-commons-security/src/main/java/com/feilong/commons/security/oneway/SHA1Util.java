@@ -44,6 +44,7 @@ import com.feilong.commons.security.EncryptionException;
  * @version 1.0.7 2014-7-10 14:28 update javadoc and remove extends
  * @see OnewayEncryption
  * @see OnewayType
+ * @see org.apache.commons.codec.digest.Sha2Crypt
  * @since 1.0.0
  */
 public final class SHA1Util{

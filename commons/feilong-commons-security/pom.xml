@@ -38,11 +38,10 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${version.spring}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
