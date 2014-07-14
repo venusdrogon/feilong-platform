@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.util.ReflectUtil;
+import com.feilong.commons.core.lang.ReflectUtil;
 
 /**
  * The Class IOWriteUtilTest.

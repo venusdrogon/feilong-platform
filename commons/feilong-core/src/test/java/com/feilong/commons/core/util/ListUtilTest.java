@@ -47,6 +47,103 @@ public class ListUtilTest{
 	private String[]			aStrings	= { "a", "b" };
 
 	/**
+	 * Re.
+	 */
+	@Test
+	public void remove1(){
+
+		List<String> list = new ArrayList<String>();
+
+		list.add("a");
+		list.add("a7");
+		list.add("a8");
+		list.add("a81");
+		list.add("a82");
+		list.add("a83");
+		list.add("a84");
+		list.add("a85");
+
+//		for (int i = list.size() - 1; i >= 0; --i){
+//
+//			String aString = list.get(i);
+//
+//			if ("a7".equals(aString)){
+//				list.remove(aString);
+//			}
+//		}
+
+		// java.lang.IndexOutOfBoundsException: Index: 8, Size: 8
+		//		for (int i = 0, j = list.size(); i < j; ++i){
+		//			String aString = list.get(i);
+		//
+		//			if ("a7".equals(aString)){
+		//				list.remove(i);
+		//			}
+		//
+		//		}
+
+				for (String string : list){
+					if ("a7".equals(string)){
+						list.remove(string);
+					}
+				}
+//				for (String string : list){
+//					if ("a".equals(string)){
+//						list.remove(string);
+//					}
+//				}
+//		if (log.isDebugEnabled()){
+//			log.debug(JsonUtil.format(list));
+//		}
+
+	}
+
+	/**
+	 * Name.
+	 */
+	@Test
+	public void name(){
+		//ArrayList<String> list = new ArrayList<String>(Arrays.asList("a", "b", "c", "d"));
+		
+		
+		List<String> list = new ArrayList<String>();
+
+		list.add("a");
+		list.add("a7");
+		list.add("a8");
+		for (String s : list){
+			if (s.equals("a")){
+				list.remove(s);
+			}
+		}
+	}
+
+	/**
+	 * Remove2.
+	 */
+	@Test
+	public void remove2(){
+		List<User> list = new ArrayList<User>();
+		User user = new User();
+		user.setId(8L);
+		list.add(user);
+
+		user = new User();
+		user.setId(9L);
+		list.add(user);
+
+		for (User user2 : list){
+			if (user2.getId().equals(8L)){
+				list.remove(user2);
+			}
+		}
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(list));
+		}
+	}
+
+	/**
 	 * Removes the.
 	 */
 	@Test
@@ -63,12 +160,10 @@ public class ListUtilTest{
 			String string = iterator.next();
 			if (string.equals("feilong1")){
 				iterator.remove();
+
+				//list.remove(string);	//java.util.ConcurrentModificationException
 			}
 		}
-		// for (int i = 0, j = list.size(); i < j; ++i){
-		// // String string = list.get(i);
-		//
-		// }
 		log.info("list:{}", JsonUtil.format(list));
 	}
 

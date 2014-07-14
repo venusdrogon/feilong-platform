@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.lang;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -30,7 +30,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.ObjectUtil;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * 反射工具类.
