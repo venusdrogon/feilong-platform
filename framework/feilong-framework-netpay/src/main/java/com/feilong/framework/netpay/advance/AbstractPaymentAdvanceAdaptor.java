@@ -23,7 +23,7 @@ import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.ReflectUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;

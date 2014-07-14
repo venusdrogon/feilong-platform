@@ -49,7 +49,7 @@ import org.apache.solr.common.params.GroupParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.ReflectUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.solrj.command.SolrGroup;

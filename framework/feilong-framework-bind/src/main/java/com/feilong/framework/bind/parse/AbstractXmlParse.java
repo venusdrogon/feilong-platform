@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.lang.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.ReflectUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.bind.VarCommand;
 import com.feilong.tools.dom4j.Dom4jUtil;
