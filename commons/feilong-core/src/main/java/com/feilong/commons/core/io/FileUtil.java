@@ -24,7 +24,14 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * {@link File}文件操作.
+ * {@link File}文件操作<br>
+ * 
+ * File的几个属性:
+ * <ul>
+ * <li>{@link File#getAbsolutePath()} 得到的是全路径</li>
+ * <li>{@link File#getPath()} 得到的是构造file的时候的路径</li>
+ * <li>{@link File#getCanonicalPath()} 可以看到CanonicalPath不但是全路径，而且把..或者.这样的符号解析出来。</li>
+ * </ul>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-23 下午5:00:54

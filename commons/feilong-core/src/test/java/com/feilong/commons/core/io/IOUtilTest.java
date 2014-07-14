@@ -62,9 +62,11 @@ public class IOUtilTest{
 
 	/**
 	 * Down.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void down(){
+	public void down() throws IOException{
 		String url = "http://www.kenwen.com/egbk/31/31186/4395342.txt";
 		String directoryName = SpecialFolder.getDesktop();
 		IOUtil.down(url, directoryName);

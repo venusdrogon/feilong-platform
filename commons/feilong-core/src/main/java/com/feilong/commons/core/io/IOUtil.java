@@ -95,7 +95,6 @@ public final class IOUtil{
 				e.printStackTrace();
 			}
 		}
-
 		return null;
 	}
 
@@ -108,18 +107,15 @@ public final class IOUtil{
 	 *            url 不能带参数
 	 * @param directoryName
 	 *            目标文件夹
+	 * @throws IOException
 	 */
-	public static void down(String url,String directoryName){
+	public static void down(String url,String directoryName) throws IOException{
 		log.info("begin down:" + url);
-		try{
-			URL _url = new URL(url);
-			InputStream inputStream = _url.openStream();
-			File file = new File(url);
-			String fileName = file.getName();
-			IOWriteUtil.write(inputStream, directoryName, fileName);
-		}catch (Exception e){
-			log.error("down url:" + url + " error,exception is " + e.getMessage());
-		}
+		URL _url = new URL(url);
+		InputStream inputStream = _url.openStream();
+		File file = new File(url);
+		String fileName = file.getName();
+		IOWriteUtil.write(inputStream, directoryName, fileName);
 	}
 
 	/**
