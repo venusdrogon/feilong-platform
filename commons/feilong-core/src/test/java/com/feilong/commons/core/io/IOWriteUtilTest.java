@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.io;
 
 import java.io.IOException;
@@ -35,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.util.ReflectUtil;
 
 /**
  * The Class IOWriteUtilTest.
@@ -45,8 +36,20 @@ import com.feilong.commons.core.date.DateUtil;
 public class IOWriteUtilTest{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtilTest.class);
+
+	/**
+	 * Unescape html2.
+	 */
+	@Test
+	public void unescapeHtml2(){
+		String a = "第572章 三十年后（大结局） *局";
+		String result = null;
+		//ReflectUtil.invokeStaticMethod(owner, IOWriteUtil, params)
+		result = org.apache.commons.lang.StringEscapeUtils.escapeHtml(a);
+		// result = HtmlUtils.htmlUnescape(a);
+		log.info(result);
+	}
 
 	/**
 	 * Write.

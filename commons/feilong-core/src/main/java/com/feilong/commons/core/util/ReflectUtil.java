@@ -36,8 +36,8 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * 反射工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-1-18 下午06:35:58
- * @version 1.1 Apr 11, 2014 10:45:26 PM
+ * @version 1.0.0 2010-1-18 下午06:35:58
+ * @version 1.0.1 Apr 11, 2014 10:45:26 PM
  * @since 1.0.0
  */
 public final class ReflectUtil{
@@ -336,31 +336,6 @@ public final class ReflectUtil{
 	// [start] Property
 
 	/**
-	 * 得到某个对象的公共属性.
-	 * 
-	 * @param owner
-	 *            the owner
-	 * @param fieldName
-	 *            the field name
-	 * @return 该属性对象
-	 * @throws SecurityException
-	 *             the security exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 */
-	public static Object getProperty(Object owner,String fieldName) throws SecurityException,NoSuchFieldException,IllegalArgumentException,
-			IllegalAccessException{
-		Class<?> ownerClass = owner.getClass();
-		Field field = ownerClass.getField(fieldName);
-		Object property = field.get(owner);
-		return property;
-	}
-
-	/**
 	 * 设置属性.
 	 * 
 	 * @param owner
@@ -383,6 +358,31 @@ public final class ReflectUtil{
 		Class<?> ownerClass = owner.getClass();
 		Field field = ownerClass.getField(fieldName);
 		field.set(ownerClass, value);
+	}
+
+	/**
+	 * 得到某个对象的公共属性.
+	 * 
+	 * @param owner
+	 *            the owner
+	 * @param fieldName
+	 *            the field name
+	 * @return 该属性对象
+	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchFieldException
+	 *             the no such field exception
+	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 */
+	public static Object getProperty(Object owner,String fieldName) throws SecurityException,NoSuchFieldException,IllegalArgumentException,
+			IllegalAccessException{
+		Class<?> ownerClass = owner.getClass();
+		Field field = ownerClass.getField(fieldName);
+		Object property = field.get(owner);
+		return property;
 	}
 
 	/**
@@ -539,6 +539,7 @@ public final class ReflectUtil{
 	 * @param index
 	 *            索引
 	 * @return 返回指定数组对象中索引组件的值
+	 * @see java.lang.reflect.Array#get(Object, int)
 	 */
 	public static Object getByArray(Object array,int index){
 		return Array.get(array, index);
