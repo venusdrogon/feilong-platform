@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.lang.reflect;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.lang.reflect.ReflectUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
 
