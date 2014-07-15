@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 Sep 8, 2012 8:02:44 PM
  * @since 1.0.0
  */
-public class MapUtil{
+public final class MapUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MapUtil.class);

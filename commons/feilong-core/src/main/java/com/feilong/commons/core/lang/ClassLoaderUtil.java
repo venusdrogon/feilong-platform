@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2011-4-27 上午12:40:08
  * @since 1.0.0
  */
-public class ClassLoaderUtil{
+public final class ClassLoaderUtil{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ClassLoaderUtil.class);
@@ -75,8 +75,7 @@ public class ClassLoaderUtil{
 
 	// *****************************************************
 	/**
-	 * This is a convenience method to load a resource as a stream.
-	 * <br>
+	 * This is a convenience method to load a resource as a stream. <br>
 	 * The algorithm used to find the resource is given in getResource()
 	 * 
 	 * @param resourceName
@@ -96,8 +95,7 @@ public class ClassLoaderUtil{
 	}
 
 	/**
-	 * Load a given resource.
-	 * <br>
+	 * Load a given resource. <br>
 	 * This method will try to load the resource using the following methods (in order):
 	 * <ul>
 	 * <li>From {@link Thread#getContextClassLoader() Thread.currentThread().getContextClassLoader()}
@@ -161,8 +159,7 @@ public class ClassLoaderUtil{
 	}
 
 	/**
-	 * Load a class with a given name.
-	 * <br>
+	 * Load a class with a given name. <br>
 	 * It will try to load the class in the following order:
 	 * <ul>
 	 * <li>From {@link Thread#getContextClassLoader() Thread.currentThread().getContextClassLoader()}

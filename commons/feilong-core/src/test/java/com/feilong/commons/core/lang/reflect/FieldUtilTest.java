@@ -23,6 +23,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
 
 /**
+ * The Class FieldUtilTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:23:59
@@ -30,7 +31,19 @@ import com.feilong.test.User;
  */
 public class FieldUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(FieldUtilTest.class);
+
+	/**
+	 * Test get static property.
+	 */
+	@Test
+	public void testGetStaticProperty(){
+		if (log.isInfoEnabled()){
+			log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.ImageType", "JPG"));
+			log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.IOConstants", "GB"));
+		}
+	}
 
 	/**
 	 * Creates the payment form.

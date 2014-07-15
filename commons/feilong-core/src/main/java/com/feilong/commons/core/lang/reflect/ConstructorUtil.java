@@ -49,10 +49,10 @@ public final class ConstructorUtil{
 	 * 
 	 * <pre>
 	 * {@code
-	 * User user = ReflectUtil.newInstance("com.feilong.test.User") 将返回user 对象
+	 * User user = ConstructorUtil.newInstance("com.feilong.test.User") 将返回user 对象
 	 * 
 	 * 你还可以 
-	 * User user1 = ReflectUtil.newInstance("com.feilong.test.User", 100L); 返回 id 是100的构造函数
+	 * User user1 = ConstructorUtil.newInstance("com.feilong.test.User", 100L); 返回 id 是100的构造函数
 	 * }
 	 * </pre>
 	 * 
@@ -63,16 +63,22 @@ public final class ConstructorUtil{
 	 * @param parameterValues
 	 *            构造函数的参数
 	 * @return 新建的实例,如果结果不能转成T 会抛出异常
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
+	 * @throws ReflectException
+	 *             the reflect exception
+	 * @see ClassUtil#loadClass(String)
+	 * @see #newInstance(Class, Object...)
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T newInstance(String className,Object...parameterValues) throws ClassNotFoundException{
-
-		// 装载连接初始化类
-		Class<?> klass = ClassUtil.loadClass(className);
-		Object newInstance = newInstance(klass, parameterValues);
-		return (T) newInstance;
+	public static <T> T newInstance(String className,Object...parameterValues) throws ReflectException{
+		try{
+			// 装载连接初始化类
+			Class<?> klass = ClassUtil.loadClass(className);
+			Object newInstance = newInstance(klass, parameterValues);
+			return (T) newInstance;
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new ReflectException(e);
+		}
 	}
 
 	/**
@@ -92,6 +98,9 @@ public final class ConstructorUtil{
 	 *         </ol>
 	 * @throws ReflectException
 	 *             the reflect exception
+	 * @see com.feilong.commons.core.lang.ClassUtil#toParameterTypes(Object...)
+	 * @see java.lang.Class#getConstructor(Class...)
+	 * @see java.lang.reflect.Constructor#newInstance(Object...)
 	 * @see org.apache.commons.lang3.reflect.ConstructorUtils#invokeConstructor(Class, Object...)
 	 */
 	public static <T> T newInstance(Class<T> klass,Object...parameterValues) throws ReflectException{

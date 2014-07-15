@@ -33,7 +33,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * @version 1.0.7 2014-7-14 17:38
  * @since 1.0.7
  */
-public class ReflectException extends RuntimeException{
+public final class ReflectException extends RuntimeException{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -1699987643831455524L;

@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2012-7-11 下午5:05:56
  * @since 1.0.0
  */
-public class StringBuilderUtil{
+public final class StringBuilderUtil{
 
 	/** The Constant log. */
 	@SuppressWarnings("unused")

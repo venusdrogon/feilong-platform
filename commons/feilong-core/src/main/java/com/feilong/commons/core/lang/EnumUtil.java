@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.lang;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.apache.commons.lang.enums.EnumUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +34,7 @@ import com.feilong.commons.core.util.Validator;
  * @see org.apache.commons.lang3.EnumUtils
  * @since 1.0.6
  */
-public class EnumUtil{
+public final class EnumUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(EnumUtil.class);
@@ -79,30 +77,19 @@ public class EnumUtil{
 			// 如果此 Class 对象不表示枚举类型，则返回枚举类的元素或 null。
 			E[] enumConstants = enumClass.getEnumConstants();
 
-			try{
-				for (E e : enumConstants){
-					String getterMethodName = StringUtil.getGetterMethodName(fieldName);
-					Object invokeMethod = MethodUtil.invokeMethod(e, getterMethodName);
+			for (E e : enumConstants){
+				String getterMethodName = StringUtil.getGetterMethodName(fieldName);
+				Object invokeMethod = MethodUtil.invokeMethod(e, getterMethodName);
 
-					if (log.isInfoEnabled()){
-						log.info("" + JsonUtil.format(e));
-						log.info("invokeMethod value:{}", invokeMethod);
-					}
-					if (value.equalsIgnoreCase(invokeMethod.toString())){
-						return e;
-					}
+				if (log.isInfoEnabled()){
+					log.info("" + JsonUtil.format(e));
+					log.info("invokeMethod value:[{}]", invokeMethod);
 				}
-			}catch (IllegalArgumentException e){
-				e.printStackTrace();
-			}catch (SecurityException e){
-				e.printStackTrace();
-			}catch (IllegalAccessException e){
-				e.printStackTrace();
-			}catch (InvocationTargetException e){
-				e.printStackTrace();
-			}catch (NoSuchMethodException e){
-				e.printStackTrace();
+				if (value.equalsIgnoreCase(invokeMethod.toString())){
+					return e;
+				}
 			}
+
 		}
 		return null;
 	}
