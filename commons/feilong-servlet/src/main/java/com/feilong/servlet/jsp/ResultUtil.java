@@ -26,13 +26,15 @@ import javax.servlet.jsp.jstl.sql.Result;
 
 import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.lang.ObjectUtil;
+import com.feilong.commons.core.lang.reflect.ConstructorUtil;
+import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.lang.reflect.ReflectUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
  * jdbc Result的工具类.
- *
+ * 
  * @author 金鑫 2010-7-9 上午11:55:22
  * @since 1.0
  */
@@ -45,19 +47,30 @@ public class ResultUtil{
 	 * result 数据必须只有一个.
 	 * 可变参数不填,则全部填充
 	 * </pre>
-	 *
-	 * @param result result
-	 * @param clz clz
-	 * @param fieldNames 字段参数
+	 * 
+	 * @param result
+	 *            result
+	 * @param clz
+	 *            clz
+	 * @param fieldNames
+	 *            字段参数
 	 * @return java bean
-	 * @throws SecurityException the security exception
-	 * @throws NoSuchFieldException the no such field exception
-	 * @throws IllegalArgumentException the illegal argument exception
-	 * @throws ClassNotFoundException the class not found exception
-	 * @throws NoSuchMethodException the no such method exception
-	 * @throws InstantiationException the instantiation exception
-	 * @throws IllegalAccessException the illegal access exception
-	 * @throws InvocationTargetException the invocation target exception
+	 * @throws SecurityException
+	 *             the security exception
+	 * @throws NoSuchFieldException
+	 *             the no such field exception
+	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 */
 	public static Object convertResultToObjectOneBean(Result result,Class<?> clz,String...fieldNames) throws SecurityException,
 			NoSuchFieldException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
@@ -76,18 +89,18 @@ public class ResultUtil{
 		SortedMap<Object, Object>[] sortedMaps = result.getRows();
 		SortedMap<Object, Object> sortedMap = sortedMaps[0];
 		// 实例化
-		bean = ReflectUtil.newInstance(className);
+		bean = ConstructorUtil.newInstance(className);
 		// 是否取字段
 		boolean isGetFileds = Validator.isNotNullOrEmpty(fieldNames);
 		if (!isGetFileds){
-			fieldNames = ReflectUtil.getDeclaredFieldNames(clz);
+			fieldNames = FieldUtil.getDeclaredFieldNames(clz);
 		}
 		// ***********************************************************************************
 		Field field = null;
 		// 数据库中字段值
 		Object sqlValue = null;
 		for (String fieldName : fieldNames){
-			field = ReflectUtil.getDeclaredField(clz, fieldName);
+			field = FieldUtil.getDeclaredField(clz, fieldName);
 			if (null != field){
 				String name = "";
 				Object value = "";
@@ -110,17 +123,26 @@ public class ResultUtil{
 
 	/**
 	 * 将Result转成list.
-	 *
-	 * @param result the result
-	 * @param clz the clz
+	 * 
+	 * @param result
+	 *            the result
+	 * @param clz
+	 *            the clz
 	 * @return the list
-	 * @throws SecurityException the security exception
-	 * @throws IllegalArgumentException the illegal argument exception
-	 * @throws ClassNotFoundException the class not found exception
-	 * @throws NoSuchMethodException the no such method exception
-	 * @throws InstantiationException the instantiation exception
-	 * @throws IllegalAccessException the illegal access exception
-	 * @throws InvocationTargetException the invocation target exception
+	 * @throws SecurityException
+	 *             the security exception
+	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 */
 	public static List<?> convertResultToList(Result result,Class<?> clz) throws SecurityException,IllegalArgumentException,
 			ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,InvocationTargetException{
@@ -132,18 +154,28 @@ public class ResultUtil{
 
 	/**
 	 * 将Result转成list.
-	 *
-	 * @param result 结果集
-	 * @param clz 类名
-	 * @param fileds 字段可变参数
+	 * 
+	 * @param result
+	 *            结果集
+	 * @param clz
+	 *            类名
+	 * @param fileds
+	 *            字段可变参数
 	 * @return 将Result转成list
-	 * @throws SecurityException the security exception
-	 * @throws IllegalArgumentException the illegal argument exception
-	 * @throws ClassNotFoundException the class not found exception
-	 * @throws NoSuchMethodException the no such method exception
-	 * @throws InstantiationException the instantiation exception
-	 * @throws IllegalAccessException the illegal access exception
-	 * @throws InvocationTargetException the invocation target exception
+	 * @throws SecurityException
+	 *             the security exception
+	 * @throws IllegalArgumentException
+	 *             the illegal argument exception
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static List convertResultToList(Result result,Class<?> clz,String...fileds) throws SecurityException,IllegalArgumentException,
@@ -159,7 +191,7 @@ public class ResultUtil{
 		String className = clz.getName();
 		for (SortedMap<Object, Object> sortedMap : sortedMaps){
 			// 实例化
-			bean = ReflectUtil.newInstance(className);
+			bean = ConstructorUtil.newInstance(className);
 			if (isGetFileds){
 				for (String filed : fileds){
 					BeanUtil.setProperty(bean, filed, sortedMap.get(filed), true);
@@ -175,12 +207,16 @@ public class ResultUtil{
 	 * 
 	 * <pre>
 	 * 自动转换类型
-	 * </pre>.
-	 *
-	 * @param sortedMap sortedMap
-	 * @param bean bean
-	 * @param fileds 字段
-	 * @return the sorted map value to bean
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param sortedMap
+	 *            sortedMap
+	 * @param bean
+	 *            bean
+	 * @param fileds
+	 *            字段
 	 */
 	public static void getSortedMapValueToBean(SortedMap sortedMap,Object bean,String...fileds){
 		if (Validator.isNotNullOrEmpty(sortedMap) && Validator.isNotNullOrEmpty(bean) && Validator.isNotNullOrEmpty(fileds)){
@@ -197,11 +233,16 @@ public class ResultUtil{
 	 * 
 	 * <pre>
 	 * 自动转换类型
-	 * </pre>.
-	 *
-	 * @param sortedMap sortedMap
-	 * @param bean bean
-	 * @param fileds 字段
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param sortedMap
+	 *            sortedMap
+	 * @param bean
+	 *            bean
+	 * @param fileds
+	 *            字段
 	 * @return the sorted map value to bean auto change regulate filed
 	 */
 	public static void getSortedMapValueToBeanAutoChangeRegulateFiled(SortedMap sortedMap,Object bean,String...fileds){
@@ -221,9 +262,12 @@ public class ResultUtil{
 	 * Jinxin----jinxin
 	 * jin_xin----jin_Xin
 	 * jin_xin_xin----jin_Xin_Xin
-	 * </pre>.
-	 *
-	 * @param name 普通名称
+	 * </pre>
+	 * 
+	 * .
+	 * 
+	 * @param name
+	 *            普通名称
 	 * @return 将普通名称转成属性名称
 	 */
 	private static String convertNameToPropertyName(String name){
@@ -243,8 +287,9 @@ public class ResultUtil{
 
 	/**
 	 * 判断Result不是空的.
-	 *
-	 * @param result result
+	 * 
+	 * @param result
+	 *            result
 	 * @return 不是空返回true
 	 */
 	public static boolean isNotEmpty(Result result){
@@ -253,8 +298,9 @@ public class ResultUtil{
 
 	/**
 	 * 判断Result是否是空的.
-	 *
-	 * @param result result
+	 * 
+	 * @param result
+	 *            result
 	 * @return 空返回true
 	 */
 	public static boolean isEmpty(Result result){
@@ -268,8 +314,9 @@ public class ResultUtil{
 
 	/**
 	 * 获得result结果唯一值.
-	 *
-	 * @param result the result
+	 * 
+	 * @param result
+	 *            the result
 	 * @return 获得result结果唯一值
 	 */
 	public static Object getUniqueResult(Result result){
@@ -284,9 +331,11 @@ public class ResultUtil{
 	// **********************************
 	/**
 	 * 获得result row的特定字段的值(key,不区分大小写).
-	 *
-	 * @param sortedMap SortedMap
-	 * @param key 字段名称
+	 * 
+	 * @param sortedMap
+	 *            SortedMap
+	 * @param key
+	 *            字段名称
 	 * @return 获得result row的特定字段的值
 	 */
 	public static Object getSortedMapValueByKey(SortedMap sortedMap,Object key){
@@ -295,9 +344,11 @@ public class ResultUtil{
 
 	/**
 	 * 获得result row的特定字段的值,并去除空格(key,不区分大小写).
-	 *
-	 * @param sortedMap SortedMap
-	 * @param key filedName
+	 * 
+	 * @param sortedMap
+	 *            SortedMap
+	 * @param key
+	 *            filedName
 	 * @return 获得result row的特定字段的值,并去除空格
 	 */
 	public static String getSortedMapValueByKeyWithTrim(SortedMap sortedMap,Object key){
@@ -306,9 +357,11 @@ public class ResultUtil{
 
 	/**
 	 * 获得result row的特定字段的值,并转成Integer类型(key,不区分大小写).
-	 *
-	 * @param sortedMap SortedMap
-	 * @param key filedName
+	 * 
+	 * @param sortedMap
+	 *            SortedMap
+	 * @param key
+	 *            filedName
 	 * @return 获得result row的特定字段的值,并转成Integer类型
 	 */
 	public static Integer getSortedMapValueByKeyAndToInteger(SortedMap sortedMap,Object key){

@@ -37,10 +37,28 @@ import com.feilong.commons.core.lang.ObjectUtil;
  */
 public final class ArrayUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ArrayUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private ArrayUtil(){}
+
+	/**
+	 * 得到数组中的某个元素.
+	 * 
+	 * @param <T>
+	 * 
+	 * @param array
+	 *            数组
+	 * @param index
+	 *            索引
+	 * @return 返回指定数组对象中索引组件的值
+	 * @see java.lang.reflect.Array#get(Object, int)
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T getElement(Object array,int index){
+		return (T) Array.get(array, index);
+	}
 
 	/**
 	 * 将数组转成转成Iterator<br>

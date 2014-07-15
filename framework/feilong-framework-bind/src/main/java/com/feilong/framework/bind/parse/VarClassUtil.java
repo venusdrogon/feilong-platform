@@ -21,7 +21,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.ConstructorUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.bind.VarCommand;
 import com.feilong.framework.bind.annotation.VarName;
@@ -56,7 +56,7 @@ public class VarClassUtil{
 			throws BuildCommandException{
 
 		try{
-			T t = ReflectUtil.newInstance(modelClass);
+			T t = ConstructorUtil.newInstance(modelClass);
 
 			// 通过反射机制 省却一堆的 set
 			// DokuQueryResult dokuQueryResult = new DokuQueryResult();

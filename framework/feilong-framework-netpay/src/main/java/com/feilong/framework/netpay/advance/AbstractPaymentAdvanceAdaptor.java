@@ -23,7 +23,7 @@ import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
@@ -56,7 +56,7 @@ public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAda
 			// FieldCallback fc;
 			// ReflectionUtils.doWithFields(getClass(), fc);
 			// ReflectUtils.
-			Map<String, Object> map = ReflectUtil.getFieldValueMap(this);
+			Map<String, Object> map = FieldUtil.getFieldValueMap(this);
 			Class<? extends AbstractPaymentAdvanceAdaptor> clz = getClass();
 			log.debug("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
 		}
@@ -64,6 +64,7 @@ public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAda
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest)
 	 */
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
@@ -74,6 +75,7 @@ public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAda
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#isSupportCloseTrade()
 	 */
 	public boolean isSupportCloseTrade(){
@@ -82,6 +84,7 @@ public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAda
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#closeTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
 	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{

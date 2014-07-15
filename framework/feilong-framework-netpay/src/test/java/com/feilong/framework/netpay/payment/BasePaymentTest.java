@@ -36,9 +36,8 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.framework.netpay.payment.PaymentAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaySoLine;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
@@ -142,7 +141,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			// }else{
 
 			try{
-				Field declaredField = ReflectUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
+				Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
 				Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
 				String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
 

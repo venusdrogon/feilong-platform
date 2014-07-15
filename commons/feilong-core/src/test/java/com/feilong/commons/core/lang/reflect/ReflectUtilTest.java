@@ -15,15 +15,11 @@
  */
 package com.feilong.commons.core.lang.reflect;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
-import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.test.User;
+import com.feilong.commons.core.date.DatePattern;
 
 /**
  * The Class ReflectUtilTest.
@@ -37,60 +33,13 @@ public class ReflectUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(ReflectUtilTest.class);
 
 	/**
-	 * New instance.
-	 * 
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
-	 * @throws InstantiationException
-	 *             the instantiation exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 * @throws InvocationTargetException
-	 *             the invocation target exception
+	 * Test is interface.
 	 */
 	@Test
-	public final void newInstance() throws ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,
-			InvocationTargetException{
-
-		User user = ReflectUtil.newInstance("com.feilong.test.User");
-		log.info(JsonUtil.format(user));
-
-		User user1 = ReflectUtil.newInstance("com.feilong.test.User", 100L);
-		log.info(JsonUtil.format(user1));
-	}
-
-	/**
-	 * Creates the payment form.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 */
-	@Test
-	public final void testGetFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
-
-		User user = new User(12L);
-
-		log.info(JsonUtil.format(ReflectUtil.getFieldValueMap(user)));
-
-		// BeanInfo beanInfo = Introspector.getBeanInfo(class1);
-		//
-		// PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-		//
-		// for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
-		// String name = propertyDescriptor.getName();
-		// log.info(name);
-		// if ("class".equals(name) && "classLoader".equals(name)){
-		// // Ignore Class.getClassLoader() method - nobody needs to bind to that
-		// continue;
-		// }
-		//
-		// // Method readMethod = propertyDescriptor.getReadMethod();
-		// // Object invoke = readMethod.invoke(class1);
-		// // log.info(invoke.toString());
-		// }
+	public void testIsInterface(){
+		if (log.isInfoEnabled()){
+			log.info("" + ReflectUtil.isInterface(ReflectUtilTest.class));
+			log.info("" + ReflectUtil.isInterface(DatePattern.class));
+		}
 	}
 }

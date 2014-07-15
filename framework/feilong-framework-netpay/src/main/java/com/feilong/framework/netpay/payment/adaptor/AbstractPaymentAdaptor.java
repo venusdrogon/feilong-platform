@@ -23,7 +23,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
@@ -136,7 +136,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 			// ReflectionUtils.doWithFields(getClass(), fc);
 			// ReflectUtils.
 			//XXX
-			Map<String, Object> map = ReflectUtil.getFieldValueMap(this);
+			Map<String, Object> map = FieldUtil.getFieldValueMap(this);
 			Class<? extends AbstractPaymentAdaptor> clz = getClass();
 			log.info("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
 		}

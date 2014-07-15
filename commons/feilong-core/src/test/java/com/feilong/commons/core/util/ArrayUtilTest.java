@@ -33,6 +33,8 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
 
 /**
+ * The Class ArrayUtilTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-12 上午11:29:02
  * @since 1.0
@@ -41,6 +43,19 @@ public class ArrayUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ArrayUtilTest.class);
+
+	/**
+	 * Test get by array.
+	 */
+	@Test
+	public void testGetElement(){
+		if (log.isInfoEnabled()){
+			Object array = new String[] { "jinxin", "feilong", "1" };
+			int index = 2;
+			String element = ArrayUtil.getElement(array, index);
+			log.info("" + element);
+		}
+	}
 
 	/**
 	 * Test.
@@ -57,7 +72,7 @@ public class ArrayUtilTest{
 	}
 
 	/**
-	 * 数组和list 转换
+	 * 数组和list 转换.
 	 */
 	@Test
 	public final void arrayAndList(){
@@ -124,9 +139,9 @@ public class ArrayUtilTest{
 		int[] arrays = { 1, 2 };
 		Iterator<Integer> iterator1 = ArrayUtil.toIterator(arrays);
 
-//		while (iterator1.hasNext()){
-//			log.debug("" + iterator1.next());
-//		}
+		//		while (iterator1.hasNext()){
+		//			log.debug("" + iterator1.next());
+		//		}
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(iterator1));
 		}

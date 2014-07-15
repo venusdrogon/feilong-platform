@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.MethodUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -82,7 +82,7 @@ public class EnumUtil{
 			try{
 				for (E e : enumConstants){
 					String getterMethodName = StringUtil.getGetterMethodName(fieldName);
-					Object invokeMethod = ReflectUtil.invokeMethod(e, getterMethodName);
+					Object invokeMethod = MethodUtil.invokeMethod(e, getterMethodName);
 
 					if (log.isInfoEnabled()){
 						log.info("" + JsonUtil.format(e));
