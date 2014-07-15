@@ -61,12 +61,15 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	/** The encode. */
 	private String					encode				= CharsetType.UTF8;
 
+	/** The open file. */
 	private boolean					openFile			= true;
 
+	/** The code. */
 	private String					code				= DateUtil.date2String(new Date(), DatePattern.timestamp);
 
 	// private String code = "44";
 
+	/** The application context. */
 	@SuppressWarnings("hiding")
 	@Autowired
 	protected ApplicationContext	applicationContext;
@@ -78,9 +81,6 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	 *            the payment adaptor
 	 * @param specialSignMap
 	 *            the special sign map
-	 * @throws IOException
-	 * @throws NoSuchFieldException
-	 * @throws SecurityException
 	 */
 	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
 
@@ -140,27 +140,24 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			// DesktopUtil.browse(fullEncodedUrl);
 			// }else{
 
+			Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
+			Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
+			String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
+
+			String filePath = "F:/payment/" + fileName + ".html";
+
+			String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
+			log.info(html);
+
 			try{
-				Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
-				Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
-				String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
-
-				String filePath = "F:/payment/" + fileName + ".html";
-
-				String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
-				log.info(html);
-
 				IOWriteUtil.write(filePath, html, encode);
-				DesktopUtil.browse(filePath);
-			}catch (SecurityException e){
-				e.printStackTrace();
-			}catch (NoSuchFieldException e){
+			}catch (IllegalArgumentException e){
 				e.printStackTrace();
 			}catch (IOException e){
 				e.printStackTrace();
 			}
+			DesktopUtil.browse(filePath);
 			// }
 		}
-
 	}
 }

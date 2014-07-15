@@ -16,11 +16,13 @@
 package com.feilong.commons.core.lang.reflect;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.ClassUtil;
+import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -46,7 +48,9 @@ public final class MethodUtil{
 	/**
 	 * 执行某对象的某个方法.
 	 * 
-	 * @param owner
+	 * @param <T>
+	 *            the generic type
+	 * @param obj
 	 *            对象
 	 * @param methodName
 	 *            方法名
@@ -58,11 +62,14 @@ public final class MethodUtil{
 	 * @see MethodUtil#getMethod(Class, String, Object...)
 	 * @see java.lang.reflect.Method#invoke(Object, Object...)
 	 */
-	public static Object invokeMethod(Object owner,String methodName,Object...params) throws ReflectException{
+	@SuppressWarnings("unchecked")
+	public static <T> T invokeMethod(Object obj,String methodName,Object...params) throws ReflectException{
 		try{
-			Class<?> ownerClass = owner.getClass();
+			Class<?> ownerClass = obj.getClass();
 			Method method = getMethod(ownerClass, methodName, params);
-			return method.invoke(owner, params);
+
+			Object invoke = method.invoke(obj, params);
+			return (T) invoke;
 		}catch (Exception e){
 			e.printStackTrace();
 			throw new ReflectException(e);
@@ -72,6 +79,8 @@ public final class MethodUtil{
 	/**
 	 * 执行静态方法.
 	 * 
+	 * @param <T>
+	 *            the generic type
 	 * @param className
 	 *            类名
 	 * @param methodName
@@ -83,15 +92,36 @@ public final class MethodUtil{
 	 *             the reflect exception
 	 * @see #getMethod(Class, String, Object...)
 	 * @see java.lang.reflect.Method#invoke(Object, Object...)
+	 * @see org.apache.commons.lang3.reflect.MethodUtils#invokeStaticMethod(Class, String, Object...)
 	 */
-	public static Object invokeStaticMethod(String className,String methodName,Object...params) throws ReflectException{
+	@SuppressWarnings("unchecked")
+	public static <T> T invokeStaticMethod(String className,String methodName,Object...params) throws ReflectException{
 		try{
 			Class<?> ownerClass = ClassUtil.loadClass(className);
 			Method method = getMethod(ownerClass, methodName, params);
-			// 如果底层方法是静态的，那么可以忽略指定的 obj 参数。该参数可以为 null。 从中调用底层方法的对象
 
-			// 如果底层方法所需的形参数为 0，则所提供的 args 数组长度可以为 0 或 null 用于方法调用的参数
-			return method.invoke(null, params);
+			int modifiers = method.getModifiers();
+			boolean isStatic = Modifier.isStatic(modifiers);
+
+			if (!isStatic){
+				throw new IllegalArgumentException(
+						Slf4jUtil
+								.formatMessage(
+										"className:[{}],methodName:[{}],params:[{}],modifiers:[{}],this method not a static method, you need use 'invokeMethod' instead of 'invokeStaticMethod'",
+										className,
+										methodName,
+										params,
+										modifiers));
+			}else{
+				//如果底层方法是静态的，那么可以忽略指定的 obj 参数。
+				//该参数可以为 null。 从中调用底层方法的对象
+				Object object = null;
+
+				// 如果底层方法所需的形参数为 0，
+				//则所提供的 args 数组长度可以为 0 或 null 用于方法调用的参数
+				Object invoke = method.invoke(object, params);
+				return (T) invoke;
+			}
 		}catch (Exception e){
 			e.printStackTrace();
 			throw new ReflectException(e);

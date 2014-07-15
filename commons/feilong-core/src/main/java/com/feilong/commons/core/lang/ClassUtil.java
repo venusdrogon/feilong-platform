@@ -95,10 +95,12 @@ public final class ClassUtil{
 	 * @return 如果参数 paramValues 是null 返回 null
 	 * @see org.apache.commons.lang3.ClassUtils#toClass(Object...)
 	 * @since 1.0.7
+	 * @deprecated pls use {@link ClassUtils#toClass(Object...)}
 	 */
+	@Deprecated
 	public static Class<?>[] toParameterTypes(Object...paramValues){
 		if (Validator.isNullOrEmpty(paramValues)){
-			log.debug("params is empty,use default paramsClass");
+			log.debug("paramValues is empty,will return null");
 			return null;
 		}
 		int len = paramValues.length;
