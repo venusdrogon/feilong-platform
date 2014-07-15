@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.taglib</groupId>
   <artifactId>feilong-taglib-else</artifactId>
   <versioning>
+    <release>1.0.7</release>
     <versions>
-      <version>1.0.7-SNAPSHOT</version>
+      <version>1.0.7</version>
     </versions>
-    <lastUpdated>20140520062858</lastUpdated>
+    <lastUpdated>20140715103731</lastUpdated>
   </versioning>
 </metadata>
