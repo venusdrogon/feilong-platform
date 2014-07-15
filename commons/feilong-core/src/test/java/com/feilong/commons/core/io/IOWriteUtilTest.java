@@ -16,9 +16,11 @@
 package com.feilong.commons.core.io;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,14 +41,15 @@ public class IOWriteUtilTest{
 
 	/**
 	 * Unescape html2.
+	 * 
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws NoSuchMethodException
 	 */
 	@Test
-	public void unescapeHtml2(){
+	public void unescapeHtml2() throws NoSuchMethodException,IllegalAccessException,InvocationTargetException{
 		String a = "第572章 三十年后（大结局） *局";
-		String result = null;
-		//ReflectUtil.invokeStaticMethod(owner, IOWriteUtil, params)
-		result = org.apache.commons.lang.StringEscapeUtils.escapeHtml(a);
-		// result = HtmlUtils.htmlUnescape(a);
+		String result = (String) MethodUtils.invokeExactStaticMethod(IOWriteUtil.class, "getFormatFilePath", a);
 		log.info(result);
 	}
 

@@ -42,4 +42,16 @@ public class StringEscapeUtilsTest{
 		// result = HtmlUtils.htmlUnescape(a);
 		log.info(result);
 	}
+
+	/**
+	 * Unescape html2.
+	 */
+	@Test
+	public void unescapeHtml2(){
+		String a = "第572章 三十年后（大结局） *局";
+		String result = null;
+		result = org.apache.commons.lang.StringEscapeUtils.escapeHtml(a);
+		// result = HtmlUtils.htmlUnescape(a);
+		log.info(result);
+	}
 }
