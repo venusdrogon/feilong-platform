@@ -33,7 +33,7 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.command.TransactionStatus;
-import com.feilong.tools.cxf.JaxWsDynamicClientUtil;
+import com.feilong.webservice.cxf.JaxWsDynamicClientUtil;
 
 /**
  * The Class SprintAsiaCreditCardAdvanceAdaptor.
