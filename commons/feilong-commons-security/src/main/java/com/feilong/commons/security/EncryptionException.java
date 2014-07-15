@@ -27,7 +27,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
 //	对于程序错误（言外之意不可恢复，大错已经酿成）使用运行时异常（RuntimeException）。
 
 /**
- * 加密解密的异常,必须处理.
+ * 加密解密的异常
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月2日 下午5:53:31
