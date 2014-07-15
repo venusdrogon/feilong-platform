@@ -215,8 +215,9 @@ public class FeiLongJinBaoWangCrawler{
 	 *            the sku code and images map
 	 * @param directoryName
 	 *            the directory name
+	 * @throws IOException
 	 */
-	public static void downSkuImages(Map<String, List<String>> skuCodeAndImagesMap,String directoryName){
+	public static void downSkuImages(Map<String, List<String>> skuCodeAndImagesMap,String directoryName) throws IOException{
 		// 目标文件夹
 		String destination = null;
 		List<String> images = null;
