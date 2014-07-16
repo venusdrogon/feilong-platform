@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8-SNAPSHOT</version>
 
 	<name>feilong-platform</name>
 	<description>Reduce development, Release ideas</description>
@@ -26,6 +26,7 @@
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<version.feilong-platform>${project.version}</version.feilong-platform>
+		<version.feilong-common-test>1.0.7</version.feilong-common-test>
 
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -137,15 +138,18 @@
 
 		<v.maven-clean-plugin>2.5</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.1</v.maven-compiler-plugin>
-		<v.maven-install-plugin>2.5.1</v.maven-install-plugin>
 		<v.maven-deploy-plugin>2.8.1</v.maven-deploy-plugin>
+
+		<v.maven-install-plugin>2.5.1</v.maven-install-plugin>
 		<v.maven-javadoc-plugin>2.9.1</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
 
 		<v.maven-source-plugin>2.2.1</v.maven-source-plugin>
 		<v.maven-shade-plugin>2.3</v.maven-shade-plugin>
 		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
+		<v.maven-release-plugin>2.5</v.maven-release-plugin>
 		<v.maven-resources-plugin>2.6</v.maven-resources-plugin>
+
 		<v.maven-war-plugin>2.4</v.maven-war-plugin>
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
@@ -273,7 +277,7 @@
 		<dependency>
 			<groupId>com.feilong.test</groupId>
 			<artifactId>feilong-common-test</artifactId>
-			<version>${version.feilong-platform}</version>
+			<version>${version.feilong-common-test}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -826,6 +830,16 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<!-- maven-release-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${v.maven-release-plugin}</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
 			</plugin>
 		</plugins>
 
