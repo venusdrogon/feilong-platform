@@ -119,7 +119,7 @@
 
 		<version.servlet-api>2.5</version.servlet-api>
 		<version.slf4j>1.7.6</version.slf4j>
-		<version.spring>3.2.8.RELEASE</version.spring>
+		<version.spring>3.2.10.RELEASE</version.spring>
 
 		<version.struts1>1.3.10</version.struts1>
 		<version.struts2>2.3.1</version.struts2>
