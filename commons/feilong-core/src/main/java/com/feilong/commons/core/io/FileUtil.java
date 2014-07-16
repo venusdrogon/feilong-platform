@@ -270,6 +270,7 @@ public final class FileUtil{
 	 * @param fileName
 	 *            the file name
 	 * @return the file name
+	 * @see java.io.File#getName()
 	 */
 	public final static String getFileName(String fileName){
 		File file = new File(fileName);
@@ -505,6 +506,106 @@ public final class FileUtil{
 		// return fileInputStream.available();
 		return file.length();
 	}
+
+	/**
+	 * 级联创建文件夹和file
+	 * 
+	 * @param filePath
+	 *            必须是file
+	 * @return the file
+	 * @throws IllegalArgumentException
+	 *             if Validator.isNullOrEmpty(filePath)
+	 * 
+	 * @see #getFormatFileName(String)
+	 * @since 1.0.7
+	 */
+	static final File cascadeMkdirs(final String filePath) throws IllegalArgumentException{
+		if (Validator.isNullOrEmpty(filePath)){
+			throw new IllegalArgumentException("filePath can't be null/empty!");
+		}
+
+		File file = new File(filePath);
+
+		if (file.exists()){
+			// 文件夹
+			if (file.isDirectory()){
+				log.error("File '" + file + "' exists but is a directory");
+				throw new IllegalArgumentException("File '" + file + "' exists but is a directory");
+			}
+			// 不能写
+			else if (!file.canWrite()){
+				log.error("File '" + file + "' cannot be written to");
+				throw new IllegalArgumentException("File '" + file + "' cannot be written to");
+			}
+		}
+		// 文件不存在
+		else{
+			File parent = file.getParentFile();
+			if (parent != null && !parent.exists()){
+				// 级联创建 父级文件夹
+				if (parent.mkdirs() == false){
+					log.error("File '" + file + "' could not be created");
+					throw new IllegalArgumentException("File '" + file + "' could not be created");
+				}
+			}
+		}
+		return file;
+	}
+
+	/**
+	 * 不同的操作系统 对系统文件名称有要求,此方法的作用就是处理这些文件名称.
+	 * 
+	 * @param fileName
+	 *            文件名称
+	 * @return 可用的文件名称
+	 * @see #MICROSOFT_PC
+	 * @since 1.0.7
+	 */
+	public static String getFormatFileName(final String fileName){
+
+		String formatFileName = fileName;
+
+		for (int i = 0, j = MICROSOFT_PC.length; i < j; ++i){
+			String[] array_element = MICROSOFT_PC[i];
+
+			String oldChar = array_element[0];
+			String newChar = array_element[1];
+			if (formatFileName.contains(oldChar)){
+				log.warn("formatFileName:[{}] contains oldChar:[{}],will replace newChar:[{}]", formatFileName, oldChar, newChar);
+				formatFileName = formatFileName.replace(oldChar, newChar);
+			}
+		}
+		return formatFileName;
+	}
+
+	/**
+	 * 文件名称由文件名和扩展名组成，两者由小黑点分隔，扩展名通常是用来表示文件的类 别。
+	 * <p>
+	 * Windows 中整个文件名称最长 255 个字符（一个中文字算两个字符）； <br>
+	 * DOS 中，文件名最长 8 字符，扩展名最长 3 字符，故又称 DOS 8.3 命名规则。 <br>
+	 * 文件名称可仅有前半部,即无扩展名，如文件名称最短可以是 “ 1 ” 、 “ C ” 等。 <br>
+	 * 给文件命名还应注意以下规则：
+	 * </p>
+	 * <ul>
+	 * <li>文件名不能包含下列任何字符之一（共 9 个）： \/:*?"<>|</li>
+	 * <li>不能单独使用 “ 设备名 ” 作文件名。 “ 设备名 ” 包括： con ， aux ， com0 ~ com9 ， lpt0 ~ lpt9 ， nul ， prn</li>
+	 * <li>文件名不区分大小写，如 A.txt 和 a.TxT 表示同一文件</li>
+	 * </ul>
+	 * 
+	 * @see <a href="http://support.microsoft.com/kb/177506/zh-cn">错误消息： 文件名是无效的或不能包含任何以下字符</a>
+	 * @since 1.0.7
+	 */
+	private static final String[][]	MICROSOFT_PC	= { //
+													//			{ "\\", "" }, // \
+			//	{ "/", "" }, // /
+			{ "\"", "" }, // "
+			{ ":", "" }, // :
+			{ "*", "" }, // *
+			{ "?", "" }, // ?
+			{ "<", "" }, // <
+			{ ">", "" }, // >
+			{ "|", "" }, // |
+													};
 
 	// /**
 	// * 判断excel文件是否是2003的版本 不精准
