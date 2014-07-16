@@ -143,6 +143,7 @@
 		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
 
 		<v.maven-source-plugin>2.2.1</v.maven-source-plugin>
+		<v.maven-shade-plugin>2.3</v.maven-shade-plugin>
 		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
 		<v.maven-resources-plugin>2.6</v.maven-resources-plugin>
 		<v.maven-war-plugin>2.4</v.maven-war-plugin>
