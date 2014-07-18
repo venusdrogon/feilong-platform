@@ -16,16 +16,10 @@
 			<artifactId>feilong-core</artifactId>
 		</dependency>
 
+		<!-- esapi -->
 		<dependency>
 			<groupId>org.owasp.esapi</groupId>
 			<artifactId>esapi</artifactId>
-			<version>2.1.0</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>log4j</artifactId>
-					<groupId>log4j</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- jstl -->

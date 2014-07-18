@@ -66,4 +66,63 @@
 	<!-- *****************************reporting****************************** <reporting> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId>
 		<version>2.7</version> <configuration> </configuration> </plugin> </plugins> </reporting> -->
 
+	<dependencies>
+
+		<!-- org.slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${version.slf4j}</version>
+		</dependency>
+
+		<!-- net.sf.json-lib -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>${version.json-lib}</version>
+			<classifier>jdk15</classifier>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- commons-lang -->
+		<dependency>
+			<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<version>${version.commons-lang}</version>
+		</dependency>
+
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${version.commons-lang3}</version>
+		</dependency>
+
+		<!-- commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${version.commons-beanutils}</version>
+		</dependency>
+
+		<!-- commons-collections -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${version.commons-collections}</version>
+		</dependency>
+
+		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->
+		<dependency>
+			<groupId>xom</groupId>
+			<artifactId>xom</artifactId>
+			<version>${version.xom}</version>
+		</dependency>
+
+	</dependencies>
 </project>

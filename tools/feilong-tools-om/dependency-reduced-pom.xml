@@ -72,22 +72,6 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.easymock</groupId>
-      <artifactId>easymock</artifactId>
-      <version>3.1</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>cglib-nodep</artifactId>
-          <groupId>cglib</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>objenesis</artifactId>
-          <groupId>org.objenesis</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>com.feilong.test</groupId>
       <artifactId>feilong-common-test</artifactId>
       <version>1.0.7</version>

@@ -38,6 +38,10 @@
 					<artifactId>struts-tiles</artifactId>
 					<groupId>org.apache.struts</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 

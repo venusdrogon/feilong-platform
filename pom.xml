@@ -88,6 +88,7 @@
 		<version.dom4j>1.6.1</version.dom4j>
 
 		<version.easymock>3.1</version.easymock>
+		<version.esapi>2.1.0</version.esapi>
 
 		<version.hibernate>4.2.12.Final</version.hibernate>
 		<version.itext>2.1.7</version.itext>
@@ -198,79 +199,13 @@
 		<module>webservice</module>
 	</modules>
 
-	<!--*******************************junit******************************************* -->
 	<dependencies>
-		<!-- org.slf4j -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${version.slf4j}</version>
-		</dependency>
-
-		<!-- net.sf.json-lib -->
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<version>${version.json-lib}</version>
-			<classifier>jdk15</classifier>
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- commons-lang -->
-		<dependency>
-			<artifactId>commons-lang</artifactId>
-			<groupId>commons-lang</groupId>
-			<version>${version.commons-lang}</version>
-		</dependency>
-
-		<!-- commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${version.commons-lang3}</version>
-		</dependency>
-
-		<!-- commons-beanutils -->
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>${version.commons-beanutils}</version>
-		</dependency>
-
-		<!-- commons-collections -->
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>${version.commons-collections}</version>
-		</dependency>
-
-		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->
-		<dependency>
-			<groupId>xom</groupId>
-			<artifactId>xom</artifactId>
-			<version>${version.xom}</version>
-		</dependency>
-
-
 		<!--***************************** test************************** -->
-
 		<!-- junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${version.junit}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>${version.easymock}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -461,6 +396,23 @@
 				<version>${version.velocity}</version>
 			</dependency>
 
+			<!-- esapi -->
+			<dependency>
+				<groupId>org.owasp.esapi</groupId>
+				<artifactId>esapi</artifactId>
+				<version>${version.esapi}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-beanutils-core</artifactId>
+						<groupId>commons-beanutils</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
 			<!-- *********************json******************************* -->
 
 			<!-- org.json -->
@@ -492,6 +444,13 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
 				<version>${version.spring}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${version.easymock}</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
