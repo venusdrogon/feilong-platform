@@ -36,7 +36,7 @@ import com.feilong.commons.core.util.Validator;
  * a.setDate(now);
  * User b = new User();
  * 
- * DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
+ * DatePatternConverter converter = new DatePatternConverter(DatePattern.forToString, Locale.US);
  * ConvertUtils.register(converter, Date.class);
  * 
  * BeanUtil.copyProperty(b, a, &quot;date&quot;);
@@ -44,14 +44,14 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014-5-4 0:35:31
- * @since 1.0.0
  * @see org.apache.commons.beanutils.converters.DateConverter
  * @see org.apache.commons.beanutils.converters.DateTimeConverter
  * @see org.apache.commons.beanutils.converters.AbstractConverter
  * @see org.apache.commons.beanutils.Converter
  * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
+ * @since 1.0.0
  */
-public class DateConverter extends DateTimeConverter{
+public class DatePatternConverter extends DateTimeConverter{
 
 	/** pattern {@link DatePattern}. */
 	private String	pattern;
@@ -62,23 +62,35 @@ public class DateConverter extends DateTimeConverter{
 	/**
 	 * Instantiates a new date converter.
 	 * 
-	 * @param pattern
-	 *            the pattern
+	 * @param datePattern
+	 *            {@link DatePattern}
+	 * 
+	 * @see org.apache.commons.beanutils.converters.DateConverter
+	 * @see org.apache.commons.beanutils.converters.DateTimeConverter
+	 * @see org.apache.commons.beanutils.converters.AbstractConverter
+	 * @see org.apache.commons.beanutils.Converter
+	 * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
 	 */
-	public DateConverter(String pattern){
-		this.pattern = pattern;
+	public DatePatternConverter(String datePattern){
+		this.pattern = datePattern;
 	}
 
 	/**
 	 * Instantiates a new date converter.
 	 * 
-	 * @param pattern
-	 *            the pattern
+	 * @param datePattern
+	 *            {@link DatePattern}
 	 * @param locale
 	 *            the locale
+	 * 
+	 * @see org.apache.commons.beanutils.converters.DateConverter
+	 * @see org.apache.commons.beanutils.converters.DateTimeConverter
+	 * @see org.apache.commons.beanutils.converters.AbstractConverter
+	 * @see org.apache.commons.beanutils.Converter
+	 * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
 	 */
-	public DateConverter(String pattern, Locale locale){
-		this.pattern = pattern;
+	public DatePatternConverter(String datePattern, Locale locale){
+		this.pattern = datePattern;
 		this.locale = locale;
 	}
 
@@ -87,9 +99,8 @@ public class DateConverter extends DateTimeConverter{
 	 * 
 	 * @see org.apache.commons.beanutils.converters.AbstractConverter#getDefaultType()
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	protected Class getDefaultType(){
+	protected Class<?> getDefaultType(){
 		return Date.class;
 	}
 
@@ -100,18 +111,19 @@ public class DateConverter extends DateTimeConverter{
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object convert(@SuppressWarnings("rawtypes") Class type,Object value){
+	public <T> T convert(Class<T> type,Object value){
 		if (Validator.isNullOrEmpty(pattern)){
 			throw new IllegalArgumentException("value can't be null/empty!");
 		}
-		if (value == null){
-			return (null);
+
+		if (Validator.isNullOrEmpty(value)){
+			return null;
 		}
 		Date dateObj = null;
 		if (value instanceof String){
 			dateObj = DateFormatUtil.parse(value.toString(), pattern, locale);
 		}
-		return dateObj;
+		return (T) dateObj;
 	}
 
 	/**
