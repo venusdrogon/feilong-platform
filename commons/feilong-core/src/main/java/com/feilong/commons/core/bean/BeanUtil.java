@@ -19,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,49 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * 封装了 org.apache.commons.beanutils包下面的类
+ * 
+ * 
+ * <p>
+ * 
+ * 这里使用偷懒的做法,调用了 {@link org.apache.commons.beanutils.ConvertUtilsBean#register(boolean, boolean, int)}方法<br>
+ * 但是有后遗症,这是beanUtils核心公共的方法,可能会影响其他框架或者其他作者开发的代码<br>
+ * 最正确的做法, 自定义的类,自己单独写 {@link org.apache.commons.beanutils.Converter},<br>
+ * 而 公共的类 比如 下面方法里面的类型:
+ * 
+ * <ul>
+ * <li>registerPrimitives(throwException);</li>
+ * <li>registerStandard(throwException, defaultNull);</li>
+ * <li>registerOther(throwException);</li>
+ * <li>registerArrays(throwException, defaultArraySize);</li>
+ * </ul>
+ * 
+ * 最好在用的时候 自行register,{@link org.apache.commons.beanutils.ConvertUtilsBean#deregister(Class)}
+ * 
+ * 
+ * Example 1:
+ * 
+ * <pre>
+ * 
+ * MyObject myObject = new MyObject();
+ * myObject.setId(3l);
+ * myObject.setName(&quot;My Name&quot;);
+ * 
+ * ConvertUtilsBean cub = new ConvertUtilsBean();
+ * cub.deregister(Long.class);
+ * cub.register(new MyLongConverter(), Long.class);
+ * 
+ * System.out.println(cub.lookup(Long.class));
+ * 
+ * BeanUtilsBean bub = new BeanUtilsBean(cub, new PropertyUtilsBean());
+ * 
+ * String name = bub.getProperty(myObject, &quot;name&quot;);
+ * System.out.println(name);
+ * String id = bub.getProperty(myObject, &quot;id&quot;);
+ * System.out.println(id);
+ * 
+ * </pre>
+ * 
+ * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 2010-7-9 下午02:44:36
@@ -43,6 +87,19 @@ public final class BeanUtil{
 
 	/** Don't let anyone instantiate this class. */
 	private BeanUtil(){}
+
+	static{
+		//		ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.util.Date.class);
+		//		ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.sql.Date.class);
+		//		ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.sql.Timestamp.class);
+		//		ConvertUtils.register(new BigDecimalConverter(null), java.math.BigDecimal.class);
+
+		boolean throwException = false;
+		boolean defaultNull = true;
+		int defaultArraySize = 10;
+
+		BeanUtilsBean.getInstance().getConvertUtils().register(throwException, defaultNull, defaultArraySize);
+	}
 
 	// [start] cloneBean
 
@@ -66,7 +123,6 @@ public final class BeanUtil{
 	 * @since 1.0
 	 */
 	public static Object cloneBean(Object bean){
-
 		//BeanUtils.createCache();
 		try{
 			Object cloneBean = BeanUtils.cloneBean(bean);
@@ -192,20 +248,21 @@ public final class BeanUtil{
 	 * 如果有java.util.Date 类型的 需要copy,那么 需要先这么着
 	 * DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
 	 * ConvertUtils.register(converter, Date.class);
-	 * 或者 使用 内置的 	
-	 * ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);	 * 
+	 * 或者 使用 内置的
+	 * ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class); *
 	 * 
 	 * BeanUtil.copyProperty(b, a, &quot;date&quot;);
 	 * </pre>
 	 * 
 	 * <pre>
-	 * 例如两个pojo:enterpriseSales和enterpriseSales_form  都含有字段&quot;enterpriseName&quot;,&quot;linkMan&quot;,&quot;phone&quot;
+	 * 例如两个pojo:enterpriseSales和enterpriseSales_form 都含有字段&quot;enterpriseName&quot;,&quot;linkMan&quot;,&quot;phone&quot;
 	 * 通常写法
 	 * enterpriseSales.setEnterpriseName(enterpriseSales_form.getEnterpriseName());
 	 * enterpriseSales.setLinkMan(enterpriseSales_form.getLinkMan());
 	 * enterpriseSales.setPhone(enterpriseSales_form.getPhone());
-	 * 此时,可以使用  
-	 * BeanUtil.copyProperties(enterpriseSales,enterpriseSales_form,new String[]{&quot;enterpriseName&quot;,&quot;linkMan&quot;,&quot;phone&quot;});
+	 * 此时,可以使用
+	 * BeanUtil.copyProperties(enterpriseSales,enterpriseSales_form,new
+	 * String[]{&quot;enterpriseName&quot;,&quot;linkMan&quot;,&quot;phone&quot;});
 	 * </pre>
 	 * 
 	 * @param toObj
@@ -240,14 +297,14 @@ public final class BeanUtil{
 	 * 如果有java.util.Date 类型的 需要copy,那么 需要先这么着
 	 * DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
 	 * ConvertUtils.register(converter, Date.class);
-	 * 或者 使用 内置的 	
-	 * ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);	 * 
+	 * 或者 使用 内置的
+	 * ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class); *
 	 * 
 	 * BeanUtil.copyProperty(b, a, &quot;date&quot;);
 	 * </pre>
 	 * 
 	 * <pre>
-	 * 例如两个pojo:enterpriseSales和enterpriseSales_form  都含有字段&quot;enterpriseName&quot; 
+	 * 例如两个pojo:enterpriseSales和enterpriseSales_form 都含有字段&quot;enterpriseName&quot;
 	 * 通常写法
 	 * enterpriseSales.setEnterpriseName(enterpriseSales_form.getEnterpriseName());
 	 * 
@@ -434,7 +491,7 @@ public final class BeanUtil{
 	 * <blockquote>
 	 * <p>
 	 * {@link BeanUtils#getProperty(Object, String)} 会将结果转成String返回,<br>
-	 * {@link PropertyUtils#getProperty(Object, String)}结果是Object类型,不会做类型转换
+	 * {@link PropertyUtils#getProperty(Object, String)} 结果是Object类型,不会做类型转换
 	 * </p>
 	 * </blockquote>
 	 * 
