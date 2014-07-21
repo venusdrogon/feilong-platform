@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.framework.bind.parse.AbstractXmlParse;
+import com.feilong.framework.bind.parse.varcommand.AbstractVarCommandXmlParse;
 import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult;
 import com.feilong.tools.dom4j.Dom4jUtil;
 
@@ -82,7 +82,7 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * @version 1.0.6 2014年5月8日 上午10:07:48
  * @since 1.0.6
  */
-public final class DokuQueryResultParse extends AbstractXmlParse<DokuQueryResult>{
+public final class DokuQueryResultParse extends AbstractVarCommandXmlParse<DokuQueryResult>{
 
 	/** The Constant log. */
 	private static final Logger	log						= LoggerFactory.getLogger(DokuQueryResultParse.class);

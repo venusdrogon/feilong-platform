@@ -15,7 +15,7 @@
  */
 package com.feilong.framework.netpay.advance.command;
 
-import com.feilong.framework.bind.VarCommand;
+import com.feilong.framework.bind.parse.varcommand.VarCommand;
 
 /**
  * 查询返回的对象

@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.framework.bind.parse.AbstractXmlParse;
+import com.feilong.framework.bind.parse.varcommand.AbstractVarCommandXmlParse;
 import com.feilong.framework.netpay.advance.adaptor.sprintasia.creditcard.command.CreditCardQueryResult;
 import com.feilong.tools.dom4j.Dom4jUtil;
 
@@ -96,7 +96,7 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 下午6:47:34
  */
-public final class CreditCardQueryResultPaser extends AbstractXmlParse<CreditCardQueryResult>{
+public final class CreditCardQueryResultPaser extends AbstractVarCommandXmlParse<CreditCardQueryResult>{
 
 	/** The Constant log. */
 	private static final Logger	log						= LoggerFactory.getLogger(CreditCardQueryResultPaser.class);

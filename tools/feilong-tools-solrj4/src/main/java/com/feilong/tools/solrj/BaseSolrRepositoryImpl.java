@@ -49,7 +49,7 @@ import org.apache.solr.common.params.GroupParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.reflect.ReflectUtil;
+import com.feilong.commons.core.lang.reflect.TypeUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.solrj.command.SolrGroup;
@@ -105,7 +105,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 */
 	@PostConstruct
 	public void init(){
-		this.modelClass = ReflectUtil.getGenericModelClass(this.getClass());
+		this.modelClass = TypeUtil.getGenericModelClass(this.getClass());
 
 		if (null == solrServer){
 			throw new NullPointerException(

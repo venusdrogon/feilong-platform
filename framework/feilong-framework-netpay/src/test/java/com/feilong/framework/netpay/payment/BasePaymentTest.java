@@ -25,9 +25,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -59,35 +57,29 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	private String					templateInClassPath	= "paymentChannel.vm";
 
 	/** The encode. */
-	private String					encode				= CharsetType.UTF8;
+	private String					encode_file			= CharsetType.UTF8;
 
 	/** The open file. */
 	private boolean					openFile			= true;
 
-	/** The code. */
-	private String					code				= DateUtil.date2String(new Date(), DatePattern.timestamp);
-
-	// private String code = "44";
-
-	/** The application context. */
-	@SuppressWarnings("hiding")
-	@Autowired
-	protected ApplicationContext	applicationContext;
-
 	/**
-	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
-	 * 
-	 * @param paymentAdaptor
-	 *            the payment adaptor
-	 * @param specialSignMap
-	 *            the special sign map
+	 * @return
 	 */
-	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
+	private PayRequest constructPayRequest(){
+
+		/** The code. */
+		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
+		//code="feilong1111";
+
+		// ******************************************************************
+		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
+		return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
+		String notify_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
 
 		BigDecimal total_fee = new BigDecimal(60000.00f);
 
 		PayRequest payRequest = new PayRequest();
-		//code="feilong1111";
+
 		payRequest.setTradeNo(code);
 		payRequest.setTotalFee(total_fee);
 		payRequest.setBuyerEmail("venusdrogon@163.com");
@@ -114,15 +106,27 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 
 		payRequest.setCreateDate(new Date());
 
-		// ******************************************************************
-		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
-		return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
-		String notify_url = "/patment2url";
-
 		payRequest.setReturnUrl(return_url);
 		payRequest.setNotifyUrl(notify_url);
+		return payRequest;
+	}
+
+	/**
+	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
+	 * 
+	 * @param paymentAdaptor
+	 *            the payment adaptor
+	 * @param specialSignMap
+	 *            the special sign map
+	 */
+	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
+		PayRequest payRequest = constructPayRequest();
 
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
+
+		if (null == paymentFormEntity){
+			throw new IllegalArgumentException("paymentFormEntity can't be null/empty!,do you implements complete?");
+		}
 
 		if (openFile){
 			log.info(JsonUtil.format(paymentFormEntity));
@@ -133,31 +137,36 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("paymentFormEntity", paymentFormEntity);
 
-			@SuppressWarnings("unused")
 			String method = paymentFormEntity.getMethod();
 
 			// if (method.toLowerCase().equals("get")){
 			// DesktopUtil.browse(fullEncodedUrl);
 			// }else{
 
-			Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
-			Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
-			String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
-
-			String filePath = "F:/payment/" + fileName + ".html";
+			String filePath = getFilePath();
 
 			String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
 			log.info(html);
 
 			try{
-				IOWriteUtil.write(filePath, html, encode);
-			}catch (IllegalArgumentException e){
-				e.printStackTrace();
+				IOWriteUtil.write(filePath, html, encode_file);
+				DesktopUtil.browse(filePath);
 			}catch (IOException e){
 				e.printStackTrace();
 			}
-			DesktopUtil.browse(filePath);
 			// }
 		}
+	}
+
+	/**
+	 * @return
+	 */
+	private String getFilePath(){
+		Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
+		Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
+		String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
+
+		String filePath = "F:/payment/" + fileName + ".html";
+		return filePath;
 	}
 }

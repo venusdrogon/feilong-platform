@@ -19,8 +19,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.framework.bind.VarCommand;
-import com.feilong.framework.bind.parse.CommandXmlParse;
+import com.feilong.framework.bind.parse.XmlParse;
+import com.feilong.framework.bind.parse.varcommand.VarCommand;
 import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult;
 import com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultParse;
 
@@ -44,7 +44,7 @@ public class DokuQueryResultParseTest{
 	public final void testParseXML(){
 		String xml = "<?xml version=\"1.0\"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>";
 
-		CommandXmlParse<DokuQueryResult> queryResultXmlParse = new DokuQueryResultParse();
+		XmlParse<DokuQueryResult> queryResultXmlParse = new DokuQueryResultParse();
 		@SuppressWarnings("unused")
 		VarCommand varCommand = queryResultXmlParse.parseXML(xml);
 	}

@@ -17,7 +17,7 @@ package com.feilong.framework.netpay.advance.adaptor.doku.command;
 
 import java.io.Serializable;
 
-import com.feilong.framework.bind.annotation.VarName;
+import com.feilong.framework.bind.parse.varcommand.VarName;
 import com.feilong.framework.netpay.advance.command.QueryResultCommand;
 
 /**
