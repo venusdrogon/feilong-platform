@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.framework.bind.annotation;
+package com.feilong.framework.bind.parse.varcommand;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 仅仅是标识,标识这个类 是可build类
+ * 用来标识QueryResult 字段和 wddxPacket xml 一对一的关系,简化 减少hard coding.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月5日 下午8:27:13
@@ -32,8 +32,22 @@ import java.lang.annotation.Target;
 @Documented
 // RetentionPolicy.RUNTIME 在jvm加载class时候有效, VM将在运行期也保留注释，因此可以通过反射机制读取注解的信息
 @Retention(RetentionPolicy.RUNTIME)
-// ElementType.TYPE 类，接口（包括注解类型）或enum声明
-@Target({ ElementType.TYPE })
+// ElemenetType.FIELD 字段, 域声明（包括 enum 实例）
+@Target({ ElementType.FIELD })
 @Inherited
-@Deprecated
-public @interface VarClass{}
+public @interface VarName{
+
+	/**
+	 * 对应xml里面的名称.
+	 * 
+	 * @return the string
+	 */
+	String name();
+
+	/**
+	 * 示例结果(仅供查看的时候,知道这个字段的结果值格式和大致的值,没有其他作用).
+	 * 
+	 * @return the string
+	 */
+	String sampleValue() default "";
+}

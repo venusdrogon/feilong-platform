@@ -13,31 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.framework.bind.parse;
-
-import com.feilong.framework.bind.VarCommand;
-import com.feilong.framework.bind.exception.BuildCommandException;
-
+package com.feilong.framework.bind.parse.varcommand;
 
 /**
- * The Interface QueryResultXmlParse.
+ * 自定义的xml parse result,目前没有接口定义,只是个标识
  * 
- * @param <T>
- *            the generic type
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.6 2014年5月8日 上午11:32:24
+ * @version 1.0.6 2014年5月8日 上午11:19:15
  * @since 1.0.6
  */
-public interface CommandXmlParse<T extends VarCommand> {
-
-	/**
-	 * 解析xml到对象.
-	 * 
-	 * @param xml
-	 *            the xml
-	 * @return the t
-	 * @throws BuildCommandException
-	 *             构建对象异常
-	 */
-	T parseXML(String xml);
-}
+public interface VarCommand{}

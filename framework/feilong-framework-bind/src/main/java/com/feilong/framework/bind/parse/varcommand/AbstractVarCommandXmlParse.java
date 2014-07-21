@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.framework.bind.parse;
+package com.feilong.framework.bind.parse.varcommand;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -23,27 +23,26 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.reflect.ConstructorUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.framework.bind.VarCommand;
-import com.feilong.framework.bind.annotation.VarName;
 import com.feilong.framework.bind.exception.BuildCommandException;
+import com.feilong.framework.bind.parse.AbstractXmlParse;
 
 /**
- * The Class VarClassUtil.
+ * xml格式结果的解析,目的将xml字符串转成 自定义的对象,这个对象必须 实现 {@link VarCommand} 接口.
  * 
+ * @param <T>
+ *            自定义的对象,这个对象必须 实现 {@link VarCommand} 接口
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.6 2014年5月10日 上午4:16:25
+ * @version 1.0.6 2014年5月8日 上午10:42:49
  * @since 1.0.6
  */
-public class VarClassUtil{
+public abstract class AbstractVarCommandXmlParse<T extends VarCommand> extends AbstractXmlParse<T>{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(VarClassUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(AbstractVarCommandXmlParse.class);
 
 	/**
 	 * Builds the command.
 	 * 
-	 * @param <T>
-	 *            the generic type
 	 * @param modelClass
 	 *            the model class
 	 * @param varNameAndValueMap
@@ -52,8 +51,7 @@ public class VarClassUtil{
 	 * @throws BuildCommandException
 	 *             the build command exception
 	 */
-	public static <T extends VarCommand> T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap)
-			throws BuildCommandException{
+	protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
 
 		try{
 			T t = ConstructorUtil.newInstance(modelClass);

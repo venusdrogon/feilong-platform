@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.framework.bind;
-
 /**
- * 自定义的xml parse result,目前没有接口定义,只是个标识
- * 
- * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.6 2014年5月8日 上午11:19:15
- * @since 1.0.6
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
+ * @version 1.0.8 2014年7月18日 下午5:30:15 
+ * @since 1.0.8
  */
-public interface VarCommand{}
+package com.feilong.framework.bind.parse.varcommand;
