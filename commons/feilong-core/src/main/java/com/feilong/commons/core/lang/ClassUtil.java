@@ -15,6 +15,7 @@
  */
 package com.feilong.commons.core.lang;
 
+import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -58,6 +59,21 @@ public final class ClassUtil{
 		map.put("clz.isEnum()", clz.isEnum());
 
 		return map;
+		//		Class<?> klass = this.getClass();
+		//
+		//		TypeVariable<?>[] typeParameters = klass.getTypeParameters();
+		//		TypeVariable<?> typeVariable = typeParameters[0];
+		//
+		//		Type[] bounds = typeVariable.getBounds();
+		//
+		//		Type bound = bounds[0];
+		//
+		//		if (log.isDebugEnabled()){
+		//			log.debug("" + (bound instanceof ParameterizedType));
+		//		}
+		//
+		//		Class<T> modelClass = ReflectUtil.getGenericModelClass(klass);
+		//		return modelClass;
 	}
 
 	/**
@@ -127,5 +143,35 @@ public final class ClassUtil{
 			}
 		}
 		return parameterTypes;
+	}
+
+	/**
+	 * 是不是某个类的实例.
+	 * 
+	 * @param obj
+	 *            实例
+	 * @param klass
+	 *            类
+	 * @return 如果 obj 是此类的实例，则返回 true
+	 * @see java.lang.Class#isInstance(Object)
+	 */
+	public static boolean isInstance(Object obj,Class<?> klass){
+		return klass.isInstance(obj);
+	}
+
+	/**
+	 * 判断对象是否是接口.
+	 * 
+	 * @param ownerClass
+	 *            对象class
+	 * @return 是返回true
+	 * @see java.lang.Class#getModifiers()
+	 * @see java.lang.reflect.Modifier#isInterface(int)
+	 */
+	public static boolean isInterface(Class<?> ownerClass){
+		// 返回此类或接口以整数编码的 Java 语言修饰符
+		int flag = ownerClass.getModifiers();
+		// 对类和成员访问修饰符进行解码
+		return Modifier.isInterface(flag);
 	}
 }

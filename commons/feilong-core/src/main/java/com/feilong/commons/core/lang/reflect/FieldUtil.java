@@ -38,6 +38,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:08:15
  * @see org.apache.commons.lang3.reflect.FieldUtils
+ * @see org.springframework.util.ReflectionUtils
  * @since 1.0.7
  */
 public final class FieldUtil{

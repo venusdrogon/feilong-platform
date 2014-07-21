@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.lang.reflect;
+package com.feilong.commons.core.lang;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -22,15 +22,14 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 
 /**
- * The Class ReflectUtilTest.
  * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Apr 11, 2014 10:53:27 PM
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.8 2014年7月21日 下午3:01:52
+ * @since 1.0.8
  */
-public class ReflectUtilTest{
+public class ClassUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ReflectUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ClassUtilTest.class);
 
 	/**
 	 * Test is interface.
@@ -38,8 +37,8 @@ public class ReflectUtilTest{
 	@Test
 	public void testIsInterface(){
 		if (log.isInfoEnabled()){
-			log.info("" + ReflectUtil.isInterface(ReflectUtilTest.class));
-			log.info("" + ReflectUtil.isInterface(DatePattern.class));
+			log.info("" + ClassUtil.isInterface(this.getClass()));
+			log.info("" + ClassUtil.isInterface(DatePattern.class));
 		}
 	}
 }
