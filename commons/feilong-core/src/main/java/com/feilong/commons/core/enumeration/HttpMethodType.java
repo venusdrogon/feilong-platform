@@ -15,8 +15,10 @@
  */
 package com.feilong.commons.core.enumeration;
 
+import com.feilong.commons.core.lang.EnumUtil;
+
 /**
- * http请求方法,目前仅支持通用的get和post 其他不支持
+ * http请求方法,目前仅支持通用的get和post 其他不支持.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 2010-12-16 下午01:11:27
@@ -35,6 +37,22 @@ public enum HttpMethodType{
 
 	/** The method. */
 	private String	method;
+
+	/**
+	 * Gets the by method value ignore case.
+	 * 
+	 * @param methodValue
+	 *            the method value
+	 * @return the by method value ignore case
+	 * @throws NoSuchFieldException
+	 *             找不到匹配的枚举
+	 * @see com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValueIgnoreCase(Class, String, String)
+	 * @since 1.0.8
+	 */
+	public static HttpMethodType getByMethodValueIgnoreCase(String methodValue) throws NoSuchFieldException{
+		String propertyName = "method";
+		return EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, propertyName, methodValue);
+	}
 
 	/**
 	 * Instantiates a new http method type.
