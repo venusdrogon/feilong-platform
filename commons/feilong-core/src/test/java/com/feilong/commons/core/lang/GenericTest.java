@@ -15,9 +15,17 @@
  */
 package com.feilong.commons.core.lang;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.TypeVariable;
+import static org.junit.Assert.*;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +38,10 @@ import org.slf4j.LoggerFactory;
  */
 public class GenericTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(GenericTest.class);
+	private static final Logger	log		= LoggerFactory.getLogger(GenericTest.class);
+
+	/** The list. */
+	public List<String>			list	= new LinkedList<String>();
 
 	/**
 	 * Gets the value.
@@ -64,13 +75,28 @@ public class GenericTest{
 	}
 
 	/**
-	 * The main method.
+	 * TestGenericTest1.
 	 * 
-	 * @param args
-	 *            the arguments
+	 * @throws SecurityException
+	 * @throws NoSuchFieldException
 	 */
-	public static void main(String[] args){
+	@Test
+	public void testGenericTest1() throws NoSuchFieldException,SecurityException{
+		Field field = GenericTest.class.getField("list");
+		ParameterizedType pt = (ParameterizedType) field.getGenericType();
+		Type[] actualTypeArguments = pt.getActualTypeArguments();
+		log.info("" + actualTypeArguments.length);
+		log.info("" + actualTypeArguments[0]);
+		//assertEquals(expected, actual);
+	}
+
+	/**
+	 * TestGenericTest.
+	 */
+	@Test
+	public void testGenericTest(){
 		String aString = getValue("jinxin", String.class);
 		Integer b = getValue("jinxin", Integer.class);
+		//assertEquals(expected, actual);
 	}
 }
