@@ -18,7 +18,6 @@
 			<artifactId>commons-httpclient</artifactId>
 		</dependency>
 
-
 		<!-- org.json -->
 		<dependency>
 			<groupId>org.json</groupId>

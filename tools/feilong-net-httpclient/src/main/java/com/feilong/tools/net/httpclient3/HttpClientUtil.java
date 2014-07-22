@@ -45,6 +45,8 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2010-11-18 上午09:35:27
  * @version 1.0.1 2011-7-27 11:59
  * @version 1.0.6 2014-5-7 23:12
+ * @see org.apache.commons.httpclient.HttpMethod
+ * @see org.apache.commons.httpclient.HttpClient
  * @since 1.0.6
  */
 public final class HttpClientUtil{

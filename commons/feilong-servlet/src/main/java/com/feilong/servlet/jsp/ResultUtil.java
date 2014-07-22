@@ -25,6 +25,7 @@ import java.util.SortedMap;
 import javax.servlet.jsp.jstl.sql.Result;
 
 import com.feilong.commons.core.bean.BeanUtil;
+import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.lang.reflect.ConstructorUtil;
 import com.feilong.commons.core.lang.reflect.FieldUtil;
@@ -109,11 +110,11 @@ public class ResultUtil{
 					// bean 里面的date类型字段需要先实例化
 					name = fieldName + ".time";
 					value = ((Date) sqlValue).getTime();
-					BeanUtil.setProperty(bean, name, value, false);
+					PropertyUtil.setProperty(bean, name, value);
 				}else{
 					name = fieldName;
 					value = sqlValue;
-					BeanUtil.setProperty(bean, name, value, true);
+					BeanUtil.setProperty(bean, name, value);
 				}
 			}
 		}
@@ -193,7 +194,7 @@ public class ResultUtil{
 			bean = ConstructorUtil.newInstance(className);
 			if (isGetFileds){
 				for (String filed : fileds){
-					BeanUtil.setProperty(bean, filed, sortedMap.get(filed), true);
+					BeanUtil.setProperty(bean, filed, sortedMap.get(filed));
 				}
 			}
 			list.add(bean);
@@ -222,7 +223,7 @@ public class ResultUtil{
 			String value = "";
 			for (String filed : fileds){
 				value = getSortedMapValueByKeyWithTrim(sortedMap, filed);
-				BeanUtil.setProperty(bean, filed, value, true);
+				BeanUtil.setProperty(bean, filed, value);
 			}
 		}
 	}
