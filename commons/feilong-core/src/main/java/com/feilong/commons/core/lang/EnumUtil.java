@@ -19,10 +19,10 @@ import org.apache.commons.lang.enums.EnumUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.bean.BeanUtil;
+import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.enumeration.HttpMethodType;
-import com.feilong.commons.core.lang.reflect.MethodUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -30,6 +30,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月8日 上午3:30:51
+ * @version 1.0.8 2014-7-22 13:43 add {@link #getEnumByPropertyValueIgnoreCase(Class, String, String)}
  * @see EnumUtils
  * @see org.apache.commons.lang3.EnumUtils
  * @since 1.0.6
@@ -40,8 +41,7 @@ public final class EnumUtil{
 	private static final Logger	log	= LoggerFactory.getLogger(EnumUtil.class);
 
 	/**
-	 * 通过fieldName的 value(忽视大小写) 获得枚举<br>
-	 * 方法内部通过反射的机制来读取 get+fieldName首字母大写方法 获得枚举value 循环和value 忽视大小写比较,如果相等即返回. <br>
+	 * 通过fieldName的 value(忽视大小写) 获得枚举(equalsIgnoreCase判断)<br>
 	 * 
 	 * <pre>
 	 * 
@@ -56,41 +56,127 @@ public final class EnumUtil{
 	 *            the element type
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
-	 * @param fieldName
+	 * @param propertyName
 	 *            字段名称,比如 {@link HttpMethodType}的method,按照javabean 规范
 	 * @param value
-	 *            属性值 比如post,此处判断 忽视大小写
-	 * @return 如果 value 是null,返回null<br>
-	 *         如果查找不到,也返回null<br>
-	 *         如果出现异常,也返回null<br>
-	 *         其他情况 方法内部通过反射的机制来读取 get+fieldName首字母大写方法 获得枚举value 循环和value 忽视大小写比较,如果相等即返回
+	 *            属性值 比如post
+	 * @return 获得 enum constant
+	 * @throws IllegalArgumentException
+	 *             if Validator.isNullOrEmpty(enumClass) or Validator.isNullOrEmpty(propertyName)
+	 * @throws NoSuchFieldException
+	 *             找不到匹配的枚举
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 */
-	public static <E extends Enum<E>> E getEnumByField(Class<E> enumClass,String fieldName,String value){
-		if (Validator.isNullOrEmpty(fieldName)){
-			throw new NullPointerException("the fieldName is null or empty!");
+	public static <E extends Enum<E>> E getEnumByPropertyValueIgnoreCase(Class<E> enumClass,String propertyName,String value)
+			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+		boolean ignoreCase = true;
+		return _getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
+	}
+
+	/**
+	 * 通过fieldName的 value 获得枚举(equals判断)<br>
+	 * 
+	 * <pre>
+	 * 
+	 * 适用于这种{@link HttpMethodType} 待自定义属性的枚举类型,调用方式:
+	 * 
+	 * {@code
+	 * 	EnumUtil.getEnumByField(HttpMethodType.class, "method", "get")
+	 * }
+	 * </pre>
+	 * 
+	 * @param <E>
+	 *            the element type
+	 * @param enumClass
+	 *            the enum class 比如 {@link HttpMethodType}
+	 * @param propertyName
+	 *            字段名称,比如 {@link HttpMethodType}的method,按照javabean 规范
+	 * @param value
+	 *            属性值 比如post
+	 * @return 获得 enum constant
+	 * @throws IllegalArgumentException
+	 *             if Validator.isNullOrEmpty(enumClass) or Validator.isNullOrEmpty(propertyName)
+	 * @throws NoSuchFieldException
+	 *             找不到匹配的枚举
+	 * @throws BeanUtilException
+	 *             the bean util exception
+	 * @since 1.0.8
+	 */
+	public static <E extends Enum<E>> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,String value)
+			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+		boolean ignoreCase = false;
+		return _getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
+	}
+
+	/**
+	 * 通过fieldName的 value 获得枚举<br>
+	 * 
+	 * <pre>
+	 * 
+	 * 适用于这种{@link HttpMethodType} 待自定义属性的枚举类型,调用方式:
+	 * 
+	 * {@code
+	 * 	EnumUtil.getEnumByField(HttpMethodType.class, "method", "get")
+	 * }
+	 * </pre>
+	 * 
+	 * @param <E>
+	 *            the element type
+	 * @param enumClass
+	 *            the enum class 比如 {@link HttpMethodType}
+	 * @param propertyName
+	 *            字段名称,比如 {@link HttpMethodType}的method,按照javabean 规范
+	 * @param value
+	 *            属性值 比如post
+	 * @param ignoreCase
+	 *            是否忽视大小写
+	 * @return 获得 enum constant
+	 * @throws IllegalArgumentException
+	 *             if Validator.isNullOrEmpty(enumClass) or Validator.isNullOrEmpty(propertyName)
+	 * @throws NoSuchFieldException
+	 *             找不到匹配的枚举
+	 * @throws BeanUtilException
+	 *             the bean util exception
+	 * @see com.feilong.commons.core.bean.BeanUtil#getProperty(Object, String)
+	 * @since 1.0.8
+	 */
+	private static <E extends Enum<E>> E _getEnumByPropertyValue(Class<E> enumClass,String propertyName,String value,boolean ignoreCase)
+			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+
+		if (Validator.isNullOrEmpty(enumClass)){
+			throw new IllegalArgumentException("enumClass is null or empty!");
 		}
 
-		if (Validator.isNotNullOrEmpty(value)){
+		if (Validator.isNullOrEmpty(propertyName)){
+			throw new IllegalArgumentException("the fieldName is null or empty!");
+		}
 
-			// An enum is a kind of class
-			// and an annotation is a kind of interface
-			// 如果此 Class 对象不表示枚举类型，则返回枚举类的元素或 null。
-			E[] enumConstants = enumClass.getEnumConstants();
+		// An enum is a kind of class
+		// and an annotation is a kind of interface
+		// 如果此 Class 对象不表示枚举类型，则返回枚举类的元素或 null。
+		E[] enumConstants = enumClass.getEnumConstants();
 
-			for (E e : enumConstants){
-				String getterMethodName = StringUtil.getGetterMethodName(fieldName);
-				Object invokeMethod = MethodUtil.invokeMethod(e, getterMethodName);
+		for (E e : enumConstants){
+			String property = BeanUtil.getProperty(e, propertyName);
 
-				if (log.isInfoEnabled()){
-					log.info("" + JsonUtil.format(e));
-					log.info("invokeMethod value:[{}]", invokeMethod);
-				}
-				if (value.equalsIgnoreCase(invokeMethod.toString())){
-					return e;
-				}
+			if (log.isInfoEnabled()){
+				log.info("" + JsonUtil.format(e));
 			}
+			String string = property.toString();
 
+			boolean isMatch = false;
+
+			if (ignoreCase){
+				isMatch = string.equalsIgnoreCase(value);
+			}else{
+				isMatch = string.equals(value);
+			}
+			if (isMatch){
+				return e;
+			}
 		}
-		return null;
+		throw new NoSuchFieldException("can not found the enum constants,enumClass:[" + enumClass + "],propertyName:[" + propertyName
+				+ "],value:[" + value + "],ignoreCase:[" + ignoreCase + "]");
 	}
 }
