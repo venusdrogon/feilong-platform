@@ -1,4 +1,19 @@
-package code;
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.feilong.framework.code;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -6,17 +21,21 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.framework.code.CodeGenerator;
 
 /**
+ * The Class CodeGeneratorTest.
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 3, 2013 5:14:45 PM
  */
-@SuppressWarnings("all")public class CodeGeneratorTest{
+public class CodeGeneratorTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CodeGeneratorTest.class);
 
 	/**
-	 * Test method for {@link code.CodeGenerator.shop.utils.SalesOrderCodeGenerator#createOrderCode(java.lang.Long)}.
+	 * Test method for {@link com.feilong.framework.code.CodeGenerator.shop.utils.SalesOrderCodeGenerator#createOrderCode(java.lang.Long)}.
 	 */
 	@Test
 	public void createOrderCode(){
@@ -33,6 +52,9 @@ import com.feilong.commons.core.date.DateUtil;
 		log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2099-12-31 23:59:45", DatePattern.commonWithTime), 1161L, 5555555L));
 	}
 
+	/**
+	 * Creates the order code1.
+	 */
 	@Test
 	public void createOrderCode1(){
 		for (int i = 0, j = 100; i < j; ++i){
@@ -40,11 +62,17 @@ import com.feilong.commons.core.date.DateUtil;
 		}
 	}
 
+	/**
+	 * Creates the return order code.
+	 */
 	@Test
 	public void createReturnOrderCode(){
 		log.info(CodeGenerator.createReturnOrderCode(111121L, 5555555L));
 	}
 
+	/**
+	 * Creates the trade no.
+	 */
 	@Test
 	public void createTradeNo(){
 		log.info(CodeGenerator.createTradeNo(5545L, 88));

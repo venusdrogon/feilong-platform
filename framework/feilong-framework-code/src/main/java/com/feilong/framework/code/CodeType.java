@@ -14,7 +14,7 @@
  * THIS SOFTWARE OR ITS DERIVATIVES.
  *
  */
-package code;
+package com.feilong.framework.code;
 
 import java.util.Date;
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package code;
+package com.feilong.framework.code;
 
 import java.util.Date;
 

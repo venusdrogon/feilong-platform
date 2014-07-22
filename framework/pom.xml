@@ -18,6 +18,7 @@
 	<modules>
 		<module>feilong-framework-bind</module>
 		<module>feilong-framework-netpay</module>
+		<module>feilong-framework-code</module>
 	</modules>
 
 	<dependencies>
