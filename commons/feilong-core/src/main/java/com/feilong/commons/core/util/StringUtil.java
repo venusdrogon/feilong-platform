@@ -192,18 +192,6 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 获得字段 getter 方法名称.
-	 * 
-	 * @param fieldName
-	 *            the field name
-	 * @return the getter method name
-	 */
-	// XXX boolean -->is这种方法
-	public static String getGetterMethodName(String fieldName){
-		return "get" + StringUtil.firstCharToUpperCase(fieldName);
-	}
-
-	/**
 	 * 单词首字母大写 比如jinxin
 	 * 
 	 * return Jinxin
