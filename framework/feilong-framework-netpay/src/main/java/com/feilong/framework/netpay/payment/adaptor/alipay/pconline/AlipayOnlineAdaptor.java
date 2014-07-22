@@ -82,6 +82,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
@@ -209,6 +210,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -310,6 +312,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -319,6 +322,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	public String getFeedbackTotalFee(HttpServletRequest request){
@@ -399,7 +403,9 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 			e.printStackTrace();
 		}finally{
 			try{
-				inputStream.close();
+				if (null != inputStream){
+					inputStream.close();
+				}
 			}catch (IOException e){
 				e.printStackTrace();
 			}
@@ -410,6 +416,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public PaymentResult verifyRedirect(HttpServletRequest request){

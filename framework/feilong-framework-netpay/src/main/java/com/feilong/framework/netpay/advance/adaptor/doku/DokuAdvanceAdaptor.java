@@ -137,7 +137,7 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 			throw new IllegalArgumentException(
 					"buyer can't be null/empty!,this time,queryRequest.getBuyer() use for generateSessionId,very important!");
 		}
-		HttpMethodType httpMethodType = EnumUtil.getEnumByField(HttpMethodType.class, "method", queryMethod);
+		HttpMethodType httpMethodType = EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", queryMethod);
 		if (Validator.isNullOrEmpty(httpMethodType)){
 			throw new IllegalArgumentException(
 					"httpMethodType can't be null/empty!Do you Forget to configure correct queryMethod?and only support get/post now");

@@ -217,7 +217,6 @@ public class ResultUtil{
 	 *            bean
 	 * @param fileds
 	 *            字段
-	 * @return the sorted map value to bean
 	 */
 	public static void getSortedMapValueToBean(SortedMap sortedMap,Object bean,String...fileds){
 		if (Validator.isNotNullOrEmpty(sortedMap) && Validator.isNotNullOrEmpty(bean) && Validator.isNotNullOrEmpty(fileds)){
@@ -244,7 +243,6 @@ public class ResultUtil{
 	 *            bean
 	 * @param fileds
 	 *            字段
-	 * @return the sorted map value to bean auto change regulate filed
 	 */
 	public static void getSortedMapValueToBeanAutoChangeRegulateFiled(SortedMap sortedMap,Object bean,String...fileds){
 		if (Validator.isNotNullOrEmpty(fileds)){

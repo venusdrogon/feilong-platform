@@ -32,7 +32,8 @@ import com.feilong.commons.core.util.Validator;
 public class DokuAdaptorUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(DokuAdaptorUtil.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(DokuAdaptorUtil.class);
 
 	/**
 	 * 生成session id 参数<br>
@@ -42,7 +43,7 @@ public class DokuAdaptorUtil{
 	 * @return "" + buyer
 	 * @throws IllegalArgumentException
 	 *             如果 payRequest.getBuyer() isNullOrEmpty
-	 * @see <a href="http://180.168.119.194:8005/redmine/issues/22170">Blanja.com "SESSIONID" field now put what value?</a> <br>
+	 * @see <a href="http://180.168.119.194:8005/redmine/issues/22170">Blanja.com "SESSIONID" field now put what value?</a>
 	 *      blanja原来设置的是 (the sessionid use md5 of the order id),由于 新的网站支持合并订单付款,所以不使用. 此处设置buyerId 已经可以满足开发需求<br>
 	 *      关闭交易的时候 需要使用这里的sessionId值
 	 */
