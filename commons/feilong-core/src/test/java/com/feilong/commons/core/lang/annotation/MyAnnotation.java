@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jdk.java.lang.annotation;
+package com.feilong.commons.core.lang.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

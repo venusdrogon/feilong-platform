@@ -13,35 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jdk.java.util;
+package com.feilong.commons.core.util.jdk;
 
-import java.util.StringTokenizer;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Class StringTokenizerTest.
+ * The Class UUIDTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Feb 14, 2013 11:33:28 PM
+ * @version 1.0 2011-1-28 上午09:37:50
  */
-public class StringTokenizerTest{
+public class UUIDTest{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(StringTokenizerTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(UUIDTest.class);
 
 	/**
 	 * Test.
 	 */
 	@Test
-	public final void test(){
-		StringTokenizer stringTokenizer = new StringTokenizer("a b");
-
-		while (stringTokenizer.hasMoreElements()){
-			Object object = stringTokenizer.nextElement();
-			log.info(object.toString());
-		}
+	public void test(){
+		//82bcab61-a61e-451a-ae40-eeaa2ea54ba9
+		//dc45acb3-ee78-4883-a4df-452c4064bc22
+		log.info(UUID.randomUUID().toString());
 	}
 }

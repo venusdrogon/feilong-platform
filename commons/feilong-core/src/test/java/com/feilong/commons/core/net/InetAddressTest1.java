@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jdk.java.net;
+package com.feilong.commons.core.net;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -30,10 +30,10 @@ import com.feilong.commons.core.net.InetAddressUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-12 上午09:44:38
  */
-public class InetAddressTest{
+public class InetAddressTest1{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(InetAddressTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(InetAddressTest1.class);
 
 	/**
 	 * The main method.

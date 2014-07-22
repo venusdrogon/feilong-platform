@@ -1,4 +1,4 @@
-package jdk.java.util;
+package com.feilong.commons.core.util.jdk;
 
 import java.util.ListResourceBundle;
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jdk.java.util;
+package com.feilong.commons.core.util.jdk;
 
 import java.util.Enumeration;
 
