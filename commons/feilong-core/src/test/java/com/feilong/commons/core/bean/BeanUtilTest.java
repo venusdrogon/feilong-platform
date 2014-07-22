@@ -146,4 +146,13 @@ public class BeanUtilTest{
 		BeanUtil.populate(a, properties);
 		log.info(JsonUtil.format(a));
 	}
+
+	@Test
+	public void cloneBean(){
+		SalesOrder salesOrder1 = BeanUtil.cloneBean(salesOrder);
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(salesOrder1));
+		}
+	}
 }

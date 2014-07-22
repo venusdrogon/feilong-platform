@@ -46,7 +46,6 @@ import com.feilong.commons.core.util.Validator;
  * 
  * 最好在用的时候 自行register,{@link org.apache.commons.beanutils.ConvertUtilsBean#deregister(Class)}
  * 
- * 
  * Example 1:
  * 
  * <pre>
@@ -76,7 +75,12 @@ import com.feilong.commons.core.util.Validator;
  * @version 2010-7-9 下午02:44:36
  * @version 2012-5-15 15:07
  * @version 1.0.7 2014年5月21日 下午12:24:53 move to om.feilong.commons.core.bean package
+ * @version 1.0.8 2014-7-22 12:37 将异常转成 BeanUtilException 抛出
  * @see org.apache.commons.beanutils.BeanUtils
+ * @see com.feilong.commons.core.bean.PropertyUtil
+ * @see java.beans.BeanInfo
+ * @see java.beans.PropertyDescriptor
+ * @see java.beans.MethodDescriptor
  * @since 1.0.0
  */
 public final class BeanUtil{
@@ -89,10 +93,10 @@ public final class BeanUtil{
 	private BeanUtil(){}
 
 	static{
-		//		ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.util.Date.class);
-		//		ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.sql.Date.class);
-		//		ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.sql.Timestamp.class);
-		//		ConvertUtils.register(new BigDecimalConverter(null), java.math.BigDecimal.class);
+		//ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.util.Date.class);
+		//ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.sql.Date.class);
+		//ConvertUtils.register(new DatePatternConverter(DatePattern.commonWithMillisecond), java.sql.Timestamp.class);
+		//ConvertUtils.register(new BigDecimalConverter(null), java.math.BigDecimal.class);
 
 		boolean throwException = false;
 		boolean defaultNull = true;
@@ -104,39 +108,43 @@ public final class BeanUtil{
 	// [start] cloneBean
 
 	/**
-	 * 调用 {@link org.apache.commons.beanutils.BeanUtils#cloneBean(Object)},<br>
+	 * 调用 {@link BeanUtils#cloneBean(Object)},<br>
 	 * 这个方法通过默认构造函数建立一个bean的新实例,然后拷贝每一个属性到这个新的bean中<br>
 	 * 
 	 * <p>
-	 * {@link org.apache.commons.beanutils.BeanUtils#cloneBean(Object)} 在源码上看是调用了 getPropertyUtils().copyProperties(newBean, bean);<br>
-	 * 最后实际上还是复制的引用 ，无法实现深clone<br>
+	 * {@link BeanUtils#cloneBean(Object)} 在源码上看是调用了 getPropertyUtils().copyProperties(newBean, bean);<br>
+	 * 最后实际上还是<b>复制的引用 ，无法实现深clone</b><br>
+	 * </p>
 	 * 
-	 * 但BeanUtils还是可以帮助我们减少工作量的，假如类的属性不是基础类型的话（即自定义类），可以先clone出那个自定义类，在把他付给新的类，覆盖原来类的引用<br>
+	 * <p>
+	 * 但还是可以帮助我们减少工作量的，假如类的属性不是基础类型的话（即自定义类），可以先clone出那个自定义类，在把他付给新的类，覆盖原来类的引用,<br>
 	 * 是为那些本身没有实现clone方法的类准备的 
 	 * </p>
 	 * 
+	 * @param <T>
+	 * 
 	 * @param bean
-	 *            the bean
-	 * @return the object,如果发生异常,return null
+	 *            Bean to be cloned
+	 * @return the cloned bean
+	 *         (复制的引用 ，无法实现深clone)
+	 * @throws BeanUtilException
+	 *             if IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException
 	 * @see org.apache.commons.beanutils.BeanUtils#cloneBean(Object)
 	 * @see org.apache.commons.beanutils.PropertyUtilsBean#copyProperties(Object, Object)
 	 * @since 1.0
 	 */
-	public static Object cloneBean(Object bean){
-		//BeanUtils.createCache();
+	public static <T> T cloneBean(T bean) throws BeanUtilException{
 		try{
-			Object cloneBean = BeanUtils.cloneBean(bean);
+			//BeanUtils.createCache();
+
+			//Clone a bean based on the available property getters and setters, even if the bean class itself does not implement Cloneable.
+			@SuppressWarnings("unchecked")
+			T cloneBean = (T) BeanUtils.cloneBean(bean);
 			return cloneBean;
-		}catch (IllegalAccessException e){
+		}catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e){
 			e.printStackTrace();
-		}catch (InstantiationException e){
-			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
-		}catch (NoSuchMethodException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
-		return null;
 	}
 
 	// [end]
@@ -152,22 +160,25 @@ public final class BeanUtil{
 	 * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性
 	 * 
 	 * @param bean
-	 *            the bean
-	 * @return the map,如果发生异常,返回null
+	 *            Bean whose properties are to be extracted
+	 * 
+	 * @return Map of property descriptors
+	 * 
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 * @see org.apache.commons.beanutils.BeanUtils#describe(Object)
+	 * @see org.apache.commons.beanutils.PropertyUtils#describe(Object)
+	 * @see com.feilong.commons.core.bean.PropertyUtil#describe(Object)
 	 */
-	public static Map<String, String> describe(Object bean){
+	public static Map<String, String> describe(Object bean) throws BeanUtilException{
 		try{
+			//Return the entire set of properties for which the specified bean provides a read method.
 			Map<String, String> map = BeanUtils.describe(bean);
 			return map;
-		}catch (IllegalAccessException e){
+		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
 			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
-		}catch (NoSuchMethodException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
-		return null;
 	}
 
 	// [end]
@@ -178,18 +189,21 @@ public final class BeanUtil{
 	 * 把properties/map里面的值放入bean中.
 	 * 
 	 * @param bean
-	 *            the bean
+	 *            JavaBean whose properties are being populated
+	 * 
 	 * @param properties
-	 *            the properties
+	 *            Map keyed by property name, with the corresponding (String or String[]) value(s) to be set
+	 * 
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 * @see org.apache.commons.beanutils.BeanUtils#populate(Object, Map)
 	 */
-	public static void populate(Object bean,Map<String, ?> properties){
+	public static void populate(Object bean,Map<String, ?> properties) throws BeanUtilException{
 		try{
 			BeanUtils.populate(bean, properties);
-		}catch (IllegalAccessException e){
+		}catch (IllegalAccessException | InvocationTargetException e){
 			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
 	}
 
@@ -219,13 +233,12 @@ public final class BeanUtil{
 	 *            目标对象
 	 * @param fromObj
 	 *            原始对象
-	 * @throws IllegalArgumentException
-	 *             if (null == toObj) or if (null == fromObj)
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 * @see org.apache.commons.beanutils.BeanUtils#copyProperties(Object, Object)
 	 * @see org.apache.commons.beanutils.BeanUtils#copyProperty(Object, String, Object)
-	 * 
 	 */
-	public static void copyProperties(Object toObj,Object fromObj) throws IllegalArgumentException{
+	public static void copyProperties(Object toObj,Object fromObj) throws BeanUtilException{
 		if (null == toObj){
 			throw new IllegalArgumentException("No destination bean/toObj specified");
 		}
@@ -234,10 +247,9 @@ public final class BeanUtil{
 		}
 		try{
 			BeanUtils.copyProperties(toObj, fromObj);
-		}catch (IllegalAccessException e){
+		}catch (IllegalAccessException | InvocationTargetException e){
 			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
 	}
 
@@ -271,11 +283,11 @@ public final class BeanUtil{
 	 *            原始对象
 	 * @param filedNames
 	 *            字段数组, can't be null/empty!
-	 * @throws NullPointerException
-	 *             if Validator.isNullOrEmpty(filedNames)
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 * @see #copyProperty(Object, Object, String)
 	 */
-	public static void copyProperties(Object toObj,Object fromObj,String[] filedNames) throws NullPointerException{
+	public static void copyProperties(Object toObj,Object fromObj,String[] filedNames) throws BeanUtilException{
 		if (Validator.isNullOrEmpty(filedNames)){
 			throw new NullPointerException("filedNames can't be null/empty!");
 		}
@@ -312,17 +324,18 @@ public final class BeanUtil{
 	 * BeanUtil.copyProperty(enterpriseSales,enterpriseSales_form,&quot;enterpriseName&quot;);
 	 * </pre>
 	 * 
-	 * 
 	 * @param toObj
 	 *            目标对象
 	 * @param fromObj
 	 *            原始对象
 	 * @param filedName
 	 *            字段名称
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 * @see #getProperty(Object, String)
 	 * @see #copyProperty(Object, String, Object)
 	 */
-	public static void copyProperty(Object toObj,Object fromObj,String filedName){
+	public static void copyProperty(Object toObj,Object fromObj,String filedName) throws BeanUtilException{
 		Object value = getProperty(fromObj, filedName);
 		copyProperty(toObj, filedName, value);
 	}
@@ -354,15 +367,16 @@ public final class BeanUtil{
 	 *            成员Property name (can be nested/indexed/mapped/combo)
 	 * @param value
 	 *            赋值为value
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 * @see org.apache.commons.beanutils.BeanUtils#copyProperty(Object, String, Object)
 	 */
-	public static void copyProperty(Object bean,String propertyName,Object value){
+	public static void copyProperty(Object bean,String propertyName,Object value) throws BeanUtilException{
 		try{
 			BeanUtils.copyProperty(bean, propertyName, value);
-		}catch (IllegalAccessException e){
+		}catch (IllegalAccessException | InvocationTargetException e){
 			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
 	}
 
@@ -371,7 +385,7 @@ public final class BeanUtil{
 	// [start] setProperty
 
 	/**
-	 * 使用 BeanUtils PropertyUtils来设置属性值.
+	 * 使用 {@link BeanUtils#setProperty(Object, String, Object)} 来设置属性值(<b>会进行类型转换</b>).
 	 * 
 	 * <pre>
 	 * 
@@ -414,36 +428,25 @@ public final class BeanUtil{
 	 * </pre>
 	 * 
 	 * @param bean
-	 *            bean
+	 *            Bean on which setting is to be performed
 	 * @param name
-	 *            name
+	 *            Property name (can be nested/indexed/mapped/combo)
 	 * @param value
-	 *            value
-	 * @param isNeedConvertType
-	 *            是否需要类型转换
-	 *            <ul>
-	 *            <li>true调用 BeanUtils.setProperty(bean, name, value)</li>
-	 *            <li>false调用PropertyUtils.setProperty(bean, name, value)</li>
-	 *            </ul>
+	 *            Value to be set
+	 * @throws BeanUtilException
+	 *             if IllegalAccessException | InvocationTargetException
 	 * @see org.apache.commons.beanutils.BeanUtils#setProperty(Object, String, Object)
 	 * @see org.apache.commons.beanutils.PropertyUtils#setProperty(Object, String, Object)
+	 * @see com.feilong.commons.core.bean.PropertyUtil#setProperty(Object, String, Object)
 	 */
-	public static void setProperty(Object bean,String name,Object value,boolean isNeedConvertType){
+	public static void setProperty(Object bean,String name,Object value) throws BeanUtilException{
 		try{
-			if (isNeedConvertType){
-				// BeanUtils支持把所有类型的属性都作为字符串处理
-				// 在后台自动进行类型转换(字符串和真实类型的转换)
-				BeanUtils.setProperty(bean, name, value);
-			}else{
-				// PropertyUtils的功能类似于BeanUtils,但在底层不会对传递的数据做转换处理
-				PropertyUtils.setProperty(bean, name, value);
-			}
-		}catch (IllegalAccessException e){
+			// BeanUtils支持把所有类型的属性都作为字符串处理
+			// 在后台自动进行类型转换(字符串和真实类型的转换)
+			BeanUtils.setProperty(bean, name, value);
+		}catch (IllegalAccessException | InvocationTargetException e){
 			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
-		}catch (NoSuchMethodException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
 	}
 
@@ -452,7 +455,7 @@ public final class BeanUtil{
 	// [start] getProperty
 
 	/**
-	 * 使用 {@link org.apache.commons.beanutils.BeanUtils#getProperty(Object, String)} 类从对象中取得属性值.
+	 * 使用 {@link BeanUtils#getProperty(Object, String)} 类从对象中取得属性值.
 	 * 
 	 * <pre>
 	 * {@code
@@ -499,26 +502,23 @@ public final class BeanUtil{
 	 *            bean
 	 * @param name
 	 *            属性名称
-	 * @return 使用BeanUtils类从对象中取得属性值<br>
-	 *         如果方法内部出现异常,return null
+	 * @return 使用BeanUtils类从对象中取得属性值
+	 * @throws BeanUtilException
+	 *             if IllegalAccessException | InvocationTargetException | NoSuchMethodException
 	 * @see org.apache.commons.beanutils.BeanUtils#getProperty(Object, String)
 	 * @see org.apache.commons.beanutils.PropertyUtils#getProperty(Object, String)
+	 * @see com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)
 	 */
-	public static String getProperty(Object bean,String name){
+	public static String getProperty(Object bean,String name) throws BeanUtilException{
+		// Return the value of the specified property of the specified bean,
+		// no matter which property reference format is used, as a String.
 		try{
-			// Return the value of the specified property of the specified bean,
-			// no matter which property reference format is used, as a String.
 			String propertyValue = BeanUtils.getProperty(bean, name);
 			return propertyValue;
-		}catch (IllegalAccessException e){
+		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
 			e.printStackTrace();
-		}catch (InvocationTargetException e){
-			e.printStackTrace();
-		}catch (NoSuchMethodException e){
-			e.printStackTrace();
+			throw new BeanUtilException(e);
 		}
-		return null;
 	}
-
 	// [end]
 }
