@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.ssh.db;
 
 import java.io.Serializable;
@@ -25,18 +40,27 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 通用springDAO
+ * 通用springDAO.
  * 
+ * @author 金鑫 2009-8-5下午04:12:41
  * @param <T>
  *            可以使用泛型
- * @author 金鑫 2009-8-5下午04:12:41
  */
 public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(FeiLongSpringDAO.class);
 
 	// [start] 查询
-	/** ****************************** 查询 *************************************** */
+	/**
+	 * ****************************** 查询 ***************************************.
+	 * 
+	 * @param clz
+	 *            the clz
+	 * @param id
+	 *            the id
+	 * @return the t
+	 */
 	// load get
 	/**
 	 * 查询单个信息
@@ -59,22 +83,22 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 查询单个信息
+	 * 查询单个信息.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-25 下午11:31:17
 	 * @param clz
 	 *            存储这条信息的类
 	 * @param id
 	 *            查询信息的主键
 	 * @return 存储这条信息的对象
-	 * @author 金鑫
-	 * @version 1.0 2009-12-25 下午11:31:17
 	 */
 	public T load(Class<T> clz,Object id){
 		return load(clz, ObjectUtil.toBigDecimal(id));
 	}
 
 	/**
-	 * 根据类名查询所有
+	 * 根据类名查询所有.
 	 * 
 	 * @param cl
 	 *            类名
@@ -85,7 +109,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 查询单个信息 金鑫
+	 * 查询单个信息 金鑫.
 	 * 
 	 * @param clz
 	 *            存储这条信息的类
@@ -101,13 +125,13 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 通过hql语句查询
+	 * 通过hql语句查询.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-4-10下午05:12:20
 	 * @param hql
 	 *            hql语句,不带参数查询
 	 * @return 查询到的集合
-	 * @author 金鑫
-	 * @version 1.0 2009-4-10下午05:12:20
 	 */
 	public List find(String hql){
 		// 根据HQL查询字符串来返回实例集合
@@ -115,8 +139,10 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 参数绑定查询
+	 * 参数绑定查询.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-11 上午11:03:27
 	 * @param hql
 	 *            hql语句
 	 * @param paramNames
@@ -124,8 +150,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param values
 	 *            值数组
 	 * @return 查询到的集合
-	 * @author 金鑫
-	 * @version 1.0 2010-1-11 上午11:03:27
 	 */
 	public List findByNamedParam(String hql,String[] paramNames,Object[] values){
 		// String hql = "from TradeRecord as tr where tr.TradeTime>= :startTime and tr.TradeTime <= :endTime and tr.CustomerId =:cid";
@@ -138,13 +162,13 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	/**
 	 * 执行查询的方法 适用于参数较多的hql查询,建议使用public List search(final String hql,final Object...params)
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-3-10 下午03:57:16
 	 * @param hql
 	 *            编写的hql语句
 	 * @param paramsList
 	 *            存储值的集合(参数必须要用 ? 占位符)
 	 * @return 查到数据的集合,该方法建议用动态参数代替
-	 * @author 金鑫
-	 * @version 1.0 2010-3-10 下午03:57:16
 	 */
 	@Deprecated
 	public List search(final String hql,final List paramsList){
@@ -157,15 +181,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 执行查询的方法 可变参数
+	 * 执行查询的方法 可变参数.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-24 上午10:47:17
 	 * @param hql
 	 *            编写的hql语句
 	 * @param params
 	 *            可变参数
 	 * @return 查询之后的集合
-	 * @author 金鑫
-	 * @version 1.0 2009-12-24 上午10:47:17
 	 */
 	public List search(final String hql,final Object...params){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
@@ -177,15 +201,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 查询出集合中的第一个元素item对象
+	 * 查询出集合中的第一个元素item对象.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-25 下午10:53:06
 	 * @param hql
 	 *            hql语句
 	 * @param params
 	 *            可变参数
 	 * @return 第一个元素item对象
-	 * @author 金鑫
-	 * @version 1.0 2009-12-25 下午10:53:06
 	 */
 	public Object searchListFirstItem(final String hql,final Object...params){
 		List list = search(hql, params);
@@ -193,15 +217,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 是否存在
+	 * 是否存在.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-3-10 下午03:52:21
 	 * @param hql
 	 *            hql语句
 	 * @param params
 	 *            动态参数
 	 * @return 存在返回true,不存在返回false
-	 * @author 金鑫
-	 * @version 1.0 2010-3-10 下午03:52:21
 	 */
 	public boolean isExist(String hql,Object...params){
 		List list = search(hql, params);
@@ -209,8 +233,10 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 简单的是否存在,自动拼装hql语句
+	 * 简单的是否存在,自动拼装hql语句.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-7-27 下午01:49:53
 	 * @param pojoName
 	 *            pojo名称 如User
 	 * @param filedName
@@ -218,8 +244,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param paramValue
 	 *            值 注意类型
 	 * @return 存在返回true,不存在返回false
-	 * @author 金鑫
-	 * @version 1.0 2010-7-27 下午01:49:53
 	 */
 	public boolean isExist(String pojoName,String filedName,Object paramValue){
 		String hql = "select " + filedName + " from " + pojoName + " where " + filedName + "=?";
@@ -227,15 +251,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 查询第一行数据
+	 * 查询第一行数据.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-28 下午01:32:59
 	 * @param hql
 	 *            hql语句
 	 * @param params
 	 *            可变参数
 	 * @return 第一行数据
-	 * @author 金鑫
-	 * @version 1.0 2009-12-28 下午01:32:59
 	 */
 	public int searchUniqueResult(String hql,Object...params){
 		Object uniqueResult = searchUniqueResult_Object(hql, params);
@@ -249,15 +273,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 查询第一行数据
+	 * 查询第一行数据.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-28 下午01:38:16
 	 * @param hql
 	 *            hql语句
 	 * @param params
 	 *            可变参数
 	 * @return 第一行数据 object类型的
-	 * @author 金鑫
-	 * @version 1.0 2009-12-28 下午01:38:16
 	 */
 	public Object searchUniqueResult_Object(final String hql,final Object...params){
 		return super.getHibernateTemplate().execute(new HibernateCallback(){
@@ -272,15 +296,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 将命名参数与一个对象的属性值绑定在一起查询
+	 * 将命名参数与一个对象的属性值绑定在一起查询.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-11 下午01:25:39
 	 * @param hql
 	 *            编写的hql语句,含有命名参数
 	 * @param object
 	 *            hql参数对应的entity
 	 * @return 查到数据的集合
-	 * @author 金鑫
-	 * @version 1.0 2010-1-11 下午01:25:39
 	 */
 	public List searchByProperties(final String hql,final Object object){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
@@ -302,15 +326,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 它会把命名参数与一个持久化对象相关联 查询
+	 * 它会把命名参数与一个持久化对象相关联 查询.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-11 下午01:35:57
 	 * @param hql
 	 *            编写的hql语句,含有命名参数
 	 * @param map
 	 *            命名参数和持久对象 组合的map
 	 * @return 查到的集合
-	 * @author 金鑫
-	 * @version 1.0 2010-1-11 下午01:35:57
 	 */
 	public List searchByEntity(final String hql,final Map<String, Object> map){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
@@ -335,7 +359,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 利用准则实现模糊Anywhere查询
+	 * 利用准则实现模糊Anywhere查询.
 	 * 
 	 * @param clz
 	 *            对象名
@@ -343,7 +367,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            对象模版(包含所有的查询条件等)
 	 * @return 集合
 	 */
-	public List selectLikeInAnywhere(final Class clz,final Object object){
+	public List selectLikeInAnywhere(final Class<?> clz,final Object object){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
 			public Object doInHibernate(Session session){
@@ -353,7 +377,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 利用准则实现模糊Start查询
+	 * 利用准则实现模糊Start查询.
 	 * 
 	 * @param clz
 	 *            对象名
@@ -361,7 +385,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            对象模版(包含所有的查询条件等)
 	 * @return 集合
 	 */
-	public List selectLikeInStart(final Class clz,final Object object){
+	public List selectLikeInStart(final Class<?> clz,final Object object){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
 			public Object doInHibernate(Session session){
@@ -372,8 +396,10 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 
 	// [end]
 	/**
-	 * 利用准则,获得查询集合
+	 * 利用准则,获得查询集合.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-11 下午01:17:27
 	 * @param session
 	 *            session
 	 * @param clz
@@ -382,11 +408,9 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            对象模版(包含所有的查询条件等)
 	 * @param matchMode
 	 *            匹配模式
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2010-1-11 下午01:17:27
+	 * @return the criteria list
 	 */
-	List getCriteriaList(Session session,Class clz,Object object,MatchMode matchMode){
+	List getCriteriaList(Session session,Class<?> clz,Object object,MatchMode matchMode){
 		Criteria criteria = session.createCriteria(clz);
 		if (null != object){
 			// Criteria criteria = session.createCriteria(TRegister.class);//生成一个Criteria实例
@@ -416,7 +440,13 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	// [start] 增删改
-	/** *********************** 增删改 ************************************** */
+	/**
+	 * *********************** 增删改 **************************************.
+	 * 
+	 * @param object
+	 *            the object
+	 * @return true, if successful
+	 */
 	/**
 	 * 增加 保存新的实例
 	 * 
@@ -438,13 +468,13 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 更新对象(修改) 更新实例的状态，要求entity是持久状态
+	 * 更新对象(修改) 更新实例的状态，要求entity是持久状态.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-7-30 下午12:14:07
 	 * @param object
 	 *            需要被修改的对象 更新实例的状态，要求entity是持久状态
 	 * @return 是否更新成功
-	 * @author 金鑫
-	 * @version 1.0 2010-7-30 下午12:14:07
 	 */
 	public boolean update(T object){
 		try{
@@ -472,11 +502,11 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * 如果设置为any，那么表示对象始终存在，会始终调用update
 	 * </pre>
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-7-30 下午12:15:24
 	 * @param object
 	 *            object
 	 * @return 成功true
-	 * @author 金鑫
-	 * @version 1.0 2010-7-30 下午12:15:24
 	 */
 	public boolean saveOrUpdate(Object object){
 		try{
@@ -489,13 +519,13 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 删除
+	 * 删除.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-4-12 下午09:22:10
 	 * @param object
 	 *            删除的实体
 	 * @return 成功true 否则flase
-	 * @author 金鑫
-	 * @version 1.0 2010-4-12 下午09:22:10
 	 */
 	public boolean delete(Object object){
 		try{
@@ -508,15 +538,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 批删除方法 删除集合内全部持久化类实例
+	 * 批删除方法 删除集合内全部持久化类实例.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-11 下午01:02:57
 	 * @param entities
 	 *            删除的实体集合
 	 * @return 成功true
-	 * @author 金鑫
-	 * @version 1.0 2010-1-11 下午01:02:57
 	 */
-	public boolean deleteAll(Collection entities){
+	public boolean deleteAll(Collection<?> entities){
 		try{
 			super.getHibernateTemplate().deleteAll(entities);
 		}catch (Exception ex){
@@ -527,32 +557,32 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 根据主键删除对象
+	 * 根据主键删除对象.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-4-12 下午09:21:37
 	 * @param cl
 	 *            类名
 	 * @param id
 	 *            主键
 	 * @return 成功true 否则flase
-	 * @author 金鑫
-	 * @version 1.0 2010-4-12 下午09:21:37
 	 */
-	public boolean deleteById(Class cl,Object id){
+	public boolean deleteById(Class<?> cl,Object id){
 		return deleteById(cl, ObjectUtil.toBigDecimal(id));
 	}
 
 	/**
-	 * 根据主键删除对象
+	 * 根据主键删除对象.
 	 * 
+	 * @author 徐新望
+	 * @version 1.0
 	 * @param cl
 	 *            类名
 	 * @param id
 	 *            主键
 	 * @return 成功true 否则flase
-	 * @author 徐新望
-	 * @version 1.0
 	 */
-	public boolean deleteById(Class cl,Serializable id){
+	public boolean deleteById(Class<?> cl,Serializable id){
 		try{
 			getHibernateTemplate().delete(getHibernateTemplate().get(cl, id));
 			return true;
@@ -563,14 +593,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * hql语句添加删除
+	 * hql语句添加删除.
 	 * 
+	 * @version 1.0 2009-5-5下午02:51:41
+	 * @version 2.0 2010-1-11 下午12:06:57
 	 * @param hql
 	 *            hql语句
 	 * @param params
 	 *            可变参数
-	 * @version 1.0 2009-5-5下午02:51:41
-	 * @version 2.0 2010-1-11 下午12:06:57
+	 * @return true, if successful
 	 */
 	public boolean executeUpdateHQL(final String hql,final Object...params){
 		int rI = executeUpdate(hql, params);
@@ -578,15 +609,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 执行hql语句，进行增删该等操作
+	 * 执行hql语句，进行增删该等操作.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-11 下午12:04:39
 	 * @param hql
 	 *            hql
 	 * @param params
 	 *            可变参数
 	 * @return 返回操作数量
-	 * @author 金鑫
-	 * @version 1.0 2010-1-11 下午12:04:39
 	 */
 	public Integer executeUpdate(final String hql,final Object...params){
 		return (Integer) super.getHibernateTemplate().execute(new HibernateCallback(){
@@ -1062,8 +1093,10 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	//	}
 
 	/**
-	 * 分页查询,返回集合
+	 * 分页查询,返回集合.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-2-26 上午10:36:04
 	 * @param firstPage
 	 *            第几页
 	 * @param pageSize
@@ -1073,8 +1106,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param paramsList
 	 *            所需要参数
 	 * @return List
-	 * @author 金鑫
-	 * @version 1.0 2010-2-26 上午10:36:04
 	 */
 	public List searchPageList(final int firstPage,final int pageSize,final String hql,final List paramsList){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
@@ -1087,8 +1118,9 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 分页查询 带泛型
+	 * 分页查询 带泛型.
 	 * 
+	 * @author 徐新望
 	 * @param hql
 	 *            sql语句
 	 * @param params
@@ -1098,15 +1130,15 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param pageSize
 	 *            一页几条
 	 * @return List
-	 * @author 徐新望
 	 */
 	public List pageQuery(String hql,Object[] params,Integer firstPage,Integer pageSize){
 		return searchPageList(firstPage, pageSize, hql, params);
 	}
 
 	/**
-	 * 分页查询2 不带泛型
+	 * 分页查询2 不带泛型.
 	 * 
+	 * @author 徐新望
 	 * @param hql
 	 *            sql语句
 	 * @param params
@@ -1116,15 +1148,16 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param pageSize
 	 *            一页几条
 	 * @return List
-	 * @author 徐新望
 	 */
 	public List pageQuery2(String hql,Object[] params,Integer firstPage,Integer pageSize){
 		return searchPageList(firstPage, pageSize, hql, params);
 	}
 
 	/**
-	 * 分页查询,返回集合
+	 * 分页查询,返回集合.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-25 下午04:57:41
 	 * @param firstPage
 	 *            第几页
 	 * @param pageSize
@@ -1134,8 +1167,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param params
 	 *            可变参数
 	 * @return List
-	 * @author 金鑫
-	 * @version 1.0 2009-12-25 下午04:57:41
 	 */
 	public List searchPageList(final Integer firstPage,final Integer pageSize,final String hql,final Object...params){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
@@ -1148,8 +1179,10 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 用于 "查询最新的?条" 业务
+	 * 用于 "查询最新的?条" 业务.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-25 下午05:06:44
 	 * @param hql
 	 *            hql语句
 	 * @param pageSize
@@ -1157,8 +1190,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param params
 	 *            可变参数
 	 * @return 集合
-	 * @author 金鑫
-	 * @version 1.0 2009-12-25 下午05:06:44
 	 */
 	public List searchPagination_New(final String hql,final int pageSize,final Object...params){
 		return searchPageList(1, pageSize, hql, params);
@@ -1188,6 +1219,8 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	/**
 	 * 获得 org.hibernate.Query对象 把参数也设定好
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2009-12-28 下午01:35:12
 	 * @param session
 	 *            org.hibernate.Session
 	 * @param hql
@@ -1195,8 +1228,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param params
 	 *            可变参数
 	 * @return 参数设定好的org.hibernate.Query对象
-	 * @author 金鑫
-	 * @version 1.0 2009-12-28 下午01:35:12
 	 */
 	Query getQuery(Session session,String hql,Object...params){
 		Query query = session.createQuery(hql);
@@ -1209,9 +1240,12 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 获得分页的query
+	 * 获得分页的query.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-21 下午04:28:00
 	 * @param session
+	 *            the session
 	 * @param hql
 	 *            组合好的hql语句
 	 * @param showPage
@@ -1220,9 +1254,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            显示多少行
 	 * @param params
 	 *            可变参数
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2010-1-21 下午04:28:00
+	 * @return the page query
 	 */
 	Query getPageQuery(Session session,String hql,Integer showPage,Integer showRows,Object...params){
 		Query query = getQuery(session, hql, params);
@@ -1230,9 +1262,12 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 获得分页的query
+	 * 获得分页的query.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-21 下午04:40:53
 	 * @param session
+	 *            the session
 	 * @param hql
 	 *            组合好的hql语句
 	 * @param showPage
@@ -1241,9 +1276,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 *            显示多少行
 	 * @param paramsList
 	 *            参数集合
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2010-1-21 下午04:40:53
+	 * @return the page query
 	 */
 	Query getPageQuery(Session session,String hql,int showPage,int showRows,List paramsList){
 		Query query = getQuery(session, hql, paramsList);
@@ -1251,17 +1284,17 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 将query设置成分页的query
+	 * 将query设置成分页的query.
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-1-21 下午04:44:53
 	 * @param query
 	 *            Query
 	 * @param showPage
 	 *            从第几页开始 第一页传进来1
 	 * @param showRows
 	 *            显示多少行
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2010-1-21 下午04:44:53
+	 * @return the query
 	 */
 	Query setPageQuery(Query query,Integer showPage,Integer showRows){
 		if (Validator.isNotNullOrEmpty(showPage) && Validator.isNotNullOrEmpty(showRows)){
@@ -1277,6 +1310,8 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	/**
 	 * 获得 org.hibernate.Query对象 把参数也设定好
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010年1月9日 16:23:40
 	 * @param session
 	 *            org.hibernate.Session
 	 * @param hql
@@ -1284,8 +1319,6 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * @param paramsList
 	 *            参数列表
 	 * @return 参数设定好的org.hibernate.Query对象
-	 * @author 金鑫
-	 * @version 1.0 2010年1月9日 16:23:40
 	 */
 	Query getQuery(Session session,String hql,List paramsList){
 		Query query = session.createQuery(hql);
@@ -1299,7 +1332,12 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 
 	// [end]
 	// [start] 其它
-	/** ****************************** 其它 *************************************** */
+	/**
+	 * ****************************** 其它 ***************************************.
+	 * 
+	 * @param object
+	 *            the object
+	 */
 	/**
 	 * 刷新object对象的状态
 	 * 
@@ -1312,19 +1350,28 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 查询的是缓存而不是数据库
+	 * 查询的是缓存而不是数据库.
 	 * 
-	 * @param object
-	 * @return 缓存中是否包含该对象
 	 * @author 金鑫
 	 * @version 1.0 2009-9-19下午05:15:10
+	 * @param object
+	 *            the object
+	 * @return 缓存中是否包含该对象
 	 */
 	public boolean contains(Object object){
 		return getHibernateTemplate().contains(object);
 	}
 
 	// [end]
-	/** ***************************** 获得主键编号 ****************************** */
+	/**
+	 * ***************************** 获得主键编号 ******************************.
+	 * 
+	 * @param pojoName
+	 *            the pojo name
+	 * @param idName
+	 *            the id name
+	 * @return the big decimal
+	 */
 	/**
 	 * 添加对象时,生成主键编号.
 	 * 
@@ -1353,11 +1400,11 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	 * idName生成方式:pojoName首字母小写,添加&quot;Id&quot; 后缀
 	 * </pre>
 	 * 
+	 * @author 金鑫
+	 * @version 1.0 2010-8-9 上午11:11:53
 	 * @param pojoName
 	 *            pojo对象名称
 	 * @return 添加对象时,生成主键编号.
-	 * @author 金鑫
-	 * @version 1.0 2010-8-9 上午11:11:53
 	 */
 	public BigDecimal createMaxId(String pojoName){
 		String idName = StringUtil.firstCharToLowerCase(pojoName) + "Id";
@@ -1365,7 +1412,19 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	}
 
 	// [start] SQL相关
-	/** ***************************** SQL相关 ********************************** */
+	/**
+	 * ***************************** SQL相关 **********************************.
+	 * 
+	 * @param hql
+	 *            the hql
+	 * @param p
+	 *            the p
+	 * @param page
+	 *            the page
+	 * @param size
+	 *            the size
+	 * @return the list
+	 */
 	/**
 	 * 执行SQL语句
 	 * 

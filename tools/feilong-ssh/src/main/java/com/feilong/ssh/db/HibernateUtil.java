@@ -61,7 +61,7 @@ public class HibernateUtil{
 	 * @author 金鑫
 	 * @version 1.0 2010-8-9 下午01:49:26
 	 */
-	private static PersistentClass getPersistentClass(Class clazz){
+	private static PersistentClass getPersistentClass(Class<?> clazz){
 		synchronized (HibernateUtil.class){
 			PersistentClass persistentClass = getHibernateConfiguration().getClassMapping(clazz.getName());
 			if (persistentClass == null){
@@ -79,7 +79,7 @@ public class HibernateUtil{
 	 *            实体类
 	 * @return 表名
 	 */
-	public static String getTableName(Class clazz){
+	public static String getTableName(Class<?> clazz){
 		return getPersistentClass(clazz).getTable().getName();
 	}
 
@@ -90,7 +90,7 @@ public class HibernateUtil{
 	 *            实体类
 	 * @return 主键字段名称
 	 */
-	public static String getPkColumnName(Class clazz){
+	public static String getPkColumnName(Class<?> clazz){
 		Table table = getPersistentClass(clazz).getTable();
 		return table.getPrimaryKey().getColumn(0).getName();
 	}
@@ -104,7 +104,7 @@ public class HibernateUtil{
 	 *            属性名称
 	 * @return 字段名称
 	 */
-	public static String getColumnName(Class clazz,String propertyName){
+	public static String getColumnName(Class<?> clazz,String propertyName){
 		PersistentClass persistentClass = getPersistentClass(clazz);
 		Property property = persistentClass.getProperty(propertyName);
 		Iterator it = property.getColumnIterator();
@@ -124,7 +124,7 @@ public class HibernateUtil{
 	 * @author 金鑫
 	 * @version 1.0 2010-3-26 上午10:31:21
 	 */
-	public static String getPrimaryKeyName(Class pojoClass){
+	public static String getPrimaryKeyName(Class<?> pojoClass){
 		Table table = getTable(pojoClass);
 		PrimaryKey primaryKey = table.getPrimaryKey();
 		String primaryKeyName = "";
@@ -142,7 +142,7 @@ public class HibernateUtil{
 	 * @author 金鑫
 	 * @version 1.0 2010-8-9 上午11:41:14
 	 */
-	public static Table getTable(Class pojoClass){
+	public static Table getTable(Class<?> pojoClass){
 		String entityName = pojoClass.getName();
 		Configuration configuration = getHibernateConfiguration();
 		configuration.configure(configLocationPath);

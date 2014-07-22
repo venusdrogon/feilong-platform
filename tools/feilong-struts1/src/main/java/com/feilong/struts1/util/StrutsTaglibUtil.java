@@ -48,7 +48,7 @@ public class StrutsTaglibUtil{
 			if (null != currentCollection){
 				// 构建此集合的迭代器
 				if (currentCollection instanceof Enumeration){
-					iterator = new IteratorAdapter((Enumeration) currentCollection);
+					iterator = new IteratorAdapter((Enumeration<?>) currentCollection);
 				}
 			}
 		}

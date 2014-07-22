@@ -42,7 +42,7 @@ public class XFireUtil{
 	 * @author 金鑫
 	 * @version 1.0 2010-9-21 下午02:08:15
 	 */
-	public Object getInterface(Class clz,String serviceUrl){
+	public Object getInterface(Class<?> clz,String serviceUrl){
 		// 实例化对象工厂
 		ObjectServiceFactory objectServiceFactory = new ObjectServiceFactory();
 		// 创建服务的元数据,通过服务工厂创建服务类型，只包含外观(接口),创建IBankingService模型 就是服务的元数据

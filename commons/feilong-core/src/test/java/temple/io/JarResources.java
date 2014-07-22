@@ -1,44 +1,59 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package temple.io;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-import org.apache.commons.lang3.ClassUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
- * jAR文件是归档文件，因此需要对该归档文件进行解析
+ * jAR文件是归档文件，因此需要对该归档文件进行解析.
  * 
  * @author 金鑫 2010-2-5 下午12:03:47
  */
 public final class JarResources{
 
+	/** The Constant log. */
 	private final static Logger	log				= LoggerFactory.getLogger(JarResources.class);
 
 	// 一些重要字段用来跟踪和存储指定JAR文件的内容。
+	/** The debug on. */
 	public boolean				debugOn			= false;
 
+	/** The ht sizes. */
 	private Hashtable			htSizes			= new Hashtable();
 
+	/** The ht jar contents. */
 	private Hashtable			htJarContents	= new Hashtable();
 
+	/** The jar file name. */
 	private String				jarFileName;
 
 	/**
-	 * 在类进行实例化时设置JAR的文件名，然后调用init()方法完成所有的初始化工作
+	 * 在类进行实例化时设置JAR的文件名，然后调用init()方法完成所有的初始化工作.
 	 * 
 	 * @param jarFileName
 	 *            jar文件名称
@@ -52,13 +67,13 @@ public final class JarResources{
 	 * init()方法把指定JAR文件的全部内容装入到一个杂凑表(hashtable)中(杂凑表名可以从资源名进行访问)<br>
 	 * init()是一个功能相当强大的方法，让我们来逐步理解它的功能。<br>
 	 * ZipFile类使我们基本上能访问JAR/Zip压缩文档的头部信息。这和一个文件系统的目录信息相似。<br>
-	 * 在这里我们列出Zip文件的所有条目(entry)，并且按照文档中的每个资源的尺寸创建htSizes杂凑表(hashtable)。
+	 * 在这里我们列出Zip文件的所有条目(entry)，并且按照文档中的每个资源的尺寸创建htSizes杂凑表(hashtable)。.
 	 */
 	private void init(){
 		try{
 			// extracts just sizes only.
 			ZipFile zipFile = new ZipFile(jarFileName);
-			Enumeration enumeration = zipFile.entries();
+			Enumeration<?> enumeration = zipFile.entries();
 			while (enumeration.hasMoreElements()){
 				ZipEntry zipEntry = (ZipEntry) enumeration.nextElement();
 				if (debugOn){
@@ -114,6 +129,7 @@ public final class JarResources{
 	 * 
 	 * @param zipEntry
 	 *            a ZipEntry
+	 * @return the string
 	 */
 	private String dumpZipEntry(ZipEntry zipEntry){
 		StringBuffer sb = new StringBuffer();
@@ -143,19 +159,22 @@ public final class JarResources{
 	 * 
 	 * @param resourceName
 	 *            a resource name.
+	 * @return the resource
 	 */
 	public byte[] getResource(String resourceName){
 		return (byte[]) htJarContents.get(resourceName);
 	}
 
 	/**
-	 * 获得资源内容
+	 * 获得资源内容.
 	 * 
 	 * @param jarFileName
 	 *            jarFileName 绝对路径的JAR文件
 	 * @param resourceName
 	 *            resourceName 资源文件的路径 形如 bin/template/java/action.template 即前面不要/
+	 * @return the resource content
 	 * @throws UnsupportedEncodingException
+	 *             the unsupported encoding exception
 	 */
 	public static String getResourceContent(String jarFileName,String resourceName) throws UnsupportedEncodingException{
 		JarResources jarResources = new JarResources(jarFileName);

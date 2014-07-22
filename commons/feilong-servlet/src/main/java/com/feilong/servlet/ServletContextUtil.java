@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.servlet;
 
@@ -29,19 +29,21 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * ServletContextUtil
+ * ServletContextUtil.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-31 下午12:53:01
  */
 public final class ServletContextUtil{
 
+	/** The Constant log. */
 	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(ServletContextUtil.class);
 
 	/**
 	 * servletContext.log servletContext相关信息,一般 启动时 调用
 	 * 
 	 * @param servletContext
+	 *            the servlet context
 	 */
 	public static void showProperty(ServletContext servletContext){
 		// 返回servlet运行的servlet 容器的版本和名称。
@@ -58,9 +60,11 @@ public final class ServletContextUtil{
 	}
 
 	/**
-	 * 遍历显示servletContext的attribute,将 name /attributeValue 存入到map
+	 * 遍历显示servletContext的attribute,将 name /attributeValue 存入到map.
 	 * 
-	 * @param session
+	 * @param servletContext
+	 *            the servlet context
+	 * @return the attribute map
 	 */
 	public static Map<String, Object> getAttributeMap(ServletContext servletContext){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -75,9 +79,11 @@ public final class ServletContextUtil{
 	}
 
 	/**
-	 * 遍历显示servletContext的 InitParameterNames,将 name /attributeValue 存入到map
+	 * 遍历显示servletContext的 InitParameterNames,将 name /attributeValue 存入到map.
 	 * 
 	 * @param servletContext
+	 *            the servlet context
+	 * @return the inits the parameter map
 	 */
 	public static Map<String, String> getInitParameterMap(ServletContext servletContext){
 		Map<String, String> map = new HashMap<String, String>();

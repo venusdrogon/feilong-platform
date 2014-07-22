@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.excel;
 
@@ -32,7 +32,7 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 生成excel文档(POI)
+ * 生成excel文档(POI).
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2009-5-19下午08:08:37
@@ -42,7 +42,7 @@ import com.feilong.commons.core.util.Validator;
 public final class ExcelCreateUtil{
 
 	/**
-	 * 将数据集合转换成excel,将excel生成到文件中
+	 * 将数据集合转换成excel,将excel生成到文件中.
 	 * 
 	 * @param columnsTitle
 	 *            列标题数组
@@ -50,7 +50,10 @@ public final class ExcelCreateUtil{
 	 *            list
 	 * @param fileName
 	 *            文件名称(有路径需要加)
+	 * @param excelEntity
+	 *            the excel entity
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public void createExcel(String[] columnsTitle,List<?> list,String fileName,ExcelConfigEntity excelEntity) throws IOException{
 		FileOutputStream outputStream = new FileOutputStream(fileName);
@@ -58,7 +61,7 @@ public final class ExcelCreateUtil{
 	}
 
 	/**
-	 * 将数据集合转换成excel
+	 * 将数据集合转换成excel.
 	 * 
 	 * @param columnsTitle
 	 *            列标题数组
@@ -69,6 +72,7 @@ public final class ExcelCreateUtil{
 	 * @param outputStream
 	 *            outputStream 输出流
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public void createExcel(String[] columnsTitle,List<?> dataList,ExcelConfigEntity excelConfigEntity,OutputStream outputStream)
 			throws IOException{
@@ -100,12 +104,14 @@ public final class ExcelCreateUtil{
 	}
 
 	/**
-	 * 设置 sheet 样式
+	 * 设置 sheet 样式.
 	 * 
 	 * @param sheet
+	 *            the sheet
 	 * @param columnsLength
 	 *            列长度
 	 * @param excelConfig
+	 *            the excel config
 	 */
 	private void setSheetStyle(HSSFSheet sheet,int columnsLength,ExcelConfigEntity excelConfig){
 		// 打印网格线
@@ -128,16 +134,18 @@ public final class ExcelCreateUtil{
 
 	// **********************************************************************************
 	/**
-	 * 创建数据行
+	 * 创建数据行.
 	 * 
-	 * @param sheet
-	 *            表
-	 * @param list
-	 *            list 查询的数组集合
-	 * @param columnCount
-	 *            列数
 	 * @author 金鑫
 	 * @version 1.0 2010-4-23 上午10:34:42
+	 * @param sheet
+	 *            表
+	 * @param dataList
+	 *            the data list
+	 * @param columnCount
+	 *            列数
+	 * @param excelEntity
+	 *            the excel entity
 	 */
 	private void createExcelDataRow(HSSFSheet sheet,List<?> dataList,int columnCount,ExcelConfigEntity excelEntity){
 
@@ -166,11 +174,14 @@ public final class ExcelCreateUtil{
 	}
 
 	/**
-	 * 创建标题行
+	 * 创建标题行.
 	 * 
 	 * @param workbook
+	 *            the workbook
 	 * @param sheet
+	 *            the sheet
 	 * @param columnsTitle
+	 *            the columns title
 	 */
 	private void createExcelTitleRow(HSSFWorkbook workbook,HSSFSheet sheet,String[] columnsTitle){
 
@@ -198,14 +209,14 @@ public final class ExcelCreateUtil{
 	// ***************************************************************************
 
 	/**
-	 * 设置单元格值和样式
+	 * 设置单元格值和样式.
 	 * 
 	 * @param cell
 	 *            单元格
-	 * @param value
-	 *            值
 	 * @param rowIndex
 	 *            行号
+	 * @param value
+	 *            值
 	 * @param excelConfigEntity
 	 *            实体
 	 */
@@ -264,7 +275,7 @@ public final class ExcelCreateUtil{
 	}
 
 	/**
-	 * 表格设置值
+	 * 表格设置值.
 	 * 
 	 * @param cell
 	 *            表格

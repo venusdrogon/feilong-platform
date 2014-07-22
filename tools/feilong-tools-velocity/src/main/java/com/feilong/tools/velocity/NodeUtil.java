@@ -38,6 +38,8 @@ public class NodeUtil{
 	/**
 	 * 获得 node map for log.
 	 * 
+	 * @param internalContextAdapter
+	 *            the internal context adapter
 	 * @param node
 	 *            the node
 	 * @return the node map for log

@@ -79,6 +79,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#connect()
 	 */
 	@Override
@@ -136,6 +137,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#disconnect()
 	 */
 	protected void disconnect(){
@@ -154,6 +156,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#cd(java.lang.String)
 	 */
 	@Override
@@ -170,6 +173,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#mkdir(java.lang.String)
 	 */
 	@Override
@@ -185,6 +189,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#put(java.io.FileInputStream, java.lang.String)
 	 */
 	@Override
@@ -201,6 +206,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
 	 */
 	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
@@ -225,6 +231,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#rmdir(java.lang.String)
 	 */
 	@Override
@@ -248,6 +255,7 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#rm(java.lang.String)
 	 */
 	@Override
@@ -278,7 +286,9 @@ public class FTPUtil extends FileTransfer{
 	}
 
 	// TODO 可能不精准
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.filetransfer.FileTransfer#isDirectory(java.lang.String)
 	 */
 	protected boolean isDirectory(String remotePath) throws Exception{
@@ -366,17 +376,15 @@ public class FTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#_downRemoteSingleFile(java.lang.String, java.lang.String)
 	 */
 	protected boolean _downRemoteSingleFile(String remoteSingleFile,String filePath) throws Exception{
-
 		BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
 		boolean success = ftpClient.retrieveFile(remoteSingleFile, bufferedOutputStream);
 
-		if (bufferedOutputStream != null){
-			bufferedOutputStream.flush();
-			bufferedOutputStream.close();
-		}
+		bufferedOutputStream.flush();
+		bufferedOutputStream.close();
 		return success;
 	}
 

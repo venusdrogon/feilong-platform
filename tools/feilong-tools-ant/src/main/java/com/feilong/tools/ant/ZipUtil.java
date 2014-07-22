@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.ant;
 
@@ -44,17 +44,18 @@ import com.feilong.commons.core.io.IOWriteUtil;
  */
 public final class ZipUtil{
 
+	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(ZipUtil.class);
 
 	/**
-	 * 将文件夹压缩成压缩文件,后缀为zip
+	 * 将文件夹压缩成压缩文件,后缀为zip.
 	 * 
 	 * @param inputFileName
 	 *            文件夹名称
 	 * @param zipFileName
 	 *            所输出压缩文件夹的名称，打包后,压缩文件名字
 	 * @throws IOException
-	 * @throws Exception
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void zip(String inputFileName,String zipFileName) throws IOException{
 		File file = new File(inputFileName);
@@ -62,13 +63,14 @@ public final class ZipUtil{
 	}
 
 	/**
-	 * 将文件夹压缩成压缩文件,后缀为zip
+	 * 将文件夹压缩成压缩文件,后缀为zip.
 	 * 
 	 * @param inputFile
 	 *            文件夹/文件
 	 * @param zipFileName
 	 *            所输出压缩文件夹的名称，打包后,压缩文件名字
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void zip(File inputFile,String zipFileName) throws IOException{
 		FileOutputStream fileOutputStream = IOUtil.getFileOutputStream(zipFileName);
@@ -82,14 +84,16 @@ public final class ZipUtil{
 	}
 
 	/**
-	 * 将文件夹压缩成压缩文件,后缀为zip
+	 * 将文件夹压缩成压缩文件,后缀为zip.
 	 * 
 	 * @param file
 	 *            文件夹/文件
 	 * @param zipOutputStream
 	 *            zipOutputStream
 	 * @param base
+	 *            the base
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void zip(File file,ZipOutputStream zipOutputStream,String base) throws IOException{
 		// 判断是否为目录
@@ -113,8 +117,8 @@ public final class ZipUtil{
 	/**
 	 * 使用 org.apache.tools.zip解压
 	 * 
-	 * @param zipFileName
-	 *            被解压缩的zip文件
+	 * @param unZipFileName
+	 *            the un zip file name
 	 * @param outputDirectory
 	 *            解压到哪个目录
 	 */
@@ -154,7 +158,7 @@ public final class ZipUtil{
 	}
 
 	/**
-	 * 开始写入新的 ZIP 文件条目并将流定位到条目数据的开始处。
+	 * 开始写入新的 ZIP 文件条目并将流定位到条目数据的开始处。.
 	 * 
 	 * @param zipOutputStream
 	 *            此类为以 ZIP 文件格式写入文件实现输出流过滤器。包括对已压缩和未压缩条目的支持。

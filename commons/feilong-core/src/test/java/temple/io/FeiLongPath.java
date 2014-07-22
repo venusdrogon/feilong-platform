@@ -42,7 +42,7 @@ public class FeiLongPath{
 	 *            一个对象的Class属性
 	 * @return 这个类的class文件位置的绝对路径。 如果没有这个类的定义，则返回null。
 	 */
-	public static String getPathFromClass(Class cls){
+	public static String getPathFromClass(Class<?> cls){
 		String path = null;
 		if (cls == null){
 			throw new NullPointerException();
@@ -83,7 +83,7 @@ public class FeiLongPath{
 	 *            用来定位的类
 	 * @return 相对路径所对应的绝对路径
 	 */
-	public static String getFullPathRelateClass(String relatedPath,Class cls){
+	public static String getFullPathRelateClass(String relatedPath,Class<?> cls){
 		String path = null;
 		String clsPath = getPathFromClass(cls);
 		File clsFile = new File(clsPath);
@@ -105,7 +105,7 @@ public class FeiLongPath{
 	 *            the cls
 	 * @return the class location url
 	 */
-	private static URL getClassLocationURL(final Class cls){
+	private static URL getClassLocationURL(final Class<?> cls){
 		if (cls == null){
 			throw new IllegalArgumentException("null input: cls");
 		}

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package jdk.java.lang.generic;
+package com.feilong.commons.core.lang;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.TypeVariable;
@@ -43,12 +43,12 @@ public class GenericTest{
 	 *            the clz
 	 * @return the value
 	 */
-	public static <T> T getValue(String a,Class clz){
+	public static <T> T getValue(String a,Class<?> clz){
 		log.info("" + (clz == String.class));
 		T aT = null;
 		try{
 			Method method = GenericTest.class.getMethod("getValue", String.class, Class.class);
-			TypeVariable typeVariable = (TypeVariable) method.getGenericReturnType();
+			TypeVariable<?> typeVariable = (TypeVariable<?>) method.getGenericReturnType();
 			log.info(typeVariable.toString());
 			log.info(typeVariable.getName());
 			log.info("" + typeVariable.getBounds()[0]);

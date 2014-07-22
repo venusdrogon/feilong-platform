@@ -98,9 +98,6 @@ public class CommonTest{
 	/**
 	 * Gets the hash code.
 	 * 
-	 * @param obj
-	 *            the obj
-	 * @return the hash code
 	 */
 	@Test
 	public void testGetHashCode2(){
