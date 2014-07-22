@@ -60,7 +60,7 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  * 				maxIndexPages="3" 
  * 				pageParamName="page" 
  * 				pageSize="10"
- * 				locale="${requestScope['org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE']}" 
+ * 				locale="}${requestScope['org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE']}{@code" 
  * 				vmPath="velocity/feilong-default-pager.vm" 
  * 				skin="scott"
  * 				pagerHtmlAttributeName="feilongPagerHtml1" />

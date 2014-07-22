@@ -389,28 +389,6 @@ public class PagerParams implements Serializable{
 				.append(pageSize)//
 				.append(totalCount)//
 				.toHashCode();
-
-		//		final int prime = 37;
-		//		int hashResult = 1;
-		//		hashResult += (hashResult + getHashCode(charsetType) + getHashCode(locale)) * prime;
-		//		hashResult += getHashCode(pageParamName);
-		//		hashResult += getHashCode(pageUrl);
-		//		hashResult += getHashCode(skin);
-		//		hashResult += getHashCode(vmPath);
-		//
-		//		hashResult += getHashCode(debugIsNotParseVM);
-		//		hashResult += getHashCode(currentPageNo);
-		//		hashResult += getHashCode(maxIndexPages);
-		//		hashResult += getHashCode(maxShowPageNo);
-		//		hashResult += getHashCode(pageSize);
-		//		hashResult += getHashCode(totalCount);
-		//
-		//		//		log.info("" + getHashCode(charsetType) + " " + getHashCode(locale) + " " + getHashCode(pageParamName) + " " + " "
-		//		//				+ getHashCode(pageUrl) + " " + getHashCode(skin) + " " + getHashCode(vmPath) + " " + getHashCode(debugIsNotParseVM) + " "
-		//		//				+ getHashCode(currentPageNo) + " " + getHashCode(maxIndexPages) + " " + getHashCode(maxShowPageNo) + " "
-		//		//				+ getHashCode(pageSize) + " " + getHashCode(totalCount));
-		//
-		//		return hashResult;
 	}
 
 	/*
@@ -453,69 +431,6 @@ public class PagerParams implements Serializable{
 				.append(this.pageSize, pagerParams.getPageSize())//
 				.append(this.totalCount, pagerParams.getTotalCount())//
 				.isEquals();
-
-		//		//先校验null ,否则obj.getClass 会抛出java.lang.NullPointerException
-		//		if (null == obj){
-		//			return false;
-		//		}
-
-		//see String equals
-		//		if (this == obj){
-		//			return true;
-		//		}
-
-		//		if (obj instanceof PagerParams){
-		//			PagerParams pagerParams = (PagerParams) obj;
-		//			if (equals(this.charsetType, pagerParams.getCharsetType())//
-		//					&& equals(this.locale, pagerParams.getLocale())//
-		//					&& equals(this.pageParamName, pagerParams.getPageParamName())//
-		//					&& equals(this.pageUrl, pagerParams.getPageUrl())//
-		//					&& equals(this.skin, pagerParams.getSkin())//
-		//					&& equals(this.vmPath, pagerParams.getVmPath())//
-		//
-		//					&& this.debugIsNotParseVM == pagerParams.getDebugIsNotParseVM()//
-		//
-		//					//注意 Integer ==   ( -128~127) 是可以的,其余需要用equals
-		//					&& equals(this.currentPageNo, pagerParams.getCurrentPageNo())//
-		//					&& equals(this.maxIndexPages, pagerParams.getMaxIndexPages())//
-		//					&& equals(this.maxShowPageNo, pagerParams.getMaxShowPageNo())//
-		//					&& equals(this.pageSize, pagerParams.getPageSize())//
-		//					&& equals(this.totalCount, pagerParams.getTotalCount())//
-		//			){
-		//				return true;
-		//			}
-		//		}
-		//		return false;
-
-	}
-
-	/**
-	 * 如果null==obj1,返回 null==obj2,否则返回 obj1.equals(obj2)
-	 * 
-	 * @param obj1
-	 *            the obj1
-	 * @param obj2
-	 *            the obj2
-	 * @return true, if successful
-	 * @since 1.0.7
-	 */
-	private boolean equals(Object obj1,Object obj2){
-		if (null == obj1){
-			return null == obj2;
-		}
-		return obj1.equals(obj2);
-	}
-
-	/**
-	 * 如果obj是null 返回0 否则 返回obj.hashCode()
-	 * 
-	 * @param obj
-	 *            the obj
-	 * @return 如果obj是null 返回0 否则 返回obj.hashCode()
-	 * @since 1.0.7
-	 */
-	private int getHashCode(Object obj){
-		return (null == obj) ? 0 : obj.hashCode();
 	}
 
 	/*
