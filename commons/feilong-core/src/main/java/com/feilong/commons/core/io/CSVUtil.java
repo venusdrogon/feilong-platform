@@ -16,7 +16,7 @@
 package com.feilong.commons.core.io;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.SystemUtils;
@@ -84,10 +84,11 @@ public final class CSVUtil{
 	public final static void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams) throws IOException{
 		// 标题和内容都是空,没有任何意义,不创建文件
 		if (Validator.isNullOrEmpty(columnTitles) && Validator.isNullOrEmpty(dataList)){
-			log.error("columnTitles and linkedList all null!");
+			//TODO 应该抛异常
+			log.error("columnTitles and dataList all null!");
 		}else{
 			if (Validator.isNullOrEmpty(dataList)){
-				dataList = new LinkedList<Object[]>();
+				dataList = new ArrayList<Object[]>();
 			}
 			if (Validator.isNotNullOrEmpty(columnTitles)){
 				dataList.add(0, columnTitles);

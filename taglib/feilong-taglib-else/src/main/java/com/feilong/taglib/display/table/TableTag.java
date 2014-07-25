@@ -15,8 +15,9 @@
  */
 package com.feilong.taglib.display.table;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -92,7 +93,7 @@ public class TableTag extends HtmlTableTag{
 	protected String			scope				= null;
 
 	/** 标题集合. */
-	private LinkedList<String>	titleList			= new LinkedList<String>();
+	private List<String>		titleList			= new ArrayList<String>();
 
 	// -------------------------------------------------------------end
 	// [start] 子标签调用
@@ -119,7 +120,9 @@ public class TableTag extends HtmlTableTag{
 
 	// -------------------------------------------------------------end
 	// [end]
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.AbstractCommonTag#doStartTag()
 	 */
 	@Override
@@ -274,7 +277,9 @@ public class TableTag extends HtmlTableTag{
 		this.collection = collection;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagSupport#setId(java.lang.String)
 	 */
 	@Override
@@ -341,7 +346,9 @@ public class TableTag extends HtmlTableTag{
 		this.indexId = indexId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.jsp.tagext.BodyTagSupport#release()
 	 */
 	@Override

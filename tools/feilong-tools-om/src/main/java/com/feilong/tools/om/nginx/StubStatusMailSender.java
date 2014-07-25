@@ -20,10 +20,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -100,7 +102,7 @@ public class StubStatusMailSender{
 		String[] filenameString = { FileUtil.getFileName(filePath) };
 		mailEntity.setAttachFileNames(filenameString);
 
-		LinkedList<byte[]> attachList = new LinkedList<byte[]>();
+		List<byte[]> attachList = new ArrayList<byte[]>();
 		attachList.add(IOUtil.convertFileToByteArray(new File(filePath)));
 		mailEntity.setAttachList(attachList);
 

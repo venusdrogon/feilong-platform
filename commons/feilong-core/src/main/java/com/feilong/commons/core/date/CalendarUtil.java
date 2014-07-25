@@ -15,11 +15,11 @@
  */
 package com.feilong.commons.core.date;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -194,7 +194,7 @@ public final class CalendarUtil{
 	 * @return 获得一年中所有的周几集合
 	 */
 	public static List<String> getWeekDateStringList(int week,String datePattern){
-		List<String> list = new LinkedList<String>();
+		List<String> list = new ArrayList<String>();
 		/**
 		 * 当前日期
 		 */

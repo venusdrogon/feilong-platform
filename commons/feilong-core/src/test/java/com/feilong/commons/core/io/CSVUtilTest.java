@@ -50,11 +50,11 @@ public class CSVUtilTest{
 		path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.onlyDate));
 		log.info(path);
 		String[] columnTitles = { "a", "b" };
-		List<Object[]> linkedList = new ArrayList<Object[]>();
+		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i = 0; i < 20; i++){
 			Object[] object = { i + "金,鑫", i + "jin'\"xin" };
-			linkedList.add(object);
+			list.add(object);
 		}
-		CSVUtil.write(path, columnTitles, linkedList);
+		CSVUtil.write(path, columnTitles, list);
 	}
 }

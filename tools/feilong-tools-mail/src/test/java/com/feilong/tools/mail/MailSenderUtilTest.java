@@ -21,7 +21,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,12 +32,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
-import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
@@ -47,7 +44,8 @@ import com.feilong.tools.velocity.VelocityUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2011 11:57:48 PM
  */
-@SuppressWarnings("all")public class MailSenderUtilTest{
+@SuppressWarnings("all")
+public class MailSenderUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log			= LoggerFactory.getLogger(MailSenderUtilTest.class);
@@ -152,7 +150,7 @@ import com.feilong.tools.velocity.VelocityUtil;
 		String[] filenameString = { FileUtil.getFileName(fileString) };
 		mailEntity.setAttachFileNames(filenameString);
 
-		LinkedList<byte[]> attachList = new LinkedList<byte[]>();
+		List<byte[]> attachList = new ArrayList<byte[]>();
 		attachList.add(IOUtil.convertFileToByteArray(new File(fileString)));
 		mailEntity.setAttachList(attachList);
 	}

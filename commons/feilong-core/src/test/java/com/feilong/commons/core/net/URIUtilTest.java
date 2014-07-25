@@ -201,6 +201,13 @@ public class URIUtilTest{
 		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("", CharsetType.UTF8)));
 
 	}
+	/**
+	 * Parses the query to value map.
+	 */
+	@Test
+	public void parseQueryToValueMap12(){
+		log.info(JsonUtil.format(URIUtil.parseQueryToValueMap("subject=%E4%B8%8A%E6%B5%B7%E5%AE%9D%E5%B0%8A%E7%94%B5%E5%95%86&sign_type=MD5&notify_url=http%3A%2F%2Fwww.gymboshop.com%2Fpay%2FdoNotify%2F1.htm&out_trade_no=2014072210034383&return_url=http%3A%2F%2Fwww.gymboshop.com%2Fpay%2FdoReturn%2F1.htm&sign=a6e7dfc7b6dd54a5cd5e8ca91302f934&_input_charset=UTF-8&it_b_pay=50m&total_fee=171.00&error_notify_url=http%3A%2F%2Fwww.gymboshop.com%2Fpay%2FnotifyError.htm%3Ftype%3D1&service=create_direct_pay_by_user&paymethod=directPay&partner=2088511258288082&anti_phishing_key=KP3FUWbOTF63CIcXqg%3D%3D&seller_email=pay%40gymboree.com.cn&payment_type=1", CharsetType.UTF8)));
+	}
 
 	/**
 	 * Parses the query to value map1.

@@ -120,7 +120,9 @@ public final class ArrayUtil{
 	 *            字符串数组
 	 * @return 数组转成LinkedList<br>
 	 *         如果 arrays isNotNullOrEmpty,返回null
+	 * @deprecated 这样的方法 用处不大
 	 */
+	//TODO 这样的方法 用处不大
 	public static <T> LinkedList<T> toLinkedList(T[] arrays){
 		if (Validator.isNotNullOrEmpty(arrays)){
 			LinkedList<T> list = new LinkedList<T>();
@@ -151,8 +153,7 @@ public final class ArrayUtil{
 		if (Validator.isNullOrEmpty(arrays)){
 			return null;
 		}
-		// 这个地方返回的是Arrays类的内部类的对象，而Arrays类里的内部类ArrayList没有实现AbstractList类的add方法，导致抛此异常! strList.add("c");
-		// return Arrays.asList(arrays);
+		// Arrays.asList(arrays)方法 返回的是Arrays类的内部类的对象，而Arrays类里的内部类ArrayList没有实现AbstractList类的add方法，导致抛异常! strList.add("c");
 
 		List<T> list = new ArrayList<T>(Arrays.asList(arrays));
 		return list;
@@ -165,7 +166,9 @@ public final class ArrayUtil{
 	 *            objects
 	 * @return Validator.isNotNullOrEmpty(objects)则返回null<br>
 	 *         一旦其中有值转换不了integer,则出现参数异常
+	 * @deprecated 转成泛型
 	 */
+	//TODO 转成泛型
 	public static Integer[] toIntegers(Object[] objects){
 		if (Validator.isNotNullOrEmpty(objects)){
 			int length = objects.length;

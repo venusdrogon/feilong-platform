@@ -23,10 +23,10 @@ import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_SECOND;
 import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_THEDAY_BEFORE_YESTERDAY;
 import static com.feilong.commons.core.PropertiesConstants.CONFIG_DATE_YESTERDAY;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.feilong.commons.core.text.DateFormatUtil;
@@ -1012,7 +1012,7 @@ public final class DateUtil{
 	@Deprecated
 	public final static List<String> dateList2StringList(List<Date> dateList,String datePattern){
 		if (Validator.isNotNullOrEmpty(dateList)){
-			List<String> stringList = new LinkedList<String>();
+			List<String> stringList = new ArrayList<String>();
 			for (Date date : dateList){
 				stringList.add(date2String(date, datePattern));
 			}
@@ -1382,7 +1382,6 @@ public final class DateUtil{
 
 	/**
 	 * 获得两个日期时间的日期间隔时间集合,用于统计日报表<br>
-	 * 返回的List 为 LinkedList,日期按照顺序排列<br>
 	 * 每天的日期会被重置清零 <code>00:00:00.000</code>
 	 * 
 	 * <pre>
@@ -1411,7 +1410,7 @@ public final class DateUtil{
 	 */
 	@Deprecated
 	public final static List<Date> getIntervalDayList(String fromDate,String toDate,String datePattern){
-		List<Date> dateList = new LinkedList<Date>();
+		List<Date> dateList = new ArrayList<Date>();
 		//***************************************************************/
 		Date begin_Date = string2Date(fromDate, datePattern);
 		Date end_Date = string2Date(toDate, datePattern);

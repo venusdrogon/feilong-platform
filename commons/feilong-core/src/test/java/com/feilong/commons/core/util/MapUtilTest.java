@@ -16,11 +16,14 @@
 package com.feilong.commons.core.util;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -51,5 +54,29 @@ public class MapUtilTest{
 		Integer minValue = MapUtil.getMinValue(object, keys);
 
 		log.info(minValue + "");
+	}
+
+	/**
+	 * TestMapUtilTest.
+	 */
+	@Test
+	public void testMapUtilTest(){
+
+		Map<String, String> object = new LinkedHashMap<String, String>();
+
+		object.put("1", "1");
+		object.put("2", "2");
+		object.put("3", "3");
+		object.put("3", "4");
+		object.put("2", "7");
+		object.put("3", "6");
+		object.put("4", "8");
+
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(object));
+		}
+
+		//assertEquals(expected, actual);
 	}
 }

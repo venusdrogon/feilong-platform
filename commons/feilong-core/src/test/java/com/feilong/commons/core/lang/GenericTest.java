@@ -15,14 +15,12 @@
  */
 package com.feilong.commons.core.lang;
 
-import static org.junit.Assert.*;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -38,10 +36,11 @@ import org.slf4j.LoggerFactory;
  */
 public class GenericTest{
 
+	/** The Constant log. */
 	private static final Logger	log		= LoggerFactory.getLogger(GenericTest.class);
 
 	/** The list. */
-	public List<String>			list	= new LinkedList<String>();
+	public List<String>			list	= new ArrayList<String>();
 
 	/**
 	 * Gets the value.
@@ -77,8 +76,10 @@ public class GenericTest{
 	/**
 	 * TestGenericTest1.
 	 * 
-	 * @throws SecurityException
 	 * @throws NoSuchFieldException
+	 *             the no such field exception
+	 * @throws SecurityException
+	 *             the security exception
 	 */
 	@Test
 	public void testGenericTest1() throws NoSuchFieldException,SecurityException{

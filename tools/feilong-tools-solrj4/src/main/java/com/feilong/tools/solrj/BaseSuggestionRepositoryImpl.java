@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
@@ -16,7 +16,7 @@
 
 package com.feilong.tools.solrj;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrQuery;
@@ -41,7 +41,8 @@ import com.feilong.tools.solrj.paramscommand.SpellingParamCommand;
  */
 public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepository{
 
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(BaseSuggestionRepositoryImpl.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(BaseSuggestionRepositoryImpl.class);
 
 	// Don't Autowired
 	protected SolrServer		solrServer;
@@ -51,8 +52,11 @@ public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepo
 	 */
 	private String				qt	= "/suggest";
 
-	/* (non-Javadoc)
-	 * @see com.jumbo.brandstore.manager.solr.BaseSuggestionRepository#findSuggestionLexeme(com.jumbo.brandstore.manager.solr.command.SpellingParamCommand)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jumbo.brandstore.manager.solr.BaseSuggestionRepository#findSuggestionLexeme(com.jumbo.brandstore.manager.solr.command.
+	 * SpellingParamCommand)
 	 */
 	public List<String> findSuggestionLexeme(SpellingParamCommand spellingParamCommand){
 		SolrQuery solrQuery = new SolrQuery();
@@ -119,7 +123,7 @@ public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepo
 		SpellCheckResponse spellCheckResponse = queryResponse.getSpellCheckResponse();
 		List<Suggestion> suggestionList = spellCheckResponse.getSuggestions();
 		if (Validator.isNotNullOrEmpty(suggestionList)){
-			List<String> suggestionNameList = new LinkedList<String>();
+			List<String> suggestionNameList = new ArrayList<String>();
 			for (Suggestion suggestion : suggestionList){
 				List<String> alternatives = suggestion.getAlternatives();
 				suggestionNameList.addAll(alternatives);

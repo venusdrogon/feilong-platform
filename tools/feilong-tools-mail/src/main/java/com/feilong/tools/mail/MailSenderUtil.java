@@ -17,7 +17,7 @@ package com.feilong.tools.mail;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.activation.CommandMap;
@@ -127,16 +127,16 @@ public final class MailSenderUtil{
 			// 用于组合文本和图片，"related"型的MimeMultipart对象  
 			mimeMultipart.setSubType("related");
 
-			LinkedList<byte[]> linkedList = mailEntity.getAttachList();
-			if (Validator.isNotNullOrEmpty(linkedList)){
+			List<byte[]> attachList = mailEntity.getAttachList();
+			if (Validator.isNotNullOrEmpty(attachList)){
 				String type = "application/octet-stream";
 
-				int size = linkedList.size();
+				int size = attachList.size();
 				for (int i = 0; i < size; i++){
 					// 新建一个存放附件的BodyPart
 					MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
-					byte[] data = linkedList.get(i);
+					byte[] data = attachList.get(i);
 					ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(data, type);
 					DataHandler dataHandler = new DataHandler(byteArrayDataSource);
 					mimeBodyPart.setDataHandler(dataHandler);

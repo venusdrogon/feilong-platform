@@ -15,6 +15,7 @@
  */
 package com.feilong.commons.core.date;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -28,6 +29,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
@@ -699,5 +701,23 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public final void testToCalendar1(){
 		log.info((new Date().getTime() + "").length() + "");
+	}
+
+	/**
+	 * TestDateUtilTest.
+	 */
+	@Test
+	public void testDateUtilTest(){
+		List<Date> dateList = new ArrayList<>();
+		dateList.add(new Date());
+		dateList.add(new Date());
+		dateList.add(new Date());
+		dateList.add(new Date());
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(DateUtil.dateList2StringList(dateList, DatePattern.commonWithMillisecond)));
+		}
+
+		//assertEquals(expected, actual);
 	}
 }

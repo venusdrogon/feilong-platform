@@ -17,8 +17,8 @@ package com.feilong.servlet.jsp;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedMap;
 
@@ -183,7 +183,7 @@ public class ResultUtil{
 		if (isEmpty(result)){
 			return null;
 		}
-		List list = new LinkedList();
+		List list = new ArrayList();
 		SortedMap<Object, Object>[] sortedMaps = result.getRows();
 		// 是否取字段
 		boolean isGetFileds = Validator.isNotNullOrEmpty(fileds);

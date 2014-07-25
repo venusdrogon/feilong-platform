@@ -22,6 +22,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
+
 /**
  * The Class CalendarUtilTest.
  * 
@@ -58,7 +60,6 @@ public class CalendarUtilTest extends BaseDateUtil{
 		// calendar.getActualMaximum(Calendar.DAY_OF_YEAR)
 	}
 
- 
 	/**
 	 * Test get day of year.
 	 */
@@ -67,5 +68,17 @@ public class CalendarUtilTest extends BaseDateUtil{
 		log.debug(CalendarUtil.getDayOfYear(2013, 9, 5) + "");
 		log.debug(CalendarUtil.getDayOfYear(2013, 9, 5) + "");
 		log.debug(CalendarUtil.getDayOfYear(2014, 12, 31) + "");
+	}
+
+	/**
+	 * TestCalendarUtilTest.
+	 */
+	@Test
+	public void testCalendarUtilTest(){
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(CalendarUtil.getWeekDateStringList(5, DatePattern.commonWithMillisecond)));
+		}
+		//assertEquals(expected, actual);
 	}
 }

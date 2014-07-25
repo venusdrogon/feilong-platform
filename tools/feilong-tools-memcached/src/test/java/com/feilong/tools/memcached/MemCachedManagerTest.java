@@ -15,8 +15,6 @@
  */
 package com.feilong.tools.memcached;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,22 +58,6 @@ public class MemCachedManagerTest extends AbstractJUnit4SpringContextTests{
 	public final void testGet(){
 		String value = memCachedManager.get(key);
 		log.info(value);
-	}
-
-	/**
-	 * Test method for {@link com.feilong.tools.memcached.MemCachedManager#delete(java.lang.String)}.
-	 */
-	@Test
-	public final void testDelete(){
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link com.feilong.tools.memcached.MemCachedManager#shutDown()}.
-	 */
-	@Test
-	public final void testShutDown(){
-		fail("Not yet implemented"); // TODO
 	}
 
 	/**

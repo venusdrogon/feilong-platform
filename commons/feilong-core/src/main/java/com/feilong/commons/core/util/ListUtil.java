@@ -72,7 +72,7 @@ public final class ListUtil{
 	}
 
 	/**
-	 * 去重(保留原list元素顺序).
+	 * 去重(如果原collection是有序的,那么会保留原collection元素顺序).
 	 * 
 	 * @param <T>
 	 *            the generic type
@@ -85,12 +85,11 @@ public final class ListUtil{
 	 * @see <a
 	 *      href="http://www.oschina.net/code/snippet_117714_2991?p=2#comments">http://www.oschina.net/code/snippet_117714_2991?p=2#comments</a>
 	 */
-	// TODO 按照原List类型(ArrayList or linkedList)返回
 	public static <T> List<T> removeDuplicate(Collection<T> collection){
 		if (Validator.isNullOrEmpty(collection)){
 			return null;
 		}
-		// 效率问题？contains的本质就是遍历。你可以自己写段demo测试一下。new ArrayList<T>(new LinkedHashSet<T>(list));
+		// 效率问题？contains的本质就是遍历。
 		// 在100W的list当中执行0.546秒，而contains，我则没耐心去等了。顺便贴一下在10W下2段代码的运行时间。
 		// [foo1] 100000 -> 50487 : 48610 ms.
 		// [foo2] 100000 -> 50487 : 47 ms.

@@ -25,7 +25,20 @@ import java.util.List;
 import com.feilong.commons.core.entity.JoinStringEntity;
 
 /**
- * CollectionUtil {@link Collection}工具类.
+ * CollectionUtil {@link Collection}工具类.<br>
+ * 
+ * <h4>{@link <a href="http://stamen.iteye.com/blog/2003458">SET-MAP现代诗一首</a>}</h4>
+ * 
+ * <blockquote>
+ * <p>
+ * <ul>
+ * <li>天下人都知道Set，Map不能重复</li>
+ * <li>80%人知道hashCode,equals是判断重复的法则 </li>
+ * <li>40%人知道Set添加重复元素时，旧元素不会被覆盖</li>
+ * <li>20%人知道Map添加重复键时，旧键不会被覆盖，而值会覆盖</li>
+ * </ul>
+ * </p>
+ * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:08:40 PM

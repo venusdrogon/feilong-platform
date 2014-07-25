@@ -392,7 +392,10 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 			}
 
 			String anti_phishing_key = result.toString();
-			log.debug("anti_phishing_key value:[{}]", anti_phishing_key);
+			
+			if (log.isDebugEnabled()){
+				log.debug("anti_phishing_key value:[{}]", anti_phishing_key);
+			}
 
 			return anti_phishing_key;
 		}catch (MalformedURLException e){

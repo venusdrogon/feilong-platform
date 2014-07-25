@@ -28,35 +28,35 @@ import java.lang.annotation.Target;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-30 0:25:36
  */
-@Documented
 // 这个Annotation可以被写入javadoc
-@Inherited
+@Documented
 // 这个Annotation 可以被继承
+@Inherited
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation{
 
 	/** The name_english. */
-	public String	name_english	= "venusdrogon";
+	String	name_english	= "venusdrogon";
 
 	/**
 	 * name属性.
 	 * 
 	 * @return the string
 	 */
-	public String name() default "金鑫";
+	String name() default "金鑫";
 
 	/**
 	 * 性别 1=男.
 	 * 
 	 * @return the int
 	 */
-	public int sex() default 1;
+	int sex() default 1;
 
 	/**
 	 * Love strings.
 	 * 
 	 * @return the string[]
 	 */
-	public String[] loveStrings();
+	String[] loveStrings();
 }

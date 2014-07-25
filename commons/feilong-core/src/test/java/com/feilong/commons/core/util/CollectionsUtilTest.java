@@ -21,8 +21,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+import java.util.Stack;
 import java.util.TreeSet;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -46,6 +51,72 @@ public class CollectionsUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionsUtilTest.class);
+
+	/**
+	 * TestCollectionsUtilTest.
+	 */
+	@Test
+	public void testCollectionsUtilTest(){
+
+		Set<String> set = new LinkedHashSet<String>();
+		set.add("1");
+		set.add("2");
+		set.add("3");
+		set.add("4");
+		set.add("5");
+		set.add("1");
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(set));
+		}
+
+		//assertEquals(expected, actual);
+	}
+
+	/**
+	 * TestCollectionsUtilTest.
+	 */
+	@Test
+	public void testCollectionsUtilTest2(){
+		Stack<Object> stack = new Stack<>();
+
+		stack.add("1");
+		stack.add("2");
+		stack.add("3");
+		stack.add("4");
+
+		if (log.isDebugEnabled()){
+			log.debug("" + stack.firstElement());
+			log.debug("" + stack.peek());
+			log.debug("" + stack.pop());
+			log.debug(JsonUtil.format(stack));
+		}
+
+		//assertEquals(expected, actual);
+	}
+
+	/**
+	 * TestCollectionsUtilTest.
+	 */
+	@Test
+	public void testCollectionsUtilTest33(){
+		Queue<Object> queue = new PriorityQueue<Object>();
+
+		queue.add(1);
+		queue.add(2);
+		queue.add(3);
+		queue.add(4);
+		queue.add(5);
+		queue.add(6);
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(queue));
+			log.debug("" + queue.peek());
+
+		}
+
+		//assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test tree set.

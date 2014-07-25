@@ -52,8 +52,11 @@ public class ListUtilTest{
 	@Test
 	public void remove1(){
 
-		List<String> list = new ArrayList<String>();
+		ArrayList<String> list = new ArrayList<String>();
+		
+		list.ensureCapacity(20);
 
+		list.trimToSize();
 		list.add("a");
 		list.add("a7");
 		list.add("a8");

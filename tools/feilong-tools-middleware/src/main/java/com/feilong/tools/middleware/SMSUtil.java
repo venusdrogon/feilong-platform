@@ -15,7 +15,8 @@
  */
 package com.feilong.tools.middleware;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -63,60 +64,16 @@ public class SMSUtil{
 	}
 
 	/**
-	 * 将短信内容转换成 LinkedList
-	 * 
-	 * @param servletContext
-	 *            servletContext
-	 * @param smsContent
-	 *            短信内容
-	 * @param suffix
-	 *            后缀,可以指定,如果为""或者null,则读取feilong.user.properties文件 projectChineseName键
-	 * @return
-	 */
-	//	public static LinkedList<String> convertSmsContentToLinkedList(ServletContext servletContext,String smsContent,String suffix){
-	//		// 后缀
-	//		String tag = "";
-	//		// 含有标识
-	//		if (Validator.isNotNull(suffix)){
-	//			tag = suffix;
-	//		}else{
-	//			tag = FeiLongPropertiesConfigure.getPropertiesFeiLongValueWithServletContext(servletContext, "projectChineseName");
-	//		}
-	//		return convertSmsContentToLinkedList(smsContent, tag);
-	//	}
-	/**
-	 * 将短信内容转换成 LinkedList
-	 * 
-	 * @param clz
-	 *            调用class,以便读取默认后缀标记
-	 * @param smsContent
-	 *            短信内容
-	 * @param suffix
-	 *            后缀,可以指定,如果为""或者null,则读取feilong.user.properties文件 projectChineseName键
-	 * @return LinkedList
-	 */
-	//	public static LinkedList<String> convertSmsContentToLinkedList(Class clz,String smsContent,String suffix){
-	//		// 后缀
-	//		String tag = "";
-	//		// 含有标识
-	//		if (Validator.isNotNull(suffix)){
-	//			tag = suffix;
-	//		}else{
-	//			tag = FeiLongPropertiesConfigure.getPropertiesFeiLongValueWithClassLoader(clz, "projectChineseName");
-	//		}
-	//		return convertSmsContentToLinkedList(smsContent, tag);
-	//	}
-	/**
-	 * 将短信内容转换成 LinkedList
+	 * 将短信内容转换成 List
 	 * 
 	 * @param smsContent
 	 *            短信内容
 	 * @param tag
 	 *            后缀,可以指定,如果为""或者null,则读取feilong.user.properties文件 projectChineseName键
-	 * @return LinkedList
+	 * @return List
 	 */
-	public static LinkedList<String> convertSmsContentToLinkedList(String smsContent,String tag){
-		LinkedList<String> linkedList = new LinkedList<String>();
+	public static List<String> convertSmsContentToList(String smsContent,String tag){
+		List<String> list = new ArrayList<String>();
 		if (Validator.isNotNullOrEmpty(smsContent)){
 			// 前面短信内容已经含有Params.projectChineseName 2是符号的长度
 			int contentLength = oneSMSMaxLength - tag.length() - 2;
@@ -145,12 +102,12 @@ public class SMSUtil{
 				}
 				oneSendContent += StringUtil.substring(smsContent, (i - 1) * contentLength, contentLength);
 				oneSendContent += tagsSuffix[0] + tag + tagsSuffix[1];
-				linkedList.add(oneSendContent);
+				list.add(oneSendContent);
 				i++;
 			}
 		}else{
-			linkedList.add("");
+			list.add("");
 		}
-		return linkedList;
+		return list;
 	}
 }

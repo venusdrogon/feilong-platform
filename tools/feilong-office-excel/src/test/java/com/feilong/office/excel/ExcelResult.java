@@ -86,7 +86,7 @@ public class ExcelResult{
 		 * 标题数组
 		 */
 		String[] columnsTitle = result.getColumnNames();
-		List list = ResultUtil.convertResultToList(result, ExcelConfigEntity.class);
+		List<?> list = ResultUtil.convertResultToList(result, ExcelConfigEntity.class);
 
 		ExcelCreateUtil excel = new ExcelCreateUtil();
 		excel.createExcel(columnsTitle, list, excelConfigEntity, outputStream);
