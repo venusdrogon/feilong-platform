@@ -16,7 +16,6 @@
 package com.feilong.tools.jsoup;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.commons.lang3.Validate;
@@ -28,12 +27,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * FeiLongJsoupUtil.
+ * The Class JsoupUtil.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-11 下午11:17:42
  */
-public class JsoupUtil{
+public final class JsoupUtil{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(JsoupUtil.class);
@@ -45,20 +44,19 @@ public class JsoupUtil{
 	 * @param urlString
 	 *            the url string
 	 * @return the document
+	 * @throws JsoupUtilException
+	 *             if Exception
 	 */
-	public static Document getDocument(String urlString){
+	public static Document getDocument(String urlString) throws JsoupUtilException{
 		try{
 			URL url = new URL(urlString);
-			Document document = Jsoup.parse(url, 10 * 1000);
+			int timeoutMillis = 10 * 1000;
+			Document document = Jsoup.parse(url, timeoutMillis);
 			return document;
-		}catch (MalformedURLException e){
-			e.printStackTrace();
-			log.error("{} MalformedURLException", urlString);
 		}catch (IOException e){
 			e.printStackTrace();
-			log.error("parse {},io exception", urlString);
+			throw new JsoupUtilException(e);
 		}
-		return null;
 	}
 
 	/**
@@ -69,15 +67,23 @@ public class JsoupUtil{
 	 * @param userAgent
 	 *            the user agent
 	 * @return the document
+	 * @throws JsoupUtilException
+	 *             if Exception
+	 * @see org.jsoup.Jsoup#connect(String)
+	 * @see org.jsoup.Connection#userAgent(String)
+	 * @see org.jsoup.Connection#timeout(int)
+	 * @see org.jsoup.Connection#get()
 	 */
-	public static Document getDocument(String url,String userAgent){
+	public static Document getDocument(String url,String userAgent) throws JsoupUtilException{
 		try{
-			Document document = Jsoup.connect(url).userAgent(userAgent).timeout(10 * 1000).get();
+			int millis = 10 * 1000;
+			Document document = Jsoup.connect(url).userAgent(userAgent).timeout(millis).get();
 			return document;
 		}catch (IOException e){
 			e.printStackTrace();
+			throw new JsoupUtilException(e);
 		}
-		return null;
+
 	}
 
 	/**
@@ -88,11 +94,15 @@ public class JsoupUtil{
 	 * @param selectQuery
 	 *            the select query
 	 * @return the elements by select
+	 * @throws JsoupUtilException
+	 *             the jsoup util exception
+	 * @see #getDocument(String)
+	 * @see org.jsoup.nodes.Element#select(String)
 	 */
-	public static Elements getElementsBySelect(String url,String selectQuery){
+	public static Elements getElementsBySelect(String url,String selectQuery) throws JsoupUtilException{
 		Validate.notEmpty(url);
 		Validate.notEmpty(selectQuery);
-		Document document = JsoupUtil.getDocument(url);
+		Document document = getDocument(url);
 		Elements elements = document.select(selectQuery);
 		return elements;
 	}
@@ -105,11 +115,15 @@ public class JsoupUtil{
 	 * @param id
 	 *            the id
 	 * @return getElementById
+	 * @throws JsoupUtilException
+	 *             the jsoup util exception
+	 * @see #getDocument(String)
+	 * @see org.jsoup.nodes.Element#getElementById(String)
 	 */
-	public static Element getElementById(String url,String id){
+	public static Element getElementById(String url,String id) throws JsoupUtilException{
 		Validate.notEmpty(url);
 		Validate.notEmpty(id);
-		Document document = JsoupUtil.getDocument(url);
+		Document document = getDocument(url);
 		Element element = document.getElementById(id);
 		return element;
 	}

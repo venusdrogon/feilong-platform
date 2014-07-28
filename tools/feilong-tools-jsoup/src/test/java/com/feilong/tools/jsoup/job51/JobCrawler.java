@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.jsoup;
+package com.feilong.tools.jsoup.job51;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +27,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.tools.jsoup.entity.Enterprise;
+import com.feilong.tools.jsoup.JsoupUtil;
+import com.feilong.tools.jsoup.JsoupUtilException;
+import com.feilong.tools.jsoup.jinbaowang.entity.Enterprise;
 
 /**
  * 网页爬虫---招聘信息.
@@ -86,28 +88,34 @@ public class JobCrawler{
 		//zhaopin.com
 		//chinahr.com
 		//01job.cn
-		String selector_enterpriseName = ".sr_bt";
-		String selector_email = "p:contains(电子邮箱) a";
-		String selector_telephone = "p:contains(电):contains(话)";
-		String selector_linkMan = "p:contains(联):contains(联):contains(人)";
-		/********************************************************************************/
-		Document document_enterprise = JsoupUtil.getDocument(enterpriseUrl);
-		/********************************************************************************/
-		//enterprise name
-		Element element_enterpriseName = document_enterprise.select(selector_enterpriseName).first();
-		//email
-		Element element_email = document_enterprise.select(selector_email).first();
-		//电话
-		Element element_telephone = document_enterprise.select(selector_telephone).first();
-		//联系人
-		Element element_linkMan = document_enterprise.select(selector_linkMan).first();
 		/*******************************************************************************/
-		Enterprise enterprise = new Enterprise();
-		enterprise.setName(element_enterpriseName.ownText().replace("?", ""));
-		enterprise.setEmail(element_email == null ? null : element_email.html());
-		enterprise.setLinkMan(element_telephone == null ? null : element_telephone.html());
-		enterprise.setTelephone(element_linkMan == null ? null : element_linkMan.html());
-		return enterprise;
+		Enterprise enterprise;
+		try{
+			String selector_enterpriseName = ".sr_bt";
+			String selector_email = "p:contains(电子邮箱) a";
+			String selector_telephone = "p:contains(电):contains(话)";
+			String selector_linkMan = "p:contains(联):contains(联):contains(人)";
+			/********************************************************************************/
+			Document document_enterprise = JsoupUtil.getDocument(enterpriseUrl);
+			/********************************************************************************/
+			//enterprise name
+			Element element_enterpriseName = document_enterprise.select(selector_enterpriseName).first();
+			//email
+			Element element_email = document_enterprise.select(selector_email).first();
+			//电话
+			Element element_telephone = document_enterprise.select(selector_telephone).first();
+			//联系人
+			Element element_linkMan = document_enterprise.select(selector_linkMan).first();
+			enterprise = new Enterprise();
+			enterprise.setName(element_enterpriseName.ownText().replace("?", ""));
+			enterprise.setEmail(element_email == null ? null : element_email.html());
+			enterprise.setLinkMan(element_telephone == null ? null : element_telephone.html());
+			enterprise.setTelephone(element_linkMan == null ? null : element_linkMan.html());
+			return enterprise;
+		}catch (JsoupUtilException e){
+			e.printStackTrace();
+		}
+		return null;
 		//**********************************************************
 	}
 

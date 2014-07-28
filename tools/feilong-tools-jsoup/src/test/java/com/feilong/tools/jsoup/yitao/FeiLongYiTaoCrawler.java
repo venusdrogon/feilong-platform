@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.jsoup;
+package com.feilong.tools.jsoup.yitao;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.tools.jsoup.JsoupUtil;
+import com.feilong.tools.jsoup.JsoupUtilException;
 
 /**
  * The Class FeiLongYiTaoCrawler.
@@ -37,10 +40,12 @@ public class FeiLongYiTaoCrawler{
 
 	/**
 	 * Test.
+	 * 
+	 * @throws JsoupUtilException
 	 */
 	@SuppressWarnings("unused")
 	@Test
-	public void test(){
+	public void test() throws JsoupUtilException{
 		// 数据
 		Elements elements = JsoupUtil.getElementsBySelect(url, ".section");
 		Element element = elements.get(0);

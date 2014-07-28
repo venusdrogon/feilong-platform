@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.jsoup.entity;
+package com.feilong.tools.jsoup.jinbaowang.entity;
 
 import java.io.Serializable;
 

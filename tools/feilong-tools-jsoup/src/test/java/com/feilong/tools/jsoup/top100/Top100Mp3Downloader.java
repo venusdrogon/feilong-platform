@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.jsoup;
+package com.feilong.tools.jsoup.top100;
 
 import java.io.File;
 import java.io.FileOutputStream;

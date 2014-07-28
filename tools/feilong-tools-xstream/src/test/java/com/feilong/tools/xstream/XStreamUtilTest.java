@@ -30,13 +30,13 @@ import com.thoughtworks.xstream.XStream;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 11, 2013 12:57:10 AM
  */
-public class XStreamTest implements Serializable{
+public class XStreamUtilTest implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 288232184048495608L;
 
 	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(XStreamTest.class);
+	private static final Logger	log					= LoggerFactory.getLogger(XStreamUtilTest.class);
 
 	/**
 	 * Name.

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.jsoup;
+package com.feilong.tools.jsoup.jinbaowang;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -41,12 +41,15 @@ import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.jsoup.JsoupUtil;
+import com.feilong.tools.jsoup.JsoupUtilException;
 
 /**
  * 进包网.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-22 下午06:45:18
+ * @deprecated
  */
 public class FeiLongJinBaoWangCrawler{
 
@@ -170,18 +173,22 @@ public class FeiLongJinBaoWangCrawler{
 	 */
 	public static String getSkuDetailsRealUrl(String code){
 		String urlString = StringUtil.format(searchPage, code);
-		Document document = JsoupUtil.getDocument(urlString);
-		if (null != document){
-			String query = ".items-gallery .goodinfo h6 a";
-			Elements elements = document.select(query);
-			for (Element element : elements){
-				String title = element.attr("title");
-				if (title.equals(code)){
-					return element.attr("href");
+		try{
+			Document document = JsoupUtil.getDocument(urlString);
+			if (null != document){
+				String query = ".items-gallery .goodinfo h6 a";
+				Elements elements = document.select(query);
+				for (Element element : elements){
+					String title = element.attr("title");
+					if (title.equals(code)){
+						return element.attr("href");
+					}
 				}
 			}
+			log.error(code + " cannot be find!");
+		}catch (JsoupUtilException e){
+			e.printStackTrace();
 		}
-		log.error(code + " cannot be find!");
 		return null;
 	}
 
@@ -194,17 +201,21 @@ public class FeiLongJinBaoWangCrawler{
 	 * @return the sku details images
 	 */
 	public static List<String> getSkuDetailsImages(String skuDetailsRealUrl){
-		Document document = JsoupUtil.getDocument(skuDetailsRealUrl);
-		if (null != document){
-			Elements elements = document.select("#goods-intro img");
-			List<String> list = new ArrayList<String>();
-			for (Element element : elements){
-				String url = element.attr("src");
-				list.add(url);
+		try{
+			Document document = JsoupUtil.getDocument(skuDetailsRealUrl);
+			if (null != document){
+				Elements elements = document.select("#goods-intro img");
+				List<String> list = new ArrayList<String>();
+				for (Element element : elements){
+					String url = element.attr("src");
+					list.add(url);
+				}
+				return list;
 			}
-			return list;
+			log.error(skuDetailsRealUrl + " cannot be find!");
+		}catch (JsoupUtilException e){
+			e.printStackTrace();
 		}
-		log.error(skuDetailsRealUrl + " cannot be find!");
 		return null;
 	}
 

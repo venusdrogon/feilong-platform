@@ -1,4 +1,4 @@
-package com.feilong.tools.jsoup;
+package com.feilong.tools.jsoup.jinbaowang;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.tools.jsoup.jinbaowang.FeiLongJinBaoWangCrawler;
 
 @SuppressWarnings("all")
 public class FeiLongJinBaoWangCrawlerTest{
