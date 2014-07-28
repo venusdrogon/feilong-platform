@@ -20,8 +20,6 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.io.RegeditUtil;
-
 /**
  * The Class RegQuery.
  * 

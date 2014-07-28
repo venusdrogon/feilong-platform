@@ -34,7 +34,7 @@ public enum FileWriteMode{
 	/**
 	 * 追加 then bytes will be written to the end of the file rather than the beginning. <br>
 	 * 
-	 * @see java.io.FileOutputStream#FileOutputStream(File, boolean)
+	 * @see java.io.FileOutputStream#FileOutputStream(java.io.File, boolean)
 	 */
 	APPEND
 }

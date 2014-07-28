@@ -57,6 +57,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * @see org.springframework.util.StringUtils#tokenizeToStringArray(String, String)
  * @see org.springframework.beans.factory.xml.BeanDefinitionParserDelegate#MULTI_VALUE_ATTRIBUTE_DELIMITERS
  * @see java.util.StringTokenizer
+ * @see org.apache.commons.lang3.StringUtils
  * @since 1.0.0
  */
 public final class StringUtil{
@@ -87,6 +88,8 @@ public final class StringUtil{
 	 *            目标子串
 	 * @return count of target string in source
 	 * @since 1.0.2
+	 * @see org.apache.commons.lang3.StringUtils#countMatches(CharSequence, CharSequence)
+	 * @deprecated 使用 {@link org.apache.commons.lang3.StringUtils#countMatches(CharSequence, CharSequence)}
 	 */
 	public static int searchTimes(String source,String target){
 		if (null == source){
@@ -206,6 +209,8 @@ public final class StringUtil{
 	 * @param word
 	 *            单词
 	 * @return 单词首字母大写
+	 * @see org.apache.commons.lang3.StringUtils#swapCase(String)
+	 * @see org.apache.commons.lang3.StringUtils#capitalize(String)
 	 */
 	public final static String firstCharToUpperCase(String word){
 		return StringUtils.capitalize(word);
@@ -226,6 +231,7 @@ public final class StringUtil{
 	 * @param word
 	 *            单词
 	 * @return 单词首字母小写
+	 * @see org.apache.commons.lang3.StringUtils#uncapitalize(String)
 	 */
 	public final static String firstCharToLowerCase(String word){
 		return StringUtils.uncapitalize(word);

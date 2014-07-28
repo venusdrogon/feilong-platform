@@ -72,7 +72,6 @@ public class MapUtilTest{
 		object.put("3", "6");
 		object.put("4", "8");
 
-
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(object));
 		}

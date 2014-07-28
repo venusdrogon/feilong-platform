@@ -52,8 +52,22 @@ public class ListUtilTest{
 	@Test
 	public void remove1(){
 
-		ArrayList<String> list = new ArrayList<String>();
-		
+		ArrayList<String> list = new ArrayList<String>(){
+
+			private static final long	serialVersionUID	= 5180874275617929469L;
+
+			{
+				add("a");
+				add("a7");
+				add("a8");
+				add("a81");
+				add("a82");
+				add("a83");
+				add("a84");
+				add("a85");
+			}
+		};
+
 		list.ensureCapacity(20);
 
 		list.trimToSize();
@@ -66,14 +80,14 @@ public class ListUtilTest{
 		list.add("a84");
 		list.add("a85");
 
-//		for (int i = list.size() - 1; i >= 0; --i){
-//
-//			String aString = list.get(i);
-//
-//			if ("a7".equals(aString)){
-//				list.remove(aString);
-//			}
-//		}
+		//		for (int i = list.size() - 1; i >= 0; --i){
+		//
+		//			String aString = list.get(i);
+		//
+		//			if ("a7".equals(aString)){
+		//				list.remove(aString);
+		//			}
+		//		}
 
 		// java.lang.IndexOutOfBoundsException: Index: 8, Size: 8
 		//		for (int i = 0, j = list.size(); i < j; ++i){
@@ -85,19 +99,19 @@ public class ListUtilTest{
 		//
 		//		}
 
-				for (String string : list){
-					if ("a7".equals(string)){
-						list.remove(string);
-					}
-				}
-//				for (String string : list){
-//					if ("a".equals(string)){
-//						list.remove(string);
-//					}
-//				}
-//		if (log.isDebugEnabled()){
-//			log.debug(JsonUtil.format(list));
-//		}
+		for (String string : list){
+			if ("a7".equals(string)){
+				list.remove(string);
+			}
+		}
+		//				for (String string : list){
+		//					if ("a".equals(string)){
+		//						list.remove(string);
+		//					}
+		//				}
+		//		if (log.isDebugEnabled()){
+		//			log.debug(JsonUtil.format(list));
+		//		}
 
 	}
 
@@ -107,8 +121,7 @@ public class ListUtilTest{
 	@Test
 	public void name(){
 		//ArrayList<String> list = new ArrayList<String>(Arrays.asList("a", "b", "c", "d"));
-		
-		
+
 		List<String> list = new ArrayList<String>();
 
 		list.add("a");

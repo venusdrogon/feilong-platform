@@ -100,4 +100,5 @@ public class GenericTest{
 		Integer b = getValue("jinxin", Integer.class);
 		//assertEquals(expected, actual);
 	}
+
 }

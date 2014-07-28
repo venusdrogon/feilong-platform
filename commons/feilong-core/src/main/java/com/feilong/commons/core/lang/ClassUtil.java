@@ -111,7 +111,7 @@ public final class ClassUtil{
 	 * @return 如果参数 paramValues 是null 返回 null
 	 * @see org.apache.commons.lang3.ClassUtils#toClass(Object...)
 	 * @since 1.0.7
-	 * @deprecated pls use {@link ClassUtils#toClass(Object...)}
+	 * @deprecated pls use {@link org.apache.commons.lang3.ClassUtils#toClass(Object...)}
 	 */
 	@Deprecated
 	public static Class<?>[] toParameterTypes(Object...paramValues){

@@ -18,6 +18,7 @@ package com.feilong.commons.core.util;
 import java.util.Date;
 import java.util.Random;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -48,6 +49,7 @@ public class StringUtilTest{
 	public void searchCount(){
 		String source = "jiiiiiinxin.feilong";
 		log.info(StringUtil.searchTimes(source, "i") + "");
+		log.info(StringUtils.countMatches(source, "i") + "");
 		log.info(StringUtil.searchTimes(source, "in") + "");
 		log.info(StringUtil.searchTimes(source, "ii") + "");
 		log.info(StringUtil.searchTimes(source, "xin") + "");
