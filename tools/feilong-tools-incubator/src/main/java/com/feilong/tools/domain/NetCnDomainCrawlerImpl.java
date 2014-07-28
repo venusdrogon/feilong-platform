@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.jsoup.JsoupUtil;
+import com.feilong.tools.jsoup.JsoupUtilException;
 
 /**
  * www.net.cn 万网抓取
@@ -39,13 +40,14 @@ public class NetCnDomainCrawlerImpl extends AbstractDomainCrawler{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.jsoup.AbstractDomainCrawler#hasRegister(java.lang.String)
 	 */
 	public boolean hasRegister(String domain){
 		String fullRequestUrl = StringUtil.format(url_format, domain);
 		log.debug("the param fullRequestUrl value is :{}", fullRequestUrl);
-		Document document = JsoupUtil.getDocument(fullRequestUrl);
-		if (null != document){
+		try{
+			Document document = JsoupUtil.getDocument(fullRequestUrl);
 			String requestResult = document.text();
 			// log.debug("the request result is :{}", requestResult);
 			// 去除前面的括号
@@ -70,8 +72,8 @@ public class NetCnDomainCrawlerImpl extends AbstractDomainCrawler{
 					log.error("{} is error,{}", fullRequestUrl, e.getMessage());
 				}
 			}
-		}else{
-			log.error("{} is error", fullRequestUrl);
+		}catch (JsoupUtilException e){
+			e.printStackTrace();
 		}
 		return true;
 	}
