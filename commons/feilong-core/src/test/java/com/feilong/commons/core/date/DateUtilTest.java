@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.date;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

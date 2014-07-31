@@ -34,6 +34,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-11 上午10:24:25
  * @see MessageFormatUtil#format(String, Object...)
+ * @see java.util.ResourceBundle
  * @since 1.0.0
  */
 public final class ResourceBundleUtil{
@@ -47,7 +48,7 @@ public final class ResourceBundleUtil{
 	 * @param <T>
 	 *            the generic type
 	 * @param baseName
-	 *            the base name
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param key
 	 *            the key
 	 * @param typeClass
@@ -55,6 +56,8 @@ public final class ResourceBundleUtil{
 	 *            如果是String.class,则返回的是String <br>
 	 *            如果是Integer.class,则返回的是Integer
 	 * @return the value
+	 * @see #getValue(String, String)
+	 * @see com.feilong.commons.core.util.StringUtil#toT(String, Class)
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getValue(String baseName,String key,Class<?> typeClass){
@@ -76,6 +79,8 @@ public final class ResourceBundleUtil{
 	 *            如果是String.class,则返回的是String <br>
 	 *            如果是Integer.class,则返回的是Integer
 	 * @return the value
+	 * @see #getValue(ResourceBundle, String)
+	 * @see com.feilong.commons.core.util.StringUtil#toT(String, Class)
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getValue(ResourceBundle resourceBundle,String key,Class<?> typeClass){
@@ -85,12 +90,14 @@ public final class ResourceBundleUtil{
 
 	/**
 	 * 获取Properties配置文件键值 ,采用java.util.ResourceBundle类的getBundle()方法来读取
-	 * 
+	 *
 	 * @param baseName
-	 *            配置文件的包+类全名(不要尾缀)
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param key
 	 *            Properties配置文件键名
 	 * @return 该键的值
+	 * @see #getResourceBundle(String)
+	 * @see #getValue(ResourceBundle, String)
 	 * @since 1.0
 	 */
 	public static String getValue(String baseName,String key){
@@ -100,14 +107,16 @@ public final class ResourceBundleUtil{
 
 	/**
 	 * 获取Properties配置文件键值 ,采用java.util.ResourceBundle类的getBundle()方法来读取
-	 * 
+	 *
 	 * @param baseName
-	 *            配置文件的包+类全名(不要尾缀)
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param key
 	 *            Properties配置文件键名
 	 * @param locale
 	 *            the locale
 	 * @return 该键的值
+	 * @see #getResourceBundle(String, Locale)
+	 * @see #getValue(ResourceBundle, String)
 	 * @since 1.0.5
 	 */
 	public static String getValue(String baseName,String key,Locale locale){
@@ -120,7 +129,7 @@ public final class ResourceBundleUtil{
 	 * 格式如:name={0}.
 	 * 
 	 * @param baseName
-	 *            the base name
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param key
 	 *            the key
 	 * @param locale
@@ -128,6 +137,8 @@ public final class ResourceBundleUtil{
 	 * @param arguments
 	 *            此处可以传递Object[]数组过来
 	 * @return the value with arguments
+	 * @see #getResourceBundle(String, Locale)
+	 * @see #getValueWithArguments(ResourceBundle, String, Object...)
 	 */
 	public static String getValueWithArguments(String baseName,String key,Locale locale,Object...arguments){
 		ResourceBundle resourceBundle = getResourceBundle(baseName, locale);
@@ -147,6 +158,7 @@ public final class ResourceBundleUtil{
 	 *         <li>key不存在,log.warn 输出警告,然后返回null</li>
 	 *         <li>key存在,但value是null 或者 empty,log.warn 输出警告,然后返回value</li>
 	 *         </ul>
+	 * @see java.util.ResourceBundle#getString(String)
 	 */
 	public static String getValue(ResourceBundle resourceBundle,String key){
 		if (!resourceBundle.containsKey(key)){
@@ -194,12 +206,13 @@ public final class ResourceBundleUtil{
 	 * 默认调用 getArray(baseName, key, spliter, String.class) 形式
 	 * 
 	 * @param baseName
-	 *            the base name
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param key
 	 *            the key
 	 * @param spliter
 	 *            分隔符
 	 * @return 以value.split(spliter),如果 资源值不存在,返回null
+	 * @see #getArray(ResourceBundle, String, String, Class)
 	 */
 	public static String[] getArray(String baseName,String key,String spliter){
 		return getArray(baseName, key, spliter, String.class);
@@ -216,6 +229,7 @@ public final class ResourceBundleUtil{
 	 * @param spliter
 	 *            分隔符
 	 * @return 以value.split(spliter),如果 资源值不存在,返回null
+	 * @see #getArray(ResourceBundle, String, String, Class)
 	 */
 	public static String[] getArray(ResourceBundle resourceBundle,String key,String spliter){
 		return getArray(resourceBundle, key, spliter, String.class);
@@ -227,7 +241,7 @@ public final class ResourceBundleUtil{
 	 * @param <T>
 	 *            the generic type
 	 * @param baseName
-	 *            the base name
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param key
 	 *            the key
 	 * @param spliter
@@ -237,6 +251,8 @@ public final class ResourceBundleUtil{
 	 *            如果是String.class,则返回的是String []数组<br>
 	 *            如果是Integer.class,则返回的是Integer [] 数组
 	 * @return 以value.split(spliter),如果 资源值不存在,返回null
+	 * @see #getResourceBundle(String)
+	 * @see #getArray(ResourceBundle, String, String, Class)
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T[] getArray(String baseName,String key,String spliter,Class<?> typeClass){
@@ -260,6 +276,8 @@ public final class ResourceBundleUtil{
 	 *            如果是String.class,则返回的是String []数组<br>
 	 *            如果是Integer.class,则返回的是Integer [] 数组
 	 * @return 以value.split(spliter),如果 资源值不存在,返回null
+	 * @see #com.feilong.commons.core.configure.ResourceBundleUtil.getValue(ResourceBundle, String)
+	 * @see com.feilong.commons.core.util.StringUtil#splitToTArray(String, String, Class)
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T[] getArray(ResourceBundle resourceBundle,String key,String spliter,Class<?> typeClass){
@@ -269,10 +287,10 @@ public final class ResourceBundleUtil{
 
 	// **************************************************************************
 	/**
-	 * Read prefix as map.
+	 * Read prefix as map(HashMap).
 	 * 
 	 * @param baseName
-	 *            properties文件的名字
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param prefix
 	 *            前缀
 	 * @param spliter
@@ -280,6 +298,7 @@ public final class ResourceBundleUtil{
 	 * @param locale
 	 *            the locale
 	 * @return 如果 baseName 没有key value,则返回null,否则,解析所有的key和value转成HashMap
+	 * @see #readAllPropertiesToMap(String, Locale)
 	 */
 	public static Map<String, String> readPrefixAsMap(String baseName,String prefix,String spliter,Locale locale){
 		Map<String, String> propertyMap = readAllPropertiesToMap(baseName, locale);
@@ -303,13 +322,15 @@ public final class ResourceBundleUtil{
 	}
 
 	/**
-	 * 读取配置文件,将k/v 统统转成map.
+	 * 读取配置文件,将k/v 统统转成map(HashMap).
 	 * 
 	 * @param baseName
-	 *            配置文件
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param locale
 	 *            the locale 支持国际化
 	 * @return 如果 baseName 没有key value,则返回null,否则,解析所有的key和value转成HashMap
+	 * @see #getResourceBundle(String, Locale)
+	 * @see java.util.ResourceBundle#getKeys()
 	 */
 	public static Map<String, String> readAllPropertiesToMap(String baseName,Locale locale){
 		ResourceBundle resourceBundle = getResourceBundle(baseName, locale);
@@ -330,8 +351,10 @@ public final class ResourceBundleUtil{
 	 * 获得ResourceBundle.
 	 * 
 	 * @param baseName
-	 *            the base name
+	 *            the base name of the resource bundle, a fully qualified class name
 	 * @return the resource bundle
+	 * @see java.util.Locale#getDefault()
+	 * @see #getResourceBundle(String, Locale)
 	 */
 	public static ResourceBundle getResourceBundle(String baseName){
 		// Locale enLoc = new Locale("en", "US"); // 表示美国地区
@@ -342,10 +365,11 @@ public final class ResourceBundleUtil{
 	 * 获得ResourceBundle.
 	 * 
 	 * @param baseName
-	 *            the base name
+	 *            配置文件的包+类全名(不要尾缀),the base name of the resource bundle, a fully qualified class name
 	 * @param locale
-	 *            the locale
-	 * @return the resource bundle
+	 *            the locale for which a resource bundle is desired
+	 * @return the resource bundle,may be null
+	 * @see java.util.ResourceBundle#getBundle(String, Locale)
 	 */
 	public static ResourceBundle getResourceBundle(String baseName,Locale locale){
 		if (Validator.isNullOrEmpty(baseName)){

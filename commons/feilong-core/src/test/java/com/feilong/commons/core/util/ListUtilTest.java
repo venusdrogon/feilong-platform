@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.util;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -45,6 +47,57 @@ public class ListUtilTest{
 	/** The a strings. */
 	@SuppressWarnings("unused")
 	private String[]			aStrings	= { "a", "b" };
+
+	/**
+	 * TestListUtilTest.
+	 */
+	@Test
+	public void testListUtilTest(){
+		User student = null;
+		long begin1 = System.currentTimeMillis();
+		List<User> list1 = new ArrayList<>();
+		for (Long i = 0L; i < 1000000; i++){
+			student = new User(i);
+			list1.add(student);
+		}
+		long end1 = System.currentTimeMillis();
+		System.out.println("list1 time：" + (end1 - begin1));
+
+		//*******************************************************
+
+		long begin2 = System.currentTimeMillis();
+		List<User> list2 = new ArrayList<>(1000000);
+		for (Long i = 0L; i < 1000000; i++){
+			student = new User(i);
+			list2.add(student);
+		}
+		long end2 = System.currentTimeMillis();
+		System.out.println("list2 time：" + (end2 - begin2));
+		//assertEquals(expected, actual);
+	}
+
+	public static void main(String[] args){
+		User student = null;
+		long begin1 = System.currentTimeMillis();
+		List<User> list1 = new ArrayList<>();
+		for (Long i = 0L; i < 1000000; i++){
+			student = new User(i);
+			list1.add(student);
+		}
+		long end1 = System.currentTimeMillis();
+		System.out.println("list1 time：" + (end1 - begin1));
+
+		//*******************************************************
+
+		long begin2 = System.currentTimeMillis();
+		List<User> list2 = new ArrayList<>(1000000);
+		for (Long i = 0L; i < 1000000; i++){
+			student = new User(i);
+			list2.add(student);
+		}
+		long end2 = System.currentTimeMillis();
+		System.out.println("list2 time：" + (end2 - begin2));
+	}
 
 	/**
 	 * Re.
