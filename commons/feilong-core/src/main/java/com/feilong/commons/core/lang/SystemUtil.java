@@ -26,9 +26,9 @@ import com.feilong.commons.core.configure.PropertiesUtil;
 /**
  * System工具类.
  * 
- * <h4>{@link System#getProperties()}</h4>
+ * <h3>{@link System#getProperties()}</h3>
  * 
- * <h4>常用Properties:</h4>
+ * <h3>常用Properties:</h3>
  * 
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
@@ -79,7 +79,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * </blockquote>
  * 
  * 
- * <h4>其他Properties:</h4>
+ * <h3>其他Properties:</h3>
  * 
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">

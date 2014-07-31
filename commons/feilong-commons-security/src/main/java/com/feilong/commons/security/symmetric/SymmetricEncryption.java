@@ -48,7 +48,7 @@ import com.feilong.commons.security.EncryptionException;
 /**
  * 对称加密解密工具
  * 
- * <h4>特点:</h4> <blockquote>
+ * <h3>特点:</h3> <blockquote>
  * <ul>
  * <li>支持spring 参数注入
  * 
@@ -69,7 +69,7 @@ import com.feilong.commons.security.EncryptionException;
  * </blockquote>
  * 
  * 
- * <h4>支持的类型:</h4> <blockquote>
+ * <h3>支持的类型:</h3> <blockquote>
  * <ul>
  * <li>{@link SymmetricType#DES}</li>
  * <li>{@link SymmetricType#DESede}</li>
@@ -82,7 +82,7 @@ import com.feilong.commons.security.EncryptionException;
  * </blockquote>
  * 
  * 
- * <h4>两种对称加密解密方式:</h4>
+ * <h3>两种对称加密解密方式:</h3>
  * 
  * <blockquote>
  * <ul>
@@ -94,7 +94,7 @@ import com.feilong.commons.security.EncryptionException;
  * </blockquote>
  * 
  * 
- * <h4>使用示例:</h4>
+ * <h3>使用示例:</h3>
  * 
  * <blockquote>
  * 

@@ -22,7 +22,7 @@ import org.hibernate.dialect.MySQL5Dialect;
 /**
  * 基于utf-8 编码集 mysql数据库定义的Dialect.
  * 
- * <h4>varchar长度说明</h4>
+ * <h3>varchar长度说明</h3>
  * 
  * <blockquote>
  * <p>
@@ -33,7 +33,7 @@ import org.hibernate.dialect.MySQL5Dialect;
  * </p>
  * </blockquote>
  * 
- * <h4>如果不使用这个类</h4>
+ * <h3>如果不使用这个类</h3>
  * 
  * <blockquote>
  * <p>
@@ -42,7 +42,7 @@ import org.hibernate.dialect.MySQL5Dialect;
  * </blockquote>
  * 
  * 
- * <h4>关于 TypeNames</h4>
+ * <h3>关于 TypeNames</h3>
  * 
  * <blockquote>
  * <p>

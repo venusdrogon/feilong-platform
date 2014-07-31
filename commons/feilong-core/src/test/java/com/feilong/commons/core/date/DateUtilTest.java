@@ -54,7 +54,7 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@BeforeClass
 	public static void beforeClass(){
-		log.debug("beforeClass,现在时间:" + DateUtil.date2String(now));
+		log.debug("beforeClass,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Before
 	public void before(){
-		log.debug("before,现在时间:" + DateUtil.date2String(now));
+		log.debug("before,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
 	}
 
 	/**
@@ -178,9 +178,9 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Test
 	public void getFirstDateOfThisMonth(){
-		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisMonth(now)));
-		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, +1))));
-		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, -1))));
+		logDate(DateUtil.getFirstDateOfThisMonth(now));
+		logDate(DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, +1)));
+		logDate(DateUtil.getFirstDateOfThisMonth(DateUtil.addMonth(now, -1)));
 	}
 
 	/**
@@ -190,10 +190,10 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Test
 	public void getLastDateOfThisMonth(){
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(now)));
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(DateUtil.string2Date("2012-02-01", DatePattern.onlyDate))));
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, +1))));
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, -1))));
+		logDate(DateUtil.getLastDateOfThisMonth(now));
+		logDate(DateUtil.getLastDateOfThisMonth(DateUtil.string2Date("2012-02-01", DatePattern.onlyDate)));
+		logDate(DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, +1)));
+		logDate(DateUtil.getLastDateOfThisMonth(DateUtil.addMonth(now, -1)));
 	}
 
 	/**
@@ -203,9 +203,9 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Test
 	public void getFirstDateOfThisYear(){
-		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisYear(now)));
-		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, +1))));
-		log.debug(DateUtil.date2String(DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, -1))));
+		logDate(DateUtil.getFirstDateOfThisYear(now));
+		logDate(DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, +1)));
+		logDate(DateUtil.getFirstDateOfThisYear(DateUtil.addYear(now, -1)));
 	}
 
 	/**
@@ -213,9 +213,9 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Test
 	public void testGetLastDateOfThisYear(){
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisYear(now)));
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, +1))));
-		log.debug(DateUtil.date2String(DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, -1))));
+		logDate(DateUtil.getLastDateOfThisYear(now));
+		logDate(DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, +1)));
+		logDate(DateUtil.getLastDateOfThisYear(DateUtil.addYear(now, -1)));
 	}
 
 	/**
@@ -260,21 +260,12 @@ public class DateUtilTest extends BaseDateUtil{
 	}
 
 	/**
-	 * Test get interval for view long.
-	 */
-	@Test
-	public void testGetIntervalForViewLong(){
-		log.debug(DateUtil.getIntervalForView(25841));
-		log.debug(DateUtil.getIntervalForView(0));
-	}
-
-	/**
 	 * Test add minute.
 	 */
 	@Test
 	public void testAddMinute(){
-		print(DateUtil.addMinute(now, 180));
-		print(DateUtil.addMinute(now, -180));
+		logDate(DateUtil.addMinute(now, 180));
+		logDate(DateUtil.addMinute(now, -180));
 	}
 
 	/**
@@ -291,15 +282,15 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void addMonth(){
 		Date beginDate = DateUtil.string2Date("2013-10-28", DatePattern.onlyDate);
-		print(DateUtil.addMonth(beginDate, 6));
-		print(DateUtil.addMonth(new Date(), 3));
-		print(DateUtil.addMonth(new Date(), -3));
+		logDate(DateUtil.addMonth(beginDate, 6));
+		logDate(DateUtil.addMonth(new Date(), 3));
+		logDate(DateUtil.addMonth(new Date(), -3));
 
 		Date date = DateUtil.addMonth(new Date(), 5);
-		print(date);
+		logDate(date);
 
 		date = DateUtil.addMonth(new Date(), -5);
-		print(date);
+		logDate(date);
 	}
 
 	/**
@@ -307,8 +298,8 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Test
 	public void testAddSecond(){
-		print(DateUtil.addSecond(now, 180));
-		print(DateUtil.addSecond(now, -180));
+		logDate(DateUtil.addSecond(now, 180));
+		logDate(DateUtil.addSecond(now, -180));
 	}
 
 	/**
@@ -318,17 +309,6 @@ public class DateUtilTest extends BaseDateUtil{
 	public void testIsBefore(){
 		boolean isBefore = DateUtil.isBefore(fromString, toString, DatePattern.onlyDate);
 		log.debug(String.valueOf(isBefore));
-	}
-
-	/**
-	 * Test get interval day list.
-	 */
-	@Test
-	public void testGetIntervalDayList(){
-		List<Date> dates = DateUtil.getIntervalDayList(fromString, toString, DatePattern.commonWithTime);
-		for (int i = 0; i < dates.size(); ++i){
-			log.debug(DateUtil.date2String(dates.get(i), DatePattern.commonWithTime));
-		}
 	}
 
 	/**
@@ -343,19 +323,6 @@ public class DateUtilTest extends BaseDateUtil{
 		String toString = "2008-9-29";
 		int intervalDay = DateUtil.getIntervalDay(fromString, toString, DatePattern.onlyDate);
 		log.debug(intervalDay + "");
-	}
-
-	/**
-	 * Test get interval for view.
-	 */
-	@Test
-	public void testGetIntervalForView(){
-		Date now = DateUtil.string2Date("2011-05-19 11:31:25.456", DatePattern.commonWithTime);
-		now = new Date();
-		Date date = DateUtil.string2Date("2012-12-03 00:00:00", DatePattern.commonWithTime);
-		log.debug(DateUtil.getIntervalForView(now, date));
-		long intervalTime = DateUtil.getIntervalTime(now, date);
-		log.debug(intervalTime + "");
 	}
 
 	/**
@@ -542,10 +509,10 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void addYear(){
 		Date date = DateUtil.addYear(now, 5);
-		print(date);
+		logDate(date);
 
 		date = DateUtil.addYear(now, -5);
-		print(date);
+		logDate(date);
 	}
 
 	/**
@@ -554,15 +521,15 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void addDay(){
 		Date date = DateUtil.addDay(new Date(), 5);
-		print(date);
+		logDate(date);
 
 		date = DateUtil.addDay(new Date(), -5);
-		print(date);
+		logDate(date);
 
 		date = DateUtil.addDay(DateUtil.string2Date("2014-12-31 02:10:05", DatePattern.commonWithTime), 5);
-		print(date);
+		logDate(date);
 
-		print(DateUtil.addDay(DateUtil.string2Date("2014-01-01 02:10:05", DatePattern.commonWithTime), -5));
+		logDate(DateUtil.addDay(DateUtil.string2Date("2014-01-01 02:10:05", DatePattern.commonWithTime), -5));
 	}
 
 	/**
@@ -571,10 +538,10 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void addWeek(){
 		Date date = DateUtil.addWeek(new Date(), 1);
-		print(date);
+		logDate(date);
 
 		date = DateUtil.addWeek(new Date(), -1);
-		print(date);
+		logDate(date);
 	}
 
 	/**
@@ -583,54 +550,8 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public void testAddHour(){
 		log.debug("the param NewConstructorTypeMunger :{}", now);
-		print(DateUtil.addHour(now, 5));
-		print(DateUtil.addHour(now, -5));
-	}
-
-	/**
-	 * 将传入的date转换为中国特色日期
-	 * 
-	 * <pre>
-	 * 如果 现在是 2012-10-18 14:16:00
-	 * 
-	 * 给你个时间, 
-	 * 2012-10-18 14:15:02,要你显示成   "58秒前"
-	 * 2012-10-18 14:14:22,要你显示成   "1分钟前"
-	 * 2012-10-18 13:55:00,要你显示成   "19分钟前"
-	 * 2012-10-17 14:15:02,要你显示成   "昨天 14:15"
-	 * 2012-10-16 14:15:02,要你显示成   "前天 14:15"
-	 * 2012-10-15 14:15:02,要你显示成   "10-15 14:15"
-	 * 2012-09-15 14:15:02,要你显示成   "09-15 14:15"
-	 * 2011-09-15 14:15:02,要你显示成   "2011-09-15 14:15"
-	 * 
-	 * </pre>
-	 * 
-	 * .
-	 */
-	@Test
-	public void testToHumanizationDateString(){
-		log.debug("testConvertDateToChineseDateString:**********************************************");
-
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 13:55:00", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 14:14:22", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 14:15:22", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-17 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-16 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-15 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-09-15 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2011-09-15 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateUtil.toHumanizationDateString(DateUtil.string2Date("2012-12-03 00:00:00", DatePattern.commonWithTime)));
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getExtentToday()}.
-	 */
-	@Test
-	public final void testGetExtentToday(){
-		Date[] dates = DateUtil.getExtentToday();
-		for (Date date : dates){
-			log.debug(DateUtil.date2String(date, DatePattern.commonWithMillisecond));
-		}
+		logDate(DateUtil.addHour(now, 5));
+		logDate(DateUtil.addHour(now, -5));
 	}
 
 	/**
@@ -638,28 +559,7 @@ public class DateUtilTest extends BaseDateUtil{
 	 */
 	@Test
 	public final void testGetYesterday(){
-		print(DateUtil.getYesterday(now));
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.date.DateUtil#getExtentYesterday()}.
-	 */
-	@Test
-	public final void testGetExtentYesterday(){
-		Date[] dates = DateUtil.getExtentYesterday();
-		for (Date date : dates){
-			print(date);
-		}
-	}
-
-	/**
-	 * Prints the.
-	 * 
-	 * @param date
-	 *            the date
-	 */
-	private void print(Date date){
-		log.debug(DateUtil.date2String(date, DatePattern.commonWithMillisecond));
+		logDate(DateUtil.getYesterday(now));
 	}
 
 	/**
@@ -703,23 +603,5 @@ public class DateUtilTest extends BaseDateUtil{
 	@Test
 	public final void testToCalendar1(){
 		log.info((new Date().getTime() + "").length() + "");
-	}
-
-	/**
-	 * TestDateUtilTest.
-	 */
-	@Test
-	public void testDateUtilTest(){
-		List<Date> dateList = new ArrayList<>();
-		dateList.add(new Date());
-		dateList.add(new Date());
-		dateList.add(new Date());
-		dateList.add(new Date());
-
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(DateUtil.dateList2StringList(dateList, DatePattern.commonWithMillisecond)));
-		}
-
-		//assertEquals(expected, actual);
 	}
 }

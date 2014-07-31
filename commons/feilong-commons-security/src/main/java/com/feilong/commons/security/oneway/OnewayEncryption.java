@@ -30,7 +30,7 @@ import com.feilong.commons.security.EncryptionException;
 /**
  * 单向加密算法.
  * 
- * <h4>提供以下核心方法:</h4>
+ * <h3>提供以下核心方法:</h3>
  * 
  * <blockquote>
  * <ul>

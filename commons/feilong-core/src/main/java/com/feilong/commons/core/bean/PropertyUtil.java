@@ -172,7 +172,7 @@ public final class PropertyUtil{
 	 * }
 	 * </pre>
 	 * 
-	 * <h4>{@link BeanUtils#getProperty(Object, String)}&{@link PropertyUtils#getProperty(Object, String)}的区别</h4>
+	 * <h3>{@link BeanUtils#getProperty(Object, String)}&{@link PropertyUtils#getProperty(Object, String)}的区别</h3>
 	 * 
 	 * <blockquote>
 	 * <p>

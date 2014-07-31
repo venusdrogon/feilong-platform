@@ -31,11 +31,11 @@ import com.feilong.commons.core.util.Validator;
  * 
  * 
  * <p>
- * 
  * 这里使用偷懒的做法,调用了 {@link org.apache.commons.beanutils.ConvertUtilsBean#register(boolean, boolean, int)}方法<br>
  * 但是有后遗症,这是beanUtils核心公共的方法,可能会影响其他框架或者其他作者开发的代码<br>
  * 最正确的做法, 自定义的类,自己单独写 {@link org.apache.commons.beanutils.Converter},<br>
  * 而 公共的类 比如 下面方法里面的类型:
+ * </p>
  * 
  * <ul>
  * <li>registerPrimitives(throwException);</li>
@@ -69,7 +69,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * </pre>
  * 
- * </p>
+ * 
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 2010-7-9 下午02:44:36
@@ -120,9 +120,9 @@ public final class BeanUtil{
 	 * 但还是可以帮助我们减少工作量的，假如类的属性不是基础类型的话（即自定义类），可以先clone出那个自定义类，在把他付给新的类，覆盖原来类的引用,<br>
 	 * 是为那些本身没有实现clone方法的类准备的 
 	 * </p>
-	 * 
+	 *
 	 * @param <T>
-	 * 
+	 *            the generic type
 	 * @param bean
 	 *            Bean to be cloned
 	 * @return the cloned bean
@@ -215,7 +215,7 @@ public final class BeanUtil{
 	 * 注意:这种copy都是浅拷贝，复制后的2个Bean的同一个属性可能拥有同一个对象的ref，<br>
 	 * 这个在使用时要小心，特别是对于属性为自定义类的情况 .
 	 * 
-	 * <h4>{@link BeanUtils#copyProperties(Object, Object)}与 {@link PropertyUtils#copyProperties(Object, Object)}区别</h4>
+	 * <h3>{@link BeanUtils#copyProperties(Object, Object)}与 {@link PropertyUtils#copyProperties(Object, Object)}区别</h3>
 	 * 
 	 * <blockquote>
 	 * <ul>
@@ -226,7 +226,6 @@ public final class BeanUtil{
 	 * of certain data types),具体信息,可以参阅commons-beanutils的
 	 * {@link <a href="http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.2/RELEASE-NOTES.txt">RELEASE-NOTES.txt</a>}</li>
 	 * </ul>
-	 * </p>
 	 * </blockquote>
 	 * 
 	 * @param toObj
@@ -489,7 +488,7 @@ public final class BeanUtil{
 	 * }
 	 * </pre>
 	 * 
-	 * <h4>{@link BeanUtils#getProperty(Object, String)}&{@link PropertyUtils#getProperty(Object, String)}的区别</h4>
+	 * <h3>{@link BeanUtils#getProperty(Object, String)}&{@link PropertyUtils#getProperty(Object, String)}的区别</h3>
 	 * 
 	 * <blockquote>
 	 * <p>

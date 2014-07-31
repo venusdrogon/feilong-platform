@@ -27,7 +27,7 @@ import com.feilong.commons.core.entity.JoinStringEntity;
 /**
  * CollectionUtil {@link Collection}工具类.<br>
  * 
- * <h4>{@link <a href="http://stamen.iteye.com/blog/2003458">SET-MAP现代诗一首</a>}</h4>
+ * <h3>{@link <a href="http://stamen.iteye.com/blog/2003458">SET-MAP现代诗一首</a>}</h3>
  * 
  * <blockquote>
  * <p>

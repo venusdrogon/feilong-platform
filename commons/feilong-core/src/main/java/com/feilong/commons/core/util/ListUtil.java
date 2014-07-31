@@ -256,7 +256,7 @@ public final class ListUtil{
 	 * 解析对象集合,使用 {@link org.apache.commons.beanutils.PropertyUtils#getProperty(Object, String)}取到对象特殊属性,拼成List(ArrayList). <br>
 	 * 支持属性级联获取,支付获取数组,集合,map,自定义bean等属性
 	 * 
-	 * <h4>使用示例:</h4>
+	 * <h3>使用示例:</h3>
 	 * 
 	 * <blockquote>
 	 * 

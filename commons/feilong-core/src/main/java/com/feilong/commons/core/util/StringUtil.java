@@ -32,7 +32,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
 /**
  * StringUtil {@link String}工具类,可以 查询,截取,format,转成16进制码.
  * 
- * <h4>分隔(split)</h4>
+ * <h3>分隔(split)</h3>
  * 
  * <blockquote>
  * <ul>
@@ -42,7 +42,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * </ul>
  * </blockquote>
  * 
- * <h4>分隔(tokenize)</h4> <blockquote>
+ * <h3>分隔(tokenize)</h3> <blockquote>
  * <ul>
  * <li>{@link #tokenizeToStringArray(String, String)}</li>
  * <li>{@link #tokenizeToStringArray(String, String, boolean, boolean)}</li>
@@ -865,7 +865,7 @@ public final class StringUtil{
 	 * 对浮点数进行格式化:%[index$][标识][最少宽度][.精度]转换方式<br>
 	 * 转换方式 转换符和标志的说明<br>
 	 * 
-	 * <h4>转换符</h4>
+	 * <h3>转换符</h3>
 	 * 
 	 * <pre>
 	 * %s	字符串类型	"mingrisoft"
@@ -884,7 +884,7 @@ public final class StringUtil{
 	 * %tx	日期与时间类型（x代表不同的日期与时间转换符
 	 * </pre>
 	 * 
-	 * <h4>标志</h4>
+	 * <h3>标志</h3>
 	 * 
 	 * <pre>
 	 * {@code

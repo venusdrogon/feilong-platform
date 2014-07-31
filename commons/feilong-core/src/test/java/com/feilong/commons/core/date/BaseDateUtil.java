@@ -15,31 +15,49 @@
  */
 package com.feilong.commons.core.date;
 
+import java.lang.reflect.Array;
 import java.util.Date;
+import java.util.concurrent.ArrayBlockingQueue;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 
+ * The Class BaseDateUtil.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年6月3日 下午11:37:43
  * @since 1.0.7
  */
-public abstract class BaseDateUtil{
+abstract class BaseDateUtil{
+
+	private static final Logger	log					= LoggerFactory.getLogger(BaseDateUtil.class);
 
 	/** <code>{@value}</code> code. */
-	public static String	fromString			= "2011-03-5 23:31:25.456";
+	static final String			fromString			= "2011-03-5 23:31:25.456";
 
 	/** The to string. */
-	public static String	toString			= "2011-03-10 01:30:24.895";
+	static final String			toString			= "2011-03-10 01:30:24.895";
 
 	/** The now. */
-	public static Date		now					= new Date();
+	static final Date			now					= new Date();
 
 	/** The current year begin. */
-	public static Date		currentYearBegin	= DateUtil.getFirstDateOfThisYear(now);
+	static final Date			currentYearBegin	= DateUtil.getFirstDateOfThisYear(now);
 
 	/** The current year end. */
-	public static Date		currentYearEnd		= DateUtil.getLastDateOfThisYear(now);
+	static final Date			currentYearEnd		= DateUtil.getLastDateOfThisYear(now);
 
 	/** The current year end. */
-	public static Date		testDate			= DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.commonWithMillisecond);
+	static final Date			testDate			= DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.commonWithMillisecond);
+
+	/**
+	 * Prints the.
+	 * 
+	 * @param date
+	 *            the date
+	 */
+	protected void logDate(Date date){
+		log.debug(DateUtil.date2String(date, DatePattern.commonWithMillisecond));
+	}
 }

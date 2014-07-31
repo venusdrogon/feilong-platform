@@ -25,29 +25,31 @@ import org.slf4j.LoggerFactory;
 
 import weibo4j.model.WeiboException;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 11, 2013 12:23:54 AM
  */
-@SuppressWarnings("all")public class WeiboUtilTest{
+@SuppressWarnings("all")
+public class WeiboUtilTest{
 
 	private static final Logger	log				= LoggerFactory.getLogger(WeiboUtilTest.class);
 
 	private String				access_token	= "2.00eFxqECiedPvB83b474816527NTJB";
 
 	@Test
-	public final void sendWeibo_withPhoto() throws WeiboException, IOException{
+	public final void sendWeibo_withPhoto() throws WeiboException,IOException{
 		String imagePath = "F:\\Picture 图片\\maitan.gif";
 		String statuses = "#鑫哥的微博小蜜# 发个图片玩玩";
 		WeiboUtil.sendWeibo(access_token, statuses, imagePath);
 	}
 
 	@Test
-	public void sendWeibo() throws WeiboException, IOException{
+	public void sendWeibo() throws WeiboException,IOException{
 		Date date = new Date();
-		String statuses = "#鑫哥的微博小蜜# 吃饭去了,好饿" + DateUtil.date2String(date);
+		String statuses = "#鑫哥的微博小蜜# 吃饭去了,好饿" + DateUtil.date2String(date, DatePattern.commonWithTime);
 		WeiboUtil.sendWeibo(access_token, statuses);
 	}
 

@@ -31,7 +31,7 @@ package com.feilong.commons.security.oneway;
  * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512<br>
  * 支持的单向加密类型,也可以参阅 {@link java.security.MessageDigestSpi}的实现类
  * 
- * <h4>String origin = "你好"; 结果对比:</h4>
+ * <h3>String origin = "你好"; 结果对比:</h3>
  * 
  * <blockquote>
  * 
@@ -54,7 +54,7 @@ package com.feilong.commons.security.oneway;
  * 
  * </blockquote>
  * 
- * <h4>SHA-1与MD5的比较</h4>
+ * <h3>SHA-1与MD5的比较</h3>
  * 
  * <blockquote>
  * 

@@ -37,7 +37,7 @@ import com.feilong.tools.solrj.paramscommand.GroupParamsCommand;
 /**
  * Solrj核心操作封装.
  * 
- * <h4>和 官方商城组4.0相比,有以下改动</h4>
+ * <h3>和 官方商城组4.0相比,有以下改动</h3>
  * 
  * <blockquote>
  * <p>

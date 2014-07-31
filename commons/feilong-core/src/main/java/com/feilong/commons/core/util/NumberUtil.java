@@ -30,7 +30,7 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * 
  * <p>
  * 
- * <h4><a name="RoundingMode">JAVA 8种舍入法</a></h4> <blockquote>
+ * <h3><a name="RoundingMode">JAVA 8种舍入法</a></h3> <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr bgcolor="#ccccff">
  * <th align=left>字段</th>
