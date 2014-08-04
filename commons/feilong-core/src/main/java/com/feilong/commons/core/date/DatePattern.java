@@ -20,7 +20,7 @@ import java.util.Date;
 
 /**
  * <p>
- * 常用的日期pattern
+ * 常用的日期pattern (focus on date pattern)
  * </p>
  * <blockquote>
  * <table border=1 cellspacing=0 cellpadding=4 summary="Chart shows pattern letters, date/time component, presentation, and examples.">

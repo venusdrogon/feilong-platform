@@ -16,7 +16,7 @@
 package com.feilong.commons.core.date;
 
 /**
- * 日期字典
+ * 日期字典(focus on date config)
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 9, 2013 12:01:50 AM
