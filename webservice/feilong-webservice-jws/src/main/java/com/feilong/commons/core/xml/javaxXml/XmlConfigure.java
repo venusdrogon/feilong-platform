@@ -43,7 +43,7 @@ import com.feilong.commons.core.configure.BaseConfigure;
  * @version 1.0 2010-3-22 上午10:08:30
  * @since 1.0.0
  */
-public final class XmlConfigure extends BaseConfigure{
+public final class XmlConfigure implements BaseConfigure{
 
 	/**
 	 * XmlConfigure.
