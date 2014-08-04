@@ -28,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.lang.ObjectUtil;
@@ -86,7 +87,7 @@ public final class SessionUtil{
 							"[{}],format:[{}],intervalToNow:[{}]",
 							creationTime,
 							DateUtil.date2String(creationTimeDate, DatePattern.commonWithMillisecond),
-							DateUtil.getIntervalForView(creationTimeDate, now)));
+							DateExtensionUtil.getIntervalForView(creationTimeDate, now)));
 
 			//返回此SESSION里客户端最近一次请求时间 
 			long lastAccessedTime = session.getLastAccessedTime();
@@ -97,13 +98,13 @@ public final class SessionUtil{
 							"[{}],format:[{}],intervalToNow:[{}]",
 							lastAccessedTime,
 							DateUtil.date2String(lastAccessedTimeDate, DatePattern.commonWithMillisecond),
-							DateUtil.getIntervalForView(lastAccessedTimeDate, now)));
+							DateExtensionUtil.getIntervalForView(lastAccessedTimeDate, now)));
 
 			//返回两次请求间隔多长时间此SESSION被取消(ms) 
 			int maxInactiveInterval = session.getMaxInactiveInterval();
 			map.put(
 					"session.getMaxInactiveInterval()",
-					maxInactiveInterval + "s,format:" + DateUtil.getIntervalForView(maxInactiveInterval * 1000));
+					maxInactiveInterval + "s,format:" + DateExtensionUtil.getIntervalForView(maxInactiveInterval * 1000));
 
 			// 返回服务器创建的一个SESSION,客户端是否已经加入 
 			map.put("session.isNew()", session.isNew());

@@ -6,7 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.date.DateExtensionUtil;
 
 @SuppressWarnings("all")public class HelloWorldAspect{
 
@@ -25,7 +25,7 @@ import com.feilong.commons.core.date.DateUtil;
 	// 后置最终通知
 	public void afterFinallyAdvice(){
 		end = new Date();
-		log.info("2.......after finally advice,{},耗时:{}", begin, DateUtil.getIntervalForView(begin, end));
+		log.info("2.......after finally advice,{},耗时:{}", begin, DateExtensionUtil.getIntervalForView(begin, end));
 	}
 
 	public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{

@@ -25,7 +25,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
-import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
@@ -85,7 +85,7 @@ public class LogAspect extends AbstractAspect{
 		// ReflectUtil.invokeMethod(log, level, "method:{}({}),耗时:{}", objects);
 
 		String format = "method:%s(%s),耗时:%s";
-		Object[] objects = { methodName, args, DateUtil.getIntervalForView(begin, end) };
+		Object[] objects = { methodName, args, DateExtensionUtil.getIntervalForView(begin, end) };
 		Object message = StringUtil.format(format, objects);
 		log.log(Level.toLevel(level), message);
 	}

@@ -24,9 +24,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.tools.ant.ZipUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -54,7 +54,7 @@ import com.feilong.tools.ant.ZipUtil;
 		ZipUtil feiLongZip = new ZipUtil();
 		feiLongZip.zip(inputFileName, zipFileName);
 		Date date2 = new Date();
-		log.info("耗时：" + DateUtil.getIntervalForView(date1, date2));
+		log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
 		// ,/select E:/Workspaces
 		// Command.execFileOrDirectoryFocus("E:\\test,E:\\Project");
 	}
@@ -66,6 +66,6 @@ import com.feilong.tools.ant.ZipUtil;
 		ZipUtil feiLongZip = new ZipUtil();
 		feiLongZip.unZip(unZipFileName, outputFileName);
 		Date date2 = new Date();
-		log.info("耗时：" + DateUtil.getIntervalForView(date1, date2));
+		log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
 	}
 }
