@@ -17,6 +17,7 @@ package com.feilong.taglib.common.date;
 
 import java.util.Date;
 
+import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.taglib.base.AbstractCommonTag;
@@ -65,7 +66,7 @@ public class ChineseTimeTag extends AbstractCommonTag{
 			if (hasColor){
 				//return DateUtil.convertDateToChineseDate2(date);
 			}
-			return DateUtil.toHumanizationDateString(date);
+			return DateExtensionUtil.toHumanizationDateString(date);
 		}
 		return "";
 	}
