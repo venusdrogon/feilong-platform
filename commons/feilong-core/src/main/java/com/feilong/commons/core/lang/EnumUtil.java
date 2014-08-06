@@ -19,8 +19,8 @@ import org.apache.commons.lang.enums.EnumUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.bean.BeanUtilException;
+import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
@@ -54,6 +54,7 @@ public final class EnumUtil{
 	 * 
 	 * @param <E>
 	 *            the element type
+	 * @param <T>
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
 	 * @param propertyName
@@ -68,7 +69,7 @@ public final class EnumUtil{
 	 * @throws BeanUtilException
 	 *             the bean util exception
 	 */
-	public static <E extends Enum<E>> E getEnumByPropertyValueIgnoreCase(Class<E> enumClass,String propertyName,String value)
+	public static <E extends Enum<E>, T> E getEnumByPropertyValueIgnoreCase(Class<E> enumClass,String propertyName,T value)
 			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 		boolean ignoreCase = true;
 		return _getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
@@ -88,6 +89,7 @@ public final class EnumUtil{
 	 * 
 	 * @param <E>
 	 *            the element type
+	 * @param <T>
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
 	 * @param propertyName
@@ -103,7 +105,7 @@ public final class EnumUtil{
 	 *             the bean util exception
 	 * @since 1.0.8
 	 */
-	public static <E extends Enum<E>> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,String value)
+	public static <E extends Enum<E>, T> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value)
 			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 		boolean ignoreCase = false;
 		return _getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
@@ -123,6 +125,7 @@ public final class EnumUtil{
 	 * 
 	 * @param <E>
 	 *            the element type
+	 * @param <T>
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
 	 * @param propertyName
@@ -141,7 +144,7 @@ public final class EnumUtil{
 	 * @see com.feilong.commons.core.bean.BeanUtil#getProperty(Object, String)
 	 * @since 1.0.8
 	 */
-	private static <E extends Enum<E>> E _getEnumByPropertyValue(Class<E> enumClass,String propertyName,String value,boolean ignoreCase)
+	private static <E extends Enum<E>, T> E _getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value,boolean ignoreCase)
 			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 
 		if (Validator.isNullOrEmpty(enumClass)){
@@ -158,24 +161,24 @@ public final class EnumUtil{
 		E[] enumConstants = enumClass.getEnumConstants();
 
 		for (E e : enumConstants){
-			String property = BeanUtil.getProperty(e, propertyName);
-
 			if (log.isInfoEnabled()){
 				log.info("" + JsonUtil.format(e));
 			}
-			String string = property.toString();
 
-			boolean isMatch = false;
+			Object propertyValue = PropertyUtil.getProperty(e, propertyName);
 
-			if (ignoreCase){
-				isMatch = string.equalsIgnoreCase(value);
-			}else{
-				isMatch = string.equals(value);
-			}
-			if (isMatch){
+			if (null == propertyValue && null == value){
 				return e;
 			}
+			if (null != propertyValue && null != value){
+				if (ignoreCase && propertyValue.toString().equalsIgnoreCase(value.toString())){
+					return e;
+				}else if (propertyValue.equals(value)){
+					return e;
+				}
+			}
 		}
+
 		throw new NoSuchFieldException("can not found the enum constants,enumClass:[" + enumClass + "],propertyName:[" + propertyName
 				+ "],value:[" + value + "],ignoreCase:[" + ignoreCase + "]");
 	}

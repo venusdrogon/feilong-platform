@@ -17,15 +17,20 @@ package com.feilong.tools.office.excel;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.text.Format;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
+import com.feilong.commons.core.bean.BeanUtilException;
+import com.feilong.commons.core.lang.EnumUtil;
 import com.feilong.commons.core.util.NumberPattern;
 import com.feilong.commons.core.util.NumberUtil;
 
@@ -182,34 +187,51 @@ public class ExcelParseUtil{
 	 * @return the cell map for log
 	 */
 	public static Map<String, Object> getCellMapForLog(Cell cell){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		map.put("getCellComment", cell.getCellComment());
 
 		int cellType = cell.getCellType();
 		map.put("getCellType", cellType);
+		try{
+			map.put("getCellTypeString", EnumUtil.getEnumByPropertyValue(CellType.class, "value", cellType));
+		}catch (IllegalArgumentException | NoSuchFieldException | BeanUtilException e){
+			e.printStackTrace();
+		}
+
 		switch (cellType) {
 			case Cell.CELL_TYPE_BLANK:
-
 				break;
+				
 			case Cell.CELL_TYPE_BOOLEAN:
 				map.put("getBooleanCellValue", cell.getBooleanCellValue());
 				break;
+
 			case Cell.CELL_TYPE_ERROR:
 				map.put("getErrorCellValue", cell.getErrorCellValue());
 				break;
+
 			case Cell.CELL_TYPE_FORMULA:// 公式
-				map.put("getCellFormula", cell.getCellFormula());
-				map.put("getCachedFormulaResultType", cell.getCachedFormulaResultType());
+				String cellFormula = cell.getCellFormula();
+
+				int cachedFormulaResultType = cell.getCachedFormulaResultType();
+				map.put("getCellFormula", cellFormula);
+				map.put("getCachedFormulaResultType", cachedFormulaResultType);
+
+				String cellFormulaResultValue = getCellFormulaResultValue(cell);
+				map.put("cellFormulaResultValue", cellFormulaResultValue);
 				break;
+
 			case Cell.CELL_TYPE_NUMERIC:
 				map.put("getDateCellValue", cell.getDateCellValue());
 				map.put("getNumericCellValue", cell.getNumericCellValue());
 				break;
+
 			case Cell.CELL_TYPE_STRING:
 				map.put("getStringCellValue", cell.getStringCellValue());
 				map.put("getRichStringCellValue", cell.getRichStringCellValue());
 				break;
+
 			default:
 				break;
 		}
@@ -222,6 +244,44 @@ public class ExcelParseUtil{
 	}
 
 	/**
+	 * 获得公式单元格计算的结果值
+	 *
+	 * @param cell
+	 *            the cell
+	 * @return the cell formula result value
+	 */
+	private static String getCellFormulaResultValue(Cell cell){
+		int cachedFormulaResultType = cell.getCachedFormulaResultType();
+		String cellFormulaResultValue = "";
+
+		//只会有四种类型
+		switch (cachedFormulaResultType) {
+			case Cell.CELL_TYPE_NUMERIC:// if it is mumeric type
+				DataFormatter dataFormatter = new DataFormatter();
+				Format format = dataFormatter.createFormat(cell);
+				cellFormulaResultValue = format.format(cell.getNumericCellValue());
+				break;
+
+			case Cell.CELL_TYPE_STRING:// if it is string type
+				RichTextString richTextString = cell.getRichStringCellValue();
+				cellFormulaResultValue = richTextString.toString();
+				break;
+
+			case Cell.CELL_TYPE_BOOLEAN:// 
+
+				//				break;
+			case Cell.CELL_TYPE_ERROR:// 
+
+				//				break;
+			default:
+				//TODO
+				cellFormulaResultValue = "cachedFormulaResultType:" + cachedFormulaResultType + " will impl soon";
+				break;
+		}
+		return cellFormulaResultValue;
+	}
+
+	/**
 	 * Gets the row map for log.
 	 * 
 	 * @param row
@@ -229,7 +289,7 @@ public class ExcelParseUtil{
 	 * @return the row map for log
 	 */
 	public static Map<String, Object> getRowMapForLog(Row row){
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		map.put("getFirstCellNum", row.getFirstCellNum());
 		map.put("getHeight", row.getHeight());
@@ -255,7 +315,7 @@ public class ExcelParseUtil{
 		int firstRowNum = sheet.getFirstRowNum();
 		int physicalNumberOfRows = sheet.getPhysicalNumberOfRows();
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		map.put("getLastRowNum", lastRowNum);
 		map.put("getFirstRowNum", firstRowNum);

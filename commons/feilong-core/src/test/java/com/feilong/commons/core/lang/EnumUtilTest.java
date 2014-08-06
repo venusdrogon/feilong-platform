@@ -37,7 +37,7 @@ public class EnumUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(EnumUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValueIgnoreCase(Class, String, String)}.
+	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValueIgnoreCase(Class, String, Object)}.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
@@ -46,9 +46,7 @@ public class EnumUtilTest{
 	 */
 	@Test
 	public final void testGetEnum() throws IllegalArgumentException,NoSuchFieldException{
-		if (log.isInfoEnabled()){
-			log.info("" + EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
-		}
+		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
 	}
 
 	/**
@@ -114,13 +112,13 @@ public class EnumUtilTest{
 
 	/**
 	 * Test get http method type4.
-	 * 
-	 * @throws BeanUtilException
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
 	 * @throws NoSuchFieldException
 	 *             the no such field exception
+	 * @throws BeanUtilException
+	 *             the bean util exception
 	 */
 	@Test(expected = BeanUtilException.class)
 	public final void testGetHttpMethodType4() throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{

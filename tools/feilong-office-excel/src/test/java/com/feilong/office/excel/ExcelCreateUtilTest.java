@@ -32,7 +32,7 @@ import com.feilong.tools.office.excel.ExcelCreateUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Feb 10, 2014 2:33:52 AM
  */
-public class ExcelCreateTest{
+public class ExcelCreateUtilTest{
 
 	/**
 	 * Creates the excel.
