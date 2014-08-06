@@ -52,7 +52,7 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 /**
  * 所有 {@link PaymentAdaptor} 的 基础类,包括了 公共属性/通用的验证等方法.
  * 
- * <h4>4个公共属性</h4>
+ * <h3>4个公共属性</h3>
  * 
  * <blockquote>
  * <p>
@@ -66,7 +66,7 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * </blockquote>
  * 
  * 
- * <h4>金额验证规则</h4>
+ * <h3>金额验证规则</h3>
  * 
  * <blockquote>
  * <p>

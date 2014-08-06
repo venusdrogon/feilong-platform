@@ -36,6 +36,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaySoLine;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
@@ -76,7 +77,9 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
 		String notify_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
 
-		BigDecimal total_fee = new BigDecimal(60000.00f);
+		int per = 100;
+
+		BigDecimal total_fee = new BigDecimal(60.00f * per);
 
 		PayRequest payRequest = new PayRequest();
 
@@ -86,22 +89,22 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		payRequest.setBuyerName("jinxin");
 		payRequest.setBuyer(888);
 
-		payRequest.setTransferFee(new BigDecimal(10000.00f));
+		payRequest.setTransferFee(new BigDecimal(10.00f * per));
 
 		List<PaySoLine> paySoLineList = payRequest.getPaySoLineList();
 
 		PaySoLine paySoLine1 = new PaySoLine();
 		paySoLine1.setItemName("nike ;s free 5.0");
-		paySoLine1.setUnitPrice(new BigDecimal(20000));
+		paySoLine1.setUnitPrice(new BigDecimal(20 * per));
 		paySoLine1.setQuantity(1);
-		paySoLine1.setSubTotalPrice(new BigDecimal(20000));
+		paySoLine1.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine1.getUnitPrice(), paySoLine1.getQuantity()));
 		paySoLineList.add(paySoLine1);
 
 		PaySoLine paySoLine2 = new PaySoLine();
 		paySoLine2.setItemName("nike free 4.0");
-		paySoLine2.setUnitPrice(new BigDecimal(15000));
+		paySoLine2.setUnitPrice(new BigDecimal(15 * per));
 		paySoLine2.setQuantity(2);
-		paySoLine2.setSubTotalPrice(new BigDecimal(30000));
+		paySoLine2.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine2.getUnitPrice(), paySoLine2.getQuantity()));
 		paySoLineList.add(paySoLine2);
 
 		payRequest.setCreateDate(new Date());
