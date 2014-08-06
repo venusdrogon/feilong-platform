@@ -1,19 +1,19 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package com.feilong.tools.scm;
+package com.feilong.tools.scm.cvs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.tools.scm.AbstractScmAntCopy;
+import com.feilong.tools.scm.command.PatchType;
+import com.feilong.tools.scm.command.ScmPatchCommand;
 
 /**
  * 此工具类是结合ant打包 使用的，用于：创建修改了哪些文件。<br>
@@ -40,26 +43,24 @@ import com.feilong.commons.core.util.StringUtil;
  * @author xialong
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version <ul>
- *          <li>1.0 2012-5-23 下午7:57:26</li>
- *          <li>1.1 2012-6-11 11:18<br>
+ *          <li>1.0.0 2012-5-23 下午7:57:26</li>
+ *          <li>1.0.1 2012-6-11 11:18<br>
  *          1.如果 addList,updateList,deleteList有空,则相应的 <!--add/update/delete-->注释不显示</li>
- *          <li>1.2 2012-7-9 19:28<br>
+ *          <li>1.0.2 2012-7-9 19:28<br>
  *          1.新建了 AbstractPatchUtil</li>
- *          <li>1.3 2012-7-10 20:06<br>
+ *          <li>1.0.3 2012-7-10 20:06<br>
  *          1.add com.feilong.tools.scm.CVSPatchUtil.getPatchMapByPatchType(BufferedReader)</li>
  *          </ul>
  */
-public final class CVSPatchUtil extends AbstractPatchUtil{
+public final class CvsPatchAntCopy extends AbstractScmAntCopy{
 
-	/**
-	 * 项目名称{@code}
-	 */
-	private static String	prefix_projectName	= "#P ";
+	/** 项目名称 <code>{@value}</code>. */
+	private static final String	PREFIX_PROJECTNAME	= "#P ";
 
 	/**
 	 * Instantiates a new patch util.
 	 */
-	public CVSPatchUtil(){}
+	public CvsPatchAntCopy(){}
 
 	/**
 	 * To patch command list map.
@@ -68,23 +69,22 @@ public final class CVSPatchUtil extends AbstractPatchUtil{
 	 *            the buffered reader
 	 * @return the map
 	 */
-	@SuppressWarnings("null")
-	protected Map<PatchType, List<? extends BasePatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader){
+	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader){
 		String line = null;
-		CVSPatchCommand patchCommand = null;
+		CvsPatchCommand patchCommand = null;
 
-		List<CVSPatchCommand> addList = new ArrayList<CVSPatchCommand>();
-		List<CVSPatchCommand> updateList = new ArrayList<CVSPatchCommand>();
-		List<CVSPatchCommand> deleteList = new ArrayList<CVSPatchCommand>();
+		List<CvsPatchCommand> addList = new ArrayList<CvsPatchCommand>();
+		List<CvsPatchCommand> updateList = new ArrayList<CvsPatchCommand>();
+		List<CvsPatchCommand> deleteList = new ArrayList<CvsPatchCommand>();
 		try{
 			while ((line = bufferedReader.readLine()) != null){
 				// 项目名称
-				if (line.startsWith(prefix_projectName)){
-					setProjectName(getProjectName(line));
+				if (line.startsWith(PREFIX_PROJECTNAME)){
+					setProjectName(parseProjectName(line));
 				}
 				if (line.startsWith("Index:")){
 					// 开始
-					patchCommand = new CVSPatchCommand();
+					patchCommand = new CvsPatchCommand();
 					patchCommand.setIndex(line);
 					patchCommand.setFilePath(line);
 				}else if (line.startsWith("RCS file:")){
@@ -94,23 +94,23 @@ public final class CVSPatchUtil extends AbstractPatchUtil{
 				}else if (line.startsWith("---")){
 					patchCommand.setRemote(line);
 					if (line.startsWith("--- /dev/null")){
-						patchCommand.setPatchType(PatchType.add);
+						patchCommand.setPatchType(PatchType.ADD);
 					}
 				}else if (line.startsWith("+++")){
 					patchCommand.setLocal(line);
 					if (line.startsWith("+++ /dev/null")){
-						patchCommand.setPatchType(PatchType.delete);
+						patchCommand.setPatchType(PatchType.DELETE);
 					}
 					switch (patchCommand.getPatchType()) {
-						case add:
+						case ADD:
 							patchCommand.setFilePath(patchCommand.getRcs());
 							addList.add(patchCommand);
 							break;
-						case update:
+						case UPDATE:
 							patchCommand.setFilePath(StringUtil.substringWithoutLast(patchCommand.getRcs(), ",v".length()));
 							updateList.add(patchCommand);
 							break;
-						case delete:
+						case DELETE:
 							patchCommand.setFilePath(patchCommand.getRcs());
 							deleteList.add(patchCommand);
 							break;
@@ -119,7 +119,7 @@ public final class CVSPatchUtil extends AbstractPatchUtil{
 					}
 				}
 			}
-			return constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
+			return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
 		}catch (IOException e){
 			e.printStackTrace();
 		}
@@ -127,12 +127,13 @@ public final class CVSPatchUtil extends AbstractPatchUtil{
 	}
 
 	/**
-	 * 显示项目 名称
-	 * 
+	 * 获得项目名称.
+	 *
 	 * @param line
-	 * @return
+	 *            the line
+	 * @return the project name
 	 */
-	private static String getProjectName(String line){
-		return StringUtil.substring(line, prefix_projectName.length());
+	private static String parseProjectName(String line){
+		return StringUtil.substring(line, PREFIX_PROJECTNAME.length());
 	}
 }
