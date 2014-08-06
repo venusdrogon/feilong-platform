@@ -202,7 +202,7 @@ public class ExcelParseUtil{
 		switch (cellType) {
 			case Cell.CELL_TYPE_BLANK:
 				break;
-				
+
 			case Cell.CELL_TYPE_BOOLEAN:
 				map.put("getBooleanCellValue", cell.getBooleanCellValue());
 				break;
@@ -268,7 +268,7 @@ public class ExcelParseUtil{
 				break;
 
 			case Cell.CELL_TYPE_BOOLEAN:// 
-
+				//				 return new DataFormatter().formatCellValue(cell);
 				//				break;
 			case Cell.CELL_TYPE_ERROR:// 
 
