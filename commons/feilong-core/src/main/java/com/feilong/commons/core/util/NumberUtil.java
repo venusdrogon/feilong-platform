@@ -301,10 +301,26 @@ public final class NumberUtil{
 	 *         if isNotNullOrEmpty(two) return one
 	 */
 	public final static BigDecimal getMultiplyValue(BigDecimal one,Serializable two,int scale){
+		BigDecimal result = getMultiplyValue(one, two);
+		return setScale(result, scale);
+	}
+
+	/**
+	 * 获得 multiply value.
+	 *
+	 * @param one
+	 *            乘数
+	 * @param two
+	 *            被乘数
+	 * @return 获得两个数的乘积 <br>
+	 *         if isNotNullOrEmpty(two) return one
+	 * @since 1.0.8
+	 */
+	public final static BigDecimal getMultiplyValue(BigDecimal one,Serializable two){
 		if (Validator.isNotNullOrEmpty(two)){
 			BigDecimal multiplicand = new BigDecimal(two.toString());
 			BigDecimal result = one.multiply(multiplicand);
-			return setScale(result, scale);
+			return result;
 		}
 		return one;
 	}
