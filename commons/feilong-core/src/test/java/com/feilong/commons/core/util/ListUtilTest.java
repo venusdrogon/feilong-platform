@@ -18,8 +18,10 @@ package com.feilong.commons.core.util;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +49,23 @@ public class ListUtilTest{
 	/** The a strings. */
 	@SuppressWarnings("unused")
 	private String[]			aStrings	= { "a", "b" };
+
+	/**
+	 * TestListUtilTest.
+	 */
+	@Test
+	public void testListUtilTest2(){
+
+		//assertEquals(expected, actual);
+		int[] ints = { 1, 2, 3, 4, 5 };
+		List list = Arrays.asList(ints);
+		System.out.println("list'size：" + list.size());
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(list));
+		}
+
+	}
 
 	/**
 	 * TestListUtilTest.
@@ -105,7 +124,7 @@ public class ListUtilTest{
 	@Test
 	public void remove1(){
 
-		ArrayList<String> list = new ArrayList<String>(){
+		LinkedList<String> list = new LinkedList<String>(){
 
 			private static final long	serialVersionUID	= 5180874275617929469L;
 
@@ -121,9 +140,9 @@ public class ListUtilTest{
 			}
 		};
 
-		list.ensureCapacity(20);
-
-		list.trimToSize();
+		//		list.ensureCapacity(20);
+		//
+		//		list.trimToSize();
 		list.add("a");
 		list.add("a7");
 		list.add("a8");

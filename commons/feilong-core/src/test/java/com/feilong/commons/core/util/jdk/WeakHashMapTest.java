@@ -13,18 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.util.jdk;
 
-import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.test.User;
 
 /**
  * 
@@ -32,45 +30,26 @@ import com.feilong.test.User;
  * @version 1.0.8 2014年7月25日 下午6:14:43
  * @since 1.0.8
  */
-public class IdentityHashMapTest{
+public class WeakHashMapTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(IdentityHashMapTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(WeakHashMapTest.class);
 
 	/**
 	 * TestMapUtilTest.
 	 */
 	@Test
 	public void testMapUtilTest2(){
-
-		Map<Integer, Object> object = new IdentityHashMap<Integer, Object>();
-
-		object.put(0, "0");
-		object.put(1, "1");
-		object.put(2, "2");
-		object.put(3, "3");
-		object.put(0, "1");
+		Map<String, String> map = new WeakHashMap<String, String>();
+		map.put(new String("mldn"), new String("www.mldn.cn"));
+		map.put("zhinangtuan", new String("www.zhinangtuan. net.cn"));
+		map.put("mldnjava", new String("www.mldnjava.cn"));
+		//System.gc();// 进行垃圾收集  
+		map.put("lxh", new String("lixinghua"));
 
 		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(object));
+			log.debug(JsonUtil.format(map));// 一般只会剩下一个内容  
+
+			log.debug(map.get("lxh"));
 		}
-
-		//assertEquals(expected, actual);
-	}
-
-	/**
-	 * Testenclosing_type2.
-	 */
-	@Test
-	public void testenclosing_type2(){
-		Map<User, Object> object1 = new HashMap<User, Object>();
-		object1.put(new User(1L), "0");
-		object1.put(new User(1L), "1");
-		object1.put(new User(1L), "2");
-		object1.put(new User(1L), "3");
-
-		if (log.isDebugEnabled()){
-			log.debug("" + object1.size());
-		}
-		//assertEquals(expected, actual);
 	}
 }
