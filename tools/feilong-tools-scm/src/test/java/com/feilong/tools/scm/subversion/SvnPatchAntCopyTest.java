@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.scm.svn;
+package com.feilong.tools.scm.subversion;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.scm.ScmAntCopy;
+import com.feilong.tools.scm.subversion.SvnPatchAntCopy;
 
 /**
  * The Class PatchUtilTest.
@@ -60,7 +61,7 @@ public class SvnPatchAntCopyTest{
 	 */
 	@Test
 	public void printlnFileContent(){
-		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\svn\\mp2.txt";
+		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\subversion\\mp2.txt";
 		scmAntCopy.printlnFileContent(fileName, excludeFileNames);
 	}
 }
