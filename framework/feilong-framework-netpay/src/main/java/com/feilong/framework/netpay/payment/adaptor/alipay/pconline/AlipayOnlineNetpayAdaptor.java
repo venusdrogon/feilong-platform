@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,6 +31,7 @@ public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.adaptor.AlipayPayAdaptor#validatorSpecialSignMap(java.util.Map)
 	 */
 	@Override
@@ -88,7 +89,9 @@ public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor{
 			"CITIC", // 中信银行
 			"HZCBB2C", // 杭州银行
 
-			"CEBBANK", // 中国光大银行
+			//http://club.alipay.com/read-htm-tid-10794603.html  //  光大银行混合网银通道将于2014年7月1日00:00下线，下线后外部商户（配置了混合网银简码）的用户将无法使用光大银行信用卡小额网银支付功能，如果您的网站遇到光大网银无法充值的情况，请检查您的网关银行简码（将“CEBBANK”改为“CEB-DEBIT”）
+			//"CEBBANK", // 中国光大银行
+
 			"SHBANK", // 上海银行
 			"NBBANK", // 宁波银行
 			"SPABANK", // 平安银行 由于深圳发展银行与平安银行合并，原深圳发展银行卡视为平安银行卡，银行简码统一为 SPABANK，传入SDB（深圳发展银行）将无法支付。
