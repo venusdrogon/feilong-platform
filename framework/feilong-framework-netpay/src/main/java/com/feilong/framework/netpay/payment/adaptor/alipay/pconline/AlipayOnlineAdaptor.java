@@ -25,9 +25,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -138,7 +138,8 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 			String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
 
 			// *************************************************************************************
-			Map<String, String> hiddenParamsMap = new LinkedHashMap<String, String>();
+			//2014-8-11 10:58 为了log看起来整齐 有序, 换成 TreeMap
+			Map<String, String> hiddenParamsMap = new TreeMap<String, String>();
 			hiddenParamsMap.putAll(signParamsMap);
 
 			hiddenParamsMap.put("sign", sign);
