@@ -61,7 +61,7 @@ public class SvnPatchAntCopyTest{
 	 */
 	@Test
 	public void printlnFileContent(){
-		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\subversion\\mp2.txt";
+		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\svn\\mp2.txt";
 		scmAntCopy.printlnFileContent(fileName, excludeFileNames);
 	}
 }

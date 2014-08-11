@@ -15,9 +15,6 @@
  */
 package com.feilong.tools.scm;
 
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -70,16 +67,15 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnClipboardContent(java.lang.String[])
 	 */
-	public void printlnClipboardContent(String[] excludes){
-		Clipboard clipboard = ClipboardUtil.getSystemClipboard();
-		Transferable transferable = clipboard.getContents(clipboard);
-		DataFlavor dataFlavor = DataFlavor.stringFlavor;
+	public void printlnClipboardContent(String[] excludeFileNames){
 		try{
-			Reader reader = dataFlavor.getReaderForText(transferable);
-			printlnPathContent(reader, excludes);
-		}catch (UnsupportedFlavorException e){
-			e.printStackTrace();
-		}catch (IOException e){
+			Reader reader = ClipboardUtil.getClipboardReader();
+
+			ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
+			scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
+
+			printlnPathContent(reader, scmAntCopyConfig);
+		}catch (UnsupportedFlavorException | IOException e){
 			e.printStackTrace();
 		}
 	}
@@ -90,7 +86,8 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnFileContent(java.lang.String)
 	 */
 	public void printlnFileContent(String fileName){
-		printlnFileContent(fileName, null);
+		String[] excludeFileNames = null;
+		printlnFileContent(fileName, excludeFileNames);
 	}
 
 	/*
@@ -99,34 +96,50 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnFileContent(java.lang.String, java.lang.String[])
 	 */
 	public void printlnFileContent(String fileName,String[] excludeFileNames){
+		ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
+		scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
+
+		printlnFileContent(fileName, scmAntCopyConfig);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.feilong.tools.scm.ScmAntCopy#printlnFileContent(java.lang.String, com.feilong.tools.scm.ScmAntCopyConfig)
+	 */
+	public void printlnFileContent(String fileName,ScmAntCopyConfig scmAntCopyConfig){
 		try{
 			Reader reader = new FileReader(fileName);
-			printlnPathContent(reader, excludeFileNames);
+			printlnPathContent(reader, scmAntCopyConfig);
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * 解析 并 system out.
-	 * 
+	 * 解析 并log.
+	 *
 	 * @param reader
 	 *            the reader
-	 * @param excludeFileNames
-	 *            the exclude file names
+	 * @param scmAntCopyConfig
+	 *            the scm ant copy config
 	 */
-	private void printlnPathContent(Reader reader,String[] excludeFileNames){
-		BufferedReader bufferedReader = new BufferedReader(reader);
+	private void printlnPathContent(Reader reader,ScmAntCopyConfig scmAntCopyConfig){
+		try{
+			Map<PatchType, List<String>> patchTypeFilePathMap = getPatchMapByPatchType(reader);
 
-		StringBuilder builder = new StringBuilder();
-		Map<PatchType, List<String>> map = getPatchMapByPatchType(bufferedReader);
+			if (Validator.isNullOrEmpty(patchTypeFilePathMap)){
+				throw new IllegalArgumentException("this map is null!!!Maybe clipboard/file content is null or unrelated with patch!");
+			}
 
-		StringBuilderUtil.appendTextWithLn(builder, "<!--project:" + getProjectName() + "-->");
+			String[] excludeFileNames = scmAntCopyConfig.getExcludeFileNames();
 
-		if (Validator.isNotNullOrEmpty(map)){
-			List<String> addList = map.get(PatchType.ADD);
-			List<String> updateList = map.get(PatchType.UPDATE);
-			List<String> deleteList = map.get(PatchType.DELETE);
+			StringBuilder builder = new StringBuilder();
+
+			StringBuilderUtil.appendTextWithLn(builder, "<!--project:" + getProjectName() + "-->");
+			List<String> addList = patchTypeFilePathMap.get(PatchType.ADD);
+			List<String> updateList = patchTypeFilePathMap.get(PatchType.UPDATE);
+			List<String> deleteList = patchTypeFilePathMap.get(PatchType.DELETE);
 
 			// 2012-12-5 18:35 排序
 			if (Validator.isNotNullOrEmpty(addList)){
@@ -165,8 +178,8 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 			}
 
 			log.info(builder.insert(0, SystemUtils.LINE_SEPARATOR).toString());
-		}else{
-			log.error("this map is null!!!Maybe clipboard/file content is null or unrelated with patch!");
+		}catch (IOException e){
+			e.printStackTrace();
 		}
 	}
 
@@ -189,10 +202,8 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 				}
 			}
 		}
-		if (canPrint){
-			if (Validator.isNotNullOrEmpty(fileName)){
-				StringBuilderUtil.appendTextWithLn(builder, "<include name=\"**" + fileName + "\"/>");
-			}
+		if (canPrint && Validator.isNotNullOrEmpty(fileName)){
+			StringBuilderUtil.appendTextWithLn(builder, "<include name=\"**" + fileName + "\"/>");
 		}
 	}
 
@@ -227,12 +238,16 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 
 	/**
 	 * 按照 add update delete 排好 list map.
-	 * 
-	 * @param bufferedReader
-	 *            the buffered reader
+	 *
+	 * @param reader
+	 *            the reader
 	 * @return the patch map by patch type
+	 * @throws IOException
+	 *             the IO exception
 	 */
-	private Map<PatchType, List<String>> getPatchMapByPatchType(BufferedReader bufferedReader){
+	private Map<PatchType, List<String>> getPatchMapByPatchType(Reader reader) throws IOException{
+		BufferedReader bufferedReader = new BufferedReader(reader);
+
 		Map<PatchType, List<? extends ScmPatchCommand>> map = toPatchCommandListMap(bufferedReader);
 
 		Map<PatchType, List<String>> returnMap = new EnumMap<PatchType, List<String>>(PatchType.class);
@@ -341,12 +356,15 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 
 	/**
 	 * To patch command list map.
-	 * 
+	 *
 	 * @param bufferedReader
 	 *            the buffered reader
 	 * @return the map< patch type, list<? extends base scm command>>
+	 * @throws IOException
+	 *             the IO exception
 	 */
-	protected abstract Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader);
+	protected abstract Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader)
+			throws IOException;
 
 	/**
 	 * Gets the 项目名称.
@@ -366,4 +384,5 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	protected void setProjectName(String projectName){
 		this.projectName = projectName;
 	}
+
 }

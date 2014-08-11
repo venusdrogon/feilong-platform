@@ -63,67 +63,60 @@ public final class CvsPatchAntCopy extends AbstractScmAntCopy{
 	public CvsPatchAntCopy(){}
 
 	/**
-	 * To patch command list map.
+	 * {@inheritDoc}
 	 * 
-	 * @param bufferedReader
-	 *            the buffered reader
-	 * @return the map
+	 * @see com.feilong.tools.scm.AbstractScmAntCopy#toPatchCommandListMap(java.io.BufferedReader)
 	 */
-	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader){
+	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
 		String line = null;
 		CvsPatchCommand patchCommand = null;
 
 		List<CvsPatchCommand> addList = new ArrayList<CvsPatchCommand>();
 		List<CvsPatchCommand> updateList = new ArrayList<CvsPatchCommand>();
 		List<CvsPatchCommand> deleteList = new ArrayList<CvsPatchCommand>();
-		try{
-			while ((line = bufferedReader.readLine()) != null){
-				// 项目名称
-				if (line.startsWith(PREFIX_PROJECTNAME)){
-					setProjectName(parseProjectName(line));
+		while ((line = bufferedReader.readLine()) != null){
+			// 项目名称
+			if (line.startsWith(PREFIX_PROJECTNAME)){
+				setProjectName(parseProjectName(line));
+			}
+			if (line.startsWith("Index:")){
+				// 开始
+				patchCommand = new CvsPatchCommand();
+				patchCommand.setIndex(line);
+				patchCommand.setFilePath(line);
+			}else if (line.startsWith("RCS file:")){
+				patchCommand.setRcs(line);
+			}else if (line.startsWith("diff")){
+				patchCommand.setDiff(line);
+			}else if (line.startsWith("---")){
+				patchCommand.setRemote(line);
+				if (line.startsWith("--- /dev/null")){
+					patchCommand.setPatchType(PatchType.ADD);
 				}
-				if (line.startsWith("Index:")){
-					// 开始
-					patchCommand = new CvsPatchCommand();
-					patchCommand.setIndex(line);
-					patchCommand.setFilePath(line);
-				}else if (line.startsWith("RCS file:")){
-					patchCommand.setRcs(line);
-				}else if (line.startsWith("diff")){
-					patchCommand.setDiff(line);
-				}else if (line.startsWith("---")){
-					patchCommand.setRemote(line);
-					if (line.startsWith("--- /dev/null")){
-						patchCommand.setPatchType(PatchType.ADD);
-					}
-				}else if (line.startsWith("+++")){
-					patchCommand.setLocal(line);
-					if (line.startsWith("+++ /dev/null")){
-						patchCommand.setPatchType(PatchType.DELETE);
-					}
-					switch (patchCommand.getPatchType()) {
-						case ADD:
-							patchCommand.setFilePath(patchCommand.getRcs());
-							addList.add(patchCommand);
-							break;
-						case UPDATE:
-							patchCommand.setFilePath(StringUtil.substringWithoutLast(patchCommand.getRcs(), ",v".length()));
-							updateList.add(patchCommand);
-							break;
-						case DELETE:
-							patchCommand.setFilePath(patchCommand.getRcs());
-							deleteList.add(patchCommand);
-							break;
-						default:
-							break;
-					}
+			}else if (line.startsWith("+++")){
+				patchCommand.setLocal(line);
+				if (line.startsWith("+++ /dev/null")){
+					patchCommand.setPatchType(PatchType.DELETE);
+				}
+				switch (patchCommand.getPatchType()) {
+					case ADD:
+						patchCommand.setFilePath(patchCommand.getRcs());
+						addList.add(patchCommand);
+						break;
+					case UPDATE:
+						patchCommand.setFilePath(StringUtil.substringWithoutLast(patchCommand.getRcs(), ",v".length()));
+						updateList.add(patchCommand);
+						break;
+					case DELETE:
+						patchCommand.setFilePath(patchCommand.getRcs());
+						deleteList.add(patchCommand);
+						break;
+					default:
+						break;
 				}
 			}
-			return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
-		}catch (IOException e){
-			e.printStackTrace();
 		}
-		return null;
+		return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
 	}
 
 	/**
