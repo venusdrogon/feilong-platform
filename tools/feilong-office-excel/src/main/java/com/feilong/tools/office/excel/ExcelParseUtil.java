@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -222,9 +223,15 @@ public class ExcelParseUtil{
 				map.put("cellFormulaResultValue", cellFormulaResultValue);
 				break;
 
+			//通过POI取出的数值默认都是double，即使excel单元格中存的是1，取出来的值也是1.0，这就造成了一些问题，如果数据库字段是int，那么就会wrong data type，所以需要对数值类型处理。
 			case Cell.CELL_TYPE_NUMERIC:
 				map.put("getDateCellValue", cell.getDateCellValue());
 				map.put("getNumericCellValue", cell.getNumericCellValue());
+
+				cell.setCellType(Cell.CELL_TYPE_STRING);
+				map.put("numericCellValueToString", cell.getStringCellValue());
+				//if (HSSFDateUtil.isCellDateFormatted(cell)){
+				//}
 				break;
 
 			case Cell.CELL_TYPE_STRING:

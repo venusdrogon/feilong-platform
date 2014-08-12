@@ -3,6 +3,8 @@ package com.feilong.office.excel;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -22,13 +24,13 @@ import com.feilong.tools.office.excel.ExcelParseUtil;
  * 
  * @author 金鑫 2010-7-7 上午11:44:53
  */
-public class ExcelParseUtilTest{
+public class ExcelParseUtil2Test{
 
-	private static final Logger	log	= LoggerFactory.getLogger(ExcelParseUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ExcelParseUtil2Test.class);
 
 	@Test
 	public void parse() throws IOException{
-		String name = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\testCellFormula.xlsx";
+		String name = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\Kota Surabaya.xlsx";
 		InputStream inputStream = new FileInputStream(name);
 
 		// 2013
@@ -48,10 +50,5 @@ public class ExcelParseUtilTest{
 
 		log.debug("getCellMapForLog0:{}", JsonUtil.format(ExcelParseUtil.getCellMapForLog(cell)));
 		log.debug("the param cellValue0:{}", cellValue);
-
-		cell = row.getCell(1);
-		cellValue = ExcelParseUtil.getCellValue(cell);
-		log.debug("getCellMapForLog1:{}", JsonUtil.format(ExcelParseUtil.getCellMapForLog(cell)));
-		log.debug("the param cellValue1:{}", cellValue);
 	}
 }
