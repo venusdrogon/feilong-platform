@@ -48,7 +48,22 @@ import com.feilong.tools.scm.command.ScmPatchCommand;
 public abstract class AbstractScmAntCopy implements ScmAntCopy{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AbstractScmAntCopy.class);
+	private static final Logger	log							= LoggerFactory.getLogger(AbstractScmAntCopy.class);
+
+	/** class 文件扩展名 <code>{@value}</code>. */
+	private static final String	EXTENSION_CLASS				= "class";
+
+	/** java 文件扩展名 <code>{@value}</code>. */
+	private static final String	EXTENSION_JAVA				= "java";
+
+	/** The Constant maven_src_main_java. */
+	private static final String	MAVEN_SRC_MAIN_JAVA			= "src/main/java";
+
+	/** The Constant maven_src_main_webapp. */
+	private static final String	MAVEN_SRC_MAIN_WEBAPP		= "src/main/webapp";
+
+	/** The Constant maven_src_main_resources. */
+	private static final String	MAVEN_SRC_MAIN_RESOURCES	= "src/main/resources";
 
 	/** 项目名称. */
 	protected String			projectName;
@@ -116,6 +131,8 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 		}
 	}
 
+	//***************************************************************************************
+
 	/**
 	 * 解析 并log.
 	 *
@@ -126,56 +143,23 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 */
 	private void printlnPathContent(Reader reader,ScmAntCopyConfig scmAntCopyConfig){
 		try{
-			Map<PatchType, List<String>> patchTypeFilePathMap = getPatchMapByPatchType(reader);
+			Map<PatchType, List<String>> patchTypeFilePathMap = getFilePathMapByPatchType(reader, scmAntCopyConfig);
 
 			if (Validator.isNullOrEmpty(patchTypeFilePathMap)){
 				throw new IllegalArgumentException("this map is null!!!Maybe clipboard/file content is null or unrelated with patch!");
 			}
 
-			String[] excludeFileNames = scmAntCopyConfig.getExcludeFileNames();
-
 			StringBuilder builder = new StringBuilder();
 
 			StringBuilderUtil.appendTextWithLn(builder, "<!--project:" + getProjectName() + "-->");
+
 			List<String> addList = patchTypeFilePathMap.get(PatchType.ADD);
 			List<String> updateList = patchTypeFilePathMap.get(PatchType.UPDATE);
 			List<String> deleteList = patchTypeFilePathMap.get(PatchType.DELETE);
 
-			// 2012-12-5 18:35 排序
-			if (Validator.isNotNullOrEmpty(addList)){
-				Collections.sort(addList);
-			}
-			if (Validator.isNotNullOrEmpty(updateList)){
-				Collections.sort(updateList);
-			}
-			if (Validator.isNotNullOrEmpty(deleteList)){
-				Collections.sort(deleteList);
-			}
-			// add
-			if (Validator.isNotNullOrEmpty(addList)){
-				StringBuilderUtil.appendTextWithLn(builder, "<!--add-->");
-
-				for (String fileName : addList){
-					appendPatchContent(builder, fileName, excludeFileNames);
-				}
-			}
-			// update
-			if (Validator.isNotNullOrEmpty(updateList)){
-				StringBuilderUtil.appendLn(builder);
-				StringBuilderUtil.appendTextWithLn(builder, "<!--update-->");
-
-				for (String fileName : updateList){
-					appendPatchContent(builder, fileName, excludeFileNames);
-				}
-			}
-			// delete
-			if (Validator.isNotNullOrEmpty(deleteList)){
-				StringBuilderUtil.appendLn(builder);
-				StringBuilderUtil.appendTextWithLn(builder, "<!--delete-->");
-				for (String fileName : deleteList){
-					appendPatchContent(builder, fileName, excludeFileNames);
-				}
-			}
+			builder(addList, builder, scmAntCopyConfig, "<!--add-->");
+			builder(updateList, builder, scmAntCopyConfig, "<!--update-->");
+			builder(deleteList, builder, scmAntCopyConfig, "<!--delete-->");
 
 			log.info(builder.insert(0, SystemUtils.LINE_SEPARATOR).toString());
 		}catch (IOException e){
@@ -184,56 +168,90 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	}
 
 	/**
-	 * Println path content.
+	 * Builder.
 	 *
+	 * @param patchTypeFilePathList
+	 *            the delete list
 	 * @param builder
 	 *            the builder
-	 * @param fileName
-	 *            the file name
-	 * @param excludeFileNames
-	 *            the exclude file names
+	 * @param scmAntCopyConfig
+	 *            the scm ant copy config
+	 * @param text
+	 *            the text
 	 */
-	private void appendPatchContent(StringBuilder builder,String fileName,String[] excludeFileNames){
-		boolean canPrint = true;
-		if (Validator.isNotNullOrEmpty(excludeFileNames)){
-			for (String exclude : excludeFileNames){
-				if (fileName.endsWith(exclude)){
-					canPrint = false;
+	private void builder(List<String> patchTypeFilePathList,StringBuilder builder,ScmAntCopyConfig scmAntCopyConfig,String text){
+		String[] excludeFileNames = scmAntCopyConfig.getExcludeFileNames();
+
+		// 2012-12-5 18:35 排序
+		if (Validator.isNotNullOrEmpty(patchTypeFilePathList)){
+			Collections.sort(patchTypeFilePathList);
+		}
+
+		if (Validator.isNotNullOrEmpty(patchTypeFilePathList)){
+			StringBuilderUtil.appendLn(builder);
+
+			StringBuilderUtil.appendTextWithLn(builder, text);
+			for (String fileName : patchTypeFilePathList){
+				boolean canPrint = true;
+				if (Validator.isNotNullOrEmpty(excludeFileNames)){
+					for (String exclude : excludeFileNames){
+						if (fileName.endsWith(exclude)){
+							canPrint = false;
+						}
+					}
+				}
+				if (canPrint && Validator.isNotNullOrEmpty(fileName)){
+					//2014-08-11 添加个 /
+					String prefix = fileName.startsWith("/") ? "" : "/";
+					StringBuilderUtil.appendTextWithLn(builder, "<include name=\"**" + prefix + fileName + "\"/>");
 				}
 			}
-		}
-		if (canPrint && Validator.isNotNullOrEmpty(fileName)){
-			StringBuilderUtil.appendTextWithLn(builder, "<include name=\"**" + fileName + "\"/>");
 		}
 	}
 
 	/**
 	 * Gets the file name.
-	 * 
+	 *
 	 * @param filePath
 	 *            filePath
+	 * @param scmAntCopyConfig
+	 *            the scm ant copy config
 	 * @return the file name
 	 */
 	//TODO
-	private String resolveFileName(String filePath){
-		String src_main_java = "src/main/java";
-		String src_main_webapp = "src/main/webapp";
-		String src_main_resources = "src/main/resources";
-		String fileName = "";
-		if (StringUtil.isContain(filePath, src_main_java)){
-			fileName = StringUtil.substring(filePath, src_main_java, src_main_java.length());
+	private String resolveFileName(String filePath,ScmAntCopyConfig scmAntCopyConfig){
+		//"src/main/java"
+		if (StringUtil.isContain(filePath, MAVEN_SRC_MAIN_JAVA)){
+			String fileName = StringUtil.substring(filePath, MAVEN_SRC_MAIN_JAVA, MAVEN_SRC_MAIN_JAVA.length());
+
+			boolean changeJavaFileExtensionNameToClass = scmAntCopyConfig.getChangeJavaFileExtensionNameToClass();
 			// 后缀是java
-			if (FileUtil.getFilePostfixName(fileName).equalsIgnoreCase("java")){
-				fileName = FileUtil.getNewFileName(fileName, "class");
+			if (changeJavaFileExtensionNameToClass && FileUtil.getFilePostfixName(fileName).equalsIgnoreCase(EXTENSION_JAVA)){
+				fileName = FileUtil.getNewFileName(fileName, EXTENSION_CLASS);
 			}
-		}else if (StringUtil.isContain(filePath, src_main_webapp)){
-			fileName = StringUtil.substring(filePath, src_main_webapp, src_main_webapp.length());
-		}else if (StringUtil.isContain(filePath, src_main_resources)){
-			fileName = StringUtil.substring(filePath, src_main_resources, src_main_resources.length());
-		}else{
-			log.warn("filePath:[{}],不需要上传到正式环境!", filePath);
+
+			return fileName;
 		}
-		return fileName;
+
+		//"src/main/webapp"
+		else if (StringUtil.isContain(filePath, MAVEN_SRC_MAIN_WEBAPP)){
+			return StringUtil.substring(filePath, MAVEN_SRC_MAIN_WEBAPP, MAVEN_SRC_MAIN_WEBAPP.length());
+		}
+
+		//"src/main/resources"
+		else if (StringUtil.isContain(filePath, MAVEN_SRC_MAIN_RESOURCES)){
+			return StringUtil.substring(filePath, MAVEN_SRC_MAIN_RESOURCES, MAVEN_SRC_MAIN_RESOURCES.length());
+		}
+
+		else{
+			boolean isIgnoreNotRuleFile = scmAntCopyConfig.getIgnoreNotRuleFile();
+			if (isIgnoreNotRuleFile){
+				log.warn("filePath:[{}],不需要上传到正式环境!", filePath);
+				return null;
+			}else{
+				return filePath;
+			}
+		}
 	}
 
 	/**
@@ -241,50 +259,61 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 *
 	 * @param reader
 	 *            the reader
+	 * @param scmAntCopyConfig
+	 *            the scm ant copy config
 	 * @return the patch map by patch type
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	private Map<PatchType, List<String>> getPatchMapByPatchType(Reader reader) throws IOException{
+	private Map<PatchType, List<String>> getFilePathMapByPatchType(Reader reader,ScmAntCopyConfig scmAntCopyConfig) throws IOException{
 		BufferedReader bufferedReader = new BufferedReader(reader);
 
 		Map<PatchType, List<? extends ScmPatchCommand>> map = toPatchCommandListMap(bufferedReader);
 
-		Map<PatchType, List<String>> returnMap = new EnumMap<PatchType, List<String>>(PatchType.class);
+		Map<PatchType, List<String>> filePathMap = new EnumMap<PatchType, List<String>>(PatchType.class);
 
 		if (Validator.isNotNullOrEmpty(map)){
 			for (Map.Entry<PatchType, List<? extends ScmPatchCommand>> entry : map.entrySet()){
 				//PatchType key = entry.getKey();
-				List<? extends ScmPatchCommand> value = entry.getValue();
+				List<? extends ScmPatchCommand> scmPatchCommandList = entry.getValue();
 
 				// add
-				put(returnMap, value);
+				putFilePathMap(filePathMap, scmPatchCommandList, scmAntCopyConfig);
 			}
 		}
-		return returnMap;
+		return filePathMap;
 
 	}
 
 	/**
-	 * Put.
+	 * Put file path map.
 	 *
-	 * @param returnMap
+	 * @param filePathMap
 	 *            the return map
 	 * @param scmPatchCommandList
 	 *            the scm patch command list
+	 * @param scmAntCopyConfig
+	 *            the scm ant copy config
 	 */
-	private void put(Map<PatchType, List<String>> returnMap,List<? extends ScmPatchCommand> scmPatchCommandList){
+	private void putFilePathMap(
+			Map<PatchType, List<String>> filePathMap,
+			List<? extends ScmPatchCommand> scmPatchCommandList,
+			ScmAntCopyConfig scmAntCopyConfig){
+
 		if (Validator.isNotNullOrEmpty(scmPatchCommandList)){
 			List<String> resolveFileNamelist = new ArrayList<String>();
 
 			PatchType patchType = scmPatchCommandList.get(0).getPatchType();
 
 			for (ScmPatchCommand scmPatchCommand : scmPatchCommandList){
-				String index = scmPatchCommand.getFilePath();
-				String fileName = resolveFileName(index);
-				resolveFileNamelist.add(fileName);
+				String filePath = scmPatchCommand.getFilePath();
+				String fileName = resolveFileName(filePath, scmAntCopyConfig);
+
+				if (Validator.isNotNullOrEmpty(fileName)){
+					resolveFileNamelist.add(fileName);
+				}
 			}
-			returnMap.put(patchType, resolveFileNamelist);
+			filePathMap.put(patchType, resolveFileNamelist);
 		}
 	}
 

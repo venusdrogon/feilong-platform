@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.scm.ScmAntCopy;
+import com.feilong.tools.scm.ScmAntCopyConfig;
 import com.feilong.tools.scm.svn.SvnPatchAntCopy;
 
 /**
@@ -32,13 +33,13 @@ public class SvnPatchAntCopyTest{
 
 	/** The Constant log. */
 	@SuppressWarnings("unused")
-	private static final Logger	log					= LoggerFactory.getLogger(SvnPatchAntCopyTest.class);
+	private static final Logger		log					= LoggerFactory.getLogger(SvnPatchAntCopyTest.class);
 
 	/** 过滤不想传的文件 采用 endWith 来 匹配. */
-	private String[]			excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };
+	private static final String[]	excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };
 
 	/** The svn patch util. */
-	private ScmAntCopy			scmAntCopy			= new SvnPatchAntCopy();
+	private ScmAntCopy				scmAntCopy			= new SvnPatchAntCopy();
 
 	/**
 	 * 剪切板patch测试.
@@ -62,6 +63,12 @@ public class SvnPatchAntCopyTest{
 	@Test
 	public void printlnFileContent(){
 		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\svn\\mp2.txt";
-		scmAntCopy.printlnFileContent(fileName, excludeFileNames);
+
+		ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
+		//		scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
+		//		scmAntCopyConfig.setIgnoreNotRuleFile(false);
+		//		scmAntCopyConfig.setChangeJavaFileExtensionNameToClass(false);
+
+		scmAntCopy.printlnFileContent(fileName, scmAntCopyConfig);
 	}
 }
