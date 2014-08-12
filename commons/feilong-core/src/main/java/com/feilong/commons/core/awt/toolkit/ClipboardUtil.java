@@ -17,6 +17,7 @@ package com.feilong.commons.core.awt.toolkit;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -40,20 +41,7 @@ public final class ClipboardUtil{
 	@SuppressWarnings("unused")
 	private final static Logger	log	= LoggerFactory.getLogger(ClipboardUtil.class);
 
-	/**
-	 * 获取系统 Clipboard 的一个实例，该 Clipboard 可作为本机平台提供的剪贴板工具的接口.<br>
-	 * 该剪贴板使数据能够在 Java 应用程序和使用本机剪贴板工具的本机应用程序之间传输..
-	 * 
-	 * @return Clipboard
-	 * @see java.awt.Toolkit#getDefaultToolkit()
-	 * @see java.awt.Toolkit#getSystemClipboard()
-	 */
-	public final static Clipboard getSystemClipboard(){
-		Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
-		Clipboard clipboard = defaultToolkit.getSystemClipboard();
-		return clipboard;
-	}
-
+	//**************************************************************
 	/**
 	 * 设置剪贴板数据.
 	 * 
@@ -63,32 +51,31 @@ public final class ClipboardUtil{
 	public final static void setClipboardContent(String data){
 		Clipboard clipboard = getSystemClipboard();
 		Transferable transferable = new StringSelection(data);
-		clipboard.setContents(transferable, null);
+
+		ClipboardOwner clipboardOwner = null;
+		clipboard.setContents(transferable, clipboardOwner);
 	}
 
+	//******************************************************************************
 	/**
 	 * 从剪贴板中取数据.
-	 * 
+	 *
 	 * @return the clipboard content
+	 * @throws UnsupportedFlavorException
+	 *             the unsupported flavor exception
+	 * @throws IOException
+	 *             the IO exception
 	 */
-	public final static String getClipboardContent(){
-		Clipboard clipboard = getSystemClipboard();
-		// 取得系统剪贴板里可传输的数据构造的Java对象
-		Transferable transferable = clipboard.getContents(null);
+	public final static String getClipboardContent() throws UnsupportedFlavorException,IOException{
+		Transferable transferable = getTransferable();
 		// 因为原系的剪贴板里有多种信息, 如文字, 图片, 文件等
 		// 先判断开始取得的可传输的数据是不是文字, 如果是, 取得这些文字
 		DataFlavor dataFlavor = DataFlavor.stringFlavor;
 
 		if (transferable != null && transferable.isDataFlavorSupported(dataFlavor)){
-			try{
-				// 同样, 因为Transferable中的DataFlavor是多种类型的,
-				// 所以传入DataFlavor这个参数, 指定要取得哪种类型的Data.
-				return (String) transferable.getTransferData(dataFlavor);
-			}catch (UnsupportedFlavorException e){
-				e.printStackTrace();
-			}catch (IOException e){
-				e.printStackTrace();
-			}
+			// 同样, 因为Transferable中的DataFlavor是多种类型的,
+			// 所以传入DataFlavor这个参数, 指定要取得哪种类型的Data.
+			return (String) transferable.getTransferData(dataFlavor);
 		}
 		return null;
 	}
@@ -101,13 +88,44 @@ public final class ClipboardUtil{
 	 *             the unsupported flavor exception
 	 * @throws IOException
 	 *             the IO exception
+	 * @since 1.0.8
 	 */
 	public final static Reader getClipboardReader() throws UnsupportedFlavorException,IOException{
-		Clipboard clipboard = getSystemClipboard();
-		Transferable transferable = clipboard.getContents(clipboard);
+		Transferable transferable = getTransferable();
 
 		DataFlavor dataFlavor = DataFlavor.stringFlavor;
 		Reader reader = dataFlavor.getReaderForText(transferable);
 		return reader;
+	}
+
+	//******************************************************************************************
+
+	/**
+	 * 获得 transferable.
+	 *
+	 * @return the transferable
+	 * @since 1.0.8
+	 */
+	private static Transferable getTransferable(){
+		Clipboard clipboard = getSystemClipboard();
+
+		// 取得系统剪贴板里可传输的数据构造的Java对象
+		Object requestor = null;
+		Transferable transferable = clipboard.getContents(requestor);
+		return transferable;
+	}
+
+	/**
+	 * 获取系统 Clipboard 的一个实例，该 Clipboard 可作为本机平台提供的剪贴板工具的接口.<br>
+	 * 该剪贴板使数据能够在 Java 应用程序和使用本机剪贴板工具的本机应用程序之间传输..
+	 * 
+	 * @return Clipboard
+	 * @see java.awt.Toolkit#getDefaultToolkit()
+	 * @see java.awt.Toolkit#getSystemClipboard()
+	 */
+	private final static Clipboard getSystemClipboard(){
+		Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+		Clipboard clipboard = defaultToolkit.getSystemClipboard();
+		return clipboard;
 	}
 }
