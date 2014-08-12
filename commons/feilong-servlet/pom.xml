@@ -22,6 +22,11 @@
 			<artifactId>esapi</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+		</dependency>
+
 		<!-- jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

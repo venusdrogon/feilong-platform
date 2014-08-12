@@ -71,6 +71,7 @@
 		<version.commons-beanutils>1.9.2</version.commons-beanutils>
 		<version.commons-codec>1.9</version.commons-codec>
 		<version.commons-collections>3.2.1</version.commons-collections>
+		<version.commons-configuration>1.10</version.commons-configuration>
 		<version.commons-fileupload>1.2.2</version.commons-fileupload>
 		<version.commons-httpclient>3.1</version.commons-httpclient>
 
@@ -380,6 +381,12 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-jexl</artifactId>
 				<version>${version.commons-jexl}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${version.commons-configuration}</version>
 			</dependency>
 
 			<!-- derby -->
