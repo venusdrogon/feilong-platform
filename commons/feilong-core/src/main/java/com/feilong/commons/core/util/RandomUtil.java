@@ -17,8 +17,6 @@ package com.feilong.commons.core.util;
 
 import java.util.Random;
 
-import org.apache.commons.lang.math.RandomUtils;
-
 import com.feilong.commons.core.log.Slf4jUtil;
 
 /**
@@ -46,7 +44,7 @@ public final class RandomUtil{
 	 * This has to be not local to the random method so as to not return the same value in the same millisecond.<br>
 	 * 把Random对象作为一个全局实例（static）来使用。 Java中Random是线程安全的（内部进行了加锁处理）；
 	 * 
-	 * @see RandomUtils
+	 * @see org.apache.commons.lang.math.RandomUtils
 	 * @since 1.0.7
 	 */
 	public static final Random	JVM_RANDOM	= new Random();
