@@ -299,7 +299,7 @@ public final class StringUtil{
 
 	// ********************************replace************************************************
 	/**
-	 * 使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。.
+	 * 使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串..
 	 * 
 	 * @param content
 	 *            需要被替换的字符串
@@ -317,8 +317,8 @@ public final class StringUtil{
 	}
 
 	/**
-	 * 使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。<br>
-	 * 该替换从字符串的开头朝末尾执行，例如，用 "b" 替换字符串 "aaa" 中的 "aa" 将生成 "ba" 而不是 "ab"。
+	 * 使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串.<br>
+	 * 该替换从字符串的开头朝末尾执行，例如，用 "b" 替换字符串 "aaa" 中的 "aa" 将生成 "ba" 而不是 "ab".
 	 * 
 	 * <pre>
 	 * 处理了replacement为空的情况
@@ -375,13 +375,13 @@ public final class StringUtil{
 	// [start]startsWith
 
 	/**
-	 * 测试此字符串是否以指定的前缀开始。.
+	 * 测试此字符串是否以指定的前缀开始..
 	 * 
 	 * @param value
 	 *            value
 	 * @param prefix
 	 *            前缀
-	 * @return 如果参数表示的字符序列是此字符串表示的字符序列的前缀，则返回 true；否则返回 false。还要注意，如果参数是空字符串，或者等于此 String 对象（用 equals(Object) 方法确定），则返回 true。
+	 * @return 如果参数表示的字符序列是此字符串表示的字符序列的前缀，则返回 true；否则返回 false.还要注意，如果参数是空字符串，或者等于此 String 对象（用 equals(Object) 方法确定），则返回 true.
 	 */
 	public final static boolean startsWith(Object value,String prefix){
 		return ObjectUtil.toString(value).startsWith(prefix);
@@ -410,7 +410,7 @@ public final class StringUtil{
 
 	// ********************************substring************************************************
 	/**
-	 * [截取]从指定索引处(beginIndex)的字符开始，直到此字符串末尾。 <br>
+	 * [截取]从指定索引处(beginIndex)的字符开始，直到此字符串末尾. <br>
 	 * 调用text.substring(beginIndex)
 	 * 
 	 * <pre>
@@ -860,7 +860,7 @@ public final class StringUtil{
 	 * <ul>
 	 * <li>StringUtil.format("%03d", 1)不能写成 StringUtil.format("%03d", "1")</li>
 	 * </ul>
-	 * %index$开头，index从1开始取值，表示将第index个参数拿进来进行格式化。<br>
+	 * %index$开头，index从1开始取值，表示将第index个参数拿进来进行格式化.<br>
 	 * 对整数进行格式化:格式化字符串由4部分组成:%[index$][标识][最小宽度]转换方式<br>
 	 * 对浮点数进行格式化:%[index$][标识][最少宽度][.精度]转换方式<br>
 	 * 转换方式 转换符和标志的说明<br>

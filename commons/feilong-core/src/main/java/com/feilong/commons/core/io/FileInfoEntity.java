@@ -49,7 +49,7 @@ public class FileInfoEntity implements Serializable{
 	private String				formatSize;
 
 	/**
-	 * 返回此抽象路径名表示的文件最后一次被修改的时间。 <br>
+	 * 返回此抽象路径名表示的文件最后一次被修改的时间. <br>
 	 * 表示文件最后一次被修改的时间的 long 值，用与时间点（1970 年 1 月 1 日，00:00:00 GMT）之间的毫秒数表示；如果该文件不存在，或者发生 I/O 错误，则返回 0L.
 	 */
 	private Long				lastModified;
@@ -115,7 +115,7 @@ public class FileInfoEntity implements Serializable{
 	}
 
 	/**
-	 * Gets the 返回此抽象路径名表示的文件最后一次被修改的时间。 <br>
+	 * Gets the 返回此抽象路径名表示的文件最后一次被修改的时间. <br>
 	 * 表示文件最后一次被修改的时间的 long 值，用与时间点（1970 年 1 月 1 日，00:00:00 GMT）之间的毫秒数表示；如果该文件不存在，或者发生 I/O 错误，则返回 0L.
 	 * 
 	 * @return the lastModified
@@ -125,7 +125,7 @@ public class FileInfoEntity implements Serializable{
 	}
 
 	/**
-	 * Sets the 返回此抽象路径名表示的文件最后一次被修改的时间。 <br>
+	 * Sets the 返回此抽象路径名表示的文件最后一次被修改的时间. <br>
 	 * 表示文件最后一次被修改的时间的 long 值，用与时间点（1970 年 1 月 1 日，00:00:00 GMT）之间的毫秒数表示；如果该文件不存在，或者发生 I/O 错误，则返回 0L.
 	 * 
 	 * @param lastModified

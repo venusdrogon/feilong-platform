@@ -42,7 +42,7 @@ public final class PropertyUtil{
 
 	/**
 	 * <p>
-	 * 把Bean的属性值放入到一个Map里面。
+	 * 把Bean的属性值放入到一个Map里面.
 	 * </p>
 	 * 
 	 * 这个方法返回一个Object中所有的可读属性，并将属性名/属性值放入一个Map中，<br>
@@ -81,7 +81,7 @@ public final class PropertyUtil{
 	 * 
 	 * <pre>
 	 * {@code
-	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名。
+	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名.
 	 * Company c = new Company();
 	 * c.setName("Simple");
 	 *  
@@ -98,7 +98,7 @@ public final class PropertyUtil{
 	 *     BeanUtils.setProperty(c,"telephone",am);
 	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
 	 *  
-	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作。
+	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作.
 	 * //index
 	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
 	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");
@@ -142,7 +142,7 @@ public final class PropertyUtil{
 	 * 
 	 * <pre>
 	 * {@code
-	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名。
+	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名.
 	 * Company c = new Company();
 	 * c.setName("Simple");
 	 *  
@@ -159,7 +159,7 @@ public final class PropertyUtil{
 	 *     BeanUtils.setProperty(c,"telephone",am);
 	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
 	 *  
-	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作。
+	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作.
 	 * //index
 	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
 	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");

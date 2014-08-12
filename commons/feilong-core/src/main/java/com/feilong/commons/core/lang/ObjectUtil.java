@@ -296,7 +296,7 @@ public final class ObjectUtil{
 	 * 
 	 * @param value
 	 *            包含数字的对象.
-	 * @return long 转换后的数值,对不能转换的对象返回null。
+	 * @return long 转换后的数值,对不能转换的对象返回null.
 	 */
 	public final static Long toLong(Object value){
 		if (Validator.isNotNullOrEmpty(value)){

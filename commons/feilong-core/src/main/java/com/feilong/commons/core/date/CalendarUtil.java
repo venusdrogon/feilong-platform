@@ -268,17 +268,17 @@ public final class CalendarUtil{
 	}
 
 	/**
-	 * 设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值。<br>
-	 * 保留其他日历字段以前的值。如果不需要这样做，则先调用 clear()。.
+	 * 设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值.<br>
+	 * 保留其他日历字段以前的值.如果不需要这样做，则先调用 clear()..
 	 * 
 	 * @param year
 	 *            用来设置 YEAR 日历字段的值
 	 * @param month
-	 *            用来设置 MONTH 日历字段的值。此处传递是我们口头意义上的月份, 内部自动进行-1的操作<br>
+	 *            用来设置 MONTH 日历字段的值.此处传递是我们口头意义上的月份, 内部自动进行-1的操作<br>
 	 *            比如 8月就传递 8 ; 9月就传9 <br>
-	 *            注:Java 的date Month 值是基于 0 的。例如，0 表示 January。
+	 *            注:Java 的date Month 值是基于 0 的.例如，0 表示 January.
 	 * @param day
-	 *            用来设置 DAY_OF_MONTH 日历字段的值。
+	 *            用来设置 DAY_OF_MONTH 日历字段的值.
 	 * @return the calendar
 	 * @see Calendar#clear()
 	 */

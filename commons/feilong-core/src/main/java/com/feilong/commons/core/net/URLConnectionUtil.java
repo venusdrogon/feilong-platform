@@ -48,7 +48,7 @@ public final class URLConnectionUtil{
 	 * 
 	 * @param urlString
 	 *            the url string
-	 * @return 如果有异常返回 null,否则 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String readLine(String urlString){
 		Proxy proxy = null;
@@ -147,7 +147,7 @@ public final class URLConnectionUtil{
 	 *            the url string
 	 * @param proxy
 	 *            代理, 如果为null 则不设置代理
-	 * @return 如果有异常返回 null,否则 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String readLineWithProxy(String urlString,Proxy proxy){
 		HttpURLConnectionParam httpURLConnectionParam = null;
@@ -161,7 +161,7 @@ public final class URLConnectionUtil{
 	 *            the url string
 	 * @param proxy
 	 *            代理, 如果为null 则不设置代理
-	 * @return 如果有异常返回 null,否则 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String getResponseBodyAsStringWithProxy(String urlString,Proxy proxy){
 		HttpURLConnectionParam httpURLConnectionParam = null;
@@ -177,7 +177,7 @@ public final class URLConnectionUtil{
 	 *            代理, 如果为null 则不设置代理
 	 * @param httpURLConnectionParam
 	 *            httpURLConnectionParam
-	 * @return 如果有异常返回 null,否则 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String readLineWithProxy(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
 		return _readLine(urlString, proxy, httpURLConnectionParam);
@@ -192,7 +192,7 @@ public final class URLConnectionUtil{
 	 *            代理, 如果为null 则不设置代理
 	 * @param httpURLConnectionParam
 	 *            httpURLConnectionParam
-	 * @return 如果有异常返回 null,否则 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String getResponseBodyAsStringWithProxy(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
 		return _getResponseBodyAsStringWithProxy(urlString, proxy, httpURLConnectionParam);
@@ -239,7 +239,7 @@ public final class URLConnectionUtil{
 				log.debug("use proxy:{}", proxy.toString());
 				httpURLConnection = (HttpURLConnection) url.openConnection(proxy);
 			}else{
-				// 每次调用此 URL 的协议处理程序的 openConnection 方法都打开一个新的连接。
+				// 每次调用此 URL 的协议处理程序的 openConnection 方法都打开一个新的连接.
 				httpURLConnection = (HttpURLConnection) url.openConnection();
 			}
 
@@ -252,13 +252,13 @@ public final class URLConnectionUtil{
 			httpURLConnection.setReadTimeout(readTimeout);
 
 			//  此处getOutputStream会隐含的进行connect(即：如同调用上面的connect()方法，  
-			//  所以在开发中不调用上述的connect()也可以)。 
+			//  所以在开发中不调用上述的connect()也可以). 
 
-			// 打开到此 URL 引用的资源的通信链接（如果尚未建立这样的连接）。
-			// 如果在已打开连接（此时 connected 字段的值为 true）的情况下调用 connect 方法，则忽略该调用。
+			// 打开到此 URL 引用的资源的通信链接（如果尚未建立这样的连接）.
+			// 如果在已打开连接（此时 connected 字段的值为 true）的情况下调用 connect 方法，则忽略该调用.
 
-			// 实际上只是建立了一个与服务器的tcp连接,并没有实际发送http请求。 
-			// 无论是post还是get,http请求实际上直到HttpURLConnection的getInputStream()这个函数里面才正式发送出去。 
+			// 实际上只是建立了一个与服务器的tcp连接,并没有实际发送http请求. 
+			// 无论是post还是get,http请求实际上直到HttpURLConnection的getInputStream()这个函数里面才正式发送出去. 
 			// httpURLConnection.connect();
 			return httpURLConnection;
 		}catch (MalformedURLException e){
@@ -281,14 +281,14 @@ public final class URLConnectionUtil{
 	 *            代理, 如果为null 则不设置代理
 	 * @param httpURLConnectionParam
 	 *            httpURLConnectionParam
-	 * @return 如果有异常返回 null,否则 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	private static String _readLine(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
 		HttpURLConnection httpURLConnection = getHttpURLConnection(urlString, proxy, httpURLConnectionParam);
 		try{
 			BufferedReader bufferedReader = getBufferedReader(httpURLConnection);
 			if (null != bufferedReader){
-				// 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+				// 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 				String readLine = bufferedReader.readLine();
 				return readLine;
 			}
@@ -296,7 +296,7 @@ public final class URLConnectionUtil{
 			e.printStackTrace();
 		}finally{
 			if (null != httpURLConnection){
-				// 指示近期服务器不太可能有其他请求。调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例。
+				// 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
 				httpURLConnection.disconnect();
 			}
 		}
@@ -326,7 +326,7 @@ public final class URLConnectionUtil{
 			}catch (IOException e){
 				e.printStackTrace();
 			}finally{
-				// 指示近期服务器不太可能有其他请求。调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例。
+				// 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
 				httpURLConnection.disconnect();
 			}
 		}

@@ -112,7 +112,7 @@ public final class ConstructorUtil{
 			Class<?>[] parameterTypes = ClassUtil.toParameterTypes(parameterValues);
 			Constructor<T> constructor = klass.getConstructor(parameterTypes);
 
-			// 使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例。个别参数会自动解包，以匹配基本形参，必要时，基本参数和引用参数都要进行方法调用转换。
+			// 使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例.个别参数会自动解包，以匹配基本形参，必要时，基本参数和引用参数都要进行方法调用转换.
 			return constructor.newInstance(parameterValues);
 		}catch (Exception e){
 			e.printStackTrace();

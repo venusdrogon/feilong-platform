@@ -79,7 +79,7 @@ public final class PropertiesUtil implements BaseConfigure{
 	 * @param propertiesPath
 	 *            Properties文件路径 如"/WEB-INF/classes/feilong.user.properties"
 	 * @param key
-	 *            用指定的键在此属性列表中搜索属性。如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值。如果未找到属性，则此方法返回 null。
+	 *            用指定的键在此属性列表中搜索属性.如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值.如果未找到属性，则此方法返回 null.
 	 * @return 通过ClassLoader获得properties值
 	 */
 	public static String getPropertiesValueWithClassLoader(Class<?> clz,String propertiesPath,String key){
@@ -104,7 +104,7 @@ public final class PropertiesUtil implements BaseConfigure{
 	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-message_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
 	 *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
 	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
-	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
+	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件.<br>
 	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties"(不需要“/”)</li>
 	 *            </ul>
 	 * @return Properties
@@ -128,14 +128,14 @@ public final class PropertiesUtil implements BaseConfigure{
 	 *            注意此处的propertiesPath 要写成 "/messages/feilong-core-message_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
 	 *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
 	 *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
-	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件。<br>
+	 *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件.<br>
 	 *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties"(不需要“/”)</li>
 	 *            </ul>
 	 * @return 获取Properties
 	 */
 	public static Properties getProperties(Class<?> klass,String propertiesPath){
 		// klass.getResourceAsStream方法内部会调用classLoader.getResourceAsStream
-		// 之所以这样做无疑还是方便客户端的调用，省的每次获取ClassLoader才能加载资源文件的麻烦。
+		// 之所以这样做无疑还是方便客户端的调用，省的每次获取ClassLoader才能加载资源文件的麻烦.
 		InputStream inputStream = klass.getResourceAsStream(propertiesPath);
 		return getProperties(inputStream);
 	}
@@ -202,7 +202,7 @@ public final class PropertiesUtil implements BaseConfigure{
 //	}
 //
 //	/**
-//	 * 更新（或插入）一对properties信息(主键及其键值) 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
+//	 * 更新（或插入）一对properties信息(主键及其键值) 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值.
 //	 * 
 //	 * @param keyname
 //	 *            键名
@@ -211,8 +211,8 @@ public final class PropertiesUtil implements BaseConfigure{
 //	 */
 //	public static void writeProperties(String keyname,String keyvalue){
 //		try{
-//			// 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
-//			// 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
+//			// 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性.
+//			// 强制要求为属性的键和值使用字符串.返回值是 Hashtable 调用 put 的结果.
 //			OutputStream fos = new FileOutputStream(profilepath);
 //			props.setProperty(keyname, keyvalue);
 //			// 以适合使用 load 方法加载到 Properties 表中的格式，
@@ -224,7 +224,7 @@ public final class PropertiesUtil implements BaseConfigure{
 //	}
 //
 //	/**
-//	 * 更新properties文件的键值对 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值。
+//	 * 更新properties文件的键值对 如果该主键已经存在，更新该主键的值； 如果该主键不存在，则插件一对键值.
 //	 * 
 //	 * @param keyname
 //	 *            键名
@@ -234,8 +234,8 @@ public final class PropertiesUtil implements BaseConfigure{
 //	public void updateProperties(String keyname,String keyvalue){
 //		try{
 //			props.load(new FileInputStream(profilepath));
-//			// 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。
-//			// 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。
+//			// 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性.
+//			// 强制要求为属性的键和值使用字符串.返回值是 Hashtable 调用 put 的结果.
 //			OutputStream fos = new FileOutputStream(profilepath);
 //			props.setProperty(keyname, keyvalue);
 //			// 以适合使用 load 方法加载到 Properties 表中的格式，

@@ -55,7 +55,7 @@ public final class TypeUtil{
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Class<T> getGenericModelClass(Class<?> klass){
-		//返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type。
+		//返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type.
 		Type type = klass.getGenericSuperclass();
 
 		while (!(type instanceof ParameterizedType) && null != klass && Object.class != klass){

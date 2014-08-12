@@ -58,10 +58,10 @@ public final class RegeditUtil{
 		InputStream inputStream = process.getInputStream();
 		FeiLongStreamReaderThread feiLongStreamReaderThread = new FeiLongStreamReaderThread(inputStream);
 		// *********************************************************************
-		// 使该线程开始执行；Java 虚拟机调用该线程的 run 方法。
+		// 使该线程开始执行；Java 虚拟机调用该线程的 run 方法.
 		feiLongStreamReaderThread.start();
 		try{
-			// 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止。
+			// 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止.
 			process.waitFor();
 			// 等待该线程终止
 			feiLongStreamReaderThread.join();

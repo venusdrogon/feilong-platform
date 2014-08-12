@@ -68,7 +68,7 @@ public final class DesktopUtil{
 	}
 
 	/**
-	 * 启动关联应用程序来打开文件。.
+	 * 启动关联应用程序来打开文件..
 	 * 
 	 * @param url
 	 *            url地址

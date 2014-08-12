@@ -89,8 +89,8 @@ public final class ListUtil{
 		if (Validator.isNullOrEmpty(collection)){
 			return null;
 		}
-		// 效率问题？contains的本质就是遍历。
-		// 在100W的list当中执行0.546秒，而contains，我则没耐心去等了。顺便贴一下在10W下2段代码的运行时间。
+		// 效率问题？contains的本质就是遍历.
+		// 在100W的list当中执行0.546秒，而contains，我则没耐心去等了.顺便贴一下在10W下2段代码的运行时间.
 		// [foo1] 100000 -> 50487 : 48610 ms.
 		// [foo2] 100000 -> 50487 : 47 ms.
 		return new ArrayList<T>(new LinkedHashSet<T>(collection));
@@ -157,7 +157,7 @@ public final class ListUtil{
 		// 如果采用大家常用的把a的length设为0,就需要反射API来创建一个大小为size的数组,而这对性能有一定的影响.
 		// 所以最好的方式就是直接把a的length设为Collection的size从而避免调用反射API来达到一定的性能优化.
 
-		//注意，toArray(new Object[0]) 和 toArray() 在功能上是相同的。 
+		//注意，toArray(new Object[0]) 和 toArray() 在功能上是相同的. 
 		return (T[]) list.toArray(a);
 	}
 

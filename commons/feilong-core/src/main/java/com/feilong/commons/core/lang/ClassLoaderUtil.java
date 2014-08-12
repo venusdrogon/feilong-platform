@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 根据类的class文件位置来定位的方法。.
+ * 根据类的class文件位置来定位的方法..
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午12:40:08
@@ -36,7 +36,7 @@ public final class ClassLoaderUtil{
 	private final static Logger	log	= LoggerFactory.getLogger(ClassLoaderUtil.class);
 
 	/**
-	 * 查找具有给定名称的资源。<br>
+	 * 查找具有给定名称的资源.<br>
 	 * "",表示classes 的根目录<br>
 	 * e.q:<br>
 	 * <ul>
@@ -56,7 +56,7 @@ public final class ClassLoaderUtil{
 	 */
 	public static URL getResource(String name){
 		ClassLoader classLoader = ClassLoaderUtil.class.getClassLoader();
-		// 查找具有给定名称的资源。
+		// 查找具有给定名称的资源.
 		URL url = classLoader.getResource(name);
 		return url;
 	}

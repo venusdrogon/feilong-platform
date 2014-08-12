@@ -80,7 +80,7 @@ public final class IOReaderUtil{
 		StringBuffer stringBuffer = new StringBuffer(186140);
 		try{
 			FileInputStream fileInputStream = new FileInputStream(file);
-			// 用于读取、写入、映射和操作文件的通道。
+			// 用于读取、写入、映射和操作文件的通道.
 			FileChannel fileChannel = fileInputStream.getChannel();
 			// 编码字符集和字符编码方案的组合,用于处理中文,可以更改
 			Charset charset = Charset.forName(charsetName);

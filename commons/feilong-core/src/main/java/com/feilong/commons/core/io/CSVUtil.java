@@ -138,7 +138,7 @@ public final class CSVUtil{
 		StringBuffer sb = new StringBuffer();
 		int length_line = line.length;
 		for (int i = 0; i < length_line; ++i){
-			// 分隔符，列为空也要表达其存在。
+			// 分隔符，列为空也要表达其存在.
 			if (i != 0){
 				sb.append(separator);
 			}

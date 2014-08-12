@@ -76,12 +76,12 @@ public final class IOUtil{
 	public static String inputStream2String(InputStream inputStream,String charsetName){
 		try{
 			// bufferedReader 缓冲 高效读取 ;
-			// 包装所有其 read() 操作可能开销很高的 Reader（如 FileReader 和 InputStreamReader）。
+			// 包装所有其 read() 操作可能开销很高的 Reader（如 FileReader 和 InputStreamReader）.
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, charsetName));
 			StringBuffer stringBuffer = new StringBuffer();
 			String line = "";
 
-			// 读取一个文本行。通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行。
+			// 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 			while ((line = bufferedReader.readLine()) != null){
 				stringBuffer.append(line);
 			}
@@ -145,7 +145,7 @@ public final class IOUtil{
 			log.error(e.getMessage());
 			e.printStackTrace();
 		}finally{
-			// 为避免内存泄漏，Stream的Close是必须的。即使中途发生了异常，也必须Close，
+			// 为避免内存泄漏，Stream的Close是必须的.即使中途发生了异常，也必须Close，
 			// 因此请在finally Block中描述close()
 			try{
 				byteArrayOutputStream.close();
@@ -159,7 +159,7 @@ public final class IOUtil{
 
 	/**
 	 * 获得FileOutputStream文件输出流 FileOutputStream（或其他文件写入对象）打开文件进行写入 <br>
-	 * FileOutputStream 用于写入诸如图像数据之类的原始字节的流。要写入字符流，请考虑使用 FileWriter。.
+	 * FileOutputStream 用于写入诸如图像数据之类的原始字节的流.要写入字符流，请考虑使用 FileWriter..
 	 * 
 	 * @param fileName
 	 *            文件名称
@@ -173,11 +173,11 @@ public final class IOUtil{
 	}
 
 	/**
-	 * FileInputStream 从文件系统中的某个文件中获得输入字节。哪些文件可用取决于主机环境。<br>
-	 * FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。.
+	 * FileInputStream 从文件系统中的某个文件中获得输入字节.哪些文件可用取决于主机环境.<br>
+	 * FileInputStream 用于读取诸如图像数据之类的原始字节流.要读取字符流，请考虑使用 FileReader..
 	 * 
 	 * @param fileName
-	 *            该文件通过文件系统中的路径名 fileName 指定。
+	 *            该文件通过文件系统中的路径名 fileName 指定.
 	 * @return FileInputStream
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -188,17 +188,17 @@ public final class IOUtil{
 	}
 
 	/**
-	 * FileInputStream 从文件系统中的某个文件中获得输入字节。哪些文件可用取决于主机环境。<br>
-	 * FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。.
+	 * FileInputStream 从文件系统中的某个文件中获得输入字节.哪些文件可用取决于主机环境.<br>
+	 * FileInputStream 用于读取诸如图像数据之类的原始字节流.要读取字符流，请考虑使用 FileReader..
 	 * 
 	 * @param file
-	 *            为了进行读取而打开的文件。
+	 *            为了进行读取而打开的文件.
 	 * @return FileInputStream
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public final static FileInputStream getFileInputStream(File file) throws IOException{
-		// 如果指定文件不存在，或者它是一个目录，而不是一个常规文件，抑或因为其他某些原因而无法打开进行读取，则抛出 FileNotFoundException。
+		// 如果指定文件不存在，或者它是一个目录，而不是一个常规文件，抑或因为其他某些原因而无法打开进行读取，则抛出 FileNotFoundException.
 		FileInputStream fileInputStream = new FileInputStream(file);
 		return fileInputStream;
 	}

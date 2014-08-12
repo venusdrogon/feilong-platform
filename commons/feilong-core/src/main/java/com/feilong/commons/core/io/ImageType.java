@@ -52,7 +52,7 @@ public interface ImageType{
 	/**
 	 * <code>{@value}</code><br>
 	 * BMP Windows 位图<br>
-	 * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件。<br>
+	 * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件.<br>
 	 * BMP 文件适用于 Windows 中的墙纸 .
 	 */
 	String	BMP		= "BMP";

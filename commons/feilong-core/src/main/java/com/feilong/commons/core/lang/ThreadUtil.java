@@ -44,8 +44,8 @@ public final class ThreadUtil{
 	 */
 	public static int getTopThreadGroupActiveCount(){
 
-		// 线程组表示一个线程的集合。此外，线程组也可以包含其他线程组。线程组构成一棵树，在树中，除了初始线程组外，每个线程组都有一个父线程组。
-		// 允许线程访问有关自己的线程组的信息，但是不允许它访问有关其线程组的父线程组或其他任何线程组的信息。
+		// 线程组表示一个线程的集合.此外，线程组也可以包含其他线程组.线程组构成一棵树，在树中，除了初始线程组外，每个线程组都有一个父线程组.
+		// 允许线程访问有关自己的线程组的信息，但是不允许它访问有关其线程组的父线程组或其他任何线程组的信息.
 		Thread currentThread = Thread.currentThread();
 
 		Map<String, Object> threadObjectLog = getThreadObjectLog(currentThread);
@@ -55,7 +55,7 @@ public final class ThreadUtil{
 		ThreadGroup topThreadGroup = getTopThreadGroup(currentThreadGroup);
 
 		log.debug(JsonUtil.format(getThreadGroupObjectLog(topThreadGroup)));
-		// 返回此线程组中活动线程的估计数。
+		// 返回此线程组中活动线程的估计数.
 		int topThreadGroupActiveCount = topThreadGroup.activeCount();
 
 		return topThreadGroupActiveCount;
@@ -99,17 +99,17 @@ public final class ThreadUtil{
 		if (null != threadGroup){
 			Map<String, Object> map = new HashMap<String, Object>();
 
-			// 返回此线程组中活动线程的估计数。
+			// 返回此线程组中活动线程的估计数.
 			map.put("threadGroup.activeCount()", threadGroup.activeCount());
 
-			// 返回此线程组中活动线程组的估计数。
+			// 返回此线程组中活动线程组的估计数.
 			map.put("threadGroup.activeGroupCount()", threadGroup.activeGroupCount());
 
-			// 返回此线程组的最高优先级。
+			// 返回此线程组的最高优先级.
 			map.put("threadGroup.getMaxPriority()", threadGroup.getMaxPriority());
 			map.put("threadGroup.getName()", threadGroup.getName());
 
-			// 测试此线程组是否为一个后台程序线程组。
+			// 测试此线程组是否为一个后台程序线程组.
 			map.put("threadGroup.isDaemon()", threadGroup.isDaemon());
 			map.put("threadGroup.toString()", threadGroup.toString());
 
@@ -122,10 +122,10 @@ public final class ThreadUtil{
 	 * 获得 thread 对象log.
 	 * 
 	 * @param thread
-	 *            线程 是程序中的执行线程。Java 虚拟机允许应用程序并发地运行多个执行线程。<br>
-	 *            每个线程都有一个优先级，高优先级线程的执行优先于低优先级线程。<br>
-	 *            每个线程都可以或不可以标记为一个守护程序。<br>
-	 *            当某个线程中运行的代码创建一个新 Thread 对象时，该新线程的初始优先级被设定为创建线程的优先级，并且当且仅当创建线程是守护线程时，新线程才是守护程序。
+	 *            线程 是程序中的执行线程.Java 虚拟机允许应用程序并发地运行多个执行线程.<br>
+	 *            每个线程都有一个优先级，高优先级线程的执行优先于低优先级线程.<br>
+	 *            每个线程都可以或不可以标记为一个守护程序.<br>
+	 *            当某个线程中运行的代码创建一个新 Thread 对象时，该新线程的初始优先级被设定为创建线程的优先级，并且当且仅当创建线程是守护线程时，新线程才是守护程序.
 	 * @return the thread object log
 	 */
 	public static Map<String, Object> getThreadObjectLog(Thread thread){

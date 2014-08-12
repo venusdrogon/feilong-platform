@@ -95,7 +95,7 @@ public final class Command{
 		Process process = runtime.exec(cmdarray);
 
 		// 已经执行完第一个命令，准备执行第二个命令
-		// 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止。如果已终止该子进程，此方法立即返回。如果没有终止该子进程，调用的线程将被阻塞，直到退出子进程。
+		// 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止.如果已终止该子进程，此方法立即返回.如果没有终止该子进程，调用的线程将被阻塞，直到退出子进程.
 		process.waitFor();
 
 		if (log.isDebugEnabled()){
@@ -137,7 +137,7 @@ public final class Command{
 	 * 某些命令win7 需要管理员权限运行.
 	 * 
 	 * @param cmdarray
-	 *            包含所调用命令及其参数的数组。
+	 *            包含所调用命令及其参数的数组.
 	 * @return 一个新的 Process 对象，用于管理子进程
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -231,7 +231,7 @@ public final class Command{
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static Process assoc(String ext,String fileType) throws IOException{
-		// 如果在没有参数的情况下使用，则 assoc 命令将显示所有当前文件扩展名关联的列表。
+		// 如果在没有参数的情况下使用，则 assoc 命令将显示所有当前文件扩展名关联的列表.
 		String command = StringUtil.format("assoc %s=%s", ext, fileType);
 		return exec(command);
 	}

@@ -120,7 +120,7 @@ public final class URIUtil{
 
 	/**
 	 * URI uri = new URI(path);<br>
-	 * 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
+	 * 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException.
 	 * 
 	 * @param path
 	 *            the path
@@ -128,7 +128,7 @@ public final class URIUtil{
 	 */
 	public static URI getURI(String path){
 		try{
-			// 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException。
+			// 如果String对象的URI违反了RFC 2396的语法规则，将会产生一个java.net.URISyntaxException.
 			URI uri = new URI(path);
 			return uri;
 		}catch (URISyntaxException e){
@@ -417,7 +417,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL。 新的 URL 从给定的上下文 URL 和 spec 参数创建<br>
+	 * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL. 新的 URL 从给定的上下文 URL 和 spec 参数创建<br>
 	 * 网站地址拼接,请使用{@link #getUnionUrl(URL, String)}
 	 * <p>
 	 * 示例: URIUtil.getUnionUrl("E:\\test", "sanguo")-------------{@code >}file:/E:/test/sanguo
@@ -434,7 +434,7 @@ public final class URIUtil{
 	}
 
 	/**
-	 * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL。 新的 URL 从给定的上下文 URL 和 spec 参数创建<br>
+	 * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL. 新的 URL 从给定的上下文 URL 和 spec 参数创建<br>
 	 * 网站地址拼接,请使用这个method
 	 * 
 	 * <pre>
@@ -514,13 +514,13 @@ public final class URIUtil{
 	 * 加码,对参数值进行编码 <br>
 	 * 使用以下规则：
 	 * <ul>
-	 * <li>字母数字字符 "a" 到 "z"、"A" 到 "Z" 和 "0" 到 "9" 保持不变。</li>
-	 * <li>特殊字符 "."、"-"、"*" 和 "_" 保持不变。</li>
-	 * <li>空格字符 " " 转换为一个加号 "+"。</li>
-	 * <li>所有其他字符都是不安全的，因此首先使用一些编码机制将它们转换为一个或多个字节。<br>
-	 * 然后每个字节用一个包含 3 个字符的字符串 "%xy" 表示，其中 xy 为该字节的两位十六进制表示形式。<br>
-	 * 推荐的编码机制是 UTF-8。<br>
-	 * 但是，出于兼容性考虑，如果未指定一种编码，则使用相应平台的默认编码。</li>
+	 * <li>字母数字字符 "a" 到 "z"、"A" 到 "Z" 和 "0" 到 "9" 保持不变.</li>
+	 * <li>特殊字符 "."、"-"、"*" 和 "_" 保持不变.</li>
+	 * <li>空格字符 " " 转换为一个加号 "+".</li>
+	 * <li>所有其他字符都是不安全的，因此首先使用一些编码机制将它们转换为一个或多个字节.<br>
+	 * 然后每个字节用一个包含 3 个字符的字符串 "%xy" 表示，其中 xy 为该字节的两位十六进制表示形式.<br>
+	 * 推荐的编码机制是 UTF-8.<br>
+	 * 但是，出于兼容性考虑，如果未指定一种编码，则使用相应平台的默认编码.</li>
 	 * </ul>
 	 * 
 	 * @param value
@@ -554,7 +554,7 @@ public final class URIUtil{
 	 * <p>
 	 * Not doing so may introduce incompatibilites.<br>
 	 * <em><strong>Note:</strong> 
-	 * 注：<a href="http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">World Wide Web Consortium Recommendation</a>建议指出，UTF-8应该被使用。 不这样做可能会带来兼容性能。</em>
+	 * 注：<a href="http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">World Wide Web Consortium Recommendation</a>建议指出，UTF-8应该被使用. 不这样做可能会带来兼容性能.</em>
 	 * </p>
 	 * 
 	 * @param value

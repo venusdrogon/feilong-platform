@@ -48,7 +48,7 @@ public final class ClassUtil{
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		map.put("clz.getComponentType()", clz.getComponentType());
-		// 用来判断指定的Class类是否为一个基本类型。
+		// 用来判断指定的Class类是否为一个基本类型.
 		map.put("clz.isPrimitive()", clz.isPrimitive());
 		map.put("clz.isLocalClass()", clz.isLocalClass());
 		map.put("clz.isMemberClass()", clz.isMemberClass());
@@ -81,15 +81,15 @@ public final class ClassUtil{
 	 * 
 	 * <ol>
 	 * <li>Class cl=对象引用o.getClass();<br>
-	 * 返回引用o运行时真正所指的对象(因为:儿子对象的引用可能会赋给父对象的引用变量中)所属的类O的Class的对象。<br>
-	 * 谈不上对类O做什么操作。</li>
+	 * 返回引用o运行时真正所指的对象(因为:儿子对象的引用可能会赋给父对象的引用变量中)所属的类O的Class的对象.<br>
+	 * 谈不上对类O做什么操作.</li>
 	 * <li>Class cl=A.class;<br>
 	 * JVM将使用类A的类装载器,将类A装入内存(前提:类A还没有装入内存),不对类A做类的初始化工作.<br>
-	 * 返回类A的Class的对象。</li>
+	 * 返回类A的Class的对象.</li>
 	 * <li>Class cl=Class.forName("类全名");<br>
-	 * 装载连接初始化类。</li>
+	 * 装载连接初始化类.</li>
 	 * <li>Class cl=ClassLoader.loadClass("类全名");<br>
-	 * 装载类，不连接不初始化。</li>
+	 * 装载类，不连接不初始化.</li>
 	 * </ol>
 	 * 
 	 * @param className

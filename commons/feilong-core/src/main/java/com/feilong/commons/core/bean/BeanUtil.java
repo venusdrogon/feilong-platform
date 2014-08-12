@@ -153,7 +153,7 @@ public final class BeanUtil{
 
 	/**
 	 * <p>
-	 * 把Bean的属性值放入到一个Map里面。
+	 * 把Bean的属性值放入到一个Map里面.
 	 * </p>
 	 * 
 	 * 这个方法返回一个Object中所有的可读属性，并将属性名/属性值放入一个Map中，<br>
@@ -220,8 +220,8 @@ public final class BeanUtil{
 	 * <blockquote>
 	 * <ul>
 	 * <li>{@link BeanUtils#copyProperties(Object, Object)}能给不同的两个成员变量相同的，但类名不同的两个类之间相互赋值</li>
-	 * <li>{@link PropertyUtils#copyProperties(Object, Object)} 提供类型转换功能，即发现两个JavaBean的同名属性为不同类型时，在支持的数据类型范围内进行转换，而前者不支持这个功能，但是速度会更快一些。</li>
-	 * <li>commons-beanutils v1.9.0以前的版本 BeanUtils 不允许对象的属性值为 null，PropertyUtils 可以拷贝属性值 null 的对象。<br>
+	 * <li>{@link PropertyUtils#copyProperties(Object, Object)} 提供类型转换功能，即发现两个JavaBean的同名属性为不同类型时，在支持的数据类型范围内进行转换，而前者不支持这个功能，但是速度会更快一些.</li>
+	 * <li>commons-beanutils v1.9.0以前的版本 BeanUtils 不允许对象的属性值为 null，PropertyUtils 可以拷贝属性值 null 的对象.<br>
 	 * (<b>注:</b>commons-beanutils v1.9.0+修复了这个情况,BeanUtilsBean.copyProperties() no longer throws a ConversionException for null properties
 	 * of certain data types),具体信息,可以参阅commons-beanutils的
 	 * {@link <a href="http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.2/RELEASE-NOTES.txt">RELEASE-NOTES.txt</a>}</li>
@@ -396,7 +396,7 @@ public final class BeanUtil{
 	 * 
 	 * <pre>
 	 * {@code
-	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名。
+	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名.
 	 * Company c = new Company();
 	 * c.setName("Simple");
 	 *  
@@ -413,7 +413,7 @@ public final class BeanUtil{
 	 *     BeanUtils.setProperty(c,"telephone",am);
 	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
 	 *  
-	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作。
+	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作.
 	 * //index
 	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
 	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");
@@ -458,7 +458,7 @@ public final class BeanUtil{
 	 * 
 	 * <pre>
 	 * {@code
-	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名。
+	 * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名.
 	 * Company c = new Company();
 	 * c.setName("Simple");
 	 *  
@@ -475,7 +475,7 @@ public final class BeanUtil{
 	 *     BeanUtils.setProperty(c,"telephone",am);
 	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
 	 *  
-	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作。
+	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作.
 	 * //index
 	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
 	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");

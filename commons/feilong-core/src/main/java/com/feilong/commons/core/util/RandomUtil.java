@@ -25,9 +25,9 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * </p>
  * <ul>
  * <li>Math.random() 底层也是调用的 new Random(),值＝Random nextDouble()</li>
- * <li>把Random对象作为一个全局实例（static）来使用。 Java中Random是线程安全的（内部进行了加锁处理）；</li>
+ * <li>把Random对象作为一个全局实例（static）来使用. Java中Random是线程安全的（内部进行了加锁处理）；</li>
  * <li>伪随机数</li>
- * <li>生成随机数的算法有很多种，最简单也是最常用的就是 "线性同余法"：  第n+1个数=(第n个数*29+37) % 1000，其中%是"求余数"运算符。</li>
+ * <li>生成随机数的算法有很多种，最简单也是最常用的就是 "线性同余法"：  第n+1个数=(第n个数*29+37) % 1000，其中%是"求余数"运算符.</li>
  * </ul>
  * 
  * @author 金鑫 2010-4-5 下午10:55:19
@@ -42,7 +42,7 @@ public final class RandomUtil{
 	/**
 	 * Random object used by random method. <br>
 	 * This has to be not local to the random method so as to not return the same value in the same millisecond.<br>
-	 * 把Random对象作为一个全局实例（static）来使用。 Java中Random是线程安全的（内部进行了加锁处理）；
+	 * 把Random对象作为一个全局实例（static）来使用. Java中Random是线程安全的（内部进行了加锁处理）；
 	 * 
 	 * @see org.apache.commons.lang.math.RandomUtils
 	 * @since 1.0.7
@@ -92,7 +92,7 @@ public final class RandomUtil{
 	 * <b>目前内部调用全局随机数{@link #JVM_RANDOM}</b>
 	 * 
 	 * @param length
-	 *            设定所取出随机数的长度。length小于11
+	 *            设定所取出随机数的长度.length小于11
 	 * @return 返回生成的随机数
 	 * @see #JVM_RANDOM
 	 */

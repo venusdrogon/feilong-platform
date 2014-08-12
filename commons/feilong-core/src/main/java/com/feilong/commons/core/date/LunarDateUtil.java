@@ -168,7 +168,7 @@ public final class LunarDateUtil{
 			// 九月：玄月、菊月、青女月、季秋、穷秋、抄秋；
 			// 十月：阴月、良月、正阴月、小阳春、初冬、开冬、孟冬；
 			// 十一月：幸月、畅月、仲冬；
-			// 十二月：涂月、蜡月、腊月、季冬、暮冬、残冬、末冬、嘉平月。
+			// 十二月：涂月、蜡月、腊月、季冬、暮冬、残冬、末冬、嘉平月.
 			stringBuilder.append("十一月");// 冬月
 		}else if (month_Lunar == 1){
 			stringBuilder.append("正月");

@@ -26,7 +26,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 使用反射的方式请求bean中的方法。.
+ * 使用反射的方式请求bean中的方法..
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:08:15
@@ -113,8 +113,8 @@ public final class MethodUtil{
 										params,
 										modifiers));
 			}else{
-				//如果底层方法是静态的，那么可以忽略指定的 obj 参数。
-				//该参数可以为 null。 从中调用底层方法的对象
+				//如果底层方法是静态的，那么可以忽略指定的 obj 参数.
+				//该参数可以为 null. 从中调用底层方法的对象
 				Object object = null;
 
 				// 如果底层方法所需的形参数为 0，
@@ -160,9 +160,9 @@ public final class MethodUtil{
 
 		Class<?>[] parameterTypes = ClassUtil.toParameterTypes(paramValues);
 		try{
-			// 它反映此 Class 对象所表示的类或接口的指定公共成员方法。<br>
-			//name 参数是一个 String，用于指定所需方法的简称。<br>
-			//parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组。如果 parameterTypes 为 null，则按空数组处理。
+			// 它反映此 Class 对象所表示的类或接口的指定公共成员方法.<br>
+			//name 参数是一个 String，用于指定所需方法的简称.<br>
+			//parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组.如果 parameterTypes 为 null，则按空数组处理.
 			Method method = ownerClass.getMethod(methodName, parameterTypes);
 			return method;
 		}catch (Exception e){

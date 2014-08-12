@@ -30,7 +30,7 @@ import com.feilong.commons.core.util.NumberPattern;
  * {@link NumberFormat}是所有数值格式的抽象基类,此类提供格式化和解析数值的接口
  * <p>
  * 直接已知子类： {@link ChoiceFormat}, {@link DecimalFormat}.<br>
- * 注意:<span style="color:red">{@link DecimalFormat}不是同步的 </span>,建议为每个线程创建独立的格式实例。 (见JAVA API 文档)
+ * 注意:<span style="color:red">{@link DecimalFormat}不是同步的 </span>,建议为每个线程创建独立的格式实例. (见JAVA API 文档)
  * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -99,7 +99,7 @@ public final class NumberFormatUtil{
 			DecimalFormat decimalFormat = new DecimalFormat(numberPattern);
 
 			// 如果不设置默认使用的是 RoundingMode.HALF_EVEN
-			// 精确舍入，银行家舍入法。四舍六入，五分两种情况。如果前一位为奇数，则入位，否则舍去。以下例子为保留小数点1位，那么这种舍入方式下的结果。
+			// 精确舍入，银行家舍入法.四舍六入，五分两种情况.如果前一位为奇数，则入位，否则舍去.以下例子为保留小数点1位，那么这种舍入方式下的结果.
 			// 1.15>1.2    1.25>1.2 
 			if (null != roundingMode){
 				decimalFormat.setRoundingMode(roundingMode);
@@ -114,7 +114,7 @@ public final class NumberFormatUtil{
 						value,
 						numberPattern,
 						format,
-						decimalFormat.toLocalizedPattern()//合成一个表示此 Format 对象当前状态的、已本地化的模式字符串。 
+						decimalFormat.toLocalizedPattern()//合成一个表示此 Format 对象当前状态的、已本地化的模式字符串. 
 				);
 			}
 			return format;
