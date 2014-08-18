@@ -15,11 +15,15 @@
  */
 package com.feilong.commons.core.util.jdk;
 
+import java.util.Date;
 import java.util.TreeSet;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.date.DateUtil;
 
 /**
  * The Class TreeSetTest.
@@ -54,5 +58,18 @@ public class TreeSetTest{
 		for (BrowsingHistoryCommand browsingHistoryCommand : treeSet1){
 			log.info("{}:{}", browsingHistoryCommand.getDate(), browsingHistoryCommand.getSimpleSkuCommand());
 		}
+	}
+
+	/**
+	 * Test tree set.
+	 */
+	@Test
+	public void testTreeSet(){
+		TreeSet<Date> treeSet = new TreeSet<Date>();
+		treeSet.add(DateUtil.string2Date("2012-05-02", DatePattern.onlyDate));
+		treeSet.add(DateUtil.string2Date("2012-03-02", DatePattern.onlyDate));
+		treeSet.add(DateUtil.string2Date("2012-01-02", DatePattern.onlyDate));
+		treeSet.add(DateUtil.string2Date("2012-01-02", DatePattern.onlyDate));
+		log.info(treeSet + "");
 	}
 }

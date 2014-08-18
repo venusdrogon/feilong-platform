@@ -25,6 +25,9 @@
  */
 package com.feilong.commons.core.awt.toolkit;
 
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,10 +46,12 @@ public class ClipboardUtilTest{
 
 	/**
 	 * {@link com.feilong.commons.core.awt.toolkit.ClipboardUtil#setClipboardContent(java.lang.String)} 的测试方法。
+	 * 
+	 * @throws IOException
+	 * @throws UnsupportedFlavorException
 	 */
 	@Test
-	public final void testSetClipboardContents(){
-		// FeiLongToolkit.setClipboardContents("金鑫data,2011-05-23");
+	public final void testSetClipboardContents() throws UnsupportedFlavorException,IOException{
 		log.info(ClipboardUtil.getClipboardContent());
 	}
 

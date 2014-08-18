@@ -95,7 +95,9 @@ public class ScreenDumpHelper{
 	 */
 	public boolean saveToOutputStream(String fileFormat,OutputStream output){
 		try{
-			BufferedImage imgBuf = (new Robot()).createScreenCapture(this.getScreenArea());
+			Robot robot = new Robot();
+			//创建包含从屏幕中读取的像素的图像。该图像不包括鼠标光标。 
+			BufferedImage imgBuf = robot.createScreenCapture(this.getScreenArea());
 			ImageIO.write(imgBuf, fileFormat, output);
 		}catch (AWTException e){
 			return false;
@@ -173,13 +175,15 @@ public class ScreenDumpHelper{
 	 *            the arguments
 	 */
 	public static void main(String[] args){
-		for (int i = 0; i < 5; i++)
-			new ScreenDumpHelper().saveToFile(
+		ScreenDumpHelper screenDumpHelper = new ScreenDumpHelper();
+		for (int i = 0; i < 5; i++){
+			screenDumpHelper.saveToFile(
 					"E:/" + DateUtil.date2String(new Date(), DatePattern.timestamp) + i + ".jpg",
 					ImageType.PNG,
 					i * 150,
 					i * 150,
 					400,
 					300);
+		}
 	}
 }

@@ -16,10 +16,12 @@
 package com.feilong.commons.core.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -35,8 +37,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
-import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
@@ -116,35 +116,6 @@ public class CollectionsUtilTest{
 		}
 
 		//assertEquals(expected, actual);
-	}
-
-	/**
-	 * Test tree set.
-	 */
-	@Test
-	public void testTreeSet(){
-		TreeSet<Date> treeSet = new TreeSet<Date>();
-		treeSet.add(DateUtil.string2Date("2012-05-02", DatePattern.onlyDate));
-		treeSet.add(DateUtil.string2Date("2012-03-02", DatePattern.onlyDate));
-		treeSet.add(DateUtil.string2Date("2012-01-02", DatePattern.onlyDate));
-		treeSet.add(DateUtil.string2Date("2012-01-02", DatePattern.onlyDate));
-		log.info(treeSet + "");
-	}
-
-	/**
-	 * Test map.
-	 */
-	@Test
-	public void testMap(){
-		Map<Object, Object> map = new LinkedHashMap<Object, Object>();
-		map.put("jinxin", 1);
-		map.put(2, 2);
-		map.put("甲", 3);
-		map.put(4, 4);
-		map = null;
-		StringBuilder builder = new StringBuilder();
-		builder.append(map);
-		log.info(builder.toString());
 	}
 
 	/**

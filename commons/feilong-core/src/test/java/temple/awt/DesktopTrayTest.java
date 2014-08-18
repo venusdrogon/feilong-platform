@@ -39,35 +39,29 @@ import java.net.URISyntaxException;
 public class DesktopTrayTest{
 
 	/** The desktop. */
-	private static Desktop		desktop;
-
-	/** The system tray. */
-	private static SystemTray	systemTray;
-
-	/** The popup menu. */
-	private static PopupMenu	popupMenu;
+	private static Desktop	desktop;
 
 	/**
 	 * The main method.
 	 * 
 	 * @param args
 	 *            the arguments
+	 * @throws AWTException
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) throws AWTException{
 		if (Desktop.isDesktopSupported()){
 			desktop = Desktop.getDesktop();
 		}
 		if (SystemTray.isSupported()){
-			systemTray = SystemTray.getSystemTray();
-			createPopupMenu();
-			Image image = Toolkit.getDefaultToolkit().getImage("http://nikestore.com.cn/images/favicon.ico");
+			PopupMenu popupMenu = createPopupMenu();
+
+			String filename = "E:\\DataFixed\\Material\\图标\\ICO\\不错的\\16x16\\poolball.ico";
+			Image image = Toolkit.getDefaultToolkit().getImage(filename);
 			TrayIcon trayIcon = new TrayIcon(image, "托盘例子", popupMenu);
 			//*******************************************
-			try{
-				systemTray.add(trayIcon);
-			}catch (AWTException awte){
-				awte.printStackTrace();
-			}
+
+			SystemTray systemTray = SystemTray.getSystemTray();
+			systemTray.add(trayIcon);
 		}
 	}
 
@@ -112,7 +106,7 @@ public class DesktopTrayTest{
 	 */
 	public static void edit(){
 		if (desktop != null && desktop.isSupported(Desktop.Action.EDIT)){
-			File file = new File("test.txt");
+			File file = new File("E:\\test\\1.txt");
 			try{
 				if (file.exists() == false){
 					//	file.create();
@@ -126,41 +120,50 @@ public class DesktopTrayTest{
 
 	/**
 	 * Creates the popup menu.
+	 *
+	 * @return the popup menu
 	 */
-	public static void createPopupMenu(){
-		popupMenu = new PopupMenu();
-		MenuItem ob = new MenuItem("打开链接");
-		ob.addActionListener(new ActionListener(){
+	public static PopupMenu createPopupMenu(){
+
+		MenuItem openLinkMenuItem = new MenuItem("打开链接");
+		openLinkMenuItem.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent ae){
 				openBrowser("http://blog.csdn.net/xumingming64398966");
 			}
 		});
-		MenuItem sm = new MenuItem("发送邮件");
-		sm.addActionListener(new ActionListener(){
+		
+		MenuItem smMenuItem = new MenuItem("发送邮件");
+		smMenuItem.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent ae){
-				sendMail("64398966@qq.com");
+				sendMail("mailto:64398966@qq.com");
 			}
 		});
-		MenuItem ed = new MenuItem("编辑");
-		ed.addActionListener(new ActionListener(){
+		
+		MenuItem edMenuItem = new MenuItem("编辑");
+		edMenuItem.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent ae){
 				edit();
 			}
 		});
-		MenuItem ex = new MenuItem("退出");
-		ex.addActionListener(new ActionListener(){
+		
+		MenuItem exMenuItem = new MenuItem("退出");
+		exMenuItem.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent ae){
 				System.exit(0);
 			}
 		});
-		popupMenu.add(ob);
-		popupMenu.add(sm);
-		popupMenu.add(ed);
+
+		PopupMenu popupMenu = new PopupMenu();
+		popupMenu.add(openLinkMenuItem);
+		popupMenu.add(smMenuItem);
+		popupMenu.add(edMenuItem);
 		popupMenu.addSeparator();
-		popupMenu.add(ex);
+		popupMenu.add(exMenuItem);
+
+		return popupMenu;
 	}
 }
