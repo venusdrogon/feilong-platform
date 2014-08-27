@@ -31,7 +31,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.5 2014年5月5日 下午11:48:14
- * @see 1.0.5
+ * @since 1.0.5
  */
 public class JaxWsDynamicClientUtil{
 
