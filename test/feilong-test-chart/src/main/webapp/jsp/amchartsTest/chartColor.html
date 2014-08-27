@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="http://rs.feilong.com:8888/res/feilong/js/plugins/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<style type="text/css">
+
+.colorTd {
+	width: 300px;
+}
+
+.colorTextTd {
+	text-align: center;
+	width: 160px;
+}
+</style>
+
+<script type="text/javascript">
+    var colors = [ "#FF0F00", "#FF6600", "#FF9E01", "#FCD202", "#F8FF01",
+	    "#B0DE09", "#04D215", "#0D8ECF", "#0D52D1", "#2A0CD0", "#8A0CCF",
+	    "#CD0D74", "#754DEB", "#DDDDDD", "#999999", "#333333", "#000000",
+	    "#57032A", "#CA9726", "#990000", "#4B0C25" ];
+
+    $(function() {
+
+	var table = "";
+	$(colors)
+		.each(
+			function(i, color) {
+
+			    table += "<tr>";
+
+			    table += "<td class='colorTd' style=\"background-color: "+color+"\">";
+			    table += "</td>";
+
+			    table += "<td class='colorTextTd'>";
+			    table += color;
+			    table += "</td>";
+
+			    table += "</tr>";
+			});
+
+	console.log(table);
+
+	$("#colorTable").append(table);
+
+    });
+</script>
+</head>
+
+<body>
+
+	<table id="colorTable" border="1" cellspacing="0" cellpadding="8"></table>
+
+</body>
+
+</html>

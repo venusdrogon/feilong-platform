@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>amCharts examples</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script src="../amcharts/amcharts.js" type="text/javascript"></script>        
+        <script type="text/javascript">
+            var chart;
+            var graph;
+
+            // note, some of tada points don't have value field
+            var chartData = [{
+                year: new Date(1950, 0),
+                value: -0.307
+            }, {
+                year: new Date(1951, 0),
+                value: -0.168
+            }, {
+                year: new Date(1952, 0),
+                value: -0.073
+            }, {
+                year: new Date(1953, 0),
+                value: -0.027
+            }, {
+                year: new Date(1954, 0),
+                value: -0.251
+            }, {
+                year: new Date(1955, 0),
+                value: -0.281
+            }, {
+                year: new Date(1956, 0),
+                value: -0.348
+            }, {
+                year: new Date(1957, 0),
+                value: -0.074
+            }, {
+                year: new Date(1958, 0),
+                value: -0.011
+            }, {
+                year: new Date(1959, 0),
+                value: -0.074
+            }, {
+                year: new Date(1960, 0),
+                value: -0.124
+            }, {
+                year: new Date(1961, 0),
+                value: -0.024
+            }, {
+                year: new Date(1962, 0),
+                value: -0.022
+            }, {
+                year: new Date(1963, 0),
+                value: 0.000
+            }, {
+                year: new Date(1964, 0),
+                value: -0.296
+            }, {
+                year: new Date(1965, 0),
+                value: -0.217
+            }, {
+                year: new Date(1966, 0),
+                value: -0.147
+            }, {
+                year: new Date(1967, 0)
+            }, {
+                year: new Date(1968, 0)
+            }, {
+                year: new Date(1969, 0)
+            }, {
+                year: new Date(1970, 0)
+            }, {
+                year: new Date(1971, 0),
+                value: -0.190
+            }, {
+                year: new Date(1972, 0),
+                value: -0.056
+            }, {
+                year: new Date(1973, 0),
+                value: 0.077
+            }, {
+                year: new Date(1974, 0),
+                value: -0.213
+            }, {
+                year: new Date(1975, 0),
+                value: -0.170
+            }, {
+                year: new Date(1976, 0),
+                value: -0.254
+            }, {
+                year: new Date(1977, 0),
+                value: 0.019
+            }, {
+                year: new Date(1978, 0),
+                value: -0.063
+            }, {
+                year: new Date(1979, 0),
+                value: 0.050
+            }, {
+                year: new Date(1980, 0),
+                value: 0.077
+            }, {
+                year: new Date(1981, 0),
+                value: 0.120
+            }, {
+                year: new Date(1982, 0),
+                value: 0.011
+            }, {
+                year: new Date(1983, 0),
+                value: 0.177
+            }, {
+                year: new Date(1984, 0)
+            }, {
+                year: new Date(1985, 0)
+            }, {
+                year: new Date(1986, 0)
+            }, {
+                year: new Date(1987, 0)
+            }, {
+                year: new Date(1988, 0)
+            }, {
+                year: new Date(1989, 0),
+                value: 0.104
+            }, {
+                year: new Date(1990, 0),
+                value: 0.255
+            }, {
+                year: new Date(1991, 0),
+                value: 0.210
+            }, {
+                year: new Date(1992, 0),
+                value: 0.065
+            }, {
+                year: new Date(1993, 0),
+                value: 0.110
+            }, {
+                year: new Date(1994, 0),
+                value: 0.172
+            }, {
+                year: new Date(1995, 0),
+                value: 0.269
+            }, {
+                year: new Date(1996, 0),
+                value: 0.141
+            }, {
+                year: new Date(1997, 0),
+                value: 0.353
+            }, {
+                year: new Date(1998, 0),
+                value: 0.548
+            }, {
+                year: new Date(1999, 0),
+                value: 0.298
+            }, {
+                year: new Date(2000, 0),
+                value: 0.267
+            }, {
+                year: new Date(2001, 0),
+                value: 0.411
+            }, {
+                year: new Date(2002, 0),
+                value: 0.462
+            }, {
+                year: new Date(2003, 0),
+                value: 0.470
+            }, {
+                year: new Date(2004, 0),
+                value: 0.445
+            }, {
+                year: new Date(2005, 0),
+                value: 0.470
+            }];
+
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.pathToImages = "../amcharts/images/";
+                chart.marginTop = 0;
+                chart.marginRight = 0;
+                chart.dataProvider = chartData;
+                chart.categoryField = "year";
+                chart.zoomOutButton = {
+                    backgroundColor: '#000000',
+                    backgroundAlpha: 0.15
+                };
+
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+                categoryAxis.minPeriod = "YYYY"; // our data is yearly, so we set minPeriod to YYYY
+                categoryAxis.dashLength = 1;
+                categoryAxis.axisColor = "#DADADA";
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisAlpha = 0;
+                valueAxis.dashLength = 1;
+                valueAxis.inside = true;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPH
+                graph = new AmCharts.AmGraph();
+                graph.lineColor = "#b6d278";
+                graph.negativeLineColor = "#487dac"; // this line makes the graph to change color when it drops below 0
+                graph.bullet = "round";
+                graph.bulletSize = 5;
+                graph.connect = false; // this makes the graph not to connect data points if data is missing
+                graph.lineThickness = 2;
+                graph.valueField = "value";
+                chart.addGraph(graph);
+
+                // CURSOR  
+                var chartCursor = new AmCharts.ChartCursor();
+                chartCursor.cursorAlpha = 0;
+                chartCursor.cursorPosition = "mouse";
+                chartCursor.categoryBalloonDateFormat = "YYYY";
+                chart.addChartCursor(chartCursor);
+
+                // WRITE
+                chart.write("chartdiv");
+            });
+        </script>
+    </head>
+    
+    <body>
+        <div id="chartdiv" style="width:100%; height:400px;"></div>
+    </body>
+
+</html>

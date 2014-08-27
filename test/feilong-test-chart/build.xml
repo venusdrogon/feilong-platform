@@ -1,0 +1,18 @@
+<project name="feilong-test-chart" basedir="." default="copyJsp" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+	<property file="${basedir}/build.properties" />
+
+	<property file="E:/DataCommon/java/Taglib/Apache Ant/config/build-feilong.properties" />
+	<import file="${path.config}/build-config-common-nested.xml" />
+	<import file="${path.config}/build-config-nested.xml" />
+
+	<!--定义Maven2变量 -->
+	<artifact:pom id="feilongMaven" file="pom.xml" />
+
+	<!-- copyJsp -->
+	<target name="copyJsp">
+		<copy todir="${basedir}/target/${feilongMaven.name}-${feilongMaven.version}/">
+			<fileset dir="${basedir}/src/main/webapp" />
+		</copy>
+	</target>
+
+</project>

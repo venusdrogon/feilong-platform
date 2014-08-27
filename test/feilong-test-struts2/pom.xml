@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.test</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.8-SNAPSHOT</version>
+	</parent>
+	<artifactId>feilong-test-struts2</artifactId>
+	<description>feilong-test-struts2</description>
+
+	<!-- <packaging>war</packaging> -->
+	<name>feilong-test-struts2 Maven Webapp</name>
+
+	<build>
+		<finalName>feilong-test-struts2</finalName>
+		<!-- 设定Web应用中编译结果输出到WEB-INF/classes 中, 与使用IDE时相同 -->
+		<!-- <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+			<testOutputDirectory>src/main/webapp/WEB-INF/classes</testOutputDirectory> -->
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>2.2.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>

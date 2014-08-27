@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.test</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.8-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>feilong-test-payment</artifactId>
+	<name>feilong-test-payment</name>
+	<description>feilong-test-payment</description>
+	<packaging>war</packaging>
+
+	<properties>
+		<tomcatPlugin.port>8087</tomcatPlugin.port>
+		<tomcatPlugin.path>/</tomcatPlugin.path>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-xstream</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform.framework</groupId>
+			<artifactId>feilong-framework-netpay</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!-- war 用于Overlays -->
+		<dependency>
+			<groupId>com.feilong.platform.test</groupId>
+			<artifactId>feilong-web-commons</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<!-- 注意scope runtime -->
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- api jar 用于开发 -->
+		<dependency>
+			<groupId>com.feilong.platform.test</groupId>
+			<artifactId>feilong-web-commons</artifactId>
+			<version>${project.version}</version>
+			<classifier>api</classifier>
+			<type>jar</type>
+			<!-- 注意scope provided -->
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
