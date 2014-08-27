@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
 public final class JsoupUtil{
 
 	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private final static Logger	log	= LoggerFactory.getLogger(JsoupUtil.class);
 
 	// *******************************************************************************
