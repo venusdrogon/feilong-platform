@@ -101,7 +101,6 @@ public class StandardXpathExpressionXmlParse<T> extends AbstractBaseXmlParse<T>{
 			throw new IllegalArgumentException("xpathExpression can't be null/empty!");
 		}
 		this.xpathExpression = xpathExpression;
-		//TODO 泛型类型擦除
 		this.tClass = tClass;
 	}
 
