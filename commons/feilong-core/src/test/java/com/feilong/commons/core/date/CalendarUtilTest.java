@@ -30,7 +30,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-19 下午4:16:30
  */
-public class CalendarUtilTest extends BaseDateUtil{
+public class CalendarUtilTest extends BaseDateUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CalendarUtilTest.class);

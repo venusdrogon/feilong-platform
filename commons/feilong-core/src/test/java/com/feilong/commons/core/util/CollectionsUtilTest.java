@@ -16,12 +16,10 @@
 package com.feilong.commons.core.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -30,7 +28,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeSet;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
@@ -40,6 +37,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
+import com.feilong.test.UserAddress;
+import com.feilong.test.UserInfo;
 
 /**
  * The Class CollectionUtilTest.
@@ -51,6 +50,103 @@ public class CollectionsUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionsUtilTest.class);
+
+	/**
+	 * Convert list to string replace brackets.
+	 * 
+	 */
+	@Test
+	public final void testGetFieldValueMap(){
+		List<User> testList = new ArrayList<User>();
+		testList.add(new User("张飞", 23));
+		testList.add(new User("关羽", 24));
+		testList.add(new User("刘备", 25));
+
+		Map<String, Integer> map = CollectionsUtil.getPropertyValueMap(testList, "name", "age");
+
+		log.info(JsonUtil.format(map));
+	}
+
+	/**
+	 * Test get field value list.
+	 */
+	@Test
+	public final void testGetFieldValueList(){
+		List<User> testList = new ArrayList<User>();
+		testList.add(new User(2L));
+		testList.add(new User(5L));
+		testList.add(new User(5L));
+
+		List<String> fieldValueList = CollectionsUtil.getPropertyValueList(testList, "id");
+		fieldValueList.add("7");
+		fieldValueList.add("8");
+		log.info(JsonUtil.format(fieldValueList));
+	}
+
+	/**
+	 * Gets the field value list1.
+	 * 
+	 */
+	@Test
+	public final void testGetFieldValueList1(){
+		List<User> testList = new ArrayList<User>();
+
+		User user;
+		UserInfo userInfo;
+
+		//*******************************************************
+		List<UserAddress> userAddresseList = new ArrayList<UserAddress>();
+		UserAddress userAddress = new UserAddress();
+		userAddress.setAddress("中南海");
+		userAddresseList.add(userAddress);
+
+		//*******************************************************
+		Map<String, String> attrMap = new HashMap<String, String>();
+		attrMap.put("蜀国", "赵子龙");
+		attrMap.put("魏国", "张文远");
+		attrMap.put("吴国", "甘兴霸");
+
+		//*******************************************************
+		String[] lovesStrings1 = { "sanguo1", "xiaoshuo1" };
+		userInfo = new UserInfo();
+		userInfo.setAge(28);
+
+		user = new User(2L);
+		user.setLoves(lovesStrings1);
+		user.setUserInfo(userInfo);
+		user.setUserAddresseList(userAddresseList);
+
+		user.setAttrMap(attrMap);
+		testList.add(user);
+
+		//*****************************************************
+		String[] lovesStrings2 = { "sanguo2", "xiaoshuo2" };
+		userInfo = new UserInfo();
+		userInfo.setAge(null);
+
+		user = new User(3L);
+		user.setLoves(lovesStrings2);
+		user.setUserInfo(userInfo);
+		user.setUserAddresseList(userAddresseList);
+		user.setAttrMap(attrMap);
+		testList.add(user);
+
+		//数组
+		List<String> fieldValueList1 = CollectionsUtil.getPropertyValueList(testList, "loves[1]");
+		log.info(JsonUtil.format(fieldValueList1));
+
+		//级联对象
+		List<Integer> fieldValueList2 = CollectionsUtil.getPropertyValueList(testList, "userInfo.age");
+		log.info(JsonUtil.format(fieldValueList2));
+
+		//Map
+		List<Integer> attrList = CollectionsUtil.getPropertyValueList(testList, "attrMap(蜀国)");
+		log.info(JsonUtil.format(attrList));
+
+		//集合
+		List<String> addressList = CollectionsUtil.getPropertyValueList(testList, "userAddresseList[0]");
+		log.info(JsonUtil.format(addressList));
+	}
 
 	/**
 	 * TestCollectionsUtilTest.

@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.util.jdk;
 
-import static org.junit.Assert.*;
-
 import java.util.EnumSet;
 
 import org.junit.Test;
@@ -40,8 +38,7 @@ public class EnumSetTest{
 	 */
 	@Test
 	public void testEnumSetTest(){
-		EnumSet<HttpMethodType> enumSet 
-					= EnumSet.allOf(HttpMethodType.class);
+		EnumSet<HttpMethodType> enumSet = EnumSet.allOf(HttpMethodType.class);
 		log.debug("{}", enumSet);
 		//assertEquals(expected, actual);
 	}

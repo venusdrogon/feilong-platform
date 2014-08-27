@@ -19,11 +19,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -31,8 +30,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
-import com.feilong.test.UserAddress;
-import com.feilong.test.UserInfo;
 
 /**
  * The Class ListUtilTest.
@@ -44,11 +41,34 @@ import com.feilong.test.UserInfo;
 public class ListUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log			= LoggerFactory.getLogger(ListUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ListUtilTest.class);
+
+	/**
+	 * TestListUtilTest.
+	 */
+	@Test
+	public void testListUtilTest222(){
+		for (int i = 0; i < 20; ++i){
+
+			List<Object> list = new ArrayList<Object>();
+
+		}
+		//assertEquals(expected, actual);
+	}
 
 	/** The a strings. */
 	@SuppressWarnings("unused")
-	private String[]			aStrings	= { "a", "b" };
+	private String[]	aStrings	= { "a", "b" };
+
+	/**
+	 * TestListUtilTest.
+	 */
+	@Test
+	public void testListUtilTest6(){
+		List<String> list = new ArrayList<String>();
+		log.debug("the param list.size():{}", list.size());
+		//assertEquals(expected, actual);
+	}
 
 	/**
 	 * TestListUtilTest.
@@ -191,19 +211,40 @@ public class ListUtilTest{
 	 * Name.
 	 */
 	@Test
-	public void name(){
-		//ArrayList<String> list = new ArrayList<String>(Arrays.asList("a", "b", "c", "d"));
+	public void testRemove(){
+		String spy = "曹操";
+		List<String> list = new ArrayList<String>(
+				Arrays.asList("赵云", "张飞", "关羽", "曹操", "马超", "黄忠", 
+								"法正", "庞统", "诸葛亮", "刘备")
+			);
+//		for (String name : list){
+//			if (name.equals(spy)){
+//				list.remove(name);
+//			}
+//		}
 
-		List<String> list = new ArrayList<String>();
+				for (int i = 0; i < list.size(); ++i){
+					String name = list.get(i);
+					if (name.equals(spy)){
+						list.remove(name);
+					}
+				}
 
-		list.add("a");
-		list.add("a7");
-		list.add("a8");
-		for (String s : list){
-			if (s.equals("a")){
-				list.remove(s);
-			}
-		}
+		//		Iterator<String> iterator = list.iterator();
+		//		while (iterator.hasNext()){
+		//			String name = iterator.next();
+		//			if (name.equals(spy)){
+		//				list.remove(name);
+		//			}
+		//		}
+
+//		for (Iterator<String> iterator = list.iterator(); iterator.hasNext();){
+//			String name = iterator.next();
+//			if (name.equals(spy)){
+//				list.remove(name);
+//			}
+//		}
+		log.debug(JsonUtil.format(list));
 	}
 
 	/**
@@ -344,85 +385,4 @@ public class ListUtilTest{
 		log.info(ListUtil.toStringReplaceBrackets(testList));
 	}
 
-	/**
-	 * Convert list to string replace brackets.
-	 * 
-	 */
-	@Test
-	public final void testGetFieldValueList(){
-		List<User> testList = new ArrayList<User>();
-		testList.add(new User(2L));
-		testList.add(new User(5L));
-		testList.add(new User(5L));
-
-		List<String> fieldValueList = ListUtil.getFieldValueList(testList, "id");
-		fieldValueList.add("7");
-		fieldValueList.add("8");
-		log.info(JsonUtil.format(fieldValueList));
-	}
-
-	/**
-	 * Gets the field value list1.
-	 * 
-	 */
-	@Test
-	public final void testGetFieldValueList1(){
-		List<User> testList = new ArrayList<User>();
-
-		User user;
-		UserInfo userInfo;
-
-		//*******************************************************
-		List<UserAddress> userAddresseList = new ArrayList<UserAddress>();
-		UserAddress userAddress = new UserAddress();
-		userAddress.setAddress("中南海");
-		userAddresseList.add(userAddress);
-
-		//*******************************************************
-		Map<String, String> attrMap = new HashMap<String, String>();
-		attrMap.put("蜀国", "赵子龙");
-		attrMap.put("魏国", "张文远");
-		attrMap.put("吴国", "甘兴霸");
-
-		//*******************************************************
-		String[] lovesStrings1 = { "sanguo1", "xiaoshuo1" };
-		userInfo = new UserInfo();
-		userInfo.setAge(28);
-
-		user = new User(2L);
-		user.setLoves(lovesStrings1);
-		user.setUserInfo(userInfo);
-		user.setUserAddresseList(userAddresseList);
-
-		user.setAttrMap(attrMap);
-		testList.add(user);
-
-		//*****************************************************
-		String[] lovesStrings2 = { "sanguo2", "xiaoshuo2" };
-		userInfo = new UserInfo();
-		userInfo.setAge(null);
-
-		user = new User(3L);
-		user.setLoves(lovesStrings2);
-		user.setUserInfo(userInfo);
-		user.setUserAddresseList(userAddresseList);
-		user.setAttrMap(attrMap);
-		testList.add(user);
-
-		//数组
-		List<String> fieldValueList1 = ListUtil.getFieldValueList(testList, "loves[1]");
-		log.info(JsonUtil.format(fieldValueList1));
-
-		//级联对象
-		List<Integer> fieldValueList2 = ListUtil.getFieldValueList(testList, "userInfo.age");
-		log.info(JsonUtil.format(fieldValueList2));
-
-		//Map
-		List<Integer> attrList = ListUtil.getFieldValueList(testList, "attrMap(蜀国)");
-		log.info(JsonUtil.format(attrList));
-
-		//集合
-		List<String> addressList = ListUtil.getFieldValueList(testList, "userAddresseList[0]");
-		log.info(JsonUtil.format(addressList));
-	}
 }

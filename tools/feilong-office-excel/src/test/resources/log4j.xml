@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
 
-    This product currently only contains code developed by authors
-    of specific components, as identified by the source code files.
-
-    Since product implements StAX API, it has dependencies to StAX API
-    classes.
-
-    For additional credits (generally to people who reported problems)
-    see CREDITS file.
-
--->
 <!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
@@ -34,7 +23,7 @@
 
 	<appender name="htmlFile" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.html'" />
-		<param name="File" value="D:\\logs\\feilong\\feilong-core\\log.html" />
+		<param name="File" value="D:\\logs\\feilong\\feilong-office-excel\\log.html" />
 		<layout class="org.apache.log4j.HTMLLayout">
 			<param name="LocationInfo" value="true" />
 			<param name="Title" value="feilong-common log" />
@@ -43,48 +32,35 @@
 
 	<appender name="logFile" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
-		<param name="File" value="D:\\logs\\feilong\\feilong-core\\log.log" />
+		<param name="File" value="D:\\logs\\feilong\\feilong-office-excel\\log.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
 		</layout>
 	</appender>
-
-	<appender name="logFile-security" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
-		<param name="File" value="D:\\logs\\feilong\\feilong-core\\log-security.log" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %t (%F:%L) [%M()] - %m%n" />
-		</layout>
-	</appender>
-
-	<category name="org.hibernate">
-		<priority value="info" />
-	</category>
-	<category name="org.springframework">
-		<priority value="info" />
-	</category>
-
-	<category name="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<priority value="info" />
-	</category>
 
 	<category name="com.feilong">
 		<priority value="debug" />
 	</category>
+
+	<category name="org.apache.commons.digester.Digester">
+		<priority value="info" />
+	</category>
+
+	<category name="org.apache.commons.beanutils.converters">
+		<priority value="info" />
+	</category>
+
+	<category name="org.apache.commons.beanutils.ConvertUtils">
+		<priority value="info" />
+	</category>
+
 	<category name="loxia.support.json">
 		<priority value="warn" />
 	</category>
 
-	<category name="elsepackage">
-		<priority value="debug" />
+	<category name="com.feilong.tools.velocity.log.SLF4JLogChute">
+		<priority value="info" />
 	</category>
-
-	<category name="com.feilong.commons.core.security" additivity="false">
-		<priority value="debug" />
-		<appender-ref ref="stdout" />
-		<appender-ref ref="logFile-security" />
-	</category>
-
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>

@@ -20,7 +20,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,19 +60,5 @@ public class JDBCDAOTest{
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * {@link com.feilong.commons.db.JDBCDAO#getConnection(java.lang.String, java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public final void testGetConnectionStringString(){
-	}
-
-	/**
-	 * {@link com.feilong.commons.db.JDBCDAO#getConnection(java.lang.String, java.lang.String, java.lang.String, java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public final void testGetConnectionStringStringStringString(){
 	}
 }

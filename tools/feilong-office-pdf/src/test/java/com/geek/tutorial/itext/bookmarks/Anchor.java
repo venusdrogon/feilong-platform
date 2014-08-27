@@ -16,13 +16,16 @@
 package com.geek.tutorial.itext.bookmarks;
 
 import java.awt.Color;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
@@ -36,15 +39,17 @@ import com.lowagie.text.pdf.PdfWriter;
 public class Anchor{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(Anchor.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(Anchor.class);
 
 	/**
-	 * Instantiates a new anchor.
+	 * TestAnchor.
 	 * 
-	 * @throws Exception
-	 *             the exception
+	 * @throws DocumentException
+	 * @throws FileNotFoundException
 	 */
-	public Anchor() throws Exception{
+	@Test
+	public void testAnchor() throws FileNotFoundException,DocumentException{
 
 		Document document = new Document();
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("E://anchor.pdf"));
@@ -67,20 +72,5 @@ public class Anchor{
 		document.add(new Paragraph(new Chunk("Open outline.pdf chapter 3", font).setRemoteGoto("outline.pdf", "3")));// Code 4
 
 		document.close();
-
-	}
-
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(String[] args){
-		try{
-			Anchor anchor = new Anchor();
-		}catch (Exception e){
-			e.printStackTrace();
-		}
 	}
 }

@@ -17,6 +17,8 @@ package com.feilong.commons.core.lang;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,10 +36,11 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
 public class EnumUtilTest{
 
 	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(EnumUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValueIgnoreCase(Class, String, Object)}.
+	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValue(Class, String, Object)}.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
@@ -63,7 +66,6 @@ public class EnumUtilTest{
 		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "pOst"));
 		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "POST"));
 		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "posT"));
-
 		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
 		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "gEt"));
 		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "geT"));

@@ -104,6 +104,7 @@ public class FeiLongJinBaoWangCrawler{
 	public static Map<String, List<String>> convertObjectToMap(String objPath){
 		try{
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(objPath));
+			@SuppressWarnings("unchecked")
 			Map<String, List<String>> skuCodeAndImagesMap = (Map<String, List<String>>) in.readObject();
 			in.close();
 			return skuCodeAndImagesMap;

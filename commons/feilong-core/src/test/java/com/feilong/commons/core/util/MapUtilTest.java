@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.util;
 
+import static org.junit.Assert.*;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,6 +35,18 @@ public class MapUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MapUtilTest.class);
+
+	/**
+	 * TestMapUtilTest.
+	 */
+	@Test
+	public void testMapUtilTest222(){
+
+		Map<String, String> object = new HashMap<String, String>(2);
+
+		object.put("1", "");
+		//assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.util.MapUtil#getMinValue(java.util.Map, java.lang.String[])}.

@@ -15,10 +15,14 @@
  */
 package com.feilong.commons.core.util;
 
+import static org.junit.Assert.*;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.Assert;
 
@@ -34,7 +38,7 @@ import com.feilong.test.User;
 
 /**
  * The Class ArrayUtilTest.
- * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-12 上午11:29:02
  * @since 1.0
@@ -43,6 +47,80 @@ public class ArrayUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ArrayUtilTest.class);
+
+	/**
+	 * TestArrayUtilTest.
+	 */
+	@Test
+	public void testArrayUtilTest(){
+		String[] strs = new String[10];
+		log.debug("" + strs.length);
+	}
+
+	/**
+	 * Test is contain.
+	 */
+	@Test
+	public void testIsContain(){
+		Assert.assertEquals(true, ArrayUtil.isContain(new Integer[] { 1, 223 }, 1));
+		Assert.assertEquals(true, ArrayUtil.isContain(new Long[] { 1L, 223L }, 1L));
+		String[] array = new String[] { "1", "223" };
+		Assert.assertEquals(true, ArrayUtil.isContain(array, "1"));
+	}
+
+	/**
+	 * TestArrayUtilTest.
+	 */
+	@Test
+	public void testGroup(){
+		Integer[] array = { 1, 1, 1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8 };
+
+		Map<Integer, List<Integer>> group = ArrayUtil.group(array);
+
+		log.debug(JsonUtil.format(group));
+
+		Collection<List<Integer>> values = group.values();
+		log.debug(JsonUtil.format(values));
+
+		//****************************************************************
+		String[] array1 = { "金鑫", "feilong", "金鑫", "基友团", "金鑫" };
+
+		Map<String, List<String>> group1 = ArrayUtil.group(array1);
+
+		log.debug(JsonUtil.format(group1));
+
+		Collection<List<String>> values1 = group1.values();
+		log.debug(JsonUtil.format(values1));
+	}
+
+	/**
+	 * Test group object.
+	 *
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 */
+	@Test
+	public void testGroupObject() throws IllegalAccessException,InvocationTargetException,NoSuchMethodException{
+		User[] users = {
+				new User("张三", 18),
+				new User("李四", 28),
+				new User("王五", 38),
+				new User("陈二", 18),
+				new User("孔六", 28),
+				new User("飞飞", 58) };
+
+		Map<Integer, List<User>> group = ArrayUtil.group(users, "age");
+
+		log.debug(JsonUtil.format(group));
+
+		Collection<List<User>> values = group.values();
+		log.debug(JsonUtil.format(values));
+
+	}
 
 	/**
 	 * Test get by array.
@@ -101,19 +179,6 @@ public class ArrayUtilTest{
 	}
 
 	/**
-	 * Testis contain value.
-	 */
-	@Test
-	public final void testisContainValue(){
-		Assert.assertEquals(true, ArrayUtil.isContain(new Integer[] { 1, 223 }, 1));
-		Assert.assertEquals(true, ArrayUtil.isContain(new Long[] { 1L, 223L }, 1L));
-		String[] array = new String[] { "1", "223" };
-		Assert.assertEquals(true, ArrayUtil.isContain(array, "1"));
-		//
-		ArrayUtils.add(array, "");
-	}
-
-	/**
 	 * Convert list to string replace brackets.
 	 */
 	@Test
@@ -166,21 +231,6 @@ public class ArrayUtilTest{
 			User user = iterator.next();
 			log.debug("{}", user.getId());
 		}
-	}
-
-	/**
-	 * To linked list.
-	 */
-	@Test
-	public final void toLinkedList(){
-		User user1 = new User();
-		user1.setId(1L);
-		User user2 = new User();
-		user2.setId(2L);
-
-		User[] users = { user1, user2 };
-		LinkedList<User> list = ArrayUtil.toLinkedList(users);
-		log.info(JsonUtil.format(list));
 	}
 
 	/**

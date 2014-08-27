@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sheets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="exceltemplate-1.0.xsd">
+
+	<!-- 培训 -->
+	<sheet name="trainSignUpSheet">
+		<block start="A2" end="F2" dataName="trainSignUplist" loop="true" loopClass="com.feilong.office.excel.loxia.TrainSignUpEntity">
+			<cell position="A2" dataName="name" />
+			<cell position="B2" dataName="email" />
+			<cell position="C2" dataName="signUpTime" />
+			<!-- type="date" pattern="yyyy-MM-dd HH:mm:ss" -->
+			<cell position="D2" dataName="mobile" />
+			<!-- 商城分类 -->
+			<cell position="E2" dataName="storeCategoryName" />
+			<!-- 商城名称 -->
+			<cell position="F2" dataName="storeName" />
+			<cell position="G2" dataName="courseTime" />
+			<cell position="H2" dataName="courseName" />
+			<!-- 是否是编外人员 -->
+			<cell position="I2" dataName="offStaff" />
+			<cell position="J2" dataName="remark" />
+		</block>
+	</sheet>
+
+	<!-- 签到表 -->
+	<sheet name="attendanceSheet">
+		<block start="A2" end="G3">
+			<!-- 课程名称 -->
+			<cell position="C2" dataName="courseName" />
+
+			<!-- 培训日期 -->
+			<cell position="F2" dataName="trainDate" />
+			<!-- 培训讲师 -->
+			<cell position="C3" dataName="trainInstructor" />
+			<!-- 培训地点 -->
+			<cell position="F3" dataName="trainAddress" />
+		</block>
+
+		<block start="A5" end="G5" dataName="attendanceList" loop="true" loopClass="com.feilong.office.excel.loxia.AttendanceEntity">
+			<!-- No -->
+			<cell position="A5" dataName="id" />
+			<!-- 姓名 -->
+			<cell position="B5" dataName="name" />
+
+			<!-- 部门 -->
+			<cell position="C5" dataName="departName" />
+
+			<!-- 组别 -->
+			<cell position="D5" dataName="groupName" />
+
+			<!-- 会前通知参加 -->
+			<cell position="E5" dataName="notice" />
+
+			<!-- 培训签到 -->
+			<cell position="F5" dataName="attendanceSign" />
+
+			<!-- 备注 -->
+			<cell position="G5" dataName="remark" />
+		</block>
+	</sheet>
+</sheets>

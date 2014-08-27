@@ -41,8 +41,9 @@ public class HttpConcatCacheMemoryTest extends BaseHttpConcatTest{
 
 	/**
 	 * Name.
-	 * 
+	 *
 	 * @throws IOException
+	 *             the IO exception
 	 */
 	@Test
 	public void name() throws IOException{
@@ -101,7 +102,9 @@ public class HttpConcatCacheMemoryTest extends BaseHttpConcatTest{
 	}
 
 	/**
-	 * @return
+	 * 获得 write content.
+	 *
+	 * @return the write content
 	 */
 	private String getWriteContent(){
 		HttpConcatParam httpConcatParam2 = getHttpConcatParam();

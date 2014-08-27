@@ -62,12 +62,12 @@ public class SvnPatchAntCopyTest{
 	 */
 	@Test
 	public void printlnFileContent(){
-		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\svn\\mp2.txt";
+		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\svn\\mp2-patch20140819.txt";
 
 		ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
 		//		scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
-		//		scmAntCopyConfig.setIgnoreNotRuleFile(false);
-		//		scmAntCopyConfig.setChangeJavaFileExtensionNameToClass(false);
+		scmAntCopyConfig.setIgnoreNotRuleFile(false);
+		scmAntCopyConfig.setChangeJavaFileExtensionNameToClass(false);
 
 		scmAntCopy.printlnFileContent(fileName, scmAntCopyConfig);
 	}

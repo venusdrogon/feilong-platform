@@ -32,7 +32,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  * @version 1.0.8 2014年7月31日 下午2:48:22
  * @since 1.0.8
  */
-public class DateExtensionUtilTest extends BaseDateUtil{
+public class DateExtensionUtilTest extends BaseDateUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(DateExtensionUtilTest.class);
