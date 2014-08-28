@@ -1,0 +1,7 @@
+<%@ taglib prefix="logic" uri="http://struts.apache.org/tags-logic"%>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html"%>
+<%@ taglib prefix="el" uri="http://java.feilong.com/tags-el"%>
+<%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager"%>
+<%@ taglib prefix="feilong" uri="http://java.feilong.com/tags-common"%>
+<%@ taglib prefix="feilonghtml" uri="http://java.feilong.com/tags-html"%>

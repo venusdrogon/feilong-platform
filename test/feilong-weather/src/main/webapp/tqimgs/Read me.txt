@@ -1,0 +1,53 @@
+
+欢迎使用 WebXml.com.cn 天气预报 WebService: http://www.webxml.com.cn/WebServices/WeatherWebService.asmx
+
+天气预报服务数据来源于中国气象局http://www.cma.gov.cn/
+
+数据每2.5小时左右自动更新一次，准确可靠。包括 340 多个中国主要城市和 60 多个国外主要城市三日内的天气预报数据。此WebService请不要用于任何商业目的，
+
+若有需要请与作者联系，欢迎技术交流。作者QQ: 8698053,Email: Service@webxml.com.cn
+
+
+
+          图片名        说  明
+======================================
+          0.gif          晴          
+          1.gif          多云          
+          2.gif          阴          
+          3.gif          阵雨          
+          4.gif          雷阵雨          
+          5.gif          雷阵雨并伴有冰雹          
+          6.gif          雨加雪          
+          7.gif          小雨          
+          8.gif          中雨          
+          9.gif          大雨          
+          10.gif         暴雨          
+          11.gif         大暴雨          
+          12.gif         特大暴雨          
+          13.gif         阵雪          
+          14.gif         小雪          
+          15.gif         中雪          
+          16.gif         大雪          
+          17.gif         暴雪          
+          18.gif         雾          
+          19.gif         冻雨          
+          20.gif         沙尘暴          
+          21.gif         小雨-中雨          
+          22.gif         中雨-大雨          
+          23.gif         大雨-暴雨          
+          24.gif         暴雨-大暴雨          
+          25.gif         大暴雨-特大暴雨          
+          26.gif         小雪-中雪          
+          27.gif         中雪-大雪          
+          28.gif         大雪-暴雪          
+          29.gif         浮尘          
+          30.gif         扬沙          
+          31.gif         强沙尘暴          
+          nothing.gif    没有数据(可自己更换)
+          
+以上图片名同WebService提供的名称相同和对应,不同尺寸为前面带 a_(大)    或 b_(中)
+
+中国气象局图例说明: http://www.cma.gov.cn/tqyb/intro/legend.php
+
+
+

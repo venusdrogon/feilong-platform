@@ -1,0 +1,7 @@
+﻿&itemNum=5&src1=fla_images/1.jpg&title1=Playboy品牌鞋广告 
+&url1=/promotion/promotion_110105.html&src2=fla_images/2.jpg&title1=***
+&url2=/product/category.htm?categoryId=388&src3=fla_images/3.jpg&title2=***
+&url3=/product/category.htm?categoryId=380&src4=fla_images/4.jpg&title4=***
+&url4=/product/category.htm?categoryId=307&src5=fla_images/5.jpg&title5=***
+&url5=http://bossini.com.cn/survey/generalSurvey.htm?surveyCode=s003&src6=fla_images/1.jpg&title6=*** &url6=http://www.bossini.com/&src7=fla_images/7.jpg&title7=***
+&url7=http://www.bossini.com/&src8=fla_images/8.jpg&title8=摄影B &url8=http://www.bossini.com/&src9=fla_images/9.jpg&title9=摄影C &url9=http://www.bossini.com/&src10=fla_images/10.jpg&title10=摄影D &url10=http://www.bossini.com/&loadOk=true

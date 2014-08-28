@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE siteMap SYSTEM "../../../res/feilong/tld/feiLongSiteMap-1.0.dtd">
+
+<!-- 	
+	金鑫:2010年6月8日 11:52:09
+	
+	配置文件说明， 
+	sitemap根节点,	
+	url - 链接地址
+	Title - 显示的标题
+	description - 描述（ToolTip）	
+-->
+<siteMapNode url="index.jsp" title="中国招工" description="中国招工">
+	<siteMapNode url="index.jsp?t=2010061751" title="客服中心" description="客服中心">
+		<siteMapNode url="index.jsp?t=2010061752" title="用户注册" description="用户注册" />
+	</siteMapNode>
+</siteMapNode>

@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="${pageContext.request.contextPath}/res/js/plugins/my.area/area.css?t=20100421" type="text/css"></link>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/plugins/my.area/area.js?t=20100421"></script>
