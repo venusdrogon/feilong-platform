@@ -1,0 +1,311 @@
+body,td				{font:12px Verdana;}
+input 				{font-family: Verdana;}
+
+/*
+a:link 				{color: #006DA3;}
+a:visited 			{color: #006DA3;}
+a:hover 			{color: #006DA3;}
+a:active 			{color: #006DA3;}
+*/
+a:link 				{color: #3366CC;}
+a:visited			{color: #2E723C;}
+a:hover 			{color: #F90;}
+a:active 			{color: #000;}
+
+/**********************列表相关**********************/
+#div_SearchNoData dt			{background:none;}
+#div_SearchNoData dd			{margin-bottom: 6px;}
+/**********************表格相关**********************/
+.noBorder,
+	.noBorder td,
+	.noBorder th				{border:none;padding:4px 4px 4px 5px;}		
+	
+	/*上边框是1px的tr*/	 
+.tr_top1_96C2F1 td				{border-top: 1px solid #96C2F1;padding-top: 12px}
+
+.dataTable						{width: 98%;margin: 10px 3px;}
+	.dataTable th				{background: url(image/itemlist_bg.gif) repeat-x 0px 0px;font-size:12px;height:20px;line-height: 20px;text-align:center;}
+	.dataTable td				{padding:2px 2px 2px 4px;border: none;height:24px;}
+	
+	/*隔行变色*/
+	.feilongEvenTrClass			{background: #eee;}
+
+table .td_title					{/*background: #FAFCFD;*/text-align: right;width: 120px;padding:0 20px 0 0;color: #666}
+table.selectConditionTable		{width: 98%;margin: 10px 3px;}
+table.selectConditionTable .td_title	{padding:0 2px 0 0;width:60px;}
+
+table .operation 				{text-align: center;}	
+
+.td_module_title				{font:bold 14px Verdana;}
+.textarea_title 				{vertical-align: top;}
+/*居中对其*/	
+.td_center						{text-align: center;}
+.td_cboSelect 					{width: 36px;text-align: center;}
+.td_cboSelect label 			{padding-left: 20px;background: url(../image/cbo_unchecked.gif) no-repeat;cursor: pointer;height: 16px}
+.td_cboSelect label.checked 	{background: url(../image/cbo_checked.gif) no-repeat;}
+ 
+  /*textarea*/
+ .feilongXheditor 				{width: 80%;height: 160px}
+/*********************飞龙div******************************/	
+.div 							{border: 1px solid #BBE1F1;margin: 1px 1px 8px;width: 220px;text-align: left;}
+	#center .div				{width: 99%;}
+	.div .title 				{background:#EEFAFF;border-bottom: 1px solid #BBE1F1;height: 22px;font-size:15px;padding:6px 0 0 5px}
+	.div .title .titleContent	{float: left;}	
+	.div .content 				{background: #fff;padding: 12px 4px 4px 20px;}	
+	.div .operation 			{border-top: 1px dashed #BBE1F1;text-align: right;padding: 2px;margin-top:4px;clear: both} 
+
+/********************按钮***************************/	
+.feilongButton 			{background: #EEFAFF;border: 1px solid #BBE1F1;height:28px;margin:2px 2px;cursor: pointer;font-size:15px;	text-align:center;line-height:150%;vertical-align: middle;}
+.xy2Button		{background: url("image/button.gif"); border: none; width: 110px; height: 25px; text-align: left; padding: 4px 0 0 30px; font: 18px "经典繁行书", "经典行书简", "楷体_gb2312"}
+.xy2Button4		{padding: 4px 0 0 10px;}
+/***************************************超链接**********************************************/
+/*.a_operate_delete{background: url(image/ico/delete.gif) no-repeat; padding-right: 25px}*/
+.a_button			{display: inline-block;background: #EEFAFF;border: 1px solid #BBE1F1; margin:2px 2px;cursor: pointer;font-size:14px;text-align:center; padding: 5px 12px}
+.a_button:link 		{color: #000;}
+.a_button:visited	{color: #000;}
+.a_button:hover 	{color: #000;}
+.a_button:active 	{color: #000;}
+ 
+/*-----------------------------------------------------
+	*Description: 	提示相关	
+-------------------------------------------------------*/
+.span_name			{color:#712FBA}
+.span_smallwarn		{color:gray;}
+
+/*暂停系统等系统级维护*/
+#systemWarn			{border:1px solid #FFCC00;background-color: #FFFFF7;color:#f20;padding-left:30px;height:25px;line-height: 25px}
+.warn 				{color: Red;background:url(../image/warn_no.gif);}
+.friendly			{color: #358037;background:url(../image/warn_yes.gif)}
+.warn,.friendly		{background-repeat:no-repeat;background-position: 0 50%;padding-left:30px;height: 20px ; line-height: 20px}
+
+.friendlyInfo		{color: #358037;}
+
+/*信息*/
+.successWarn,.failWarn{padding: 5px 4px 5px 16px;margin: 2px}
+
+/*成功返回的信息*/
+.successWarn		{color:#358037;background: #FFFFF7;border:1px solid #FFCC00;}
+
+/*失败返回的信息*/
+.failWarn			{color:red;background: #FFFFF7;border:1px solid #FFCC00;min-width: 300px}
+
+.successWarn strong,
+	.failWarn strong{color:red;margin: 0;padding: 0}	
+
+/*块提示*/
+.friendlywarn,.d	{border:1px solid #92B0DD;background-color: #FFFFFf;margin:1px 8px 1px 0; padding: 2px 5px 2px 12px}
+
+/*正确提示*/
+.yes				{color:#358037;background: #FFFFF7;border:1px solid #FFCC00;background:url(image/warn_yes.gif);}
+/*错误提示*/
+.no					{color:red;background: #FFFFF7;border:1px solid #FFCC00;background:url(image/warn_no.gif)}
+.yes,.no			{padding:4px 8px 4px 22px;background-repeat:no-repeat;background-position: 4px 50%;}
+/*-----------------------------------------------------
+	*Description: 	常用功能		
+	*Author 	:	金鑫	
+	*Version	:	1.5.1   (2009年8月24日 14:16:30)	
+-------------------------------------------------------*/
+/***************************************文本框**********************************************/
+.textbox,.textbox20	{font: bold 15px Verdana;vertical-align: middle;margin: 0 4px ;}
+
+.textbox,#text_code	{height: 24px;line-height:24px;padding:4px 2px 2px 4px}
+.textbox20			{height: 20px;line-height:20px;padding:1px 2px 3px 4px}
+
+.textbox			{width: 220px;}
+/*彩色的文本框*/
+.colorText			{background: #E8F9FF; border: 1px solid #84A1BD;}
+/*验证码文本框*/
+#text_code			{width: 120px;}
+
+/*常用下拉框宽度*/
+.selectCommonWidth	{width: 200px;}
+
+/*常用宽度200*/
+.width120			{width: 120px;}
+
+/*粗黑*/
+.boldBlack			{color: black;font-weight: bold;}
+
+/*粗*/
+.bold				{font-weight: bold;}
+
+/***************************************颜色相关*********************************************/
+.color_red			{color:red;}
+.color_555			{color:#555;}
+/*淡灰色*/
+.color_666			{color:#666;}
+
+/*f50 一般用于提示*/
+.color_f50			{color:#F50;}
+/*男*/
+.color_boy			{color:#2C5FB2}
+/*女*/
+.color_girl			{color:#F0F;}
+/***************************************ajax相关*********************************************/
+.smallAjax,.ajaxSuccee{float: right;font-size: 12px;padding-left: 18px;margin-right: 5px;}
+.smallAjax			{background: url(../image/smallAjax.gif) no-repeat 0 50%;color:gray;}
+.ajaxSuccee			{background: url(../image/warn_yes.gif) no-repeat 0 50%;color:#358037;}
+
+.span_ajax			{margin-left: 150px}
+
+#div_ajaxContentDiv table{width: 98%}
+#div_ajaxContentDiv .failWarn,#div_ajaxContentDiv .successWarn {padding: 6px 8px 6px 20px;margin: 20px 10px 10px 10px;}
+
+/******** 顶部的ajax条** ***/
+#div_topAjax 		{position: absolute;top:10px;right:150px;padding: 6px 8px;font-size: 12px;border: 1px solid #9BDF70;background-color: #F0FBEB;display: none;}
+/**************************************其他**********************************************/
+.span_keepspacing 	{white-space: pre;}
+
+.module_title		{font:bold 14px Verdana;}
+
+/*星*/
+.s 					{color: Red;margin-right: 4px}
+.s_div				{position:absolute;top:35px;margin-left: 672px; padding: 6px 45px 6px 0;background: #FFFFF7; border: 1px solid #FFCC00; text-align:right; width: 200px; color: #358037}
+
+/*注释*/
+.z					{font:12px Verdana;color:#666;margin:0 10px}
+
+/*验证码*/
+#img_code			{cursor: pointer;}
+
+/*新*/
+.new				{color:#FF5500;margin-left: 12px;display: inline-block}
+
+/*分隔的li*/
+.li_separate		{border-top: 1px solid #EFF7FF;padding-top: 4px}
+
+/***********************地区************************/
+.select_Province	{width: 88px}
+.select_City		{width: 88px}
+.select_District	{width: 88px}
+/***********************圆角************************/
+.corner 				{background:transparent;width:360px;} 
+.cornerTop,.cornerBottom{display:block;background:transparent; font-size:1px;} 
+.xb1,.xb2,.xb3,.xb4 	{display:block;overflow:hidden;height:1px;border-left:1px solid #BBE1F1; border-right:1px solid #BBE1F1;} 
+.xb1 					{margin:0 5px; background:#BBE1F1;} 
+.xb2 					{margin:0 3px; border-width:0 2px;} 
+.xb3 					{margin:0 2px;} 
+.xb4 					{height:2px;margin:0 1px;} 
+.cornerContent			{display:block;border:0 solid #BBE1F1; border-width:0 1px;height:300px;}
+
+.c						{width:244px}
+.c_t					{background:url(image/c_t.jpg); height:28px}
+.c_c					{background:url(image/c_c.jpg); height:100px;padding:8px 5px 3px 8px}
+.c_b					{background:url(image/c_b.jpg) no-repeat;height:5px;}
+
+/***********************数字************************/
+.decimal_0				{color:red}
+.decimal_deault			{color:#000}
+.decimal_100			{color:#ff00ff}
+.decimal_200			{color:blue}
+.decimal_300			{color:#ff6c00}
+.decimal_500			{color:yellow}
+.decimal_6000			{color:green}
+
+.bk_0,.bk_deault,.bk_100,
+	.bk_200,.bk_300,.bk_500,
+		.bk_6000		{padding:0 18px;margin-right: 12px;width: 36px}
+		
+/***********************数字总数说明的背景颜色************************/		
+.bk_0					{background-color:red;}
+.bk_deault				{background-color:#000;}
+.bk_100					{background-color:#ff00ff;}
+.bk_200					{background-color:blue;}
+.bk_300					{background-color:#ff6c00;}
+.bk_500					{background-color:yellow;}
+.bk_6000				{background-color:green;}
+
+/***********************表示的缓急级别************************/		
+.level_S				{color:red;}/*紧急*/
+.level_A				{color:#ff00ff;}/*次紧急*/
+.level_B				{color:#000;}
+.level_C				{color:blue;}
+.level_D				{color:#ff6c00;}
+.level_default			{color:#000;}/*默认*/
+.level_good				{color:green;}/*状态良好*/
+.level_bad				{color:#777;}/*状态异常*/
+
+/*-----------------------------------------------------
+	*Description: 	显示		
+	*Author 	:	金鑫	
+	*Version	:	1.1.0   (2010年8月7日 18:22:07)	
+-------------------------------------------------------*/
+/*不显示*/
+.displayNone			{display: none;}
+ 
+
+/*-----------------------------------------------------
+	*Description: 	浮动相关		
+	*Author 	:	金鑫	
+	*Version	:	1.5.1   (2009年8月26日 16:22:42)	
+-------------------------------------------------------*/
+/*浮动的li*/
+.floatUL			{margin: 6px 4px 6px 4px;}
+.floatUL li			{float: left;word-break : break-all;}
+.left				{float: left;}
+.right				{float: right;}
+.more				{float: right;}
+#footer .left		{width: 500px; text-align: right;  line-height: 20px;}
+#footer .right		{width: 430px; text-align: left;  }
+
+.full				{clear: both;width: 99%;margin-top: 10px}
+
+/*清楚浮动*/
+.clear				{clear: both;}
+
+/*居中对齐*/
+.center				{text-align: center;}
+/*居右对齐*/
+.alignRight			{text-align: right;}
+/*******************************维护公告****************************************/
+#div_maintenance ol 		{list-style-type: circle; margin: 5px 5px 5px 20px; display: block;}
+#div_maintenance ol li 		{font-size: 12px; margin-bottom: 12px; color: #333}
+#div_maintenance ol li li 	{list-style-type: none;margin-bottom: 2px; background: url("image/li/dot.bmp") no-repeat 0 80%; padding: 4px 0 0 16px;}
+#div_maintenance strong 	{color: blue}
+#div_maintenance h3 		{cursor: pointer; background: url("image/qq/blueRose.png") no-repeat 0 80%; padding: 10px 0 0 25px; border-top: 1px dashed #BBE1F1;}
+
+/*发布时间*/
+#div_maintenance .releaseTime 	{color: #FF5500;}
+#div_maintenance .release_Time 	{margin-left: 270px}
+#div_maintenance .content 		{font-size: 14px}
+#div_maintenance .version 		{margin-left: 18px}
+#div_maintenance .version .versionCode {color: blue; font-style: italic;}
+#div_maintenance .delete 		{color: red}
+#div_maintenance .add 			{color: #0094C5}
+	
+/*******************************清爽配色15套 15套优雅的配色方案****************************************/
+.feilongCleanlily1 			{border:1px solid #96C2F1;background-color:#EFF7FF}
+.feilongCleanlily2 			{border:1px solid #9BDF70;background-color:#F0FBEB}
+.feilongCleanlily3 			{border:1px solid #BBE1F1;background-color:#EEFAFF}
+.feilongCleanlily4 			{border:1px solid #CCEFF5;background-color:#FAFCFD}
+.feilongCleanlily5 			{border:1px solid #FFCC00;background-color:#FFFFF7}
+.feilongCleanlily6 			{border:1px solid #92B0DD;background-color:#FFFFFf}
+.feilongCleanlily7 			{border:1px solid #A9C9E2;background-color:#E8F5FE}
+.feilongCleanlily8 			{border:1px solid #E3E197;background-color:#FFFFDD}
+.feilongCleanlily9 			{border:1px solid #ADCD3C;background-color:#F2FDDB}
+.feilongCleanlily10 		{border:1px solid #F8B3D0;background-color:#FFF5FA}
+.feilongCleanlily11 		{border:1px solid #D3D3D3;background-color:#F7F7F7}
+.feilongCleanlily12 		{border:1px solid #BFD1EB;background-color:#F3FAFF}
+.feilongCleanlily13 		{border:1px solid #FFDD99;background-color:#FFF9ED}
+.feilongCleanlily14 		{border:1px solid #CACAFF;background-color:#F7F7FF}
+.feilongCleanlily15 		{border:1px solid #A5B6C8;background-color:#EEF3F7}
+.feilongCleanlily16 		{border:1px solid #CEE3E9;background-color:#F1F7F9}
+
+/*******************************分页样式****************************************/
+/*分页样式*/
+.div_pager 						{ margin:4px;text-align:left;padding:0 12px; }
+/*当前第几页数字*/
+.div_pager .currentPage 		{color:blue;}
+/*总共数字*/
+.div_pager .allPage 			{color:blue;}
+/*当前激活页*/
+.div_pager .activeNumber 		{color:#A90A08;margin:0 4px;}
+/*其他页面*/
+.div_pager .a_elsePageNumber 	{border:1px solid #CCEFF5;background-color: #FAFCFD;padding: 4px;display:inline-block;}
+/*带有中文字的页码*/
+.div_pager .a_chinesePage 		{border:1px solid #CCEFF5;background-color: #FAFCFD;padding: 4px;display:inline-block;}
+
+/*******************************导航****************************************/
+#nav 				{height:16px;margin-top:4px;padding:8px 15px 8px 8px;border:1px solid #CCE2ED;background:#FeFAFE}
+	#nav a 			{margin-left:10px;font-size:15px;color: #128CCC;}
+	#nav a img 		{margin-right: 4px}

@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.feilong.test</groupId>
+	<artifactId>feilong-common-test</artifactId>
+	
+	<version>1.0.7</version>
+	<name>feilong-common-test</name>
+	<description>feilong-common-test</description>
+
+	<properties>
+		<version.commons-lang3>3.3.2</version.commons-lang3>
+
+		<v.maven-compiler-plugin>3.1</v.maven-compiler-plugin>
+
+		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+		<maven-compiler-plugin.encoding>utf-8</maven-compiler-plugin.encoding>
+
+	</properties>
+
+	<dependencies>
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${version.commons-lang3}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- maven-compiler-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${v.maven-compiler-plugin}</version>
+				<configuration>
+					<!-- 指定高版本的源码和编译后的字节码文件 -->
+					<source>${maven-compiler-plugin.source}</source>
+					<target>${maven-compiler-plugin.target}</target>
+					<encoding>${maven-compiler-plugin.encoding}</encoding>
+					<verbose>true</verbose>
+					<detail>true</detail>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

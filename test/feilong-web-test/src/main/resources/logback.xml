@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- scan 当此属性设置为true时，配置文件如果发生改变，将会被重新加载， 默认值为true。 -->
+<!-- scanPeriod 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。 当scan为true时，此属性生效。 默认的时间间隔为1分钟。 -->
+<!-- debug 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。 默认值为false。 -->
+<configuration scan="true" scanPeriod="60" debug="true">
+	<substitutionProperty name="log.base" value="c:/" />
+	<contextName>${tomcatName}${catalina.home}</contextName>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+
+		<!-- 注意 logback 的括号需要转义 -->
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>/home/jmuser/logs/nebula-protostar/a.log</file>
+		<append>true</append>
+		<!-- 注意 logback 的括号需要转义 -->
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- <appender name="ROLLING-LOGFILE-ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator name="myEval">
+				<expression>message.contains("accessLog:")</expression>
+			</evaluator>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<Encoding>UTF-8</Encoding>
+		<File>/home/jmuser/logs/nebula-protostar/protostar.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			rollover daily
+			<fileNamePattern>/home/jmuser/logs/nebula-protostar/protostar-%d{yyyy-MM-dd_HH-mm}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10mb</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		注意 logback 的括号需要转义
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
+			</pattern>
+		</encoder>
+	</appender> -->
+
+	<logger name="com.baozun" level="DEBUG" />
+
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<logger name="org.hibernate" level="DEBUG" />
+
+	<logger name="org.apache" level="DEBUG" />
+
+	<!-- **************************loxia****************************************** -->
+	<logger name="loxia" level="DEBUG" />
+
+	<logger name="loxia.dao.support.BaseRowMapper" level="info" />
+	<logger name="loxia.dao.ReadWriteDataSource" level="info" />
+	<logger name="loxia.aspect.QueryAspect" level="info" />
+	<logger name="loxia.support.json" level="info" />
+	<logger name="loxia.support.cache.CacheAspect" level="info" />
+	<logger name="loxia.aspect.ReadWriteDataSourceAspect" level="info" />
+	<logger name="loxia.service.VelocityTemplateService" level="info" />
+
+	<!-- ****************************common***************************************** -->
+	<logger name="httpclient.wire" level="warn" />
+	<logger name="org.springframework.jdbc.core.JdbcTemplate" level="warn" />
+	<logger name="com.google.code" level="warn" />
+	<logger name="net.rubyeye.xmemcached" level="warn" />
+	<logger name="org.apache.commons.digester.Digester" level="warn" />
+	<logger name="org.apache.commons.beanutils.ConvertUtilsBean" level="warn" />
+	<logger name="org.apache.commons.beanutils.converters" level="warn" />
+	<logger name="org.apache.commons.beanutils.converters.AbstractConverter" level="warn" />
+	<logger name="com.google.code.ssm.spring.SSMCache" level="debug" />
+	
+	<root level="debug">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="ROLLING-LOGFILE-ACCESS" />
+	</root>
+</configuration>

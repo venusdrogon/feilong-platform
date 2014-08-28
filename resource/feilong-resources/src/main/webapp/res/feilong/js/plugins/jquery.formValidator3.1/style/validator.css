@@ -1,0 +1,35 @@
+.onShow,.onFocus,.onError,.onSuccess,.onLoad {
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 26px;
+}
+
+.onShow {
+	background-image: url(../images/reg1.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.onFocus {
+	background-image: url(../images/reg2.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.onError {
+	background-image: url(../images/reg3.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.onSuccess {
+	background-image: url(../images/reg4.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.onLoad {
+	background-image: url(../images/loading.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}

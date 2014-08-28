@@ -1,0 +1,83 @@
+/* ----------------------------------------------------------------------------------------------------------------*/
+	/* ---------->>> thickbox specific link and font settings <<<------------------------------------------------------*/
+	/* ----------------------------------------------------------------------------------------------------------------*/
+#TB_window {
+	font: 12px Arial, Helvetica, sans-serif; color: #333;
+}
+
+#TB_secondLine {
+	font: 10px Arial, Helvetica, sans-serif; color: #666;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------*/
+	/* ---------->>> thickbox settings <<<-----------------------------------------------------------------------------*/
+	/* ----------------------------------------------------------------------------------------------------------------*/ /*.TB_overlayMacFFBGHack {background: url(macFFBgHack.png) repeat;}*/
+.TB_overlayMacFFBGHack {
+	background: red;
+}
+
+.TB_overlayBG {
+	background-color: #000; filter: alpha(opacity =           35); -moz-opacity: 0.35; opacity: 0.35;
+}
+
+/*弹出层*/
+#TB_window {
+	background: #fff; color: #000; border: 3px solid #BFD1EE;
+}
+
+/*弹出层标题*/
+#TB_title {
+	background: #DCE4F3; color: #333; font-weight: bold; font-size: 15px; height: 27px;
+}
+
+#TB_caption {
+	height: 25px; padding: 7px 30px 10px 25px; float: left;
+}
+
+#TB_closeWindow {
+	height: 25px; padding: 11px 25px 10px 0; float: right;
+}
+
+#TB_closeAjaxWindow {
+	padding: 7px 10px 5px 0; margin-bottom: 1px;
+}
+
+#TB_ajaxWindowTitle {
+	padding: 7px 0 5px 10px; margin-bottom: 1px;
+}
+
+#TB_ajaxContent {
+	padding: 2px 15px 15px 15px; line-height: 1.4em;
+}
+
+#TB_ajaxContent .div {
+	width: 99%
+}
+
+#TB_ajaxContent .div table {
+	width: 90%
+}
+
+#TB_ajaxContent .div table th {
+	padding: 10px
+}
+
+#TB_ajaxContent .div table td {
+	padding: 5px
+}
+
+#TB_ajaxContent.TB_modal {
+	padding: 15px;
+}
+
+#TB_ajaxContent p {
+	padding: 5px 0px 5px 0px;
+}
+
+#TB_load {
+	height: 13px; width: 208px; z-index: 103; margin: -6px 0 0 -104px; /* -height/2 0 0 -width/2 */
+}
+
+#TB_HideSelect {
+	background-color: #fff; border: none; filter: alpha(opacity =         0); -moz-opacity: 0; opacity: 0;
+}

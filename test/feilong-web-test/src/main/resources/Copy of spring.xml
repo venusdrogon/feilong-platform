@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		">
+
+	<!--下面第一句话的意思就是启用Aspectj对Annotation的支持 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 这是切面的注入 -->
+	<bean id="mySecurityManagerImpl" class="com.feilong.spring.aspects.MySecurityManagerImpl" />
+	<!-- 这是目标对象的注入 -->
+	<bean id="userManagerImpl" class="com.feilong.spring.aspects.UserManagerImpl" />
+	<!-- 大家可能看到了，通过Aspectj对Annotation支持实现所有的Advice啊 Pointcut啊都是直接在代码中实现的 当然里面具体逻辑是Spring帮你通过代理来实现的，毕竟你自己的实现类中（如UserManagerImpl类中并没有任何对安全性检查的调用） 可能有人要问了，Spring不是还有其他的方式来实现AOP么，你发现吧所有的@Aspect啊@advice啊@before都写 
+		切面类中太麻烦了，而且编程习惯也不好。所以就想到可以把它们都统统写到配置文件中来。通过Spring的配置文件 来统一管理。这就是平时大家最常用的采用配置方式来实现AOP -->
+
+	<aop:config>
+		<aop:aspect id="securityAspect" ref="mySecurityManagerImpl">
+			<aop:pointcut id="addAllMethod" expression="execution(* com.feilong.spring.aspects.UserManager.add*(..))" />
+			<aop:before pointcut-ref="addAllMethod" method="security" />
+			<!-- <aop:aroundbefore pointcut-ref="addAllMethod" method="security2" /> -->
+
+			<!-- pointcut-ref 是表示对哪个 pointcut 的引用，当 pointcue 比较多的时候可以加以区分。这里跟Annotation 中的 @Before("addAllMethod()") 作用一致，而 pointcut id="addAllMethod" 这里就如同 Annotation 中这个 
+				private void addAllMethod() {} 无返回值的方法的，该方法就是起到标识的作用 ( 被引用 ) -->
+		</aop:aspect>
+	</aop:config>
+</beans>

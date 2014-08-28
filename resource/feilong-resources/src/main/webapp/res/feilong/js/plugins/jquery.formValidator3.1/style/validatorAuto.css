@@ -1,0 +1,59 @@
+.onShow{
+	background:url(../images/reg1.gif) no-repeat; 
+	padding-left:25px; 
+	position:absolute;
+	top:-4px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+}
+.onFocus{
+	background:#E9F0FF url(../images/reg2.gif) no-repeat; 
+	padding-left:25px; 
+	position:absolute;
+	top:-4px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+}
+.onError
+{
+	background:#FFF2E9 url(../images/reg3.gif) no-repeat; 
+	padding-left:25px; 
+	position:absolute;
+	top:-4px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+}
+.onSuccess
+{
+	background:#E9FFEB url(../images/reg4.gif) no-repeat; 
+	padding-left:25px; 
+	position:absolute;
+	top:-4px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+}
+.onLoad
+{
+	background:#E9FFEB url(../images/loading.gif) no-repeat 3px 3px; 
+	padding-left:25px; 
+	position:absolute;
+	top:-4px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+} 
+
+.formValidateTip
+{
+	/*word-wrap:break-word; 自动换行,在FF中对英文和数字无效*/
+    position:absolute;
+    /*width:250px;
+    border:1px solid #a00;*/
+    padding:10px;
+    /*display:none; *//*我们先不要让它显示*/
+	background:transparent;
+}
