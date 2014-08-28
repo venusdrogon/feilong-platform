@@ -94,7 +94,7 @@
 		<version.hibernate>4.2.12.Final</version.hibernate>
 		<version.itext>2.1.7</version.itext>
 
-		<version.javamail>1.4</version.javamail>
+		<version.javamail>1.4.7</version.javamail>
 		<version.jacob>1.14.3</version.jacob>
 
 		<!-- org.json -->
@@ -128,6 +128,8 @@
 
 		<version.xfire>1.2.6</version.xfire>
 		<version.velocity>1.7</version.velocity>
+
+		<version.tiles>3.0.1</version.tiles>
 
 		<version.zookeeper>3.4.6</version.zookeeper>
 
@@ -198,6 +200,7 @@
 		<module>tools</module>
 		<module>framework</module>
 		<module>webservice</module>
+		<module>test</module>
 	</modules>
 
 	<dependencies>

@@ -22,7 +22,7 @@
 			<artifactId>esapi</artifactId>
 		</dependency>
 
-		<dependency>
+<!-- --> 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 		</dependency>

@@ -32,14 +32,15 @@ import com.feilong.servlet.http.RequestConstants;
 public abstract class AbstractController{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log							= LoggerFactory.getLogger(AbstractController.class);
+	@SuppressWarnings("unused")
+	private static final Logger		log							= LoggerFactory.getLogger(AbstractController.class);
 
 	/** 包装的单价. */
 	public static final Double		PACK_PRICE					= 20.0;
 
 	/** The Constant header_with_ajax_springmvc. */
 	public static final String		header_with_ajax_springmvc	= RequestConstants.HEADER_X_REQUESTED_WITH + "="
-																		+ RequestConstants.HEADER_X_REQUESTED_WITH_VALUE_AJAX;
+																				+ RequestConstants.HEADER_X_REQUESTED_WITH_VALUE_AJAX;
 
 	/** The context. */
 	@Resource
@@ -69,7 +70,7 @@ public abstract class AbstractController{
 	 * @param webDataBinder
 	 *            webDataBinder
 	 */
-	protected void initBinderInternal(WebDataBinder webDataBinder){}
+	protected void initBinderInternal(@SuppressWarnings("unused") WebDataBinder webDataBinder){}
 
 	/**
 	 * 生成spring 的跳转路径<br>

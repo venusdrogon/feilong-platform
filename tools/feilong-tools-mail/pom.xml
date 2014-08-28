@@ -23,5 +23,11 @@
 			<artifactId>feilong-tools-velocity</artifactId>
 			<version>${version.feilong-platform}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.3.3</version>
+		</dependency>
 	</dependencies>
 </project>
