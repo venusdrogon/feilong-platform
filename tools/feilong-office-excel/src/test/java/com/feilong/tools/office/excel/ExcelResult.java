@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.office.excel;
+package com.feilong.tools.office.excel;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.office.excel.loxia;
+package com.feilong.tools.office.excel.loxia;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -37,16 +33,12 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.awt.toolkit.ClipboardUtil;
-import com.feilong.commons.core.bean.BeanUtilException;
-import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
-import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.mail.internet.InternetAddressUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
@@ -113,10 +105,10 @@ public class TrainSignUpTest extends BaseTrainSignUpTest{
 		Collections.sort(thankstTrainSignUpEntityList, comparator);//thankstTrainSignUpEntityList
 
 		//生成签到文件
-		//writeAttendanceExcel(finalTrainSignUpEntityList);
+		writeAttendanceExcel(finalTrainSignUpEntityList);
 
 		//生成邀请通知
-		//writeHtml(finalTrainSignUpEntityList, nextTrainSignUpEntityList, thankstTrainSignUpEntityList);
+		writeHtml(finalTrainSignUpEntityList, nextTrainSignUpEntityList, thankstTrainSignUpEntityList);
 	}
 
 	/**
@@ -193,162 +185,5 @@ public class TrainSignUpTest extends BaseTrainSignUpTest{
 		IOWriteUtil.write(filePath, parseTemplateWithClasspathResourceLoader, CharsetType.UTF8);
 
 		DesktopUtil.open(filePath);
-	}
-
-	/**
-	 * Write attendance excel.
-	 *
-	 * @param finalTrainSignUpEntityList
-	 *            the final train sign up entity list
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	private void writeAttendanceExcel(List<TrainSignUpEntity> finalTrainSignUpEntityList) throws IOException{
-		//****************签到表***********************************
-
-		List<AttendanceEntity> attendanceList = new ArrayList<AttendanceEntity>();
-
-		int id = 0;
-		for (TrainSignUpEntity trainSignUpEntity : finalTrainSignUpEntityList){
-			AttendanceEntity attendanceEntity = new AttendanceEntity();
-			attendanceEntity.setId(++id);
-			attendanceEntity.setDepartName("技术部");
-			attendanceEntity.setGroupName(trainSignUpEntity.getStoreCategoryName());
-			attendanceEntity.setName(trainSignUpEntity.getName());
-			attendanceEntity.setNotice("参加");
-			attendanceEntity.setAttendanceSign("");
-			attendanceEntity.setRemark("");
-			attendanceList.add(attendanceEntity);
-		}
-
-		String outputFileName = SystemUtils.USER_HOME + "\\feilong\\trainSignUp\\attendance"
-						+ DateUtil.date2String(new Date(), DatePattern.timestamp) + ".xlsx";
-
-		Map<String, Object> beans = new HashMap<String, Object>();
-		beans.put("attendanceList", attendanceList);
-		beans.put("trainAddress", "F楼培训室");
-		beans.put("trainInstructor", "金鑫");
-		beans.put("courseName", "Java集合框架");
-		beans.put("trainDate", "2014-08-27");
-
-		write(configuration, attendanceSheet, attendanceExcel, outputFileName, beans);
-
-		DesktopUtil.open(outputFileName);
-	}
-
-	/**
-	 * 获得 property value map.
-	 *
-	 * @param <O>
-	 *            the generic type
-	 * @param <V>
-	 *            the value type
-	 * @param objectList
-	 *            the object list
-	 * @param keyPropertyName
-	 *            the key property name
-	 * @param storeCategoryNamePropertyName
-	 *            the store category name property name
-	 * @param valuePropertyName
-	 *            the value property name
-	 * @return the property value map {@link LinkedHashMap}
-	 * @throws NullPointerException
-	 *             the null pointer exception
-	 */
-	private static <O, V> Map<String, V> getPropertyValueMap(
-					Collection<O> objectList,
-					String keyPropertyName,
-					String storeCategoryNamePropertyName,
-					String valuePropertyName) throws NullPointerException{
-		if (Validator.isNullOrEmpty(objectList)){
-			throw new NullPointerException("objectList is null or empty!");
-		}
-
-		if (Validator.isNullOrEmpty(keyPropertyName)){
-			throw new NullPointerException("keyPropertyName is null or empty!");
-		}
-
-		if (Validator.isNullOrEmpty(valuePropertyName)){
-			throw new NullPointerException("valuePropertyName is null or empty!");
-		}
-
-		Map<String, V> map = new LinkedHashMap<String, V>();
-
-		try{
-			for (O bean : objectList){
-				String key = (String) PropertyUtil.getProperty(bean, keyPropertyName);
-				String storeCategoryName1 = "" + PropertyUtil.getProperty(bean, storeCategoryNamePropertyName);
-				@SuppressWarnings("unchecked")
-				V value = (V) PropertyUtil.getProperty(bean, valuePropertyName);
-
-				map.put(key + "(" + storeCategoryName1 + ")", value);
-			}
-		}catch (BeanUtilException e){
-			e.printStackTrace();
-		}
-		return map;
-	}
-
-	/**
-	 * TestTrainSignUpEntityTest.
-	 *
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	@Test
-	public void testTrainSignUpEntityTest() throws IOException{
-		String[] aStrings = {
-				"张军",
-				"夏龙",
-				"王文彬",
-				"欧翠华",
-				"孙文强",
-				"王玉莲",
-				"袁晓",
-				"孙宝宝",
-				"叶冠杰",
-				"谭斌",
-				"谭林子博",
-				"李广春",
-				"黄毅",
-				"谢云峰",
-				"李俊峰",
-				"代伟",
-				"龙巫保",
-				"康晓龙",
-				"魏源海",
-				"王耀华",
-				"冯明雷",
-				"曹子杰",
-				"姚真",
-				"岳松毅",
-				"桑佳佳",
-				"周中波",
-				"钟小花",
-				"胡伟",
-				"刘星语",
-				"周晨光" };
-
-		Predicate predicate = new Predicate(){
-
-			public boolean evaluate(Object object){
-				String name = PropertyUtil.getProperty(object, "name");
-				return ArrayUtil.isContain(aStrings, name);
-			}
-		};
-
-		Collections.sort(trainSignUpEntityList, comparator);
-
-		@SuppressWarnings("unchecked")
-		List<TrainSignUpEntity> finalTrainSignUpEntityList = (List<TrainSignUpEntity>) CollectionUtils.select(
-						trainSignUpEntityList,
-						predicate);
-
-		Collections.sort(finalTrainSignUpEntityList, comparator);
-
-		log.debug(JsonUtil.format(CollectionsUtil.getPropertyValueList(finalTrainSignUpEntityList, "name")));
-
-		//生成签到文件
-		writeAttendanceExcel(finalTrainSignUpEntityList);
 	}
 }

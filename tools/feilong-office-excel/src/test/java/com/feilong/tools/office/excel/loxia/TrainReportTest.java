@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.office.excel.loxia;
+package com.feilong.tools.office.excel.loxia;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -42,7 +42,7 @@ import com.feilong.tools.velocity.VelocityUtil;
 /**
  * The Class TrainSignUpEntityTest.
  */
-public class TrainReportTest extends BaseTrainSignUpTest{
+public class TrainReportTest extends BaseTrainTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(TrainReportTest.class);
@@ -64,7 +64,6 @@ public class TrainReportTest extends BaseTrainSignUpTest{
 		if (log.isDebugEnabled()){
 			log.debug("the param p0827TrainSignUpEntityList.size():{}", p0827TrainSignUpEntityList.size());
 		}
-
 		//*************************************************************************************************
 
 		Map<String, List<TrainSignUpEntity>> groupByCome = CollectionsUtil.group(p0827TrainSignUpEntityList, "p0827");
@@ -103,8 +102,20 @@ public class TrainReportTest extends BaseTrainSignUpTest{
 		contextKeyValues.put("evaluationTypeAndTrainSignUpListMap", evaluationTypeAndTrainSignUpListMap);
 		contextKeyValues.put("comeList", comeList);
 
-		//***********************************************************************
+		writeAndOpenTrainReportFile(contextKeyValues);
 
+		log.debug("p0827分组情况:\n{}", JsonUtil.format(groupByCome));
+	}
+
+	/**
+	 * Write and open train report file.
+	 *
+	 * @param contextKeyValues
+	 *            the context key values
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	private void writeAndOpenTrainReportFile(Map<String, Object> contextKeyValues) throws IOException{
 		String parseTemplateWithClasspathResourceLoader = VelocityUtil.parseTemplateWithClasspathResourceLoader(
 						templateInClassPath_report,
 						contextKeyValues);
@@ -116,7 +127,5 @@ public class TrainReportTest extends BaseTrainSignUpTest{
 		IOWriteUtil.write(filePath, parseTemplateWithClasspathResourceLoader, CharsetType.UTF8);
 
 		DesktopUtil.open(filePath);
-
-		log.debug("p0827分组情况:\n{}", JsonUtil.format(groupByCome));
 	}
 }

@@ -4,7 +4,7 @@
 	<!-- 培训 -->
 	<sheet name="trainSignUpSheet">
 
-		<block start="A2" end="F2" dataName="trainSignUplist" loop="true" loopClass="com.feilong.office.excel.loxia.TrainSignUpEntity">
+		<block start="A2" end="F2" dataName="trainSignUplist" loop="true" loopClass="com.feilong.tools.office.excel.loxia.TrainSignUpEntity">
 			<cell position="A2" dataName="name" />
 			<cell position="B2" dataName="email" />
 			<cell position="C2" dataName="signUpTime" />
@@ -76,7 +76,7 @@
 			<cell position="F3" dataName="trainAddress" />
 		</block>
 
-		<block start="A5" end="G5" dataName="attendanceList" loop="true" loopClass="com.feilong.office.excel.loxia.AttendanceEntity">
+		<block start="A5" end="G5" dataName="attendanceList" loop="true" loopClass="com.feilong.tools.office.excel.loxia.AttendanceEntity">
 			<!-- No -->
 			<cell position="A5" dataName="id" />
 			<!-- 姓名 -->

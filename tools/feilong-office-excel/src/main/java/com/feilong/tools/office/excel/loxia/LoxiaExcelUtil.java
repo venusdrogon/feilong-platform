@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.office.excel.loxia;
+package com.feilong.tools.office.excel.loxia;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,19 +35,15 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.io.IOUtil;
 
 /**
- * The Class BaseLoxiaExcelReaderTest.
- *
- * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.8 2014年8月22日 上午1:15:08
- * @since 1.0.8
+ * The Class LoxiaExcelUtil.
  */
-public abstract class BaseLoxiaExcelReaderTest{
+public abstract class LoxiaExcelUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(BaseLoxiaExcelReaderTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(LoxiaExcelUtil.class);
 
 	/**
-	 * Aa.
+	 * 获得 list.
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -61,11 +57,11 @@ public abstract class BaseLoxiaExcelReaderTest{
 	 *            the data name
 	 * @param sheetNo
 	 *            the sheet no
-	 * @return the list< train sign up entity>
+	 * @return the list
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	protected <T> List<T> getList(String configuration,String sheet,String fileName,String dataName,int sheetNo) throws IOException{
+	public static <T> List<T> getList(String configuration,String sheet,String fileName,String dataName,int sheetNo) throws IOException{
 		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
 		excelManipulatorFactory.setConfig(configuration);
 
@@ -102,7 +98,7 @@ public abstract class BaseLoxiaExcelReaderTest{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	protected void write(String configuration,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
+	public static void write(String configuration,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
 					throws IOException{
 		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
 		excelManipulatorFactory.setConfig(configuration);
