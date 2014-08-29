@@ -3,6 +3,7 @@
 
 	<!-- 培训 -->
 	<sheet name="trainSignUpSheet">
+
 		<block start="A2" end="F2" dataName="trainSignUplist" loop="true" loopClass="com.feilong.office.excel.loxia.TrainSignUpEntity">
 			<cell position="A2" dataName="name" />
 			<cell position="B2" dataName="email" />
@@ -18,6 +19,46 @@
 			<!-- 是否是编外人员 -->
 			<cell position="I2" dataName="offStaff" />
 			<cell position="J2" dataName="remark" />
+
+
+			<!-- ************************************************* -->
+			<cell position="K2" dataName="p0827" />
+
+			<!-- 会议通知 -->
+			<cell position="L2" dataName="meetingNoticeScore" />
+			<!-- 培训时间安排 -->
+			<cell position="M2" dataName="meetingTimeScore" />
+
+			<!-- 培训组织者态度 -->
+			<cell position="N2" dataName="trainOrganizersAttitudeScore" />
+			<!-- 培训教室布置 -->
+			<cell position="O2" dataName="trainRoomLayoutScore" />
+			<!-- 现场次序维护 -->
+			<cell position="P2" dataName="sceneOrderMaintenanceScore" />
+			<!-- 表达清晰态度友善 -->
+			<cell position="Q2" dataName="clearExpressionFriendlyScore" />
+			<!-- 对授课时间的掌控度 -->
+			<cell position="R2" dataName="teachTimeDegreeControlScore" />
+			<!-- 现场气氛调节能力 -->
+			<cell position="S2" dataName="sceneAtmosphereAdjustmentAbilityScore" />
+			<!-- PPT内容 -->
+			<cell position="T2" dataName="pptContentScore" />
+			<!-- PPT设计 -->
+			<cell position="U2" dataName="pptDesignScore" />
+			<!-- 对我有用 -->
+			<cell position="V2" dataName="usefulToMeScore" />
+			<!--干货 -->
+			<cell position="W2" dataName="ganhuoScore" />
+			<!--是否满意老师 -->
+			<cell position="X2" dataName="satisfiedTeacherScore" />
+
+
+			<!--评价类型 -->
+			<cell position="Y2" dataName="evaluationType" />
+			<!--评价内容 -->
+			<cell position="Z2" dataName="evaluationContent" />
+			<!--沟通结果 -->
+			<cell position="AA2" dataName="communicateResults" />
 		</block>
 	</sheet>
 

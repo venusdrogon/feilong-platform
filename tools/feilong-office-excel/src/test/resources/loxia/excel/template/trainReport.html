@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-Type" content="text/html;charset=utf-8" />
+<title></title>
+
+<script type="text/javascript" src="http://rs.feilong.com:8888/res\feilong\js\plugins\jquery\jquery-1.7.1.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="http://rs.feilong.com:8888/res/feilong/js/plugins/jquery.flexigrid/css/flexigrid/flexigrid.css"></link>
+<script type="text/javascript" src="http://rs.feilong.com:8888/res/feilong/js/plugins/jquery.flexigrid/flexigrid.js"></script>
+
+<script type="text/javascript" src="http://rs.feilong.com:8888/res/feilong/js/plugins/amcharts/amcharts.js"></script>
+<script type="text/javascript" src="http://rs.feilong.com:8888/res/feilong/js/feilong/feilong-amcharts2.js"></script>
+
+
+<style type="text/css">
+* {
+	font-family: '微软雅黑'
+}
+
+h3 {
+	/*font-family: '楷体'*/
+	
+}
+
+h3:first-letter {
+	/*font-family: '楷体'
+	color: red;*/
+	font-size: 24px;
+}
+
+.indexTd {
+	/*font-family: '微软雅黑';*/
+	font-style: italic;
+	color: #666
+}
+
+/*前言*/
+#preface {
+	color: #333;
+	font-size: 15px;
+	text-indent: 18px;
+}
+
+#title {
+	text-align: center;
+}
+
+#listTable>tr>td {
+	margin-right: 50px;
+	border: 1px solid #000
+}
+
+.h_content {
+	padding-left: 40px
+}
+
+#content {
+	margin-left: 200px;
+	width: 800px;
+	/*border: 1px solid #000;*/
+}
+
+#logo {
+	text-align: right;
+	margin: 15px
+}
+
+hr {
+	height: 1px;
+	border: none;
+	border-top: 1px dashed #999;
+	filter: alpha(opacity = 20);
+	-moz-opacity: 0.2;
+	-khtml-opacity: 0.2;
+	opacity: 0.2;
+}
+
+#countSpan {
+	font: italic 42px 'Verdana';
+	color: red
+}
+
+li {
+	margin-bottom: 8px
+}
+
+.communicateResultsDiv {
+	color: red;
+	margin-top: 20px
+}
+
+.nameTd {
+	width: 140px
+}
+
+.centerTd {
+	text-align: center;
+}
+
+table {
+	border: 1px solid #000
+}
+</style>
+
+<script type="text/javascript">
+	
+	    var feilongChart_come={
+		    	chartDivId:"comeChartdiv",
+		    	dataProvider: ${comeChartIndexList},
+		    	titleField:"name",
+		    	valueField:"value",
+		    	chartTitle:"通知与签到人数情况",
+		    	colorField:"color"
+		    };
+	    var feilongChart_evaluationType={
+		    	chartDivId:"evaluationTypeChartdiv",
+		    	dataProvider:${evaluationTypeChartIndexList},
+		    	titleField:"name",
+		    	valueField:"value",
+		    	chartTitle:"评价反馈情况",
+		    	colorField:"color"
+		    };
+	
+	AmCharts.ready(function() {
+		createAmPieChart(feilongChart_come);
+		createAmPieChart(feilongChart_evaluationType);
+		//柱状图
+		//createAmSerialChart("aj11blue1200VisitCountIndexdiv",aj11blue1200VisitCountChartData,"name","value","aj11blue1200页面访问次数");
+	});
+	
+	
+	$(function(){
+	    
+	    $(".core5Td").each(function(){
+			var value=$(this).text();
+			
+			if(5==value){
+			    $(this).css("color","#666");
+			}
+			if(4==value){
+			    $(this).css("background-color","#E5AA81");
+			}
+			if(3==value){
+			    $(this).css("background-color","red");
+			}
+			if(2==value){
+			    $(this).css("background-color","#666");
+			}
+			if(1==value){
+			    $(this).css("background-color","black");
+			}
+		
+	    });
+	    
+	    //对我有用
+	    $(".usefulToMeScoreTd").each(function(){
+			var value=$(this).text();
+			
+			if(4==value){
+			    $(this).text("√");  
+			    $(this).css("color","#666");
+			}
+			if(3==value){
+			    $(this).css("background-color","red");
+			    $(this).text("一般般");
+			}
+			if(2==value){
+			    $(this).css("background-color","#666");
+			    $(this).text("太easy了");
+			}
+			if(1==value){
+			    $(this).css("background-color","black");
+			    $(this).text("天书不懂");
+			}
+		
+	    });
+	    
+	    //干货
+	    $(".ganhuoScoreTd").each(function(){
+			var value=$(this).text();
+			
+			if(3==value){
+			    $(this).text("√");  
+			    $(this).css("color","#666");
+			}
+			if(2==value){
+			    $(this).text("一般般");
+			    $(this).css("background-color","#666");
+			}
+			if(1==value){
+			    $(this).text("水货");
+			    $(this).css("background-color","black");
+			}
+		
+	    });
+	    
+	    //是否满意讲师
+	    $(".satisfiedTeacherScoreTd").each(function(){
+			var value=$(this).text();
+			if(3==value){
+			    $(this).text("√");  
+			    $(this).css("color","#666");
+			}
+			if(2==value){
+			    $(this).text("一般般");
+			    $(this).css("background-color","#666");
+			}
+			if(1==value){
+			    $(this).text("没水平");
+			    $(this).css("background-color","black");
+			}
+		
+	    });
+	    
+	});
+</script>
+
+
+</head>
+
+<body>
+	<div id="content">
+
+		<h2 id="title">宝尊技术部第一期培训 之《Java集合框架 》报告</h2>
+		<hr />
+
+		<p id="preface">大家非常踊跃</p>
+		<hr />
+
+		<div id="comeChartdiv" style="width: 80%; height: 280px;"></div>
+		<div id="evaluationTypeChartdiv" style="width: 80%; height: 280px; margin-top: 10px"></div>
+
+		<hr />
+		<h3>批评:</h3>
+		<div style="padding-left: 32px">
+			<table border="1" cellpadding="4" cellspacing="0">
+				#foreach($trainSignUpEntity in ${evaluationTypeAndTrainSignUpListMap.get('批评')} )
+				<tr>
+					<td class="nameTd">${trainSignUpEntity.name}<span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span></td>
+					<td>${trainSignUpEntity.evaluationContent} #if(${trainSignUpEntity.communicateResults})
+						<div class="communicateResultsDiv">
+							培训组沟通结果:<br>${trainSignUpEntity.name}想要表达的意思是，${trainSignUpEntity.communicateResults} 
+						</div> #end
+					</td>
+				</tr>
+				#end
+			</table>
+
+			从中，我们看到:
+			<ul>
+				<li>第一，和伙伴事先同步好培训范围；事先沟通好，哪些内容不会在此专题内扩展讨论</li>
+				<li>第二，听取伙伴们需要听到的内容，我们制定相应专题优先级计划；</li>
+				<li>第三，英语口语的加强</li>
+			</ul>
+		</div>
+
+		<hr />
+		<h3>建议:</h3>
+		<div style="padding-left: 32px">
+			<table border="1" cellpadding="4" cellspacing="0">
+				#foreach($trainSignUpEntity in ${evaluationTypeAndTrainSignUpListMap.get('意见')} )
+				<tr>
+					<td class="nameTd">${trainSignUpEntity.name}<span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span></td>
+					<td>${trainSignUpEntity.evaluationContent} #if(${trainSignUpEntity.communicateResults})
+						<div class="communicateResultsDiv">
+							培训组沟通结果:<br>${trainSignUpEntity.name}想要表达的意思是，${trainSignUpEntity.communicateResults} 
+						</div> #end
+					</td>
+				</tr>
+				#end
+			</table>
+
+			从中，我们看到:
+			<ul>
+				<li>第一，PPT制作时，字体的调整， 有针对性的局部放大，重要的代码片段课前打印好，分发给大家提前阅读；</li>
+				<li>第二，代码实例需要适当的增加，满足大家的需求；</li>
+				<li>第三，PPT提前给</li>
+			</ul>
+		</div>
+
+		<hr />
+		<h3>表扬:</h3>
+		<div style="padding-left: 32px">
+			<table border="1" cellpadding="4" cellspacing="0">
+				#foreach($trainSignUpEntity in ${evaluationTypeAndTrainSignUpListMap.get('表扬')} )
+				<tr>
+					<td class="nameTd">${trainSignUpEntity.name}<span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span></td>
+					<td>${trainSignUpEntity.evaluationContent} #if(${trainSignUpEntity.communicateResults})
+						<div class="communicateResultsDiv">
+							培训组沟通结果:<br>${trainSignUpEntity.name}想要表达的意思是，${trainSignUpEntity.communicateResults} 
+						</div> #end
+					</td>
+				</tr>
+				#end
+			</table>
+		</div>
+
+
+		<hr />
+		<h3>评分:</h3>
+		<div style="padding-left: 32px">
+			<table border="1" cellpadding="4" cellspacing="0">
+				<tr style="font-size: 10px">
+					<td></td>
+					<td class="centerTd">会议通知</td>
+					<td class="centerTd">培训时间安排</td>
+					<td class="centerTd">培训组织者态度</td>
+					<td class="centerTd">培训教室布置</td>
+					<td class="centerTd">现场次序维护</td>
+					<td class="centerTd">表达清晰态度友善</td>
+					<td class="centerTd">对授课时间的掌控度</td>
+					<td class="centerTd">现场气氛调节能力</td>
+					<td class="centerTd">PPT内容</td>
+					<td class="centerTd">PPT设计</td>
+					<td class="centerTd">对我有用</td>
+					<td class="centerTd">干货</td>
+					<td class="centerTd">满意老师</td>
+				</tr>
+				#foreach($trainSignUpEntity in ${comeList} )
+				<tr style="font-size: 10px">
+					<td style="width: 80px">${trainSignUpEntity.name}<br>
+					<span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span>
+					</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.meetingNoticeScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.meetingTimeScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.trainOrganizersAttitudeScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.trainRoomLayoutScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.sceneOrderMaintenanceScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.clearExpressionFriendlyScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.teachTimeDegreeControlScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.sceneAtmosphereAdjustmentAbilityScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.pptContentScore}</td>
+					<td class="centerTd core5Td">${trainSignUpEntity.pptDesignScore}</td>
+					<td class="centerTd usefulToMeScoreTd">${trainSignUpEntity.usefulToMeScore}</td>
+					<td class="centerTd ganhuoScoreTd">${trainSignUpEntity.ganhuoScore}</td>
+					<td class="centerTd satisfiedTeacherScoreTd">${trainSignUpEntity.satisfiedTeacherScore}</td>
+				</tr>
+				#end
+			</table>
+
+
+			从中，我们看到:
+			<ul>
+				<li>第一，“教室的布置”,有所欠缺，30人的座位没有事先全部准备好，这个我会和宝尊学院沟通，看看宝尊学院能不能提前把桌/椅整理下；</li>
+				<li>第二，“课程时间的安排”，有4个人有意见，这个需要调研下</li>
+				<li>第三，“对授课时间的掌控度”,这个问题，第一堂课内容过于丰富，从计划的60分钟，讲了 80分钟， 而第二第三节课，计划60分钟，但每节课只有50分钟，我会对课件内容做适当的调整</li>
+				<li>第四，“现场气氛调节能力”,还有提高的空间</li>
+			</ul>
+		</div>
+
+
+		<hr />
+		<div id="logo">
+			<img src="http://rs.feilong.com:8888/train/logo.png" width="200px">
+		</div>
+	</div>
+</body>
+</html>
