@@ -1,20 +1,19 @@
 /**
  * 柱状图
  * 
- * @param chartDivId
- *                比如 chartdiv
- * @param dataProvider
- * @param titleField
- * @param valueField
- * @param chartTitle
  */
-function createAmSerialChart(chartDivId, dataProvider, titleField, valueField,
-	chartTitle) {
+function createAmSerialChart(feilongChart) {
+    
+
+    var chartDivId=feilongChart.chartDivId;
+    var titleField=feilongChart.titleField;
+    var valueField=feilongChart.valueField;
+    var chartTitle=feilongChart.chartTitle;
 
     // SERIAL CHART
     var chart = new AmCharts.AmSerialChart();
-    chart.dataProvider = dataProvider;
-    chart.categoryField = titleField;
+    chart.dataProvider = feilongChart.dataProvider;
+    chart.categoryField = feilongChart.titleField;
     chart.startDuration = 1;
 
     var balloon = chart.balloon;
@@ -111,7 +110,7 @@ function createAmSerialChart(chartDivId, dataProvider, titleField, valueField,
     // GRAPH
     var graph = new AmCharts.AmGraph();
     graph.valueField = valueField;
-    graph.colorField = "color";
+    //graph.colorField = "color";
     graph.balloonText = "[[category]]: [[value]]";// You can use tags like
     // [[value]],
     // [[description]],
@@ -179,7 +178,8 @@ function createAmPieChart(feilongChart) {
 
     chart.titleField = feilongChart.titleField;
     chart.valueField = feilongChart.valueField;
-    chart.colorField = feilongChart.colorField;
+
+    // chart.colorField = feilongChart.colorField;
 
     chart.outlineColor = "#FFFFFF";
     chart.outlineAlpha = 0.8;
