@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.office.excel.loxia;
+package com.feilong.project.train.entity;
 
 import java.io.Serializable;
 
@@ -27,92 +27,81 @@ import java.io.Serializable;
 public class TrainSignUpEntity implements Serializable{
 
 	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+	private static final long			serialVersionUID	= 288232184048495608L;
 
 	/** 姓名. */
-	private String				name;
-
-	/** 邮箱. */
-	private String				email;
+	private String						name;
 
 	/** 报名时间. */
-	private String				signUpTime;
-
-	/** 手机. */
-	private String				mobile;
-
-	/** 商城分类. */
-	private String				storeCategoryName;
-
-	/** 商城名称 . */
-	private String				storeName;
+	private String						signUpTime;
 
 	/** 课程时间. */
-	private String				courseTime;
+	private String						courseTime;
 
 	/** 课程名称. */
-	private String				courseName;
+	private String						courseName;
 
 	/** 是否是编外. */
-	private String				offStaff;
+	private String						offStaff;
 
 	/** 备注. */
-	private String				remark;
+	private String						remark;
 
 	//************************************************************************
 
-	/** The p0827. */
-	private String				p0827;
+	/** 签到状态. */
+	private String						signStatus;
 
 	/** 会议通知. */
-	private Integer				meetingNoticeScore;
+	private Integer						meetingNoticeScore;
 
 	/** 培训时间安排. */
-	private Integer				meetingTimeScore;
+	private Integer						meetingTimeScore;
 
 	/** 培训组织者态度. */
-	private Integer				trainOrganizersAttitudeScore;
+	private Integer						trainOrganizersAttitudeScore;
 
 	/** 培训教室布置. */
-	private Integer				trainRoomLayoutScore;
+	private Integer						trainRoomLayoutScore;
 
 	/** 现场次序维护. */
-	private Integer				sceneOrderMaintenanceScore;
+	private Integer						sceneOrderMaintenanceScore;
 
 	/** 表达清晰态度友善. */
-	private Integer				clearExpressionFriendlyScore;
+	private Integer						clearExpressionFriendlyScore;
 
 	/** 对授课时间的掌控度. */
-	private Integer				teachTimeDegreeControlScore;
+	private Integer						teachTimeDegreeControlScore;
 
 	/** 现场气氛调节能力. */
-	private Integer				sceneAtmosphereAdjustmentAbilityScore;
+	private Integer						sceneAtmosphereAdjustmentAbilityScore;
 
 	/** PPT内容. */
-	private Integer				pptContentScore;
+	private Integer						pptContentScore;
 
 	/** PPT设计. */
-	private Integer				pptDesignScore;
+	private Integer						pptDesignScore;
 
 	/** 对我有用. */
-	private Integer				usefulToMeScore;
+	private Integer						usefulToMeScore;
 
 	/** 干货. */
-	private Integer				ganhuoScore;
+	private Integer						ganhuoScore;
 
 	/** 是否满意老师. */
-	private Integer				satisfiedTeacherScore;
+	private Integer						satisfiedTeacherScore;
 
 	/** 评价类型. */
-	private String				evaluationType;
+	private String						evaluationType;
 
 	/** 评价内容. */
-	private String				evaluationContent;
+	private String						evaluationContent;
 
 	/** 沟通结果. */
-	private String				communicateResults;
+	private String						communicateResults;
 
-	//*************************************************************************
+	/** The train sign up employee entity. */
+	private TrainSignUpEmployeeEntity	trainSignUpEmployeeEntity;
 
 	/**
 	 * 获得 姓名.
@@ -134,25 +123,6 @@ public class TrainSignUpEntity implements Serializable{
 	}
 
 	/**
-	 * 获得 邮箱.
-	 *
-	 * @return the email
-	 */
-	public String getEmail(){
-		return email;
-	}
-
-	/**
-	 * 设置 邮箱.
-	 *
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail(String email){
-		this.email = email;
-	}
-
-	/**
 	 * 获得 报名时间.
 	 *
 	 * @return the signUpTime
@@ -169,25 +139,6 @@ public class TrainSignUpEntity implements Serializable{
 	 */
 	public void setSignUpTime(String signUpTime){
 		this.signUpTime = signUpTime;
-	}
-
-	/**
-	 * 获得 手机.
-	 *
-	 * @return the mobile
-	 */
-	public String getMobile(){
-		return mobile;
-	}
-
-	/**
-	 * 设置 手机.
-	 *
-	 * @param mobile
-	 *            the mobile to set
-	 */
-	public void setMobile(String mobile){
-		this.mobile = mobile;
 	}
 
 	/**
@@ -267,60 +218,22 @@ public class TrainSignUpEntity implements Serializable{
 	}
 
 	/**
-	 * 获得 商城分类.
+	 * 获得 签到状态.
 	 *
-	 * @return the storeCategoryName
+	 * @return the signStatus
 	 */
-	public String getStoreCategoryName(){
-		return storeCategoryName;
+	public String getSignStatus(){
+		return signStatus;
 	}
 
 	/**
-	 * 设置 商城分类.
+	 * 设置 签到状态.
 	 *
-	 * @param storeCategoryName
-	 *            the storeCategoryName to set
+	 * @param signStatus
+	 *            the signStatus to set
 	 */
-	public void setStoreCategoryName(String storeCategoryName){
-		this.storeCategoryName = storeCategoryName;
-	}
-
-	/**
-	 * 获得 商城名称 .
-	 *
-	 * @return the storeName
-	 */
-	public String getStoreName(){
-		return storeName;
-	}
-
-	/**
-	 * 设置 商城名称 .
-	 *
-	 * @param storeName
-	 *            the storeName to set
-	 */
-	public void setStoreName(String storeName){
-		this.storeName = storeName;
-	}
-
-	/**
-	 * 获得 p0827.
-	 *
-	 * @return the p0827
-	 */
-	public String getP0827(){
-		return p0827;
-	}
-
-	/**
-	 * 设置 p0827.
-	 *
-	 * @param p0827
-	 *            the p0827 to set
-	 */
-	public void setP0827(String p0827){
-		this.p0827 = p0827;
+	public void setSignStatus(String signStatus){
+		this.signStatus = signStatus;
 	}
 
 	/**
@@ -626,4 +539,24 @@ public class TrainSignUpEntity implements Serializable{
 	public void setCommunicateResults(String communicateResults){
 		this.communicateResults = communicateResults;
 	}
+
+	/**
+	 * 获得 train sign up employee entity.
+	 *
+	 * @return the trainSignUpEmployeeEntity
+	 */
+	public TrainSignUpEmployeeEntity getTrainSignUpEmployeeEntity(){
+		return trainSignUpEmployeeEntity;
+	}
+
+	/**
+	 * 设置 train sign up employee entity.
+	 *
+	 * @param trainSignUpEmployeeEntity
+	 *            the trainSignUpEmployeeEntity to set
+	 */
+	public void setTrainSignUpEmployeeEntity(TrainSignUpEmployeeEntity trainSignUpEmployeeEntity){
+		this.trainSignUpEmployeeEntity = trainSignUpEmployeeEntity;
+	}
+
 }

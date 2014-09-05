@@ -51,17 +51,17 @@ public abstract class LoxiaExcelUtil{
 	 *            the configuration
 	 * @param sheet
 	 *            the sheet
-	 * @param fileName
-	 *            the file name
 	 * @param dataName
 	 *            the data name
+	 * @param fileName
+	 *            the file name
 	 * @param sheetNo
 	 *            the sheet no
 	 * @return the list
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	public static <T> List<T> getList(String configuration,String sheet,String fileName,String dataName,int sheetNo) throws IOException{
+	public static <T> List<T> getList(String configuration,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
 		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
 		excelManipulatorFactory.setConfig(configuration);
 

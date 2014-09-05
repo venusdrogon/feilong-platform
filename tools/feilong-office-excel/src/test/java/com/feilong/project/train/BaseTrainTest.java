@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.office.excel.loxia;
+package com.feilong.project.train;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -29,7 +29,10 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.project.train.entity.TrainSignUpEmployeeEntity;
+import com.feilong.project.train.entity.TrainSignUpEntity;
 import com.feilong.tools.office.excel.loxia.LoxiaExcelUtil;
 
 /**
@@ -39,16 +42,17 @@ import com.feilong.tools.office.excel.loxia.LoxiaExcelUtil;
  * @version 1.0.8 2014年8月29日 上午10:59:29
  * @since 1.0.8
  */
-public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainConstants{
+public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainTestConstants{
 
 	/** The Constant log. */
-	private static final Logger				log			= LoggerFactory.getLogger(BaseTrainTest.class);
+	private static final Logger					log			= LoggerFactory.getLogger(BaseTrainTest.class);
 
-	/** The train sign up entity list. */
-	protected List<TrainSignUpEntity>		trainSignUpEntityList;
+	protected List<TrainSignUpEntity>			trainSignUpEntityList;
+
+	protected List<TrainSignUpEmployeeEntity>	trainSignUpEmployeeEntityList;
 
 	/** The comparator. */
-	protected Comparator<TrainSignUpEntity>	comparator	= getTrainSignUpEntityComparator();
+	protected Comparator<TrainSignUpEntity>		comparator	= getTrainSignUpEntityComparator();
 
 	/**
 	 * Inits the.
@@ -58,7 +62,34 @@ public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainConst
 	 */
 	@Before
 	public void init() throws IOException{ //取到list
-		trainSignUpEntityList = getList(configuration, trainSignUpSheet, trainSignUpExcel, dataName, sheetNo);
+		trainSignUpEmployeeEntityList = getList(
+						CONFIGURATION,
+						TRAINSIGNUPEMPLOYEE_SHEET,
+						DATANAME_TRAINSIGNUPEMPLOYEEENTITYLIST,
+						trainSignUpExcel,
+						0);
+		trainSignUpEntityList = getList(CONFIGURATION, TRAINSIGNUP_SHEET, DATANAME_TRAINSIGNUPLIST, trainSignUpExcel, 1);
+
+		Map<String, List<TrainSignUpEmployeeEntity>> trainSignUpEmployeeEntityMapGroupByName = CollectionsUtil.group(
+						trainSignUpEmployeeEntityList,
+						"name");
+
+		for (TrainSignUpEntity trainSignUpEntity : trainSignUpEntityList){
+			String name = trainSignUpEntity.getName();
+			List<TrainSignUpEmployeeEntity> list = trainSignUpEmployeeEntityMapGroupByName.get(name);
+
+			if (Validator.isNullOrEmpty(list)){
+				throw new NullPointerException("list can't be null/empty!");
+			}
+			if (Validator.isNullOrEmpty(list.size() != 1)){
+				throw new IllegalArgumentException("when name is :[" + name + "],the trainSignUpEmployeeEntity list size is :"
+								+ list.size() + "");
+			}
+			trainSignUpEntity.setTrainSignUpEmployeeEntity(list.get(0));
+
+		}
+
+		log.debug(JsonUtil.format(trainSignUpEmployeeEntityList));
 		log.debug(JsonUtil.format(trainSignUpEntityList));
 	}
 
@@ -70,9 +101,10 @@ public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainConst
 	private Comparator<TrainSignUpEntity> getTrainSignUpEntityComparator(){
 		return new Comparator<TrainSignUpEntity>(){
 
-			public int compare(TrainSignUpEntity o1,TrainSignUpEntity o2){
-				String storeCategoryName = o1.getStoreCategoryName();
-				String storeCategoryName2 = o2.getStoreCategoryName();
+			public int compare(TrainSignUpEntity t1,TrainSignUpEntity t2){
+
+				String storeCategoryName = t1.getTrainSignUpEmployeeEntity().getStoreCategoryName();
+				String storeCategoryName2 = t2.getTrainSignUpEmployeeEntity().getStoreCategoryName();
 
 				if (storeCategoryName.equals(storeCategoryName2)){
 					return 0;

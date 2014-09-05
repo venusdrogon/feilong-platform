@@ -1,64 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sheets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="exceltemplate-1.0.xsd">
 
-	<!-- 培训 -->
-	<sheet name="trainSignUpSheet">
+	<!-- 培训人员名单 -->
+	<sheet name="trainSignUpEmployeeSheet">
 
-		<block start="A2" end="F2" dataName="trainSignUplist" loop="true" loopClass="com.feilong.tools.office.excel.loxia.TrainSignUpEntity">
+		<block start="A2" end="F2" dataName="trainSignUpEmployeeEntityList" loop="true" loopClass="com.feilong.project.train.entity.TrainSignUpEmployeeEntity">
 			<cell position="A2" dataName="name" />
 			<cell position="B2" dataName="email" />
-			<cell position="C2" dataName="signUpTime" />
-			<!-- type="date" pattern="yyyy-MM-dd HH:mm:ss" -->
-			<cell position="D2" dataName="mobile" />
+			<cell position="C2" dataName="mobile" />
 			<!-- 商城分类 -->
-			<cell position="E2" dataName="storeCategoryName" />
+			<cell position="D2" dataName="storeCategoryName" />
 			<!-- 商城名称 -->
-			<cell position="F2" dataName="storeName" />
-			<cell position="G2" dataName="courseTime" />
-			<cell position="H2" dataName="courseName" />
+			<cell position="E2" dataName="storeName" />
+		</block>
+	</sheet>
+
+	<!-- 报名名单 -->
+	<sheet name="trainSignUpSheet">
+
+		<block start="A2" end="F2" dataName="trainSignUpEntitylist" loop="true" loopClass="com.feilong.project.train.entity.TrainSignUpEntity">
+			<cell position="A2" dataName="name" />
+			<cell position="B2" dataName="signUpTime" />
+			<!-- type="date" pattern="yyyy-MM-dd HH:mm:ss" -->
+			<cell position="C2" dataName="courseTime" />
+			<cell position="D2" dataName="courseName" />
 			<!-- 是否是编外人员 -->
-			<cell position="I2" dataName="offStaff" />
-			<cell position="J2" dataName="remark" />
+			<cell position="E2" dataName="offStaff" />
+			<cell position="F2" dataName="remark" />
 
 
 			<!-- ************************************************* -->
-			<cell position="K2" dataName="p0827" />
+			<!-- 签到状态 -->
+			<cell position="G2" dataName="signStatus" />
 
 			<!-- 会议通知 -->
-			<cell position="L2" dataName="meetingNoticeScore" />
+			<cell position="H2" dataName="meetingNoticeScore" />
 			<!-- 培训时间安排 -->
-			<cell position="M2" dataName="meetingTimeScore" />
+			<cell position="I2" dataName="meetingTimeScore" />
 
 			<!-- 培训组织者态度 -->
-			<cell position="N2" dataName="trainOrganizersAttitudeScore" />
+			<cell position="J2" dataName="trainOrganizersAttitudeScore" />
 			<!-- 培训教室布置 -->
-			<cell position="O2" dataName="trainRoomLayoutScore" />
+			<cell position="K2" dataName="trainRoomLayoutScore" />
 			<!-- 现场次序维护 -->
-			<cell position="P2" dataName="sceneOrderMaintenanceScore" />
+			<cell position="L2" dataName="sceneOrderMaintenanceScore" />
 			<!-- 表达清晰态度友善 -->
-			<cell position="Q2" dataName="clearExpressionFriendlyScore" />
+			<cell position="M2" dataName="clearExpressionFriendlyScore" />
 			<!-- 对授课时间的掌控度 -->
-			<cell position="R2" dataName="teachTimeDegreeControlScore" />
+			<cell position="N2" dataName="teachTimeDegreeControlScore" />
 			<!-- 现场气氛调节能力 -->
-			<cell position="S2" dataName="sceneAtmosphereAdjustmentAbilityScore" />
+			<cell position="O2" dataName="sceneAtmosphereAdjustmentAbilityScore" />
 			<!-- PPT内容 -->
-			<cell position="T2" dataName="pptContentScore" />
+			<cell position="P2" dataName="pptContentScore" />
 			<!-- PPT设计 -->
-			<cell position="U2" dataName="pptDesignScore" />
+			<cell position="Q2" dataName="pptDesignScore" />
 			<!-- 对我有用 -->
-			<cell position="V2" dataName="usefulToMeScore" />
+			<cell position="R2" dataName="usefulToMeScore" />
 			<!--干货 -->
-			<cell position="W2" dataName="ganhuoScore" />
+			<cell position="S2" dataName="ganhuoScore" />
 			<!--是否满意老师 -->
-			<cell position="X2" dataName="satisfiedTeacherScore" />
-
+			<cell position="T2" dataName="satisfiedTeacherScore" />
 
 			<!--评价类型 -->
-			<cell position="Y2" dataName="evaluationType" />
+			<cell position="U2" dataName="evaluationType" />
 			<!--评价内容 -->
-			<cell position="Z2" dataName="evaluationContent" />
+			<cell position="V2" dataName="evaluationContent" />
 			<!--沟通结果 -->
-			<cell position="AA2" dataName="communicateResults" />
+			<cell position="W2" dataName="communicateResults" />
 		</block>
 	</sheet>
 
@@ -76,7 +84,7 @@
 			<cell position="F3" dataName="trainAddress" />
 		</block>
 
-		<block start="A5" end="G5" dataName="attendanceList" loop="true" loopClass="com.feilong.tools.office.excel.loxia.AttendanceEntity">
+		<block start="A5" end="G5" dataName="attendanceList" loop="true" loopClass="com.feilong.project.train.entity.AttendanceEntity">
 			<!-- No -->
 			<cell position="A5" dataName="id" />
 			<!-- 姓名 -->

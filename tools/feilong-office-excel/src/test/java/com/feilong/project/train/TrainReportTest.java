@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.office.excel.loxia;
+package com.feilong.project.train;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -35,6 +35,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
+import com.feilong.project.train.entity.TrainSignUpEntity;
 import com.feilong.tools.ChartIndexUtil;
 import com.feilong.tools.chart.index.ChartIndex;
 import com.feilong.tools.velocity.VelocityUtil;
@@ -57,6 +58,9 @@ public class TrainReportTest extends BaseTrainTest{
 	 */
 	@Test
 	public void testTrainReport() throws IllegalArgumentException,IOException{
+		Map<Object, List<TrainSignUpEntity>> storeCategoryNameMap = CollectionsUtil.group(trainSignUpEntityList, "storeCategoryName");
+		log.debug("storeCategoryName分组情况:\n{}", JsonUtil.format(storeCategoryNameMap));
+
 		//p0827学习名单
 		List<TrainSignUpEntity> p0827TrainSignUpEntityList = CollectionsUtil.selectRejected(trainSignUpEntityList, "p0827", "");
 		//assertEquals(expected, actual);
@@ -89,6 +93,7 @@ public class TrainReportTest extends BaseTrainTest{
 		//		object.put("0", "请假");
 
 		List<ChartIndex> evaluationTypeChartIndexList = ChartIndexUtil.toChartIndexList(evaluationTypeAndTrainSignUpListMap);
+		List<ChartIndex> storeCategoryNameChartIndexList = ChartIndexUtil.toChartIndexList(storeCategoryNameMap);
 
 		//***********************************************************************
 		Map<String, Object> contextKeyValues = new HashMap<String, Object>();
@@ -99,12 +104,18 @@ public class TrainReportTest extends BaseTrainTest{
 		Collections.sort(evaluationTypeChartIndexList);
 		contextKeyValues.put("evaluationTypeChartIndexList", JsonUtil.format(evaluationTypeChartIndexList));
 
+		Collections.sort(storeCategoryNameChartIndexList);
+		contextKeyValues.put("storeCategoryNameChartIndexList", JsonUtil.format(storeCategoryNameChartIndexList));
+
 		contextKeyValues.put("evaluationTypeAndTrainSignUpListMap", evaluationTypeAndTrainSignUpListMap);
 		contextKeyValues.put("comeList", comeList);
+		contextKeyValues.put("trainSignUpEntityList", trainSignUpEntityList);
+		contextKeyValues.put("groupByCome", groupByCome);
+		contextKeyValues.put("p0827TrainSignUpEntityList", p0827TrainSignUpEntityList);
 
 		writeAndOpenTrainReportFile(contextKeyValues);
 
-		log.debug("p0827分组情况:\n{}", JsonUtil.format(groupByCome));
+		//log.debug("p0827分组情况:\n{}", JsonUtil.format(groupByCome));
 	}
 
 	/**

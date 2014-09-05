@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.office.excel.loxia;
+package com.feilong.project.train;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -29,6 +29,8 @@ import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
+import com.feilong.project.train.entity.AttendanceInfoEntity;
+import com.feilong.project.train.entity.TrainSignUpEntity;
 
 /**
  * The Class TrainSignUpEntityTest.
@@ -97,7 +99,8 @@ public class TrainSignUpRepairTest extends BaseTrainSignUpTest{
 
 		log.debug(JsonUtil.format(CollectionsUtil.getPropertyValueList(finalTrainSignUpEntityList, "name")));
 
+		AttendanceInfoEntity attendanceInfoEntity = new AttendanceInfoEntity("Java集合框架", "2014-08-27", "金鑫", "F楼培训室");
 		//生成签到文件
-		writeAttendanceExcel(finalTrainSignUpEntityList);
+		writeAttendanceExcel(finalTrainSignUpEntityList, attendanceInfoEntity);
 	}
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.office.excel.loxia;
+package com.feilong.project.train;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +29,9 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.project.train.entity.AttendanceEntity;
+import com.feilong.project.train.entity.AttendanceInfoEntity;
+import com.feilong.project.train.entity.TrainSignUpEntity;
 
 /**
  * The Class BaseTrainSignUpTest.
@@ -40,6 +43,7 @@ import com.feilong.commons.core.date.DateUtil;
 public abstract class BaseTrainSignUpTest extends BaseTrainTest{
 
 	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(BaseTrainSignUpTest.class);
 
 	/**
@@ -50,7 +54,8 @@ public abstract class BaseTrainSignUpTest extends BaseTrainTest{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	protected void writeAttendanceExcel(List<TrainSignUpEntity> finalTrainSignUpEntityList) throws IOException{
+	protected void writeAttendanceExcel(List<TrainSignUpEntity> finalTrainSignUpEntityList,AttendanceInfoEntity attendanceInfoEntity)
+					throws IOException{
 		//****************签到表***********************************
 
 		List<AttendanceEntity> attendanceList = new ArrayList<AttendanceEntity>();
@@ -60,7 +65,7 @@ public abstract class BaseTrainSignUpTest extends BaseTrainTest{
 			AttendanceEntity attendanceEntity = new AttendanceEntity();
 			attendanceEntity.setId(++id);
 			attendanceEntity.setDepartName("技术部");
-			attendanceEntity.setGroupName(trainSignUpEntity.getStoreCategoryName());
+			attendanceEntity.setGroupName(trainSignUpEntity.getTrainSignUpEmployeeEntity().getStoreCategoryName());
 			attendanceEntity.setName(trainSignUpEntity.getName());
 			attendanceEntity.setNotice("参加");
 			attendanceEntity.setAttendanceSign("");
@@ -73,12 +78,12 @@ public abstract class BaseTrainSignUpTest extends BaseTrainTest{
 
 		Map<String, Object> beans = new HashMap<String, Object>();
 		beans.put("attendanceList", attendanceList);
-		beans.put("trainAddress", "F楼培训室");
-		beans.put("trainInstructor", "金鑫");
-		beans.put("courseName", "Java集合框架");
-		beans.put("trainDate", "2014-08-27");
+		beans.put("trainAddress",attendanceInfoEntity.getTrainAddress());
+		beans.put("trainInstructor",attendanceInfoEntity.getTrainInstructor() );
+		beans.put("courseName",attendanceInfoEntity.getCourseName());
+		beans.put("trainDate",attendanceInfoEntity.getTrainDate());
 
-		write(configuration, attendanceSheet, attendanceExcel, outputFileName, beans);
+		write(CONFIGURATION, attendanceSheet, attendanceExcel, outputFileName, beans);
 
 		DesktopUtil.open(outputFileName);
 	}

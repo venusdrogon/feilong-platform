@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.office.excel.loxia;
+package com.feilong.project.train;
 
 /**
  * The Interface TrainConstants.
@@ -22,43 +22,48 @@ package com.feilong.tools.office.excel.loxia;
  * @version 1.0.8 2014年8月29日 上午11:03:18
  * @since 1.0.8
  */
-public interface TrainConstants{
-
-	/** trainSignUp. */
-	String	templateInClassPath			= "\\loxia\\excel\\template\\trainSignUp.html";
+public interface TrainTestConstants{
 
 	/** The template in class path_report. */
-	String	templateInClassPath_report	= "\\loxia\\excel\\template\\trainReport.html";
+	String	templateInClassPath_report				= "\\loxia\\excel\\template\\trainReport.html";
 
 	/** The template excel folder. */
-	String	templateExcelFolder			= "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\loxia\\excel";
+	String	templateExcelFolder						= "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\loxia\\excel";
 
 	/** The file name. */
-	String	trainSignUpExcel			= templateExcelFolder + "\\java集合框架报名.xlsx";
+	String	trainSignUpExcel						= templateExcelFolder + "\\Java培训报名.xlsx";
 
 	/** 文件文件夹. */
-	String	templateFolder				= templateExcelFolder + "\\template";
+	String	templateFolder							= templateExcelFolder + "\\template";
 
 	/** 签到表. */
-	String	attendanceExcel				= templateFolder + "\\IT培训签到表.xlsx";
+	String	attendanceExcel							= templateFolder + "\\IT培训签到表.xlsx";
 
 	//***************************************************
 
+	/** 文件路径. */
+	String	CONFIGURATION							= "loxia/feilong-sheets.xml";
+
+	//***************************************************
 	/** The sheet. */
-	String	trainSignUpSheet			= "trainSignUpSheet";
+	String	TRAINSIGNUP_SHEET						= "trainSignUpSheet";
+
+	/** The sheet. */
+	String	TRAINSIGNUPEMPLOYEE_SHEET				= "trainSignUpEmployeeSheet";
 
 	/** The attendance sheet. */
-	String	attendanceSheet				= "attendanceSheet";
+	String	attendanceSheet							= "attendanceSheet";
 
 	//********************************************************
 
-	/** The configuration. */
-	String	configuration				= "loxia/feilong-sheets.xml";
+	/** The data name. */
+	String	DATANAME_TRAINSIGNUPLIST				= "trainSignUpEntitylist";
 
 	/** The data name. */
-	String	dataName					= "trainSignUplist";
+	String	DATANAME_TRAINSIGNUPEMPLOYEEENTITYLIST	= "trainSignUpEmployeeEntityList";
 
-	/** The sheet no. */
-	int		sheetNo						= 0;
-
+	/**
+	 * 会议室最大人数
+	 */
+	int		thresholdCount							= 30;
 }

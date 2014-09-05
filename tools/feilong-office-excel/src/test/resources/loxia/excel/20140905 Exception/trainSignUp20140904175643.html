@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-Type" content="text/html;charset=utf-8" />
+<title></title>
+
+<script type="text/javascript" src="http://rs.feilong.com:8888/res\feilong\js\plugins\jquery\jquery-1.7.1.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="http://rs.feilong.com:8888/res/feilong/js/plugins/jquery.flexigrid/css/flexigrid/flexigrid.css"></link>
+<script type="text/javascript" src="http://rs.feilong.com:8888/res/feilong/js/plugins/jquery.flexigrid/flexigrid.js"></script>
+
+<style type="text/css">
+* {
+	font-family: '微软雅黑'
+}
+
+#content {
+	border: 1px solid #CCEFF5;
+	background-color: #FAFCFD;
+	padding: 4px 12px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}
+
+h3 {
+	/*font-family: '楷体'*/
+	
+}
+
+h3:first-letter {
+	/*font-family: '楷体'
+	color: red;*/
+	font-size: 24px;
+}
+
+.indexTd {
+	/*font-family: '微软雅黑';*/
+	font-style: italic;
+	color: #666
+}
+
+/*前言*/
+#preface {
+	color: #333;
+	font-size: 15px;
+	text-indent: 18px;
+}
+
+#title {
+	text-align: center;
+}
+
+#listTable>tr>td {
+	margin-right: 50px;
+	border: 1px solid #000
+}
+
+.h_content {
+	padding-left: 40px
+}
+
+#content {
+	margin-left: 200px;
+	width: 800px;
+	/*border: 1px solid #000;*/
+}
+
+#logo {
+	text-align: right;
+	margin: 15px
+}
+
+hr {
+	height: 1px;
+	border: none;
+	border-top: 1px dashed #999;
+	filter: alpha(opacity = 20);
+	-moz-opacity: 0.2;
+	-khtml-opacity: 0.2;
+	opacity: 0.2;
+}
+
+#countSpan {
+	font: italic 42px 'Verdana';
+	color: red
+}
+
+li {
+	margin-bottom: 8px
+}
+</style>
+<script type="text/javascript">
+    $(function() {
+
+	var p = {
+	    colModel : [ {
+		display : '编号',
+		name : 'id',
+		width : 32,
+		sortable : true,
+		align : 'center'
+	    }, {
+		display : '姓名',
+		name : 'name',
+		width : 88,
+		sortable : true,
+		align : 'left'
+	    }, {
+		display : '部门',
+		name : 'storeCategoryName',
+		width : 60,
+		sortable : true,
+		align : 'left'
+	    }, ],
+	    //sortname : "name",
+	    //sortorder : "asc",
+
+	    blockOpacity : 0.8,
+	    showTableToggleBtn : true,
+	    resizable : false,
+	    width : 240,
+	    height : 826,
+	//rp: 10,
+	//usepager:true
+	};
+
+	$(
+		"#trainSignUpFlexigridTable,#nextTrainSignUpFlexigridTable,#thanksTrainSignUpFlexigridTable")
+		.each(function() {
+		    var p1 = $.extend({
+			title : $(this).attr("titleValue"),
+			height : $(this).attr("height")
+		    }, p);
+		    $(this).flexigrid(p1);
+		});
+
+    });
+</script>
+</head>
+
+<body>
+	<div id="content">
+
+		<h2 id="title">宝尊技术部第2期培训 之《Java异常 》邀请函</h2>
+		<hr />
+
+		<p id="preface">
+			“世界上最真情的相依，是你在try我在catch。无论你发神马脾气，我都默默承受，静静处理”.<br />非常感谢大家对钛部-培训组一如既往的支持,经过报名邮件的汇总,分析,随机排序..., 以下是这期《Java异常
+			》培训课程的伙伴名单,地点,时间以及Agenda:
+		</p>
+
+		<hr />
+		<h3>伙伴名单:</h3>
+
+		<div style="padding-left: 32px">
+
+			<div style="color: #666; font-size: 11px">
+				说明:(本期实际报名人数 未超过 会议室理想容纳人数,所有报名参与的同学均可以参与本期培训) <span style="color: red">(如果有不能来的小伙伴，请提前告知)</span>			</div>
+
+			<table id="listTable">
+				<tr>
+					<td>
+						<table id="trainSignUpFlexigridTable" titleValue="本期伙伴名单(21)">
+							<tbody>
+																<tr>
+									<td class="indexTd">1</td>
+									<td>王芳</td>
+									<td>测试组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">2</td>
+									<td>陈蛟龙</td>
+									<td>印尼项目</td>
+								</tr>
+																<tr>
+									<td class="indexTd">3</td>
+									<td>王文彬</td>
+									<td>印尼项目</td>
+								</tr>
+																<tr>
+									<td class="indexTd">4</td>
+									<td>欧翠华</td>
+									<td>印尼项目</td>
+								</tr>
+																<tr>
+									<td class="indexTd">5</td>
+									<td>王玉莲</td>
+									<td>印尼项目</td>
+								</tr>
+																<tr>
+									<td class="indexTd">6</td>
+									<td>夏龙</td>
+									<td>印尼项目</td>
+								</tr>
+																<tr>
+									<td class="indexTd">7</td>
+									<td>叶冠杰</td>
+									<td>官方商城</td>
+								</tr>
+																<tr>
+									<td class="indexTd">8</td>
+									<td>谭林子博</td>
+									<td>官方商城</td>
+								</tr>
+																<tr>
+									<td class="indexTd">9</td>
+									<td>曹子杰</td>
+									<td>官方商城</td>
+								</tr>
+																<tr>
+									<td class="indexTd">10</td>
+									<td>姚真</td>
+									<td>官方商城</td>
+								</tr>
+																<tr>
+									<td class="indexTd">11</td>
+									<td>孙宝宝</td>
+									<td>官方商城</td>
+								</tr>
+																<tr>
+									<td class="indexTd">12</td>
+									<td>陈可凡</td>
+									<td>官方商城</td>
+								</tr>
+																<tr>
+									<td class="indexTd">13</td>
+									<td>李光辉</td>
+									<td>后端实施组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">14</td>
+									<td>费小龙</td>
+									<td>后端实施组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">15</td>
+									<td>罗全</td>
+									<td>后端实施组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">16</td>
+									<td>戴一飞</td>
+									<td>后端实施组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">17</td>
+									<td>陈海文</td>
+									<td>后端实施组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">18</td>
+									<td>刘宽</td>
+									<td>后端实施组</td>
+								</tr>
+																<tr>
+									<td class="indexTd">19</td>
+									<td>胡伟</td>
+									<td>天猫工具部</td>
+								</tr>
+																<tr>
+									<td class="indexTd">20</td>
+									<td>周晨光</td>
+									<td>Nebula</td>
+								</tr>
+																<tr>
+									<td class="indexTd">21</td>
+									<td>刘星语</td>
+									<td>Nebula</td>
+								</tr>
+															</tbody>
+						</table>
+					</td>
+
+					<td>
+						<table id="nextTrainSignUpFlexigridTable" titleValue="下一期伙伴名单(0)">
+							<tbody>
+															</tbody>
+						</table>
+					</td>
+
+					<td>
+						<table id="thanksTrainSignUpFlexigridTable" titleValue="感谢伙伴名单(0)" height="200">
+							<tbody>
+															</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<hr />
+
+		<div>
+			<h3>培训地点:</h3>
+			<div class="h_content">F栋2楼培训室</div>
+		</div>
+
+		<hr />
+
+		<div>
+			<h3>培训时间:</h3>
+			<div class="h_content">
+				2014-09-05(星期五) 15:00 <br />注: 请大家提前10分钟进培训室签到
+			</div>
+		</div>
+		<hr />
+
+		<div>
+			<h3>培训Agenda:</h3>
+			<div class="h_content">
+				<img src="E:\Workspaces\feilong\feilong-platform\tools\feilong-office-excel\src\test\resources\loxia\excel\20140905 Exception\Agenda.png" />
+			</div>
+		</div>
+
+		<hr />
+
+		<div>
+			<h3>
+				技术管理系<span id="countSpan">3</span>条课堂纪律:
+			</h3>
+			<div class="h_content">
+				<ol>
+					<li>手机静音;</li>
+					<li>有问题,举个手,可以打断讲师,即可提问;</li>
+					<li>讲得好,鼓个掌;讲得差,嘘声</li>
+				</ol>
+			</div>
+		</div>
+
+		<hr />
+		<div id="logo">
+			<img src="http://rs.feilong.com:8888/train/logo.png" width="200px">
+		</div>
+	</div>
+</body>
+</html>
