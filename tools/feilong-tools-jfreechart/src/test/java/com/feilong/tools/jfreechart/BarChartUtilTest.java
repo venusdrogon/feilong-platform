@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart;
 
@@ -28,7 +28,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.awt.ColorUtil;
+import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.commons.core.awt.ImageUtil;
 import com.feilong.commons.core.enumeration.FontType;
@@ -36,26 +38,45 @@ import com.feilong.tools.jfreechart.category.BarChartUtil;
 import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 
 /**
+ * The Class BarChartUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午02:26:38
  */
-@SuppressWarnings("all")public class BarChartUtilTest{
+@SuppressWarnings("all")
+public class BarChartUtilTest{
 
+	/** The Constant log. */
 	@SuppressWarnings("unused")
 	private static final Logger	log				= LoggerFactory.getLogger(BarChartUtilTest.class);
 
+	/** The jfree chart util. */
 	private BarChartUtil		jfreeChartUtil	= null;
 
+	/** The chart info entity. */
 	private ChartInfoEntity		chartInfoEntity;
 
-	// String pathname = "E:\\DataOther\\Material\\sanguo\\1.印章 32 74.png";
+	// String pathname =TestConstants.WATERMARK_PRESSIMG;
 
+	/** The pathname. */
 	String						pathname		= "E:\\DataOther\\Material\\baozun.png";
 
 	/**
-	 * 价格图
-	 * 
 	 * @throws IOException
+	 */
+	private void createImageAndOpen(BarChartUtil jfreeChartUtil,ChartInfoEntity chartInfoEntity) throws IOException{
+		jfreeChartUtil.createImage(chartInfoEntity);
+
+		String url = chartInfoEntity.getChartPath() + "/" + chartInfoEntity.getImageNameOrOutputStream().toString();
+		log.info(url);
+		DesktopUtil.open(url);
+	}
+
+	/**
+	 * 价格图.
+	 *
+	 * @throws IOException
+	 *             the IO exception
 	 */
 	@Test
 	public void makeBarChart_price() throws IOException{
@@ -74,28 +95,33 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		// categoryAndValues.put("原始(4个渠道)", new double[] { 142, 32, 42 });
 		// categoryAndValues.put("优化sql(4个渠道)", new double[] { 119, 6, 6 });
 		// categoryAndValues.put("加缓存(4个渠道)", new double[] { 146, 8, 7 });
-		String chartTitle = "Nike取价优化耗时对比图 V1.0";
+		String chartTitle = "xxx取价优化耗时对比图 V1.0";
 		String categoryAxisLabel = "One member has one channel,循环3次取价对比";
 		String valueAxisLabel = "单位(毫秒)";
 		String imageNameOrOutputStream = chartTitle + ".png";
 		int width = 1200;
 		int height = 800;
+
 		CategoryChartEntity categoryChartEntity = new CategoryChartEntity();
 		categoryChartEntity.setRowKeys(rowKeys);
 		categoryChartEntity.setChartTitle(chartTitle);
 		categoryChartEntity.setCategoryAndValues(categoryAndValues);
 		categoryChartEntity.setCategoryAxisLabel(categoryAxisLabel);
 		categoryChartEntity.setValueAxisLabel(valueAxisLabel);
+
 		chartInfoEntity = new ChartInfoEntity();
 		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
 		chartInfoEntity.setWidth(width);
 		chartInfoEntity.setHeight(height);
+
 		jfreeChartUtil = new BarChartUtil(categoryChartEntity);
+
 		JFreeChart jFreeChart = jfreeChartUtil.getJFreeChart();
-		String pathname = "E:\\Data\\Material\\sanguo\\1.印章 32 74.png";
-		jFreeChart.setBackgroundImage(ImageUtil.getBufferedImage(pathname));
+
+		jFreeChart.setBackgroundImage(ImageUtil.getBufferedImage(TestConstants.WATERMARK_PRESSIMG));
 		jFreeChart.setBackgroundImageAlignment(Align.BOTTOM_RIGHT);
 		jFreeChart.setBackgroundImageAlpha(0.6f);
+
 		CategoryPlot categoryPlot = jfreeChartUtil.getCategoryPlot();
 		categoryPlot.setBackgroundPaint(ColorUtil.getColor("313131"));
 		categoryPlot.setBackgroundAlpha(1f);
@@ -103,6 +129,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		categoryPlot.setDomainGridlinePosition(CategoryAnchor.END);
 		categoryPlot.setDomainGridlinePaint(ColorUtil.getColor("FF6600"));
 		categoryPlot.setRangeGridlinePaint(ColorUtil.getColor("FF6600"));
+
 		jfreeChartUtil.getNumberAxis().setTickLabelPaint(ColorUtil.getColor("FF6600"));
 		// y轴 数据轴网格
 		// Stroke stroke = new BasicStroke(2f, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
@@ -110,9 +137,15 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		BarRenderer barRenderer = jfreeChartUtil.getBarRenderer();
 		barRenderer.setBaseItemLabelPaint(ColorUtil.getColor("FF6600"));// FF6600
 		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.VERDANA, Font.PLAIN, 20));
-		jfreeChartUtil.createImage(chartInfoEntity);
+		createImageAndOpen(jfreeChartUtil, chartInfoEntity);
 	}
 
+	/**
+	 * Make bar chart_price1.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void makeBarChart_price1() throws IOException{
 		String[] rowKeys = { "基调网络压力并发测试 订单创建情况" };
@@ -173,9 +206,15 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		BarRenderer barRenderer = jfreeChartUtil.getBarRenderer();
 		barRenderer.setBaseItemLabelPaint(ColorUtil.getColor("FF6600"));// FF6600
 		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.VERDANA, Font.PLAIN, 20));
-		jfreeChartUtil.createImage(chartInfoEntity);
+		createImageAndOpen(jfreeChartUtil, chartInfoEntity);
 	}
 
+	/**
+	 * 时间段登录.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void 时间段登录() throws IOException{
 		String[] rowKeys = { "基调有效登录测试用户" };
@@ -225,13 +264,14 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		BarRenderer barRenderer = jfreeChartUtil.getBarRenderer();
 		barRenderer.setBaseItemLabelPaint(ColorUtil.getColor("FF6600"));// FF6600
 		barRenderer.setBaseItemLabelFont(FontUtil.getFont(FontType.VERDANA, Font.PLAIN, 20));
-		jfreeChartUtil.createImage(chartInfoEntity);
+		createImageAndOpen(jfreeChartUtil, chartInfoEntity);
 	}
 
 	/**
-	 * 生成分组的柱状图
-	 * 
+	 * 生成分组的柱状图.
+	 *
 	 * @throws IOException
+	 *             the IO exception
 	 */
 	@Test
 	public void makeBarGroupChart() throws IOException{
@@ -257,13 +297,14 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
 		chartInfoEntity.setWidth(width);
 		chartInfoEntity.setHeight(height);
-		jfreeChartUtil.createImage(chartInfoEntity);
+		createImageAndOpen(jfreeChartUtil, chartInfoEntity);
 	}
 
 	/**
-	 * 生成单组柱状图
-	 * 
+	 * 生成单组柱状图.
+	 *
 	 * @throws IOException
+	 *             the IO exception
 	 */
 	@Test
 	public void makeBarChart() throws IOException{
@@ -288,6 +329,6 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
 		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
 		chartInfoEntity.setWidth(width);
 		chartInfoEntity.setHeight(height);
-		jfreeChartUtil.createImage(chartInfoEntity);
+		createImageAndOpen(jfreeChartUtil, chartInfoEntity);
 	}
 }

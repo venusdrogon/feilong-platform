@@ -15,6 +15,8 @@
  */
 package common;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,5 +64,14 @@ public class ChildAndParentTest{
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(child));
 		}
+	}
+
+	/**
+	 * Testenclosing_type.
+	 */
+	@Test
+	public void testenclosing_type(){
+		Child child = new Child();
+		//assertEquals(expected, actual);
 	}
 }

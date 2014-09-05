@@ -45,7 +45,7 @@ public class LunarDateUtilTest{
 	 * Convert lundar calendar to solar.
 	 */
 	@Test
-	public void convertLundarCalendarToSolar(){
-		log.info(LunarDateUtil.toSolar(2012, 2, 19));
+	public void toSolar(){
+		log.info(LunarDateUtil.toSolar(2014, 12, 30));
 	}
 }

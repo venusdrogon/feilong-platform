@@ -58,7 +58,8 @@ public class NumberUtilTest implements NumberPattern{
 	 * Gets the progress1.
 	 * 
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test()
+	//expected = NullPointerException.class
 	public void getProgress1(){
 		NumberUtil.getProgress(null, 5, PERCENT_WITH_NOPOINT);
 	}
@@ -70,6 +71,31 @@ public class NumberUtilTest implements NumberPattern{
 	@Test(expected = NullPointerException.class)
 	public void getProgress2(){
 		NumberUtil.getProgress(5, null, PERCENT_WITH_NOPOINT);
+	}
+
+	public final static String getProgress(Number current,Number total,String numberPattern){
+		if (null == current){
+			return "0001";
+		}
+		if (null == total){
+			return "0002";
+		}
+
+		if (current.intValue() <= 0){
+			return "0003";
+		}
+		if (total.intValue() <= 0){
+			return "0004";
+		}
+
+		if (current.doubleValue() > total.doubleValue()){
+			return "0005";
+		}
+		// XXX
+		int scale = 8;
+		BigDecimal bigDecimalCurrent = new BigDecimal(current.toString());
+		BigDecimal divideValue = NumberUtil.getDivideValue(bigDecimalCurrent, total, scale);
+		return NumberUtil.toString(divideValue, numberPattern);
 	}
 
 	/**

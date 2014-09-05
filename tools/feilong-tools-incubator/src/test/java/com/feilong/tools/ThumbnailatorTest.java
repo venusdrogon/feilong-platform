@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.awt.ImageUtil;
 import com.feilong.commons.core.lang.MathUtil;
@@ -28,7 +29,7 @@ import com.feilong.commons.core.util.RandomUtil;
 	public void watermark() throws IOException{
 		String backimage = "E:\\DataCommon\\test\\background.png";
 		String watermark = "";
-		// "E:\\DataCommon\\test\\1.印章 32 74.png";
+		// TestConstants.WATERMARK_PRESSIMG;
 
 		Point a = new Point(234, 56);
 		Point b = new Point(363, 132);

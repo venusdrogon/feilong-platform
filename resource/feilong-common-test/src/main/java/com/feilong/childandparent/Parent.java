@@ -30,15 +30,33 @@ public class Parent{
 	/** The address. */
 	private String	address	= null;
 
+	/**
+	 * The Constructor.
+	 */
 	public Parent(){
 		super();
+		System.out.println(1111);
 	}
 
+	/**
+	 * The Constructor.
+	 *
+	 * @param namew
+	 *            the name
+	 * @param address
+	 *            the address
+	 */
 	public Parent(String name, String address){
 		this.name = name;
 		this.address = address;
 	}
 
+	/**
+	 * Func.
+	 *
+	 * @param a
+	 *            the a
+	 */
 	public void func(Integer...a){
 		System.out.println("Parent");
 	};

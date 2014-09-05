@@ -35,4 +35,9 @@ public interface TestConstants{
 	/** The a. */
 	int		a			= 2147483647;
 
+	/**
+	 * 水印
+	 */
+	String	WATERMARK_PRESSIMG	= "E:\\DataFixed\\Material\\avatar\\1.印章 32 74.png";
+
 }

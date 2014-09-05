@@ -36,7 +36,8 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 14 05:16:17
  */
-@SuppressWarnings("all")public class ChartUtilTest{
+@SuppressWarnings("all")
+public class ChartUtilTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ChartUtilTest.class);

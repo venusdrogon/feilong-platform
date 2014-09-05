@@ -33,11 +33,14 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.TestConstants;
+
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 26 18:48:11
  */
-@SuppressWarnings("all")public class WaterMarkTest{
+@SuppressWarnings("all")
+public class WaterMarkTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log			= LoggerFactory.getLogger(WaterMarkTest.class);
@@ -48,11 +51,10 @@ import org.slf4j.LoggerFactory;
 
 	@Test
 	public void pressImage() throws IOException{
-		String pressImg = "E:\\DataFixed\\Material\\avatar\\1.印章 32 74.png";
 		int x = 0;
 		int y = 0;
 		String fileName = "E:\\DataCommon\\test\\b.png";
-		WaterMark.pressImage(targetImg, pressImg, x, y, fileName);
+		WaterMark.pressImage(targetImg, TestConstants.WATERMARK_PRESSIMG, x, y, fileName);
 	}
 
 	@Test
