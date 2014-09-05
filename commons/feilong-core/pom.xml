@@ -93,28 +93,24 @@
 		<dependency>
 			<artifactId>commons-lang</artifactId>
 			<groupId>commons-lang</groupId>
-			<version>${version.commons-lang}</version>
 		</dependency>
 
 		<!-- commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>${version.commons-lang3}</version>
 		</dependency>
 
 		<!-- commons-beanutils -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>${version.commons-beanutils}</version>
 		</dependency>
 
 		<!-- commons-collections -->
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
-			<version>${version.commons-collections}</version>
 		</dependency>
 
 		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->

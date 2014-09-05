@@ -11,10 +11,10 @@
 
 	<artifactId>feilong-web-test</artifactId>
 	<name>feilong-web-test</name>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<properties>
-		<tomcatPlugin.port>80</tomcatPlugin.port>
+		<tomcatPlugin.port>8222</tomcatPlugin.port>
 		<tomcatPlugin.path>/</tomcatPlugin.path>
 
 		<scope.feilong-common-test>compile</scope.feilong-common-test>
@@ -54,13 +54,11 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.1</version>
 		</dependency>
 
 		<!-- <dependency> <groupId>org.apache.solr</groupId> <artifactId>solr-core</artifactId> <version>3.5.0</version> </dependency> -->
