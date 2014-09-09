@@ -25,7 +25,7 @@ package com.feilong.project.train;
 public interface TrainTestConstants{
 
 	/** The template excel folder. */
-	String	templateExcelFolder						= "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\loxia\\excel";
+	String	templateExcelFolder						= "E:\\Workspaces\\baozun\\BaozunSql\\train";
 
 	/** The file name. */
 	String	trainSignUpExcel						= templateExcelFolder + "\\Java培训报名.xlsx";
