@@ -47,7 +47,7 @@ public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainTestC
 	/** The Constant log. */
 	private static final Logger					log			= LoggerFactory.getLogger(BaseTrainTest.class);
 
-	protected List<TrainSignUpEntity>			trainSignUpEntityList;
+	protected List<TrainSignUpEntity>			totalTrainSignUpEntityList;
 
 	protected List<TrainSignUpEmployeeEntity>	trainSignUpEmployeeEntityList;
 
@@ -68,18 +68,18 @@ public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainTestC
 						DATANAME_TRAINSIGNUPEMPLOYEEENTITYLIST,
 						trainSignUpExcel,
 						0);
-		trainSignUpEntityList = getList(CONFIGURATION, TRAINSIGNUP_SHEET, DATANAME_TRAINSIGNUPLIST, trainSignUpExcel, 1);
+		totalTrainSignUpEntityList = getList(CONFIGURATION, TRAINSIGNUP_SHEET, DATANAME_TRAINSIGNUPLIST, trainSignUpExcel, 1);
 
 		Map<String, List<TrainSignUpEmployeeEntity>> trainSignUpEmployeeEntityMapGroupByName = CollectionsUtil.group(
 						trainSignUpEmployeeEntityList,
 						"name");
 
-		for (TrainSignUpEntity trainSignUpEntity : trainSignUpEntityList){
+		for (TrainSignUpEntity trainSignUpEntity : totalTrainSignUpEntityList){
 			String name = trainSignUpEntity.getName();
 			List<TrainSignUpEmployeeEntity> list = trainSignUpEmployeeEntityMapGroupByName.get(name);
 
 			if (Validator.isNullOrEmpty(list)){
-				throw new NullPointerException("list can't be null/empty!");
+				throw new NullPointerException("when name is :[" + name + "],list can't be null/empty!");
 			}
 			if (Validator.isNullOrEmpty(list.size() != 1)){
 				throw new IllegalArgumentException("when name is :[" + name + "],the trainSignUpEmployeeEntity list size is :"
@@ -90,7 +90,7 @@ public abstract class BaseTrainTest extends LoxiaExcelUtil implements TrainTestC
 		}
 
 		log.debug(JsonUtil.format(trainSignUpEmployeeEntityList));
-		log.debug(JsonUtil.format(trainSignUpEntityList));
+		log.debug(JsonUtil.format(totalTrainSignUpEntityList));
 	}
 
 	/**

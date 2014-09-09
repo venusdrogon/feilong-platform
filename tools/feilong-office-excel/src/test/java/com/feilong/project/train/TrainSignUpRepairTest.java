@@ -88,11 +88,11 @@ public class TrainSignUpRepairTest extends BaseTrainSignUpTest{
 			}
 		};
 
-		Collections.sort(trainSignUpEntityList, comparator);
+		Collections.sort(totalTrainSignUpEntityList, comparator);
 
 		@SuppressWarnings("unchecked")
 		List<TrainSignUpEntity> finalTrainSignUpEntityList = (List<TrainSignUpEntity>) CollectionUtils.select(
-						trainSignUpEntityList,
+						totalTrainSignUpEntityList,
 						predicate);
 
 		Collections.sort(finalTrainSignUpEntityList, comparator);

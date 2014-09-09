@@ -24,9 +24,6 @@ package com.feilong.project.train;
  */
 public interface TrainTestConstants{
 
-	/** The template in class path_report. */
-	String	templateInClassPath_report				= "\\loxia\\excel\\template\\trainReport.html";
-
 	/** The template excel folder. */
 	String	templateExcelFolder						= "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\loxia\\excel";
 

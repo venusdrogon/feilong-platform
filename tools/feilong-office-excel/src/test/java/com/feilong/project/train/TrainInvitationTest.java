@@ -95,14 +95,17 @@ public class TrainInvitationTest extends BaseTrainSignUpTest{
 	 * @throws IOException
 	 *             the IO exception
 	 */
+	@SuppressWarnings("unchecked")
 	private void createTrainInvitation(
 					String courseName,
 					String templateInClassPath,
 					AttendanceInfoEntity attendanceInfoEntity,
 					TrainInvitationInfoEntity trainInvitationInfoEntity) throws UnsupportedEncodingException,IOException{
 		//**************************该次课程所有报名人员名单************************************************************
-		List<TrainSignUpEntity> currentCourseTrainSignUpEntityList = CollectionsUtil
-						.select(trainSignUpEntityList, "courseName", courseName);
+		List<TrainSignUpEntity> currentCourseTrainSignUpEntityList = CollectionsUtil.select(
+						totalTrainSignUpEntityList,
+						"courseName",
+						courseName);
 
 		Collections.sort(currentCourseTrainSignUpEntityList, comparator);
 

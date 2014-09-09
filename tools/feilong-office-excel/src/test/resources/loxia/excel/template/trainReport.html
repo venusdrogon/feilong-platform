@@ -61,7 +61,8 @@
 		<h3>课件准备情况:</h3>
 		<div class="moduleContentDiv">
 			这个专题分为3个课程(3个课件),课件从开始制作到培训试讲，大约用了 <span>5</span> 个工作日的时间 <br /> <img src="http://rs.feilong.com:8888/train\20140827collection\content20140827.png"
-				width="900px"> <br />核心内容:<br /><img style="border: 1px solid #f6f6f6" src="http://rs.feilong.com:8888/train\20140827collection\main.png" width="900px">
+				width="900px"> <br />核心内容:<br />
+			<img style="border: 1px solid #f6f6f6" src="http://rs.feilong.com:8888/train\20140827collection\main.png" width="900px">
 		</div>
 
 		<hr />
@@ -107,7 +108,7 @@
 				#foreach($trainSignUpEntity in ${evaluationTypeAndTrainSignUpListMap.get('批评')} )
 				<div class="talk_recordbox">
 					<div class="user">
-						<span class="talkUserName">${trainSignUpEntity.name}</span><br /> <span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span>
+						<span class="talkUserName">${trainSignUpEntity.name}</span><br /> <span style="color: #666">(${trainSignUpEntity.trainSignUpEmployeeEntity.storeCategoryName})</span>
 					</div>
 					<div class="talk_recordtextbg">&nbsp;</div>
 					<div class="talk_recordtext">${trainSignUpEntity.evaluationContent}</div>
@@ -139,7 +140,7 @@
 				#foreach($trainSignUpEntity in ${evaluationTypeAndTrainSignUpListMap.get('意见')} )
 				<div class="talk_recordbox">
 					<div class="user">
-						<span class="talkUserName">${trainSignUpEntity.name}</span><br /> <span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span>
+						<span class="talkUserName">${trainSignUpEntity.name}</span><br /> <span style="color: #666">(${trainSignUpEntity.trainSignUpEmployeeEntity.storeCategoryName})</span>
 					</div>
 					<div class="talk_recordtextbg">&nbsp;</div>
 					<div class="talk_recordtext">${trainSignUpEntity.evaluationContent}</div>
@@ -171,7 +172,7 @@
 				#foreach($trainSignUpEntity in ${evaluationTypeAndTrainSignUpListMap.get('表扬')} )
 				<div class="talk_recordbox">
 					<div class="user">
-						<span class="talkUserName">${trainSignUpEntity.name}</span><br /> <span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span>
+						<span class="talkUserName">${trainSignUpEntity.name}</span><br /> <span style="color: #666">(${trainSignUpEntity.trainSignUpEmployeeEntity.storeCategoryName})</span>
 					</div>
 					<div class="talk_recordtextbg">&nbsp;</div>
 					<div class="talk_recordtext">${trainSignUpEntity.evaluationContent}</div>
@@ -195,7 +196,7 @@
 			<table id="scoreTable">
 				#foreach($trainSignUpEntity in ${comeList} )
 				<tr style="font-size: 10px">
-					<td>${trainSignUpEntity.name}<br> <span style="color: #666">(${trainSignUpEntity.storeCategoryName})</span></td>
+					<td><span style="font-weight: bold;">${trainSignUpEntity.name}</span><br> <span style="color: #666">(${trainSignUpEntity.trainSignUpEmployeeEntity.storeCategoryName})</span></td>
 					<td class="core5Td">${trainSignUpEntity.meetingNoticeScore}</td>
 					<td class="core5Td">${trainSignUpEntity.meetingTimeScore}</td>
 					<td class="core5Td">${trainSignUpEntity.trainOrganizersAttitudeScore}</td>
