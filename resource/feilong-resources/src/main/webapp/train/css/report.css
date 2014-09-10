@@ -1,0 +1,120 @@
+* {
+	font-family: '微软雅黑'
+}
+
+h3 {
+	/*font-family: '楷体'*/
+	
+}
+
+ul {
+	list-style: none;
+}
+
+#content {
+	border: 1px solid #f3f3f3;
+	/*background-color: #FAFCFD;*/
+	padding: 4px 12px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+	margin: 0 200px 0 200px;
+	/*width: 800px;*/
+}
+
+h3:first-letter {
+	/*font-family: '楷体'
+	color: red;*/
+	font-size: 24px;
+}
+
+.indexTd {
+	/*font-family: '微软雅黑';*/
+	font-style: italic;
+	color: #666
+}
+
+/*前言*/
+#preface {
+	color: #333;
+	font-size: 15px;
+	text-indent: 18px;
+}
+
+#title {
+	text-align: center;
+}
+
+.h_content {
+	padding-left: 40px
+}
+
+#logo {
+	text-align: right;
+	margin: 15px
+}
+
+hr {
+	height: 1px;
+	border: none;
+	border-top: 1px dashed #999;
+	filter: alpha(opacity = 20);
+	-moz-opacity: 0.2;
+	-khtml-opacity: 0.2;
+	opacity: 0.2;
+	clear: both;
+}
+
+#countSpan {
+	font: italic 42px 'Verdana';
+	color: red
+}
+
+li {
+	margin-bottom: 8px
+}
+
+.communicateResultsDiv {
+	color: red;
+	margin-top: 20px
+}
+
+.nameTd {
+	width: 140px
+}
+
+.centerTd {
+	text-align: center;
+}
+
+table {
+	/*border: 1px solid #000*/
+	
+}
+
+.summaryDiv {
+	margin-top: 6px;
+	padding: 10px 4px 2px 12px;
+	border: 1px solid #000;
+	font-size: 14px;
+	clear: both;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #D3D3D3;
+	background-color: #F7F7F7;
+}
+
+.talkUserName {
+	font-weight: bold;
+	font-size: 15px
+}
+
+.moduleContentDiv {
+	padding-left: 32px
+}
+
+.flexigrid th {
+	word-break: break-all; /*支持IE，chrome，FF不支持*/
+	word-wrap: break-word; /*支持IE，chrome，FF*/
+}

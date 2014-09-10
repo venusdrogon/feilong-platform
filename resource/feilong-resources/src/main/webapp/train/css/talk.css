@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+.talk-container {
+	clear: both;
+	margin-bottom: 20px
+}
+/*讨论区*/
+.talk_recordbox {
+	min-height: 58px;
+	/*color: #afafaf;*/
+	padding-top: 3px;
+	padding-right: 4px;
+	padding-left: 10px;
+	padding-bottom: 0px;
+	clear: both;
+}
+
+.talk_recordtext {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	display: block;
+	font-size: 14px;
+}
+
+.user {
+	width: 100px;
+	height: 45px;
+	line-height: 20px;
+	margin-top: 14px;
+	margin-right: 2px;
+	margin-bottom: 0px;
+	margin-left: 2px;
+	font-size: 12px;
+	/*border: 1px solid #000;*/
+}
+
+.talk_recordbox .talk_recordtextbg {
+	float: left;
+	width: 10px;
+	height: 30px;
+	display: block;
+	background-image: url(images/talk_recordtext.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.talk_recordtext {
+	padding: 10px 8px 10px 8px;
+	height: auto;
+}
+
+.talk_recordbox .talk_recordtext {
+	background-color: #b8d45c;
+	width: 460px;
+	float: left;
+	color: #333333;
+}
+
+.talk_recordbox .user {
+	float: left;
+	display: inline;
+	font-size: 12px;
+	text-align: right;
+}
+
+/*----------------------talk_recordboxme--------------------------------------------*/
+/*自己发言样式*/
+.talk_recordboxme {
+	display: block;
+	min-height: 80px;
+	/*color: #afafaf;	*/
+	padding-top: 3px;
+	padding-right: 4px;
+	padding-left: 4px;
+	padding-bottom: 0px;
+	clear: both;
+}
+
+.talk_recordboxme .talk_recordtextbg {
+	float: right;
+	width: 10px;
+	height: 30px;
+	display: block;
+	background-image: url(images/talk_recordtextme.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.talk_recordboxme .talk_recordtext {
+	background-color: #eeeeee;
+	width: 440px;
+	color: red;
+	float: right;
+	/*text-transform: uppercase;*/
+	/*font-weight: 100;*/
+}
+
+.talk_recordboxme .user {
+	float: right;
+	text-align: left;
+	display: inline;
+}
