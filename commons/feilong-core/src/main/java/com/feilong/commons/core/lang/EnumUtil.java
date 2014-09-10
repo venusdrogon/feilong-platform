@@ -51,10 +51,11 @@ public final class EnumUtil{
 	 * 	EnumUtil.getEnumByField(HttpMethodType.class, "method", "get")
 	 * }
 	 * </pre>
-	 * 
+	 *
 	 * @param <E>
 	 *            the element type
 	 * @param <T>
+	 *            the generic type
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
 	 * @param propertyName
@@ -70,7 +71,7 @@ public final class EnumUtil{
 	 *             the bean util exception
 	 */
 	public static <E extends Enum<E>, T> E getEnumByPropertyValueIgnoreCase(Class<E> enumClass,String propertyName,T value)
-			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+					throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 		boolean ignoreCase = true;
 		return _getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
 	}
@@ -86,10 +87,11 @@ public final class EnumUtil{
 	 * 	EnumUtil.getEnumByField(HttpMethodType.class, "method", "get")
 	 * }
 	 * </pre>
-	 * 
+	 *
 	 * @param <E>
 	 *            the element type
 	 * @param <T>
+	 *            the generic type
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
 	 * @param propertyName
@@ -106,7 +108,7 @@ public final class EnumUtil{
 	 * @since 1.0.8
 	 */
 	public static <E extends Enum<E>, T> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value)
-			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+					throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 		boolean ignoreCase = false;
 		return _getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
 	}
@@ -122,10 +124,11 @@ public final class EnumUtil{
 	 * 	EnumUtil.getEnumByField(HttpMethodType.class, "method", "get")
 	 * }
 	 * </pre>
-	 * 
+	 *
 	 * @param <E>
 	 *            the element type
 	 * @param <T>
+	 *            the generic type
 	 * @param enumClass
 	 *            the enum class 比如 {@link HttpMethodType}
 	 * @param propertyName
@@ -145,7 +148,7 @@ public final class EnumUtil{
 	 * @since 1.0.8
 	 */
 	private static <E extends Enum<E>, T> E _getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value,boolean ignoreCase)
-			throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+					throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 
 		if (Validator.isNullOrEmpty(enumClass)){
 			throw new IllegalArgumentException("enumClass is null or empty!");
@@ -180,6 +183,6 @@ public final class EnumUtil{
 		}
 
 		throw new NoSuchFieldException("can not found the enum constants,enumClass:[" + enumClass + "],propertyName:[" + propertyName
-				+ "],value:[" + value + "],ignoreCase:[" + ignoreCase + "]");
+						+ "],value:[" + value + "],ignoreCase:[" + ignoreCase + "]");
 	}
 }

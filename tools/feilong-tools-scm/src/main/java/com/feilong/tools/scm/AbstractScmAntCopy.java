@@ -296,9 +296,9 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 *            the scm ant copy config
 	 */
 	private void putFilePathMap(
-			Map<PatchType, List<String>> filePathMap,
-			List<? extends ScmPatchCommand> scmPatchCommandList,
-			ScmAntCopyConfig scmAntCopyConfig){
+					Map<PatchType, List<String>> filePathMap,
+					List<? extends ScmPatchCommand> scmPatchCommandList,
+					ScmAntCopyConfig scmAntCopyConfig){
 
 		if (Validator.isNotNullOrEmpty(scmPatchCommandList)){
 			List<String> resolveFileNamelist = new ArrayList<String>();
@@ -329,9 +329,9 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * @return the map< patch type, list<? extends base scm command>>
 	 */
 	protected Map<PatchType, List<? extends ScmPatchCommand>> constructPatchTypeSCMCommandMap(
-			List<? extends ScmPatchCommand> addList,
-			List<? extends ScmPatchCommand> updateList,
-			List<? extends ScmPatchCommand> deleteList){
+					List<? extends ScmPatchCommand> addList,
+					List<? extends ScmPatchCommand> updateList,
+					List<? extends ScmPatchCommand> deleteList){
 		Map<PatchType, List<? extends ScmPatchCommand>> map = new EnumMap<PatchType, List<? extends ScmPatchCommand>>(PatchType.class);
 
 		if (Validator.isNotNullOrEmpty(addList)){
@@ -393,7 +393,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 *             the IO exception
 	 */
 	protected abstract Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader)
-			throws IOException;
+					throws IOException;
 
 	/**
 	 * Gets the 项目名称.

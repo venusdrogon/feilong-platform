@@ -35,6 +35,7 @@ import org.jfree.ui.VerticalAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.util.Validator;
@@ -89,7 +90,8 @@ import com.lowagie.text.pdf.PdfWriter;
  * 
  * @author 金鑫 2010-1-20 下午09:03:11
  */
-@SuppressWarnings("all")public abstract class ChartUtil{
+@SuppressWarnings("all")
+public abstract class ChartUtil implements Chart{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ChartUtil.class);
@@ -127,7 +129,7 @@ import com.lowagie.text.pdf.PdfWriter;
 	 * setFreeChart.
 	 */
 	private void setDefaultJFreeChart(){
-		// String pathname = "E:\\Data\\Material\\sanguo\\1.印章 32 74.png";
+		// String pathname =TestConstants.WATERMARK_PRESSIMG;
 		// jFreeChart.setBackgroundImage(FeiLongImageUtil.getImage(pathname));
 		// 设置背景图片对齐方式
 		// jFreeChart.setBackgroundImageAlignment(Align.BOTTOM_RIGHT);
@@ -277,20 +279,12 @@ import com.lowagie.text.pdf.PdfWriter;
 	 */
 	public final static void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException{
 		if (Validator.isNullOrEmpty(chartInfoEntity)){
-			throw new IllegalArgumentException("feiLongChartInfoEntity can't be null/empty!");
+			throw new IllegalArgumentException("chartInfoEntity can't be null/empty!");
 		}
 		Object imageNameOrOutputStream = chartInfoEntity.getImageNameOrOutputStream();
 		/** OutputStream */
 		if (imageNameOrOutputStream instanceof OutputStream){
-			// 默认图片宽度
-			int width = chartInfoEntity.getWidth();
-			// 默认图片高度
-			int height = chartInfoEntity.getHeight();
-			// ServletUtilities.saveChartAsJPEG(chart, width, height, session)
-			// 绘制热点地图
-			// ChartUtilities.writeImageMap(writer, name, info, useOverLibForToolTips)
-			// 将报表保存为png文件
-			ChartUtilities.writeChartAsPNG((OutputStream) imageNameOrOutputStream, freeChart, width, height);
+			writeChartAsPNG(freeChart, chartInfoEntity, (OutputStream) imageNameOrOutputStream);
 		}
 		/** String */
 		else if (imageNameOrOutputStream instanceof String){
@@ -303,10 +297,35 @@ import com.lowagie.text.pdf.PdfWriter;
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
 			log.debug("[file.getAbsolutePath()]:{}", file.getAbsolutePath());
 
-			chartInfoEntity.setImageNameOrOutputStream(fileOutputStream);
-			createImage(freeChart, chartInfoEntity);
+			writeChartAsPNG(freeChart, chartInfoEntity, fileOutputStream);
+
 			fileOutputStream.close();
 		}
+	}
+
+	/**
+	 * Write chart as png.
+	 *
+	 * @param freeChart
+	 *            the free chart
+	 * @param chartInfoEntity
+	 *            the chart info entity
+	 * @param imageNameOrOutputStream
+	 *            the image name or output stream
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	private static void writeChartAsPNG(JFreeChart freeChart,ChartInfoEntity chartInfoEntity,OutputStream imageNameOrOutputStream)
+					throws IOException{
+		// 默认图片宽度
+		int width = chartInfoEntity.getWidth();
+		// 默认图片高度
+		int height = chartInfoEntity.getHeight();
+		// ServletUtilities.saveChartAsJPEG(chart, width, height, session)
+		// 绘制热点地图
+		// ChartUtilities.writeImageMap(writer, name, info, useOverLibForToolTips)
+		// 将报表保存为png文件
+		ChartUtilities.writeChartAsPNG(imageNameOrOutputStream, freeChart, width, height);
 	}
 
 	/**

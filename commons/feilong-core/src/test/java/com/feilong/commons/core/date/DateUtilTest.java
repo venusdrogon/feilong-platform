@@ -231,9 +231,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 		log.debug(DateUtil.date2String(now_3, DatePattern.commonWithMillisecond));
 		log.debug("今天所在week 第一天:{}", DateUtil.date2String(DateUtil.getFirstDateOfThisWeek(new Date()), DatePattern.commonWithMillisecond));
 
-		log.debug(
-				"getFirstDateOfThisWeek:{}",
-				DateUtil.date2String(
+		log.debug("getFirstDateOfThisWeek:{}", DateUtil.date2String(
 						DateUtil.getFirstDateOfThisWeek(DateUtil.string2Date("2014-01-01 05:00:00", DatePattern.commonWithTime)),
 						DatePattern.commonWithMillisecond));
 
@@ -252,9 +250,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 		Date now_3 = DateUtil.getLastDateOfThisWeek(date);
 		log.debug(DateUtil.date2String(now_3, DatePattern.commonWithMillisecond));
 
-		log.debug(
-				"getLastDateOfThisWeek:{}",
-				DateUtil.date2String(
+		log.debug("getLastDateOfThisWeek:{}", DateUtil.date2String(
 						DateUtil.getLastDateOfThisWeek(DateUtil.string2Date("2014-12-31 05:00:00", DatePattern.commonWithTime)),
 						DatePattern.commonWithMillisecond));
 	}
@@ -603,5 +599,10 @@ public class DateUtilTest extends BaseDateUtilTest{
 	@Test
 	public final void testToCalendar1(){
 		log.info((new Date().getTime() + "").length() + "");
+	}
+
+	@Test
+	public final void testGetIntervalDay2(){
+		System.out.println(DateUtil.getIntervalDay("2008-08-24", "2008-08-27", "yyyy-MM-dd"));
 	}
 }

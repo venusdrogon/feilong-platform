@@ -50,26 +50,26 @@ public final class LunarDateUtil{
 	/**
 	 * 农历转成阳历The lunar calendar is turned into the Solar calendar.
 	 * 
-	 * @param year_lunar
+	 * @param lunarYear
 	 *            农历年份
-	 * @param month_lunar
+	 * @param lunarMonth
 	 *            农历月份
-	 * @param day_lunar
+	 * @param lunarDay
 	 *            农历日期
 	 * @return 阳历
 	 */
-	public static String toSolar(int year_lunar,int month_lunar,int day_lunar){
+	public static String toSolar(int lunarYear,int lunarMonth,int lunarDay){
 		int year;
 		int month;
 		int day;
-		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(year_lunar, month_lunar, day_lunar)
-				+ DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year_lunar - 1901];
-		int yearDays = DateUtil.isLeapYear(year_lunar) ? 366 : 365;
+		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(lunarYear, lunarMonth, lunarDay)
+				+ DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[lunarYear - 1901];
+		int yearDays = DateUtil.isLeapYear(lunarYear) ? 366 : 365;
 		if (offSetDays >= yearDays){
-			year = year_lunar + 1;
+			year = lunarYear + 1;
 			offSetDays -= yearDays;
 		}else{
-			year = year_lunar;
+			year = lunarYear;
 		}
 		day = offSetDays + 1;
 		for (month = 1; offSetDays >= 0; ++month){

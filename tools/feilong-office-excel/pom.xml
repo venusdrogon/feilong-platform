@@ -31,12 +31,6 @@
 			<version>${version.feilong-platform}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-tools-jfreechart</artifactId>
-			<version>${version.feilong-platform}</version>
-		</dependency>
-
 		<!-- poi HSSF is our port of the Microsoft Excel 97(-2007) file format (BIFF8) to pure Java. -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>

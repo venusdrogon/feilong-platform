@@ -15,25 +15,29 @@
  */
 package com.feilong.tools.chart.index;
 
+import java.io.Serializable;
+
 /**
  * 图片指数(基本的).
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 19, 2012 12:43:36 AM
  */
-public final class ChartIndex{
+public final class ChartIndex implements Serializable,Comparable<ChartIndex>{
+
+	private static final long	serialVersionUID	= -3491254390017625024L;
 
 	/** 编码. */
-	private String	code;
+	private String				code;
 
 	/** 名称. */
-	private String	name;
+	private String				name;
 
 	/** 值. */
-	private Integer	value;
+	private Integer				value;
 
 	/** 颜色 比如柱状图 线条颜色. */
-	private String	color;
+	private String				color;
 
 	/**
 	 * The Constructor.
@@ -167,6 +171,15 @@ public final class ChartIndex{
 	 */
 	public void setColor(String color){
 		this.color = color;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	public int compareTo(ChartIndex o){
+		return -(this.value.compareTo(o.value));
 	}
 
 }

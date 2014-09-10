@@ -178,7 +178,19 @@ public final class NumberUtil{
 	}
 
 	/**
-	 * 获得进度.
+	 * 计算进度.
+	 * 
+	 * <pre>
+	 * {@code
+	 *   Example 1:  
+	 *   	NumberUtil.getProgress(5, 5, "##%")
+	 *   	return 100%
+	 *   
+	 *   Example 2:
+	 *   	NumberUtil.getProgress(2, 3, "#0.0%")
+	 *   	return 66.7%
+	 * }
+	 * </pre>
 	 * 
 	 * @param current
 	 *            当前量
@@ -195,23 +207,23 @@ public final class NumberUtil{
 	 * @since 1.0.7
 	 */
 	public final static String getProgress(Number current,Number total,String numberPattern) throws NullPointerException,
-			IllegalArgumentException{
+					IllegalArgumentException{
 		if (null == current){
-			throw new NullPointerException("the one is null or empty!");
+			throw new NullPointerException("current is null");
 		}
 		if (null == total){
-			throw new NullPointerException("the two is null or empty!");
+			throw new NullPointerException("total is null");
 		}
 
 		if (current.intValue() <= 0){
-			throw new IllegalArgumentException("one can not <=0");
+			throw new IllegalArgumentException("current can not <=0");
 		}
 		if (total.intValue() <= 0){
-			throw new IllegalArgumentException("two can not <=0");
+			throw new IllegalArgumentException("total can not <=0");
 		}
 
 		if (current.doubleValue() > total.doubleValue()){
-			throw new IllegalArgumentException("one can not > two");
+			throw new IllegalArgumentException("current can not > total");
 		}
 		// XXX
 		int scale = 8;
@@ -268,7 +280,7 @@ public final class NumberUtil{
 	 * @since 1.0.7
 	 */
 	public final static BigDecimal getDivideValue(BigDecimal one,Serializable two,int scale,RoundingMode roundingMode)
-			throws NullPointerException{
+					throws NullPointerException{
 
 		if (Validator.isNullOrEmpty(roundingMode)){
 			throw new NullPointerException("the roundingMode is null or empty!");

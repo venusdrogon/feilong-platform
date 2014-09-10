@@ -33,6 +33,7 @@ public abstract class AbstractSpringScopeTag extends BaseSpringTag{
 	/**
 	 * 设置作用域名称 类似于bean:define标签
 	 */
+	@SuppressWarnings("hiding")
 	protected String			id;
 
 	/**
