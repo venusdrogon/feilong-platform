@@ -27,6 +27,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
+import org.apache.velocity.exception.VelocityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +74,7 @@ public final class VelocityUtil{
 	/** The feilong string velocity. */
 	private static String			feilongStringVelocity	= "feilongStringVelocity";
 
+	/** The properties path. */
 	private static String			PROPERTIES_PATH			= "config/feilong-velocity.properties";
 
 	// 分离实例 避免影响其他的 项目
@@ -93,39 +95,52 @@ public final class VelocityUtil{
 			log.info("velocity init, properties:{}", JsonUtil.format(properties));
 		}
 
-		try{
+		// log.info(RuntimeSingleton.isInitialized() + "");
+		// 单列模式
+		// Velocity.init(properties);
 
-			// log.info(RuntimeSingleton.isInitialized() + "");
-			// 单列模式
-			// Velocity.init(properties);
+		// 分离实例 避免影响其他的 项目
+		velocityEngine = new VelocityEngine();
+		velocityEngine.init(properties);
 
-			// 分离实例 避免影响其他的 项目
-			velocityEngine = new VelocityEngine();
-			velocityEngine.init(properties);
-
-			// log.info(RuntimeSingleton.isInitialized() + "");
-			// XMLToolboxManager box = new XMLToolboxManager();
-			// box.load(ClassLoaderUtils.getResourceAsStream("toolbox.xml", this.getClass()));
-		}catch (Exception e){
-			log.error("velocityEngine init error");
-			e.printStackTrace();
-		}
+		// log.info(RuntimeSingleton.isInitialized() + "");
+		// XMLToolboxManager box = new XMLToolboxManager();
+		// box.load(ClassLoaderUtils.getResourceAsStream("toolbox.xml", this.getClass()));
 	}
 
 	/**
 	 * 解析vm模板文件.
-	 * 
+	 *
 	 * @param templateInClassPath
-	 *            vm文件,模版classpath 下面的路径
+	 *            vm文件,模版classpath 下面的路径,比如 \\loxia\\excel\\template\\trainReport.html
 	 * @param contextKeyValues
 	 *            参数
 	 * @return the string
+	 * @throws VelocityException
+	 *             the velocity exception
+	 * @see Template
 	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
 	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
+	 * @see VelocityEngine#getTemplate(String)
+	 * @see VelocityEngine#getTemplate(String, String)
+	 * @see Template#merge(org.apache.velocity.context.Context, Writer)
 	 */
-	public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues){
+	public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues)
+					throws VelocityException{
 		String encoding = CharsetType.UTF8;
-		return parseVMTemplateAfterInitVelocity(templateInClassPath, contextKeyValues, encoding);
+
+		VelocityContext velocityContext = new VelocityContext(contextKeyValues);
+		Writer writer = new StringWriter();
+
+		Template template = velocityEngine.getTemplate(templateInClassPath, encoding);
+		template.merge(velocityContext, writer);
+		try{
+			writer.flush();
+		}catch (IOException e){
+			e.printStackTrace();
+			throw new VelocityException(e);
+		}
+		return writer.toString();
 	}
 
 	/**
@@ -140,53 +155,11 @@ public final class VelocityUtil{
 	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
 	 */
 	public static String parseString(String vmContent,Map<String, Object> contextKeyValues){
-		try{
-			VelocityContext context = new VelocityContext(contextKeyValues);
+		VelocityContext context = new VelocityContext(contextKeyValues);
 
-			Writer writer = new StringWriter();
-			velocityEngine.evaluate(context, writer, feilongStringVelocity, vmContent);
+		Writer writer = new StringWriter();
+		velocityEngine.evaluate(context, writer, feilongStringVelocity, vmContent);
 
-			String parseVMTemplateAfterInitVelocity = writer.toString();
-			return parseVMTemplateAfterInitVelocity;
-		}catch (ParseErrorException e){
-			e.printStackTrace();
-		}catch (MethodInvocationException e){
-			e.printStackTrace();
-		}catch (ResourceNotFoundException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	// ***************************************************************************************************************
-	/**
-	 * Velocity 初始化之后 调用,解析并获得模板内容.
-	 * 
-	 * @param templateName
-	 *            模板名称
-	 * @param contextKeyValues
-	 *            模板参数k/v
-	 * @param encoding
-	 *            The character encoding to use for the template
-	 * @return 如果发生异常返回null
-	 * @see Template
-	 * @see VelocityEngine#getTemplate(String)
-	 * @see VelocityEngine#getTemplate(String, String)
-	 * @see Template#merge(org.apache.velocity.context.Context, Writer)
-	 */
-	private static String parseVMTemplateAfterInitVelocity(String templateName,Map<String, Object> contextKeyValues,String encoding){
-		try{
-			VelocityContext velocityContext = new VelocityContext(contextKeyValues);
-			Writer writer = new StringWriter();
-			Template template = velocityEngine.getTemplate(templateName, encoding);
-			template.merge(velocityContext, writer);
-			writer.flush();
-			return writer.toString();
-		}catch (IOException e){
-			log.error("Parse Velocity Template Error");
-			e.printStackTrace();
-			// throw new RuntimeException("Parse Velocity Template Error");
-		}
-		return null;
+		return writer.toString();
 	}
 }
