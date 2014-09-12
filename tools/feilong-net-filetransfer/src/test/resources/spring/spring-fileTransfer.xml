@@ -13,7 +13,7 @@
 	<util:properties id="p_sftp-sshConfig" location="classpath:config/fileTransfer-sftp-sshConfig.properties"></util:properties>
 
 	<!-- ftp -->
-	<bean id="nikeFTPUtil" class="com.feilong.tools.net.FTPUtil">
+	<bean id="nikeFTPUtil" class="com.feilong.tools.net.filetransfer.FTPUtil">
 		<property name="hostName" value="#{p_ftp['nike.ftp.hostName']}" />
 		<property name="userName" value="#{p_ftp['nike.ftp.userName']}" />
 		<property name="password">
@@ -30,7 +30,7 @@
 	</bean>
 
 	<!-- sftp -->
-	<bean id="nikeSFTPUtil" class="com.feilong.tools.net.SFTPUtil">
+	<bean id="nikeSFTPUtil" class="com.feilong.tools.net.filetransfer.SFTPUtil">
 		<property name="hostName" value="#{p_sftp['nike.sftp.hostName']}" />
 		<property name="userName" value="#{p_sftp['nike.sftp.userName']}" />
 		<property name="password">

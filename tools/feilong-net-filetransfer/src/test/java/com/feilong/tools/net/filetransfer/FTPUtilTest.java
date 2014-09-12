@@ -107,6 +107,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete()
 	 */
 	@Test
@@ -117,6 +118,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir()
 	 */
 	@Test
@@ -127,6 +129,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir_empty()
 	 */
 	@Test
@@ -137,6 +140,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_not_exist()
 	 */
 	@Test
@@ -181,6 +185,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#download()
 	 */
 	@Override
@@ -193,6 +198,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#download_dir()
 	 */
 	@Override
@@ -205,6 +211,7 @@ public class FTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#getFileEntityMap()
 	 */
 	@Test
@@ -213,6 +220,6 @@ public class FTPUtilTest extends FileTransferTest{
 		String[] fileNames = { "SportActivity.dat", "SubCategory.dat", "aaa" };
 		Map<String, FileInfoEntity> fileEntityMap = fileTransfer.getFileEntityMap(remotePath, fileNames);
 
-		log.info(JsonUtil.format(fileEntityMap));
+		log.info("fileEntityMap:{}", JsonUtil.format(fileEntityMap));
 	}
 }

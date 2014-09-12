@@ -15,7 +15,7 @@
 		</layout>
 		<!--限制输出级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="warn" />
+			<param name="LevelMin" value="debug" />
 			<param name="LevelMax" value="ERROR" />
 		</filter>
 	</appender>
