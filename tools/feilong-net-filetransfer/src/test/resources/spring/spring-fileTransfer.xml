@@ -7,8 +7,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd	
 		">
 
-	<util:properties id="p_ftp" location="classpath:config/fileTransfer-ftp.properties"></util:properties>
-	<util:properties id="p_sftp" location="classpath:config/fileTransfer-sftp.properties"></util:properties>
+	<util:properties id="p_ftp" location="file:E:\DataCommon\Files\else\config/fileTransfer-ftp.properties"></util:properties>
+	<util:properties id="p_sftp" location="file:E:\DataCommon\Files\else\config/fileTransfer-sftp.properties"></util:properties>
 
 	<util:properties id="p_sftp-sshConfig" location="classpath:config/fileTransfer-sftp-sshConfig.properties"></util:properties>
 
