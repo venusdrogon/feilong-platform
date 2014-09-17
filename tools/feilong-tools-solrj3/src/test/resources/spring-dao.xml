@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:loxia="http://loxia.benjamin.cn/schema/core"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://loxia.benjamin.cn/schema/core http://loxia.benjamin.cn/schema/core/loxia-spring-ext.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd		
+		">
+
+	<aop:aspectj-autoproxy />
+	<context:annotation-config />
+
+	<bean class="loxia.aspect.ReadWriteDataSourceAspect" />
+
+	<bean id="dataSource" class="loxia.dao.ReadWriteDataSource">
+		<property name="writeDataSource" ref="writeSource" />
+		<property name="readDataSource" ref="readSource" />
+	</bean>
+
+	<!-- parentSource -->
+	<bean id="parentSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="true"
+		p:driverClass="org.postgresql.Driver">
+		<property name="user" value="user_nike"></property>
+		<property name="password">
+			<value><![CDATA[user_nike1234]]></value>
+		</property>
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="50" />		
+		<property name="initialPoolSize" value="50" />
+		
+		<property name="maxIdleTime" value="60" />
+		
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 --> 		
+		<property name="acquireIncrement" value="2" />
+		<property name="idleConnectionTestPeriod" value="18000" />
+		<property name="preferredTestQuery">
+			<value><![CDATA[select 1]]></value>
+		</property>
+	</bean>
+
+	<!-- 写节点 -->
+	<bean id="writeSource" parent="parentSource">
+		<property name="jdbcUrl">
+			<value><![CDATA[jdbc:postgresql://10.8.12.207/nike20120627]]></value>
+		</property>
+	</bean>
+
+	<!-- 读节点 -->
+	<bean id="readSource" parent="parentSource">
+		<property name="jdbcUrl">
+			<value><![CDATA[jdbc:postgresql://10.8.12.207/nike20120627]]></value>
+		</property>
+	</bean>
+
+	<!-- sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<util:properties location="classpath:config/hibernate.properties"></util:properties>
+		</property>
+		<property name="packagesToScan" value="com.erry" />
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:META-INF/orm-*.xml</value>
+				<!-- <value>classpath*:META-INF/*orm-*.xml</value> -->
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -74,6 +74,7 @@ public class LuceneUtilTest{
 		// 将要搜索TXT文件的地方
 		String dateDir = "F:\\dateDir";
 		File[] files = new File(dateDir).listFiles();
+		
 		Document document = null;
 		for (int i = 0; i < files.length; i++){
 			document = new Document();
@@ -88,6 +89,7 @@ public class LuceneUtilTest{
 			// 写入IndexWriter
 			indexWriter.addDocument(document);
 		}
+		
 		// 查看IndexWriter里面有多少个索引
 		log.info("indexWriter.numDocs:" + indexWriter.numDocs());
 		//indexWriter.optimize();
@@ -102,21 +104,27 @@ public class LuceneUtilTest{
 		Directory directory = new SimpleFSDirectory(indexFile);
 		//创建 IndexSearcher对象，相比IndexWriter对象，这个参数就要提供一个索引的目录就行了  
 		IndexSearcher indexSearch = new IndexSearcher(directory);
+		
 		//创建QueryParser对象 
 		String f = "contents";
 		f = "filename";
+		
 		QueryParser queryParser = new QueryParser(//
 						version,//第一个参数表示Lucene的版本,
 						f, //第二个表示搜索Field的字段
 						new StandardAnalyzer(version)//第三个表示搜索使用分词器
 		);
 		queryParser.setAllowLeadingWildcard(true);
+		
 		//生成Query对象  
 		String query2 = "langhua9527";
 		query2 = "副本";
+		
 		Query query = queryParser.parse(query2);
+		
 		//搜索结果 TopDocs里面有scoreDocs[]数组，里面保存着索引值  
 		TopDocs topDocs = indexSearch.search(query, 10);
+		
 		//topDocs.totalHits表示一共搜到多少个  
 		log.info("找到了" + topDocs.totalHits + "个");
 		//循环topDocs.scoreDocs数据，并使用indexSearch.doc方法把Document还原，再拿出对应的字段的值  
@@ -127,6 +135,7 @@ public class LuceneUtilTest{
 			log.info(document.get("indexDate"));
 			//log.info(document.get("contents"));
 		}
+		
 		indexSearch.close();
 	}
 }
