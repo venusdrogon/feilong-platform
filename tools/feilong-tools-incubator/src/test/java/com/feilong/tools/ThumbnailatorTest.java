@@ -21,7 +21,8 @@ import com.feilong.commons.core.util.RandomUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 10, 2013 10:06:45 AM
  */
-@SuppressWarnings("all")public class ThumbnailatorTest{
+@SuppressWarnings("all")
+public class ThumbnailatorTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(ThumbnailatorTest.class);
 
@@ -95,7 +96,7 @@ import com.feilong.commons.core.util.RandomUtil;
 	 * @throws IOException
 	 */
 	public BufferedImage watermark(BufferedImage backgroundBufferedImage,String watermark,Point a,Point b,Point c,Point d)
-			throws IOException{
+					throws IOException{
 		Float opacity = 1.0f;
 
 		// 是否是顺时针旋转
@@ -148,19 +149,19 @@ import com.feilong.commons.core.util.RandomUtil;
 
 		// 转换水印图
 		BufferedImage watermarkBufferedImage = Thumbnails.of(watermarkFile)//
-				.forceSize(width.intValue(), height.intValue())//
-				.rotate(amountOfRotation)// 设置的转动量
-				.asBufferedImage();
+						.forceSize(width.intValue(), height.intValue())//
+						.rotate(amountOfRotation)// 设置的转动量
+						.asBufferedImage();
 
 		// 绘制水印图到背景图
 		Point point = new Point(x, y);
 		MyPositions myPositions = new MyPositions(point);
 
 		BufferedImage bufferedImage = Thumbnails.of(backgroundBufferedImage)//
-				.watermark(myPositions, watermarkBufferedImage, opacity)//
-				.outputQuality(opacity)//
-				.scale(1)//
-				.asBufferedImage();
+						.watermark(myPositions, watermarkBufferedImage, opacity)//
+						.outputQuality(opacity)//
+						.scale(1)//
+						.asBufferedImage();
 
 		return bufferedImage;
 	}

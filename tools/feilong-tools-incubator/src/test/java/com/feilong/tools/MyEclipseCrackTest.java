@@ -4,7 +4,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("all")public class MyEclipseCrackTest{
+@SuppressWarnings("all")
+public class MyEclipseCrackTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(MyEclipseCrackTest.class);
 

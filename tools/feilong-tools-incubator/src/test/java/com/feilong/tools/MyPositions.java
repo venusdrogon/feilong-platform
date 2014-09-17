@@ -15,7 +15,8 @@ import net.coobird.thumbnailator.geometry.Position;
  * 
  * @author coobird
  */
-@SuppressWarnings("all")public class MyPositions implements Position{
+@SuppressWarnings("all")
+public class MyPositions implements Position{
 
 	private Point	point;
 
@@ -46,14 +47,14 @@ import net.coobird.thumbnailator.geometry.Position;
 	 * @return The position to place the object.
 	 */
 	public Point calculate(
-			int enclosingWidth,
-			int enclosingHeight,
-			int width,
-			int height,
-			int insetLeft,
-			int insetRight,
-			int insetTop,
-			int insetBottom){
+					int enclosingWidth,
+					int enclosingHeight,
+					int width,
+					int height,
+					int insetLeft,
+					int insetRight,
+					int insetTop,
+					int insetBottom){
 
 		return point;
 	}

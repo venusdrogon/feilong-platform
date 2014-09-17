@@ -28,7 +28,8 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-21 上午10:23:28
  */
-@SuppressWarnings("all")public class JsDocxUtilTest{
+@SuppressWarnings("all")
+public class JsDocxUtilTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(JsDocxUtilTest.class);

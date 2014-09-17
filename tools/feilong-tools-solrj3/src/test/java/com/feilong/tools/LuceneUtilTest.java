@@ -44,7 +44,8 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-1-10 下午05:50:51
  */
-@SuppressWarnings("all")public class LuceneUtilTest{
+@SuppressWarnings("all")
+public class LuceneUtilTest{
 
 	private static final Logger	log			= LoggerFactory.getLogger(LuceneUtilTest.class);
 
@@ -60,12 +61,15 @@ import org.slf4j.LoggerFactory;
 	public void createIndex() throws IOException{
 		Directory directory = new SimpleFSDirectory(indexFile);
 		Analyzer analyzer = new StandardAnalyzer(version);
+
 		IndexWriterConfig indexWriterConfig = new IndexWriterConfig(version, analyzer);
 		indexWriterConfig.setOpenMode(OpenMode.CREATE);
+
 		// 创建IndexWriter对象,
 		IndexWriter indexWriter = new IndexWriter(//
-				directory,// 第一个参数是Directory,
-				indexWriterConfig);
+						directory,// 第一个参数是Directory,
+						indexWriterConfig);
+
 		// **********************************************************************
 		// 将要搜索TXT文件的地方
 		String dateDir = "F:\\dateDir";
@@ -76,7 +80,11 @@ import org.slf4j.LoggerFactory;
 			// 创建Field对象，并放入doc对象中
 			document.add(new Field("contents", new FileReader(files[i])));
 			document.add(new Field("filename", files[i].getName(), Field.Store.YES, Field.Index.ANALYZED));
-			document.add(new Field("indexDate", DateTools.dateToString(new Date(), DateTools.Resolution.DAY), Field.Store.YES, Field.Index.NOT_ANALYZED));
+			document.add(new Field(
+							"indexDate",
+							DateTools.dateToString(new Date(), DateTools.Resolution.DAY),
+							Field.Store.YES,
+							Field.Index.NOT_ANALYZED));
 			// 写入IndexWriter
 			indexWriter.addDocument(document);
 		}
@@ -98,9 +106,9 @@ import org.slf4j.LoggerFactory;
 		String f = "contents";
 		f = "filename";
 		QueryParser queryParser = new QueryParser(//
-				version,//第一个参数表示Lucene的版本,
-				f, //第二个表示搜索Field的字段
-				new StandardAnalyzer(version)//第三个表示搜索使用分词器
+						version,//第一个参数表示Lucene的版本,
+						f, //第二个表示搜索Field的字段
+						new StandardAnalyzer(version)//第三个表示搜索使用分词器
 		);
 		queryParser.setAllowLeadingWildcard(true);
 		//生成Query对象  

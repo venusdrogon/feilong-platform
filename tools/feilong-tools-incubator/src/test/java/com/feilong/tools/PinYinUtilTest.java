@@ -13,7 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.PinYinUtil;
 
-@SuppressWarnings("all")public class PinYinUtilTest{
+@SuppressWarnings("all")
+public class PinYinUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(PinYinUtilTest.class);
 

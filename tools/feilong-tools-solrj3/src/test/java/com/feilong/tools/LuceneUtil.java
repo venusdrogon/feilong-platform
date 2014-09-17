@@ -15,32 +15,15 @@
  */
 package com.feilong.tools;
 
-import java.awt.Point;
-import java.io.Serializable;
-
-import javax.swing.text.Position;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Oct 11, 2013 12:57:10 AM
+ * @version 1.0 2012-1-10 下午03:03:41
  */
-@SuppressWarnings("all")public class ImageProductTemplate implements Serializable{
+public class LuceneUtil{
 
-	private static final long	serialVersionUID	= 288232184048495608L;
-
-	private String				backendImage;
-
-	private Watermark[]			watermarks;
-
-	class Watermark{
-
-		private String	watermarkImage;
-
-		// private Position
-
-	}
-
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(LuceneUtil.class);
 }
