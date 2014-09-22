@@ -3,12 +3,11 @@
  * 
  */
 function createAmSerialChart(feilongChart) {
-    
 
-    var chartDivId=feilongChart.chartDivId;
-    var titleField=feilongChart.titleField;
-    var valueField=feilongChart.valueField;
-    var chartTitle=feilongChart.chartTitle;
+    var chartDivId = feilongChart.chartDivId;
+    var titleField = feilongChart.titleField;
+    var valueField = feilongChart.valueField;
+    var chartTitle = feilongChart.chartTitle;
 
     // SERIAL CHART
     var chart = new AmCharts.AmSerialChart();
@@ -110,7 +109,7 @@ function createAmSerialChart(feilongChart) {
     // GRAPH
     var graph = new AmCharts.AmGraph();
     graph.valueField = valueField;
-    //graph.colorField = "color";
+    // graph.colorField = "color";
     graph.balloonText = "[[category]]: [[value]]";// You can use tags like
     // [[value]],
     // [[description]],
@@ -211,12 +210,66 @@ function createAmPieChart(feilongChart) {
     chart.write(feilongChart.chartDivId);
 }
 
+/**
+ * 雷达图
+ */
+function createAmRadarChart(feilongChart) {
+
+    var chartDivId = feilongChart.chartDivId;
+    var titleField = feilongChart.titleField;
+    var valueField = feilongChart.valueField;
+    var chartTitle = feilongChart.chartTitle;
+    var dataProvider = feilongChart.dataProvider;
+
+    // RADAR CHART
+    var chart = new AmCharts.AmRadarChart();
+    chart.dataProvider = dataProvider;
+    chart.categoryField = titleField;
+    chart.startDuration = 2;
+
+    // VALUE AXIS
+    var valueAxis = new AmCharts.ValueAxis();
+    valueAxis.axisAlpha = 0.15;
+    valueAxis.minimum = 4.3;
+    valueAxis.maximum = 5;
+    valueAxis.dashLength = 3;
+    valueAxis.axisTitleOffset = 20;
+    valueAxis.gridCount = 5;
+    chart.addValueAxis(valueAxis);
+
+    // GRAPH
+    var graph = new AmCharts.AmGraph();
+    graph.valueField = valueField;
+    graph.bullet = "round";
+    graph.balloonText = "[[value]]"
+    chart.addGraph(graph);
+
+    addChartBorder(chart);
+    addChartTitle(chart, chartTitle);
+
+    // WRITE
+    chart.write(chartDivId);
+}
+
+/**
+ * 添加title
+ * 
+ * @param chart
+ *                chart
+ * @param chartTitle
+ *                标题
+ */
 function addChartTitle(chart, chartTitle) {
     // addTitle(text, size, color, alpha, bold)
     chart.addTitle(chartTitle, 18, "#000000", 0.8, false);
 }
 
-// 添加边框
+/**
+ * 添加边框
+ * 
+ * @param chart
+ *                chart
+ */
 function addChartBorder(chart) {
 
     chart.borderAlpha = 0.2;// 不透明图表的边框。取值范围为0 - 1。

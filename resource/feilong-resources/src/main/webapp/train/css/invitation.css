@@ -1,42 +1,54 @@
-* {
-	font-family: '微软雅黑'
+.red {
+	color: red
+}
+
+/*培训时间*/
+#trainTime {
+	font-family: verdana, 'Courier New', '微软雅黑';
+}
+
+/*报名截至时间*/
+#registrationDeadline {
+	
+}
+
+#additionalRemarks {
+	color: #666;
+	font-size: 11px;
+	margin-top: 10px
 }
 
 #content {
-	border: 1px solid #CCEFF5;
-	background-color: #FAFCFD;
+	border: 1px solid #F6F6F6;
+	/*background-color: #FAFCFD;*/
 	padding: 4px 12px;
 	-moz-border-radius: 12px;
 	-webkit-border-radius: 12px;
 	border-radius: 12px;
+	margin-left: 200px;
+	width: 800px;
+	/*border: 1px solid #000;*/
 }
 
-h3 {
-	/*font-family: '楷体'*/
-	
-}
-
-h3:first-letter {
-	/*font-family: '楷体'
-	color: red;*/
-	font-size: 24px;
+#declaration {
+	border: 1px solid #e8e8e8;
+	background-color: #FAFCFD;
+	font-family: '楷体';
+	text-indent: 38px;
+	line-height: 26px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+	padding: 18px 18px;
+	text-shadow: 4px 4px 6px #ccc;
+	color: #555;
+	margin: 26px 18px 40px 18px;
 }
 
 .indexTd {
 	/*font-family: '微软雅黑';*/
 	font-style: italic;
 	color: #666
-}
-
-/*前言*/
-#preface {
-	color: #333;
-	font-size: 15px;
-	text-indent: 18px;
-}
-
-#title {
-	text-align: center;
 }
 
 #listTable>tr>td {
@@ -46,12 +58,6 @@ h3:first-letter {
 
 .h_content {
 	padding-left: 40px
-}
-
-#content {
-	margin-left: 200px;
-	width: 800px;
-	/*border: 1px solid #000;*/
 }
 
 #logo {
@@ -69,11 +75,17 @@ hr {
 	opacity: 0.2;
 }
 
-#countSpan {
+/*纪律数字*/
+#disciplineNumber {
 	font: italic 42px 'Verdana';
-	color: red
+	color: #fd5402
 }
 
 li {
 	margin-bottom: 8px
+}
+
+#trainTimeRemark {
+	font-size: 13px;
+	color: #444
 }

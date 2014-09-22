@@ -6,13 +6,20 @@ AmCharts.ready(function() {
 
     // 柱状图
     createAmSerialChart(feilongChart_come);
+
+    // 雷达图
+    createAmRadarChart(feilongChart_avgScore);
+
 });
 
 $(function() {
     // 初始化评分表
     initScoreTable();
-    // 初始化表扬表
-    initPraiseTable();
+    // 课前准备表
+    initPreparationBeforeClassTable();
+    // 签到表
+    initSignTable();
+
     // 初始化评分表格文字和颜色
     initTdTextAndColor();
     // 初始化 表现好的同学
@@ -199,35 +206,48 @@ function initScoreTable() {
 	showTableToggleBtn : true,
 	resizable : false,
 	width : 800,
-	height : 1243,
     // rp: 10,
     // usepager:true
     };
 
+    var maxRows = getMaxRows("#scoreTable");
+
     $("#scoreTable").each(function() {
+	// console.log("maxRows:%i", maxRows);
+
+	var firstTR = $(this).find("tr").eq(0);
+	// console.log("firstTR:%o", firstTR);
+	// console.log("firstTR.html():%o", firstTR.html());
+
+	var firstTROuterHeight = firstTR.outerHeight(true);
+	// console.log("firstTROuterHeight:%i", firstTROuterHeight);
+
+	logJqueryObjectSize($(this).find("tr").eq(0));
+
+	var height = firstTROuterHeight * maxRows + 12;
+	console.log("flexgrid table height:[%i]", height);
+
 	var p1 = $.extend({
-	    title : "培训反馈评分表",
-	// height : $(this).attr("height")
+	    title : "培训反馈评分明细表",
+	    height : "auto"
 	}, p);
 	$(this).flexigrid(p1);
     });
-
 }
-
-function initPraiseTable() {
+function initPreparationBeforeClassTable() {
     var p = {
 	colModel : [ {
-	    display : '姓名',
+	    display : '清单',
 	    name : 'name',
-	    width : 80,
+	    width : 120,
 	    sortable : true,
 	    align : 'center'
 	}, {
-	    display : '评价',
-	    name : 'evaluationContent',
-	    width : 640,
+	    display : '状态',
+	    name : 'meetingNoticeScore',
+	    width : 43,
 	    sortable : true,
-	    align : 'left'
+	    align : 'center'
 	} ],
 	// sortname : "name",
 	// sortorder : "asc",
@@ -235,19 +255,52 @@ function initPraiseTable() {
 	blockOpacity : 0.8,
 	showTableToggleBtn : true,
 	resizable : false,
-	width : 760,
-	height : 780,
-    // rp: 10,
-    // usepager:true
+	width : 200,
     };
 
-    // $("#praiseTable").each(function() {
-    // var p1 = $.extend({
-    // title : "20140827Java集合框架培训评价-表扬",
-    // // height : $(this).attr("height")
-    // }, p);
-    // $(this).flexigrid(p1);
-    // });
+    var maxRows = getMaxRows("#preparationBeforeClassTable");
+
+    $("#preparationBeforeClassTable").each(function() {
+	var p1 = $.extend({
+	    // title : "培训反馈评分明细表",
+	    height : "auto"
+	}, p);
+	$(this).flexigrid(p1);
+    });
+}
+function initSignTable() {
+    var p = {
+	colModel : [ {
+	    display : '类型',
+	    name : 'name',
+	    width : 200,
+	    sortable : true,
+	// align : 'center'
+	}, {
+	    display : '人数',
+	    name : 'meetingNoticeScore',
+	    width : 43,
+	    sortable : true,
+	    align : 'center'
+	} ],
+	// sortname : "name",
+	// sortorder : "asc",
+
+	blockOpacity : 0.8,
+	showTableToggleBtn : true,
+	resizable : false,
+	width : 280,
+    };
+
+    var maxRows = getMaxRows("#signTable");
+
+    $("#signTable").each(function() {
+	var p1 = $.extend({
+	    // title : "培训反馈评分明细表",
+	    height : "auto"
+	}, p);
+	$(this).flexigrid(p1);
+    });
 }
 
 function initGoodPerformanceStudentTable() {
@@ -279,17 +332,23 @@ function initGoodPerformanceStudentTable() {
 	showTableToggleBtn : true,
 	resizable : false,
 	width : 300,
-	height : 100,
+    // height : 100,
     // rp: 10,
     // usepager:true
     };
 
+    var maxRows = getMaxRows("#goodPerformanceStudentTable");
+
     $("#goodPerformanceStudentTable").each(function() {
+	console.log("maxRows:%i", maxRows);
+
+	var height = maxRows * 28 + 12;
+	console.log("height:%i", height);
+
 	var p1 = $.extend({
-	/* title : "20140827Java集合框架培训评分表", */
-	// height : $(this).attr("height")
+	    /* title : "20140827Java集合框架培训评分表", */
+	    height : height
 	}, p);
 	$(this).flexigrid(p1);
     });
-
 }

@@ -1274,6 +1274,7 @@
     }; // end flexigrid
     $.fn.flexReload = function(p) { // function to reload grid
 	return this.each(function() {
+	    console.log("hahaha:%o", this.p);
 	    if (this.grid && this.p.url)
 		this.grid.populate();
 	});

@@ -1,14 +1,17 @@
-* {
-	font-family: '微软雅黑'
-}
-
-h3 {
-	/*font-family: '楷体'*/
-	
-}
-
 ul {
 	list-style: none;
+}
+
+#comeChartdiv {
+	margin-top: 10px
+}
+
+#reportVersionType {
+	text-align: right;
+	color: #999;
+	font-family: 'Segoe Print';
+	font-size: 18px;
+	margin-right: 120px;
 }
 
 #content {
@@ -22,36 +25,14 @@ ul {
 	/*width: 800px;*/
 }
 
-h3:first-letter {
-	/*font-family: '楷体'
-	color: red;*/
-	font-size: 24px;
-}
-
 .indexTd {
 	/*font-family: '微软雅黑';*/
 	font-style: italic;
 	color: #666
 }
 
-/*前言*/
-#preface {
-	color: #333;
-	font-size: 15px;
-	text-indent: 18px;
-}
-
-#title {
-	text-align: center;
-}
-
 .h_content {
 	padding-left: 40px
-}
-
-#logo {
-	text-align: right;
-	margin: 15px
 }
 
 hr {
