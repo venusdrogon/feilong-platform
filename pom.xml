@@ -82,7 +82,9 @@
 		<version.commons-lang>2.6</version.commons-lang>
 		<version.commons-lang3>3.3.2</version.commons-lang3>
 
-		<version.commons-logging>1.1.1</version.commons-logging>
+		<version.commons-logging>1.2</version.commons-logging>
+
+
 		<version.commons-io>2.1</version.commons-io>
 		<version.commons-net>3.2</version.commons-net>
 		<version.commons-jexl>2.1.1</version.commons-jexl>
@@ -124,7 +126,7 @@
 		<version.memcached>2.5.3</version.memcached>
 
 		<version.servlet-api>2.5</version.servlet-api>
-		<version.slf4j>1.7.6</version.slf4j>
+		<version.slf4j>1.7.7</version.slf4j>
 		<version.spring>3.2.10.RELEASE</version.spring>
 
 		<version.struts1>1.3.10</version.struts1>
@@ -369,6 +371,14 @@
 			</dependency>
 
 			<!-- *********************apache******************************* -->
+
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${version.commons-logging}</version>
+			</dependency>
+			
+			
 			<!-- commons-lang -->
 			<dependency>
 				<artifactId>commons-lang</artifactId>

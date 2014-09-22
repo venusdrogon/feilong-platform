@@ -107,6 +107,12 @@
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
 
+		<!-- commons-logging统一下版本 -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+
 		<!-- commons-collections -->
 		<dependency>
 			<groupId>commons-collections</groupId>
