@@ -19,12 +19,16 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.bean.BeanUtilException;
+import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.lang.ObjectUtil;
 
@@ -45,18 +49,25 @@ public final class ArrayUtil{
 
 	/**
 	 * 得到数组中的某个元素.
-	 * 
+	 * (Returns the value of the indexed component in the specified array object.
+	 * The value is automatically wrapped in an object if it has a primitive type.)
+	 *
 	 * @param <T>
-	 * 
+	 *            the generic type
 	 * @param array
 	 *            数组
 	 * @param index
 	 *            索引
-	 * @return 返回指定数组对象中索引组件的值
+	 * @return 返回指定数组对象中索引组件的值,the (possibly wrapped) value of the indexed component in the specified array
+	 * @throws IllegalArgumentException
+	 *             If the specified object is not an array
+	 * @throws ArrayIndexOutOfBoundsException
+	 *             If the specified {@code index} argument is negative, or if it is greater than or equal to the length of the specified
+	 *             array
 	 * @see java.lang.reflect.Array#get(Object, int)
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T getElement(Object array,int index){
+	public static <T> T getElement(Object array,int index) throws IllegalArgumentException,ArrayIndexOutOfBoundsException{
 		return (T) Array.get(array, index);
 	}
 
@@ -109,29 +120,6 @@ public final class ArrayUtil{
 			}
 			return list.iterator();
 		}
-	}
-
-	/**
-	 * 数组转成LinkedList.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param arrays
-	 *            字符串数组
-	 * @return 数组转成LinkedList<br>
-	 *         如果 arrays isNotNullOrEmpty,返回null
-	 * @deprecated 这样的方法 用处不大
-	 */
-	//TODO 这样的方法 用处不大
-	public static <T> LinkedList<T> toLinkedList(T[] arrays){
-		if (Validator.isNotNullOrEmpty(arrays)){
-			LinkedList<T> list = new LinkedList<T>();
-			for (int i = 0, j = arrays.length; i < j; ++i){
-				list.add(arrays[i]);
-			}
-			return list;
-		}
-		return null;
 	}
 
 	/**
@@ -235,5 +223,108 @@ public final class ArrayUtil{
 			return sb.toString();
 		}
 		return null;
+	}
+
+	/**
+	 * 将array 分组.
+	 * 
+	 * <pre>
+	 * 
+	 * Example 1:
+	 * if Integer[] array = { 1, 1, 1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8 };
+	 * 
+	 * will return 
+	 * 
+	 * {@code
+	 * {
+	 *         "1":         [
+	 *             1,
+	 *             1,
+	 *             1
+	 *         ],
+	 *         "2":         [
+	 *             2,
+	 *             2
+	 *         ],
+	 *         "3": [3],
+	 *         "4": [4],
+	 *         "5":         [
+	 *             5,
+	 *             5
+	 *         ],
+	 *         "6": [6],
+	 *         "7": [7],
+	 *         "8":         [
+	 *             8,
+	 *             8
+	 *         ]
+	 *     }
+	 * }
+	 * </pre>
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param array
+	 *            the array
+	 * @return the map< t, list< t>>
+	 * @since 1.0.8
+	 */
+	public static <T> Map<T, List<T>> group(T[] array){
+		if (null == array){
+			return null;
+		}
+		//视需求  可以换成 HashMap 或者TreeMap
+		Map<T, List<T>> map = new WeakHashMap<T, List<T>>(array.length);
+		for (T t : array){
+			List<T> valueList = map.get(t);
+			if (null == valueList){
+				valueList = new ArrayList<T>();
+			}
+			valueList.add(t);
+			map.put(t, valueList);
+		}
+		return map;
+	}
+
+	/**
+	 * Group 对象.
+	 *
+	 * @param <O>
+	 *            the generic type
+	 * @param <T>
+	 *            the generic type
+	 * @param objectArray
+	 *            对象数组
+	 * @param propertyName
+	 *            对面里面属性的名称
+	 * @return the map< t, list< o>>
+	 * @throws BeanUtilException
+	 *             the bean util exception
+	 * @throws NullPointerException
+	 *             if Validator.isNullOrEmpty(propertyName)
+	 * @see com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)
+	 * @see com.feilong.commons.core.util.CollectionsUtil#group(java.util.Collection, String)
+	 * @since 1.0.8
+	 */
+	public static <O, T> Map<T, List<O>> group(O[] objectArray,String propertyName) throws BeanUtilException,NullPointerException{
+		if (null == objectArray){
+			return null;
+		}
+
+		if (Validator.isNullOrEmpty(propertyName)){
+			throw new NullPointerException("the propertyName is null or empty!");
+		}
+		//视需求  可以换成 HashMap 或者TreeMap
+		Map<T, List<O>> map = new LinkedHashMap<T, List<O>>(objectArray.length);
+		for (O o : objectArray){
+			T t = PropertyUtil.getProperty(o, propertyName);
+			List<O> valueList = map.get(t);
+			if (null == valueList){
+				valueList = new ArrayList<O>();
+			}
+			valueList.add(o);
+			map.put(t, valueList);
+		}
+		return map;
 	}
 }
