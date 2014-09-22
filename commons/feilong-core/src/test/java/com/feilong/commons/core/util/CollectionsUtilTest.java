@@ -52,6 +52,20 @@ public class CollectionsUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionsUtilTest.class);
 
 	/**
+	 * To array.
+	 */
+	@Test
+	public final void toArray(){
+		List<String> testList = new ArrayList<String>();
+		testList.add("xinge");
+		testList.add("feilong");
+
+		String[] array = CollectionsUtil.toArray(testList);
+
+		log.info(JsonUtil.format(array));
+	}
+
+	/**
 	 * Convert list to string replace brackets.
 	 * 
 	 */

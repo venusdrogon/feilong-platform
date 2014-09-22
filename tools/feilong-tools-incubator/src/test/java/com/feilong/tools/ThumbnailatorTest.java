@@ -11,11 +11,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.awt.ImageUtil;
 import com.feilong.commons.core.lang.MathUtil;
 import com.feilong.commons.core.util.RandomUtil;
+import com.feilong.test.TestConstants;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

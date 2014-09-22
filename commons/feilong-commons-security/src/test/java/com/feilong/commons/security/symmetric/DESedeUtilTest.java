@@ -22,12 +22,12 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.security.BaseSecurityTest;
 import com.feilong.commons.security.EncryptionException;
 import com.feilong.commons.security.symmetric.SymmetricEncryption;
 import com.feilong.commons.security.symmetric.SymmetricType;
+import com.feilong.test.TestConstants;
 
 /**
  * The Class DESedeUtilTest.

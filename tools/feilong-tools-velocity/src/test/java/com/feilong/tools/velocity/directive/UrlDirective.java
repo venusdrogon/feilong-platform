@@ -13,17 +13,19 @@ import org.apache.velocity.tools.view.ViewToolContext;
 
 //import org.tuckey.web.filters.urlrewrite.UrlRewriteWrappedResponse;
 
-@SuppressWarnings("all")public class UrlDirective extends AbstractDirective1{
+@SuppressWarnings("all")
+public class UrlDirective extends AbstractDirective1{
 
 	@Override
 	protected boolean doRender(InternalContextAdapter internalContext,ViewToolContext context,Writer writer,Node node) throws IOException,
-			ResourceNotFoundException,ParseErrorException,MethodInvocationException{
+					ResourceNotFoundException,ParseErrorException,MethodInvocationException{
 		// get url
 		SimpleNode sn = (SimpleNode) node.jjtGetChild(0);
 		String url = (String) sn.value(internalContext);
 
 		// get context path
-		String contextPath = context.getRequest().getContextPath();
+		String contextPath=null;
+		//= context.getRequest().getContextPath();
 		if ("/".equals(contextPath)){
 			contextPath = "";
 		}

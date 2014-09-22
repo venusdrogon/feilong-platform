@@ -27,10 +27,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.security.EncryptionException;
 import com.feilong.commons.security.symmetric.SymmetricEncryption;
+import com.feilong.test.TestConstants;
 
 /**
  * The Class SymmetricEncryptionSpringTest.

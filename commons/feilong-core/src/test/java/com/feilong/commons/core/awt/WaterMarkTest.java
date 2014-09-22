@@ -33,7 +33,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.TestConstants;
+import com.feilong.test.TestConstants;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

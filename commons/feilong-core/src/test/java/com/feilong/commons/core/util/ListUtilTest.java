@@ -15,14 +15,11 @@
  */
 package com.feilong.commons.core.util;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -213,22 +210,19 @@ public class ListUtilTest{
 	@Test
 	public void testRemove(){
 		String spy = "曹操";
-		List<String> list = new ArrayList<String>(
-				Arrays.asList("赵云", "张飞", "关羽", "曹操", "马超", "黄忠", 
-								"法正", "庞统", "诸葛亮", "刘备")
-			);
-//		for (String name : list){
-//			if (name.equals(spy)){
-//				list.remove(name);
-//			}
-//		}
+		List<String> list = new ArrayList<String>(Arrays.asList("赵云", "张飞", "关羽", "曹操", "马超", "黄忠", "法正", "庞统", "诸葛亮", "刘备"));
+		//		for (String name : list){
+		//			if (name.equals(spy)){
+		//				list.remove(name);
+		//			}
+		//		}
 
-				for (int i = 0; i < list.size(); ++i){
-					String name = list.get(i);
-					if (name.equals(spy)){
-						list.remove(name);
-					}
-				}
+		for (int i = 0; i < list.size(); ++i){
+			String name = list.get(i);
+			if (name.equals(spy)){
+				list.remove(name);
+			}
+		}
 
 		//		Iterator<String> iterator = list.iterator();
 		//		while (iterator.hasNext()){
@@ -238,12 +232,12 @@ public class ListUtilTest{
 		//			}
 		//		}
 
-//		for (Iterator<String> iterator = list.iterator(); iterator.hasNext();){
-//			String name = iterator.next();
-//			if (name.equals(spy)){
-//				list.remove(name);
-//			}
-//		}
+		//		for (Iterator<String> iterator = list.iterator(); iterator.hasNext();){
+		//			String name = iterator.next();
+		//			if (name.equals(spy)){
+		//				list.remove(name);
+		//			}
+		//		}
 		log.debug(JsonUtil.format(list));
 	}
 
@@ -347,20 +341,6 @@ public class ListUtilTest{
 		testList.add("xinge");
 		testList.add("feilong");
 		log.info(ListUtil.toStringRemoveBrackets(testList));
-	}
-
-	/**
-	 * To array.
-	 */
-	@Test
-	public final void toArray(){
-		List<String> testList = new ArrayList<String>();
-		testList.add("xinge");
-		testList.add("feilong");
-
-		String[] array = ListUtil.toArray(testList);
-
-		log.info(JsonUtil.format(array));
 	}
 
 	/**

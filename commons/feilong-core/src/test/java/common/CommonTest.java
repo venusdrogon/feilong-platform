@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.TestConstants;
+import com.feilong.test.TestConstants;
 
 /**
  * 常量.
@@ -45,7 +45,7 @@ public class CommonTest{
 		Long[] orderIdArray = { 1L, 2L };
 
 		if (log.isDebugEnabled()){
-			log.debug("the param orderNumberArray:{},orderIdArray:{}", orderNumberArray, orderIdArray);
+			log.debug("the 4444 param orderNumberArray:{},orderIdArray:{}", orderNumberArray, orderIdArray);
 		}
 
 	}
