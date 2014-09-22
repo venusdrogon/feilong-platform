@@ -559,14 +559,14 @@ public final class StringUtil{
 		int startIndex = beginIndex + shift;
 		if (startIndex < 0){
 			String logInfo = StringBuilderUtil.append("beginIndex + shift <0,", "beginIndex:", beginIndex, ",shift:" + shift, ",text:"
-					+ text, ",text.length:", text.length());
+							+ text, ",text.length:", text.length());
 
 			throw new IllegalArgumentException(logInfo);
 		}else if (startIndex > text.length()){
 
 			if (log.isInfoEnabled()){
 				String logInfo = StringBuilderUtil.append("beginIndex + shift > text.length(),", "beginIndex:", beginIndex, ",shift:"
-						+ shift, ",text:" + text, ",text.length:", text.length());
+								+ shift, ",text:" + text, ",text.length:", text.length());
 				log.info(logInfo);
 			}
 
@@ -849,7 +849,7 @@ public final class StringUtil{
 				tokens.add(token);
 			}
 		}
-		return ListUtil.toArray(tokens);
+		return CollectionsUtil.toArray(tokens);
 	}
 
 	// [end]

@@ -99,11 +99,6 @@
 		<!--******** logback and slf4j ******** -->
 
 		<!--******** logback ******** -->
-		<dependency>
-			<groupId>org.logback-extensions</groupId>
-			<artifactId>logback-ext-spring</artifactId>
-			<version>${version.logbackExtSpring}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -121,6 +116,13 @@
 			<artifactId>logback-access</artifactId>
 			<version>${version.logback}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>${version.logbackExtSpring}</version>
+		</dependency>
+
 
 		<!--******** slf4j******** -->
 		<dependency>

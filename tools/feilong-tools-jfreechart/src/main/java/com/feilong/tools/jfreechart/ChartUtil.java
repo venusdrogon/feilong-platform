@@ -35,7 +35,6 @@ import org.jfree.ui.VerticalAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.TestConstants;
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.util.Validator;

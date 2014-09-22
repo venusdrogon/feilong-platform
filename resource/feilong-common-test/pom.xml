@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.feilong.test</groupId>
 	<artifactId>feilong-common-test</artifactId>
-	
+
 	<version>1.0.7</version>
 	<name>feilong-common-test</name>
 	<description>feilong-common-test</description>
@@ -11,11 +11,12 @@
 		<version.commons-lang3>3.3.2</version.commons-lang3>
 
 		<v.maven-compiler-plugin>3.1</v.maven-compiler-plugin>
+	<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
 
 		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
 		<maven-compiler-plugin.encoding>utf-8</maven-compiler-plugin.encoding>
-
+		
 	</properties>
 
 	<dependencies>
@@ -42,6 +43,18 @@
 					<encoding>${maven-compiler-plugin.encoding}</encoding>
 					<verbose>true</verbose>
 					<detail>true</detail>
+				</configuration>
+			</plugin>
+
+			<!-- maven-surefire-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${v.maven-surefire-plugin}</version>
+				<configuration>
+					<!-- 跳过测试 -->
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 		</plugins>

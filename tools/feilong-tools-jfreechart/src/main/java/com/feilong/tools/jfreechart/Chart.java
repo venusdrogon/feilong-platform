@@ -13,31 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core;
+package com.feilong.tools.jfreechart;
+
+import java.io.IOException;
+
+import org.jfree.chart.JFreeChart;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 常量.
- * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Mar 21, 2011 12:14:12 PM
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.8 2014年9月3日 下午12:24:36
+ * @since 1.0.8
  */
-public interface TestConstants{
+public interface Chart{
 
-	/** <code>{@value}</code>. */
-	String	testString	= "鑫哥爱feilong";
+	void createImage(ChartInfoEntity chartInfoEntity) throws IOException;
 
-	/** <code>{@value}</code>. */
-	String	original	= "鑫哥爱feilong";
-
-	/** <code>{@value}</code>. */
-	String	keyString	= "feilong";
-
-	/** The a. */
-	int		a			= 2147483647;
-
-	/**
-	 * 水印
-	 */
-	String	WATERMARK_PRESSIMG	= "E:\\DataFixed\\Material\\avatar\\1.印章 32 74.png";
-
+//	void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException;
 }
