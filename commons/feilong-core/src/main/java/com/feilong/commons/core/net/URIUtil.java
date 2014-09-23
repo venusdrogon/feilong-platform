@@ -33,6 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.StringUtil;
@@ -112,8 +113,7 @@ public final class URIUtil{
 			URI uri = URI.create(url);
 			return uri;
 		}catch (Exception e){
-			log.error("url:{}", url);
-			e.printStackTrace();
+			log.error(Slf4jUtil.formatMessage("url:[{}]", url), e);
 		}
 		return null;
 	}
