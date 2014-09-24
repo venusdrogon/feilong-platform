@@ -126,5 +126,17 @@
 			<version>${version.xom}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+
+		<!-- 规范下 xercesImpl版本 -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>
