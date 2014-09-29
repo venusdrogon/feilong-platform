@@ -15,28 +15,13 @@
             var chartData = [
                 {
                     "country": "Lithuania",
-                    "value": 260
+                    "value": 260,
+                    "color":"#FF00FF"
                 },
                 {
                     "country": "Ireland",
-                    "value": 201
-                },
-                {
-                    "country": "Germany",
-                    "value": 65
-                },
-                {
-                    "country": "Australia",
-                    "value": 39
-                },
-                {
-                    "country": "UK",
-                    "value": 19
-                },
-                {
-                    "country": "Latvia",
-                    "value": 10
-                }
+                    "value": 201,"color":"#111"
+                    }
             ];
 
             AmCharts.ready(function () {
@@ -45,6 +30,8 @@
                 chart.dataProvider = chartData;
                 chart.titleField = "country";
                 chart.valueField = "value";
+                chart.colorField="color";
+                    
                 chart.outlineColor = "#FFFFFF";
                 chart.outlineAlpha = 0.8;
                 chart.outlineThickness = 2;
