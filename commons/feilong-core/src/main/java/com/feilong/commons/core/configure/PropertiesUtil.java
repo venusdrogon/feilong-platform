@@ -46,6 +46,7 @@ public final class PropertiesUtil implements BaseConfigure{
 	 * @param properties
 	 *            the properties
 	 * @return the map
+	 * @see org.apache.commons.collections.MapUtils#toProperties(Map)
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Map<String, String> toMap(Properties properties){

@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.tools.json;
 
+import static org.junit.Assert.*;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,10 +42,10 @@ import com.feilong.test.UserInfo;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 15:31:11
  */
-public class JsonlibTest{
+public class JsonUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(JsonlibTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(JsonUtilTest.class);
 
 	/**
 	 * Name.
@@ -75,7 +77,7 @@ public class JsonlibTest{
 	 * Name1.
 	 */
 	@Test
-	public void name1(){
+	public void format(){
 		String json = getJsonString();
 
 		User user = JsonUtil.toBean(json, User.class);
@@ -145,5 +147,46 @@ public class JsonlibTest{
 		json = JsonUtil.toJSON(user).toString(4, 4);
 		log.info(json);
 		return json;
+	}
+
+	/**
+	 * TestJsonUtilTest.
+	 */
+	@Test
+	public void testJsonUtilTest(){
+
+		User user1 = new User("feilong1", 24);
+		user1.setId(8L);
+
+		User user2 = new User("feilong2", 240);
+
+		List<User> list = new ArrayList<User>();
+
+		list.add(user1);
+		list.add(user2);
+
+		String[] array = { "id", "name" };
+		log.info(JsonUtil.formatWithIncludes(list, array));
+
+		User[] users = { user1, user2 };
+		log.info(JsonUtil.formatWithIncludes(users, array));
+
+		List<String> list3 = new ArrayList<String>();
+
+		list3.add("2,5,8");
+		list3.add("2,5,9");
+
+		log.info(JsonUtil.formatWithIncludes(list3));
+		log.info(JsonUtil.formatWithIncludes(user1));
+
+	}
+
+	/**
+	 * TestJsonUtilTest.
+	 */
+	@Test
+	public void testJsonUtilTest1(){
+		Object[][] objects = { { "nike shoe", "500", 1 }, { "nike shoe2", "5000", 1 } };
+		log.info(JsonUtil.formatWithIncludes(objects));
 	}
 }

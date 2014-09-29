@@ -91,10 +91,27 @@ public class CollectionsUtilTest{
 		testList.add(new User(5L));
 		testList.add(new User(5L));
 
-		List<String> fieldValueList = CollectionsUtil.getPropertyValueList(testList, "id");
-		fieldValueList.add("7");
-		fieldValueList.add("8");
-		log.info(JsonUtil.format(fieldValueList));
+		List<Long> fieldValueCollection = CollectionsUtil.getPropertyValueList(testList, "id");
+		fieldValueCollection.add(7L);
+		fieldValueCollection.add(8L);
+		log.info(JsonUtil.format(fieldValueCollection));
+	}
+
+	/**
+	 * Test get field value set.
+	 */
+	@Test
+	public final void testGetFieldValueSet(){
+		List<User> testList = new ArrayList<User>();
+		testList.add(new User(2L));
+		testList.add(new User(5L));
+		testList.add(new User(5L));
+
+		Set<Long> fieldValueCollection = CollectionsUtil.getPropertyValueSet(testList, "id");
+		fieldValueCollection.add(7L);
+		fieldValueCollection.add(8L);
+		fieldValueCollection.add(5L);
+		log.info(JsonUtil.format(fieldValueCollection));
 	}
 
 	/**

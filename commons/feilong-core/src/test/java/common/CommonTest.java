@@ -125,20 +125,6 @@ public class CommonTest{
 	}
 
 	/**
-	 * Length.
-	 */
-	@Test
-	public void length(){
-		log.info("http://203.128.73.211/p/klikpayback/010000140002?s=30cbbe7a9bfcfc1131b018426e8560854bf507b3".length() + "");
-		log.info("http://s.mp2.com/??static/public/js/jquery.jqzoom-core.js,static/public/js/jquery.json-2.4.js,static/marketplace/js/item/memberFavorite.js,static/marketplace/js/buyNow/addShoppingCart.js,static/marketplace/messages/messageDetail_en_US.js,static/marketplace/js/item/itemPDPDetail.js,static/marketplace/js/item/itemPDPDetail_subData.js,static/marketplace/js/item/itemPDPDetail_paging.js,static/public/js/cascading/jquery.cascading.data.js,static/public/js/cascading/jquery.cascading.js,static/marketplace/js/item/youMayLikeItemForPDP.js,static/livechat/js/livechat.js,static/trade/js/tradeFeedbacks/rating.js?16b3adc77c0d3e9df617d3178fe43445"
-				.length() + "");
-		log.info("Rm.109-118, Building H, No.1188 Wanrong Road, Shanghai 200436".length() + "");
-		log.info("2F9AD12C10A4E1DCB1DAFA4177CFB7D71119E62033430ED5D90EEA70097E0F6B4FC61D15F6C150B110F328197B8828B7B485CCCED13EB58F1B445DB54FA033CDB9DF6AC21F1D8507"
-				.length() + "");
-		log.info("9F4FB63737EAFD60EEA0B8FBD546C9752A0D1621A348341F0B6D3AC2E6672EF3".length() + "");
-	}
-
-	/**
 	 * Re.
 	 */
 	@Test

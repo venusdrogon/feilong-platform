@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.net.ParamUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
