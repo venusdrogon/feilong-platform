@@ -31,10 +31,13 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.ParamUtil;
+import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -91,51 +94,50 @@ public final class HttpClientUtil{
 
 		Map<String, String> params = httpClientConfig.getParams();
 
-		HttpMethod httpMethod = null;
+		NameValuePair[] nameValuePairs = null;
+		if (Validator.isNotNullOrEmpty(params)){
+			nameValuePairs = NameValuePairUtil.fromMap(params);
+		}
+
+		//		HttpMethod httpMethod = null;
+
 		switch (httpMethodType) {
 			case GET:// 使用get方法
-				httpMethod = new GetMethod(uri);
+				GetMethod getMethod = new GetMethod(uri);
 
-				HttpMethodParams httpMethodParams = httpMethod.getParams();
+				HttpMethodParams httpMethodParams = getMethod.getParams();
 				// TODO
 				httpMethodParams.setParameter(HttpMethodParams.USER_AGENT, DEFAULT_USER_AGENT);
 
 				// 使用系统提供的默认的恢复策略
 				httpMethodParams.setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler());
 
-				if (Validator.isNotNullOrEmpty(params)){
-					for (Map.Entry<String, String> entry : params.entrySet()){
-						String key = entry.getKey();
-						String value = entry.getValue();
-						httpMethodParams.setParameter(key, value);
-					}
+				//				if (Validator.isNotNullOrEmpty(params)){
+				//					for (Map.Entry<String, String> entry : params.entrySet()){
+				//						String key = entry.getKey();
+				//						String value = entry.getValue();
+				//						httpMethodParams.setParameter(key, value);
+				//					}
+				//				}
+
+				//TODO 暂时还不支持 uri中含有参数且  nameValuePairs也有值的情况
+				if (Validator.isNotNullOrEmpty(nameValuePairs) && uri.indexOf("?") != -1){
+					throw new NotImplementedException("not implemented!");
 				}
-				break;
+				getMethod.setQueryString(nameValuePairs);
+
+				return getMethod;
 
 			case POST: // 使用post方法
 				PostMethod postMethod = new PostMethod(uri);
-				NameValuePair[] nameValuePairs = null;
-				if (Validator.isNotNullOrEmpty(params)){
-					nameValuePairs = new NameValuePair[params.size()];
-					int i = 0;
-					for (Map.Entry<String, String> entry : params.entrySet()){
-						String key = entry.getKey();
-						String value = entry.getValue();
-						nameValuePairs[i] = new NameValuePair(key, value);
-						i++;
-					}
-				}
 
 				if (Validator.isNotNullOrEmpty(nameValuePairs)){
 					postMethod.setRequestBody(nameValuePairs);
 				}
-				httpMethod = postMethod;
-				break;
+				return postMethod;
 			default:
 				throw new UnsupportedOperationException("httpMethod:" + httpMethodType + " not support!");
 		}
-
-		return httpMethod;
 	}
 
 	/**
@@ -170,7 +172,7 @@ public final class HttpClientUtil{
 				// log.debug("[httpMethod.getParams()]:{}", JsonUtil.format(httpMethodParams, excludes));
 
 				Map<String, Object> map = getHttpMethodRequestAttributeMapForLog(httpMethod);
-				log.debug(JsonUtil.format(map, new String[] { "values", "elements"
+				String[] excludes = new String[] { "values", "elements"
 				// "rawAuthority",
 				// "rawCurrentHierPath",
 				// "rawPath",
@@ -186,8 +188,8 @@ public final class HttpClientUtil{
 				// "protocol",
 				// "defaults",
 				// "class"
-
-						}));
+				};
+				log.debug(JsonUtil.format(map, excludes));
 			}
 
 			// 执行该方法后服务器返回的状态码
@@ -270,7 +272,7 @@ public final class HttpClientUtil{
 	 *             如果代码执行有异常会以HttpClientUtilException的形式抛出
 	 */
 	private static String getHttpMethodResponseBodyAsString(HttpMethod httpMethod,HttpClientConfig httpClientConfig)
-			throws HttpClientException{
+					throws HttpClientException{
 
 		try{
 			httpMethod = executeMethod(httpMethod, httpClientConfig);

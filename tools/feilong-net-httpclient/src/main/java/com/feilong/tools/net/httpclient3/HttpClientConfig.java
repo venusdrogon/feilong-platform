@@ -43,7 +43,7 @@ public class HttpClientConfig implements Serializable{
 	/** 一组包含安全规则和明文密码的凭据。这个实现对由HTTP标准规范中定义的标准认证模式是足够的. */
 	private UsernamePasswordCredentials	usernamePasswordCredentials;
 
-	/** 请求. */
+	/** 请求参数. */
 	private Map<String, String>			params;
 
 	/** 代理地址. */
@@ -54,7 +54,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 获得 访问的地址.
-	 * 
+	 *
 	 * @return the uri
 	 */
 	public String getUri(){
@@ -63,7 +63,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 设置 访问的地址.
-	 * 
+	 *
 	 * @param uri
 	 *            the uri to set
 	 */
@@ -73,7 +73,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 获得 协议.
-	 * 
+	 *
 	 * @return the httpMethodType
 	 */
 	public HttpMethodType getHttpMethodType(){
@@ -82,7 +82,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 设置 协议.
-	 * 
+	 *
 	 * @param httpMethodType
 	 *            the httpMethodType to set
 	 */
@@ -91,8 +91,27 @@ public class HttpClientConfig implements Serializable{
 	}
 
 	/**
-	 * 获得 请求.
-	 * 
+	 * 获得 一组包含安全规则和明文密码的凭据。这个实现对由HTTP标准规范中定义的标准认证模式是足够的.
+	 *
+	 * @return the usernamePasswordCredentials
+	 */
+	public UsernamePasswordCredentials getUsernamePasswordCredentials(){
+		return usernamePasswordCredentials;
+	}
+
+	/**
+	 * 设置 一组包含安全规则和明文密码的凭据。这个实现对由HTTP标准规范中定义的标准认证模式是足够的.
+	 *
+	 * @param usernamePasswordCredentials
+	 *            the usernamePasswordCredentials to set
+	 */
+	public void setUsernamePasswordCredentials(UsernamePasswordCredentials usernamePasswordCredentials){
+		this.usernamePasswordCredentials = usernamePasswordCredentials;
+	}
+
+	/**
+	 * 获得 请求参数.
+	 *
 	 * @return the params
 	 */
 	public Map<String, String> getParams(){
@@ -100,8 +119,8 @@ public class HttpClientConfig implements Serializable{
 	}
 
 	/**
-	 * 设置 请求.
-	 * 
+	 * 设置 请求参数.
+	 *
 	 * @param params
 	 *            the params to set
 	 */
@@ -111,7 +130,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 获得 代理地址.
-	 * 
+	 *
 	 * @return the proxyAddress
 	 */
 	public String getProxyAddress(){
@@ -120,7 +139,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 设置 代理地址.
-	 * 
+	 *
 	 * @param proxyAddress
 	 *            the proxyAddress to set
 	 */
@@ -130,7 +149,7 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 获得 代理port.
-	 * 
+	 *
 	 * @return the proxyPort
 	 */
 	public int getProxyPort(){
@@ -139,31 +158,11 @@ public class HttpClientConfig implements Serializable{
 
 	/**
 	 * 设置 代理port.
-	 * 
+	 *
 	 * @param proxyPort
 	 *            the proxyPort to set
 	 */
 	public void setProxyPort(int proxyPort){
 		this.proxyPort = proxyPort;
 	}
-
-	/**
-	 * 获得 一组包含安全规则和明文密码的凭据。这个实现对由HTTP标准规范中定义的标准认证模式是足够的.
-	 * 
-	 * @return the usernamePasswordCredentials
-	 */
-	public UsernamePasswordCredentials getUsernamePasswordCredentials(){
-		return usernamePasswordCredentials;
-	}
-
-	/**
-	 * 设置 一组包含安全规则和明文密码的凭据。这个实现对由HTTP标准规范中定义的标准认证模式是足够的.
-	 * 
-	 * @param usernamePasswordCredentials
-	 *            the usernamePasswordCredentials to set
-	 */
-	public void setUsernamePasswordCredentials(UsernamePasswordCredentials usernamePasswordCredentials){
-		this.usernamePasswordCredentials = usernamePasswordCredentials;
-	}
-
 }

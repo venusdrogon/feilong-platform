@@ -116,4 +116,36 @@ public class HttpClientUtilTest{
 		// JSONObject jsonObject = new JSONObject(responseBodyAsString);
 		// log.debug(jsonObject.toString(4));
 	}
+
+	/**
+	 * Check tcash transaction.
+	 *
+	 * @throws HttpClientException
+	 *             the http client exception
+	 * @throws JSONException
+	 *             the JSON exception
+	 */
+	@Test
+	public void checkTcashTransaction() throws HttpClientException,JSONException{
+		//		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction?refNum=290914112053368&userKey=testing&passKey=1234&signKey=1234";
+		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction";
+		Map<String, String> params = new HashMap<String, String>();
+
+		params.put("terminalId", "8021");
+		params.put("refNum", "290914112053368");
+		params.put("userKey", "testing");
+		params.put("passKey", "1234");
+		params.put("signKey", "1234");
+
+		HttpClientConfig httpClientConfig = new HttpClientConfig();
+
+		httpClientConfig.setUri(uri);
+		httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+		httpClientConfig.setParams(params);
+
+		String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+		if (log.isInfoEnabled()){
+			log.info(responseBodyAsString);
+		}
+	}
 }
