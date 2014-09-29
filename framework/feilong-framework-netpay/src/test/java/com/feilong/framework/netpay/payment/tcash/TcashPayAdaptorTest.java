@@ -18,8 +18,6 @@ package com.feilong.framework.netpay.payment.tcash;
 import java.util.Map;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -34,13 +32,10 @@ import com.feilong.framework.netpay.payment.PaymentAdaptor;
  */
 public class TcashPayAdaptorTest extends BasePaymentTest{
 
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(TcashPayAdaptorTest.class);
-
 	/** The payment adaptor. */
 	@Autowired
 	@Qualifier("tcashPayAdaptor")
-	private PaymentAdaptor		paymentAdaptor;
+	private PaymentAdaptor	paymentAdaptor;
 
 	/**
 	 * Creates the payment form.

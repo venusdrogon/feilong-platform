@@ -15,6 +15,8 @@
  */
 package com.feilong.framework.netpay.payment.tcash;
 
+import net.sf.json.JsonConfig;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +45,8 @@ public class PublicTokenResponseTest{
 		PublicTokenResponse publicTokenResponse = JsonUtil.toBean(json, PublicTokenResponse.class);
 
 		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(publicTokenResponse));
+			String[] excludes = { "class" };
+			log.debug(JsonUtil.format(publicTokenResponse, excludes, 0, 0));
 		}
 
 	}
