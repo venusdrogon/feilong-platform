@@ -29,6 +29,8 @@
 
 				<entry key="bca_klikpay" value-ref="sprintAsiaKlikPayAdaptor"></entry>
 				<entry key="bca_creditcard" value-ref="sprintAsiaCreditCardAdaptor"></entry>
+				
+				<entry key="bca_tcash" value-ref="tcashPayAdaptor"></entry>
 			</map>
 		</property>
 	</bean>
@@ -44,7 +46,6 @@
 	<!-- DOKU -->
 	<import resource="classpath:spring/payment/payment/adaptor-doku.xml" />
 
-
 	<!-- sprintasia 3个支付方式 参数都不一样没有共同性 -->
 
 	<!-- sprintasia-klikPay -->
@@ -55,4 +56,7 @@
 
 	<!-- sprintasia-creditCard -->
 	<import resource="classpath:spring/payment/payment/adaptor-sprintasia-creditCard.xml" />
+
+	<!-- t-cash -->
+	<import resource="classpath:spring/payment/payment/adaptor-tcash.xml" />
 </beans>

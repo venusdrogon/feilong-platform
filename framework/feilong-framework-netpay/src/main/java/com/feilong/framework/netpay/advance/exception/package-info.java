@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 /**
- *相关异常
+ *支付异常工具包
  * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
  * @version 1.0.6 2014年5月10日 上午3:28:09 
  * @since 1.0.6
  */
-package com.feilong.framework.netpay.payment.exception;
+package com.feilong.framework.netpay.advance.exception;

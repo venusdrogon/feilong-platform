@@ -31,6 +31,7 @@ import com.feilong.framework.netpay.advance.adaptor.sprintasia.creditcard.comman
 import com.feilong.framework.netpay.advance.adaptor.sprintasia.creditcard.util.CreditCardQueryResultPaser;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
+import com.feilong.framework.netpay.advance.exception.TradeQueryException;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.command.TransactionStatus;
 import com.feilong.webservice.cxf.JaxWsDynamicClientUtil;
@@ -67,14 +68,14 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 	 * Gets the query result.<br>
 	 * 他们还在使用 RPC/encoded is a vestige from before SOAP objects were defined with XML Schema.<br>
 	 * JAX-WS doesn't support rpc/enc Web Services
-	 * 
+	 *
 	 * @param queryRequest
 	 *            the query request
 	 * @return the query result
-	 * @throws Exception
-	 *             the exception
+	 * @throws TradeQueryException
+	 *             the query exception
 	 */
-	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
 		// @formatter:off
 
@@ -186,13 +187,13 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 		try{
 
 			String wddxPacketXML = JaxWsDynamicClientUtil.call(
-					queryGateway,
-					queryOperationName,
-					merchantTransactionID,
-					queryServiceVersion,
-					siteID,
-					transactionID,
-					TransactionType.AUTHORIZATION);
+							queryGateway,
+							queryOperationName,
+							merchantTransactionID,
+							queryServiceVersion,
+							siteID,
+							transactionID,
+							TransactionType.AUTHORIZATION);
 			// ******************************************************************
 			CreditCardQueryResultPaser creditCardQueryResultPaser = new CreditCardQueryResultPaser();
 			CreditCardQueryResult creditCardQueryResult = creditCardQueryResultPaser.parseXML(wddxPacketXML);
@@ -217,9 +218,8 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 			queryResult.setTradeNo(merchantTransactionID);
 			return queryResult;
 		}catch (Exception e){
-			log.error("{},queryRequest:{}", e.getMessage(), JsonUtil.format(queryRequest));
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			log.error("queryRequest:" + JsonUtil.format(queryRequest), e);
+			throw new TradeQueryException(e);
 		}
 	}
 

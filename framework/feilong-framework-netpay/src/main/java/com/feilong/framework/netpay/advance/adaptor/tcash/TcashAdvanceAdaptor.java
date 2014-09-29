@@ -32,7 +32,7 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
-import com.feilong.framework.netpay.advance.exception.QueryTradeException;
+import com.feilong.framework.netpay.advance.exception.TradeQueryException;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
@@ -88,7 +88,7 @@ public class TcashAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 	 * @see com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.framework.netpay.advance.command.
 	 * QueryRequest)
 	 */
-	public QueryResult getQueryResult(QueryRequest queryRequest) throws QueryTradeException{
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
 		// *************************************************************
 		String merchantTransactionID = queryRequest.getTradeNo();
@@ -124,7 +124,7 @@ public class TcashAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 		try{
 			byMethodValueIgnoreCase = HttpMethodType.getByMethodValueIgnoreCase(checkTransactionStatusMethod);
 		}catch (NoSuchFieldException e){
-			throw new QueryTradeException(e);
+			throw new TradeQueryException(e);
 		}
 		httpClientConfig.setHttpMethodType(byMethodValueIgnoreCase);
 
@@ -180,7 +180,7 @@ public class TcashAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 			return queryResult;
 		}catch (Exception e){
 			log.error("queryRequest:" + JsonUtil.format(queryRequest), e);
-			throw new QueryTradeException(e);
+			throw new TradeQueryException(e);
 		}
 	}
 

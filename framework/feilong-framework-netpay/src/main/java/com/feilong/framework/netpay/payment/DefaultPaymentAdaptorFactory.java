@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.Validator;
+import com.feilong.framework.netpay.payment.exception.PaymentAdaptorNotFoundException;
 
 /**
  * 支付对外的接口 {@link DefaultPaymentAdaptorFactory} 的实现是基于 map隐射决定的,可以定制.
@@ -44,9 +45,10 @@ public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptorManager#getPaymentAdaptor(java.lang.String)
+	 * 
+	 * @see com.feilong.framework.netpay.payment.PaymentAdaptorFactory#getPaymentAdaptor(java.lang.String)
 	 */
-	public PaymentAdaptor getPaymentAdaptor(String paymentType){
+	public PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException{
 		if (Validator.isNullOrEmpty(paymentAdaptorMap)){
 			throw new IllegalArgumentException("paymentAdaptorMap can't be null/empty!");
 		}
@@ -56,7 +58,10 @@ public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
 		// if (Constants.pay_isCanGoToPay){
 
 		if (!paymentAdaptorMap.containsKey(paymentType)){
-			throw new IllegalArgumentException("paymentAdaptorMap not containsKey paymentType:[{" + paymentType + "}]");
+			throw new PaymentAdaptorNotFoundException(
+							"paymentAdaptorMap not containsKey paymentType:[{}],paymentAdaptorMap info:{}",
+							paymentType,
+							paymentAdaptorMap);
 		}
 		PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
 		return paymentAdaptor;

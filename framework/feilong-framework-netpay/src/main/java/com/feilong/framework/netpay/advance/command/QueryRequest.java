@@ -32,6 +32,9 @@ public class QueryRequest implements Serializable{
 	/** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
 	private String				tradeNo;
 
+	/** 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash. */
+	private String				gatewayTradeNo;
+
 	/** 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定. */
 	private Serializable		buyer;
 
@@ -71,6 +74,25 @@ public class QueryRequest implements Serializable{
 	 */
 	public void setBuyer(Serializable buyer){
 		this.buyer = buyer;
+	}
+
+	/**
+	 * 获得 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash.
+	 * 
+	 * @return the gatewayTradeNo
+	 */
+	public String getGatewayTradeNo(){
+		return gatewayTradeNo;
+	}
+
+	/**
+	 * 设置 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash.
+	 * 
+	 * @param gatewayTradeNo
+	 *            the gatewayTradeNo to set
+	 */
+	public void setGatewayTradeNo(String gatewayTradeNo){
+		this.gatewayTradeNo = gatewayTradeNo;
 	}
 
 }

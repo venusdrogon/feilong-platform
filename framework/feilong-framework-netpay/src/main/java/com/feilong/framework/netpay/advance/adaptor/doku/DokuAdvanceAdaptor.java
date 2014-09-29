@@ -37,6 +37,7 @@ import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult
 import com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultParse;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
+import com.feilong.framework.netpay.advance.exception.TradeQueryException;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.doku.command.Resultmsg;
 import com.feilong.framework.netpay.payment.adaptor.doku.util.DokuAdaptorUtil;
@@ -114,11 +115,12 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * com.feilong.netpay.advanceadaptor.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest
 	 * )
 	 */
-	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
+	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
 		// queryRequest
 		if (Validator.isNullOrEmpty(queryRequest)){
@@ -135,12 +137,18 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 		Serializable buyer = queryRequest.getBuyer();
 		if (Validator.isNullOrEmpty(buyer)){
 			throw new IllegalArgumentException(
-					"buyer can't be null/empty!,this time,queryRequest.getBuyer() use for generateSessionId,very important!");
+							"buyer can't be null/empty!,this time,queryRequest.getBuyer() use for generateSessionId,very important!");
 		}
-		HttpMethodType httpMethodType = EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", queryMethod);
+		HttpMethodType httpMethodType = null;
+		try{
+			httpMethodType = EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", queryMethod);
+		}catch (NoSuchFieldException e){
+			throw new TradeQueryException(e);
+		}
+
 		if (Validator.isNullOrEmpty(httpMethodType)){
 			throw new IllegalArgumentException(
-					"httpMethodType can't be null/empty!Do you Forget to configure correct queryMethod?and only support get/post now");
+							"httpMethodType can't be null/empty!Do you Forget to configure correct queryMethod?and only support get/post now");
 		}
 
 		// ***********************************************************************************

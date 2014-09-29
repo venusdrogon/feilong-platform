@@ -15,9 +15,11 @@
  */
 package com.feilong.framework.netpay.advance;
 
+import com.feilong.framework.netpay.advance.exception.PaymentAdvanceAdaptorNotFoundException;
+
 /**
- * 高级支付adaptor适配
- * 
+ * 高级支付adaptor适配.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月9日 上午1:18:57
  * @since 1.0.6
@@ -26,10 +28,12 @@ public interface PaymentAdvanceAdaptorFactory{
 
 	/**
 	 * 通过支付类型 获得PaymentAdvanceAdaptor.
-	 * 
+	 *
 	 * @param paymentType
 	 *            支付类型
 	 * @return the payment adaptor
+	 * @throws PaymentAdvanceAdaptorNotFoundException
+	 *             找不到 {@link PaymentAdvanceAdaptor},将会抛出这个异常
 	 */
-	PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType);
+	PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException;
 }

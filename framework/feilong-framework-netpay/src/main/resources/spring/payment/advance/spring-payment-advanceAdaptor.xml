@@ -32,4 +32,7 @@
 
 	<!-- sprintasia-creditCard -->
 	<import resource="classpath:spring/payment/advance/advanceAdaptor-sprintasia-creditCard.xml" />
+	
+	<!-- advanceAdaptor-tcash.xml -->
+	<import resource="classpath:spring/payment/advance/advanceAdaptor-tcash.xml" />
 </beans>

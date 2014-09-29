@@ -13,28 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.framework.netpay.payment.exception;
+package com.feilong.framework.netpay.advance.exception;
 
 import com.feilong.commons.core.log.Slf4jUtil;
-import com.feilong.framework.netpay.payment.PaymentAdaptor;
-import com.feilong.framework.netpay.payment.PaymentAdaptorFactory;
+import com.feilong.framework.netpay.advance.PaymentAdvanceAdaptor;
+import com.feilong.framework.netpay.advance.command.TradeRole;
 
 /**
- * 如果 {@link PaymentAdaptorFactory} 找不到 {@link PaymentAdaptor},将会抛出这个异常.
+ * 如果调用关闭接口 {@link PaymentAdvanceAdaptor#closeTrade(String, TradeRole)},出现异常,将会抛出这个异常.<br>
+ * check exception
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.6 2014-5-10 3:30:00
- * @see RuntimeException
+ * @version 1.0.8 2014-9-29 12:36
+ * @see Exception
+ * @since 1.0.8
  */
-public class PaymentAdaptorNotFoundException extends RuntimeException{
+public class TradeCloseException extends Exception{
 
 	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 4485565007832406655L;
+	private static final long	serialVersionUID	= 7111227268129628604L;
 
 	/**
-	 * Instantiates a new payment adaptor not found exception.
+	 * The Constructor.
 	 */
-	public PaymentAdaptorNotFoundException(){
+	public TradeCloseException(){
 		super();
 	}
 
@@ -46,39 +48,39 @@ public class PaymentAdaptorNotFoundException extends RuntimeException{
 	 * @param args
 	 *            the args
 	 */
-	public PaymentAdaptorNotFoundException(String messagePattern, Object...args){
+	public TradeCloseException(String messagePattern, Object...args){
 		super(Slf4jUtil.formatMessage(messagePattern, args));
 	}
 
 	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 * 
+	 * The Constructor.
+	 *
 	 * @param message
 	 *            the message
 	 */
-	public PaymentAdaptorNotFoundException(String message){
+	public TradeCloseException(String message){
 		super(message);
 	}
 
 	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 * 
+	 * The Constructor.
+	 *
 	 * @param cause
 	 *            the cause
 	 */
-	public PaymentAdaptorNotFoundException(Throwable cause){
+	public TradeCloseException(Throwable cause){
 		super(cause);
 	}
 
 	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 * 
+	 * The Constructor.
+	 *
 	 * @param message
 	 *            the message
 	 * @param cause
 	 *            the cause
 	 */
-	public PaymentAdaptorNotFoundException(String message, Throwable cause){
+	public TradeCloseException(String message, Throwable cause){
 		super(message, cause);
 	}
 }

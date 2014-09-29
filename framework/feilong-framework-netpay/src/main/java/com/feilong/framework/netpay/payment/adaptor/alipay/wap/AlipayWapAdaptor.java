@@ -37,6 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
+import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.commons.security.oneway.MD5Util;
@@ -44,7 +45,6 @@ import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
-import com.feilong.servlet.http.ParamUtil;
 import com.feilong.servlet.http.RequestUtil;
 
 /**

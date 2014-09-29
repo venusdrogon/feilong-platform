@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,6 +56,14 @@ public class PayRequest implements Serializable{
 	 * 而DOKU,BCA等印尼的网站就不一样, 他们这些配置是提前告诉他们gateway的工作人员, 他们来配置,是固定的地址,如果需要更改,需要通知他们来更改,我们自己不能直接更改.
 	 */
 	private String				returnUrl;
+
+	/**
+	 * (optional)支付网关客户端跳转到商城的url地址(失败的时候地址)<br>
+	 * (不同的支付网关对这个参数的配置需求不一样)<br>
+	 * 比如T-Cash支持传递这个参数,这样本地开发环境,staging环境,以及正式环境均可灵活更改url信息<br>
+	 * 而DOKU,BCA等印尼的网站就不一样, 他们这些配置是提前告诉他们gateway的工作人员, 他们来配置,是固定的地址,如果需要更改,需要通知他们来更改,我们自己不能直接更改.
+	 */
+	private String				returnFailUrl;
 
 	/** (optional)买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
 	private String				buyerName;
@@ -279,5 +287,30 @@ public class PayRequest implements Serializable{
 	 */
 	public void setBuyer(Serializable buyer){
 		this.buyer = buyer;
+	}
+
+	/**
+	 * 获得 (optional)支付网关客户端跳转到商城的url地址(失败的时候地址)<br>
+	 * (不同的支付网关对这个参数的配置需求不一样)<br>
+	 * 比如T-Cash支持传递这个参数,这样本地开发环境,staging环境,以及正式环境均可灵活更改url信息<br>
+	 * 而DOKU,BCA等印尼的网站就不一样, 他们这些配置是提前告诉他们gateway的工作人员, 他们来配置,是固定的地址,如果需要更改,需要通知他们来更改,我们自己不能直接更改.
+	 *
+	 * @return the returnFailUrl
+	 */
+	public String getReturnFailUrl(){
+		return returnFailUrl;
+	}
+
+	/**
+	 * 设置 (optional)支付网关客户端跳转到商城的url地址(失败的时候地址)<br>
+	 * (不同的支付网关对这个参数的配置需求不一样)<br>
+	 * 比如T-Cash支持传递这个参数,这样本地开发环境,staging环境,以及正式环境均可灵活更改url信息<br>
+	 * 而DOKU,BCA等印尼的网站就不一样, 他们这些配置是提前告诉他们gateway的工作人员, 他们来配置,是固定的地址,如果需要更改,需要通知他们来更改,我们自己不能直接更改.
+	 *
+	 * @param returnFailUrl
+	 *            the returnFailUrl to set
+	 */
+	public void setReturnFailUrl(String returnFailUrl){
+		this.returnFailUrl = returnFailUrl;
 	}
 }

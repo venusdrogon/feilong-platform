@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.Validator;
+import com.feilong.framework.netpay.advance.exception.PaymentAdvanceAdaptorNotFoundException;
 
 /**
  * PaymentAdvanceAdaptorManagerImpl.
@@ -45,9 +46,10 @@ public class DefaultAdvanceAdaptorManagerFactory implements PaymentAdvanceAdapto
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptorManager#getPaymentAdvanceAdaptor(java.lang.String)
+	 * 
+	 * @see com.feilong.framework.netpay.advance.PaymentAdvanceAdaptorFactory#getPaymentAdvanceAdaptor(java.lang.String)
 	 */
-	public PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType){
+	public PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException{
 		if (Validator.isNullOrEmpty(paymentAdvanceAdaptorMap)){
 			throw new IllegalArgumentException("paymentAdvanceAdaptorMap can't be null/empty!");
 		}
@@ -55,7 +57,10 @@ public class DefaultAdvanceAdaptorManagerFactory implements PaymentAdvanceAdapto
 			throw new IllegalArgumentException("paymentType can't be null/empty!");
 		}
 		if (!paymentAdvanceAdaptorMap.containsKey(paymentType)){
-			throw new IllegalArgumentException("paymentAdvanceAdaptorMap not containsKey paymentType:[{" + paymentType + "}]");
+			throw new PaymentAdvanceAdaptorNotFoundException(
+							"paymentAdvanceAdaptorMap not containsKey paymentType:[{}],paymentAdvanceAdaptorMap info:{}",
+							paymentType,
+							paymentAdvanceAdaptorMap);
 		}
 		PaymentAdvanceAdaptor paymentAdvanceAdaptor = paymentAdvanceAdaptorMap.get(paymentType);
 		return paymentAdvanceAdaptor;

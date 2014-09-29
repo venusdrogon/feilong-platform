@@ -28,7 +28,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.advance.command.TradeRole;
-import com.feilong.tools.net.httpclient3.HttpClientException;
+import com.feilong.framework.netpay.advance.exception.TradeCloseException;
 
 /**
  * PaymentAdvanceAdaptor接口的默认实现,抽象,目前所有实现的方法均 throw {@link NotImplementedException}.
@@ -67,7 +67,7 @@ public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAda
 	 * 
 	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest)
 	 */
-	public QueryResult getQueryResult(QueryRequest queryRequest) throws Exception{
+	public QueryResult getQueryResult(QueryRequest queryRequest){
 		// 抛出表示代码块尚未实施。这一例外补充UnsupportedOperationException异常提供更加丰富的语义描述的问题。
 		// NotImplementedException代表作者已经实现的逻辑在程序中的情况。这可以作为基础的TODO标记一个例外。因为这个逻辑可能在catch块，该异常等异常链。
 		throw new NotImplementedException("getQueryResult is not implemented!");
@@ -87,7 +87,7 @@ public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAda
 	 * 
 	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#closeTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
 	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException{
 		throw new NotImplementedException("closeTrade is not implemented!");
 	}
 }

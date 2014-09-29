@@ -17,12 +17,11 @@ package com.feilong.framework.netpay.payment;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,9 +35,8 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.NumberUtil;
+import com.feilong.framework.netpay.PaymentTest;
 import com.feilong.framework.netpay.payment.command.PayRequest;
-import com.feilong.framework.netpay.payment.command.PaySoLine;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 import com.feilong.tools.velocity.VelocityUtil;
 
@@ -64,57 +62,6 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	private boolean					openFile			= true;
 
 	/**
-	 * @return
-	 */
-	private PayRequest constructPayRequest(){
-
-		/** The code. */
-		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
-		//code="feilong1111";
-
-		// ******************************************************************
-		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
-		return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
-		String notify_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
-
-		int per = 100;
-
-		BigDecimal total_fee = new BigDecimal(60.00f * per);
-
-		PayRequest payRequest = new PayRequest();
-
-		payRequest.setTradeNo(code);
-		payRequest.setTotalFee(total_fee);
-		payRequest.setBuyerEmail("venusdrogon@163.com");
-		payRequest.setBuyerName("jinxin");
-		payRequest.setBuyer(888);
-
-		payRequest.setTransferFee(new BigDecimal(10.00f * per));
-
-		List<PaySoLine> paySoLineList = payRequest.getPaySoLineList();
-
-		PaySoLine paySoLine1 = new PaySoLine();
-		paySoLine1.setItemName("nike ;s free 5.0");
-		paySoLine1.setUnitPrice(new BigDecimal(20 * per));
-		paySoLine1.setQuantity(1);
-		paySoLine1.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine1.getUnitPrice(), paySoLine1.getQuantity()));
-		paySoLineList.add(paySoLine1);
-
-		PaySoLine paySoLine2 = new PaySoLine();
-		paySoLine2.setItemName("nike free 4.0");
-		paySoLine2.setUnitPrice(new BigDecimal(15 * per));
-		paySoLine2.setQuantity(2);
-		paySoLine2.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine2.getUnitPrice(), paySoLine2.getQuantity()));
-		paySoLineList.add(paySoLine2);
-
-		payRequest.setCreateDate(new Date());
-
-		payRequest.setReturnUrl(return_url);
-		payRequest.setNotifyUrl(notify_url);
-		return payRequest;
-	}
-
-	/**
 	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
 	 * 
 	 * @param paymentAdaptor
@@ -123,7 +70,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	 *            the special sign map
 	 */
 	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
-		PayRequest payRequest = constructPayRequest();
+		PayRequest payRequest = PaymentTest.construcTestPayRequest();
 
 		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
 
@@ -151,13 +98,21 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
 			log.info(html);
 
-			try{
-				IOWriteUtil.write(filePath, html, encode_file);
-				DesktopUtil.browse(filePath);
-			}catch (IOException e){
-				e.printStackTrace();
-			}
+			writeAndOpen(filePath, html);
 			// }
+		}
+	}
+
+	/**
+	 * @param filePath
+	 * @param html
+	 */
+	private void writeAndOpen(String filePath,String html){
+		try{
+			IOWriteUtil.write(filePath, html, encode_file);
+			DesktopUtil.open(filePath);
+		}catch (IOException e){
+			e.printStackTrace();
 		}
 	}
 
@@ -167,9 +122,11 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 	private String getFilePath(){
 		Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
 		Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
-		String fileName = qualifier.value() + DateUtil.date2String(new Date(), DatePattern.timestamp);
+		String paymentAdaptorName = qualifier.value();
+		String fileName = paymentAdaptorName + DateUtil.date2String(new Date(), DatePattern.timestamp);
 
-		String filePath = "F:/payment/" + fileName + ".html";
+		String folderPath = SystemUtils.USER_HOME + "\\feilong\\payment\\" + paymentAdaptorName;
+		String filePath = folderPath + "\\" + fileName + ".html";
 		return filePath;
 	}
 }

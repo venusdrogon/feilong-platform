@@ -30,11 +30,12 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.command.TradeRole;
-import com.feilong.servlet.http.ParamUtil;
+import com.feilong.framework.netpay.advance.exception.TradeCloseException;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientException;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
@@ -81,9 +82,10 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws HttpClientException{
+	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException,IllegalArgumentException{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("service", service_close_trade);
 		params.put("partner", partner);
@@ -119,6 +121,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#isSupportCloseTrade()
 	 */
 	public boolean isSupportCloseTrade(){
@@ -127,14 +130,16 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/**
 	 * 关闭交易.
-	 * 
+	 *
 	 * @param params
 	 *            参数
 	 * @return true, if successful
+	 * @throws TradeCloseException
+	 *             the close trade exception
 	 * @throws HttpClientException
 	 *             the http client util exception
 	 */
-	private boolean _closeTrade(Map<String, String> params) throws HttpClientException{
+	private boolean _closeTrade(Map<String, String> params) throws TradeCloseException,HttpClientException{
 		String closeTradeUrl = getCloseTradeUrl(params);
 
 		HttpClientConfig httpClientConfig = new HttpClientConfig();
@@ -149,7 +154,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 				Map<String, String> resultMap = convertResultToMap(returnXML);
 				String errorMessage = resultMap.get("error");
 				if ("T".equals(resultMap.get("is_success"))// 取消訂單成功
-						|| "TRADE_NOT_EXIST".equals(errorMessage)// 交易不存在
+								|| "TRADE_NOT_EXIST".equals(errorMessage)// 交易不存在
 				){
 					return true;
 				}
@@ -158,6 +163,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 				log.error("close trade error : out_order_no:[{}],info:[{}],closeTradeUrl:{}", args);
 			}catch (DocumentException e){
 				e.printStackTrace();
+				throw new TradeCloseException(e);
 			}
 		}
 		return false;
@@ -165,11 +171,11 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/**
 	 * 生成请求连接.
-	 * 
+	 *
+	 * @author xialong
 	 * @param params
 	 *            the params
 	 * @return the close trade url
-	 * @author xialong
 	 */
 	// TODO
 	private String getCloseTradeUrl(Map<String, String> params){
@@ -189,13 +195,13 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 	/**
 	 * 解析支付宝返回的xml信息.
-	 * 
+	 *
+	 * @author xialong
 	 * @param alipayResult
 	 *            the alipay result
 	 * @return the map
 	 * @throws DocumentException
 	 *             the document exception
-	 * @author xialong
 	 */
 	private static Map<String, String> convertResultToMap(String alipayResult) throws DocumentException{
 		log.info("alipayResult :\n {}", alipayResult);

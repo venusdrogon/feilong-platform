@@ -33,7 +33,7 @@ public interface PaymentAdaptorFactory{
 	 *            支付类型,目前暂定为 String类型,将来可能会升级
 	 * @return {@link PaymentAdaptor}
 	 * @throws PaymentAdaptorNotFoundException
-	 *             找不到PaymentAdaptor, 将会抛出这个异常
+	 *             找不到 {@link PaymentAdaptor}, 将会抛出这个异常
 	 */
 	PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException;
 }
