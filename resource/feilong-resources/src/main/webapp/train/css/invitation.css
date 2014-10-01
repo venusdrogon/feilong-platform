@@ -33,16 +33,19 @@
 #declaration {
 	border: 1px solid #e8e8e8;
 	background-color: #FAFCFD;
-	font-family: '楷体';
-	text-indent: 38px;
-	line-height: 26px;
 	-moz-border-radius: 12px;
 	-webkit-border-radius: 12px;
 	border-radius: 12px;
 	padding: 18px 18px;
 	text-shadow: 4px 4px 6px #ccc;
-	color: #555;
 	margin: 26px 18px 40px 18px;
+}
+
+#declaration, #declaration * {
+	font-family: '楷体';
+	text-indent: 38px;
+	line-height: 26px;
+	color: #555;
 }
 
 .indexTd {

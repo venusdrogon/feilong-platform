@@ -18,6 +18,7 @@
 	<li><input name="paymentType" type="radio" value="153" /> doku ATM</li>
 	<li><input name="paymentType" type="radio" value="154" /> bca CreditCard</li>
 	<li><input name="paymentType" type="radio" value="155" /> bca klikpay</li>
+	<li><input name="paymentType" type="radio" value="bca_tcash" />t-cash</li>
 <!-- 	<li><input name="paymentType" type="radio" value="156" /> bca KlikBCA</li> -->
 </ul>
 

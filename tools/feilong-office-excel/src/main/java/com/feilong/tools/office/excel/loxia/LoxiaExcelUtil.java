@@ -28,11 +28,15 @@ import loxia.support.excel.ExcelReader;
 import loxia.support.excel.ExcelWriter;
 import loxia.support.excel.ReadStatus;
 import loxia.support.excel.WriteStatus;
+import loxia.support.excel.convertor.DataConvertorConfigurator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.office.excel.loxia.convertor.BooleanConvertor;
 
 /**
  * The Class LoxiaExcelUtil.
@@ -41,6 +45,11 @@ public abstract class LoxiaExcelUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(LoxiaExcelUtil.class);
+
+	static{
+		//处理boolean 类型
+		DataConvertorConfigurator.getInstance().registerDataConvertor(new BooleanConvertor());
+	}
 
 	/**
 	 * 获得 list.
@@ -62,11 +71,56 @@ public abstract class LoxiaExcelUtil{
 	 *             the IO exception
 	 */
 	public static <T> List<T> getList(String configuration,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
+		String[] configurations = { configuration };
+		return getList(configurations, sheet, dataName, fileName, sheetNo);
+	}
+
+	/**
+	 * 获得 list.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param configurations
+	 *            the configurations
+	 * @param sheet
+	 *            the sheet
+	 * @param dataName
+	 *            the data name
+	 * @param fileName
+	 *            the file name
+	 * @param sheetNo
+	 *            the sheet no
+	 * @return the list
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	public static <T> List<T> getList(String[] configurations,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
 		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
-		excelManipulatorFactory.setConfig(configuration);
+		excelManipulatorFactory.setConfig(configurations);
 
 		ExcelReader excelReader = excelManipulatorFactory.createExcelReader(sheet);
 
+		return getList(excelReader, dataName, fileName, sheetNo);
+	}
+
+	/**
+	 * 获得 list.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param excelReader
+	 *            the excel reader
+	 * @param dataName
+	 *            the data name
+	 * @param fileName
+	 *            the file name
+	 * @param sheetNo
+	 *            the sheet no
+	 * @return the list
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	public static <T> List<T> getList(ExcelReader excelReader,String dataName,String fileName,int sheetNo) throws IOException{
 		InputStream is = IOUtil.getFileInputStream(fileName);
 
 		Map<String, Object> beans = new HashMap<String, Object>();
@@ -74,18 +128,28 @@ public abstract class LoxiaExcelUtil{
 
 		ReadStatus readStatus = excelReader.readSheet(is, sheetNo, beans);
 
-		if (readStatus.getStatus() == ReadStatus.STATUS_SUCCESS){
+		int status = readStatus.getStatus();
+		if (status == ReadStatus.STATUS_SUCCESS){
 			@SuppressWarnings("unchecked")
 			List<T> trainSignUpEntityList = (List<T>) beans.get(dataName);
 			return trainSignUpEntityList;
+		}else{
+
+			List<Exception> exceptions = readStatus.getExceptions();
+
+			if (Validator.isNotNullOrEmpty(exceptions)){
+				log.error("read excel exception,readStatus:[" + readStatus.getStatus() + "],getMessage:[" + readStatus.getMessage()
+								+ "],and exceptions size is :[" + exceptions.size() + "],first exception is:", exceptions.get(0));
+			}
+
+			throw new IOException("read excel exception,and exceptions size is :[" + exceptions.size() + "]");
 		}
-		return null;
 	}
 
 	/**
 	 * Write.
 	 *
-	 * @param configuration
+	 * @param configurations
 	 *            the configuration
 	 * @param sheet
 	 *            the sheet
@@ -98,10 +162,10 @@ public abstract class LoxiaExcelUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	public static void write(String configuration,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
+	public static void write(String configurations,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
 					throws IOException{
 		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
-		excelManipulatorFactory.setConfig(configuration);
+		excelManipulatorFactory.setConfig(configurations);
 
 		ExcelWriter excelWriter = excelManipulatorFactory.createExcelWriter(sheet);
 
@@ -112,6 +176,9 @@ public abstract class LoxiaExcelUtil{
 
 		if (writeStatus.getStatus() == ReadStatus.STATUS_SUCCESS){
 			log.debug("ReadStatus.STATUS_SUCCESS,outputFileName:[{}]", outputFileName);
+		}else{
+			log.warn(JsonUtil.format(writeStatus));
+			throw new IOException("write excel exception,and writeStatus is :[" + writeStatus + "]");
 		}
 	}
 }

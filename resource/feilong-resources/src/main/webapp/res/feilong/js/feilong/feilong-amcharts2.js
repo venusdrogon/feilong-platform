@@ -109,7 +109,20 @@ function createAmSerialChart(feilongChart) {
     // GRAPH
     var graph = new AmCharts.AmGraph();
     graph.valueField = valueField;
-    // graph.colorField = "color";
+
+    var colorField = "color";
+
+    var dataProviderFirstItem = (chart.dataProvider)[0];
+
+    var dataProviderFirstItemColorValue = dataProviderFirstItem[colorField];
+
+    console.log("dataProvider first item:%o", dataProviderFirstItemColorValue);
+
+    if (null != dataProviderFirstItemColorValue
+	    && "" != dataProviderFirstItemColorValue) {
+	console.log("graph.colorField:%o", graph.colorField);
+	graph.colorField = colorField;
+    }
     graph.balloonText = "[[category]]: [[value]]";// You can use tags like
     // [[value]],
     // [[description]],
@@ -170,6 +183,8 @@ function createAmSerialChart(feilongChart) {
  * @param chartTitle
  */
 function createAmPieChart(feilongChart) {
+    console.log("feilongChart.chartTitle:%o,feilongChart:%o",
+	    feilongChart.chartTitle, feilongChart);
 
     // PIE CHART
     var chart = new AmCharts.AmPieChart();
@@ -186,10 +201,22 @@ function createAmPieChart(feilongChart) {
     // this makes the chart 3D
     chart.depth3D = 12;
     chart.angle = 30;
+//     chart.colors = [ "#B0DE09", "#04D215", "#0D8ECF", "#0D52D1", "#2A0CD0",
+//     "#8A0CCF", "#CD0D74", "#754DEB", "#DDDDDD", "#999999", "#333333",
+//     "#000000", "#57032A", "#CA9726", "#990000", "#4B0C25" ];
+    var colorField = "color";
 
-    // chart.colors = [ "#B0DE09", "#04D215", "#0D8ECF", "#0D52D1", "#2A0CD0",
-    // "#8A0CCF", "#CD0D74", "#754DEB", "#DDDDDD", "#999999", "#333333",
-    // "#000000", "#57032A", "#CA9726", "#990000", "#4B0C25" ];
+    var dataProviderFirstItem = (chart.dataProvider)[0];
+
+    var dataProviderFirstItemColorValue = dataProviderFirstItem[colorField];
+
+    console.log("chart title:%o,dataProvider first item color value:%o",
+	    feilongChart.chartTitle, dataProviderFirstItemColorValue);
+    if (null != dataProviderFirstItemColorValue
+	    && "" != dataProviderFirstItemColorValue) {
+	console.log("chart.colorField:%o", chart.colorField);
+	chart.colorField = colorField;
+    }
 
     // LEGEND
     var legend = new AmCharts.AmLegend();

@@ -54,7 +54,7 @@
 	background-color: #b8d45c;
 	width: 460px;
 	float: left;
-	color: #333333;
+	color: #333;
 }
 
 .talk_recordbox .user {
@@ -88,9 +88,9 @@
 }
 
 .talk_recordboxme .talk_recordtext {
-	background-color: #eeeeee;
+	background-color: #eee;
 	width: 440px;
-	color: red;
+	color: #ff660b;
 	float: right;
 	/*text-transform: uppercase;*/
 	/*font-weight: 100;*/

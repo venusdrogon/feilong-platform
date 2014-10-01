@@ -1,8 +1,56 @@
 AmCharts.ready(function() {
-    // createAmPieChart(feilongChart_come);
+
+    $(feilongChart_evaluationType.dataProvider).each(function(i, n) {
+	switch (n["name"]) {
+	case "表扬":
+	    n["color"] = "#04D215";
+	    break;
+	case "建议":
+	    n["color"] = "#FF9E01";
+	    break;
+	case "无":
+	    n["color"] = "#FF0F00";
+	    break;
+
+	default:
+	    n["color"] = "#000";
+	    break;
+	}
+
+    });
+
+    $(feilongChart_evaluationType.dataProvider).each(function(i, n) {
+	console.log(n);
+    });
     createAmPieChart(feilongChart_evaluationType);
 
     createAmPieChart(feilongChart_storeCategoryName);
+
+    $(feilongChart_come.dataProvider).each(function(i, n) {
+	switch (n["name"]) {
+	case "计划内签到":
+	    n["color"] = "green";
+	    break;
+	case "请假":
+	    n["color"] = "blue";
+	    break;
+	case "未计划签到":
+	    n["color"] = "yellow";
+	    break;
+	case "没参加又没有请假":
+	    n["color"] = "red";
+	    break;
+
+	default:
+	    n["color"] = "#000";
+	    break;
+	}
+
+    });
+
+    $(feilongChart_come.dataProvider).each(function(i, n) {
+	console.log(n);
+    });
 
     // 柱状图
     createAmSerialChart(feilongChart_come);
@@ -57,11 +105,11 @@ function initTdTextAndColor() {
 	    $(this).css("color", "#666");
 	}
 	if (3 == value) {
-	    $(this).css("background-color", "red");
+	    $(this).css("background-color", "#E5AA81");
 	    $(this).text("一般般");
 	}
 	if (2 == value) {
-	    $(this).css("background-color", "#666");
+	    $(this).css("background-color", "red");
 	    $(this).text("太easy了");
 	}
 	if (1 == value) {
@@ -81,11 +129,11 @@ function initTdTextAndColor() {
 	}
 	if (2 == value) {
 	    $(this).text("一般般");
-	    $(this).css("background-color", "#666");
+	    $(this).css("background-color", "#E5AA81");
 	}
 	if (1 == value) {
 	    $(this).text("水货");
-	    $(this).css("background-color", "black");
+	    $(this).css("background-color", "#222");
 	}
     });
 
@@ -98,11 +146,11 @@ function initTdTextAndColor() {
 	}
 	if (2 == value) {
 	    $(this).text("一般般");
-	    $(this).css("background-color", "#666");
+	    $(this).css("background-color", "#E5AA81");
 	}
 	if (1 == value) {
 	    $(this).text("没水平");
-	    $(this).css("background-color", "black");
+	    $(this).css("background-color", "#222");
 	}
     });
 }
@@ -137,7 +185,7 @@ function initScoreTable() {
 	}, {
 	    display : '培训教室布置',
 	    name : 'trainRoomLayoutScore',
-	    width : 43,
+	    width : 53,
 	    sortable : true,
 	    align : 'center'
 	},
@@ -145,19 +193,19 @@ function initScoreTable() {
 	{
 	    display : '现场次序维护',
 	    name : 'sceneOrderMaintenanceScore',
-	    width : 43,
+	    width : 53,
 	    sortable : true,
 	    align : 'center'
 	}, {
 	    display : '表达清晰态度友善',
 	    name : 'clearExpressionFriendlyScore',
-	    width : 43,
+	    width : 53,
 	    sortable : true,
 	    align : 'center'
 	}, {
 	    display : '对授课时间的掌控度',
 	    name : 'teachTimeDegreeControlScore',
-	    width : 43,
+	    width : 53,
 	    sortable : true,
 	    align : 'center'
 	},
@@ -165,7 +213,7 @@ function initScoreTable() {
 	{
 	    display : '现场气氛调节能力',
 	    name : 'sceneAtmosphereAdjustmentAbilityScore',
-	    width : 43,
+	    width : 53,
 	    sortable : true,
 	    align : 'center'
 	}, {
@@ -205,7 +253,7 @@ function initScoreTable() {
 	blockOpacity : 0.8,
 	showTableToggleBtn : true,
 	resizable : false,
-	width : 800,
+	width : 880,
     // rp: 10,
     // usepager:true
     };
@@ -347,7 +395,7 @@ function initGoodPerformanceStudentTable() {
 
 	var p1 = $.extend({
 	    /* title : "20140827Java集合框架培训评分表", */
-	    height : height
+	    height : "auto"
 	}, p);
 	$(this).flexigrid(p1);
     });
