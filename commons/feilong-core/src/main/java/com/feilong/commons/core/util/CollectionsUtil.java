@@ -23,10 +23,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.collections.Predicate;
 import org.slf4j.Logger;
@@ -59,6 +61,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
  */
 public final class CollectionsUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionsUtil.class);
 
 	/** Don't let anyone instantiate this class. */
@@ -274,9 +277,60 @@ public final class CollectionsUtil{
 	 *             if Validator.isNullOrEmpty(objectCollection) or Validator.isNullOrEmpty(propertyName)
 	 * @see com.feilong.commons.core.bean.BeanUtil#getProperty(Object, String)
 	 * @see org.apache.commons.beanutils.PropertyUtils#getProperty(Object, String)
+	 * @see #getPropertyValueCollection(Collection, String, Collection)
 	 * @since jdk1.5
 	 */
 	public static <T, O> List<T> getPropertyValueList(Collection<O> objectCollection,String propertyName) throws NullPointerException{
+		List<T> list = new ArrayList<T>();
+		return getPropertyValueCollection(objectCollection, propertyName, list);
+	}
+
+	/**
+	 * 获得 property value set.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param <O>
+	 *            the generic type
+	 * @param objectCollection
+	 *            the object collection
+	 * @param propertyName
+	 *            the property name
+	 * @return the property value set
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 * @see #getPropertyValueCollection(Collection, String, Collection)
+	 * @since 1.0.8
+	 */
+	public static <T, O> Set<T> getPropertyValueSet(Collection<O> objectCollection,String propertyName) throws NullPointerException{
+		Set<T> set = new HashSet<T>();
+		return getPropertyValueCollection(objectCollection, propertyName, set);
+	}
+
+	/**
+	 * 获得 property value collection.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param <O>
+	 *            the generic type
+	 * @param <K>
+	 *            the key type
+	 * @param objectCollection
+	 *            the object collection
+	 * @param propertyName
+	 *            the property name
+	 * @param returnCollection
+	 *            the return collection
+	 * @return the property value collection
+	 * @throws NullPointerException
+	 *             if Validator.isNullOrEmpty(objectCollection) or Validator.isNullOrEmpty(propertyName) or (null == returnCollection)
+	 * @since 1.0.8
+	 */
+	private static <T, O, K extends Collection<T>> K getPropertyValueCollection(
+					Collection<O> objectCollection,
+					String propertyName,
+					K returnCollection) throws NullPointerException{
 		if (Validator.isNullOrEmpty(objectCollection)){
 			throw new NullPointerException("objectCollection is null or empty!");
 		}
@@ -285,17 +339,20 @@ public final class CollectionsUtil{
 			throw new NullPointerException("propertyName is null or empty!");
 		}
 
-		List<T> list = new ArrayList<T>();
+		if (null == returnCollection){
+			throw new NullPointerException("returnCollection is null!");
+		}
+
 		try{
 			for (O bean : objectCollection){
 				@SuppressWarnings("unchecked")
 				T property = (T) PropertyUtil.getProperty(bean, propertyName);
-				list.add(property);
+				returnCollection.add(property);
 			}
 		}catch (BeanUtilException e){
 			e.printStackTrace();
 		}
-		return list;
+		return returnCollection;
 	}
 
 	/**
@@ -347,6 +404,28 @@ public final class CollectionsUtil{
 				return ObjectUtil.equals(property, value, true);
 			}
 		};
+		return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
+	}
+
+	/**
+	 * Select.
+	 *
+	 * @param <O>
+	 *            the generic type
+	 * @param objectCollection
+	 *            the object collection
+	 * @param predicate
+	 *            the predicate
+	 * @return the list< o>
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	@SuppressWarnings("unchecked")
+	public static <O> List<O> select(Collection<O> objectCollection,Predicate predicate) throws NullPointerException{
+		if (Validator.isNullOrEmpty(objectCollection)){
+			throw new NullPointerException("objectCollection is null or empty!");
+		}
+
 		return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
 	}
 
