@@ -15,8 +15,13 @@
  */
 package com.feilong.commons.core.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -94,6 +99,97 @@ public final class MapUtil{
 				log.debug("map don't contains key:{}", key);
 			}
 		}
+		return returnMap;
+	}
+
+	/**
+	 * 根据value 来排序（asc）.
+	 *
+	 * @param <K>
+	 *            the key type
+	 * @param <V>
+	 *            the value type
+	 * @param map
+	 *            the map
+	 * @return the map< k, v>
+	 * @throws NullPointerException
+	 *             if Validator.isNullOrEmpty(map)
+	 */
+	public static <K, V extends Comparable<V>> Map<K, V> sortByValueASC(Map<K, V> map) throws NullPointerException{
+
+		return sortByValue(map, new Comparator<Map.Entry<K, V>>(){
+
+			public int compare(Map.Entry<K, V> entry1,Map.Entry<K, V> entry2){
+				return (entry1.getValue().compareTo(entry2.getValue()));
+			}
+		});
+	}
+
+	/**
+	 * 根据value 来排序（desc）.
+	 *
+	 * @param <K>
+	 *            the key type
+	 * @param <V>
+	 *            the value type
+	 * @param map
+	 *            the map
+	 * @return the map< k, v>
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	public static <K, V extends Comparable<V>> Map<K, V> sortByValueDESC(Map<K, V> map) throws NullPointerException{
+
+		return sortByValue(map, new Comparator<Map.Entry<K, V>>(){
+
+			public int compare(Map.Entry<K, V> entry1,Map.Entry<K, V> entry2){
+				return -(entry1.getValue().compareTo(entry2.getValue()));
+			}
+		});
+	}
+
+	/**
+	 * Sort by value.
+	 *
+	 * @param <K>
+	 *            the key type
+	 * @param <V>
+	 *            the value type
+	 * @param map
+	 *            the map
+	 * @param comparator
+	 *            the comparator
+	 * @return the map< k, v>
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	public static <K, V extends Comparable<V>> Map<K, V> sortByValue(Map<K, V> map,Comparator<Map.Entry<K, V>> comparator)
+					throws NullPointerException{
+
+		if (Validator.isNullOrEmpty(map)){
+			throw new NullPointerException("the map is null or empty!");
+		}
+
+		//**********************************************************
+
+		final int size = map.size();
+		List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(size);
+		for (Map.Entry<K, V> entry : map.entrySet()){
+			list.add(entry);
+		}
+
+		//**********************排序************************************
+		Collections.sort(list, comparator);
+
+		//**********************************************************
+		Map<K, V> returnMap = new LinkedHashMap<K, V>(size);
+
+		for (Map.Entry<K, V> entry : list){
+			K key = entry.getKey();
+			V value = entry.getValue();
+			returnMap.put(key, value);
+		}
+
 		return returnMap;
 	}
 }
