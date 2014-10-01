@@ -33,6 +33,7 @@ import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 import net.sf.json.util.CycleDetectionStrategy;
 import net.sf.json.util.JSONUtils;
+import net.sf.json.util.PropertyFilter;
 import net.sf.json.util.PropertySetStrategy;
 import net.sf.json.xml.XMLSerializer;
 
@@ -42,6 +43,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.tools.json.processor.DateJsonValueProcessor;
+import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -117,11 +119,79 @@ public final class JsonUtil{
 	 *            对象
 	 * @param excludes
 	 *            排除需要序列化成json的属性,如果 excludes isNotNullOrEmpty,那么不会setExcludes
-	 * @return the string
+	 * @return if null==obj will return {@code null}; {@link #format(Object, JsonConfig)}
 	 * @see #format(Object, JsonConfig)
 	 * @see <a href="http://feitianbenyue.iteye.com/blog/2046877">java.lang.ClassCastException: JSON keys must be strings</a>
 	 */
 	public static String format(Object obj,String[] excludes){
+		return format(obj, excludes, 4, 4);
+	}
+
+	/**
+	 * Format.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param excludes
+	 *            the excludes
+	 * @param indentFactor
+	 *            the indent factor
+	 * @param indent
+	 *            the indent
+	 * @return the string
+	 */
+	public static String format(Object obj,String[] excludes,int indentFactor,int indent){
+		if (null == obj){
+			return null;
+		}
+		JsonConfig jsonConfig = getDefaultJsonConfig();
+
+		if (Validator.isNotNullOrEmpty(excludes)){
+			jsonConfig.setExcludes(excludes);
+		}
+
+		JSON json = toJSON(obj, jsonConfig);
+		String string = json.toString(indentFactor, indent);
+		return string;
+	}
+
+	/**
+	 * 只包含这些key才被format出json格式.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param includes
+	 *            the includes
+	 * @return the string
+	 * @since 1.0.8
+	 */
+	public static String formatWithIncludes(Object obj,String...includes){
+
+		if (null == obj){
+			return null;
+		}
+
+		JsonConfig jsonConfig = getDefaultJsonConfig();
+
+		if (Validator.isNotNullOrEmpty(includes)){
+
+			jsonConfig.setJsonPropertyFilter(new PropertyFilter(){
+
+				public boolean apply(Object source,String name,Object value){
+					return !ArrayUtil.isContain(includes, name);
+				}
+			});
+
+		}
+		return format(obj, jsonConfig);
+	}
+
+	/**
+	 * 默认的JsonConfig.
+	 *
+	 * @return the default json config
+	 */
+	private static JsonConfig getDefaultJsonConfig(){
 		JsonConfig jsonConfig = new JsonConfig();
 
 		// 排除,避免循环引用 There is a cycle in the hierarchy!
@@ -133,10 +203,7 @@ public final class JsonUtil{
 		// see http://feitianbenyue.iteye.com/blog/2046877
 		jsonConfig.setAllowNonStringKeys(true);
 
-		if (Validator.isNotNullOrEmpty(excludes)){
-			jsonConfig.setExcludes(excludes);
-		}
-		return format(obj, jsonConfig);
+		return jsonConfig;
 	}
 
 	/**
@@ -146,14 +213,41 @@ public final class JsonUtil{
 	 *            the obj
 	 * @param jsonConfig
 	 *            the json config
-	 * @return the string
+	 * @return if null==obj will return {@code null}; else return toJSON(obj, jsonConfig).toString(4, 4)
 	 * @see net.sf.json.JsonConfig
 	 * @see #toJSON(Object, JsonConfig)
 	 * @see net.sf.json.JSON#toString(int, int)
+	 * @see #format(Object, JsonConfig, int, int)
 	 * @since 1.0.7
 	 */
 	public static String format(Object obj,JsonConfig jsonConfig){
-		String string = toJSON(obj, jsonConfig).toString(4, 4);
+		return format(obj, jsonConfig, 4, 4);
+	}
+
+	/**
+	 * Make a prettyprinted JSON text.
+	 * <p>
+	 * Warning: This method assumes that the data structure is acyclical.
+	 * </p>
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param jsonConfig
+	 *            the json config
+	 * @param indentFactor
+	 *            The number of spaces to add to each level of indentation.
+	 * @param indent
+	 *            The indentation of the top level.
+	 * @return a printable, displayable, transmittable representation of the object, beginning with { (left brace) and ending with } (right
+	 *         brace).
+	 * @since 1.0.8
+	 */
+	public static String format(Object obj,JsonConfig jsonConfig,int indentFactor,int indent){
+		if (null == obj){
+			return null;
+		}
+		JSON json = toJSON(obj, jsonConfig);
+		String string = json.toString(indentFactor, indent);
 		return string;
 	}
 
@@ -199,7 +293,7 @@ public final class JsonUtil{
 	public static <T> T toBean(Object json,Class<T> rootClass,Map<String, Class<?>> classMap){
 		JSONObject jsonObject = JSONObject.fromObject(json);
 
-		JsonConfig jsonConfig = new JsonConfig();
+		JsonConfig jsonConfig = getDefaultJsonConfig();
 		jsonConfig.setRootClass(rootClass);
 
 		if (Validator.isNotNullOrEmpty(classMap)){
@@ -486,7 +580,7 @@ public final class JsonUtil{
 	 */
 	public static JSON toJSON(Object obj,JsonConfig jsonConfig){
 		if (null == jsonConfig){
-			jsonConfig = new JsonConfig();
+			jsonConfig = getDefaultJsonConfig();
 			// 注册日期处理器
 			DateJsonValueProcessor jsonValueProcessor = new DateJsonValueProcessor(DatePattern.commonWithTime);
 			jsonConfig.registerJsonValueProcessor(Date.class, jsonValueProcessor);
@@ -494,8 +588,8 @@ public final class JsonUtil{
 
 		// obj instanceof Collection || obj instanceof Object[]
 		if (JSONUtils.isArray(obj) || //
-				obj instanceof Enum || // obj.getClass().isEnum()这么些 null会报错// object' is an Enum. Use JSONArray instead
-				obj instanceof Iterator){
+						obj instanceof Enum || // obj.getClass().isEnum()这么些 null会报错// object' is an Enum. Use JSONArray instead
+						obj instanceof Iterator){
 
 			if (obj instanceof Iterator){
 				Collection<?> list = IteratorUtils.toList((Iterator<?>) obj);
