@@ -31,10 +31,10 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 15:40:45
  */
-public class Util{
+public class CopyFile{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(Util.class);
+	private static final Logger	log	= LoggerFactory.getLogger(CopyFile.class);
 
 	/**
 	 * Copy file.

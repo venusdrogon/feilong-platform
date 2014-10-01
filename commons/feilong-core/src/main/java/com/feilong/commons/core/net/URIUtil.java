@@ -68,7 +68,7 @@ public final class URIUtil{
 	 * @param charsetType
 	 *            decode/encode 编码
 	 * @return if isNullOrEmpty(url),return null;<br>
-	 *         if excption,return null
+	 *         if Exception,return null
 	 * @see <a
 	 *      href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser">java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>
 	 * @see URI#create(String)
@@ -124,7 +124,7 @@ public final class URIUtil{
 	 * 
 	 * @param path
 	 *            the path
-	 * @return the URI
+	 * @return if URISyntaxException return null
 	 */
 	public static URI getURI(String path){
 		try{
@@ -132,7 +132,7 @@ public final class URIUtil{
 			URI uri = new URI(path);
 			return uri;
 		}catch (URISyntaxException e){
-			e.printStackTrace();
+			log.error(Slf4jUtil.formatMessage("path:[{}]", path), e);
 		}
 		return null;
 	}

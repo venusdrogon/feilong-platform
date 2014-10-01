@@ -30,7 +30,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月8日 上午3:30:51
- * @version 1.0.8 2014-7-22 13:43 add {@link #getEnumByPropertyValueIgnoreCase(Class, String, String)}
+ * @version 1.0.8 2014-7-22 13:43 add {@link #getEnumByPropertyValueIgnoreCase(Class, String, Object)}
  * @see EnumUtils
  * @see org.apache.commons.lang3.EnumUtils
  * @since 1.0.6
