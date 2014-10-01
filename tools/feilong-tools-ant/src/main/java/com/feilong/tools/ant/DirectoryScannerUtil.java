@@ -16,18 +16,27 @@
 package com.feilong.tools.ant;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.tools.ant.DirectoryScanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
- * 
+ * The Class DirectoryScannerUtil.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月26日 下午2:00:26
  * @since 1.0.7
  */
 public class DirectoryScannerUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(DirectoryScannerUtil.class);
 
 	/**
 	 * Gets the directory scanner map for log.
@@ -67,5 +76,38 @@ public class DirectoryScannerUtil{
 		map.put("directoryScanner.isEverythingIncluded()", directoryScanner.isEverythingIncluded());
 		map.put("directoryScanner.isFollowSymlinks()", directoryScanner.isFollowSymlinks());
 		return map;
+	}
+
+	/**
+	 * 获得 included file list.
+	 *
+	 * @param directoryScanner
+	 *            the directory scanner
+	 * @return the included file list
+	 */
+	public static List<File> getIncludedFileList(DirectoryScanner directoryScanner){
+		int includedFilesCount = directoryScanner.getIncludedFilesCount();
+		String[] includedFiles = directoryScanner.getIncludedFiles();
+
+		if (log.isDebugEnabled()){
+			log.debug("includedFilesCount:{},includedFiles:{}", includedFilesCount, JsonUtil.format(includedFiles));
+		}
+		//*******************************************************************************
+		File basedir = directoryScanner.getBasedir();
+		List<File> includedFileList = new ArrayList<File>();
+
+		for (int i = 0; i < includedFiles.length; i++){
+			String child = includedFiles[i];
+
+			//String projectName = FileUtil.getFileTopParentName(child);
+
+			File file = new File(basedir, child);
+			includedFileList.add(file);
+		}
+		if (log.isDebugEnabled()){
+			log.debug("will return includedFileList:{}", JsonUtil.format(includedFileList));
+		}
+
+		return includedFileList;
 	}
 }
