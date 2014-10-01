@@ -1,19 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p/>
- * This software is the confidential and proprietary information of FeiLong
- * Network Technology, Inc. ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with FeiLong.
- * <p/>
- * FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
- * <p/>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.servlet.filter;
 
@@ -27,16 +25,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * * Filter base class that guarantees to be just executed once per request, on any servlet container. It provides a {@link #doFilterInternal} method with
+ * * Filter base class that guarantees to be just executed once per request, on any servlet container. It provides a
+ * {@link #doFilterInternal} method with
  * HttpServletRequest and HttpServletResponse arguments.
  * <p>
- * The {@link #getAlreadyFilteredAttributeName} method determines how to identify that a request is already filtered. The default implementation is based on the
- * configured name of the concrete filter instance.
- * 
+ * The {@link #getAlreadyFilteredAttributeName} method determines how to identify that a request is already filtered. The default
+ * implementation is based on the configured name of the concrete filter instance.
+ *
  * @author Juergen Hoeller
- * @since 06.12.2003
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-27 上午11:16:20
+ * @since 06.12.2003
  */
 public abstract class OncePerRequestFilter extends GenericFilterBean{
 
@@ -48,9 +47,20 @@ public abstract class OncePerRequestFilter extends GenericFilterBean{
 	public static final String	ALREADY_FILTERED_SUFFIX	= ".FILTERED";
 
 	/**
-	 * This <code>doFilter</code> implementation stores a request attribute for "already filtered", proceeding without filtering again if the attribute is
+	 * This <code>doFilter</code> implementation stores a request attribute for "already filtered", proceeding without filtering again if
+	 * the attribute is
 	 * already there.
-	 * 
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @param filterChain
+	 *            the filter chain
+	 * @throws ServletException
+	 *             the servlet exception
+	 * @throws IOException
+	 *             the IO exception
 	 * @see #getAlreadyFilteredAttributeName
 	 * @see #shouldNotFilter
 	 * @see #doFilterInternal
@@ -81,9 +91,10 @@ public abstract class OncePerRequestFilter extends GenericFilterBean{
 	/**
 	 * Return the name of the request attribute that identifies that a request is already filtered.
 	 * <p>
-	 * Default implementation takes the configured name of the concrete filter instance and appends ".FILTERED". If the filter is not fully initialized, it
-	 * falls back to its class name.
-	 * 
+	 * Default implementation takes the configured name of the concrete filter instance and appends ".FILTERED". If the filter is not fully
+	 * initialized, it falls back to its class name.
+	 *
+	 * @return the already filtered attribute name
 	 * @see #getFilterName
 	 * @see #ALREADY_FILTERED_SUFFIX
 	 */
@@ -96,11 +107,23 @@ public abstract class OncePerRequestFilter extends GenericFilterBean{
 	}
 
 	/**
-	 * Same contract as for <code>doFilter</code>, but guaranteed to be just invoked once per request. Provides HttpServletRequest and HttpServletResponse
+	 * Same contract as for <code>doFilter</code>, but guaranteed to be just invoked once per request. Provides HttpServletRequest and
+	 * HttpServletResponse
 	 * arguments instead of the default ServletRequest and ServletResponse ones.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @param filterChain
+	 *            the filter chain
+	 * @throws ServletException
+	 *             the servlet exception
+	 * @throws IOException
+	 *             the IO exception
 	 */
-	protected abstract void doFilterInternal(HttpServletRequest request,HttpServletResponse response,FilterChain filterChain) throws ServletException,
-			IOException;
+	protected abstract void doFilterInternal(HttpServletRequest request,HttpServletResponse response,FilterChain filterChain)
+					throws ServletException,IOException;
 
 	/**
 	 * Can be overridden in subclasses for custom filtering control, returning <code>true</code> to avoid filtering of the given request.

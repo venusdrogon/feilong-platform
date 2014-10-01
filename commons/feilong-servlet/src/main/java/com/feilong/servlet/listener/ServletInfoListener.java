@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.servlet.listener;
 
 import java.nio.charset.Charset;
@@ -27,6 +42,7 @@ public class ServletInfoListener implements ServletContextListener{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
 	 */
 	@Override
@@ -56,9 +72,9 @@ public class ServletInfoListener implements ServletContextListener{
 		// 返回这个servlet容器支持的Java Servlet API的主要版本。所有符合2.5版本的实现，必须有这个方法返回的整数2。
 		// 返回这个servlet容器支持的Servlet API的次要版本。所有符合2.5版本的实现，必须有这个方法返回整数5。
 		String servletVersion = StringUtil.format(
-				"servlet version:%s.%s",
-				servletContext.getMajorVersion(),
-				servletContext.getMinorVersion());
+						"servlet version:%s.%s",
+						servletContext.getMajorVersion(),
+						servletContext.getMinorVersion());
 		servletContext.log(servletVersion);
 		String contextPath = servletContext.getContextPath();
 		servletContext.log("[servletContext.getContextPath():]" + contextPath);
@@ -67,6 +83,7 @@ public class ServletInfoListener implements ServletContextListener{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
 	 */
 	@Override

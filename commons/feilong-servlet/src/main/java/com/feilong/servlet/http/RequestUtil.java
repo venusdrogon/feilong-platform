@@ -15,6 +15,7 @@
  */
 package com.feilong.servlet.http;
 
+import java.math.BigDecimal;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -31,6 +32,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.net.URIConstants;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -640,5 +642,109 @@ public final class RequestUtil implements RequestConstants{
 
 		// log.debug("the param request attributeNames:{}", JsonUtil.toJSON(map.keySet()).toString(4, 4));
 		return map;
+	}
+
+	// *********************************获取值**************************************************
+	/**
+	 * 将参数值转换成int类型.
+	 * 
+	 * @param request
+	 *            请求
+	 * @param paramName
+	 *            参数名称
+	 * @return 将参数值转换成int类型
+	 * @exception IllegalArgumentException
+	 *                如果param值 不能转成integer 会抛出 IllegalArgumentException异常
+	 */
+	public static Integer getParameterToInteger(HttpServletRequest request,String paramName){
+		String value = getParameter(request, paramName);
+		return ObjectUtil.toInteger(value);
+	}
+
+	/**
+	 * 将参数值转换成BigDecimal类型.
+	 * 
+	 * @param request
+	 *            请求
+	 * @param paramName
+	 *            参数名称
+	 * @return 将参数值转换成BigDecimal类型
+	 */
+	public static BigDecimal getParameterToBigDecimal(HttpServletRequest request,String paramName){
+		String value = getParameter(request, paramName);
+		return ObjectUtil.toBigDecimal(value);
+	}
+
+	/**
+	 * 获得request中的请求参数值.
+	 * 
+	 * @param request
+	 *            当前请求
+	 * @param paramName
+	 *            参数名称
+	 * @return 获得request中的请求参数值
+	 */
+	public static String getParameter(HttpServletRequest request,String paramName){
+		return request.getParameter(paramName);
+	}
+
+	/**
+	 * 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题.
+	 * 
+	 * @param request
+	 *            the request
+	 * @param paramName
+	 *            the param name
+	 * @return 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题
+	 */
+	public static String getParameterWithoutSharp(HttpServletRequest request,String paramName){
+		String returnValue = getParameter(request, paramName);
+		if (Validator.isNotNullOrEmpty(returnValue)){
+			if (StringUtil.isContain(returnValue, URIConstants.FRAGMENT)){
+				returnValue = StringUtil.substring(returnValue, null, URIConstants.FRAGMENT);
+			}
+		}
+		return returnValue;
+	}
+
+	/**
+	 * 原样获得参数值(request.getParameter()函数时，会自动进行一次URI的解码过程，调用时内置的解码过程会导致乱码出现)
+	 * 
+	 * <pre>
+	 * url参数是什么,取到的就是什么,不经过处理
+	 * </pre>
+	 * 
+	 * @param request
+	 *            请求
+	 * @param paramName
+	 *            参数名称
+	 * @return 原样获得参数值
+	 * @deprecated
+	 */
+	public static String getParameterAsItIsDecode(HttpServletRequest request,String paramName){
+		String returnValue = null;
+		String queryString = request.getQueryString();
+		if (Validator.isNotNullOrEmpty(queryString)){
+			Map<String, String[]> map = URIUtil.parseQueryToArrayMap(queryString, null);
+			return map.get(paramName)[0];
+		}
+		return returnValue;
+	}
+
+	/**
+	 * 取到参数值,没有返回null,有去除空格返回.
+	 * 
+	 * @param request
+	 *            当前请求
+	 * @param paramName
+	 *            the param name
+	 * @return 取到参数值,没有返回null,有去除空格返回
+	 */
+	public static String getParameterWithTrim(HttpServletRequest request,String paramName){
+		String returnValue = getParameter(request, paramName);
+		if (Validator.isNotNullOrEmpty(returnValue)){
+			returnValue = returnValue.trim();
+		}
+		return returnValue;
 	}
 }
