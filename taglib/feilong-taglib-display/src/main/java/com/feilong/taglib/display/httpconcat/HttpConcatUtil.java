@@ -43,7 +43,7 @@ import com.feilong.taglib.display.httpconcat.directive.Concat;
  * 请确保文件路径中有配置文件,以及正确的key<br>
  * 如果获取不到,会 throw {@link IllegalArgumentException}
  * 
- * <h4>全局合并开关</h4>
+ * <h3>全局合并开关</h3>
  * 
  * 
  * 

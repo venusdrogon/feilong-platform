@@ -10,7 +10,7 @@
 
 	<definition name="feilong.*.*.*" extends="feilong.basic">
 		<!-- {0} 表示精确的 definition name 比如 feilong.css.feilongCleanlily15 -->
-		<put-attribute name="left" value="/jsp/commons/layouts/blank.jsp" />
+		<put-attribute name="left" value="/jsp/commons/blank.jsp" />
 		<put-attribute name="center" value="/jsp/{1}/{2}/{3}.jsp" />
 	</definition>
 

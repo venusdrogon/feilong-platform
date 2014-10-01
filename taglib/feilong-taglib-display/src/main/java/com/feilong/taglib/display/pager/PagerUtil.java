@@ -30,10 +30,11 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.entity.Pager;
+import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.servlet.http.ParamUtil;
+import com.feilong.servlet.http.RequestUtil;
 import com.feilong.taglib.display.pager.command.PagerConstants;
 import com.feilong.taglib.display.pager.command.PagerParams;
 import com.feilong.taglib.display.pager.command.PagerUrlTemplate;
@@ -93,7 +94,7 @@ public final class PagerUtil{
 	 * 在自定义的vm里面 {@link PagerParams#getVmPath()} 或者默认vm {@link PagerConstants#DEFAULT_TEMPLATE_IN_CLASSPATH}
 	 * </p>
 	 * 
-	 * <h4>日志</h4>
+	 * <h3>日志</h3>
 	 * 
 	 * <blockquote>
 	 * <p>
@@ -121,7 +122,7 @@ public final class PagerUtil{
 	 * </p>
 	 * </blockquote>
 	 * 
-	 * <h4>VM中支持国际化</h4>
+	 * <h3>VM中支持国际化</h3>
 	 * 
 	 * <blockquote>
 	 * <p>
@@ -130,7 +131,7 @@ public final class PagerUtil{
 	 * </p>
 	 * </blockquote>
 	 * 
-	 * <h4>缓存</h4>
+	 * <h3>缓存</h3>
 	 * 
 	 * <blockquote>
 	 * <p>
@@ -141,7 +142,7 @@ public final class PagerUtil{
 	 * </blockquote>
 	 * 
 	 * 
-	 * <h4>缓存清理</h4>
+	 * <h3>缓存清理</h3>
 	 * 
 	 * <blockquote>
 	 * <p>
@@ -242,8 +243,9 @@ public final class PagerUtil{
 	public final static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
 		// /s/s-t-b-f-a-cBlack-s-f-p-gHeat+Gear-e-i-o.htm?keyword=&pageNo=%uFF1B
 		Integer currentPageNo = null;
+
 		try{
-			currentPageNo = ParamUtil.getParameterToInteger(request, pageParamName);
+			currentPageNo = RequestUtil.getParameterToInteger(request, pageParamName);
 		}catch (Exception e){
 			// 抛出异常, 但是不给 currentPageNo 赋值
 			e.printStackTrace();
@@ -348,9 +350,9 @@ public final class PagerUtil{
 
 		// *********************************************************
 		LinkedHashMap<Integer, String> iteratorIndexAndHrefMap = getIteratorIndexAndHrefMap(
-				startIteratorIndex,
-				endIteratorIndex,
-				indexAndHrefMap);
+						startIteratorIndex,
+						endIteratorIndex,
+						indexAndHrefMap);
 		pagerVMParam.setIteratorIndexMap(iteratorIndexAndHrefMap);
 		return pagerVMParam;
 	}
@@ -368,9 +370,9 @@ public final class PagerUtil{
 	 * @since 1.0.5
 	 */
 	private static LinkedHashMap<Integer, String> getIteratorIndexAndHrefMap(
-			int startIteratorIndex,
-			int endIteratorIndex,
-			Map<Integer, String> indexAndHrefMap){
+					int startIteratorIndex,
+					int endIteratorIndex,
+					Map<Integer, String> indexAndHrefMap){
 		LinkedHashMap<Integer, String> iteratorIndexAndHrefMap = new LinkedHashMap<Integer, String>();
 		for (int i = startIteratorIndex; i <= endIteratorIndex; ++i){
 			iteratorIndexAndHrefMap.put(i, indexAndHrefMap.get(i));

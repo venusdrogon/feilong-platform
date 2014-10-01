@@ -46,7 +46,7 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * 
  * <h3>concat Directive的使用:</h3>
  * 
- * <h4>语法:</h4>
+ * <h3>语法:</h3>
  * 
  * <pre>
  * {@code
@@ -57,7 +57,7 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * }
  * </pre>
  * 
- * <h4>参数说明:</h4>
+ * <h3>参数说明:</h3>
  * 
  * <blockquote>
  * <table border='1' cellspacing='0' cellpadding='4' summary="Chart showing symbol,  location, localized, and meaning.">
@@ -89,7 +89,7 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * </table>
  * </blockquote>
  * 
- * <h4>block块</h4>
+ * <h3>block块</h3>
  * 
  * <blockquote>
  * 
