@@ -21,22 +21,13 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
 /**
  * The Class User.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-16 0:42:08
  */
-@Deprecated
-public class User implements InitializingBean,DisposableBean{
-
-	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(User.class);
+public class DIUser extends BaseDIUser{
 
 	/** The user name. */
 	private String				userName;
@@ -58,35 +49,6 @@ public class User implements InitializingBean,DisposableBean{
 
 	/** The vector. */
 	private Vector<Object>		vector;
-
-	/**
-	 * Inits the.
-	 */
-	public void init(){
-		log.info("init.....");
-		this.userName = "feilong";
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-	 */
-	@Override
-	public void afterPropertiesSet() throws Exception{
-		log.info("afterPropertiesSet.....");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.beans.factory.DisposableBean#destroy()
-	 */
-	@Override
-	public void destroy() throws Exception{
-		log.info("destroy.....");
-		this.userName = null;
-	}
 
 	/**
 	 * Gets the list.

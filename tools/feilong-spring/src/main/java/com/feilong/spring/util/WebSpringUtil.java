@@ -1,19 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p/>
- * This software is the confidential and proprietary information of FeiLong
- * Network Technology, Inc. ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with FeiLong.
- * <p/>
- * FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
- * <p/>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.spring.util;
 
@@ -28,11 +26,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * spring 工具类<br>
- * 当 Web 应用集成 Spring 容器后，代表 Spring 容器的 WebApplicationContext 对象将以 WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE 为键存放在 ServletContext 属性列表中 <br>
+ * 当 Web 应用集成 Spring 容器后，代表 Spring 容器的 WebApplicationContext 对象将以 WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE 为键存放在
+ * ServletContext 属性列表中 <br>
  * <br>
  * 当 ServletContext 属性列表中不存在 WebApplicationContext 时，getWebApplicationContext() 方法不会抛出异常，它简单地返回 null。 <br>
  * 如果后续代码直接访问返回的结果将引发一个 NullPointerException 异常，<br>
- * 而 WebApplicationContextUtils 另一个 getRequiredWebApplicationContext(ServletContext sc) 方法要求 ServletContext 属性列表中一定要包含一个有效的 WebApplicationContext 对象，否则马上抛出一个
+ * 而 WebApplicationContextUtils 另一个 getRequiredWebApplicationContext(ServletContext sc) 方法要求 ServletContext 属性列表中一定要包含一个有效的
+ * WebApplicationContext 对象，否则马上抛出一个
  * IllegalStateException 异常。<br>
  * 我们推荐使用后者，因为它能提前发现错误的时间，强制开发者搭建好必备的基础设施。
  * 
@@ -45,20 +45,20 @@ public final class WebSpringUtil{
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(WebSpringUtil.class);
 
-//	/**
-//	 * 获得消息信息
-//	 * 
-//	 * @param request
-//	 * @param messageSourceResolvable
-//	 *            适用于 ObjectError 以及 FieldError
-//	 * @return
-//	 */
-//	public static String getMessage(MessageSourceResolvable messageSourceResolvable,HttpServletRequest request){
-//		HttpSession session = request.getSession();
-//		ServletContext servletContext = session.getServletContext();
-//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-//		return webApplicationContext.getMessage(messageSourceResolvable, request.getLocale());
-//	}
+	//	/**
+	//	 * 获得消息信息
+	//	 * 
+	//	 * @param request
+	//	 * @param messageSourceResolvable
+	//	 *            适用于 ObjectError 以及 FieldError
+	//	 * @return
+	//	 */
+	//	public static String getMessage(MessageSourceResolvable messageSourceResolvable,HttpServletRequest request){
+	//		HttpSession session = request.getSession();
+	//		ServletContext servletContext = session.getServletContext();
+	//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+	//		return webApplicationContext.getMessage(messageSourceResolvable, request.getLocale());
+	//	}
 
 	/**
 	 * 普通类获得spring 注入的类方法<br>

@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-29 下午4:14:43
  */
-@ContextConfiguration(locations = { "classpath:spring.xml" })
+@ContextConfiguration(locations = { "classpath:spring-DI.xml" })
 public class ApplicationContextTest extends AbstractJUnit4SpringContextTests{
 
 	/** The Constant log. */

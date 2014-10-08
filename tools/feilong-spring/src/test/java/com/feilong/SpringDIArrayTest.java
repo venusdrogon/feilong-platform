@@ -13,38 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.aspects;
+package com.feilong;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.entity.DIUserArray;
+
 /**
- * The Class AspectsTest.
  * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.7 2014-6-25 16:22:57
+ * @version 1.0.8 2014年10月8日 下午4:03:31
+ * @since 1.0.8
  */
-@ContextConfiguration(locations = "classpath:spring-aop.xml")
-public class AspectsTest extends AbstractJUnit4SpringContextTests{
+@ContextConfiguration(locations = { "classpath:spring-DI-Array.xml" })
+public class SpringDIArrayTest extends AbstractJUnit4SpringContextTests{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(AspectsTest.class);
-
-	/** The user manager. */
-	@Autowired
-	private UserManager			userManager;
+	private static final Logger	log	= LoggerFactory.getLogger(SpringDIArrayTest.class);
 
 	/**
-	 * Name.
+	 * Test.
 	 */
 	@Test
-	public void name(){
-		userManager.addUser("1018", "Jummy");
-		// userManager.delUser(5);
+	public void testDIUserArray(){
+		DIUserArray diUserArray = applicationContext.getBean(DIUserArray.class);
+		log.info(JsonUtil.format(diUserArray));
 	}
 }

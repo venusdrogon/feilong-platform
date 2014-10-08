@@ -86,6 +86,7 @@ public class LogAspect extends AbstractAspect{
 
 		String format = "method:%s(%s),耗时:%s";
 		Object[] objects = { methodName, args, DateExtensionUtil.getIntervalForView(begin, end) };
+
 		Object message = StringUtil.format(format, objects);
 		log.log(Level.toLevel(level), message);
 	}

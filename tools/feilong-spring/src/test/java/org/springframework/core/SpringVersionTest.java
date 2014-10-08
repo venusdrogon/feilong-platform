@@ -40,8 +40,6 @@ public class SpringVersionTest{
 	 */
 	@Test
 	public void testGetVersion(){
-		if (log.isInfoEnabled()){
-			log.info(SpringVersion.getVersion());
-		}
+		log.info(SpringVersion.getVersion());
 	}
 }

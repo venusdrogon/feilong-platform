@@ -30,12 +30,15 @@ import org.springframework.jdbc.core.RowMapper;
  * @param <T>
  *            the generic type
  */
+//TODO 感觉 这么写不好
 public abstract class BaseRowMapper<T> implements RowMapper<T>{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(BaseRowMapper.class);
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
 	 */
 	public abstract T mapRow(ResultSet rs,int index) throws SQLException;

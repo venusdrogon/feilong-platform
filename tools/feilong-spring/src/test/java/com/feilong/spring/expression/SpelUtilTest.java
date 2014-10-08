@@ -13,38 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.aspects;
+package com.feilong.spring.expression;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
- * The Class AspectsTest.
- * 
+ * The Class SpelUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.7 2014-6-25 16:22:57
+ * @version 1.0.8 2014年10月8日 上午11:21:00
+ * @since 1.0.8
  */
-@ContextConfiguration(locations = "classpath:spring-aop.xml")
-public class AspectsTest extends AbstractJUnit4SpringContextTests{
+public class SpelUtilTest{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(AspectsTest.class);
-
-	/** The user manager. */
-	@Autowired
-	private UserManager			userManager;
+	private static final Logger	log	= LoggerFactory.getLogger(SpelUtilTest.class);
 
 	/**
-	 * Name.
+	 * 获得 value.
 	 */
 	@Test
-	public void name(){
-		userManager.addUser("1018", "Jummy");
-		// userManager.delUser(5);
+	public void getValue(){
+		String ex = "'Hello,World'";
+		log.info("" + SpelUtil.getValue(ex));
+		log.info("" + SpelUtil.getValue(ex + ".length()"));
+		log.info("" + SpelUtil.getValue(ex + ".concat('!')"));
+		log.info("" + SpelUtil.getValue(ex + ".class"));
+		log.info("" + SpelUtil.getValue(ex + ".bytes.length"));
+		log.info("" + SpelUtil.getValue("new String(" + ex + ").toUpperCase()"));
 	}
 }
