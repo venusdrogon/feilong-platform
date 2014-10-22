@@ -373,8 +373,30 @@ public final class CollectionsUtil{
 	 *             the null pointer exception
 	 * @see org.apache.commons.collections.CollectionUtils#select(Collection, org.apache.commons.collections.Predicate)
 	 */
-	@SuppressWarnings("unchecked")
 	public static <O, V> List<O> select(Collection<O> objectCollection,String propertyName,V value) throws NullPointerException{
+		Object[] values = { value };
+		return select(objectCollection, propertyName, values);
+	}
+
+	/**
+	 * Select.
+	 *
+	 * @param <O>
+	 *            the generic type
+	 * @param <V>
+	 *            the value type
+	 * @param objectCollection
+	 *            the object collection
+	 * @param propertyName
+	 *            the property name
+	 * @param values
+	 *            the values
+	 * @return the list< o>
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	@SuppressWarnings("unchecked")
+	public static <O, V> List<O> select(Collection<O> objectCollection,String propertyName,V...values) throws NullPointerException{
 		if (Validator.isNullOrEmpty(objectCollection)){
 			throw new NullPointerException("objectCollection is null or empty!");
 		}
@@ -382,26 +404,11 @@ public final class CollectionsUtil{
 		if (Validator.isNullOrEmpty(propertyName)){
 			throw new NullPointerException("propertyName is null or empty!");
 		}
-		//
-		//		List<O> list = new ArrayList<O>();
-		//		try{
-		//			for (O bean : objectCollection){
-		//				@SuppressWarnings("unchecked")
-		//				V property = (V) PropertyUtil.getProperty(bean, propertyName);
-		//
-		//				if (ObjectUtil.equals(property, value, true)){
-		//					list.add(bean);
-		//				}
-		//			}
-		//		}catch (BeanUtilException e){
-		//			e.printStackTrace();
-		//		}
-		//		return list;
 		Predicate predicate = new Predicate(){
 
 			public boolean evaluate(Object object){
 				V property = PropertyUtil.getProperty(object, propertyName);
-				return ObjectUtil.equals(property, value, true);
+				return ArrayUtil.isContain(values, property);
 			}
 		};
 		return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
