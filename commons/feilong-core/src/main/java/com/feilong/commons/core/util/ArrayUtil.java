@@ -170,8 +170,9 @@ public final class ArrayUtil{
 	}
 
 	/**
-	 * 判断 一个数组中,是否包含某个特定的值<br>
-	 * 使用equals 来比较,所以如果是 对象类型 需要自己实现equals方法.
+	 * 判断 一个数组中,是否包含某个特定的值.<br>
+	 * 使用equals 来比较,所以如果是 对象类型 需要自己实现equals方法.<br>
+	 * 支持 null的判断
 	 * 
 	 * @param <T>
 	 *            the generic type
@@ -179,13 +180,14 @@ public final class ArrayUtil{
 	 *            数组
 	 * @param value
 	 *            特定值
-	 * @return 如果 Validator.isNotNullOrEmpty(array) 返回false <br>
-	 *         如果包含,则返回true,否则返回false<br>
+	 * @return 如果 Validator.isNotNullOrEmpty(arrays) 返回false <br>
+	 *         否则，循环arrays，调用 {@link ObjectUtil#equals(Object, Object, boolean)} 方法,如果为true，则返回true<br>
+	 * @see ObjectUtil#equals(Object, Object, boolean)
 	 */
 	public static <T> boolean isContain(T[] arrays,T value){
 		if (Validator.isNotNullOrEmpty(arrays)){
 			for (T arr : arrays){
-				if (arr.equals(value)){
+				if (ObjectUtil.equals(arr, value, true)){
 					return true;
 				}
 			}
