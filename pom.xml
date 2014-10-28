@@ -103,6 +103,9 @@
 		<version.javamail>1.4.7</version.javamail>
 		<version.jacob>1.14.3</version.jacob>
 
+		<!-- 让控制台输出彩色字符 -->
+		<version.jansi>1.11</version.jansi>
+
 		<!-- org.json -->
 		<version.org.json>20140107</version.org.json>
 
@@ -207,6 +210,7 @@
 		<module>tools</module>
 		<module>framework</module>
 		<module>webservice</module>
+		<module>data</module>
 		<module>test</module>
 	</modules>
 
@@ -493,6 +497,12 @@
 						<groupId>commons-beanutils</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.fusesource.jansi</groupId>
+				<artifactId>jansi</artifactId>
+				<version>${version.jansi}</version>
 			</dependency>
 
 			<!-- *********************json******************************* -->

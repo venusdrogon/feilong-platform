@@ -10,7 +10,7 @@
 
 	<groupId>com.feilong.platform.test</groupId>
 	<artifactId>parent</artifactId>
-	
+
 	<name>feilong-test-parent</name>
 	<description>feilong-test-parent</description>
 
@@ -61,6 +61,11 @@
 		<dependency>
 			<groupId>com.feilong.platform.commons</groupId>
 			<artifactId>feilong-servlet</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
 		</dependency>
 
 		<!-- jsp-api -->
