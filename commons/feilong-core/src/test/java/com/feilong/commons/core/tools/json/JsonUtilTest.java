@@ -20,8 +20,10 @@ import static org.junit.Assert.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -189,4 +191,30 @@ public class JsonUtilTest{
 		Object[][] objects = { { "nike shoe", "500", 1 }, { "nike shoe2", "5000", 1 } };
 		log.info(JsonUtil.formatWithIncludes(objects));
 	}
+
+	/**
+	 * Test vector.
+	 */
+	@Test
+	public void testVector(){
+		Vector<Integer> vector = new Vector<Integer>();
+		vector.add(1);
+		vector.add(2222);
+		vector.add(3333);
+		vector.add(55555);
+		log.info("vector:{}", JsonUtil.format(vector));
+		log.info("" + vector.get(0));
+	}
+
+	/**
+	 * Test hashtable.
+	 */
+	@Test
+	public void testHashtable(){
+		Hashtable<String, Object> hashtable = new Hashtable<String, Object>();
+		hashtable.put("a", "a");
+		// hashtable.put("a", null);
+		log.info("hashtable:{}", JsonUtil.format(hashtable));
+	}
+
 }
