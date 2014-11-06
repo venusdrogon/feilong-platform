@@ -36,7 +36,8 @@ import com.feilong.commons.core.util.Validator;
 public final class IKAnalyzerUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(IKAnalyzerUtil.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(IKAnalyzerUtil.class);
 
 	/**
 	 * 分词情况.

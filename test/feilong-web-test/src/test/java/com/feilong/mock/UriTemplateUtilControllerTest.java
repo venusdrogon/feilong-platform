@@ -70,6 +70,8 @@ import com.feilong.controller.UriTemplateUtilController;
 		request.setRequestURI("/c2-5-3-11/mpige-c黑-s52-kchuck taylor all star-svintage.htm");
 		request.setParameter("a", "aaaa");
 		
+	
+		
 		// request.setMethod("GET");
 		// request.setParameter("users.username", "zhangfei");
 		handlerAdapter = new AnnotationMethodHandlerAdapter();

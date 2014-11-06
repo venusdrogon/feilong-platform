@@ -175,7 +175,7 @@ public abstract class LoxiaExcelUtil{
 		WriteStatus writeStatus = excelWriter.write(is, os, beans);
 
 		if (writeStatus.getStatus() == ReadStatus.STATUS_SUCCESS){
-			log.debug("ReadStatus.STATUS_SUCCESS,outputFileName:[{}]", outputFileName);
+			log.info("write excel SUCCESS,outputFileName:[{}]", outputFileName);
 		}else{
 			log.warn(JsonUtil.format(writeStatus));
 			throw new IOException("write excel exception,and writeStatus is :[" + writeStatus + "]");

@@ -196,6 +196,8 @@ public final class JsonUtil{
 
 		// 排除,避免循环引用 There is a cycle in the hierarchy!
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+
+		//see net.sf.json.JsonConfig.DEFAULT_EXCLUDES    "class", "declaringClass","metaClass"  // 默认会过滤的几个key  
 		jsonConfig.setIgnoreDefaultExcludes(true);
 		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor());
 

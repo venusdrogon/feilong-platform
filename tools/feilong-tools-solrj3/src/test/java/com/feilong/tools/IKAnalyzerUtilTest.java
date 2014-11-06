@@ -36,10 +36,10 @@ public class IKAnalyzerUtilTest{
 	public final void testGetLexemeTexts(){
 
 		try{
-			// String text = "Chuck Taylor All Star Classic Boot 经典工装靴款";
-			// String text = "Air force";
-			// String text = "中华人民共和国";
-			String text = "556426-600";
+			String text = "Chuck Taylor All Star Classic Boot 经典工装靴款";
+			//			 String text = "Air force";
+			//			 String text = "中华人民共和国";
+			//			String text = "556426-600";
 
 			String[] analizedText = IKAnalyzerUtil.getLexemeTexts(text, true);
 
