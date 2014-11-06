@@ -20,7 +20,7 @@
 
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-tools-jfreechart</artifactId>
+			<artifactId>feilong-chart-core</artifactId>
 			<version>${version.feilong-platform}</version>
 			<exclusions>
 				<exclusion>

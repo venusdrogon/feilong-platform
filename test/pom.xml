@@ -23,6 +23,7 @@
 		<module>feilong-test-pager</module>
 		<module>feilong-test-payment</module>
 		<module>feilong-web-test</module>
+		<module>feilong-test-incubator</module>
 	</modules>
 
 	<!--****************************定义属性 properties************************************* -->

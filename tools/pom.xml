@@ -27,7 +27,6 @@
 		<module>feilong-net-httpclient</module>
 		<module>feilong-net-httpcore</module>
 		<module>feilong-tools-incubator</module>
-		<module>feilong-tools-jfreechart</module>
 		<module>feilong-tools-jsoup</module>
 		<module>feilong-tools-velocity</module>
 		<module>feilong-tools-dom4j</module>
@@ -43,6 +42,9 @@
 		<module>feilong-tools-xstream</module>
 		<module>feilong-application-weather</module>
 		<module>feilong-tools-zookeeper</module>
+		<module>feilong-chart-core</module>
+		<module>feilong-chart-amcharts</module>
+		<module>feilong-chart-jfreechart</module>
 	</modules>
 
 	<dependencies>
