@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.test</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.8-SNAPSHOT</version>
+	</parent>
+	<artifactId>feilong-test-incubator</artifactId>
+	<name>feilong-test-incubator</name>
+	<description>feilong-test-incubator</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.test</groupId>
+			<artifactId>feilong-web-commons</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<!-- 注意scope runtime -->
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- api jar 用于开发 -->
+		<dependency>
+			<groupId>com.feilong.platform.test</groupId>
+			<artifactId>feilong-web-commons</artifactId>
+			<version>${project.version}</version>
+			<classifier>api</classifier>
+			<type>jar</type>
+			<!-- 注意scope provided -->
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
