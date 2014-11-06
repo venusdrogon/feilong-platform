@@ -6,8 +6,8 @@
 		<version>1.0.8-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>feilong-tools-jfreechart</artifactId>
-	<name>feilong-tools-jfreechart</name>
+	<artifactId>feilong-chart-jfreechart</artifactId>
+	<name>feilong-chart-jfreechart</name>
 	<description>jfreechart util</description>
 
 	<dependencies>
