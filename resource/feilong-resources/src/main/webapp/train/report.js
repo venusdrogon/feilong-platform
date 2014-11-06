@@ -58,6 +58,10 @@ AmCharts.ready(function() {
     // 雷达图
     createAmRadarChart(feilongChart_avgScore);
 
+    // 环比
+//    createAmSerialChart1(feilongChart_avgScoreChainGraph);
+    createAmSerialChart2("avgScoreChainGraphChartDiv",avgScoreChainChartConfig);
+
 });
 
 $(function() {
@@ -71,7 +75,9 @@ $(function() {
     // 初始化评分表格文字和颜色
     initTdTextAndColor();
     // 初始化 表现好的同学
-    initGoodPerformanceStudentTable();
+    initStudentTable("#goodPerformanceStudentTable");
+    // 即没参加又没有请假
+    initStudentTable("#unknownStudentTable");
 });
 
 function initTdTextAndColor() {
@@ -351,7 +357,7 @@ function initSignTable() {
     });
 }
 
-function initGoodPerformanceStudentTable() {
+function initStudentTable(selectors) {
     var p = {
 	colModel : [ {
 	    display : '姓名',
@@ -385,9 +391,9 @@ function initGoodPerformanceStudentTable() {
     // usepager:true
     };
 
-    var maxRows = getMaxRows("#goodPerformanceStudentTable");
+    var maxRows = getMaxRows(selectors);
 
-    $("#goodPerformanceStudentTable").each(function() {
+    $(selectors).each(function() {
 	console.log("maxRows:%i", maxRows);
 
 	var height = maxRows * 28 + 12;

@@ -6,6 +6,12 @@ ul {
 	margin-top: 10px
 }
 
+#avgScoreChainGraphChartDiv {
+	width: 880px;
+	height: 460px;
+	margin: 6px 0
+}
+
 .disadvantageSpan {
 	border: 1px solid #E3E197;
 	background-color: #FFFFDD;
@@ -15,6 +21,8 @@ ul {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+	display: inline-block;
+	margin-bottom: 4px
 }
 
 .advantageDiv {
@@ -125,8 +133,8 @@ table {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	border: 1px solid #D3D3D3;
-	background-color: #F7F7F7;
+	border: 1px solid #ADCD3C;
+	background-color: #F2FDDB;
 }
 
 .talkUserName {

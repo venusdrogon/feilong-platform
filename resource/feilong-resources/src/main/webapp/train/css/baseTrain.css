@@ -70,15 +70,17 @@ h3:first-letter {
 } */
 #copyRight {
 	color: #999;
-	font: italic 9px '宋体';
-	text-align: left;
-	margin-right: 288px;
-	/* float: left; */
+	font: italic 10px '宋体';
+	/*border: 1px solid #000;*/
 }
 
 #logo {
+	/*border: 1px solid #000;*/
+	width: 69%;
 	text-align: right;
-	margin: 10px;
+	display: inline-block;
+}
+
+#logo img {
 	width: 180px;
-	/* float: right; */
 }

@@ -6,19 +6,19 @@ $(function() {
 	colModel : [ {
 	    display : '编号',
 	    name : 'id',
-	    width : 32,
+	    width : 42,
 	    sortable : true,
 	    align : 'center'
 	}, {
 	    display : '姓名/邮箱前缀',
 	    name : 'name',
-	    width : 100,
+	    width : 140,
 	    sortable : true,
 	    align : 'left'
 	}, {
 	    display : '部门',
 	    name : 'storeCategoryName',
-	    width : 76,
+	    width : 96,
 	    sortable : true,
 	    align : 'left'
 	}, ],
@@ -26,16 +26,16 @@ $(function() {
 	// sortorder : "asc",
 
 	blockOpacity : 0.8,
-	showTableToggleBtn : true,
+	//showTableToggleBtn : true,
 	resizable : false,
-	width : 250,
+	width : 360,
     // height : 826,
     // rp: 10,
     // usepager:true
     };
 
-    var maxRows = getMaxRows("#listTable table") ;
-    $("#listTable table").each(function() {
+    var maxRows = getMaxRows("#trainSignUpFlexigridTable,#nextTrainSignUpFlexigridTable") ;
+    $("#trainSignUpFlexigridTable,#nextTrainSignUpFlexigridTable").each(function() {
 	var p1 = $.extend({
 	    title : $(this).attr("titleValue"),
 	    // height : $(this).attr("height")

@@ -1,6 +1,166 @@
 /**
+ * 折线图
+ */
+function createAmSerialChart1(feilongChart) {
+
+    var chartDivId = feilongChart.chartDivId;
+    var titleField = feilongChart.titleField;
+    var valueField = feilongChart.valueField;
+    var chartTitle = feilongChart.chartTitle;
+
+    console.log("createAmSerialChart1:%o", feilongChart.dataProvider);
+
+    // SERIAL CHART
+    var chart = new AmCharts.AmSerialChart();
+    chart.dataProvider = feilongChart.dataProvider;
+    chart.categoryField = feilongChart.titleField;
+    chart.startDuration = 1;
+
+    var balloon = chart.balloon;
+    // set properties
+    balloon.adjustBorderColor = true;
+    balloon.color = "#000000";
+    balloon.cornerRadius = 5;
+    balloon.fillColor = "#FFFFFF";
+
+    chart.plotAreaFillAlphas = 1;
+
+    // chart.rotate = true; // If you set this to true, the chart will be
+    // rotated
+    // by 90 degrees (the columns will become bars).
+    // AXES
+    // category
+    var categoryAxis = chart.categoryAxis;
+    categoryAxis.labelRotation = 30;// Rotation angle of a label. Only
+    // horizontal axis' values can be rotated.
+    // If you set this for vertical axis, the
+    // setting will be ignored.
+    categoryAxis.gridPosition = "start";
+
+    // value
+    var valueAxis = new AmCharts.ValueAxis();
+    valueAxis.dashLength = 2;
+    valueAxis.title = "平均分";
+    valueAxis.includeGuidesInMinMax = true;// Specifies whether guide values
+    // should be included when
+    // calculating min and max of the
+    // axis.
+    valueAxis.includeHidden = false;// If true, the axis will include hidden
+    // graphs when calculating min and max
+    // values.
+    // valueAxis.inside = true;//Specifies whether values should be placed
+    // inside or outside plot area.
+    valueAxis.axisAlpha = 0;
+
+    // **********************************************************************************
+    // var guide = new AmCharts.Guide();
+    // guide.value = 4.5;
+    // guide.lineColor = "#aa0000";
+    // guide.dashLength = 4;
+    // guide.label = "batch1";
+    // guide.inside = true;
+    // guide.lineAlpha = 1;
+    // guide.date = new Date(2011, 4, 25);
+    //    
+    // var guide2 = new AmCharts.Guide();
+    // guide2.value = 5;
+    // guide2.lineColor = "#FF0F00";
+    // guide2.dashLength = 4;
+    // guide2.label = "batch2";
+    // guide2.inside = true;
+    // guide2.lineAlpha = 1;
+    // guide2.date = new Date(2011, 5, 25);
+    //    
+    // valueAxis.addGuide(guide);
+    // valueAxis.addGuide(guide2);
+
+    chart.addValueAxis(valueAxis);
+
+    // GRAPH
+    var graph = new AmCharts.AmGraph();
+    graph.valueField = valueField;
+
+    var colorField = "color";
+
+    var dataProviderFirstItem = (chart.dataProvider)[0];
+
+    var dataProviderFirstItemColorValue = dataProviderFirstItem[colorField];
+
+    console.log("dataProvider first item:%o", dataProviderFirstItemColorValue);
+
+    if (null != dataProviderFirstItemColorValue
+	    && "" != dataProviderFirstItemColorValue) {
+	console.log("graph.colorField:%o", graph.colorField);
+	graph.colorField = colorField;
+    }
+    graph.balloonText = "[[category]]: [[value]]";// You can use tags like
+    // [[value]],
+    // [[description]],
+    // [[percents]], [[open]],
+    // [[category]]
+    graph.labelText = "[[value]]";// You can use tags like [[value]],
+    // [[description]], [[percents]], [[open]],
+    // [[category]]
+
+    // graph.customBullet = "/Demo/amcharts/images/star.gif";//Path to the image
+    // of custom bullet.
+    // graph.customBulletField = "color";//Path to the image of custom bullet.
+    graph.type = "line";// Type of the graph. Possible values are: "line",
+    // "column", "step", "smoothedLine", "candlestick",
+    // "ohlc". XY and Radar charts can only display
+    // "line" type graphs.
+    graph.bullet = "round";// Type of the bullets. Possible values are:
+    // "none", "round", "square", "triangleUp", "triangleDown", "bubble",
+    // "custom".
+    // graph.dashLength =20;
+    // graph.descriptionField ="color";
+    // graph.labelColorField ="color";
+    graph.showAllValueLabels = true;
+    // graph.legendValueText ="color";
+    // graph.includeInMinMax =false;
+    graph.lineAlpha = 1;
+    graph.fillAlphas = 0;
+    graph.title = "1016集合框架(9人平均评分)";
+    chart.addGraph(graph);
+
+    // United Kingdom graph
+    var graph = new AmCharts.AmGraph();
+    // graph.title = "United Kingdom";
+    graph.valueField = "value5";
+    graph.balloonText = "[[category]]: [[value]]";// You can use tags like
+    // [[value]],
+    // [[description]],
+    // [[percents]], [[open]],
+    // [[category]]
+    
+    graph.bullet = "round";
+    graph.showAllValueLabels = true;
+    graph.lineAlpha = 1;
+    graph.fillAlphas = 0;
+    graph.title = "0827集合框架(28人平均评分)";
+    chart.addGraph(graph);
+
+    // ***************************************************************************
+
+    // LEGEND
+    var legend = new AmCharts.AmLegend();
+    legend.align = "center";
+
+    legend.position = "bottom";
+    // legend.reversedOrder="true";
+
+    legend.valueAlign = "right";
+    legend.spacing = "1";
+
+    chart.addLegend(legend);
+
+    addChartBorder(chart);
+    addChartTitle(chart, chartTitle);
+    chart.write(chartDivId);
+
+}
+/**
  * 柱状图
- * 
  */
 function createAmSerialChart(feilongChart) {
 
@@ -201,9 +361,9 @@ function createAmPieChart(feilongChart) {
     // this makes the chart 3D
     chart.depth3D = 12;
     chart.angle = 30;
-//     chart.colors = [ "#B0DE09", "#04D215", "#0D8ECF", "#0D52D1", "#2A0CD0",
-//     "#8A0CCF", "#CD0D74", "#754DEB", "#DDDDDD", "#999999", "#333333",
-//     "#000000", "#57032A", "#CA9726", "#990000", "#4B0C25" ];
+    // chart.colors = [ "#B0DE09", "#04D215", "#0D8ECF", "#0D52D1", "#2A0CD0",
+    // "#8A0CCF", "#CD0D74", "#754DEB", "#DDDDDD", "#999999", "#333333",
+    // "#000000", "#57032A", "#CA9726", "#990000", "#4B0C25" ];
     var colorField = "color";
 
     var dataProviderFirstItem = (chart.dataProvider)[0];
