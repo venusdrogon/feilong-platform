@@ -72,6 +72,17 @@ public class User{
 	 *
 	 * @param name
 	 *            the name
+	 */
+	public User(String name){
+		super();
+		this.name = name;
+	}
+
+	/**
+	 * The Constructor.
+	 *
+	 * @param name
+	 *            the name
 	 * @param age
 	 *            the age
 	 */
@@ -325,6 +336,8 @@ public class User{
 	}
 
 	/**
+	 * 获得 年龄.
+	 *
 	 * @return the age
 	 */
 	public Integer getAge(){
@@ -332,6 +345,8 @@ public class User{
 	}
 
 	/**
+	 * 设置 年龄.
+	 *
 	 * @param age
 	 *            the age to set
 	 */
