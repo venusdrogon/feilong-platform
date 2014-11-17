@@ -82,7 +82,7 @@ public class Browser implements Serializable{
 		this.userAgent = RequestUtil.getHeaderUserAgent(request);
 
 		if (log.isDebugEnabled()){
-			log.debug("the ua:[{}]", userAgent);
+			log.debug("the user-agent:[{}]", userAgent);
 		}
 
 		this.isIpad = StringUtil.isContainIgnoreCase(userAgent, "ipad");

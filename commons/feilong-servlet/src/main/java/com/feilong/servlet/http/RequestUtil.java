@@ -488,6 +488,8 @@ public final class RequestUtil implements RequestConstants{
 
 		Map<String, String> map = new TreeMap<String, String>();
 
+		//TODO X-real-ip 程哥说如果主站使用cdn的话，以前的方法获取到的不正确
+
 		// 是否使用反向代理
 		String ipAddress = request.getHeader(HEADER_X_FORWARDED_FOR);
 		map.put("1.header_xForwardedFor", ipAddress);

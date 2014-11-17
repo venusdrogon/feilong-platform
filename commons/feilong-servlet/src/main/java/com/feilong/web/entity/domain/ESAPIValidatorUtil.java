@@ -31,7 +31,8 @@ import org.slf4j.LoggerFactory;
 public class ESAPIValidatorUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log			= LoggerFactory.getLogger(ESAPIValidatorUtil.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log			= LoggerFactory.getLogger(ESAPIValidatorUtil.class);
 
 	/** The validator. */
 	public static Validator		validator	= ESAPI.validator();
