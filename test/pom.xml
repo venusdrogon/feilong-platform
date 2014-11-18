@@ -24,6 +24,8 @@
 		<module>feilong-test-payment</module>
 		<module>feilong-web-test</module>
 		<module>feilong-test-incubator</module>
+		<module>feilong-test-captcha</module>
+		<module>feilong-test-editor</module>
 	</modules>
 
 	<!--****************************定义属性 properties************************************* -->
@@ -144,9 +146,40 @@
 				<artifactId>${tomcatPlugin.artifactId}</artifactId>
 				<version>${tomcatPlugin.version}</version>
 				<configuration>
-					<!-- http port -->
+					<!--
+						The TCP port number on which this Connector will create a server socket and await incoming connections.
+						Your operating system will allow only one server application to listen to a particular port number on a particular IP address.
+					-->
 					<port>${tomcatPlugin.port}</port>
+
+
 					<path>${tomcatPlugin.path}</path>
+
+					<!--
+						The maximum size of the request and response HTTP header, specified in bytes.
+						If not specified, this attribute is set to 8192 (8 KB).
+					-->
+					<maxHttpHeaderSize>8192</maxHttpHeaderSize>
+					<!--
+						The size (in bytes) of the buffer to be provided for input streams created by this connector.
+						By default, buffers of 2048 bytes will be provided.
+					-->
+					<bufferSize>40960</bufferSize>
+					<!--
+						The maximum queue length for incoming connection requests when all possible request processing threads are in use.
+						Any requests received when the queue is full will be refused.
+						The default value is 100.
+					-->
+					<acceptCount>300</acceptCount>
+
+					<!--
+						The size (in bytes) of the buffer to be provided for socket output buffering.
+						-1 can be specified to disable the use of a buffer.
+						By default, a buffers of 9000 bytes will be used.
+					-->
+					<socketBuffer>-1</socketBuffer>
+
+
 					<uriEncoding>${tomcatPlugin.uriEncoding}</uriEncoding>
 					<ignorePackaging>${tomcatPlugin.ignorePackaging}</ignorePackaging>
 					<warSourceDirectory>${tomcatPlugin.warSourceDirectory}</warSourceDirectory>
@@ -154,6 +187,8 @@
 						<tomcatName>${tomcatPlugin.systemProperties.tomcatName}</tomcatName>
 						<JAVA_OPTS>${tomcatPlugin.systemProperties.JAVA_OPTS}</JAVA_OPTS>
 						<webapp.root>${tomcatPlugin.systemProperties.webapp.root}</webapp.root>
+
+						<spring.profiles.active>development</spring.profiles.active>
 					</systemProperties>
 				</configuration>
 			</plugin>
