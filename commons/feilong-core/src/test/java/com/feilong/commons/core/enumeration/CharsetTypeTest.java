@@ -1,9 +1,8 @@
-
 package com.feilong.commons.core.enumeration;
 
-import java.nio.charset.Charset;
+import static org.junit.Assert.*;
 
-import junit.framework.Assert;
+import java.nio.charset.Charset;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -26,6 +25,6 @@ public class CharsetTypeTest{
 	 */
 	@Test
 	public void isSupported(){
-		Assert.assertEquals(true, Charset.isSupported(CharsetType.ISO_8859_1));
+		assertEquals(true, Charset.isSupported(CharsetType.ISO_8859_1));
 	}
 }

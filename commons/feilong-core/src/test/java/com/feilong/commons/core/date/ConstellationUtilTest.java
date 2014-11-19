@@ -41,11 +41,11 @@ public class ConstellationUtilTest extends TestCase{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ConstellationUtilTest.class);
 
-	/** The f input. */
-	private String				fInput;
-
 	/** The f expected. */
 	private ConstellationType	fExpected;
+
+	/** The f input. */
+	private String				birthday;
 
 	/**
 	 * The Constructor.
@@ -55,8 +55,8 @@ public class ConstellationUtilTest extends TestCase{
 	 * @param input
 	 *            the input
 	 */
-	public ConstellationUtilTest(ConstellationType expected, String input){
-		fInput = input;
+	public ConstellationUtilTest(ConstellationType expected, String birthday){
+		birthday = birthday;
 		fExpected = expected;
 	}
 
@@ -121,7 +121,7 @@ public class ConstellationUtilTest extends TestCase{
 	 */
 	@Test
 	public void test(){
-		assertEquals(fExpected, ConstellationUtil.getConstellationType(fInput));
+		assertEquals(fExpected, ConstellationUtil.getConstellationType(birthday));
 	}
 
 	/**

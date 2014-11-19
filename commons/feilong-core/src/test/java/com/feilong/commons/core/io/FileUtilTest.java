@@ -20,8 +20,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -119,12 +118,12 @@ public class FileUtilTest{
 		assertEquals("E:/", FileUtil.getFileTopParentName("E:/"));
 
 		assertEquals(
-				"mp2-product",
-				FileUtil.getFileTopParentName("mp2-product\\mp2-product-impl\\src\\main\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"));
+						"mp2-product",
+						FileUtil.getFileTopParentName("mp2-product\\mp2-product-impl\\src\\main\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"));
 
 		assertEquals(
-				"mp2-product",
-				FileUtil.getFileTopParentName("mp2-product\\mp2-product-impl\\src\\..\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"));
+						"mp2-product",
+						FileUtil.getFileTopParentName("mp2-product\\mp2-product-impl\\src\\..\\java\\com\\baozun\\mp2\\rpc\\impl\\item\\repo\\package-info.java"));
 
 		assertEquals("package-info.java", FileUtil.getFileTopParentName("package-info.java"));
 
@@ -153,12 +152,12 @@ public class FileUtilTest{
 	}
 
 	/**
-	 * {@link com.feilong.commons.core.io.IOUtil#formatSize(long)} 的测试方法。
+	 * {@link com.feilong.commons.core.io.FileUtil#formatSize(long)} 的测试方法。
 	 */
 	@Test
 	public final void formatFileSize(){
-		// stats
 		log.info(FileUtil.formatSize(8981528));
+		log.info(org.apache.commons.io.FileUtils.byteCountToDisplaySize(8981528));
 	}
 
 	/**
@@ -171,7 +170,7 @@ public class FileUtilTest{
 	}
 
 	/**
-	 * 获得后缀名 {@link com.feilong.commons.core.io.IOUtil#getFilePostfixName(java.lang.String)} 的测试方法。
+	 * 获得后缀名 {@link com.feilong.commons.core.io.FileUtil#getFilePostfixName(java.lang.String)} 的测试方法。
 	 */
 	@Test
 	@Ignore

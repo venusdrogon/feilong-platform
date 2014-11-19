@@ -15,6 +15,9 @@
  */
 package com.feilong.commons.core.enumeration;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,9 +46,19 @@ public class HttpMethodTypeTest{
 	 */
 	@Test
 	public void name() throws NoSuchFieldException{
-		if (log.isDebugEnabled()){
-			log.debug("" + HttpMethodType.valueOf("GET"));
-			log.debug("" + EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
-		}
+		assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GET"));
+		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
+		assertEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get"));
+	}
+
+	@Test(expected = NoSuchFieldException.class)
+	public void name2() throws NoSuchFieldException{
+		assertNotEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get1"));
+
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void name1(){
+		assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GeT"));
 	}
 }

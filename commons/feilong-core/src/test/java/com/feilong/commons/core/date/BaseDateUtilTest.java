@@ -29,25 +29,25 @@ import org.slf4j.LoggerFactory;
  */
 abstract class BaseDateUtilTest{
 
-	private static final Logger	log					= LoggerFactory.getLogger(BaseDateUtilTest.class);
+	private static final Logger	log						= LoggerFactory.getLogger(BaseDateUtilTest.class);
 
 	/** <code>{@value}</code> code. */
-	static final String			fromString			= "2011-03-5 23:31:25.456";
+	static final String			fromString				= "2011-03-5 23:31:25.456";
 
 	/** The to string. */
-	static final String			toString			= "2011-03-10 01:30:24.895";
+	static final String			toString				= "2011-03-10 01:30:24.895";
 
 	/** The now. */
-	static final Date			now					= new Date();
+	static final Date			now						= new Date();
 
 	/** The current year begin. */
-	static final Date			currentYearBegin	= DateUtil.getFirstDateOfThisYear(now);
+	static final Date			currentYearBegin		= DateUtil.getFirstDateOfThisYear(now);
 
 	/** The current year end. */
-	static final Date			currentYearEnd		= DateUtil.getLastDateOfThisYear(now);
+	static final Date			currentYearEnd			= DateUtil.getLastDateOfThisYear(now);
 
 	/** The current year end. */
-	static final Date			testDate			= DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.commonWithMillisecond);
+	static final Date			TESTDATE_20141231013024	= DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.commonWithMillisecond);
 
 	/**
 	 * Prints the.

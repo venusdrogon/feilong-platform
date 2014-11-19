@@ -119,6 +119,12 @@
 			<artifactId>commons-collections</artifactId>
 		</dependency>
 
+		<!-- commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
 		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->
 		<dependency>
 			<groupId>xom</groupId>

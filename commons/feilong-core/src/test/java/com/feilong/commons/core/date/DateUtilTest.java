@@ -53,32 +53,52 @@ public class DateUtilTest extends BaseDateUtilTest{
 	 * Before class.
 	 */
 	@BeforeClass
-	public static void beforeClass(){
-		log.debug("beforeClass,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
+	public static void beforeClass1(){
+		log.debug("beforeClass1,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
+	}
+
+	@BeforeClass
+	public static void beforeClass2(){
+		log.debug("beforeClass2,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
 	}
 
 	/**
 	 * Before.
 	 */
 	@Before
-	public void before(){
-		log.debug("before,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
+	public void before1(){
+		log.debug("before1,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
+	}
+
+	@Before
+	public void before2(){
+		log.debug("before2,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
 	}
 
 	/**
 	 * After.
 	 */
 	@After
-	public void after(){
-		log.debug("after:--------------");
+	public void after1(){
+		log.debug("after1:--------------");
+	}
+
+	@After
+	public void after2(){
+		log.debug("after2:--------------");
 	}
 
 	/**
 	 * After class.
 	 */
 	@AfterClass
-	public static void afterClass(){
-		log.debug("afterClass:--------------");
+	public static void afterClass1(){
+		log.debug("afterClass1:--------------");
+	}
+
+	@AfterClass
+	public static void afterClass2(){
+		log.debug("afterClass2:--------------");
 	}
 
 	// **********************************************************************
@@ -88,7 +108,6 @@ public class DateUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public void aaaa(){
-
 		Date beginDate = DateUtil.string2Date("2013-12-21 00:00:00", DatePattern.commonWithTime);
 		Date endDate = DateUtil.string2Date("2013-12-21 05:00:00", DatePattern.commonWithTime);
 
@@ -104,9 +123,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 
 				log.info("0" + i + ":" + StringUtil.format("%02d", j));
 			}
-
 		}
-
 	}
 
 	/**
@@ -114,8 +131,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public void test1(){
-		Date now = new Date();
-		Calendar calendar = DateUtil.toCalendar(now);
+		Calendar calendar = DateUtil.toCalendar(TESTDATE_20141231013024);
 		log.info(calendar.getActualMaximum(Calendar.SECOND) + "");
 		log.info(calendar.getTimeInMillis() + "");
 		log.info(calendar.hashCode() + "");
@@ -563,8 +579,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public final void testIsInTime(){
-		Date date = new Date();
-		log.debug("{}", DateUtil.isInTime(date, "2012-10-10 22:59:00", "2012-10-16 22:59:00", DatePattern.commonWithTime));
+		log.debug("{}", DateUtil.isInTime(now, "2012-10-10 22:59:00", "2012-10-16 22:59:00", DatePattern.commonWithTime));
 	}
 
 	/**
@@ -575,7 +590,6 @@ public class DateUtilTest extends BaseDateUtilTest{
 	@Test
 	public final void getIntervalHour(){
 		Date startDate = DateUtil.string2Date("2013-01-01 00:00:00", DatePattern.commonWithTime);
-		Date now = new Date();
 		log.info(DateUtil.getIntervalHour(startDate, now) + "");
 		log.info(DateUtil.getIntervalHour(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.commonWithTime)) + "");
 		log.info(DateUtil.getIntervalHour(startDate, DateUtil.string2Date("3113-01-01 00:00:00", DatePattern.commonWithTime)) + "");
@@ -587,7 +601,6 @@ public class DateUtilTest extends BaseDateUtilTest{
 	@Test
 	public final void testGetIntervalTime(){
 		Date startDate = DateUtil.string2Date("2013-01-01 00:00:00", DatePattern.commonWithTime);
-		Date now = new Date();
 		log.info(DateUtil.getIntervalTime(startDate, now) + "");
 		log.info(DateUtil.getIntervalTime(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.commonWithTime)) + "");
 

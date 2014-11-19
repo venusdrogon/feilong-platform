@@ -81,7 +81,8 @@ public final class IOWriteUtil{
 	}
 
 	/**
-	 * 写资源,速度最快的方法,速度比较请看 电脑资料 {@code  <<压缩解压性能探究>>}.
+	 * 写资源,速度最快的方法,速度比较请看 电脑资料 {@code  <<压缩解压性能探究>>} .<br>
+	 * <b>(注意，本方法最终会关闭 <code>inputStream</code>以及 <code>outputStream</code>).</b>
 	 * 
 	 * @param inputStream
 	 *            inputStream
@@ -90,15 +91,74 @@ public final class IOWriteUtil{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @see java.io.OutputStream#write(byte[], int, int)
+	 * @see #write(int, InputStream, OutputStream)
+	 * @see org.apache.commons.io.IOUtils#copyLarge(InputStream, OutputStream)
 	 */
 	public static void write(InputStream inputStream,OutputStream outputStream) throws IOException{
-		byte[] bytes = new byte[10240];
+		write(10240, inputStream, outputStream);
+	}
+
+	/**
+	 * 写资源,速度最快的方法,速度比较请看 电脑资料 {@code  <<压缩解压性能探究>>} .<br>
+	 * <b>(注意，本方法最终会关闭 <code>inputStream</code>以及 <code>outputStream</code>).</b>
+	 *
+	 * @param bufferLength
+	 *            每次循环buffer大小
+	 * @param inputStream
+	 *            inputStream
+	 * @param outputStream
+	 *            outputStream
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @see java.io.OutputStream#write(byte[], int, int)
+	 * @see org.apache.commons.io.IOUtils#copyLarge(InputStream, OutputStream)
+	 */
+	public static void write(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
+		byte[] bytes = new byte[bufferLength];
 		int j;
-		while ((j = inputStream.read(bytes)) != -1){
-			outputStream.write(bytes, 0, j);
+
+		int i = 0;
+		int sumSize = 0;
+
+		try{
+			//从输入流中读取一定数量的字节，并将其存储在缓冲区数组bytes 中。以整数形式返回实际读取的字节数。在输入数据可用、检测到文件末尾或者抛出异常前，此方法一直阻塞。 
+			//如果 bytes 的长度为 0，则不读取任何字节并返回 0；否则，尝试读取至少一个字节。
+			//如果因为流位于文件末尾而没有可用的字节，则返回值 -1；否则，至少读取一个字节并将其存储在 bytes 中。 
+			//将读取的第一个字节存储在元素 bytes[0] 中，下一个存储在 b[1] 中，依次类推。
+			//读取的字节数最多等于 b 的长度。设 k 为实际读取的字节数；这些字节将存储在 b[0] 到 b[k-1] 的元素中，不影响 b[k] 到 b[b.length-1] 的元素。 
+			//类 InputStream 的 read(b) 方法的效果等同于：read(b, 0, b.length) 
+			while ((j = inputStream.read(bytes)) != -1){
+
+				//多线程下载 会报下面的异常， 比如 迅雷下载 或者 chrome 360极速浏览器，但是不影响下载效果
+				//ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+				outputStream.write(bytes, 0, j);
+				i++;
+				sumSize = sumSize + j;
+
+				//if (log.isDebugEnabled()){
+				//	log.debug(
+				//					"write data,index:[{}],bufferLength:[{}],currentLoopLength:[{}],sumSize:[{}]",
+				//					i,
+				//					bufferLength,
+				//					j,
+				//					FileUtil.formatSize(sumSize));
+				//}
+			}
+			if (log.isDebugEnabled()){
+				log.debug("write data over,sumSize:[{}],bufferLength:[{}],loopCount:[{}]", FileUtil.formatSize(sumSize), bufferLength, i);
+			}
+			outputStream.flush();
+		}catch (IOException e){
+			throw e;
+		}finally{
+			// 用完关闭流 是个好习惯,^_^
+			if (outputStream != null){
+				outputStream.close();
+			}
+			if (inputStream != null){
+				inputStream.close();
+			}
 		}
-		// 用完关闭流 是个好习惯,^_^
-		inputStream.close();
 	}
 
 	// *******************************************************************************************
@@ -188,7 +248,7 @@ public final class IOWriteUtil{
 	 * @see CharsetType
 	 */
 	public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws IOException,
-			IllegalArgumentException{
+					IllegalArgumentException{
 
 		if (Validator.isNullOrEmpty(encode)){
 			encode = CharsetType.GBK;
@@ -208,12 +268,12 @@ public final class IOWriteUtil{
 
 		if (log.isInfoEnabled()){
 			log.info(
-					"fileWriteMode:[{}],contentLength:[{}],encode:[{}],fileSize:[{}],absolutePath:[{}]",
-					fileWriteMode,
-					content.length(),
-					encode,
-					FileUtil.getFileFormatSize(file),
-					file.getAbsolutePath());
+							"fileWriteMode:[{}],contentLength:[{}],encode:[{}],fileSize:[{}],absolutePath:[{}]",
+							fileWriteMode,
+							content.length(),
+							encode,
+							FileUtil.getFileFormatSize(file),
+							file.getAbsolutePath());
 		}
 	}
 

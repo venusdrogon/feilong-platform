@@ -99,7 +99,7 @@ public final class IOUtil{
 	}
 
 	/**
-	 * 将网络文件 下载到文件夹<br>
+	 * 将网络文件 下载到文件夹.
 	 * 取到网络文件的文件名 原样下载到目标文件夹.
 	 * 
 	 * @param url
@@ -108,14 +108,18 @@ public final class IOUtil{
 	 * @param directoryName
 	 *            目标文件夹
 	 * @throws IOException
+	 * @see IOWriteUtil#write(InputStream, String, String)
 	 */
 	public static void down(String url,String directoryName) throws IOException{
-		log.info("begin down:" + url);
+		log.info("begin download,url:{},directoryName:{}", url, directoryName);
 		URL _url = new URL(url);
 		InputStream inputStream = _url.openStream();
+
 		File file = new File(url);
 		String fileName = file.getName();
+
 		IOWriteUtil.write(inputStream, directoryName, fileName);
+		log.info("end download,url:{},directoryName:{}", url, directoryName);
 	}
 
 	/**

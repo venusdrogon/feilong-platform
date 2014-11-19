@@ -230,6 +230,7 @@ public final class FileUtil{
 	 * @param fileName
 	 *            文件名称
 	 * @return 不带. 的后缀
+	 * @see org.apache.commons.io.FilenameUtils#getExtension(String)
 	 */
 	public final static String getFilePostfixName(String fileName){
 		if (hasPostfixName(fileName)){
@@ -246,6 +247,7 @@ public final class FileUtil{
 	 * @param fileName
 	 *            文件名称
 	 * @return 不带. 的后缀
+	 * @see org.apache.commons.io.FilenameUtils#getExtension(String)
 	 */
 	public final static String getFilePostfixNameLowerCase(String fileName){
 		String postfixName = getFilePostfixName(fileName);
@@ -424,6 +426,9 @@ public final class FileUtil{
 	 * <p>
 	 * 目前支持单位有 GB MB KB以及最小单位 Bytes
 	 * </p>
+	 * <p>
+	 * Common-io 2.4{@link org.apache.commons.io.FileUtils#byteCountToDisplaySize(long)}有缺点，显示的是整数GB 不带小数（比如1.99G 显示为1G），apache 论坛上争议比较大
+	 * </p>
 	 * 
 	 * @param fileSize
 	 *            文件大小 单位byte
@@ -432,6 +437,8 @@ public final class FileUtil{
 	 * @see IOConstants#GB
 	 * @see IOConstants#MB
 	 * @see IOConstants#KB
+	 * 
+	 * @see org.apache.commons.io.FileUtils#byteCountToDisplaySize(long)
 	 */
 	public final static String formatSize(long fileSize){
 		String danwei = "Bytes";
@@ -482,6 +489,7 @@ public final class FileUtil{
 	 * @see IOConstants#MB
 	 * @see IOConstants#KB
 	 * @since 1.0.7
+	 * @see org.apache.commons.io.FileUtils#byteCountToDisplaySize(long)
 	 */
 	public final static String getFileFormatSize(File file) throws NullPointerException{
 		if (Validator.isNullOrEmpty(file)){
