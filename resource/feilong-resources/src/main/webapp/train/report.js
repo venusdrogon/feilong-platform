@@ -11,7 +11,6 @@ AmCharts.ready(function() {
 	case "无":
 	    n["color"] = "#FF0F00";
 	    break;
-
 	default:
 	    n["color"] = "#000";
 	    break;

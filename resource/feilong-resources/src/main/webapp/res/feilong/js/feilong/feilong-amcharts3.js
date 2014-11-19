@@ -498,9 +498,9 @@ function createAmPieChart(feilongChart) {
 	    && "" != dataProviderFirstItemColorValue) {
 	console.log("chart.colorField:%o", colorField);
 
-	$.extend({
-	    colorField : colorField
-	}, chartConfig);
+	$.extend(true, chartConfig, {
+	    colorField : "color"
+	});
     }
 
     var chart = AmCharts.makeChart(feilongChart.chartDivId, chartConfig);
