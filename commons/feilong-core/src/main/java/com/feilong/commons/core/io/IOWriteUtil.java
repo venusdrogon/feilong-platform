@@ -129,7 +129,7 @@ public final class IOWriteUtil{
 			//类 InputStream 的 read(b) 方法的效果等同于：read(b, 0, b.length) 
 			while ((j = inputStream.read(bytes)) != -1){
 
-				//多线程下载 会报下面的异常， 比如 迅雷下载 或者 chrome 360极速浏览器，但是不影响下载效果
+				//迅雷下载会报下面的异常，但是不影响下载效果
 				//ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
 				outputStream.write(bytes, 0, j);
 				i++;
