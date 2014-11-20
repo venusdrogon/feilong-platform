@@ -44,7 +44,7 @@ import com.feilong.commons.core.util.Validator;
  * @see RequestConstants
  * @see RequestLogSwitch
  */
-public final class RequestUtil implements RequestConstants{
+public final class RequestUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(RequestUtil.class);
@@ -150,15 +150,21 @@ public final class RequestUtil implements RequestConstants{
 	 *         如果 request没有 {@link #ATTRIBUTE_ERROR_STATUS_CODE}属性,返回null
 	 */
 	public static Map<String, String> getErrorMap(HttpServletRequest request){
-		String errorCode = getAttributeToString(request, ATTRIBUTE_ERROR_STATUS_CODE);
+		String errorCode = getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_STATUS_CODE);
 		if (Validator.isNotNullOrEmpty(errorCode)){
 			Map<String, String> map = new LinkedHashMap<String, String>();
-			map.put(ATTRIBUTE_ERROR_STATUS_CODE, errorCode);
-			map.put(ATTRIBUTE_ERROR_REQUEST_URI, getAttributeToString(request, ATTRIBUTE_ERROR_REQUEST_URI));
-			map.put(ATTRIBUTE_ERROR_EXCEPTION, getAttributeToString(request, ATTRIBUTE_ERROR_EXCEPTION));
-			map.put(ATTRIBUTE_ERROR_EXCEPTION_TYPE, getAttributeToString(request, ATTRIBUTE_ERROR_EXCEPTION_TYPE));
-			map.put(ATTRIBUTE_ERROR_MESSAGE, getAttributeToString(request, ATTRIBUTE_ERROR_MESSAGE));
-			map.put(ATTRIBUTE_ERROR_SERVLET_NAME, getAttributeToString(request, ATTRIBUTE_ERROR_SERVLET_NAME));
+			map.put(RequestConstants.ATTRIBUTE_ERROR_STATUS_CODE, errorCode);
+			map.put(
+							RequestConstants.ATTRIBUTE_ERROR_REQUEST_URI,
+							getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_REQUEST_URI));
+			map.put(RequestConstants.ATTRIBUTE_ERROR_EXCEPTION, getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_EXCEPTION));
+			map.put(
+							RequestConstants.ATTRIBUTE_ERROR_EXCEPTION_TYPE,
+							getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_EXCEPTION_TYPE));
+			map.put(RequestConstants.ATTRIBUTE_ERROR_MESSAGE, getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_MESSAGE));
+			map.put(
+							RequestConstants.ATTRIBUTE_ERROR_SERVLET_NAME,
+							getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_SERVLET_NAME));
 			return map;
 		}
 		return null;
@@ -372,7 +378,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @return 获得请求的?部分前面的地址
 	 */
 	public final static String getRequestURL(HttpServletRequest request){
-		String forward_request_uri = (String) request.getAttribute(ATTRIBUTE_FORWARD_REQUEST_URI);
+		String forward_request_uri = (String) request.getAttribute(RequestConstants.ATTRIBUTE_FORWARD_REQUEST_URI);
 		if (Validator.isNotNullOrEmpty(forward_request_uri)){
 			return forward_request_uri;
 		}
@@ -387,7 +393,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @return the servlet path
 	 */
 	public static String getOriginatingServletPath(HttpServletRequest request){
-		String servletPath = (String) request.getAttribute(ATTRIBUTE_FORWARD_SERVLET_PATH);
+		String servletPath = (String) request.getAttribute(RequestConstants.ATTRIBUTE_FORWARD_SERVLET_PATH);
 		if (servletPath == null){
 			servletPath = request.getServletPath();
 		}
@@ -491,14 +497,14 @@ public final class RequestUtil implements RequestConstants{
 		//TODO X-real-ip 程哥说如果主站使用cdn的话，以前的方法获取到的不正确
 
 		// 是否使用反向代理
-		String ipAddress = request.getHeader(HEADER_X_FORWARDED_FOR);
+		String ipAddress = request.getHeader(HttpHeaders.X_FORWARDED_FOR);
 		map.put("1.header_xForwardedFor", ipAddress);
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
-			ipAddress = request.getHeader(HEADER_PROXY_CLIENT_IP);
+			ipAddress = request.getHeader(HttpHeaders.PROXY_CLIENT_IP);
 			map.put("2.header_proxyClientIP", ipAddress);
 		}
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
-			ipAddress = request.getHeader(HEADER_WL_PROXY_CLIENT_IP);
+			ipAddress = request.getHeader(HttpHeaders.WL_PROXY_CLIENT_IP);
 			map.put("3.header_wLProxyClientIP", ipAddress);
 		}
 		if (Validator.isNullOrEmpty(ipAddress) || unknown.equalsIgnoreCase(ipAddress)){
@@ -530,7 +536,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @return the user agent
 	 */
 	public final static String getHeaderUserAgent(HttpServletRequest request){
-		return request.getHeader(HEADER_USER_AGENT);
+		return request.getHeader(HttpHeaders.USER_AGENT);
 	}
 
 	/**
@@ -556,7 +562,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @return 上上个请求的URL
 	 */
 	public final static String getHeaderReferer(HttpServletRequest request){
-		return request.getHeader(HEADER_REFERER);
+		return request.getHeader(HttpHeaders.REFERER);
 	}
 
 	/**
@@ -569,7 +575,7 @@ public final class RequestUtil implements RequestConstants{
 	 * @return the header origin
 	 */
 	public final static String getHeaderOrigin(HttpServletRequest request){
-		return request.getHeader(HEADER_ORIGIN);
+		return request.getHeader(HttpHeaders.ORIGIN);
 	}
 
 	/**
@@ -587,8 +593,8 @@ public final class RequestUtil implements RequestConstants{
 	 */
 	@SuppressWarnings("javadoc")
 	public final static boolean isAjaxRequest(HttpServletRequest request){
-		String header = request.getHeader(HEADER_X_REQUESTED_WITH);
-		if (Validator.isNotNullOrEmpty(header) && header.equalsIgnoreCase(HEADER_X_REQUESTED_WITH_VALUE_AJAX)){
+		String header = request.getHeader(HttpHeaders.X_REQUESTED_WITH);
+		if (Validator.isNotNullOrEmpty(header) && header.equalsIgnoreCase(HttpHeaders.X_REQUESTED_WITH_VALUE_AJAX)){
 			return true;
 		}
 		return false;

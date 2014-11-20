@@ -167,38 +167,4 @@ public interface RequestConstants{
 	 */
 	String	ATTRIBUTE_ERROR_SERVLET_NAME		= "javax.servlet.error.servlet_name";
 
-	// ****************************************header**************************************************************************
-	/** The Constant header_referer. */
-	String	HEADER_REFERER						= "referer";
-
-	/**
-	 * 1、Origin字段里只包含是谁发起的请求，并没有其他信息 (通常情况下是方案，主机和活动文档URL的端口)。<br>
-	 * 跟Referer不一样的是，Origin字段并没有包含涉及到用户隐私的URL路径和请求内容，这个尤其重要。 <br>
-	 * 2、Origin字段只存在于POST请求，而Referer则存在于所有类型的请求。<br>
-	 * .
-	 */
-	String	HEADER_ORIGIN						= "origin";
-
-	/** The Constant header_userAgent. */
-	String	HEADER_USER_AGENT					= "User-Agent";
-
-	/**
-	 * X-Forwarded-For:简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP，只有在通过了HTTP 代理或者负载均衡服务器时才会添加该项。<br>
-	 * 它不是RFC中定义的标准请求头信息，在squid缓存代理服务器开发文档中可以找到该项的详细介绍。 <br>
-	 * 标准格式如下：<br>
-	 * X-Forwarded-For: client1, proxy1, proxy2.
-	 */
-	String	HEADER_X_FORWARDED_FOR				= "x-forwarded-for";
-
-	/** The Constant header_proxyClientIP. */
-	String	HEADER_PROXY_CLIENT_IP				= "Proxy-Client-IP";
-
-	/** WL-Proxy-Client-IP 这个应该是WebLogic前置HttpClusterServlet提供的属性，一般不需要自己处理，在WebLogic控制台中已经可以指定使用这个属性来覆盖. */
-	String	HEADER_WL_PROXY_CLIENT_IP			= "WL-Proxy-Client-IP";
-
-	/** The Constant header_XRequestedWith. */
-	String	HEADER_X_REQUESTED_WITH				= "X-Requested-With";
-
-	/** The Constant header_XRequestedWith_value_ajax. */
-	String	HEADER_X_REQUESTED_WITH_VALUE_AJAX	= "XMLHttpRequest";
 }
