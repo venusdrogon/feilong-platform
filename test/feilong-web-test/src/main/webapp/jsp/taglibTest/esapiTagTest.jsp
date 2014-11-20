@@ -3,7 +3,7 @@
 <%@ taglib prefix="e" uri="http://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API"%>
 
 <title>esapiTest.jsp</title>
-<link rel="stylesheet" href="${base}/res/feilong/css/feilong-all.css" type="text/css"></link>
+<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>
 
 
 <script type="text/javascript">

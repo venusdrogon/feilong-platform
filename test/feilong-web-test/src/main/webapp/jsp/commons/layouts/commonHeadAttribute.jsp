@@ -30,4 +30,4 @@
 </c:choose>
 <tiles:insertAttribute name="meta" />
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/res/feilong/css/feilong-all.css" type="text/css"></link>
+<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>

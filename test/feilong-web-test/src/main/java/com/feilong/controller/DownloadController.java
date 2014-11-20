@@ -1,33 +1,28 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.controller;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.HashMap;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,230 +30,314 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.feilong.commons.core.date.DateExtensionUtil;
+import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.IOWriteUtil;
+import com.feilong.commons.core.io.MimeTypeUtil;
+import com.feilong.commons.core.net.URIUtil;
+import com.feilong.commons.core.util.StringUtil;
+import com.feilong.commons.core.util.Validator;
+import com.feilong.servlet.http.HttpHeaders;
+import com.feilong.servlet.http.RequestUtil;
+
 /**
- * 下载
- * 
+ * 下载.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-3-18 下午11:32:05
  */
 @Controller
-@SuppressWarnings("all")public class DownloadController{
+public class DownloadController{
 
-	@SuppressWarnings("unused")
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(DownloadController.class);
 
-	@RequestMapping("/download")
-	public String pager(Model model,HttpServletRequest request){
-		return "taglibTest/pagerTest";
+	/** The i. */
+	private int					i	= 0;
+
+	/**
+	 * Download.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	@RequestMapping(value = "/download")
+	public void download(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		i++;
+		log.info("access i:{}", i);
+
+		String pathname = null;
+
+		pathname = "D:\\Downloads\\那片海.mp4";
+		pathname = "D:\\Downloads\\1.txt";
+		pathname = "C:\\Users\\feilong\\feilong\\sitemap.xml";
+		 pathname = "C:\\Users\\feilong\\Downloads\\那片海.mp4";
+		//pathname = "D:\\Downloads\\viewfile.png";
+		//pathname = "D:\\Downloads\\export-飞天奔月.opml";
+
+		//int contentLength = inputStream.available();
+
+		File file = new File(pathname);
+		Number contentLength = FileUtil.getFileSize(file);
+
+		// 以流的形式下载文件。
+		InputStream inputStream = new FileInputStream(pathname);
+		String saveFileName = FileUtil.getFileName(pathname);
+
+		//response.getWriter().write("hahahhaah");
+
+		download(saveFileName, inputStream, contentLength, request, response);
 	}
 
-	public HttpServletResponse download(String path,HttpServletResponse response){
-		try{
-			// path是指欲下载的文件的路径。
-			File file = new File(path);
-			// 取得文件名。
-			String filename = file.getName();
-			// 取得文件的后缀名。
-			String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
+	/**
+	 * 下载(以 contentType=application/force-download) 强制下载.
+	 *
+	 * @param saveFileName
+	 *            保存文件的文件名,将会被设置到 Content-Disposition header 中
+	 * @param inputStream
+	 *            保存数据输入流
+	 * @param contentLength
+	 *            如果是网络流就需要自己来取到大小了
+	 * @param request
+	 *            用来 获取request相关信息 记录log
+	 * @param response
+	 *            response
+	 * @throws IOException
+	 *             the IO exception
+	 * @see IOWriteUtil#write(InputStream, OutputStream)
+	 * @see org.springframework.http.MediaType
+	 */
+	public void download(
+					String saveFileName,
+					InputStream inputStream,
+					Number contentLength,
+					HttpServletRequest request,
+					HttpServletResponse response) throws IOException{
+		//均采用默认的
+		String contentType = null;
+		String contentDisposition = null;
+		download(saveFileName, inputStream, contentLength, contentType, contentDisposition, request, response);
+	}
 
-			// 以流的形式下载文件。
-			InputStream fis = new BufferedInputStream(new FileInputStream(path));
-			byte[] buffer = new byte[fis.available()];
-			fis.read(buffer);
-			fis.close();
-			// 清空response
-			response.reset();
-			// 设置response的Header
-			response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));
-			response.addHeader("Content-Length", "" + file.length());
-			OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-			response.setContentType("application/octet-stream");
-			toClient.write(buffer);
-			toClient.flush();
-			toClient.close();
-		}catch (IOException ex){
-			ex.printStackTrace();
+	/**
+	 * 下载.
+	 *
+	 * @param saveFileName
+	 *            保存文件的文件名,将会被设置到 Content-Disposition header 中
+	 * @param inputStream
+	 *            保存数据输入流
+	 * @param contentLength
+	 *            如果是网络流就需要自己来取到大小了
+	 * @param contentType
+	 *            the content type
+	 * @param contentDisposition
+	 *            the content disposition
+	 * @param request
+	 *            用来 获取request相关信息 记录log
+	 * @param response
+	 *            response
+	 * @throws IOException
+	 *             the IO exception
+	 * @see IOWriteUtil#write(InputStream, OutputStream)
+	 * @see org.springframework.http.MediaType
+	 * @see org.apache.http.HttpHeaders
+	 * @see org.springframework.http.HttpHeaders
+	 * @see com.feilong.commons.core.io.MimeTypeUtil#getContentTypeByFileName(String)
+	 * @see javax.servlet.ServletContext#getMimeType(String)
+	 */
+	public void download(
+					String saveFileName,
+					InputStream inputStream,
+					Number contentLength,
+					String contentType,
+					String contentDisposition,
+					HttpServletRequest request,
+					HttpServletResponse response) throws IOException{
+
+		setDownloadResponseHeader(saveFileName, contentLength, contentType, contentDisposition, response);
+
+		//**********************************下载数据********************************************************************
+		downLoadData(saveFileName, inputStream, contentLength, request, response);
+	}
+
+	/**
+	 * Down load data.
+	 *
+	 * @param saveFileName
+	 *            the save file name
+	 * @param inputStream
+	 *            the input stream
+	 * @param contentLength
+	 *            the content length
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	private void downLoadData(
+					String saveFileName,
+					InputStream inputStream,
+					Number contentLength,
+					HttpServletRequest request,
+					HttpServletResponse response) throws IOException{
+		Date beginDate = new Date();
+
+		if (log.isInfoEnabled()){
+			log.info("begin download~~,saveFileName:[{}],contentLength:[{}]", saveFileName, FileUtil.formatSize(contentLength.longValue()));
 		}
-		return response;
-	}
-
-	public void downloadLocal(HttpServletResponse response) throws FileNotFoundException{
-		// 下载本地文件
-		String fileName = "Operator.doc".toString(); // 文件的默认保存名
-		// 读到流中
-		InputStream inStream = new FileInputStream("c:/Operator.doc");// 文件的存放路径
-		// 设置输出的格式
-		response.reset();
-		response.setContentType("bin");
-		response.addHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-		// 循环取出流中的数据
-		byte[] b = new byte[100];
-		int len;
 		try{
-			while ((len = inStream.read(b)) > 0)
-				response.getOutputStream().write(b, 0, len);
-			inStream.close();
-		}catch (IOException e){
-			e.printStackTrace();
-		}
-	}
+			OutputStream outputStream = response.getOutputStream();
 
-	public void downloadNet(HttpServletResponse response) throws MalformedURLException{
-		// 下载网络文件
-		int bytesum = 0;
-		int byteread = 0;
+			//这种 如果文件一大，很容易内存溢出
+			//inputStream.read(buffer);
+			//outputStream = new BufferedOutputStream(response.getOutputStream());
+			//outputStream.write(buffer);
 
-		URL url = new URL("windine.blogdriver.com/logo.gif");
-
-		try{
-			URLConnection conn = url.openConnection();
-			InputStream inStream = conn.getInputStream();
-			FileOutputStream fs = new FileOutputStream("c:/abc.gif");
-
-			byte[] buffer = new byte[1204];
-			int length;
-			while ((byteread = inStream.read(buffer)) != -1){
-				bytesum += byteread;
-				System.out.println(bytesum);
-				fs.write(buffer, 0, byteread);
+			IOWriteUtil.write(inputStream, outputStream);
+			if (log.isInfoEnabled()){
+				Date endDate = new Date();
+				log.info(
+								"end download,saveFileName:[{}],contentLength:[{}],time use:[{}]",
+								saveFileName,
+								FileUtil.formatSize(contentLength.longValue()),
+								DateExtensionUtil.getIntervalForView(beginDate, endDate));
 			}
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
 		}catch (IOException e){
-			e.printStackTrace();
+			/*
+			 * 在写数据的时候， 对于 ClientAbortException 之类的异常， 是因为客户端取消了下载，而服务器端继续向浏览器写入数据时， 抛出这个异常，这个是正常的。
+			 * 尤其是对于迅雷这种吸血的客户端软件， 明明已经有一个线程在读取
+			 * 如果短时间内没有读取完毕，迅雷会再启第二个、第三个。。。线程来读取相同的字节段，
+			 * 直到有一个线程读取完毕，迅雷会 KILL掉其他正在下载同一字节段的线程， 强行中止字节读出，造成服务器抛 ClientAbortException。
+			 */
+			//ClientAbortException:  java.net.SocketException: Connection reset by peer: socket write error
+			final String exceptionName = e.getClass().getName();
+
+			if (StringUtil.isContain(exceptionName, "ClientAbortException") || StringUtil.isContain(e.getMessage(), "ClientAbortException")){
+				log.warn(
+								"[ClientAbortException],maybe user use Thunder soft or abort client soft download,exceptionName:[{}],exception message:[{}] ,request User-Agent:[{}]",
+								exceptionName,
+								e.getMessage(),
+								RequestUtil.getHeaderUserAgent(request));
+			}else{
+				log.error("[download exception],exception name: " + exceptionName, e);
+				throw e;
+			}
 		}
+	}
+
+	/**
+	 * 设置 download response header.
+	 *
+	 * @param saveFileName
+	 *            the save file name
+	 * @param contentLength
+	 *            the content length
+	 * @param contentType
+	 *            the content type
+	 * @param contentDisposition
+	 *            the content disposition
+	 * @param response
+	 *            the response
+	 */
+	private void setDownloadResponseHeader(
+					String saveFileName,
+					Number contentLength,
+					String contentType,
+					String contentDisposition,
+					HttpServletResponse response){
+		//**********************************************************************************************
+		// 清空response
+		//getResponse的getWriter()方法连续两次输出流到页面的时候，第二次的流会包括第一次的流，所以可以使用将response.reset或者resetBuffer的方法。
+		response.reset();
+
+		// ===================== Default MIME Type Mappings =================== -->
+		//See tomcat web.xml
+		//When serving static resources, Tomcat will automatically generate a "Content-Type" header based on the resource's filename extension, based on these mappings.  
+		//Additional mappings can be added here (to apply to all web applications), or in your own application's web.xml deployment descriptor.                                               -->
+
+		if (Validator.isNullOrEmpty(contentType)){
+			contentType = MimeTypeUtil.getContentTypeByFileName(saveFileName);
+
+			if (Validator.isNullOrEmpty(contentType)){
+				//contentType = "application/force-download";//,php强制下载application/force-download,将发送HTTP 标头您的浏览器并告诉它下载，而不是在浏览器中运行的文件
+				//application/x-download
+
+				//.*（ 二进制流，不知道下载文件类型）	application/octet-stream
+				contentType = "application/octet-stream";
+				//The HTTP specification recommends setting the Content-Type to application/octet-stream. 
+				//Unfortunately, this causes problems with Opera 6 on Windows (which will display the raw bytes for any file whose extension it doesn't recognize) and on Internet Explorer 5.1 on the Mac (which will display inline content that would be downloaded if sent with an unrecognized type).
+			}
+		}
+
+		//浏览器接收到文件后，会进入插件系统进行查找，查找出哪种插件可以识别读取接收到的文件。如果浏览器不清楚调用哪种插件系统，它可能会告诉用户缺少某插件，
+		if (Validator.isNotNullOrEmpty(contentType)){
+			response.setContentType(contentType);
+		}
+
+		//****************************************************************************************************
+
+		//Content-Disposition takes one of two values, `inline' and  `attachment'.  
+		//'Inline' indicates that the entity should be immediately displayed to the user, 
+		//whereas `attachment' means that the user should take additional action to view the entity.
+		//The `filename' parameter can be used to suggest a filename for storing the bodypart, if the user wishes to store it in an external file.
+		if (Validator.isNullOrEmpty(contentDisposition)){
+			//默认 附件形式
+			contentDisposition = "attachment; filename=" + URIUtil.encode(saveFileName, CharsetType.UTF8);
+		}
+		//TODO 看看能否调用 httpcomponents的 httpcore  org.apache.http.HttpHeaders
+		response.addHeader(HttpHeaders.CONTENT_DISPOSITION, contentDisposition);
+		response.setContentLength(contentLength.intValue());
 	}
 
 	// 支持在线打开文件的一种方式
+	/**
+	 * Down load.
+	 *
+	 * @param filePath
+	 *            the file path
+	 * @param response
+	 *            the response
+	 * @param isOnLine
+	 *            the is on line
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void downLoad(String filePath,HttpServletResponse response,boolean isOnLine) throws Exception{
 		File f = new File(filePath);
 		if (!f.exists()){
 			response.sendError(404, "File not found!");
 			return;
 		}
-		BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
-		byte[] buf = new byte[1024];
-		int len = 0;
+		BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(f));
 
 		response.reset(); // 非常重要
 		if (isOnLine){ // 在线打开方式
-			URL u = new URL("file:///" + filePath);
-			response.setContentType(u.openConnection().getContentType());
+			URL url = new URL("file:///" + filePath);
+			response.setContentType(url.openConnection().getContentType());
 			response.setHeader("Content-Disposition", "inline; filename=" + f.getName());
 			// 文件名应该编码成UTF-8
 		}else{ // 纯下载方式
 			response.setContentType("application/x-msdownload");
 			response.setHeader("Content-Disposition", "attachment; filename=" + f.getName());
 		}
-		OutputStream out = response.getOutputStream();
-		while ((len = br.read(buf)) > 0)
-			out.write(buf, 0, len);
-		br.close();
-		out.close();
-	}
 
-	// 缓存文件头信息-文件头信息
-	public static final HashMap<String, String>	mFileTypes	= new HashMap<String, String>();
+		OutputStream outputStream = response.getOutputStream();
 
-	static{
-		// images
-		mFileTypes.put("FFD8FF", "jpg");
-		mFileTypes.put("89504E47", "png");
-		mFileTypes.put("47494638", "gif");
-		mFileTypes.put("49492A00", "tif");
-		mFileTypes.put("424D", "bmp");
-		//
-		mFileTypes.put("41433130", "dwg"); // CAD
-		mFileTypes.put("38425053", "psd");
-		mFileTypes.put("7B5C727466", "rtf"); // 日记本
-		mFileTypes.put("3C3F786D6C", "xml");
-		mFileTypes.put("68746D6C3E", "html");
-		mFileTypes.put("44656C69766572792D646174653A", "eml"); // 邮件
-		mFileTypes.put("D0CF11E0", "doc");
-		mFileTypes.put("5374616E64617264204A", "mdb");
-		mFileTypes.put("252150532D41646F6265", "ps");
-		mFileTypes.put("255044462D312E", "pdf");
-		mFileTypes.put("504B0304", "docx");
-		mFileTypes.put("52617221", "rar");
-		mFileTypes.put("57415645", "wav");
-		mFileTypes.put("41564920", "avi");
-		mFileTypes.put("2E524D46", "rm");
-		mFileTypes.put("000001BA", "mpg");
-		mFileTypes.put("000001B3", "mpg");
-		mFileTypes.put("6D6F6F76", "mov");
-		mFileTypes.put("3026B2758E66CF11", "asf");
-		mFileTypes.put("4D546864", "mid");
-		mFileTypes.put("1F8B08", "gz");
-		mFileTypes.put("", "");
-		mFileTypes.put("", "");
-	}
-
-	/**
-	 * 根据文件路径获取文件头信息
-	 * 
-	 * @param filePath
-	 *            文件路径
-	 * @return 文件头信息
-	 */
-	public static String getFileType(String filePath){
-		return mFileTypes.get(getFileHeader(filePath));
-	}
-
-	/**
-	 * 根据文件路径获取文件头信息
-	 * 
-	 * @param filePath
-	 *            文件路径
-	 * @return 文件头信息
-	 */
-	public static String getFileHeader(String filePath){
-		FileInputStream is = null;
-		String value = null;
-		try{
-			is = new FileInputStream(filePath);
-			byte[] b = new byte[4];
-			is.read(b, 0, b.length);
-			value = bytesToHexString(b);
-		}catch (Exception e){}finally{
-			if (null != is){
-				try{
-					is.close();
-				}catch (IOException e){}
-			}
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = bufferedInputStream.read(buffer)) > 0){
+			outputStream.write(buffer, 0, len);
 		}
-		return value;
+		bufferedInputStream.close();
+		outputStream.close();
 	}
-
-	/**
-	 * 将要读取文件头信息的文件的byte数组转换成string类型表示
-	 * 
-	 * @param src
-	 *            要读取文件头信息的文件的byte数组
-	 * @return 文件头信息
-	 */
-	private static String bytesToHexString(byte[] src){
-		StringBuilder builder = new StringBuilder();
-		if (src == null || src.length <= 0){
-			return null;
-		}
-		String hv;
-		for (int i = 0; i < src.length; i++){
-			// 以十六进制（基数 16）无符号整数形式返回一个整数参数的字符串表示形式，并转换为大写
-			hv = Integer.toHexString(src[i] & 0xFF).toUpperCase();
-			if (hv.length() < 2){
-				builder.append(0);
-			}
-			builder.append(hv);
-		}
-		return builder.toString();
-	}
-
-	public static void main(String[] args) throws Exception{
-		final String fileType = getFileType("E:/读书笔记/Java编程思想读书笔记.docx");
-		System.out.println(fileType);
-	}
-
 }

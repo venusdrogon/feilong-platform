@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>超级经典一套鼠标控制左右滚动图片带自动翻滚</title>
-		<link href="${pageContext.request.contextPath}/greencolor/css/feilongScroll.css" rel="stylesheet" type="text/css">
+		<link href="${domain_css}/greencolor/css/feilongScroll.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<span id="span_test">1</span>
@@ -64,7 +64,7 @@
 		</div>
 		<br />
 		<%} %>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/greencolor/js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/greencolor/js/feilong-scroll.js"></script>
+		<script type="text/javascript" src="${domain_js}/greencolor/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="${domain_js}/greencolor/js/feilong-scroll.js"></script>
 	</body>
 </html>

@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
 		<title>swfobjectTest.jsp</title>
 
-		<script type="text/javascript" src="${pageContext.request.contextPath}/res/feilong/js/plugins/swfobject-2.2.js"></script>
+		<script type="text/javascript" src="${domain_js}/res/feilong/js/plugins/swfobject-2.2.js"></script>
 	</head>
 	<body>
 		<div id="flashcontent">

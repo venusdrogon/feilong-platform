@@ -12,47 +12,45 @@
 			<level>DEBUG</level>
 		</filter>
 
-		<!-- 注意 logback 的括号需要转义 -->
+		<!-- 注意 logback 的括号需要转义 MMdd -->
 		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
-			</pattern>
+			<pattern>%d{HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n</pattern>
 		</encoder>
 	</appender>
 
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
 		<file>/home/jmuser/logs/nebula-protostar/a.log</file>
 		<append>true</append>
-		<!-- 注意 logback 的括号需要转义 -->
+		<!-- 注意 logback 的括号需要转义 MMdd -->
 		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
-			</pattern>
+			<pattern>%d{HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n</pattern>
 		</encoder>
 	</appender>
 
 	<!-- <appender name="ROLLING-LOGFILE-ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-			<evaluator name="myEval">
-				<expression>message.contains("accessLog:")</expression>
-			</evaluator>
-			<onMatch>ACCEPT</onMatch>
-			<onMismatch>DENY</onMismatch>
+		<evaluator name="myEval">
+		<expression>message.contains("accessLog:")</expression>
+		</evaluator>
+		<onMatch>ACCEPT</onMatch>
+		<onMismatch>DENY</onMismatch>
 		</filter>
 		<Encoding>UTF-8</Encoding>
 		<File>/home/jmuser/logs/nebula-protostar/protostar.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			rollover daily
-			<fileNamePattern>/home/jmuser/logs/nebula-protostar/protostar-%d{yyyy-MM-dd_HH-mm}.%i.log
-			</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>10mb</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
+		rollover daily
+		<fileNamePattern>/home/jmuser/logs/nebula-protostar/protostar-%d{yyyy-MM-dd_HH-mm}.%i.log
+		</fileNamePattern>
+		<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+		<maxFileSize>10mb</maxFileSize>
+		</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
 		注意 logback 的括号需要转义
 		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
-			</pattern>
+		<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
+		</pattern>
 		</encoder>
-	</appender> -->
+		</appender> -->
 
 	<logger name="com.baozun" level="DEBUG" />
 
@@ -83,10 +81,10 @@
 	<logger name="org.apache.commons.beanutils.converters" level="warn" />
 	<logger name="org.apache.commons.beanutils.converters.AbstractConverter" level="warn" />
 	<logger name="com.google.code.ssm.spring.SSMCache" level="debug" />
-	
+
 	<root level="debug">
 		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="FILE" />
-		<appender-ref ref="ROLLING-LOGFILE-ACCESS" />
+		<!-- <appender-ref ref="ROLLING-LOGFILE-ACCESS" /> -->
 	</root>
 </configuration>

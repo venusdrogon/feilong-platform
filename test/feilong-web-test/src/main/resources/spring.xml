@@ -9,8 +9,29 @@
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		">
 	<!-- <import resource="classpath*:feilong-aop.xml"/> -->
-	
-	<import resource="classpath*:spring/payment/spring-payment.xml" />
-	
+
+	<!-- <import resource="classpath*:spring/payment/spring-payment.xml" /> -->
+
 	<!-- <alias name="" alias="" /> -->
+
+<!-- 
+	<beans profile="dev">
+		<mvc:interceptors>
+			<bean id="webRequestInterceptor" class="com.baozun.web.interceptor.WebInterceptor">
+				<property name="domains">
+					<map>
+						<entry key="resUrl" value="http://localhost:81" />
+						<entry key="baseUrl" value="http://localhost:87" />
+						<entry key="httpTradeUrl" value="http://localhost:87" />
+						<entry key="memUrl" value="http://localhost:82" />
+						<entry key="shopUrl" value="http://localhost:83" />
+						<entry key="chatUrl" value="http://localhost:85" />
+						<entry key="itemUrl" value="http://localhost:86" />
+						<entry key="mainsiteUrl" value="http://localhost:88" />
+					</map>
+				</property>
+			</bean>
+		</mvc:interceptors>
+	</beans> -->
+
 </beans>

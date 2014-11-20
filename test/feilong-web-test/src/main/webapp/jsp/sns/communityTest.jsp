@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>社区测试</title>
-		<link rel="stylesheet" href="res/feilong/css/feilong-all.css" type="text/css"></link>
+		<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>
 	</head>
 	<body><%--
 		<iframe width="63" height="24" frameborder="0" allowtransparency="true"

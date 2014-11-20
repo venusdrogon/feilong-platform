@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>googleMapTest.jsp</title>
-<link rel="stylesheet" href="res/feilong/css/feilong-all.css" type="text/css"></link>
+<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>
 <%@ include file="res/feilong/include/js/feilong-js.inc"%>
 <style type="text/css">
 html {

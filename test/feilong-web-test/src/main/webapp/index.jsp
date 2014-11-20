@@ -7,11 +7,14 @@ p {
 }
 </style>
 
+<script type="text/javascript">
+    $("#main a").attr("target", "_blank");
+</script>
+
 <p>支付:</p>
 <table>
 	<tr>
-	
-	<!-- jsp/module/payment/paymentIntegration -->
+		<!-- jsp/module/payment/paymentIntegration -->
 		<td><a href="${base}/payment/paymentIntegration">支付集成</a></td>
 	</tr>
 </table>
@@ -19,7 +22,7 @@ p {
 <p>下载:</p>
 <table>
 	<tr>
-		<td><a href="${base}/download">download</a></td>
+		<td><a href="${base}/download" target="_self">download</a></td>
 	</tr>
 </table>
 
@@ -30,7 +33,6 @@ p {
 		<td><a href="${base}/jsp/amchartsTest/chartColor.html">chartColor</a></td>
 	</tr>
 </table>
-
 
 <!-- MP2图表测试: -->
 <p>MP2图表测试:</p>

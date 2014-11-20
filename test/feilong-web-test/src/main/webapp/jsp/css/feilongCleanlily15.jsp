@@ -2,7 +2,7 @@
 <title>清爽配色15套 15套优雅的配色方案</title>
 
 
-<link rel="stylesheet" href="http://rs.feilong.com:8888/res/feilong/css/feilong-all.css" type="text/css"></link>
+<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>
 <style type="text/css">
 #cleanDiv div {
 	width: 360px;

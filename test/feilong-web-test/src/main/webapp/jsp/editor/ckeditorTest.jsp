@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>ckeditorTest</title>
-		<link rel="stylesheet" href="res/feilong/css/feilong-all.css" type="text/css"></link>
+		<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>
 		
-		<script type="text/javascript" src="res/feilong/js/plugins/ckeditor-3.6.2/ckeditor.js"></script>
+		<script type="text/javascript" src="${domain_js}/res/feilong/js/plugins/ckeditor-3.6.2/ckeditor.js"></script>
 
 	</head>
 	<body>

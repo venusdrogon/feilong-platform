@@ -5,7 +5,7 @@
 <%@ taglib prefix="feilong" uri="http://java.feilong.com/tags-common"%>
 
 <title>飞龙首页</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/res/feilong/css/feilong-all.css" type="text/css"></link>
+<link rel="stylesheet" href="${domain_css}/res/feilong/css/feilong-all.css" type="text/css"></link>
 <%-- <%@ include file="/res/feilong/include/css/css-gray.jsp"%> --%>
 <table>
 	<tr>
