@@ -16,7 +16,7 @@
 package com.feilong.commons.core.io;
 
 import static org.junit.Assert.*;
-import static com.feilong.commons.core.io.MimeTypeUtils.getContentTypeByFileName;
+import static com.feilong.commons.core.io.MimeTypeUtil.getContentTypeByFileName;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -28,12 +28,12 @@ import org.slf4j.LoggerFactory;
  * @version 1.0.8 2014年11月19日 上午12:15:27
  * @since 1.0.8
  */
-public class MimeTypeUtilsTest{
+public class MimeTypeUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(MimeTypeUtilsTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(MimeTypeUtilTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.io.MimeTypeUtils#getContentTypeByFileName(java.lang.String)}.
+	 * Test method for {@link com.feilong.commons.core.io.MimeTypeUtil#getContentTypeByFileName(java.lang.String)}.
 	 */
 	@Test
 	public final void testGetContentTypeByFileName(){

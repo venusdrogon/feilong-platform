@@ -51,6 +51,7 @@ public final class ImageUtil{
 	 *            renderedImage
 	 * @param formatName
 	 *            formatName a String containg the informal name of the format.
+	 * @see javax.imageio.ImageIO#write(RenderedImage, String, OutputStream)
 	 */
 	public static void write(OutputStream outputStream,RenderedImage renderedImage,String formatName){
 		try{
@@ -147,22 +148,20 @@ public final class ImageUtil{
 	 */
 	@Deprecated
 	public static boolean isCMYKType(String filename){
-		boolean flag = false;
-		BufferedImage bufferedImage = null;
 		File file = new File(filename);
 		try{
 			ImageInputStream imageInputStream = ImageIO.createImageInputStream(file);
-			bufferedImage = ImageIO.read(imageInputStream);
+			BufferedImage bufferedImage = ImageIO.read(imageInputStream);
 			// bufferedImage = ImageIO.read(file);
+			if (bufferedImage != null){
+				ColorModel colorModel = bufferedImage.getColorModel();
+				ColorSpace colorSpace = colorModel.getColorSpace();
+				int colorSpaceType = colorSpace.getType();
+				return (colorSpaceType == ColorSpace.TYPE_CMYK);
+			}
 		}catch (IOException e){
 			e.printStackTrace();
 		}
-		if (bufferedImage != null){
-			ColorModel colorModel = bufferedImage.getColorModel();
-			ColorSpace colorSpace = colorModel.getColorSpace();
-			int colorSpaceType = colorSpace.getType();
-			flag = colorSpaceType == ColorSpace.TYPE_CMYK;
-		}
-		return flag;
+		return false;
 	}
 }
