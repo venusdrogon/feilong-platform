@@ -112,20 +112,26 @@
 		<dependency>
 			<groupId>de.javakaffee.msm</groupId>
 			<artifactId>msm-kryo-serializer</artifactId>
-			<version>1.6.0</version>
-			<scope>runtime</scope>
+			<version>1.8.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>de.javakaffee.msm</groupId>
-			<artifactId>memcached-session-manager-tc6</artifactId>
-			<version>1.6.3</version>
+			<artifactId>memcached-session-manager-tc7</artifactId>
+			<version>1.8.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>de.javakaffee.msm</groupId>
 			<artifactId>memcached-session-manager</artifactId>
-			<version>1.6.3</version>
+			<version>1.8.3</version>
+		</dependency>
+		<!-- -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.57</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- thumbnailator 一个用来生成图像缩略图、裁切、旋转、添加水印等操作的 Java 类库 -->

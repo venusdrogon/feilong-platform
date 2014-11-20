@@ -21,4 +21,7 @@
 		<module>feilong-db-jdbc</module>
 		<module>feilong-commons-security</module>
 	</modules>
+
+	<dependencies>
+	</dependencies>
 </project>

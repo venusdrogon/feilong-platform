@@ -71,6 +71,18 @@
 			</exclusions>
 		</dependency>
 
+		<!-- spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+
+		<!-- spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
 		<!-- spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -82,11 +94,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
 			<version>${version.spring}</version>
-		</dependency>
-		<!-- spring-web -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
 		</dependency>
 
 		<!-- aspectjweaver -->

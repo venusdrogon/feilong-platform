@@ -17,7 +17,11 @@
 		<tomcatPlugin.port>8222</tomcatPlugin.port>
 		<tomcatPlugin.path>/</tomcatPlugin.path>
 
+		<!--****************************scope************************************ -->
 		<scope.feilong-common-test>compile</scope.feilong-common-test>
+
+		<scope.slf4j-log4j12>test</scope.slf4j-log4j12>
+		<scope.log4j>test</scope.log4j>
 	</properties>
 
 	<build>
