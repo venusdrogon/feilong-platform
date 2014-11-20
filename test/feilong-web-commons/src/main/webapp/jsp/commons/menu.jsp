@@ -19,8 +19,6 @@
 
 	<script type="text/javascript">
 	$(function() {
-	    $("#main a").attr("target", "_blank");
-
 	    //$("#pushStateDiv a").pjax('#center');
 
 	    $("#pushStateDiv a").click(function(e) {
