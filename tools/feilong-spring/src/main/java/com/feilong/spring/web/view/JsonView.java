@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.AbstractView;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.MimeType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.ResponseUtil;
@@ -46,10 +47,10 @@ public class JsonView extends AbstractView{
 	public static final String	JSON_FILTER_STR			= "JSON_FILTER_STR";
 
 	/** The Constant DEFAULT_CONTENT_TYPE. */
-	public static final String	DEFAULT_CONTENT_TYPE	= "application/json";
+	public static final String	DEFAULT_CONTENT_TYPE	= MimeType.JSON.getMime();
 
 	/** The Constant DEFAULT_ENCODING. */
-	public static final String	DEFAULT_ENCODING		= "UTF-8";
+	public static final String	DEFAULT_ENCODING		= CharsetType.UTF8;
 
 	/** The prefix json. */
 	private boolean				prefixJson				= false;
@@ -67,6 +68,7 @@ public class JsonView extends AbstractView{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.springframework.web.servlet.view.AbstractView#prepareResponse(javax.servlet.http.HttpServletRequest,
 	 * javax.servlet.http.HttpServletResponse)
 	 */
@@ -83,12 +85,13 @@ public class JsonView extends AbstractView{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.springframework.web.servlet.view.AbstractView#renderMergedOutputModel(java.util.Map, javax.servlet.http.HttpServletRequest,
 	 * javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model,HttpServletRequest request,HttpServletResponse response)
-			throws Exception{
+					throws Exception{
 
 		String filterString = (String) model.get(JSON_FILTER_STR);
 		model.remove(JSON_FILTER_STR);
