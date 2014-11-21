@@ -23,6 +23,7 @@ p {
 <table>
 	<tr>
 		<td><a href="${base}/download" target="_self">download</a></td>
+		<td><a href="${base}/bufferTest">bufferTest缓冲区测试</a></td>
 	</tr>
 </table>
 
