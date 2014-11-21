@@ -95,7 +95,12 @@ public final class IOWriteUtil{
 	 * @see org.apache.commons.io.IOUtils#copyLarge(InputStream, OutputStream)
 	 */
 	public static void write(InputStream inputStream,OutputStream outputStream) throws IOException{
-		write(10240, inputStream, outputStream);
+		//Just write in blocks instead of copying it entirely into Java's memory first.
+		//The below basic example writes it in blocks of 10KB.
+		//This way you end up with a consistent memory usage of only 10KB instead of the complete content length. 
+		//Also the enduser will start getting parts of the content much sooner.
+		int bufferLength = 10240;
+		write(bufferLength, inputStream, outputStream);
 	}
 
 	/**
@@ -112,11 +117,13 @@ public final class IOWriteUtil{
 	 *             Signals that an I/O exception has occurred.
 	 * @see java.io.OutputStream#write(byte[], int, int)
 	 * @see org.apache.commons.io.IOUtils#copyLarge(InputStream, OutputStream)
+	 * @see <a href="http://stackoverflow.com/questions/10142409/write-an-inputstream-to-an-httpservletresponse">As creme de la creme with
+	 *      regard to performance, you could use NIO Channels and ByteBuffer. Create the following utility/helper method in some custom
+	 *      utility class,</a>
 	 */
 	public static void write(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
 		byte[] bytes = new byte[bufferLength];
 		int j;
-
 		int i = 0;
 		int sumSize = 0;
 
@@ -147,6 +154,8 @@ public final class IOWriteUtil{
 			if (log.isDebugEnabled()){
 				log.debug("write data over,sumSize:[{}],bufferLength:[{}],loopCount:[{}]", FileUtil.formatSize(sumSize), bufferLength, i);
 			}
+
+			//刷新此输出流并强制写出所有缓冲的输出字节。flush 的常规协定是：如果此输出流的实现已经缓冲了以前写入的任何字节，则调用此方法指示应将这些字节立即写入它们预期的目标。 
 			outputStream.flush();
 		}catch (IOException e){
 			throw e;
