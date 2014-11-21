@@ -23,6 +23,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,13 +124,75 @@ public final class IOWriteUtil{
 	 * @see <a href="http://stackoverflow.com/questions/10142409/write-an-inputstream-to-an-httpservletresponse">As creme de la creme with
 	 *      regard to performance, you could use NIO Channels and ByteBuffer. Create the following utility/helper method in some custom
 	 *      utility class,</a>
+	 * @see #writeUseIO(int, InputStream, OutputStream)
+	 * @see #writeUseNIO(int, InputStream, OutputStream)
 	 */
 	public static void write(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
-		byte[] bytes = new byte[bufferLength];
-		int j;
+		writeUseNIO(bufferLength, inputStream, outputStream);
+		//writeUseIO(bufferLength, inputStream, outputStream);
+	}
+
+	/**
+	 * 使用NIO API 来写数据 (效率高)
+	 * 
+	 * @param bufferLength
+	 * @param inputStream
+	 * @param outputStream
+	 * @throws IOException
+	 */
+	private static void writeUseNIO(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
 		int i = 0;
 		int sumSize = 0;
+		int j = 0;
 
+		///方案2 
+		//As creme de la creme with regard to performance, you could use NIO Channels and ByteBuffer. 
+
+		ReadableByteChannel readableByteChannel = Channels.newChannel(inputStream);
+		WritableByteChannel writableByteChannel = Channels.newChannel(outputStream);
+
+		ByteBuffer byteBuffer = ByteBuffer.allocate(bufferLength);
+
+		try{
+			while (readableByteChannel.read(byteBuffer) != -1){
+				byteBuffer.flip();
+				j = writableByteChannel.write(byteBuffer);
+				sumSize += j;
+				byteBuffer.clear();
+				i++;
+			}
+
+			if (log.isDebugEnabled()){
+				log.debug("Write data over,sumSize:[{}],bufferLength:[{}],loopCount:[{}]", FileUtil.formatSize(sumSize), bufferLength, i);
+			}
+		}catch (IOException e){
+			throw e;
+		}finally{
+			if (writableByteChannel != null){
+				outputStream.close();
+				writableByteChannel.close();
+			}
+			if (readableByteChannel != null){
+				inputStream.close();
+				readableByteChannel.close();
+			}
+		}
+	}
+
+	/**
+	 * 使用IO API来写数据
+	 * 
+	 * @param bufferLength
+	 * @param inputStream
+	 * @param outputStream
+	 * @throws IOException
+	 */
+	private static void writeUseIO(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
+		int i = 0;
+		int sumSize = 0;
+		int j = 0;
+
+		byte[] bytes = new byte[bufferLength];
 		try{
 			//从输入流中读取一定数量的字节，并将其存储在缓冲区数组bytes 中。以整数形式返回实际读取的字节数。在输入数据可用、检测到文件末尾或者抛出异常前，此方法一直阻塞。 
 			//如果 bytes 的长度为 0，则不读取任何字节并返回 0；否则，尝试读取至少一个字节。

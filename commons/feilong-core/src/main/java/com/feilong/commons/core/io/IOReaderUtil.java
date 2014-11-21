@@ -76,8 +76,9 @@ public final class IOReaderUtil{
 	 */
 	public static String getFileContent(File file,String charsetName){
 		// 分配新的直接字节缓冲区
-		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(186140);
-		StringBuffer stringBuffer = new StringBuffer(186140);
+		final int capacity = 186140;
+		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(capacity);
+		StringBuffer stringBuffer = new StringBuffer(capacity);
 		try{
 			FileInputStream fileInputStream = new FileInputStream(file);
 			// 用于读取、写入、映射和操作文件的通道.

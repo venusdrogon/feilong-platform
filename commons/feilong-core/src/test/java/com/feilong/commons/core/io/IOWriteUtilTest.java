@@ -15,7 +15,11 @@
  */
 package com.feilong.commons.core.io;
 
+import static com.feilong.commons.core.date.DateUtil.date2String;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
@@ -25,6 +29,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 
@@ -51,6 +56,19 @@ public class IOWriteUtilTest{
 		String a = "第572章 三十年后（大结局） *局";
 		String result = (String) MethodUtils.invokeExactStaticMethod(IOWriteUtil.class, "getFormatFilePath", a);
 		log.info(result);
+	}
+
+	@Test
+	public void write1() throws IOException{
+
+		Date beginDate = new Date();
+
+		InputStream inputStream = IOUtil.getFileInputStream("K:\\Movie 电影\\1993 超级战警 马可·布拉姆贝拉 史泰龙.rmvb");
+		OutputStream outputStream = IOUtil.getFileOutputStream("D:\\1993 超级战警 马可·布拉姆贝拉 史泰龙.rmvb");
+		IOWriteUtil.write(inputStream, outputStream);
+
+		Date endDate = new Date();
+		log.info("time:{}", DateExtensionUtil.getIntervalForView(beginDate, endDate));
 	}
 
 	/**
