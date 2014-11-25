@@ -15,13 +15,7 @@ Reduce development, Release ideas
 
 ## com.feilong.commons.core.date 包,时间日期操作核心类:
 
-* ★  DateUtil时间工具类  
-* ★ CalendarUtil 日历工具类
-* DatePattern 时间格式,用于formart
-* ConstellationType 星座枚举类
-* ConstellationUtil 星座工具类
-* LunarDateUtil 农历日期工具类
-* SolarDateUtil 阳历日期工具类
+* DateUtil时间工具类  
 
 ***
 
