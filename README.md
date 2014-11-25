@@ -6,10 +6,9 @@ Reduce development, Release ideas
 
 #Welcome to feilong-platform.
 
-1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明,
-1. 基于maven2.2.1构建,
-1. 需要jdk1.5及以上环境
-
+1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;
+1. 基于maven2.2.1构建;
+1. 需要jdk1.5及以上环境;
 
 
 # 类和方法介绍: 
@@ -25,6 +24,28 @@ Reduce development, Release ideas
 * SolarDateUtil 阳历日期工具类
 
 ***
+
+# Maven使用配置
+
+```XML
+	<project>
+		....
+		<repositories>
+			<repository>
+				<id>feilong-repository</id>
+				<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
+			</repository>
+		</repositories>
+		
+		<dependencies>
+			<dependency>
+				<groupId>com.feilong.platform.commons</groupId>
+				<artifactId>feilong-core</artifactId>
+				<version>1.0.7</version>
+			</dependency>
+		</dependencies>
+	</project>
+```
 
 # 项目依赖
 
@@ -60,31 +81,8 @@ Reduce development, Release ideas
     
   </dependencies>
 ```
-
 ***
 
-# Maven使用配置
-
-```XML
-	<project>
-		....
-		<repositories>
-			<repository>
-				<id>feilong-repository</id>
-				<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
-			</repository>
-		</repositories>
-		
-		<dependencies>
-			<dependency>
-				<groupId>com.feilong.platform.commons</groupId>
-				<artifactId>feilong-core</artifactId>
-				<version>1.0.7</version>
-			</dependency>
-		</dependencies>
-	</project>
-```
-
 # About
-* 我的新浪微博:http://weibo.com/venusdrogon 
-* 我的ITeye博客:http://feitianbenyue.iteye.com/
+* 新浪微博:http://weibo.com/venusdrogon 
+* iteye博客:http://feitianbenyue.iteye.com/
