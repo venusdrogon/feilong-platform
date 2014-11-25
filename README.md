@@ -5,7 +5,6 @@ Reduce development, Release ideas
 
 
 #Welcome to feilong-platform.
-------------------------------------------------------------
 
 1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;
 1. 基于maven2.2.1构建;
@@ -13,7 +12,7 @@ Reduce development, Release ideas
 
 
 # 类和方法介绍: 
-------------------------------------------------------------
+
 ## com.feilong.commons.core.date 包,时间日期操作核心类:
 
 * DateUtil时间工具类  
@@ -21,7 +20,7 @@ Reduce development, Release ideas
 ***
 
 # Maven使用配置
-------------------------------------------------------------
+
 ```XML
 	<project>
 		....
@@ -43,7 +42,7 @@ Reduce development, Release ideas
 ```
 
 # 项目依赖
-------------------------------------------------------------
+
 ```XML
 <dependencies>
     <dependency>
@@ -79,7 +78,7 @@ Reduce development, Release ideas
 ***
 
 # About
-------------------------------------------------------------
+
 * 新浪微博:http://weibo.com/venusdrogon 
 * iteye博客:http://feitianbenyue.iteye.com/
 
