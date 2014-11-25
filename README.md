@@ -63,36 +63,25 @@ Reduce development, Release ideas
 
 ***
 
-# Maven配置
+# Maven使用配置
 
 ```XML
-	<project ...>
+	<project>
 		....
 		<repositories>
 			<repository>
-			<id>feilong-repository</id>
-			<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
+				<id>feilong-repository</id>
+				<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
 			</repository>
 		</repositories>
-		...
-	</project>
-```
-
-
-```XML
-	<project ...>
-		....
+		
 		<dependencies>
-			
-			...
 			<dependency>
 				<groupId>com.feilong.platform.commons</groupId>
 				<artifactId>feilong-core</artifactId>
 				<version>1.0.7</version>
 			</dependency>
-			...
 		</dependencies>
-		...
 	</project>
 ```
 
