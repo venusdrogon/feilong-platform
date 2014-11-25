@@ -10,13 +10,13 @@
 	<properties>
 		<version.commons-lang3>3.3.2</version.commons-lang3>
 
-		<v.maven-compiler-plugin>3.1</v.maven-compiler-plugin>
-	<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
+		<v.maven-compiler-plugin>3.2</v.maven-compiler-plugin>
+		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
 
 		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
 		<maven-compiler-plugin.encoding>utf-8</maven-compiler-plugin.encoding>
-		
+
 	</properties>
 
 	<dependencies>

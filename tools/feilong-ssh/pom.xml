@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>feilong-ssh</artifactId>
-	<name>feilong-ssh</name>
+	<name>feilong-ssh (will restructure)</name>
 
 	<dependencies>
 		<dependency>

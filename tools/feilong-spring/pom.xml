@@ -7,7 +7,7 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>feilong-spring</artifactId>
-	<name>feilong-spring</name>
+	<name>feilong-spring (will restructure)</name>
 	<description>feilong-spring</description>
 
 	<dependencies>
@@ -66,19 +66,38 @@
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
+
+			<!--
+				表明是可选依赖，它们只会对当前项目产生影响，其他项目依赖于B时候，这两个依赖不会被传递。
+				如果真要使用这个依赖，需要在项目中直接声明。
+
+				理想情况下，是不应该使用可选依赖的，
+
+				使用可靠依赖的原因是:某一个项目实现了多个特性，依据单一职责原则，更好的做法是他建多个Maven项目，用户根据需要选择使用哪个Maven项目。
+			-->
+			<optional>true</optional>
 		</dependency>
 
 		<!-- java mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
+
+			<!--
+				表明是可选依赖，它们只会对当前项目产生影响，其他项目依赖于B时候，这两个依赖不会被传递。
+				如果真要使用这个依赖，需要在项目中直接声明。
+
+				理想情况下，是不应该使用可选依赖的，
+
+				使用可靠依赖的原因是:某一个项目实现了多个特性，依据单一职责原则，更好的做法是他建多个Maven项目，用户根据需要选择使用哪个Maven项目。
+			-->
+			<optional>true</optional>
 		</dependency>
-		
-			<!-- -->
+
+		<!-- -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.12</version>
 		</dependency>
 
 		<dependency>

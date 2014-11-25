@@ -30,10 +30,6 @@
 
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
-
-		<version.feilong-platform>1.0.8-SNAPSHOT</version.feilong-platform>
-		<version.feilong-common-test>1.0.7</version.feilong-common-test>
-
 		<tomcatPlugin.artifactId>tomcat7-maven-plugin</tomcatPlugin.artifactId>
 		<tomcatPlugin.version>2.2</tomcatPlugin.version>
 		<tomcatPlugin.port>8087</tomcatPlugin.port>
@@ -85,13 +81,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.feilong.test</groupId>
-			<artifactId>feilong-common-test</artifactId>
-			<version>${version.feilong-common-test}</version>
-			<scope>${scope.feilong-common-test}</scope>
-		</dependency>
-
 		<!-- spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -101,42 +90,11 @@
 	</dependencies>
 
 	<!--*******************************dependencyManagement******************************************* -->
-	<dependencyManagement>
+	<!-- <dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>com.feilong.platform.taglib</groupId>
-				<artifactId>feilong-taglib-common</artifactId>
-				<version>${version.feilong-platform}</version>
-			</dependency>
 
-			<dependency>
-				<groupId>com.feilong.platform.taglib</groupId>
-				<artifactId>feilong-taglib-display</artifactId>
-				<version>${version.feilong-platform}</version>
-			</dependency>
-
-			<!-- derby -->
-			<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId>
-				<version>${version.derby}</version>
-			</dependency>
-
-			<!-- dom4j -->
-			<dependency>
-				<groupId>dom4j</groupId>
-				<artifactId>dom4j</artifactId>
-				<version>${version.dom4j}</version>
-			</dependency>
-
-			<!-- jstl -->
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>${version.jstl}</version>
-			</dependency>
 		</dependencies>
-	</dependencyManagement>
+		</dependencyManagement> -->
 
 	<!--********************************build****************************************** -->
 	<build>

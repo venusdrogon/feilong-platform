@@ -15,8 +15,8 @@
 		<tomcatPlugin.port>8088</tomcatPlugin.port>
 		<tomcatPlugin.path>/</tomcatPlugin.path>
 
-		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
-		<maven-compiler-plugin.target>1.7</maven-compiler-plugin.target>
+<!-- 		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.7</maven-compiler-plugin.target> -->
 	</properties>
 
 	<dependencies>

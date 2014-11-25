@@ -7,6 +7,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>feilong-tools-html</artifactId>
-	<name>feilong-tools-html</name>
+	<name>feilong-tools-html (deprecated)</name>
 	<description>feilong-tools-html</description>
 </project>

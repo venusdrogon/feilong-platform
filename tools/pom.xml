@@ -45,6 +45,7 @@
 		<module>feilong-chart-core</module>
 		<module>feilong-chart-amcharts</module>
 		<module>feilong-chart-jfreechart</module>
+		<module>feilong-tools-log4j</module>
 	</modules>
 
 	<dependencies>

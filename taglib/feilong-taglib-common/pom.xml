@@ -12,18 +12,7 @@
 	<name>feilong-taglib-common</name>
 
 	<dependencies>
-		<!-- velocity -->
-		<dependency>
-			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-tools-velocity</artifactId>
-			<version>${version.feilong-platform}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-tools-middleware</artifactId>
-			<version>${version.feilong-platform}</version>
-		</dependency>
 
 	</dependencies>
 </project>

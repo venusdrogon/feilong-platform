@@ -11,29 +11,7 @@
 	<name>feilong-web-commons</name>
 	<description>feilong-web-commons</description>
 
-	<properties>
-		<version.logback>1.1.2</version.logback>
-		<version.logbackExtSpring>0.1.1</version.logbackExtSpring>
-	</properties>
-
 	<dependencies>
-
-		<dependency>
-			<groupId>com.feilong.platform.commons</groupId>
-			<artifactId>feilong-core</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>log4j</artifactId>
-					<groupId>log4j</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.feilong.platform.commons</groupId>
-			<artifactId>feilong-servlet</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>com.feilong.platform.taglib</groupId>
 			<artifactId>feilong-taglib-common</artifactId>
@@ -48,22 +26,18 @@
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-spring</artifactId>
 			<exclusions>
-
 				<exclusion>
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-orm</artifactId>
 				</exclusion>
-
 				<exclusion>
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-aop</artifactId>
 				</exclusion>
-
 				<exclusion>
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-context-support</artifactId>
 				</exclusion>
-
 				<exclusion>
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-context</artifactId>
@@ -76,7 +50,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 		</dependency>
-
+		
 		<!-- spring-web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -93,14 +67,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>${version.spring}</version>
 		</dependency>
 
 		<!-- aspectjweaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.8</version>
 		</dependency>
 
 		<!--******** logback and slf4j ******** -->
@@ -110,35 +82,23 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
-			<version>${version.logback}</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>${version.logback}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-access</artifactId>
-			<version>${version.logback}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.logback-extensions</groupId>
 			<artifactId>logback-ext-spring</artifactId>
-			<version>${version.logbackExtSpring}</version>
 		</dependency>
 
-
-		<!--******** slf4j******** -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${version.slf4j}</version>
-		</dependency>
 		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>log4j-over-slf4j</artifactId> <version>${version.slf4j}</version> </dependency> -->
-
 
 		<!--jul桥接 用来输出 Java Logging Framework (JUL) java.util.logging.* -->
 		<dependency>
@@ -183,7 +143,6 @@
 			<artifactId>xercesImpl</artifactId>
 		</dependency>
 	</dependencies>
-
 
 	<build>
 		<plugins>
