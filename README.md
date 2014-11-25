@@ -17,7 +17,6 @@ Reduce development, Release ideas
 
 * DateUtil时间工具类  
 
-***
 
 # Maven使用配置
 
@@ -75,7 +74,6 @@ Reduce development, Release ideas
     
   </dependencies>
 ```
-***
 
 # About
 
