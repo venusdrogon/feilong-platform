@@ -75,16 +75,14 @@ public class URIUtilTest{
 
 	/**
 	 * Test get union url2.
+	 * 
+	 * @throws MalformedURLException
 	 */
 	@Test
-	public void testGetUnionUrl2(){
-		try{
-			URL url = new URL("http://www.exiaoshuo.com/jinyiyexing/");
-			result = URIUtil.getUnionUrl(url, "/jinyiyexing/1173348/");
-			log.info(result);
-		}catch (MalformedURLException e){
-			e.printStackTrace();
-		}
+	public void testGetUnionUrl2() throws MalformedURLException{
+		URL url = new URL("http://www.exiaoshuo.com/jinyiyexing/");
+		result = URIUtil.getUnionUrl(url, "/jinyiyexing/1173348/");
+		log.info(result);
 	}
 
 	@Test
