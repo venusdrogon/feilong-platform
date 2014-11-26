@@ -69,6 +69,51 @@ public final class ListUtil{
 	}
 
 	/**
+	 * 从 <code>collection</code>中 删除 所有的 <code>remove</code>. 返回剩余的集合. The cardinality of an
+	 * element <code>e</code> in the returned collection is the same as the cardinality of <code>e</code> in <code>collection</code> unless
+	 * <code>remove</code> contains <code>e</code>, in which
+	 * case the cardinality is zero.这个方法非常有用,如果你不想修改 <code>collection</code>的话,不能调用 <code>collection.removeAll(remove);</code>.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param collection
+	 *            the collection from which items are removed (in the returned collection)
+	 * @param remove
+	 *            the items to be removed from the returned <code>collection</code>
+	 * @return a <code>List</code> containing all the elements of <code>c</code> except
+	 *         any elements that also occur in <code>remove</code>.
+	 * @see org.apache.commons.collections.ListUtils#removeAll(Collection, Collection)
+	 * @since Commons Collections 3.2
+	 * @since 1.0.8
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> List<T> removeAll(Collection<T> collection,Collection<T> remove){
+		return org.apache.commons.collections.ListUtils.removeAll(collection, remove);
+	}
+
+	/**
+	 * 从 <code>collection</code>中 删除 <code>removeElement</code>. 返回剩余的集合. 这个方法非常有用,如果你不想修改 <code>collection</code>的话,不能调用
+	 * <code>collection.remove(removeElement);</code>.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param collection
+	 *            the collection from which items are removed (in the returned collection)
+	 * @param removeElement
+	 *            the remove element
+	 * @return a <code>List</code> containing all the elements of <code>c</code> except
+	 *         any elements that also occur in <code>remove</code>.
+	 * @see org.apache.commons.collections.ListUtils#removeAll(Collection, Collection)
+	 * @since Commons Collections 3.2
+	 * @since 1.0.8
+	 */
+	public static <T> List<T> remove(Collection<T> collection,T removeElement){
+		Collection<T> remove = new ArrayList<T>();
+		remove.add(removeElement);
+		return removeAll(collection, remove);
+	}
+
+	/**
 	 * 去重(如果原collection是有序的,那么会保留原collection元素顺序).
 	 * 
 	 * @param <T>
