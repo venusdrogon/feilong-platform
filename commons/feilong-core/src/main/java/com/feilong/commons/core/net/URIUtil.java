@@ -131,14 +131,6 @@ public final class URIUtil{
 
 			String query = StringUtil.substring(url, URIConstants.QUESTIONMARK, 1);
 
-			// 浏览器传递queryString()参数差别
-			// chrome 会将query 进行 encoded 再发送请求
-			// 而ie 原封不动的发送
-
-			// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
-			// 此处不能先转 ,参数就是想传 =是转义符
-			// query = decode(query, charsetType);
-
 			Map<String, String[]> map = parseQueryToArrayMap(query, charsetType);
 			String encodeUrl = getEncodedUrlByArrayMap(before, map, charsetType);
 
@@ -258,16 +250,7 @@ public final class URIUtil{
 		if (StringUtil.isContain(beforeUrl, URIConstants.QUESTIONMARK)){
 			// 问号前面的部分
 			beforePath = getBeforePath(beforeUrl);
-
 			String query = StringUtil.substring(beforeUrl, URIConstants.QUESTIONMARK, 1);
-
-			// 浏览器传递queryString()参数差别
-			// chrome 会将query 进行 encoded 再发送请求
-			// 而ie 原封不动的发送
-
-			// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
-			// 此处不能先转 ,参数就是想传 =是转义符
-			// query = decode(query, charsetType);
 
 			Map<String, String[]> map = parseQueryToArrayMap(query, null);
 			appendMap.putAll(map);
@@ -330,8 +313,14 @@ public final class URIUtil{
 					paramValueList = new ArrayList<String>();
 					for (String value : paramValues){
 						if (Validator.isNotNullOrEmpty(value)){
-							// 统统先强制 decode 再 encode
-							// 浏览器兼容问题
+							// 浏览器传递queryString()参数差别
+							// chrome 会将query 进行 encoded 再发送请求
+							// 而ie 原封不动的发送
+
+							// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
+							// 此处不能先转 ,参数就是想传 =是转义符
+							// query = decode(query, charsetType);
+
 							paramValueList.add(encode(decode(value.toString(), charsetType), charsetType));
 						}else{
 							paramValueList.add("");
@@ -423,6 +412,15 @@ public final class URIUtil{
 						if (Validator.isNullOrEmpty(charsetType)){
 							// 没有编码 原样返回
 						}else{
+
+							// 浏览器传递queryString()参数差别
+							// chrome 会将query 进行 encoded 再发送请求
+							// 而ie 原封不动的发送
+
+							// 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
+							// 此处不能先转 ,参数就是想传 =是转义符
+							// query = decode(query, charsetType);
+
 							// 统统先强制 decode 再 encode
 							// 浏览器兼容问题
 							key = encode(decode(key, charsetType), charsetType);

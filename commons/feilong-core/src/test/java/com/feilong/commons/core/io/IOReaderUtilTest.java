@@ -15,9 +15,13 @@
  */
 package com.feilong.commons.core.io;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
  * The Class IOReaderUtilTest.
@@ -32,11 +36,13 @@ public class IOReaderUtilTest{
 
 	/**
 	 * Testname.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void testname(){
+	public void testname() throws IOException{
 		String fileName = "F:\\Life 生活\\Job 工作\\淘宝开店\\商家编码.txt";
-		String content = IOReaderUtil.getFileContent(fileName);
+		String content = IOReaderUtil.getFileContent(fileName, CharsetType.UTF8);
 		// 将内容以换行符转成数组
 		String[] rowsContents = content.split("\r\n");
 		log.info(content);
@@ -45,11 +51,13 @@ public class IOReaderUtilTest{
 
 	/**
 	 * Parses the nginx.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void parseNginx(){
+	public void parseNginx() throws IOException{
 		String fileName = "C:\\Users\\feilong\\Documents\\AJ11\\AJ11\\1.txt";
-		String content = IOReaderUtil.getFileContent(fileName);
+		String content = IOReaderUtil.getFileContent(fileName, CharsetType.UTF8);
 
 		content.split("");
 
@@ -61,10 +69,12 @@ public class IOReaderUtilTest{
 	/**
 	 * Gets the file content.
 	 * 
+	 * @throws IOException
+	 * 
 	 */
 	@Test
-	public void testGetFileContent(){
+	public void testGetFileContent() throws IOException{
 		String propertiesPath = "I:/Ebook/book.properties";
-		log.info(IOReaderUtil.getFileContent(propertiesPath));
+		log.info(IOReaderUtil.getFileContent(propertiesPath, CharsetType.UTF8));
 	}
 }

@@ -139,6 +139,7 @@ public final class IOWriteUtil{
 	 * @param inputStream
 	 * @param outputStream
 	 * @throws IOException
+	 * @since 1.0.8
 	 */
 	private static void writeUseNIO(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
 		int i = 0;
@@ -186,6 +187,7 @@ public final class IOWriteUtil{
 	 * @param inputStream
 	 * @param outputStream
 	 * @throws IOException
+	 * @since 1.0.8
 	 */
 	private static void writeUseIO(int bufferLength,InputStream inputStream,OutputStream outputStream) throws IOException{
 		int i = 0;

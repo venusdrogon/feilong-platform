@@ -48,13 +48,20 @@ public final class ClassUtil{
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		map.put("clz.getComponentType()", clz.getComponentType());
-		// 用来判断指定的Class类是否为一个基本类型.
+		// 类是不是“基本类型”。 基本类型，包括void和boolean、byte、char、short、int、long、float 和 double这几种类型。
 		map.put("clz.isPrimitive()", clz.isPrimitive());
+
+		// 类是不是“本地类”。本地类,就是定义在方法内部的类。
 		map.put("clz.isLocalClass()", clz.isLocalClass());
+		// 类是不是“成员类”。成员类,是内部类的一种，但是它不是“内部类”或“匿名类”。
 		map.put("clz.isMemberClass()", clz.isMemberClass());
+
+		//isSynthetic()是用来判断Class是不是“复合类”。这在java应用程序中只会返回false，不会返回true。因为，JVM中才会产生复合类，在java应用程序中不存在“复合类”！
 		map.put("clz.isSynthetic()", clz.isSynthetic());
 		map.put("clz.isArray()", clz.isArray());
 		map.put("clz.isAnnotation()", clz.isAnnotation());
+		
+		//当且仅当这个类是匿名类此方法返回true。
 		map.put("clz.isAnonymousClass()", clz.isAnonymousClass());
 		map.put("clz.isEnum()", clz.isEnum());
 

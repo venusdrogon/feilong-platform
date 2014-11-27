@@ -2,6 +2,13 @@
 	color: red
 }
 
+h3:first-letter {
+	/*font-family: '楷体'
+	color: red;*/
+	font-size: 36px;
+	font-family: '华文行楷';
+}
+
 /* .flexigrid div.mDiv{	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;}
@@ -118,7 +125,6 @@ li {
 	margin: 16px 18px 10px 18px;
 	font-size: 12px;
 }
-
 
 #logo {
 	width: 61%;

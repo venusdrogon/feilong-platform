@@ -19,9 +19,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * 根据类的class文件位置来定位的方法..
@@ -217,13 +221,15 @@ public final class ClassLoaderUtil{
 	 */
 	public static ClassLoader getClassLoaderByClass(Class<?> callingClass){
 		ClassLoader classLoader = callingClass.getClassLoader();
+
 		if (log.isDebugEnabled()){
-			log.debug(
-					"classLoader:[{}],callingClass:[{}],.class.getClassLoader() classpath is:[{}]",
-					classLoader,
-					callingClass.getName(),
-					classLoader.getResource(""));
+			Map<String, Object> object = new LinkedHashMap<String, Object>();
+			object.put("classLoader", "" + classLoader);
+			object.put("callingClass", "" + callingClass.getName());
+			object.put(".class.getClassLoader() classpath", "" + classLoader.getResource(""));
+			log.debug(JsonUtil.format(object));
 		}
+
 		return classLoader;
 	}
 
@@ -232,11 +238,10 @@ public final class ClassLoaderUtil{
 	 * useful for debugging.
 	 */
 	// XXX 拆
-	@SuppressWarnings("unused")
-	private static void printClassLoader(){
+	private static void logClassLoader(){
 		log.info("use " + ClassLoaderUtil.class.getSimpleName() + ".printClassLoader");
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		printClassLoader(classLoader);
+		logClassLoader(classLoader);
 	}
 
 	/**
@@ -247,12 +252,12 @@ public final class ClassLoaderUtil{
 	 *            the class loader
 	 */
 	// XXX 拆
-	private static void printClassLoader(ClassLoader classLoader){
+	private static void logClassLoader(ClassLoader classLoader){
 		if (null != classLoader){
 			log.info(classLoader.toString());
 			ClassLoader parent = classLoader.getParent();
 			if (null != parent){
-				printClassLoader(parent);
+				logClassLoader(parent);
 			}
 		}
 	}

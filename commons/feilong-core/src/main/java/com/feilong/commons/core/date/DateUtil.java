@@ -151,6 +151,8 @@ import com.feilong.commons.core.util.Validator;
  * @see CalendarUtil
  * @see DatePattern
  * @see DateFormatUtil
+ * @see org.apache.commons.lang3.time.DateUtils
+ * @see org.apache.commons.lang.time.DateUtils
  * @since 1.0.0
  */
 public final class DateUtil{

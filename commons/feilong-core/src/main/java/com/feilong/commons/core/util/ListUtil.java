@@ -41,6 +41,25 @@ public final class ListUtil{
 	private ListUtil(){}
 
 	/**
+	 * 用于 自定义标签/ 自定义el.
+	 * 
+	 * @param collection
+	 *            一个集合,将会被转成Iterator,可以为逗号隔开的字符串,会被分隔成Iterator.
+	 * @param value
+	 *            任意类型的值,最终toString 判断比较.
+	 * @return true, if successful
+	 * @see ObjectUtil#toIterator(Object)
+	 * @see #isContain(Iterator, Object)
+	 * @deprecated
+	 */
+	@Deprecated
+	public static boolean _isContainTag(Object collection,Object value){
+		@SuppressWarnings("rawtypes")
+		Iterator iterator = ObjectUtil.toIterator(collection);
+		return isContain(iterator, value);
+	}
+
+	/**
 	 * iterator是否包含某个值.
 	 * 
 	 * @param iterator
@@ -50,7 +69,9 @@ public final class ListUtil{
 	 * @return iterator是否包含某个值,如果iterator为null/empty,则返回false
 	 * @see Iterator#hasNext()
 	 * @see Iterator#next()
+	 * @deprecated 代码这里不是很严谨 ,需要重构
 	 */
+	@Deprecated
 	public static boolean isContain(Iterator<?> iterator,Object value){
 		boolean flag = false;
 		if (Validator.isNotNullOrEmpty(iterator)){
@@ -136,23 +157,6 @@ public final class ListUtil{
 		// [foo1] 100000 -> 50487 : 48610 ms.
 		// [foo2] 100000 -> 50487 : 47 ms.
 		return new ArrayList<T>(new LinkedHashSet<T>(collection));
-	}
-
-	/**
-	 * 用于 自定义标签/ 自定义el.
-	 * 
-	 * @param collection
-	 *            一个集合,将会被转成Iterator,可以为逗号隔开的字符串,会被分隔成Iterator.
-	 * @param value
-	 *            任意类型的值,最终toString 判断比较.
-	 * @return true, if successful
-	 * @see ObjectUtil#toIterator(Object)
-	 * @see #isContain(Iterator, Object)
-	 */
-	public static boolean _isContainTag(Object collection,Object value){
-		@SuppressWarnings("rawtypes")
-		Iterator iterator = ObjectUtil.toIterator(collection);
-		return isContain(iterator, value);
 	}
 
 	/**

@@ -117,7 +117,7 @@ public class ExceptionTag extends AbstractCommonTag{
 		if (null != status_code){
 			if ("mail".equals(method)){
 				// String emailTitle = FeiLongEmail.getErrorEmailTitle(pageContext.getServletContext(), null, request);
-				// MailEntity mailInfo = new MailEntity();
+				// mailSenderConfig mailInfo = new mailSenderConfig();
 				// mailInfo.setToAddress(FeiLongPropertiesConfigure.getPropertiesValueWithResourceBundle("feilong.user", "tdEmail"));
 				// mailInfo.setSubject(emailTitle);
 				// mailInfo.setContent(stringBuilder.toString());

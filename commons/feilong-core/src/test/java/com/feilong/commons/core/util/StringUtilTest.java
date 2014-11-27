@@ -57,7 +57,16 @@ public class StringUtilTest{
 		Assert.assertEquals(1, StringUtil.searchTimes("xin", "i"));
 		Assert.assertEquals(2, StringUtil.searchTimes("xiin", "i"));
 		Assert.assertEquals(2, StringUtil.searchTimes("xiiiin", "ii"));
+	}
 
+	@Test
+	public void compareTo(){
+		log.info("" + "8".compareTo("13"));
+		
+		 final Integer parseInt = Integer.parseInt("8");
+		
+		log.info("" + parseInt.compareTo(Integer.parseInt("13")));
+		log.info("" + "12".compareTo("13"));
 	}
 
 	/**
