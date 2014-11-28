@@ -28,6 +28,8 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.lang.EnumUtil;
@@ -43,6 +45,8 @@ import com.feilong.commons.core.util.NumberUtil;
  * @version 1.2 2014-2-10 02:11
  */
 public class ExcelParseUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(ExcelParseUtil.class);
 
 	/**
 	 * 获得表格值 通过"A4" "D5"的方式.
@@ -161,7 +165,7 @@ public class ExcelParseUtil{
 		try{
 			return new HSSFWorkbook(inputStream);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -196,7 +200,7 @@ public class ExcelParseUtil{
 		try{
 			map.put("getCellTypeString", EnumUtil.getEnumByPropertyValue(CellType.class, "value", cellType));
 		}catch (IllegalArgumentException | NoSuchFieldException | BeanUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 
 		switch (cellType) {

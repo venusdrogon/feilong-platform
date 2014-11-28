@@ -140,7 +140,7 @@ public class URIUtilTest{
 		// URL url1 = new URL(url);
 		// log.info(url1.toString());
 		// }catch (MalformedURLException e){
-		// e.printStackTrace();
+		// log.error(e.getClass().getName(), e);
 		// }
 		URI uri = URIUtil.create(url, CharsetType.UTF8);
 		log.info(uri.toString());

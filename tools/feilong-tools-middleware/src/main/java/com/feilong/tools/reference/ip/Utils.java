@@ -18,6 +18,9 @@ package com.feilong.tools.reference.ip;
 import java.io.UnsupportedEncodingException;
 import java.util.StringTokenizer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class Utils.
  * 
@@ -25,6 +28,8 @@ import java.util.StringTokenizer;
  * @version 1.0.7 2014-6-25 16:26:52
  */
 public class Utils{
+
+	private static final Logger	log	= LoggerFactory.getLogger(Utils.class);
 
 	/**
 	 * 从ip的字符串形式得到字节数组形式.
@@ -42,7 +47,7 @@ public class Utils{
 			ret[2] = (byte) (Integer.parseInt(stringTokenizer.nextToken()) & 0xFF);
 			ret[3] = (byte) (Integer.parseInt(stringTokenizer.nextToken()) & 0xFF);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return ret;
 	}

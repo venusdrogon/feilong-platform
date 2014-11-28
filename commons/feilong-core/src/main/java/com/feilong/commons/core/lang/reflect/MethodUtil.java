@@ -71,7 +71,7 @@ public final class MethodUtil{
 			Object invoke = method.invoke(obj, params);
 			return (T) invoke;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}
@@ -123,7 +123,7 @@ public final class MethodUtil{
 				return (T) invoke;
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}
@@ -166,7 +166,7 @@ public final class MethodUtil{
 			Method method = ownerClass.getMethod(methodName, parameterTypes);
 			return method;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}

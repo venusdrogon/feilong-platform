@@ -662,7 +662,7 @@ public final class StringUtil{
 		try{
 			return value.getBytes(charsetName);
 		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -947,7 +947,7 @@ public final class StringUtil{
 			log.debug("original:{},hexStringUpperCase:{}", original, hexStringUpperCase);
 			return hexStringUpperCase;
 		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -981,7 +981,7 @@ public final class StringUtil{
 		try{
 			original = new String(hexBytesToBytes, charsetName);
 		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		log.debug("hexStringUpperCase:{},original:{}", hexStringUpperCase, original);
 		return original;

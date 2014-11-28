@@ -74,7 +74,7 @@ public class PropertiesUtilTest{
 		try{
 			inputStream.close();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

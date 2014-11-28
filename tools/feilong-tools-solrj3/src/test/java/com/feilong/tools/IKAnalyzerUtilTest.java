@@ -48,7 +48,7 @@ public class IKAnalyzerUtilTest{
 			}
 
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

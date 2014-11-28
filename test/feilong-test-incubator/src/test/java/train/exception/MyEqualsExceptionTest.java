@@ -16,6 +16,8 @@
 package train.exception;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 测试
@@ -25,6 +27,8 @@ import org.junit.Test;
  * @since 1.0.8
  */
 public class MyEqualsExceptionTest{
+
+	private static final Logger	log	= LoggerFactory.getLogger(MyEqualsExceptionTest.class);
 
 	/**
 	 * 只是做测试用的
@@ -37,7 +41,7 @@ public class MyEqualsExceptionTest{
 			try{
 				throw new MyEqualsException("a can not equals b");
 			}catch (MyEqualsException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		//do something

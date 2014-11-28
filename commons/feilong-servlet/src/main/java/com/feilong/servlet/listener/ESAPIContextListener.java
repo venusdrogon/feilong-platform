@@ -73,7 +73,7 @@ public class ESAPIContextListener implements ServletContextListener{
 			System.setProperty("org.owasp.esapi.resources", customDirectory);
 			servletContext.log("set setProperty org.owasp.esapi.resources:" + customDirectory);
 		}catch (URISyntaxException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -83,7 +83,5 @@ public class ESAPIContextListener implements ServletContextListener{
 	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
 	 */
 	@Override
-	public void contextDestroyed(ServletContextEvent sce){
-		// TODO Auto-generated method stub
-	}
+	public void contextDestroyed(ServletContextEvent sce){}
 }

@@ -32,9 +32,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.tools.velocity.VelocityUtil;
 
@@ -59,46 +61,54 @@ public class MailSenderUtilTest{
 	/** bcc. */
 	private String[]			bccs		= { "190600641@qq.com", "1151889455@qq.com" };
 
-	private String				userName	= "sanguoxuhuang@163.com";
+	private String				userName	= "feilongtestemail@163.com";
 
 	private String				password	= "521000";
 
 	private String				personal	= "三国徐晃";
 
-	private MailEntity			mailEntity;
+	private MailSenderConfig	mailSenderConfig;
 
 	@Before
 	public void before(){
-		mailEntity = new MailEntity();
-		mailEntity.setMailServerHost("smtp.163.com");
-		mailEntity.setMailServerPort("25");
+		mailSenderConfig = new MailSenderConfig();
+		mailSenderConfig.setMailServerHost("smtp.163.com");
+		mailSenderConfig.setMailServerPort("25");
 
-		mailEntity.setUserName(userName);
-		mailEntity.setPassword(password);
+		mailSenderConfig.setUserName(userName);
+		mailSenderConfig.setPassword(password);
 
-		mailEntity.setFromAddress(userName);
-		mailEntity.setPersonal(personal);
+		mailSenderConfig.setFromAddress(userName);
+		mailSenderConfig.setPersonal(personal);
 
-		mailEntity.setTos(tos);
-		mailEntity.setCcs(ccs);
-		mailEntity.setBccs(bccs);
+		mailSenderConfig.setTos(tos);
+		mailSenderConfig.setCcs(ccs);
+		mailSenderConfig.setBccs(bccs);
 
-		mailEntity.setSubject("feilong mail test");// + DateUtil.date2String(new Date())
+		mailSenderConfig.setSubject("feilong mail test");// + DateUtil.date2String(new Date())
 
-		mailEntity.setIsDebug(true);
-		mailEntity.setIsNeedReturnReceipt(false);
+		mailSenderConfig.setIsDebug(true);
+		mailSenderConfig.setIsNeedReturnReceipt(false);
 	}
 
 	@Test
-	public void testSendTextMail(){
-		String textContent = "测试回执";
-		mailEntity.setContent(textContent);
+	public void sendMail1() throws IOException{
+		String path = "C:/Users/feilong/feilong/train/1201单元测试/generalRegulation/generalRegulation-20141125194610.html";
+		String textContent = IOReaderUtil.getFileContent(path, CharsetType.UTF8);
+		mailSenderConfig.setContent(textContent);
 	}
 
 	@Test
 	public void sendMail(){
 		String textContent = "<html><body><hr/><div style='boder:1px #000 solid;color:red'>222222</div></body></html>";
-		mailEntity.setContent(textContent);
+
+		mailSenderConfig.setContent(textContent);
+	}
+
+	@Test
+	public void testSendTextMail(){
+		String textContent = "测试回执";
+		mailSenderConfig.setContent(textContent);
 	}
 
 	@Test
@@ -144,20 +154,20 @@ public class MailSenderUtilTest{
 		// ******************************************************************************************
 
 		String textContent = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
-		mailEntity.setContent(textContent);
+		mailSenderConfig.setContent(textContent);
 
 		String fileString = "F:\\Picture 图片\\美女\\1.jpg";
 		String[] filenameString = { FileUtil.getFileName(fileString) };
-		mailEntity.setAttachFileNames(filenameString);
+		mailSenderConfig.setAttachFileNames(filenameString);
 
 		List<byte[]> attachList = new ArrayList<byte[]>();
 		attachList.add(IOUtil.convertFileToByteArray(new File(fileString)));
-		mailEntity.setAttachList(attachList);
+		mailSenderConfig.setAttachList(attachList);
 	}
 
 	@After
 	public void after() throws MessagingException,UnsupportedEncodingException{
 		MailSenderUtil mailSenderUtil = new MailSenderUtil();
-		mailSenderUtil.sendMail(mailEntity);
+		mailSenderUtil.sendMail(mailSenderConfig);
 	}
 }

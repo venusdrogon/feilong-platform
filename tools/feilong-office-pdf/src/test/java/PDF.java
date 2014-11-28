@@ -34,22 +34,22 @@ public class PDF{
 	// PDFTextStripper stripper = new PDFTextStripper();
 	// result = stripper.getText(document);
 	// } catch (FileNotFoundException e) {
-	// e.printStackTrace();
+	// log.error(e.getClass().getName(), e);
 	// } catch (IOException e) {
-	// e.printStackTrace();
+	// log.error(e.getClass().getName(), e);
 	// } finally {
 	// if (is != null) {
 	// try {
 	// is.close();
 	// } catch (IOException e) {
-	// e.printStackTrace();
+	// log.error(e.getClass().getName(), e);
 	// }
 	// }
 	// if (document != null) {
 	// try {
 	// document.close();
 	// } catch (IOException e) {
-	// e.printStackTrace();
+	// log.error(e.getClass().getName(), e);
 	// }
 	// }
 	// }

@@ -552,7 +552,7 @@ public abstract class FileTransfer{
 				boolean deleteDontClose = _deleteDontClose(remoteAbsolutePaths);
 				return deleteDontClose;
 			}catch (Exception e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}finally{
 				disconnect();
 			}

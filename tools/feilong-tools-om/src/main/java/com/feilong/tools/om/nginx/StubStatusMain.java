@@ -85,7 +85,7 @@ public class StubStatusMain{
 				try{
 					crawStubStatusNike(uri, userName, password, path);
 				}catch (IOException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 			}
 		};
@@ -162,9 +162,9 @@ public class StubStatusMain{
 			try{
 				StubStatusMailSender.sendMonitorMail(filePath);
 			}catch (MessagingException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 	}

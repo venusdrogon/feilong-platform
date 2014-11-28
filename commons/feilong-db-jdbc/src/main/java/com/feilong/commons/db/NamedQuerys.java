@@ -122,11 +122,11 @@ public class NamedQuerys implements Serializable{
 				}
 			}
 		}catch (SAXException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (URISyntaxException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

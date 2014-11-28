@@ -232,7 +232,7 @@ public final class OperatingSystemUtil{
 			}
 
 		}catch (SocketException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return macMap;
 	}
@@ -252,7 +252,7 @@ public final class OperatingSystemUtil{
 			NetworkInterface networkInterface = NetworkInterface.getByInetAddress(inetAddress);
 			return getMacAddress(networkInterface);
 		}catch (SocketException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -277,7 +277,7 @@ public final class OperatingSystemUtil{
 			NetworkInterface networkInterface = NetworkInterface.getByName(name);
 			return getMacAddress(networkInterface);
 		}catch (SocketException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -299,7 +299,7 @@ public final class OperatingSystemUtil{
 			try{
 				hardwareAddress = networkInterface.getHardwareAddress();
 			}catch (SocketException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 			if (hardwareAddress != null && hardwareAddress.length > 1){
 

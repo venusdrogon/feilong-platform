@@ -25,7 +25,8 @@ import org.jfree.ui.RefineryUtilities;
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
-@SuppressWarnings("all")public class GanttDemo2 extends ApplicationFrame{
+@SuppressWarnings("all")
+public class GanttDemo2 extends ApplicationFrame{
 
 	/**
 	 * Creates a new demo.
@@ -43,7 +44,6 @@ import com.feilong.tools.jfreechart.ChartUtil;
 			chartPanel.setPreferredSize(new java.awt.Dimension(800, 570));
 			setContentPane(chartPanel);
 		}catch (IOException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,13 +58,13 @@ import com.feilong.tools.jfreechart.ChartUtil;
 	 */
 	private static JFreeChart createChart(IntervalCategoryDataset dataset) throws IOException{
 		JFreeChart chart = ChartFactory.createGanttChart("Gantt Chart Demo", // chart title
-				"Task", // domain axis label
-				"Date", // range axis label
-				dataset, // data
-				true, // include legend
-				true, // tooltips
-				false // urls
-				);
+						"Task", // domain axis label
+						"Date", // range axis label
+						dataset, // data
+						true, // include legend
+						true, // tooltips
+						false // urls
+						);
 		CategoryPlot plot = (CategoryPlot) chart.getPlot();
 		plot.setAxisOffset(new RectangleInsets(0.0, 0.0, 0.0, 0.0));
 		plot.setDomainGridlinePosition(CategoryAnchor.END);
@@ -114,7 +114,8 @@ import com.feilong.tools.jfreechart.ChartUtil;
 	}
 
 	/**
-	 * Creates a sample dataset for a Gantt chart, using sub-tasks. In general, you won't hard-code the dataset in this way - it's done here so that the demo is
+	 * Creates a sample dataset for a Gantt chart, using sub-tasks. In general, you won't hard-code the dataset in this way - it's done here
+	 * so that the demo is
 	 * self-contained.
 	 * 
 	 * @return The dataset.

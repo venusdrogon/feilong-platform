@@ -37,7 +37,7 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.mail.MailEntity;
+import com.feilong.tools.mail.MailSenderConfig;
 import com.feilong.tools.mail.MailSenderUtil;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
 import com.feilong.tools.om.nginx.command.StubStatusVMCommand;
@@ -82,31 +82,31 @@ public class StubStatusMailSender{
 
 		MailSenderUtil mailSenderUtil = new MailSenderUtil();
 
-		MailEntity mailEntity = new MailEntity();
-		mailEntity.setMailServerHost("smtp.163.com");
-		mailEntity.setMailServerPort("25");
+		MailSenderConfig mailSenderConfig = new MailSenderConfig();
+		mailSenderConfig.setMailServerHost("smtp.163.com");
+		mailSenderConfig.setMailServerPort("25");
 
-		mailEntity.setUserName(userName);
-		mailEntity.setPassword(password);
+		mailSenderConfig.setUserName(userName);
+		mailSenderConfig.setPassword(password);
 
-		mailEntity.setFromAddress(userName);
-		mailEntity.setPersonal("小K监控");
+		mailSenderConfig.setFromAddress(userName);
+		mailSenderConfig.setPersonal("小K监控");
 
-		mailEntity.setTos(tos);
+		mailSenderConfig.setTos(tos);
 
-		mailEntity.setSubject("小K监控-NginxStubStatus");// + DateUtil.date2String(new Date())
+		mailSenderConfig.setSubject("小K监控-NginxStubStatus");// + DateUtil.date2String(new Date())
 
 		String textContent = getTextContentForEmail(filePath);
-		mailEntity.setContent(textContent);
+		mailSenderConfig.setContent(textContent);
 
 		String[] filenameString = { FileUtil.getFileName(filePath) };
-		mailEntity.setAttachFileNames(filenameString);
+		mailSenderConfig.setAttachFileNames(filenameString);
 
 		List<byte[]> attachList = new ArrayList<byte[]>();
 		attachList.add(IOUtil.convertFileToByteArray(new File(filePath)));
-		mailEntity.setAttachList(attachList);
+		mailSenderConfig.setAttachList(attachList);
 
-		mailSenderUtil.sendMail(mailEntity);
+		mailSenderUtil.sendMail(mailSenderConfig);
 	}
 
 	/**

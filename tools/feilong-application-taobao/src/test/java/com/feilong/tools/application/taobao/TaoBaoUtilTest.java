@@ -96,7 +96,7 @@ public class TaoBaoUtilTest{
 			log.info(response.getBody());
 			// {"topats_trades_fullinfo_get_response":{"task":{"created":"2011-12-24 17:06:55","task_id":4219310}}}
 		}catch (ApiException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class TaoBaoUtilTest{
 			TopatsResultGetResponse response = client.execute(req);
 			log.info(response.getBody());
 		}catch (ApiException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class TaoBaoUtilTest{
 			TradesSoldGetResponse response = client.execute(req, sessionKey);
 			log.info(response.getBody());
 		}catch (ApiException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

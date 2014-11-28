@@ -128,7 +128,7 @@ public class SystemUtilTest{
 		// try{
 		// properties.storeToXML(os, "ceshi");
 		// }catch (IOException e){
-		// e.printStackTrace();
+		// log.error(e.getClass().getName(), e);
 		// }
 		// FeiLongTestUtil.print(properties);
 

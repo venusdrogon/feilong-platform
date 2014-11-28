@@ -21,6 +21,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.StringUtil;
@@ -48,6 +51,8 @@ import com.feilong.commons.security.EncryptionException;
  */
 //无访问控制符修饰的内容可以被同一个包中的类访问，
 final class OnewayEncryption{
+
+	private static final Logger	log	= LoggerFactory.getLogger(OnewayEncryption.class);
 
 	/**
 	 * Instantiates a new oneway encryption.
@@ -178,7 +183,7 @@ final class OnewayEncryption{
 			BigInteger bigInt = new BigInteger(1, bytes);
 			return bigInt.toString(16);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new EncryptionException(e);
 		}
 	}

@@ -125,10 +125,10 @@ public class FTPUtil extends FileTransfer{
 				}
 			}
 		}catch (SocketException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			disconnect();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			disconnect();
 		}
 		log.info("connect :{}", isSuccess);
@@ -149,7 +149,7 @@ public class FTPUtil extends FileTransfer{
 				ftpClient.disconnect();
 				log.debug("ftpClient disconnect...");
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 	}

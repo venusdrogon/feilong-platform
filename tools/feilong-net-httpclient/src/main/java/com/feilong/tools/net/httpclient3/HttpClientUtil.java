@@ -204,7 +204,7 @@ public final class HttpClientUtil{
 			Map<String, Object> map = getHttpMethodResponseAttributeMapForLog(httpMethod);
 			log.error(JsonUtil.format(map));
 
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new HttpClientException(e);
 		}
 		return httpMethod;
@@ -287,7 +287,7 @@ public final class HttpClientUtil{
 			return responseBodyAsString;
 
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new HttpClientException(e);
 		}finally{
 			// 释放连接
@@ -318,7 +318,7 @@ public final class HttpClientUtil{
 			map.put("httpMethod.getURI()", httpMethod.getURI().toString());
 			map.put("httpMethod.getRequestHeaders()", httpMethod.getRequestHeaders());
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return map;
 	}
@@ -339,7 +339,7 @@ public final class HttpClientUtil{
 			map.put("httpMethod.getResponseHeaders()", httpMethod.getResponseHeaders());
 			map.put("httpMethod.getResponseFooters()", httpMethod.getResponseFooters());
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return map;
 	}

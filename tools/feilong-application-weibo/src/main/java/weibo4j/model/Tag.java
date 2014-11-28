@@ -78,9 +78,9 @@ import weibo4j.http.Response;
 			String id = tags.getJSONObject(0).getString("id");
 			return new TagWapper(tagList, id);
 		}catch (JSONException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (WeiboException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

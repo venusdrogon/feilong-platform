@@ -55,7 +55,7 @@ public class CmykToRgb{
 				String rgbFile = CmykToRgb.cmyk2rgb(filename);
 				log.error(ImageUtil.isCMYKType(rgbFile) + ": " + rgbFile);
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 	}

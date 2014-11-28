@@ -93,7 +93,7 @@ public final class ClassLoaderUtil{
 		try{
 			return (url != null) ? url.openStream() : null;
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			return null;
 		}
 	}

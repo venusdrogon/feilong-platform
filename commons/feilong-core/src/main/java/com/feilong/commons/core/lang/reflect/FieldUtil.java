@@ -84,7 +84,7 @@ public final class FieldUtil{
 					try{
 						map.put(fieldName, field.get(obj));
 					}catch (Exception e){
-						e.printStackTrace();
+						log.error(e.getClass().getName(), e);
 						throw new ReflectException(e);
 					}
 				}
@@ -200,7 +200,7 @@ public final class FieldUtil{
 			Field field = clz.getDeclaredField(name);
 			return field;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}
@@ -230,7 +230,7 @@ public final class FieldUtil{
 			Field field = ownerClass.getField(fieldName);
 			field.set(ownerClass, value);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}
@@ -260,7 +260,7 @@ public final class FieldUtil{
 			Object property = field.get(owner);
 			return (T) property;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}
@@ -298,7 +298,7 @@ public final class FieldUtil{
 			Object property = field.get(ownerClass);
 			return (T) property;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new ReflectException(e);
 		}
 	}

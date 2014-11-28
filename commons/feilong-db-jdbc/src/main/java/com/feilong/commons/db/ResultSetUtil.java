@@ -54,7 +54,7 @@ public class ResultSetUtil{
 			}
 			return objects;
 		}catch (SQLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -80,7 +80,7 @@ public class ResultSetUtil{
 			}
 		}catch (SQLException e){
 			log.debug(e.getMessage());
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return columnNameList;
 	}

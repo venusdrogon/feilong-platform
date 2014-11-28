@@ -141,7 +141,7 @@ public final class ClassUtil{
 					try{
 						parameterTypes[i] = loadClass("org.jfree.data.category.CategoryDataset");
 					}catch (ClassNotFoundException e){
-						e.printStackTrace();
+						log.error(e.getClass().getName(), e);
 					}
 				}else{
 					// XXX 待整理

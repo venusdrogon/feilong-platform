@@ -587,7 +587,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 			getHibernateTemplate().delete(getHibernateTemplate().get(cl, id));
 			return true;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return false;
 	}

@@ -87,9 +87,9 @@ public class Top100Mp3Downloader{
 			}
 			return map;
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -119,9 +119,9 @@ public class Top100Mp3Downloader{
 			}
 			return path;
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -166,9 +166,9 @@ public class Top100Mp3Downloader{
 				log.info("服务器返回:" + httpURLConnection.getResponseCode());
 			}
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

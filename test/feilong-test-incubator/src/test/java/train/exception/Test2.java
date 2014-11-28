@@ -35,7 +35,7 @@ public class Test2{
 			}
 			return "1";
 		}catch (MyEqualsException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			return "2";
 		}finally{
 			return "3";

@@ -78,7 +78,7 @@ public class ActiveMQTest{
 			session.close();
 			connection.close();
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

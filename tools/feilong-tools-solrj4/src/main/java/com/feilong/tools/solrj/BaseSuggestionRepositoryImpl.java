@@ -115,7 +115,7 @@ public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepo
 		try{
 			queryResponse = solrServer.query(solrQuery);
 		}catch (SolrServerException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 
 		SolrjUtil.showSpellCheckResponse(queryResponse, q);

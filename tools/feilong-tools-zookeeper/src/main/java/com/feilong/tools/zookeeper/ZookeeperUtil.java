@@ -101,7 +101,7 @@ public class ZookeeperUtil{
 			}
 
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -122,7 +122,7 @@ public class ZookeeperUtil{
 			}
 
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class ZookeeperUtil{
 			ZooKeeper zk = new ZooKeeper(zooHost, ZK_CONNECTION_TIMEROUT, null);
 			deleteNode(zk, path);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -164,7 +164,7 @@ public class ZookeeperUtil{
 				zk.delete(path, 0);
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

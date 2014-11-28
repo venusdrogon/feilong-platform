@@ -25,6 +25,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 飞龙自定义标签的父类,所有飞龙自定义标签的基类,包含通用的方法 <br>
  * <ul>
@@ -46,6 +49,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public abstract class BaseTag extends BodyTagSupport{
 
+	private static final Logger	log					= LoggerFactory.getLogger(BaseTag.class);
+
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -5494214419937813707L;
 
@@ -62,7 +67,7 @@ public abstract class BaseTag extends BodyTagSupport{
 		try{
 			jspWriter.print(object);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -79,7 +84,7 @@ public abstract class BaseTag extends BodyTagSupport{
 		try{
 			jspWriter.println(object.toString());
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

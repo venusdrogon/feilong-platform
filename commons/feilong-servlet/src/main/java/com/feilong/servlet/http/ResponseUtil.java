@@ -280,7 +280,7 @@ public final class ResponseUtil{
 		try{
 			response.sendRedirect(url);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -329,7 +329,7 @@ public final class ResponseUtil{
 			printWriter.print(content.toString());
 			printWriter.flush();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

@@ -38,9 +38,9 @@ package com.feilong.webservice.cxf;
 //		try{
 //			responseBody = httpclient.execute(httpget, responseHandler);
 //		}catch (ClientProtocolException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
@@ -69,9 +69,9 @@ package com.feilong.webservice.cxf;
 //		try{
 //			responseBody = httpclient.execute(httpost, responseHandler);
 //		}catch (ClientProtocolException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
@@ -103,9 +103,9 @@ package com.feilong.webservice.cxf;
 //		try{
 //			responseBody = httpclient.execute(httpost, responseHandler);
 //		}catch (ClientProtocolException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();

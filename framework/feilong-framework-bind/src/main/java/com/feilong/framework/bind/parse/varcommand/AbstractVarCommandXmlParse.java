@@ -84,7 +84,7 @@ public abstract class AbstractVarCommandXmlParse<T extends VarCommand> extends A
 			}
 			return t;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BuildCommandException(e);
 		}
 	}

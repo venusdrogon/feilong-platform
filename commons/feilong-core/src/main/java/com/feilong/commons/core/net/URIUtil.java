@@ -569,7 +569,7 @@ public final class URIUtil{
 		try{
 			return new String(str.trim().getBytes(CharsetType.ISO_8859_1), bianma);
 		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return "";
 	}

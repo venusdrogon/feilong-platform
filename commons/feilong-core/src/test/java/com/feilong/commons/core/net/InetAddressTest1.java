@@ -64,7 +64,7 @@ public class InetAddressTest1{
 				}
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class InetAddressTest1{
 				}
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

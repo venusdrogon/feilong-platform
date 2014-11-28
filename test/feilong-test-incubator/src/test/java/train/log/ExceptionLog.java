@@ -22,7 +22,7 @@ public class ExceptionLog{
 				throw new NullPointerException("the a is null or empty!");
 			}
 		}catch (NullPointerException e){
-			//	e.printStackTrace();
+			//	log.error(e.getClass().getName(), e);
 			log.error("when xxx,occur exception:", e);
 
 			Marker fatal = MarkerFactory.getMarker("FATAL");

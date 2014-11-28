@@ -66,9 +66,9 @@ public class GenericTest{
 			log.info(method.toGenericString());
 			log.info(method.toString());
 		}catch (SecurityException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return aT;
 	}

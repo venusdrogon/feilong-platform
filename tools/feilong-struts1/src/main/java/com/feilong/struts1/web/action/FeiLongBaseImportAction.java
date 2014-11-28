@@ -80,9 +80,9 @@ public class FeiLongBaseImportAction extends DispatchAction{
 		try{
 			return formFile.getInputStream();
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

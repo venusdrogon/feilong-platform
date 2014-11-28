@@ -145,9 +145,9 @@ public class MailUtil{
 			mimeMessageHelper.setFrom(new InternetAddress("sanguoxuhuang@163.com", encodeText));
 			mimeMessageHelper.setText(text, true);
 		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (MessagingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		// add attachments
 		// for (Entry<String, InputStreamSource> entry : getAttachments(mi).entrySet()){

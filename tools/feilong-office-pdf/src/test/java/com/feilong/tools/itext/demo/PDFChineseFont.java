@@ -17,6 +17,9 @@ package com.feilong.tools.itext.demo;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
@@ -28,8 +31,10 @@ import com.lowagie.text.pdf.BaseFont;
  */
 public class PDFChineseFont{
 
+	private static final Logger	log	= LoggerFactory.getLogger(PDFChineseFont.class);
+
 	/** The chinese font. */
-	private static Font	chineseFont;
+	private static Font			chineseFont;
 
 	/**
 	 * Creates the chinese font.
@@ -44,9 +49,9 @@ public class PDFChineseFont{
 		try{
 			chineseFont = new Font(BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED), size, style);
 		}catch (DocumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return chineseFont;
 	}

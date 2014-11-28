@@ -120,7 +120,7 @@ public final class JarResources{
 				}
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

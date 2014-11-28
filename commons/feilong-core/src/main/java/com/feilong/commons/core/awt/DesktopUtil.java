@@ -87,7 +87,7 @@ public final class DesktopUtil{
 				try{
 					desktop.open(file);
 				}catch (IOException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 			}
 		}else{

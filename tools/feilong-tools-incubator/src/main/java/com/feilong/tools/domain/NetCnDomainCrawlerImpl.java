@@ -73,7 +73,7 @@ public class NetCnDomainCrawlerImpl extends AbstractDomainCrawler{
 				}
 			}
 		}catch (JsoupUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return true;
 	}

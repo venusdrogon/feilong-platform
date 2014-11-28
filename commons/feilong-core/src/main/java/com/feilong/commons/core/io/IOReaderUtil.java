@@ -28,62 +28,88 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * 读文件.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 23, 2013 10:27:08 PM
+ * @version 1.0.8 2014-11-25 20:04 add {@link #getFileContent(String, String)}
  * @since 1.0.0
  */
 public final class IOReaderUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(IOReaderUtil.class);
+	private static final Logger	log						= LoggerFactory.getLogger(IOReaderUtil.class);
+
+	/** 默认编码. */
+	private static final String	DEFAULT_CHARSET_NAME	= CharsetType.UTF8;
 
 	/**
-	 * 读取文件内容
-	 * 
+	 * 读取文件内容.
+	 *
 	 * @param path
 	 *            路径
 	 * @return 文件内容string
+	 * @throws IOException
+	 *             the IO exception
 	 */
-	public static String getFileContent(String path){
+	public static String getFileContent(String path) throws IOException{
+		return getFileContent(path, DEFAULT_CHARSET_NAME);
+	}
+
+	/**
+	 * 获得 file content.
+	 *
+	 * @param path
+	 *            the path
+	 * @param charsetName
+	 *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
+	 * @return the file content
+	 * @throws IOException
+	 *             the IO exception
+	 * @since 1.0.8
+	 */
+	public static String getFileContent(String path,String charsetName) throws IOException{
 		File file = new File(path);
-		return getFileContent(file);
+		return getFileContent(file, charsetName);
 	}
 
 	/**
 	 * 读取文件内容.
-	 * 
-	 * @param file
-	 *            文件
-	 * @return 文件内容string
-	 */
-	private static String getFileContent(File file){
-		return getFileContent(file, CharsetType.GBK);
-	}
-
-	/**
-	 * 读取文件内容.
-	 * 
+	 *
 	 * @param file
 	 *            文件
 	 * @param charsetName
-	 *            字符编码
+	 *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
 	 * @return the file content
+	 * @throws IOException
+	 *             the IO exception
+	 * @throws NullPointerException
+	 *             if isNullOrEmpty(file)
 	 */
-	public static String getFileContent(File file,String charsetName){
+	public static String getFileContent(File file,String charsetName) throws IOException,NullPointerException{
+		if (Validator.isNullOrEmpty(file)){
+			throw new NullPointerException("the file is null or empty!");
+		}
+
 		// 分配新的直接字节缓冲区
 		final int capacity = 186140;
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(capacity);
 		StringBuffer stringBuffer = new StringBuffer(capacity);
+
+		FileInputStream fileInputStream = null;
 		try{
-			FileInputStream fileInputStream = new FileInputStream(file);
+			fileInputStream = new FileInputStream(file);
+
 			// 用于读取、写入、映射和操作文件的通道.
 			FileChannel fileChannel = fileInputStream.getChannel();
+
 			// 编码字符集和字符编码方案的组合,用于处理中文,可以更改
+			if (Validator.isNullOrEmpty(charsetName)){
+				charsetName = DEFAULT_CHARSET_NAME;
+			}
 			Charset charset = Charset.forName(charsetName);
 			while (fileChannel.read(byteBuffer) != -1){
 				// 反转此缓冲区
@@ -92,11 +118,17 @@ public final class IOReaderUtil{
 				stringBuffer.append(charBuffer.toString());
 				byteBuffer.clear();
 			}
-			fileInputStream.close();
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error("FileNotFoundException:", e);
+			throw new IOException(e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error("IOException:", e);
+			throw new IOException(e);
+		}finally{
+			// 用完关闭流 是个好习惯,^_^
+			if (fileInputStream != null){
+				fileInputStream.close();
+			}
 		}
 		return stringBuffer.toString();
 	}

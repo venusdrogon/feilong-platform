@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.util.jdk;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -235,5 +237,14 @@ public class CollectionsTest{
 
 		//通过下面的方式就能得到一个不可变化的（只读）集合（视图的感觉，官方其实也是这么介绍的）  
 		List<String> listView = Collections.unmodifiableList(l);
+	}
+
+	/**
+	 * TestCollectionsTest.
+	 */
+	@Test
+	public void testCollectionsTest(){
+		List<String> el1 = null;
+		//assertEquals(expected, actual);
 	}
 }

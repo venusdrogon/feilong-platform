@@ -91,7 +91,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 
 			printlnPathContent(reader, scmAntCopyConfig);
 		}catch (UnsupportedFlavorException | IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -127,7 +127,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 			Reader reader = new FileReader(fileName);
 			printlnPathContent(reader, scmAntCopyConfig);
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -163,7 +163,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 
 			log.info(builder.insert(0, SystemUtils.LINE_SEPARATOR).toString());
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

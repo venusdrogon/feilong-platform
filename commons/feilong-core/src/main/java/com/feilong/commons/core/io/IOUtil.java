@@ -88,6 +88,8 @@ public final class IOUtil{
 			return stringBuffer.toString();
 		}catch (IOException e){
 			e.printStackTrace();
+			
+			
 		}finally{
 			try{
 				inputStream.close();
@@ -146,20 +148,18 @@ public final class IOUtil{
 			byteArrayOutputStream.flush();
 			byteArray = byteArrayOutputStream.toByteArray();
 		}catch (IOException e){
-			log.error(e.getMessage());
-			e.printStackTrace();
+			log.error("IOException:", e);
+			throw e;
 		}finally{
 			// 为避免内存泄漏，Stream的Close是必须的.即使中途发生了异常，也必须Close，
 			// 因此请在finally Block中描述close()
-			try{
-				byteArrayOutputStream.close();
-				bufferedInputStream.close();
-			}catch (IOException e){
-				e.printStackTrace();
-			}
+			byteArrayOutputStream.close();
+			bufferedInputStream.close();
 		}
 		return byteArray;
 	}
+
+	//*******************************************************************************
 
 	/**
 	 * 获得FileOutputStream文件输出流 FileOutputStream（或其他文件写入对象）打开文件进行写入 <br>

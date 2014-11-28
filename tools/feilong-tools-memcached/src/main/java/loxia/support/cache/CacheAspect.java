@@ -28,7 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 
 @Aspect
-@SuppressWarnings("all")public class CacheAspect implements Ordered{
+@SuppressWarnings("all")
+public class CacheAspect implements Ordered{
 
 	private static final Logger				logger	= LoggerFactory.getLogger(CacheAspect.class);
 
@@ -73,7 +74,7 @@ import org.springframework.core.Ordered;
 					CacheUtil.clearCache(cacheClient, "_m::" + (ce.encode() ? encodeStr(mn.trim()) : mn.trim()), transcoder);
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			logger.error(e.getClass().getName(), e);
 		}
 		return rtnValue;
 	}
@@ -93,7 +94,7 @@ import org.springframework.core.Ordered;
 		Map<String, Object> params = getParams(m, pjp.getArgs());
 		Cacheable c = m.getAnnotation(Cacheable.class);
 		String methodName = c.value().equals("") ? EncodeUtil.intToBase62(m.getDeclaringClass().getSimpleName().hashCode()) + "."
-				+ EncodeUtil.intToBase62(m.getName().hashCode()) : c.value();
+						+ EncodeUtil.intToBase62(m.getName().hashCode()) : c.value();
 		/*
 		 * String methodName = c.value().equals("") ? m.getDeclaringClass().getSimpleName() + "." + m.getName() : c.value();
 		 */
@@ -123,7 +124,7 @@ import org.springframework.core.Ordered;
 				return m1;
 		}catch (Exception e){
 			// do nothing
-			e.printStackTrace();
+			logger.error(e.getClass().getName(), e);
 		}
 		throw new RuntimeException("No Proper annotation found.");
 	}
@@ -145,7 +146,8 @@ import org.springframework.core.Ordered;
 		return sb.toString();
 	}
 
-	private void cacheValue(String name,boolean needCacheWithMethodName,String cacheKey,Object value,int expire,Map<String, Object> params) throws Exception{
+	private void cacheValue(String name,boolean needCacheWithMethodName,String cacheKey,Object value,int expire,Map<String, Object> params)
+					throws Exception{
 		for (String key : params.keySet()){
 			if (key.startsWith("M"))
 				appendParamCache(CacheUtil.getParamKey(key.substring(1), params.get(key)), cacheKey);
@@ -192,16 +194,15 @@ import org.springframework.core.Ordered;
 	public int getOrder(){
 		return 15;
 	}
-	
-	
+
 	//@Test
 	public void name(){
 		String methodName = "activityCache";
-		Map<String, Object> params=new HashMap<String, Object>();
-		
+		Map<String, Object> params = new HashMap<String, Object>();
+
 		params.put("IspikeCode", "Jordon11");
 		String cacheKey = getCacheKey(methodName, params);
-		
+
 		logger.info(cacheKey);
 	}
 }

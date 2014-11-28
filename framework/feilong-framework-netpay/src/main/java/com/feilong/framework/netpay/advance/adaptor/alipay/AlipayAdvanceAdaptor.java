@@ -162,7 +162,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 				Object[] args = { orderNo, errorMessage, closeTradeUrl };
 				log.error("close trade error : out_order_no:[{}],info:[{}],closeTradeUrl:{}", args);
 			}catch (DocumentException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 				throw new TradeCloseException(e);
 			}
 		}

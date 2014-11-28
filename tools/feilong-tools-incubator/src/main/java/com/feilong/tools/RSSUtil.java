@@ -50,11 +50,11 @@ public class RSSUtil{
 		try{
 			log.info("The feed in RDF: " + channel.getFeed("rss"));
 		}catch (InstantiationException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IllegalAccessException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (ClassNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

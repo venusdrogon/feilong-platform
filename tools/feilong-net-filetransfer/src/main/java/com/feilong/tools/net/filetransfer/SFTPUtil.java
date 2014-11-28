@@ -121,7 +121,7 @@ public class SFTPUtil extends FileTransfer{
 			isSuccess = channelSftp.isConnected();
 			log.debug("channelSftp isConnected:[{}]", isSuccess);
 		}catch (JSchException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		log.info("connect :{}", isSuccess);
 		return isSuccess;

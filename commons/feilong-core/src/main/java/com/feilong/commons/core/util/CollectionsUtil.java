@@ -350,7 +350,7 @@ public final class CollectionsUtil{
 				returnCollection.add(property);
 			}
 		}catch (BeanUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return returnCollection;
 	}
@@ -547,7 +547,7 @@ public final class CollectionsUtil{
 				map.put(key, value);
 			}
 		}catch (BeanUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return map;
 	}

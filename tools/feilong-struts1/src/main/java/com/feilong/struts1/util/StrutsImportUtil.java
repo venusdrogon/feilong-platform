@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.util.ArrayUtil;
@@ -34,6 +36,8 @@ import com.feilong.struts1.web.form.ImportForm;
  * @author 金鑫 2010-7-26 上午11:15:54
  */
 public class StrutsImportUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(StrutsImportUtil.class);
 
 	/**
 	 * 获得输入流
@@ -50,9 +54,9 @@ public class StrutsImportUtil{
 			InputStream inputStream = formFile.getInputStream();
 			return inputStream;
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

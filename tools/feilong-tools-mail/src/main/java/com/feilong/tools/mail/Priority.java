@@ -69,5 +69,4 @@ public enum Priority{
 	public void setLevelValue(String levelValue){
 		this.levelValue = levelValue;
 	}
-
 }

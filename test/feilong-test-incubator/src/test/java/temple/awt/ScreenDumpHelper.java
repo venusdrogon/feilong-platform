@@ -125,7 +125,7 @@ public class ScreenDumpHelper{
 			this.saveToOutputStream(fileFormat, fos);
 		}catch (FileNotFoundException e){
 			log.info("非常规文件或不能创建抑或覆盖此文件: " + fileName);
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return true;
 	}

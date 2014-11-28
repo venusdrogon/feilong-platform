@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
@@ -32,6 +34,8 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
  * @author 金鑫 时间:2009年10月28日 10:50:06
  */
 public class BaseSpringTag extends RequestContextAwareTag{
+
+	private static final Logger	log					= LoggerFactory.getLogger(BaseSpringTag.class);
 
 	private static final long	serialVersionUID	= 5289127954140428690L;
 
@@ -46,7 +50,7 @@ public class BaseSpringTag extends RequestContextAwareTag{
 		try{
 			jspWriter.println(this.writeContent());
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return SKIP_BODY;
 	}

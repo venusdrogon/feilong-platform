@@ -323,9 +323,9 @@ public class CollectionsUtilTest{
 			}
 
 		}catch (InstantiationException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IllegalAccessException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

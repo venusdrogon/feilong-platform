@@ -137,7 +137,7 @@ public final class VelocityUtil{
 		try{
 			writer.flush();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new VelocityException(e);
 		}
 		return writer.toString();

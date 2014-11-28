@@ -26,6 +26,8 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 提供jsp 标签帮助menthods
@@ -38,6 +40,8 @@ import org.apache.commons.beanutils.PropertyUtils;
  * @version $Rev: 471754 $
  */
 public class TagUtils{
+
+	private static final Logger	log			= LoggerFactory.getLogger(TagUtils.class);
 
 	/**
 	 * The Singleton instance.
@@ -189,11 +193,11 @@ public class TagUtils{
 		try{
 			return PropertyUtils.getProperty(bean, property);
 		}catch (IllegalAccessException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (InvocationTargetException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

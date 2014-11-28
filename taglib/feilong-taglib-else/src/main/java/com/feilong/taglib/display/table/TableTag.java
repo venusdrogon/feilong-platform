@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.Pager;
 import com.feilong.commons.core.lang.ObjectUtil;
@@ -37,6 +39,8 @@ import com.feilong.tools.html.HtmlUtil;
  * @author 金鑫 2010-4-16 下午03:03:32
  */
 public class TableTag extends HtmlTableTag{
+
+	private static final Logger	log					= LoggerFactory.getLogger(TableTag.class);
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
@@ -261,7 +265,7 @@ public class TableTag extends HtmlTableTag{
 			try{
 				currentCollection = TagUtils.getInstance().lookup(pageContext, name, property, scope);
 			}catch (JspException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		return ObjectUtil.toIterator(currentCollection);

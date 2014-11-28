@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.servlet;
+package com.feilong.servlet.servlet;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -87,7 +87,7 @@ public class CaptchaServlet extends HttpServlet{
 			ImageIO.write(bufferedImage, ImageType.PNG, servletOutputStream);
 			servletOutputStream.flush();
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			servletOutputStream.close();
 		}
 	}
@@ -123,7 +123,7 @@ public class CaptchaServlet extends HttpServlet{
 			// jspWriter.clear();
 			// jspWriter = pageContext.pushBody();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

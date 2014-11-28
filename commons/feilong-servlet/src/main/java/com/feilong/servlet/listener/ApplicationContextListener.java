@@ -29,10 +29,10 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 9, 2012 5:16:58 PM
  */
+//TODO 拆
 public class ApplicationContextListener implements ServletContextListener{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log							= LoggerFactory.getLogger(ApplicationContextListener.class);
 
 	/** base 路径. */
@@ -45,12 +45,15 @@ public class ApplicationContextListener implements ServletContextListener{
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce){
-
 		ServletContext servletContext = sce.getServletContext();
 
 		String contextPath = servletContext.getContextPath();
 		servletContext.setAttribute(APPLICATIONATTRIBUTE_BASE, contextPath);
-		servletContext.log("set servletContext setAttribute: base:" + contextPath);
+		servletContext.log("Set servletContext setAttribute: 'base' = [" + contextPath + "]");
+
+		if (log.isInfoEnabled()){
+			log.info("Set servletContext setAttribute: 'base' = [" + contextPath + "]");
+		}
 	}
 
 	/*
@@ -59,7 +62,5 @@ public class ApplicationContextListener implements ServletContextListener{
 	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
 	 */
 	@Override
-	public void contextDestroyed(ServletContextEvent sce){
-		// TODO Auto-generated method stub
-	}
+	public void contextDestroyed(ServletContextEvent sce){}
 }

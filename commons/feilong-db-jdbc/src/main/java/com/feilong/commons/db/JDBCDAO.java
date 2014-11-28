@@ -125,7 +125,7 @@
 //			resultSet = preparedStatement.executeQuery();
 //			result = ResultSupport.toResult(resultSet);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -149,7 +149,7 @@
 //			resultSet = preparedStatement.executeQuery();
 //			result = ResultSupport.toResult(resultSet);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -220,7 +220,7 @@
 //			resultSet = callableStatement.executeQuery();
 //			result = ResultSupport.toResult(resultSet);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -244,7 +244,7 @@
 //			resultSet = callableStatement.executeQuery();
 //			result = ResultSupport.toResult(resultSet);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -307,7 +307,7 @@
 //		try{
 //			return callableStatement.executeUpdate() > 0;
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -370,7 +370,7 @@
 //		try{
 //			return preparedStatement.executeUpdate() > 0;
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -393,7 +393,7 @@
 //		try{
 //			return preparedStatement.executeUpdate() > 0;
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}finally{
 //			closeDataBaseObject();
 //		}
@@ -415,7 +415,7 @@
 //		try{
 //			callableStatement = connection.prepareCall(procName);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return callableStatement;
 //	}
@@ -460,7 +460,7 @@
 //				}
 //			}
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return callableStatement;
 //	}
@@ -480,7 +480,7 @@
 //		try{
 //			preparedStatement = connection.prepareStatement(sql);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return preparedStatement;
 //	}
@@ -525,7 +525,7 @@
 //				}
 //			}
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return preparedStatement;
 //	}
@@ -550,9 +550,9 @@
 //				throw new RuntimeException("数据库链接错误");
 //			}
 //		}catch (NamingException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return connection;
 //	}
@@ -574,9 +574,9 @@
 //			connection = DriverManager.getConnection(url);
 //			return connection;
 //		}catch (ClassNotFoundException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return null;
 //	}
@@ -602,9 +602,9 @@
 //			connection = DriverManager.getConnection(url, userName, password);
 //			return connection;
 //		}catch (ClassNotFoundException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return null;
 //	}
@@ -639,7 +639,7 @@
 //				connection = null;
 //			}
 //		}catch (SQLException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //	}
 //	// **********************************************************************************
@@ -698,7 +698,7 @@
 //	// try{
 //	// connection.setAutoCommit(b);
 //	// }catch (SQLException e){
-//	// e.printStackTrace();
+//	// log.error(e.getClass().getName(), e);
 //	// }
 //	// }
 //	//
@@ -710,7 +710,7 @@
 //	// // 回滚
 //	// connection.rollback();
 //	// }catch (SQLException e){
-//	// e.printStackTrace();
+//	// log.error(e.getClass().getName(), e);
 //	// }
 //	// }
 //}

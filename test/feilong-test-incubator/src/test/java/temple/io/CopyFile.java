@@ -66,7 +66,7 @@ public class CopyFile{
 				b = in.read(buf);
 			}
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			return false;
 		}catch (IOException e1){
 			e1.printStackTrace();
@@ -76,7 +76,7 @@ public class CopyFile{
 				in.close();
 				bos.close();
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		return true;

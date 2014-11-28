@@ -58,7 +58,7 @@ public final class Dom4jUtil{
 			Document document = DocumentHelper.parseText(xmlString);
 			return document;
 		}catch (DocumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -92,7 +92,7 @@ public final class Dom4jUtil{
 			Document document = reader.read(inputStream);
 			return document;
 		}catch (DocumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.apache.struts.upload.FormFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 飞龙 struts 上传.
@@ -29,6 +31,8 @@ import org.apache.struts.upload.FormFile;
  * @version 1.0 2011-1-19 上午10:19:12
  */
 public class StrutsUpload{
+
+	private static final Logger	log	= LoggerFactory.getLogger(StrutsUpload.class);
 
 	/**
 	 * 上传文件.
@@ -50,9 +54,9 @@ public class StrutsUpload{
 			os.close();
 			return true;
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return false;
 	}

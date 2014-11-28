@@ -60,7 +60,7 @@ public final class ImageUtil{
 			ImageIO.write(renderedImage, formatName, outputStream);
 			outputStream.close();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -133,7 +133,7 @@ public final class ImageUtil{
 			// log.debug("getPropertyNames:{}", bufferedImage.getData());
 			return bufferedImage;
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -160,7 +160,7 @@ public final class ImageUtil{
 				return (colorSpaceType == ColorSpace.TYPE_CMYK);
 			}
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return false;
 	}

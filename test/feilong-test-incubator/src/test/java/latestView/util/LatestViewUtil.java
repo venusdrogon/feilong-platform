@@ -171,7 +171,7 @@ public class LatestViewUtil{
 			Object jsonValue = StringUtil.toOriginal(hexJsonValue);
 			Object[] objects = { hexJsonValue, jsonValue, RequestUtil.getClientIp(request), RequestUtil.getHeaderUserAgent(request) };
 			log.error("hexJsonValue:{},jsonValue:{},ip:{},UserAgent:{},will delete cookie!", objects);
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			// 删除 cookie
 			CookieUtil.deleteCookie(COOKIE_NAME_LATEST_VIEW_SKUS, response);
 		}

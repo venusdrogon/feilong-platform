@@ -58,7 +58,7 @@ public class JDBCDAOTest{
 			rs.close();
 			conn.close();
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

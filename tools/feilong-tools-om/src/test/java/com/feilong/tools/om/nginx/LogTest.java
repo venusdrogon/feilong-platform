@@ -15,6 +15,8 @@
  */
 package com.feilong.tools.om.nginx;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +39,11 @@ public class LogTest{
 
 	/**
 	 * Test aj11visitlogall.
+	 * 
+	 * @throws IOException
 	 */
 	@Test
-	public void testAj11visitlogall(){
+	public void testAj11visitlogall() throws IOException{
 		String fileName = "C:\\Users\\feilong\\Documents\\AJ11\\AJ11\\aj11visitlogall3000000.txt";
 		String content = IOReaderUtil.getFileContent(fileName);
 		// 将内容以换行符转成数组

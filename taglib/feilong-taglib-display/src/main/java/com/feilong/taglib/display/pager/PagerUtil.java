@@ -248,7 +248,7 @@ public final class PagerUtil{
 			currentPageNo = RequestUtil.getParameterToInteger(request, pageParamName);
 		}catch (Exception e){
 			// 抛出异常, 但是不给 currentPageNo 赋值
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 
 		// 不是空 直接返回

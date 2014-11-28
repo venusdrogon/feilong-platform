@@ -44,7 +44,7 @@ public class PinYinUtilTest{
 				}
 			}
 		}catch (BadHanyuPinyinOutputFormatCombination e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		log.info(buffer.toString());
 	}

@@ -121,7 +121,7 @@ public final class NumberFormatUtil{
 		}catch (Exception e){
 			Object[] objects = { e.getMessage(), value, numberPattern };
 			log.error("{},value:[{}],pattern:[{}]", objects);
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

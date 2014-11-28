@@ -142,7 +142,7 @@ public final class BeanUtil{
 			T cloneBean = (T) BeanUtils.cloneBean(bean);
 			return cloneBean;
 		}catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -176,7 +176,7 @@ public final class BeanUtil{
 			Map<String, String> map = BeanUtils.describe(bean);
 			return map;
 		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -202,7 +202,7 @@ public final class BeanUtil{
 		try{
 			BeanUtils.populate(bean, properties);
 		}catch (IllegalAccessException | InvocationTargetException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -247,7 +247,7 @@ public final class BeanUtil{
 		try{
 			BeanUtils.copyProperties(toObj, fromObj);
 		}catch (IllegalAccessException | InvocationTargetException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -374,7 +374,7 @@ public final class BeanUtil{
 		try{
 			BeanUtils.copyProperty(bean, propertyName, value);
 		}catch (IllegalAccessException | InvocationTargetException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -444,7 +444,7 @@ public final class BeanUtil{
 			// 在后台自动进行类型转换(字符串和真实类型的转换)
 			BeanUtils.setProperty(bean, name, value);
 		}catch (IllegalAccessException | InvocationTargetException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -515,7 +515,7 @@ public final class BeanUtil{
 			String propertyValue = BeanUtils.getProperty(bean, name);
 			return propertyValue;
 		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}

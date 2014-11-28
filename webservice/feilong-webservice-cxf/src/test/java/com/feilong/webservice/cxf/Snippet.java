@@ -56,7 +56,7 @@ package com.feilong.webservice.cxf;
 //	        }
 //	        catch (Exception e)
 //	        {
-//	            e.printStackTrace();
+//	            log.error(e.getClass().getName(), e);
 //	        } finally {
 //	
 //	        }

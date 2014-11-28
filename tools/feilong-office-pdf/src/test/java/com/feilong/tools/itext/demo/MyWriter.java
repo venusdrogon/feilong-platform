@@ -15,6 +15,9 @@
  */
 package com.feilong.tools.itext.demo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Table;
@@ -25,6 +28,8 @@ import com.lowagie.text.Table;
  * @author jcoder
  */
 public class MyWriter extends PDFWriter{
+
+	private static final Logger	log	= LoggerFactory.getLogger(MyWriter.class);
 
 	/**
 	 * Instantiates a new my writer.
@@ -75,9 +80,9 @@ public class MyWriter extends PDFWriter{
 			document.add(table);
 			close();//别忘记关闭 
 		}catch (BadElementException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (DocumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

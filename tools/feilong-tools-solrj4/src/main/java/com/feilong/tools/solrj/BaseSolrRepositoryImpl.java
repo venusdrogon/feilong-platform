@@ -185,7 +185,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			return solrData;
 		}catch (SolrServerException e){
 			log.error(new SolrException(e).getMessage());
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			// throw new SolrException(e);
 			return new SolrData<T>();
 		}
@@ -353,7 +353,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 				return facetQueryMap;
 			}
 		}catch (SolrServerException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new SolrException(e);
 		}
 
@@ -574,9 +574,11 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 			@SuppressWarnings("unused")
 			UpdateResponse addBeanUpdateResponse = solrServer.add(solrInputDocuments);
 			@SuppressWarnings("unused")
-			UpdateResponse commitUpdateResponse = solrServer.commit();
+			UpdateResponse updateResponse = solrServer.commit();
+			
+			int status = updateResponse.getStatus();
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new SolrException("Save failed for model list " + solrInputDocuments.size() + "," + e.getMessage());
 		}
 	}

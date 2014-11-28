@@ -159,7 +159,7 @@ public final class PropertiesUtil implements BaseConfigure{
 				properties.load(inputStream);
 				return properties;
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		log.warn("the inputStream is null,can't load properties!and will return null");
@@ -181,9 +181,9 @@ public final class PropertiesUtil implements BaseConfigure{
 //		try{
 //			properties.store(new FileOutputStream(fileName), null);
 //		}catch (FileNotFoundException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return true;
 //	}
@@ -194,9 +194,9 @@ public final class PropertiesUtil implements BaseConfigure{
 //		try{
 //			properties.load(new FileInputStream(fileName));
 //		}catch (FileNotFoundException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		log.debug(properties.get("a.b.c"));
 //		log.debug(properties.get("aaa"));

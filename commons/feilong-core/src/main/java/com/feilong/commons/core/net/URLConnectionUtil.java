@@ -262,9 +262,9 @@ public final class URLConnectionUtil{
 			// httpURLConnection.connect();
 			return httpURLConnection;
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 
 		return null;
@@ -293,7 +293,7 @@ public final class URLConnectionUtil{
 				return readLine;
 			}
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}finally{
 			if (null != httpURLConnection){
 				// 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
@@ -324,7 +324,7 @@ public final class URLConnectionUtil{
 				String inputStream2String = IOUtil.inputStream2String(inputStream);
 				return inputStream2String;
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}finally{
 				// 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
 				httpURLConnection.disconnect();
@@ -351,7 +351,7 @@ public final class URLConnectionUtil{
 				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 				return bufferedReader;
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 

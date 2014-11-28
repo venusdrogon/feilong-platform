@@ -77,7 +77,7 @@ public abstract class AbstractAspect{
 					}
 				}
 			}catch (Exception e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		return annotation;
@@ -101,7 +101,7 @@ public abstract class AbstractAspect{
 				return m1;
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		throw new RuntimeException("No Proper annotation found.");
 	}
@@ -124,7 +124,7 @@ public abstract class AbstractAspect{
 				return true;
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return false;
 	}

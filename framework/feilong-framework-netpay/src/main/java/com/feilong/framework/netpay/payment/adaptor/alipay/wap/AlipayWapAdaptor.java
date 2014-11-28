@@ -107,7 +107,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 			try{
 				requestToken = getRequestToken(payRequest, specialSignMap);
 			}catch (Exception e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 			if (Validator.isNotNullOrEmpty(requestToken)){
 				Map<String, String> map = prepareAuthParamsMap(requestToken);
@@ -163,7 +163,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 			try{
 				soCode = getValueByKeyForXML(notify_data, "out_trade_no");
 			}catch (DocumentException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		return soCode;
@@ -345,7 +345,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 			try{
 				businessResult = getValueByKeyForXML(res_data, "request_token");
 			}catch (DocumentException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}else{
 			log.error("MD5验证签名失败");
@@ -401,7 +401,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 					log.info("------------notify status:" + status);
 					isSuccess = "TRADE_FINISHED".equals(status) || "TRADE_SUCCESS".equals(status);
 				}catch (DocumentException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 			}
 		}

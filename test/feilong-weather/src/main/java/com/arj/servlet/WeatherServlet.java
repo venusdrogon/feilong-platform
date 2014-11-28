@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.application.weather.WeatherService;
 
 /**
@@ -32,11 +35,14 @@ import com.feilong.application.weather.WeatherService;
  */
 public class WeatherServlet extends HttpServlet{
 
+	private static final Logger	log					= LoggerFactory.getLogger(WeatherServlet.class);
+
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1L;
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
@@ -47,12 +53,13 @@ public class WeatherServlet extends HttpServlet{
 			request.setAttribute("info", weatherContent);
 			request.getRequestDispatcher("/weatherInfo.jsp").forward(request, response);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{

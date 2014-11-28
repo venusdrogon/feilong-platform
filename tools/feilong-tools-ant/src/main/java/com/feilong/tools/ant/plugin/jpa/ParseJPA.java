@@ -165,7 +165,7 @@ public class ParseJPA implements Serializable,JpaConstants{
 				setIndex(myTable, line);
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new IOException(e);
 		}finally{
 			lineNumberReader.close();

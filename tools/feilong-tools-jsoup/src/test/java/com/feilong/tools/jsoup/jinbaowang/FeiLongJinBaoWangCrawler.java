@@ -88,9 +88,9 @@ public class FeiLongJinBaoWangCrawler{
 			out.writeObject(skuCodeAndImagesMap);
 			out.close();
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -109,11 +109,11 @@ public class FeiLongJinBaoWangCrawler{
 			in.close();
 			return skuCodeAndImagesMap;
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (ClassNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -124,8 +124,9 @@ public class FeiLongJinBaoWangCrawler{
 	 * @param filePath
 	 *            文件路径
 	 * @return the code list
+	 * @throws IOException
 	 */
-	public static List<String> getCodeList(String filePath){
+	public static List<String> getCodeList(String filePath) throws IOException{
 		String content = IOReaderUtil.getFileContent(filePath);
 		// 将内容以换行符转成数组
 		String[] codeRows = content.split("\r\n");
@@ -188,7 +189,7 @@ public class FeiLongJinBaoWangCrawler{
 			}
 			log.error(code + " cannot be find!");
 		}catch (JsoupUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -215,7 +216,7 @@ public class FeiLongJinBaoWangCrawler{
 			}
 			log.error(skuDetailsRealUrl + " cannot be find!");
 		}catch (JsoupUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

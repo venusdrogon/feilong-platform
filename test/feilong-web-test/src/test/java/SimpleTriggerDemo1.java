@@ -51,7 +51,7 @@ public class SimpleTriggerDemo1{
 			scheduler.scheduleJob(trigger2);// 同一个job添加多个trigger
 			scheduler.start();
 		}catch (SchedulerException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

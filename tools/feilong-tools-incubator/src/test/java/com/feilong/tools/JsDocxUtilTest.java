@@ -49,7 +49,7 @@ public class JsDocxUtilTest{
 		try{
 			jsdocCreator.generate();
 		}catch (JsdocException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

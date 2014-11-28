@@ -94,7 +94,7 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
 				Writer writer = new StringWriter();
 				log.debug("formatXML:{}", Dom4jUtil.format(xml, CharsetType.UTF8, writer));
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 

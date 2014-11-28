@@ -11,7 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-@SuppressWarnings("all")public class Flame extends JLabel implements Runnable{
+@SuppressWarnings("all")
+public class Flame extends JLabel implements Runnable{
 
 	/**
 	 * 
@@ -93,8 +94,8 @@ import javax.swing.JLabel;
 	public void MainLoop(){
 		int r, a, i;
 		for (r = COLS + 1; r < (COLS * (ROWS - 1)) - 1; ++r){
-			a = Buffer[r - COLS - 1] + Buffer[r - COLS] + Buffer[r - COLS + 1] + Buffer[r - 1] + Buffer[r + 1] + Buffer[r + COLS - 1] + Buffer[r + COLS]
-					+ Buffer[r + COLS + 1];
+			a = Buffer[r - COLS - 1] + Buffer[r - COLS] + Buffer[r - COLS + 1] + Buffer[r - 1] + Buffer[r + 1] + Buffer[r + COLS - 1]
+							+ Buffer[r + COLS] + Buffer[r + COLS + 1];
 			a = (a >> 3);
 			Buffer2[r] = (byte) (a);
 		}

@@ -28,6 +28,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -44,6 +46,8 @@ import com.feilong.commons.core.configure.BaseConfigure;
  * @since 1.0.0
  */
 public final class XmlConfigure implements BaseConfigure{
+
+	private static final Logger	log	= LoggerFactory.getLogger(XmlConfigure.class);
 
 	/**
 	 * XmlConfigure.
@@ -108,9 +112,9 @@ public final class XmlConfigure implements BaseConfigure{
 				throw new IllegalArgumentException("文档解析错误,参数类型不正确,文档必须是String,file,InputStream,InputSource四种类型之一");
 			}
 		}catch (SAXException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return document;
 	}
@@ -126,7 +130,7 @@ public final class XmlConfigure implements BaseConfigure{
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 			return documentBuilder;
 		}catch (ParserConfigurationException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -145,7 +149,7 @@ public final class XmlConfigure implements BaseConfigure{
 		try{
 			node = document.getElementsByTagName(nodeTagName).item(tagIndex);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return node;
 	}
@@ -176,7 +180,7 @@ public final class XmlConfigure implements BaseConfigure{
 		try{
 			return xpath.evaluate(expression, document, qName);
 		}catch (XPathExpressionException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

@@ -48,9 +48,9 @@ public class ESAPIValidatorUtil{
 		try{
 			return validator.getValidSafeHTML("html", input, Integer.MAX_VALUE, true);
 		}catch (ValidationException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IntrusionException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 
 		return null;

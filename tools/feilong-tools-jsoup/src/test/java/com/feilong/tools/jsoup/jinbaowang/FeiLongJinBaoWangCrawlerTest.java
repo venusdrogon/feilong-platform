@@ -36,7 +36,7 @@ public class FeiLongJinBaoWangCrawlerTest{
 	}
 
 	@Test
-	public void getCodeList(){
+	public void getCodeList() throws IOException{
 		List<String> codeStrings = FeiLongJinBaoWangCrawler.getCodeList(skuCodePath);
 		for (String string : codeStrings){
 			log.info(string);
@@ -44,7 +44,7 @@ public class FeiLongJinBaoWangCrawlerTest{
 	}
 
 	@org.junit.Test
-	public void getSkuCodeAndImagesMap(){
+	public void getSkuCodeAndImagesMap() throws IOException{
 		List<String> codeStrings = FeiLongJinBaoWangCrawler.getCodeList(skuCodePath);
 		Map<String, List<String>> skuCodeAndImagesMap = FeiLongJinBaoWangCrawler.getSkuCodeAndImagesMap(codeStrings);
 		FeiLongJinBaoWangCrawler.convertSkuCodeImagesToFile(skuCodeAndImagesMap, directoryName);

@@ -25,6 +25,8 @@ import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForCodeEntity;
 import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForTokenEntity;
@@ -50,6 +52,8 @@ import com.taobao.api.response.UserGetResponse;
  * @version 1.0 2011-10-17 下午01:31:02
  */
 public class TaoBaoUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(TaoBaoUtil.class);
 
 	/**
 	 * 获得淘宝退出登录,完整url.
@@ -234,10 +238,10 @@ public class TaoBaoUtil{
 					return jsonObject.getString("access_token");
 				}
 			}catch (JSONException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -271,7 +275,7 @@ public class TaoBaoUtil{
 				return user;
 			}
 		}catch (ApiException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

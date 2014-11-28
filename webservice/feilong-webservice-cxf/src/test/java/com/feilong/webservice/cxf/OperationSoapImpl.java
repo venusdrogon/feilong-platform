@@ -130,7 +130,7 @@ package com.feilong.webservice.cxf;
 //					new ByteArrayInputStream(message.getBytes(Charset.forName("UTF-8"))));
 //			return sendMessage(reqMsg, address);
 //		}catch (Exception e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //		return null;
 //	}
@@ -156,7 +156,7 @@ package com.feilong.webservice.cxf;
 //		}catch (Exception e){
 //			log.info("Error");
 //			// TODO Auto-generated catch block
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 //	}
 //}

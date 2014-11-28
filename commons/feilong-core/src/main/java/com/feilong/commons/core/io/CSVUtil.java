@@ -80,12 +80,15 @@ public final class CSVUtil{
 	 *            the csv params
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
+	 * 
+	 * @see com.feilong.commons.core.io.IOWriteUtil#write(String, String, String)
+	 * @see #getWriteContent(List, CSVParams)
 	 */
 	public final static void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams) throws IOException{
+
 		// 标题和内容都是空,没有任何意义,不创建文件
 		if (Validator.isNullOrEmpty(columnTitles) && Validator.isNullOrEmpty(dataList)){
-			//TODO 应该抛异常
-			log.error("columnTitles and dataList all null!");
+			throw new IllegalArgumentException("columnTitles and dataList all null!");
 		}else{
 			if (Validator.isNullOrEmpty(dataList)){
 				dataList = new ArrayList<Object[]>();

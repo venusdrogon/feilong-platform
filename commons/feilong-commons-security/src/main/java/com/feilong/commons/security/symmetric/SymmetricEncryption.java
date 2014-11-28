@@ -229,7 +229,7 @@ public final class SymmetricEncryption{
 		try{
 			this.key = getKey(keyString);
 		}catch (NoSuchAlgorithmException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new EncryptionException(e);
 		}
 	}
@@ -283,7 +283,7 @@ public final class SymmetricEncryption{
 
 				log.error(JsonUtil.format(map));
 			}
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 
 			//通过使用异常链，我们可以提高代码的可理解性、系统的可维护性和友好性。
 			throw new EncryptionException(e);
@@ -340,7 +340,7 @@ public final class SymmetricEncryption{
 
 				log.error(JsonUtil.format(map));
 			}
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new EncryptionException(e);
 		}
 	}
@@ -393,7 +393,7 @@ public final class SymmetricEncryption{
 
 				log.error(JsonUtil.format(map));
 			}
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new EncryptionException(e);
 		}
 	}
@@ -443,7 +443,7 @@ public final class SymmetricEncryption{
 
 				log.error(JsonUtil.format(map));
 			}
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new EncryptionException(e);
 		}
 	}

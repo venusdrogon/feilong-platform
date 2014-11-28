@@ -113,9 +113,9 @@ public final class StubStatusUtil{
 						}
 					}
 				}catch (NumberFormatException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}catch (IOException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 			}
 		}catch (HttpClientException e1){

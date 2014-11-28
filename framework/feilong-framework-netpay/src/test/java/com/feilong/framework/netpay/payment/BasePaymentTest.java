@@ -112,7 +112,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 			IOWriteUtil.write(filePath, html, encode_file);
 			DesktopUtil.open(filePath);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

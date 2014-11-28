@@ -74,7 +74,7 @@ public class IOUtilTest{
 			int contentLength = urlConnection.getContentLength();
 			log.info(FileUtil.formatSize(contentLength));
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		try{
 			URL url = new URL("http://localhost:8080/TestHttpURLConnectionPro/index.jsp");
@@ -83,9 +83,9 @@ public class IOUtilTest{
 			@SuppressWarnings("unused")
 			HttpURLConnection httpUrlConnection = (HttpURLConnection) rulConnection;
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 

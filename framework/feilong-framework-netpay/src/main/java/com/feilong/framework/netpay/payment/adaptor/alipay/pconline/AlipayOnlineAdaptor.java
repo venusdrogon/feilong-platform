@@ -306,7 +306,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 			// 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
 			return "true".equals(notifyVerifyResult);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return false;
 	}
@@ -400,18 +400,18 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
 			return anti_phishing_key;
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (DocumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}finally{
 			try{
 				if (null != inputStream){
 					inputStream.close();
 				}
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		// 内部 不控制,不能影响订单的创建

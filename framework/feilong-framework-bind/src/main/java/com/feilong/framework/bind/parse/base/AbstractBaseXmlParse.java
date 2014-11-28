@@ -63,7 +63,7 @@ public abstract class AbstractBaseXmlParse<T> extends AbstractXmlParse<T>{
 			}
 			return t;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BuildCommandException(e);
 		}
 	}

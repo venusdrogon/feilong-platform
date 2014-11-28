@@ -191,7 +191,7 @@ public class WindowsInfoUtil{
 			try{
 				proc.getInputStream().close();
 			}catch (Exception e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		return null;

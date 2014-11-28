@@ -30,6 +30,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class DesktopTrayTest.
  * 
@@ -38,8 +41,10 @@ import java.net.URISyntaxException;
  */
 public class DesktopTrayTest{
 
+	private static final Logger	log	= LoggerFactory.getLogger(DesktopTrayTest.class);
+
 	/** The desktop. */
-	private static Desktop	desktop;
+	private static Desktop		desktop;
 
 	/**
 	 * The main method.
@@ -76,9 +81,9 @@ public class DesktopTrayTest{
 			try{
 				desktop.mail(new URI(mail));
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}catch (URISyntaxException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 	}
@@ -94,9 +99,9 @@ public class DesktopTrayTest{
 			try{
 				desktop.browse(new URI(url));
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}catch (URISyntaxException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 	}
@@ -113,7 +118,7 @@ public class DesktopTrayTest{
 				}
 				desktop.edit(file);
 			}catch (IOException ioe){
-				ioe.printStackTrace();
+				log.error(ioe.getClass().getName(), ioe);
 			}
 		}
 	}
@@ -132,7 +137,7 @@ public class DesktopTrayTest{
 				openBrowser("http://blog.csdn.net/xumingming64398966");
 			}
 		});
-		
+
 		MenuItem smMenuItem = new MenuItem("发送邮件");
 		smMenuItem.addActionListener(new ActionListener(){
 
@@ -140,7 +145,7 @@ public class DesktopTrayTest{
 				sendMail("mailto:64398966@qq.com");
 			}
 		});
-		
+
 		MenuItem edMenuItem = new MenuItem("编辑");
 		edMenuItem.addActionListener(new ActionListener(){
 
@@ -148,7 +153,7 @@ public class DesktopTrayTest{
 				edit();
 			}
 		});
-		
+
 		MenuItem exMenuItem = new MenuItem("退出");
 		exMenuItem.addActionListener(new ActionListener(){
 

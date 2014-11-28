@@ -3,6 +3,8 @@
 <%@ taglib prefix="feilong" uri="http://java.feilong.com/tags-common"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<title>飞龙分页测试</title>
+
 <script type="text/javascript">
     $(function() {
 	$("#main a").attr("target", "_self");

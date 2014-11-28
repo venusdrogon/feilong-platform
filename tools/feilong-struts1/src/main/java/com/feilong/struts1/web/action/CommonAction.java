@@ -56,7 +56,7 @@ public class CommonAction extends DispatchAction{
 //		try{
 //			//response.sendRedirect(FeiLongSecurity.getDecryptParam(redirectHref));
 //		}catch (IOException e){
-//			e.printStackTrace();
+//			log.error(e.getClass().getName(), e);
 //		}
 		return null;
 	}
@@ -64,7 +64,7 @@ public class CommonAction extends DispatchAction{
 	// try{
 	// response.sendRedirect("http://127.0.0.1:8080/zhaogong/ccmgm.jsp?t=2010031801&jobId=7241%23workerGroup");
 	// }catch (IOException e){
-	// e.printStackTrace();
+	// log.error(e.getClass().getName(), e);
 	// }
 	// return null;
 	// }

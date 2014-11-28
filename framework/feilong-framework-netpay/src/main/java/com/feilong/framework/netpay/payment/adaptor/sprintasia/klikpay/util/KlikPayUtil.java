@@ -161,7 +161,7 @@ public class KlikPayUtil{
 			String authKeyString = AuthKey.doAuthKey(md5SecondValue, keyId).toUpperCase();
 			return authKeyString;
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}

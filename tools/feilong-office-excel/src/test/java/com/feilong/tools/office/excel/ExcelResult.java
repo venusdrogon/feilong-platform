@@ -23,6 +23,9 @@ import java.util.List;
 
 import javax.servlet.jsp.jstl.sql.Result;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.servlet.jsp.ResultUtil;
 import com.feilong.tools.office.excel.ExcelConfigEntity;
 import com.feilong.tools.office.excel.ExcelCreateUtil;
@@ -35,6 +38,8 @@ import com.feilong.tools.office.excel.ExcelCreateUtil;
  * @version 1.1 2010年7月7日 12:04:48
  */
 public class ExcelResult{
+
+	private static final Logger	log	= LoggerFactory.getLogger(ExcelResult.class);
 
 	/**
 	 * 将生成的excel数据保存到物理路径中
@@ -54,7 +59,7 @@ public class ExcelResult{
 			FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 			convertResultToExcel(result, excelConfigEntity, fileOutputStream);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -80,8 +85,8 @@ public class ExcelResult{
 	 * @throws SecurityException
 	 */
 	public void convertResultToExcel(Result result,ExcelConfigEntity excelConfigEntity,OutputStream outputStream) throws IOException,
-			SecurityException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
-			IllegalAccessException,InvocationTargetException{
+					SecurityException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
+					IllegalAccessException,InvocationTargetException{
 		/**
 		 * 标题数组
 		 */

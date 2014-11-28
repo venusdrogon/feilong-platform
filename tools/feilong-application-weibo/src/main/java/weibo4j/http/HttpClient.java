@@ -415,7 +415,7 @@ public class HttpClient implements java.io.Serializable {
 					throw new WeiboException(getCause(responseCode),
 							response.asJSONObject(), method.getStatusCode());
 				} catch (JSONException e) {
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 			}
 			return response;

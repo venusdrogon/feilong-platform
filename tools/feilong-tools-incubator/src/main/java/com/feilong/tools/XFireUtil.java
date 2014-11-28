@@ -22,6 +22,8 @@ import org.codehaus.xfire.client.Client;
 import org.codehaus.xfire.client.XFireProxyFactory;
 import org.codehaus.xfire.service.Service;
 import org.codehaus.xfire.service.binding.ObjectServiceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * xfire web service类
@@ -30,6 +32,8 @@ import org.codehaus.xfire.service.binding.ObjectServiceFactory;
  * @version 1.0 2010-9-21 下午02:05:21
  */
 public class XFireUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(XFireUtil.class);
 
 	/**
 	 * 获得web服务接口
@@ -53,7 +57,7 @@ public class XFireUtil{
 			// 通过代理工厂创建代理对象,代理对象具有Service的外观，对url地址上的ws进行代理,使用得到的实例，调用相关的方法得到服务的实例
 			return xFireProxyFactory.create(service, serviceUrl);
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -78,9 +82,9 @@ public class XFireUtil{
 			// 调用特定的Web Service方法
 			results = client.invoke(methodName, params);
 		}catch (MalformedURLException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return results;
 	}

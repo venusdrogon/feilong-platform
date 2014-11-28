@@ -47,7 +47,7 @@ public class OrgJsonTest{
 			log.debug("jSONArray_user:{}", jSONArray_user);
 
 		}catch (JSONException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

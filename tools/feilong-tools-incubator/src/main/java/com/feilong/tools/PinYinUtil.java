@@ -15,6 +15,9 @@
  */
 package com.feilong.tools;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -29,6 +32,8 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * @version 1.0 2011-11-8 下午06:45:23
  */
 public class PinYinUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(PinYinUtil.class);
 
 	/**
 	 * 将中文转成拼音.
@@ -55,7 +60,7 @@ public class PinYinUtil{
 				}
 			}
 		}catch (BadHanyuPinyinOutputFormatCombination e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return buffer.toString();
 	}

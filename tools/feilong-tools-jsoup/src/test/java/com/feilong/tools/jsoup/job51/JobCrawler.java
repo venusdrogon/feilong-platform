@@ -69,7 +69,7 @@ public class JobCrawler{
 				log.info(enterprise.getTelephone());
 			}
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class JobCrawler{
 			enterprise.setTelephone(element_linkMan == null ? null : element_linkMan.html());
 			return enterprise;
 		}catch (JsoupUtilException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return null;
 		//**********************************************************

@@ -106,7 +106,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 			}
 			return (T) object;
 		}catch (RuntimeException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			return null;
 		}
 	}

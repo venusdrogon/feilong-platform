@@ -24,6 +24,9 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -37,6 +40,8 @@ import com.lowagie.text.pdf.PdfWriter;
  * @author 金鑫 2010-2-27 下午05:14:03
  */
 public final class PDFUtil{
+
+	private static final Logger	log	= LoggerFactory.getLogger(PDFUtil.class);
 
 	/**
 	 * html文件转换成pdf
@@ -59,9 +64,9 @@ public final class PDFUtil{
 			ArrayList<Element> arrayList = HTMLWorker.parseToList(reader, styleSheet);
 			write(outputFileName, arrayList);
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -88,9 +93,9 @@ public final class PDFUtil{
 			// 关闭文档对象，释放资源
 			document.close();
 		}catch (FileNotFoundException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (DocumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

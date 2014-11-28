@@ -10,6 +10,9 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
@@ -22,7 +25,10 @@ import com.feilong.taglib.pager.parser.TagExportParser;
  * 
  * @author James Klicman
  */
-@SuppressWarnings("all")public final class PagerTag extends TagSupport{
+@SuppressWarnings("all")
+public final class PagerTag extends TagSupport{
+
+	private static final Logger	log						= LoggerFactory.getLogger(PagerTag.class);
 
 	private static final long	serialVersionUID		= 1L;
 
@@ -125,13 +131,13 @@ import com.feilong.taglib.pager.parser.TagExportParser;
 				try{
 					name = URLEncoder.encode(name, CharsetType.GB2312);
 				}catch (UnsupportedEncodingException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 				for (int i = 0, j = values.length; i < j; i++){
 					try{
 						value = new String(values[i].getBytes(CharsetType.ISO_8859_1), CharsetType.GB2312);
 					}catch (UnsupportedEncodingException e){
-						e.printStackTrace();
+						log.error(e.getClass().getName(), e);
 					}
 					value = URIUtil.encode(value, CharsetType.GBK);
 					uri.append(params == 0 ? '?' : '&');

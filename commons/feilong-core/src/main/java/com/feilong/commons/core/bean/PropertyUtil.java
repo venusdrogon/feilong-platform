@@ -63,7 +63,7 @@ public final class PropertyUtil{
 			Map<String, Object> map = PropertyUtils.describe(bean);
 			return map;
 		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -130,7 +130,7 @@ public final class PropertyUtil{
 			// PropertyUtils的功能类似于BeanUtils,但在底层不会对传递的数据做转换处理
 			PropertyUtils.setProperty(bean, name, value);
 		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}
@@ -204,7 +204,7 @@ public final class PropertyUtil{
 			T propertyValue = (T) PropertyUtils.getProperty(bean, name);
 			return propertyValue;
 		}catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 			throw new BeanUtilException(e);
 		}
 	}

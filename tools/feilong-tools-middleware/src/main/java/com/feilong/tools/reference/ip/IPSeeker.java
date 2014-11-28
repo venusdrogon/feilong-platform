@@ -201,7 +201,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 			try{
 				mappedByteBuffer = fc.map(FileChannel.MapMode.READ_ONLY, 0, randomAccessFile.length());
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 			mappedByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
 		}
@@ -346,7 +346,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 			ip[1] = ip[2];
 			ip[2] = temp;
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -594,7 +594,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 				return Utils.getString(buf, 0, i, CharsetType.GBK);
 			}
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return "";
 	}
@@ -616,7 +616,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 				return Utils.getString(buf, 0, i, CharsetType.GBK);
 			}
 		}catch (IllegalArgumentException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return "";
 	}

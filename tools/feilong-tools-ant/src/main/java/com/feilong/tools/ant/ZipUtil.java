@@ -79,7 +79,7 @@ public final class ZipUtil{
 		try{
 			zipOutputStream.close();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -147,13 +147,13 @@ public final class ZipUtil{
 			}
 		}catch (ZipException e){
 			log.debug(e.getMessage());
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (FileNotFoundException e){
 			log.debug(e.getMessage());
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}catch (IOException e){
 			log.debug(e.getMessage());
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 
@@ -172,7 +172,7 @@ public final class ZipUtil{
 		try{
 			zipOutputStream.putNextEntry(zipEntry);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 	}
 }

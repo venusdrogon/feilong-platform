@@ -59,7 +59,7 @@ public class MSWordManager{
 			Variant f = new Variant(false);
 			Dispatch.call(doc, "Close", f);
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}finally{
 			app.invoke("Quit", new Variant[] {});
 		}
@@ -478,7 +478,7 @@ public class MSWordManager{
 				Dispatch.call(textRange, "Paste");
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}finally{
 			if (doc2 != null){
 				Dispatch.call(doc2, "Close", new Variant(saveOnExit));
@@ -510,7 +510,7 @@ public class MSWordManager{
 				Dispatch.call(textRange, "Paste");
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}finally{
 			if (doc2 != null){
 				Dispatch.call(doc2, "Close", new Variant(saveOnExit));
@@ -542,7 +542,7 @@ public class MSWordManager{
 				Dispatch.call(textRange, "Paste");
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}finally{
 			if (doc2 != null){
 				Dispatch.call(doc2, "Close", new Variant(saveOnExit));

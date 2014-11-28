@@ -24,6 +24,9 @@ import java.net.URLDecoder;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
@@ -32,6 +35,8 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @author 金鑫 2010-2-5 下午01:24:40
  */
 public class FeiLongPath{
+
+	private static final Logger	log	= LoggerFactory.getLogger(FeiLongPath.class);
 
 	/**
 	 * 获取一个类的class文件所在的绝对路径。 <br>
@@ -54,7 +59,7 @@ public class FeiLongPath{
 				try{
 					path = new URL(path).getPath();
 				}catch (MalformedURLException e){
-					e.printStackTrace();
+					log.error(e.getClass().getName(), e);
 				}
 				int location = path.indexOf("!/");
 				if (location != -1){
@@ -65,7 +70,7 @@ public class FeiLongPath{
 			try{
 				path = file.getCanonicalPath();
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error(e.getClass().getName(), e);
 			}
 		}
 		return path;
@@ -92,7 +97,7 @@ public class FeiLongPath{
 		try{
 			path = file.getCanonicalPath();
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		return path;
 	}
@@ -131,7 +136,7 @@ public class FeiLongPath{
 							result = new URL(result, clsAsResource);
 						}
 					}catch (MalformedURLException e){
-						e.printStackTrace();
+						log.error(e.getClass().getName(), e);
 					}
 				}
 			}
@@ -156,7 +161,7 @@ public class FeiLongPath{
 		try{
 			filePath = URLDecoder.decode(url.getPath(), CharsetType.UTF8);
 		}catch (UnsupportedEncodingException e){
-			e.printStackTrace();
+			log.error(e.getClass().getName(), e);
 		}
 		if (filePath.endsWith(".jar")){
 			filePath = filePath.substring(0, filePath.lastIndexOf("/") + 1);

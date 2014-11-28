@@ -15,17 +15,22 @@
  */
 package com.feilong.servlet;
 
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.ServletContext;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
-import com.feilong.commons.core.util.StringUtil;
+import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -37,26 +42,31 @@ import com.feilong.commons.core.util.Validator;
 public final class ServletContextUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(ServletContextUtil.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(ServletContextUtil.class);
 
 	/**
 	 * servletContext.log servletContext相关信息,一般 启动时 调用
-	 * 
+	 *
 	 * @param servletContext
 	 *            the servlet context
+	 * @return the map< string, object>
 	 */
-	public static void showProperty(ServletContext servletContext){
+	public static Map<String, Object> getServletContextMapForLog(ServletContext servletContext){
+
+		Map<String, Object> map = new HashMap<String, Object>();
 		// 返回servlet运行的servlet 容器的版本和名称。
-		servletContext.log("[servletContext.getServerInfo()]:" + servletContext.getServerInfo());
-		servletContext.log("[servletContext.getContextPath()]:" + servletContext.getContextPath());
-		servletContext.log("[servletContext.getServletContextName()]:" + servletContext.getServletContextName());
+		map.put("servletContext.getServerInfo()", servletContext.getServerInfo());
+
 		// 返回这个servlet容器支持的Java Servlet API的主要版本。所有符合2.5版本的实现，必须有这个方法返回的整数2。
 		// 返回这个servlet容器支持的Servlet API的次要版本。所有符合2.5版本的实现，必须有这个方法返回整数5。
-		String servletVersion = StringUtil.format(
-				"[servlet version]:%s.%s",
-				servletContext.getMajorVersion(),
-				servletContext.getMinorVersion());
-		servletContext.log(servletVersion);
+		map.put("servlet version:", servletContext.getMajorVersion() + "." + servletContext.getMinorVersion());
+
+		map.put("servletContext.getContextPath()", servletContext.getContextPath());
+
+		map.put("servletContext.getServletContextName()", servletContext.getServletContextName());
+
+		return map;
 	}
 
 	/**
@@ -73,7 +83,21 @@ public final class ServletContextUtil{
 		while (attributeNames.hasMoreElements()){
 			String name = attributeNames.nextElement();
 			Object attributeValue = servletContext.getAttribute(name);
+
 			map.put(name, attributeValue);
+		}
+		return map;
+	}
+
+	public static Map<String, String> getAttributeStringMapForLog(ServletContext servletContext){
+		Map<String, String> map = new HashMap<String, String>();
+		@SuppressWarnings("unchecked")
+		Enumeration<String> attributeNames = servletContext.getAttributeNames();
+		while (attributeNames.hasMoreElements()){
+			String name = attributeNames.nextElement();
+			Object attributeValue = servletContext.getAttribute(name);
+
+			map.put(name, "" + attributeValue);
 		}
 		return map;
 	}
@@ -113,9 +137,10 @@ public final class ServletContextUtil{
 	 * @param fileName
 	 *            文件名称 如:register.html
 	 * @return 读取文件内容
+	 * @throws IOException
 	 * @deprecated
 	 */
-	public static String getFileContent(ServletContext servletContext,String directoryName,String fileName){
+	public static String getFileContent(ServletContext servletContext,String directoryName,String fileName) throws IOException{
 		String filePathString = servletContext.getRealPath("/");
 		if (Validator.isNullOrEmpty(fileName)){
 			throw new IllegalArgumentException("fileName can't be null/empty");
