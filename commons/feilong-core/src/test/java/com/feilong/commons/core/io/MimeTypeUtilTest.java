@@ -15,7 +15,6 @@
  */
 package com.feilong.commons.core.io;
 
-import static org.junit.Assert.*;
 import static com.feilong.commons.core.io.MimeTypeUtil.getContentTypeByFileName;
 
 import org.junit.Test;

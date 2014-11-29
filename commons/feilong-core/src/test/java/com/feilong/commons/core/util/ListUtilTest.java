@@ -113,6 +113,12 @@ public class ListUtilTest{
 		//assertEquals(expected, actual);
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the args
+	 */
 	public static void main(String[] args){
 		User student = null;
 		long begin1 = System.currentTimeMillis();

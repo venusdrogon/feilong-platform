@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.lang.reflect;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,28 +23,22 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.test.User;
 
 /**
- * 
+ * The Class ConstructorUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:15:29
  * @since 1.0.7
  */
 public class ConstructorUtilTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ConstructorUtilTest.class);
 
 	/**
 	 * New instance.
-	 * 
+	 *
 	 * @throws ClassNotFoundException
 	 *             the class not found exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
-	 * @throws InstantiationException
-	 *             the instantiation exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 * @throws InvocationTargetException
-	 *             the invocation target exception
 	 */
 	@Test
 	public final void newInstance() throws ClassNotFoundException{

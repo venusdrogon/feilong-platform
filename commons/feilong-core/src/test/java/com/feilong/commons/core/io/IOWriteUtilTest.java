@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.io;
 
-import static com.feilong.commons.core.date.DateUtil.date2String;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -46,10 +44,13 @@ public class IOWriteUtilTest{
 
 	/**
 	 * Unescape html2.
-	 * 
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
+	 *
 	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
 	 */
 	@Test
 	public void unescapeHtml2() throws NoSuchMethodException,IllegalAccessException,InvocationTargetException{
@@ -58,6 +59,12 @@ public class IOWriteUtilTest{
 		log.info(result);
 	}
 
+	/**
+	 * Write1.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void write1() throws IOException{
 

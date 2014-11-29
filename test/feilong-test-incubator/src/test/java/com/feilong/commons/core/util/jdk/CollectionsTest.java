@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.util.jdk;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -135,6 +133,12 @@ public class CollectionsTest{
 		}
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the args
+	 */
 	public static void main(String[] args){
 		List l = new ArrayList();
 		l.add(100);
@@ -206,7 +210,7 @@ public class CollectionsTest{
 		List sl = Collections.synchronizedList(new ArrayList());
 		Map sm = Collections.synchronizedMap(new HashMap());
 		Set ss = Collections.synchronizedSet(new HashSet());
-		Set sts = Collections.synchronizedSortedSet(new TreeSet());
+		Set sts = Collections.synchronizedSortedSet(new TreeSet<Object>());
 
 		/*
 		 * 不可变集合（空集合、指定元素集合、不可变状态）

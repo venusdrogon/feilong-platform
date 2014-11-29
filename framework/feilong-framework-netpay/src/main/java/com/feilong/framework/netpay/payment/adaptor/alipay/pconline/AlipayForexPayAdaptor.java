@@ -1,18 +1,17 @@
 /*
- * Copyright (c) 2010 Jumbomart All Rights Reserved.
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
- * This software is the confidential and proprietary information of Jumbomart.
- * You shall not disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jumbo.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
 
@@ -51,8 +50,8 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 import com.feilong.servlet.http.RequestUtil;
 
 /**
- * alipay境外支付接口
- * 
+ * alipay境外支付接口.
+ *
  * @author 冯明雷
  * @version 1.0
  * @time 2014-9-28 下午3:00:33
@@ -92,15 +91,30 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	/** 验证通知的 service. */
 	private String				service;
 
-	/** 加密方式 */
+	/** 加密方式. */
 	private String				sign_type;
 
-	/** 货币符号 */
+	/** 货币符号. */
 	private String				currency;
 
-	/** 验证交易接口 */
+	/** 验证交易接口. */
 	private String				service_notify_verify;
 
+	/**
+	 * Do get payment form entity.
+	 *
+	 * @param code
+	 *            the code
+	 * @param total_fee
+	 *            the total_fee
+	 * @param return_url
+	 *            the return_url
+	 * @param notify_url
+	 *            the notify_url
+	 * @param specialSignMap
+	 *            the special sign map
+	 * @return the payment form entity
+	 */
 	protected PaymentFormEntity doGetPaymentFormEntity(
 					String code,
 					BigDecimal total_fee,
@@ -168,10 +182,12 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
+	/**
+	 * Do notify verify.
+	 *
+	 * @param request
+	 *            the request
+	 * @return true, if do notify verify
 	 */
 	public boolean doNotifyVerify(HttpServletRequest request){
 		if (Validator.isNullOrEmpty(key)){
@@ -213,8 +229,8 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 
 	/**
 	 * 校验 返回的请求 <br>
-	 * 还有没有必要再次 sign 来确认了
-	 * 
+	 * 还有没有必要再次 sign 来确认了.
+	 *
 	 * @param request
 	 *            the request
 	 * @return true, if is notify sign ok
@@ -308,6 +324,13 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
+	/**
+	 * Do get feedback so code.
+	 *
+	 * @param request
+	 *            the request
+	 * @return the string
+	 */
 	public String doGetFeedbackSoCode(HttpServletRequest request){
 		return request.getParameter("out_trade_no");
 	}
@@ -316,6 +339,13 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
+	 */
+	/**
+	 * Do get feedback total fee.
+	 *
+	 * @param request
+	 *            the request
+	 * @return the string
 	 */
 	public String doGetFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("total_fee");
@@ -326,6 +356,15 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
+	/**
+	 * Do close trade.
+	 *
+	 * @param orderNo
+	 *            the order no
+	 * @param tradeRole
+	 *            the trade role
+	 * @return true, if do close trade
+	 */
 	public boolean doCloseTrade(String orderNo,TradeRole tradeRole){
 		return false;
 	}
@@ -335,6 +374,11 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#isSupportCloseTrade()
 	 */
+	/**
+	 * Checks if is support close trade.
+	 *
+	 * @return true, if checks if is support close trade
+	 */
 	public boolean isSupportCloseTrade(){
 		return true;
 	}
@@ -343,13 +387,13 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 
 	/**
 	 * 解析支付宝返回的xml信息.
-	 * 
+	 *
+	 * @author xialong
 	 * @param alipayResult
 	 *            the alipay result
 	 * @return the map
 	 * @throws DocumentException
 	 *             the document exception
-	 * @author xialong
 	 */
 	private static Map<String, String> convertResultToMap(String alipayResult) throws DocumentException{
 		log.info("alipayResult :\n {}", alipayResult);
@@ -372,6 +416,21 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 
 	// ****************************************************************************************************************************
 
+	/**
+	 * Do get payment form entity for my nike.
+	 *
+	 * @param code
+	 *            the code
+	 * @param total_fee
+	 *            the total_fee
+	 * @param return_url
+	 *            the return_url
+	 * @param notify_url
+	 *            the notify_url
+	 * @param specialSignMap
+	 *            the special sign map
+	 * @return the payment form entity
+	 */
 	protected PaymentFormEntity doGetPaymentFormEntityForMyNike(
 					String code,
 					BigDecimal total_fee,
@@ -389,7 +448,6 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	 * java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap){
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -434,6 +492,9 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 mD5 的私钥是以英文字母和数字组成的 32位字符串。<br>
+	 * 商户可登录到商户服务中心（https://b.
+	 *
 	 * @param key
 	 *            the key to set
 	 */
@@ -442,6 +503,9 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 表单提交地址 <br>
+	 * 支付宝网关.
+	 *
 	 * @param gateway
 	 *            the gateway to set
 	 */
@@ -450,6 +514,9 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 合作者身份id 不可为空 <br>
+	 * 签约的 支付宝账号对应的 支付宝唯一用户名.
+	 *
 	 * @param partner
 	 *            the partner to set
 	 */
@@ -458,6 +525,8 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * Set_input_charset.
+	 *
 	 * @param _input_charset
 	 *            the _input_charset to set
 	 */
@@ -466,6 +535,8 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 验证通知的 service.
+	 *
 	 * @param service
 	 *            the service to set
 	 */
@@ -474,6 +545,8 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 加密方式.
+	 *
 	 * @param sign_type
 	 *            the sign_type to set
 	 */
@@ -482,6 +555,8 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 货币符号.
+	 *
 	 * @param currency
 	 *            the currency to set
 	 */
@@ -490,6 +565,8 @@ public class AlipayForexPayAdaptor extends AbstractPaymentAdaptor{
 	}
 
 	/**
+	 * 设置 验证交易接口.
+	 *
 	 * @param service_notify_verify
 	 *            the service_notify_verify to set
 	 */

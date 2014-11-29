@@ -34,15 +34,15 @@ public class RegeditUtilTest{
 
 	/** The Constant EXCEL_PATH_CMD. */
 	public static final String	EXCEL_PATH_CMD	= RegeditUtil.REGQUERY_UTIL
-														+ "\""
-														+ RegeditUtil.HKEY_CURRENT_USER
-														+ "\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\" /v Personal";
+																+ "\""
+																+ RegeditUtil.HKEY_CURRENT_USER
+																+ "\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\" /v Personal";
 
 	/**
-	 * {@link com.feilong.commons.core.io.RegeditUtil#query()} 的测试方法。
-	 * 
+	 * Test get excel install root.
+	 *
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             the IO exception
 	 */
 	@Test
 	public final void testGetExcelInstallRoot() throws IOException{

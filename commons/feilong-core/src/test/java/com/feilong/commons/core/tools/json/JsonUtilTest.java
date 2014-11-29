@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.tools.json;
 
-import static org.junit.Assert.*;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;

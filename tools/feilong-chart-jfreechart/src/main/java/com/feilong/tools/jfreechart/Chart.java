@@ -17,11 +17,8 @@ package com.feilong.tools.jfreechart;
 
 import java.io.IOException;
 
-import org.jfree.chart.JFreeChart;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
+ * The Interface Chart.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年9月3日 下午12:24:36
@@ -29,6 +26,14 @@ import org.slf4j.LoggerFactory;
  */
 public interface Chart{
 
+	/**
+	 * Creates the image.
+	 *
+	 * @param chartInfoEntity
+	 *            the chart info entity
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	void createImage(ChartInfoEntity chartInfoEntity) throws IOException;
 
 //	void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException;

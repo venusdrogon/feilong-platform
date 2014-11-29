@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.junit.Test;
 
 /**
+ * The Class JansiTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年8月31日 下午5:15:54
@@ -29,8 +30,15 @@ import org.junit.Test;
  */
 public class JansiTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(JansiTest.class);
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the args
+	 */
 	public static void main(String[] args){
 		AnsiConsole.systemInstall();
 

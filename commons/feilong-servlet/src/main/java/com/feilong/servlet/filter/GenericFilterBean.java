@@ -35,10 +35,10 @@ import javax.servlet.ServletResponse;
  * <p>
  * This filter leaves actual filtering to subclasses, which have to implement the {@link javax.servlet.Filter#doFilter} method.
  * <p>
- * This generic filter base class has no dependency on the Spring {@link org.springframework.context.ApplicationContext} concept. Filters
+ * This generic filter base class has no dependency on the Spring {@link "org.springframework.context.ApplicationContext"} concept. Filters
  * usually don't load their own context but rather access service beans from the Spring root application context, accessible via the
  * filter's {@link #getServletContext()
- * ServletContext} (see {@link org.springframework.web.context.support.WebApplicationContextUtils}).
+ * ServletContext} (see {@link "org.springframework.web.context.support.WebApplicationContextUtils"}).
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-27 上午11:17:47

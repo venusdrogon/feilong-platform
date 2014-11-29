@@ -34,7 +34,6 @@ import org.slf4j.LoggerFactory;
 public final class InetAddressUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(InetAddressUtil.class);
 
 	/**

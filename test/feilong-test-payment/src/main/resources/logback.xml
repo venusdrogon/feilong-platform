@@ -18,9 +18,9 @@
 		</encoder>
 	</appender>
 
+	<logger name="com.feilong.commons.core.lang.reflect.FieldUtil" level="info" />
+
 	<logger name="org.springframework" level="DEBUG" />
-	<logger name="org.hibernate.SQL" level="DEBUG" />
-	<logger name="org.hibernate" level="DEBUG" />
 
 	<logger name="org.apache" level="DEBUG" />
 
@@ -37,6 +37,7 @@
 	<logger name="org.apache.commons.beanutils.ConvertUtilsBean" level="warn" />
 	<logger name="org.apache.commons.beanutils.converters" level="warn" />
 	<logger name="org.apache.commons.beanutils.converters.AbstractConverter" level="warn" />
+
 	<logger name="com.google.code.ssm.spring.SSMCache" level="debug" />
 
 	<root level="trace">

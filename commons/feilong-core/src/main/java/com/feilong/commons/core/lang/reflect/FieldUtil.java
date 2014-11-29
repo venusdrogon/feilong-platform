@@ -38,7 +38,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:08:15
  * @see org.apache.commons.lang3.reflect.FieldUtils
- * @see org.springframework.util.ReflectionUtils
+ * @see "org.springframework.util.ReflectionUtils"
  * @since 1.0.7
  */
 public final class FieldUtil{
@@ -77,7 +77,7 @@ public final class FieldUtil{
 				int modifiers = field.getModifiers();
 				// 私有并且静态 一般是log
 				boolean isPrivateAndStatic = Modifier.isPrivate(modifiers) && Modifier.isStatic(modifiers);
-				log.debug("fieldName:[{}],modifiers/isPrivateAndStatic:[{}/{}]", fieldName, modifiers, isPrivateAndStatic);
+				log.debug("field name:[{}],modifiers:[{}],isPrivateAndStatic:[{}]", fieldName, modifiers, isPrivateAndStatic);
 
 				if (!isPrivateAndStatic){
 					field.setAccessible(true);
@@ -113,7 +113,7 @@ public final class FieldUtil{
 		fields = clz.getDeclaredFields();
 		do{
 			if (log.isDebugEnabled()){
-				log.debug("superclass:{}", superclass.getName());
+				log.debug("current class:[{}],super class:[{}]", clz.getName(), superclass.getName());
 			}
 			fields = ArrayUtils.addAll(fields, superclass.getDeclaredFields());
 			superclass = superclass.getSuperclass();

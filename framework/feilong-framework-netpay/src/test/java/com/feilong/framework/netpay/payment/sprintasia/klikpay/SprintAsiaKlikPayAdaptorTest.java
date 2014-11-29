@@ -18,7 +18,7 @@ package com.feilong.framework.netpay.payment.sprintasia.klikpay;
 import java.util.Date;
 import java.util.Map;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,12 +73,10 @@ public class SprintAsiaKlikPayAdaptorTest extends BasePaymentTest{
 	}
 
 	/**
-	 * Test method for.
-	 * 
+	 * Test get sign.
+	 *
 	 * @throws Exception
 	 *             the exception
-	 *             {@link com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor#getSign(java.lang.String, java.util.Date, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-	 *             .
 	 */
 	@Test
 	public final void testGetSign() throws Exception{

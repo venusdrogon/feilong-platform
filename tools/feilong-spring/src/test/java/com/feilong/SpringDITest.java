@@ -71,9 +71,11 @@ public class SpringDITest{
 		// --------------------------------
 		Map<String, Object> map = diUser.getMap();
 		log.info("map:{}", JsonUtil.format(map));
+		@SuppressWarnings("unchecked")
 		List<String> list2 = (List<String>) map.get("五子良将");
 		log.info("list2:{}", JsonUtil.format(list2));
 		// -----------------------------------------
+		@SuppressWarnings("unchecked")
 		List<String> list3 = (List<String>) map.get("八虎骑");
 		log.info("list3:{}", JsonUtil.format(list3));
 		// -----------------------------------------

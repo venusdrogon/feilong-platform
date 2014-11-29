@@ -35,7 +35,6 @@ import com.feilong.commons.core.util.ArrayUtil;
  */
 public abstract class AbstractAspect{
 
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(AbstractAspect.class);
 
 	/**

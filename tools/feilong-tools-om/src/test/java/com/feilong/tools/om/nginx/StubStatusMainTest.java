@@ -34,7 +34,7 @@ public class StubStatusMainTest{
 	private static final Logger	log	= LoggerFactory.getLogger(StubStatusMainTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike()}.
+	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.
 	 * 
 	 * @throws IOException
 	 */

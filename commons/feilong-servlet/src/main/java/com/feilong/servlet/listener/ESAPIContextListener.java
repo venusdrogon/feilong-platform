@@ -45,7 +45,6 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
 public class ESAPIContextListener implements ServletContextListener{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ESAPIContextListener.class);
 
 	/*

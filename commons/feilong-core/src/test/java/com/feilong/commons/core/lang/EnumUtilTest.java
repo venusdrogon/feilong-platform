@@ -17,8 +17,6 @@ package com.feilong.commons.core.lang;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +51,8 @@ public class EnumUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.enumeration.HttpMethodType#getHttpMethodType(java.lang.String)}.
-	 * 
+	 * Test get http method type.
+	 *
 	 * @throws IllegalArgumentException
 	 *             the illegal argument exception
 	 * @throws NoSuchFieldException

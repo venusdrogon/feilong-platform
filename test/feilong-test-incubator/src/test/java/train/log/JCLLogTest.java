@@ -19,10 +19,17 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
+/**
+ * The Class JCLLogTest.
+ */
 public class JCLLogTest{
 
+	/** The Constant log. */
 	private static final Log	log	= LogFactory.getLog(JCLLogTest.class);
 
+	/**
+	 * Test jcl log test.
+	 */
 	@Test
 	public void testJCLLogTest(){
 		log.debug("呵呵");

@@ -23,8 +23,10 @@ import com.feilong.tools.html.HtmlUtil;
 
 /**
  * 自定义html标签 HtmlCheckBoxTag 作者:金鑫 时间:2009年12月12日 17:00:58
+ * 
  * @deprecated
  */
+@Deprecated
 public class HtmlCheckBoxTag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;

@@ -33,7 +33,6 @@ import com.feilong.commons.core.lang.ClassUtil;
 public final class ConstructorUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ConstructorUtil.class);
 
 	/**

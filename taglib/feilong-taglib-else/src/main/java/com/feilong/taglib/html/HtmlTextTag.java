@@ -31,6 +31,7 @@ import com.feilong.tools.html.HtmlUtil;
  * @author 金鑫 2009-12-4下午05:43:21 2010-6-24 上午09:23:28
  * @deprecated
  */
+@Deprecated
 public class HtmlTextTag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;

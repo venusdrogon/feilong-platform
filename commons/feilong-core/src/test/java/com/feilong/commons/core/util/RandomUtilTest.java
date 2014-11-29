@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.PropertiesConstants;
 
 /**
+ * The Class RandomUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-7-25 下午04:24:50
  * @since 1.0
@@ -35,7 +37,7 @@ public class RandomUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(RandomUtilTest.class);
 
 	/**
-	 * {@link com.feilong.commons.core.util.RandomUtil#createRandom(double)} 的测试方法。
+	 * {@link com.feilong.commons.core.util.RandomUtil#createRandom(Number)} 的测试方法。
 	 */
 	@Test
 	public final void testCreateRandom(){
@@ -64,7 +66,7 @@ public class RandomUtilTest{
 	}
 
 	/**
-	 * {@link com.feilong.commons.core.util.RandomUtil#getRandomPassword(int)} 的测试方法。
+	 * Testget random from string.
 	 */
 	@Test
 	public final void testgetRandomFromString(){

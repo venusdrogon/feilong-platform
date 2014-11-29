@@ -138,7 +138,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 			//XXX
 			Map<String, Object> map = FieldUtil.getFieldValueMap(this);
 			Class<? extends AbstractPaymentAdaptor> clz = getClass();
-			log.info("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
+			log.info("\n{} fieldValueMap: \n{}", clz.getCanonicalName(), JsonUtil.format(map));
 		}
 	}
 
@@ -198,9 +198,9 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 			if (Validator.isNotNullOrEmpty(minPriceForPay)){
 				if (totalFee.compareTo(minPriceForPay) == -1){
 					throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-							"totalFee:[{}] can't < minPriceForPay:[{}]",
-							totalFee,
-							minPriceForPay));
+									"totalFee:[{}] can't < minPriceForPay:[{}]",
+									totalFee,
+									minPriceForPay));
 				}
 			}
 		}
@@ -213,9 +213,9 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 			if (Validator.isNotNullOrEmpty(maxPriceForPay)){
 				if (totalFee.compareTo(maxPriceForPay) == 1){
 					throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-							"totalFee:[{}] can't > maxPriceForPay:[{}]",
-							totalFee,
-							maxPriceForPay));
+									"totalFee:[{}] can't > maxPriceForPay:[{}]",
+									totalFee,
+									maxPriceForPay));
 				}
 			}
 		}

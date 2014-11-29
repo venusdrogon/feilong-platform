@@ -20,11 +20,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class Test1.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年9月24日 上午1:18:53
@@ -32,8 +32,15 @@ import org.slf4j.LoggerFactory;
  */
 public class Test1{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(Test1.class);
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the args
+	 */
 	public static void main(String[] args){
 		String source = "0123456789abcdefABCDEF";
 		String target = "++==Z3A8bFxcd";

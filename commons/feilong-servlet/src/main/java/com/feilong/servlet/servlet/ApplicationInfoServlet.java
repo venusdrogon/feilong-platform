@@ -28,13 +28,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.SystemUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.servlet.ServletContextUtil;
 
 /**
@@ -56,7 +54,6 @@ public class ApplicationInfoServlet extends HttpServlet{
 	 * 
 	 * @see javax.servlet.GenericServlet#init()
 	 */
-	@SuppressWarnings("unchecked")
 	public void init() throws ServletException{
 		ServletContext servletContext = getServletContext();
 

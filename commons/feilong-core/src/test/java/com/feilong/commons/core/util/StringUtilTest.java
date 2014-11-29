@@ -59,12 +59,15 @@ public class StringUtilTest{
 		Assert.assertEquals(2, StringUtil.searchTimes("xiiiin", "ii"));
 	}
 
+	/**
+	 * Compare to.
+	 */
 	@Test
 	public void compareTo(){
 		log.info("" + "8".compareTo("13"));
-		
-		 final Integer parseInt = Integer.parseInt("8");
-		
+
+		final Integer parseInt = Integer.parseInt("8");
+
 		log.info("" + parseInt.compareTo(Integer.parseInt("13")));
 		log.info("" + "12".compareTo("13"));
 	}
@@ -208,7 +211,7 @@ public class StringUtilTest{
 		log.info(StringUtil.substring(text, text.length() - 1, 8));
 		log.info(StringUtil.substring(text, 1, 0));
 		log.info(StringUtil.substring(text, 0, 5));
-		junit.framework.Assert.assertEquals(".f", StringUtil.substring(text, 6, 2));
+		Assert.assertEquals(".f", StringUtil.substring(text, 6, 2));
 		log.info(StringUtil.substring(text, 6, 20));
 	}
 

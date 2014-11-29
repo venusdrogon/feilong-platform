@@ -70,7 +70,7 @@ public class MemCachedManagerTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	/**
-	 * Test method for {@link com.jumbo.brandstore.manager.memcached.MemCachedManager#incr(java.lang.String, int)}.
+	 * Test incr.
 	 */
 	@Test
 	public void testIncr(){
@@ -79,7 +79,7 @@ public class MemCachedManagerTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	/**
-	 * Test method for {@link com.jumbo.brandstore.manager.memcached.MemCachedManager#decr(java.lang.String, int)}.
+	 * Test decr.
 	 */
 	@Test
 	public void testDecr(){

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.context;
+package com.feilong.spring.context;
+
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -22,16 +24,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
- * The Class ApplicationContextTest.
- * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2012-3-29 下午4:14:43
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.8 2014年11月30日 上午3:36:58
+ * @since 1.0.8
  */
 @ContextConfiguration(locations = { "classpath:spring-DI.xml" })
-public class ApplicationContextTest extends AbstractJUnit4SpringContextTests{
+public class ApplicationContextUtilTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ApplicationContextTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ApplicationContextUtilTest.class);
 
 	/**
 	 * Test.
@@ -45,8 +46,8 @@ public class ApplicationContextTest extends AbstractJUnit4SpringContextTests{
 		for (String beanDefinitionName : beanDefinitionNames){
 			Object bean = applicationContext.getBean(beanDefinitionName);
 
-			String scope = applicationContext.isPrototype(beanDefinitionName) ? "Prototype" : (applicationContext.isSingleton(beanDefinitionName) ? "Singleton"
-					: "");
+			String scope = applicationContext.isPrototype(beanDefinitionName) ? "Prototype" : (applicationContext
+							.isSingleton(beanDefinitionName) ? "Singleton" : "");
 			//applicationContext.FACTORY_BEAN_PREFIX;
 			Object[] objects = { beanDefinitionName, bean.getClass().getName(), scope };
 			log.debug("[beanDefinitionName]:{},[bean]:{},scope:[{}]", objects);

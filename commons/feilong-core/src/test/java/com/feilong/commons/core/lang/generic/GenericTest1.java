@@ -34,12 +34,28 @@ public class GenericTest1{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(GenericTest1.class);
 
+	/**
+	 * Test.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param from
+	 *            the from
+	 * @param to
+	 *            the to
+	 */
 	static <T> void test(Collection<T> from,Collection<Object> to){
 		for (T ele : from){
 			to.add(ele);
 		}
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the args
+	 */
 	public static void main(String[] args){
 		List<Object> as = new ArrayList<>();
 		List<String> ao = new ArrayList<>();

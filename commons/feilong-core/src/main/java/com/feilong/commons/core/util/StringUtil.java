@@ -54,8 +54,8 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * 因此,在注重性能的场景,还是建议使用{@link StringTokenizer}
  * 
  * @author 金鑫 2010-2-9 上午09:53:37
- * @see org.springframework.util.StringUtils#tokenizeToStringArray(String, String)
- * @see org.springframework.beans.factory.xml.BeanDefinitionParserDelegate#MULTI_VALUE_ATTRIBUTE_DELIMITERS
+ * @see "org.springframework.util.StringUtils#tokenizeToStringArray(String, String)"
+ * @see "org.springframework.beans.factory.xml.BeanDefinitionParserDelegate#MULTI_VALUE_ATTRIBUTE_DELIMITERS"
  * @see java.util.StringTokenizer
  * @see org.apache.commons.lang3.StringUtils
  * @since 1.0.0
@@ -91,6 +91,7 @@ public final class StringUtil{
 	 * @see org.apache.commons.lang3.StringUtils#countMatches(CharSequence, CharSequence)
 	 * @deprecated 使用 {@link org.apache.commons.lang3.StringUtils#countMatches(CharSequence, CharSequence)}
 	 */
+	@Deprecated
 	public static int searchTimes(String source,String target){
 		if (null == source){
 			throw new IllegalArgumentException("source can't be null!");
@@ -775,7 +776,7 @@ public final class StringUtil{
 	// [start]tokenizeToStringArray
 
 	/**
-	 * (此方法借鉴 {@link org.springframework.util.StringUtils#tokenizeToStringArray})<br>
+	 * (此方法借鉴 {@link "org.springframework.util.StringUtils#tokenizeToStringArray"})<br>
 	 * Tokenize the given String into a String array via a StringTokenizer.
 	 * Trims tokens and omits empty tokens.
 	 * <p>
@@ -791,8 +792,8 @@ public final class StringUtil{
 	 * @return an array of the tokens
 	 * @see java.util.StringTokenizer
 	 * @see String#trim()
-	 * @see org.springframework.util.StringUtils#delimitedListToStringArray
-	 * @see org.springframework.util.StringUtils#tokenizeToStringArray
+	 * @see "org.springframework.util.StringUtils#delimitedListToStringArray"
+	 * @see "org.springframework.util.StringUtils#tokenizeToStringArray"
 	 * @since 1.0.7
 	 */
 	public static String[] tokenizeToStringArray(String str,String delimiters){
@@ -802,7 +803,7 @@ public final class StringUtil{
 	}
 
 	/**
-	 * (此方法借鉴 {@link org.springframework.util.StringUtils#tokenizeToStringArray})<br>
+	 * (此方法借鉴 {@link "org.springframework.util.StringUtils#tokenizeToStringArray"})<br>
 	 * Tokenize the given String into a String array via a StringTokenizer.
 	 * <p>
 	 * The given delimiters string is supposed to consist of any number of delimiter characters. <br>
@@ -826,8 +827,8 @@ public final class StringUtil{
 	 *         was {@code null})
 	 * @see java.util.StringTokenizer
 	 * @see String#trim()
-	 * @see org.springframework.util.StringUtils#delimitedListToStringArray
-	 * @see org.springframework.util.StringUtils#tokenizeToStringArray
+	 * @see "org.springframework.util.StringUtils#delimitedListToStringArray"
+	 * @see "org.springframework.util.StringUtils#tokenizeToStringArray"
 	 * @since 1.0.7
 	 */
 	public static String[] tokenizeToStringArray(String str,String delimiters,boolean trimTokens,boolean ignoreEmptyTokens){

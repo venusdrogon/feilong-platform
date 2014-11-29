@@ -28,12 +28,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 
+/**
+ * The Class BufferController.
+ */
 @Controller
 public class BufferController{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(BufferController.class);
 
+	/**
+	 * Buffer test1.
+	 *
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 * @throws IOException
+	 *             the IO exception
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
 	@RequestMapping(value = "/bufferTest1")
 	public void bufferTest1(HttpServletRequest request,HttpServletResponse response) throws IOException,InterruptedException{
 		//关闭缓冲区，输出会一个一个写出来（只有在火狐浏览器中才有效果）。
@@ -55,6 +70,16 @@ public class BufferController{
 		}
 	}
 
+	/**
+	 * Buffer test.
+	 *
+	 * @param response
+	 *            the response
+	 * @throws IOException
+	 *             the IO exception
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
 	@RequestMapping(value = "/bufferTest")
 	public void bufferTest(HttpServletResponse response) throws IOException,InterruptedException{
 		response.setBufferSize(2048);

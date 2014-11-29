@@ -25,6 +25,7 @@ import com.feilong.tools.html.HtmlUtil;
  * @author 金鑫 2009-9-4下午01:25:31
  * @deprecated
  */
+@Deprecated
 public class HtmlImageTag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;

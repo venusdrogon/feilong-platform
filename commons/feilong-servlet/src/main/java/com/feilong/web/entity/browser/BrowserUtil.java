@@ -39,7 +39,7 @@ import com.feilong.commons.core.util.StringUtil;
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 25, 2013 3:38:09 PM
- * @see c# 的 HttpCapabilitiesBase
+ * @see "c# 的 HttpCapabilitiesBase"
  */
 public final class BrowserUtil{
 

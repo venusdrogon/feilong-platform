@@ -41,7 +41,7 @@ public class Parent{
 	/**
 	 * The Constructor.
 	 *
-	 * @param namew
+	 * @param name
 	 *            the name
 	 * @param address
 	 *            the address

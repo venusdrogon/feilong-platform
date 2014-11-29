@@ -38,9 +38,7 @@ public class HttpMethodTypeTest{
 
 	/**
 	 * Name.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
+	 *
 	 * @throws NoSuchFieldException
 	 *             the no such field exception
 	 */
@@ -51,12 +49,21 @@ public class HttpMethodTypeTest{
 		assertEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get"));
 	}
 
+	/**
+	 * Name2.
+	 *
+	 * @throws NoSuchFieldException
+	 *             the no such field exception
+	 */
 	@Test(expected = NoSuchFieldException.class)
 	public void name2() throws NoSuchFieldException{
 		assertNotEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get1"));
 
 	}
 
+	/**
+	 * Name1.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void name1(){
 		assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GeT"));

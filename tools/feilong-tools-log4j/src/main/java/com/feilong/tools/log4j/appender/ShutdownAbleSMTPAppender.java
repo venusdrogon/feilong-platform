@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class ShutdownAbleSMTPAppender.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月9日 上午4:08:18
@@ -28,8 +29,12 @@ import org.slf4j.LoggerFactory;
  */
 public class ShutdownAbleSMTPAppender extends SMTPAppender{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ShutdownAbleSMTPAppender.class);
 
+	/**
+	 * The Constructor.
+	 */
 	public ShutdownAbleSMTPAppender(){
 		//但是另外一个问题也随之产生了，当程序结束时，还在缓冲里面的事件是不会被发送出来的。因为事件数往往没有bufferSize的一半。
 		//笔者在构造函数中，添加了一个程序结束时运行的线程，来处理这个问题。
@@ -46,6 +51,9 @@ public class ShutdownAbleSMTPAppender extends SMTPAppender{
 
 	//MTPAppender 实现是，每当isTriggeringEvent（）这个方法返回true的时候，它都会发送邮件。这样的话，一个程序执行下来，每个有能力触发的事件都会形成一封邮件。这显然不是我们希望看到的场面。
 	// 笔者继承了SMTPAppender类，重装了append方法。          
+	/* (non-Javadoc)
+	 * @see org.apache.log4j.net.SMTPAppender#append(org.apache.log4j.spi.LoggingEvent)
+	 */
 	public void append(LoggingEvent loggingEvent){
 
 		if (!checkEntryConditions()){

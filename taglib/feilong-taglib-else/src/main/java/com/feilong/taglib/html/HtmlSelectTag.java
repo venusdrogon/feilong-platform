@@ -30,6 +30,7 @@ import com.feilong.tools.html.HtmlUtil;
  * @author 金鑫 2009-12-4下午05:59:36
  * @deprecated
  */
+@Deprecated
 public class HtmlSelectTag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;

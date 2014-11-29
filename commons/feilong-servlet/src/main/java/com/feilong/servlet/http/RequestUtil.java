@@ -146,8 +146,8 @@ public final class RequestUtil{
 	 * 
 	 * @param request
 	 *            HttpServletRequest
-	 * @return 如果request 有 {@link #ATTRIBUTE_ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
-	 *         如果 request没有 {@link #ATTRIBUTE_ERROR_STATUS_CODE}属性,返回null
+	 * @return 如果request 有 {@link RequestConstants#ATTRIBUTE_ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
+	 *         如果 request没有 {@link RequestConstants#ATTRIBUTE_ERROR_STATUS_CODE}属性,返回null
 	 */
 	public static Map<String, String> getErrorMap(HttpServletRequest request){
 		String errorCode = getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_STATUS_CODE);

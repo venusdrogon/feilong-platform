@@ -35,7 +35,7 @@ public class CodeGeneratorTest{
 	private static final Logger	log	= LoggerFactory.getLogger(CodeGeneratorTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.framework.code.CodeGenerator.shop.utils.SalesOrderCodeGenerator#createOrderCode(java.lang.Long)}.
+	 * Creates the order code.
 	 */
 	@Test
 	public void createOrderCode(){

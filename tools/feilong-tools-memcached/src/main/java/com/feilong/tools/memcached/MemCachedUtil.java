@@ -34,6 +34,7 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
  * @version 1.0 2011-11-11 下午02:57:05
  * @deprecated
  */
+@Deprecated
 public class MemCachedUtil{
 
 	/** The Constant log. */

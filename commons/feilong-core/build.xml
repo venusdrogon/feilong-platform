@@ -130,7 +130,7 @@
 			<!-- <classpath> <path path="${sun.boot.class.path}"></path> <path path="${java.class.path}"></path> <path refid="feilong.maven.dependencies.all"></path> </classpath> -->
 
 
-			<!-- <tag name="todo" scope="all" description="To do:"/> bootclasspath="${sun.boot.class.path}" classpathref="feilong.maven.dependencies.all" classpath="${java.class.path}" -->
+			<!-- <tag name="to do" scope="all" description="To do:"/> bootclasspath="${sun.boot.class.path}" classpathref="feilong.maven.dependencies.all" classpath="${java.class.path}" -->
 			<!-- <bootclasspath location="D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\rt.jar"></bootclasspath> -->
 
 			<group title="日期操作工具包" packages="com.feilong.commons.core.date" />

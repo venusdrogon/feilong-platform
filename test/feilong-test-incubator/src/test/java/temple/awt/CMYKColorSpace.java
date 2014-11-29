@@ -48,7 +48,7 @@ public class CMYKColorSpace extends ColorSpace{
 	 *            the p_colorvalue
 	 * @return the float[]
 	 * @see java.awt.color.ColorSpace#fromCIEXYZ(float[])
-	 * @see org.scantegrity.lib.CMYKColorSpace#toCIEXYZ
+	 * @see "org.scantegrity.lib.CMYKColorSpace#toCIEXYZ"
 	 */
 	@Override
 	public float[] fromCIEXYZ(float[] p_colorvalue){
@@ -77,7 +77,8 @@ public class CMYKColorSpace extends ColorSpace{
 	@Override
 	public float[] fromRGB(float[] p_rgbvalue){
 		/*
-		 * TODO: Maybe we should do a better job to determine when black should be used and pulled out? -- At this time, it's not necessary for our
+		 * TODO: Maybe we should do a better job to determine when black should be used and pulled out? -- At this time, it's not necessary
+		 * for our
 		 * (Scantegrity's) uses.
 		 */
 		float[] l_res = { 0, 0, 0, 0 };

@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class EscapingTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月4日 下午3:56:06
@@ -27,8 +28,12 @@ import org.slf4j.LoggerFactory;
  */
 public class EscapingTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(EscapingTest.class);
 
+	/**
+	 * Test escaping2.
+	 */
 	@Test
 	public void testEscaping2(){
 		if (log.isDebugEnabled()){

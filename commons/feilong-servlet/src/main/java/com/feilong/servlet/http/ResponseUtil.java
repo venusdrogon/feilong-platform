@@ -68,7 +68,7 @@ public final class ResponseUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 * @see IOWriteUtil#write(InputStream, OutputStream)
-	 * @see org.springframework.http.MediaType
+	 * @see "org.springframework.http.MediaType"
 	 */
 	public static void download(
 					String saveFileName,
@@ -102,9 +102,9 @@ public final class ResponseUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 * @see IOWriteUtil#write(InputStream, OutputStream)
-	 * @see org.springframework.http.MediaType
-	 * @see org.apache.http.HttpHeaders
-	 * @see org.springframework.http.HttpHeaders
+	 * @see "org.springframework.http.MediaType"
+	 * @see "org.apache.http.HttpHeaders"
+	 * @see "org.springframework.http.HttpHeaders"
 	 * @see com.feilong.commons.core.io.MimeTypeUtil#getContentTypeByFileName(String)
 	 * @see javax.servlet.ServletContext#getMimeType(String)
 	 */

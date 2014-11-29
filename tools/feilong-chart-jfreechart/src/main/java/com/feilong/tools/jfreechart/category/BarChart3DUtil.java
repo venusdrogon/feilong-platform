@@ -52,7 +52,6 @@ public final class BarChart3DUtil extends CategoryChartUtil{
 	 */
 	@Override
 	protected void setChildDefaultCategoryAxisAttributes(CategoryAxis categoryAxis){
-		// TODO Auto-generated method stub
 	}
 
 	/*

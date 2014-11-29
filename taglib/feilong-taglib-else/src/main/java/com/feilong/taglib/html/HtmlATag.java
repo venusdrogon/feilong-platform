@@ -26,6 +26,7 @@ import com.feilong.tools.html.entity.HtmlAEntity;
  * @author 金鑫 2010-5-6 上午10:01:46
  * @deprecated
  */
+@Deprecated
 public class HtmlATag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;

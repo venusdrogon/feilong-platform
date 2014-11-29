@@ -45,7 +45,7 @@ import com.feilong.commons.core.util.Validator;
  * 删除:
  * <ul>
  * <li>{@link #delete(String)}</li>
- * <li>{@link #delete(String[], String)}</li>
+ * <li>{@link #delete(String[])}</li>
  * </ul>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>

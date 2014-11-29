@@ -27,6 +27,7 @@ import com.feilong.taglib.util.TagUtils;
  * @author 金鑫 2010-6-24 上午05:23:52
  * @deprecated
  */
+@Deprecated
 public class HtmlTag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;
@@ -99,6 +100,7 @@ public class HtmlTag extends BaseHtmlTag{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.BaseTag#writeContent()
 	 */
 	@Override

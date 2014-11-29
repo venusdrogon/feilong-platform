@@ -34,7 +34,6 @@ import org.slf4j.LoggerFactory;
 public final class PropertyUtil{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")
 	private final static Logger	log	= LoggerFactory.getLogger(PropertyUtil.class);
 
 	/** Don't let anyone instantiate this class. */

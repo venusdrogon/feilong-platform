@@ -15,8 +15,6 @@
  */
 package com.feilong.spring.web.util;
 
-import static org.junit.Assert.fail;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +24,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
-import com.feilong.spring.web.util.MultiUriTemplateUtil;
 
 /**
  * The Class MultiUriTemplateUtilTest.
@@ -40,18 +37,7 @@ public class MultiUriTemplateUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(MultiUriTemplateUtilTest.class);
 
 	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.MultiUriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testExpandBestMatchingPattern(){
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.MultiUriTemplateUtil#expandWithMultiVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test expand with multi variable.
 	 */
 	@Test
 	public void testExpandWithMultiVariable(){

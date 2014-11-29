@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-21 上午10:22:48
- * @see TestA
  */
 public class JsDocxUtil{
 

@@ -82,29 +82,29 @@ public final class SessionUtil{
 			long creationTime = session.getCreationTime();
 			Date creationTimeDate = new Date(creationTime);
 			map.put(
-					"session.getCreationTime()",
-					Slf4jUtil.formatMessage(
-							"[{}],format:[{}],intervalToNow:[{}]",
-							creationTime,
-							DateUtil.date2String(creationTimeDate, DatePattern.commonWithMillisecond),
-							DateExtensionUtil.getIntervalForView(creationTimeDate, now)));
+							"session.getCreationTime()",
+							Slf4jUtil.formatMessage(
+											"[{}],format:[{}],intervalToNow:[{}]",
+											creationTime,
+											DateUtil.date2String(creationTimeDate, DatePattern.commonWithMillisecond),
+											DateExtensionUtil.getIntervalForView(creationTimeDate, now)));
 
 			//返回此SESSION里客户端最近一次请求时间 
 			long lastAccessedTime = session.getLastAccessedTime();
 			Date lastAccessedTimeDate = new Date(lastAccessedTime);
 			map.put(
-					"session.getLastAccessedTime()",
-					Slf4jUtil.formatMessage(
-							"[{}],format:[{}],intervalToNow:[{}]",
-							lastAccessedTime,
-							DateUtil.date2String(lastAccessedTimeDate, DatePattern.commonWithMillisecond),
-							DateExtensionUtil.getIntervalForView(lastAccessedTimeDate, now)));
+							"session.getLastAccessedTime()",
+							Slf4jUtil.formatMessage(
+											"[{}],format:[{}],intervalToNow:[{}]",
+											lastAccessedTime,
+											DateUtil.date2String(lastAccessedTimeDate, DatePattern.commonWithMillisecond),
+											DateExtensionUtil.getIntervalForView(lastAccessedTimeDate, now)));
 
 			//返回两次请求间隔多长时间此SESSION被取消(ms) 
 			int maxInactiveInterval = session.getMaxInactiveInterval();
 			map.put(
-					"session.getMaxInactiveInterval()",
-					maxInactiveInterval + "s,format:" + DateExtensionUtil.getIntervalForView(maxInactiveInterval * 1000));
+							"session.getMaxInactiveInterval()",
+							maxInactiveInterval + "s,format:" + DateExtensionUtil.getIntervalForView(maxInactiveInterval * 1000));
 
 			// 返回服务器创建的一个SESSION,客户端是否已经加入 
 			map.put("session.isNew()", session.isNew());
@@ -147,7 +147,7 @@ public final class SessionUtil{
 	 * @param request
 	 *            request
 	 * @return the http session
-	 * @see org.springframework.security.util.SessionUtils#startNewSessionIfRequired(HttpServletRequest, boolean, SessionRegistry)
+	 * @see "org.springframework.security.util.SessionUtils#startNewSessionIfRequired(HttpServletRequest, boolean, SessionRegistry)"
 	 */
 	public static HttpSession replaceSession(HttpServletRequest request){
 		// 当session存在时返回该session，否则不会新建session，返回null

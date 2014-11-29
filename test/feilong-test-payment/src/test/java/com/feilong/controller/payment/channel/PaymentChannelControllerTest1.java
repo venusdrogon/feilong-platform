@@ -15,19 +15,11 @@
  */
 package com.feilong.controller.payment.channel;
 
-import static org.junit.Assert.*;
-
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -35,6 +27,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.spring.context.ApplicationContextUtil;
 
 /**
+ * The Class PaymentChannelControllerTest1.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月29日 上午1:48:41
@@ -43,11 +36,12 @@ import com.feilong.spring.context.ApplicationContextUtil;
 @ContextConfiguration(locations = { "classpath*:spring.xml" })
 public class PaymentChannelControllerTest1 extends AbstractJUnit4SpringContextTests{
 
-	private static final Logger		log	= LoggerFactory.getLogger(PaymentChannelControllerTest1.class);
+	/** The Constant log. */
+	private static final Logger	log	= LoggerFactory.getLogger(PaymentChannelControllerTest1.class);
 
-	@Autowired
-	protected ApplicationContext	applicationContext;
-
+	/**
+	 * Test.
+	 */
 	@Test
 	public final void test(){
 		Map<String, Object> applicationContextForLogMap = ApplicationContextUtil.getApplicationContextForLogMap(applicationContext);

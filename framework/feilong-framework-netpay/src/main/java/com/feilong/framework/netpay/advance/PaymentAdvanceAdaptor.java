@@ -20,7 +20,6 @@ import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.advance.command.TradeRole;
 import com.feilong.framework.netpay.advance.exception.TradeCloseException;
 import com.feilong.framework.netpay.advance.exception.TradeQueryException;
-import com.feilong.tools.net.httpclient3.HttpClientException;
 
 /**
  * 支付高级文档(此接口 包括 关闭,查询,退款等等功能)<br>

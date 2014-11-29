@@ -78,7 +78,7 @@ public class LatestViewController{
 	 *            the request
 	 * @param response
 	 *            the response
-	 * @see {@link UserDetailsInterceptor#preHandle(HttpServletRequest, HttpServletResponse, Object)}
+	 * @see "UserDetailsInterceptor#preHandle(HttpServletRequest, HttpServletResponse, Object)"
 	 */
 	public void setLatestViewJson(String code,Model model,HttpServletRequest request,HttpServletResponse response){
 		TreeSet<BrowsingHistoryCommand> browsingHistoryCommandSet = LatestViewUtil.getBrowsingHistoryCommandTreeSetFromCookie(

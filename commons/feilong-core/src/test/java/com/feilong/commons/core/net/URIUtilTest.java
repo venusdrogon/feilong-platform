@@ -43,7 +43,7 @@ public class URIUtilTest{
 	private String				result	= null;
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.net.URIUtil#encode(java.lang.String, java.lang.Object[])}.
+	 * Test encode.
 	 */
 	@Test
 	public void testEncode(){
@@ -75,8 +75,9 @@ public class URIUtilTest{
 
 	/**
 	 * Test get union url2.
-	 * 
+	 *
 	 * @throws MalformedURLException
+	 *             the malformed url exception
 	 */
 	@Test
 	public void testGetUnionUrl2() throws MalformedURLException{
@@ -85,6 +86,12 @@ public class URIUtilTest{
 		log.info(result);
 	}
 
+	/**
+	 * Test get union url3.
+	 *
+	 * @throws MalformedURLException
+	 *             the malformed url exception
+	 */
 	@Test
 	public void testGetUnionUrl3() throws MalformedURLException{
 		URL url = new URL("C:\\Users\\feilong\\feilong\\payment\\tcashPayAdaptor\\tcashPayAdaptor20140923144156.html");

@@ -73,6 +73,17 @@ public class NumberUtilTest implements NumberPattern{
 		NumberUtil.getProgress(5, null, PERCENT_WITH_NOPOINT);
 	}
 
+	/**
+	 * 获得 progress.
+	 *
+	 * @param current
+	 *            the current
+	 * @param total
+	 *            the total
+	 * @param numberPattern
+	 *            the number pattern
+	 * @return the progress
+	 */
 	public final static String getProgress(Number current,Number total,String numberPattern){
 		if (null == current){
 			return "0001";

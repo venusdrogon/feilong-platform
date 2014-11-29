@@ -23,6 +23,7 @@ import com.feilong.taglib.base.BaseHtmlTag;
  * @author 金鑫 2010-5-6 上午10:01:46
  * @deprecated
  */
+@Deprecated
 public class HtmlTableTag extends BaseHtmlTag{
 
 	/**

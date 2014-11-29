@@ -30,6 +30,7 @@ import com.feilong.tools.html.HtmlUtil;
  * @author 金鑫 2010-3-1 下午05:06:03
  * @deprecated
  */
+@Deprecated
 public class HtmlRadioTag extends BaseHtmlTag{
 
 	private static final long	serialVersionUID	= 1L;

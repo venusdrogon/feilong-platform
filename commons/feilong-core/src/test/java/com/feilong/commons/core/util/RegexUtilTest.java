@@ -79,7 +79,7 @@ public class RegexUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.RegexUtil#isEmail(java.lang.String)}.
+	 * Test is email.
 	 */
 	@Test
 	public final void testIsEmail(){
@@ -99,7 +99,7 @@ public class RegexUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.util.RegexUtil#matches(java.lang.String, java.lang.String)}.
+	 * Test match.
 	 */
 	@Test
 	public final void testMatch(){

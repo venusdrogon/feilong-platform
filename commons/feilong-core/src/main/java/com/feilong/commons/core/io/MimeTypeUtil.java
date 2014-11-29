@@ -34,12 +34,11 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月19日 上午1:12:50
  * @see com.feilong.commons.core.enumeration.MimeType
- * @see org.apache.catalina.startup.Tomcat#DEFAULT_MIME_MAPPINGS
- * @see org.apache.http.entity.ContentType
+ * @see "org.apache.catalina.startup.Tomcat#DEFAULT_MIME_MAPPINGS"
+ * @see "org.apache.http.entity.ContentType"
  * @see <a href="http://stackoverflow.com/questions/4348810/java-library-to-find-the-mime-type-from-file-content/10140531#10140531">java
  *      library to find the mime type from file content</a>
- * @see <a href="http://stackoverflow.com/questions/51438/getting-a-files-mime-type-in-java">Getting
- *      A File's Mime Type In Java</a>
+ * @see <a href="http://stackoverflow.com/questions/51438/getting-a-files-mime-type-in-java">Getting A File Mime Type In Java</a>
  * @see <a href="http://en.wikipedia.org/wiki/MIME">MIME Wiki</a>
  * @see <a href="http://tika.apache.org/">也可以使用Apache Tika</a>
  * @since 1.0.8

@@ -109,7 +109,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 		if (null == solrServer){
 			throw new NullPointerException(
-					"solrServer is null or empty! must ioc solrServer property!,you can choose LBHttpSolrServer,ConcurrentUpdateSolrServer,CloudSolrServer,HttpSolrServer");
+							"solrServer is null or empty! must ioc solrServer property!,you can choose LBHttpSolrServer,ConcurrentUpdateSolrServer,CloudSolrServer,HttpSolrServer");
 		}
 	}
 
@@ -146,7 +146,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * loxia.dao.Sort[], com.feilong.tools.solrj.command.FacetParamCommand)
 	 */
 	public SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand)
-			throws NullPointerException{
+					throws NullPointerException{
 		if (solrQuery == null){
 			throw new NullPointerException("solrQuery can't be null/empty!");
 		}
@@ -198,12 +198,12 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * loxia.dao.Sort[], java.lang.String[], com.feilong.tools.solrj.command.GroupParamCommand)
 	 */
 	public SolrGroupData<T> findByQueryWithGroup(
-			SolrQuery solrQuery,
-			Integer pageNumber,
-			int rows,
-			Sort[] sorts,
-			String[] facetFields,
-			GroupParamsCommand groupParamCommand) throws SolrException,NullPointerException{
+					SolrQuery solrQuery,
+					Integer pageNumber,
+					int rows,
+					Sort[] sorts,
+					String[] facetFields,
+					GroupParamsCommand groupParamCommand) throws SolrException,NullPointerException{
 
 		if (solrQuery == null){
 			throw new NullPointerException("solrQuery can't be null/empty!");
@@ -305,7 +305,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 */
 	@Deprecated
 	public Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount)
-			throws NullPointerException,SolrException{
+					throws NullPointerException,SolrException{
 		if (null == solrQuery){
 			throw new NullPointerException("solrQuery can't be null/empty!");
 		}
@@ -571,11 +571,9 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		}
 
 		try{
-			@SuppressWarnings("unused")
 			UpdateResponse addBeanUpdateResponse = solrServer.add(solrInputDocuments);
-			@SuppressWarnings("unused")
 			UpdateResponse updateResponse = solrServer.commit();
-			
+
 			int status = updateResponse.getStatus();
 		}catch (Exception e){
 			log.error(e.getClass().getName(), e);

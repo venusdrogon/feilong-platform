@@ -27,6 +27,11 @@ import com.lowagie.text.Paragraph;
 public class PDFParagragh extends Paragraph{
 
 	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= -8869269657304423472L;
+
+	/**
 	 * Instantiates a new PDF paragragh.
 	 * 
 	 * @param content

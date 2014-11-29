@@ -34,7 +34,7 @@ public class Mp2StubStatusMainTest{
 	private static final Logger	log	= LoggerFactory.getLogger(Mp2StubStatusMainTest.class);
 
 	/**
-	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike()}.
+	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.
 	 * 
 	 * @throws IOException
 	 */
@@ -52,5 +52,4 @@ public class Mp2StubStatusMainTest{
 		StubStatusMain.crawStubStatusNike(uri, userName, password, patch);
 	}
 
- 
 }

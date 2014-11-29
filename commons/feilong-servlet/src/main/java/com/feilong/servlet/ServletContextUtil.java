@@ -19,18 +19,13 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.servlet.ServletContext;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
-import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -89,6 +84,13 @@ public final class ServletContextUtil{
 		return map;
 	}
 
+	/**
+	 * 获得 attribute string map for log.
+	 *
+	 * @param servletContext
+	 *            the servlet context
+	 * @return the attribute string map for log
+	 */
 	public static Map<String, String> getAttributeStringMapForLog(ServletContext servletContext){
 		Map<String, String> map = new HashMap<String, String>();
 		@SuppressWarnings("unchecked")
@@ -125,7 +127,7 @@ public final class ServletContextUtil{
 
 	/**
 	 * 读取servletContext.getRealPath("/")下面,文件内容
-	 * 
+	 *
 	 * @param servletContext
 	 *            servletContext上下文地址
 	 * @param directoryName
@@ -138,6 +140,7 @@ public final class ServletContextUtil{
 	 *            文件名称 如:register.html
 	 * @return 读取文件内容
 	 * @throws IOException
+	 *             the IO exception
 	 * @deprecated
 	 */
 	public static String getFileContent(ServletContext servletContext,String directoryName,String fileName) throws IOException{
