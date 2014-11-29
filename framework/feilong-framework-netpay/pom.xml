@@ -20,35 +20,41 @@
 		<dependency>
 			<groupId>com.feilong.platform.commons</groupId>
 			<artifactId>feilong-commons-security</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>com.feilong.platform.taglib</groupId>
 			<artifactId>feilong-taglib-common</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-net-httpclient</artifactId>
 			<version>${version.feilong-platform}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>com.feilong.platform.framework</groupId>
 			<artifactId>feilong-framework-bind</artifactId>
 			<version>${version.feilong-platform}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>com.feilong.platform.webservice</groupId>
 			<artifactId>feilong-webservice-cxf</artifactId>
 			<version>${version.feilong-platform}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-dom4j</artifactId>
 			<version>${project.version}</version>
+			<!-- <optional>true</optional> -->
 			<exclusions>
 				<exclusion>
 					<artifactId>xalan</artifactId>
@@ -73,12 +79,14 @@
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-velocity</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-xstream</artifactId>
 			<version>${version.feilong-platform}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- 招商银行 -->
@@ -86,6 +94,7 @@
 			<groupId>cmb</groupId>
 			<artifactId>cmbJava15</artifactId>
 			<version>1.0</version>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- 汇付天下 -->
@@ -93,6 +102,7 @@
 			<groupId>chinapnr</groupId>
 			<artifactId>chinapnr</artifactId>
 			<version>1.0</version>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- 父 platform中 jsp-api -->
@@ -107,17 +117,10 @@
 			<artifactId>servlet-api</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>soap</groupId>
-			<artifactId>soap</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-
 		<!-- -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.12</version>
 		</dependency>
 
 		<dependency>
@@ -129,25 +132,37 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- ********************************** -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<scope>test</scope>
+			<groupId>soap</groupId>
+			<artifactId>soap</artifactId>
+			<version>2.3.1</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>${version.cxf}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>${version.cxf}</version>
+			<optional>true</optional>
 		</dependency>
+
+		<!-- ********************************** -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 </project>

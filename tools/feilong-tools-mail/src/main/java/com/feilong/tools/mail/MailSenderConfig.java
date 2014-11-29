@@ -18,12 +18,12 @@ package com.feilong.tools.mail;
 import java.util.List;
 
 /**
- * The Class BaseMailEntity.
+ * 邮件发送配置.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 1:05:45 AM
  */
-public class MailEntity{
+public class MailSenderConfig{
 
 	/** 是否debug 输出. */
 	private boolean			isDebug				= false;
@@ -89,7 +89,11 @@ public class MailEntity{
 	private String			subject;
 
 	/** 邮件的文本内容. */
+	//TODO object 类型
 	private String			content;
+
+	/** 邮件的文本内容. */
+	private String			contentMimeType		= "text/html; charset=gb2312";
 
 	// ****************附件***************************************************
 
@@ -335,7 +339,7 @@ public class MailEntity{
 	 * @param tos
 	 *            the tos to set
 	 */
-	public void setTos(String[] tos){
+	public void setTos(String...tos){
 		this.tos = tos;
 	}
 
@@ -354,7 +358,7 @@ public class MailEntity{
 	 * @param ccs
 	 *            the ccs to set
 	 */
-	public void setCcs(String[] ccs){
+	public void setCcs(String...ccs){
 		this.ccs = ccs;
 	}
 
@@ -373,7 +377,7 @@ public class MailEntity{
 	 * @param bccs
 	 *            the bccs to set
 	 */
-	public void setBccs(String[] bccs){
+	public void setBccs(String...bccs){
 		this.bccs = bccs;
 	}
 
@@ -428,6 +432,21 @@ public class MailEntity{
 	 */
 	public void setAttachList(List<byte[]> attachList){
 		this.attachList = attachList;
+	}
+
+	/**
+	 * @return the contentMimeType
+	 */
+	public String getContentMimeType(){
+		return contentMimeType;
+	}
+
+	/**
+	 * @param contentMimeType
+	 *            the contentMimeType to set
+	 */
+	public void setContentMimeType(String contentMimeType){
+		this.contentMimeType = contentMimeType;
 	}
 
 }

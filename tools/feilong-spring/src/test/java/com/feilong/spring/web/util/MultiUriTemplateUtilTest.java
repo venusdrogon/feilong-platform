@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.util;
+package com.feilong.spring.web.util;
 
 import static org.junit.Assert.fail;
 
@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
+import com.feilong.spring.web.util.MultiUriTemplateUtil;
 
 /**
  * The Class MultiUriTemplateUtilTest.
@@ -40,7 +41,7 @@ public class MultiUriTemplateUtilTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.spring.util.MultiUriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}
+	 * {@link com.feilong.spring.web.util.MultiUriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -50,7 +51,7 @@ public class MultiUriTemplateUtilTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.spring.util.MultiUriTemplateUtil#expandWithMultiVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * {@link com.feilong.spring.web.util.MultiUriTemplateUtil#expandWithMultiVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testExpandWithMultiVariable(){

@@ -14,8 +14,7 @@
 
 		<!-- 注意 logback 的括号需要转义 -->
 		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%d{MMdd HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n
-			</pattern>
+			<pattern>%d{HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n</pattern>
 		</encoder>
 	</appender>
 
@@ -35,7 +34,7 @@
 	<logger name="org.apache.commons.beanutils.converters" level="warn" />
 	<logger name="org.apache.commons.beanutils.converters.AbstractConverter" level="warn" />
 	<logger name="com.google.code.ssm.spring.SSMCache" level="debug" />
-	
+
 	<root level="debug">
 		<appender-ref ref="CONSOLE" />
 	</root>

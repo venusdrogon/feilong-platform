@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.feilong.servlet.http.RequestUtil;
-import com.feilong.spring.util.UriTemplateUtil;
+import com.feilong.spring.web.util.UriTemplateUtil;
 
 @Controller
 @SuppressWarnings("all")public class UriTemplateUtilController{

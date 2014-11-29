@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.util;
+package com.feilong.spring.web.util;
 
 import static org.junit.Assert.fail;
 
@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.spring.web.util.UriTemplateUtil;
 
 /**
  * The Class UriTemplateUtilTest.
@@ -42,7 +43,7 @@ public class UriTemplateUtilTest{
 	String						uriTemplatePath	= "/c{categoryCode}/m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#getVariableNames(java.lang.String)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getVariableNames(java.lang.String)}.
 	 */
 	@Test
 	public void testGetVariableNames(){
@@ -61,7 +62,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#getUriTemplateVariableValue(javax.servlet.http.HttpServletRequest, java.lang.String)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariableValue(javax.servlet.http.HttpServletRequest, java.lang.String)}.
 	 */
 	@Test
 	public void testGetUriTemplateVariableValue(){
@@ -69,7 +70,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#hasPathVarName(javax.servlet.http.HttpServletRequest, java.lang.String)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#hasPathVarName(javax.servlet.http.HttpServletRequest, java.lang.String)}.
 	 */
 	@Test
 	public void testHasPathVarName(){
@@ -77,7 +78,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#getUriTemplateVariables(javax.servlet.http.HttpServletRequest)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariables(javax.servlet.http.HttpServletRequest)}.
 	 */
 	@Test
 	public void testGetUriTemplateVariables(){
@@ -85,7 +86,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#getBestMatchingPattern(javax.servlet.http.HttpServletRequest)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getBestMatchingPattern(javax.servlet.http.HttpServletRequest)}.
 	 */
 	@Test
 	public void testGetBestMatchingPattern(){
@@ -94,7 +95,7 @@ public class UriTemplateUtilTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.spring.util.UriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}.
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testExpandBestMatchingPattern(){
@@ -103,7 +104,7 @@ public class UriTemplateUtilTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.spring.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testExpandWithVariable3(){
@@ -137,7 +138,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#extractUriTemplateVariables(java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#extractUriTemplateVariables(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testExtractUriTemplateVariables(){
@@ -148,7 +149,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testExpandWithVariable2(){
@@ -161,7 +162,7 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.util.UriTemplateUtil#expand(java.lang.String, java.util.Map)}.
+	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#expand(java.lang.String, java.util.Map)}.
 	 */
 	@Test
 	public void testExpand(){

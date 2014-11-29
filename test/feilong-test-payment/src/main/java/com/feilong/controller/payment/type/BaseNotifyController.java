@@ -160,7 +160,7 @@ public abstract class BaseNotifyController extends BasePaymentController{
 	// // 上述异常都可获取抛出异常处的order id, order number 以及发生异常时的订单状态.
 	// isUpdateSuccess = tradeService.buyerPay(tradeOnlinePaymentId);
 	// }catch (Exception e){
-	// e.printStackTrace();
+	// log.error(e.getClass().getName(), e);
 	// }
 	// if (isUpdateSuccess){
 	// log.info("TRANSIDMERCHANT:[{}],AMOUT:[{}],return success", paramTradeNo, tradeOnlinePaymentDto.getAmount());

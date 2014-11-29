@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.util;
+package com.feilong.spring.web.util;
 
 import java.net.URI;
 import java.util.HashMap;

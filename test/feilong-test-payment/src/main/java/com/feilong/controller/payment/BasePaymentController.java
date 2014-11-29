@@ -41,15 +41,15 @@ public abstract class BasePaymentController{
 	private static final String		STATUS_NOPAID	= "0";
 
 	/** The payment channel_permata valite pay. */
-	@Value("#{p_dokuPayment['PAYMENTCHANNEL.permataVALITEPay']}")
+	@Value("#{p_DokuPayAdaptor['PAYMENTCHANNEL.permataVALITEPay']}")
 	private String					paymentChannel_permataVALITEPay;
 
 	/** The payment channel_mandiri click pay. */
-	@Value("#{p_dokuPayment['PAYMENTCHANNEL.mandiriClickPay']}")
+	@Value("#{p_DokuPayAdaptor['PAYMENTCHANNEL.mandiriClickPay']}")
 	private String					paymentChannel_mandiriClickPay;
 
 	/** The payment channel_ brie pay. */
-	@Value("#{p_dokuPayment['PAYMENTCHANNEL.BRIEPay']}")
+	@Value("#{p_DokuPayAdaptor['PAYMENTCHANNEL.BRIEPay']}")
 	private String					paymentChannel_BRIEPay;
 
 	/**

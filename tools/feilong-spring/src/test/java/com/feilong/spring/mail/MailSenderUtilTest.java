@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.context;
+package com.feilong.spring.mail;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,22 +25,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.feilong.spring.mail.MailSenderUtil;
+
 /**
  * The Class MailUtilTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 2:31:22 PM
  */
-public class MailUtilTest{
+public class MailSenderUtilTest{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(MailUtilTest.class);
+	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(MailSenderUtilTest.class);
 
 	/** The context. */
 	private ApplicationContext	context;
 
 	/** The mail util. */
-	private MailUtil			mailUtil;
+	private MailSenderUtil			mailUtil;
 
 	/**
 	 * Inits the.
@@ -52,7 +54,7 @@ public class MailUtilTest{
 		// for (int i = 0; i < array.length; ++i){
 		// log.debug(array[i]);
 		// }
-		mailUtil = context.getBean(MailUtil.class);
+		mailUtil = context.getBean(MailSenderUtil.class);
 	}
 
 	/**

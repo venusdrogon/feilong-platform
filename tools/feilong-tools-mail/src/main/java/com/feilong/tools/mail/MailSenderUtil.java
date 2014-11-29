@@ -27,6 +27,7 @@ import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -43,6 +44,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.MimeType;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -52,49 +55,98 @@ import com.feilong.commons.core.util.Validator;
  * @version 金鑫 2010-1-23 下午04:22:24
  * @version 金鑫 2011-12-24 01:54
  * @version 1.0 Dec 7, 2013 9:04:22 PM
+ * @version 1.0.8 2014-11-27 14:15
+ * @see javax.mail.Message
+ * @see javax.mail.Session
+ * @see javax.mail.Transport#send(Message)
+ * @since 1.0.0
  */
 public final class MailSenderUtil{
 
 	/** The Constant log. */
 	private static final Logger	log					= LoggerFactory.getLogger(MailSenderUtil.class);
 
-	/** The message. */
-	private Message				message				= null;
-
-	/** 版本. */
-	private static final String	VERSION				= "1.0.3";
-
 	/** contentId前缀. */
 	public static final String	PREFIX_CONTENTID	= "image";
 
-	// 以纯文本格式发送邮件 （不带附件的邮件）
+	/** 邮件客户端 版本. */
+	private static final String	HEADER_X_MAILER		= "FeiLong MailSender Api 1.0.8";
+
+	private static final String	personalCharset		= CharsetType.GB2312;
+
+	/** The message. */
+	private Message				message				= null;
+
 	/**
 	 * 发送邮件.
 	 * 
-	 * @param mailEntity
+	 * @param mailSenderConfig
 	 *            the mail entity
 	 * @throws MessagingException
 	 *             the messaging exception
 	 * @throws UnsupportedEncodingException
 	 *             the unsupported encoding exception
 	 */
-	public void sendMail(MailEntity mailEntity) throws MessagingException,UnsupportedEncodingException{
-		// ************************validator*****************************************************************
-		if (Validator.isNullOrEmpty(mailEntity.getTos())){
-			throw new IllegalArgumentException("mailEntity tos can't be null/empty!");
+	public void sendMail(MailSenderConfig mailSenderConfig) throws MessagingException,UnsupportedEncodingException{
+		if (Validator.isNullOrEmpty(mailSenderConfig)){
+			throw new IllegalArgumentException("mailSenderConfig can't be null/empty!");
 		}
-		if (Validator.isNullOrEmpty(mailEntity.getFromAddress())){
-			throw new IllegalArgumentException("mailEntity getFromAddress can't be null/empty!");
+		if (Validator.isNullOrEmpty(mailSenderConfig.getTos())){
+			throw new IllegalArgumentException("mailSenderConfig tos can't be null/empty!");
+		}
+		if (Validator.isNullOrEmpty(mailSenderConfig.getFromAddress())){
+			throw new IllegalArgumentException("mailSenderConfig fromAddress can't be null/empty!");
+		}
+
+		if (log.isDebugEnabled()){
+			log.debug("mailSenderConfig:{}", JsonUtil.format(mailSenderConfig));
 		}
 
 		// *****************************************************************************************
 		// 根据session创建一个邮件消息
-		message = this.getMessageAndSetAttribute(mailEntity);
 
-		// 设置邮件消息的主要内容
-		String mailContent = mailEntity.getContent();
-		log.debug("mailContent:{}", mailContent);
+		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
+		Session session = createSession(mailSenderConfig);
+		// 根据session创建一个邮件消息
+		message = new MimeMessage(session);
 
+		setMessageAttribute(mailSenderConfig);
+
+		setBody(mailSenderConfig);
+
+		setDefaultCommandMap();
+
+		// ***********************************************************************
+		// 发送邮件
+		Transport.send(message);
+	}
+
+	/**
+	 * 设置 default command map.<br>
+	 * <p>
+	 * 解决 bug javax.activation.UnsupportedDataTypeException: no object DCH for MIME type multipart/related;
+	 * </p>
+	 */
+	private void setDefaultCommandMap(){
+
+		MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
+		mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
+		mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
+		mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
+		mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
+		mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
+		CommandMap.setDefaultCommandMap(mailcapCommandMap);
+	}
+
+	/**
+	 * setBody.
+	 *
+	 * @param mailSenderConfig
+	 *            the body
+	 * @throws MessagingException
+	 *             the messaging exception
+	 */
+	private void setBody(MailSenderConfig mailSenderConfig) throws MessagingException{
 		// if txt
 		// message.setText(mailContent);
 
@@ -105,15 +157,15 @@ public final class MailSenderUtil{
 		// MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
 		MimeMultipart mimeMultipart = new MimeMultipart();
 
-		String mimeType = "text/html; charset=utf-8";
-		String[] attachFileNames = mailEntity.getAttachFileNames();
-
 		// 创建一个包含HTML内容的MimeBodyPart
 		BodyPart bodyPart = new MimeBodyPart();
 		// 设置HTML内容
-		bodyPart.setContent(mailContent, mimeType);
+		// 设置邮件消息的主要内容
+		bodyPart.setContent(mailSenderConfig.getContent(), mailSenderConfig.getContentMimeType());
+
 		mimeMultipart.addBodyPart(bodyPart);
 
+		String[] attachFileNames = mailSenderConfig.getAttachFileNames();
 		// html
 		if (Validator.isNullOrEmpty(attachFileNames)){
 			// nothing to do
@@ -127,8 +179,9 @@ public final class MailSenderUtil{
 			// 用于组合文本和图片，"related"型的MimeMultipart对象  
 			mimeMultipart.setSubType("related");
 
-			List<byte[]> attachList = mailEntity.getAttachList();
+			List<byte[]> attachList = mailSenderConfig.getAttachList();
 			if (Validator.isNotNullOrEmpty(attachList)){
+
 				String type = "application/octet-stream";
 
 				int size = attachList.size();
@@ -155,85 +208,49 @@ public final class MailSenderUtil{
 		// ***********************************************************************
 		// 将MiniMultipart对象设置为邮件内容
 		message.setContent(mimeMultipart);
-
-		// 解决 bug
-		// **** javax.activation.UnsupportedDataTypeException: no object DCH for MIME type
-		// multipart/related;******************************************************
-		MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
-		mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
-		mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
-		mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
-		mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
-		mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
-		CommandMap.setDefaultCommandMap(mailcapCommandMap);
-
-		// ***********************************************************************
-		// 发送邮件
-		Transport.send(message);
-	}
-
-	// ****************************************************************************************
-	/**
-	 * 根据session创建一个邮件消息.
-	 * 
-	 * @param mailEntity
-	 *            the mail entity
-	 * @return Message
-	 * @throws UnsupportedEncodingException
-	 *             the unsupported encoding exception
-	 * @throws MessagingException
-	 *             the messaging exception
-	 */
-	private Message getMessageAndSetAttribute(MailEntity mailEntity) throws UnsupportedEncodingException,MessagingException{
-		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
-		Session session = createSession(mailEntity);
-		// 根据session创建一个邮件消息
-		message = new MimeMessage(session);
-		setMessageAttribute(mailEntity);
-		return message;
 	}
 
 	/**
 	 * 设置message公共属性.
 	 * 
-	 * @param mailEntity
+	 * @param mailSenderConfig
 	 *            属性
 	 * @throws UnsupportedEncodingException
 	 *             the unsupported encoding exception
 	 * @throws MessagingException
 	 *             the messaging exception
 	 */
-	private void setMessageAttribute(MailEntity mailEntity) throws UnsupportedEncodingException,MessagingException{
-		// ***************************************************************************
-		String fromAddress = mailEntity.getFromAddress();
+	private void setMessageAttribute(MailSenderConfig mailSenderConfig) throws UnsupportedEncodingException,MessagingException{
+		String fromAddress = mailSenderConfig.getFromAddress();
 		// 设置邮件消息的发送者
-		String charset = CharsetType.GB2312;
 
-		String encodeText = MimeUtility.encodeText(mailEntity.getPersonal(), charset, "b");
+		String encodeText = MimeUtility.encodeText(mailSenderConfig.getPersonal(), personalCharset, "b");
+
 		Address addressFrom = new InternetAddress(fromAddress, encodeText);
 		message.setFrom(addressFrom);
+
 		// ***************************************************************************
 		// 设置邮件接受人群
 		// 支持 to cc bcc
-		setRecipients(mailEntity);
-		// ***************************************************************************
-		// 设置邮件消息的主题
-		message.setSubject(mailEntity.getSubject());
+		setRecipients(mailSenderConfig);
 
 		// ***************************************************************************
-		Priority priority = mailEntity.getPriority();
+		// 设置邮件消息的主题
+		message.setSubject(mailSenderConfig.getSubject());
+
+		// ***************************************************************************
+		// 邮件的优先级
+		Priority priority = mailSenderConfig.getPriority();
 		if (null != priority){
-			// 邮件的优先级
 			message.addHeader("X-Priority", priority.getLevelValue());
 		}
 		// ***************************************************************************
 		// 是否需要回执
-		if (mailEntity.getIsNeedReturnReceipt()){
+		if (mailSenderConfig.getIsNeedReturnReceipt()){
 			message.setHeader("Disposition-Notification-To", "1");
 		}
-
 		// 邮件客户端
-		message.setHeader("X-mailer", "FeiLong MailSender Api " + VERSION);
+		message.setHeader("X-mailer", HEADER_X_MAILER);
 
 		// 设置邮件消息发送的时间
 		message.setSentDate(new Date());
@@ -243,64 +260,66 @@ public final class MailSenderUtil{
 	 * 设置邮件接受人群<br>
 	 * 支持 to cc bcc.
 	 * 
-	 * @param mailEntity
+	 * @param mailSenderConfig
 	 *            the new recipients
 	 * @throws AddressException
 	 *             the address exception
 	 * @throws MessagingException
 	 *             the messaging exception
 	 */
-	private void setRecipients(MailEntity mailEntity) throws AddressException,MessagingException{
+	private void setRecipients(MailSenderConfig mailSenderConfig) throws AddressException,MessagingException{
 		// *********************to******************************************************
-		String[] tos = mailEntity.getTos();
 		// 创建邮件的接收者地址，并设置到邮件消息中
-		Address[] toAddress = new InternetAddress[tos.length];
-		for (int i = 0; i < tos.length; ++i){
-			toAddress[i] = new InternetAddress(tos[i]);
-		}
 		// Message.RecipientType.TO属性表示接收者的类型为TO
-		message.setRecipients(Message.RecipientType.TO, toAddress);
+		setRecipients(Message.RecipientType.TO, mailSenderConfig.getTos());
+		// ************************cc 抄送***************************************************
+		setRecipients(Message.RecipientType.CC, mailSenderConfig.getCcs());
+		// **********************bcc 密送*****************************************************
+		setRecipients(Message.RecipientType.BCC, mailSenderConfig.getBccs());
+	}
 
-		// ************************cc***************************************************
-		String[] ccs = mailEntity.getCcs();
-		if (Validator.isNotNullOrEmpty(ccs)){
-			// 创建邮件的接收者地址，并设置到邮件消息中
-			Address[] ccAddress = new InternetAddress[ccs.length];
-
-			for (int i = 0; i < tos.length; ++i){
-				ccAddress[i] = new InternetAddress(ccs[i]);
+	/**
+	 * 设置 邮件接收人.
+	 *
+	 * @param recipientType
+	 *            the recipient type
+	 * @param addresseArray
+	 *            the addresse array
+	 * @throws AddressException
+	 *             the address exception
+	 * @throws MessagingException
+	 *             the messaging exception
+	 * @since 1.0.8
+	 */
+	private void setRecipients(RecipientType recipientType,String[] addresseArray) throws AddressException,MessagingException{
+		if (Validator.isNotNullOrEmpty(addresseArray)){
+			final int length = addresseArray.length;
+			Address[] addresses = new InternetAddress[length];
+			for (int i = 0; i < length; ++i){
+				addresses[i] = new InternetAddress(addresseArray[i]);
 			}
-			message.setRecipients(Message.RecipientType.CC, ccAddress);
-		}
-		// **********************bcc*****************************************************
-		String[] bccs = mailEntity.getBccs();
-		if (Validator.isNotNullOrEmpty(bccs)){
-			Address[] bccAddress = new InternetAddress[bccs.length];
-			for (int i = 0; i < bccs.length; ++i){
-				bccAddress[i] = new InternetAddress(bccs[i]);
-			}
-			message.setRecipients(Message.RecipientType.BCC, bccAddress);
+			message.setRecipients(recipientType, addresses);
 		}
 	}
 
 	/**
 	 * 根据邮件会话属性和密码验证器构造一个发送邮件的session.
 	 * 
-	 * @param mailEntity
+	 * @param mailSenderConfig
 	 *            mailSenderInfo
 	 * @return Session
 	 */
-	private Session createSession(MailEntity mailEntity){
+	private Session createSession(MailSenderConfig mailSenderConfig){
 		Properties properties = new Properties();
-		properties.put("mail.smtp.host", mailEntity.getMailServerHost());
-		properties.put("mail.smtp.port", mailEntity.getMailServerPort());
-		properties.put("mail.smtp.auth", mailEntity.isValidate() ? "true" : "false");
+		properties.put("mail.smtp.host", mailSenderConfig.getMailServerHost());
+		properties.put("mail.smtp.port", mailSenderConfig.getMailServerPort());
+		properties.put("mail.smtp.auth", mailSenderConfig.isValidate() ? "true" : "false");
 		// 判断是否需要身份认证
 		Authenticator authenticator = null;
 		// 如果需要身份认证，则创建一个密码验证器
-		if (mailEntity.isValidate()){
-			final String userName = mailEntity.getUserName();
-			final String password = mailEntity.getPassword();
+		if (mailSenderConfig.isValidate()){
+			final String userName = mailSenderConfig.getUserName();
+			final String password = mailSenderConfig.getPassword();
 			authenticator = new Authenticator(){
 
 				protected PasswordAuthentication getPasswordAuthentication(){
@@ -310,8 +329,7 @@ public final class MailSenderUtil{
 		}
 		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
 		Session session = Session.getDefaultInstance(properties, authenticator);
-		session.setDebug(mailEntity.getIsDebug());
+		session.setDebug(mailSenderConfig.getIsDebug());
 		return session;
 	}
-
 }

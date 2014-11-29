@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.spring.util;
+package com.feilong.spring.web.util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

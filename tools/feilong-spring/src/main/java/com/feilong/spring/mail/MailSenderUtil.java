@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.spring.context;
+package com.feilong.spring.mail;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -44,10 +44,10 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 2:30:50 PM
  */
-public class MailUtil{
+public class MailSenderUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MailUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(MailSenderUtil.class);
 
 	/** The java mail sender. */
 	@Resource
@@ -83,7 +83,12 @@ public class MailUtil{
 	 * @param files
 	 *            the files
 	 */
-	public void sendEmail(final Map<String, Object> model,final String subject,final String vmfile,final String[] mailTo,final String[] files){
+	public void sendEmail(
+					final Map<String, Object> model,
+					final String subject,
+					final String vmfile,
+					final String[] mailTo,
+					final String[] files){
 		// 注意MimeMessagePreparator接口只有这一个回调函数
 		MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator(){
 

@@ -10,7 +10,5 @@
 		">
 	<!-- <import resource="classpath*:feilong-aop.xml"/> -->
 
-	<import resource="classpath*:spring/payment/spring-payment.xml" />
-
-	<!-- <alias name="" alias="" /> -->
+	<import resource="classpath*:spring\payment\payment\spring-payment-adaptor.xml" />
 </beans>
