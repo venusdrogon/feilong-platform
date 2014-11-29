@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_AlipayWapAdaptor" location="classpath:config/payment/payment/adaptor-alipay-wap.properties"></util:properties>
+	<util:properties id="p_AlipayWapAdaptor" local-override="true" location="classpath:config/payment/payment/adaptor-alipay-wap.properties"></util:properties>
 
 	<!-- 支付宝支付 -->
 	<bean id="alipayWapAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapAdaptor">

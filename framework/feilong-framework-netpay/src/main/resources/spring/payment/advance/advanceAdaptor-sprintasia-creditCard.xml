@@ -7,7 +7,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_SprintAsiaCreditCardAdvance" location="classpath:config/payment/advance/advanceAdaptor-sprintasia-creditCard.properties"></util:properties>
+	<util:properties id="p_SprintAsiaCreditCardAdvance" local-override="true"
+	location="classpath:config/payment/advance/advanceAdaptor-sprintasia-creditCard.properties"></util:properties>
 
 	<!-- sprintAsiaCreditCardAdvanceAdaptor -->
 	<bean id="sprintAsiaCreditCardAdvanceAdaptor" class="com.feilong.framework.netpay.advance.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdvanceAdaptor">

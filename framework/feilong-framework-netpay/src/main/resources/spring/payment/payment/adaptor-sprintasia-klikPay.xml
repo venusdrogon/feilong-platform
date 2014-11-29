@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_SprintAsiaKlikPayAdaptor" location="classpath:config/payment/payment/adaptor-sprintasia-klikPay.properties"></util:properties>
+	<util:properties id="p_SprintAsiaKlikPayAdaptor" local-override="true" location="classpath:config/payment/payment/adaptor-sprintasia-klikPay.properties"></util:properties>
 
 	<!-- sprintAsiaKlikPayAdaptor -->
 	<bean id="sprintAsiaKlikPayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor">
@@ -16,7 +16,7 @@
 		<property name="klikPayCode" value="#{p_SprintAsiaKlikPayAdaptor['klikPayCode']}" />
 		<property name="currencyDefault" value="#{p_SprintAsiaKlikPayAdaptor['currencyDefault']}" />
 		<property name="clearkey" value="#{p_SprintAsiaKlikPayAdaptor['clearkey']}" />
-		
+
 		<property name="pricePattern" value="#{p_SprintAsiaKlikPayAdaptor['pricePattern']}" />
 		<property name="transactionDatePattern" value="#{p_SprintAsiaKlikPayAdaptor['transactionDatePattern']}" />
 	</bean>

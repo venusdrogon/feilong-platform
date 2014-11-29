@@ -7,7 +7,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<context:property-placeholder location="classpath*:config/payment/advance/advanceAdaptor-tcash.properties,classpath*:config/payment/payment/adaptor-tcash.properties" />
+	<context:property-placeholder local-override="true"
+		location="classpath*:config/payment/advance/advanceAdaptor-tcash.properties,classpath*:config/payment/payment/adaptor-tcash.properties" />
 
 	<!-- TcashAdvanceAdaptor -->
 	<bean id="tcashAdvanceAdaptor" class="com.feilong.framework.netpay.advance.adaptor.tcash.TcashAdvanceAdaptor">

@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_DokuAdvance" location="classpath:config/payment/advance/advanceAdaptor-doku.properties"></util:properties>
+	<util:properties id="p_DokuAdvance" local-override="true" location="classpath:config/payment/advance/advanceAdaptor-doku.properties"></util:properties>
 
 	<!--dokuAdvanceAdaptor -->
 	<bean id="dokuAdvanceAdaptor" class="com.feilong.framework.netpay.advance.adaptor.doku.DokuAdvanceAdaptor">

@@ -9,7 +9,7 @@
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>DEBUG</level>
+			<level>trace</level>
 		</filter>
 
 		<!-- 注意 logback 的括号需要转义 -->
@@ -26,16 +26,20 @@
 
 	<!-- ****************************common***************************************** -->
 	<logger name="httpclient.wire" level="warn" />
+
 	<logger name="org.springframework.jdbc.core.JdbcTemplate" level="warn" />
-	<logger name="com.google.code" level="warn" />
-	<logger name="net.rubyeye.xmemcached" level="warn" />
+	<logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info" />
+	<logger name="org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader" level="info" />
+	<logger name="org.springframework.beans.factory.xml.DefaultNamespaceHandlerResolver" level="info" />
+	<logger name="org.springframework.beans.factory.xml.DefaultDocumentLoader" level="info" />
+
 	<logger name="org.apache.commons.digester.Digester" level="warn" />
 	<logger name="org.apache.commons.beanutils.ConvertUtilsBean" level="warn" />
 	<logger name="org.apache.commons.beanutils.converters" level="warn" />
 	<logger name="org.apache.commons.beanutils.converters.AbstractConverter" level="warn" />
 	<logger name="com.google.code.ssm.spring.SSMCache" level="debug" />
 
-	<root level="debug">
+	<root level="trace">
 		<appender-ref ref="CONSOLE" />
 	</root>
 </configuration>

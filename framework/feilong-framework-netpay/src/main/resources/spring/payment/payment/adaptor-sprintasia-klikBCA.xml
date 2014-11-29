@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_SprintAsiaKlikBCAAdaptor" location="classpath:config/payment/payment/adaptor-sprintasia-klikBCA.properties"></util:properties>
+	<util:properties id="p_SprintAsiaKlikBCAAdaptor" local-override="true" location="classpath:config/payment/payment/adaptor-sprintasia-klikBCA.properties"></util:properties>
 
 	<!-- sprintAsiaKlikBCAAdaptor -->
 	<bean id="sprintAsiaKlikBCAAdaptor" class="com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor">

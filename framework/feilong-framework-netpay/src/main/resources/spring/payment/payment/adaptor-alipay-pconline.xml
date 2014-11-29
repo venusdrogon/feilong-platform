@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<util:properties id="p_AlipayOnlineAdaptor" location="classpath:config/payment/payment/adaptor-alipay-pconline.properties"></util:properties>
+	<util:properties id="p_AlipayOnlineAdaptor" local-override="true" location="classpath:config/payment/payment/adaptor-alipay-pconline.properties"></util:properties>
 
 	<!-- baseAlipayOnlineAdaptor -->
 	<bean id="baseAlipayOnlineAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor" abstract="true">

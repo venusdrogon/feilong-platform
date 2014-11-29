@@ -7,8 +7,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<context:property-placeholder location="classpath*:config/payment/payment/adaptor-tcash.properties" />
-	
+	<context:property-placeholder local-override="true" location="classpath*:config/payment/payment/adaptor-tcash.properties" />
+
 	<!-- tcashPayAdaptor -->
 	<bean id="tcashPayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.tcash.TcashPayAdaptor">
 		<property name="terminalId" value="${tcash.terminalId}" />
@@ -19,7 +19,7 @@
 
 		<property name="publicTokenURL" value="${tcash.publicTokenURL}" />
 		<property name="landingPageURL" value="${tcash.landingPageURL}" />
-		
+
 		<property name="submitMethod" value="${tcash.submit.method}" />
 		<property name="pricePattern" value="${tcash.pricePattern}" />
 	</bean>
