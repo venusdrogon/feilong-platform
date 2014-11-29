@@ -15,7 +15,7 @@
  */
 package com.feilong.spring.context;
 
-import static org.junit.Assert.*;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -23,7 +23,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
+
 /**
+ * The Class ApplicationContextUtilTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月30日 上午3:36:58
@@ -32,33 +35,16 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 @ContextConfiguration(locations = { "classpath:spring-DI.xml" })
 public class ApplicationContextUtilTest extends AbstractJUnit4SpringContextTests{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ApplicationContextUtilTest.class);
 
 	/**
 	 * Test.
 	 */
 	@Test
-	public void test(){
-		log.debug("applicationContext.getBeanDefinitionCount():{}", applicationContext.getBeanDefinitionCount());
-
-		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-		log.debug("applicationContext.getBeanDefinitionNames():{}", beanDefinitionNames);
-		for (String beanDefinitionName : beanDefinitionNames){
-			Object bean = applicationContext.getBean(beanDefinitionName);
-
-			String scope = applicationContext.isPrototype(beanDefinitionName) ? "Prototype" : (applicationContext
-							.isSingleton(beanDefinitionName) ? "Singleton" : "");
-			//applicationContext.FACTORY_BEAN_PREFIX;
-			Object[] objects = { beanDefinitionName, bean.getClass().getName(), scope };
-			log.debug("[beanDefinitionName]:{},[bean]:{},scope:[{}]", objects);
-		}
-
-		log.debug("applicationContext.getDisplayName():{}", applicationContext.getDisplayName());
-
-		log.debug("applicationContext.getId():{}", applicationContext.getId());
-		//3.1.0
-		//log.debug("applicationContext.getEnvironment():{}", applicationContext.getEnvironment());
-		log.debug("applicationContext.getStartupDate():{}", applicationContext.getStartupDate());
-
+	public final void test(){
+		Map<String, Object> applicationContextForLogMap = ApplicationContextUtil.getApplicationContextForLogMap(applicationContext);
+		log.debug("ApplicationContextForLogMap:{}", JsonUtil.format(applicationContextForLogMap));
+		log.info("" + applicationContext.containsBean("paymentAdaptorFactory"));
 	}
 }

@@ -34,6 +34,19 @@
 		<priority value="debug" />
 	</category>
 
+	<logger name="org.apache.commons.digester.Digester">
+		<level value="warn"></level>
+	</logger>
+	<logger name="org.apache.commons.beanutils.ConvertUtilsBean">
+		<level value="warn"></level>
+	</logger>
+	<logger name="org.apache.commons.beanutils.converters">
+		<level value="warn"></level>
+	</logger>
+	<logger name="org.apache.commons.beanutils.converters.AbstractConverter">
+		<level value="warn"></level>
+	</logger>
+
 	<!-- 设置接收所有输出的通道 -->
 	<root>
 		<level value="debug" />

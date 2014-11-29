@@ -62,18 +62,23 @@ public final class ApplicationContextUtil{
 		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
 		Arrays.sort(beanDefinitionNames);
 
-		applicationContextForLogMap.put("applicationContext.getBeanDefinitionNames()", beanDefinitionNames);
+		//applicationContextForLogMap.put("applicationContext.getBeanDefinitionNames()", beanDefinitionNames);
 
 		Map<String, Object> beanDefinitionNamesAndClassMap = new LinkedHashMap<String, Object>();
 		for (String beanDefinitionName : beanDefinitionNames){
 			try{
-				beanDefinitionNamesAndClassMap.put(beanDefinitionName, applicationContext.getBean(beanDefinitionName).getClass()
-								.getCanonicalName());
+				Object bean = applicationContext.getBean(beanDefinitionName);
+				String canonicalName = bean.getClass().getCanonicalName();
+				Object vObject = canonicalName
+								+ (applicationContext.isPrototype(beanDefinitionName) ? "[Prototype]" : (applicationContext
+												.isSingleton(beanDefinitionName) ? "[Singleton]" : ""));
+				beanDefinitionNamesAndClassMap.put(beanDefinitionName, vObject);
 			}catch (BeansException e){
 				//e.printStackTrace();
 				beanDefinitionNamesAndClassMap.put(beanDefinitionName, e.getMessage());
 			}
 		}
+
 		applicationContextForLogMap.put("beanDefinitionNamesAndClassMap", beanDefinitionNamesAndClassMap);
 
 		Environment environment = applicationContext.getEnvironment();
