@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-net-httpcore</artifactId>
+  <version>1.0.8-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20141130.080834</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20141130080834</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0.8-20141130.080834-1</value>
+        <updated>20141130080834</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.8-20141130.080834-1</value>
+        <updated>20141130080834</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
