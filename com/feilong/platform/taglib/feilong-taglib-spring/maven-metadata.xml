@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.taglib</groupId>
   <artifactId>feilong-taglib-spring</artifactId>
   <versioning>
-    <release>1.0.7</release>
     <versions>
-      <version>1.0.7</version>
+      <version>1.0.8-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20140716024626</lastUpdated>
+    <lastUpdated>20141130080415</lastUpdated>
   </versioning>
 </metadata>
