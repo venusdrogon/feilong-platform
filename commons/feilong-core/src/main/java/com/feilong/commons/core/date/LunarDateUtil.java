@@ -20,7 +20,7 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.PropertiesConstants;
+import com.feilong.commons.core.MessageConstants;
 
 /**
  * 阴历(农历)日期.
@@ -44,7 +44,7 @@ public final class LunarDateUtil{
 	 * @return 如 星期一
 	 */
 	public static String getChineseWeek(int week){
-		return PropertiesConstants.CONFIG_DATE_WEEK + DateDictionary.WEEK_CHINESES[week];
+		return MessageConstants.DATE_WEEK + DateDictionary.WEEK_CHINESES[week];
 	}
 
 	/**
@@ -63,7 +63,7 @@ public final class LunarDateUtil{
 		int month;
 		int day;
 		int offSetDays = LunarDateUtil.getLNewYearOffsetDays(lunarYear, lunarMonth, lunarDay)
-				+ DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[lunarYear - 1901];
+						+ DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[lunarYear - 1901];
 		int yearDays = DateUtil.isLeapYear(lunarYear) ? 366 : 365;
 		if (offSetDays >= yearDays){
 			year = lunarYear + 1;

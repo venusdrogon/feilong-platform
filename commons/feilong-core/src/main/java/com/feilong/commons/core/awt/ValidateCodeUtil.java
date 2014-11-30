@@ -22,7 +22,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import com.feilong.commons.core.PropertiesConstants;
+import com.feilong.commons.core.ConfigConstants;
 import com.feilong.commons.core.enumeration.FontType;
 
 /**
@@ -51,14 +51,14 @@ public final class ValidateCodeUtil{
 	 */
 	public static String generateValidateCode(int showCodeCount){
 		// 备选字符的长度
-		int length = PropertiesConstants.CONFIG_VALIDATECODE_NUMBERSANDLITTLELETTERS.length();
+		int length = ConfigConstants.VALIDATECODE_NUMBERSANDLITTLELETTERS.length();
 		// 创建随机类的实例
 		Random random = new Random();
 		// 保存生成的汉字字符串
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < showCodeCount; ++i){
 			int start = random.nextInt(length);
-			String rand = PropertiesConstants.CONFIG_VALIDATECODE_NUMBERSANDLITTLELETTERS.substring(start, start + 1);
+			String rand = ConfigConstants.VALIDATECODE_NUMBERSANDLITTLELETTERS.substring(start, start + 1);
 			stringBuilder.append(rand);
 		}
 		return stringBuilder.toString();

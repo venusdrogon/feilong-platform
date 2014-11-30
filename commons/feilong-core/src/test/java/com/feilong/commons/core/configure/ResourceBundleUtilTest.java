@@ -33,7 +33,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.PropertiesConstants;
+import com.feilong.commons.core.MessageConstants;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
@@ -63,7 +63,7 @@ public class ResourceBundleUtilTest{
 	public final void testGetValue(){
 		String aString = ResourceBundleUtil.getValue(baseName, "config_test_array");
 		log.debug(aString);
-		log.debug(PropertiesConstants.CONFIG_DATE_DAY);
+		log.debug(MessageConstants.DATE_DAY);
 	}
 
 	/**

@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.PropertiesConstants;
+import com.feilong.commons.core.ConfigConstants;
 
 /**
  * The Class RandomUtilTest.
@@ -30,7 +30,6 @@ import com.feilong.commons.core.PropertiesConstants;
  * @version 1.0 2011-7-25 下午04:24:50
  * @since 1.0
  */
-@SuppressWarnings("deprecation")
 public class RandomUtilTest{
 
 	/** The Constant log. */
@@ -70,8 +69,8 @@ public class RandomUtilTest{
 	 */
 	@Test
 	public final void testgetRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERSANDALLLETTERS, 5));
-		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 200));
+		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERSANDALLLETTERS, 5));
+		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 200));
 	}
 
 	/**
@@ -79,7 +78,7 @@ public class RandomUtilTest{
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testgetRandomFromString1(){
-		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 0));
+		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 0));
 	}
 
 	/**
@@ -95,7 +94,7 @@ public class RandomUtilTest{
 	 */
 	@Test
 	public final void createRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(PropertiesConstants.CONFIG_NUMBERS, 8, 20));
+		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 8, 20));
 	}
 
 	/**

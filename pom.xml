@@ -34,8 +34,8 @@
 		<developer.feilong.name>feilong</developer.feilong.name>
 		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
 
-		<native2ascii.pattern>**/*.properties</native2ascii.pattern>
-		<native2ascii.encoding>utf-8</native2ascii.encoding>
+		<native2ascii-maven-plugin.pattern>**/*.properties</native2ascii-maven-plugin.pattern>
+		<native2ascii-maven-plugin.encoding>utf-8</native2ascii-maven-plugin.encoding>
 
 		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
@@ -803,10 +803,10 @@
 							<goal>native2ascii</goal>
 						</goals>
 						<configuration>
-							<encoding>${native2ascii.encoding}</encoding>
+							<encoding>${native2ascii-maven-plugin.encoding}</encoding>
 							<includes>
-								<include>classes\${native2ascii.pattern}</include>
-								<include>test-classes\${native2ascii.pattern}</include>
+								<include>classes\${native2ascii-maven-plugin.pattern}</include>
+								<include>test-classes\${native2ascii-maven-plugin.pattern}</include>
 							</includes>
 							<workDir>${project.build.directory}</workDir>
 							<tempDir>${project.build.directory}</tempDir>
