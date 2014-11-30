@@ -1,9 +1,0 @@
-<project name="feilong-test-struts2" basedir="." default="explorer-test-feilong" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
-	<property name="app.name" value="${ant.project.name}" />
-	<property file="E:/Data/java/Taglib/Apache Ant/config/build-feilong.properties" />
-
-	<property name="deploy.home" value="${basedir}/src/main/webapp" />
-
-	<import file="E:/Data/java/Taglib/Apache Ant/config/build-config-nested.xml" />
-	<import file="E:/Data/java/Taglib/Apache Ant/config/build-feilong-nested.xml" />
-</project>

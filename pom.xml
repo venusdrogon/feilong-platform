@@ -182,7 +182,7 @@
 		<v.maven-war-plugin>2.4</v.maven-war-plugin>
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
-		<v.site-maven-plugin>0.9</v.site-maven-plugin>
+		<v.site-maven-plugin>0.10</v.site-maven-plugin>
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 	</properties>
 
@@ -226,7 +226,6 @@
 		<module>framework</module>
 		<module>webservice</module>
 		<module>data</module>
-		<module>test</module>
 	</modules>
 
 	<dependencies>
@@ -689,6 +688,43 @@
 				<groupId>org.logback-extensions</groupId>
 				<artifactId>logback-ext-spring</artifactId>
 				<version>${version.logbackExtSpring}</version>
+			</dependency>
+
+			<!--jul桥接 用来输出 Java Logging Framework (JUL) java.util.logging.* -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
+			<!-- jcl桥接，用来输出 第三方Jakarta Commons Logging (JCL) -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
+			<!--************************* tiles******************* -->
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-core</artifactId>
+				<version>${version.tiles}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl-over-slf4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-api</artifactId>
+				<version>${version.tiles}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-jsp</artifactId>
+				<version>${version.tiles}</version>
 			</dependency>
 
 		</dependencies>
