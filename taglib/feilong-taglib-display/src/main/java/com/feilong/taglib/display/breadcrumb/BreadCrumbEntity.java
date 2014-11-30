@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.taglib.display.sitemap;
+package com.feilong.taglib.display.breadcrumb;
 
 import java.io.Serializable;
 
@@ -23,16 +23,16 @@ import java.io.Serializable;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-2-16 下午12:55:43
- * @param <T>
+ * @param <PK>
  *            the generic type
  */
-public class SiteMapEntity<T> implements Serializable{
+public class BreadCrumbEntity<PK> implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -2739340747216481761L;
 
 	/** current id, 可以是Number String 或者其他类型.. */
-	private T					id;
+	private PK					id;
 
 	/** name,用于拼接. */
 	private String				name;
@@ -44,12 +44,12 @@ public class SiteMapEntity<T> implements Serializable{
 	private String				requestMapping;
 
 	/** parent id ,可以是Number String 或者其他类型.. */
-	private T					parentId;
+	private PK					parentId;
 
 	/**
 	 * Instantiates a new site map entity.
 	 */
-	public SiteMapEntity(){
+	public BreadCrumbEntity(){
 		super();
 	}
 
@@ -67,7 +67,7 @@ public class SiteMapEntity<T> implements Serializable{
 	 * @param parentId
 	 *            the parent id
 	 */
-	public SiteMapEntity(T id, String name, String title, String requestMapping, T parentId){
+	public BreadCrumbEntity(PK id, String name, String title, String requestMapping, PK parentId){
 		super();
 		this.id = id;
 		this.name = name;
@@ -138,7 +138,7 @@ public class SiteMapEntity<T> implements Serializable{
 	 * 
 	 * @return the id
 	 */
-	public T getId(){
+	public PK getId(){
 		return id;
 	}
 
@@ -148,7 +148,7 @@ public class SiteMapEntity<T> implements Serializable{
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(T id){
+	public void setId(PK id){
 		this.id = id;
 	}
 
@@ -158,7 +158,7 @@ public class SiteMapEntity<T> implements Serializable{
 	 * @param parentId
 	 *            the parentId to set
 	 */
-	public void setParentId(T parentId){
+	public void setParentId(PK parentId){
 		this.parentId = parentId;
 	}
 
@@ -167,7 +167,7 @@ public class SiteMapEntity<T> implements Serializable{
 	 * 
 	 * @return the parentId
 	 */
-	public T getParentId(){
+	public PK getParentId(){
 		return parentId;
 	}
 }

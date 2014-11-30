@@ -37,7 +37,7 @@ import com.feilong.tools.velocity.VelocityUtil;
 public class BreadCrumbTagTest{
 
 	/** The Constant log. */
-	private static final Logger					log				= LoggerFactory.getLogger(BreadCrumbTagTest.class);
+	private static final Logger						log				= LoggerFactory.getLogger(BreadCrumbTagTest.class);
 
 	/** The site map entities. */
 	private static List<BreadCrumbEntity<Number>>	siteMapEntities	= new ArrayList<BreadCrumbEntity<Number>>();
@@ -68,7 +68,7 @@ public class BreadCrumbTagTest{
 	 */
 	@Test
 	public void testGetAllParentSiteMapEntityList(){
-		String path = "/test82.htm";
+		String path = "/test8.htm";
 		BreadCrumbTag siteMapTag = new BreadCrumbTag();
 		List<BreadCrumbEntity<Number>> allParentSiteMapEntityList = siteMapTag.getAllParentSiteMapEntityList(path, siteMapEntities);
 		log.info("show");

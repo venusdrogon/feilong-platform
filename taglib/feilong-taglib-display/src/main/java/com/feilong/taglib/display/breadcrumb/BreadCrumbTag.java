@@ -13,11 +13,11 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.taglib.display.sitemap;
+package com.feilong.taglib.display.breadcrumb;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,18 +36,18 @@ import com.feilong.tools.velocity.VelocityUtil;
  * 
  * @author 金鑫 2010-6-8 上午05:50:38
  */
-public class SiteMapTag extends AbstractCommonTag{
+public class BreadCrumbTag extends AbstractCommonTag{
 
-	private static final long			serialVersionUID	= -8596553099620845748L;
+	private static final long				serialVersionUID	= -8596553099620845748L;
 
 	/** The Constant log. */
-	private static final Logger			log					= LoggerFactory.getLogger(SiteMapTag.class);
+	private static final Logger				log					= LoggerFactory.getLogger(BreadCrumbTag.class);
 
 	/** 连接符,默认>. */
-	private String						connector			= ">";
+	private String							connector			= ">";
 
 	/** siteMapEntityList,用户所有可以访问的菜单url List. */
-	private List<SiteMapEntity<Object>>	siteMapEntityList;
+	private List<BreadCrumbEntity<Object>>	siteMapEntityList;
 
 	/**
 	 * 实现自定义站点地图数据提供程序的途径.
@@ -98,9 +98,9 @@ public class SiteMapTag extends AbstractCommonTag{
 	 *            the site map entities
 	 * @return the all parent site map entity list
 	 */
-	public <T> List<SiteMapEntity<T>> getAllParentSiteMapEntityList(String currentPath,List<SiteMapEntity<T>> siteMapEntities){
+	public <T> List<BreadCrumbEntity<T>> getAllParentSiteMapEntityList(String currentPath,List<BreadCrumbEntity<T>> siteMapEntities){
 		log.info("currentPath:{}", currentPath);
-		SiteMapEntity<T> siteMapEntity_in = getSiteMapEntityByPath(currentPath, siteMapEntities);
+		BreadCrumbEntity<T> siteMapEntity_in = getSiteMapEntityByPath(currentPath, siteMapEntities);
 		return getAllParentSiteMapEntityList(siteMapEntity_in, siteMapEntities);
 	}
 
@@ -113,12 +113,14 @@ public class SiteMapTag extends AbstractCommonTag{
 	 *            the site map entities
 	 * @return the all parent site map entity list
 	 */
-	public <T> List<SiteMapEntity<T>> getAllParentSiteMapEntityList(SiteMapEntity<T> siteMapEntity_in,List<SiteMapEntity<T>> siteMapEntities){
+	public <T> List<BreadCrumbEntity<T>> getAllParentSiteMapEntityList(
+			BreadCrumbEntity<T> siteMapEntity_in,
+			List<BreadCrumbEntity<T>> siteMapEntities){
 		if (null == siteMapEntity_in){
 			return null;
 		}
 		// 每次成一个新的
-		List<SiteMapEntity<T>> allParentSiteMapEntityList = new LinkedList<SiteMapEntity<T>>();
+		List<BreadCrumbEntity<T>> allParentSiteMapEntityList = new ArrayList<BreadCrumbEntity<T>>();
 		constructParentSiteMapEntityList(siteMapEntity_in, siteMapEntities, allParentSiteMapEntityList);
 		log.info("before Collections.reverse,allParentSiteMapEntityList size:{}", allParentSiteMapEntityList.size());
 		// for (SiteMapEntity sme : allParentSiteMapEntityList){
@@ -145,17 +147,17 @@ public class SiteMapTag extends AbstractCommonTag{
 	 *            the all parent site map entity list
 	 */
 	private <T> void constructParentSiteMapEntityList(
-			SiteMapEntity<T> siteMapEntity_in,
-			List<SiteMapEntity<T>> siteMapEntities,
-			List<SiteMapEntity<T>> allParentSiteMapEntityList){
+			BreadCrumbEntity<T> siteMapEntity_in,
+			List<BreadCrumbEntity<T>> siteMapEntities,
+			List<BreadCrumbEntity<T>> allParentSiteMapEntityList){
 		// 加入到链式表
 		allParentSiteMapEntityList.add(siteMapEntity_in);
 		Object parentId = siteMapEntity_in.getParentId();
 
 		// 标识 是否找到parent node
-		SiteMapEntity<T> siteMapEntity_parent = null;
+		BreadCrumbEntity<T> siteMapEntity_parent = null;
 		// ****************************************************
-		for (SiteMapEntity<T> loopSiteMapEntity : siteMapEntities){
+		for (BreadCrumbEntity<T> loopSiteMapEntity : siteMapEntities){
 			// 当前的id和传入的siteMapEntity equals
 			if (loopSiteMapEntity.getId().equals(parentId)){
 				log.info("loopSiteMapEntity.getId():{},siteMapEntity_in.getParentId():{}", loopSiteMapEntity.getId(), parentId);
@@ -178,10 +180,10 @@ public class SiteMapTag extends AbstractCommonTag{
 	 *            the site map entities
 	 * @return the site map entity by path
 	 */
-	public <T> SiteMapEntity<T> getSiteMapEntityByPath(String currentPath,List<SiteMapEntity<T>> siteMapEntities){
+	public <T> BreadCrumbEntity<T> getSiteMapEntityByPath(String currentPath,List<BreadCrumbEntity<T>> siteMapEntities){
 		boolean flag = false;
-		SiteMapEntity<T> siteMapEntity_return = null;
-		for (SiteMapEntity<T> siteMapEntity : siteMapEntities){
+		BreadCrumbEntity<T> siteMapEntity_return = null;
+		for (BreadCrumbEntity<T> siteMapEntity : siteMapEntities){
 			if (siteMapEntity.getRequestMapping().equals(currentPath)){
 				flag = true;
 				siteMapEntity_return = siteMapEntity;
@@ -189,7 +191,7 @@ public class SiteMapTag extends AbstractCommonTag{
 			}
 		}
 		if (!flag){
-			log.warn("currentPath is :{},can't find match SiteMapEntity", currentPath);
+			log.warn("currentPath is :{},can't find match BreadCrumbEntity", currentPath);
 		}
 		return siteMapEntity_return;
 	}
@@ -210,7 +212,7 @@ public class SiteMapTag extends AbstractCommonTag{
 	 * @param siteMapEntityList
 	 *            the new siteMapEntityList,用户所有可以访问的菜单url List
 	 */
-	public void setSiteMapEntityList(List<SiteMapEntity<Object>> siteMapEntityList){
+	public void setSiteMapEntityList(List<BreadCrumbEntity<Object>> siteMapEntityList){
 		this.siteMapEntityList = siteMapEntityList;
 	}
 
