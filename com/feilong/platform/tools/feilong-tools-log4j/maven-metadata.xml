@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-tools-log4j</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.8-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20141130082943</lastUpdated>
+  </versioning>
+</metadata>
