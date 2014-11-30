@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 public class ShutdownAbleSMTPAppender extends SMTPAppender{
 
 	/** The Constant log. */
+	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(ShutdownAbleSMTPAppender.class);
 
 	/**
@@ -51,7 +52,9 @@ public class ShutdownAbleSMTPAppender extends SMTPAppender{
 
 	//MTPAppender 实现是，每当isTriggeringEvent（）这个方法返回true的时候，它都会发送邮件。这样的话，一个程序执行下来，每个有能力触发的事件都会形成一封邮件。这显然不是我们希望看到的场面。
 	// 笔者继承了SMTPAppender类，重装了append方法。          
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.log4j.net.SMTPAppender#append(org.apache.log4j.spi.LoggingEvent)
 	 */
 	public void append(LoggingEvent loggingEvent){

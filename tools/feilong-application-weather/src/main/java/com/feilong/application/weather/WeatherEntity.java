@@ -7,5 +7,5 @@ package com.feilong.application.weather;
  * @version 1.0 2011-2-6 下午01:42:40
  * @since 1.0
  */
-// TODO 转换成对象
+// XXX 转换成对象
 public class WeatherEntity{}

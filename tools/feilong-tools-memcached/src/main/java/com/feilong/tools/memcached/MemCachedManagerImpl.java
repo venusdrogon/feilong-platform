@@ -18,9 +18,9 @@ package com.feilong.tools.memcached;
 import java.util.concurrent.Future;
 
 import loxia.support.cache.NullObject;
-
 import net.spy.memcached.MemcachedClient;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +47,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#set(java.lang.String, java.lang.Object)
 	 */
 	@Override
@@ -57,6 +58,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#incr(java.lang.String, int)
 	 */
 	public long incr(String key,int by){
@@ -65,6 +67,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#decr(java.lang.String, int)
 	 */
 	public long decr(String key,int by){
@@ -73,6 +76,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#set(java.lang.String, int, java.lang.Object)
 	 */
 	@Override
@@ -87,6 +91,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#get(java.lang.String)
 	 */
 	@Override
@@ -113,6 +118,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#delete(java.lang.String)
 	 */
 	@Override
@@ -122,6 +128,7 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#shutDown()
 	 */
 	@Override
@@ -131,12 +138,11 @@ public class MemCachedManagerImpl implements MemCachedManager{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#flushAll()
 	 */
 	@Override
 	public void flushAll(){
-		// TODO Auto-generated method stub
-
+		throw new NotImplementedException("flushAll is not implemented!");
 	}
-
 }

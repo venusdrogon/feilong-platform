@@ -57,7 +57,7 @@ public class YiChengPay{
 			action = post_url_test;
 		}
 
-		// TODO 转成vm写法
+		// XXX 转成vm写法
 
 		// stringBuilder.append("<form action=\"" + action + "\" method=\"post\" target=\"_blank\">");
 		// stringBuilder.append(Constants.lineSeparator);

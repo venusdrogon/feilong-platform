@@ -73,8 +73,8 @@ public class ResultUtil{
 	 *             the invocation target exception
 	 */
 	public static Object convertResultToObjectOneBean(Result result,Class<?> clz,String...fieldNames) throws SecurityException,
-			NoSuchFieldException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
-			IllegalAccessException,InvocationTargetException{
+					NoSuchFieldException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
+					IllegalAccessException,InvocationTargetException{
 		if (isEmpty(result)){
 			return null;
 		}
@@ -145,7 +145,7 @@ public class ResultUtil{
 	 *             the invocation target exception
 	 */
 	public static List<?> convertResultToList(Result result,Class<?> clz) throws SecurityException,IllegalArgumentException,
-			ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,InvocationTargetException{
+					ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,InvocationTargetException{
 		if (isEmpty(result)){
 			return null;
 		}
@@ -154,6 +154,8 @@ public class ResultUtil{
 
 	/**
 	 * 将Result转成list.
+	 * 
+	 * @param <T>
 	 * 
 	 * @param result
 	 *            结果集
@@ -177,19 +179,19 @@ public class ResultUtil{
 	 * @throws InvocationTargetException
 	 *             the invocation target exception
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static List convertResultToList(Result result,Class<?> clz,String...fileds) throws SecurityException,IllegalArgumentException,
-			ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,InvocationTargetException{
+	public static <T> List<T> convertResultToList(Result result,Class<T> clz,String...fileds) throws SecurityException,
+					IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,IllegalAccessException,
+					InvocationTargetException{
 		if (isEmpty(result)){
 			return null;
 		}
-		List list = new ArrayList();
-		SortedMap<Object, Object>[] sortedMaps = result.getRows();
+		List<T> list = new ArrayList<T>();
+		SortedMap<?, ?>[] sortedMaps = result.getRows();
 		// 是否取字段
 		boolean isGetFileds = Validator.isNotNullOrEmpty(fileds);
-		Object bean;
+		T bean;
 		String className = clz.getName();
-		for (SortedMap<Object, Object> sortedMap : sortedMaps){
+		for (SortedMap<?, ?> sortedMap : sortedMaps){
 			// 实例化
 			bean = ConstructorUtil.newInstance(className);
 			if (isGetFileds){
@@ -218,7 +220,7 @@ public class ResultUtil{
 	 * @param fileds
 	 *            字段
 	 */
-	public static void getSortedMapValueToBean(SortedMap sortedMap,Object bean,String...fileds){
+	public static void getSortedMapValueToBean(SortedMap<?, ?> sortedMap,Object bean,String...fileds){
 		if (Validator.isNotNullOrEmpty(sortedMap) && Validator.isNotNullOrEmpty(bean) && Validator.isNotNullOrEmpty(fileds)){
 			String value = "";
 			for (String filed : fileds){
@@ -244,7 +246,7 @@ public class ResultUtil{
 	 * @param fileds
 	 *            字段
 	 */
-	public static void getSortedMapValueToBeanAutoChangeRegulateFiled(SortedMap sortedMap,Object bean,String...fileds){
+	public static void getSortedMapValueToBeanAutoChangeRegulateFiled(SortedMap<?, ?> sortedMap,Object bean,String...fileds){
 		if (Validator.isNotNullOrEmpty(fileds)){
 			for (int i = 0, j = fileds.length; i < j; ++i){
 				fileds[i] = convertNameToPropertyName(fileds[i]);
@@ -322,7 +324,7 @@ public class ResultUtil{
 		if (ResultUtil.isEmpty(result)){
 			return null;
 		}
-		SortedMap sortedMap = result.getRows()[0];
+		SortedMap<?, ?> sortedMap = result.getRows()[0];
 		Object object = sortedMap.get(result.getColumnNames()[0]);
 		return object;
 	}
@@ -337,7 +339,7 @@ public class ResultUtil{
 	 *            字段名称
 	 * @return 获得result row的特定字段的值
 	 */
-	public static Object getSortedMapValueByKey(SortedMap sortedMap,Object key){
+	public static Object getSortedMapValueByKey(SortedMap<?, ?> sortedMap,Object key){
 		return sortedMap.get(key);
 	}
 
@@ -350,7 +352,7 @@ public class ResultUtil{
 	 *            filedName
 	 * @return 获得result row的特定字段的值,并去除空格
 	 */
-	public static String getSortedMapValueByKeyWithTrim(SortedMap sortedMap,Object key){
+	public static String getSortedMapValueByKeyWithTrim(SortedMap<?, ?> sortedMap,Object key){
 		return ObjectUtil.trim(getSortedMapValueByKey(sortedMap, key));
 	}
 
@@ -363,7 +365,7 @@ public class ResultUtil{
 	 *            filedName
 	 * @return 获得result row的特定字段的值,并转成Integer类型
 	 */
-	public static Integer getSortedMapValueByKeyAndToInteger(SortedMap sortedMap,Object key){
+	public static Integer getSortedMapValueByKeyAndToInteger(SortedMap<?, ?> sortedMap,Object key){
 		Object value = getSortedMapValueByKey(sortedMap, key);
 		return ObjectUtil.toInteger(value);
 	}

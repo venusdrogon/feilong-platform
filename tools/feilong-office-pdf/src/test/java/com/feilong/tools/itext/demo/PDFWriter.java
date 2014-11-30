@@ -77,10 +77,8 @@ abstract public class PDFWriter{
 		}catch (FileNotFoundException e){
 			log.error(e.getClass().getName(), e);
 		}catch (DocumentException e){
-			// TODO Auto-generated catch block 
 			log.error(e.getClass().getName(), e);
 		}
-
 	}
 
 	/**
@@ -91,9 +89,7 @@ abstract public class PDFWriter{
 			document.close();
 			out.close();
 		}catch (IOException e){
-			// TODO Auto-generated catch block 
 			log.error(e.getClass().getName(), e);
 		}
 	}
-
 }

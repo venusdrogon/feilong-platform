@@ -74,42 +74,6 @@ public class NumberUtilTest implements NumberPattern{
 	}
 
 	/**
-	 * 获得 progress.
-	 *
-	 * @param current
-	 *            the current
-	 * @param total
-	 *            the total
-	 * @param numberPattern
-	 *            the number pattern
-	 * @return the progress
-	 */
-	public final static String getProgress(Number current,Number total,String numberPattern){
-		if (null == current){
-			return "0001";
-		}
-		if (null == total){
-			return "0002";
-		}
-
-		if (current.intValue() <= 0){
-			return "0003";
-		}
-		if (total.intValue() <= 0){
-			return "0004";
-		}
-
-		if (current.doubleValue() > total.doubleValue()){
-			return "0005";
-		}
-		// XXX
-		int scale = 8;
-		BigDecimal bigDecimalCurrent = new BigDecimal(current.toString());
-		BigDecimal divideValue = NumberUtil.getDivideValue(bigDecimalCurrent, total, scale);
-		return NumberUtil.toString(divideValue, numberPattern);
-	}
-
-	/**
 	 * Gets the progress3.
 	 * 
 	 */

@@ -144,10 +144,11 @@ public final class ServletContextUtil{
 	 * @deprecated
 	 */
 	public static String getFileContent(ServletContext servletContext,String directoryName,String fileName) throws IOException{
-		String filePathString = servletContext.getRealPath("/");
 		if (Validator.isNullOrEmpty(fileName)){
 			throw new IllegalArgumentException("fileName can't be null/empty");
 		}
+		
+		String filePathString = servletContext.getRealPath("/");
 		if (Validator.isNullOrEmpty(directoryName)){
 			filePathString = filePathString + fileName;
 		}else{

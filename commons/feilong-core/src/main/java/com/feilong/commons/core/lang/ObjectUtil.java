@@ -52,7 +52,7 @@ public final class ObjectUtil{
 	 * @since 1.0.7
 	 * @see ByteArrayOutputStream#size()
 	 */
-	//TODO 这个需要check下,可能有更好的方案
+	//XXX 这个需要check下,可能有更好的方案
 	public static int size(Object serializable) throws IOException{
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);

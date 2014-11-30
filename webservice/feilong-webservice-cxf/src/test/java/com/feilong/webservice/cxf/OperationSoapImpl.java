@@ -1,4 +1,5 @@
 package com.feilong.webservice.cxf;
+
 ///*
 // * Copyright (C) 2008 feilong (venusdrogon@163.com)
 // *
@@ -155,7 +156,6 @@ package com.feilong.webservice.cxf;
 //			}
 //		}catch (Exception e){
 //			log.info("Error");
-//			// TODO Auto-generated catch block
 //			log.error(e.getClass().getName(), e);
 //		}
 //	}

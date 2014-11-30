@@ -62,4 +62,10 @@ public class UnwelcomeGuest{
 	}
 }
 
-class IdUnavailableException extends Exception{}
+class IdUnavailableException extends Exception{
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= -6244077060287554241L;
+}

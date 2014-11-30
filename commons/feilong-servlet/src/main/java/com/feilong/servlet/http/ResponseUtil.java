@@ -242,7 +242,6 @@ public final class ResponseUtil{
 			response.setContentType(contentType);
 		}
 
-		//TODO
 		//缺省情况下:服务端要输出到客户端的内容,不直接写到客户端,而是先写到一个输出缓冲区中.只有在下面三中情况下，才会把该缓冲区的内容输出到客户端上： 
 		//缓冲区的优点是：我们暂时不输出，直到确定某一情况时，才将写入缓冲区的数据输出到浏览器，否则就将缓冲区的数据取消。
 		//response.setBufferSize(10240);

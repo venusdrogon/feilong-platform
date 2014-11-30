@@ -729,6 +729,7 @@ public final class RequestUtil{
 	 * @return 原样获得参数值
 	 * @deprecated
 	 */
+	@Deprecated
 	public static String getParameterAsItIsDecode(HttpServletRequest request,String paramName){
 		String returnValue = null;
 		String queryString = request.getQueryString();

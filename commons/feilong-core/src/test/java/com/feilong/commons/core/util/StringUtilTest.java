@@ -45,6 +45,7 @@ public class StringUtilTest{
 	/**
 	 * Search count.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void searchCount(){
 		String source = "jiiiiiinxin.feilong";

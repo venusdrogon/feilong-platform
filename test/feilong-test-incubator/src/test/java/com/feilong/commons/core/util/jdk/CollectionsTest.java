@@ -248,7 +248,5 @@ public class CollectionsTest{
 	 */
 	@Test
 	public void testCollectionsTest(){
-		List<String> el1 = null;
-		//assertEquals(expected, actual);
 	}
 }

@@ -559,11 +559,12 @@ public class SkuCategory implements BaseModel,Serializable{
 		return SkuCategory.class;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode(){
-		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
 }
