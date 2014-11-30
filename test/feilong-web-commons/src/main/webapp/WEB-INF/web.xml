@@ -3,4 +3,6 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
+	<!-- war need web.xml when maven install -->
 </web-app>
