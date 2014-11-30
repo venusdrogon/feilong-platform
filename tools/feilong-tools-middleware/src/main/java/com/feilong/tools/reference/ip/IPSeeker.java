@@ -15,7 +15,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.MessageConstants;
 import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
@@ -44,7 +43,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * 注意，这个文件里的ip地址和所有的偏移量均采用little-endian格式，而java是采用big-endian格式的，要注意转换
  * </pre>
  */
-@SuppressWarnings("all")public class IPSeeker{
+public class IPSeeker{
 
 	private final static Logger	log					= LoggerFactory.getLogger(IPSeeker.class);
 
