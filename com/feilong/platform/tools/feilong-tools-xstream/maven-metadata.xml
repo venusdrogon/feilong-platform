@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-tools-xstream</artifactId>
   <versioning>
-    <release>1.0.7</release>
     <versions>
-      <version>1.0.7</version>
+      <version>1.0.8-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20140716025201</lastUpdated>
+    <lastUpdated>20141130082851</lastUpdated>
   </versioning>
 </metadata>
