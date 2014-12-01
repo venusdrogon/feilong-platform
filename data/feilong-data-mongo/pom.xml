@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.feilong.platform.data</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.8-SNAPSHOT</version>
+		<version>1.0.8</version>
 	</parent>
 	<artifactId>feilong-data-mongo</artifactId>
 	<name>feilong-data-mongo</name>
