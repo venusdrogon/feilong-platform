@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-net-httpcore</artifactId>
   <versioning>
+    <release>1.0.8</release>
     <versions>
-      <version>1.0.8-SNAPSHOT</version>
+      <version>1.0.8</version>
     </versions>
-    <lastUpdated>20141130191800</lastUpdated>
+    <lastUpdated>20141201032336</lastUpdated>
   </versioning>
 </metadata>
