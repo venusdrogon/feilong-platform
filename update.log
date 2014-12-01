@@ -1,5 +1,150 @@
-1.0.4
+1.0.8
+	add 
+		add MessageConstants ,ConfigConstants
+		add URIParseException
+		add com.feilong.commons.core.util.ListUtil.removeAll(Collection<T>,
+Collection<T>)
+		add feilong-tools-log4j module
+		add writeUseNIO(int bufferLength,InputStream inputStream,OutputStream outputStream) method
+		add MimeTypeUtil
+		add feilong-chart-core and feilong-chart-amcharts
+		
+		add DateExtensionUtil
+		
+		MapUtil …
+			add Map<K, V> sortByValueASC(Map<K, V> map)
+			add sortByValueDESC(Map<K, V> map)
+			add sortByValue(Map<K, V> map,Comparator<Map.Entry<K, V>> comparator)
+			
+		CollectionsUtil …
+			add getPropertyValueSet(Collection<O> objectCollection,String propertyName)
+			add select(Collection<O> objectCollection,Predicate predicate)
+			add  sum/avg/groupOne/group method
+			
+		JsonUtil …
+			add format(Object obj,String[] excludes,int indentFactor,int indent)
+			add format(Object obj,JsonConfig jsonConfig,int indentFactor,int indent)
+			
+			
+		ArrayUtil 
+			add group method …
 
+	
+	update
+		site-maven-plugin version update to 0.10
+		spring bean util:properties add local-override="true" attribute
+		update e.printStackTrace(); to log("",e)
+		update esapi dependency 'optional' element = true
+		maven-clean-plugin version update to 2.6.1
+		maven-compiler-plugin version update to 3.2
+		maven-javadoc-plugin version update to 2.10.1
+		
+		dependencyManagement add logback-core logback-classic logback-access logback-ext-spring 
+		
+		(deprecated) feilong-tools-html module 
+		feilong-ssh module (will restructure)
+		feilong-spring module (will restructure)
+		
+		pom.xml, httpcomponents update to 4.3.3 commons-io update to 2.4 add httpmime ,httpclient dependency
+		update <version.spring> from 3.2.10.RELEASE to 3.2.12.RELEASE 
+		update version.junit version to 4.11
+		move some test class
+		rename feilong-tools-jfreechart to feilong-chart-jfreechart
+		update amcharts to 3.11.1.free version
+		add feilong-amcharts3.js
+		update feilong-tools-jfresschart to feilong-chart-jfresschart
+		
+		move ParamUtil to feilong-core
+		
+		update javamail version 1.4.7
+		
+		jsoup from 1.6.1 update to 1.7.3
+		jdk from 1.7 update to 1.8
+
+	remove
+		remove feilong-tools-incubator module
+		remove resources module
+		remove test module
+		remove some repeated dependency ,some dependency add 'optional'=true
+		
+1.0.7 Releases
+	
+	update to 1.0.7 …
+	
+	add project:
+	add feilong-tools-zookeeper
+	add feilong-taglib-display
+	
+	update RandomUtil,新增 全局实例（static） Random对象
+	
+	add com.feilong.commons.core.lang.reflect package
+	
+	大幅度更新javadoc
+	优化加密解密工具类,更新了包名 com.feilong.commons.security
+	
+	update commons-beanutils to version 1.9.2
+	
+	rename CollectionUtil to CollectionsUtil
+	
+	add StringUtil#tokenizeToStringArray and update javadoc
+	rename StringUtil.convertStringToT to StringUtil.toT
+	
+	delete feilong-tools-cxf,new webservice maven project model,add …
+	feilong-webservice-cxf and feilong-webservice-jws
+	
+	product jre update to 1.7
+	
+	add DateUtil.getWeekOfYear(Date) method,
+	
+	move sql package to feilong-db-jdbc project
+	
+	rename FileUtil formatFileSize to formatSize
+	
+	add package com.feilong.commons.core.bean ,and move BeanUtil
+	
+	remove Constants,System.getProperty("line.separator") can use …
+	Commons-lang SystemUtils.LINE_SEPARATOR
+	
+	update RegexUtil,and add group function
+	
+	FileUtil add getFileTopParentName
+	
+	add MySQL5UTF8Dialect
+	
+	move ObjectUtil to com.feilong.commons.core.lang package
+	
+	change jsonUtil to com.feilong.commons.core.tools.json package		
+		
+1.0.6 Releases
+	feilong venusdrogon released this on 13 May · 334 commits to master since this release
+	
+	core add:
+	
+	EnumUtil ,you can use this class  getEnumByField
+	add project:
+	feilong-framework-bind ,you can use this project to do params-object
+	mapping
+	
+	update project:
+	
+	feilong-framework-netpay ,Separation payment and advance(support
+	close/query)
+	
+	Other details	
+	
+1.0.5
+	feilong venusdrogon released this on 20 Apr
+	
+	update taglib		
+
+1.0.4
+	feilong venusdrogon released this on 25 Mar · 436 commits to master since this release
+	
+	1.update feilong security framework
+	2.update feilong feilong-netpay framework
+	3.URIUtil.getBefore(url) to URIUtil.getBeforePath(url)
+	4.update slf4j 1.6.4 to 1.7.6
+	5.update log4j 1.2.6 to 1.2.7
 
 1.0.3
 	1.update feilong security framework
