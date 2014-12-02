@@ -230,31 +230,27 @@
 	</modules>
 
 	<dependencies>
-		<!--***************************** test************************** -->
-		<!-- junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-
 		<!--******** slf4j******** -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.feilong.test</groupId>
-			<artifactId>feilong-common-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-
 		<!-- slf4j-log4j12 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>${scope.slf4j-log4j12}</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- log4j -->
 		<dependency>
@@ -262,6 +258,27 @@
 			<artifactId>log4j</artifactId>
 			<scope>${scope.log4j}</scope>
 		</dependency>
+
+		<!--***************************** test************************** -->
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.test</groupId>
+			<artifactId>feilong-common-test</artifactId>
+			<scope>test</scope>
+			<!-- <exclusions>
+				<exclusion>
+				<artifactId>*</artifactId>
+				<groupId>*</groupId>
+				</exclusion>
+				</exclusions> -->
+		</dependency>
+
 	</dependencies>
 
 	<!--*******************************dependencyManagement******************************************* -->
