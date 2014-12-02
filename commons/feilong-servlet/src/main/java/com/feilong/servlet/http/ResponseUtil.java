@@ -35,6 +35,7 @@ import com.feilong.commons.core.io.MimeTypeUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.servlet.http.entity.HttpHeaders;
 
 /**
  * HttpServletResponse 工具类.
@@ -275,7 +276,7 @@ public final class ResponseUtil{
 	 *            跳转路径
 	 */
 	public static void setNoCacheAndRedirect(HttpServletResponse response,String url){
-		setNoCache(response);
+		setNoCacheHeader(response);
 		try{
 			response.sendRedirect(url);
 		}catch (IOException e){
@@ -289,15 +290,18 @@ public final class ResponseUtil{
 	 * @param response
 	 *            HttpServletResponse
 	 */
-	public static void setNoCache(HttpServletResponse response){
+	public static void setNoCacheHeader(HttpServletResponse response){
 		// 当HTTP1.1服务器指定 CacheControl = no-cache时，浏览器就不会缓存该网页。
 		// 旧式 HTTP1.0 服务器不能使用 Cache-Control 标题
+
 		// 为了向后兼容 HTTP1.0 服务器，IE使用Pragma:no-cache 标题对 HTTP提供特殊支持
 		// 如果客户端通过安全连接 (https://)/与服务器通讯，且服务器响应中返回 Pragma:no-cache 标题，则 Internet Explorer不会缓存此响应。
 		// 注意：Pragma:no-cache 仅当在安全连接中使用时才防止缓存，如果在非安全页中使用，处理方式与 Expires:-1相同，该页将被缓存，但被标记为立即过期
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-control", "no-cache");// Cache-control值为“no-cache”时，访问此页面不会在Internet临时文章夹留下页面备份。
-		response.setDateHeader("Expires", 0);
+		response.setHeader(HttpHeaders.PRAGMA, "No-cache");
+
+		// Cache-control值为“no-cache”时，访问此页面不会在Internet临时文章夹留下页面备份。
+		response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
+		response.setDateHeader(HttpHeaders.EXPIRES, 0);
 	}
 
 	/**

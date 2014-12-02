@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.servlet.http;
+package com.feilong.servlet.http.entity;
 
 /**
  * 解析 Request 使用的常量<br>

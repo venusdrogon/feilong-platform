@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.Validator;
+import com.feilong.servlet.http.entity.CookieEntity;
 
 /**
  * 飞龙cookies 类.

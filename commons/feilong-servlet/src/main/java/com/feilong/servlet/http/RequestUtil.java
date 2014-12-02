@@ -34,6 +34,9 @@ import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.servlet.http.entity.HttpHeaders;
+import com.feilong.servlet.http.entity.RequestConstants;
+import com.feilong.servlet.http.entity.RequestLogSwitch;
 
 /**
  * HttpServletRequest工具类.

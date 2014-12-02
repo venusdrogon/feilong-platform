@@ -13,7 +13,7 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.servlet.http;
+package com.feilong.servlet.http.entity;
 
 import java.io.Serializable;
 

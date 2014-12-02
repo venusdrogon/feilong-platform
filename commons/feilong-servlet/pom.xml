@@ -30,6 +30,12 @@
 				使用可靠依赖的原因是:某一个项目实现了多个特性，依据单一职责原则，更好的做法是他建多个Maven项目，用户根据需要选择使用哪个Maven项目。
 			-->
 			<optional>true</optional>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-fileupload</artifactId>
+					<groupId>commons-fileupload</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- -->
@@ -53,6 +59,11 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
 		</dependency>
 
 		<!-- <dependency>

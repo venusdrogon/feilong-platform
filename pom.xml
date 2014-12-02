@@ -127,7 +127,8 @@
 
 		<version.jsoup>1.7.3</version.jsoup>
 		<version.jfreechart>1.0.14</version.jfreechart>
-		<version.jsp-api>2.1</version.jsp-api>
+		<version.jsp-api>2.2</version.jsp-api>
+		<version.el-api>2.2</version.el-api>
 		<version.jstl>1.2</version.jstl>
 		<version.junit>4.11</version.junit>
 
@@ -601,6 +602,13 @@
 				<groupId>javax.servlet.jsp</groupId>
 				<artifactId>jsp-api</artifactId>
 				<version>${version.jsp-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>el-api</artifactId>
+				<version>${version.el-api}</version>
 				<scope>provided</scope>
 			</dependency>
 

@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.feilong.commons.core.util.Validator;
-import com.feilong.servlet.http.HttpHeaders;
+import com.feilong.servlet.http.entity.HttpHeaders;
 
 /**
  * 通用的 父类 AbstractController.

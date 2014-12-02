@@ -67,7 +67,6 @@ public final class SessionUtil{
 	 * @see HttpSession#getAttributeNames()
 	 * @see HttpSession#isNew()
 	 */
-	@SuppressWarnings({ "cast", "unchecked" })
 	public static Map<String, Object> getSessionMapForLog(HttpSession session){
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
@@ -109,6 +108,7 @@ public final class SessionUtil{
 			// 返回服务器创建的一个SESSION,客户端是否已经加入 
 			map.put("session.isNew()", session.isNew());
 
+			@SuppressWarnings({ "cast", "unchecked" })
 			Enumeration<String> attributeNames = (Enumeration<String>) session.getAttributeNames();
 			map.put("session.getAttributeNames()", CollectionsUtil.toList(attributeNames));
 		}
@@ -125,9 +125,10 @@ public final class SessionUtil{
 	 *            the session
 	 * @return the attribute map
 	 */
-	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getAttributeMap(HttpSession session){
 		Map<String, Object> map = new HashMap<String, Object>();
+
+		@SuppressWarnings("unchecked")
 		Enumeration<String> attributeNames = session.getAttributeNames();
 		while (attributeNames.hasMoreElements()){
 			String name = attributeNames.nextElement();
@@ -185,7 +186,9 @@ public final class SessionUtil{
 	 * @param object
 	 *            request or session
 	 * @return 获取属性值Integer类型
+	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
 	 */
+	@Deprecated
 	public static Integer getAttributeToInteger(String attributeName,Object object){
 		Object value = getAttribute(attributeName, object);
 		return ObjectUtil.toInteger(value);
@@ -199,7 +202,9 @@ public final class SessionUtil{
 	 * @param object
 	 *            request or session
 	 * @return 获取属性值BigDecimal类型
+	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
 	 */
+	@Deprecated
 	public static BigDecimal getAttributeToBigDecimal(String attributeName,Object object){
 		Object value = getAttribute(attributeName, object);
 		return ObjectUtil.toBigDecimal(value);
@@ -213,7 +218,9 @@ public final class SessionUtil{
 	 * @param object
 	 *            request or session
 	 * @return 将属性值转换成字符串
+	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
 	 */
+	@Deprecated
 	public static String getAttributeToString(String attributeName,Object object){
 		return ObjectUtil.toString(getAttribute(attributeName, object));
 	}
@@ -226,7 +233,9 @@ public final class SessionUtil{
 	 * @param object
 	 *            request or session
 	 * @return 直接获取属性值
+	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
 	 */
+	@Deprecated
 	public static Object getAttribute(String attributeName,Object object){
 		HttpSession session = null;
 		if (object instanceof HttpServletRequest){

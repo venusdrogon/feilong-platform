@@ -77,7 +77,7 @@ public class JsonView extends AbstractView{
 		response.setContentType(getContentType());
 		response.setCharacterEncoding(encoding);
 
-		ResponseUtil.setNoCache(response);
+		ResponseUtil.setNoCacheHeader(response);
 		// response.setHeader("Pragma", "No-cache");
 		// response.setHeader("Cache-Control", "no-cache");
 		// response.setDateHeader("Expires", 0);

@@ -70,7 +70,7 @@ public class CaptchaServlet extends HttpServlet{
 	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 
 		// 设置页面不缓存
-		ResponseUtil.setNoCache(response);
+		ResponseUtil.setNoCacheHeader(response);
 		// 保存生成的汉字字符串
 		String validateCode = ValidateCodeUtil.generateValidateCode(4);
 
