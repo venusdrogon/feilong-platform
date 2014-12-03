@@ -43,14 +43,14 @@ public final class ObjectUtil{
 
 	/**
 	 * 返回对象内存大小.
-	 * 
+	 *
 	 * @param serializable
 	 *            the object
 	 * @return the int
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
-	 * @since 1.0.7
 	 * @see ByteArrayOutputStream#size()
+	 * @since 1.0.7
 	 */
 	//XXX 这个需要check下,可能有更好的方案
 	public static int size(Object serializable) throws IOException{
@@ -72,9 +72,9 @@ public final class ObjectUtil{
 	 * <li>{@link java.util.Enumeration}</li>
 	 * </ul>
 	 * 转成Iterator.
-	 * 
+	 *
 	 * @param <T>
-	 * 
+	 *            the generic type
 	 * @param object
 	 *            <ul>
 	 *            <li>逗号分隔的字符串</li>
@@ -88,7 +88,6 @@ public final class ObjectUtil{
 	 *         <li>如果 null == object 返回null,</li>
 	 *         <li>否则转成Iterator</li>
 	 *         </ul>
-	 * 
 	 * @see ArrayUtil#toIterator(Object)
 	 * @see Collection#iterator()
 	 * @see Iterator

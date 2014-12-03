@@ -40,12 +40,12 @@ public final class Slf4jUtil{
 	 * 在java中,常会拼接字符串生成新的字符串值,在字符串拼接过程中 容易写错或者位置写错<br>
 	 * <br>
 	 * slf4j的log支持格式化输出log,比如:<br>
+	 * </p>
 	 * <ul>
 	 * <li>log.error("{}","feilong");</li>
 	 * <li>log.info("{},{}","feilong","hello");</li>
 	 * </ul>
 	 * 这些写法非常简洁且有效,不易出错
-	 * </p>
 	 * 
 	 * <br>
 	 * 因此,你可以在代码中出现这样的写法:

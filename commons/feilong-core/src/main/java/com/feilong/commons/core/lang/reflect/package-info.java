@@ -18,7 +18,7 @@
  * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
  * @version 1.0.7 2014年7月14日 下午5:24:41 
  * @see org.apache.commons.lang3.reflect
- * @see org.springframework.util.ReflectionUtils
+ * @see "org.springframework.util.ReflectionUtils"
  * @since 1.0.7
  */
 package com.feilong.commons.core.lang.reflect;

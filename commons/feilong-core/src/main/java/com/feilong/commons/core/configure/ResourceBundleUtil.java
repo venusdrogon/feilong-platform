@@ -276,7 +276,7 @@ public final class ResourceBundleUtil implements BaseConfigure{
 	 *            如果是String.class,则返回的是String []数组<br>
 	 *            如果是Integer.class,则返回的是Integer [] 数组
 	 * @return 以value.split(spliter),如果 资源值不存在,返回null
-	 * @see #com.feilong.commons.core.configure.ResourceBundleUtil.getValue(ResourceBundle, String)
+	 * @see #getValue(ResourceBundle, String)
 	 * @see com.feilong.commons.core.util.StringUtil#splitToTArray(String, String, Class)
 	 */
 	@SuppressWarnings("unchecked")

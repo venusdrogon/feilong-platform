@@ -32,16 +32,16 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * 
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
- * <tr bgcolor="#ccccff">
+ * <tr style="background-color:#ccccff">
  * <th align=left>字段</th>
  * <th align=left>说明</th>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>file.encoding <br>
  * {@link SystemUtils#FILE_ENCODING}</td>
  * <td>utf-8</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>file.separator <br>
  * {@link SystemUtils#FILE_SEPARATOR}</td>
  * <td>\\</td>
@@ -50,22 +50,22 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * {@link SystemUtils#JAVA_HOME}</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.io.tmpdir <br>
  * {@link SystemUtils#JAVA_IO_TMPDIR}</td>
  * <td>C:\\Users\\feilong\\AppData\\Local\\Temp\\</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.version <br>
  * {@link SystemUtils#JAVA_VERSION}</td>
  * <td>1.6.0_37</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>line.separator <br>
  * {@link SystemUtils#LINE_SEPARATOR}</td>
  * <td>\r\n</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>user.dir <br>
  * {@link SystemUtils#USER_DIR}</td>
  * <td>E:\\Workspaces\\feilong\\feilong-platform\\commons\\feilong-core</td>
@@ -83,7 +83,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * 
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
- * <tr bgcolor="#ccccff">
+ * <tr style="background-color:#ccccff">
  * <th align=left>字段</th>
  * <th align=left>说明</th>
  * </tr>
@@ -100,7 +100,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.awt.graphicsenv</td>
  * <td>sun.awt.Win32GraphicsEnvironment</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.awt.printerjob</td>
  * <td>sun.awt.windows.WPrinterJob</td>
  * </tr>
@@ -131,7 +131,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * Soft/Essential/Development/eclipse-jee-kepler-SR2-win32/configuration/org.eclipse.osgi/bundles/378/1/.cp/;/D:/FeiLong
  * Soft/Essential/Development/eclipse-jee-kepler-SR2-win32/configuration/org.eclipse.osgi/bundles/377/1/.cp/</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.class.version</td>
  * <td>50.0</td>
  * </tr>
@@ -139,7 +139,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.endorsed.dirs</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\endorsed</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.ext.dirs</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\ext;C:\\Windows\\Sun\\Java\\lib\\ext</td>
  * </tr>
@@ -158,7 +158,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * Soft\\Datebase\\postgresql\\postgresql-9.2.4-1-windows-x64-binaries\\bin;;D:\\FeiLong
  * Soft\\Essential\\Development\\eclipse-jee-kepler-SR2-win32;;.</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.runtime.name</td>
  * <td>Java(TM) SE Runtime Environment</td>
  * </tr>
@@ -166,7 +166,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.runtime.version</td>
  * <td>1.6.0_37-b06</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.specification.name</td>
  * <td>Java Platform API Specification</td>
  * </tr>
@@ -174,7 +174,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.specification.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.specification.version</td>
  * <td>1.6</td>
  * </tr>
@@ -182,7 +182,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.vendor.url</td>
  * <td>http://java.sun.com/</td>
  * </tr>
@@ -195,7 +195,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.vm.info</td>
  * <td>mixed mode</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.vm.name</td>
  * <td>Java HotSpot(TM) Client VM</td>
  * </tr>
@@ -203,7 +203,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.vm.specification.name</td>
  * <td>Java Virtual Machine Specification</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.vm.specification.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
@@ -211,7 +211,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>java.vm.specification.version</td>
  * <td>1.0</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>java.vm.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
@@ -224,7 +224,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>os.arch</td>
  * <td>x86</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>os.name</td>
  * <td>Windows 7</td>
  * </tr>
@@ -232,7 +232,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>os.version</td>
  * <td>6.1</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>path.separator</td>
  * <td>;</td>
  * </tr>
@@ -240,7 +240,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>sun.arch.data.model</td>
  * <td>32</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>sun.boot.class.path</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\resources.jar;D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\rt.jar;D:\\Program
  * Files\\Java\\jdk1.6.0_37\\jre\\lib\\sunrsasign.jar;D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\jsse.jar;D:\\Program
@@ -251,7 +251,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>sun.boot.library.path</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\bin</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>sun.cpu.endian</td>
  * <td>little</td>
  * </tr>
@@ -259,7 +259,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>sun.cpu.isalist</td>
  * <td>pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>sun.desktop</td>
  * <td>windows</td>
  * </tr>
@@ -267,7 +267,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>sun.io.unicode.encoding</td>
  * <td>UnicodeLittle</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>sun.java.command</td>
  * <td>org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 60401 -testLoaderClass
  * org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -test
@@ -277,7 +277,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>sun.java.launcher</td>
  * <td>SUN_STANDARD</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>sun.jnu.encoding</td>
  * <td>GBK</td>
  * </tr>
@@ -285,7 +285,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>sun.management.compiler</td>
  * <td>HotSpot Client Compiler</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>sun.os.patch.level</td>
  * <td>Service Pack 1</td>
  * </tr>
@@ -294,7 +294,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>CN</td>
  * </tr>
  * 
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>user.language</td>
  * <td>zh</td>
  * </tr>
@@ -302,7 +302,7 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * <td>user.name</td>
  * <td>feilong</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>user.timezone</td>
  * <td>Asia/Bangkok</td>
  * </tr>
@@ -344,7 +344,7 @@ public final class SystemUtil{
 	 * @see System#getenv()
 	 * @see System#getenv(String)
 	 * @see java.util.TreeMap
-	 * @see org.springframework.core.env.AbstractEnvironment#getSystemEnvironment()
+	 * @see "org.springframework.core.env.AbstractEnvironment#getSystemEnvironment()"
 	 */
 	public final static Map<String, String> getEnvMapForLog(){
 		Map<String, String> envMap = System.getenv();

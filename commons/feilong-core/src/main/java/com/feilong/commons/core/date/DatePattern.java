@@ -24,7 +24,7 @@ import java.util.Date;
  * </p>
  * <blockquote>
  * <table border=1 cellspacing=0 cellpadding=4 summary="Chart shows pattern letters, date/time component, presentation, and examples.">
- * <tr bgcolor="#ccccff">
+ * <tr style="background-color:#ccccff">
  * <th align=left>Letter</th>
  * <th align=left>Date or Time Component</th>
  * <th align=left>Presentation</th>
@@ -36,7 +36,7 @@ import java.util.Date;
  * <td><a href="#text">Text</a></td>
  * <td><code>AD</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>y</code></td>
  * <td>Year</td>
  * <td><a href="#year">Year</a></td>
@@ -48,7 +48,7 @@ import java.util.Date;
  * <td><a href="#month">Month</a></td>
  * <td><code>July</code>; <code>Jul</code>; <code>07</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>w</code></td>
  * <td>Week in year</td>
  * <td><a href="#number">Number</a></td>
@@ -60,7 +60,7 @@ import java.util.Date;
  * <td><a href="#number">Number</a></td>
  * <td><code>2</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>D</code></td>
  * <td>Day in year</td>
  * <td><a href="#number">Number</a></td>
@@ -72,7 +72,7 @@ import java.util.Date;
  * <td><a href="#number">Number</a></td>
  * <td><code>10</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>F</code></td>
  * <td>Day of week in month</td>
  * <td><a href="#number">Number</a></td>
@@ -84,7 +84,7 @@ import java.util.Date;
  * <td><a href="#text">Text</a></td>
  * <td><code>Tuesday</code>; <code>Tue</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>a</code></td>
  * <td>Am/pm marker</td>
  * <td><a href="#text">Text</a></td>
@@ -96,7 +96,7 @@ import java.util.Date;
  * <td><a href="#number">Number</a></td>
  * <td><code>0</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>k</code></td>
  * <td>Hour in day (1-24)</td>
  * <td><a href="#number">Number</a></td>
@@ -108,7 +108,7 @@ import java.util.Date;
  * <td><a href="#number">Number</a></td>
  * <td><code>0</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>h</code></td>
  * <td>Hour in am/pm (1-12)</td>
  * <td><a href="#number">Number</a></td>
@@ -120,7 +120,7 @@ import java.util.Date;
  * <td><a href="#number">Number</a></td>
  * <td><code>30</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>s</code></td>
  * <td>Second in minute</td>
  * <td><a href="#number">Number</a></td>
@@ -131,7 +131,7 @@ import java.util.Date;
  * <td><a href="#number">Number</a></td>
  * <td><code>978</code></td>
  * </tr>
- * <tr bgcolor="#eeeeff">
+ * <tr style="background-color:#eeeeff">
  * <td><code>z</code></td>
  * <td>Time zone</td>
  * <td><a href="#timezone">General time zone</a></td>

@@ -66,7 +66,7 @@ import com.feilong.commons.core.util.Validator;
  * 
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
- * <tr bgcolor="#ccccff">
+ * <tr style="background-color:#ccccff">
  * <th align=left>Character</th>
  * <th align=left>Escape Code</th>
  * </tr>
@@ -74,7 +74,7 @@ import com.feilong.commons.core.util.Validator;
  * <td>Ampersand &</td>
  * <td>&amp;</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>Single Quote '</td>
  * <td>&apos;</td>
  * </tr>
@@ -82,7 +82,7 @@ import com.feilong.commons.core.util.Validator;
  * <td>Double Quote "</td>
  * <td>&quot;</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td>Greater Than {@code >}</td>
  * <td>&gt;</td>
  * </tr>

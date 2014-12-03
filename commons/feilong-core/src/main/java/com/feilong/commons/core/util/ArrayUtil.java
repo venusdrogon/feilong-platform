@@ -134,7 +134,7 @@ public final class ArrayUtil{
 	 * @param arrays
 	 *            T数组
 	 * @return 数组转成 List(ArrayList)<br>
-	 *         if Validator.isNullOrEmpty(arrays), return null,else return new ArrayList<T>(Arrays.asList(arrays));
+	 *         if Validator.isNullOrEmpty(arrays), return null,else return {@code new ArrayList<T>(Arrays.asList(arrays));}
 	 * @see java.util.Arrays#asList(Object...)
 	 */
 	public static <T> List<T> toList(T[] arrays){

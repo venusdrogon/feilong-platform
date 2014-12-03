@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
  * </p>
  * <blockquote>
  * <table border=1 cellspacing=0 cellpadding=4 summary="Chart showing symbol, * location, localized, and meaning.">
- * <tr bgcolor="#ccccff">
+ * <tr style="background-color:#ccccff">
  * <th align=left>Symbol</th>
  * <th align=left>Location</th>
  * <th align=left>Localized?</th>
@@ -36,7 +36,7 @@ import java.text.DecimalFormat;
  * <td>代表阿拉伯数字，每一个0表示一位阿拉伯数字， 如果该位不存在则显示0<br>
  * 如果对应位置上没有数字，则用零代替</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td><code>#</code></td>
  * <td>Number</td>
  * <td>Yes</td>
@@ -49,7 +49,7 @@ import java.text.DecimalFormat;
  * <td>Yes</td>
  * <td>小数点分隔符或货币的小数分隔符</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td><code>-</code></td>
  * <td>Number</td>
  * <td>Yes</td>
@@ -61,7 +61,7 @@ import java.text.DecimalFormat;
  * <td>Yes</td>
  * <td>Grouping separator分组分隔符</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td><code>E</code></td>
  * <td>Number</td>
  * <td>Yes</td>
@@ -73,7 +73,7 @@ import java.text.DecimalFormat;
  * <td>Yes</td>
  * <td>Separates positive and negative subpatterns</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td><code>%</code></td>
  * <td>Prefix or suffix</td>
  * <td>Yes</td>
@@ -85,7 +85,7 @@ import java.text.DecimalFormat;
  * <td>Yes</td>
  * <td>Multiply by 1000 and show as per mille value乘以1000并显示为千分数</td>
  * </tr>
- * <tr valign=top bgcolor="#eeeeff">
+ * <tr valign=top style="background-color:#eeeeff">
  * <td><code>&#164;</code> (<code>&#92;u00A4</code>)</td>
  * <td>Prefix or suffix</td>
  * <td>No</td>

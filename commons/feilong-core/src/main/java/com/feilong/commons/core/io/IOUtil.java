@@ -88,8 +88,7 @@ public final class IOUtil{
 			return stringBuffer.toString();
 		}catch (IOException e){
 			e.printStackTrace();
-			
-			
+
 		}finally{
 			try{
 				inputStream.close();
@@ -103,13 +102,14 @@ public final class IOUtil{
 	/**
 	 * 将网络文件 下载到文件夹.
 	 * 取到网络文件的文件名 原样下载到目标文件夹.
-	 * 
+	 *
 	 * @param url
 	 *            网络任意文件<br>
 	 *            url 不能带参数
 	 * @param directoryName
 	 *            目标文件夹
 	 * @throws IOException
+	 *             the IO exception
 	 * @see IOWriteUtil#write(InputStream, String, String)
 	 */
 	public static void down(String url,String directoryName) throws IOException{

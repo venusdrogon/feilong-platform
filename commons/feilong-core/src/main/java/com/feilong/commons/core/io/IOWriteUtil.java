@@ -36,10 +36,9 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * 提供写文件操作
- * <p>
  * 
  * <ul>
- * <li>{@link #write(InputStream, OutputStream)} 写资源,速度最快的方法,速度比较请看 电脑资料 <<压缩解压性能探究>></li>
+ * <li>{@link #write(InputStream, OutputStream)} 写资源,速度最快的方法,速度比较请看 电脑资料 {@code <<压缩解压性能探究>>}</li>
  * <li>{@link #write(String, String)} 将字符串写到文件中</li>
  * <li>{@link #write(InputStream, String, String)} 将inputStream 写到 某个文件夹,名字为fileName</li>
  * <li>{@link #write(String, String, String)} 将字符串/文字写到文件中</li>
@@ -243,13 +242,11 @@ public final class IOWriteUtil{
 	/**
 	 * 将字符串写到文件中
 	 * 
-	 * <p>
 	 * <ul>
 	 * <li>如果文件不存在,自动创建;包括其父文件夹(级联创建文件夹)</li>
 	 * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
 	 * <li>如果不设置encode,则默认使用 {@link CharsetType#GBK}编码</li>
 	 * </ul>
-	 * </p>
 	 * 
 	 * @param filePath
 	 *            文件路径
