@@ -25,7 +25,7 @@
 		<module>feilong-spring</module>
 		<module>feilong-net-filetransfer</module>
 		<module>feilong-net-httpclient</module>
-		<module>feilong-net-httpcore</module>
+		<module>feilong-net-httpcomponents</module>
 		<module>feilong-tools-jsoup</module>
 		<module>feilong-tools-velocity</module>
 		<module>feilong-tools-dom4j</module>

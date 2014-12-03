@@ -199,10 +199,10 @@ public final class HttpClientUtil{
 			}
 
 		}catch (Exception e){
-			Map<String, Object> map = getHttpMethodResponseAttributeMapForLog(httpMethod);
-			log.error(JsonUtil.format(map));
-
-			log.error(e.getClass().getName(), e);
+			//SSL证书过期
+			//PKIX path validation failed: java.security.cert.CertPathValidatorException: timestamp check failed
+			Map<String, Object> map = getHttpMethodResponseAttributeMapForLog(httpMethod, httpClientConfig);
+			log.error(e.getClass().getName() + " HttpMethodResponseAttributeMapForLog:" + JsonUtil.format(map), e);
 			throw new HttpClientException(e);
 		}
 		return httpMethod;
@@ -328,17 +328,30 @@ public final class HttpClientUtil{
 	 *            the http method
 	 * @return the http method response attribute map for log
 	 */
-	private static Map<String, Object> getHttpMethodResponseAttributeMapForLog(HttpMethod httpMethod){
+	private static Map<String, Object> getHttpMethodResponseAttributeMapForLog(HttpMethod httpMethod,HttpClientConfig httpClientConfig){
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+		Object statusCode = null;
 		try{
-			map.put("httpMethod.getStatusCode()", httpMethod.getStatusCode());
-			map.put("httpMethod.getStatusText()", httpMethod.getStatusText());
-			map.put("httpMethod.getStatusLine()", httpMethod.getStatusLine().toString());
-			map.put("httpMethod.getResponseHeaders()", httpMethod.getResponseHeaders());
-			map.put("httpMethod.getResponseFooters()", httpMethod.getResponseFooters());
+			statusCode = httpMethod.getStatusCode();
 		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
+			statusCode = e.getClass().getName() + " " + e.getMessage();
 		}
+
+		String statusText = null;
+		try{
+			statusText = httpMethod.getStatusText();
+		}catch (Exception e){
+			statusText = e.getClass().getName() + " " + e.getMessage();
+		}
+
+		map.put("httpMethod.getStatusCode()", statusCode);
+		map.put("httpMethod.getStatusText()", statusText);
+		map.put("httpMethod.getStatusLine()", "" + httpMethod.getStatusLine());
+		map.put("httpMethod.getResponseHeaders()", httpMethod.getResponseHeaders());
+		map.put("httpMethod.getResponseFooters()", httpMethod.getResponseFooters());
+		map.put("httpClientConfig", httpClientConfig);
+
 		return map;
 	}
 }

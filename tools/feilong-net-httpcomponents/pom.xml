@@ -6,9 +6,9 @@
 		<version>1.0.9-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>feilong-net-httpcore</artifactId>
-	<name>feilong-net-httpcore</name>
-	<description>feilong-net-httpcore</description>
+	<artifactId>feilong-net-httpcomponents</artifactId>
+	<name>feilong-net-httpComponents</name>
+	<description>feilong-net-httpcomponents</description>
 
 	<dependencies>
 

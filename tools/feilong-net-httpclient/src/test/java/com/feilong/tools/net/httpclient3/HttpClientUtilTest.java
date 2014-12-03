@@ -18,7 +18,8 @@ package com.feilong.tools.net.httpclient3;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
+import net.sf.json.JSONException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +73,7 @@ public class HttpClientUtilTest{
 	 *             the jSON exception
 	 */
 	@Test
-	public void getFLLogisticsTrack() throws HttpClientException,JSONException{
+	public void getFLLogisticsTrack() throws HttpClientException{
 		String uri = "http://firstlogistics.co.id/ws/demo/post/";
 
 		Map<String, String> params = new HashMap<String, String>();
@@ -113,8 +114,6 @@ public class HttpClientUtilTest{
 		if (log.isInfoEnabled()){
 			log.info(responseBodyAsString);
 		}
-		// JSONObject jsonObject = new JSONObject(responseBodyAsString);
-		// log.debug(jsonObject.toString(4));
 	}
 
 	/**
@@ -126,7 +125,7 @@ public class HttpClientUtilTest{
 	 *             the JSON exception
 	 */
 	@Test
-	public void checkTcashTransaction() throws HttpClientException,JSONException{
+	public void checkTcashTransaction() throws HttpClientException{
 		//		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction?refNum=290914112053368&userKey=testing&passKey=1234&signKey=1234";
 		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction";
 		Map<String, String> params = new HashMap<String, String>();

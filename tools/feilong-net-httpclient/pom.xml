@@ -11,18 +11,10 @@
 	<description>feilong-net-httpclient</description>
 
 	<dependencies>
-
 		<!-- commons-httpclient -->
 		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
-		</dependency>
-
-		<!-- org.json -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
