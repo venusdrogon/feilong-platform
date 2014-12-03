@@ -18,8 +18,6 @@
 	<modules>
 		<module>feilong-taglib-common</module>
 		<module>feilong-taglib-spring</module>
-		<module>feilong-taglib-pager</module>
-		<module>feilong-taglib-else</module>
 		<module>feilong-taglib-display</module>
 	</modules>
 
