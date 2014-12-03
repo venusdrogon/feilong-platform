@@ -2,19 +2,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>parent</artifactId>
-		<groupId>com.feilong.platform.commons</groupId>
+		<groupId>com.feilong.platform.tools</groupId>
 		<version>1.0.9-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>feilong-commons-security</artifactId>
-	<name>feilong-commons-security</name>
-	<description>feilong-commons-security</description>
+	<artifactId>feilong-tools-security</artifactId>
+	<name>feilong-tools-security</name>
+	<description>feilong-tools-security</description>
 
 	<dependencies>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>feilong-core</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>commons-codec</groupId>

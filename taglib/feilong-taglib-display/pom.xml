@@ -17,8 +17,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.feilong.platform.commons</groupId>
-			<artifactId>feilong-commons-security</artifactId>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-security</artifactId>
 
 			<!--
 				表明是可选依赖，它们只会对当前项目产生影响，其他项目依赖于B时候，这两个依赖不会被传递。
