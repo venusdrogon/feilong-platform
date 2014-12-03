@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.oneway;
+package com.feilong.tools.security.oneway;
 
 import junit.framework.Assert;
 
@@ -22,8 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.security.BaseSecurityTest;
-import com.feilong.commons.security.oneway.MD5Util;
+import com.feilong.tools.security.BaseSecurityTest;
+import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * The Class MD5UtilTest.
@@ -39,7 +39,7 @@ class MD5UtilTest extends BaseSecurityTest{
 	private static final Logger	log	= LoggerFactory.getLogger(MD5UtilTest.class);
 
 	/**
-	 * {@link com.feilong.commons.security.oneway.MD5Util#encodeFile(java.lang.String)} 的测试方法。
+	 * {@link com.feilong.tools.security.oneway.MD5Util#encodeFile(java.lang.String)} 的测试方法。
 	 */
 	@Test
 	public void encodeFile(){

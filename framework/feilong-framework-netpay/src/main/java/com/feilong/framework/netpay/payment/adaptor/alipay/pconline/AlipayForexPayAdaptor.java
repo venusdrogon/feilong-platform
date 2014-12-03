@@ -41,13 +41,13 @@ import org.xml.sax.InputSource;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.advance.command.TradeRole;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 import com.feilong.servlet.http.RequestUtil;
+import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * alipay境外支付接口.

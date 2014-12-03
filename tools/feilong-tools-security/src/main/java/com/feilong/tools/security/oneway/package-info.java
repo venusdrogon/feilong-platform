@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 /**
- * 双向加密(DES,AES,Blowfish,RC2,RC4...)<br>
- * {@link <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/crypto/CryptoSpec.html#AppA">Java Cryptography Architecture Reference Guide</a>}
- * {@link <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html">Java™ Cryptography Architecture Standard Algorithm Name Documentation</a>}
+ * 单向加密<br>
+ * 支持常见的单向加密<br>
+ * {@link com.feilong.commons.core.security.oneway.OnewayType}
+ * (MD5,SHA-1、SHA-224、SHA-256、SHA-384，和SHA-512)<br>
  */
-package com.feilong.commons.security.symmetric;
+package com.feilong.tools.security.oneway;

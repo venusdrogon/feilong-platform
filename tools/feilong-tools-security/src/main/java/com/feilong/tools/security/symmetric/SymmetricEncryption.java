@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.symmetric;
+package com.feilong.tools.security.symmetric;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -33,6 +33,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
 import com.feilong.commons.core.enumeration.CharsetType;
@@ -40,7 +41,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.EncryptionException;
+import com.feilong.tools.security.EncryptionException;
 
 //}${person}{@code
 //&#125;

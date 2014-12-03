@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.symmetric;
+package com.feilong.tools.security.symmetric;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
@@ -28,9 +28,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.security.EncryptionException;
-import com.feilong.commons.security.symmetric.SymmetricEncryption;
 import com.feilong.test.TestConstants;
+import com.feilong.tools.security.EncryptionException;
+import com.feilong.tools.security.symmetric.SymmetricEncryption;
 
 /**
  * The Class SymmetricEncryptionSpringTest.

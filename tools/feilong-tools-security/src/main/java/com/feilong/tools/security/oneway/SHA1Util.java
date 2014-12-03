@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.oneway;
+package com.feilong.tools.security.oneway;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.security.EncryptionException;
+import com.feilong.tools.security.EncryptionException;
 
 /**
  * Secure Hash Algorithm，安全散列算法 （单向加密）

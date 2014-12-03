@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.oneway;
+package com.feilong.tools.security.oneway;
 
 import static org.junit.Assert.*;
 
@@ -22,9 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.security.BaseSecurityTest;
-import com.feilong.commons.security.oneway.OnewayEncryption;
-import com.feilong.commons.security.oneway.OnewayType;
+import com.feilong.tools.security.BaseSecurityTest;
+import com.feilong.tools.security.oneway.OnewayEncryption;
+import com.feilong.tools.security.oneway.OnewayType;
 
 /**
  * The Class OnewayEncryptionTest.
@@ -41,7 +41,7 @@ class OnewayEncryptionTest extends BaseSecurityTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.commons.security.oneway.OnewayEncryption#encode(com.feilong.commons.security.oneway.OnewayType, java.lang.String)}
+	 * {@link com.feilong.tools.security.oneway.OnewayEncryption#encode(com.feilong.tools.security.oneway.OnewayType, java.lang.String)}
 	 * .
 	 */
 	@Test

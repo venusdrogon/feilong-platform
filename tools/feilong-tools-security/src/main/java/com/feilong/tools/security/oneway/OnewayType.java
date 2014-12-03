@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.oneway;
+package com.feilong.tools.security.oneway;
 
 /**
  * 单向加密类型.

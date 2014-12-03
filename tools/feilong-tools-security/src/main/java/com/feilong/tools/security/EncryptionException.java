@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security;
+package com.feilong.tools.security;
 
 import com.feilong.commons.core.log.Slf4jUtil;
 

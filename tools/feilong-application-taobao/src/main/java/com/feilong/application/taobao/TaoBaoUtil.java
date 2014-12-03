@@ -36,7 +36,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.MD5Util;
+import com.feilong.tools.security.oneway.MD5Util;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;

@@ -34,7 +34,6 @@ import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.RegexPattern;
 import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.SHA1Util;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor;
 import com.feilong.framework.netpay.payment.adaptor.doku.command.Resultmsg;
@@ -43,6 +42,7 @@ import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaySoLine;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 import com.feilong.servlet.http.RequestUtil;
+import com.feilong.tools.security.oneway.SHA1Util;
 
 /**
  * Doku支付方式.

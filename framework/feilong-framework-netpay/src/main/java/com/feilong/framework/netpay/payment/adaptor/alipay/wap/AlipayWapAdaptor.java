@@ -40,12 +40,12 @@ import org.xml.sax.InputSource;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 import com.feilong.servlet.http.RequestUtil;
+import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * 手机版alipay支付.

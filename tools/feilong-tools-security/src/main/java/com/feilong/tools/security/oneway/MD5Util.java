@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.oneway;
+package com.feilong.tools.security.oneway;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.security.EncryptionException;
+import com.feilong.tools.security.EncryptionException;
 
 /**
  * Message Digest algorithm 5，信息摘要算法 <br>

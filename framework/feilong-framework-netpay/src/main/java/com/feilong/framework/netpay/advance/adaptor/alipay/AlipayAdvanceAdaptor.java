@@ -32,13 +32,13 @@ import org.xml.sax.InputSource;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.command.TradeRole;
 import com.feilong.framework.netpay.advance.exception.TradeCloseException;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientException;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
+import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * The Class AlipayAdvanceAdaptor.

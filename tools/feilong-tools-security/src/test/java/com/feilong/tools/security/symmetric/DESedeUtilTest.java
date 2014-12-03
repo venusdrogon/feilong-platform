@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.symmetric;
+package com.feilong.tools.security.symmetric;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,11 +23,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.security.BaseSecurityTest;
-import com.feilong.commons.security.EncryptionException;
-import com.feilong.commons.security.symmetric.SymmetricEncryption;
-import com.feilong.commons.security.symmetric.SymmetricType;
 import com.feilong.test.TestConstants;
+import com.feilong.tools.security.BaseSecurityTest;
+import com.feilong.tools.security.EncryptionException;
+import com.feilong.tools.security.symmetric.SymmetricEncryption;
+import com.feilong.tools.security.symmetric.SymmetricType;
 
 /**
  * The Class DESedeUtilTest.

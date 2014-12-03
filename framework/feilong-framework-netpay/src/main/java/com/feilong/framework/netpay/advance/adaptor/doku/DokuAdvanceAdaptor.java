@@ -31,7 +31,6 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.lang.EnumUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.SHA1Util;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.adaptor.doku.command.DokuQueryResult;
 import com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultParse;
@@ -43,6 +42,7 @@ import com.feilong.framework.netpay.payment.adaptor.doku.command.Resultmsg;
 import com.feilong.framework.netpay.payment.adaptor.doku.util.DokuAdaptorUtil;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
+import com.feilong.tools.security.oneway.SHA1Util;
 
 /**
  * Doku支付方式.

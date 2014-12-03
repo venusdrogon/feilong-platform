@@ -27,10 +27,10 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.command.OutputPaymentIPAY;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.sprintutil.AuthKey;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.sprintutil.BCAKeyGenerator;
+import com.feilong.tools.security.oneway.MD5Util;
 import com.feilong.tools.xstream.ToXmlConfig;
 import com.feilong.tools.xstream.XStreamUtil;
 

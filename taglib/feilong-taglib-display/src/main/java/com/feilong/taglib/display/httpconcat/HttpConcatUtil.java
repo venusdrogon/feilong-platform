@@ -31,9 +31,9 @@ import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.ListUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.oneway.MD5Util;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 import com.feilong.taglib.display.httpconcat.directive.Concat;
+import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * http concat的核心工具类.

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.symmetric;
+package com.feilong.tools.security.symmetric;
 
 /**
  * 分组模式(The following names can be specified as the mode component in a transformation when requesting an instance of Cipher.)

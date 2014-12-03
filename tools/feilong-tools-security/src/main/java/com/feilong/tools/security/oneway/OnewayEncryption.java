@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.security.oneway;
+package com.feilong.tools.security.oneway;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +28,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.commons.security.EncryptionException;
+import com.feilong.tools.security.EncryptionException;
 
 /**
  * 单向加密算法.
