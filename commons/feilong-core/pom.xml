@@ -115,26 +115,6 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->
-		<dependency>
-			<groupId>xom</groupId>
-			<artifactId>xom</artifactId>
-			<version>${version.xom}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<version>1.4.01</version>
-		</dependency>
-
-		<!-- 规范下 xercesImpl版本 -->
-		<!-- 解决This parser does not support specification "null" version "null" -->
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-		</dependency>
-
 		<!-- net.sf.json-lib -->
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
@@ -160,5 +140,44 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!-- java.lang.NoClassDefFoundError: nu/xom/Serializer -->
+		<!-- <dependency>
+			<groupId>xom</groupId>
+			<artifactId>xom</artifactId>
+			<version>${version.xom}</version>
+			<exclusions>
+			<exclusion>
+			<artifactId>xml-apis</artifactId>
+			<groupId>xml-apis</groupId>
+			</exclusion>
+			<exclusion>
+			<artifactId>xercesImpl</artifactId>
+			<groupId>xerces</groupId>
+			</exclusion>
+			</exclusions>
+			</dependency> -->
+
+		<!-- 这2个包的类在jdk1.6里自带有了，可能有冲突，如果你的运行环境是1.6的话就可以删掉这2个包 -->
+		<!-- <dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+			</dependency> -->
+
+		<!-- 规范下 xercesImpl版本 -->
+		<!-- 解决This parser does not support specification "null" version "null" -->
+
+		<!-- 这2个包的类在jdk1.6里自带有了，可能有冲突，如果你的运行环境是1.6的话就可以删掉这2个包 -->
+		<!-- <dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<exclusions>
+			<exclusion>
+			<artifactId>xml-apis</artifactId>
+			<groupId>xml-apis</groupId>
+			</exclusion>
+			</exclusions>
+			</dependency> -->
 	</dependencies>
 </project>

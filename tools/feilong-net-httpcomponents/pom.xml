@@ -12,6 +12,14 @@
 
 	<dependencies>
 
+
+		<!--
+			HttpCore is a set of low level HTTP transport components that can be used to build custom client and server side HTTP services with a minimal footprint.
+
+			HttpCore supports two I/O models: blocking I/O model based on the classic Java I/O and non-blocking, event driven I/O model based on Java NIO.
+			The blocking I/O model may be more appropriate for data intensive, low latency scenarios, whereas the non-blocking model may be more appropriate for high latency
+			scenarios where raw data throughput is less important than the ability to handle thousands of simultaneous HTTP connections in a resource efficient manner.
+		-->
 		<!-- httpcore -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -21,11 +29,36 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>httpclient</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
+
+		<!-- HttpClient is a HTTP/1.1 compliant HTTP agent implementation based on HttpCore.
+			It also provides reusable components for client-side authentication,
+			HTTP state management, and HTTP connection management.
+
+			HttpComponents Client is a successor of and replacement for Commons HttpClient 3.x.
+
+			Users of Commons HttpClient are strongly encouraged to upgrade. -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>httpcore</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 	</dependencies>
 </project>
