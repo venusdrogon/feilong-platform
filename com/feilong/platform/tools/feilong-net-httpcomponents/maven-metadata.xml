@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-net-httpcomponents</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.9-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20141203060934</lastUpdated>
+  </versioning>
+</metadata>
