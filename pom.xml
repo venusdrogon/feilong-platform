@@ -155,7 +155,17 @@
 
 		<version.velocity>1.7</version.velocity>
 
-		<version.tiles>3.0.1</version.tiles>
+
+		<!--
+			http://tiles.apache.org/framework/whats-new.html
+
+			Removals in Tiles 3.0
+			Upgraded from JavaSE 5.0 to JavaSE 6.0.
+			Upgraded from Servlet 2.4 and JSP 2.0 to Servlet 2.5 and JSP 2.1.
+			Changed the Java API to adopt the Request API. The XML files and taglibs are compatible with tiles 2.2.
+			Dropped the parameter based configuration that was deprecated in 2.2.
+		-->
+		<version.tiles>3.0.5</version.tiles>
 
 		<version.zookeeper>3.4.6</version.zookeeper>
 
