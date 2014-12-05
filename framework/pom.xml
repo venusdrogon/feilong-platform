@@ -10,10 +10,11 @@
 	<groupId>com.feilong.platform.framework</groupId>
 	<artifactId>parent</artifactId>
 
+	<description>${project.name} ${project.version} API</description>
+
 	<packaging>pom</packaging>
 
 	<name>feilong-framework-parent</name>
-	<description>feilong-framework-parent</description>
 
 	<modules>
 		<module>feilong-framework-bind</module>

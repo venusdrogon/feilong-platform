@@ -7,7 +7,6 @@
 	</parent>
 	<artifactId>feilong-webservice-jws</artifactId>
 	<name>feilong-webservice-jws</name>
-	<description>feilong-webservice-jws</description>
-	
+	<description>${project.name} ${project.version} API</description>
 
 </project>

@@ -13,6 +13,7 @@
 	<packaging>pom</packaging>
 
 	<name>feilong-tools-parent</name>
+	<description>${project.name} ${project.version} API</description>
 
 	<modules>
 		<module>feilong-application-taobao</module>
@@ -33,7 +34,6 @@
 		<module>feilong-tools-ant</module>
 		<module>feilong-tools-middleware</module>
 		<module>feilong-tools-mail</module>
-		<module>feilong-tools-solrj3</module>
 		<module>feilong-tools-solrj4</module>
 		<module>feilong-tools-om</module>
 		<module>feilong-tools-scm</module>

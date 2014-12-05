@@ -9,7 +9,8 @@
 
 	<artifactId>feilong-framework-bind</artifactId>
 	<name>feilong-framework-bind</name>
-	<description>feilong-framework-bind</description>
+	
+	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
 		<dependency>

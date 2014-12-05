@@ -7,5 +7,6 @@
 	</parent>
 	<artifactId>feilong-framework-code</artifactId>
 	<name>feilong-framework-code</name>
-	<description>feilong-framework-code</description>
+
+	<description>${project.name} ${project.version} API</description>
 </project>

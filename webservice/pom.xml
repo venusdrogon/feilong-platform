@@ -5,14 +5,14 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.9-SNAPSHOT</version>
 	</parent>
-	
+
 	<groupId>com.feilong.platform.webservice</groupId>
 	<artifactId>parent</artifactId>
 
 	<packaging>pom</packaging>
 
 	<name>feilong-webservice-parent</name>
-
+	<description>${project.name} ${project.version} API</description>
 	<modules>
 		<module>feilong-webservice-cxf</module>
 		<module>feilong-webservice-jws</module>

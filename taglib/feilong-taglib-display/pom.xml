@@ -5,9 +5,10 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.9-SNAPSHOT</version>
 	</parent>
+
 	<artifactId>feilong-taglib-display</artifactId>
 	<name>feilong-taglib-display</name>
-	<description>feilong-taglib-display</description>
+	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
 

@@ -11,6 +11,7 @@
 
 	<artifactId>feilong-taglib-spring</artifactId>
 	<name>feilong-taglib-spring</name>
+	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
 		<dependency>

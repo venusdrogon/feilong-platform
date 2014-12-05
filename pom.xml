@@ -130,7 +130,7 @@
 		<version.jsp-api>2.2</version.jsp-api>
 		<version.el-api>2.2</version.el-api>
 		<version.jstl>1.2</version.jstl>
-		<version.junit>4.11</version.junit>
+		<version.junit>4.12</version.junit>
 
 		<version.log4j>1.2.17</version.log4j>
 		<version.logback>1.1.2</version.logback>
@@ -143,6 +143,7 @@
 		<version.ooxml-schemas>1.1</version.ooxml-schemas>
 
 		<version.memcached>2.5.3</version.memcached>
+		<version.spymemcached>2.11.0</version.spymemcached>
 		<version.servlet-api>2.5</version.servlet-api>
 		<version.slf4j>1.7.7</version.slf4j>
 		<version.spring>3.2.12.RELEASE</version.spring>
@@ -183,9 +184,10 @@
 		<v.maven-install-plugin>2.5.1</v.maven-install-plugin>
 		<v.maven-javadoc-plugin>2.10.1</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
-
-		<v.maven-source-plugin>2.2.1</v.maven-source-plugin>
+		
 		<v.maven-shade-plugin>2.3</v.maven-shade-plugin>
+		<v.maven-site-plugin>3.4</v.maven-site-plugin>
+		<v.maven-source-plugin>2.2.1</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5</v.maven-release-plugin>
 		<v.maven-resources-plugin>2.6</v.maven-resources-plugin>
@@ -194,6 +196,7 @@
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 		<v.site-maven-plugin>0.10</v.site-maven-plugin>
+
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 	</properties>
 
@@ -336,13 +339,6 @@
 				<groupId>com.feilong.platform.tools</groupId>
 				<artifactId>feilong-tools-velocity</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-
-			<!-- memcached -->
-			<dependency>
-				<groupId>com.danga</groupId>
-				<artifactId>memcached</artifactId>
-				<version>${version.memcached}</version>
 			</dependency>
 
 			<!-- dom4j -->
@@ -767,24 +763,30 @@
 
 	<!--********************************build****************************************** -->
 	<build>
-		<directory>${basedir}/target</directory>
-		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-		<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
-		<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-		<outputDirectory>${basedir}/target/classes</outputDirectory>
-		<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
-		<resources>
+		<!-- <directory>${basedir}/target</directory>
+			<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+			<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
+			<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+			<outputDirectory>${basedir}/target/classes</outputDirectory>
+			<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+			<resources>
 			<resource>
-				<directory>${basedir}/src/main/resources</directory>
+			<directory>${basedir}/src/main/resources</directory>
 			</resource>
-		</resources>
-		<testResources>
+			</resources>
+			<testResources>
 			<testResource>
-				<directory>${basedir}/src/test/resources</directory>
+			<directory>${basedir}/src/test/resources</directory>
 			</testResource>
-		</testResources>
+			</testResources> -->
 
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${v.maven-site-plugin}</version>
+			</plugin>
+			
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
@@ -914,7 +916,9 @@
 
 			<!-- maven-compiler-plugin -->
 			<plugin>
+				<!-- true or false，是否此插件配置将会应用于poms，那些继承于此的项目 -->
 				<inherited>true</inherited>
+
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${v.maven-compiler-plugin}</version>
@@ -1167,20 +1171,22 @@
 		</pluginManagement>
 	</build>
 
-	<reporting>
+
+	<!-- [ERROR] 'git' 不是内部或外部命令，也不是可运行的程序 或批处理文件。 -->
+	<!-- <reporting>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<type>range</type>
-					<range>30</range>
-					<headingDateFormat>dd MMM, yyyy</headingDateFormat>
-				</configuration>
-			</plugin>
+		<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-changelog-plugin</artifactId>
+		<version>2.3</version>
+		<configuration>
+		<type>range</type>
+		<range>30</range>
+		<headingDateFormat>dd MMM, yyyy</headingDateFormat>
+		</configuration>
+		</plugin>
 		</plugins>
-	</reporting>
+		</reporting> -->
 
 	<!-- 指定这个项目的组织机构信息 -->
 	<organization>

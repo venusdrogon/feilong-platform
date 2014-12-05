@@ -10,10 +10,9 @@
 
 	<groupId>com.feilong.platform.taglib</groupId>
 	<artifactId>parent</artifactId>
-
 	<packaging>pom</packaging>
-
 	<name>feilong-taglib-parent</name>
+	<description>${project.name} ${project.version} API</description>
 
 	<modules>
 		<module>feilong-taglib-common</module>

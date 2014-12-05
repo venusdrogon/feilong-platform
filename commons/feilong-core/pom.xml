@@ -10,61 +10,9 @@
 
 	<artifactId>feilong-core</artifactId>
 	<name>feilong-core</name>
+
+	<!-- 会出现在site 界面 -->
 	<description>${project.name} ${project.version} API</description>
-
-	<build>
-		<plugins>
-			<!-- 打包时,添加信息 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<!-- <manifestFile>
-							src/main/resources/META-INF/MANIFEST.MF
-							</manifestFile> -->
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							<!-- <mainClass>com.mypackage.MyClass</mainClass> -->
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<copyright>feilong</copyright>
-						</manifestEntries>
-					</archive>
-					<!-- <excludes> <exclude>**/temple/**</exclude> </excludes> -->
-				</configuration>
-			</plugin>
-			<!-- dependency插件 -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> <executions> <execution> <id>copy-dependencies</id>
-				默认:<phase>process-sources</phase> <goals> <goal>copy-dependencies</goal> </goals> <configuration> 默认:<outputDirectory>${project.build.directory}\dependency</outputDirectory>
-				</configuration> </execution> </executions> </plugin> -->
-
-			<!-- 可以运行ant 代码的插件 -->
-			<!-- -->
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<configuration>
-							<tasks>
-								<echoproperties />
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
-	<!-- *****************************reporting****************************** <reporting> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId>
-		<version>2.7</version> <configuration> </configuration> </plugin> </plugins> </reporting> -->
 
 	<dependencies>
 
@@ -159,7 +107,8 @@
 			</dependency> -->
 
 		<!-- 这2个包的类在jdk1.6里自带有了，可能有冲突，如果你的运行环境是1.6的话就可以删掉这2个包 -->
-		<!-- <dependency>
+		<!--
+			<dependency>
 			<groupId>xml-apis</groupId>
 			<artifactId>xml-apis</artifactId>
 			<version>1.4.01</version>
@@ -180,4 +129,136 @@
 			</exclusions>
 			</dependency> -->
 	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- maven-surefire-plugin -->
+			<plugin>
+				<inherited>false</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/DateUtilTest.java</include>
+					</includes>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+
+			<!-- 测试覆盖率 http://stackoverflow.com/questions/25293433/coberturainstrumenter-unable-to-instrument-file -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<instrumentation>
+						<!--<ignore>.*</ignore>
+						-->
+						<excludes>
+							<exclude>**/*Test.class</exclude>
+						</excludes>
+					</instrumentation>
+					<formats>
+						<format>xml</format>
+					</formats>
+					<check>
+						<branchRate>0</branchRate>
+						<lineRate>0</lineRate>
+						<haltOnFailure>true</haltOnFailure>
+						<totalBranchRate>0</totalBranchRate>
+						<totalLineRate>0</totalLineRate>
+						<packageLineRate>0</packageLineRate>
+						<packageBranchRate>0</packageBranchRate>
+						<regexes>
+							<regex>
+								<pattern>**/DateUtilTest.java</pattern>
+								<branchRate>60</branchRate>
+								<lineRate>80</lineRate>
+							</regex>
+						</regexes>
+					</check>
+				</configuration>
+				<!-- <executions>
+					<execution>
+					<goals>
+					<goal>clean</goal>
+					<goal>check</goal>
+					</goals>
+					</execution>
+					</executions> -->
+				<dependencies>
+					<dependency>
+						<groupId>org.ow2.asm</groupId>
+						<artifactId>asm</artifactId>
+						<version>5.0.3</version>
+					</dependency>
+					<dependency>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+						<version>1.4.01</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<!-- 打包时,添加信息 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!-- <manifestFile>
+							src/main/resources/META-INF/MANIFEST.MF
+							</manifestFile> -->
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<!-- <mainClass>com.mypackage.MyClass</mainClass> -->
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<copyright>feilong</copyright>
+						</manifestEntries>
+					</archive>
+					<!-- <excludes> <exclude>**/temple/**</exclude> </excludes> -->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- dependency插件 -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> <executions> <execution> <id>copy-dependencies</id>
+				默认:<phase>process-sources</phase> <goals> <goal>copy-dependencies</goal> </goals> <configuration> 默认:<outputDirectory>${project.build.directory}\dependency</outputDirectory>
+				</configuration> </execution> </executions> </plugin> -->
+
+			<!-- 可以运行ant 代码的插件 -->
+			<!-- -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<echoproperties />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- *****************************reporting****************************** <reporting> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId>
+		<version>2.7</version> <configuration> </configuration> </plugin> </plugins> </reporting> -->
+
 </project>

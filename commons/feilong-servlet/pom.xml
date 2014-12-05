@@ -7,8 +7,10 @@
 		<version>1.0.9-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
+	
 	<artifactId>feilong-servlet</artifactId>
 	<name>feilong-servlet</name>
+	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
 		<dependency>

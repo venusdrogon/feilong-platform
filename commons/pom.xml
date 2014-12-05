@@ -13,7 +13,7 @@
 	<packaging>pom</packaging>
 	<name>feilong-commons-parent</name>
 
-	<description>feilong-commons-parent</description>
+	<description>feilong commons module parent</description>
 
 	<modules>
 		<module>feilong-core</module>

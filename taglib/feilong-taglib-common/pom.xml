@@ -10,9 +10,6 @@
 
 	<artifactId>feilong-taglib-common</artifactId>
 	<name>feilong-taglib-common</name>
+	<description>${project.name} ${project.version} API</description>
 
-	<dependencies>
-
-
-	</dependencies>
 </project>

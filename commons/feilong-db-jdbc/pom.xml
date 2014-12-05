@@ -10,6 +10,8 @@
 
 	<artifactId>feilong-db-jdbc</artifactId>
 	<name>feilong-db-jdbc</name>
+	
+	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
 		<dependency>

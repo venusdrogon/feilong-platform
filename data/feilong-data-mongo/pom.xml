@@ -7,7 +7,8 @@
 	</parent>
 	<artifactId>feilong-data-mongo</artifactId>
 	<name>feilong-data-mongo</name>
-	<description>feilong-data-mongo</description>
+
+	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
 		<dependency>
