@@ -49,59 +49,6 @@ public class DateUtilTest extends BaseDateUtilTest{
 	// ctrl +alt + ↑
 	// ctrl +alt+↓
 	// ctrl+D 删除光标所在行
-	/**
-	 * Before class.
-	 */
-	@BeforeClass
-	public static void beforeClass1(){
-		log.debug("beforeClass1,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
-	}
-
-	@BeforeClass
-	public static void beforeClass2(){
-		log.debug("beforeClass2,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
-	}
-
-	/**
-	 * Before.
-	 */
-	@Before
-	public void before1(){
-		log.debug("before1,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
-	}
-
-	@Before
-	public void before2(){
-		log.debug("before2,现在时间:" + DateUtil.date2String(now, DatePattern.commonWithTime));
-	}
-
-	/**
-	 * After.
-	 */
-	@After
-	public void after1(){
-		log.debug("after1:--------------");
-	}
-
-	@After
-	public void after2(){
-		log.debug("after2:--------------");
-	}
-
-	/**
-	 * After class.
-	 */
-	@AfterClass
-	public static void afterClass1(){
-		log.debug("afterClass1:--------------");
-	}
-
-	@AfterClass
-	public static void afterClass2(){
-		log.debug("afterClass2:--------------");
-	}
-
-	// **********************************************************************
 
 	/**
 	 * Aaaa.
@@ -118,9 +65,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 		int ihour = DateUtil.getIntervalHour(beginDate, endDate);
 
 		for (int i = 0; i < ihour; ++i){
-
 			for (int j = 0; j < 60; ++j){
-
 				log.info("0" + i + ":" + StringUtil.format("%02d", j));
 			}
 		}
@@ -616,6 +561,6 @@ public class DateUtilTest extends BaseDateUtilTest{
 
 	@Test
 	public final void testGetIntervalDay2(){
-		System.out.println(DateUtil.getIntervalDay("2008-08-24", "2008-08-27", "yyyy-MM-dd"));
+		log.info("" + DateUtil.getIntervalDay("2008-08-24", "2008-08-27", "yyyy-MM-dd"));
 	}
 }
