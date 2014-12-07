@@ -67,7 +67,7 @@ public final class SessionUtil{
 	 * @see HttpSession#getAttributeNames()
 	 * @see HttpSession#isNew()
 	 */
-	public static Map<String, Object> getSessionMapForLog(HttpSession session){
+	public static Map<String, Object> getSessionInfoMapForLog(HttpSession session){
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 
 		if (null != session){

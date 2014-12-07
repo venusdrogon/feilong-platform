@@ -44,10 +44,10 @@ import com.feilong.servlet.ServletContextUtil;
  */
 public class ApplicationInfoServlet extends HttpServlet{
 
-	private static final long	serialVersionUID	= 672020928153455796L;
-
 	/** The Constant log. */
 	private static final Logger	log					= LoggerFactory.getLogger(ApplicationInfoServlet.class);
+
+	private static final long	serialVersionUID	= 672020928153455796L;
 
 	/*
 	 * (non-Javadoc)
@@ -59,7 +59,7 @@ public class ApplicationInfoServlet extends HttpServlet{
 
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("Charset defaultCharset", Charset.defaultCharset().name());
-		map.put("ServletContext Info", ServletContextUtil.getServletContextMapForLog(servletContext));
+		map.put("ServletContext Info", ServletContextUtil.getServletContextInfoMapForLog(servletContext));
 		map.put("ServletContext initParameter Map", ServletContextUtil.getInitParameterMap(servletContext));
 		//		map.put("ServletContext attributeNames", CollectionsUtil.toList(servletContext.getAttributeNames()));
 		map.put("ServletContext Attribute String Map", ServletContextUtil.getAttributeStringMapForLog(servletContext));
@@ -94,55 +94,10 @@ public class ApplicationInfoServlet extends HttpServlet{
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.servlet.http.HttpServlet#doHead(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	protected void doHead(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doHead(req, resp);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
 		super.doPost(req, resp);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doPut(req, resp);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doDelete(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doDelete(req, resp);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doOptions(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	protected void doOptions(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doOptions(req, resp);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doTrace(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	protected void doTrace(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doTrace(req, resp);
 	}
 
 	/*
@@ -171,5 +126,4 @@ public class ApplicationInfoServlet extends HttpServlet{
 	public void destroy(){
 		super.destroy();
 	}
-
 }

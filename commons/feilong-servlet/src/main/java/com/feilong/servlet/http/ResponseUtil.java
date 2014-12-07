@@ -19,7 +19,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +36,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.io.MimeTypeUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -315,24 +320,35 @@ public final class ResponseUtil{
 	public static void ajaxWriteJson(HttpServletResponse response,Object json){
 		response.setContentType("application/json;charset=" + CharsetType.UTF8);
 		response.setCharacterEncoding(CharsetType.UTF8);
-		ajaxWrite(response, json);
+		write(response, json);
 	}
 
 	/**
-	 * ajax响应.
+	 * 输出.
 	 *
 	 * @param response
 	 *            HttpServletResponse
 	 * @param content
 	 *            相应内容
+	 * @throws UncheckedIOException
+	 *             the unchecked io exception
+	 * @see javax.servlet.ServletResponse#getWriter()
+	 * @see java.io.PrintWriter#print(Object)
+	 * @see java.io.PrintWriter#flush()
+	 * @see java.io.UncheckedIOException
 	 */
-	public static void ajaxWrite(HttpServletResponse response,Object content){
+	public static void write(HttpServletResponse response,Object content) throws UncheckedIOException{
 		try{
 			PrintWriter printWriter = response.getWriter();
-			printWriter.print(content.toString());
+			printWriter.print(content);
 			printWriter.flush();
+
+			//http://www.iteye.com/problems/56543
+			//你是用了tomcat，jetty这样的容器，就不需要
+			//printWriter.close();
 		}catch (IOException e){
 			log.error(e.getClass().getName(), e);
+			throw new UncheckedIOException(e);
 		}
 	}
 }

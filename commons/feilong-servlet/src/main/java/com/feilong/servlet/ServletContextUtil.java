@@ -47,7 +47,7 @@ public final class ServletContextUtil{
 	 *            the servlet context
 	 * @return the map< string, object>
 	 */
-	public static Map<String, Object> getServletContextMapForLog(ServletContext servletContext){
+	public static Map<String, Object> getServletContextInfoMapForLog(ServletContext servletContext){
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 返回servlet运行的servlet 容器的版本和名称。

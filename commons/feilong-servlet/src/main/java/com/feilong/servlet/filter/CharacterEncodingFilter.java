@@ -60,13 +60,12 @@ public class CharacterEncodingFilter extends OncePerRequestFilter{
 	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request,HttpServletResponse response,FilterChain filterChain)
-			throws ServletException,IOException{
+					throws ServletException,IOException{
 		if (this.encoding != null && (this.forceEncoding || request.getCharacterEncoding() == null)){
 			/**
 			 * jQuery在使用ajax的时候会在header中加入X-Requested-With，值为：XMLHttpRequest，
 			 * 
 			 * <pre>
-			 * 
 			 * 此时一律使用post 方式提交,并且传递参数通通放到第二个位置,不要和连接拼接起来
 			 * </pre>
 			 */

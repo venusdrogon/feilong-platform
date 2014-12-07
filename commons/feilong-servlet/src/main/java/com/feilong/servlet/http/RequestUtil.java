@@ -182,9 +182,9 @@ public final class RequestUtil{
 	 * @return the request string for log
 	 * @see RequestLogSwitch
 	 */
-	public static String getRequestStringForLog(HttpServletRequest request){
+	public static Map<String, Object> getRequestInfoMapForLog(HttpServletRequest request){
 		RequestLogSwitch requestLogSwitch = new RequestLogSwitch();
-		return getRequestStringForLog(request, requestLogSwitch);
+		return getRequestInfoMapForLog(request, requestLogSwitch);
 	}
 
 	/**
@@ -196,18 +196,12 @@ public final class RequestUtil{
 	 *            the request log switch
 	 * @return the request string for log
 	 */
-	public static String getRequestStringForLog(HttpServletRequest request,RequestLogSwitch requestLogSwitch){
-
+	public static Map<String, Object> getRequestInfoMapForLog(HttpServletRequest request,RequestLogSwitch requestLogSwitch){
 		if (null == requestLogSwitch){
 			requestLogSwitch = new RequestLogSwitch();
 		}
 
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
-
-		// 在3.0 是数组Map<String, String[]> getParameterMap
-		// The keys in the parameter map are of type String.
-		// The values in the parameter map are of type String array.
-		Map<String, ?> parameterMap = getParameterMap(request);
 
 		// requestFullURL
 		if (requestLogSwitch.getShowFullURL()){
@@ -221,7 +215,16 @@ public final class RequestUtil{
 
 		// _parameterMap
 		if (requestLogSwitch.getShowParams()){
+			// 在3.0 是数组Map<String, String[]> getParameterMap
+			// The keys in the parameter map are of type String.
+			// The values in the parameter map are of type String array.
+			Map<String, ?> parameterMap = getParameterMap(request);
 			map.put("_parameterMap", parameterMap);
+		}
+
+		// _headerMap
+		if (requestLogSwitch.getShowHeaders()){
+			map.put("_headerMap", getHeaderMap(request));
 		}
 
 		// _cookieMap
@@ -246,12 +249,15 @@ public final class RequestUtil{
 
 			// web.xml中定义的Servlet访问路径
 			aboutURLMap.put("request.getServletPath()", request.getServletPath());
+
 			// 等于getServletContext().getRealPath("/") + getPathInfo()
 			aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
 
 			// ***********************************************************************
 			aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
+
 			// &之后GET方法的参数部分
+			//Returns the query string that is contained in the request URL after the path. This method returns null if the URL does not have a query string. Same as the value of the CGI variable QUERY_STRING. 
 			aboutURLMap.put("request.getQueryString()", request.getQueryString());
 
 			// ***********************************************************************
@@ -261,48 +267,87 @@ public final class RequestUtil{
 			// 等于getScheme() + "://" + getServerName() + ":" + getServerPort() + getRequestURI()
 			aboutURLMap.put("request.getRequestURL()", "" + request.getRequestURL());
 
-			map.put("aboutURLMap", aboutURLMap);
-		}
-
-		// aboutIPMap
-		if (requestLogSwitch.getShowIPs()){
-			Map<String, String> aboutIPMap = new TreeMap<String, String>();
-			aboutIPMap.put("request.getLocalAddr()", request.getLocalAddr());
-			aboutIPMap.put("request.getRemoteAddr()", request.getRemoteAddr());
-			aboutIPMap.put("request.getRemoteHost()", request.getRemoteHost());
-			aboutIPMap.put("request.getServerName()", request.getServerName());
-			aboutIPMap.put("getClientIp", getClientIp(request));
-			map.put("aboutIPMap", aboutIPMap);
-		}
-
-		// aboutPortMap
-		if (requestLogSwitch.getShowPorts()){
-			Map<String, String> aboutPortMap = new TreeMap<String, String>();
-			aboutPortMap.put("request.getLocalPort()", "" + request.getLocalPort());
-			aboutPortMap.put("request.getRemotePort()", "" + request.getRemotePort());
-			aboutPortMap.put("request.getServerPort()", "" + request.getServerPort());
-			map.put("aboutPortMap", aboutPortMap);
-		}
-
-		// _headerMap
-		if (requestLogSwitch.getShowHeaders()){
-			map.put("_headerMap", getHeaderMap(request));
+			map.put("about URL Map", aboutURLMap);
 		}
 
 		// aboutElseMap
 		if (requestLogSwitch.getShowElses()){
 			Map<String, Object> aboutElseMap = new TreeMap<String, Object>();
+
+			//Returns the name of the authentication scheme used to protect the servlet. 
+			//All servlet containers support basic, form and client certificate authentication, and may additionally support digest authentication. If the servlet is not authenticated null is returned. 
+			//Same as the value of the CGI variable AUTH_TYPE.
 			aboutElseMap.put("request.getAuthType()", request.getAuthType());
+
+			//Returns the name of the character encoding used in the body of this request. 
+			//This method returns null if the request does not specify a character encoding
 			aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
+
+			//Returns the length, in bytes, of the request body and made available by the input stream, 
+			//or -1 if the length is not known. 
+			//For HTTP servlets, same as the value of the CGI variable CONTENT_LENGTH.
 			aboutElseMap.put("request.getContentLength()", "" + request.getContentLength());
+
+			//Returns the MIME type of the body of the request, or null if the type is not known. 
+			//For HTTP servlets, same as the value of the CGI variable CONTENT_TYPE.
+			aboutElseMap.put("request.getContentType()", "" + request.getContentType());
+
+			//Returns the host name of the Internet Protocol (IP) interface on which the request was received.
+			//2.4
 			aboutElseMap.put("request.getLocalName()", request.getLocalName());
 
+			//Returns the name and version of the protocol the request uses in the form protocol/majorVersion.minorVersion, for example, HTTP/1.1. For HTTP servlets, the value returned is the same as the value of the CGI variable SERVER_PROTOCOL.
 			aboutElseMap.put("request.getProtocol()", request.getProtocol());
+
+			//Returns the login of the user making this request, if the user has been authenticated, or null if the user has not been authenticated. Whether the user name is sent with each subsequent request depends on the browser and type of authentication. Same as the value of the CGI variable REMOTE_USER.
 			aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
+
+			//Returns the session ID specified by the client. This may not be the same as the ID of the current valid session for this request. If the client did not specify a session ID, this method returns null.
 			aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
+
+			//Returns the name of the scheme used to make this request, for example, http, https, or ftp. Different schemes have different rules for constructing URLs, as noted in RFC 1738.
 			aboutElseMap.put("request.getScheme()", request.getScheme());
-			aboutElseMap.put("request.getLocale()", request.getLocale());
-			map.put("aboutElseMap", aboutElseMap);
+
+			//Returns the preferred Locale that the client will accept content in, based on the Accept-Language header. If the client request doesn't provide an Accept-Language header, this method returns the default locale for the server.
+			aboutElseMap.put("request.getLocale()", "" + request.getLocale());
+
+			map.put("about Else Map", aboutElseMap);
+		}
+
+		// aboutIPMap
+		if (requestLogSwitch.getShowIPs()){
+			Map<String, String> aboutIPMap = new TreeMap<String, String>();
+
+			//Returns the Internet Protocol (IP) address of the interface on which the request was received.
+			aboutIPMap.put("request.getLocalAddr()", request.getLocalAddr());
+
+			//Returns the fully qualified name of the client or the last proxy that sent the request. If the engine cannot or chooses not to resolve the hostname (to improve performance), this method returns the dotted-string form of the IP address. For HTTP servlets, same as the value of the CGI variable REMOTE_HOST.
+			aboutIPMap.put("request.getRemoteAddr()", request.getRemoteAddr());
+
+			//Returns the fully qualified name of the client or the last proxy that sent the request. If the engine cannot or chooses not to resolve the hostname (to improve performance), this method returns the dotted-string form of the IP address. For HTTP servlets, same as the value of the CGI variable REMOTE_HOST.
+			aboutIPMap.put("request.getRemoteHost()", request.getRemoteHost());
+
+			//Returns the host name of the server to which the request was sent. It is the value of the part before ":" in the Host header value, if any, or the resolved server name, or the server IP address.
+			aboutIPMap.put("request.getServerName()", request.getServerName());
+
+			aboutIPMap.put("getClientIp", getClientIp(request));
+			map.put("about IP Map", aboutIPMap);
+		}
+
+		// aboutPortMap
+		if (requestLogSwitch.getShowPorts()){
+			Map<String, String> aboutPortMap = new TreeMap<String, String>();
+
+			//Returns the Internet Protocol (IP) port number of the interface on which the request was received.
+			aboutPortMap.put("request.getLocalPort()", "" + request.getLocalPort());
+
+			//Returns the Internet Protocol (IP) source port of the client or last proxy that sent the request.
+			aboutPortMap.put("request.getRemotePort()", "" + request.getRemotePort());
+
+			//Returns the port number to which the request was sent. It is the value of the part after ":" in the Host header value, if any, or the server port where the client connection was accepted on.
+			aboutPortMap.put("request.getServerPort()", "" + request.getServerPort());
+
+			map.put("about Port Map", aboutPortMap);
 		}
 
 		// _errorMap
@@ -314,8 +359,7 @@ public final class RequestUtil{
 		// attribute 不属于 log 范围之内, 如果有需要 自行调用 getAttributeMap(request)
 		// map.put("_attributeKeys", getAttributeMap(request).keySet());
 
-		String string = JsonUtil.format(map);
-		return string;
+		return map;
 	}
 
 	/**
