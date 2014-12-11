@@ -23,7 +23,7 @@ package com.feilong.servlet.http.entity;
  * @see "org.apache.catalina.Globals"
  * @see "org.springframework.web.util.WebUtils"
  */
-public interface RequestAttributesConstants{
+public interface RequestAttributes{
 
 	// ************************************include(Servlet 2.2)**************************************************************************
 	/**

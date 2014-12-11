@@ -29,13 +29,13 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.lang.ObjectUtil;
-import com.feilong.commons.core.net.URIConstants;
+import com.feilong.commons.core.net.URIComponents;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.entity.HttpHeaders;
-import com.feilong.servlet.http.entity.RequestAttributesConstants;
+import com.feilong.servlet.http.entity.RequestAttributes;
 import com.feilong.servlet.http.entity.RequestLogSwitch;
 
 /**
@@ -44,7 +44,7 @@ import com.feilong.servlet.http.entity.RequestLogSwitch;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:24:55
  * @version 1.0.4 2014-3-27 14:38
- * @see RequestAttributesConstans
+ * @see RequestAttributes
  * @see RequestLogSwitch
  */
 public final class RequestUtil{
@@ -149,25 +149,25 @@ public final class RequestUtil{
 	 * 
 	 * @param request
 	 *            HttpServletRequest
-	 * @return 如果request 有 {@link RequestAttributesConstans#ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
-	 *         如果 request没有 {@link RequestAttributesConstans#ERROR_STATUS_CODE}属性,返回null
+	 * @return 如果request 有 {@link RequestAttributes#ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
+	 *         如果 request没有 {@link RequestAttributes#ERROR_STATUS_CODE}属性,返回null
 	 */
 	public static Map<String, String> getErrorMap(HttpServletRequest request){
-		String errorCode = getAttributeToString(request, RequestAttributesConstants.ERROR_STATUS_CODE);
+		String errorCode = getAttributeToString(request, RequestAttributes.ERROR_STATUS_CODE);
 		if (Validator.isNotNullOrEmpty(errorCode)){
 			Map<String, String> map = new LinkedHashMap<String, String>();
-			map.put(RequestAttributesConstants.ERROR_STATUS_CODE, errorCode);
+			map.put(RequestAttributes.ERROR_STATUS_CODE, errorCode);
 			map.put(
-							RequestAttributesConstants.ERROR_REQUEST_URI,
-							getAttributeToString(request, RequestAttributesConstants.ERROR_REQUEST_URI));
-			map.put(RequestAttributesConstants.ERROR_EXCEPTION, getAttributeToString(request, RequestAttributesConstants.ERROR_EXCEPTION));
+							RequestAttributes.ERROR_REQUEST_URI,
+							getAttributeToString(request, RequestAttributes.ERROR_REQUEST_URI));
+			map.put(RequestAttributes.ERROR_EXCEPTION, getAttributeToString(request, RequestAttributes.ERROR_EXCEPTION));
 			map.put(
-							RequestAttributesConstants.ERROR_EXCEPTION_TYPE,
-							getAttributeToString(request, RequestAttributesConstants.ERROR_EXCEPTION_TYPE));
-			map.put(RequestAttributesConstants.ERROR_MESSAGE, getAttributeToString(request, RequestAttributesConstants.ERROR_MESSAGE));
+							RequestAttributes.ERROR_EXCEPTION_TYPE,
+							getAttributeToString(request, RequestAttributes.ERROR_EXCEPTION_TYPE));
+			map.put(RequestAttributes.ERROR_MESSAGE, getAttributeToString(request, RequestAttributes.ERROR_MESSAGE));
 			map.put(
-							RequestAttributesConstants.ERROR_SERVLET_NAME,
-							getAttributeToString(request, RequestAttributesConstants.ERROR_SERVLET_NAME));
+							RequestAttributes.ERROR_SERVLET_NAME,
+							getAttributeToString(request, RequestAttributes.ERROR_SERVLET_NAME));
 			return map;
 		}
 		return null;
@@ -445,7 +445,7 @@ public final class RequestUtil{
 	 * @return 获得请求的?部分前面的地址
 	 */
 	public final static String getRequestURL(HttpServletRequest request){
-		String forward_request_uri = (String) request.getAttribute(RequestAttributesConstants.FORWARD_REQUEST_URI);
+		String forward_request_uri = (String) request.getAttribute(RequestAttributes.FORWARD_REQUEST_URI);
 		if (Validator.isNotNullOrEmpty(forward_request_uri)){
 			return forward_request_uri;
 		}
@@ -460,7 +460,7 @@ public final class RequestUtil{
 	 * @return the servlet path
 	 */
 	public static String getOriginatingServletPath(HttpServletRequest request){
-		String servletPath = (String) request.getAttribute(RequestAttributesConstants.FORWARD_SERVLET_PATH);
+		String servletPath = (String) request.getAttribute(RequestAttributes.FORWARD_SERVLET_PATH);
 		if (servletPath == null){
 			servletPath = request.getServletPath();
 		}
@@ -490,7 +490,7 @@ public final class RequestUtil{
 		}
 
 		// XXX 处理乱码
-		return requestURL + URIConstants.QUESTIONMARK + URIUtil.decodeLuanMa_ISO8859(queryString, charsetType);
+		return requestURL + URIComponents.QUESTIONMARK + URIUtil.decodeLuanMa_ISO8859(queryString, charsetType);
 	}
 
 	/**
@@ -515,7 +515,7 @@ public final class RequestUtil{
 			port = 80; // Work around java.net.URL bug
 		}
 
-		if ((scheme.equals(URIConstants.SCHEME_HTTP) && (port != 80)) || (scheme.equals(URIConstants.SCHEME_HTTPS) && (port != 443))){
+		if ((scheme.equals(URIComponents.SCHEME_HTTP) && (port != 80)) || (scheme.equals(URIComponents.SCHEME_HTTPS) && (port != 443))){
 			url.append(':');
 			url.append(port);
 		}
@@ -646,19 +646,20 @@ public final class RequestUtil{
 	}
 
 	/**
-	 * 判断一个请求 是否是ajax 请求<br>
+	 * 判断一个请求 是否是ajax 请求.<br>
 	 * 注:x-requested-with这个头是某些JS类库给加上去的，直接写AJAX是没有这个头的,<br>
 	 * jquery/ext 确定添加,暂时可以使用这个来判断<br>
-	 * <br>
+	 * 
+	 * <p>
 	 * The X-Requested-With is a non-standard HTTP header which is mainly used to identify Ajax requests. <br>
 	 * Most JavaScript frameworks send this header with value of XMLHttpRequest.
+	 * </p>
 	 * 
 	 * @param request
 	 *            the request
 	 * @return 如果是ajax 请求 返回true
-	 * @see http://en.wikipedia.org/wiki/X-Requested-With#Requested-With
+	 * @see "http://en.wikipedia.org/wiki/X-Requested-With#Requested-With"
 	 */
-	@SuppressWarnings("javadoc")
 	public final static boolean isAjaxRequest(HttpServletRequest request){
 		String header = request.getHeader(HttpHeaders.X_REQUESTED_WITH);
 		if (Validator.isNotNullOrEmpty(header) && header.equalsIgnoreCase(HttpHeaders.X_REQUESTED_WITH_VALUE_AJAX)){
@@ -775,8 +776,8 @@ public final class RequestUtil{
 	public static String getParameterWithoutSharp(HttpServletRequest request,String paramName){
 		String returnValue = getParameter(request, paramName);
 		if (Validator.isNotNullOrEmpty(returnValue)){
-			if (StringUtil.isContain(returnValue, URIConstants.FRAGMENT)){
-				returnValue = StringUtil.substring(returnValue, null, URIConstants.FRAGMENT);
+			if (StringUtil.isContain(returnValue, URIComponents.FRAGMENT)){
+				returnValue = StringUtil.substring(returnValue, null, URIComponents.FRAGMENT);
 			}
 		}
 		return returnValue;

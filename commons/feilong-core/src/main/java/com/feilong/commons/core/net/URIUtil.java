@@ -46,7 +46,7 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2010-6-11 上午02:06:43
  * @see java.net.URI
  * @see java.net.URL
- * @see URIConstants
+ * @see URIComponents
  * @since 1.0.0
  */
 public final class URIUtil{
@@ -125,11 +125,11 @@ public final class URIUtil{
 		// 暂不处理 这种路径报错的情况
 		// cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm
 
-		if (StringUtil.isContain(url, URIConstants.QUESTIONMARK)){
+		if (StringUtil.isContain(url, URIComponents.QUESTIONMARK)){
 			// 问号前面的部分
 			String before = getBeforePath(url);
 
-			String query = StringUtil.substring(url, URIConstants.QUESTIONMARK, 1);
+			String query = StringUtil.substring(url, URIComponents.QUESTIONMARK, 1);
 
 			Map<String, String[]> map = parseQueryToArrayMap(query, charsetType);
 			String encodeUrl = getEncodedUrlByArrayMap(before, map, charsetType);
@@ -247,10 +247,10 @@ public final class URIUtil{
 		String beforePath = beforeUrl;
 
 		// 如果包含?
-		if (StringUtil.isContain(beforeUrl, URIConstants.QUESTIONMARK)){
+		if (StringUtil.isContain(beforeUrl, URIComponents.QUESTIONMARK)){
 			// 问号前面的部分
 			beforePath = getBeforePath(beforeUrl);
-			String query = StringUtil.substring(beforeUrl, URIConstants.QUESTIONMARK, 1);
+			String query = StringUtil.substring(beforeUrl, URIComponents.QUESTIONMARK, 1);
 
 			Map<String, String[]> map = parseQueryToArrayMap(query, null);
 			appendMap.putAll(map);
@@ -258,7 +258,7 @@ public final class URIUtil{
 
 		StringBuilder builder = new StringBuilder("");
 		builder.append(beforePath);
-		builder.append(URIConstants.QUESTIONMARK);
+		builder.append(URIComponents.QUESTIONMARK);
 
 		// *******************************************
 		String queryString = combineQueryString(appendMap, charsetType);
@@ -337,14 +337,14 @@ public final class URIUtil{
 					sb.append(value);
 					// 最后一个& 不拼接
 					if (j != z - 1){
-						sb.append(URIConstants.AMPERSAND);
+						sb.append(URIComponents.AMPERSAND);
 					}
 				}
 			}
 
 			// 最后一个& 不拼接
 			if (i != size - 1){
-				sb.append(URIConstants.AMPERSAND);
+				sb.append(URIComponents.AMPERSAND);
 			}
 			++i;
 		}
@@ -394,7 +394,7 @@ public final class URIUtil{
 	 */
 	public static Map<String, String[]> parseQueryToArrayMap(String query,String charsetType) throws URIParseException{
 		if (Validator.isNotNullOrEmpty(query)){
-			String[] nameAndValueArray = query.split(URIConstants.AMPERSAND);
+			String[] nameAndValueArray = query.split(URIComponents.AMPERSAND);
 
 			if (Validator.isNotNullOrEmpty(nameAndValueArray)){
 
@@ -458,7 +458,7 @@ public final class URIUtil{
 		}
 		String before = "";
 		// 判断url中是否含有?
-		int index = url.indexOf(URIConstants.QUESTIONMARK);
+		int index = url.indexOf(URIComponents.QUESTIONMARK);
 		if (index == -1){
 			before = url;
 		}else{
@@ -665,7 +665,7 @@ public final class URIUtil{
 		specialCharacterMap.put("+", "%2B");// URL 中+号表示空格
 		specialCharacterMap.put(" ", "%20");// URL中的空格可以用+号或者编码
 		specialCharacterMap.put("/", "%2F");// 分隔目录和子目录
-		specialCharacterMap.put(URIConstants.QUESTIONMARK, "%3F");// 分隔实际的 URL 和参数
+		specialCharacterMap.put(URIComponents.QUESTIONMARK, "%3F");// 分隔实际的 URL 和参数
 		specialCharacterMap.put("%", "%25");// 指定特殊字符
 		specialCharacterMap.put("#", "%23");// 表示书签
 		specialCharacterMap.put("&", "%26");// URL 中指定的参数间的分隔符

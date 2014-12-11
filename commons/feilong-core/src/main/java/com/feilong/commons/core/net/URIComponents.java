@@ -16,16 +16,14 @@
 package com.feilong.commons.core.net;
 
 /**
- * uri使用的常量 <br>
- * This class defines the common URI constants ,so that they can be referenced as a constant within Java code. <br>
- * 参考了 velocity RuntimeConstants
+ * uri使用的常量.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 23, 2014 1:36:16 PM
  * @see "org.springframework.web.util.HierarchicalUriComponents.Type"
- * @since 1.0.0
+ * @since 1.0.9
  */
-public interface URIConstants{ // 声明成接口,不想被实例化
+public interface URIComponents{ // 声明成接口,不想被实例化
 
 	/** 查询片段 <code>{@value}</code>. */
 	String	FRAGMENT		= "#";
