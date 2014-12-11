@@ -11,18 +11,21 @@
 	<description>feilong-tools-solrj4</description>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.apache.solr</groupId>
 			<artifactId>solr-solrj</artifactId>
-			<version>4.6.0</version>
+			<version>${version.solr-solrj}</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>IKAnalyze</groupId>
 			<artifactId>IKAnalyze</artifactId>
 			<version>3.2.8</version>
 		</dependency>
-
 	</dependencies>
 </project>

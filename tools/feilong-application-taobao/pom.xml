@@ -21,10 +21,17 @@
 		</dependency>
 
 		<!-- taobao-sdk -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.taobao</groupId>
 			<artifactId>taobao-sdk-java-base</artifactId>
 			<version>20110909</version>
+			</dependency> -->
+
+		<!-- 见私服 -->
+		<dependency>
+			<groupId>taobao</groupId>
+			<artifactId>taobao-sdk-java-online_standard</artifactId>
+			<version>20141016</version>
 		</dependency>
 
 		<!-- commons-httpclient -->
@@ -39,4 +46,11 @@
 			<artifactId>json</artifactId>
 		</dependency>
 	</dependencies>
+
+	<!-- <repositories>
+		<repository>
+		<id>taocodeReleases</id>
+		<url>http://mvnrepo.code.taobao.org/nexus/content/repositories/releases/</url>
+		</repository>
+		</repositories> -->
 </project>

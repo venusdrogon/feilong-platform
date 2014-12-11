@@ -66,9 +66,9 @@ public class ApplicationInfoServlet extends HttpServlet{
 		map.put("System Env Map", SystemUtil.getEnvMapForLog());
 		map.put("System Properties Map", SystemUtil.getPropertiesMapForLog());
 
-		if (log.isInfoEnabled()){
-			log.info("ServletInfoListener:{}", JsonUtil.format(map));
-		}
+		//		if (log.isInfoEnabled()){
+		//			log.info("ServletInfoListener:{}", JsonUtil.format(map));
+		//		}
 		servletContext.log("ServletInfoListener" + JsonUtil.format(map));
 		super.init();
 	}

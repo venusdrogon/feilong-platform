@@ -34,10 +34,10 @@ import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.domain.User;
 import com.taobao.api.request.TopatsResultGetRequest;
-import com.taobao.api.request.TopatsTradesFullinfoGetRequest;
+//import com.taobao.api.request.TopatsTradesFullinfoGetRequest;
 import com.taobao.api.request.TradesSoldGetRequest;
 import com.taobao.api.response.TopatsResultGetResponse;
-import com.taobao.api.response.TopatsTradesFullinfoGetResponse;
+//import com.taobao.api.response.TopatsTradesFullinfoGetResponse;
 import com.taobao.api.response.TradesSoldGetResponse;
 
 /**
@@ -82,23 +82,23 @@ public class TaoBaoUtilTest{
 		// top_session
 	}
 
-	/**
-	 * taobao.topats.trades.fullinfo.get 异步批量获取交易订单详情api
-	 */
-	@Test
-	public void name(){
-		TopatsTradesFullinfoGetRequest req = new TopatsTradesFullinfoGetRequest();
-		req.setFields("tid,alipay_no,commission_fee,received_payment,buyer_alipay_no");
-		req.setTids("118920997107310");
-		String sessionKey = "4122435f86fb3e8017b2ebda2eb495c20662e547552cbCMX872773211";
-		try{
-			TopatsTradesFullinfoGetResponse response = client.execute(req, sessionKey);
-			log.info(response.getBody());
-			// {"topats_trades_fullinfo_get_response":{"task":{"created":"2011-12-24 17:06:55","task_id":4219310}}}
-		}catch (ApiException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+//	/**
+//	 * taobao.topats.trades.fullinfo.get 异步批量获取交易订单详情api
+//	 */
+//	@Test
+//	public void name(){
+//		TopatsTradesFullinfoGetRequest req = new TopatsTradesFullinfoGetRequest();
+//		req.setFields("tid,alipay_no,commission_fee,received_payment,buyer_alipay_no");
+//		req.setTids("118920997107310");
+//		String sessionKey = "4122435f86fb3e8017b2ebda2eb495c20662e547552cbCMX872773211";
+//		try{
+//			TopatsTradesFullinfoGetResponse response = client.execute(req, sessionKey);
+//			log.info(response.getBody());
+//			// {"topats_trades_fullinfo_get_response":{"task":{"created":"2011-12-24 17:06:55","task_id":4219310}}}
+//		}catch (ApiException e){
+//			log.error(e.getClass().getName(), e);
+//		}
+//	}
 
 	/**
 	 * taobao.topats.result.get 获取异步任务结果

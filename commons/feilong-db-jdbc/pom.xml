@@ -9,8 +9,8 @@
 	</parent>
 
 	<artifactId>feilong-db-jdbc</artifactId>
-	<name>feilong-db-jdbc</name>
-	
+	<name>feilong-db-jdbc(will remove)</name>
+
 	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>

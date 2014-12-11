@@ -35,7 +35,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.entity.HttpHeaders;
-import com.feilong.servlet.http.entity.RequestConstants;
+import com.feilong.servlet.http.entity.RequestAttributesConstants;
 import com.feilong.servlet.http.entity.RequestLogSwitch;
 
 /**
@@ -44,7 +44,7 @@ import com.feilong.servlet.http.entity.RequestLogSwitch;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:24:55
  * @version 1.0.4 2014-3-27 14:38
- * @see RequestConstants
+ * @see RequestAttributesConstans
  * @see RequestLogSwitch
  */
 public final class RequestUtil{
@@ -149,25 +149,25 @@ public final class RequestUtil{
 	 * 
 	 * @param request
 	 *            HttpServletRequest
-	 * @return 如果request 有 {@link RequestConstants#ATTRIBUTE_ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
-	 *         如果 request没有 {@link RequestConstants#ATTRIBUTE_ERROR_STATUS_CODE}属性,返回null
+	 * @return 如果request 有 {@link RequestAttributesConstans#ERROR_STATUS_CODE}属性,则返回error 相关属性 封装到map,<br>
+	 *         如果 request没有 {@link RequestAttributesConstans#ERROR_STATUS_CODE}属性,返回null
 	 */
 	public static Map<String, String> getErrorMap(HttpServletRequest request){
-		String errorCode = getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_STATUS_CODE);
+		String errorCode = getAttributeToString(request, RequestAttributesConstants.ERROR_STATUS_CODE);
 		if (Validator.isNotNullOrEmpty(errorCode)){
 			Map<String, String> map = new LinkedHashMap<String, String>();
-			map.put(RequestConstants.ATTRIBUTE_ERROR_STATUS_CODE, errorCode);
+			map.put(RequestAttributesConstants.ERROR_STATUS_CODE, errorCode);
 			map.put(
-							RequestConstants.ATTRIBUTE_ERROR_REQUEST_URI,
-							getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_REQUEST_URI));
-			map.put(RequestConstants.ATTRIBUTE_ERROR_EXCEPTION, getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_EXCEPTION));
+							RequestAttributesConstants.ERROR_REQUEST_URI,
+							getAttributeToString(request, RequestAttributesConstants.ERROR_REQUEST_URI));
+			map.put(RequestAttributesConstants.ERROR_EXCEPTION, getAttributeToString(request, RequestAttributesConstants.ERROR_EXCEPTION));
 			map.put(
-							RequestConstants.ATTRIBUTE_ERROR_EXCEPTION_TYPE,
-							getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_EXCEPTION_TYPE));
-			map.put(RequestConstants.ATTRIBUTE_ERROR_MESSAGE, getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_MESSAGE));
+							RequestAttributesConstants.ERROR_EXCEPTION_TYPE,
+							getAttributeToString(request, RequestAttributesConstants.ERROR_EXCEPTION_TYPE));
+			map.put(RequestAttributesConstants.ERROR_MESSAGE, getAttributeToString(request, RequestAttributesConstants.ERROR_MESSAGE));
 			map.put(
-							RequestConstants.ATTRIBUTE_ERROR_SERVLET_NAME,
-							getAttributeToString(request, RequestConstants.ATTRIBUTE_ERROR_SERVLET_NAME));
+							RequestAttributesConstants.ERROR_SERVLET_NAME,
+							getAttributeToString(request, RequestAttributesConstants.ERROR_SERVLET_NAME));
 			return map;
 		}
 		return null;
@@ -272,7 +272,13 @@ public final class RequestUtil{
 
 		// aboutElseMap
 		if (requestLogSwitch.getShowElses()){
-			Map<String, Object> aboutElseMap = new TreeMap<String, Object>();
+			Map<String, Object> aboutElseMap = new LinkedHashMap<String, Object>();
+
+			//Returns the name of the scheme used to make this request, for example, http, https, or ftp. Different schemes have different rules for constructing URLs, as noted in RFC 1738.
+			aboutElseMap.put("request.getScheme()", request.getScheme());
+
+			//Returns the name and version of the protocol the request uses in the form protocol/majorVersion.minorVersion, for example, HTTP/1.1. For HTTP servlets, the value returned is the same as the value of the CGI variable SERVER_PROTOCOL.
+			aboutElseMap.put("request.getProtocol()", request.getProtocol());
 
 			//Returns the name of the authentication scheme used to protect the servlet. 
 			//All servlet containers support basic, form and client certificate authentication, and may additionally support digest authentication. If the servlet is not authenticated null is returned. 
@@ -283,21 +289,21 @@ public final class RequestUtil{
 			//This method returns null if the request does not specify a character encoding
 			aboutElseMap.put("request.getCharacterEncoding()", request.getCharacterEncoding());
 
+			//Returns the MIME type of the body of the request, or null if the type is not known. 
+			//For HTTP servlets, same as the value of the CGI variable CONTENT_TYPE.
+			aboutElseMap.put("request.getContentType()", "" + request.getContentType());
+
 			//Returns the length, in bytes, of the request body and made available by the input stream, 
 			//or -1 if the length is not known. 
 			//For HTTP servlets, same as the value of the CGI variable CONTENT_LENGTH.
 			aboutElseMap.put("request.getContentLength()", "" + request.getContentLength());
 
-			//Returns the MIME type of the body of the request, or null if the type is not known. 
-			//For HTTP servlets, same as the value of the CGI variable CONTENT_TYPE.
-			aboutElseMap.put("request.getContentType()", "" + request.getContentType());
+			//Returns the preferred Locale that the client will accept content in, based on the Accept-Language header. If the client request doesn't provide an Accept-Language header, this method returns the default locale for the server.
+			aboutElseMap.put("request.getLocale()", "" + request.getLocale());
 
 			//Returns the host name of the Internet Protocol (IP) interface on which the request was received.
 			//2.4
 			aboutElseMap.put("request.getLocalName()", request.getLocalName());
-
-			//Returns the name and version of the protocol the request uses in the form protocol/majorVersion.minorVersion, for example, HTTP/1.1. For HTTP servlets, the value returned is the same as the value of the CGI variable SERVER_PROTOCOL.
-			aboutElseMap.put("request.getProtocol()", request.getProtocol());
 
 			//Returns the login of the user making this request, if the user has been authenticated, or null if the user has not been authenticated. Whether the user name is sent with each subsequent request depends on the browser and type of authentication. Same as the value of the CGI variable REMOTE_USER.
 			aboutElseMap.put("request.getRemoteUser()", request.getRemoteUser());
@@ -305,11 +311,25 @@ public final class RequestUtil{
 			//Returns the session ID specified by the client. This may not be the same as the ID of the current valid session for this request. If the client did not specify a session ID, this method returns null.
 			aboutElseMap.put("request.getRequestedSessionId()", request.getRequestedSessionId());
 
-			//Returns the name of the scheme used to make this request, for example, http, https, or ftp. Different schemes have different rules for constructing URLs, as noted in RFC 1738.
-			aboutElseMap.put("request.getScheme()", request.getScheme());
+			//Checks whether the requested session ID came in as a cookie.
+			aboutElseMap.put("request.isRequestedSessionIdFromCookie()", request.isRequestedSessionIdFromCookie());
 
-			//Returns the preferred Locale that the client will accept content in, based on the Accept-Language header. If the client request doesn't provide an Accept-Language header, this method returns the default locale for the server.
-			aboutElseMap.put("request.getLocale()", "" + request.getLocale());
+			//The method isRequestedSessionIdFromUrl() from the type HttpServletRequest is deprecated
+			aboutElseMap.put("request.isRequestedSessionIdFromUrl()", request.isRequestedSessionIdFromUrl());
+
+			//Checks whether the requested session ID came in as part of the request URL.
+			aboutElseMap.put("request.isRequestedSessionIdFromURL()", request.isRequestedSessionIdFromURL());
+
+			//Checks whether the requested session ID is still valid. If the client did not specify any session ID, this method returns false. 
+			aboutElseMap.put("request.isRequestedSessionIdValid()", request.isRequestedSessionIdValid());
+
+			//Returns a boolean indicating whether this request was made using a secure channel, such as HTTPS.
+			aboutElseMap.put("request.isSecure()", request.isSecure());
+
+			//Returns a java.security.Principal object containing the name of the current authenticated user. If the user has not been authenticated, the method returns null.
+			aboutElseMap.put("request.getUserPrincipal()", request.getUserPrincipal());
+
+			//			aboutElseMap.put("request.isUserInRole(role)", request.isUserInRole(role));
 
 			map.put("about Else Map", aboutElseMap);
 		}
@@ -425,7 +445,7 @@ public final class RequestUtil{
 	 * @return 获得请求的?部分前面的地址
 	 */
 	public final static String getRequestURL(HttpServletRequest request){
-		String forward_request_uri = (String) request.getAttribute(RequestConstants.ATTRIBUTE_FORWARD_REQUEST_URI);
+		String forward_request_uri = (String) request.getAttribute(RequestAttributesConstants.FORWARD_REQUEST_URI);
 		if (Validator.isNotNullOrEmpty(forward_request_uri)){
 			return forward_request_uri;
 		}
@@ -440,7 +460,7 @@ public final class RequestUtil{
 	 * @return the servlet path
 	 */
 	public static String getOriginatingServletPath(HttpServletRequest request){
-		String servletPath = (String) request.getAttribute(RequestConstants.ATTRIBUTE_FORWARD_SERVLET_PATH);
+		String servletPath = (String) request.getAttribute(RequestAttributesConstants.FORWARD_SERVLET_PATH);
 		if (servletPath == null){
 			servletPath = request.getServletPath();
 		}

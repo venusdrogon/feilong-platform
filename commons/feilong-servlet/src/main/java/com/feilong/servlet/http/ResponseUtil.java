@@ -19,11 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.MimeType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.io.MimeTypeUtil;
@@ -309,6 +306,8 @@ public final class ResponseUtil{
 		response.setDateHeader(HttpHeaders.EXPIRES, 0);
 	}
 
+	//	 [start] PrintWriter
+
 	/**
 	 * 以json的方式输出.
 	 *
@@ -316,11 +315,28 @@ public final class ResponseUtil{
 	 *            HttpServletResponse
 	 * @param json
 	 *            json字符串
+	 * @see #write(HttpServletResponse, Object, String, String)
+	 * @since 1.0.9
 	 */
-	public static void ajaxWriteJson(HttpServletResponse response,Object json){
-		response.setContentType("application/json;charset=" + CharsetType.UTF8);
-		response.setCharacterEncoding(CharsetType.UTF8);
-		write(response, json);
+	public static void writeJson(HttpServletResponse response,Object json){
+		writeJson(response, json, CharsetType.UTF8);
+	}
+
+	/**
+	 * 以json的方式输出.
+	 *
+	 * @param response
+	 *            HttpServletResponse
+	 * @param json
+	 *            json字符串
+	 * @param characterEncoding
+	 *            the character encoding
+	 * @see #write(HttpServletResponse, Object, String, String)
+	 * @since 1.0.9
+	 */
+	public static void writeJson(HttpServletResponse response,Object json,String characterEncoding){
+		String contentType = MimeType.JSON.getMime() + ";charset=" + characterEncoding;
+		write(response, json, contentType, characterEncoding);
 	}
 
 	/**
@@ -336,9 +352,44 @@ public final class ResponseUtil{
 	 * @see java.io.PrintWriter#print(Object)
 	 * @see java.io.PrintWriter#flush()
 	 * @see java.io.UncheckedIOException
+	 * @see #write(HttpServletResponse, Object, String, String)
 	 */
 	public static void write(HttpServletResponse response,Object content) throws UncheckedIOException{
+		String contentType = null;
+		String characterEncoding = null;
+		write(response, content, contentType, characterEncoding);
+	}
+
+	/**
+	 * 输出.
+	 *
+	 * @param response
+	 *            HttpServletResponse
+	 * @param content
+	 *            相应内容
+	 * @param contentType
+	 *            the content type
+	 * @param characterEncoding
+	 *            the character encoding
+	 * @throws UncheckedIOException
+	 *             the unchecked io exception
+	 * @see javax.servlet.ServletResponse#getWriter()
+	 * @see java.io.PrintWriter#print(Object)
+	 * @see java.io.PrintWriter#flush()
+	 * @see java.io.UncheckedIOException
+	 * @since 1.0.9
+	 */
+	public static void write(HttpServletResponse response,Object content,String contentType,String characterEncoding)
+					throws UncheckedIOException{
 		try{
+			//编码 需要在 getWriter之前设置
+			if (Validator.isNotNullOrEmpty(contentType)){
+				response.setContentType(contentType);
+			}
+			if (Validator.isNotNullOrEmpty(characterEncoding)){
+				response.setCharacterEncoding(characterEncoding);
+			}
+
 			PrintWriter printWriter = response.getWriter();
 			printWriter.print(content);
 			printWriter.flush();
@@ -351,4 +402,6 @@ public final class ResponseUtil{
 			throw new UncheckedIOException(e);
 		}
 	}
+
+	// [end]
 }
