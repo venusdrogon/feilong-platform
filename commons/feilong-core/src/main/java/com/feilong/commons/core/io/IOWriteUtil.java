@@ -57,9 +57,19 @@ public final class IOWriteUtil{
 	private static final Logger	log	= LoggerFactory.getLogger(IOWriteUtil.class);
 
 	/**
-	 * 将inputStream 写到 某个文件夹,名字为fileName
+	 * 将inputStream 写到 某个文件夹(文件夹路径 最后不带"/"),名字为fileName.
+	 * 
+	 * <h3>最终的fileAllName 格式是</h3>
+	 * 
+	 * <blockquote>
 	 * <p>
-	 * 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建(支持级联创建 文件夹)
+	 * {@code directoryName + "/" + fileName}
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * 拼接文件路径.<br>
+	 * 如果拼接完的文件路径 父路径不存在,则自动创建(支持级联创建 文件夹)
+	 * </p>
 	 * 
 	 * @param inputStream
 	 *            上传得文件流

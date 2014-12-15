@@ -224,13 +224,24 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 获得文件后缀名,并返回原样字母<br>
-	 * 如果文件没有后缀名 返回 "".
+	 * 获得文件后缀名(不带. 的后缀),并返回原样字母<br>
+	 * 如果文件没有后缀名 返回 "" (EMPTY).
+	 * 
+	 * <pre>
+	 * {@code
+	 * Example 1: 
+	 * F:/pie2.png, return png
+	 * 
+	 * Example 2: 
+	 * F:/pie2, return ""
+	 * }
+	 * </pre>
 	 * 
 	 * @param fileName
 	 *            文件名称
 	 * @return 不带. 的后缀
 	 * @see org.apache.commons.io.FilenameUtils#getExtension(String)
+	 * @see java.lang.String#substring(int, int)
 	 */
 	public final static String getFilePostfixName(String fileName){
 		if (hasPostfixName(fileName)){
@@ -255,11 +266,22 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 获得文件的不带后缀名的名称.
+	 * 获得文件的不带后缀名的名称. <br>
+	 * 
+	 * <pre>
+	 * {@code
+	 * Example 1: 
+	 * F:/pie2.png, return F:/pie2
+	 * 
+	 * Example 2: 
+	 * pie2.png, return pie2
+	 * }
+	 * </pre>
 	 * 
 	 * @param fileName
 	 *            文件名称
 	 * @return 获得文件的不带后缀名的名称
+	 * @see java.lang.String#substring(int, int)
 	 */
 	public final static String getFilePreName(String fileName){
 		return fileName.substring(0, fileName.lastIndexOf("."));

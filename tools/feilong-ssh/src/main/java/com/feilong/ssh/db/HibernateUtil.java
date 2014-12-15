@@ -28,7 +28,9 @@ import org.hibernate.mapping.Table;
  * 数据库相关工具类
  * 
  * @author 金鑫 2010-2-9 上午10:19:57
+ * @deprecated 待重构
  */
+@Deprecated
 public class HibernateUtil{
 
 	/**

@@ -45,7 +45,9 @@ import com.feilong.commons.core.util.Validator;
  * @author 金鑫 2009-8-5下午04:12:41
  * @param <T>
  *            可以使用泛型
+ * @deprecated 待重构
  */
+@Deprecated
 public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 
 	/** The Constant log. */

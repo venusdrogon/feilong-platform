@@ -157,17 +157,11 @@ public final class RequestUtil{
 		if (Validator.isNotNullOrEmpty(errorCode)){
 			Map<String, String> map = new LinkedHashMap<String, String>();
 			map.put(RequestAttributes.ERROR_STATUS_CODE, errorCode);
-			map.put(
-							RequestAttributes.ERROR_REQUEST_URI,
-							getAttributeToString(request, RequestAttributes.ERROR_REQUEST_URI));
+			map.put(RequestAttributes.ERROR_REQUEST_URI, getAttributeToString(request, RequestAttributes.ERROR_REQUEST_URI));
 			map.put(RequestAttributes.ERROR_EXCEPTION, getAttributeToString(request, RequestAttributes.ERROR_EXCEPTION));
-			map.put(
-							RequestAttributes.ERROR_EXCEPTION_TYPE,
-							getAttributeToString(request, RequestAttributes.ERROR_EXCEPTION_TYPE));
+			map.put(RequestAttributes.ERROR_EXCEPTION_TYPE, getAttributeToString(request, RequestAttributes.ERROR_EXCEPTION_TYPE));
 			map.put(RequestAttributes.ERROR_MESSAGE, getAttributeToString(request, RequestAttributes.ERROR_MESSAGE));
-			map.put(
-							RequestAttributes.ERROR_SERVLET_NAME,
-							getAttributeToString(request, RequestAttributes.ERROR_SERVLET_NAME));
+			map.put(RequestAttributes.ERROR_SERVLET_NAME, getAttributeToString(request, RequestAttributes.ERROR_SERVLET_NAME));
 			return map;
 		}
 		return null;
@@ -257,7 +251,9 @@ public final class RequestUtil{
 			aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
 
 			// &之后GET方法的参数部分
-			//Returns the query string that is contained in the request URL after the path. This method returns null if the URL does not have a query string. Same as the value of the CGI variable QUERY_STRING. 
+			//Returns the query string that is contained in the request URL after the path. 
+			//This method returns null if the URL does not have a query string. 
+			//Same as the value of the CGI variable QUERY_STRING. 
 			aboutURLMap.put("request.getQueryString()", request.getQueryString());
 
 			// ***********************************************************************
@@ -773,6 +769,7 @@ public final class RequestUtil{
 	 *            the param name
 	 * @return 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题
 	 */
+	@Deprecated
 	public static String getParameterWithoutSharp(HttpServletRequest request,String paramName){
 		String returnValue = getParameter(request, paramName);
 		if (Validator.isNotNullOrEmpty(returnValue)){

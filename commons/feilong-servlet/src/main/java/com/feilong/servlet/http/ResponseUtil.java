@@ -276,13 +276,16 @@ public final class ResponseUtil{
 	 *            HttpServletResponse
 	 * @param url
 	 *            跳转路径
+	 * @throws UncheckedIOException
+	 *             the unchecked io exception
 	 */
-	public static void setNoCacheAndRedirect(HttpServletResponse response,String url){
+	public static void setNoCacheAndRedirect(HttpServletResponse response,String url) throws UncheckedIOException{
 		setNoCacheHeader(response);
 		try{
 			response.sendRedirect(url);
 		}catch (IOException e){
 			log.error(e.getClass().getName(), e);
+			throw new UncheckedIOException(e);
 		}
 	}
 
@@ -395,8 +398,7 @@ public final class ResponseUtil{
 			printWriter.flush();
 
 			//http://www.iteye.com/problems/56543
-			//你是用了tomcat，jetty这样的容器，就不需要
-			//printWriter.close();
+			//你是用了tomcat，jetty这样的容器，就不需要 printWriter.close();
 		}catch (IOException e){
 			log.error(e.getClass().getName(), e);
 			throw new UncheckedIOException(e);
