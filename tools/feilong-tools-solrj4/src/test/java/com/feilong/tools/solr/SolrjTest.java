@@ -79,56 +79,6 @@
 //			addBean(skuItem);
 //		}
 //	}
-//
-//	@Test
-//	public void readingDatafromSolr() throws SolrServerException,IOException{
-//		// Construct a SolrQuery
-//		SolrQuery query = new SolrQuery();
-//		// query.setQuery("*:*");
-//		query.setQuery("code:258746-602");
-//		// query.setQuery("code:258746~");
-//		// query.setQuery("258746");
-//		// ***************************************************
-//		query.setHighlight(true);
-//		query.addHighlightField("code");
-//		query.setHighlightSimplePre("<font color='red'>");// 前缀
-//		query.setHighlightSimplePost("</font>");// 后缀
-//		query.set("hl.usePhraseHighlighter", true);
-//		query.set("hl.highlightMultiTerm", true);
-//		query.set("hl.snippets", 3);// 三个片段,默认是1
-//		query.set("hl.fragsize", 50);// 每个片段50个字，默认是100
-//		// ***************************************************
-//		query.addSortField("id", ORDER.desc);
-//		// ***************************************************
-//		query.setStart(0); // 起始位置 …分页
-//		query.setRows(10);// 文档数
-//		query(query);
-//	}
-//
-//	private void query(SolrQuery query) throws SolrServerException,MalformedURLException{
-//		// Get an instance of server first
-//		CommonsHttpSolrServer server = new CommonsHttpSolrServer(url);
-//		// Query the server
-//		QueryResponse queryResponse = server.query(query);
-//		// Get the results
-//		SolrDocumentList docs = queryResponse.getResults();
-//		log.info("文档个数：" + docs.getNumFound());
-//		log.info("查询时间：" + queryResponse.getQTime());
-//		// To read Documents as beans, the bean must be annotated as given in the example.
-//		List<SkuItem> result = queryResponse.getBeans(SkuItem.class);
-//		log.info("result.size():{}", result.size());
-//		for (SkuItem solrBean : result){
-//			Object[] objects = { solrBean.getId(), solrBean.getCode(), solrBean.getName() };
-//			log.info("id:{},code:{},name:{}", objects);
-//		}
-//	}
-//
-//	@Test
-//	public void advancedUsage() throws SolrServerException,IOException{
-//		SolrQuery solrQuery = new SolrQuery().setQuery("id=1");
-//		query(solrQuery);
-//	}
-//
 //	@Test
 //	public void add() throws SolrServerException,IOException{
 //		/*

@@ -23,19 +23,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 应用设置的监听器<br>
- * 设置应用通用参数.
+ * 设置 servlet context path 到servletContext attribute {@link #APPLICATIONATTRIBUTE_BASE}
  *
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Nov 9, 2012 5:16:58 PM
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.9 2015年1月3日 上午5:00:38
+ * @since 1.0.9
  */
-//TODO 拆
-public class ApplicationContextListener implements ServletContextListener{
+public class ServletContextPathListener implements ServletContextListener{
 
 	/** The Constant log. */
-	private static final Logger	log							= LoggerFactory.getLogger(ApplicationContextListener.class);
+	private static final Logger	log							= LoggerFactory.getLogger(ServletContextPathListener.class);
 
 	/** base 路径. */
+	//TODO 设置 init param
 	private static String		APPLICATIONATTRIBUTE_BASE	= "base";
 
 	/*
@@ -49,10 +49,12 @@ public class ApplicationContextListener implements ServletContextListener{
 
 		String contextPath = servletContext.getContextPath();
 		servletContext.setAttribute(APPLICATIONATTRIBUTE_BASE, contextPath);
-		servletContext.log("Set servletContext setAttribute: 'base' = [" + contextPath + "]");
+
+		String msg = "Set servletContext setAttribute: '" + APPLICATIONATTRIBUTE_BASE + "' = [" + contextPath + "]";
+		servletContext.log(msg);
 
 		if (log.isInfoEnabled()){
-			log.info("Set servletContext setAttribute: 'base' = [" + contextPath + "]");
+			log.info(msg);
 		}
 	}
 

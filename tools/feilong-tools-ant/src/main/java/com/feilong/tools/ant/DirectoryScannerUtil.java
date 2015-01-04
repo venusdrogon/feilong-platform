@@ -36,6 +36,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class DirectoryScannerUtil{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(DirectoryScannerUtil.class);
 
 	/**
@@ -81,11 +82,72 @@ public class DirectoryScannerUtil{
 	/**
 	 * 获得 included file list.
 	 *
+	 * @param basedir
+	 *            the basedir
+	 * @param includes
+	 *            the includes
+	 * @return the included file list
+	 * @since 1.0.9
+	 */
+	public static List<File> getIncludedFileList(String basedir,String[] includes){
+		DirectoryScanner directoryScanner = getDirectoryScanner(basedir, includes);
+
+		List<File> includedFileList = DirectoryScannerUtil.getIncludedFileList(directoryScanner);
+		return includedFileList;
+	}
+
+	/**
+	 * 获得 included files.
+	 *
+	 * @param basedir
+	 *            the basedir
+	 * @param includes
+	 *            the includes
+	 * @return the included files
+	 * @since 1.0.9
+	 */
+	public static String[] getIncludedFiles(String basedir,String[] includes){
+		DirectoryScanner directoryScanner = getDirectoryScanner(basedir, includes);
+		String[] includedFiles = directoryScanner.getIncludedFiles();
+		return includedFiles;
+	}
+
+	/**
+	 * 获得 directory scanner.
+	 *
+	 * @param basedir
+	 *            the basedir
+	 * @param includes
+	 *            the includes
+	 * @return the directory scanner
+	 * @since 1.0.9
+	 */
+	private static DirectoryScanner getDirectoryScanner(String basedir,String[] includes){
+		DirectoryScanner directoryScanner = new DirectoryScanner();
+
+		directoryScanner.setBasedir(basedir);
+		directoryScanner.setIncludes(includes);
+		//directoryScanner.setExcludes(excludes);
+
+		directoryScanner.scan();
+
+		Map<String, Object> map = DirectoryScannerUtil.getDirectoryScannerMapForLog(directoryScanner);
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(map));
+		}
+
+		return directoryScanner;
+	}
+
+	/**
+	 * 获得 included file list.
+	 *
 	 * @param directoryScanner
 	 *            the directory scanner
 	 * @return the included file list
 	 */
-	public static List<File> getIncludedFileList(DirectoryScanner directoryScanner){
+	private static List<File> getIncludedFileList(DirectoryScanner directoryScanner){
 		int includedFilesCount = directoryScanner.getIncludedFilesCount();
 		String[] includedFiles = directoryScanner.getIncludedFiles();
 
@@ -99,15 +161,12 @@ public class DirectoryScannerUtil{
 		for (int i = 0; i < includedFiles.length; i++){
 			String child = includedFiles[i];
 
-			//String projectName = FileUtil.getFileTopParentName(child);
-
 			File file = new File(basedir, child);
 			includedFileList.add(file);
 		}
 		if (log.isDebugEnabled()){
 			log.debug("will return includedFileList:{}", JsonUtil.format(includedFileList));
 		}
-
 		return includedFileList;
 	}
 }

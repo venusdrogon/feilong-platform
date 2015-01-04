@@ -23,6 +23,7 @@
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-ant-tasks</artifactId>
 			<version>${version.maven-ant-tasks}</version>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 

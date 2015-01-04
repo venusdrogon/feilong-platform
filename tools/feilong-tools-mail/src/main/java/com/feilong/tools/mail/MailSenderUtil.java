@@ -237,6 +237,19 @@ public final class MailSenderUtil{
 		// 设置邮件消息的主题
 		message.setSubject(mailSenderConfig.getSubject());
 
+		setHeaders(mailSenderConfig);
+	}
+
+	/**
+	 * 设置 header 信息
+	 * 
+	 * @param mailSenderConfig
+	 * @throws MessagingException
+	 * @since 1.0.9
+	 * @see javax.mail.Part#addHeader(String, String)
+	 * @see javax.mail.Part#setHeader(String, String)
+	 */
+	private void setHeaders(MailSenderConfig mailSenderConfig) throws MessagingException{
 		// ***************************************************************************
 		// 邮件的优先级
 		Priority priority = mailSenderConfig.getPriority();
