@@ -114,6 +114,7 @@
 
 		<version.javamail>1.4.7</version.javamail>
 		<version.jacob>1.14.3</version.jacob>
+		<version.jsch>0.1.51</version.jsch>
 
 		<!-- 让控制台输出彩色字符 -->
 		<version.jansi>1.11</version.jansi>
