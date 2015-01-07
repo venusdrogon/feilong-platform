@@ -35,10 +35,10 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
  * @deprecated
  */
 @Deprecated
-public class MemCachedUtil{
+public class DangaMemCachedUtil{
 
 	/** The Constant log. */
-	private final static Logger		log				= LoggerFactory.getLogger(MemCachedUtil.class);
+	private final static Logger		log				= LoggerFactory.getLogger(DangaMemCachedUtil.class);
 
 	/** The config. */
 	private static ResourceBundle	config			= ResourceBundle.getBundle("memcached");
@@ -77,7 +77,7 @@ public class MemCachedUtil{
 	private final Boolean			ALIVE_CHECK		= ResourceBundleUtil.getValue(config, "memcached.alivecheck", Boolean.class);
 
 	/** ***********************************************************************************. */
-	private static MemCachedUtil	memCachedUtil	= null;
+	private static DangaMemCachedUtil	memCachedUtil	= null;
 
 	/** The sock io pool. */
 	private SockIOPool				sockIOPool		= null;
@@ -87,9 +87,9 @@ public class MemCachedUtil{
 	 * 
 	 * @return single instance of MemCachedUtil
 	 */
-	public static synchronized MemCachedUtil getInstance(){
+	public static synchronized DangaMemCachedUtil getInstance(){
 		if (memCachedUtil == null){
-			memCachedUtil = new MemCachedUtil();
+			memCachedUtil = new DangaMemCachedUtil();
 		}
 		return memCachedUtil;
 	}
@@ -97,7 +97,7 @@ public class MemCachedUtil{
 	/**
 	 * Instantiates a new mem cached util.
 	 */
-	public MemCachedUtil(){
+	public DangaMemCachedUtil(){
 		initialize();
 	}
 

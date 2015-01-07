@@ -31,13 +31,13 @@ import com.danga.MemCached.MemCachedClient;
  * @version 1.0.7 2014-6-25 16:25:00
  */
 @ContextConfiguration(locations = { "classpath:feilong-memcached.xml" })
-public class MemCachedUtilTest extends AbstractJUnit4SpringContextTests{
+public class DangaMemCachedUtilTest extends AbstractJUnit4SpringContextTests{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MemCachedUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(DangaMemCachedUtilTest.class);
 
 	/** The mem cached util. */
-	private MemCachedUtil		memCachedUtil;
+	private DangaMemCachedUtil		memCachedUtil;
 
 	/** The mem cached client. */
 	@Autowired

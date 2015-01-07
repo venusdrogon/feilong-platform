@@ -35,10 +35,10 @@ import com.feilong.commons.core.date.TimeInterval;
  * @version 1.0 Nov 21, 2012 6:11:29 PM
  */
 @Service("memCachedManager")
-public class MemCachedManagerImpl implements MemCachedManager{
+public class SpyMemCachedManagerImpl implements MemCachedManager{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MemCachedManagerImpl.class);
+	private static final Logger	log	= LoggerFactory.getLogger(SpyMemCachedManagerImpl.class);
 
 	/** The memcached client. */
 	@Autowired(required = false)
