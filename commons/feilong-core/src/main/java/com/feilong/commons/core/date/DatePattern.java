@@ -146,6 +146,32 @@ import java.util.Date;
  * </table>
  * </blockquote>
  * 
+ * 
+ * <h3>关于yyyy && YYYY</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 如果使用了YYYY的格式符来格式化日期，那么就有可能用错格式了。 <br/>
+ * 那么日期为什么忽然变得不对了？原因是开发人员误用的格式符代表的是一种不同的日历系统。<br/>
+ * <br/>
+ * 
+ * 现行的公历通常被称为格里高利历（Gregorian calendar），它以400年为一个周期，在这个周期中，一共有97个闰日，在这种历法的设计中，闰日尽可能均匀地分布在各个年份中，所以一年的长度有两种可能：365天或366天。
+ * 
+ * <br/>
+ * 而本文提到的被错误使用的历法格式(YYYY)，是国际标准ISO 8601所指定的历法。<br/>
+ * <br/>
+ * 这种历法采用周来纪日，样子看起来是这样的 ：2009-W53-7。对于格里高利历中的闰日，它也采用“闰周”来表示，所以一年的长度是364或371天。<br/>
+ * <br/>
+ * 并且它规定，公历一年中第一个周四所在的那个星期，作为一年的第一个星期。
+ * 
+ * <br/>
+ * 这导致了一些很有意思的结果，公历每年元旦前后的几天，年份会和ISO 8601纪年法差一年。<br/>
+ * <br/>
+ * 比如，2015年的第一个周四是1月1日，所以1月1日所在的那周，就变成了2015年的第一周。代表ISO 8601的格式符是YYYY，注意是大写的，而格里高利历的格式符是小写的yyyy，如果不小心把这两者搞混了，时间就瞬间推移了一年！维基百科上也有词条专门解释ISO
+ * 8601。
+ * </p>
+ * </blockquote>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 21 04:18:00
  * @version 1.0.5 2014-5-4 14:23 change to interface
@@ -214,8 +240,8 @@ public interface DatePattern{
 	String	timestampWithMillisecond	= "yyyyMMddHHmmssSSS";
 
 	/**
-	 * 系统Date toString 使用的格式,并且 Locale.US,<br>
-	 * example: 星期五 十二月 27 22:13:55 CST 2013 <br>
+	 * 系统Date toString 使用的格式,并且 Locale.US,<br/>
+	 * example: 星期五 十二月 27 22:13:55 CST 2013 <br/>
 	 * 详见{@link Date#toString()} <code>{@value}</code> .
 	 */
 	String	forToString					= "EEE MMM dd HH:mm:ss zzz yyyy";
