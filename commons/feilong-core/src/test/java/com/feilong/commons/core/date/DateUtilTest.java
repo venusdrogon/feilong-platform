@@ -51,6 +51,17 @@ public class DateUtilTest extends BaseDateUtilTest{
 	// ctrl+D 删除光标所在行
 
 	/**
+	 * TestDateUtilTest.
+	 */
+	@Test
+	public void testDateUtilTest(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2014, Calendar.DECEMBER, 29);
+		log.info(DateUtil.date2String(calendar.getTime(), "yyyy-MM-dd"));
+		log.info(DateUtil.date2String(calendar.getTime(), "YYYY-MM-dd"));
+	}
+
+	/**
 	 * Aaaa.
 	 */
 	@Test

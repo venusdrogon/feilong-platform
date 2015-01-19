@@ -54,6 +54,20 @@ public class ArrayUtilTest{
 		log.debug("" + strs.length);
 	}
 
+	@Test
+	public void testArrayUtilTest22(){
+		String[] strs = {
+				"ppt-coreContent1.png",
+				"ppt-coreContent3.png",
+				"ppt-coreContent10.png",
+				"ppt-coreContent11.png",
+				"ppt-coreContent2.png" };
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(strs));
+		}
+
+	}
+
 	/**
 	 * Test is contain.
 	 */
@@ -61,8 +75,9 @@ public class ArrayUtilTest{
 	public void testIsContain(){
 		Assert.assertEquals(true, ArrayUtil.isContain(new Integer[] { 1, 223 }, 1));
 		Assert.assertEquals(true, ArrayUtil.isContain(new Long[] { 1L, 223L }, 1L));
+		
 		String[] array = new String[] { "1", "223" };
-		Assert.assertEquals(true, ArrayUtil.isContain(array, "1"));
+		Assert.assertEquals(false, ArrayUtil.isContain(array, "2"));
 	}
 
 	/**

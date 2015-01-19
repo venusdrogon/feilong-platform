@@ -324,7 +324,7 @@ public final class FileUtil{
 	 */
 	public final static String getFileTopParentName(String pathname) throws NullPointerException{
 		if (Validator.isNullOrEmpty(pathname)){
-			throw new NullPointerException("fileName can't be null/empty!");
+			throw new NullPointerException("pathname can't be null/empty!");
 		}
 
 		File file = new File(pathname);
@@ -339,9 +339,27 @@ public final class FileUtil{
 		String fileTopParentName = getFileTopParentName(file);
 
 		if (log.isDebugEnabled()){
-			log.debug("fileName:[{}],fileTopParentName:[{}]", pathname, fileTopParentName);
+			log.debug("pathname:[{}],fileTopParentName:[{}]", pathname, fileTopParentName);
 		}
 		return fileTopParentName;
+	}
+
+	/**
+	 * 获得 parent.
+	 *
+	 * @param pathname
+	 *            the pathname
+	 * @return the parent
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	public static String getParent(String pathname) throws NullPointerException{
+		if (Validator.isNullOrEmpty(pathname)){
+			throw new NullPointerException("pathname can't be null/empty!");
+		}
+		File file = new File(pathname);
+		String parent = file.getParent();
+		return parent;
 	}
 
 	/**
@@ -500,7 +518,7 @@ public final class FileUtil{
 	 * <p>
 	 * 目前支持单位有 GB MB KB以及最小单位 Bytes
 	 * </p>
-	 * 
+	 *
 	 * @param file
 	 *            the file
 	 * @return the file format size
@@ -510,8 +528,8 @@ public final class FileUtil{
 	 * @see IOConstants#GB
 	 * @see IOConstants#MB
 	 * @see IOConstants#KB
-	 * @since 1.0.7
 	 * @see org.apache.commons.io.FileUtils#byteCountToDisplaySize(long)
+	 * @since 1.0.7
 	 */
 	public final static String getFileFormatSize(File file) throws NullPointerException{
 		if (Validator.isNullOrEmpty(file)){
@@ -538,14 +556,13 @@ public final class FileUtil{
 	}
 
 	/**
-	 * 级联创建文件夹和file
-	 * 
+	 * 级联创建文件夹和file.
+	 *
 	 * @param filePath
 	 *            必须是file
 	 * @return the file
 	 * @throws IllegalArgumentException
 	 *             if Validator.isNullOrEmpty(filePath)
-	 * 
 	 * @see #getFormatFileName(String)
 	 * @since 1.0.7
 	 */

@@ -170,12 +170,18 @@ import java.util.Date;
  * 比如，2015年的第一个周四是1月1日，所以1月1日所在的那周，就变成了2015年的第一周。代表ISO 8601的格式符是YYYY，注意是大写的，而格里高利历的格式符是小写的yyyy，如果不小心把这两者搞混了，时间就瞬间推移了一年！维基百科上也有词条专门解释ISO
  * 8601。
  * </p>
+ * 
+ * <p>
+ * 注意:YYYY是 jdk1.7+支持的格式, jdk1.7-的版本, SimpleDateFormat会抛异常
+ * </p>
  * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 21 04:18:00
  * @version 1.0.5 2014-5-4 14:23 change to interface
  * @see SimpleDateFormat
+ * @see <a
+ *      href="http://www.infoq.com/cn/news/2015/01/java-date-format-with-caution?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global">慎用Java日期格式化</a>
  * @since 1.0.0
  */
 public interface DatePattern{

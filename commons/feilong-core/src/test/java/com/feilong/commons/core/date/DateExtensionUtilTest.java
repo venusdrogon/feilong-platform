@@ -46,6 +46,11 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 		log.debug(DateExtensionUtil.getIntervalForView(0));
 	}
 
+	@Test
+	public void testGetChineseWeek(){
+		log.debug(DateExtensionUtil.getChineseWeek(0));
+	}
+
 	/**
 	 * Test get interval day list.
 	 */

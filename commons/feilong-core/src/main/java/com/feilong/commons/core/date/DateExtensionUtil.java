@@ -28,6 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.feilong.commons.core.MessageConstants;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -48,6 +49,17 @@ public final class DateExtensionUtil{
 
 	/** Don't let anyone instantiate this class. */
 	private DateExtensionUtil(){}
+
+	/**
+	 * 获得中文星期.
+	 * 
+	 * @param week
+	 *            星期 日从0开始 1 2 --6
+	 * @return 如 星期一
+	 */
+	public static String getChineseWeek(int week){
+		return MessageConstants.DATE_WEEK + DateDictionary.WEEK_CHINESES[week];
+	}
 
 	// [start]extent 获得时间 /时间数组,可以用于sql查询
 	/**

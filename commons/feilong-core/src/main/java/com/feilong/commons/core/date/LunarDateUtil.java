@@ -20,8 +20,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.MessageConstants;
-
 /**
  * 阴历(农历)日期.
  * 
@@ -30,22 +28,10 @@ import com.feilong.commons.core.MessageConstants;
  * @see SolarDateUtil
  * @since 1.0.0
  */
-@SuppressWarnings("deprecation")
 public final class LunarDateUtil{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(LunarDateUtil.class);
-
-	/**
-	 * 获得中文星期.
-	 * 
-	 * @param week
-	 *            星期 日从0开始 1 2 --6
-	 * @return 如 星期一
-	 */
-	public static String getChineseWeek(int week){
-		return MessageConstants.DATE_WEEK + DateDictionary.WEEK_CHINESES[week];
-	}
 
 	/**
 	 * 农历转成阳历The lunar calendar is turned into the Solar calendar.

@@ -141,7 +141,8 @@ public final class ArrayUtil{
 		if (Validator.isNullOrEmpty(arrays)){
 			return null;
 		}
-		// Arrays.asList(arrays)方法 返回的是Arrays类的内部类的对象，而Arrays类里的内部类ArrayList没有实现AbstractList类的add方法，导致抛异常! strList.add("c");
+		// Arrays.asList(arrays)方法 返回的是Arrays类的内部类的对象，
+		//而Arrays类里的内部类ArrayList没有实现AbstractList类的add方法，导致抛异常! strList.add("c");
 
 		List<T> list = new ArrayList<T>(Arrays.asList(arrays));
 		return list;
