@@ -44,6 +44,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.MimeType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -68,10 +69,7 @@ public final class MailSenderUtil{
 	/** contentId前缀. */
 	public static final String	PREFIX_CONTENTID	= "image";
 
-	/** 邮件客户端 版本. */
-	private static final String	HEADER_X_MAILER		= "FeiLong MailSender Api 1.0.8";
-
-	private static final String	personalCharset		= CharsetType.GB2312;
+	private static final String	CHARSET_PERSONAL	= CharsetType.GB2312;
 
 	/** The message. */
 	private Message				message				= null;
@@ -181,7 +179,7 @@ public final class MailSenderUtil{
 			List<byte[]> attachList = mailSenderConfig.getAttachList();
 			if (Validator.isNotNullOrEmpty(attachList)){
 
-				String type = "application/octet-stream";
+				String type = MimeType.BIN.getMime();
 
 				int size = attachList.size();
 				for (int i = 0; i < size; i++){
@@ -223,7 +221,7 @@ public final class MailSenderUtil{
 		String fromAddress = mailSenderConfig.getFromAddress();
 		// 设置邮件消息的发送者
 
-		String encodeText = MimeUtility.encodeText(mailSenderConfig.getPersonal(), personalCharset, "b");
+		String encodeText = MimeUtility.encodeText(mailSenderConfig.getPersonal(), CHARSET_PERSONAL, "b");
 
 		Address addressFrom = new InternetAddress(fromAddress, encodeText);
 		message.setFrom(addressFrom);
@@ -254,15 +252,15 @@ public final class MailSenderUtil{
 		// 邮件的优先级
 		Priority priority = mailSenderConfig.getPriority();
 		if (null != priority){
-			message.addHeader("X-Priority", priority.getLevelValue());
+			message.addHeader(MailHeader.X_PRIORITY, priority.getLevelValue());
 		}
 		// ***************************************************************************
 		// 是否需要回执
 		if (mailSenderConfig.getIsNeedReturnReceipt()){
-			message.setHeader("Disposition-Notification-To", "1");
+			message.setHeader(MailHeader.DISPOSITION_NOTIFICATION_TO, "1");
 		}
 		// 邮件客户端
-		message.setHeader("X-mailer", HEADER_X_MAILER);
+		message.setHeader(MailHeader.X_MAILER, MailHeader.X_MAILER_VALUE);
 
 		// 设置邮件消息发送的时间
 		message.setSentDate(new Date());

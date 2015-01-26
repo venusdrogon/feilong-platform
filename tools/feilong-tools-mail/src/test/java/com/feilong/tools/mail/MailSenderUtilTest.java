@@ -23,8 +23,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.mail.MessagingException;
+
+import net.sf.json.util.NewBeanInstanceStrategy;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,6 +35,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.io.FileType;
@@ -50,35 +54,37 @@ import com.feilong.tools.velocity.VelocityUtil;
 public class MailSenderUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log			= LoggerFactory.getLogger(MailSenderUtilTest.class);
+	private static final Logger		log				= LoggerFactory.getLogger(MailSenderUtilTest.class);
+
+	private static ResourceBundle	resourceBundle	= ResourceBundleUtil
+																	.getResourceBundleByFileName("E:\\DataCommon\\Files\\mail.properties");
 
 	/** 发送. */
-	private String[]			tos			= { "xin.jin@baozun.com" };
+	private String[]				tos				= { "xin.jin@baozun.com" };
 
 	/** cc. */
-	private String[]			ccs			= { "venusdrogon@163.com" };
+	private String[]				ccs				= { "venusdrogon@163.com" };
 
 	/** bcc. */
-	private String[]			bccs		= { "190600641@qq.com", "1151889455@qq.com" };
+	private String[]				bccs			= { "190600641@qq.com", "1151889455@qq.com" };
 
-	private String				userName	= "feilongtestemail@163.com";
+	private String					personal		= "三国徐晃";
 
-	private String				password	= "521000";
-
-	private String				personal	= "三国徐晃";
-
-	private MailSenderConfig	mailSenderConfig;
+	private MailSenderConfig		mailSenderConfig;
 
 	@Before
 	public void before(){
 		mailSenderConfig = new MailSenderConfig();
-		mailSenderConfig.setMailServerHost("smtp.163.com");
-		mailSenderConfig.setMailServerPort("25");
+		mailSenderConfig.setMailServerHost(resourceBundle.getString("mailServerHost"));
+		mailSenderConfig.setMailServerPort(resourceBundle.getString("mailServerPort"));
 
+		String userName = resourceBundle.getString("userName");
 		mailSenderConfig.setUserName(userName);
-		mailSenderConfig.setPassword(password);
+		mailSenderConfig.setPassword(resourceBundle.getString("password"));
 
-		mailSenderConfig.setFromAddress(userName);
+		String fromAddress = userName;
+		//fromAddress = "190600641@qq.com";
+		mailSenderConfig.setFromAddress(fromAddress);
 		mailSenderConfig.setPersonal(personal);
 
 		mailSenderConfig.setTos(tos);
@@ -101,7 +107,6 @@ public class MailSenderUtilTest{
 	@Test
 	public void sendMail(){
 		String textContent = "<html><body><hr/><div style='boder:1px #000 solid;color:red'>222222</div></body></html>";
-
 		mailSenderConfig.setContent(textContent);
 	}
 
