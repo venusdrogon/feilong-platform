@@ -91,13 +91,12 @@ public final class IOUtil{
 			}
 			return stringBuffer.toString();
 		}catch (IOException e){
-			e.printStackTrace();
-
+			log.error("", e);
 		}finally{
 			try{
 				inputStream.close();
 			}catch (IOException e){
-				e.printStackTrace();
+				log.error("", e);
 			}
 		}
 		return null;

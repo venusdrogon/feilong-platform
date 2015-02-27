@@ -68,7 +68,7 @@ public class PropertiesUtilTest{
 				log.info(new String(iterable_element.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
 			}
 		}catch (UnsupportedEncodingException e1){
-			e1.printStackTrace();
+			log.error("", e1);
 		}
 		// = PropertiesUtil.getPropertiesValue(FeiLongPropertiesUtilTest.class, propertiesPath, "锦衣夜行");
 		try{
