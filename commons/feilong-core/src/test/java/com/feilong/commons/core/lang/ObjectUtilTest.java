@@ -226,11 +226,11 @@ public class ObjectUtilTest{
 	@Test
 	public final void testToShort(){}
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toString(java.lang.Object)}.
-	 */
 	@Test
-	public final void testToStringObject(){}
+	public final void testToStringObject(){
+		String[] aaaa = { "aa", "aaa" };
+		log.info(ObjectUtil.toString(aaaa));
+	}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toT(java.lang.Object, java.lang.Class)}.

@@ -199,6 +199,7 @@ public class ArrayUtilTest{
 	@Test
 	public final void convertListToStringReplaceBrackets(){
 		String[] array = new String[] { "1", "223" };
+		//Use "Arrays.toString(array)" instead.
 		log.info(array.toString());
 		log.info(Arrays.toString(array));
 		log.info(StringUtils.join(array, ","));

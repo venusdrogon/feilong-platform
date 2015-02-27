@@ -19,6 +19,7 @@ import java.text.ChoiceFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.junit.Test;
@@ -63,19 +64,23 @@ public class MessageFormatUtilTest{
 		String forParsing = "x, y, z";
 		Object[] objs = mf.parse(forParsing, new ParsePosition(0));
 		// result now equals {new String("z")}
-		log.info(objs.toString());
+		log.info(Arrays.toString(objs));
+
 		log.info("objs:{}", JsonUtil.format(objs));
+
 		int planet = 7;
 		String event = "a disturbance in the Force";
 		String result = MessageFormat.format(
-				"At {1,time} on {1,date}, there was {2} on planet {0,number,integer}.",
-				planet,
-				new Date(),
-				event);
+						"At {1,time} on {1,date}, there was {2} on planet {0,number,integer}.",
+						planet,
+						new Date(),
+						event);
 		log.info(result);
+
 		MessageFormat form = new MessageFormat("The disk \"{1}\" contains {0}.");
 		double[] filelimits = { 0, 1, 2 };
 		String[] filepart = { "no files", "one file", "{0,number} files" };
+
 		ChoiceFormat fileform = new ChoiceFormat(filelimits, filepart);
 		form.setFormatByArgumentIndex(0, fileform);
 		int fileCount = 0;

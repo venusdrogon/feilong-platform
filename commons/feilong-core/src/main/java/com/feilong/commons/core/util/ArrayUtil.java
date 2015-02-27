@@ -162,6 +162,7 @@ public final class ArrayUtil{
 	 * @deprecated 转成泛型
 	 */
 	//TODO 转成泛型
+	@Deprecated
 	public static Integer[] toIntegers(Object[] objects){
 		if (Validator.isNotNullOrEmpty(objects)){
 			int length = objects.length;

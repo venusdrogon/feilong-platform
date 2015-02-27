@@ -19,6 +19,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -382,6 +383,7 @@ public final class ObjectUtil{
 	 *         <li>{@code (null == value) =====>return null}</li>
 	 *         <li>{@code (value instanceof String) =====>return (String) value}</li>
 	 *         <li>{@code return value.toString()}</li>
+	 *         <li>对于数组，将会调用 {@link java.util.Arrays#toString(Object[])}</li>
 	 *         </ul>
 	 * @since 1.0
 	 */
@@ -391,6 +393,50 @@ public final class ObjectUtil{
 		}
 		if (value instanceof String){
 			return (String) value;
+		}
+		if (value instanceof Object[]){
+			return Arrays.toString((Object[]) value);
+		}
+
+		//***************************************************************
+		// primitive ints
+		if (value instanceof int[]){
+			return Arrays.toString((int[]) value);
+		}
+
+		// primitive long
+		if (value instanceof long[]){
+			return Arrays.toString((long[]) value);
+		}
+
+		// primitive float
+		if (value instanceof float[]){
+			return Arrays.toString((float[]) value);
+		}
+
+		// primitive double
+		if (value instanceof double[]){
+			return Arrays.toString((double[]) value);
+		}
+
+		// primitive char
+		if (value instanceof char[]){
+			return Arrays.toString((char[]) value);
+		}
+
+		// primitive boolean
+		if (value instanceof boolean[]){
+			return Arrays.toString((boolean[]) value);
+		}
+
+		// primitive byte
+		if (value instanceof byte[]){
+			return Arrays.toString((byte[]) value);
+		}
+
+		// primitive short
+		if (value instanceof short[]){
+			return Arrays.toString((short[]) value);
 		}
 		return value.toString();
 	}

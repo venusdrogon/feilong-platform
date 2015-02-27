@@ -244,7 +244,7 @@ public final class ParamUtil{
 	public static String removeParameterList(String url,List<String> paramNameList,String charsetType){
 		URI uri = URIUtil.create(url, charsetType);
 		return removeParameterList(uri, paramNameList, charsetType);
-	};
+	}
 
 	/**
 	 * 删除参数.

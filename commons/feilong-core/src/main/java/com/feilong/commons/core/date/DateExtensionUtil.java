@@ -79,6 +79,7 @@ public final class DateExtensionUtil{
 	 * @since 1.0
 	 * @deprecated 方法名在未来版本可能会更新
 	 */
+	@Deprecated
 	public final static Date[] getExtentToday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
 		Date today = calendar.getTime();
@@ -107,6 +108,7 @@ public final class DateExtensionUtil{
 	 * @since 1.0
 	 * @deprecated 方法名会更新
 	 */
+	@Deprecated
 	public final static Date[] getExtentYesterday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
 		Date today = calendar.getTime();
@@ -134,23 +136,23 @@ public final class DateExtensionUtil{
 	 * 
 	 * </pre>
 	 * 
-	 * @param fromDate
+	 * @param fromDateString
 	 *            开始时间
-	 * @param toDate
+	 * @param toDateString
 	 *            结束时间
 	 * @param datePattern
 	 *            时间模式 {@link DatePattern}
 	 * @return the interval day list
 	 * @see DateUtil#getIntervalDay(Date, Date)
 	 */
-	public final static List<Date> getIntervalDayList(String fromDate,String toDate,String datePattern){
+	public final static List<Date> getIntervalDayList(String fromDateString,String toDateString,String datePattern){
 		List<Date> dateList = new ArrayList<Date>();
 		//***************************************************************/
-		Date begin_Date = DateUtil.string2Date(fromDate, datePattern);
-		Date end_Date = DateUtil.string2Date(toDate, datePattern);
+		Date beginDate = DateUtil.string2Date(fromDateString, datePattern);
+		Date endDate = DateUtil.string2Date(toDateString, datePattern);
 		// ******重置时间********
-		Date beginDateReset = CalendarUtil.getResetDate_byDay(begin_Date);
-		Date endDateReset = CalendarUtil.getResetDate_byDay(end_Date);
+		Date beginDateReset = CalendarUtil.getResetDate_byDay(beginDate);
+		Date endDateReset = CalendarUtil.getResetDate_byDay(endDate);
 		//***************************************************************/
 		// 相隔的天数
 		int intervalDay = DateUtil.getIntervalDay(beginDateReset, endDateReset);
@@ -216,6 +218,7 @@ public final class DateExtensionUtil{
 	 * @see DateUtil#getIntervalSecond(long)
 	 * @deprecated 未来名称可能会更改
 	 */
+	@Deprecated
 	public final static String toHumanizationDateString(Date inDate){
 		Date nowDate = new Date();
 
@@ -238,18 +241,18 @@ public final class DateExtensionUtil{
 
 		//**************************************************************************************/
 		// 任意日期和现在相差的毫秒数
-		long space_time = DateUtil.getIntervalTime(inDate, nowDate);
+		long spaceTime = DateUtil.getIntervalTime(inDate, nowDate);
 		// 相差天数
-		int space_day = DateUtil.getIntervalDay(space_time);
+		int spaceDay = DateUtil.getIntervalDay(spaceTime);
 		// 相差小时数
-		int space_hour = DateUtil.getIntervalHour(space_time);
+		int spaceHour = DateUtil.getIntervalHour(spaceTime);
 		// 相差分数
-		int space_minute = DateUtil.getIntervalMinute(space_time);
+		int spaceMinute = DateUtil.getIntervalMinute(spaceTime);
 		// 相差秒数
-		int space_second = DateUtil.getIntervalSecond(space_time);
+		int spaceSecond = DateUtil.getIntervalSecond(spaceTime);
 		//**************************************************************************************/
 		// 间隔一天
-		if (space_day == 1){
+		if (spaceDay == 1){
 			if (DateUtil.isEquals(DateUtil.addDay(inDate, 1), nowDate, DatePattern.onlyDate)){
 				returnValue = DATE_YESTERDAY + " ";
 			}else{
@@ -258,7 +261,7 @@ public final class DateExtensionUtil{
 			returnValue += DateUtil.date2String(inDate, DatePattern.onlyTime_withoutSecond);
 		}
 		// 间隔2天
-		else if (space_day == 2){
+		else if (spaceDay == 2){
 			if (DateUtil.isEquals(DateUtil.addDay(inDate, 2), nowDate, DatePattern.onlyDate)){
 				returnValue = DATE_THEDAY_BEFORE_YESTERDAY + " " + DateUtil.date2String(inDate, DatePattern.onlyTime_withoutSecond);
 			}else{
@@ -271,7 +274,7 @@ public final class DateExtensionUtil{
 			}
 		}
 		// 间隔大于2天
-		else if (space_day > 2){
+		else if (spaceDay > 2){
 			// 今年
 			if (year == inYear){
 				returnValue = DateUtil.date2String(inDate, DatePattern.commonWithoutAndYearSecond);
@@ -280,20 +283,20 @@ public final class DateExtensionUtil{
 			}
 		}
 		// 间隔0天
-		else if (space_day == 0){
+		else if (spaceDay == 0){
 			// 小时间隔
-			if (space_hour != 0){
+			if (spaceHour != 0){
 				if (inDay == day){
-					returnValue = space_hour + DATE_HOUR + "前";
+					returnValue = spaceHour + DATE_HOUR + "前";
 				}else{
 					returnValue = DATE_YESTERDAY + " " + DateUtil.date2String(inDate, DatePattern.onlyTime_withoutSecond);
 				}
 			}else{
 				// 分钟间隔
-				if (space_minute == 0){
-					returnValue = space_second + DATE_SECOND + "前";
+				if (spaceMinute == 0){
+					returnValue = spaceSecond + DATE_SECOND + "前";
 				}else{
-					returnValue = space_minute + DATE_MINUTE + "前";
+					returnValue = spaceMinute + DATE_MINUTE + "前";
 				}
 			}
 		}
@@ -337,7 +340,7 @@ public final class DateExtensionUtil{
 	 * 自动增加 天,小时,分钟,秒,毫秒中文文字
 	 * </pre>
 	 * 
-	 * @param space_time
+	 * @param spaceTime
 	 *            单位毫秒
 	 * @return 将时间(单位毫秒),并且转换成直观的表示方式<br>
 	 *         如果 space_time 是0 直接返回0
@@ -346,37 +349,37 @@ public final class DateExtensionUtil{
 	 * @see DateUtil#getIntervalMinute(long)
 	 * @see DateUtil#getIntervalSecond(long)
 	 */
-	public final static String getIntervalForView(long space_time){
-		if (0 == space_time){
+	public final static String getIntervalForView(long spaceTime){
+		if (0 == spaceTime){
 			return "0";
 		}
 		// **************************************************************************************
 		// 间隔天数
-		long space_day = DateUtil.getIntervalDay(space_time);
+		long spaceDay = DateUtil.getIntervalDay(spaceTime);
 		// 间隔小时 减去间隔天数后,
-		long space_hour = DateUtil.getIntervalHour(space_time) - space_day * 24;
+		long spaceHour = DateUtil.getIntervalHour(spaceTime) - spaceDay * 24;
 		// 间隔分钟 减去间隔天数及间隔小时后,
-		long space_minute = DateUtil.getIntervalMinute(space_time) - (space_day * 24 + space_hour) * 60;
+		long spaceMinute = DateUtil.getIntervalMinute(spaceTime) - (spaceDay * 24 + spaceHour) * 60;
 		// 间隔秒 减去间隔天数及间隔小时,间隔分钟后,
-		long space_second = DateUtil.getIntervalSecond(space_time) - ((space_day * 24 + space_hour) * 60 + space_minute) * 60;
+		long spaceSecond = DateUtil.getIntervalSecond(spaceTime) - ((spaceDay * 24 + spaceHour) * 60 + spaceMinute) * 60;
 		// 间隔秒 减去间隔天数及间隔小时,间隔分钟后,
-		long space_millisecond = space_time - (((space_day * 24 + space_hour) * 60 + space_minute) * 60 + space_second) * 1000;
+		long spaceMillisecond = spaceTime - (((spaceDay * 24 + spaceHour) * 60 + spaceMinute) * 60 + spaceSecond) * 1000;
 		// **************************************************************************************
 		StringBuilder stringBuilder = new StringBuilder();
-		if (0 != space_day){
-			stringBuilder.append(space_day + DATE_DAY);
+		if (0 != spaceDay){
+			stringBuilder.append(spaceDay + DATE_DAY);
 		}
-		if (0 != space_hour){
-			stringBuilder.append(space_hour + DATE_HOUR);
+		if (0 != spaceHour){
+			stringBuilder.append(spaceHour + DATE_HOUR);
 		}
-		if (0 != space_minute){
-			stringBuilder.append(space_minute + DATE_MINUTE);
+		if (0 != spaceMinute){
+			stringBuilder.append(spaceMinute + DATE_MINUTE);
 		}
-		if (0 != space_second){
-			stringBuilder.append(space_second + DATE_SECOND);
+		if (0 != spaceSecond){
+			stringBuilder.append(spaceSecond + DATE_SECOND);
 		}
-		if (0 != space_millisecond){
-			stringBuilder.append(space_millisecond + DATE_MILLISECOND);
+		if (0 != spaceMillisecond){
+			stringBuilder.append(spaceMillisecond + DATE_MILLISECOND);
 		}
 		return stringBuilder.toString();
 	}

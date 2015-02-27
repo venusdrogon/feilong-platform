@@ -35,7 +35,7 @@ public abstract class ConfigConstants{
 	/** 数字和大小写字母. */
 	public static String	NUMBERSANDALLLETTERS					= ResourceBundleUtil.getValue(
 																					$FEILONG_CORE_CONFIG,
-																					"numbersAndAllLetters");						;
+																					"numbersAndAllLetters");
 
 	/** 所有的数字. */
 	public static String	NUMBERS									= ResourceBundleUtil.getValue($FEILONG_CORE_CONFIG, "numbers");
