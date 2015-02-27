@@ -56,7 +56,10 @@ public class DoubleJsonValueProcessor implements JsonValueProcessor{
 		if (arg0 == null){
 			return "";
 		}else{
-			BigDecimal a = new BigDecimal((Double) arg0);
+			//对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
+			//new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
+			//BigDecimal.valueOf(0.1) ====>  0.1
+			BigDecimal a = BigDecimal.valueOf((Double) arg0);
 			return String.valueOf(a);
 		}
 	}
@@ -70,5 +73,4 @@ public class DoubleJsonValueProcessor implements JsonValueProcessor{
 	public Object processObjectValue(String arg0,Object arg1,JsonConfig arg2){
 		return process(arg1);
 	}
-
 }

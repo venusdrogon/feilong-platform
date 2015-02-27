@@ -296,6 +296,9 @@ public final class ObjectUtil{
 			if (value instanceof BigDecimal){
 				returnValue = (BigDecimal) value;
 			}else{
+				//对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
+				//new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
+				//BigDecimal.valueOf(0.1) ====>  0.1
 				returnValue = new BigDecimal(value.toString().trim());
 			}
 		}

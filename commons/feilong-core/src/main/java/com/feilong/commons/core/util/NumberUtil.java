@@ -19,9 +19,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.text.NumberFormatUtil;
 
@@ -81,6 +78,22 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * </blockquote>
  * </p>
  * 
+ * <h3>double转BigDecimal</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf(double)，不建议使用new BigDecimal(double)，参见 JDK API
+ * 
+ * <ol>
+ * <li>new BigDecimal(0.1) ==> 0.1000000000000000055511151231257827021181583404541015625</li>
+ * <li>BigDecimal.valueOf(0.1) ==> 0.1</li>
+ * </ol>
+ * 
+ * 在《Effective Java 》这本书中也提到这个原则，float 和double 只能用来做科学计算或者是工程计算，在商业计算中我们要用java.math.BigDecimal。
+ * </p>
+ * </blockquote>
+ * 
+ * 
  * @author 金鑫 2010-3-11 下午02:27:59
  * @see Integer
  * @see Long
@@ -91,9 +104,6 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * @since 1.0.0
  */
 public final class NumberUtil{
-
-	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(NumberUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private NumberUtil(){
@@ -399,7 +409,11 @@ public final class NumberUtil{
 			throw new NullPointerException("value can't be null/empty!");
 		}
 		long avgRankLong = Math.round(Double.parseDouble(value.toString()) * 2);
-		BigDecimal avgBigDecimal = new BigDecimal((double) (avgRankLong) / 2);
+
+		//对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
+		//new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
+		//BigDecimal.valueOf(0.1) ====>  0.1
+		BigDecimal avgBigDecimal = BigDecimal.valueOf((double) (avgRankLong) / 2);
 		String avgRank = setScale(avgBigDecimal, 1).toString();
 		return avgRank;
 	}
@@ -489,12 +503,6 @@ public final class NumberUtil{
 				BigDecimal bigDecimal = new BigDecimal(valueString);
 				int i = bigDecimal.compareTo(new BigDecimal(specificNumber));
 				flag = (i == 0);
-			}
-		}
-		if (!flag){
-			if (log.isDebugEnabled()){
-				// String format = StringUtil.format("value is :%s,but specificNumber is %s", value, specificNumber);
-				// log.debug(format);
 			}
 		}
 		return flag;

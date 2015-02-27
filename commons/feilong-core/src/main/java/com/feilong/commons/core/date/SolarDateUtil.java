@@ -66,7 +66,7 @@ public final class SolarDateUtil{
 		int iLMonth;
 		int iLYear;
 		int iOffsetDays = CalendarUtil.getDayOfYear(year, month, day);
-		int iLeapMonth = LunarDateUtil._getLeapMonth(year);
+		int iLeapMonth = LunarDateUtil.getLeapMonth(year);
 		if (iOffsetDays < DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year - 1901]){
 			iLYear = year - 1;
 			iOffsetDays = DateDictionary.SOLAR_AND_LUNAR_OFFSET_TABLE[year - 1901] - iOffsetDays;

@@ -37,6 +37,41 @@ public class NumberUtilTest implements NumberPattern{
 	private final static Logger	log	= LoggerFactory.getLogger(NumberUtilTest.class);
 
 	/**
+	 * TestMathTest.
+	 */
+	@Test
+	public void testMathTest(){
+		System.out.println(0.4 + 0.8); // = 1.2 ?
+		System.out.println(2 - 1.1); // = 0.9 ?
+		System.out.println(0.2 * 3); // = 0.6 ?
+		System.out.println(1.2 / 3); // = 0.4 ?
+
+		//1.2000000000000002
+		//0.8999999999999999
+		//0.6000000000000001
+		//0.39999999999999997
+
+		//new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
+		//BigDecimal.valueOf(0.1) ====>  0.1
+		System.out.println(new BigDecimal(0.1));
+		System.out.println(BigDecimal.valueOf(0.1));
+
+		System.out.println(new BigDecimal(0.4).add(new BigDecimal(0.8))); // = 1.2 ?
+		System.out.println(new BigDecimal(2).subtract(new BigDecimal(1.1))); // = 0.9 ?
+		System.out.println(new BigDecimal(0.2).multiply(new BigDecimal(3))); // = 0.6 ?
+
+	}
+
+	/**
+	 * TestMathUtilTest.
+	 */
+	@Test
+	public void testMathUtilTest2(){
+		log.info("" + NumberUtil.getDivideNoScaleValue(new BigDecimal(1.2), new BigDecimal(3)));
+		//System.out.println(new BigDecimal(1.2).divide(new BigDecimal(3))); // = 0.4 ?
+	}
+
+	/**
 	 * Gets the progress.
 	 * 
 	 */
@@ -105,8 +140,8 @@ public class NumberUtilTest implements NumberPattern{
 	 */
 	@Test
 	public void compareTo(){
-		BigDecimal totalFee = new BigDecimal(-0.01);
-		boolean isLEZero = totalFee.compareTo(BigDecimal.ZERO) == -1 || totalFee.compareTo(BigDecimal.ZERO) == 0;
+		BigDecimal totalFee = BigDecimal.valueOf(-0.01);
+		boolean isLEZero = (totalFee.compareTo(BigDecimal.ZERO) == -1) || (totalFee.compareTo(BigDecimal.ZERO) == 0);
 		assertEquals(true, isLEZero);
 	}
 
@@ -135,7 +170,7 @@ public class NumberUtilTest implements NumberPattern{
 	@Test
 	public void convertNumberToString2(){
 		DecimalFormat decimalFormat = new DecimalFormat("00");
-		BigDecimal number = new BigDecimal(88.50);
+		BigDecimal number = BigDecimal.valueOf(88.50);
 		decimalFormat.setRoundingMode(RoundingMode.CEILING);
 		// decimalFormat.setMaximumFractionDigits(2);
 		// decimalFormat.setMinimumFractionDigits(2);

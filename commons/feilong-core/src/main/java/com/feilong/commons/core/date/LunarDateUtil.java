@@ -90,7 +90,7 @@ public final class LunarDateUtil{
 		int year_Lunar = lundar / 10000;
 		int month_Lunar = lundar % 10000 / 100;
 		int day_Lunar = lundar % 100;
-		return _getLunarDateString(year_Lunar, month_Lunar, day_Lunar);
+		return getLunarDateString(year_Lunar, month_Lunar, day_Lunar);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public final class LunarDateUtil{
 	 * @return 获得某年某月农历最大的天数
 	 */
 	public static int getLunarMonthMaxDays(int iYear,int iMonth){
-		int iLeapMonth = _getLeapMonth(iYear);
+		int iLeapMonth = getLeapMonth(iYear);
 		if ((iMonth > 12) && (iMonth - 12 != iLeapMonth) || (iMonth < 0)){
 			log.error("Wrong month, ^_^ , i think you are want a -1, go to death!");
 			return -1;
@@ -127,27 +127,27 @@ public final class LunarDateUtil{
 	/**
 	 * 获得农历字符串.
 	 * 
-	 * @param year_Lunar
+	 * @param lunarYear
 	 *            农历年
-	 * @param month_Lunar
+	 * @param lunarMonth
 	 *            农历月
-	 * @param day_Lunar
+	 * @param lunarDay
 	 *            农历日
 	 * @return 阳历年月日获得对应的阴历
 	 */
-	public static String _getLunarDateString(int year_Lunar,int month_Lunar,int day_Lunar){
+	public static String getLunarDateString(int lunarYear,int lunarMonth,int lunarDay){
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(convertYearToChineseYear(year_Lunar));
-		stringBuilder.append("(" + _getChineseGanZhi(year_Lunar) + ")");
+		stringBuilder.append(convertYearToChineseYear(lunarYear));
+		stringBuilder.append("(" + getChineseGanZhi(lunarYear) + ")");
 		stringBuilder.append("年");
 		// *******************月*****************************************
-		if (month_Lunar > 12){
-			month_Lunar -= 12;
+		if (lunarMonth > 12){
+			lunarMonth -= 12;
 			stringBuilder.append("闰");
 		}
-		if (month_Lunar == 12){
+		if (lunarMonth == 12){
 			stringBuilder.append("腊月");
-		}else if (month_Lunar == 11){
+		}else if (lunarMonth == 11){
 			// 农历月份的别称
 			//
 			// 一月：正月、端月、征月、开岁、华岁、早春、孟春、新正；
@@ -163,22 +163,22 @@ public final class LunarDateUtil{
 			// 十一月：幸月、畅月、仲冬；
 			// 十二月：涂月、蜡月、腊月、季冬、暮冬、残冬、末冬、嘉平月.
 			stringBuilder.append("十一月");// 冬月
-		}else if (month_Lunar == 1){
+		}else if (lunarMonth == 1){
 			stringBuilder.append("正月");
 		}else{
-			stringBuilder.append(DateDictionary.CHINSES_NUMBERS[month_Lunar] + "月");
+			stringBuilder.append(DateDictionary.CHINSES_NUMBERS[lunarMonth] + "月");
 		}
 		// **************day*************************************************
-		if (day_Lunar > 29){
+		if (lunarDay > 29){
 			stringBuilder.append("三十");
-		}else if (day_Lunar > 20){
-			stringBuilder.append("二十" + DateDictionary.CHINSES_NUMBERS[day_Lunar % 20]);
-		}else if (day_Lunar == 20){
+		}else if (lunarDay > 20){
+			stringBuilder.append("二十" + DateDictionary.CHINSES_NUMBERS[lunarDay % 20]);
+		}else if (lunarDay == 20){
 			stringBuilder.append("二十");
-		}else if (day_Lunar > 10){
-			stringBuilder.append("十" + DateDictionary.CHINSES_NUMBERS[day_Lunar % 10]);
+		}else if (lunarDay > 10){
+			stringBuilder.append("十" + DateDictionary.CHINSES_NUMBERS[lunarDay % 10]);
 		}else{
-			stringBuilder.append("初" + DateDictionary.CHINSES_NUMBERS[day_Lunar]);
+			stringBuilder.append("初" + DateDictionary.CHINSES_NUMBERS[lunarDay]);
 		}
 		return stringBuilder.toString();
 	}
@@ -208,7 +208,7 @@ public final class LunarDateUtil{
 	 *            the year
 	 * @return the int
 	 */
-	public static int _getLeapMonth(int year){
+	public static int getLeapMonth(int year){
 		char iMonth = DateDictionary.LUNAR_LEAP_MONTH_TABLE[(year - 1901) / 2];
 		if (year % 2 == 0){
 			return (iMonth & 0x0f);
@@ -223,7 +223,7 @@ public final class LunarDateUtil{
 	 *            年份
 	 * @return 干支
 	 */
-	private static String _getChineseGanZhi(int year){
+	private static String getChineseGanZhi(int year){
 		int temp = Math.abs(year - 1924);
 		return DateDictionary.HEAVENLY_STEMS[temp % 10] + DateDictionary.EARTHLY_BRANCHES[temp % 12];
 	}
@@ -241,7 +241,7 @@ public final class LunarDateUtil{
 	 */
 	private static int getLNewYearOffsetDays(int iYear,int iMonth,int iDay){
 		int iOffsetDays = 0;
-		int iLeapMonth = _getLeapMonth(iYear);
+		int iLeapMonth = getLeapMonth(iYear);
 		if ((iLeapMonth > 0) && (iLeapMonth == iMonth - 12)){
 			iMonth = iLeapMonth;
 			iOffsetDays += getLunarMonthMaxDays(iYear, iMonth);

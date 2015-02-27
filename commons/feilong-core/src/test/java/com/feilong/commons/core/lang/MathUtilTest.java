@@ -27,10 +27,10 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-12 上午09:44:38
  */
-public class MathTest{
+public class MathUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MathTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(MathUtilTest.class);
 
 	/**
 	 * Atan2.
