@@ -38,10 +38,12 @@ public final class MethodUtil{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MethodUtil.class);
 
-	/**
-	 * Instantiates a new method util.
-	 */
-	private MethodUtil(){};
+	/** Don't let anyone instantiate this class. */
+	private MethodUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	// [start]
 
@@ -105,13 +107,12 @@ public final class MethodUtil{
 
 			if (!isStatic){
 				throw new IllegalArgumentException(
-						Slf4jUtil
-								.formatMessage(
-										"className:[{}],methodName:[{}],params:[{}],modifiers:[{}],this method not a static method, you need use 'invokeMethod' instead of 'invokeStaticMethod'",
-										className,
-										methodName,
-										params,
-										modifiers));
+								Slf4jUtil.formatMessage(
+												"className:[{}],methodName:[{}],params:[{}],modifiers:[{}],this method not a static method, you need use 'invokeMethod' instead of 'invokeStaticMethod'",
+												className,
+												methodName,
+												params,
+												modifiers));
 			}else{
 				//如果底层方法是静态的，那么可以忽略指定的 obj 参数.
 				//该参数可以为 null. 从中调用底层方法的对象
@@ -146,7 +147,7 @@ public final class MethodUtil{
 	 * @see java.lang.Class#getMethod(String, Class...)
 	 */
 	private static Method getMethod(Class<?> ownerClass,String methodName,Object...paramValues) throws IllegalArgumentException,
-			ReflectException{
+					ReflectException{
 		if (Validator.isNullOrEmpty(ownerClass)){
 			throw new IllegalArgumentException("ownerClass can't be null/empty!");
 		}

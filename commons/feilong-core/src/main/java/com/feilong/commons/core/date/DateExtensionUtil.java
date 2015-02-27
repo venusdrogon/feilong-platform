@@ -48,7 +48,11 @@ import com.feilong.commons.core.util.Validator;
 public final class DateExtensionUtil{
 
 	/** Don't let anyone instantiate this class. */
-	private DateExtensionUtil(){}
+	private DateExtensionUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 获得中文星期.

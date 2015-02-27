@@ -96,7 +96,11 @@ public final class NumberUtil{
 	private final static Logger	log	= LoggerFactory.getLogger(NumberUtil.class);
 
 	/** Don't let anyone instantiate this class. */
-	private NumberUtil(){}
+	private NumberUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 四舍五入 {@link RoundingMode#HALF_UP},取整,无小数<br>

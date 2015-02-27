@@ -24,10 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
- * *
- * <p>
  * Utility methods focusing on type inspection, particularly with regard to generics.
- * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年7月21日 上午11:01:31
@@ -39,7 +36,11 @@ public final class TypeUtil{
 	private static final Logger	log	= LoggerFactory.getLogger(TypeUtil.class);
 
 	/** Don't let anyone instantiate this class. */
-	private TypeUtil(){}
+	private TypeUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * Gets the generic model class.<br>

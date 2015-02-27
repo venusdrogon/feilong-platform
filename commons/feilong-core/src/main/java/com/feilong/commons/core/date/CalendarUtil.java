@@ -33,7 +33,11 @@ import java.util.List;
 public final class CalendarUtil{
 
 	/** Don't let anyone instantiate this class. */
-	private CalendarUtil(){}
+	private CalendarUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 获得当天00:00:00<br>
@@ -229,7 +233,7 @@ public final class CalendarUtil{
 		}
 		// 向后
 		for (int i = 0; calendar_clone_today.before(calendar_end) && calendar_clone_today.after(calendar_begin); ++i, calendar_clone_today
-				.add(Calendar.DAY_OF_YEAR, 7)){
+						.add(Calendar.DAY_OF_YEAR, 7)){
 			/**
 			 * 第一个值和上面循环重复了 去掉
 			 */

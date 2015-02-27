@@ -64,7 +64,11 @@ public final class CollectionsUtil{
 	private static final Logger	log	= LoggerFactory.getLogger(CollectionsUtil.class);
 
 	/** Don't let anyone instantiate this class. */
-	private CollectionsUtil(){}
+	private CollectionsUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 将集合使用连接符号链接成字符串.

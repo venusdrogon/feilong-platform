@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
 
@@ -29,9 +27,12 @@ import org.slf4j.helpers.MessageFormatter;
  */
 public final class Slf4jUtil{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(Slf4jUtil.class);
+	/** Don't let anyone instantiate this class. */
+	private Slf4jUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 格式化字符串,此方法就是抽取slf4j的核心方法<br>

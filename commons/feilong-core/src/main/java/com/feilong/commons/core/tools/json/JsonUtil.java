@@ -75,10 +75,12 @@ public final class JsonUtil{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(JsonUtil.class);
 
-	/**
-	 * Instantiates a new json util.
-	 */
-	private JsonUtil(){}
+	/** Don't let anyone instantiate this class. */
+	private JsonUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 设置日期转换格式

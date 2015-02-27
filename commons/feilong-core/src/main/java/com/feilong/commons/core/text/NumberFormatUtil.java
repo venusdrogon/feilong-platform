@@ -46,6 +46,13 @@ public final class NumberFormatUtil{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(NumberFormatUtil.class);
 
+	/** Don't let anyone instantiate this class. */
+	private NumberFormatUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
+
 	/**
 	 * 将 {@link Number} 使用 numberPattern格式化.
 	 * <p>
@@ -110,11 +117,11 @@ public final class NumberFormatUtil{
 
 			if (log.isDebugEnabled()){
 				log.debug(
-						"value:[{}], pattern:[{}],return:[{}],decimalFormat.toLocalizedPattern():[{}]",
-						value,
-						numberPattern,
-						format,
-						decimalFormat.toLocalizedPattern()//合成一个表示此 Format 对象当前状态的、已本地化的模式字符串. 
+								"value:[{}], pattern:[{}],return:[{}],decimalFormat.toLocalizedPattern():[{}]",
+								value,
+								numberPattern,
+								format,
+								decimalFormat.toLocalizedPattern()//合成一个表示此 Format 对象当前状态的、已本地化的模式字符串. 
 				);
 			}
 			return format;

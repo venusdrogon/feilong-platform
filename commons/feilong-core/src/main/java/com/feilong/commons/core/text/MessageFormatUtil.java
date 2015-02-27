@@ -30,7 +30,7 @@ import java.text.MessageFormat;
 public final class MessageFormatUtil{
 
 	/**
-	 * 格式化 <br>
+	 * 格式化.<br>
 	 * 用法:
 	 * 
 	 * <pre>
