@@ -41,6 +41,11 @@ public class CommandTest{
 		Command.assoc(".txt", "txtfile");
 	}
 
+	@Test
+	public void assocList() throws IOException{
+		Command.callCmd(Command.assocList());
+	}
+
 	/**
 	 * Exec shutdown stop.
 	 * 

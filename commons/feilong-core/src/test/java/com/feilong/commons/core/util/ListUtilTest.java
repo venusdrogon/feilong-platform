@@ -20,6 +20,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.Test;
@@ -42,16 +45,36 @@ public class ListUtilTest{
 	private static final Logger	log	= LoggerFactory.getLogger(ListUtilTest.class);
 
 	/**
-	 * TestListUtilTest.
+	 * Test list util test222222.
 	 */
 	@Test
-	public void testListUtilTest222(){
-		for (int i = 0; i < 20; ++i){
+	public void testListUtilTest222222(){
 
-			List<Object> list = new ArrayList<Object>();
+		Map<String, String> map = new TreeMap<String, String>();
 
+		map.put("周小州", "123");
+		map.put("金鑫", "234");
+		map.put("郑猛", "345");
+		map.put("谭斌", "8910");
+		map.put("郑川旸", "8910");
+		map.put("黄传坤", "8910");
+		map.put("李辉", "8910");
+		map.put("沈健", "8910");
+		map.put("吴丹", "8910");
+		map.put("丁升", "8910");
+
+		Set<String> keySet = map.keySet();
+
+		List<String> list = new ArrayList<String>(keySet);
+
+		String[] array2 = list.toArray(new String[list.size()]);
+
+		List<String> asList = new ArrayList<>(Arrays.asList(array2));
+		asList.add("小黑");
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(asList));
 		}
-		//assertEquals(expected, actual);
+
 	}
 
 	/** The a strings. */
@@ -65,7 +88,7 @@ public class ListUtilTest{
 	public void testListUtilTest6(){
 		List<String> list = new ArrayList<String>();
 		log.debug("the param list.size():{}", list.size());
-		//assertEquals(expected, actual);
+
 	}
 
 	/**
@@ -73,8 +96,6 @@ public class ListUtilTest{
 	 */
 	@Test
 	public void testListUtilTest2(){
-
-		//assertEquals(expected, actual);
 		int[] ints = { 1, 2, 3, 4, 5 };
 		List list = Arrays.asList(ints);
 		System.out.println("list'size：" + list.size());
@@ -82,7 +103,6 @@ public class ListUtilTest{
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(list));
 		}
-
 	}
 
 	/**
@@ -110,7 +130,6 @@ public class ListUtilTest{
 		}
 		long end2 = System.currentTimeMillis();
 		System.out.println("list2 time：" + (end2 - begin2));
-		//assertEquals(expected, actual);
 	}
 
 	/**
@@ -223,13 +242,13 @@ public class ListUtilTest{
 				list.remove(name);
 			}
 		}
-//
-//		for (int i = 0; i < list.size(); ++i){
-//			String name = list.get(i);
-//			if (name.equals(spy)){
-//				list.remove(name);
-//			}
-//		}
+		//
+		//		for (int i = 0; i < list.size(); ++i){
+		//			String name = list.get(i);
+		//			if (name.equals(spy)){
+		//				list.remove(name);
+		//			}
+		//		}
 
 		//		Iterator<String> iterator = list.iterator();
 		//		while (iterator.hasNext()){
@@ -246,6 +265,39 @@ public class ListUtilTest{
 		//			}
 		//		}
 		log.debug(JsonUtil.format(list));
+	}
+
+	/**
+	 * Test remove22.
+	 */
+	@Test
+	public void testRemove22(){
+		String limoumou = "李某某";
+
+		List<User> userList = new ArrayList<User>();
+
+		userList.add(new User("张三"));
+		userList.add(new User("张三2"));
+		userList.add(new User("张三3"));
+		userList.add(new User("张三4"));
+		userList.add(new User("张三5"));
+		userList.add(new User("张三6"));
+		userList.add(new User("张三7"));
+		userList.add(new User(limoumou));
+		userList.add(new User("张三8"));
+		userList.add(new User("张三9"));
+		userList.add(new User("张三12"));
+
+		for (User user : userList){
+			if (user.getName().equals(limoumou)){
+				userList.remove(user);
+			}
+		}
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(userList));
+		}
+
 	}
 
 	/**
@@ -329,7 +381,6 @@ public class ListUtilTest{
 
 	/**
 	 * Gets the first item.
-	 * 
 	 */
 	@Test
 	public final void testGetFirstItem(){
@@ -371,5 +422,4 @@ public class ListUtilTest{
 		testList.add("feilong");
 		log.info(ListUtil.toStringReplaceBrackets(testList));
 	}
-
 }

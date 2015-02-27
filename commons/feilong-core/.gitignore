@@ -5,3 +5,5 @@
 /target
 /target/
 /target/
+/.sonar/
+/sonar-project.properties

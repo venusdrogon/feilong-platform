@@ -26,6 +26,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class MapUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 8, 2012 8:55:30 PM
  */
@@ -33,18 +35,6 @@ public class MapUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(MapUtilTest.class);
-
-	/**
-	 * TestMapUtilTest.
-	 */
-	@Test
-	public void testMapUtilTest222(){
-
-		Map<String, String> object = new HashMap<String, String>(2);
-
-		object.put("1", "");
-		//assertEquals(expected, actual);
-	}
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.util.MapUtil#getMinValue(java.util.Map, java.lang.String[])}.
@@ -88,6 +78,32 @@ public class MapUtilTest{
 			log.debug(JsonUtil.format(object));
 		}
 
-		//assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test linked hash map.
+	 */
+	@Test
+	public void testLinkedHashMap(){
+
+		Map<String, String> object = new LinkedHashMap<String, String>();
+
+		object.put("a", "123");
+		object.put("b", "234");
+		object.put("c", "345");
+		object.put("b", "8910");
+
+		//2
+		//a
+		//c
+		//b 8910
+
+		//a
+		//b 8910
+		//c
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(object));
+		}
 	}
 }

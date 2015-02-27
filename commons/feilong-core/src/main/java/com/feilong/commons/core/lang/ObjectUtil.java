@@ -39,7 +39,11 @@ import com.feilong.commons.core.util.Validator;
 public final class ObjectUtil{
 
 	/** Don't let anyone instantiate this class. */
-	private ObjectUtil(){}
+	private ObjectUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 返回对象内存大小.
@@ -161,8 +165,12 @@ public final class ObjectUtil{
 	 * @param flag_nullType
 	 *            标识null和""相比的情况,默认值为false 标识不相等
 	 * @return 判断两个值是否相等
+	 * @see java.util.Objects#equals(Object, Object)
+	 * @see org.apache.commons.lang3.ObjectUtils#equals(Object, Object)
 	 */
 	public final static Boolean equals(Object object,Object object2,boolean flag_nullType){
+		//TODO Either override Object.equals(Object), or totally rename the method to prevent any confusion.
+		//Methods named "equals" should override Object.equals(Object)
 		if (object == object2){
 			return true;
 		}
@@ -201,8 +209,12 @@ public final class ObjectUtil{
 	 * @param object2
 	 *            object2
 	 * @return 判断两个值是否相等 标识null和""相比的情况,默认值为false 标识不相等
+	 * @see java.util.Objects#equals(Object, Object)
+	 * @see org.apache.commons.lang3.ObjectUtils#equals(Object, Object)
 	 */
 	public final static Boolean equals(Object object,Object object2){
+		//TODO Either override Object.equals(Object), or totally rename the method to prevent any confusion.
+		//Methods named "equals" should override Object.equals(Object)
 		return equals(object, object2, false);
 	}
 

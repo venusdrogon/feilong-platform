@@ -197,7 +197,7 @@ public class CollectionsUtilTest{
 			log.debug(JsonUtil.format(set));
 		}
 
-		//assertEquals(expected, actual);
+		
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class CollectionsUtilTest{
 			log.debug(JsonUtil.format(stack));
 		}
 
-		//assertEquals(expected, actual);
+		
 	}
 
 	/**
@@ -242,7 +242,7 @@ public class CollectionsUtilTest{
 
 		}
 
-		//assertEquals(expected, actual);
+		
 	}
 
 	/**

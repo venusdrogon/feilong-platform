@@ -22,10 +22,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -303,7 +302,7 @@ public final class CollectionsUtil{
 	 * @since 1.0.8
 	 */
 	public static <T, O> Set<T> getPropertyValueSet(Collection<O> objectCollection,String propertyName) throws NullPointerException{
-		Set<T> set = new HashSet<T>();
+		Set<T> set = new LinkedHashSet<T>();
 		return getPropertyValueCollection(objectCollection, propertyName, set);
 	}
 
@@ -404,6 +403,24 @@ public final class CollectionsUtil{
 		if (Validator.isNullOrEmpty(propertyName)){
 			throw new NullPointerException("propertyName is null or empty!");
 		}
+		Predicate predicate = getArrayContainsPredicate(propertyName, values);
+		return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
+	}
+
+	/**
+	 * 获得 array predicate.
+	 *
+	 * @param <V>
+	 *            the value type
+	 * @param propertyName
+	 *            the property name
+	 * @param values
+	 *            the values
+	 * @return the array predicate
+	 * @since 1.0.9
+	 */
+	@SafeVarargs
+	private static <V> Predicate getArrayContainsPredicate(String propertyName,V...values){
 		Predicate predicate = new Predicate(){
 
 			public boolean evaluate(Object object){
@@ -411,7 +428,30 @@ public final class CollectionsUtil{
 				return ArrayUtil.isContain(values, property);
 			}
 		};
-		return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
+		return predicate;
+	}
+
+	/**
+	 * 获得 object equals predicate.
+	 *
+	 * @param <V>
+	 *            the value type
+	 * @param propertyName
+	 *            the property name
+	 * @param value
+	 *            the value
+	 * @return the object equals predicate
+	 * @since 1.0.9
+	 */
+	private static <V> Predicate getObjectEqualsPredicate(String propertyName,V value){
+		Predicate predicate = new Predicate(){
+
+			public boolean evaluate(Object object){
+				V property = PropertyUtil.getProperty(object, propertyName);
+				return ObjectUtil.equals(property, value, true);
+			}
+		};
+		return predicate;
 	}
 
 	/**
@@ -454,8 +494,30 @@ public final class CollectionsUtil{
 	 *             the null pointer exception
 	 * @see org.apache.commons.collections.CollectionUtils#selectRejected(Collection, org.apache.commons.collections.Predicate)
 	 */
-	@SuppressWarnings("unchecked")
 	public static <O, V> List<O> selectRejected(Collection<O> objectCollection,String propertyName,V value) throws NullPointerException{
+		Object[] values = { value };
+		return selectRejected(objectCollection, propertyName, values);
+	}
+
+	/**
+	 * 循环遍历 <code>objectCollection</code> ,返回 当bean propertyName 属性值 都不在values 时候的list.
+	 *
+	 * @param <O>
+	 *            the generic type
+	 * @param <V>
+	 *            the value type
+	 * @param objectCollection
+	 *            the object collection
+	 * @param propertyName
+	 *            the property name
+	 * @param values
+	 *            the values
+	 * @return the list< o>
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	@SuppressWarnings("unchecked")
+	public static <O, V> List<O> selectRejected(Collection<O> objectCollection,String propertyName,V...values) throws NullPointerException{
 		if (Validator.isNullOrEmpty(objectCollection)){
 			throw new NullPointerException("objectCollection is null or empty!");
 		}
@@ -463,13 +525,7 @@ public final class CollectionsUtil{
 		if (Validator.isNullOrEmpty(propertyName)){
 			throw new NullPointerException("propertyName is null or empty!");
 		}
-		Predicate predicate = new Predicate(){
-
-			public boolean evaluate(Object object){
-				V property = PropertyUtil.getProperty(object, propertyName);
-				return ObjectUtil.equals(property, value, true);
-			}
-		};
+		Predicate predicate = getArrayContainsPredicate(propertyName, values);
 		return (List<O>) org.apache.commons.collections.CollectionUtils.selectRejected(objectCollection, predicate);
 	}
 
@@ -535,7 +591,7 @@ public final class CollectionsUtil{
 			throw new NullPointerException("valuePropertyName is null or empty!");
 		}
 
-		Map<K, V> map = new HashMap<K, V>();
+		Map<K, V> map = new LinkedHashMap<K, V>();
 
 		try{
 			for (O bean : objectCollection){
@@ -595,6 +651,48 @@ public final class CollectionsUtil{
 			}
 			valueList.add(o);
 			map.put(t, valueList);
+		}
+		return map;
+	}
+
+	/**
+	 * Group count.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param <O>
+	 *            the generic type
+	 * @param objectCollection
+	 *            the object collection
+	 * @param propertyName
+	 *            the property name
+	 * @return the map< t, integer>
+	 * @throws BeanUtilException
+	 *             the bean util exception
+	 * @throws NullPointerException
+	 *             the null pointer exception
+	 */
+	public static <T, O> Map<T, Integer> groupCount(Collection<O> objectCollection,String propertyName) throws BeanUtilException,
+					NullPointerException{
+
+		if (Validator.isNullOrEmpty(objectCollection)){
+			throw new NullPointerException("objectCollection can't be null/empty!");
+		}
+
+		if (Validator.isNullOrEmpty(propertyName)){
+			throw new NullPointerException("the propertyName is null or empty!");
+		}
+
+		Map<T, Integer> map = new LinkedHashMap<T, Integer>();
+
+		for (O o : objectCollection){
+			T t = PropertyUtil.getProperty(o, propertyName);
+			Integer count = map.get(t);
+			if (null == count){
+				count = 0;
+			}
+			count = count + 1;
+			map.put(t, count);
 		}
 		return map;
 	}
@@ -702,8 +800,6 @@ public final class CollectionsUtil{
 	 */
 	public static <O> Map<String, Number> sum(Collection<O> objectCollection,String...propertyNames) throws BeanUtilException,
 					NullPointerException{
-
-		//**************************************************************************
 
 		if (Validator.isNullOrEmpty(objectCollection)){
 			throw new NullPointerException("objectCollection can't be null/empty!");

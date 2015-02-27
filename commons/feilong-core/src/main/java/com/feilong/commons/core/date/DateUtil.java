@@ -935,42 +935,42 @@ public final class DateUtil{
 	/**
 	 * 两个时间相差的小时数.
 	 * 
-	 * @param space_millisecond
+	 * @param spaceMillisecond
 	 *            间隔毫秒
 	 * @return 相差的小时数
 	 * @see TimeInterval#SECONDS_PER_HOUR
 	 * @since 1.0
 	 */
-	public final static int getIntervalHour(long space_millisecond){
+	public final static int getIntervalHour(long spaceMillisecond){
 		// 相差小时数
-		return (int) (space_millisecond / (TimeInterval.SECONDS_PER_HOUR * 1000));
+		return (int) (spaceMillisecond / (TimeInterval.SECONDS_PER_HOUR * 1000));
 	}
 
 	/**
 	 * 两个时间相差的分数.
 	 * 
-	 * @param space_millisecond
+	 * @param spaceMillisecond
 	 *            间隔毫秒
 	 * @return 相差的分数
 	 * @see TimeInterval#SECONDS_PER_MINUTE
 	 * @since 1.0
 	 */
-	public final static int getIntervalMinute(long space_millisecond){
+	public final static int getIntervalMinute(long spaceMillisecond){
 		// 相差分数
-		return (int) (space_millisecond / (TimeInterval.SECONDS_PER_MINUTE * 1000));
+		return (int) (spaceMillisecond / (TimeInterval.SECONDS_PER_MINUTE * 1000));
 	}
 
 	/**
 	 * 两个时间相差的秒数.
 	 * 
-	 * @param space_millisecond
+	 * @param spaceMillisecond
 	 *            间隔毫秒
 	 * @return 相差的秒数
 	 * @since 1.0
 	 */
-	public final static int getIntervalSecond(long space_millisecond){
+	public final static int getIntervalSecond(long spaceMillisecond){
 		// 相差秒数
-		return (int) (space_millisecond / 1000);
+		return (int) (spaceMillisecond / 1000);
 	}
 
 	/**
@@ -1011,15 +1011,15 @@ public final class DateUtil{
 	/**
 	 * 两个时间相差的天数.
 	 * 
-	 * @param space_time
+	 * @param spaceTime
 	 *            间隔毫秒
 	 * @return 相差的天数
 	 * @see TimeInterval#SECONDS_PER_DAY
 	 * @since 1.0
 	 */
-	public final static int getIntervalDay(long space_time){
+	public final static int getIntervalDay(long spaceTime){
 		// 相差天数
-		return (int) (space_time / (TimeInterval.SECONDS_PER_DAY * 1000));
+		return (int) (spaceTime / (TimeInterval.SECONDS_PER_DAY * 1000));
 	}
 
 	/**
@@ -1038,9 +1038,9 @@ public final class DateUtil{
 	 * @since 1.0
 	 */
 	public final static int getIntervalDay(String date1,String date2,String datePattern){
-		Date date_1 = string2Date(date1, datePattern);
-		Date date_2 = string2Date(date2, datePattern);
-		long intervalTime = getIntervalTime(date_1, date_2);
+		Date dateOne = string2Date(date1, datePattern);
+		Date dateTwo = string2Date(date2, datePattern);
+		long intervalTime = getIntervalTime(dateOne, dateTwo);
 		return getIntervalDay(intervalTime);
 	}
 
@@ -1123,9 +1123,9 @@ public final class DateUtil{
 	 * return true
 	 * </pre>
 	 * 
-	 * @param date_before
+	 * @param dateBefore
 	 *            date_before
-	 * @param date_after
+	 * @param dateAfter
 	 *            date_after
 	 * @param datePattern
 	 *            pattern {@link DatePattern}
@@ -1133,9 +1133,9 @@ public final class DateUtil{
 	 * @see #string2Date(String, String)
 	 * @see #isBefore(Date, String, String)
 	 */
-	public final static boolean isBefore(String date_before,String date_after,String datePattern){
-		Date before = string2Date(date_before, datePattern);
-		return isBefore(before, date_after, datePattern);
+	public final static boolean isBefore(String dateBefore,String dateAfter,String datePattern){
+		Date before = string2Date(dateBefore, datePattern);
+		return isBefore(before, dateAfter, datePattern);
 	}
 
 	/**
@@ -1149,7 +1149,7 @@ public final class DateUtil{
 	 * 
 	 * @param before
 	 *            before
-	 * @param date_after
+	 * @param dateAfter
 	 *            date_after
 	 * @param datePattern
 	 *            pattern {@link DatePattern}
@@ -1158,8 +1158,8 @@ public final class DateUtil{
 	 * @see #isBefore(String, String, String)
 	 * @see Date#before(Date)
 	 */
-	public final static boolean isBefore(Date before,String date_after,String datePattern){
-		Date after = string2Date(date_after, datePattern);
+	public final static boolean isBefore(Date before,String dateAfter,String datePattern){
+		Date after = string2Date(dateAfter, datePattern);
 		return before.before(after);
 	}
 

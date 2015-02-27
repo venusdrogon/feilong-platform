@@ -46,6 +46,9 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 		log.debug(DateExtensionUtil.getIntervalForView(0));
 	}
 
+	/**
+	 * Test get chinese week.
+	 */
 	@Test
 	public void testGetChineseWeek(){
 		log.debug(DateExtensionUtil.getChineseWeek(0));
@@ -125,7 +128,7 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 			log.debug(JsonUtil.format(DateExtensionUtil.toStringList(dateList, DatePattern.commonWithMillisecond)));
 		}
 
-		//assertEquals(expected, actual);
+		
 	}
 
 	/**

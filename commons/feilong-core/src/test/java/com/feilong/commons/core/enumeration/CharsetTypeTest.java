@@ -1,6 +1,6 @@
 package com.feilong.commons.core.enumeration;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.nio.charset.Charset;
 

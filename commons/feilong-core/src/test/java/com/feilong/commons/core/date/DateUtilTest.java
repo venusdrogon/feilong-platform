@@ -15,23 +15,14 @@
  */
 package com.feilong.commons.core.date;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 
 /**

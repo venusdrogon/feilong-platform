@@ -54,6 +54,9 @@ public class ArrayUtilTest{
 		log.debug("" + strs.length);
 	}
 
+	/**
+	 * Test array util test22.
+	 */
 	@Test
 	public void testArrayUtilTest22(){
 		String[] strs = {

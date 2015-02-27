@@ -37,6 +37,8 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 26, 2013 11:10:59 AM
  * @since 1.0.2
+ * @see java.net.HttpURLConnection
+ * @see java.net.URLConnection
  */
 public final class URLConnectionUtil{
 
@@ -108,10 +110,10 @@ public final class URLConnectionUtil{
 	 * @return the string
 	 */
 	public static String getResponseBodyAsStringWithProxy(
-			String urlString,
-			String proxyAddress,
-			Integer proxyPort,
-			HttpURLConnectionParam httpURLConnectionParam){
+					String urlString,
+					String proxyAddress,
+					Integer proxyPort,
+					HttpURLConnectionParam httpURLConnectionParam){
 		Proxy proxy = getProxy(proxyAddress, proxyPort);
 		return getResponseBodyAsStringWithProxy(urlString, proxy, httpURLConnectionParam);
 	}
@@ -132,10 +134,10 @@ public final class URLConnectionUtil{
 	 * @return the string
 	 */
 	public static String readLineWithProxy(
-			String urlString,
-			String proxyAddress,
-			Integer proxyPort,
-			HttpURLConnectionParam httpURLConnectionParam){
+					String urlString,
+					String proxyAddress,
+					Integer proxyPort,
+					HttpURLConnectionParam httpURLConnectionParam){
 		Proxy proxy = getProxy(proxyAddress, proxyPort);
 		return readLineWithProxy(urlString, proxy, httpURLConnectionParam);
 	}

@@ -17,7 +17,9 @@ package com.feilong.commons.core.lang.annotation;
 
 import java.lang.reflect.Method;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,30 +32,35 @@ import org.slf4j.LoggerFactory;
 @MyAnnotation(name = "feilong",sex = 0,loveStrings = { "胡伟立", "三国" })
 public class AnnotationTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(AnnotationTest.class);
 
 	/**
-	 * Limei.
+	 * Feilong.
 	 */
 	@MyAnnotation(name = "feilong",sex = 0,loveStrings = { "王菲" })
-	public void limei(){}
+	public void feilong(){
+		throw new NotImplementedException("feilong is not implemented!");
+	}
 
 	/**
 	 * Jinxin.
 	 */
 	@MyAnnotation(name = "金鑫",sex = 1,loveStrings = { "胡伟立", "三国" })
-	public void jinxin(){}
+	public void jinxin(){
+		throw new NotImplementedException("jinxin is not implemented!");
+	}
 
 	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
+	 * TestAnnotationTest.
 	 */
-	public static void main(String[] args){
+	@Test
+	public void testAnnotationTest(){
 		log.info("" + AnnotationTest.class.isAnnotationPresent(MyAnnotation.class));
+
 		MyAnnotation myAnnotation = AnnotationTest.class.getAnnotation(MyAnnotation.class);
 		log.info(myAnnotation.name());
+
 		// *************************************************************
 		Method[] methods = AnnotationTest.class.getDeclaredMethods();
 		for (Method method : methods){

@@ -54,6 +54,20 @@ public final class Command{
 
 	/**
 	 * Call cmd.
+	 *
+	 * @param process
+	 *            the process
+	 * @return the string
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	public static String callCmd(Process process) throws IOException{
+		InputStream inputStream = process.getInputStream();
+		return IOUtil.inputStream2String(inputStream);
+	}
+
+	/**
+	 * Call cmd.
 	 * 
 	 * @param command
 	 *            the command
@@ -103,9 +117,9 @@ public final class Command{
 		}
 
 		process = runtime.exec(anothercmdarray);
-		
-//		process.waitFor();
-//		ret = process.exitValue();
+
+		//		process.waitFor();
+		//		ret = process.exitValue();
 
 		InputStream inputStream = process.getInputStream();
 		return IOUtil.inputStream2String(inputStream);
@@ -233,6 +247,19 @@ public final class Command{
 	public static Process assoc(String ext,String fileType) throws IOException{
 		// 如果在没有参数的情况下使用，则 assoc 命令将显示所有当前文件扩展名关联的列表.
 		String command = StringUtil.format("assoc %s=%s", ext, fileType);
+		return exec(command);
+	}
+
+	/**
+	 * Assoc list.
+	 *
+	 * @return the process
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	public static Process assocList() throws IOException{
+		// 如果在没有参数的情况下使用，则 assoc 命令将显示所有当前文件扩展名关联的列表.
+		String command = StringUtil.format("assoc");
 		return exec(command);
 	}
 }

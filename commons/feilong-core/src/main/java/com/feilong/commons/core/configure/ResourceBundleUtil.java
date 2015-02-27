@@ -15,15 +15,21 @@
  */
 package com.feilong.commons.core.configure;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.text.MessageFormatUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -384,5 +390,70 @@ public final class ResourceBundleUtil implements BaseConfigure{
 			log.warn("resourceBundle is null,baseName:{},locale:{}", resourceBundle, baseName, locale);
 		}
 		return resourceBundle;
+	}
+
+	/**
+	 * 获得ResourceBundle({@link PropertyResourceBundle}),新增这个方法的初衷是为了能读取任意的资源(包括本地file等).
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @return the resource bundle,may be null
+	 * @see com.feilong.commons.core.io.IOUtil#getFileInputStream(String)
+	 * @see java.util.PropertyResourceBundle#PropertyResourceBundle(InputStream)
+	 * @see #ResourceBundleUtil.getResourceBundle(InputStream)
+	 * @since 1.0.9
+	 */
+	public static ResourceBundle getResourceBundleByFileName(String fileName){
+		if (Validator.isNullOrEmpty(fileName)){
+			throw new IllegalArgumentException("fileName can't be null/empty!");
+		}
+		try{
+			InputStream inputStream = IOUtil.getFileInputStream(fileName);
+			return getResourceBundle(inputStream);
+		}catch (IOException e){
+			throw new UncheckedIOException(e);
+		}
+	}
+
+	/**
+	 * 获得ResourceBundle({@link PropertyResourceBundle}),新增这个方法的初衷是为了能读取任意的资源(包括本地file等).
+	 *
+	 * @param inputStream
+	 *            the input stream
+	 * @return the resource bundle,may be null
+	 * @see java.util.PropertyResourceBundle#PropertyResourceBundle(InputStream)
+	 * @since 1.0.9
+	 */
+	public static ResourceBundle getResourceBundle(InputStream inputStream){
+		if (Validator.isNullOrEmpty(inputStream)){
+			throw new IllegalArgumentException("inputStream can't be null/empty!");
+		}
+		try{
+			ResourceBundle resourceBundle = new PropertyResourceBundle(inputStream);
+			return resourceBundle;
+		}catch (IOException e){
+			throw new UncheckedIOException(e);
+		}
+	}
+
+	/**
+	 * 获得 resource bundle({@link PropertyResourceBundle}),新增这个方法的初衷是为了能读取任意的资源(包括本地file等).
+	 *
+	 * @param reader
+	 *            the reader
+	 * @return the resource bundle
+	 * @see java.util.PropertyResourceBundle#PropertyResourceBundle(Reader)
+	 * @since 1.0.9
+	 */
+	public static ResourceBundle getResourceBundle(Reader reader){
+		if (Validator.isNullOrEmpty(reader)){
+			throw new IllegalArgumentException("reader can't be null/empty!");
+		}
+		try{
+			ResourceBundle resourceBundle = new PropertyResourceBundle(reader);
+			return resourceBundle;
+		}catch (IOException e){
+			throw new UncheckedIOException(e);
+		}
 	}
 }

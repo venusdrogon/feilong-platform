@@ -88,7 +88,7 @@ public class GenericTest{
 		Type[] actualTypeArguments = pt.getActualTypeArguments();
 		log.info("" + actualTypeArguments.length);
 		log.info("" + actualTypeArguments[0]);
-		//assertEquals(expected, actual);
+		
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class GenericTest{
 	public void testGenericTest(){
 		String aString = getValue("jinxin", String.class);
 		Integer b = getValue("jinxin", Integer.class);
-		//assertEquals(expected, actual);
+		
 	}
 
 }
