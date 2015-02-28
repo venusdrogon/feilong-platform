@@ -178,7 +178,7 @@ public final class RandomUtil{
 			throw new IllegalArgumentException(Slf4jUtil.formatMessage(messagePattern, length));
 		}
 
-		char ch[] = new char[length];
+		char[] ch = new char[length];
 		int j = str.length();
 		for (int i = 0; i < length; ++i){
 			// Random random = new Random();

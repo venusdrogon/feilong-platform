@@ -44,7 +44,7 @@ public final class ByteUtil{
 	 *            the b
 	 * @return the string
 	 */
-	public final static String bytesToHexStringLowerCase(byte b[]){
+	public final static String bytesToHexStringLowerCase(byte[] b){
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < b.length; ++i){
 			sb.append(byteToHexStringLowerCase(b[i]));

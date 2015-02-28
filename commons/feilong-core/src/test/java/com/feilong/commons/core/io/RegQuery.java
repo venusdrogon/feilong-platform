@@ -117,7 +117,7 @@ public class RegQuery{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void main(String s[]) throws IOException{
+	public static void main(String[] s) throws IOException{
 		log.info("Personal directory : " + getCurrentUserPersonalFolderPath());
 		log.info("CPU Name : " + getCPUName());
 		log.info("CPU Speed : " + getCPUSpeed() + " Mhz");
