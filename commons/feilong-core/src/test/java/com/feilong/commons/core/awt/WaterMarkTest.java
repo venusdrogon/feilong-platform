@@ -30,25 +30,29 @@ import java.awt.Font;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.test.TestConstants;
 
 /**
+ * The Class WaterMarkTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 26 18:48:11
  */
-@SuppressWarnings("all")
 public class WaterMarkTest{
 
-	@SuppressWarnings("unused")
-	private static final Logger	log			= LoggerFactory.getLogger(WaterMarkTest.class);
+	/** The target img. */
+	private String	targetImg	= "E:\\DataCommon\\test\\background.png";
 
-	private String				targetImg	= "E:\\DataCommon\\test\\background.png";
+	/** The press text. */
+	private String	pressText	= "鑫哥爱feilong";
 
-	private String				pressText	= "鑫哥爱feilong";
-
+	/**
+	 * Press image.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void pressImage() throws IOException{
 		int x = 0;
@@ -57,6 +61,12 @@ public class WaterMarkTest{
 		WaterMark.pressImage(targetImg, TestConstants.WATERMARK_PRESSIMG, x, y, fileName);
 	}
 
+	/**
+	 * Press text.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void pressText() throws IOException{
 

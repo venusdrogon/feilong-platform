@@ -27,7 +27,7 @@ import org.junit.Test;
  * @version 1.0 2011-5-19 下午03:51:40
  * @since 1.0
  */
-@SuppressWarnings("all")
+
 public class CommandTest{
 
 	/**
@@ -41,6 +41,12 @@ public class CommandTest{
 		Command.assoc(".txt", "txtfile");
 	}
 
+	/**
+	 * Assoc list.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void assocList() throws IOException{
 		Command.callCmd(Command.assocList());

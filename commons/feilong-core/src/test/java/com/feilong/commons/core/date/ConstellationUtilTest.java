@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2011-1-5 上午11:49:13
  */
 @RunWith(Parameterized.class)
-@SuppressWarnings("all")
 public class ConstellationUtilTest extends TestCase{
 
 	/** The Constant log. */
@@ -52,12 +51,12 @@ public class ConstellationUtilTest extends TestCase{
 	 *
 	 * @param expected
 	 *            the expected
-	 * @param input
-	 *            the input
+	 * @param birthday
+	 *            the birthday
 	 */
 	public ConstellationUtilTest(ConstellationType expected, String birthday){
-		birthday = birthday;
-		fExpected = expected;
+		this.birthday = birthday;
+		this.fExpected = expected;
 	}
 
 	/**

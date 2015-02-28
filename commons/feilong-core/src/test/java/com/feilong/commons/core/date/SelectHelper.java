@@ -35,7 +35,6 @@ public class SelectHelper{
 
 	private static final Logger	log	= LoggerFactory.getLogger(SelectHelper.class);
 
-	/** ************************************************************************************ */
 	/**
 	 * 获得年份集合
 	 * 
@@ -117,8 +116,8 @@ public class SelectHelper{
 	@SuppressWarnings("dep-ann")
 	public final static Integer convertBirthdayToAge(String birthday){
 		String birthdayPattern = "^(?:([0-9]{4}-(?:(?:0?[1,3-9]|1[0-2])-(?:29|30)|" + "((?:0?[13578]|1[02])-31)))|"
-				+ "([0-9]{4}-(?:0?[1-9]|1[0-2])-(?:0?[1-9]|1\\d|2[0-8]))|" + "(((?:(\\d\\d(?:0[48]|[2468][048]|[13579][26]))|"
-				+ "(?:0[48]00|[2468][048]00|[13579][26]00))-0?2-29)))$";
+						+ "([0-9]{4}-(?:0?[1-9]|1[0-2])-(?:0?[1-9]|1\\d|2[0-8]))|" + "(((?:(\\d\\d(?:0[48]|[2468][048]|[13579][26]))|"
+						+ "(?:0[48]00|[2468][048]00|[13579][26]00))-0?2-29)))$";
 		if (RegexUtil.matches(birthdayPattern, birthday)){
 			Date nowDate = new Date();
 			return DateUtil.getYear(nowDate) - Integer.parseInt(birthday.substring(0, 4)) + 1;

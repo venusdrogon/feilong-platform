@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-14 下午01:46:59
  */
-@SuppressWarnings("all")public class ValidateCodeUtilTest{
+public class ValidateCodeUtilTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(ValidateCodeUtilTest.class);
 

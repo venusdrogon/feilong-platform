@@ -19,8 +19,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.EnumUtil;
 
@@ -32,9 +30,6 @@ import com.feilong.commons.core.lang.EnumUtil;
  * @since 1.0.6
  */
 public class HttpMethodTypeTest{
-
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(HttpMethodTypeTest.class);
 
 	/**
 	 * Name.

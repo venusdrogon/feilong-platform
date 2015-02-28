@@ -87,17 +87,6 @@ public class URIUtilTest{
 	}
 
 	/**
-	 * Test get union url3.
-	 *
-	 * @throws MalformedURLException
-	 *             the malformed url exception
-	 */
-	@Test
-	public void testGetUnionUrl3() throws MalformedURLException{
-		URL url = new URL("C:\\Users\\feilong\\feilong\\payment\\tcashPayAdaptor\\tcashPayAdaptor20140923144156.html");
-	}
-
-	/**
 	 * Decode.
 	 */
 	@Test

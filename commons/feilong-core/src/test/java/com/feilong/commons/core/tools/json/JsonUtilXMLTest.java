@@ -17,7 +17,7 @@ import com.feilong.test.Person;
 /**
  * JsonUtil测试类 (C) 2009-9-11, jzj
  */
-@SuppressWarnings("all")public class JsonUtilXMLTest{
+public class JsonUtilXMLTest{
 
 	private static final Logger	log	= LoggerFactory.getLogger(JsonUtilXMLTest.class);
 

@@ -34,7 +34,7 @@ public class Slf4jUtilTest{
 	 * Test.
 	 */
 	@Test
-	@SuppressWarnings("all")public final void test(){
+	public final void test(){
 		log.info(Slf4jUtil.formatMessage("{},{}", "今天", "aaaa"));
 		log.info(Slf4jUtil.formatMessage(null, "今天", "aaaa"));
 		log.info(Slf4jUtil.formatMessage("", "今天", "aaaa"));

@@ -79,13 +79,11 @@ public class ObjectUtilTest{
 	 * Assert equals.
 	 */
 	@Test
-	@SuppressWarnings("all")
 	public final void assertEquals(){
 
 		Long a = new Long(1L);
 		Long b = new Long(1L);
 
-		log.info((1L == 1L) + "");
 		log.info((a == b) + "");
 		log.info(a.equals(b) + "");
 
@@ -226,6 +224,9 @@ public class ObjectUtilTest{
 	@Test
 	public final void testToShort(){}
 
+	/**
+	 * Test to string object.
+	 */
 	@Test
 	public final void testToStringObject(){
 		String[] aaaa = { "aa", "aaa" };

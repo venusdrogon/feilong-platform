@@ -45,7 +45,7 @@ import com.feilong.test.UserInfo;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 15:31:51
  */
-@SuppressWarnings("all")
+
 public class JsonUtilToBeanTest{
 
 	/** The Constant log. */
@@ -86,6 +86,9 @@ public class JsonUtilToBeanTest{
 		log.info(JsonUtil.toJSON(null, null).toString(4, 4));
 	}
 
+	/**
+	 * To json.
+	 */
 	@Test
 	public void toJSON(){
 		HttpMethodType httpMethodType = HttpMethodType.GET;
@@ -154,7 +157,7 @@ public class JsonUtilToBeanTest{
 		Object[] objArr = JsonUtil.toArray(json, MyBean.class, classMap);
 		for (int i = 0; i < objArr.length; i++){
 			log.info(((MyBean) objArr[i]).getData().get(0).getClass() + " name = "
-					+ ((Person) ((MyBean) objArr[i]).getData().get(0)).getName());
+							+ ((Person) ((MyBean) objArr[i]).getData().get(0)).getName());
 		}
 		/*
 		 * print: class comm.test.Person name = get class comm.test.Person name = set
@@ -199,7 +202,7 @@ public class JsonUtilToBeanTest{
 		List list = JsonUtil.toList(json, MyBean.class, classMap);
 		for (int i = 0; i < list.size(); i++){
 			log.info(((MyBean) list.get(i)).getData().get(0).getClass() + " name = "
-					+ ((Person) ((MyBean) list.get(i)).getData().get(0)).getName());
+							+ ((Person) ((MyBean) list.get(i)).getData().get(0)).getName());
 		}
 		/*
 		 * print: class comm.test.Person name = get class comm.test.Person name = set
