@@ -99,7 +99,6 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 	 * 
 	 * .
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testToHumanizationDateString(){
 
@@ -129,7 +128,6 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 			log.debug(JsonUtil.format(DateExtensionUtil.toStringList(dateList, DatePattern.commonWithMillisecond)));
 		}
 
-		
 	}
 
 	/**

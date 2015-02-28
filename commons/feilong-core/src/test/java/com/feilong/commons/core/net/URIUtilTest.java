@@ -107,7 +107,6 @@ public class URIUtilTest{
 	/**
 	 * Special char to hex string.
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void specialCharToHexString(){
 		result = URIUtil.specialCharToHexString(" ");
@@ -122,9 +121,8 @@ public class URIUtilTest{
 		String url = "http://127.0.0.1/cmens/t-b-f-a-c-s-f-p-g-e-i-o.htm?a=1&a=2";
 		// url = "/cmens/t-b-f-a-c-s-f-p400-600,0-200,200-400,600-up-gCold Gear-eBase Layer-i1-o.htm";
 
-		@SuppressWarnings("unused")
-		String queryString = null;
-		queryString = "'\"--></style></script><script>netsparker(0x0000E1)</script>=";
+		//		String queryString = null;
+		//		queryString = "'\"--></style></script><script>netsparker(0x0000E1)</script>=";
 		// queryString = "'%22--%3E%3C/style%3E%3C/script%3E%3Cscript%3Enetsparker(0x0000E1)%3C/script%3E=";
 
 		// url = url + "?" + queryString;
@@ -178,8 +176,7 @@ public class URIUtilTest{
 	 */
 	@Test
 	public void combineQueryString(){
-		@SuppressWarnings("unused")
-		String beforeUrl = "www.baidu.com";
+		//		String beforeUrl = "www.baidu.com";
 		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
 		keyAndArrayMap.put("a", new String[] { "aaaa", "bbbb" });
 		String charsetType = CharsetType.UTF8;

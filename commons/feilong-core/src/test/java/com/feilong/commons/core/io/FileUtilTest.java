@@ -40,14 +40,6 @@ public class FileUtilTest{
 	/** The file name1. */
 	private String				fileName1	= "F:/pie2.png";
 
-	/** The file name. */
-	@SuppressWarnings("unused")
-	private String				fileName	= "E:\\Data\\Java\\Taglib\\Apache Commons 非常有用的工具包\\commons-net\\ftp";
-
-	/** The string. */
-	@SuppressWarnings("unused")
-	private String				fString		= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
-
 	/**
 	 * Test get new file name.
 	 */

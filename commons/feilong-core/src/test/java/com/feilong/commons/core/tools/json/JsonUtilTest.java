@@ -57,7 +57,6 @@ public class JsonUtilTest{
 	 * @throws NoSuchMethodException
 	 *             the no such method exception
 	 */
-	@SuppressWarnings({ "deprecation", "rawtypes" })
 	@Test
 	public void name() throws IllegalAccessException,InvocationTargetException,NoSuchMethodException{
 		String json = "{name=\"json\",bool:true,int:1,double:2.2,func:function(a){ return a; },array:[1,2]}";

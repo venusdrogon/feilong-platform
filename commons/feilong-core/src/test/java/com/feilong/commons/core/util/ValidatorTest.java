@@ -23,8 +23,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.test.User;
 
@@ -35,14 +33,9 @@ import com.feilong.test.User;
  */
 public class ValidatorTest{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(ValidatorTest.class);
-
 	/**
 	 * Name.
 	 */
-	@SuppressWarnings("cast")
 	@Test
 	public void name(){
 		assertEquals(true, new Integer[][] {} instanceof Object[]);

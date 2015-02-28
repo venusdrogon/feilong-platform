@@ -39,11 +39,10 @@ public class InetAddressTest1{
 	 * @param args
 	 *            the arguments
 	 */
-	@SuppressWarnings("unused")
 	public static void main(String[] args){
-		String ipString = "127.0.0.1";
-		byte[] ips1 = ipString.getBytes();
-		byte[] ips = new byte[] { (byte) 127, (byte) 0, 0, 1 };
+		//		String ipString = "127.0.0.1";
+		//		byte[] ips1 = ipString.getBytes();
+		//		byte[] ips = new byte[] { (byte) 127, (byte) 0, 0, 1 };
 		test();
 	}
 

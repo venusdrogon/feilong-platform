@@ -33,7 +33,6 @@ public class ThreadUtilTest{
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ThreadUtil#getCurrentMethodName(java.lang.Thread)}.
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetMethodName(){
 		Thread currentThread = Thread.currentThread();

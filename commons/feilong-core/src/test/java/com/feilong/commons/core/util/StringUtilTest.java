@@ -45,7 +45,6 @@ public class StringUtilTest{
 	/**
 	 * Search count.
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void searchCount(){
 		String source = "jiiiiiinxin.feilong";
@@ -237,9 +236,8 @@ public class StringUtilTest{
 	@Test
 	public void substring(){
 		log.info(StringUtil.substring(text, "jinxin".length()));
-		@SuppressWarnings("hiding")
-		String text = "Index: src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java";
-		log.info(StringUtil.substring(text, "Index: ".length()));
+		String text1 = "Index: src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java";
+		log.info(StringUtil.substring(text1, "Index: ".length()));
 	}
 
 	/**
@@ -291,24 +289,6 @@ public class StringUtilTest{
 			sb.append('a' + r.nextInt(26));
 		}
 		return sb.toString();
-	}
-
-	/**
-	 * Test.
-	 */
-	@SuppressWarnings("unused")
-	@Test
-	@Ignore
-	public void test(){
-		String aString = null;
-		// String inputString="金鑫爱feilong";
-		for (int i = 0; i < 10000; i++){
-			String inputString = getRandomString();
-			// 7.225s
-			aString = StringUtil.toHexStringUpperCase(inputString);
-			// 0.235
-			// aString = FeiLongString.str2HexString_5(inputString);
-		}
 	}
 
 	/**

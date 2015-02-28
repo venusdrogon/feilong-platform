@@ -17,7 +17,6 @@ package com.feilong.commons.core.io;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -37,18 +36,10 @@ import org.slf4j.LoggerFactory;
 public class IOUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log			= LoggerFactory.getLogger(IOUtilTest.class);
-
-	/** The file name1. */
-	@SuppressWarnings("unused")
-	private String				fileName1	= "F:/pie2.png";
-
-	/** The file name. */
-	@SuppressWarnings("unused")
-	private String				fileName	= "E:\\Data\\Java\\Taglib\\Apache Commons 非常有用的工具包\\commons-net\\ftp";
+	private static final Logger	log		= LoggerFactory.getLogger(IOUtilTest.class);
 
 	/** The string. */
-	private String				fString		= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
+	private String				fString	= "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
 
 	/**
 	 * Down.
@@ -80,8 +71,6 @@ public class IOUtilTest{
 			URL url = new URL("http://localhost:8080/TestHttpURLConnectionPro/index.jsp");
 			URLConnection rulConnection = url.openConnection();
 
-			@SuppressWarnings("unused")
-			HttpURLConnection httpUrlConnection = (HttpURLConnection) rulConnection;
 		}catch (MalformedURLException e){
 			log.error(e.getClass().getName(), e);
 		}catch (IOException e){

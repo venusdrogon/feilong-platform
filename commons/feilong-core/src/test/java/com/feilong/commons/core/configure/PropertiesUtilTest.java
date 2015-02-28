@@ -60,9 +60,7 @@ public class PropertiesUtilTest{
 		String propertiesPath = "I:/Ebook/book.properties";
 		InputStream inputStream = IOUtil.getFileInputStream(propertiesPath);
 		Properties properties = PropertiesUtil.getProperties(inputStream);
-		String key = "锦衣夜行";
-		@SuppressWarnings("unused")
-		String value = properties.getProperty(key);
+
 		try{
 			for (Object iterable_element : properties.keySet()){
 				log.info(new String(iterable_element.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));

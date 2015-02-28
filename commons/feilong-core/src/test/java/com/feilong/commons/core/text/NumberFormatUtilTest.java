@@ -18,8 +18,6 @@ package com.feilong.commons.core.text;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
@@ -27,9 +25,6 @@ import org.slf4j.LoggerFactory;
  * @since 1.0.7
  */
 public class NumberFormatUtilTest{
-
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(NumberFormatUtilTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.text.NumberFormatUtil#format(java.lang.Number, java.lang.String)}.

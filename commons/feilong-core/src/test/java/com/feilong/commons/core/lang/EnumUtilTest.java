@@ -18,8 +18,6 @@ package com.feilong.commons.core.lang;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.enumeration.HttpMethodType;
@@ -32,10 +30,6 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
  * @since 1.0.6
  */
 public class EnumUtilTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(EnumUtilTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValue(Class, String, Object)}.

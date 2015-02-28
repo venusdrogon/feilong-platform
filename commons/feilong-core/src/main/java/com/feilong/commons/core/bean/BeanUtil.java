@@ -58,14 +58,14 @@ import com.feilong.commons.core.util.Validator;
  * cub.deregister(Long.class);
  * cub.register(new MyLongConverter(), Long.class);
  * 
- * System.out.println(cub.lookup(Long.class));
+ * log.debug(cub.lookup(Long.class));
  * 
  * BeanUtilsBean bub = new BeanUtilsBean(cub, new PropertyUtilsBean());
  * 
  * String name = bub.getProperty(myObject, &quot;name&quot;);
- * System.out.println(name);
+ * log.debug(name);
  * String id = bub.getProperty(myObject, &quot;id&quot;);
- * System.out.println(id);
+ * log.debug(id);
  * 
  * </pre>
  * 
@@ -405,26 +405,26 @@ public final class BeanUtil{
 	 *  
 	 * 对于Simple类型，参数二直接是属性名即可
 	 * //Simple
-	 * System.out.println(BeanUtils.getProperty(c, "name"));
+	 * log.debug(BeanUtils.getProperty(c, "name"));
 	 *  
 	 * 对于Map类型，则需要以“属性名（key值）”的形式
 	 * //Map
-	 *     System.out.println(BeanUtils.getProperty(c, "address (A2)"));
+	 *     log.debug(BeanUtils.getProperty(c, "address (A2)"));
 	 *     HashMap am = new HashMap();
 	 *     am.put("1","234-222-1222211");
 	 *     am.put("2","021-086-1232323");
 	 *     BeanUtils.setProperty(c,"telephone",am);
-	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
+	 * log.debug(BeanUtils.getProperty(c, "telephone (2)"));
 	 *  
 	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作.
 	 * //index
-	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
+	 *     log.debug(BeanUtils.getProperty(c, "otherInfo[2]"));
 	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");
-	 *     System.out.println(BeanUtils.getProperty(c, "product[1]"));
+	 *     log.debug(BeanUtils.getProperty(c, "product[1]"));
 	 *  
 	 * 当然这3种类也可以组合使用啦！
 	 * //nest
-	 *     System.out.println(BeanUtils.getProperty(c, "employee[1].name"));
+	 *     log.debug(BeanUtils.getProperty(c, "employee[1].name"));
 	 * 
 	 * }
 	 * </pre>
@@ -467,26 +467,26 @@ public final class BeanUtil{
 	 *  
 	 * 对于Simple类型，参数二直接是属性名即可
 	 * //Simple
-	 * System.out.println(BeanUtils.getProperty(c, "name"));
+	 * log.debug(BeanUtils.getProperty(c, "name"));
 	 *  
 	 * 对于Map类型，则需要以“属性名（key值）”的形式
 	 * //Map
-	 *     System.out.println(BeanUtils.getProperty(c, "address (A2)"));
+	 *     log.debug(BeanUtils.getProperty(c, "address (A2)"));
 	 *     HashMap am = new HashMap();
 	 *     am.put("1","234-222-1222211");
 	 *     am.put("2","021-086-1232323");
 	 *     BeanUtils.setProperty(c,"telephone",am);
-	 * System.out.println(BeanUtils.getProperty(c, "telephone (2)"));
+	 * log.debug(BeanUtils.getProperty(c, "telephone (2)"));
 	 *  
 	 * 对于Indexed，则为“属性名[索引值]”，注意这里对于ArrayList和数组都可以用一样的方式进行操作.
 	 * //index
-	 *     System.out.println(BeanUtils.getProperty(c, "otherInfo[2]"));
+	 *     log.debug(BeanUtils.getProperty(c, "otherInfo[2]"));
 	 *     BeanUtils.setProperty(c, "product[1]", "NOTES SERVER");
-	 *     System.out.println(BeanUtils.getProperty(c, "product[1]"));
+	 *     log.debug(BeanUtils.getProperty(c, "product[1]"));
 	 *  
 	 * 当然这3种类也可以组合使用啦！
 	 * //nest
-	 *     System.out.println(BeanUtils.getProperty(c, "employee[1].name"));
+	 *     log.debug(BeanUtils.getProperty(c, "employee[1].name"));
 	 * 
 	 * }
 	 * </pre>

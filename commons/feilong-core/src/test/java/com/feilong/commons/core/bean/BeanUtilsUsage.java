@@ -21,6 +21,8 @@ import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.command.Address;
 import com.feilong.commons.core.bean.command.Customer;
@@ -29,6 +31,8 @@ import com.feilong.commons.core.bean.command.Customer;
  * The Class BeanUtilsUsage.
  */
 public class BeanUtilsUsage{
+
+	private static final Logger	log	= LoggerFactory.getLogger(BeanUtilsUsage.class);
 
 	/**
 	 * The main method.
@@ -51,7 +55,7 @@ public class BeanUtilsUsage{
 	 */
 	public static void demoNormalJavaBeans() throws Exception{
 
-		System.out.println(StringUtils.center(" demoNormalJavaBeans ", 40, "="));
+		log.debug(StringUtils.center(" demoNormalJavaBeans ", 40, "="));
 
 		// data setup  
 		Address addr1 = new Address("CA1234", "xxx", "Los Angeles", "USA");
@@ -66,19 +70,17 @@ public class BeanUtilsUsage{
 		String name = (String) PropertyUtils.getSimpleProperty(cust, "name");
 		String city = (String) PropertyUtils.getProperty(cust, cityPattern);
 		Object[] rawOutput1 = new Object[] { "The city of customer ", name, "'s first address is ", city, "." };
-		System.out.println(StringUtils.join(rawOutput1));
+		log.debug(StringUtils.join(rawOutput1));
 
 		// setting the zipcode of customer's second address  
 		String zipPattern = "addresses[1].zipCode";
 		if (PropertyUtils.isWriteable(cust, zipPattern)){//PropertyUtils  
-			System.out.println("Setting zipcode ...");
+			log.debug("Setting zipcode ...");
 			PropertyUtils.setProperty(cust, zipPattern, "200000");//PropertyUtils  
 		}
 		String zip = (String) PropertyUtils.getProperty(cust, zipPattern);//PropertyUtils  
 		Object[] rawOutput2 = new Object[] { "The zipcode of customer ", name, "'s second address is now ", zip, "." };
-		System.out.println(StringUtils.join(rawOutput2));
-
-		System.out.println();
+		log.debug(StringUtils.join(rawOutput2));
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class BeanUtilsUsage{
 	 */
 	public static void demoDynaBeans() throws Exception{
 
-		System.out.println(StringUtils.center(" demoDynaBeans ", 40, "="));
+		log.debug(StringUtils.center(" demoDynaBeans ", 40, "="));
 
 		// creating a DynaBean  
 		DynaProperty[] dynaBeanProperties = new DynaProperty[] {//DynaProperty  
@@ -101,10 +103,8 @@ public class BeanUtilsUsage{
 		cargo.set("name", "Instant Noodles");
 		cargo.set("inPrice", new Double(21.3));
 		cargo.set("outPrice", new Double(23.8));
-		System.out.println("name: " + cargo.get("name"));
-		System.out.println("inPrice: " + cargo.get("inPrice"));
-		System.out.println("outPrice: " + cargo.get("outPrice"));
-
-		System.out.println();
+		log.debug("name: " + cargo.get("name"));
+		log.debug("inPrice: " + cargo.get("inPrice"));
+		log.debug("outPrice: " + cargo.get("outPrice"));
 	}
 }

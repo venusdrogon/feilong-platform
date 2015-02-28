@@ -77,10 +77,6 @@ public class ListUtilTest{
 
 	}
 
-	/** The a strings. */
-	@SuppressWarnings("unused")
-	private String[]	aStrings	= { "a", "b" };
-
 	/**
 	 * TestListUtilTest.
 	 */
@@ -98,7 +94,7 @@ public class ListUtilTest{
 	public void testListUtilTest2(){
 		int[] ints = { 1, 2, 3, 4, 5 };
 		List list = Arrays.asList(ints);
-		System.out.println("list'size：" + list.size());
+		log.debug("list'size：" + list.size());
 
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(list));
@@ -118,7 +114,7 @@ public class ListUtilTest{
 			list1.add(student);
 		}
 		long end1 = System.currentTimeMillis();
-		System.out.println("list1 time：" + (end1 - begin1));
+		log.debug("list1 time：" + (end1 - begin1));
 
 		//*******************************************************
 
@@ -129,7 +125,7 @@ public class ListUtilTest{
 			list2.add(student);
 		}
 		long end2 = System.currentTimeMillis();
-		System.out.println("list2 time：" + (end2 - begin2));
+		log.debug("list2 time：" + (end2 - begin2));
 	}
 
 	/**
@@ -147,7 +143,7 @@ public class ListUtilTest{
 			list1.add(student);
 		}
 		long end1 = System.currentTimeMillis();
-		System.out.println("list1 time：" + (end1 - begin1));
+		log.debug("list1 time：" + (end1 - begin1));
 
 		//*******************************************************
 
@@ -158,7 +154,7 @@ public class ListUtilTest{
 			list2.add(student);
 		}
 		long end2 = System.currentTimeMillis();
-		System.out.println("list2 time：" + (end2 - begin2));
+		log.debug("list2 time：" + (end2 - begin2));
 	}
 
 	/**

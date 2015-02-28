@@ -40,11 +40,7 @@ public class MathUtilTest{
 		Point b = new Point(3, 3);
 		Point d = new Point(5, 5);
 
-		@SuppressWarnings("unused")
-		Point a = new Point(639, 348);
 		b = new Point(747, 417);
-		@SuppressWarnings("unused")
-		Point c = new Point(543, 501);
 		d = new Point(652, 570);
 
 		double angle = Math.atan2(d.y - b.y, b.x - d.x);
@@ -57,5 +53,4 @@ public class MathUtilTest{
 		double du = 180 * Math.atan2(d.y - b.y, b.x - d.x) / Math.PI;
 		log.info(du + "");
 	}
-
 }

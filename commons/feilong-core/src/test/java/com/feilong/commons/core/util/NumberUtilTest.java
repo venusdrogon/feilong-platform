@@ -43,10 +43,10 @@ public class NumberUtilTest{
 	 */
 	@Test
 	public void testMathTest(){
-		System.out.println(0.4 + 0.8); // = 1.2 ?
-		System.out.println(2 - 1.1); // = 0.9 ?
-		System.out.println(0.2 * 3); // = 0.6 ?
-		System.out.println(1.2 / 3); // = 0.4 ?
+		log.debug("" + (0.4 + 0.8)); // = 1.2 ?
+		log.debug("" + (2 - 1.1)); // = 0.9 ?
+		log.debug("" + (0.2 * 3)); // = 0.6 ?
+		log.debug("" + (1.2 / 3)); // = 0.4 ?
 
 		//1.2000000000000002
 		//0.8999999999999999
@@ -55,12 +55,12 @@ public class NumberUtilTest{
 
 		//new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
 		//BigDecimal.valueOf(0.1) ====>  0.1
-		System.out.println(new BigDecimal(0.1));
-		System.out.println(BigDecimal.valueOf(0.1));
+		log.debug("" + (new BigDecimal(0.1)));
+		log.debug("" + (BigDecimal.valueOf(0.1)));
 
-		System.out.println(new BigDecimal(0.4).add(new BigDecimal(0.8))); // = 1.2 ?
-		System.out.println(new BigDecimal(2).subtract(new BigDecimal(1.1))); // = 0.9 ?
-		System.out.println(new BigDecimal(0.2).multiply(new BigDecimal(3))); // = 0.6 ?
+		log.debug("" + (new BigDecimal(0.4).add(new BigDecimal(0.8)))); // = 1.2 ?
+		log.debug("" + (new BigDecimal(2).subtract(new BigDecimal(1.1)))); // = 0.9 ?
+		log.debug("" + (new BigDecimal(0.2).multiply(new BigDecimal(3)))); // = 0.6 ?
 
 	}
 
@@ -70,7 +70,7 @@ public class NumberUtilTest{
 	@Test
 	public void testMathUtilTest2(){
 		log.info("" + NumberUtil.getDivideNoScaleValue(new BigDecimal(1.2), new BigDecimal(3)));
-		//System.out.println(new BigDecimal(1.2).divide(new BigDecimal(3))); // = 0.4 ?
+		//log.debug(new BigDecimal(1.2).divide(new BigDecimal(3))); // = 0.4 ?
 	}
 
 	/**

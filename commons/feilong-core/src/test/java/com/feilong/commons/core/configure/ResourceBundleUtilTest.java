@@ -42,7 +42,6 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 15:21:15
  */
-@SuppressWarnings("deprecation")
 public class ResourceBundleUtilTest{
 
 	/** The Constant log. */
