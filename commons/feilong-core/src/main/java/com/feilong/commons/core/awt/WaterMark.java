@@ -22,6 +22,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.enumeration.ImageType;
 import com.feilong.commons.core.io.IOUtil;
 
@@ -35,6 +38,8 @@ import com.feilong.commons.core.io.IOUtil;
  */
 @Deprecated
 public final class WaterMark{
+
+	private static final Logger	log	= LoggerFactory.getLogger(WaterMark.class);
 
 	/** Don't let anyone instantiate this class. */
 	private WaterMark(){
@@ -66,9 +71,9 @@ public final class WaterMark{
 	 * @param pressImg
 	 *            水印文件
 	 * @param x
-	 *            x坐标
+	 *            x坐标（待解析）
 	 * @param y
-	 *            y坐标
+	 *            y坐标（待解析）
 	 * @param outputFile
 	 *            输出的文件
 	 * @throws IOException
@@ -88,9 +93,9 @@ public final class WaterMark{
 	 * @param pressImg
 	 *            水印文件
 	 * @param x
-	 *            x坐标
+	 *            x坐标（待解析）
 	 * @param y
-	 *            y坐标
+	 *            y坐标（待解析）
 	 * @param outputStream
 	 *            输出流(可以来自HttpServletReponse的输出)
 	 */
@@ -109,6 +114,11 @@ public final class WaterMark{
 		int heightWaterMark = waterMarkBufferedImage.getHeight();
 		int x2 = (newBufferedImage.getWidth() - widthWaterMark) - 25;// / 2
 		int y2 = (newBufferedImage.getHeight() - heightWaterMark) - 25;// / 2
+
+		//TODO 解析XY
+		if (log.isDebugEnabled()){
+			log.debug("x:{},y:{}", x, y);
+		}
 
 		// 设置透明
 		// graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 1f));// 开始
