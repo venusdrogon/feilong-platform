@@ -38,7 +38,14 @@ import com.feilong.commons.core.util.Validator;
  * @author 金鑫 2010-7-9 上午11:55:22
  * @since 1.0
  */
-public class ResultUtil{
+public final class ResultUtil{
+
+	/** Don't let anyone instantiate this class. */
+	private ResultUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 将result 转成任意的单个的 java bean

@@ -50,10 +50,12 @@ public final class ResponseUtil{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(ResponseUtil.class);
 
-	/**
-	 * The Constructor.
-	 */
-	private ResponseUtil(){}
+	/** Don't let anyone instantiate this class. */
+	private ResponseUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 下载(以 contentType=application/force-download) 强制下载.

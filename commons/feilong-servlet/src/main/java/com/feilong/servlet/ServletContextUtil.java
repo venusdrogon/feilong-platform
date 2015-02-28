@@ -22,9 +22,6 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -36,9 +33,12 @@ import com.feilong.commons.core.util.Validator;
  */
 public final class ServletContextUtil{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(ServletContextUtil.class);
+	/** Don't let anyone instantiate this class. */
+	private ServletContextUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * servletContext.log servletContext相关信息,一般 启动时 调用

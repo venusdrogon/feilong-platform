@@ -49,10 +49,12 @@ public final class SessionUtil{
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(SessionUtil.class);
 
-	/**
-	 * Instantiates a new session util.
-	 */
-	private SessionUtil(){}
+	/** Don't let anyone instantiate this class. */
+	private SessionUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * Gets the session map for log(仅仅用于log和debug使用).
