@@ -30,13 +30,6 @@ package com.feilong.commons.core.enumeration;
  */
 public final class TimeInterval{
 
-	/** Don't let anyone instantiate this class. */
-	private TimeInterval(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/** 1分钟 60s. */
 	public static final Integer	SECONDS_PER_MINUTE	= 60;
 
@@ -62,4 +55,11 @@ public final class TimeInterval{
 	 * 一年数据为 31536000,所以 Integer 最大为 68.096259734906 年
 	 */
 	public static final Integer	SECONDS_PER_YEAR	= SECONDS_PER_DAY * 365;
+
+	/** Don't let anyone instantiate this class. */
+	private TimeInterval(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

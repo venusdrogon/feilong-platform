@@ -256,13 +256,6 @@ import java.util.regex.Pattern;
  */
 public final class RegexPattern{
 
-	/** Don't let anyone instantiate this class. */
-	private RegexPattern(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/** email 的正则表达式 <code>{@value}</code>. */
 	public static final String	EMAIL				= "^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
 
@@ -327,4 +320,11 @@ public final class RegexPattern{
 
 	// /** 非零的正整数 <code>{@value}</code>. */
 	// String IntNumber = "^\\+?[1-9][0-9]*$";
+
+	/** Don't let anyone instantiate this class. */
+	private RegexPattern(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

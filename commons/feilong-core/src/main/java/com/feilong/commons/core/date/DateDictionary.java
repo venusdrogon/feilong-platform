@@ -84,6 +84,10 @@ final class DateDictionary{
 	 * in New Year of solar calendar and lunar calendar from 1901 to 2050;
 	 * </pre>
 	 */
+	//TODO
+	//Public arrays, even ones declared static final can have their contents edited by malicious programs. 
+	//The final keyword on an array declaration means that the array object itself may only be assigned once, but its contents are still mutable. Therefore making arrays public is a security risk.
+	//Instead, arrays should be private and accessed through methods.
 	public static final char[]		SOLAR_AND_LUNAR_OFFSET_TABLE	= { //
 																	49, //
 			38,

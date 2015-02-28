@@ -30,13 +30,6 @@ package com.feilong.commons.core.enumeration;
  */
 public final class CharsetType{
 
-	/** Don't let anyone instantiate this class. */
-	private CharsetType(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/** GBK可以表示简体中文和繁体中文 <code>{@value}</code>. */
 	public static final String	GBK			= "GBK";
 
@@ -64,4 +57,11 @@ public final class CharsetType{
 	 * 法语及芬兰语本来也使用ISO 8859-1来表示.但因它没有法语使用的 œ、Œ、 Ÿ 三个字母及芬兰语使用的 Š、š、Ž、ž ，故于1998年被ISO/IEC 8859-15所取代.（ISO 8859-15同时加入了欧元符号）
 	 */
 	public static final String	ISO_8859_1	= "ISO-8859-1";
+
+	/** Don't let anyone instantiate this class. */
+	private CharsetType(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

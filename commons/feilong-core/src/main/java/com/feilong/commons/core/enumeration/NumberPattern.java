@@ -114,13 +114,6 @@ import java.text.DecimalFormat;
  */
 public final class NumberPattern{
 
-	/** Don't let anyone instantiate this class. */
-	private NumberPattern(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/**
 	 * 整数,不含小数 <code>{@value}</code>.
 	 * 
@@ -140,4 +133,11 @@ public final class NumberPattern{
 	 * @since 1.0.7
 	 */
 	public static final String	PERCENT_WITH_1POINT		= "#0.0%";
+
+	/** Don't let anyone instantiate this class. */
+	private NumberPattern(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

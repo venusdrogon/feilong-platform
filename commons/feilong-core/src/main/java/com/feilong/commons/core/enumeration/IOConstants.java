@@ -27,13 +27,6 @@ package com.feilong.commons.core.enumeration;
  */
 public final class IOConstants{
 
-	/** Don't let anyone instantiate this class. */
-	private IOConstants(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/** KB 1024. */
 	public static final long		KB				= 1024;
 
@@ -45,4 +38,11 @@ public final class IOConstants{
 
 	/** 常用图片格式. */
 	public static final String[]	COMMON_IMAGES	= { "gif", "bmp", "jpg", "png" };
+
+	/** Don't let anyone instantiate this class. */
+	private IOConstants(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }
