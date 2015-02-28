@@ -73,7 +73,7 @@ public final class RegeditUtil{
 			// 等待该线程终止
 			feiLongStreamReaderThread.join();
 		}catch (InterruptedException e){
-			log.debug(e.getMessage());
+			log.error(e.getMessage(), e);
 		}
 		String result = feiLongStreamReaderThread.getResult();
 		return result;
@@ -117,7 +117,7 @@ public final class RegeditUtil{
 					stringWriter.write(i);
 				}
 			}catch (IOException e){
-				log.debug(e.getMessage());
+				log.error(e.getMessage(), e);
 			}
 		}
 

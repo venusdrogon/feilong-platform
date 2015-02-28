@@ -166,7 +166,8 @@ public final class ImageUtil{
 				ColorModel colorModel = bufferedImage.getColorModel();
 				ColorSpace colorSpace = colorModel.getColorSpace();
 				int colorSpaceType = colorSpace.getType();
-				return (colorSpaceType == ColorSpace.TYPE_CMYK);
+
+				return colorSpaceType == ColorSpace.TYPE_CMYK;
 			}
 		}catch (IOException e){
 			log.error(e.getClass().getName(), e);

@@ -28,6 +28,7 @@ import com.feilong.commons.core.util.RegexUtil;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @deprecated
  * @version 1.0 2012-4-6 下午3:11:10
  */
 @Deprecated

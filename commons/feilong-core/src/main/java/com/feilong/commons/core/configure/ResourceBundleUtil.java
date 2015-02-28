@@ -184,7 +184,7 @@ public final class ResourceBundleUtil implements BaseConfigure{
 				}
 				return value;
 			}catch (Exception e){
-				log.error(e.getMessage());
+				log.error(e.getMessage(), e);
 			}
 		}
 		return null;

@@ -52,7 +52,7 @@ public class ClassLoaderUtilTest{
 	 * Prints the.
 	 */
 	@Test
-	public void Print(){
+	public void testPrint(){
 		// /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/
 		String a = this.getClass().getClassLoader().getResource(".").getPath();
 		// /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/temple/io/

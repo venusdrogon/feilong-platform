@@ -22,6 +22,7 @@ import java.io.Serializable;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-8-11 上午11:27:47
+ * @deprecated
  * @since 1.0
  */
 @Deprecated

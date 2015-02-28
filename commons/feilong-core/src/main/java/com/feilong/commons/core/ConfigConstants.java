@@ -33,18 +33,18 @@ public final class ConfigConstants{
 		throw new AssertionError("No " + getClass().getName() + " instances for you!");
 	}
 
-	private static String	$FEILONG_CORE_CONFIG					= "config/feilong-core-config";
+	private static final String	$FEILONG_CORE_CONFIG					= "config/feilong-core-config";
 
 	/** 数字和小写的字母. */
-	public static String	VALIDATECODE_NUMBERSANDLITTLELETTERS	= ResourceBundleUtil.getValue(
-																					$FEILONG_CORE_CONFIG,
-																					"validateCode_numbersAndLittleLetters");
+	public static final String	VALIDATECODE_NUMBERSANDLITTLELETTERS	= ResourceBundleUtil.getValue(
+																						$FEILONG_CORE_CONFIG,
+																						"validateCode_numbersAndLittleLetters");
 
 	/** 数字和大小写字母. */
-	public static String	NUMBERSANDALLLETTERS					= ResourceBundleUtil.getValue(
-																					$FEILONG_CORE_CONFIG,
-																					"numbersAndAllLetters");
+	public static final String	NUMBERSANDALLLETTERS					= ResourceBundleUtil.getValue(
+																						$FEILONG_CORE_CONFIG,
+																						"numbersAndAllLetters");
 
 	/** 所有的数字. */
-	public static String	NUMBERS									= ResourceBundleUtil.getValue($FEILONG_CORE_CONFIG, "numbers");
+	public static final String	NUMBERS									= ResourceBundleUtil.getValue($FEILONG_CORE_CONFIG, "numbers");
 }

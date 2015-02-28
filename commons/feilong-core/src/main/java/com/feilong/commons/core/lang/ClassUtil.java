@@ -144,7 +144,8 @@ public final class ClassUtil{
 				parameterTypes[i] = int.class;
 			}else{
 				Class<?> clz = param.getClass();
-				if (clz.getName().equals("org.jfree.data.category.DefaultCategoryDataset")){
+				//TODO
+				if ("org.jfree.data.category.DefaultCategoryDataset".equals(clz.getName())){
 					try{
 						parameterTypes[i] = loadClass("org.jfree.data.category.CategoryDataset");
 					}catch (ClassNotFoundException e){

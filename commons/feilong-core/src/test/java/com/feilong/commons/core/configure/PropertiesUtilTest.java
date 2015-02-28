@@ -62,8 +62,8 @@ public class PropertiesUtilTest{
 		Properties properties = PropertiesUtil.getProperties(inputStream);
 
 		try{
-			for (Object iterable_element : properties.keySet()){
-				log.info(new String(iterable_element.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
+			for (Object iterableElement : properties.keySet()){
+				log.info(new String(iterableElement.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
 			}
 		}catch (UnsupportedEncodingException e1){
 			log.error("", e1);

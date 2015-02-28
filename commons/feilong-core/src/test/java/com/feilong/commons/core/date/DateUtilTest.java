@@ -176,8 +176,8 @@ public class DateUtilTest extends BaseDateUtilTest{
 	public void getFirstDateOfThisWeek(){
 		Date date = DateUtil.addDay(now, -2);
 		log.debug("the param date:{}", DateUtil.date2String(date, DatePattern.commonWithMillisecond));
-		Date now_3 = DateUtil.getFirstDateOfThisWeek(date);
-		log.debug(DateUtil.date2String(now_3, DatePattern.commonWithMillisecond));
+		Date now3 = DateUtil.getFirstDateOfThisWeek(date);
+		log.debug(DateUtil.date2String(now3, DatePattern.commonWithMillisecond));
 		log.debug("今天所在week 第一天:{}", DateUtil.date2String(DateUtil.getFirstDateOfThisWeek(new Date()), DatePattern.commonWithMillisecond));
 
 		log.debug("getFirstDateOfThisWeek:{}", DateUtil.date2String(
@@ -195,8 +195,8 @@ public class DateUtilTest extends BaseDateUtilTest{
 		Date date = DateUtil.addDay(now, -2);
 
 		log.debug("the param date:{}", DateUtil.date2String(date, DatePattern.commonWithMillisecond));
-		Date now_3 = DateUtil.getLastDateOfThisWeek(date);
-		log.debug(DateUtil.date2String(now_3, DatePattern.commonWithMillisecond));
+		Date now3 = DateUtil.getLastDateOfThisWeek(date);
+		log.debug(DateUtil.date2String(now3, DatePattern.commonWithMillisecond));
 
 		log.debug("getLastDateOfThisWeek:{}", DateUtil.date2String(
 						DateUtil.getLastDateOfThisWeek(DateUtil.string2Date("2014-12-31 05:00:00", DatePattern.commonWithTime)),

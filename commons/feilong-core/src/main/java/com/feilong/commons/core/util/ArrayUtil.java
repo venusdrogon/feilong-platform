@@ -112,7 +112,7 @@ public final class ArrayUtil{
 		}catch (ClassCastException e){
 
 			if (log.isDebugEnabled()){
-				log.debug("arrays can not cast to Object[],maybe primitive type,values is:{}", arrays);
+				log.debug("arrays can not cast to Object[],maybe primitive type,values is:{},{}", arrays, e.getMessage());
 			}
 
 			// Rats -- 它是一个基本类型数组

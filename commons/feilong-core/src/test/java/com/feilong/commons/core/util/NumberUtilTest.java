@@ -143,7 +143,7 @@ public class NumberUtilTest{
 	@Test
 	public void compareTo(){
 		BigDecimal totalFee = BigDecimal.valueOf(-0.01);
-		boolean isLEZero = (totalFee.compareTo(BigDecimal.ZERO) == -1) || (totalFee.compareTo(BigDecimal.ZERO) == 0);
+		boolean isLEZero = (totalFee.compareTo(BigDecimal.ZERO) < 0) || (totalFee.compareTo(BigDecimal.ZERO) == 0);
 		assertEquals(true, isLEZero);
 	}
 

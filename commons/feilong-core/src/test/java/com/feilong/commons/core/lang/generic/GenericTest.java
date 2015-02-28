@@ -20,8 +20,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -37,10 +35,7 @@ import org.slf4j.LoggerFactory;
 public class GenericTest{
 
 	/** The Constant log. */
-	private static final Logger	log		= LoggerFactory.getLogger(GenericTest.class);
-
-	/** The list. */
-	public List<String>			list	= new ArrayList<String>();
+	private static final Logger	log	= LoggerFactory.getLogger(GenericTest.class);
 
 	/**
 	 * Gets the value.
@@ -54,7 +49,7 @@ public class GenericTest{
 	 * @return the value
 	 */
 	public static <T> T getValue(String a,Class<?> clz){
-		log.info("" + (clz == String.class));
+		log.info(a + "" + (clz == String.class));
 		T aT = null;
 		try{
 			Method method = GenericTest.class.getMethod("getValue", String.class, Class.class);

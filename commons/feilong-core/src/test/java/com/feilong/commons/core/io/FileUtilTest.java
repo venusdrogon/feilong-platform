@@ -130,11 +130,11 @@ public class FileUtilTest{
 	@Test
 	public void testGetFileSizes() throws IOException{
 
-		String _file = "E:\\DataCommon\\test\\1.png";
-		_file = "E:\\DataCommon\\Java\\JDK API 1.6.0 中文版.CHM";
-		_file = "E:\\迅雷下载\\飞鸟娱乐(bbs.hdbird.com).小叮当与海盗仙子.720p.国英双语\\飞鸟娱乐(bbs.hdbird.com).小叮当与海盗仙子.720p.国英双语.mkv";
+		String testFile = "E:\\DataCommon\\test\\1.png";
+		testFile = "E:\\DataCommon\\Java\\JDK API 1.6.0 中文版.CHM";
+		testFile = "E:\\迅雷下载\\飞鸟娱乐(bbs.hdbird.com).小叮当与海盗仙子.720p.国英双语\\飞鸟娱乐(bbs.hdbird.com).小叮当与海盗仙子.720p.国英双语.mkv";
 
-		File file = new File(_file);
+		File file = new File(testFile);
 
 		long fileSizes = FileUtil.getFileSize(file);
 		log.info(fileSizes + "");

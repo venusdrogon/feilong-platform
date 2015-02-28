@@ -277,7 +277,7 @@ public final class ObjectUtil{
 				try{
 					returnValue = new Integer(value.toString().trim());
 				}catch (Exception e){
-					throw new IllegalArgumentException("Input param:\"" + value + "\", convert to integer exception");
+					throw new IllegalArgumentException("Input param:\"" + value + "\", convert to integer exception", e);
 				}
 			}
 		}

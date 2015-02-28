@@ -48,11 +48,11 @@ public class RegexUtilTest{
 	 */
 	@Test
 	public final void group2(){
-		String regexPattern_table = "@Table.*name.*\"(.*?)\".*";
+		String regexPatternTable = "@Table.*name.*\"(.*?)\".*";
 		//		regexPattern = "@Table[(]*\"(.*?)*[)]";
 		//		regexPattern = "@Table(.*?)";
 		String email = "@Table(name = \"T_MEM_MEMBER_ADDRESS\")";
-		log.info(RegexUtil.group(regexPattern_table, email) + "");
+		log.info(RegexUtil.group(regexPatternTable, email) + "");
 	}
 
 	/**
@@ -71,13 +71,13 @@ public class RegexUtilTest{
 	 */
 	@Test
 	public final void group22(){
-		String REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\"((?:.*)|(.*length.*(\\d+).*))";
+		String regexPatternColumn = ".*@Column.*name.*\"(.*?)\"((?:.*)|(.*length.*(\\d+).*))";
 		//		REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\".*length.*(\\d*).*";
 		//		REGEX_PATTERN_COLUMN = ".*@Column.*(\\d+).*";
-		REGEX_PATTERN_COLUMN = ".*@Column.*?name\\s*=\\s*\"(.*?)\"(?:.*?length\\s*=\\s*(\\d+))?";
-		REGEX_PATTERN_COLUMN = ".*@Column.*name.*\"(.*?)\".*length\\s*=\\s*(\\d+).*";
+		regexPatternColumn = ".*@Column.*?name\\s*=\\s*\"(.*?)\"(?:.*?length\\s*=\\s*(\\d+))?";
+		regexPatternColumn = ".*@Column.*name.*\"(.*?)\".*length\\s*=\\s*(\\d+).*";
 		String email = "@Column(name = \"NAME\", length=80)";
-		RegexUtil.group(REGEX_PATTERN_COLUMN, email);
+		RegexUtil.group(regexPatternColumn, email);
 	}
 
 	/**
@@ -109,7 +109,6 @@ public class RegexUtilTest{
 
 		String pattern = "^(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC\\-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT\\-)|(SonyEricsson)|(NEC\\-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi\\-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG\\-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC\\-)|(SED\\-)|(EMOL\\-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)$";
 		log.info(RegexUtil.matches(pattern, iphone) + "");
-
 	}
 
 	/**
@@ -122,25 +121,22 @@ public class RegexUtilTest{
 		log.info(RegexUtil.matches(RegexPattern.NUMBER, "2000.0") + "");
 		log.info(RegexUtil.matches(RegexPattern.NUMBER, "02125454") + "");
 		log.info(RegexUtil.matches(RegexPattern.AN, "02125454") + "");
-
 	}
 
 	/**
 	 * AN.
 	 */
 	@Test
-	public final void AN(){
+	public final void testAN(){
 		log.info(RegexUtil.matches(RegexPattern.AN, "0212545.4") + "");
 		log.info(RegexUtil.matches(RegexPattern.AN, "aa02125454") + "");
-
 	}
 
 	/**
 	 * ANS.
 	 */
 	@Test
-	public final void ANS(){
+	public final void testANS(){
 		log.info(RegexUtil.matches(RegexPattern.ANS, "02125 454") + "");
-
 	}
 }

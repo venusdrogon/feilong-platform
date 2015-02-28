@@ -307,7 +307,7 @@ public class ListUtilTest{
 		log.info(list.indexOf("xinge") + "");
 		for (Iterator<String> iterator = list.iterator(); iterator.hasNext();){
 			String string = iterator.next();
-			if (string.equals("feilong1")){
+			if ("feilong1".equals(string)){
 				iterator.remove();
 
 				//list.remove(string);	//java.util.ConcurrentModificationException
