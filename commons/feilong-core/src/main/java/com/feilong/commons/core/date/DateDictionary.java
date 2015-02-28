@@ -26,13 +26,6 @@ package com.feilong.commons.core.date;
 //默认作用域 --->当前包
 final class DateDictionary{
 
-	/** Don't let anyone instantiate this class. */
-	private DateDictionary(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/**
 	 * 英文星期<br>
 	 * { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
@@ -484,4 +477,11 @@ final class DateDictionary{
 			0xada0,
 			0x55b0													// 2050
 																	};
+
+	/** Don't let anyone instantiate this class. */
+	private DateDictionary(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

@@ -24,14 +24,21 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class DateUtilIsLeapYearTest.
  */
 @RunWith(Parameterized.class)
 public class DateUtilIsLeapYearParameterizedTest extends BaseDateUtilTest{
+
+	/** The f input. */
+	@Parameter
+	// first data value (0) is default
+	public int		year;
+
+	/** The f expected. */
+	@Parameter(value = 1)
+	public boolean	expectedValue;
 
 	/**
 	 * Data.
@@ -43,15 +50,6 @@ public class DateUtilIsLeapYearParameterizedTest extends BaseDateUtilTest{
 		Object[][] objects = new Object[][] { { 2014, false }, { 2000, true } };
 		return Arrays.asList(objects);
 	}
-
-	/** The f input. */
-	@Parameter
-	// first data value (0) is default
-	public int		year;
-
-	/** The f expected. */
-	@Parameter(value = 1)
-	public boolean	expectedValue;
 
 	/**
 	 * Checks if is leap year.

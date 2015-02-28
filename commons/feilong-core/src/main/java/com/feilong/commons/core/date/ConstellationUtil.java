@@ -28,13 +28,6 @@ import com.feilong.commons.core.enumeration.DatePattern;
  */
 public final class ConstellationUtil{
 
-	/** Don't let anyone instantiate this class. */
-	private ConstellationUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
-
 	/**
 	 * 飞龙星座枚举
 	 */
@@ -68,6 +61,13 @@ public final class ConstellationUtil{
 	 * 星座边界日期
 	 */
 	private static final int[]					edgeDays			= { 20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22 };
+
+	/** Don't let anyone instantiate this class. */
+	private ConstellationUtil(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	// *************************************************************************************************
 	/**

@@ -16,8 +16,6 @@
 package com.feilong.commons.core.util;
 
 import org.apache.commons.lang3.SystemUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * StringBuilder工具类,可以用来快速的拼接字符串.

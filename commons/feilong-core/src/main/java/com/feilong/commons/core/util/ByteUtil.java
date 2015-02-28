@@ -23,18 +23,18 @@ package com.feilong.commons.core.util;
  */
 public final class ByteUtil{
 
+	/** 数字 字符数组. */
+	private static final char[]		digit2char	= { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', };
+
+	/** The Constant hexDigits. */
+	private static final String[]	hexDigits	= { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
+
 	/** Don't let anyone instantiate this class. */
 	private ByteUtil(){
 		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
 		//see 《Effective Java》 2nd
 		throw new AssertionError("No " + getClass().getName() + " instances for you!");
 	}
-
-	/** 数字 字符数组. */
-	private static final char[]		digit2char	= { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', };
-
-	/** The Constant hexDigits. */
-	private static final String[]	hexDigits	= { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
 
 	/**
 	 * 字节数组,转成小写的16进制字符串<br>

@@ -104,6 +104,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
@@ -314,6 +315,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#notifyVerify(java.lang.String, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -381,7 +383,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		boolean isSignOk = ourWORDS.equals(WORDS);
 
 		if (isSignOk){
-			log.info("signOk,tradeNo:[{}]",TRANSIDMERCHANT);
+			log.info("signOk,tradeNo:[{}]", TRANSIDMERCHANT);
 
 			// *) main identifier of transaction success / failed
 			boolean statusSuccess = Resultmsg.SUCCESS.equals(RESULTMSG);
@@ -395,16 +397,17 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			return statusSuccess ? PaymentResult.PAID : PaymentResult.FAIL;
 		}
 		log.error(
-				"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
-				WORDS,
-				ourWORDS,
-				RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
+						"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
+						WORDS,
+						ourWORDS,
+						RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
 
 		return PaymentResult.FAIL;
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	public PaymentResult verifyRedirect(HttpServletRequest request){
@@ -451,10 +454,10 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 			return statusSuccess ? PaymentResult.PAID : PaymentResult.FAIL;
 		}
 		log.error(
-				"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
-				WORDS,
-				ourWORDS,
-				RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
+						"from DoKu WORDS is:{},ourWORDS:{},full request url is :{}",
+						WORDS,
+						ourWORDS,
+						RequestUtil.getRequestFullURL(request, CharsetType.UTF8));
 		return PaymentResult.FAIL;
 	}
 
@@ -472,6 +475,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -481,6 +485,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	public String getFeedbackTotalFee(HttpServletRequest request){
@@ -589,7 +594,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 
 		// **************如果包含运费,*****************************
 		BigDecimal transferFee = payRequest.getTransferFee();
-		boolean isHasTransferFee = (transferFee.compareTo(new BigDecimal(0)) == 1);
+		boolean isHasTransferFee = (transferFee.compareTo(new BigDecimal(0)) > 0);
 
 		if (isHasTransferFee){
 			sb.append(";");

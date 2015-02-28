@@ -187,7 +187,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		}
 
 		// 金额<=0
-		boolean isLEZero = totalFee.compareTo(BigDecimal.ZERO) == -1 || totalFee.compareTo(BigDecimal.ZERO) == 0;
+		boolean isLEZero = totalFee.compareTo(BigDecimal.ZERO) < 0 || totalFee.compareTo(BigDecimal.ZERO) == 0;
 		if (isLEZero){
 			throw new IllegalArgumentException(Slf4jUtil.formatMessage("totalFee:[{}] can't < 0", totalFee));
 		}
@@ -196,7 +196,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		if (validateMinPrice){
 			// 最小支付金额
 			if (Validator.isNotNullOrEmpty(minPriceForPay)){
-				if (totalFee.compareTo(minPriceForPay) == -1){
+				if (totalFee.compareTo(minPriceForPay) < 0){
 					throw new IllegalArgumentException(Slf4jUtil.formatMessage(
 									"totalFee:[{}] can't < minPriceForPay:[{}]",
 									totalFee,
@@ -211,7 +211,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 		// 以后要改回来, 将这个参数改成 true
 		if (validateMaxPrice){
 			if (Validator.isNotNullOrEmpty(maxPriceForPay)){
-				if (totalFee.compareTo(maxPriceForPay) == 1){
+				if (totalFee.compareTo(maxPriceForPay) > 0){
 					throw new IllegalArgumentException(Slf4jUtil.formatMessage(
 									"totalFee:[{}] can't > maxPriceForPay:[{}]",
 									totalFee,

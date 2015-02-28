@@ -39,6 +39,16 @@ public enum HttpMethodType{
 	private String	method;
 
 	/**
+	 * Instantiates a new http method type.
+	 * 
+	 * @param method
+	 *            the method
+	 */
+	private HttpMethodType(String method){
+		this.method = method;
+	}
+
+	/**
 	 * Gets the by method value ignore case.
 	 * 
 	 * @param methodValue
@@ -52,16 +62,6 @@ public enum HttpMethodType{
 	public static HttpMethodType getByMethodValueIgnoreCase(String methodValue) throws NoSuchFieldException{
 		String propertyName = "method";
 		return EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, propertyName, methodValue);
-	}
-
-	/**
-	 * Instantiates a new http method type.
-	 * 
-	 * @param method
-	 *            the method
-	 */
-	private HttpMethodType(String method){
-		this.method = method;
 	}
 
 	/**

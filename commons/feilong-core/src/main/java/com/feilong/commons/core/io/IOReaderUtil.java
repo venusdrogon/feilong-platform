@@ -41,7 +41,10 @@ import com.feilong.commons.core.util.Validator;
 public final class IOReaderUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(IOReaderUtil.class);
+	private static final Logger	log						= LoggerFactory.getLogger(IOReaderUtil.class);
+
+	/** 默认编码. */
+	private static final String	DEFAULT_CHARSET_NAME	= CharsetType.UTF8;
 
 	/** Don't let anyone instantiate this class. */
 	private IOReaderUtil(){
@@ -49,9 +52,6 @@ public final class IOReaderUtil{
 		//see 《Effective Java》 2nd
 		throw new AssertionError("No " + getClass().getName() + " instances for you!");
 	}
-
-	/** 默认编码. */
-	private static final String	DEFAULT_CHARSET_NAME	= CharsetType.UTF8;
 
 	/**
 	 * 读取文件内容.
