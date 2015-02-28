@@ -15,6 +15,7 @@
  */
 package com.feilong.tools.mail;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
@@ -26,11 +27,13 @@ import javax.activation.MailcapCommandMap;
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -38,6 +41,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
+import javax.mail.search.SearchTerm;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.slf4j.Logger;
@@ -47,6 +51,10 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.commons.core.enumeration.MimeType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.tools.mail.entity.MailInfo;
+import com.feilong.tools.mail.entity.MailSenderConfig;
+import com.feilong.tools.mail.util.FolderUtil;
+import com.feilong.tools.mail.util.MessageUtil;
 
 /**
  * 邮件发送器.
@@ -69,6 +77,7 @@ public final class MailSenderUtil{
 	/** contentId前缀. */
 	public static final String	PREFIX_CONTENTID	= "image";
 
+	/** The Constant CHARSET_PERSONAL. */
 	private static final String	CHARSET_PERSONAL	= CharsetType.GB2312;
 
 	/** The message. */
@@ -239,13 +248,15 @@ public final class MailSenderUtil{
 	}
 
 	/**
-	 * 设置 header 信息
-	 * 
+	 * 设置 header 信息.
+	 *
 	 * @param mailSenderConfig
+	 *            the headers
 	 * @throws MessagingException
-	 * @since 1.0.9
+	 *             the messaging exception
 	 * @see javax.mail.Part#addHeader(String, String)
 	 * @see javax.mail.Part#setHeader(String, String)
+	 * @since 1.0.9
 	 */
 	private void setHeaders(MailSenderConfig mailSenderConfig) throws MessagingException{
 		// ***************************************************************************
@@ -341,5 +352,91 @@ public final class MailSenderUtil{
 		Session session = Session.getDefaultInstance(properties, authenticator);
 		session.setDebug(mailSenderConfig.getIsDebug());
 		return session;
+	}
+
+	/**
+	 * 获得 po p3 messages.
+	 *
+	 * @param mailSenderConfig
+	 *            the mail sender config
+	 * @return the PO p3 messages
+	 * @throws MessagingException
+	 *             the messaging exception
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	public List<MailInfo> getPOP3MailInfoList(MailSenderConfig mailSenderConfig) throws MessagingException,IOException{
+		SearchTerm searchTerm = null;
+		Integer newstIndex = null;
+		return getPOP3MailInfoList(mailSenderConfig, newstIndex, searchTerm);
+	}
+
+	/**
+	 * 获得 po p3 messages.
+	 *
+	 * @param mailSenderConfig
+	 *            the mail sender config
+	 * @param newstIndex
+	 *            the newst index
+	 * @param searchTerm
+	 *            the search term
+	 * @return the PO p3 messages
+	 * @throws MessagingException
+	 *             the messaging exception
+	 * @throws IOException
+	 *             the IO exception
+	 */
+	public List<MailInfo> getPOP3MailInfoList(MailSenderConfig mailSenderConfig,Integer newstIndex,SearchTerm searchTerm)
+					throws MessagingException,IOException{
+		String mailServerHost = mailSenderConfig.getMailServerHost();
+		String userName = mailSenderConfig.getUserName();
+		String password = mailSenderConfig.getPassword();
+
+		// 根据邮件会话属性和密码验证器构造一个发送邮件的session
+		Session session = createSession(mailSenderConfig);
+
+		// Get the store
+		//imap pop3
+		Store store = session.getStore("imap");
+		//store.connect();
+		store.connect(mailServerHost, userName, password);
+
+		// Get folder
+		Folder folder = store.getFolder("INBOX");
+		folder.open(Folder.READ_ONLY);
+
+		if (log.isDebugEnabled()){
+			log.debug(JsonUtil.format(FolderUtil.getMapForLog(folder)));
+		}
+
+		//******************************************************************************
+		// Get directory
+		Message[] messages = null;
+
+		//最近的多少条
+		if (Validator.isNotNullOrEmpty(newstIndex)){
+			int messageCount = folder.getMessageCount();
+			int start = messageCount - newstIndex;
+			start = start < 1 ? 1 : start;
+			messages = folder.getMessages(start, messageCount);
+		}else{
+			//所有
+			messages = folder.getMessages();
+		}
+
+		if (Validator.isNullOrEmpty(searchTerm)){
+			//nothing to do 
+		}else{
+			messages = folder.search(searchTerm, messages);
+		}
+
+		List<MailInfo> mailInfoList = MessageUtil.toMailInfoList(messages);
+
+		//******************************************************
+		// Close connection 
+		folder.close(false);
+		store.close();
+
+		return mailInfoList;
 	}
 }

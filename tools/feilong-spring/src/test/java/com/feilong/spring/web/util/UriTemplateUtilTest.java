@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.spring.web.util.UriTemplateUtil;
 
 /**
  * The Class UriTemplateUtilTest.

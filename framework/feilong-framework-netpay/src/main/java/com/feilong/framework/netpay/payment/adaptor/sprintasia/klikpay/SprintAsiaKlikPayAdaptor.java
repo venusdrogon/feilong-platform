@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.commons.core.util.RegexUtil;

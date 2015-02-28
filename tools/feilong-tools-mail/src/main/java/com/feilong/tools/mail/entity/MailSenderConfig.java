@@ -13,9 +13,11 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-package com.feilong.tools.mail;
+package com.feilong.tools.mail.entity;
 
 import java.util.List;
+
+import com.feilong.tools.mail.Priority;
 
 /**
  * 邮件发送配置.
@@ -448,5 +450,4 @@ public class MailSenderConfig{
 	public void setContentMimeType(String contentMimeType){
 		this.contentMimeType = contentMimeType;
 	}
-
 }

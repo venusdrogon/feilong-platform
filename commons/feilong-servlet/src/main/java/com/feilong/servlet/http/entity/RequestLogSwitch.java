@@ -74,9 +74,31 @@ public final class RequestLogSwitch implements Serializable{
 	 * <li>showMethod = true;</li>
 	 * <li>showParams = true;</li>
 	 * </ul>
+	 * .
 	 */
 	public RequestLogSwitch(){
 		super();
+	}
+
+	/**
+	 * The Constructor.
+	 *
+	 * @param full
+	 *            the full
+	 */
+	public RequestLogSwitch(boolean full){
+		if (full){
+			this.showCookies = true;
+			this.showElses = true;
+			this.showErrors = true;
+			this.showFullURL = true;
+			this.showHeaders = true;
+			this.showIPs = true;
+			this.showMethod = true;
+			this.showParams = true;
+			this.showPorts = true;
+			this.showURLs = true;
+		}
 	}
 
 	/**

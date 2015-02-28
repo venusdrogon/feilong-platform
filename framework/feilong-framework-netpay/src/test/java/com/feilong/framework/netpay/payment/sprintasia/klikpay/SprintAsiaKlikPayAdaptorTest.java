@@ -19,13 +19,12 @@ import java.util.Date;
 import java.util.Map;
 
 import org.junit.Assert;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.framework.netpay.payment.BasePaymentTest;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.sprintutil.AuthKey;

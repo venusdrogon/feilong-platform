@@ -74,7 +74,6 @@ public final class ApplicationContextUtil{
 												.isSingleton(beanDefinitionName) ? "[Singleton]" : ""));
 				beanDefinitionNamesAndClassMap.put(beanDefinitionName, vObject);
 			}catch (BeansException e){
-				//e.printStackTrace();
 				beanDefinitionNamesAndClassMap.put(beanDefinitionName, e.getMessage());
 			}
 		}

@@ -15,7 +15,7 @@
  */
 package com.feilong.tools.security.oneway;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -23,8 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.tools.security.BaseSecurityTest;
-import com.feilong.tools.security.oneway.OnewayEncryption;
-import com.feilong.tools.security.oneway.OnewayType;
 
 /**
  * The Class OnewayEncryptionTest.

@@ -58,18 +58,33 @@ public class JaxWsDynamicClientUtil{
 	 */
 	public static String call(String wsdlUrl,String operationName,Object...params) throws Exception{
 		if (log.isInfoEnabled()){
-			Map<String, Object> object = new HashMap<String, Object>();
-
-			object.put("wsdlUrl", wsdlUrl);
-			object.put("operationName", operationName);
-			object.put("params", params);
-
-			log.info(JsonUtil.format(object));
+			Map<String, Object> traceMap = getTraceMapForLog(wsdlUrl, operationName, params);
+			log.info(JsonUtil.format(traceMap));
 		}
 		DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
 		Client client = dynamicClientFactory.createClient(wsdlUrl);
 		Object[] obj = client.invoke(operationName, params);
 		String result = "" + obj[0];
 		return result;
+	}
+
+	/**
+	 * 获得 map for log.
+	 *
+	 * @param wsdlUrl
+	 *            the wsdl url
+	 * @param operationName
+	 *            the operation name
+	 * @param params
+	 *            the params
+	 * @return the map for log
+	 * @since 1.0.9
+	 */
+	public static Map<String, Object> getTraceMapForLog(String wsdlUrl,String operationName,Object...params){
+		Map<String, Object> object = new HashMap<String, Object>();
+		object.put("wsdlUrl", wsdlUrl);
+		object.put("operationName", operationName);
+		object.put("params", params);
+		return object;
 	}
 }

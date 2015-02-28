@@ -51,8 +51,7 @@ public class SpringDITest{
 	 */
 	@BeforeClass
 	public static void beforeClass(){
-		final String configLocation = "classpath:spring-DI.xml";
-		fileSystemContext = new FileSystemXmlApplicationContext(configLocation);
+		fileSystemContext = new FileSystemXmlApplicationContext("classpath:spring-DI.xml", "classpath:spring-DI-Array.xml");
 	}
 
 	/**
@@ -99,5 +98,4 @@ public class SpringDITest{
 		// Locale locale = new Locale("zh", "CN");
 		// log.info("================" + context.getMessage("name", null, locale));
 	}
-
 }

@@ -34,8 +34,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.io.CSVUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
@@ -51,6 +51,7 @@ import com.feilong.tools.jsoup.JsoupUtilException;
  * @version 1.0 2011-10-22 下午06:45:18
  * @deprecated
  */
+@Deprecated
 public class FeiLongJinBaoWangCrawler{
 
 	/** The Constant log. */

@@ -25,24 +25,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.feilong.spring.mail.MailSenderUtil;
-
 /**
  * The Class MailUtilTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 2:31:22 PM
  */
-public class MailSenderUtilTest{
+public class JavaMailSenderUtilTest{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(MailSenderUtilTest.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(JavaMailSenderUtilTest.class);
 
 	/** The context. */
 	private ApplicationContext	context;
 
 	/** The mail util. */
-	private MailSenderUtil			mailUtil;
+	private JavaMailSenderUtil	mailUtil;
 
 	/**
 	 * Inits the.
@@ -54,7 +53,7 @@ public class MailSenderUtilTest{
 		// for (int i = 0; i < array.length; ++i){
 		// log.debug(array[i]);
 		// }
-		mailUtil = context.getBean(MailSenderUtil.class);
+		mailUtil = context.getBean(JavaMailSenderUtil.class);
 	}
 
 	/**

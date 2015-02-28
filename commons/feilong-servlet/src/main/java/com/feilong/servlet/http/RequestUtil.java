@@ -28,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.URIComponents;
 import com.feilong.commons.core.lang.ObjectUtil;
-import com.feilong.commons.core.net.URIComponents;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
@@ -685,6 +685,7 @@ public final class RequestUtil{
 	 * @return the attribute map
 	 * @deprecated 目前如果直接 转json 如果属性有级联关系,会报错,待重构
 	 */
+	@Deprecated
 	// XXX
 	private static Map<String, Object> getAttributeMap(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();

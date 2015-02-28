@@ -26,8 +26,8 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.FileType;
 import com.feilong.commons.core.io.FileInfoEntity;
-import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.util.Validator;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
@@ -67,7 +67,7 @@ public class SFTPUtil extends FileTransfer{
 	private Properties			sshConfig;
 
 	/** The connect timeout. */
-	private int					connectTimeout	= 0;
+	private int					sessionTimeout	= 0;
 
 	// ***********************************************************************
 
@@ -107,6 +107,7 @@ public class SFTPUtil extends FileTransfer{
 				log.debug("session setConfig:{}", sshConfig);
 				session.setConfig(sshConfig);
 			}
+			session.setTimeout(sessionTimeout);
 
 			log.debug("session connecting......");
 			session.connect();
@@ -144,6 +145,7 @@ public class SFTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
 	 */
 	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
@@ -186,6 +188,7 @@ public class SFTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.AbstractFileTransfer#mkdir(java.lang.String)
 	 */
 	protected boolean mkdir(String dirName) throws Exception{
@@ -196,16 +199,18 @@ public class SFTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.AbstractFileTransfer#cd(java.lang.String)
 	 */
 	public boolean cd(String remoteDirectory) throws Exception{
-		log.info("channelSftp cd:{} ", remoteDirectory);
+		log.info("channelSftp cd:[{}]", remoteDirectory);
 		channelSftp.cd(remoteDirectory);
 		return true;
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#put(java.io.FileInputStream, java.lang.String)
 	 */
 	@Override
@@ -276,39 +281,12 @@ public class SFTPUtil extends FileTransfer{
 	}
 
 	/**
-	 * Gets the 主机名.
-	 * 
-	 * @return the hostName
-	 */
-	public String getHostName(){
-		return hostName;
-	}
-
-	/**
-	 * Gets the 用户名.
-	 * 
-	 * @return the userName
-	 */
-	public String getUserName(){
-		return userName;
-	}
-
-	/**
 	 * Gets the 密码.
 	 * 
 	 * @return the password
 	 */
 	public String getPassword(){
 		return password;
-	}
-
-	/**
-	 * Gets the port.
-	 * 
-	 * @return the port
-	 */
-	public Integer getPort(){
-		return port;
 	}
 
 	/**
@@ -322,15 +300,6 @@ public class SFTPUtil extends FileTransfer{
 	}
 
 	/**
-	 * Gets the ssh config.
-	 * 
-	 * @return the sshConfig
-	 */
-	public Properties getSshConfig(){
-		return sshConfig;
-	}
-
-	/**
 	 * Sets the ssh config.
 	 * 
 	 * @param sshConfig
@@ -340,27 +309,9 @@ public class SFTPUtil extends FileTransfer{
 		this.sshConfig = sshConfig;
 	}
 
-	/**
-	 * Gets the connect timeout.
-	 * 
-	 * @return the connectTimeout
-	 */
-	public int getConnectTimeout(){
-		return connectTimeout;
-	}
-
-	/**
-	 * Sets the connect timeout.
-	 * 
-	 * @param connectTimeout
-	 *            the connectTimeout to set
-	 */
-	public void setConnectTimeout(int connectTimeout){
-		this.connectTimeout = connectTimeout;
-	}
-
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#rmdir(java.lang.String)
 	 */
 	@Override
@@ -371,6 +322,7 @@ public class SFTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#rm(java.lang.String)
 	 */
 	@Override
@@ -381,6 +333,7 @@ public class SFTPUtil extends FileTransfer{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransfer#_downRemoteSingleFile(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -388,5 +341,13 @@ public class SFTPUtil extends FileTransfer{
 		OutputStream outputStream = new FileOutputStream(filePath);
 		channelSftp.get(remoteSingleFile, outputStream);
 		return true;
+	}
+
+	/**
+	 * @param sessionTimeout
+	 *            the sessionTimeout to set
+	 */
+	public void setSessionTimeout(int sessionTimeout){
+		this.sessionTimeout = sessionTimeout;
 	}
 }

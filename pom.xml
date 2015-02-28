@@ -76,6 +76,7 @@
 		<version.commons-digester>2.1</version.commons-digester>
 
 		<version.commons-email>1.3.3</version.commons-email>
+		<version.c3p0>0.9.1.2</version.c3p0>
 
 		<version.commons-fileupload>1.3.1</version.commons-fileupload>
 
@@ -109,7 +110,7 @@
 		<version.easymock>3.1</version.easymock>
 		<version.esapi>2.1.0</version.esapi>
 
-		<version.hibernate>4.2.12.Final</version.hibernate>
+		<version.hibernate>4.3.7.Final</version.hibernate>
 		<version.itext>2.1.7</version.itext>
 
 		<version.javamail>1.4.7</version.javamail>
@@ -139,9 +140,9 @@
 
 		<version.quartz>1.5.2</version.quartz>
 
-		<version.poi>3.10-FINAL</version.poi>
+		<version.poi>3.11</version.poi>
 		<!-- 新版poi需要这个jar -->
-		<version.ooxml-schemas>1.1</version.ooxml-schemas>
+		<!-- <version.ooxml-schemas>1.1</version.ooxml-schemas> -->
 
 		<version.memcached>2.5.3</version.memcached>
 		<version.spymemcached>2.11.0</version.spymemcached>
@@ -376,11 +377,11 @@
 				<version>${version.spring}</version>
 			</dependency>
 
-			<!-- spring-orm -->
+			<!--note: c3p0 放到每个 brandstore 便于各自调整版本,或者选用其他连接池 -->
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-orm</artifactId>
-				<version>${version.spring}</version>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${version.c3p0}</version>
 			</dependency>
 
 			<!-- spring-context -->
@@ -397,20 +398,6 @@
 				<version>${version.spring}</version>
 			</dependency>
 
-			<!-- spring-jdbc -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-tx -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-tx</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
 			<!-- spring-web -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -424,6 +411,28 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${version.spring}</version>
 			</dependency>
+
+			<!-- spring-tx -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-jdbc -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-orm -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
 
 			<!-- spring-aspects -->
 			<dependency>

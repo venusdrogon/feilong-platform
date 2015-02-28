@@ -20,22 +20,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Class MoneyTest.
- * 
- * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.7 2014-6-25 16:24:56
+ * 测试 地球.
+ *
+ * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+ * @version 1.0 2011-2-6 下午11:21:21
  */
-public class MoneyTest{
+public class EarthUtilTest{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MoneyTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(EarthUtilTest.class);
 
 	/**
-	 * 人民币转成大写测试 Debug: hangeToBig(100203.04)=壹拾零贰佰零叁圆零角肆分
+	 * {@link com.feilong.tools.middleware.EarthUtil#getDistance(double, double, double, double)} 的测试方法。
 	 */
 	@Test
-	public void testtoRMB(){
-		double value = 100203.04;
-		log.info(MoneyUtil.convertMoneyToChineseMoney(value));
+	public void testGetDistance(){
+		log.info("" + EarthUtil.getDistance(120, 36, 121, 36));
 	}
 }

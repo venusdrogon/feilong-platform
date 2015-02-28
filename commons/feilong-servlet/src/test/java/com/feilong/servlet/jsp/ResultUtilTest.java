@@ -15,8 +15,6 @@
  */
 package com.feilong.servlet.jsp;
 
-import static org.junit.Assert.*;
-
 import java.beans.Introspector;
 
 import org.junit.Test;

@@ -20,6 +20,8 @@
 	<bean name="useraaa,feitian@" class="com.feilong.entity.DIUser" abstract="false" lazy-init="default" autowire="byType" init-method="init" destroy-method="destroy">
 
 		<description>我的user</description>
+		<property name="diUserArray" ref="diUserArray" />
+
 		<property name="userName">
 			<value type="">金鑫</value>
 		</property>

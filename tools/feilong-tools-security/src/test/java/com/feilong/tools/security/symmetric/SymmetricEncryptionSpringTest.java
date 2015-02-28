@@ -30,7 +30,6 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.test.TestConstants;
 import com.feilong.tools.security.EncryptionException;
-import com.feilong.tools.security.symmetric.SymmetricEncryption;
 
 /**
  * The Class SymmetricEncryptionSpringTest.

@@ -38,7 +38,8 @@ public class SFTPUtilTest extends FileTransferTest{
 	@Qualifier("nikeSFTPUtil")
 	private FileTransfer		fileTransfer;
 
-	private String				remoteDirectory	= "/home/appuser/test";
+	//	private String				remoteDirectory	= "/home/appuser/test";
+	private String				remoteDirectory	= "/home/bzuser/test";
 
 	@Test
 	public void sendLocalFileToRemote() throws Exception{
@@ -51,7 +52,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	@Test
 	public void sendLocalFileToRemote_dir() throws Exception{
-		String singleLocalFileFullPath = "F:\\2013-12-04-1938";
+		String singleLocalFileFullPath = "C:\\Users\\feilong\\Downloads\\1.pdf";
 		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
 	}
 
@@ -63,6 +64,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete()
 	 */
 	@Test
@@ -73,6 +75,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir()
 	 */
 	@Test
@@ -83,6 +86,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir_empty()
 	 */
 	@Test
@@ -93,6 +97,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_not_exist()
 	 */
 	@Test
@@ -115,11 +120,11 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#sendLocalFileToRemote_dir_chinese()
 	 */
 	@Override
-	public void sendLocalFileToRemote_dir_chinese() throws Exception{
-	}
+	public void sendLocalFileToRemote_dir_chinese() throws Exception{}
 
 	@Test
 	public void download_file() throws Exception{
@@ -130,6 +135,7 @@ public class SFTPUtilTest extends FileTransferTest{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#download_dir()
 	 */
 	@Test

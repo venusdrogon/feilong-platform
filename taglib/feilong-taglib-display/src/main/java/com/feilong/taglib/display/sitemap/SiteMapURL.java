@@ -20,9 +20,9 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -196,7 +196,7 @@ public class SiteMapURL implements Serializable{
 	 * 
 	 * @return if Validator.isNullOrEmpty(lastmod),return null; else return yyyy-MM-dd format
 	 * @see com.feilong.commons.core.date.DateUtil#date2String(Date, String)
-	 * @see com.feilong.commons.core.date.DatePattern#onlyDate
+	 * @see com.feilong.commons.core.enumeration.DatePattern#onlyDate
 	 * @see #lastmod
 	 */
 	public String getFormatLastmod(){

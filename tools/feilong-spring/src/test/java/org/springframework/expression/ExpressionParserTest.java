@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
-import com.feilong.spring.expression.SpelUtil;
 import com.feilong.test.User;
 
 @SuppressWarnings("all")

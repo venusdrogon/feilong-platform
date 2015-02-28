@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateExtensionUtil;
 
-@SuppressWarnings("all")public class HelloWorldAspect{
+@SuppressWarnings("all")
+public class HelloWorldAspect{
 
 	private static final Logger	log	= LoggerFactory.getLogger(HelloWorldAspect.class);
 
@@ -29,7 +30,7 @@ import com.feilong.commons.core.date.DateExtensionUtil;
 	}
 
 	public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
-		Object[] args={"a"};
+		Object[] args = { "a" };
 		proceedingJoinPoint.proceed();
 		log.info("around");
 	}

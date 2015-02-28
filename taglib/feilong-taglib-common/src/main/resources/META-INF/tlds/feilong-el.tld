@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd" version="2.1">
+
+	<tlib-version>1.0</tlib-version>
+	<short-name>fl</short-name>
+	<uri>http://java.feilong.com/tags-el</uri>
+	 
+	<function>
+		<description>判断一个值是否在一个集合(或者可以被转成Iterator)当中.</description>
+		<name>isContain</name>
+		<function-class>com.feilong.commons.core.util.ListUtil</function-class>
+		<function-signature>String _isContainTag(java.lang.Object,java.lang.Object)</function-signature>
+		<example>${fl:isContain("a,b,c","a")}</example>
+	</function>
+	
+<!-- 	
+	<function>
+		<description>原始地址转换为静态url地址</description>
+		<name>getStaticURL</name>
+		<function-class>com.feilong.commons.core.net.FeiLongHTTP</function-class>
+		<function-signature>String getStaticURL(java.lang.String)</function-signature>
+		<example>${el:getStaticURL("worker.jsp?t=2010031601")}</example>
+	</function>
+ -->
+
+<!-- 	<function>
+		<description>加密参数值</description>
+		<name>desEncryptParam</name>
+		<function-class>com.feilong.commons.core.reference.security.FeiLongSecurity</function-class>
+		<function-signature>String desEncryptParam(java.lang.Object)</function-signature>
+		<example>${el:desEncryptParam(1)}</example>
+	</function>
+-->
+
+<!-- 	
+<function>
+		<description>加密参数值16进制</description>
+		<name>getEncryptParam</name>
+		<function-class>com.feilong.commons.core.reference.security.FeiLongSecurity</function-class>
+		<function-signature>String getEncryptParam(java.lang.Object)</function-signature>
+		<example>${el:getEncryptParam("1024")}</example>
+	</function> 
+-->
+</taglib>

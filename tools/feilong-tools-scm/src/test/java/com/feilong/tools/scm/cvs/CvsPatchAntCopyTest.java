@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.scm.ScmAntCopy;
-import com.feilong.tools.scm.cvs.CvsPatchAntCopy;
 
 /**
  * The Class PatchUtilTest.

@@ -17,7 +17,6 @@ package com.feilong.tools.jfreechart.pie;
 
 import java.awt.Color;
 import java.awt.Paint;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 

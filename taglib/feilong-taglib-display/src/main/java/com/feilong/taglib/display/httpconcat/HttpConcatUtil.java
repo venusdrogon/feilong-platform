@@ -103,6 +103,8 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 	 * 
 	 * @since 1.0.7
 	 */
+	//TODO change to ConcurrentHashMap
+	//这里对 线程安全的要求不高, 仅仅是 插入和读取的操作,即时出了线程安全问题, 重新解析js/css 标签代码 并加载 即可
 	private final static Map<HttpConcatParam, String>	cache					= new HashMap<HttpConcatParam, String>();
 
 	// XXX 支持多变量
@@ -111,9 +113,9 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 
 		if (Validator.isNullOrEmpty(GLOBAL_HTTP_CONCAT_SUPPORT)){
 			log.warn(
-					"can not find key:[{}],pls ensure you have put the correct configuration file path:[{}]",
-					KEY_HTTPCONCAT_SUPPORT,
-					CONFIG_FILE);
+							"can not find key:[{}],pls ensure you have put the correct configuration file path:[{}]",
+							KEY_HTTPCONCAT_SUPPORT,
+							CONFIG_FILE);
 		}
 	}
 
@@ -186,10 +188,10 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 				boolean outOfCacheItemSizeLimit = (cacheSize >= DEFAULT_CACHESIZELIMIT);
 				if (outOfCacheItemSizeLimit){
 					log.warn(
-							"hashcode:[{}],cache.size:[{}] >= DEFAULT_CACHESIZELIMIT:[{}],this time will not put result to cache",
-							cacheKeyHashCode,
-							cacheSize,
-							DEFAULT_CACHESIZELIMIT);
+									"hashcode:[{}],cache.size:[{}] >= DEFAULT_CACHESIZELIMIT:[{}],this time will not put result to cache",
+									cacheKeyHashCode,
+									cacheSize,
+									DEFAULT_CACHESIZELIMIT);
 
 					//超过,那么就不记录cache
 					isWriteCache = false;
@@ -197,9 +199,9 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 
 					if (log.isInfoEnabled()){
 						log.info(
-								"hashcode:[{}],httpConcatCache.size:[{}] not contains httpConcatParam,will do parse",
-								cacheKeyHashCode,
-								cacheSize);
+										"hashcode:[{}],httpConcatCache.size:[{}] not contains httpConcatParam,will do parse",
+										cacheKeyHashCode,
+										cacheSize);
 					}
 				}
 			}
@@ -252,10 +254,10 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 		}else{
 			if (DEFAULT_CACHEENABLE){
 				log.warn(
-						"hashcode:[{}],DEFAULT_CACHEENABLE:[{}],but isWriteCache:[{}],so http concat result not put to cache",
-						cacheKeyHashCode,
-						DEFAULT_CACHEENABLE,
-						isWriteCache);
+								"hashcode:[{}],DEFAULT_CACHEENABLE:[{}],but isWriteCache:[{}],so http concat result not put to cache",
+								cacheKeyHashCode,
+								DEFAULT_CACHEENABLE,
+								isWriteCache);
 			}
 		}
 		//************************************************************************
@@ -313,10 +315,10 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 
 		if (noRepeatitemListSize != itemSrcListSize){
 			log.warn(
-					"noRepeatitemList.size():[{}] != itemSrcList.size():[{}],httpConcatParam:{}",
-					noRepeatitemListSize,
-					itemSrcListSize,
-					JsonUtil.format(httpConcatParam));
+							"noRepeatitemList.size():[{}] != itemSrcList.size():[{}],httpConcatParam:{}",
+							noRepeatitemListSize,
+							itemSrcListSize,
+							JsonUtil.format(httpConcatParam));
 		}
 
 		// *******************************************************************

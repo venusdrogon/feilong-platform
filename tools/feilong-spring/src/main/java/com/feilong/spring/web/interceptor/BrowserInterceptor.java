@@ -31,20 +31,24 @@ import com.feilong.web.entity.browser.Browser;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2013-3-25 15:18
+ * @deprecated 最好考虑在session开始的那刻 实用
  */
+@Deprecated
 public class BrowserInterceptor extends HandlerInterceptorAdapter{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log								= LoggerFactory.getLogger(BrowserInterceptor.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log								= LoggerFactory.getLogger(BrowserInterceptor.class);
 
 	/** 默认的 变量名称 <code>{@value}</code>. */
-	public static final String	default_Browser_Request_Name	= "feilongBrowser";
+	public static final String	DEFAULT_BROWSER_REQUEST_NAME	= "feilongBrowser";
 
 	/** 请求参数,可以通过spring注入的方式 修改. */
-	private String				attributeName					= default_Browser_Request_Name;
+	private String				attributeName					= DEFAULT_BROWSER_REQUEST_NAME;
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
 	 * javax.servlet.http.HttpServletResponse, java.lang.Object)
 	 */

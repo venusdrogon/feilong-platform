@@ -13,29 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.tools.middleware;
-
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * The Class MoneyTest.
- * 
- * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.7 2014-6-25 16:24:56
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
+ * @version 1.0.9 2015年2月2日 下午6:25:34 
+ * @since 1.0.9
  */
-public class MoneyTest{
-
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MoneyTest.class);
-
-	/**
-	 * 人民币转成大写测试 Debug: hangeToBig(100203.04)=壹拾零贰佰零叁圆零角肆分
-	 */
-	@Test
-	public void testtoRMB(){
-		double value = 100203.04;
-		log.info(MoneyUtil.convertMoneyToChineseMoney(value));
-	}
-}
+package com.feilong.tools.mail.entity;

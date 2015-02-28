@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import com.feilong.commons.core.date.TimeInterval;
+import com.feilong.commons.core.enumeration.TimeInterval;
 
 /**
  * The Class MemCachedManagerTest.

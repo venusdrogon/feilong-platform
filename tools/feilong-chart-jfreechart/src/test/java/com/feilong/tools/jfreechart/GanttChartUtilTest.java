@@ -11,8 +11,8 @@ import java.util.Map;
 import org.jfree.data.gantt.Task;
 import org.junit.Test;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartEntity;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartUtil;
 

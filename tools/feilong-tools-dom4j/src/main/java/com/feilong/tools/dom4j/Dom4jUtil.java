@@ -123,8 +123,11 @@ public final class Dom4jUtil{
 	 * @return the parent
 	 */
 	public static Element getParent(Element element,String parentName){
+		if (Validator.isNullOrEmpty(element)){
+			throw new NullPointerException("element can't be null/empty!");
+		}
 		if (Validator.isNullOrEmpty(parentName)){
-			throw new IllegalArgumentException("parentName can't be null/empty!");
+			throw new NullPointerException("parentName can't be null/empty!");
 		}
 		Element parentElement = element.getParent();
 		if (null == parentElement){

@@ -37,7 +37,8 @@
 			<value><![CDATA[#{p_sftp['nike.sftp.password']}]]></value>
 		</property>
 		<property name="port" value="#{p_sftp['nike.sftp.port']}" />
-		<property name="connectTimeout" value="#{p_sftp['nike.sftp.connectTimeout']}" />
+		
+		<property name="sessionTimeout" value="#{p_sftp['nike.sftp.sessionTimeout']}" />
 
 		<property name="sshConfig" ref="p_sftp-sshConfig" />
 	</bean>

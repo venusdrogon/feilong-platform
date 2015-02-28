@@ -21,12 +21,15 @@ import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.RefineryUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
-@SuppressWarnings("all")
 public class GanttDemo2 extends ApplicationFrame{
+
+	private static final Logger	log	= LoggerFactory.getLogger(GanttDemo2.class);
 
 	/**
 	 * Creates a new demo.
@@ -44,7 +47,7 @@ public class GanttDemo2 extends ApplicationFrame{
 			chartPanel.setPreferredSize(new java.awt.Dimension(800, 570));
 			setContentPane(chartPanel);
 		}catch (IOException e){
-			e.printStackTrace();
+			log.error("", e);
 		}
 	}
 

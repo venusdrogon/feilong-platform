@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.scm.ScmAntCopy;
 import com.feilong.tools.scm.ScmAntCopyConfig;
-import com.feilong.tools.scm.svn.SvnPatchAntCopy;
 
 /**
  * The Class PatchUtilTest.

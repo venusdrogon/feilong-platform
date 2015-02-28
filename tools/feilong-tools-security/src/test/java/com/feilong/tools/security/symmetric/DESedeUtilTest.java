@@ -26,8 +26,6 @@ import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.test.TestConstants;
 import com.feilong.tools.security.BaseSecurityTest;
 import com.feilong.tools.security.EncryptionException;
-import com.feilong.tools.security.symmetric.SymmetricEncryption;
-import com.feilong.tools.security.symmetric.SymmetricType;
 
 /**
  * The Class DESedeUtilTest.

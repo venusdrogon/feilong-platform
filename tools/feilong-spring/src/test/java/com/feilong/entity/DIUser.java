@@ -50,6 +50,8 @@ public class DIUser extends BaseDIUser{
 	/** The vector. */
 	private Vector<Object>		vector;
 
+	private DIUserArray			diUserArray;
+
 	/**
 	 * Gets the list.
 	 * 
@@ -181,5 +183,20 @@ public class DIUser extends BaseDIUser{
 	 */
 	public void setUserName(String userName){
 		this.userName = userName;
+	}
+
+	/**
+	 * @param diUserArray
+	 *            the diUserArray to set
+	 */
+	public void setDiUserArray(DIUserArray diUserArray){
+		this.diUserArray = diUserArray;
+	}
+
+	/**
+	 * @return the diUserArray
+	 */
+	public DIUserArray getDiUserArray(){
+		return diUserArray;
 	}
 }

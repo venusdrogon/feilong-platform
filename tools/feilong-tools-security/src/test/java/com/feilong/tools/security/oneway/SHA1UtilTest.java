@@ -15,16 +15,11 @@
  */
 package com.feilong.tools.security.oneway;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.util.StringUtil;
 import com.feilong.tools.security.BaseSecurityTest;
-import com.feilong.tools.security.oneway.SHA1Util;
 
 /**
  * The Class SHA1UtilTest.

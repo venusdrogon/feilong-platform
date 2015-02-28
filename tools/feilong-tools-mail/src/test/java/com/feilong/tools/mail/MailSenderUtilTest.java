@@ -27,8 +27,6 @@ import java.util.ResourceBundle;
 
 import javax.mail.MessagingException;
 
-import net.sf.json.util.NewBeanInstanceStrategy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,11 +35,12 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.enumeration.FileType;
 import com.feilong.commons.core.io.FileInfoEntity;
-import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.tools.mail.entity.MailSenderConfig;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**

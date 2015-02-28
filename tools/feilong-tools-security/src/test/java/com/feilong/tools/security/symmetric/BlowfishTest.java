@@ -15,9 +15,7 @@
  */
 package com.feilong.tools.security.symmetric;
 
-import static org.junit.Assert.*;
-
-import java.security.NoSuchAlgorithmException;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -26,8 +24,6 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.test.TestConstants;
 import com.feilong.tools.security.EncryptionException;
-import com.feilong.tools.security.symmetric.SymmetricEncryption;
-import com.feilong.tools.security.symmetric.SymmetricType;
 
 /**
  * The Class BlowfishTest.

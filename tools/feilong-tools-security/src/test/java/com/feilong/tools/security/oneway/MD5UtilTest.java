@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.enumeration.CharsetType;
 import com.feilong.tools.security.BaseSecurityTest;
-import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * The Class MD5UtilTest.

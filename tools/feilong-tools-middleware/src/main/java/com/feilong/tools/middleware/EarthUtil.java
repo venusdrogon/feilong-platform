@@ -15,8 +15,10 @@
  */
 package com.feilong.tools.middleware;
 
+import com.feilong.commons.core.lang.MathUtil;
+
 /**
- *飞龙地球测数据
+ * 飞龙地球测数据
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-2-6 下午11:13:57
@@ -45,27 +47,18 @@ public class EarthUtil{
 	 * @return 根据两点间经纬度坐标（double值） 计算两点间距离，单位为米
 	 */
 	public static double getDistance(double lng1,double lat1,double lng2,double lat2){
-		double radLat1 = rad(lat1);
-		double radLat2 = rad(lat2);
+		double radLat1 = MathUtil.degree2Radian(lat1);
+		double radLat2 = MathUtil.degree2Radian(lat2);
 		// 纬度
 		double cha_rad_lat = radLat1 - radLat2;
+
 		// 经度
-		double cha_rad_lng = rad(lng1) - rad(lng2);
+		double cha_rad_lng = MathUtil.degree2Radian(lng1) - MathUtil.degree2Radian(lng2);
 		// 距离
 		double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(cha_rad_lat / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2)
-				* Math.pow(Math.sin(cha_rad_lng / 2), 2)));
+						* Math.pow(Math.sin(cha_rad_lng / 2), 2)));
 		s = s * EARTH_RADIUS;
 		s = Math.round(s * 10000) / 10000;
 		return s;
-	}
-
-	/**
-	 *把角度转换成弧度制值
-	 * 
-	 * @param d
-	 * @return
-	 */
-	private static double rad(double d){
-		return d * Math.PI / 180.0;
 	}
 }

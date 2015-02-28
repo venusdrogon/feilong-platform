@@ -21,8 +21,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.command.OutputPaymentPGW;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.util.KlikBCAUtil;
 

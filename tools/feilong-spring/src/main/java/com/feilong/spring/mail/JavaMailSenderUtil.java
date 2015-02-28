@@ -25,7 +25,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 
-import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,18 +43,14 @@ import com.feilong.commons.core.enumeration.CharsetType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Dec 24, 2011 2:30:50 PM
  */
-public class MailSenderUtil{
+public class JavaMailSenderUtil{
 
 	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MailSenderUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(JavaMailSenderUtil.class);
 
 	/** The java mail sender. */
 	@Resource
 	private JavaMailSender		javaMailSender;
-
-	// @Autowired
-	/** The velocity engine. */
-	private VelocityEngine		velocityEngine;
 
 	/** The task executor. */
 	@Autowired

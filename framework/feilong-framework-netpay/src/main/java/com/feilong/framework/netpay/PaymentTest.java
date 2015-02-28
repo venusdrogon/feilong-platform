@@ -22,8 +22,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaySoLine;
@@ -58,7 +58,7 @@ public class PaymentTest{
 
 		int per = 100;
 
-		BigDecimal total_fee = new BigDecimal(60.00f * per);
+		BigDecimal total_fee = BigDecimal.valueOf(60.00f * per);
 
 		PayRequest payRequest = new PayRequest();
 
