@@ -594,8 +594,9 @@ public final class FileUtil{
 		else{
 			File parent = file.getParentFile();
 			if (parent != null && !parent.exists()){
+				boolean flag = parent.mkdirs();
 				// 级联创建 父级文件夹
-				if (parent.mkdirs() == false){
+				if (!flag){
 					log.error("File '" + file + "' could not be created");
 					throw new IllegalArgumentException("File '" + file + "' could not be created");
 				}
