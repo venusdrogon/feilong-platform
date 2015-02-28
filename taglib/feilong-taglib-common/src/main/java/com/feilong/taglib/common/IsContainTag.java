@@ -40,7 +40,7 @@ public class IsContainTag extends AbstractConditionalTag{
 	 */
 	@Override
 	public boolean condition(){
-		return ListUtil._isContainTag(collection, value);
+		return ListUtil.isContainTag(collection, value);
 	}
 
 	/**

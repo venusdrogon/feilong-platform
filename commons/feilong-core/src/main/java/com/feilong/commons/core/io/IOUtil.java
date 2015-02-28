@@ -106,7 +106,7 @@ public final class IOUtil{
 	 * 将网络文件 下载到文件夹.
 	 * 取到网络文件的文件名 原样下载到目标文件夹.
 	 *
-	 * @param url
+	 * @param urlString
 	 *            网络任意文件<br>
 	 *            url 不能带参数
 	 * @param directoryName
@@ -115,16 +115,16 @@ public final class IOUtil{
 	 *             the IO exception
 	 * @see IOWriteUtil#write(InputStream, String, String)
 	 */
-	public static void down(String url,String directoryName) throws IOException{
-		log.info("begin download,url:{},directoryName:{}", url, directoryName);
-		URL _url = new URL(url);
-		InputStream inputStream = _url.openStream();
+	public static void down(String urlString,String directoryName) throws IOException{
+		log.info("begin download,urlString:{},directoryName:{}", urlString, directoryName);
+		URL url = new URL(urlString);
+		InputStream inputStream = url.openStream();
 
-		File file = new File(url);
+		File file = new File(urlString);
 		String fileName = file.getName();
 
 		IOWriteUtil.write(inputStream, directoryName, fileName);
-		log.info("end download,url:{},directoryName:{}", url, directoryName);
+		log.info("end download,url:{},directoryName:{}", urlString, directoryName);
 	}
 
 	/**

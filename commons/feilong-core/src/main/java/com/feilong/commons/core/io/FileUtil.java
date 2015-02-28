@@ -220,8 +220,8 @@ public final class FileUtil{
 	 * @return true, if successful
 	 */
 	public final static boolean hasPostfixName(String fileName){
-		String _fileName = getFileName(fileName);
-		int lastIndexOf = _fileName.lastIndexOf(".");
+		String fileNameString = getFileName(fileName);
+		int lastIndexOf = fileNameString.lastIndexOf(".");
 		if (-1 == lastIndexOf){
 			return false;
 		}
@@ -618,10 +618,10 @@ public final class FileUtil{
 		String formatFileName = fileName;
 
 		for (int i = 0, j = MICROSOFT_PC.length; i < j; ++i){
-			String[] array_element = MICROSOFT_PC[i];
+			String[] arrayElement = MICROSOFT_PC[i];
 
-			String oldChar = array_element[0];
-			String newChar = array_element[1];
+			String oldChar = arrayElement[0];
+			String newChar = arrayElement[1];
 			if (formatFileName.contains(oldChar)){
 				log.warn("formatFileName:[{}] contains oldChar:[{}],will replace newChar:[{}]", formatFileName, oldChar, newChar);
 				formatFileName = formatFileName.replace(oldChar, newChar);

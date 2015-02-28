@@ -169,7 +169,7 @@ public abstract class ChartUtil implements Chart{
 		// 设置标题的字体
 		textTitle = jfreeChart.getTitle();
 		textTitle.setVisible(true);
-		textTitle.setFont(FontUtil.getFont_YaHei_Plain(22));
+		textTitle.setFont(FontUtil.getYaHeiPlainFont(22));
 		textTitle.setPosition(RectangleEdge.TOP);
 		textTitle.setMargin(12, 4, 2, 4);
 		textTitle.setPadding(6, 12, 6, 12);
@@ -197,7 +197,7 @@ public abstract class ChartUtil implements Chart{
 		if (null != legendTitle){
 			legendTitle.setVisible(true);
 			// 设置图例文字的字体
-			legendTitle.setItemFont(FontUtil.getFont_YaHei_Plain(16));
+			legendTitle.setItemFont(FontUtil.getYaHeiPlainFont(16));
 			// 位置
 			legendTitle.setPosition(RectangleEdge.BOTTOM);
 			// 垂直对齐

@@ -270,7 +270,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 		/************************ Label ********************************************************/
 		//X坐标名称
 		//categoryAxis.setLabel("sasdfafafas"); //已经被categoryChartEntity.setCategoryAxisLabel  设置了
-		categoryAxis.setLabelFont(FontUtil.getFont_YaHei_Plain(20));
+		categoryAxis.setLabelFont(FontUtil.getYaHeiPlainFont(20));
 		//坐标轴标题旋转角度（纵坐标可以旋转）
 		categoryAxis.setLabelAngle(0);
 		//		categoryAxis.setLabelPaint(paint);
@@ -294,7 +294,7 @@ public abstract class CategoryChartUtil extends ChartUtil{
 		//X轴的标题文字颜色
 		categoryAxis.setTickLabelPaint(Color.black);
 		//设置TickLabelFont字体
-		categoryAxis.setTickLabelFont(FontUtil.getFont_YaHei_Plain(15));
+		categoryAxis.setTickLabelFont(FontUtil.getYaHeiPlainFont(15));
 		/************************ TickMarks 刻度标记 *****************************************/
 		//标记线是否显示
 		categoryAxis.setTickMarksVisible(true);
@@ -322,12 +322,12 @@ public abstract class CategoryChartUtil extends ChartUtil{
 		// 坐标轴标尺值是否显示
 		numberAxis.setTickLabelsVisible(true);
 		// 设置纵坐标上显示的数字字体
-		numberAxis.setTickLabelFont(FontUtil.getFont_YaHei_Plain(16));
+		numberAxis.setTickLabelFont(FontUtil.getYaHeiPlainFont(16));
 		/********************** TickMarks ****************************************************************/
 		// 坐标轴标尺显示
 		numberAxis.setTickMarksVisible(false);
 		/********************** Label ****************************************************************/
-		numberAxis.setLabelFont(FontUtil.getFont_YaHei_Plain(20));
+		numberAxis.setLabelFont(FontUtil.getYaHeiPlainFont(20));
 		numberAxis.setLabelAngle(0);
 		/********************** Margin ****************************************************************/
 		// 设置最高的一个 Item 与图片顶端的距离

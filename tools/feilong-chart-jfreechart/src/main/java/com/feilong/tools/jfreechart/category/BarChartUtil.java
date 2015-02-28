@@ -76,7 +76,7 @@ public final class BarChartUtil extends CategoryChartUtil{
 		/************************* BaseItemLabel *********************************************/
 		// 显示每个柱的数值，并修改该数值的字体属性
 		barRenderer.setBaseItemLabelsVisible(true);
-		barRenderer.setBaseItemLabelFont(FontUtil.getFont_verdana_Plain(18));
+		barRenderer.setBaseItemLabelFont(FontUtil.getVerdanaPlainFont(18));
 		barRenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 		/************************* BaseSeries *********************************************/
 		barRenderer.setBaseSeriesVisible(true);

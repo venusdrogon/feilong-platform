@@ -38,10 +38,10 @@ public final class FontUtil{
 	}
 
 	/** 9 正常 雅黑 . */
-	public final static Font	YAHEI_PLAIN_9	= getFont_YaHei_Plain(9);
+	public final static Font	YAHEI_PLAIN_9	= getYaHeiPlainFont(9);
 
 	/** 12正常 雅黑. */
-	public final static Font	YAHEI_PLAIN_12	= getFont_YaHei_Plain(12);
+	public final static Font	YAHEI_PLAIN_12	= getYaHeiPlainFont(12);
 
 	/** 16 正常 楷体字体. */
 	public final static Font	KAITI_PLAIN_16	= getFont(FontType.KAITI, 16);
@@ -57,11 +57,11 @@ public final class FontUtil{
 	 * 
 	 * @param size
 	 *            the size
-	 * @return the font_courier_ new_ plain
+	 * @return 获得courier_New字体
 	 * @see Font#PLAIN
 	 * @see FontType#COURIER_NEW
 	 */
-	public final static Font getFont_courier_New_Plain(int size){
+	public final static Font getCourierNewPlainFont(int size){
 		return getFont(FontType.COURIER_NEW, size);
 	}
 
@@ -70,11 +70,11 @@ public final class FontUtil{
 	 * 
 	 * @param size
 	 *            the size
-	 * @return the font_verdana_ plain
+	 * @return verdana字体
 	 * @see Font#PLAIN
 	 * @see FontType#VERDANA
 	 */
-	public final static Font getFont_verdana_Plain(int size){
+	public final static Font getVerdanaPlainFont(int size){
 		return getFont(FontType.VERDANA, size);
 	}
 
@@ -83,11 +83,11 @@ public final class FontUtil{
 	 * 
 	 * @param size
 	 *            the size
-	 * @return the font_ ya hei_ plain
+	 * @return 获得微软雅黑字体
 	 * @see Font#PLAIN
 	 * @see FontType#YAHEI
 	 */
-	public final static Font getFont_YaHei_Plain(int size){
+	public final static Font getYaHeiPlainFont(int size){
 		return getFont(FontType.YAHEI, size);
 	}
 

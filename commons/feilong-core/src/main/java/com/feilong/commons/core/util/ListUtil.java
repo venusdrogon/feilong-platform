@@ -57,7 +57,7 @@ public final class ListUtil{
 	 * @deprecated
 	 */
 	@Deprecated
-	public static boolean _isContainTag(Object collection,Object value){
+	public static boolean isContainTag(Object collection,Object value){
 		@SuppressWarnings("rawtypes")
 		Iterator iterator = ObjectUtil.toIterator(collection);
 		return isContain(iterator, value);

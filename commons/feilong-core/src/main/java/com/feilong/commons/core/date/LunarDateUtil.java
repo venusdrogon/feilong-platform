@@ -87,10 +87,10 @@ public final class LunarDateUtil{
 
 		// *********************************
 		int lundar = Integer.parseInt(SolarDateUtil.toLundar(year, month, day));
-		int year_Lunar = lundar / 10000;
-		int month_Lunar = lundar % 10000 / 100;
-		int day_Lunar = lundar % 100;
-		return getLunarDateString(year_Lunar, month_Lunar, day_Lunar);
+		int lunarYear = lundar / 10000;
+		int lunarMonth = lundar % 10000 / 100;
+		int lunarDay = lundar % 100;
+		return getLunarDateString(lunarYear, lunarMonth, lunarDay);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public final class LunarDateUtil{
 	public static int getLunarMonthMaxDays(int iYear,int iMonth){
 		int iLeapMonth = getLeapMonth(iYear);
 		if ((iMonth > 12) && (iMonth - 12 != iLeapMonth) || (iMonth < 0)){
-			log.error("Wrong month, ^_^ , i think you are want a -1, go to death!");
+			log.error("Wrong month,i think you are want a -1?");
 			return -1;
 		}
 		if (iMonth - 12 == iLeapMonth){

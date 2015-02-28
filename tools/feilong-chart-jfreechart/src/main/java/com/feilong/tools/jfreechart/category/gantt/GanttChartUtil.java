@@ -102,7 +102,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 		/************************* BaseItemLabel *********************************************/
 		// 显示每个柱的数值，并修改该数值的字体属性
 		//ganttRenderer.setBaseItemLabelsVisible(true);
-		ganttRenderer.setBaseItemLabelFont(FontUtil.getFont_verdana_Plain(18));
+		ganttRenderer.setBaseItemLabelFont(FontUtil.getVerdanaPlainFont(18));
 		ganttRenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 		/************************* BaseSeries *********************************************/
 		ganttRenderer.setBaseSeriesVisible(true);
@@ -156,12 +156,12 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 		// 坐标轴标尺值是否显示
 		dateAxis.setTickLabelsVisible(true);
 		// 设置纵坐标上显示的数字字体
-		dateAxis.setTickLabelFont(FontUtil.getFont_YaHei_Plain(16));
+		dateAxis.setTickLabelFont(FontUtil.getYaHeiPlainFont(16));
 		/********************** TickMarks ****************************************************************/
 		// 坐标轴标尺显示
 		dateAxis.setTickMarksVisible(false);
 		/********************** Label ****************************************************************/
-		dateAxis.setLabelFont(FontUtil.getFont_YaHei_Plain(20));
+		dateAxis.setLabelFont(FontUtil.getYaHeiPlainFont(20));
 		DateTickUnit unit = new DateTickUnit(DateTickUnitType.DAY, 1);
 		dateAxis.setTickUnit(unit);
 		//dateAxis.setLabelAngle(0);
@@ -246,7 +246,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 		/************************ Label ********************************************************/
 		//X坐标名称
 		//categoryAxis.setLabel("sasdfafafas"); //已经被categoryChartEntity.setCategoryAxisLabel  设置了
-		categoryAxis.setLabelFont(FontUtil.getFont_YaHei_Plain(20));
+		categoryAxis.setLabelFont(FontUtil.getYaHeiPlainFont(20));
 		//坐标轴标题旋转角度（纵坐标可以旋转）
 		categoryAxis.setLabelAngle(0);
 		//		categoryAxis.setLabelPaint(paint);
@@ -270,7 +270,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 		//X轴的标题文字颜色
 		categoryAxis.setTickLabelPaint(Color.black);
 		//设置TickLabelFont字体
-		categoryAxis.setTickLabelFont(FontUtil.getFont_YaHei_Plain(15));
+		categoryAxis.setTickLabelFont(FontUtil.getYaHeiPlainFont(15));
 		/************************ TickMarks 刻度标记 *****************************************/
 		//标记线是否显示
 		categoryAxis.setTickMarksVisible(true);

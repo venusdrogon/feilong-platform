@@ -143,10 +143,10 @@ public final class ByteUtil{
 	 * @return 将两个ASCII字符合成一个字节； 如：{@code "EF"--> 0xEF}
 	 */
 	public final static byte uniteBytes(byte byte1,byte byte2){
-		byte _b0 = Byte.decode("0x" + new String(new byte[] { byte1 })).byteValue();
-		_b0 = (byte) (_b0 << 4);
-		byte _b1 = Byte.decode("0x" + new String(new byte[] { byte2 })).byteValue();
-		byte ret = (byte) (_b0 ^ _b1);
+		byte b0 = Byte.decode("0x" + new String(new byte[] { byte1 })).byteValue();
+		b0 = (byte) (b0 << 4);
+		byte b1 = Byte.decode("0x" + new String(new byte[] { byte2 })).byteValue();
+		byte ret = (byte) (b0 ^ b1);
 		return ret;
 	}
 

@@ -490,8 +490,8 @@ public final class URIUtil{
 	 *             the URI parse exception
 	 */
 	public static String getUnionUrl(String context,String spec) throws URIParseException{
-		URL url_parent = getURL(context);
-		return getUnionUrl(url_parent, spec);
+		URL parentUrl = getURL(context);
+		return getUnionUrl(parentUrl, spec);
 	}
 
 	/**
@@ -517,8 +517,8 @@ public final class URIUtil{
 	 */
 	public static String getUnionUrl(URL context,String spec) throws URIParseException{
 		try{
-			URL url_union = new URL(context, spec);
-			return url_union.toString();
+			URL unionUrl = new URL(context, spec);
+			return unionUrl.toString();
 		}catch (MalformedURLException e){
 			log.error("MalformedURLException:", e);
 			throw new URIParseException(e);
@@ -568,7 +568,7 @@ public final class URIUtil{
 	 * @deprecated
 	 */
 	@Deprecated
-	public static String decodeLuanMa_ISO8859(String str,String bianma){
+	public static String decodeLuanMaISO8859(String str,String bianma){
 		if (Validator.isNullOrEmpty(str)){
 			return "";
 		}

@@ -146,8 +146,8 @@ public final class CSVUtil{
 		String lineEnd = SystemUtils.LINE_SEPARATOR;
 		// *************************************************************
 		StringBuffer sb = new StringBuffer();
-		int length_line = line.length;
-		for (int i = 0; i < length_line; ++i){
+		int lineLength = line.length;
+		for (int i = 0; i < lineLength; ++i){
 			// 分隔符，列为空也要表达其存在.
 			if (i != 0){
 				sb.append(separator);

@@ -97,26 +97,29 @@ public final class WaterMark{
 	@SuppressWarnings("unused")
 	public final static void pressImage(String targetImg,String pressImg,int x,int y,OutputStream outputStream){
 		// 原始图片
-		BufferedImage image_target = ImageUtil.getBufferedImage(targetImg);
+		BufferedImage targetBufferedImage = ImageUtil.getBufferedImage(targetImg);
 		// 基于原始图片产生一个新的BufferedImage
-		BufferedImage bufferedImage_new = ImageUtil.getNewBufferedImageFromFile(image_target);
+		BufferedImage newBufferedImage = ImageUtil.getNewBufferedImageFromFile(targetBufferedImage);
+
 		// 基于原始图片,获得一个Graphics2D,大小和原图相等
-		Graphics2D graphics2D = ImageUtil.getGraphics2DByImage(bufferedImage_new, image_target);
-		/**********************************************************************/
+		Graphics2D graphics2D = ImageUtil.getGraphics2DByImage(newBufferedImage, targetBufferedImage);
+
 		// 水印
-		BufferedImage image_press = ImageUtil.getBufferedImage(pressImg);
-		int width_biao = image_press.getWidth();
-		int height_biao = image_press.getHeight();
-		int x2 = (bufferedImage_new.getWidth() - width_biao) - 25;// / 2
-		int y2 = (bufferedImage_new.getHeight() - height_biao) - 25;// / 2
+		BufferedImage waterMarkBufferedImage = ImageUtil.getBufferedImage(pressImg);
+		int widthWaterMark = waterMarkBufferedImage.getWidth();
+		int heightWaterMark = waterMarkBufferedImage.getHeight();
+		int x2 = (newBufferedImage.getWidth() - widthWaterMark) - 25;// / 2
+		int y2 = (newBufferedImage.getHeight() - heightWaterMark) - 25;// / 2
+
 		// 设置透明
 		// graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 1f));// 开始
-		graphics2D.drawImage(image_press, x2, y2, width_biao, height_biao, null);
+		graphics2D.drawImage(waterMarkBufferedImage, x2, y2, widthWaterMark, heightWaterMark, null);
 		// graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER)); // 结束
+
 		// 水印文件结束
 		graphics2D.dispose();
-		/*************************************************************/
-		ImageUtil.write(outputStream, bufferedImage_new, ImageType.PNG);
+
+		ImageUtil.write(outputStream, newBufferedImage, ImageType.PNG);
 	}
 
 	/**
@@ -164,23 +167,26 @@ public final class WaterMark{
 	 */
 	public static void pressText(String targetImg,String pressText,Font font,Color color,int x,int y,OutputStream outputStream){
 		// 原始图片
-		BufferedImage image_target = ImageUtil.getBufferedImage(targetImg);
+		BufferedImage targetBufferedImage = ImageUtil.getBufferedImage(targetImg);
 		// 基于原始图片产生一个新的BufferedImage
-		BufferedImage bufferedImage_new = ImageUtil.getNewBufferedImageFromFile(image_target);
+		BufferedImage newBufferedImage = ImageUtil.getNewBufferedImageFromFile(targetBufferedImage);
+
 		// 基于原始图片,获得一个Graphics2D,大小和原图相等
-		Graphics2D graphics2D = ImageUtil.getGraphics2DByImage(bufferedImage_new, image_target);
-		int width = bufferedImage_new.getWidth();
-		int height = bufferedImage_new.getHeight();
+		Graphics2D graphics2D = ImageUtil.getGraphics2DByImage(newBufferedImage, targetBufferedImage);
+		int width = newBufferedImage.getWidth();
+		int height = newBufferedImage.getHeight();
+
 		// 只有图片的宽或高大于200的时候才添加水印（小图片不添加）
 		// if (width > 200 || height > 200){
 		graphics2D.setColor(color);
 		graphics2D.setFont(font);
+
 		int fontSize = font.getSize();
 		int x2 = width - fontSize - x;
 		int y2 = height - fontSize / 2 - y;
 		graphics2D.drawString(pressText, x2, y2);
 		graphics2D.dispose();
 
-		ImageUtil.write(outputStream, bufferedImage_new, ImageType.PNG);
+		ImageUtil.write(outputStream, newBufferedImage, ImageType.PNG);
 	}
 }

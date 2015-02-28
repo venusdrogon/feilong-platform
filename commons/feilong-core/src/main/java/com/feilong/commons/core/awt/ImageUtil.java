@@ -76,15 +76,16 @@ public final class ImageUtil{
 	 * 该BufferedImage 的Width Height 和原图一样<br>
 	 * 该BufferedImage操作不会影响原图.
 	 * 
-	 * @param bufferedImage_old
-	 *            the buffered image_old
+	 * @param oldBufferedImage
+	 *            oldBufferedImage
 	 * @return new BufferedImage
 	 */
-	public static BufferedImage getNewBufferedImageFromFile(BufferedImage bufferedImage_old){
-		int width = bufferedImage_old.getWidth();
-		int height = bufferedImage_old.getHeight();
-		BufferedImage bufferedImage_new = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		return bufferedImage_new;
+	public static BufferedImage getNewBufferedImageFromFile(BufferedImage oldBufferedImage){
+		int width = oldBufferedImage.getWidth();
+		int height = oldBufferedImage.getHeight();
+
+		BufferedImage newBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		return newBufferedImage;
 	}
 
 	/**
@@ -100,25 +101,26 @@ public final class ImageUtil{
 		BufferedImage bufferedImage = getBufferedImage(imagePath);
 		int width = bufferedImage.getWidth();
 		int height = bufferedImage.getHeight();
-		BufferedImage bufferedImage_new = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		return bufferedImage_new;
+
+		BufferedImage newBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		return newBufferedImage;
 	}
 
 	/**
 	 * 基于原始图片,获得一个Graphics2D,大小和原图相等<br>
 	 * 并 drawImage原始图.
 	 * 
-	 * @param bufferedImage_new
-	 *            the buffered image_new
-	 * @param bufferedImage_old
-	 *            the buffered image_old
+	 * @param newBufferedImage
+	 *            newBufferedImage
+	 * @param bufferedImageOld
+	 *            bufferedImageOld
 	 * @return the graphics2 d by image
 	 */
-	public static Graphics2D getGraphics2DByImage(BufferedImage bufferedImage_new,BufferedImage bufferedImage_old){
-		Graphics2D graphics2D = bufferedImage_new.createGraphics();
-		int width = bufferedImage_old.getWidth();
-		int height = bufferedImage_old.getHeight();
-		graphics2D.drawImage(bufferedImage_old, 0, 0, width, height, null);
+	public static Graphics2D getGraphics2DByImage(BufferedImage newBufferedImage,BufferedImage bufferedImageOld){
+		Graphics2D graphics2D = newBufferedImage.createGraphics();
+		int width = bufferedImageOld.getWidth();
+		int height = bufferedImageOld.getHeight();
+		graphics2D.drawImage(bufferedImageOld, 0, 0, width, height, null);
 		return graphics2D;
 	}
 

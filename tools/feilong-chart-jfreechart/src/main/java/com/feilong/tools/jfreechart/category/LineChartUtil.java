@@ -109,7 +109,7 @@ import com.feilong.commons.core.awt.FontUtil;
 		// 显示折点数据
 		lineandshaperenderer.setBaseItemLabelsVisible(true);
 		// 折点数据字体
-		lineandshaperenderer.setBaseItemLabelFont(FontUtil.getFont_verdana_Plain(12));
+		lineandshaperenderer.setBaseItemLabelFont(FontUtil.getVerdanaPlainFont(12));
 		// 折点数据显示位置
 		ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER);
 		lineandshaperenderer.setBasePositiveItemLabelPosition(position);

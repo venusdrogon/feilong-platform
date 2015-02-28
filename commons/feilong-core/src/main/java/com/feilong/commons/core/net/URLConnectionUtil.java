@@ -189,7 +189,7 @@ public final class URLConnectionUtil{
 	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String readLineWithProxy(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
-		return _readLine(urlString, proxy, httpURLConnectionParam);
+		return readLine(urlString, proxy, httpURLConnectionParam);
 	}
 
 	/**
@@ -204,7 +204,7 @@ public final class URLConnectionUtil{
 	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
 	public static String getResponseBodyAsStringWithProxy(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
-		return _getResponseBodyAsStringWithProxy(urlString, proxy, httpURLConnectionParam);
+		return getResponseBodyAsStringWithProxyBase(urlString, proxy, httpURLConnectionParam);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public final class URLConnectionUtil{
 	public static String getResponseBodyAsString(String urlString){
 		Proxy proxy = null;
 		HttpURLConnectionParam httpURLConnectionParam = null;
-		return _getResponseBodyAsStringWithProxy(urlString, proxy, httpURLConnectionParam);
+		return getResponseBodyAsStringWithProxyBase(urlString, proxy, httpURLConnectionParam);
 	}
 
 	// ****************************************************************************************
@@ -292,7 +292,7 @@ public final class URLConnectionUtil{
 	 *            httpURLConnectionParam
 	 * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 	 */
-	private static String _readLine(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
+	private static String readLine(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
 		HttpURLConnection httpURLConnection = getHttpURLConnection(urlString, proxy, httpURLConnectionParam);
 		try{
 			BufferedReader bufferedReader = getBufferedReader(httpURLConnection);
@@ -314,7 +314,7 @@ public final class URLConnectionUtil{
 	}
 
 	/**
-	 * _get response body as string with proxy.
+	 * get response body as string with proxy.
 	 * 
 	 * @param urlString
 	 *            the url string
@@ -324,7 +324,7 @@ public final class URLConnectionUtil{
 	 *            the http url connection param
 	 * @return the string
 	 */
-	private static String _getResponseBodyAsStringWithProxy(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
+	private static String getResponseBodyAsStringWithProxyBase(String urlString,Proxy proxy,HttpURLConnectionParam httpURLConnectionParam){
 		HttpURLConnection httpURLConnection = getHttpURLConnection(urlString, proxy, httpURLConnectionParam);
 		if (null != httpURLConnection){
 

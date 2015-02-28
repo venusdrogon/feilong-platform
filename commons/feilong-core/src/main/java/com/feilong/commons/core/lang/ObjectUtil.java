@@ -163,13 +163,13 @@ public final class ObjectUtil{
 	 *            object
 	 * @param object2
 	 *            object2
-	 * @param flag_nullType
+	 * @param nullTypeFlag
 	 *            标识null和""相比的情况,默认值为false 标识不相等
 	 * @return 判断两个值是否相等
 	 * @see java.util.Objects#equals(Object, Object)
 	 * @see org.apache.commons.lang3.ObjectUtils#equals(Object, Object)
 	 */
-	public final static Boolean equals(Object object,Object object2,boolean flag_nullType){
+	public final static Boolean equals(Object object,Object object2,boolean nullTypeFlag){
 		//TODO Either override Object.equals(Object), or totally rename the method to prevent any confusion.
 		//Methods named "equals" should override Object.equals(Object)
 		if (object == object2){
@@ -178,7 +178,7 @@ public final class ObjectUtil{
 		// object 是空
 		if (null == object){
 			// 标识null和""相比的情况
-			if (flag_nullType){
+			if (nullTypeFlag){
 				if ("".equals(object2.toString().trim())){
 					return true;
 				}
@@ -187,7 +187,7 @@ public final class ObjectUtil{
 			// 标识null和""相比的情况
 			if ("".equals(object.toString().trim())){
 				if (null == object2){
-					if (flag_nullType){
+					if (nullTypeFlag){
 						return true;
 					}
 				}else{

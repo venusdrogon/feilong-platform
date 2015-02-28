@@ -1128,11 +1128,11 @@ public final class DateUtil{
 	 * isBefore("2011-05-01","2011-04-01",DateUtil.pattern_onlyDate)
 	 * return true
 	 * </pre>
-	 * 
+	 *
 	 * @param dateBefore
-	 *            date_before
+	 *            the date before
 	 * @param dateAfter
-	 *            date_after
+	 *            the date after
 	 * @param datePattern
 	 *            pattern {@link DatePattern}
 	 * @return 如果date_before 早于 date_after返回 true
@@ -1156,10 +1156,10 @@ public final class DateUtil{
 	 * @param before
 	 *            before
 	 * @param dateAfter
-	 *            date_after
+	 *            dateAfter
 	 * @param datePattern
 	 *            pattern {@link DatePattern}
-	 * @return 如果before 早于 date_after返回 true
+	 * @return 如果before 早于 dateAfter返回 true
 	 * @see #string2Date(String, String)
 	 * @see #isBefore(String, String, String)
 	 * @see Date#before(Date)

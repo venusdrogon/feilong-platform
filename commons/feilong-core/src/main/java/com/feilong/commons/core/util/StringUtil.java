@@ -164,7 +164,7 @@ public final class StringUtil{
 	 * <pre>
 	 * StringUtil.join(true, &quot;_&quot;, &quot;a&quot;, &quot;2&quot;)
 	 * 
-	 * return  a_2
+	 * return a_2
 	 * </pre>
 	 * 
 	 * @param isJoinBlankOrNull

@@ -82,7 +82,7 @@ public final class DateExtensionUtil{
 	 */
 	@Deprecated
 	public final static Date[] getExtentToday(){
-		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
+		Calendar calendar = CalendarUtil.getResetTodayCalendarByDay();
 		Date today = calendar.getTime();
 		// ***************************
 		calendar.add(Calendar.DATE, 1);
@@ -111,7 +111,7 @@ public final class DateExtensionUtil{
 	 */
 	@Deprecated
 	public final static Date[] getExtentYesterday(){
-		Calendar calendar = CalendarUtil.getResetTodayCalendar_byDay();
+		Calendar calendar = CalendarUtil.getResetTodayCalendarByDay();
 		Date today = calendar.getTime();
 		calendar.add(Calendar.DATE, -1);
 		Date yesterday = calendar.getTime();
@@ -152,8 +152,8 @@ public final class DateExtensionUtil{
 		Date beginDate = DateUtil.string2Date(fromDateString, datePattern);
 		Date endDate = DateUtil.string2Date(toDateString, datePattern);
 		// ******重置时间********
-		Date beginDateReset = CalendarUtil.getResetDate_byDay(beginDate);
-		Date endDateReset = CalendarUtil.getResetDate_byDay(endDate);
+		Date beginDateReset = CalendarUtil.getResetDateByDay(beginDate);
+		Date endDateReset = CalendarUtil.getResetDateByDay(endDate);
 		//***************************************************************/
 		// 相隔的天数
 		int intervalDay = DateUtil.getIntervalDay(beginDateReset, endDateReset);
@@ -407,7 +407,7 @@ public final class DateExtensionUtil{
 	 * @see DateUtil#getIntervalTime(Date, Date)
 	 */
 	public final static String getIntervalForView(Date date1,Date date2){
-		long space_time = DateUtil.getIntervalTime(date1, date2);
-		return getIntervalForView(space_time);
+		long spaceTime = DateUtil.getIntervalTime(date1, date2);
+		return getIntervalForView(spaceTime);
 	}
 }

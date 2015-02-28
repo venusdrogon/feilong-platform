@@ -45,8 +45,8 @@ public final class CalendarUtil{
 	 * 
 	 * @return 获得当天00:00:00
 	 */
-	public static Calendar getResetTodayCalendar_byDay(){
-		return getResetCalendar_byDay(new Date());
+	public static Calendar getResetTodayCalendarByDay(){
+		return getResetCalendarByDay(new Date());
 	}
 
 	/**
@@ -58,7 +58,7 @@ public final class CalendarUtil{
 	 *            the date
 	 * @return 获得任意日期的00:00:00
 	 */
-	public static Calendar getResetCalendar_byDay(Date date){
+	public static Calendar getResetCalendarByDay(Date date){
 		Calendar calendar = DateUtil.toCalendar(date);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
@@ -75,8 +75,8 @@ public final class CalendarUtil{
 	 *            the date
 	 * @return 获得任意日期的00:00:00
 	 */
-	public static Date getResetDate_byDay(Date date){
-		Calendar calendar = getResetCalendar_byDay(date);
+	public static Date getResetDateByDay(Date date){
+		Calendar calendar = getResetCalendarByDay(date);
 		return calendar.getTime();
 	}
 
@@ -218,9 +218,9 @@ public final class CalendarUtil{
 		/**
 		 * 结束的calendar
 		 */
-		Calendar calendar_end = Calendar.getInstance();
+		Calendar calendarEnd = Calendar.getInstance();
 		calendarBegin.set(yearCurrent, 0, 1);// 2010-1-1
-		calendar_end.set(yearNext, 0, 1);// 2011-1-1
+		calendarEnd.set(yearNext, 0, 1);// 2011-1-1
 		// ****************************************************************************************
 		// 今天在这个星期中的第几天 星期天为1 星期六为7
 		int todayDayOfWeek = calendarToday.get(Calendar.DAY_OF_WEEK);
@@ -230,12 +230,12 @@ public final class CalendarUtil{
 		Calendar calendarCloneToday = (Calendar) calendarToday.clone();
 
 		// 向前
-		for (; calendarToday.before(calendar_end) && calendarToday.after(calendarBegin); calendarToday.add(Calendar.DAY_OF_YEAR, -7)){
+		for (; calendarToday.before(calendarEnd) && calendarToday.after(calendarBegin); calendarToday.add(Calendar.DAY_OF_YEAR, -7)){
 			list.add(toString(calendarToday, datePattern));
 		}
 
 		// 向后
-		for (int i = 0; calendarCloneToday.before(calendar_end) && calendarCloneToday.after(calendarBegin); ++i, calendarCloneToday.add(
+		for (int i = 0; calendarCloneToday.before(calendarEnd) && calendarCloneToday.after(calendarBegin); ++i, calendarCloneToday.add(
 						Calendar.DAY_OF_YEAR,
 						7)){
 			//第一个值和上面循环重复了 去掉
