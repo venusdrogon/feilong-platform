@@ -33,9 +33,6 @@ import org.slf4j.LoggerFactory;
 @RunWith(Parameterized.class)
 public class DateUtilIsLeapYearParameterizedTest extends BaseDateUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DateUtilIsLeapYearParameterizedTest.class);
-
 	/**
 	 * Data.
 	 *

@@ -110,8 +110,8 @@ public class ConstellationUtilTest extends TestCase{
 	 */
 	@Test
 	public void testGetConstellationType(){
-		String birthday = "1984-07-25";
-		ConstellationType constellationType = ConstellationUtil.getConstellationType(birthday);
+		String testBirthday = "1984-07-25";
+		ConstellationType constellationType = ConstellationUtil.getConstellationType(testBirthday);
 		log.info(constellationType.getChineseName());
 	}
 

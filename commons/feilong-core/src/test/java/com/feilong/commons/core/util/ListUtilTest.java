@@ -129,35 +129,6 @@ public class ListUtilTest{
 	}
 
 	/**
-	 * The main method.
-	 *
-	 * @param args
-	 *            the args
-	 */
-	public static void main(String[] args){
-		User student = null;
-		long begin1 = System.currentTimeMillis();
-		List<User> list1 = new ArrayList<>();
-		for (Long i = 0L; i < 1000000; i++){
-			student = new User(i);
-			list1.add(student);
-		}
-		long end1 = System.currentTimeMillis();
-		log.debug("list1 time：" + (end1 - begin1));
-
-		//*******************************************************
-
-		long begin2 = System.currentTimeMillis();
-		List<User> list2 = new ArrayList<>(1000000);
-		for (Long i = 0L; i < 1000000; i++){
-			student = new User(i);
-			list2.add(student);
-		}
-		long end2 = System.currentTimeMillis();
-		log.debug("list2 time：" + (end2 - begin2));
-	}
-
-	/**
 	 * Re.
 	 */
 	@Test
@@ -408,14 +379,4 @@ public class ListUtilTest{
 		log.info(ListUtil.toString(testList, true));
 	}
 
-	/**
-	 * Convert list to string replace brackets.
-	 */
-	@Test
-	public final void convertListToStringReplaceBrackets(){
-		List<String> testList = new ArrayList<String>();
-		testList.add("xinge");
-		testList.add("feilong");
-		log.info(ListUtil.toStringReplaceBrackets(testList));
-	}
 }
