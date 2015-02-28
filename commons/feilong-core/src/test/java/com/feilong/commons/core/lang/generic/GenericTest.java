@@ -88,7 +88,7 @@ public class GenericTest{
 		Type[] actualTypeArguments = pt.getActualTypeArguments();
 		log.info("" + actualTypeArguments.length);
 		log.info("" + actualTypeArguments[0]);
-		
+
 	}
 
 	/**
@@ -96,9 +96,9 @@ public class GenericTest{
 	 */
 	@Test
 	public void testGenericTest(){
-		String aString = getValue("jinxin", String.class);
-		Integer b = getValue("jinxin", Integer.class);
-		
+		if (log.isInfoEnabled()){
+			log.info(getValue("jinxin", String.class));
+			log.info(getValue("jinxin", Integer.class));
+		}
 	}
-
 }
