@@ -120,7 +120,7 @@ public final class CSVUtil{
 	 */
 	private final static String getWriteContent(List<Object[]> allLines,CSVParams csvParams){
 		if (Validator.isNotNullOrEmpty(allLines)){
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			for (Object[] nextLine : allLines){
 				sb.append(getWriteContentLine(nextLine, csvParams));
 			}
@@ -145,7 +145,7 @@ public final class CSVUtil{
 
 		String lineEnd = SystemUtils.LINE_SEPARATOR;
 		// *************************************************************
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		int lineLength = line.length;
 		for (int i = 0; i < lineLength; ++i){
 			// 分隔符，列为空也要表达其存在.

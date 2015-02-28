@@ -211,7 +211,7 @@ public final class LunarDateUtil{
 	public static int getLeapMonth(int year){
 		char iMonth = DateDictionary.LUNAR_LEAP_MONTH_TABLE[(year - 1901) / 2];
 		if (year % 2 == 0){
-			return (iMonth & 0x0f);
+			return iMonth & 0x0f;
 		}
 		return (iMonth & 0xf0) >> 4;
 	}

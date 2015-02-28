@@ -97,8 +97,6 @@ public class ValidatorTest{
 			public User next(){
 				return null;
 			}
-
-			public void remove(){}
 		}));
 	}
 }

@@ -82,14 +82,14 @@ public final class IOUtil{
 			// bufferedReader 缓冲 高效读取 ;
 			// 包装所有其 read() 操作可能开销很高的 Reader（如 FileReader 和 InputStreamReader）.
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, charsetName));
-			StringBuffer stringBuffer = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			String line = "";
 
 			// 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
 			while ((line = bufferedReader.readLine()) != null){
-				stringBuffer.append(line);
+				sb.append(line);
 			}
-			return stringBuffer.toString();
+			return sb.toString();
 		}catch (IOException e){
 			log.error("", e);
 		}finally{

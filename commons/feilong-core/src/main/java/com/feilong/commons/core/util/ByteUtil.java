@@ -45,11 +45,11 @@ public final class ByteUtil{
 	 * @return the string
 	 */
 	public final static String bytesToHexStringLowerCase(byte b[]){
-		StringBuffer resultSb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < b.length; ++i){
-			resultSb.append(byteToHexStringLowerCase(b[i]));
+			sb.append(byteToHexStringLowerCase(b[i]));
 		}
-		return resultSb.toString();
+		return sb.toString();
 	}
 
 	// XXX UpperCase

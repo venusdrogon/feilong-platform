@@ -42,15 +42,15 @@ public class RegQuery{
 
 	/** The Constant PERSONAL_FOLDER_CMD. */
 	private static final String	PERSONAL_FOLDER_CMD	= REGQUERY_UTIL + "\"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\"
-															+ "Explorer\\Shell Folders\" /v Personal";
+																	+ "Explorer\\Shell Folders\" /v Personal";
 
 	/** The Constant CPU_SPEED_CMD. */
 	private static final String	CPU_SPEED_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
-															+ " /v ~MHz";
+																	+ " /v ~MHz";
 
 	/** The Constant CPU_NAME_CMD. */
 	private static final String	CPU_NAME_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
-															+ " /v ProcessorNameString";
+																	+ " /v ProcessorNameString";
 
 	/**
 	 * Gets the current user personal folder path.
@@ -83,7 +83,7 @@ public class RegQuery{
 		}
 		// CPU speed in Mhz (minus 1) in HEX notation, convert it to DEC
 		String temp = result.substring(p + REGDWORD_TOKEN.length()).trim();
-		return Integer.toString((Integer.parseInt(temp.substring("0x".length()), 16) + 1));
+		return Integer.toString(Integer.parseInt(temp.substring("0x".length()), 16) + 1);
 	}
 
 	/**

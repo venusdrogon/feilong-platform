@@ -115,7 +115,7 @@ public final class RandomUtil{
 		for (int i = 0; i < length; ++i){
 			num = num * 10;
 		}
-		return (long) ((random * num));
+		return (long) (random * num);
 	}
 
 	// ****************************************************************

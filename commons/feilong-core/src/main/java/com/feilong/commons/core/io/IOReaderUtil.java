@@ -104,7 +104,7 @@ public final class IOReaderUtil{
 		// 分配新的直接字节缓冲区
 		final int capacity = 186140;
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(capacity);
-		StringBuffer stringBuffer = new StringBuffer(capacity);
+		StringBuilder sb = new StringBuilder(capacity);
 
 		FileInputStream fileInputStream = null;
 		try{
@@ -122,7 +122,7 @@ public final class IOReaderUtil{
 				// 反转此缓冲区
 				byteBuffer.flip();
 				CharBuffer charBuffer = charset.decode(byteBuffer);
-				stringBuffer.append(charBuffer.toString());
+				sb.append(charBuffer.toString());
 				byteBuffer.clear();
 			}
 		}catch (FileNotFoundException e){
@@ -137,6 +137,6 @@ public final class IOReaderUtil{
 				fileInputStream.close();
 			}
 		}
-		return stringBuffer.toString();
+		return sb.toString();
 	}
 }

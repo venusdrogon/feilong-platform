@@ -102,36 +102,6 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equals(java.lang.Object, java.lang.Object, boolean)}.
-	 */
-	@Test
-	public final void testEqualsObjectObjectBoolean(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equals(java.lang.Object, java.lang.Object)}.
-	 */
-	@Test
-	public final void testEqualsObjectObject(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#isBoolean(java.lang.Object)}.
-	 */
-	@Test
-	public final void testIsBoolean(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#isInteger(java.lang.Object)}.
-	 */
-	@Test
-	public final void testIsInteger(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toBoolean(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToBoolean(){}
-
-	/**
 	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toIterator(java.lang.Object)}.
 	 */
 	@Test
@@ -195,36 +165,6 @@ public class ObjectUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toBigDecimal(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToBigDecimal(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toLong(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToLong(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toDouble(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToDouble(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toFloat(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToFloat(){}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toShort(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToShort(){}
-
-	/**
 	 * Test to string object.
 	 */
 	@Test
@@ -240,10 +180,4 @@ public class ObjectUtilTest{
 	public final void testToT(){
 		log.info(ObjectUtil.toT(BigDecimal.ONE, Float.class) + "");
 	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#trim(java.lang.Object)}.
-	 */
-	@Test
-	public final void testTrim(){}
 }

@@ -35,6 +35,6 @@ public class FeiLongVersion{
 	 */
 	public static String getVersion(){
 		Package pkg = FeiLongVersion.class.getPackage();
-		return (pkg != null ? pkg.getImplementationVersion() : null);
+		return pkg != null ? pkg.getImplementationVersion() : null;
 	}
 }
