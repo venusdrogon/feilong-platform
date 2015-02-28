@@ -85,11 +85,13 @@ public class ResultUtil{
 		}
 		Object bean = null;
 		String className = clz.getName();
+
 		@SuppressWarnings("unchecked")
 		SortedMap<Object, Object>[] sortedMaps = result.getRows();
 		SortedMap<Object, Object> sortedMap = sortedMaps[0];
 		// 实例化
 		bean = ConstructorUtil.newInstance(className);
+
 		// 是否取字段
 		boolean isGetFileds = Validator.isNotNullOrEmpty(fieldNames);
 		if (!isGetFileds){

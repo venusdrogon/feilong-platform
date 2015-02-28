@@ -23,7 +23,7 @@ package com.feilong.servlet.http.entity;
  * @see "org.apache.catalina.Globals"
  * @see "org.springframework.web.util.WebUtils"
  */
-public interface RequestAttributes{
+public final class RequestAttributes{
 
 	// ************************************include(Servlet 2.2)**************************************************************************
 	/**
@@ -35,7 +35,7 @@ public interface RequestAttributes{
 	 * 
 	 * @see "org.springframework.web.util.WebUtils.INCLUDE_REQUEST_URI_ATTRIBUTE"
 	 */
-	String	INCLUDE_REQUEST_URI		= "javax.servlet.include.request_uri";
+	public static final String	INCLUDE_REQUEST_URI		= "javax.servlet.include.request_uri";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -43,7 +43,7 @@ public interface RequestAttributes{
 	 * 
 	 * @see "org.springframework.web.util.WebUtils.INCLUDE_CONTEXT_PATH_ATTRIBUTE"
 	 */
-	String	INCLUDE_CONTEXT_PATH	= "javax.servlet.include.context_path";
+	public static final String	INCLUDE_CONTEXT_PATH	= "javax.servlet.include.context_path";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -51,7 +51,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.INCLUDE_SERVLET_PATH_ATTRIBUTE"
 	 */
-	String	INCLUDE_SERVLET_PATH	= "javax.servlet.include.servlet_path";
+	public static final String	INCLUDE_SERVLET_PATH	= "javax.servlet.include.servlet_path";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -59,7 +59,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.INCLUDE_PATH_INFO_ATTRIBUTE"
 	 */
-	String	INCLUDE_PATH_INFO		= "javax.servlet.include.path_info";
+	public static final String	INCLUDE_PATH_INFO		= "javax.servlet.include.path_info";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -67,7 +67,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.INCLUDE_QUERY_STRING_ATTRIBUTE"
 	 */
-	String	INCLUDE_QUERY_STRING	= "javax.servlet.include.query_string";
+	public static final String	INCLUDE_QUERY_STRING	= "javax.servlet.include.query_string";
 
 	// *********************************forward (Servlet 2.4)******************************************************************************/
 	// 某些情况下一个forward()方法的目标servlet可能会需要知道真正原始的request URI
@@ -82,7 +82,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.FORWARD_REQUEST_URI_ATTRIBUTE"
 	 */
-	String	FORWARD_REQUEST_URI		= "javax.servlet.forward.request_uri";
+	public static final String	FORWARD_REQUEST_URI		= "javax.servlet.forward.request_uri";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -90,7 +90,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.FORWARD_CONTEXT_PATH_ATTRIBUTE"
 	 */
-	String	FORWARD_CONTEXT_PATH	= "javax.servlet.forward.context_path";
+	public static final String	FORWARD_CONTEXT_PATH	= "javax.servlet.forward.context_path";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -98,7 +98,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.FORWARD_SERVLET_PATH_ATTRIBUTE"
 	 */
-	String	FORWARD_SERVLET_PATH	= "javax.servlet.forward.servlet_path";
+	public static final String	FORWARD_SERVLET_PATH	= "javax.servlet.forward.servlet_path";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -106,7 +106,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.FORWARD_PATH_INFO_ATTRIBUTE"
 	 */
-	String	FORWARD_PATH_INFO		= "javax.servlet.forward.path_info";
+	public static final String	FORWARD_PATH_INFO		= "javax.servlet.forward.path_info";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -114,7 +114,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.FORWARD_QUERY_STRING_ATTRIBUTE"
 	 */
-	String	FORWARD_QUERY_STRING	= "javax.servlet.forward.query_string";
+	public static final String	FORWARD_QUERY_STRING	= "javax.servlet.forward.query_string";
 
 	// *********************************error******************************************************************************/
 	/**
@@ -127,7 +127,7 @@ public interface RequestAttributes{
 	 * 
 	 * @see "org.springframework.web.util.WebUtils.ERROR_STATUS_CODE_ATTRIBUTE"
 	 */
-	String	ERROR_STATUS_CODE		= "javax.servlet.error.status_code";
+	public static final String	ERROR_STATUS_CODE		= "javax.servlet.error.status_code";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -135,7 +135,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.ERROR_EXCEPTION_TYPE_ATTRIBUTE"
 	 */
-	String	ERROR_EXCEPTION_TYPE	= "javax.servlet.error.exception_type";
+	public static final String	ERROR_EXCEPTION_TYPE	= "javax.servlet.error.exception_type";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -143,7 +143,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.ERROR_MESSAGE_ATTRIBUTE"
 	 */
-	String	ERROR_MESSAGE			= "javax.servlet.error.message";
+	public static final String	ERROR_MESSAGE			= "javax.servlet.error.message";
 
 	/**
 	 * Servlet 2.3+ <code>{@value}</code><br>
@@ -151,7 +151,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.ERROR_EXCEPTION_ATTRIBUTE"
 	 */
-	String	ERROR_EXCEPTION			= "javax.servlet.error.exception";
+	public static final String	ERROR_EXCEPTION			= "javax.servlet.error.exception";
 
 	/**
 	 * Servlet 2.3+<code>{@value}</code><br>
@@ -159,7 +159,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.ERROR_REQUEST_URI_ATTRIBUTE"
 	 */
-	String	ERROR_REQUEST_URI		= "javax.servlet.error.request_uri";
+	public static final String	ERROR_REQUEST_URI		= "javax.servlet.error.request_uri";
 
 	/**
 	 * <code>{@value}</code><br>
@@ -167,7 +167,7 @@ public interface RequestAttributes{
 	 *
 	 * @see "org.springframework.web.util.WebUtils.ERROR_SERVLET_NAME_ATTRIBUTE"
 	 */
-	String	ERROR_SERVLET_NAME		= "javax.servlet.error.servlet_name";
+	public static final String	ERROR_SERVLET_NAME		= "javax.servlet.error.servlet_name";
 
 	// **************************************Servlet API 2.3 ******************************************************************/
 	// Servlet API 2.3 also adds two new request attributes that can help a servlet make an informed decision about how to handle secure
@@ -175,21 +175,21 @@ public interface RequestAttributes{
 	// For requests made using HTTPS, the server will provide these new request attributes:
 
 	/** A String representing the cipher suite used by HTTPS, if any. */
-	String	REQUEST_CIPHER_SUITE	= "javax.servlet.request.cipher_suite";
+	public static final String	REQUEST_CIPHER_SUITE	= "javax.servlet.request.cipher_suite";
 
 	/** An Integer representing the bit size of the algorithm, if any. */
-	String	REQUEST_KEY_SIZE		= "javax.servlet.request.key_size";
+	public static final String	REQUEST_KEY_SIZE		= "javax.servlet.request.key_size";
 
 	// ********************************************************************************************************/
 	/** ATTRIBUTE_REQUEST_X509CERTIFICATE. */
-	String	REQUEST_X509CERTIFICATE	= "javax.servlet.request.X509Certificate";
+	public static final String	REQUEST_X509CERTIFICATE	= "javax.servlet.request.X509Certificate";
 
 	/**
 	 * The ATTRIBUT e_ reques t_ ss l_ session
 	 * {@link <a href="http://stackoverflow.com/questions/1422977/how-to-prevent-tomcat-session-hijacking">http://stackoverflow.com/questions/1422977/how-to-prevent-tomcat-session-hijacking</a>}
 	 * .
 	 */
-	String	REQUEST_SSL_SESSION		= "javax.servlet.request.ssl_session";
+	public static final String	REQUEST_SSL_SESSION		= "javax.servlet.request.ssl_session";
 
 	// 暂时还用不到下面的属性
 	// /** The WOR k_ di r_ attr. */
@@ -198,4 +198,10 @@ public interface RequestAttributes{
 	// /** The SUBJEC t_ attr. */
 	// String SUBJECT_ATTR = "javax.security.auth.subject";
 
+	/** Don't let anyone instantiate this class. */
+	private RequestAttributes(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

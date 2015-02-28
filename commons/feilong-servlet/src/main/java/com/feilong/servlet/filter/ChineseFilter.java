@@ -35,7 +35,7 @@ import com.feilong.commons.core.enumeration.CharsetType;
 public class ChineseFilter implements Filter{
 
 	/** The code. */
-	private String	code	= CharsetType.GB2312;
+	private static final String	code	= CharsetType.GB2312;
 
 	/*
 	 * (non-Javadoc)
@@ -67,12 +67,16 @@ public class ChineseFilter implements Filter{
 	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
-	public void init(FilterConfig arg0) throws ServletException{}
+	public void init(FilterConfig filterConfig) throws ServletException{
+		//nothing to do
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see javax.servlet.Filter#destroy()
 	 */
-	public void destroy(){}
+	public void destroy(){
+		//nothing to do
+	}
 }

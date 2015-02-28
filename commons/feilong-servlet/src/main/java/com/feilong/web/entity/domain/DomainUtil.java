@@ -18,9 +18,6 @@ package com.feilong.web.entity.domain;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -30,10 +27,6 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 2012-8-9 下午4:53:55
  */
 public final class DomainUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log				= LoggerFactory.getLogger(DomainUtil.class);
 
 	/** The Constant userHome. */
 	private static final String	userHome		= System.getProperty("user.home");

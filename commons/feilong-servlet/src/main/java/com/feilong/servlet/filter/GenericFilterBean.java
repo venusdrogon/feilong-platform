@@ -55,21 +55,27 @@ public abstract class GenericFilterBean implements Filter{
 	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
-	public void init(FilterConfig filterConfig) throws ServletException{}
+	public void init(FilterConfig filterConfig) throws ServletException{
+		//nothing to do
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
-	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{}
+	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
+		//nothing to do
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see javax.servlet.Filter#destroy()
 	 */
-	public void destroy(){}
+	public void destroy(){
+		//nothing to do
+	}
 
 	//******************************通用方法**********************************************
 	/**

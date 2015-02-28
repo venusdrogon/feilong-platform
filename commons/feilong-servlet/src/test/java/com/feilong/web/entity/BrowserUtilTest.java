@@ -46,7 +46,8 @@ public class BrowserUtilTest{
 	 */
 	@Test
 	public final void test(){
-		log.info(BrowserUtil.getIsMobileDevice(iphone)+"");
-		log.info(BrowserUtil.getIsMobileDevice(ipad)+"");
+		log.info(BrowserUtil.getIsMobileDevice(iphone) + "");
+		log.info(BrowserUtil.getIsMobileDevice(ipad) + "");
+		log.info(BrowserUtil.getIsMobileDevice(chrome) + "");
 	}
 }

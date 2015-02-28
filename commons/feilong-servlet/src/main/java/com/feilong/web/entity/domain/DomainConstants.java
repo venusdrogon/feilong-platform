@@ -25,24 +25,30 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-8-9 下午4:37:46
  */
-public interface DomainConstants{
+public final class DomainConstants{
 
 	/** 接口配置. */
-	ResourceBundle	domain			= ResourceBundle.getBundle("config/domain");
+	private static final ResourceBundle	domain			= ResourceBundle.getBundle("config/domain");
 
 	/** 当前项目配置的 css的域名. */
-	String			DOMAIN_CSS		= ResourceBundleUtil.getValue(domain, "domain.css");
+	public static final String			DOMAIN_CSS		= ResourceBundleUtil.getValue(domain, "domain.css");
 
 	/** 当前项目配置的 js的域名. */
-	String			DOMAIN_JS		= ResourceBundleUtil.getValue(domain, "domain.js");
+	public static final String			DOMAIN_JS		= ResourceBundleUtil.getValue(domain, "domain.js");
 
 	/** 当前项目配置的 image 的域名. */
-	String			DOMAIN_IMAGE	= ResourceBundleUtil.getValue(domain, "domain.image");
+	public static final String			DOMAIN_IMAGE	= ResourceBundleUtil.getValue(domain, "domain.image");
 
 	/** 当前项目配置的 image 的域名(PDP). */
-	String			DOMAIN_RESOURCE	= ResourceBundleUtil.getValue(domain, "domain.resource");
+	public static final String			DOMAIN_RESOURCE	= ResourceBundleUtil.getValue(domain, "domain.resource");
 
 	/** 商城的网址，一般用于不同环境 第三方数据传递 比如微博等. */
-	String			DOMAIN_STORE	= ResourceBundleUtil.getValue(domain, "domain.store");
+	public static final String			DOMAIN_STORE	= ResourceBundleUtil.getValue(domain, "domain.store");
 
+	/** Don't let anyone instantiate this class. */
+	private DomainConstants(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 }

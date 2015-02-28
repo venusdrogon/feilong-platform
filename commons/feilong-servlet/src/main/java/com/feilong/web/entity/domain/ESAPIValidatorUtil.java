@@ -28,13 +28,13 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-8-16 下午2:25:36
  */
-public class ESAPIValidatorUtil{
+public final class ESAPIValidatorUtil{
 
 	/** The Constant log. */
-	private static final Logger	log			= LoggerFactory.getLogger(ESAPIValidatorUtil.class);
+	private static final Logger		log			= LoggerFactory.getLogger(ESAPIValidatorUtil.class);
 
 	/** The validator. */
-	public static Validator		validator	= ESAPI.validator();
+	private static final Validator	validator	= ESAPI.validator();
 
 	/**
 	 * 获得安全的html代码.
@@ -51,7 +51,6 @@ public class ESAPIValidatorUtil{
 		}catch (IntrusionException e){
 			log.error(e.getClass().getName(), e);
 		}
-
 		return null;
 	}
 }

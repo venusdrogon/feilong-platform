@@ -28,9 +28,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.lang.SystemUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.servlet.ServletContextUtil;
@@ -43,9 +40,6 @@ import com.feilong.servlet.ServletContextUtil;
  * @since 1.0.8
  */
 public class ApplicationInfoServlet extends HttpServlet{
-
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(ApplicationInfoServlet.class);
 
 	private static final long	serialVersionUID	= 672020928153455796L;
 
