@@ -34,7 +34,7 @@ public class BackWarnEntity implements Serializable{
 	private boolean				isSuccess;
 
 	/** 描述. */
-	private Object				description;
+	private Serializable		description;
 
 	/**
 	 * Instantiates a new back warn entity.
@@ -49,14 +49,14 @@ public class BackWarnEntity implements Serializable{
 	 * @param description
 	 *            the description
 	 */
-	public BackWarnEntity(boolean isSuccess, Object description){
+	public BackWarnEntity(boolean isSuccess, Serializable description){
 		this.isSuccess = isSuccess;
 		this.description = description;
 	}
 
 	/**
-	 * Gets the 是否成功.
-	 * 
+	 * 获得 是否成功.
+	 *
 	 * @return the isSuccess
 	 */
 	public boolean getIsSuccess(){
@@ -64,8 +64,8 @@ public class BackWarnEntity implements Serializable{
 	}
 
 	/**
-	 * Sets the 是否成功.
-	 * 
+	 * 设置 是否成功.
+	 *
 	 * @param isSuccess
 	 *            the isSuccess to set
 	 */
@@ -74,21 +74,21 @@ public class BackWarnEntity implements Serializable{
 	}
 
 	/**
-	 * Gets the 描述.
-	 * 
+	 * 获得 描述.
+	 *
 	 * @return the description
 	 */
-	public Object getDescription(){
+	public Serializable getDescription(){
 		return description;
 	}
 
 	/**
-	 * Sets the 描述.
-	 * 
+	 * 设置 描述.
+	 *
 	 * @param description
 	 *            the description to set
 	 */
-	public void setDescription(Object description){
+	public void setDescription(Serializable description){
 		this.description = description;
 	}
 }

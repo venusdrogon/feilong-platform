@@ -95,5 +95,4 @@ public class MemberAddress implements Serializable{
 	public void setAddTime(Date addTime){
 		this.addTime = addTime;
 	}
-
 }

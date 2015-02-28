@@ -15,19 +15,23 @@
  */
 package com.feilong.commons.core.bean.command;
 
+import java.io.Serializable;
+
 /**
  * The Class Customer.
  */
-public class Customer{
+public class Customer implements Serializable{
+
+	private static final long	serialVersionUID	= -7749159103412879389L;
 
 	/** The id. */
-	private long		id;
+	private long				id;
 
 	/** The name. */
-	private String		name;
+	private String				name;
 
 	/** The addresses. */
-	private Address[]	addresses;
+	private Address[]			addresses;
 
 	/**
 	 * The Constructor.

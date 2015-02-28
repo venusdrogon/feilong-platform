@@ -15,25 +15,29 @@
  */
 package com.feilong.commons.core.bean.command;
 
+import java.io.Serializable;
+
 /**
  * The Class Address.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 15:19:53
  */
-public class Address{
+public class Address implements Serializable{
+
+	private static final long	serialVersionUID	= -7167354662891178506L;
 
 	/** The zip code. */
-	private String	zipCode;
+	private String				zipCode;
 
 	/** The addr. */
-	private String	addr;
+	private String				addr;
 
 	/** The city. */
-	private String	city;
+	private String				city;
 
 	/** The country. */
-	private String	country;
+	private String				country;
 
 	/**
 	 * Instantiates a new address.
