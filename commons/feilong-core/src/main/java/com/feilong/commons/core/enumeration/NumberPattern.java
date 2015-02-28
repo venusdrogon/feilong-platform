@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.util;
+package com.feilong.commons.core.enumeration;
 
 import java.text.DecimalFormat;
 
@@ -112,26 +112,32 @@ import java.text.DecimalFormat;
  * @see DecimalFormat
  * @since 1.0.0
  */
-public interface NumberPattern{
+public final class NumberPattern{
+
+	/** Don't let anyone instantiate this class. */
+	private NumberPattern(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/**
 	 * 整数,不含小数 <code>{@value}</code>.
 	 * 
 	 * @since 1.0.7
 	 * */
-	String	NO_SCALE				= "#";
+	public static final String	NO_SCALE				= "#";
 
 	/** 百分数的表达式(不带小数) <code>{@value}</code>. */
-	String	PERCENT_WITH_NOPOINT	= "##%";
+	public static final String	PERCENT_WITH_NOPOINT	= "##%";
 
 	/** 百分数的表达式(2位小数点) <code>{@value}</code>. */
-	String	PERCENT_WITH_2POINT		= "#0.00%";
+	public static final String	PERCENT_WITH_2POINT		= "#0.00%";
 
 	/**
 	 * 百分数的表达式(1位小数点) <code>{@value}</code>.
 	 * 
 	 * @since 1.0.7
 	 */
-	String	PERCENT_WITH_1POINT		= "#0.0%";
-
+	public static final String	PERCENT_WITH_1POINT		= "#0.0%";
 }

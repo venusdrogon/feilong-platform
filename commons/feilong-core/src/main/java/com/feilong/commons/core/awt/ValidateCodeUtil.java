@@ -140,5 +140,4 @@ public final class ValidateCodeUtil{
 		int colorsLength = colorsForValidateCode.length;
 		return colorsForValidateCode[random.nextInt(colorsLength)];
 	}
-
 }

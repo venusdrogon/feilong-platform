@@ -19,6 +19,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.feilong.commons.core.enumeration.DatePattern;
+import com.feilong.commons.core.enumeration.TimeInterval;
 import com.feilong.commons.core.text.DateFormatUtil;
 import com.feilong.commons.core.util.Validator;
 

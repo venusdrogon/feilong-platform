@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.feilong.commons.core.MessageConstants;
+import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.Validator;
 
 /**

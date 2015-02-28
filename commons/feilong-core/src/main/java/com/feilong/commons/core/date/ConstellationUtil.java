@@ -17,6 +17,8 @@ package com.feilong.commons.core.date;
 
 import java.util.Date;
 
+import com.feilong.commons.core.enumeration.DatePattern;
+
 /**
  * 星座util
  * 

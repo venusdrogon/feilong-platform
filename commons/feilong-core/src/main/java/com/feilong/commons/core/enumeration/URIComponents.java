@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.net;
+package com.feilong.commons.core.enumeration;
 
 /**
  * uri使用的常量.
@@ -23,22 +23,29 @@ package com.feilong.commons.core.net;
  * @see "org.springframework.web.util.HierarchicalUriComponents.Type"
  * @since 1.0.9
  */
-public interface URIComponents{ // 声明成接口,不想被实例化
+public final class URIComponents{
+
+	/** Don't let anyone instantiate this class. */
+	private URIComponents(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/** 查询片段 <code>{@value}</code>. */
-	String	FRAGMENT		= "#";
+	public static final String	FRAGMENT		= "#";
 
 	/** <code>{@value}</code> The question mark is used as a separator and is not part of the query string. */
-	String	QUESTIONMARK	= "?";
+	public static final String	QUESTIONMARK	= "?";
 
 	/** The Constant ampersand<code>{@value}</code>. */
-	String	AMPERSAND		= "&";
+	public static final String	AMPERSAND		= "&";
 
 	/** http协议<code>{@value}</code>. */
-	String	SCHEME_HTTP		= "http";
+	public static final String	SCHEME_HTTP		= "http";
 
 	/** https协议<code>{@value}</code>. */
-	String	SCHEME_HTTPS	= "https";
+	public static final String	SCHEME_HTTPS	= "https";
 
 	// public static final String equal = "=";
 }

@@ -22,8 +22,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import com.feilong.commons.core.enumeration.ImageType;
 import com.feilong.commons.core.io.IOUtil;
-import com.feilong.commons.core.io.ImageType;
 
 /**
  * 水印.
@@ -180,7 +180,7 @@ public final class WaterMark{
 		int y2 = height - fontSize / 2 - y;
 		graphics2D.drawString(pressText, x2, y2);
 		graphics2D.dispose();
-		/*************************************************************/
+
 		ImageUtil.write(outputStream, bufferedImage_new, ImageType.PNG);
 	}
 }

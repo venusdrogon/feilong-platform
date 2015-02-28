@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.date;
+package com.feilong.commons.core.enumeration;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -184,71 +184,78 @@ import java.util.Date;
  *      href="http://www.infoq.com/cn/news/2015/01/java-date-format-with-caution?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global">慎用Java日期格式化</a>
  * @since 1.0.0
  */
-public interface DatePattern{
+public final class DatePattern{
+
+	/** Don't let anyone instantiate this class. */
+	private DatePattern(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/** <code>{@value}</code> 年月 带水平线,一般用于分类日志,将众多日志按月分类 example:2012-01. */
-	String	yearAndMonth				= "yyyy-MM";
+	public static final String	yearAndMonth				= "yyyy-MM";
 
 	/** <code>{@value}</code> 只有日期 年月日 example:2012-01-22. */
-	String	onlyDate					= "yyyy-MM-dd";
+	public static final String	onlyDate					= "yyyy-MM-dd";
 
 	/** <code>{@value}</code> 月日 example:01-22. */
-	String	monthAndDay					= "MM-dd";
+	public static final String	monthAndDay					= "MM-dd";
 
 	/** <code>{@value}</code> 月日带星期 example:01-22(星期四). */
-	String	monthAndDayWithWeek			= "MM-dd(E)";
+	public static final String	monthAndDayWithWeek			= "MM-dd(E)";
 
 	/** <code>{@value}</code> 不带秒 example:2013-12-27 22:13. */
-	String	commonWithoutSecond			= "yyyy-MM-dd HH:mm";
+	public static final String	commonWithoutSecond			= "yyyy-MM-dd HH:mm";
 
 	/** <code>{@value}</code> example:2013-12-27 22:13:55. */
-	String	commonWithTime				= "yyyy-MM-dd HH:mm:ss";
+	public static final String	commonWithTime				= "yyyy-MM-dd HH:mm:ss";
 
 	/** <code>{@value}</code> example:31/03/2014 14:53:39. */
-	String	ddMMyyyyHHmmss				= "dd/MM/yyyy HH:mm:ss";
+	public static final String	ddMMyyyyHHmmss				= "dd/MM/yyyy HH:mm:ss";
 
 	/** <code>{@value}</code> 带毫秒的时间格式 example:2013-12-27 22:13:55.453. */
-	String	commonWithMillisecond		= "yyyy-MM-dd HH:mm:ss.SSS";
+	public static final String	commonWithMillisecond		= "yyyy-MM-dd HH:mm:ss.SSS";
 
 	/** <code>{@value}</code> 不带年 不带秒 example:12-27 22:13. */
-	String	commonWithoutAndYearSecond	= "MM-dd HH:mm";
+	public static final String	commonWithoutAndYearSecond	= "MM-dd HH:mm";
 
 	// *******************************************************************
 
 	/** <code>{@value}</code> example:13. */
-	String	yy							= "yy";
+	public static final String	yy							= "yy";
 
 	/** <code>{@value}</code> example:2013. */
-	String	yyyy						= "yyyy";
+	public static final String	yyyy						= "yyyy";
 
 	/** <code>{@value}</code> MM月份 example:12. */
-	String	MM							= "MM";
+	public static final String	MM							= "MM";
 
 	/** <code>{@value}</code> example:20131227. */
-	String	yyyyMMdd					= "yyyyMMdd";
+	public static final String	yyyyMMdd					= "yyyyMMdd";
 
 	/** <code>{@value}</code> example:2156. */
-	String	mmss						= "mmss";
+	public static final String	mmss						= "mmss";
 
 	/** <code>{@value}</code> example:21. */
-	String	HH							= "HH";
+	public static final String	HH							= "HH";
 
 	/** <code>{@value}</code> 只有时间且不带秒 example:21:57. */
-	String	onlyTime_withoutSecond		= "HH:mm";
+	public static final String	onlyTime_withoutSecond		= "HH:mm";
 
 	/** <code>{@value}</code> 只有时间 example:21:57:36. */
-	String	onlyTime					= "HH:mm:ss";
+	public static final String	onlyTime					= "HH:mm:ss";
 
 	/** 时间戳,<code>{@value}</code>,一般用于拼接文件名称 example:20131227215816. */
-	String	timestamp					= "yyyyMMddHHmmss";
+	public static final String	timestamp					= "yyyyMMddHHmmss";
 
 	/** 带毫秒的时间戳,<code>{@value}</code> example:20131227215758437. */
-	String	timestampWithMillisecond	= "yyyyMMddHHmmssSSS";
+	public static final String	timestampWithMillisecond	= "yyyyMMddHHmmssSSS";
 
 	/**
 	 * 系统Date toString 使用的格式,并且 Locale.US,<br/>
 	 * example: 星期五 十二月 27 22:13:55 CST 2013 <br/>
 	 * 详见{@link Date#toString()} <code>{@value}</code> .
 	 */
-	String	forToString					= "EEE MMM dd HH:mm:ss zzz yyyy";
+	public static final String	forToString					= "EEE MMM dd HH:mm:ss zzz yyyy";
 }

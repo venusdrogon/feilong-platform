@@ -66,7 +66,7 @@ public final class DesktopUtil{
 				try{
 					desktop.browse(uri);
 				}catch (IOException e){
-					log.debug(e.getMessage());
+					log.error("", e);
 				}
 			}
 		}else{
@@ -98,7 +98,7 @@ public final class DesktopUtil{
 				}
 			}
 		}else{
-			log.error("don'nt Support Desktop");
+			log.error("don't Support Desktop");
 		}
 	}
 }

@@ -16,34 +16,33 @@
 package com.feilong.commons.core.enumeration;
 
 /**
- * 常用字体的枚举.
+ * io常用单位<br>
+ * This class defines the common IOConstants ,so that they can be referenced as a constant within Java code. <br>
+ * 参考了 velocity RuntimeConstants.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2011-12-31 下午05:02:06
- * @version 1.0.5 2014-5-4 00:24 改成interface
+ * @version 1.0 2010-5-21 下午04:31:08
+ * @version 1.1 Apr 24, 2014 1:56:38 AM
  * @since 1.0.0
  */
-public final class FontType{
+public final class IOConstants{
 
 	/** Don't let anyone instantiate this class. */
-	private FontType(){
+	private IOConstants(){
 		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
 		//see 《Effective Java》 2nd
 		throw new AssertionError("No " + getClass().getName() + " instances for you!");
 	}
 
-	/** <code>{@value}</code>. */
-	public static final String	KAITI		= "楷体_gb2312";
+	/** KB 1024. */
+	public static final long		KB				= 1024;
 
-	/** <code>{@value}</code>. */
-	public static final String	SONGTI		= "宋体";
+	/** MB 1024 * 1024 1048576. */
+	public static final long		MB				= 1024 * KB;
 
-	/** <code>{@value}</code>. */
-	public static final String	YAHEI		= "微软雅黑";
+	/** GB 1024 * 1024 * 1024 1073741824. */
+	public static final long		GB				= 1024 * MB;
 
-	/** <code>{@value}</code>. */
-	public static final String	VERDANA		= "Verdana";
-
-	/** <code>{@value}</code>. */
-	public static final String	COURIER_NEW	= "Courier New";
+	/** 常用图片格式. */
+	public static final String[]	COMMON_IMAGES	= { "gif", "bmp", "jpg", "png" };
 }

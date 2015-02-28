@@ -18,8 +18,9 @@ package com.feilong.commons.core.io;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
+import com.feilong.commons.core.enumeration.FileType;
 
 /**
  * 文件信息 entity.

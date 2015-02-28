@@ -20,8 +20,8 @@ import java.util.Date;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * 时间转换 日期值处理器实现.

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.date;
+package com.feilong.commons.core.enumeration;
 
 /**
  * <p>
@@ -28,25 +28,32 @@ package com.feilong.commons.core.date;
  * @version 1.0.5 2014-5-4 14:23 change to interface
  * @since 1.0.0
  */
-public interface TimeInterval{
+public final class TimeInterval{
+
+	/** Don't let anyone instantiate this class. */
+	private TimeInterval(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	/** 1分钟 60s. */
-	Integer	SECONDS_PER_MINUTE	= 60;
+	public static final Integer	SECONDS_PER_MINUTE	= 60;
 
 	/** 1小时 60 * 60=3600. */
-	Integer	SECONDS_PER_HOUR	= SECONDS_PER_MINUTE * 60;
+	public static final Integer	SECONDS_PER_HOUR	= SECONDS_PER_MINUTE * 60;
 
 	/** 1天 60 * 60 * 24=86400. */
-	Integer	SECONDS_PER_DAY		= SECONDS_PER_HOUR * 24;
+	public static final Integer	SECONDS_PER_DAY		= SECONDS_PER_HOUR * 24;
 
 	/** 一个星期 60 * 60 * 24 * 7= 604 800. */
-	Integer	SECONDS_PER_WEEK	= SECONDS_PER_DAY * 7;
+	public static final Integer	SECONDS_PER_WEEK	= SECONDS_PER_DAY * 7;
 
 	/**
 	 * 30天 一个月 60 * 60 * 24 * 30= 2592000<br>
 	 * 估值,没有精确一个月28/29天 还是30 31天.
 	 */
-	Integer	SECONDS_PER_MONTH	= SECONDS_PER_DAY * 30;
+	public static final Integer	SECONDS_PER_MONTH	= SECONDS_PER_DAY * 30;
 
 	/**
 	 * 365天 1年 60 * 60 * 24 * 365=31536000<br>
@@ -54,5 +61,5 @@ public interface TimeInterval{
 	 * Integer.MIN_VALUE-2147483648<br>
 	 * 一年数据为 31536000,所以 Integer 最大为 68.096259734906 年
 	 */
-	Integer	SECONDS_PER_YEAR	= SECONDS_PER_DAY * 365;
+	public static final Integer	SECONDS_PER_YEAR	= SECONDS_PER_DAY * 365;
 }

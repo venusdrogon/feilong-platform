@@ -18,12 +18,20 @@ package com.feilong.commons.core;
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 
 /**
+ * 配置的常量
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月30日 下午6:00:36
  * @since 1.0.8
  */
-public abstract class ConfigConstants{
+public final class ConfigConstants{
+
+	/** Don't let anyone instantiate this class. */
+	private ConfigConstants(){
+		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+		//see 《Effective Java》 2nd
+		throw new AssertionError("No " + getClass().getName() + " instances for you!");
+	}
 
 	private static String	$FEILONG_CORE_CONFIG					= "config/feilong-core-config";
 

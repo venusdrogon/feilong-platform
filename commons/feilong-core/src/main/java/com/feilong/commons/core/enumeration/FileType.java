@@ -13,29 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.io;
+package com.feilong.commons.core.enumeration;
 
 /**
- * io常用单位<br>
- * This class defines the common IOConstants ,so that they can be referenced as a constant within Java code. <br>
- * 参考了 velocity RuntimeConstants.
+ * 文件类型.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-5-21 下午04:31:08
- * @version 1.1 Apr 24, 2014 1:56:38 AM
+ * @version 1.0 Dec 7, 2013 7:14:42 PM
  * @since 1.0.0
  */
-public interface IOConstants{
+public enum FileType{
 
-	/** KB 1024. */
-	long		KB				= 1024;
+	/** 文件. */
+	FILE,
 
-	/** MB 1024 * 1024 1048576. */
-	long		MB				= 1024 * KB;
-
-	/** GB 1024 * 1024 * 1024 1073741824. */
-	long		GB				= 1024 * MB;
-
-	/** 常用图片格式. */
-	String[]	COMMON_IMAGES	= { "gif", "bmp", "jpg", "png" };
+	/** 文件夹. */
+	DIRECTORY
 }

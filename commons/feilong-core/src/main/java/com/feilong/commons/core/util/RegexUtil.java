@@ -24,6 +24,7 @@ import java.util.regex.PatternSyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.RegexPattern;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**

@@ -25,13 +25,15 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.enumeration.NumberPattern;
+
 /**
  * The Class NumberUtilTest.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-24 下午02:54:39
  */
-public class NumberUtilTest implements NumberPattern{
+public class NumberUtilTest{
 
 	/** The Constant log. */
 	private final static Logger	log	= LoggerFactory.getLogger(NumberUtilTest.class);
@@ -77,15 +79,15 @@ public class NumberUtilTest implements NumberPattern{
 	 */
 	@Test
 	public void getProgress(){
-		assertEquals("100%", NumberUtil.getProgress(5, 5, PERCENT_WITH_NOPOINT));
-		assertEquals("100.00%", NumberUtil.getProgress(5, 5, PERCENT_WITH_2POINT));
-		assertEquals("100.0%", NumberUtil.getProgress(5, 5, PERCENT_WITH_1POINT));
-		assertEquals("50%", NumberUtil.getProgress(5, 10, PERCENT_WITH_NOPOINT));
-		assertEquals("50.00%", NumberUtil.getProgress(5, 10, PERCENT_WITH_2POINT));
-		assertEquals("50.0%", NumberUtil.getProgress(5, 10, PERCENT_WITH_1POINT));
-		assertEquals("30.0%", NumberUtil.getProgress(3, 10, PERCENT_WITH_1POINT));
-		assertEquals("33.3%", NumberUtil.getProgress(1, 3, PERCENT_WITH_1POINT));
-		assertEquals("66.7%", NumberUtil.getProgress(2, 3, PERCENT_WITH_1POINT));
+		assertEquals("100%", NumberUtil.getProgress(5, 5, NumberPattern.PERCENT_WITH_NOPOINT));
+		assertEquals("100.00%", NumberUtil.getProgress(5, 5, NumberPattern.PERCENT_WITH_2POINT));
+		assertEquals("100.0%", NumberUtil.getProgress(5, 5, NumberPattern.PERCENT_WITH_1POINT));
+		assertEquals("50%", NumberUtil.getProgress(5, 10, NumberPattern.PERCENT_WITH_NOPOINT));
+		assertEquals("50.00%", NumberUtil.getProgress(5, 10, NumberPattern.PERCENT_WITH_2POINT));
+		assertEquals("50.0%", NumberUtil.getProgress(5, 10, NumberPattern.PERCENT_WITH_1POINT));
+		assertEquals("30.0%", NumberUtil.getProgress(3, 10, NumberPattern.PERCENT_WITH_1POINT));
+		assertEquals("33.3%", NumberUtil.getProgress(1, 3, NumberPattern.PERCENT_WITH_1POINT));
+		assertEquals("66.7%", NumberUtil.getProgress(2, 3, NumberPattern.PERCENT_WITH_1POINT));
 		assertEquals("67%", NumberUtil.getProgress(2, 3));
 	}
 
@@ -96,7 +98,7 @@ public class NumberUtilTest implements NumberPattern{
 	@Test()
 	//expected = NullPointerException.class
 	public void getProgress1(){
-		NumberUtil.getProgress(null, 5, PERCENT_WITH_NOPOINT);
+		NumberUtil.getProgress(null, 5, NumberPattern.PERCENT_WITH_NOPOINT);
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class NumberUtilTest implements NumberPattern{
 	 */
 	@Test(expected = NullPointerException.class)
 	public void getProgress2(){
-		NumberUtil.getProgress(5, null, PERCENT_WITH_NOPOINT);
+		NumberUtil.getProgress(5, null, NumberPattern.PERCENT_WITH_NOPOINT);
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class NumberUtilTest implements NumberPattern{
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void getProgress3(){
-		NumberUtil.getProgress(-5, 5, PERCENT_WITH_NOPOINT);
+		NumberUtil.getProgress(-5, 5, NumberPattern.PERCENT_WITH_NOPOINT);
 	}
 
 	/**
@@ -123,7 +125,7 @@ public class NumberUtilTest implements NumberPattern{
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void getProgress4(){
-		NumberUtil.getProgress(5, -5, PERCENT_WITH_NOPOINT);
+		NumberUtil.getProgress(5, -5, NumberPattern.PERCENT_WITH_NOPOINT);
 	}
 
 	/**
@@ -132,7 +134,7 @@ public class NumberUtilTest implements NumberPattern{
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void getProgress5(){
-		NumberUtil.getProgress(5, 4, PERCENT_WITH_NOPOINT);
+		NumberUtil.getProgress(5, 4, NumberPattern.PERCENT_WITH_NOPOINT);
 	}
 
 	/**
@@ -201,22 +203,22 @@ public class NumberUtilTest implements NumberPattern{
 
 		assertEquals("C00000008", NumberUtil.toString(8, "C00000000"));
 
-		assertEquals("0%", NumberUtil.toString(0, PERCENT_WITH_NOPOINT));
+		assertEquals("0%", NumberUtil.toString(0, NumberPattern.PERCENT_WITH_NOPOINT));
 
-		assertEquals("24%", NumberUtil.toString(0.24f, PERCENT_WITH_NOPOINT));
-		assertEquals("24.00%", NumberUtil.toString(0.24f, PERCENT_WITH_2POINT));
+		assertEquals("24%", NumberUtil.toString(0.24f, NumberPattern.PERCENT_WITH_NOPOINT));
+		assertEquals("24.00%", NumberUtil.toString(0.24f, NumberPattern.PERCENT_WITH_2POINT));
 
 		Integer a = 1;
 		Long b = 400L;
-		assertEquals("0.25%", NumberUtil.toString((double) a / b, PERCENT_WITH_2POINT));
+		assertEquals("0.25%", NumberUtil.toString((double) a / b, NumberPattern.PERCENT_WITH_2POINT));
 
-		assertEquals("1", NumberUtil.toString(0.8, NO_SCALE));
-		assertEquals("-1", NumberUtil.toString(-0.8, NO_SCALE));
-		assertEquals("-2", NumberUtil.toString(-1.8, NO_SCALE));
-		assertEquals("2", NumberUtil.toString(1.8, NO_SCALE));
-		assertEquals("111112", NumberUtil.toString(111111.5, NO_SCALE));
-		assertEquals("111113", NumberUtil.toString(111112.5, NO_SCALE));
-		assertEquals("88888888", NumberUtil.toString(88888888, NO_SCALE));
+		assertEquals("1", NumberUtil.toString(0.8, NumberPattern.NO_SCALE));
+		assertEquals("-1", NumberUtil.toString(-0.8, NumberPattern.NO_SCALE));
+		assertEquals("-2", NumberUtil.toString(-1.8, NumberPattern.NO_SCALE));
+		assertEquals("2", NumberUtil.toString(1.8, NumberPattern.NO_SCALE));
+		assertEquals("111112", NumberUtil.toString(111111.5, NumberPattern.NO_SCALE));
+		assertEquals("111113", NumberUtil.toString(111112.5, NumberPattern.NO_SCALE));
+		assertEquals("88888888", NumberUtil.toString(88888888, NumberPattern.NO_SCALE));
 	}
 
 	/**

@@ -28,7 +28,7 @@ public enum MimeType{
 	/** The json. */
 	JSON("json","application/json"),
 
-	//******************************   @see org.apache.catalina.startup.Tomcat#DEFAULT_MIME_MAPPINGS**********************************************************************
+	//****************   @see org.apache.catalina.startup.Tomcat#DEFAULT_MIME_MAPPINGS**********************************************************************
 
 	/** The abs. */
 	ABS("abs","audio/x-mpeg "),

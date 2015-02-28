@@ -88,11 +88,11 @@ public final class ScreenShotUtil{
 			File file = new File(fileName);
 			ImageIO.write(bufferedImage, formatName, file);
 		}catch (HeadlessException e){
-			log.debug(e.getMessage());
+			log.error("", e);
 		}catch (AWTException e){
-			log.debug(e.getMessage());
+			log.error("", e);
 		}catch (IOException e){
-			log.debug(e.getMessage());
+			log.error("", e);
 		}
 	}
 }
