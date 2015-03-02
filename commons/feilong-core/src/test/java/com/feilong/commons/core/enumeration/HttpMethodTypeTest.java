@@ -53,7 +53,6 @@ public class HttpMethodTypeTest{
 	@Test(expected = NoSuchFieldException.class)
 	public void name2() throws NoSuchFieldException{
 		assertNotEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get1"));
-
 	}
 
 	/**

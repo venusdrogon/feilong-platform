@@ -77,7 +77,7 @@ public final class EnumUtil{
 	 * @throws BeanUtilException
 	 *             the bean util exception
 	 */
-	public static <E extends Enum<E>, T> E getEnumByPropertyValueIgnoreCase(Class<E> enumClass,String propertyName,T value)
+	public static <E extends Enum<?>, T> E getEnumByPropertyValueIgnoreCase(Class<E> enumClass,String propertyName,T value)
 					throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 		boolean ignoreCase = true;
 		return getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
@@ -114,7 +114,7 @@ public final class EnumUtil{
 	 *             the bean util exception
 	 * @since 1.0.8
 	 */
-	public static <E extends Enum<E>, T> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value)
+	public static <E extends Enum<?>, T> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value)
 					throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 		boolean ignoreCase = false;
 		return getEnumByPropertyValue(enumClass, propertyName, value, ignoreCase);
@@ -154,7 +154,7 @@ public final class EnumUtil{
 	 * @see com.feilong.commons.core.bean.BeanUtil#getProperty(Object, String)
 	 * @since 1.0.8
 	 */
-	private static <E extends Enum<E>, T> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value,boolean ignoreCase)
+	private static <E extends Enum<?>, T> E getEnumByPropertyValue(Class<E> enumClass,String propertyName,T value,boolean ignoreCase)
 					throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
 
 		if (Validator.isNullOrEmpty(enumClass)){
