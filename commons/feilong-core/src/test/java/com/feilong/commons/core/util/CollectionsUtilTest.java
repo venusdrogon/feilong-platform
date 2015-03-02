@@ -61,7 +61,6 @@ public class CollectionsUtilTest{
 		testList.add("feilong");
 
 		String[] array = CollectionsUtil.toArray(testList);
-
 		log.info(JsonUtil.format(array));
 	}
 

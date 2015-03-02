@@ -170,7 +170,6 @@ public final class CollectionsUtil{
 	 * @see java.util.ArrayList#toArray()
 	 * @see java.util.ArrayList#toArray(Object[])
 	 */
-	@SuppressWarnings({ "unchecked", "cast" })
 	public static <T> T[] toArray(Collection<T> collection) throws IllegalArgumentException{
 		if (Validator.isNullOrEmpty(collection)){
 			return null;
@@ -188,13 +187,15 @@ public final class CollectionsUtil{
 		Class<?> compontType = firstT.getClass();
 
 		int size = collection.size();
+
+		@SuppressWarnings("unchecked")
 		T[] a = (T[]) Array.newInstance(compontType, size);
 
 		// 如果采用大家常用的把a的length设为0,就需要反射API来创建一个大小为size的数组,而这对性能有一定的影响.
 		// 所以最好的方式就是直接把a的length设为Collection的size从而避免调用反射API来达到一定的性能优化.
 
 		//注意，toArray(new Object[0]) 和 toArray() 在功能上是相同的. 
-		return (T[]) collection.toArray(a);
+		return collection.toArray(a);
 	}
 
 	/**
