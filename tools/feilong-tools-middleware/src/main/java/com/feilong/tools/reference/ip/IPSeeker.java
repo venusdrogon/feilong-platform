@@ -45,64 +45,64 @@ import com.feilong.commons.core.enumeration.CharsetType;
  */
 public class IPSeeker{
 
-	private final static Logger	log					= LoggerFactory.getLogger(IPSeeker.class);
+	private final static Logger					log					= LoggerFactory.getLogger(IPSeeker.class);
 
 	/**
 	 * ip数据库 QQWry.dat
 	 */
-	public final static String	config_ip_Data_Path	= getValue("config/feilong-tools-middleware-ip", "config_ip_Data_Path");
+	public final static String					config_ip_Data_Path	= getValue("config/feilong-tools-middleware-ip", "config_ip_Data_Path");
 
 	/**
 	 * 解决带空格路径的问题
 	 */
-	private static final String	ip_file				= config_ip_Data_Path.replace("%20", " ").substring(5);
+	private static final String					ip_file				= config_ip_Data_Path.replace("%20", " ").substring(5);
 
 	/**
 	 * 单一模式实例
 	 */
-	private static IPSeeker		ipSeeker			= new IPSeeker();
+	private static IPSeeker						ipSeeker			= new IPSeeker();
 
 	/**
 	 * 一些固定常量，比如记录长度等等
 	 */
-	private static final int	IP_RECORD_LENGTH	= 7;
+	private static final int					IP_RECORD_LENGTH	= 7;
 
-	private static final byte	AREA_FOLLOWED		= 0x01;
+	private static final byte					AREA_FOLLOWED		= 0x01;
 
-	private static final byte	NO_AREA				= 0x2;
+	private static final byte					NO_AREA				= 0x2;
 
 	/**
 	 * 用来做为cache，查询一个ip时首先查看cache，以减少不必要的重复查找
 	 */
-	private final Hashtable		ipCache;
+	private final Hashtable<String, IPLocation>	ipCache;
 
 	/**
 	 * 随机文件访问类
 	 */
-	private RandomAccessFile	randomAccessFile;
+	private RandomAccessFile					randomAccessFile;
 
 	/**
 	 * 内存映射文件
 	 */
-	private MappedByteBuffer	mappedByteBuffer;
+	private MappedByteBuffer					mappedByteBuffer;
 
 	/**
 	 * 起始地区的开始和结束的绝对偏移
 	 */
-	private long				ipBegin;
+	private long								ipBegin;
 
-	private long				ipEnd;
+	private long								ipEnd;
 
 	/**
 	 * 为提高效率而采用的临时变量
 	 */
-	private final IPLocation	ipLocation;
+	private final IPLocation					ipLocation;
 
-	private final byte[]		buf;
+	private final byte[]						buf;
 
-	private final byte[]		b4;
+	private final byte[]						b4;
 
-	private final byte[]		b3;
+	private final byte[]						b3;
 
 	/**
 	 * 私有构造函数
@@ -111,7 +111,7 @@ public class IPSeeker{
 	 * @throws FileNotFoundException
 	 */
 	private IPSeeker(){
-		ipCache = new Hashtable();
+		ipCache = new Hashtable<String, IPLocation>();
 		ipLocation = new IPLocation();
 		buf = new byte[100];
 		b4 = new byte[4];
@@ -157,8 +157,8 @@ public class IPSeeker{
 	 *            地点子串
 	 * @return 包含IPEntry类型的List
 	 */
-	public List getIPEntriesDebug(String s){
-		List list = new ArrayList();
+	public List<IPEntry> getIPEntriesDebug(String s){
+		List<IPEntry> list = new ArrayList<IPEntry>();
 		long endOffset = ipEnd + 4;
 		for (long offset = ipBegin + 4; offset <= endOffset; offset += IP_RECORD_LENGTH){
 			// 读取结束IP偏移
@@ -192,8 +192,8 @@ public class IPSeeker{
 	 *            地点子串
 	 * @return 包含IPEntry类型的List
 	 */
-	public List getIPEntries(String s){
-		List list = new ArrayList();
+	public List<IPEntry> getIPEntries(String s){
+		List<IPEntry> list = new ArrayList<IPEntry>();
 		// 映射IP信息文件到内存中
 		if (mappedByteBuffer == null){
 			FileChannel fc = randomAccessFile.getChannel();

@@ -268,21 +268,26 @@ public final class RegexPattern{
 	/** 手机号码 <code>{@value}</code>. */
 	public static final String	MOBILEPHONE			= "^[1]+[3,5]+\\d{9}$";
 
+	//******************************************************************************
+
 	/** 网址Url 链接 <code>{@value}</code>. */
 	public static final String	URLLINK				= "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
 
 	/** 邮政编码 <code>{@value}</code>. */
 	public static final String	ZIPCODE				= "^\\d{6}$";
 
+	//******************************************************************************
+
 	/** 所有都是字母 <code>{@value}</code>. */
 	public static final String	LETTER				= "^[A-Za-z]+$";
 
 	/** 小写字母 <code>{@value}</code>. */
-	public static final String	LOWERCASELETTER		= "^[a-z]+$";
+	public static final String	LETTER_LOWERCASE	= "^[a-z]+$";
 
 	/** 大写字母 <code>{@value}</code>. */
-	public static final String	UPPERCASELETTER		= "^[A-Z]+$";
+	public static final String	LETTER_UPPERCASE	= "^[A-Z]+$";
 
+	//******************************************************************************
 	/**
 	 * 两位数小数 <code>{@value}</code>
 	 * 
@@ -290,7 +295,7 @@ public final class RegexPattern{
 	 * 可以是200 也可以是200.00 不可以是 200.0
 	 * </pre>
 	 */
-	public static final String	DECIMAL_TWODIGIT	= "^[0-9]+(.[0-9]{2})?$";
+	public static final String	DECIMAL_TWO_DIGIT	= "^[0-9]+(.[0-9]{2})?$";
 
 	/** 纯数字 <code>{@value}</code>. */
 	public static final String	NUMBER				= "^[0-9]*$";
@@ -321,6 +326,7 @@ public final class RegexPattern{
 	// /** 非零的正整数 <code>{@value}</code>. */
 	// String IntNumber = "^\\+?[1-9][0-9]*$";
 
+	//******************************************************************************
 	/** Don't let anyone instantiate this class. */
 	private RegexPattern(){
 		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。

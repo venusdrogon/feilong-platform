@@ -18,8 +18,8 @@ package com.feilong.framework.code;
 
 import java.util.Date;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * The Enum CodeType.

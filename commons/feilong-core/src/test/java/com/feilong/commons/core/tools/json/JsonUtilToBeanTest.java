@@ -216,7 +216,7 @@ public class JsonUtilToBeanTest{
 	public void testGetMapFromJsonObjStr(){
 		String json = "{'name':'get','int':1,'double':1.1,'null':null}";
 		Map<String, Object> map = JsonUtil.toMap(json);
-		for (Iterator iter = map.keySet().iterator(); iter.hasNext();){
+		for (Iterator<String> iter = map.keySet().iterator(); iter.hasNext();){
 			Object key = iter.next();
 			log.info(key + ":" + map.get(key).getClass().toString());
 		}
@@ -314,7 +314,7 @@ public class JsonUtilToBeanTest{
 		ps.setDateAttr(new Date());
 		ps.setName("get");
 		MyBean myBean = new MyBean();
-		List list = new ArrayList();
+		List<Object> list = new ArrayList<Object>();
 		list.add(ps);
 
 		myBean.setData(list);
@@ -330,7 +330,7 @@ public class JsonUtilToBeanTest{
 		Person ps = new Person();
 		ps.setDateAttr(new Date());
 		ps.setName("get");
-		List list = new ArrayList();
+		List<Person> list = new ArrayList<Person>();
 		list.add(ps);
 
 		// print: [{"dateAttr":"2009-09-12 07:22:49","name":"get"}]

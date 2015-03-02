@@ -41,19 +41,19 @@ import org.slf4j.LoggerFactory;
  */
 public class TagUtils{
 
-	private static final Logger	log			= LoggerFactory.getLogger(TagUtils.class);
+	private static final Logger					log			= LoggerFactory.getLogger(TagUtils.class);
 
 	/**
 	 * The Singleton instance.
 	 * 
 	 * @since 1.3.5 Changed to non-final so it may be overridden, use at your own risk (you've been warned!!)
 	 */
-	private static TagUtils		instance	= new TagUtils();
+	private static TagUtils						instance	= new TagUtils();
 
 	/**
 	 * Maps lowercase JSP scope names to their PageContext integer constant values.
 	 */
-	private static final Map	scopes		= new HashMap();
+	private static final Map<String, Integer>	scopes		= new HashMap<String, Integer>();
 	/**
 	 * Initialize the scope names map and the encode variable with the Java 1.4 method if available.
 	 */
@@ -132,8 +132,10 @@ public class TagUtils{
 	 *             if the scopeName is not a valid name.
 	 */
 	public int getScope(String scopeName) throws JspException{
-		Integer scope = (Integer) scopes.get(scopeName.toLowerCase());
-		if (scope == null){}
+		Integer scope = scopes.get(scopeName.toLowerCase());
+		if (scope == null){
+			throw new UnsupportedOperationException("scope is null!");
+		}
 		return scope.intValue();
 	}
 

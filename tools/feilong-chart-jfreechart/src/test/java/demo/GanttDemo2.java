@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package demo;
 
 import java.awt.Color;
@@ -27,8 +42,12 @@ import org.slf4j.LoggerFactory;
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
+/**
+ * The Class GanttDemo2.
+ */
 public class GanttDemo2 extends ApplicationFrame{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(GanttDemo2.class);
 
 	/**
@@ -53,11 +72,12 @@ public class GanttDemo2 extends ApplicationFrame{
 
 	/**
 	 * Creates a sample chart.
-	 * 
+	 *
 	 * @param dataset
 	 *            the dataset.
 	 * @return A sample chart.
 	 * @throws IOException
+	 *             the IO exception
 	 */
 	private static JFreeChart createChart(IntervalCategoryDataset dataset) throws IOException{
 		JFreeChart chart = ChartFactory.createGanttChart("Gantt Chart Demo", // chart title
@@ -81,6 +101,9 @@ public class GanttDemo2 extends ApplicationFrame{
 		return chart;
 	}
 
+	/**
+	 * The Class CustomRenderer.
+	 */
 	static class CustomRenderer extends GanttRenderer{
 
 		/** The colors. */
@@ -88,9 +111,6 @@ public class GanttDemo2 extends ApplicationFrame{
 
 		/**
 		 * Creates a new renderer.
-		 * 
-		 * @param colors
-		 *            the colors.
 		 */
 		public CustomRenderer(){
 			this.colors = colors;
@@ -200,9 +220,10 @@ public class GanttDemo2 extends ApplicationFrame{
 
 	/**
 	 * Creates a panel for the demo (used by SuperDemo.java).
-	 * 
+	 *
 	 * @return A panel.
 	 * @throws IOException
+	 *             the IO exception
 	 */
 	public static JPanel createDemoPanel() throws IOException{
 		JFreeChart chart = createChart(createDataset());

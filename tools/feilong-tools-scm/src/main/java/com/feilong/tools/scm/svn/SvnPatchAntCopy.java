@@ -22,9 +22,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.scm.AbstractScmAntCopy;
@@ -39,10 +36,6 @@ import com.feilong.tools.scm.command.ScmPatchCommand;
  */
 public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log					= LoggerFactory.getLogger(SvnPatchAntCopy.class);
-
 	/** 项目名称 <code>{@value}</code>. */
 	private static final String	PREFIX_PROJECTNAME	= "#P ";
 
@@ -50,17 +43,18 @@ public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 	private static final String	PREFIX_INDEX		= "Index: ";
 
 	/**
-	 * Instantiates a new sVN patch util.
+	 * The Constructor.
 	 */
 	public SvnPatchAntCopy(){}
 
 	/**
 	 * To patch command list map.
-	 * 
+	 *
 	 * @param bufferedReader
 	 *            the buffered reader
 	 * @return the map
 	 * @throws IOException
+	 *             the IO exception
 	 */
 	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
 		List<SvnPatchCommand> addList = new ArrayList<SvnPatchCommand>();
@@ -82,8 +76,8 @@ public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 				setProjectName(StringUtil.substring(line, PREFIX_PROJECTNAME.length()));
 			}
 
+			// 开始
 			if (line.startsWith(PREFIX_INDEX)){
-				// 开始
 				patchCommand = new SvnPatchCommand();
 				patchCommand.setIndex(line);
 
@@ -92,40 +86,48 @@ public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 				patchCommand.setFilePath(filePath);
 				// 先寄存
 				indexStorageList.add(patchCommand);
+			}else{
 
-			}else if (line.startsWith("---")){// --- src/main/java/com/jumbo/shop/web/UserDetails.java (revision 47866)
-				// 寄存器 删除 最后一个
-				indexStorageList.removeLast();
-				patchCommand.setRemote(line);
+				if (line.startsWith("---") || line.startsWith("+++") || line.startsWith("@@ ")){
+					if (null == patchCommand){
+						throw new NullPointerException("the patchCommand is null or empty!");
+					}
 
-			}else if (line.startsWith("+++")){// +++ src/main/java/com/jumbo/shop/web/UserDetails.java (working copy)
-				patchCommand.setLocal(line);
+					if (line.startsWith("---")){// --- src/main/java/com/jumbo/shop/web/UserDetails.java (revision 47866)
 
-			}else if (line.startsWith("@@ ")){
+						// 寄存器 删除 最后一个
+						indexStorageList.removeLast();
+						patchCommand.setRemote(line);
 
-				// @@ -1,34 +0,0 @@ delete
-				// @@ -98,10 +98,18 @@ update
-				patchCommand.getTwoAt().add(line);
+					}else if (line.startsWith("+++")){// +++ src/main/java/com/jumbo/shop/web/UserDetails.java (working copy)
+						patchCommand.setLocal(line);
+					}else if (line.startsWith("@@ ")){
 
-				//add
-				if (StringUtil.isContain(patchCommand.getRemote(), "(revision 0)")){
-					// --- src/main/webapp/css/portal11.css (revision 0)
-					// +++ src/main/webapp/css/portal11.css (working copy)
-					// @@ -0,0 +1,129 @@
-					addIgnoreSameFilePath(addList, patchCommand, PatchType.ADD);
-				}else{
-					//delete
-					if (StringUtil.isContain(line, "+0,0")){
-						addIgnoreSameFilePath(deleteList, patchCommand, PatchType.DELETE);
-					}else{
-						// 一个index 下面 可能 修改了 好多行 会产生很多 (选择基于路径)
-						// @@ -157,18 +157,18 @@
-						// xxxx
-						// @@ -478,9 +478,9 @@
-						// xxxx
+						// @@ -1,34 +0,0 @@ delete
+						// @@ -98,10 +98,18 @@ update
+						patchCommand.getTwoAt().add(line);
 
-						//update
-						addIgnoreSameFilePath(updateList, patchCommand, PatchType.UPDATE);
+						//add
+						if (StringUtil.isContain(patchCommand.getRemote(), "(revision 0)")){
+							// --- src/main/webapp/css/portal11.css (revision 0)
+							// +++ src/main/webapp/css/portal11.css (working copy)
+							// @@ -0,0 +1,129 @@
+							addIgnoreSameFilePath(addList, patchCommand, PatchType.ADD);
+						}else{
+							//delete
+							if (StringUtil.isContain(line, "+0,0")){
+								addIgnoreSameFilePath(deleteList, patchCommand, PatchType.DELETE);
+							}else{
+								// 一个index 下面 可能 修改了 好多行 会产生很多 (选择基于路径)
+								// @@ -157,18 +157,18 @@
+								// xxxx
+								// @@ -478,9 +478,9 @@
+								// xxxx
+
+								//update
+								addIgnoreSameFilePath(updateList, patchCommand, PatchType.UPDATE);
+							}
+						}
 					}
 				}
 			}

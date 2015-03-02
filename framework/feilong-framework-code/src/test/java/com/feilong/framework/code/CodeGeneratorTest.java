@@ -19,9 +19,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.framework.code.CodeGenerator;
+import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * The Class CodeGeneratorTest.
