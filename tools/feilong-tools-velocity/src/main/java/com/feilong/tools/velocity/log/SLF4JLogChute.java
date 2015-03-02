@@ -31,6 +31,7 @@ public class SLF4JLogChute implements LogChute{
 	 *             the exception
 	 * @see org.apache.velocity.runtime.log.LogChute#init(org.apache.velocity.runtime.RuntimeServices)
 	 */
+	@Override
 	public void init(RuntimeServices runtimeServices) throws Exception{
 		String name = (String) runtimeServices.getProperty(RUNTIME_LOG_SLF4J_LOGGER);
 		if (name != null){
@@ -51,6 +52,7 @@ public class SLF4JLogChute implements LogChute{
 	 *            the message
 	 * @see org.apache.velocity.runtime.log.LogChute#log(int, java.lang.String)
 	 */
+	@Override
 	public void log(int level,String message){
 		switch (level) {
 			case LogChute.WARN_ID:
@@ -83,6 +85,7 @@ public class SLF4JLogChute implements LogChute{
 	 *            the t
 	 * @see org.apache.velocity.runtime.log.LogChute#log(int, java.lang.String, java.lang.Throwable)
 	 */
+	@Override
 	public void log(int level,String message,Throwable t){
 		switch (level) {
 			case LogChute.WARN_ID:
@@ -112,6 +115,7 @@ public class SLF4JLogChute implements LogChute{
 	 * @return true, if checks if is level enabled
 	 * @see org.apache.velocity.runtime.log.LogChute#isLevelEnabled(int)
 	 */
+	@Override
 	public boolean isLevelEnabled(int level){
 		switch (level) {
 			case LogChute.DEBUG_ID:

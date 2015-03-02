@@ -126,22 +126,22 @@ public class DatePatternConverter extends DateTimeConverter{
 		return (T) dateObj;
 	}
 
-	/**
-	 * Sets the pattern {@link DatePattern}.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param pattern
-	 *            the pattern to set
+	 * @see org.apache.commons.beanutils.converters.DateTimeConverter#setPattern(java.lang.String)
 	 */
+	@Override
 	public void setPattern(String pattern){
 		this.pattern = pattern;
 	}
 
-	/**
-	 * Sets the locale.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param locale
-	 *            the locale to set
+	 * @see org.apache.commons.beanutils.converters.DateTimeConverter#setLocale(java.util.Locale)
 	 */
+	@Override
 	public void setLocale(Locale locale){
 		this.locale = locale;
 	}

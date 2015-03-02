@@ -57,6 +57,7 @@ public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepo
 	 * @see com.jumbo.brandstore.manager.solr.BaseSuggestionRepository#findSuggestionLexeme(com.jumbo.brandstore.manager.solr.command.
 	 * SpellingParamCommand)
 	 */
+	@Override
 	public List<String> findSuggestionLexeme(SpellingParamCommand spellingParamCommand){
 		SolrQuery solrQuery = new SolrQuery();
 

@@ -48,6 +48,7 @@ public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
 	 * 
 	 * @see com.feilong.framework.netpay.payment.PaymentAdaptorFactory#getPaymentAdaptor(java.lang.String)
 	 */
+	@Override
 	public PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException{
 		if (Validator.isNullOrEmpty(paymentAdaptorMap)){
 			throw new IllegalArgumentException("paymentAdaptorMap can't be null/empty!");

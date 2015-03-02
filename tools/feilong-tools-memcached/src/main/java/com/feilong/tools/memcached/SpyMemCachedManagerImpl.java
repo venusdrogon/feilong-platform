@@ -61,6 +61,7 @@ public class SpyMemCachedManagerImpl implements MemCachedManager{
 	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#incr(java.lang.String, int)
 	 */
+	@Override
 	public long incr(String key,int by){
 		return memcachedClient.incr(key, by);
 	}
@@ -70,6 +71,7 @@ public class SpyMemCachedManagerImpl implements MemCachedManager{
 	 * 
 	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#decr(java.lang.String, int)
 	 */
+	@Override
 	public long decr(String key,int by){
 		return memcachedClient.decr(key, by);
 	}

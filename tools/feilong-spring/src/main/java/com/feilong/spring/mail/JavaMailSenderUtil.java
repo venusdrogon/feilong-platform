@@ -87,6 +87,7 @@ public class JavaMailSenderUtil{
 		// 注意MimeMessagePreparator接口只有这一个回调函数
 		MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator(){
 
+			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception{
 				// 这是一个生成Mime邮件简单工具，如果不使用GBK这个，中文会出现乱码
 				// 如果您使用的都是英文，那么可以使用MimeMessageHelper message = new MimeMessageHelper(mimeMessage);

@@ -459,14 +459,17 @@ public class HttpClient implements java.io.Serializable {
 			mData = data;
 		}
 
+		@Override
 		protected void sendData(OutputStream out) throws IOException {
 			out.write(mData);
 		}
 
+		@Override
 		protected long lengthOfData() throws IOException {
 			return mData.length;
 		}
 
+		@Override
 		protected void sendDispositionHeader(OutputStream out)
 				throws IOException {
 			super.sendDispositionHeader(out);

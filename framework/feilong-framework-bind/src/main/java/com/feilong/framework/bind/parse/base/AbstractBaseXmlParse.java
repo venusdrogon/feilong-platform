@@ -51,6 +51,7 @@ public abstract class AbstractBaseXmlParse<T> extends AbstractXmlParse<T>{
 	 * @throws BuildCommandException
 	 *             the build command exception
 	 */
+	@Override
 	protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
 
 		try{

@@ -176,6 +176,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List search(final String hql,final List paramsList){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				return getQuery(session, hql, paramsList).list();
 			}
@@ -196,6 +197,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List search(final String hql,final Object...params){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				return getQuery(session, hql, params).list();
 			}
@@ -288,6 +290,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public Object searchUniqueResult_Object(final String hql,final Object...params){
 		return super.getHibernateTemplate().execute(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				// 如果有多个值抛NonUniqueResultException;
 				// 如果有值且只有一个,返回一个object;
@@ -311,6 +314,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List searchByProperties(final String hql,final Object object){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				// Customer customer=new Customer();
 				// customer.setName(“pansl”);
@@ -341,6 +345,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List searchByEntity(final String hql,final Map<String, Object> map){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				// 这里还有一个特殊的setEntity()方法，它会把命名参数与一个持久化对象相关联，如下面代码所示：
 				// Customer customer=(Customer)session.load(Customer.class,”1”);
@@ -372,6 +377,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List selectLikeInAnywhere(final Class<?> clz,final Object object){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				return getCriteriaList(session, clz, object, MatchMode.ANYWHERE);
 			}
@@ -390,6 +396,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List selectLikeInStart(final Class<?> clz,final Object object){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				return getCriteriaList(session, clz, object, MatchMode.START);
 			}
@@ -624,6 +631,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public Integer executeUpdate(final String hql,final Object...params){
 		return (Integer) super.getHibernateTemplate().execute(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session) throws HibernateException,SQLException{
 				Query query = getQuery(session, hql, params);
 				return query.executeUpdate();
@@ -1112,6 +1120,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List searchPageList(final int firstPage,final int pageSize,final String hql,final List paramsList){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				Query query = getPageQuery(session, hql, firstPage, pageSize, paramsList);
 				return query.list();
@@ -1173,6 +1182,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List searchPageList(final Integer firstPage,final Integer pageSize,final String hql,final Object...params){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session session){
 				Query query = getPageQuery(session, hql, firstPage, pageSize, params);
 				return query.list();
@@ -1439,6 +1449,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public List executeSql(final String hql,final Object[] p,final Integer page,final Integer size){
 		return super.getHibernateTemplate().executeFind(new HibernateCallback(){
 
+			@Override
 			public Object doInHibernate(Session s) throws HibernateException,SQLException{
 				Query query = s.createSQLQuery(hql);
 				// 判断参数

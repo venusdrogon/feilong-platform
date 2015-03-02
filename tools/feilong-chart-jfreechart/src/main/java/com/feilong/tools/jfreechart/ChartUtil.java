@@ -261,6 +261,7 @@ public abstract class ChartUtil implements Chart{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
+	@Override
 	public final void createImage(ChartInfoEntity chartInfoEntity) throws IOException{
 		createImage(getJFreeChart(), chartInfoEntity);
 	}

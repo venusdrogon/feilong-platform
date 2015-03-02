@@ -59,6 +59,7 @@ public class MySecurityManagerImpl implements MySecurityManager{
 	 * 前置通知，在addAllMethod切入点所代表的方法前调用checkSecurity方法
 	 */
 	// @Before("addAllMethod()")
+	@Override
 	public void security(JoinPoint joinPoint){
 		// 在来得到方法名吧，就是通知所要织入目标对象中的方法名称
 //		String method = joinPoint.getSignature().getName();

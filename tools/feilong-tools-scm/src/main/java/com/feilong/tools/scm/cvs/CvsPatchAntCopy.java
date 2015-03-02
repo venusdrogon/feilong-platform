@@ -67,6 +67,7 @@ public final class CvsPatchAntCopy extends AbstractScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.AbstractScmAntCopy#toPatchCommandListMap(java.io.BufferedReader)
 	 */
+	@Override
 	@SuppressWarnings("null")
 	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
 		String line = null;

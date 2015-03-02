@@ -236,6 +236,7 @@ public class StubStatusCommand implements Serializable,Comparable<StubStatusComm
 	 * (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
+	@Override
 	public int compareTo(StubStatusCommand o){
 		if (this.activeConnections == o.getActiveConnections()){
 			return 0;

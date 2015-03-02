@@ -85,6 +85,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
+	@Override
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 		doCommonValidate(payRequest);
 
@@ -494,6 +495,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyRedirect(HttpServletRequest request){
 		// TODO
 		return PaymentResult.PAID;
@@ -516,6 +518,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 	 *            指定的签名map
 	 * @return true, if successful
 	 */
+	@Override
 	protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
 		return true;
 	}

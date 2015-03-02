@@ -66,6 +66,7 @@ public class MySQL5UTF8Dialect extends MySQL5Dialect{
 	 * 
 	 * @see org.hibernate.dialect.MySQL5Dialect#registerVarcharTypes()
 	 */
+	@Override
 	protected void registerVarcharTypes(){
 		super.registerVarcharTypes();
 		registerColumnType(Types.VARCHAR, 21844, "varchar($l)");

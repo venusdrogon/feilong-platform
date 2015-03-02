@@ -75,6 +75,7 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 	 * @throws TradeQueryException
 	 *             the query exception
 	 */
+	@Override
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
 		// @formatter:off

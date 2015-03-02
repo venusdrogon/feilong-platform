@@ -36,6 +36,7 @@ public class SwitchCaseTag extends BaseTag{
 	 * (non-Javadoc)
 	 * @see javax.servlet.jsp.tagext.BodyTagSupport#doStartTag()
 	 */
+	@Override
 	public int doStartTag(){
 		Tag tag = getParent();
 		SwitchTag switchTag = (SwitchTag) tag;

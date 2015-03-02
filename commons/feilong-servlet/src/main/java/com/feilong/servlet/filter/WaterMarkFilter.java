@@ -48,6 +48,7 @@ public class WaterMarkFilter extends HttpServlet implements Filter{
 	 * 
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 */
+	@Override
 	public void init(FilterConfig filterConfig) throws ServletException{
 		this.filterConfig = filterConfig;
 	}
@@ -57,6 +58,7 @@ public class WaterMarkFilter extends HttpServlet implements Filter{
 	 * 
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
+	@Override
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain filterChain) throws IOException,ServletException{
 		HttpServletRequest req = (HttpServletRequest) request;
 		// 获取请求中的图片路径

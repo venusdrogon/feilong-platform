@@ -72,6 +72,7 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
 	 * 
 	 * @see com.feilong.netpay.parse.QueryResultXmlParse#parseXML(java.lang.String)
 	 */
+	@Override
 	public T parseXML(String xml){
 		if (Validator.isNullOrEmpty(xml)){
 			throw new IllegalArgumentException("xml can't be null/empty!");

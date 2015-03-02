@@ -166,6 +166,7 @@ public final class Concat extends AbstractDirective{
 	 * @see com.feilong.tools.velocity.directive.AbstractDirective#doRender(org.apache.velocity.context.InternalContextAdapter,
 	 * java.io.Writer, org.apache.velocity.runtime.parser.node.Node)
 	 */
+	@Override
 	public boolean doRender(InternalContextAdapter internalContextAdapter,Writer writer,Node node) throws IOException,
 			ResourceNotFoundException,ParseErrorException,MethodInvocationException{
 
@@ -311,6 +312,7 @@ public final class Concat extends AbstractDirective{
 	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getName()
 	 */
+	@Override
 	public String getName(){
 		if (log.isDebugEnabled()){
 			log.debug("DIRECTIVE_NAME:[{}]", DIRECTIVE_NAME);
@@ -323,6 +325,7 @@ public final class Concat extends AbstractDirective{
 	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getType()
 	 */
+	@Override
 	public int getType(){
 		if (log.isDebugEnabled()){
 			log.debug("DIRECTIVE_TYPE:[{}]", DIRECTIVE_TYPE);

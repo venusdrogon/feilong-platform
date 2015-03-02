@@ -120,6 +120,7 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 	 * com.feilong.netpay.advanceadaptor.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest
 	 * )
 	 */
+	@Override
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
 		// queryRequest

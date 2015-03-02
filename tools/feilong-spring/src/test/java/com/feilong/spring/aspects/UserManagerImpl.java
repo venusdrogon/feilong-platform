@@ -34,6 +34,7 @@ public class UserManagerImpl implements UserManager{
 	/* (non-Javadoc)
 	 * @see com.feilong.spring.aspects.UserManager#addUser(java.lang.String, java.lang.String)
 	 */
+	@Override
 	@Log(level="debug")
 	public void addUser(String id,String name){
 		log.info("---UsreManagerImpl中的addUser方法的实现-----");
@@ -42,6 +43,7 @@ public class UserManagerImpl implements UserManager{
 	/* (non-Javadoc)
 	 * @see com.feilong.spring.aspects.UserManager#delUser(int)
 	 */
+	@Override
 	public void delUser(int id){
 		log.info("-----UserManagerImpl delUser方法的实现-----");
 	}
@@ -49,6 +51,7 @@ public class UserManagerImpl implements UserManager{
 	/* (non-Javadoc)
 	 * @see com.feilong.spring.aspects.UserManager#modifyUser(int, java.lang.String, int)
 	 */
+	@Override
 	public void modifyUser(int id,String name,int age){
 		log.info("----UserManagerImpl modifyUser方法的实现-----");
 	}

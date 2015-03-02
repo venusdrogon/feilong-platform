@@ -41,8 +41,8 @@ public class DateJsonValueProcessor implements JsonValueProcessor{
 	public DateJsonValueProcessor(){}
 
 	/**
-	 * Instantiates a new json date value processor.
-	 * 
+	 * The Constructor.
+	 *
 	 * @param datePattern
 	 *            the date pattern
 	 */
@@ -55,6 +55,7 @@ public class DateJsonValueProcessor implements JsonValueProcessor{
 	 * 
 	 * @see net.sf.json.processors.JsonValueProcessor#processArrayValue(java.lang.Object, net.sf.json.JsonConfig)
 	 */
+	@Override
 	public Object processArrayValue(Object value,JsonConfig jsonConfig){
 		return process(value);
 	}
@@ -64,13 +65,14 @@ public class DateJsonValueProcessor implements JsonValueProcessor{
 	 * 
 	 * @see net.sf.json.processors.JsonValueProcessor#processObjectValue(java.lang.String, java.lang.Object, net.sf.json.JsonConfig)
 	 */
+	@Override
 	public Object processObjectValue(String key,Object value,JsonConfig jsonConfig){
 		return process(value);
 	}
 
 	/**
 	 * Process.
-	 * 
+	 *
 	 * @param value
 	 *            the value
 	 * @return the object
@@ -86,19 +88,19 @@ public class DateJsonValueProcessor implements JsonValueProcessor{
 	}
 
 	/**
-	 * Gets the date pattern.
-	 * 
-	 * @return the datePattern
+	 * 获得 the date pattern.
+	 *
+	 * @return the date pattern
 	 */
 	public String getDatePattern(){
 		return datePattern;
 	}
 
 	/**
-	 * Sets the date pattern.
-	 * 
+	 * 设置 the date pattern.
+	 *
 	 * @param datePattern
-	 *            the datePattern to set
+	 *            the new date pattern
 	 */
 	public void setDatePattern(String datePattern){
 		this.datePattern = datePattern;

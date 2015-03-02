@@ -48,6 +48,7 @@ public class ZookeeperConfigurer extends PropertyPlaceholderConfigurer implement
 	 * org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#processProperties(org.springframework.beans.factory.config
 	 * .ConfigurableListableBeanFactory, java.util.Properties)
 	 */
+	@Override
 	protected void processProperties(ConfigurableListableBeanFactory configurableListableBeanFactory,Properties properties) throws BeansException{
 		String zkhost = properties.getProperty("zkhost");
 		String znodes = properties.getProperty("znodes");
@@ -93,6 +94,7 @@ public class ZookeeperConfigurer extends PropertyPlaceholderConfigurer implement
 	 * (non-Javadoc)
 	 * @see org.apache.zookeeper.Watcher#process(org.apache.zookeeper.WatchedEvent)
 	 */
+	@Override
 	public void process(WatchedEvent event){}
 
 }

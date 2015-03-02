@@ -99,6 +99,7 @@ public class ChartIndex implements Serializable,Comparable<ChartIndex>{
 	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
+	@Override
 	public int compareTo(ChartIndex o){
 		return -(CompareToBuilder.reflectionCompare(this.value, o.value));
 	}

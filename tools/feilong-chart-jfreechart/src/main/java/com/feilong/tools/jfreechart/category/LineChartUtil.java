@@ -88,6 +88,7 @@ import com.feilong.commons.core.awt.FontUtil;
 	 * 
 	 * @see com.feilong.tools.jfreechart.category.CategoryChartUtil#setDefaultCategoryItemRenderer()
 	 */
+	@Override
 	protected void setDefaultCategoryItemRenderer(){
 		// 获得renderer 注意这里是下嗍造型到lineandshaperenderer！！
 		lineandshaperenderer = (LineAndShapeRenderer) categoryPlot.getRenderer();

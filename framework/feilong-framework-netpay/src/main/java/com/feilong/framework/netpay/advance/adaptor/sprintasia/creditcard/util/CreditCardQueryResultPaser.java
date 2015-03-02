@@ -111,6 +111,7 @@ public final class CreditCardQueryResultPaser extends AbstractVarCommandXmlParse
 	 *            the wddx packet xml
 	 * @return the var name and value map
 	 */
+	@Override
 	protected Map<String, String> getVarNameAndValueMap(String wddxPacketXML){
 		Document document = Dom4jUtil.string2Document(wddxPacketXML);
 

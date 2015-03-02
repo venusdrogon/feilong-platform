@@ -125,6 +125,7 @@ public class GanttDemo2 extends ApplicationFrame{
 		 *            the category.
 		 * @return The item color.
 		 */
+		@Override
 		public Paint getItemPaint(int row,int column){
 			if (column % 2 == 0){
 				setCompletePaint(Color.pink);

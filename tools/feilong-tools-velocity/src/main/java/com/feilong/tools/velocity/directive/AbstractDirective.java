@@ -60,6 +60,7 @@ public abstract class AbstractDirective extends Directive{
 	 * @see org.apache.velocity.runtime.directive.Directive#init(org.apache.velocity.runtime.RuntimeServices,
 	 * org.apache.velocity.context.InternalContextAdapter, org.apache.velocity.runtime.parser.node.Node)
 	 */
+	@Override
 	public void init(RuntimeServices rs,InternalContextAdapter context,Node node) throws TemplateInitException{
 		// First difference is that we additionally overrode init() method from Directive class that allows us to get access
 		// to RuntimeServices object in order to get logger instance and read default directive parameters from configuration file.
@@ -83,6 +84,7 @@ public abstract class AbstractDirective extends Directive{
 	 * @see org.apache.velocity.runtime.directive.Directive#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer,
 	 * org.apache.velocity.runtime.parser.node.Node)
 	 */
+	@Override
 	public boolean render(InternalContextAdapter context,Writer writer,Node node) throws IOException,ResourceNotFoundException,
 			ParseErrorException,MethodInvocationException{
 
@@ -122,6 +124,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#preRender(org.apache.velocity.context.InternalContextAdapter)
 	 */
+	@Override
 	protected void preRender(InternalContextAdapter context){
 		if (log.isDebugEnabled()){
 			log.debug("preRender......");
@@ -133,6 +136,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#postRender(org.apache.velocity.context.InternalContextAdapter)
 	 */
+	@Override
 	protected void postRender(InternalContextAdapter context){
 		if (log.isDebugEnabled()){
 			log.debug("postRender......");
@@ -145,6 +149,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#setLocation(int, int)
 	 */
+	@Override
 	public void setLocation(int line,int column){
 		super.setLocation(line, column);
 	}
@@ -153,6 +158,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#setLocation(int, int, java.lang.String)
 	 */
+	@Override
 	public void setLocation(int line,int column,String templateName){
 		super.setLocation(line, column, templateName);
 	}
@@ -161,6 +167,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#getLine()
 	 */
+	@Override
 	public int getLine(){
 		return super.getLine();
 	}
@@ -169,6 +176,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#getColumn()
 	 */
+	@Override
 	public int getColumn(){
 		return super.getColumn();
 	}
@@ -177,6 +185,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#getTemplateName()
 	 */
+	@Override
 	public String getTemplateName(){
 		return super.getTemplateName();
 	}
@@ -185,6 +194,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#getScopeName()
 	 */
+	@Override
 	public String getScopeName(){
 		return super.getScopeName();
 	}
@@ -193,6 +203,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#isScopeProvided()
 	 */
+	@Override
 	public boolean isScopeProvided(){
 		return super.isScopeProvided();
 	}
@@ -201,6 +212,7 @@ public abstract class AbstractDirective extends Directive{
 	 * (non-Javadoc)
 	 * @see org.apache.velocity.runtime.directive.Directive#makeScope(java.lang.Object)
 	 */
+	@Override
 	protected Scope makeScope(Object prev){
 		return super.makeScope(prev);
 	}

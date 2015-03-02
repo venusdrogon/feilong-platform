@@ -41,6 +41,7 @@ public abstract class BaseRowMapper<T> implements RowMapper<T>{
 	 * 
 	 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
 	 */
+	@Override
 	public abstract T mapRow(ResultSet rs,int index) throws SQLException;
 
 	/**

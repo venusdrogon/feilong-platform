@@ -343,6 +343,7 @@ public final class MailSenderUtil{
 			final String password = mailSenderConfig.getPassword();
 			authenticator = new Authenticator(){
 
+				@Override
 				protected PasswordAuthentication getPasswordAuthentication(){
 					return new PasswordAuthentication(userName, password);
 				}

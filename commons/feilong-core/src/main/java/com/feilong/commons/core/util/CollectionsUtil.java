@@ -428,6 +428,7 @@ public final class CollectionsUtil{
 	private static <V> Predicate getArrayContainsPredicate(String propertyName,V...values){
 		Predicate predicate = new Predicate(){
 
+			@Override
 			public boolean evaluate(Object object){
 				V property = PropertyUtil.getProperty(object, propertyName);
 				return ArrayUtil.isContain(values, property);
@@ -451,6 +452,7 @@ public final class CollectionsUtil{
 	private static <V> Predicate getObjectEqualsPredicate(String propertyName,V value){
 		Predicate predicate = new Predicate(){
 
+			@Override
 			public boolean evaluate(Object object){
 				V property = PropertyUtil.getProperty(object, propertyName);
 				return ObjectUtil.equals(property, value, true);

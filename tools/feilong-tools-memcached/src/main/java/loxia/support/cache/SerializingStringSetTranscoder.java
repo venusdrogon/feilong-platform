@@ -56,6 +56,7 @@ import net.spy.memcached.transcoders.Transcoder;
 	 * (non-Javadoc)
 	 * @see net.spy.memcached.Transcoder#decode(net.spy.memcached.CachedData)
 	 */
+	@Override
 	public Set<String> decode(CachedData d){
 		byte[] data = d.getData();
 		Set<String> rv = null;
@@ -69,6 +70,7 @@ import net.spy.memcached.transcoders.Transcoder;
 	 * (non-Javadoc)
 	 * @see net.spy.memcached.Transcoder#encode(java.lang.Object)
 	 */
+	@Override
 	public CachedData encode(Set<String> strSet){
 		byte[] b = null;
 		int flags = 0;

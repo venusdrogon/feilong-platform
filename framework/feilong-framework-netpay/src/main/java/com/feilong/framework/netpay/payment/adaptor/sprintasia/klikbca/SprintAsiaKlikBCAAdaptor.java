@@ -45,6 +45,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
+	@Override
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 		// KlikBCA 的支付方式 是 网关主动在 inquery,和通用的不一样
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support getPaymentFormEntity");
@@ -54,6 +55,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyNotify(HttpServletRequest request){
 
 		String userid = request.getParameter("userid");
@@ -95,6 +97,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("transno");
 	}
@@ -103,6 +106,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
 		// amount fields consist of 3 digits of currency and 11 digits of numeric format
 		return StringUtil.substring(request.getParameter("amount"), 3);
@@ -112,6 +116,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("KlikBCAAdaptor not support doRedirectVerify");
 	}

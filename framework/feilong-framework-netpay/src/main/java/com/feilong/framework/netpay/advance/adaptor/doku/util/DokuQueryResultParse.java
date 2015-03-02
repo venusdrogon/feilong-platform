@@ -97,6 +97,7 @@ public final class DokuQueryResultParse extends AbstractVarCommandXmlParse<DokuQ
 	 *            the wddx packet xml
 	 * @return the var name and value map
 	 */
+	@Override
 	protected Map<String, String> getVarNameAndValueMap(String xml){
 		Document document = Dom4jUtil.string2Document(xml);
 

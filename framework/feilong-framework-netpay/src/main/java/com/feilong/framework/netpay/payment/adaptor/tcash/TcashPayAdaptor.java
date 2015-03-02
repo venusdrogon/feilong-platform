@@ -255,6 +255,7 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
 	 * com.feilong.framework.netpay.payment.PaymentAdaptor#getPaymentFormEntity(com.feilong.framework.netpay.payment.command.PayRequest,
 	 * java.util.Map)
 	 */
+	@Override
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap){
 		doCommonValidate(payRequest);
 
@@ -275,6 +276,7 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.framework.netpay.payment.PaymentAdaptor#verifyNotify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyNotify(HttpServletRequest request) throws IllegalArgumentException{
 		throw new UnsupportedOperationException("verifyNotify not support!");
 	}
@@ -284,6 +286,7 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.framework.netpay.payment.PaymentAdaptor#verifyRedirect(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("verifyRedirect not support!");
 	}
@@ -293,6 +296,7 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.framework.netpay.payment.PaymentAdaptor#getFeedbackTradeNo(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTradeNo(HttpServletRequest request){
 		throw new UnsupportedOperationException("getFeedbackTradeNo not support!");
 	}
@@ -302,6 +306,7 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.framework.netpay.payment.PaymentAdaptor#getFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
 		throw new UnsupportedOperationException("getFeedbackTotalFee not support!");
 	}

@@ -126,6 +126,7 @@ public final class MapUtil{
 
 		return sortByValue(map, new Comparator<Map.Entry<K, V>>(){
 
+			@Override
 			public int compare(Map.Entry<K, V> entry1,Map.Entry<K, V> entry2){
 				return entry1.getValue().compareTo(entry2.getValue());
 			}
@@ -149,6 +150,7 @@ public final class MapUtil{
 
 		return sortByValue(map, new Comparator<Map.Entry<K, V>>(){
 
+			@Override
 			public int compare(Map.Entry<K, V> entry1,Map.Entry<K, V> entry2){
 				return -(entry1.getValue().compareTo(entry2.getValue()));
 			}

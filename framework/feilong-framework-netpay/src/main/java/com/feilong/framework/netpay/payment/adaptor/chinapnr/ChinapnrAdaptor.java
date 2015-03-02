@@ -58,6 +58,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
+	@Override
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 
 		doCommonValidate(payRequest);
@@ -137,6 +138,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("OrdAmt");
 	}
@@ -145,6 +147,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 	 * (non-Javadoc)
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyRedirect(HttpServletRequest request){
 		return PaymentResult.PAID;
 	}

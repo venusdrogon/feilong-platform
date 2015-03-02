@@ -67,6 +67,7 @@ public final class StackedBarChartUtil extends CategoryChartUtil{
 	 * 
 	 * @see com.feilong.tools.jfreechart.category.CategoryChartUtil#setDefaultCategoryItemRenderer()
 	 */
+	@Override
 	protected void setDefaultCategoryItemRenderer(){
 		// Renderer 对象是图形的绘制单元
 		/**

@@ -73,6 +73,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnClipboardContent()
 	 */
+	@Override
 	public void printlnClipboardContent(){
 		printlnClipboardContent(null);
 	}
@@ -82,6 +83,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnClipboardContent(java.lang.String[])
 	 */
+	@Override
 	public void printlnClipboardContent(String[] excludeFileNames){
 		try{
 			Reader reader = ClipboardUtil.getClipboardReader();
@@ -100,6 +102,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnFileContent(java.lang.String)
 	 */
+	@Override
 	public void printlnFileContent(String fileName){
 		String[] excludeFileNames = null;
 		printlnFileContent(fileName, excludeFileNames);
@@ -110,6 +113,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnFileContent(java.lang.String, java.lang.String[])
 	 */
+	@Override
 	public void printlnFileContent(String fileName,String[] excludeFileNames){
 		ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
 		scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
@@ -122,6 +126,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 	 * 
 	 * @see com.feilong.tools.scm.ScmAntCopy#printlnFileContent(java.lang.String, com.feilong.tools.scm.ScmAntCopyConfig)
 	 */
+	@Override
 	public void printlnFileContent(String fileName,ScmAntCopyConfig scmAntCopyConfig){
 		try{
 			Reader reader = new FileReader(fileName);

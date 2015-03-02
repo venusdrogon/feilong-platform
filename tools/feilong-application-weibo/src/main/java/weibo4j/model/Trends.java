@@ -51,6 +51,7 @@ import weibo4j.http.Response;
 	private Trend[] trends; // 话题对象
 	private static final long serialVersionUID = -7151479143843312309L;
 
+	@Override
 	public int compareTo(Trends that) {
 		return this.trendAt.compareTo(that.trendAt);
 	}

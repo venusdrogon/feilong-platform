@@ -85,6 +85,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#closeTrade(java.lang.String, com.jumbo.brandstore.payment.TradeRole)
 	 */
+	@Override
 	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException,IllegalArgumentException{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("service", service_close_trade);
@@ -124,6 +125,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#isSupportCloseTrade()
 	 */
+	@Override
 	public boolean isSupportCloseTrade(){
 		return true;
 	}

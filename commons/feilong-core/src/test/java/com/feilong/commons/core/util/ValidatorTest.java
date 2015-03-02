@@ -90,10 +90,12 @@ public class ValidatorTest{
 		assertEquals(true, Validator.isNullOrEmpty(CollectionsUtil.toEnumeration(list)));
 		assertEquals(true, Validator.isNullOrEmpty(new Iterator<User>(){
 
+			@Override
 			public boolean hasNext(){
 				return false;
 			}
 
+			@Override
 			public User next(){
 				return null;
 			}

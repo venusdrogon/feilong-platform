@@ -57,6 +57,7 @@ public class ShutdownAbleSMTPAppender extends SMTPAppender{
 	 * 
 	 * @see org.apache.log4j.net.SMTPAppender#append(org.apache.log4j.spi.LoggingEvent)
 	 */
+	@Override
 	public void append(LoggingEvent loggingEvent){
 
 		if (!checkEntryConditions()){

@@ -120,6 +120,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[])
 	 */
+	@Override
 	public Pagination<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts){
 		FacetParamsCommand facetParamCommand = null;
 		SolrData<T> solrData = findByQuery(solrQuery, pageNumber, rows, sorts, facetParamCommand);
@@ -134,6 +135,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], java.lang.String[])
 	 */
+	@Override
 	public SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,String[] facetFields){
 		FacetParamsCommand facetParamCommand = toFacetParamCommand(facetFields);
 		return findByQuery(solrQuery, pageNumber, rows, sorts, facetParamCommand);
@@ -145,6 +147,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQuery(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], com.feilong.tools.solrj.command.FacetParamCommand)
 	 */
+	@Override
 	public SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand)
 					throws NullPointerException{
 		if (solrQuery == null){
@@ -197,6 +200,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findByQueryWithGroup(org.apache.solr.client.solrj.SolrQuery, java.lang.Integer, int,
 	 * loxia.dao.Sort[], java.lang.String[], com.feilong.tools.solrj.command.GroupParamCommand)
 	 */
+	@Override
 	public SolrGroupData<T> findByQueryWithGroup(
 					SolrQuery solrQuery,
 					Integer pageNumber,
@@ -303,6 +307,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#findFacetQueryMap(org.apache.solr.client.solrj.SolrQuery, java.lang.String[],
 	 * java.lang.Integer)
 	 */
+	@Override
 	@Deprecated
 	public Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount)
 					throws NullPointerException,SolrException{
@@ -507,6 +512,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#save(java.lang.Object)
 	 */
+	@Override
 	public void save(T model) throws SolrException,NullPointerException{
 		if (Validator.isNullOrEmpty(model)){
 			throw new NullPointerException("model can't be null/empty!");
@@ -530,6 +536,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#batchSave(java.util.Collection)
 	 */
+	@Override
 	public void batchSave(Collection<T> modelList) throws NullPointerException,SolrException{
 		if (Validator.isNullOrEmpty(modelList)){
 			throw new NullPointerException("modelList can't be null/empty!");
@@ -626,6 +633,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#delete(java.io.Serializable)
 	 */
+	@Override
 	public void delete(PK primaryKey) throws SolrException{
 		if (Validator.isNullOrEmpty(primaryKey)){
 			throw new IllegalArgumentException("primaryKey can't be null/empty!");
@@ -647,6 +655,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#deleteByQuery(java.lang.String)
 	 */
+	@Override
 	public void deleteByQuery(String query) throws SolrException{
 		if (Validator.isNullOrEmpty(query)){
 			throw new IllegalArgumentException("query can't be null/empty!");
@@ -671,6 +680,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 	 * 
 	 * @see com.feilong.tools.solrj.BaseSolrRepository#batchDelete(java.util.List)
 	 */
+	@Override
 	public void batchDelete(List<PK> pkList) throws SolrException{
 		if (Validator.isNullOrEmpty(pkList)){
 			log.warn("pkList is null/empty");

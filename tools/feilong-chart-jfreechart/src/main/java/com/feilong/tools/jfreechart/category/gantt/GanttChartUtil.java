@@ -87,6 +87,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 	 * 
 	 * @see com.feilong.tools.jfreechart.xy.FeiLongBaseXYChartEntity#setDefaultCategoryItemRenderer()
 	 */
+	@Override
 	protected void setDefaultCategoryItemRenderer(){
 		ganttRenderer = (GanttRenderer) getCategoryPlot().getRenderer();
 		// Paint[] arrayOfPaint = createPaint();
@@ -145,6 +146,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 	/**
 	 * 设置Y轴公共属性.
 	 */
+	@Override
 	protected void setDefaultValueAxisAttributes(){
 		// 数据轴精度
 		dateAxis = (DateAxis) getCategoryPlot().getRangeAxis();

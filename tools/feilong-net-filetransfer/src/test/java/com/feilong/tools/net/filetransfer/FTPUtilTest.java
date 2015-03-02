@@ -58,6 +58,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Override
 	@Test
 	public void sendLocalFileToRemote() throws Exception{
 		String singleLocalFileFullPath = "E:/nikestore_china_revenuesss.csv";
@@ -72,6 +73,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Override
 	@Test
 	public void sendLocalFileToRemote_dir() throws Exception{
 		String singleLocalFileFullPath = "F:\\2013-12-04-1938";
@@ -84,6 +86,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Override
 	@Test
 	public void sendLocalFileToRemote_dirs() throws Exception{
 		String[] batchLocalFileFullPaths = { "E:\\test", "E:\\1.jpg" };
@@ -99,6 +102,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Override
 	@Test
 	public void sendLocalFileToRemote_dir_chinese() throws Exception{
 		String localFileFullPath = "E:\\test - 副本";
@@ -110,6 +114,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete()
 	 */
+	@Override
 	@Test
 	public void delete() throws Exception{
 		String remoteAbsolutePath = "/webstore/InlineSales_Test/2011-07-05/1.jpg";
@@ -121,6 +126,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir()
 	 */
+	@Override
 	@Test
 	public void delete_dir() throws Exception{
 		String remoteAbsolutePath = "/webstore/InlineSales_Test/2011-07-05/test";
@@ -132,6 +138,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir_empty()
 	 */
+	@Override
 	@Test
 	public void delete_dir_empty() throws Exception{
 		String remoteAbsolutePath = "/webstore/InlineSales_Test/a/";
@@ -143,6 +150,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_not_exist()
 	 */
+	@Override
 	@Test
 	public void delete_not_exist() throws Exception{
 		String remoteAbsolutePath = "/webstore/InlineSales_Test/2011-07-051/";
@@ -214,6 +222,7 @@ public class FTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#getFileEntityMap()
 	 */
+	@Override
 	@Test
 	public void testGetFileEntityMap() throws Exception{
 		String remotePath = "/webstore/InlineSales_Test/2011-07-05/2013-12-04-1938";

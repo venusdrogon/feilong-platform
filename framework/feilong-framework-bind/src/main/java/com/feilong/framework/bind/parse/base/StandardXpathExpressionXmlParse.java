@@ -109,6 +109,7 @@ public class StandardXpathExpressionXmlParse<T> extends AbstractBaseXmlParse<T>{
 	 * 
 	 * @see com.feilong.framework.bind.parse.AbstractXmlParse#parseModelClass()
 	 */
+	@Override
 	protected Class<T> parseModelClass(){
 		return tClass;
 	}
@@ -118,6 +119,7 @@ public class StandardXpathExpressionXmlParse<T> extends AbstractBaseXmlParse<T>{
 	 * 
 	 * @see com.feilong.framework.bind.parse.AbstractXmlParse#getVarNameAndValueMap(java.lang.String)
 	 */
+	@Override
 	protected Map<String, String> getVarNameAndValueMap(String xml){
 		if (Validator.isNullOrEmpty(xml)){
 			throw new IllegalArgumentException("xml can't be null/empty!");

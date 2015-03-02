@@ -49,6 +49,7 @@ public class DefaultAdvanceAdaptorManagerFactory implements PaymentAdvanceAdapto
 	 * 
 	 * @see com.feilong.framework.netpay.advance.PaymentAdvanceAdaptorFactory#getPaymentAdvanceAdaptor(java.lang.String)
 	 */
+	@Override
 	public PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException{
 		if (Validator.isNullOrEmpty(paymentAdvanceAdaptorMap)){
 			throw new IllegalArgumentException("paymentAdvanceAdaptorMap can't be null/empty!");

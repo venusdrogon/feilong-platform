@@ -88,6 +88,7 @@ public class TcashAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 	 * @see com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.framework.netpay.advance.command.
 	 * QueryRequest)
 	 */
+	@Override
 	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
 		// *************************************************************

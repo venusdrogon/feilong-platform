@@ -61,6 +61,7 @@ public final class BarChartUtil extends CategoryChartUtil{
 	 * 
 	 * @see com.feilong.tools.jfreechart.xy.FeiLongBaseXYChartEntity#setDefaultCategoryItemRenderer()
 	 */
+	@Override
 	protected void setDefaultCategoryItemRenderer(){
 		barRenderer = (BarRenderer) categoryPlot.getRenderer();
 		// Paint[] arrayOfPaint = createPaint();
@@ -141,6 +142,7 @@ public final class BarChartUtil extends CategoryChartUtil{
 		 * 
 		 * @see org.jfree.chart.renderer.AbstractRenderer#getItemPaint(int, int)
 		 */
+		@Override
 		public Paint getItemPaint(int paramInt1,int paramInt2){
 			log.debug("paramInt1:{},paramInt2:{}", paramInt1, paramInt2);
 			return this.paint[paramInt1];
@@ -193,6 +195,7 @@ public final class BarChartUtil extends CategoryChartUtil{
 	 * @see
 	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
 	 */
+	@Override
 	protected void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis){
 		numberAxis.setAutoRangeIncludesZero(true);
 	}

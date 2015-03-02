@@ -82,6 +82,7 @@ public class SFTPUtil extends FileTransfer{
 	 * 
 	 * @return true, if successful
 	 */
+	@Override
 	public boolean connect(){
 
 		// 是否连接成功, 默认不成功
@@ -131,6 +132,7 @@ public class SFTPUtil extends FileTransfer{
 	/**
 	 * 关闭链接.
 	 */
+	@Override
 	public void disconnect(){
 		if (channelSftp != null){
 			channelSftp.exit();
@@ -148,6 +150,7 @@ public class SFTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
 	 */
+	@Override
 	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
 		Map<String, FileInfoEntity> map = new HashMap<String, FileInfoEntity>();
 
@@ -191,6 +194,7 @@ public class SFTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.AbstractFileTransfer#mkdir(java.lang.String)
 	 */
+	@Override
 	protected boolean mkdir(String dirName) throws Exception{
 		log.info("channelSftp mkdir:{} ", dirName);
 		channelSftp.mkdir(dirName);
@@ -202,6 +206,7 @@ public class SFTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.AbstractFileTransfer#cd(java.lang.String)
 	 */
+	@Override
 	public boolean cd(String remoteDirectory) throws Exception{
 		log.info("channelSftp cd:[{}]", remoteDirectory);
 		channelSftp.cd(remoteDirectory);
@@ -229,6 +234,7 @@ public class SFTPUtil extends FileTransfer{
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Override
 	public boolean isDirectory(String path) throws Exception{
 		SftpATTRS sftpATTRS = channelSftp.stat(path);
 

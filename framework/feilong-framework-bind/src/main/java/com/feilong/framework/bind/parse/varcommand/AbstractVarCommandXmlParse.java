@@ -51,6 +51,7 @@ public abstract class AbstractVarCommandXmlParse<T extends VarCommand> extends A
 	 * @throws BuildCommandException
 	 *             the build command exception
 	 */
+	@Override
 	protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
 
 		try{

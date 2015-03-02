@@ -179,6 +179,7 @@ public final class JsonUtil{
 
 			jsonConfig.setJsonPropertyFilter(new PropertyFilter(){
 
+				@Override
 				public boolean apply(Object source,String name,Object value){
 					return !ArrayUtil.isContain(includes, name);
 				}

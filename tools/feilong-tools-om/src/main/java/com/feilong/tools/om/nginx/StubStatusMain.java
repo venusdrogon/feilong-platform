@@ -81,6 +81,7 @@ public class StubStatusMain{
 
 		TimerTask task = new TimerTask(){
 
+			@Override
 			public void run(){
 				try{
 					crawStubStatusNike(uri, userName, password, path);

@@ -57,6 +57,7 @@ public class CaptchaServlet extends HttpServlet{
 	 * 
 	 * @see javax.servlet.http.HttpServlet#getLastModified(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	protected long getLastModified(HttpServletRequest request){
 		return super.getLastModified(request);
 	}
@@ -66,6 +67,7 @@ public class CaptchaServlet extends HttpServlet{
 	 * 
 	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
+	@Override
 	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 
 		// 设置页面不缓存
@@ -131,6 +133,7 @@ public class CaptchaServlet extends HttpServlet{
 	 * 
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 		service(request, response);
 	}
@@ -140,6 +143,7 @@ public class CaptchaServlet extends HttpServlet{
 	 * 
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 		service(request, response);
 	}

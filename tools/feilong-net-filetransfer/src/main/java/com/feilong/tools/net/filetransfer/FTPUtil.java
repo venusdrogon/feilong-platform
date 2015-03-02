@@ -140,6 +140,7 @@ public class FTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.FileTransfer#disconnect()
 	 */
+	@Override
 	protected void disconnect(){
 		if (ftpClient != null && ftpClient.isConnected()){
 			try{
@@ -209,6 +210,7 @@ public class FTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
 	 */
+	@Override
 	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
 		Map<String, FileInfoEntity> map = new HashMap<String, FileInfoEntity>();
 		FTPFile[] ftpFiles = ftpClient.listFiles(remotePath);
@@ -291,6 +293,7 @@ public class FTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.filetransfer.FileTransfer#isDirectory(java.lang.String)
 	 */
+	@Override
 	protected boolean isDirectory(String remotePath) throws Exception{
 		// 可以成功进入 代表 是文件夹
 		// 经测试 如果 remotePath 不存在 返回false ,如果是文件 返回false
@@ -379,6 +382,7 @@ public class FTPUtil extends FileTransfer{
 	 * 
 	 * @see com.feilong.tools.net.FileTransfer#_downRemoteSingleFile(java.lang.String, java.lang.String)
 	 */
+	@Override
 	protected boolean _downRemoteSingleFile(String remoteSingleFile,String filePath) throws Exception{
 		BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
 		boolean success = ftpClient.retrieveFile(remoteSingleFile, bufferedOutputStream);

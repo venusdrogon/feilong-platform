@@ -87,6 +87,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
+	@Override
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 
 		doCommonValidate(payRequest);
@@ -190,6 +191,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyNotify(HttpServletRequest request) throws IllegalArgumentException{
 		// Field# Parameter Type Length Format Mandatory
 		// 1 klikPayCode string 10 (AN) TRUE
@@ -292,6 +294,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTradeNo(HttpServletRequest request){
 		return request.getParameter("transactionNo");
 	}
@@ -301,6 +304,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("totalAmount");
 	}
@@ -310,6 +314,7 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyRedirect(HttpServletRequest request){
 		throw new UnsupportedOperationException("KlikPayAdaptor not support verifyRedirect,need use customer verifyRedirect");
 	}

@@ -107,6 +107,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
+	@Override
 	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 		doCommonValidate(payRequest);
 
@@ -410,6 +411,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.adaptor.AbstractPaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public PaymentResult verifyRedirect(HttpServletRequest request){
 		// ************************************************
 		// N 12.2 Total amount. Eg: 10000.00
@@ -488,6 +490,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
+	@Override
 	public String getFeedbackTotalFee(HttpServletRequest request){
 		return request.getParameter("AMOUNT");
 	}

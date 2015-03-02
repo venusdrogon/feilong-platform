@@ -25,10 +25,12 @@ import org.apache.velocity.runtime.parser.node.Node;
 
 	private Boolean	truncateAtWord;
 
+	@Override
 	public String getName(){
 		return "truncateBlock";
 	}
 
+	@Override
 	public int getType(){
 		return BLOCK;
 	}
@@ -45,6 +47,7 @@ import org.apache.velocity.runtime.parser.node.Node;
 
 	}
 
+	@Override
 	public boolean render(InternalContextAdapter context,Writer writer,Node node) throws IOException,ResourceNotFoundException,
 			ParseErrorException,MethodInvocationException{
 

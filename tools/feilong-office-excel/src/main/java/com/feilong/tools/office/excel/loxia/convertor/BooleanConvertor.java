@@ -44,6 +44,7 @@ public class BooleanConvertor implements DataConvertor<Boolean>{
 	 * @see loxia.support.excel.convertor.DataConvertor#convert(java.lang.Object, int, java.lang.String,
 	 * loxia.support.excel.definition.ExcelCell)
 	 */
+	@Override
 	public Boolean convert(Object value,int sheetNo,String cellIndex,ExcelCell cellDefinition) throws ExcelManipulateException{
 		if (value == null && cellDefinition.isMandatory()){
 			throw new ExcelManipulateException(ErrorCode.WRONG_DATA_NULL, new Object[] {
@@ -82,6 +83,7 @@ public class BooleanConvertor implements DataConvertor<Boolean>{
 	 * 
 	 * @see loxia.support.excel.convertor.DataConvertor#getDataTypeAbbr()
 	 */
+	@Override
 	public String getDataTypeAbbr(){
 		return "boolean";
 	}
@@ -91,6 +93,7 @@ public class BooleanConvertor implements DataConvertor<Boolean>{
 	 * 
 	 * @see loxia.support.excel.convertor.DataConvertor#supportClass()
 	 */
+	@Override
 	public Class<Boolean> supportClass(){
 		return Boolean.class;
 	}

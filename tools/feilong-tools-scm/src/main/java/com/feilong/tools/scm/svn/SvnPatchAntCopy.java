@@ -56,6 +56,7 @@ public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 	 * @throws IOException
 	 *             the IO exception
 	 */
+	@Override
 	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
 		List<SvnPatchCommand> addList = new ArrayList<SvnPatchCommand>();
 		List<SvnPatchCommand> updateList = new ArrayList<SvnPatchCommand>();

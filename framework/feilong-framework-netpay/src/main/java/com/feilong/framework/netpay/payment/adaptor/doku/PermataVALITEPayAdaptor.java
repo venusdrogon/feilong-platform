@@ -33,6 +33,7 @@ public class PermataVALITEPayAdaptor extends AbstractDokuPayAdaptor{
 	 *            the sTATUSCODE
 	 * @return true, if successful
 	 */
+	@Override
 	protected boolean validateRedirectStatusParam(String STATUSCODE){
 		boolean statusSuccess = atmRedirectSuccessStatusCode.equals(STATUSCODE);
 		return statusSuccess;

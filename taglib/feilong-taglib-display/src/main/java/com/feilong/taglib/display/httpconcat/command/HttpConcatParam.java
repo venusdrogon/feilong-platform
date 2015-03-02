@@ -177,6 +177,7 @@ public final class HttpConcatParam implements Serializable{
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
+	@Override
 	public int hashCode(){
 		//返回该对象的哈希码值  支持此方法是为了提高哈希表（例如 java.util.Hashtable 提供的哈希表）的性能。 
 
@@ -223,6 +224,7 @@ public final class HttpConcatParam implements Serializable{
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
+	@Override
 	public boolean equals(Object obj){
 		if (obj == null){
 			return false;

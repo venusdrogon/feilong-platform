@@ -61,14 +61,17 @@ public class MySSLSocketFactory implements ProtocolSocketFactory{
 		return getSSLContext().getSocketFactory().createSocket(socket, host, port, autoClose);
 	}
 
+	@Override
 	public Socket createSocket(String host,int port) throws IOException,UnknownHostException{
 		return getSSLContext().getSocketFactory().createSocket(host, port);
 	}
 
+	@Override
 	public Socket createSocket(String host,int port,InetAddress clientHost,int clientPort) throws IOException,UnknownHostException{
 		return getSSLContext().getSocketFactory().createSocket(host, port, clientHost, clientPort);
 	}
 
+	@Override
 	public Socket createSocket(String host,int port,InetAddress localAddress,int localPort,HttpConnectionParams params) throws IOException,
 					UnknownHostException,ConnectTimeoutException{
 		if (params == null){
@@ -90,10 +93,13 @@ public class MySSLSocketFactory implements ProtocolSocketFactory{
 
 	private static class TrustAnyTrustManager implements X509TrustManager{
 
+		@Override
 		public void checkClientTrusted(X509Certificate[] chain,String authType) throws CertificateException{}
 
+		@Override
 		public void checkServerTrusted(X509Certificate[] chain,String authType) throws CertificateException{}
 
+		@Override
 		public X509Certificate[] getAcceptedIssuers(){
 			return new X509Certificate[] {};
 		}

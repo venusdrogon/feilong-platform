@@ -41,6 +41,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	//	private String				remoteDirectory	= "/home/appuser/test";
 	private String				remoteDirectory	= "/home/bzuser/test";
 
+	@Override
 	@Test
 	public void sendLocalFileToRemote() throws Exception{
 		String singleLocalFileFullPath = "E:\\1.txt";
@@ -50,12 +51,14 @@ public class SFTPUtilTest extends FileTransferTest{
 		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
 	}
 
+	@Override
 	@Test
 	public void sendLocalFileToRemote_dir() throws Exception{
 		String singleLocalFileFullPath = "C:\\Users\\feilong\\Downloads\\1.pdf";
 		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
 	}
 
+	@Override
 	@Test
 	public void sendLocalFileToRemote_dirs() throws Exception{
 		String[] batchLocalFileFullPaths = { "E:\\test", "E:\\1.txt", "E:\\test1" };
@@ -67,6 +70,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete()
 	 */
+	@Override
 	@Test
 	public void delete() throws Exception{
 		String remoteAbsolutePath = "/home/appuser/test/pg_ctl.conf";
@@ -78,6 +82,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir()
 	 */
+	@Override
 	@Test
 	public void delete_dir() throws Exception{
 		String remoteAbsolutePath = "/home/niketest/out/test/2011-07-07";
@@ -89,6 +94,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_dir_empty()
 	 */
+	@Override
 	@Test
 	public void delete_dir_empty() throws Exception{
 		String remoteAbsolutePath = "/home/appuser/test/2013-01-06";
@@ -100,6 +106,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#delete_not_exist()
 	 */
+	@Override
 	@Test
 	public void delete_not_exist() throws Exception{
 		String remoteAbsolutePath = "/home/appuser/test/2011-07-051/";
@@ -126,6 +133,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	@Override
 	public void sendLocalFileToRemote_dir_chinese() throws Exception{}
 
+	@Override
 	@Test
 	public void download_file() throws Exception{
 		String remotePath = "/home/niketest/out/test/2011-07-07/nikeid_pix_cancel.csv";
@@ -138,6 +146,7 @@ public class SFTPUtilTest extends FileTransferTest{
 	 * 
 	 * @see com.feilong.tools.net.FileTransferTest#download_dir()
 	 */
+	@Override
 	@Test
 	public void download_dir() throws Exception{
 		String remotePath = "/home/niketest/out/test";
@@ -145,6 +154,7 @@ public class SFTPUtilTest extends FileTransferTest{
 		fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
 	}
 
+	@Override
 	@Test
 	public void testGetFileEntityMap() throws Exception{
 		String remoteAbsolutePath = "/home/appuser/test/2013-12-04-1938";
