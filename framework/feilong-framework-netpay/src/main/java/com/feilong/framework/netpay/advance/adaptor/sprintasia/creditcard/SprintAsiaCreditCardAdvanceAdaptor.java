@@ -20,8 +20,8 @@ import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
@@ -210,7 +210,7 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 			QueryResult queryResult = new QueryResult();
 			PaymentResult paymentResult = toPaymentResult(transactionStatus);
 			queryResult.setGatewayAmount(new BigDecimal(creditCardQueryResult.getAmount()));
-			queryResult.setGatewayPaymentTime(DateUtil.string2Date(creditCardQueryResult.getTransactionDate(), DatePattern.commonWithTime));
+			queryResult.setGatewayPaymentTime(DateUtil.string2Date(creditCardQueryResult.getTransactionDate(), DatePattern.COMMON_DATE_AND_TIME));
 			queryResult.setGatewayResult(wddxPacketXML);
 			queryResult.setGatewayTradeNo(creditCardQueryResult.getTransactionID());
 			queryResult.setPaymentResult(paymentResult);

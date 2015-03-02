@@ -19,8 +19,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * The Class CodeGeneratorTest.
@@ -47,8 +47,8 @@ public class CodeGeneratorTest{
 		// log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2099-12-31 23:59:45", DatePattern.commonWithTime), 1161L));
 		// log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2035-04-22 08:31:35", DatePattern.commonWithTime), 203881L));
 		// log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2044-12-31 10:21:46", DatePattern.commonWithTime), 35191L));
-		log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2044-12-31 10:21:46", DatePattern.commonWithTime), 35191L, 555L));
-		log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2099-12-31 23:59:45", DatePattern.commonWithTime), 1161L, 5555555L));
+		log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2044-12-31 10:21:46", DatePattern.COMMON_DATE_AND_TIME), 35191L, 555L));
+		log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2099-12-31 23:59:45", DatePattern.COMMON_DATE_AND_TIME), 1161L, 5555555L));
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class CodeGeneratorTest{
 	@Test
 	public void createOrderCode1(){
 		for (int i = 0, j = 100; i < j; ++i){
-			log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2044-12-31 10:21:46", DatePattern.commonWithTime), 35191L, 555L));
+			log.info(CodeGenerator.createOrderCode(DateUtil.string2Date("2044-12-31 10:21:46", DatePattern.COMMON_DATE_AND_TIME), 35191L, 555L));
 		}
 	}
 

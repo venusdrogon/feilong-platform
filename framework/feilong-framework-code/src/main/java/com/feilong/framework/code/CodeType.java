@@ -18,8 +18,8 @@ package com.feilong.framework.code;
 
 import java.util.Date;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * The Enum CodeType.
@@ -30,10 +30,10 @@ import com.feilong.commons.core.enumeration.DatePattern;
 public enum CodeType{
 
 	/** The create order. */
-	CREATEORDER("4",DateUtil.string2Date("2014-01-01 00:00:00", DatePattern.commonWithTime),3,2,2),
+	CREATEORDER("4",DateUtil.string2Date("2014-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME),3,2,2),
 
 	/** The return order. */
-	RETURNORDER("1",DateUtil.string2Date("2014-01-01 00:00:00", DatePattern.commonWithTime),3,2,1);
+	RETURNORDER("1",DateUtil.string2Date("2014-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME),3,2,1);
 
 	// *********************************************
 	/** 前缀, 以示区分, 比如,1 表示退单号, 4代表订单号;后期视业务需要 可以将 b店 和C店 也区分出来. */

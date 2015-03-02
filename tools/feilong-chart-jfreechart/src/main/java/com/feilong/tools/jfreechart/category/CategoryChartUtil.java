@@ -32,8 +32,8 @@ import org.jfree.ui.RectangleInsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.awt.FontType;
 import com.feilong.commons.core.awt.FontUtil;
-import com.feilong.commons.core.enumeration.FontType;
 import com.feilong.tools.jfreechart.ChartDatesetUtil;
 import com.feilong.tools.jfreechart.ChartUtil;
 

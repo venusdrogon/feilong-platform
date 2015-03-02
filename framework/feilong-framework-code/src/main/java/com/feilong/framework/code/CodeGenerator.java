@@ -20,8 +20,8 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.RandomUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -241,7 +241,7 @@ public class CodeGenerator{
 		if (log.isDebugEnabled()){
 			log.debug(
 					"{}-->{},buyerId:[{}],sellerId:[{}],codeType:[{}]",
-					DateUtil.date2String(date, DatePattern.commonWithMillisecond),
+					DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
 					result,
 					buyerId,
 					sellerId,

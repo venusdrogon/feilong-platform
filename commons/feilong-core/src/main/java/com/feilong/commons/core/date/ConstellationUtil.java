@@ -17,8 +17,6 @@ package com.feilong.commons.core.date;
 
 import java.util.Date;
 
-import com.feilong.commons.core.enumeration.DatePattern;
-
 /**
  * 星座util
  * 
@@ -116,6 +114,6 @@ public final class ConstellationUtil{
 	 * @return ConstellationType
 	 */
 	public static ConstellationType getConstellationType(String birthday){
-		return getConstellationType(birthday, DatePattern.onlyDate);
+		return getConstellationType(birthday, DatePattern.COMMON_DATE);
 	}
 }

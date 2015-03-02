@@ -29,7 +29,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.feilong.commons.core.MessageConstants;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -254,23 +253,23 @@ public final class DateExtensionUtil{
 		//**************************************************************************************/
 		// 间隔一天
 		if (spaceDay == 1){
-			if (DateUtil.isEquals(DateUtil.addDay(inDate, 1), nowDate, DatePattern.onlyDate)){
+			if (DateUtil.isEquals(DateUtil.addDay(inDate, 1), nowDate, DatePattern.COMMON_DATE)){
 				returnValue = DATE_YESTERDAY + " ";
 			}else{
 				returnValue = DATE_THEDAY_BEFORE_YESTERDAY + " ";
 			}
-			returnValue += DateUtil.date2String(inDate, DatePattern.onlyTime_withoutSecond);
+			returnValue += DateUtil.date2String(inDate, DatePattern.COMMON_TIME_WITHOUT_SECOND);
 		}
 		// 间隔2天
 		else if (spaceDay == 2){
-			if (DateUtil.isEquals(DateUtil.addDay(inDate, 2), nowDate, DatePattern.onlyDate)){
-				returnValue = DATE_THEDAY_BEFORE_YESTERDAY + " " + DateUtil.date2String(inDate, DatePattern.onlyTime_withoutSecond);
+			if (DateUtil.isEquals(DateUtil.addDay(inDate, 2), nowDate, DatePattern.COMMON_DATE)){
+				returnValue = DATE_THEDAY_BEFORE_YESTERDAY + " " + DateUtil.date2String(inDate, DatePattern.COMMON_TIME_WITHOUT_SECOND);
 			}else{
 				// 今年
 				if (year == inYear){
-					returnValue = DateUtil.date2String(inDate, DatePattern.commonWithoutAndYearSecond);
+					returnValue = DateUtil.date2String(inDate, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_YEAR_AND_SECOND);
 				}else{
-					returnValue = DateUtil.date2String(inDate, DatePattern.commonWithoutSecond);
+					returnValue = DateUtil.date2String(inDate, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_SECOND);
 				}
 			}
 		}
@@ -278,9 +277,9 @@ public final class DateExtensionUtil{
 		else if (spaceDay > 2){
 			// 今年
 			if (year == inYear){
-				returnValue = DateUtil.date2String(inDate, DatePattern.commonWithoutAndYearSecond);
+				returnValue = DateUtil.date2String(inDate, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_YEAR_AND_SECOND);
 			}else{
-				returnValue = DateUtil.date2String(inDate, DatePattern.commonWithoutSecond);
+				returnValue = DateUtil.date2String(inDate, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_SECOND);
 			}
 		}
 		// 间隔0天
@@ -290,7 +289,7 @@ public final class DateExtensionUtil{
 				if (inDay == day){
 					returnValue = spaceHour + DATE_HOUR + "前";
 				}else{
-					returnValue = DATE_YESTERDAY + " " + DateUtil.date2String(inDate, DatePattern.onlyTime_withoutSecond);
+					returnValue = DATE_YESTERDAY + " " + DateUtil.date2String(inDate, DatePattern.COMMON_TIME_WITHOUT_SECOND);
 				}
 			}else{
 				// 分钟间隔

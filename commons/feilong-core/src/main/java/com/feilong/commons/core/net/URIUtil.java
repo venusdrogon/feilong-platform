@@ -32,12 +32,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.URIComponents;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.commons.core.util.URIComponents;
 import com.feilong.commons.core.util.Validator;
 
 /**

@@ -32,8 +32,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtilException;
-import com.feilong.commons.core.enumeration.NumberPattern;
 import com.feilong.commons.core.lang.EnumUtil;
+import com.feilong.commons.core.util.NumberPattern;
 import com.feilong.commons.core.util.NumberUtil;
 
 /**

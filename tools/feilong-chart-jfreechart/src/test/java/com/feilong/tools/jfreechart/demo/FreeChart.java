@@ -49,8 +49,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.FontUtil;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
@@ -1050,7 +1050,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
 		freeChart.setTimeAxis("Hour");
 		freeChart.createChart(chartType, "统计图", "时间轴", "统计值轴");
 		ChartInfoEntity chartInfoEntity = new ChartInfoEntity();
-		chartInfoEntity.setImageNameOrOutputStream(DateUtil.date2String(new Date(), DatePattern.timestampWithMillisecond) + ".jpg");
+		chartInfoEntity.setImageNameOrOutputStream(DateUtil.date2String(new Date(), DatePattern.TIMESTAMP_WITH_MILLISECOND) + ".jpg");
 		chartInfoEntity.setWidth(800);
 		chartInfoEntity.setHeight(400);
 		freeChart.getChart().getTitle().setFont(FontUtil.SONG_PLAIN_12);

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionForward;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.servlet.http.RequestUtil;
 

@@ -6,6 +6,8 @@ import java.nio.charset.Charset;
 
 import org.junit.Test;
 
+import com.feilong.commons.core.io.CharsetType;
+
 /**
  * The Class CharsetTypeTest.
  * 

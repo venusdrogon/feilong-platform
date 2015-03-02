@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.SelectEntity;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.RegexUtil;
 
 /**
@@ -116,7 +115,7 @@ public class SelectHelper{
 	 * 将出生日期转换成年龄.
 	 * 
 	 * @param birthday
-	 *            出生日期,格式{@link DatePattern#onlyDate}
+	 *            出生日期,格式{@link DatePattern#COMMON_DATE}
 	 * @return 将生日转换成年龄,如果传入的日期格式不正确,则返回null
 	 * @since 1.0
 	 * @deprecated 待重构,不建议使用

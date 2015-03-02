@@ -30,9 +30,9 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.ColorUtil;
 import com.feilong.commons.core.awt.DesktopUtil;
+import com.feilong.commons.core.awt.FontType;
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.commons.core.awt.ImageUtil;
-import com.feilong.commons.core.enumeration.FontType;
 import com.feilong.test.TestConstants;
 import com.feilong.tools.jfreechart.category.BarChartUtil;
 import com.feilong.tools.jfreechart.category.CategoryChartEntity;

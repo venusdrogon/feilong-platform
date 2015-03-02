@@ -29,11 +29,11 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.entity.CookieEntity;
 
 /**
- * 飞龙cookies 类.
- * 
- * @author 金鑫 2010-6-24 上午08:05:32
- * @author 金鑫 2012-5-18 14:53
- * 
+ * cookie 工具 类.
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 金鑫 2010-6-24 上午08:05:32
+ * @version 金鑫 2012-5-18 14:53
  * @see javax.servlet.http.Cookie
  * @see "org.springframework.web.util.CookieGenerator"
  */

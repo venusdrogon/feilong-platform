@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;

@@ -20,8 +20,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.DatePattern;
-
 /**
  * The Class BaseDateUtil.
  *
@@ -49,7 +47,7 @@ abstract class BaseDateUtilTest{
 	static final Date			currentYearEnd			= DateUtil.getLastDateOfThisYear(now);
 
 	/** The current year end. */
-	static final Date			TESTDATE_20141231013024	= DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.commonWithMillisecond);
+	static final Date			TESTDATE_20141231013024	= DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND);
 
 	/**
 	 * Prints the.
@@ -58,6 +56,6 @@ abstract class BaseDateUtilTest{
 	 *            the date
 	 */
 	protected void logDate(Date date){
-		log.debug(DateUtil.date2String(date, DatePattern.commonWithMillisecond));
+		log.debug(DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
 	}
 }

@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import weibo4j.model.WeiboException;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -49,7 +49,7 @@ public class WeiboUtilTest{
 	@Test
 	public void sendWeibo() throws WeiboException,IOException{
 		Date date = new Date();
-		String statuses = "#鑫哥的微博小蜜# 吃饭去了,好饿" + DateUtil.date2String(date, DatePattern.commonWithTime);
+		String statuses = "#鑫哥的微博小蜜# 吃饭去了,好饿" + DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME);
 		WeiboUtil.sendWeibo(access_token, statuses);
 	}
 

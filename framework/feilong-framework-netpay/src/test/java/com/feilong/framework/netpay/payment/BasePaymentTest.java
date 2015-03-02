@@ -29,9 +29,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.feilong.commons.core.awt.DesktopUtil;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.DatePattern;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
@@ -123,7 +123,7 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 		Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
 		Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
 		String paymentAdaptorName = qualifier.value();
-		String fileName = paymentAdaptorName + DateUtil.date2String(new Date(), DatePattern.timestamp);
+		String fileName = paymentAdaptorName + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
 
 		String folderPath = SystemUtils.USER_HOME + "\\feilong\\payment\\" + paymentAdaptorName;
 		String filePath = folderPath + "\\" + fileName + ".html";

@@ -29,9 +29,9 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
-import com.feilong.commons.core.enumeration.ImageType;
+import com.feilong.commons.core.io.ImageType;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -46,7 +46,7 @@ public class ScreenShotUtilTest{
 	@Test
 	public final void testScreenshot(){
 		// 根据文件前缀变量和文件格式变量，自动生成文件名
-		String name = "e:/" + DateUtil.date2String(new Date(), DatePattern.timestamp) + "." + "png"; //"png"
+		String name = "e:/" + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP) + "." + "png"; //"png"
 		ScreenShotUtil.screenshot(name, ImageType.PNG);
 	}
 }

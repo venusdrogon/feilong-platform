@@ -27,12 +27,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.URIComponents;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
+import com.feilong.commons.core.util.URIComponents;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.entity.HttpHeaders;
 import com.feilong.servlet.http.entity.RequestAttributes;

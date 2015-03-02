@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
 
-import com.feilong.commons.core.enumeration.MimeType;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -33,7 +32,7 @@ import com.feilong.commons.core.util.Validator;
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月19日 上午1:12:50
- * @see com.feilong.commons.core.enumeration.MimeType
+ * @see com.feilong.commons.core.io.MimeType
  * @see "org.apache.catalina.startup.Tomcat#DEFAULT_MIME_MAPPINGS"
  * @see "org.apache.http.entity.ContentType"
  * @see <a href="http://stackoverflow.com/questions/4348810/java-library-to-find-the-mime-type-from-file-content/10140531#10140531">java

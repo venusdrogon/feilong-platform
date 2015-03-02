@@ -25,8 +25,8 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.lang.EnumUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
@@ -188,7 +188,7 @@ public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
 		queryResult.setGatewayAmount(new BigDecimal(dokuQueryResult.getAmount()));
 		// 20140508095526
-		queryResult.setGatewayPaymentTime(DateUtil.string2Date(dokuQueryResult.getPaymentDateTime(), DatePattern.timestamp));
+		queryResult.setGatewayPaymentTime(DateUtil.string2Date(dokuQueryResult.getPaymentDateTime(), DatePattern.TIMESTAMP));
 		queryResult.setGatewayResult(responseBodyAsString);
 		queryResult.setGatewayTradeNo(paymentGatewayTradeNo);
 		queryResult.setPaymentResult(paymentResult);

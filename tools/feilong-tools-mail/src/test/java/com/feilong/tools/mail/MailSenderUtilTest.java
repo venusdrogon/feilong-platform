@@ -34,9 +34,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.ResourceBundleUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.FileType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.FileInfoEntity;
+import com.feilong.commons.core.io.FileType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;

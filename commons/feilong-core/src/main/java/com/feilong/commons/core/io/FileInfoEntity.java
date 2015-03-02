@@ -18,9 +18,8 @@ package com.feilong.commons.core.io;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
-import com.feilong.commons.core.enumeration.FileType;
 
 /**
  * 文件信息 entity.
@@ -35,7 +34,7 @@ public class FileInfoEntity implements Serializable{
 	private static final long	serialVersionUID	= 288232184048495608L;
 
 	/** The date pattern. */
-	private String				datePattern			= DatePattern.commonWithoutAndYearSecond;
+	private String				datePattern			= DatePattern.COMMON_DATE_AND_TIME_WITHOUT_YEAR_AND_SECOND;
 
 	/** 名称. */
 	private String				name;

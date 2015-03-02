@@ -25,8 +25,8 @@ import java.io.OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.ImageType;
 import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.ImageType;
 
 /**
  * 水印.

@@ -17,8 +17,6 @@ package com.feilong.commons.core.awt;
 
 import java.awt.Font;
 
-import com.feilong.commons.core.enumeration.FontType;
-
 /**
  * 字体类.
  * 

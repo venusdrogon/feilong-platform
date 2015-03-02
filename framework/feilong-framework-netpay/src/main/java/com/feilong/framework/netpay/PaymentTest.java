@@ -22,8 +22,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.util.NumberUtil;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaySoLine;
@@ -48,7 +48,7 @@ public class PaymentTest{
 	public static PayRequest construcTestPayRequest(){
 
 		/** The code. */
-		String code = DateUtil.date2String(new Date(), DatePattern.timestamp);
+		String code = DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
 		//code="feilong1111";
 
 		// ******************************************************************

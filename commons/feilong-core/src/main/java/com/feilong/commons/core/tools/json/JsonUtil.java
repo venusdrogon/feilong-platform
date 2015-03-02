@@ -41,7 +41,7 @@ import org.apache.commons.collections.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.DatePattern;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.tools.json.processor.DateJsonValueProcessor;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
@@ -88,7 +88,7 @@ public final class JsonUtil{
 	 */
 	static{
 		// 可转换的日期格式，即Json串中可以出现以下格式的日期与时间
-		String[] formats = { DatePattern.commonWithTime, DatePattern.onlyTime, DatePattern.onlyDate };
+		String[] formats = { DatePattern.COMMON_DATE_AND_TIME, DatePattern.COMMON_TIME, DatePattern.COMMON_DATE };
 		DateMorpher dateMorpher = new DateMorpher(formats);
 
 		// 注册器
@@ -586,7 +586,7 @@ public final class JsonUtil{
 		if (null == jsonConfig){
 			jsonConfig = getDefaultJsonConfig();
 			// 注册日期处理器
-			DateJsonValueProcessor jsonValueProcessor = new DateJsonValueProcessor(DatePattern.commonWithTime);
+			DateJsonValueProcessor jsonValueProcessor = new DateJsonValueProcessor(DatePattern.COMMON_DATE_AND_TIME);
 			jsonConfig.registerJsonValueProcessor(Date.class, jsonValueProcessor);
 		}
 

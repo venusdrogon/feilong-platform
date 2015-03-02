@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.enumeration;
+package com.feilong.commons.core.date;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -186,72 +186,77 @@ import java.util.Date;
  */
 public final class DatePattern{
 
-	/** <code>{@value}</code> 年月 带水平线,一般用于分类日志,将众多日志按月分类 example:2012-01. */
-	public static final String	yearAndMonth				= "yyyy-MM";
-
 	/** <code>{@value}</code> 只有日期 年月日 example:2012-01-22. */
-	public static final String	onlyDate					= "yyyy-MM-dd";
+	public static final String	COMMON_DATE										= "yyyy-MM-dd";
 
-	/** <code>{@value}</code> 月日 example:01-22. */
-	public static final String	monthAndDay					= "MM-dd";
+	/** <code>{@value}</code> 只有时间 example:21:57:36. */
+	public static final String	COMMON_TIME										= "HH:mm:ss";
 
-	/** <code>{@value}</code> 月日带星期 example:01-22(星期四). */
-	public static final String	monthAndDayWithWeek			= "MM-dd(E)";
-
-	/** <code>{@value}</code> 不带秒 example:2013-12-27 22:13. */
-	public static final String	commonWithoutSecond			= "yyyy-MM-dd HH:mm";
+	/** <code>{@value}</code> 只有时间且不带秒 example:21:57. */
+	public static final String	COMMON_TIME_WITHOUT_SECOND						= "HH:mm";
 
 	/** <code>{@value}</code> example:2013-12-27 22:13:55. */
-	public static final String	commonWithTime				= "yyyy-MM-dd HH:mm:ss";
-
-	/** <code>{@value}</code> example:31/03/2014 14:53:39. */
-	public static final String	ddMMyyyyHHmmss				= "dd/MM/yyyy HH:mm:ss";
+	public static final String	COMMON_DATE_AND_TIME							= "yyyy-MM-dd HH:mm:ss";
 
 	/** <code>{@value}</code> 带毫秒的时间格式 example:2013-12-27 22:13:55.453. */
-	public static final String	commonWithMillisecond		= "yyyy-MM-dd HH:mm:ss.SSS";
+	public static final String	COMMON_DATE_AND_TIME_WITH_MILLISECOND			= "yyyy-MM-dd HH:mm:ss.SSS";
+
+	/** <code>{@value}</code> 不带秒 example:2013-12-27 22:13. */
+	public static final String	COMMON_DATE_AND_TIME_WITHOUT_SECOND				= "yyyy-MM-dd HH:mm";
 
 	/** <code>{@value}</code> 不带年 不带秒 example:12-27 22:13. */
-	public static final String	commonWithoutAndYearSecond	= "MM-dd HH:mm";
+	public static final String	COMMON_DATE_AND_TIME_WITHOUT_YEAR_AND_SECOND	= "MM-dd HH:mm";
 
 	// *******************************************************************
 
-	/** <code>{@value}</code> example:13. */
-	public static final String	yy							= "yy";
-
-	/** <code>{@value}</code> example:2013. */
-	public static final String	yyyy						= "yyyy";
-
-	/** <code>{@value}</code> MM月份 example:12. */
-	public static final String	MM							= "MM";
-
-	/** <code>{@value}</code> example:20131227. */
-	public static final String	yyyyMMdd					= "yyyyMMdd";
-
-	/** <code>{@value}</code> example:2156. */
-	public static final String	mmss						= "mmss";
-
-	/** <code>{@value}</code> example:21. */
-	public static final String	HH							= "HH";
-
-	/** <code>{@value}</code> 只有时间且不带秒 example:21:57. */
-	public static final String	onlyTime_withoutSecond		= "HH:mm";
-
-	/** <code>{@value}</code> 只有时间 example:21:57:36. */
-	public static final String	onlyTime					= "HH:mm:ss";
-
 	/** 时间戳,<code>{@value}</code>,一般用于拼接文件名称 example:20131227215816. */
-	public static final String	timestamp					= "yyyyMMddHHmmss";
+	public static final String	TIMESTAMP										= "yyyyMMddHHmmss";
 
 	/** 带毫秒的时间戳,<code>{@value}</code> example:20131227215758437. */
-	public static final String	timestampWithMillisecond	= "yyyyMMddHHmmssSSS";
+	public static final String	TIMESTAMP_WITH_MILLISECOND						= "yyyyMMddHHmmssSSS";
+
+	//*******************************************************************************
+
+	/** <code>{@value}</code> 年月 带水平线,一般用于分类日志,将众多日志按月分类 example:2012-01. */
+	public static final String	YEAR_AND_MONTH									= "yyyy-MM";
+
+	/** <code>{@value}</code> 月日 example:01-22. */
+	public static final String	MONTH_AND_DAY									= "MM-dd";
+
+	/** <code>{@value}</code> 月日带星期 example:01-22(星期四). */
+	public static final String	MONTH_AND_DAY_WITH_WEEK							= "MM-dd(E)";
+
+	//**********************************************************************************
+
+	/** <code>{@value}</code> example:31/03/2014 14:53:39. */
+	public static final String	ddMMyyyyHHmmss									= "dd/MM/yyyy HH:mm:ss";
+
+	/** <code>{@value}</code> example:13. */
+	public static final String	yy												= "yy";
+
+	/** <code>{@value}</code> example:2013. */
+	public static final String	yyyy											= "yyyy";
+
+	/** <code>{@value}</code> MM月份 example:12. */
+	public static final String	MM												= "MM";
+
+	/** <code>{@value}</code> example:20131227. */
+	public static final String	yyyyMMdd										= "yyyyMMdd";
+
+	/** <code>{@value}</code> example:2156. */
+	public static final String	mmss											= "mmss";
+
+	/** <code>{@value}</code> example:21. */
+	public static final String	HH												= "HH";
 
 	/**
 	 * 系统Date toString 使用的格式,并且 Locale.US,<br/>
 	 * example: 星期五 十二月 27 22:13:55 CST 2013 <br/>
 	 * 详见{@link Date#toString()} <code>{@value}</code> .
 	 */
-	public static final String	forToString					= "EEE MMM dd HH:mm:ss zzz yyyy";
+	public static final String	forToString										= "EEE MMM dd HH:mm:ss zzz yyyy";
 
+	//***************************************************************************************************
 	/** Don't let anyone instantiate this class. */
 	private DatePattern(){
 		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。

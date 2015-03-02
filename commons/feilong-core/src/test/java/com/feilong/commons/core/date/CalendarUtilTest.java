@@ -22,7 +22,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
@@ -55,7 +54,7 @@ public class CalendarUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public void testGetActualMaximum(){
-		Calendar calendar = CalendarUtil.string2Calendar("2007-02-20", DatePattern.onlyDate);
+		Calendar calendar = CalendarUtil.string2Calendar("2007-02-20", DatePattern.COMMON_DATE);
 		log.debug("the param objects:{}", calendar.getActualMaximum(Calendar.DAY_OF_YEAR));
 
 		// calendar.getActualMaximum(Calendar.DAY_OF_YEAR)
@@ -78,7 +77,7 @@ public class CalendarUtilTest extends BaseDateUtilTest{
 	public void testCalendarUtilTest(){
 
 		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(CalendarUtil.getWeekDateStringList(5, DatePattern.commonWithMillisecond)));
+			log.debug(JsonUtil.format(CalendarUtil.getWeekDateStringList(5, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)));
 		}
 		
 	}

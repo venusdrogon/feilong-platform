@@ -35,7 +35,9 @@ import org.slf4j.LoggerFactory;
 
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
-import com.feilong.commons.core.enumeration.CharsetType;
+
+
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ByteUtil;
 import com.feilong.commons.core.util.StringUtil;
@@ -251,7 +253,7 @@ public final class SymmetricEncryption{
 	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
 	 * @see sun.misc.BASE64Encoder
 	 * @see org.apache.commons.codec.binary.Base64
-	 * @see com.feilong.commons.core.enumeration.CharsetType
+	 * @see com.feilong.commons.core.io.CharsetType
 	 */
 	@SuppressWarnings("restriction")
 	public String encryptBase64(String original,String charsetName) throws EncryptionException{

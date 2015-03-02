@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 
 /**
  * 

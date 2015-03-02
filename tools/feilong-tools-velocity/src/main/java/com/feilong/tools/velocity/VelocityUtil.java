@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.PropertiesUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;

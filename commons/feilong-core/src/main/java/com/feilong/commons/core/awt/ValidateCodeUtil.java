@@ -23,7 +23,6 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import com.feilong.commons.core.ConfigConstants;
-import com.feilong.commons.core.enumeration.FontType;
 
 /**
  * 验证码工具类.

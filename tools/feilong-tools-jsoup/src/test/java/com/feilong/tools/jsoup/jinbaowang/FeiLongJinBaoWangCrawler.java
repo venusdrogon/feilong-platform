@@ -34,8 +34,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.io.CSVUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.io.IOUtil;
@@ -82,7 +82,7 @@ public class FeiLongJinBaoWangCrawler{
 			}
 		}
 		Date now = new Date();
-		String timestamp = DateUtil.date2String(now, DatePattern.timestamp);
+		String timestamp = DateUtil.date2String(now, DatePattern.TIMESTAMP);
 		try{
 			CSVUtil.write(directoryName + "/" + timestamp + ".csv", columnTitles, dataList);
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(directoryName + "/" + timestamp + ".obj"));

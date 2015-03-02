@@ -15,7 +15,6 @@
  */
 package com.feilong.commons.core.io;
 
-import com.feilong.commons.core.enumeration.CharsetType;
 
 /**
  * CSV参数.

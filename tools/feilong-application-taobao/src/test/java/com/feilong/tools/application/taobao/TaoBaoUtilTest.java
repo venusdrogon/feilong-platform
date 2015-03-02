@@ -26,8 +26,8 @@ import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForCodeEntity;
 import com.feilong.application.taobao.entity.TaoBaoOAuthLoginForTokenEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginEntity;
 import com.feilong.application.taobao.entity.TaoBaoStandardLoginOutEntity;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.net.URIUtil;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
@@ -154,7 +154,7 @@ public class TaoBaoUtilTest{
 		taoBaoStandardLoginEntity.setApp_key(APP_KEY);
 		taoBaoStandardLoginEntity.setApp_secret(APP_SERCET);
 		taoBaoStandardLoginEntity.setSign_method("md5");
-		taoBaoStandardLoginEntity.setTimestamp(DateUtil.date2String(new Date(), DatePattern.commonWithTime));
+		taoBaoStandardLoginEntity.setTimestamp(DateUtil.date2String(new Date(), DatePattern.COMMON_DATE_AND_TIME));
 		log.info(TaoBaoUtil.getTaoBaoStandardLoginUrl(taoBaoStandardLoginEntity));
 	}
 
@@ -169,7 +169,7 @@ public class TaoBaoUtilTest{
 		taoBaoStandardLoginOutEntity.setApp_key(APP_KEY);
 		taoBaoStandardLoginOutEntity.setApp_secret(APP_SERCET);
 		taoBaoStandardLoginOutEntity.setSign_method("md5");
-		taoBaoStandardLoginOutEntity.setTimestamp(DateUtil.date2String(new Date(), DatePattern.commonWithTime));
+		taoBaoStandardLoginOutEntity.setTimestamp(DateUtil.date2String(new Date(), DatePattern.COMMON_DATE_AND_TIME));
 		log.info(TaoBaoUtil.getTaoBaoStandardLoginOutUrl(taoBaoStandardLoginOutEntity));
 	}
 

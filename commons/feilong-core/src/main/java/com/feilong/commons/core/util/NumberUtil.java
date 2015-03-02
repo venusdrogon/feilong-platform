@@ -19,7 +19,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import com.feilong.commons.core.enumeration.NumberPattern;
 import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.text.NumberFormatUtil;
 

@@ -27,11 +27,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.DatePattern;
-import com.feilong.commons.core.enumeration.RegexPattern;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.util.NumberUtil;
+import com.feilong.commons.core.util.RegexPattern;
 import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.command.PaymentResult;
@@ -132,7 +132,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
 		String AMOUNT = NumberUtil.toString(totalFee, pricePattern);
 		// these are the total amount that the buyer must paid, both of them must have the same value for checking purpose in Doku side
 		String PURCHASEAMOUNT = AMOUNT;
-		String REQUESTDATETIME = DateUtil.date2String(new Date(), DatePattern.timestamp);
+		String REQUESTDATETIME = DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
 
 		// see Doku_OneCheckout_Metraplasa page 61
 		String PURCHASECURRENCY = CURRENCY;

@@ -29,8 +29,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateExtensionUtil;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
@@ -87,7 +87,7 @@ public final class SessionUtil{
 							Slf4jUtil.formatMessage(
 											"[{}],format:[{}],intervalToNow:[{}]",
 											creationTime,
-											DateUtil.date2String(creationTimeDate, DatePattern.commonWithMillisecond),
+											DateUtil.date2String(creationTimeDate, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
 											DateExtensionUtil.getIntervalForView(creationTimeDate, now)));
 
 			//返回此SESSION里客户端最近一次请求时间 
@@ -98,7 +98,7 @@ public final class SessionUtil{
 							Slf4jUtil.formatMessage(
 											"[{}],format:[{}],intervalToNow:[{}]",
 											lastAccessedTime,
-											DateUtil.date2String(lastAccessedTimeDate, DatePattern.commonWithMillisecond),
+											DateUtil.date2String(lastAccessedTimeDate, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
 											DateExtensionUtil.getIntervalForView(lastAccessedTimeDate, now)));
 
 			//返回两次请求间隔多长时间此SESSION被取消(ms) 

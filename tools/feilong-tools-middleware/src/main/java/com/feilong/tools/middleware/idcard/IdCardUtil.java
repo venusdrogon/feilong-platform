@@ -23,8 +23,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.RegexPattern;
 import com.feilong.commons.core.text.DateFormatUtil;
+import com.feilong.commons.core.util.RegexPattern;
 import com.feilong.commons.core.util.RegexUtil;
 import com.feilong.commons.core.util.Validator;
 

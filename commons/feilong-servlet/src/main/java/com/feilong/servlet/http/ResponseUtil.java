@@ -28,10 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateExtensionUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.MimeType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOWriteUtil;
+import com.feilong.commons.core.io.MimeType;
 import com.feilong.commons.core.io.MimeTypeUtil;
 import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.URIUtil;

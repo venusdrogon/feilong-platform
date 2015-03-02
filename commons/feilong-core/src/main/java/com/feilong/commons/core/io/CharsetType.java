@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.enumeration;
+package com.feilong.commons.core.io;
 
 /**
  * 常用编码的枚举.建议不要自己硬编码,直接调用这里预声明的常量

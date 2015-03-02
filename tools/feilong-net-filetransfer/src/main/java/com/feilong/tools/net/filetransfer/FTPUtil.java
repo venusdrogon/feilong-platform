@@ -30,8 +30,8 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.FileType;
 import com.feilong.commons.core.io.FileInfoEntity;
+import com.feilong.commons.core.io.FileType;
 
 /**
  * ftp 相关的工具类, 注:依赖于 commons-net<br>

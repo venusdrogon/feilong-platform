@@ -32,7 +32,9 @@ import com.feilong.commons.core.awt.WaterMark;
  * 水印过滤器.
  *
  * @author 金鑫 2010-1-6 下午01:07:33
+ * @deprecated 不推荐tomcat等应用服务器端来实现水印, 耗资源, 可以从nginx/apache端来实现水印技术
  */
+@Deprecated
 public class WaterMarkFilter extends HttpServlet implements Filter{
 
 	/** The Constant serialVersionUID. */

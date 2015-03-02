@@ -25,10 +25,10 @@ import javax.mail.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
-import com.feilong.commons.core.enumeration.DatePattern;
-import com.feilong.commons.core.enumeration.FileWriteMode;
+import com.feilong.commons.core.io.CharsetType;
+import com.feilong.commons.core.io.FileWriteMode;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -55,7 +55,7 @@ public class StubStatusMain{
 	private static String		encode				= CharsetType.GBK;
 
 	/** The pattern_crawl date. */
-	public static String		pattern_crawlDate	= DatePattern.commonWithTime;
+	public static String		pattern_crawlDate	= DatePattern.COMMON_DATE_AND_TIME;
 
 	/**
 	 * The main method.
@@ -179,7 +179,7 @@ public class StubStatusMain{
 	 * @return the string
 	 */
 	protected static String parseFilePath(String path,Date crawlDate){
-		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.monthAndDay);
+		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.MONTH_AND_DAY);
 		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
 		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 

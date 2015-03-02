@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * The Class CSVUtilTest.
@@ -47,7 +47,7 @@ public class CSVUtilTest{
 	@Test
 	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_demand.csv";
-		path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.onlyDate));
+		path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.COMMON_DATE));
 		log.info(path);
 		String[] columnTitles = { "a", "b" };
 		List<Object[]> list = new ArrayList<Object[]>();

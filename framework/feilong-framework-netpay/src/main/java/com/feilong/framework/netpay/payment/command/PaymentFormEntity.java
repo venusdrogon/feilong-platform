@@ -18,7 +18,7 @@ package com.feilong.framework.netpay.payment.command;
 import java.io.Serializable;
 import java.util.Map;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor;
 import com.feilong.framework.netpay.payment.adaptor.AdaptorParseUsableData;

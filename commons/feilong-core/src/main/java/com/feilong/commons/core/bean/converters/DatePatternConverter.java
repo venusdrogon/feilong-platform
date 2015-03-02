@@ -20,7 +20,7 @@ import java.util.Locale;
 
 import org.apache.commons.beanutils.converters.DateTimeConverter;
 
-import com.feilong.commons.core.enumeration.DatePattern;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.text.DateFormatUtil;
 import com.feilong.commons.core.util.Validator;
 

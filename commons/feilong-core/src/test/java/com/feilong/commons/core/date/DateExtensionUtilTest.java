@@ -23,7 +23,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
@@ -60,9 +59,9 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public void testGetIntervalDayList(){
-		List<Date> dates = DateExtensionUtil.getIntervalDayList(fromString, toString, DatePattern.commonWithTime);
+		List<Date> dates = DateExtensionUtil.getIntervalDayList(fromString, toString, DatePattern.COMMON_DATE_AND_TIME);
 		for (int i = 0; i < dates.size(); ++i){
-			log.debug(DateUtil.date2String(dates.get(i), DatePattern.commonWithTime));
+			log.debug(DateUtil.date2String(dates.get(i), DatePattern.COMMON_DATE_AND_TIME));
 		}
 	}
 
@@ -71,9 +70,9 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public void testGetIntervalForView(){
-		Date now = DateUtil.string2Date("2011-05-19 11:31:25.456", DatePattern.commonWithTime);
+		Date now = DateUtil.string2Date("2011-05-19 11:31:25.456", DatePattern.COMMON_DATE_AND_TIME);
 		now = new Date();
-		Date date = DateUtil.string2Date("2012-12-03 00:00:00", DatePattern.commonWithTime);
+		Date date = DateUtil.string2Date("2012-12-03 00:00:00", DatePattern.COMMON_DATE_AND_TIME);
 		log.debug(DateExtensionUtil.getIntervalForView(now, date));
 		long intervalTime = DateUtil.getIntervalTime(now, date);
 		log.debug(intervalTime + "");
@@ -102,15 +101,15 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 	@Test
 	public void testToHumanizationDateString(){
 
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 13:55:00", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 14:14:22", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 14:15:22", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-17 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-16 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-15 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-09-15 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2011-09-15 14:15:02", DatePattern.commonWithTime)));
-		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-12-03 00:00:00", DatePattern.commonWithTime)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 13:55:00", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 14:14:22", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-18 14:15:22", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-17 14:15:02", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-16 14:15:02", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-10-15 14:15:02", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-09-15 14:15:02", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2011-09-15 14:15:02", DatePattern.COMMON_DATE_AND_TIME)));
+		log.debug(DateExtensionUtil.toHumanizationDateString(DateUtil.string2Date("2012-12-03 00:00:00", DatePattern.COMMON_DATE_AND_TIME)));
 	}
 
 	/**
@@ -125,7 +124,7 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 		dateList.add(new Date());
 
 		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(DateExtensionUtil.toStringList(dateList, DatePattern.commonWithMillisecond)));
+			log.debug(JsonUtil.format(DateExtensionUtil.toStringList(dateList, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)));
 		}
 
 	}
@@ -148,7 +147,7 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 	public final void testGetExtentToday(){
 		Date[] dates = DateExtensionUtil.getExtentToday();
 		for (Date date : dates){
-			log.debug(DateUtil.date2String(date, DatePattern.commonWithMillisecond));
+			log.debug(DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
 		}
 	}
 }

@@ -17,7 +17,7 @@ package com.feilong.tools.memcached;
 
 import java.util.concurrent.Future;
 
-import com.feilong.commons.core.enumeration.TimeInterval;
+import com.feilong.commons.core.date.TimeInterval;
 
 /**
  * 可以用spring 管理的 memcached,如果有刘总annotation处理不了的或者不方便的 memcached 可以使用这个.

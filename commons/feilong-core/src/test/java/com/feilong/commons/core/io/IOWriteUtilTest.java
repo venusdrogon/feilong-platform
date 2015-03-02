@@ -28,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateExtensionUtil;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * The Class IOWriteUtilTest.
@@ -101,9 +101,9 @@ public class IOWriteUtilTest{
 	public void testWrite() throws IOException{
 		String path = "/home/webuser/nike_int/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log";
 		Date date = new Date();
-		path = path.replace("${yearMonth}", DateUtil.date2String(date, DatePattern.yearAndMonth));
+		path = path.replace("${yearMonth}", DateUtil.date2String(date, DatePattern.YEAR_AND_MONTH));
 		path = path.replace("${expressDeliveryType}", "sf");
-		path = path.replace("${fileName}", DateUtil.date2String(date, DatePattern.timestamp));
+		path = path.replace("${fileName}", DateUtil.date2String(date, DatePattern.TIMESTAMP));
 		// **************************************************************
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("****************************************************" + SystemUtils.LINE_SEPARATOR);

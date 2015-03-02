@@ -15,7 +15,7 @@
  */
 package com.feilong.tools.security.oneway;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.tools.security.EncryptionException;
 
 /**

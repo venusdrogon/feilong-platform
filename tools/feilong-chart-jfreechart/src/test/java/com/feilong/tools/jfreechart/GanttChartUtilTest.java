@@ -11,8 +11,8 @@ import java.util.Map;
 import org.jfree.data.gantt.Task;
 import org.junit.Test;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartEntity;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartUtil;
 
@@ -27,7 +27,7 @@ import com.feilong.tools.jfreechart.category.gantt.GanttChartUtil;
 	@Test
 	public void createGanttChart() throws IOException{
 		Map<String, List<Task>> seriesAndDataMap = new LinkedHashMap<String, List<Task>>();
-		String pattern = DatePattern.onlyDate;
+		String pattern = DatePattern.COMMON_DATE;
 		List<Task> taskList = null;
 		/**************************************************************************/
 		taskList = new ArrayList<Task>();
@@ -69,7 +69,7 @@ import com.feilong.tools.jfreechart.category.gantt.GanttChartUtil;
 		chartInfoEntity.setWidth(1200);
 		chartInfoEntity.setHeight(1200);
 		GanttChartUtil ganttChartUtil = new GanttChartUtil(ganttChartEntity);
-		ganttChartUtil.getDateAxis().setDateFormatOverride(new SimpleDateFormat(DatePattern.monthAndDayWithWeek));
+		ganttChartUtil.getDateAxis().setDateFormatOverride(new SimpleDateFormat(DatePattern.MONTH_AND_DAY_WITH_WEEK));
 		//ganttChartUtil.getTextTitle().setBorder(1, 1, 1, 1);
 		//		ganttChartUtil.getjFreeChart().setBackgroundPaint(Color.black);
 		//		ganttChartUtil.getTextTitle().setPaint(Color.white);

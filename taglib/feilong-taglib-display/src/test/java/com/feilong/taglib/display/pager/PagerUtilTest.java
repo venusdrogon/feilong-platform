@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.taglib.display.pager.command.PagerParams;
 

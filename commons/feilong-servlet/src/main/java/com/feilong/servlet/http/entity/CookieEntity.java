@@ -17,7 +17,7 @@ package com.feilong.servlet.http.entity;
 
 import java.io.Serializable;
 
-import com.feilong.commons.core.enumeration.TimeInterval;
+import com.feilong.commons.core.date.TimeInterval;
 
 /**
  * cookie实体.

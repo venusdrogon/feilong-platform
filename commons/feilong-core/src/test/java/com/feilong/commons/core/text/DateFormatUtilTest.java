@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.DatePattern;
+import com.feilong.commons.core.date.DatePattern;
 
 /**
  * The Class DateFormatUtilTest.
@@ -42,7 +42,7 @@ public  class DateFormatUtilTest{
 	public void format(){
 		Date now = new Date();
 		log.info(now.toString());
-		String pattern = DatePattern.onlyDate;
+		String pattern = DatePattern.COMMON_DATE;
 		pattern = "EEE MMM dd HH:mm:ss zzz yyyy";
 		String nowString = DateFormatUtil.format(now, pattern, Locale.ENGLISH);
 		log.info(nowString);

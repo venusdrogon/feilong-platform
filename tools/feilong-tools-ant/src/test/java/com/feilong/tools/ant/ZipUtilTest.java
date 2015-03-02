@@ -25,8 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateExtensionUtil;
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -44,7 +44,7 @@ import com.feilong.commons.core.enumeration.DatePattern;
 	/**
 	 * 解压到哪个目录
 	 */
-	String						outputFileName	= "E:\\test" + DateUtil.date2String(new Date(), DatePattern.timestamp); // 解压到文件路径
+	String						outputFileName	= "E:\\test" + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP); // 解压到文件路径
 
 	//@Test
 	public void testZip() throws IOException{

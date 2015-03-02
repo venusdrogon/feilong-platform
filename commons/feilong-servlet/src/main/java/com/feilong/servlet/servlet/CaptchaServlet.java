@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.ValidateCodeUtil;
-import com.feilong.commons.core.enumeration.ImageType;
+import com.feilong.commons.core.io.ImageType;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.ResponseUtil;
 

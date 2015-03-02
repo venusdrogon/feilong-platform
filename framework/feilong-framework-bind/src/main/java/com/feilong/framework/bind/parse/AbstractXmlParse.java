@@ -23,7 +23,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.lang.reflect.TypeUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.bind.exception.BuildCommandException;

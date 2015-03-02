@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.enumeration;
+package com.feilong.commons.core.util;
 
 /**
  * uri使用的常量.

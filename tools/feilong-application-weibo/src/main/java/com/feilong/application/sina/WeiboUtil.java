@@ -28,7 +28,7 @@ import weibo4j.http.ImageItem;
 import weibo4j.model.Status;
 import weibo4j.model.WeiboException;
 
-import com.feilong.commons.core.enumeration.CharsetType;
+import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;

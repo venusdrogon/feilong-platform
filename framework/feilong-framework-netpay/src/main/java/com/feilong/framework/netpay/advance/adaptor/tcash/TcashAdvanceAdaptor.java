@@ -23,8 +23,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
@@ -163,7 +163,7 @@ public class TcashAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 			Date gatewayPaymentTime = null;
 			String transactionDate = checkTransactionStatusResponse.getTransactionDate();
 			if (Validator.isNotNullOrEmpty(transactionDate)){
-				gatewayPaymentTime = DateUtil.string2Date(transactionDate, DatePattern.commonWithTime);
+				gatewayPaymentTime = DateUtil.string2Date(transactionDate, DatePattern.COMMON_DATE_AND_TIME);
 			}
 
 			QueryResult queryResult = new QueryResult();

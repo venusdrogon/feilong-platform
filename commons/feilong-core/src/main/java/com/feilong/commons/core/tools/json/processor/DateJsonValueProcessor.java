@@ -20,8 +20,8 @@ import java.util.Date;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.DatePattern;
 
 /**
  * 时间转换 日期值处理器实现.
@@ -33,7 +33,7 @@ import com.feilong.commons.core.enumeration.DatePattern;
 public class DateJsonValueProcessor implements JsonValueProcessor{
 
 	/** The date pattern. */
-	private String	datePattern	= DatePattern.commonWithTime;
+	private String	datePattern	= DatePattern.COMMON_DATE_AND_TIME;
 
 	/**
 	 * Instantiates a new json date value processor.
