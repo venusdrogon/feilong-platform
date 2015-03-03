@@ -38,7 +38,8 @@ public class DateJsonValueProcessor implements JsonValueProcessor{
 	/**
 	 * Instantiates a new json date value processor.
 	 */
-	public DateJsonValueProcessor(){}
+	public DateJsonValueProcessor(){
+	}
 
 	/**
 	 * The Constructor.

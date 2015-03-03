@@ -24,10 +24,10 @@ package com.feilong.commons.core.util;
 public final class ByteUtil{
 
 	/** 数字 字符数组. */
-	private static final char[]		digit2char	= { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', };
+	private static final char[]		DIGIT_2_CHARS	= { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', };
 
 	/** The Constant hexDigits. */
-	private static final String[]	hexDigits	= { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
+	private static final String[]	HEX_DIGITS		= { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
 
 	/** Don't let anyone instantiate this class. */
 	private ByteUtil(){
@@ -68,7 +68,7 @@ public final class ByteUtil{
 		}
 		int d1 = i / 16;
 		int d2 = i % 16;
-		return hexDigits[d1] + hexDigits[d2];
+		return HEX_DIGITS[d1] + HEX_DIGITS[d2];
 
 		// 下面的处理不了显示 00， 00显示的是0
 		// int intValue = 0;
@@ -95,9 +95,9 @@ public final class ByteUtil{
 		char[] tmpData = new char[bytes.length << 1];
 		for (int i = 0; i < bytes.length; ++i){
 			int left = (bytes[i] & 0xF0) >> 4;
-			tmpData[i << 1] = digit2char[left];
+			tmpData[i << 1] = DIGIT_2_CHARS[left];
 			int right = bytes[i] & 0x0F;
-			tmpData[(i << 1) + 1] = digit2char[right];
+			tmpData[(i << 1) + 1] = DIGIT_2_CHARS[right];
 		}
 		return new String(tmpData);
 	}

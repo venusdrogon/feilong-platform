@@ -177,7 +177,9 @@ public class DateUtilTest extends BaseDateUtilTest{
 		log.debug("the param date:{}", DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
 		Date now3 = DateUtil.getFirstDateOfThisWeek(date);
 		log.debug(DateUtil.date2String(now3, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
-		log.debug("今天所在week 第一天:{}", DateUtil.date2String(DateUtil.getFirstDateOfThisWeek(new Date()), DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
+		log.debug("今天所在week 第一天:{}", DateUtil.date2String(
+						DateUtil.getFirstDateOfThisWeek(new Date()),
+						DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
 
 		log.debug("getFirstDateOfThisWeek:{}", DateUtil.date2String(
 						DateUtil.getFirstDateOfThisWeek(DateUtil.string2Date("2014-01-01 05:00:00", DatePattern.COMMON_DATE_AND_TIME)),
@@ -367,14 +369,20 @@ public class DateUtilTest extends BaseDateUtilTest{
 	@Test
 	public void getWeekOfYear(){
 		log.debug(DateUtil.getWeekOfYear(new Date()) + "");
-		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2013-12-31 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)) + "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2013-12-31 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND))
+						+ "");
 		log.debug(DateUtil.getWeekOfYear(CURRENT_YEAR_BEGIN) + "");
 		log.debug(DateUtil.getWeekOfYear(CURRENT_YEAR_END) + "");
-		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)) + "");
-		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-30 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)) + "");
-		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-20 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)) + "");
-		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-26 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)) + "");
-		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2011-03-10 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)) + "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-31 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND))
+						+ "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-30 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND))
+						+ "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-20 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND))
+						+ "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2014-12-26 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND))
+						+ "");
+		log.debug(DateUtil.getWeekOfYear(DateUtil.string2Date("2011-03-10 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND))
+						+ "");
 	}
 
 	/**

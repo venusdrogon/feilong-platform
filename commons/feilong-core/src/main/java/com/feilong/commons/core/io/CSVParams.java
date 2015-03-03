@@ -15,7 +15,6 @@
  */
 package com.feilong.commons.core.io;
 
-
 /**
  * CSV参数.
  * 

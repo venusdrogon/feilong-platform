@@ -67,7 +67,8 @@ public final class Pager implements Serializable{
 	/**
 	 * The Constructor.
 	 */
-	public Pager(){}
+	public Pager(){
+	}
 
 	/**
 	 * The Constructor.

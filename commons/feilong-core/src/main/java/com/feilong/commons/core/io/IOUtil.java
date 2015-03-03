@@ -62,7 +62,7 @@ public final class IOUtil{
 		Charset defaultCharset = Charset.defaultCharset();
 		String charsetName = defaultCharset.name();
 		log.debug("the param defaultCharset:[{}]", charsetName);
-		
+
 		return inputStream2String(inputStream, charsetName);
 	}
 

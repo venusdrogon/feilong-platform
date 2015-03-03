@@ -29,7 +29,7 @@ public final class ConstellationUtil{
 	/**
 	 * 飞龙星座枚举
 	 */
-	private static final ConstellationType[]	constellationTypes	= {
+	private static final ConstellationType[]	CONSTELLATION_TYPES	= {
 																	// 水瓶座 1月20日-2月18日
 			ConstellationType.AQUARIUS,
 			// 双鱼座 2月19日-3月20日
@@ -58,7 +58,7 @@ public final class ConstellationUtil{
 	/**
 	 * 星座边界日期
 	 */
-	private static final int[]					edgeDays			= { 20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22 };
+	private static final int[]					EDGE_DAYS			= { 20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22 };
 
 	/** Don't let anyone instantiate this class. */
 	private ConstellationUtil(){
@@ -83,15 +83,12 @@ public final class ConstellationUtil{
 		int month = DateUtil.getMonth(date);
 		// 日
 		int day = DateUtil.getDayOfMonth(date);
-		// **********************************************************************
-		/**
-		 * 索引 默认月份-1
-		 */
+
+		//索引 默认月份-1
 		int index = month - 1;
-		/**
-		 * 当前月的边界日期
-		 */
-		int edgeDay = edgeDays[month - 1];
+
+		//当前月的边界日期
+		int edgeDay = EDGE_DAYS[month - 1];
 		if (day < edgeDay){
 			index = index - 1;
 			// 如果 是1月20-的 那么是摩羯座....
@@ -99,7 +96,7 @@ public final class ConstellationUtil{
 				index = 11;
 			}
 		}
-		return constellationTypes[index];
+		return CONSTELLATION_TYPES[index];
 	}
 
 	/**

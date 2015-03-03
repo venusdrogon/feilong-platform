@@ -78,7 +78,7 @@ public class ArrayUtilTest{
 	public void testIsContain(){
 		Assert.assertEquals(true, ArrayUtil.isContain(new Integer[] { 1, 223 }, 1));
 		Assert.assertEquals(true, ArrayUtil.isContain(new Long[] { 1L, 223L }, 1L));
-		
+
 		String[] array = new String[] { "1", "223" };
 		Assert.assertEquals(false, ArrayUtil.isContain(array, "2"));
 	}

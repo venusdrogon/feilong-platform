@@ -42,7 +42,8 @@ public final class JoinStringEntity implements Serializable{
 	/**
 	 * Instantiates a new join string entity.
 	 */
-	public JoinStringEntity(){}
+	public JoinStringEntity(){
+	}
 
 	/**
 	 * Instantiates a new join string entity.

@@ -196,7 +196,6 @@ public class CollectionsUtilTest{
 			log.debug(JsonUtil.format(set));
 		}
 
-		
 	}
 
 	/**
@@ -218,7 +217,6 @@ public class CollectionsUtilTest{
 			log.debug(JsonUtil.format(stack));
 		}
 
-		
 	}
 
 	/**
@@ -241,7 +239,6 @@ public class CollectionsUtilTest{
 
 		}
 
-		
 	}
 
 	/**

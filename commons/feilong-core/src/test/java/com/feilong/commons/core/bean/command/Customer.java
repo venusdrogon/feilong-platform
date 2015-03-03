@@ -36,7 +36,8 @@ public class Customer implements Serializable{
 	/**
 	 * The Constructor.
 	 */
-	public Customer(){}
+	public Customer(){
+	}
 
 	/**
 	 * The Constructor.

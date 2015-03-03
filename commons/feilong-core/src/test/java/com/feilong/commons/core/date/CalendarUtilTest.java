@@ -79,6 +79,6 @@ public class CalendarUtilTest extends BaseDateUtilTest{
 		if (log.isDebugEnabled()){
 			log.debug(JsonUtil.format(CalendarUtil.getWeekDateStringList(5, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND)));
 		}
-		
+
 	}
 }

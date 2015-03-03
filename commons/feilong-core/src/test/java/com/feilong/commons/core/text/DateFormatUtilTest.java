@@ -30,7 +30,7 @@ import com.feilong.commons.core.date.DatePattern;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-15 上午11:36:29
  */
-public  class DateFormatUtilTest{
+public class DateFormatUtilTest{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(DateFormatUtilTest.class);

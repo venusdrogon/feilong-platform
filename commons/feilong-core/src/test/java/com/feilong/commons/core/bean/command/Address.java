@@ -42,7 +42,8 @@ public class Address implements Serializable{
 	/**
 	 * Instantiates a new address.
 	 */
-	public Address(){}
+	public Address(){
+	}
 
 	/**
 	 * Instantiates a new address.
@@ -138,7 +139,4 @@ public class Address implements Serializable{
 	public void setZipCode(String zipCode){
 		this.zipCode = zipCode;
 	}
-
 }
-
-/** Customer.java */
