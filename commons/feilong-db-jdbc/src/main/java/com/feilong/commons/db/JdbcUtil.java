@@ -2,9 +2,6 @@ package com.feilong.commons.db;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -14,9 +11,6 @@ import com.feilong.commons.core.util.Validator;
  * @author 金鑫 2010-7-9 上午11:55:22
  */
 public class JdbcUtil{
-
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(JdbcUtil.class);
 
 	/**
 	 * 简单的存储过程 转换成完整的存储过程名称

@@ -16,8 +16,6 @@
 package com.feilong.tools.scm.svn;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.scm.ScmAntCopy;
 import com.feilong.tools.scm.ScmAntCopyConfig;
@@ -29,10 +27,6 @@ import com.feilong.tools.scm.ScmAntCopyConfig;
  * @version 1.0 2012-5-23 下午7:50:42
  */
 public class SvnPatchAntCopyTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger		log					= LoggerFactory.getLogger(SvnPatchAntCopyTest.class);
 
 	/** 过滤不想传的文件 采用 endWith 来 匹配. */
 	private static final String[]	excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };

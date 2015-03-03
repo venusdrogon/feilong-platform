@@ -21,8 +21,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.jfree.chart.plot.PiePlot3D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 3D饼图.
@@ -30,15 +28,10 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:16:30
  */
-@SuppressWarnings("all")
 public final class Pie3DChartUtil extends BasePieChartUtil{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(Pie3DChartUtil.class);
-
 	/** 3d饼状图图表区域对象. */
-	protected PiePlot3D			piePlot3D;
+	protected PiePlot3D	piePlot3D;
 
 	/**
 	 * Instantiates a new pie3 d chart util.

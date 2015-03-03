@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.tools.jfreechart;
 
 import java.io.IOException;
@@ -16,15 +31,36 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartEntity;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartUtil;
 
-@SuppressWarnings("all")
+/**
+ * The Class GanttChartUtilTest.
+ */
 public class GanttChartUtilTest{
 
+	/**
+	 * 获得 task.
+	 *
+	 * @param description
+	 *            the description
+	 * @param start
+	 *            the start
+	 * @param end
+	 *            the end
+	 * @param pattern
+	 *            the pattern
+	 * @return the task
+	 */
 	public static Task getTask(String description,String start,String end,String pattern){
 		Date startDate = DateUtil.string2Date(start, pattern);
 		Date endDate = DateUtil.string2Date(end, pattern);
 		return new Task(description, startDate, endDate);
 	}
 
+	/**
+	 * Creates the gantt chart.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void createGanttChart() throws IOException{
 		Map<String, List<Task>> seriesAndDataMap = new LinkedHashMap<String, List<Task>>();

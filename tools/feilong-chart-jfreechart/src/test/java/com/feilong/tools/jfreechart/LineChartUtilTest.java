@@ -19,7 +19,6 @@ import com.feilong.tools.jfreechart.category.LineChartUtil;
  * 实际取色的时候一定要16位的，这样比较准确
  * </pre>
  */
-@SuppressWarnings("all")
 public class LineChartUtilTest{
 
 	private ChartInfoEntity	chartInfoEntity;

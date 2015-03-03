@@ -37,7 +37,6 @@ import com.feilong.commons.core.awt.FontUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:09:42
  */
-@SuppressWarnings("all")
 public final class BarChartUtil extends CategoryChartUtil{
 
 	/** The Constant log. */

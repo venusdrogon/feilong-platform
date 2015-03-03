@@ -16,8 +16,6 @@
 package com.feilong.spring.aspects;
 
 import org.aspectj.lang.JoinPoint;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 //@Aspect
 // 使用@Aspect之前记得要引入aspectjrt.jar和aspectjweaver.jar
@@ -28,10 +26,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0.7 2014-6-25 16:22:49
  */
 public class MySecurityManagerImpl implements MySecurityManager{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(MySecurityManagerImpl.class);
 
 	/**
 	 * 定义切入点,切入该方法只是一个标识（而且只作为标识并不是常态下的方法， 并不供人调用所以该方法返回值为void,最好设置为private）,该方法只是一个标识，就象配置文件的id<br>

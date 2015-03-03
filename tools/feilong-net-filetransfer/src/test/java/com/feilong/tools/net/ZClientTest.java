@@ -45,7 +45,6 @@ public class ZClientTest{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@SuppressWarnings("unused")
 	private static void testGetFiles(FTPClient ftp,File localDir) throws IOException{
 		String[] names = ftp.listNames();
 		for (String name : names){

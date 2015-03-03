@@ -7,8 +7,6 @@ import java.util.Locale;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSourceResolvable;
@@ -31,12 +29,8 @@ import com.feilong.servlet.http.entity.HttpHeaders;
  */
 public abstract class AbstractController{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger		log							= LoggerFactory.getLogger(AbstractController.class);
-
 	/** The Constant header_with_ajax_springmvc. */
-	public static final String		header_with_ajax_springmvc	= HttpHeaders.X_REQUESTED_WITH + "="
+	public static final String		HEADER_WITH_AJAX_SPRINGMVC	= HttpHeaders.X_REQUESTED_WITH + "="
 																				+ HttpHeaders.X_REQUESTED_WITH_VALUE_AJAX;
 
 	/** The context. */

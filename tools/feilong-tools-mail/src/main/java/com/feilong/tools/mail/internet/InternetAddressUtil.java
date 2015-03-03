@@ -22,9 +22,6 @@ import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -49,10 +46,6 @@ import com.feilong.commons.core.util.Validator;
  * @since 1.0.8
  */
 public final class InternetAddressUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(InternetAddressUtil.class);
 
 	/**
 	 * 将nameAndEmail map转成 InternetAddress数组.

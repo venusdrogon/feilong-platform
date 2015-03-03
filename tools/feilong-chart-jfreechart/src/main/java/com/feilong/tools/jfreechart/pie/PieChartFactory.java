@@ -18,8 +18,6 @@ package com.feilong.tools.jfreechart.pie;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.PieDataset;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.jfreechart.ChartDatesetUtil;
 import com.feilong.tools.jfreechart.ChartUtil;
@@ -31,10 +29,6 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @version 1.0 2012 1 16 01:31:12
  */
 public class PieChartFactory{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(PieChartFactory.class);
 
 	/**
 	 * Creates a new PieChart object.

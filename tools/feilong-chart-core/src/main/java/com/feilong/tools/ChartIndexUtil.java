@@ -20,9 +20,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.chart.index.ChartIndex;
 
@@ -34,10 +31,6 @@ import com.feilong.tools.chart.index.ChartIndex;
  * @since 1.0.8
  */
 public final class ChartIndexUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(ChartIndexUtil.class);
 
 	/**
 	 * 将map数据装成 {@code List<ChartIndex>},此处将调用 {@link #toChartIndexList(Map, Map)}方法,.

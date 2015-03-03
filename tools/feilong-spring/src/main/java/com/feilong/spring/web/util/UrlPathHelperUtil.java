@@ -20,8 +20,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
@@ -31,10 +29,6 @@ import org.springframework.web.util.UrlPathHelper;
  * @version 1.0 2012-5-30 下午91957
  */
 public class UrlPathHelperUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(UrlPathHelperUtil.class);
 
 	/**
 	 * 显示 属性 一般 debug 使用 看看

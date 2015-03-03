@@ -22,9 +22,6 @@ import java.util.Map;
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The Class BaseTagTEL.
  * 
@@ -32,10 +29,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2012-3-13 上午1:35:28
  */
 public abstract class BaseTagTEL extends TagExtraInfo{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(BaseTagTEL.class);
 
 	/**
 	 * 显示 tagData 里面的信息 一般用于 debug.

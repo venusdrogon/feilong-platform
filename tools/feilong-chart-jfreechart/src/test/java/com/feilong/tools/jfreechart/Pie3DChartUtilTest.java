@@ -20,8 +20,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.jfreechart.pie.Pie3DChartUtil;
 import com.feilong.tools.jfreechart.pie.PieChartEntity;
@@ -32,10 +30,7 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
  */
 public class Pie3DChartUtilTest{
 
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(Pie3DChartUtilTest.class);
-
-	private ChartInfoEntity		chartInfoEntity;
+	private ChartInfoEntity	chartInfoEntity;
 
 	/**
 	 * 生成饼状图

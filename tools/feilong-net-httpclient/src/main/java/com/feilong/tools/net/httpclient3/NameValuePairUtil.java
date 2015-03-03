@@ -18,8 +18,6 @@ package com.feilong.tools.net.httpclient3;
 import java.util.Map;
 
 import org.apache.commons.httpclient.NameValuePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.util.Validator;
 
@@ -31,10 +29,6 @@ import com.feilong.commons.core.util.Validator;
  * @since 1.0.8
  */
 public class NameValuePairUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(NameValuePairUtil.class);
 
 	/**
 	 * 从一个map转换成NameValuePair数组.

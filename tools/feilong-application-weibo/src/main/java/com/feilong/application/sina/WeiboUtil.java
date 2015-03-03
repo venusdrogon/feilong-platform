@@ -100,7 +100,6 @@ public final class WeiboUtil{
 		}
 
 		if (isLessThanMaxLength){
-			@SuppressWarnings("unused")
 			Status status = null;
 
 			Timeline timeline = new Timeline();

@@ -17,9 +17,6 @@ package com.feilong.framework.netpay.payment.adaptor.alipay;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor;
 
 /**
@@ -29,10 +26,6 @@ import com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor;
  * @version 1.0 2014-5-6 20:20:08
  */
 public abstract class BaseAlipayAdaptor extends AbstractPaymentAdaptor{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger		log					= LoggerFactory.getLogger(BaseAlipayAdaptor.class);
 
 	/** The Constant PARAM_DEFAULT_BANK. */
 	protected static final String	PARAM_DEFAULT_BANK	= "defaultbank";

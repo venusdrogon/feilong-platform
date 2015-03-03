@@ -16,8 +16,6 @@
 package com.feilong.framework.netpay.advance.sprintasia.creditcard;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -33,10 +31,6 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
  * @since 1.0.6
  */
 public class SprintAsiaCreditCardAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
-
-	/** The Constant log. */
-	@SuppressWarnings({ "unused" })
-	private static final Logger		log	= LoggerFactory.getLogger(SprintAsiaCreditCardAdvanceAdaptorTest.class);
 
 	/** The payment adaptor. */
 	@Autowired

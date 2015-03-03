@@ -71,7 +71,6 @@ public class PagerUtilTest extends BasePagerTest{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@SuppressWarnings({ "unused" })
 	@Test
 	public void testGetPagerContent() throws IOException{
 		PagerParams pagerParams = getPagerParams();

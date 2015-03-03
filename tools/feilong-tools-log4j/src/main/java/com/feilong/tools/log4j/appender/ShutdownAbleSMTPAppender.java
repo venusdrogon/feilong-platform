@@ -17,8 +17,6 @@ package com.feilong.tools.log4j.appender;
 
 import org.apache.log4j.net.SMTPAppender;
 import org.apache.log4j.spi.LoggingEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class ShutdownAbleSMTPAppender.
@@ -28,10 +26,6 @@ import org.slf4j.LoggerFactory;
  * @since 1.0.8
  */
 public class ShutdownAbleSMTPAppender extends SMTPAppender{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(ShutdownAbleSMTPAppender.class);
 
 	/**
 	 * The Constructor.

@@ -16,8 +16,6 @@
 package com.feilong.spring.aspects;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -31,13 +29,9 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 @ContextConfiguration(locations = "classpath:spring-aop.xml")
 public class AspectsTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(AspectsTest.class);
-
 	/** The user manager. */
 	@Autowired
-	private UserManager			userManager;
+	private UserManager	userManager;
 
 	/**
 	 * Name.

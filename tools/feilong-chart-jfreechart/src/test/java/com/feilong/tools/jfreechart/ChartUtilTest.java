@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart;
 
@@ -29,19 +29,21 @@ import org.jfree.data.category.IntervalCategoryDataset;
 import org.jfree.data.statistics.BoxAndWhiskerItem;
 import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
+ * The Class ChartUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 14 05:16:17
  */
-@SuppressWarnings("all")
 public class ChartUtilTest{
 
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(ChartUtilTest.class);
-
+	/**
+	 * Creates the image.
+	 *
+	 * @throws IOException
+	 *             the IO exception
+	 */
 	@Test
 	public void createImage() throws IOException{
 		JFreeChart chart = createGanttChart();
@@ -54,6 +56,11 @@ public class ChartUtilTest{
 		ChartUtil.createImage(chart, chartInfoEntity);
 	}
 
+	/**
+	 * 获得 catagory dataset.
+	 *
+	 * @return the catagory dataset
+	 */
 	public static CategoryDataset getCatagoryDataset(){
 		DefaultCategoryDataset dfg = new DefaultCategoryDataset();
 		dfg.setValue(25, "行政人员", "行政人员");
@@ -64,6 +71,13 @@ public class ChartUtilTest{
 		return dfg;
 	}
 
+	/**
+	 * 获得 free chart.
+	 *
+	 * @param dataset
+	 *            the dataset
+	 * @return the free chart
+	 */
 	public static JFreeChart getFreeChart(CategoryDataset dataset){
 		JFreeChart chart = ChartFactory.createBarChart("某公司的组织结构图", "人员分布", "人员数量", dataset, PlotOrientation.VERTICAL, true, false, false);
 		chart.getTitle().setFont(new Font("隶书", Font.BOLD + Font.ITALIC, 15));
@@ -74,6 +88,11 @@ public class ChartUtilTest{
 		return chart;
 	}
 
+	/**
+	 * Creates the box and whisker chart.
+	 *
+	 * @return the j free chart
+	 */
 	public static JFreeChart createBoxAndWhiskerChart(){
 		DefaultBoxAndWhiskerCategoryDataset boxAndWhiskerCategoryDataset = new DefaultBoxAndWhiskerCategoryDataset();
 		boxAndWhiskerCategoryDataset.add(new BoxAndWhiskerItem(1, 2, 3, 4, 5, 7, null, 9, new ArrayList()), "ROW1", "COLUMN1");
@@ -87,6 +106,11 @@ public class ChartUtilTest{
 		return chart;
 	}
 
+	/**
+	 * Creates the gantt chart.
+	 *
+	 * @return the j free chart
+	 */
 	public static JFreeChart createGanttChart(){
 		String[] seriesNames = { "a", "b", "c", "d" };
 		String[] categoryKeys = { "111", "222", "ccc" };

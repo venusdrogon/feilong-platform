@@ -41,7 +41,6 @@ public class MyTest{
 	public static void main(String[] args){
 		// 直接从字符串中输入 HTML 文档
 		String html = "<html><head><title> 开源中国社区 </title></head>" + "<body><p> 这里是 jsoup 项目的相关文章 </p></body></html>";
-		@SuppressWarnings("unused")
 		Document doc = Jsoup.parse(html);
 		//	log.info(doc.getElementsByClass(""));
 		String unsafe = "<p><a href='http://www.oschina.net/' onclick='stealCookies()'>  开源中国社区 </a></p>";

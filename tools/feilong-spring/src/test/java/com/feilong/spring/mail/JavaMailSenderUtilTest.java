@@ -20,8 +20,6 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,10 +30,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @version 1.0 Dec 24, 2011 2:31:22 PM
  */
 public class JavaMailSenderUtilTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(JavaMailSenderUtilTest.class);
 
 	/** The context. */
 	private ApplicationContext	context;

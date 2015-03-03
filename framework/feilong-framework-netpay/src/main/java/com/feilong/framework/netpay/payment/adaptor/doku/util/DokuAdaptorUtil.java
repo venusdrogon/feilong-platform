@@ -17,9 +17,6 @@ package com.feilong.framework.netpay.payment.adaptor.doku.util;
 
 import java.io.Serializable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -30,10 +27,6 @@ import com.feilong.commons.core.util.Validator;
  * @since 1.0.6
  */
 public class DokuAdaptorUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(DokuAdaptorUtil.class);
 
 	/**
 	 * 生成session id 参数<br>

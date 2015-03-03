@@ -19,9 +19,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.command.PaymentResult;
@@ -36,10 +33,6 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * @version 1.0 Jan 15, 2013 8:41:39 PM
  */
 public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(SprintAsiaKlikBCAAdaptor.class);
 
 	/*
 	 * (non-Javadoc)

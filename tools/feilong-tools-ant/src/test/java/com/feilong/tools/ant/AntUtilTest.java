@@ -17,8 +17,6 @@ package com.feilong.tools.ant;
 
 import org.apache.tools.ant.Project;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class AntUtilTest.
@@ -27,10 +25,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 Oct 31, 2012 12:36:05 AM
  */
 public class AntUtilTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(AntUtilTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.tools.ant.AntUtil#executeTarget(java.lang.String, java.lang.String, int)}.

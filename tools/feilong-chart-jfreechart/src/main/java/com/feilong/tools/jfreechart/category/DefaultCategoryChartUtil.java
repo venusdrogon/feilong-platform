@@ -19,8 +19,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class DefaultCategoryChartUtil.
@@ -29,10 +27,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2012 1 16 00:38:28
  */
 public class DefaultCategoryChartUtil extends CategoryChartUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(DefaultCategoryChartUtil.class);
 
 	/**
 	 * Instantiates a new default category chart util.

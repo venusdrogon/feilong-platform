@@ -17,9 +17,6 @@ package com.feilong.taglib.display.pager;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.taglib.display.pager.command.PagerConstants;
 import com.feilong.taglib.display.pager.command.PagerParams;
@@ -33,16 +30,12 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  */
 public abstract class BasePagerTest{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log					= LoggerFactory.getLogger(BasePagerTest.class);
-
 	// Locale.ENGLISH;
 	/** The locale. */
-	private Locale				locale				= Locale.SIMPLIFIED_CHINESE;
+	private Locale	locale				= Locale.SIMPLIFIED_CHINESE;
 
 	/** The debug is not parse vm. */
-	boolean						debugIsNotParseVM	= false;
+	boolean			debugIsNotParseVM	= false;
 
 	/**
 	 * Gets the pager params.

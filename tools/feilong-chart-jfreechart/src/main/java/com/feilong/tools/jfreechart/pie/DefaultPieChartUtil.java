@@ -16,8 +16,6 @@
 package com.feilong.tools.jfreechart.pie;
 
 import org.jfree.chart.JFreeChart;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class DefaultPieChartUtil.
@@ -26,10 +24,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2012 1 16 01:22:13
  */
 public class DefaultPieChartUtil extends BasePieChartUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(DefaultPieChartUtil.class);
 
 	/**
 	 * Instantiates a new default pie chart util.

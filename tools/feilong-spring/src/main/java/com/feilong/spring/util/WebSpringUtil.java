@@ -19,8 +19,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -40,10 +38,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @version 1.0 2011-3-31 下午06:08:20
  */
 public final class WebSpringUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(WebSpringUtil.class);
 
 	//	/**
 	//	 * 获得消息信息

@@ -23,8 +23,6 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.StackedBarRenderer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.jfreechart.ChartDatesetUtil;
 
@@ -35,10 +33,6 @@ import com.feilong.tools.jfreechart.ChartDatesetUtil;
  * @version 1.0 2011-12-31 下午05:14:17
  */
 public final class StackedBarChartUtil extends CategoryChartUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(StackedBarChartUtil.class);
 
 	/** The stacked bar renderer. */
 	private StackedBarRenderer	stackedBarRenderer;

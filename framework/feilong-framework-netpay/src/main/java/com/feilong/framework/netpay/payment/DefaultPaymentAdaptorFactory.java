@@ -17,9 +17,6 @@ package com.feilong.framework.netpay.payment;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.exception.PaymentAdaptorNotFoundException;
 
@@ -34,10 +31,6 @@ import com.feilong.framework.netpay.payment.exception.PaymentAdaptorNotFoundExce
 // 不以自动扫描的形式存在
 // @Service("paymentAdaptorManager")
 public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger			log	= LoggerFactory.getLogger(DefaultPaymentAdaptorFactory.class);
 
 	// @Value("#{paymentAdaptorMap}")
 	/** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.. */

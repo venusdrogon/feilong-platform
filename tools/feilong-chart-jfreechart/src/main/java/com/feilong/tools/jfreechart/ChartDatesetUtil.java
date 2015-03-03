@@ -38,7 +38,6 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 14 05:59:29
  */
-@SuppressWarnings("all")
 public final class ChartDatesetUtil{
 
 	/**

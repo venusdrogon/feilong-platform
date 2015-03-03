@@ -89,7 +89,6 @@ import com.lowagie.text.pdf.PdfWriter;
  * 
  * @author 金鑫 2010-1-20 下午09:03:11
  */
-@SuppressWarnings("all")
 public abstract class ChartUtil implements Chart{
 
 	/** The Constant log. */

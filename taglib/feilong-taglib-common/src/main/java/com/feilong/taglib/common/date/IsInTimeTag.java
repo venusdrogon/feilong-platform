@@ -17,9 +17,6 @@ package com.feilong.taglib.common.date;
 
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.taglib.base.AbstractConditionalTag;
 
@@ -39,10 +36,6 @@ public class IsInTimeTag extends AbstractConditionalTag{
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -7116181842162212131L;
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log					= LoggerFactory.getLogger(IsInTimeTag.class);
 
 	/** 一个时间,如果为null,则使用当前时间. */
 	private Date				date				= null;

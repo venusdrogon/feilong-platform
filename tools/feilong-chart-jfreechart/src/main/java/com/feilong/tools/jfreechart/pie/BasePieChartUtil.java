@@ -23,8 +23,6 @@ import java.text.NumberFormat;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.FontUtil;
 import com.feilong.tools.jfreechart.ChartUtil;
@@ -35,15 +33,10 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 3 02:13:44
  */
-@SuppressWarnings("all")
 public abstract class BasePieChartUtil extends ChartUtil{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(BasePieChartUtil.class);
-
 	/** The pie plot. */
-	protected PiePlot			piePlot;
+	protected PiePlot	piePlot;
 
 	/**
 	 * Instantiates a new base pie chart util.

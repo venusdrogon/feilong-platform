@@ -641,9 +641,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 
 		log.debug("solrServer.deleteById:{}", primaryKey);
 		try{
-			@SuppressWarnings("unused")
 			UpdateResponse deleteByIdUpdateResponse = solrServer.deleteById(primaryKey.toString());
-			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
 			throw new SolrException("Delete failed for model with PK:" + primaryKey + "," + e.getMessage(), e);
@@ -666,9 +664,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		}
 
 		try{
-			@SuppressWarnings("unused")
 			UpdateResponse deleteByQueryUpdateResponse = solrServer.deleteByQuery(query);
-			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
 			throw new SolrException("Delete failed for model with query:" + query + "," + e.getMessage(), e);
@@ -697,9 +693,7 @@ public abstract class BaseSolrRepositoryImpl<T, PK extends Serializable> impleme
 		log.debug("solrServer.deleteById,pkList:{}", pkList);
 
 		try{
-			@SuppressWarnings("unused")
 			UpdateResponse deleteByIdUpdateResponse = solrServer.deleteById(ids);
-			@SuppressWarnings("unused")
 			UpdateResponse commitUpdateResponse = solrServer.commit();
 		}catch (Exception e){
 			throw new SolrException("Batch delete model failed for modelClass " + modelClass + "," + e.getMessage(), e);

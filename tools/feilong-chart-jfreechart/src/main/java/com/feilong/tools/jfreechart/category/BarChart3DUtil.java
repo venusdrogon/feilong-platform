@@ -18,8 +18,6 @@ package com.feilong.tools.jfreechart.category;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class BarChart3DUtil.
@@ -28,10 +26,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2012 1 16 00:05:23
  */
 public final class BarChart3DUtil extends CategoryChartUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(BarChart3DUtil.class);
 
 	/**
 	 * Instantiates a new bar chart3 d util.

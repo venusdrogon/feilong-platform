@@ -30,6 +30,8 @@ import com.feilong.commons.core.net.URIUtil;
  * 
  * 
  * 
+ * 
+ * 
  * &#064;InitBinder({ &quot;categoryCode&quot; })
  * // 此处的参数也可以是ServletRequestDataBinder类型
  * public void initBinder(WebDataBinder binder) throws Exception{

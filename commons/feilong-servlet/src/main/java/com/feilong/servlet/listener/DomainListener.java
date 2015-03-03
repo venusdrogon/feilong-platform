@@ -22,9 +22,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.web.entity.domain.DomainAttributes;
 import com.feilong.web.entity.domain.DomainType;
@@ -37,10 +34,6 @@ import com.feilong.web.entity.domain.DomainUtil;
  * @version 1.0 Aug 19, 2013 10:28:05 AM
  */
 public class DomainListener implements ServletContextListener{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(DomainListener.class);
 
 	/*
 	 * (non-Javadoc)

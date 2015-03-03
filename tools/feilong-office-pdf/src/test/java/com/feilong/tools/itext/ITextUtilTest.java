@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
@@ -43,10 +41,6 @@ import com.lowagie.text.pdf.PdfWriter;
  * @version 1.0.7 2014-6-25 16:27:44
  */
 public class ITextUtilTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(ITextUtilTest.class);
 
 	/**
 	 * Name.

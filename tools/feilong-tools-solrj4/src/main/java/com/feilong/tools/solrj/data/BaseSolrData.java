@@ -27,7 +27,6 @@ import java.util.Map;
  * @param <T>
  *            the generic type
  */
-@SuppressWarnings("unused")
 public abstract class BaseSolrData<T> implements Serializable{
 
 	/** The Constant serialVersionUID. */

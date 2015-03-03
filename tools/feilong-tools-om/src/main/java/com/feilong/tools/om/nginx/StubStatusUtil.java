@@ -28,8 +28,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
-import com.feilong.tools.net.httpclient3.HttpClientUtil;
 import com.feilong.tools.net.httpclient3.HttpClientException;
+import com.feilong.tools.net.httpclient3.HttpClientUtil;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
 
 /**

@@ -27,8 +27,6 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
 import org.jfree.ui.TextAnchor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.FontUtil;
 
@@ -38,12 +36,7 @@ import com.feilong.commons.core.awt.FontUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:18:15
  */
-@SuppressWarnings("all")
 public final class LineChartUtil extends CategoryChartUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger		log	= LoggerFactory.getLogger(LineChartUtil.class);
 
 	/** The lineandshaperenderer. */
 	private LineAndShapeRenderer	lineandshaperenderer;

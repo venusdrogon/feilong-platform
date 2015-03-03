@@ -20,8 +20,6 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.wltea.analyzer.IKSegmentation;
 import org.wltea.analyzer.Lexeme;
 
@@ -34,10 +32,6 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 Nov 20, 2012 7:07:26 PM
  */
 public final class IKAnalyzerUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(IKAnalyzerUtil.class);
 
 	/**
 	 * 分词情况.

@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
 
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
-
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ByteUtil;
@@ -492,7 +491,6 @@ public final class SymmetricEncryption{
 	 *            the key rule
 	 * @return the key2
 	 */
-	@SuppressWarnings("unused")
 	private Key getKey2(String keyRule){
 		byte[] keyByte = keyRule.getBytes();
 		// 创建一个空的八位数组,默认情况下为0

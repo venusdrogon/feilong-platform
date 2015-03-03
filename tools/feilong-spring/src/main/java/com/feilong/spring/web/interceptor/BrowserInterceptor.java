@@ -19,8 +19,6 @@ package com.feilong.spring.web.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.feilong.web.entity.browser.Browser;
@@ -35,10 +33,6 @@ import com.feilong.web.entity.browser.Browser;
  */
 @Deprecated
 public class BrowserInterceptor extends HandlerInterceptorAdapter{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log								= LoggerFactory.getLogger(BrowserInterceptor.class);
 
 	/** 默认的 变量名称 <code>{@value}</code>. */
 	public static final String	DEFAULT_BROWSER_REQUEST_NAME	= "feilongBrowser";

@@ -17,9 +17,6 @@ package com.feilong.framework.netpay.advance;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.exception.PaymentAdvanceAdaptorNotFoundException;
 
@@ -35,10 +32,6 @@ import com.feilong.framework.netpay.advance.exception.PaymentAdvanceAdaptorNotFo
 // 不以自动扫描的形式存在
 // @Service("paymentAdaptorManager")
 public class DefaultAdvanceAdaptorManagerFactory implements PaymentAdvanceAdaptorFactory{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger					log	= LoggerFactory.getLogger(DefaultAdvanceAdaptorManagerFactory.class);
 
 	// @Value("#{paymentAdvanceAdaptorManager}")
 	/** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误. */

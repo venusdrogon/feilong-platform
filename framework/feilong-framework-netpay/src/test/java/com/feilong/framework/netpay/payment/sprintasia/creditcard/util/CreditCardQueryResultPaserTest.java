@@ -51,5 +51,4 @@ public class CreditCardQueryResultPaserTest{
 		@SuppressWarnings("unused")
 		VarCommand varCommand = queryResultXmlParse.parseXML(wddxPacketXML);
 	}
-
 }

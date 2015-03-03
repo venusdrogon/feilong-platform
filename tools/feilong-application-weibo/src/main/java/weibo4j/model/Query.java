@@ -43,19 +43,19 @@ public class Query{
 
 	private String	q;						//搜索的关键字。
 
-	private Boolean	snick		= null;		//搜索范围是否包含昵称
+	private Boolean	snick		= null;	//搜索范围是否包含昵称
 
 	private int		rpp			= 20;
 
-	private Boolean	sdomain		= null;		//搜索范围是否包含个性域名
+	private Boolean	sdomain		= null;	//搜索范围是否包含个性域名
 
-	private Boolean	sintro		= null;		//搜索范围是否包含简介
+	private Boolean	sintro		= null;	//搜索范围是否包含简介
 
-	private Integer	province	= null;		//省份ID，参考省份城市编码表
+	private Integer	province	= null;	//省份ID，参考省份城市编码表
 
-	private Integer	city		= null;		//城市ID，参考省份城市编码表
+	private Integer	city		= null;	//城市ID，参考省份城市编码表
 
-	private Gender	gender		= null;		//性别
+	private Gender	gender		= null;	//性别
 
 	private String	comorsch	= null;
 
@@ -63,13 +63,13 @@ public class Query{
 
 	private Integer	page		= null;
 
-	private Integer	count		= null;		//默认每页10条
+	private Integer	count		= null;	//默认每页10条
 
-	private boolean	base_app	= true;		//是否不基于当前应用来获取数据
+	private boolean	base_app	= true;	//是否不基于当前应用来获取数据
 
 	private int		filter_ori	= 0;		//过滤器，是否为原创，0为全部，5为原创，4为转发。默认为0。
 
-	private int		filter_pic;				//过滤器。是否包含图片。0为全部，1为包含，2为不包含。
+	private int		filter_pic;			//过滤器。是否包含图片。0为全部，1为包含，2为不包含。
 
 	private long	fuid;					//微博作者的用户ID。
 
@@ -79,7 +79,7 @@ public class Query{
 
 	private boolean	needcount	= false;	//返回结果中是否包含返回记录数。true则返回搜索结果记录数。
 
-	private String	geocode		= null;		//返回指定经纬度附近的信息。经纬度参数格式是“纬度，经度，半径”，半径支持km（公里），m（米），mi（英里）。格式需要URL Encode编码
+	private String	geocode		= null;	//返回指定经纬度附近的信息。经纬度参数格式是“纬度，经度，半径”，半径支持km（公里），m（米），mi（英里）。格式需要URL Encode编码
 
 	public void setQ(String q){
 		this.q = q;

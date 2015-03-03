@@ -18,8 +18,6 @@ package com.feilong.tools.om.nginx;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class StubStatusMainTest.
@@ -28,10 +26,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 Dec 31, 2013 11:40:57 PM
  */
 public class Mp2StubStatusMainTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(Mp2StubStatusMainTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.

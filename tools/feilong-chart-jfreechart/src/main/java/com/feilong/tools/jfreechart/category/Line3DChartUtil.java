@@ -18,8 +18,6 @@ package com.feilong.tools.jfreechart.category;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class Line3DChartUtil.
@@ -38,10 +36,6 @@ public final class Line3DChartUtil extends CategoryChartUtil{
 	public Line3DChartUtil(CategoryChartEntity categoryChartEntity){
 		super(categoryChartEntity, CategoryChartType.LINE3D);
 	}
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(Line3DChartUtil.class);
 
 	/*
 	 * (non-Javadoc)

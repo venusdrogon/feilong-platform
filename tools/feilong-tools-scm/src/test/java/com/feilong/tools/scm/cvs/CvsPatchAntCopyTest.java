@@ -16,8 +16,6 @@
 package com.feilong.tools.scm.cvs;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.scm.ScmAntCopy;
 
@@ -29,18 +27,13 @@ import com.feilong.tools.scm.ScmAntCopy;
  */
 public class CvsPatchAntCopyTest{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log					= LoggerFactory.getLogger(CvsPatchAntCopyTest.class);
-
 	/**
-	 * 过滤不想传的文件 采用 endWith 来 匹配<br>
-	 * .
+	 * 过滤不想传的文件 采用 endWith 来 匹配.
 	 */
-	private String[]			excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };
+	private String[]	excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };
 
 	/** The cvs patch util. */
-	private ScmAntCopy			scmAntCopy			= new CvsPatchAntCopy();
+	private ScmAntCopy	scmAntCopy			= new CvsPatchAntCopy();
 
 	/**
 	 * 剪切板patch测试.

@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.jfree.data.gantt.Task;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.tools.jfreechart.BaseChartEntity;
 
@@ -31,9 +29,6 @@ import com.feilong.tools.jfreechart.BaseChartEntity;
 public class GanttChartEntity extends BaseChartEntity{
 
 	private static final long		serialVersionUID	= 2226545713841259013L;
-
-	@SuppressWarnings("unused")
-	private static final Logger		log					= LoggerFactory.getLogger(GanttChartEntity.class);
 
 	// 目录轴的显示标签
 	private String					categoryAxisLabel	= "";

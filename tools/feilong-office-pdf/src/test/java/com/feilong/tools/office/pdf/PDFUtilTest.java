@@ -20,10 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.feilong.tools.office.pdf.PDFUtil;
 import com.lowagie.text.Chapter;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Element;
@@ -40,10 +37,6 @@ import com.lowagie.text.Section;
  * @version 1.0 Feb 10, 2013 4:41:07 PM
  */
 public class PDFUtilTest{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(PDFUtilTest.class);
 
 	/**
 	 * Test.

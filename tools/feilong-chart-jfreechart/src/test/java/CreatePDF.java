@@ -42,7 +42,6 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-30 16:00:43
  */
-@SuppressWarnings("all")
 public class CreatePDF{
 
 	private static final Logger	log	= LoggerFactory.getLogger(CreatePDF.class);

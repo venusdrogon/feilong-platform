@@ -43,7 +43,6 @@ public class FeiLongYiTaoCrawler{
 	 * 
 	 * @throws JsoupUtilException
 	 */
-	@SuppressWarnings("unused")
 	@Test
 	public void test() throws JsoupUtilException{
 		// 数据

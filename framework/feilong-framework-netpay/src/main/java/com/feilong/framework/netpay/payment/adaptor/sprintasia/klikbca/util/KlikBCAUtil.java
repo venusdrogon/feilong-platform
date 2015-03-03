@@ -19,9 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.command.OutputDetailPayment;
 import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.command.OutputListTransactionPGW;
@@ -36,10 +33,6 @@ import com.feilong.tools.xstream.XStreamUtil;
  * @version 1.0 Apr 25, 2014 4:36:03 PM
  */
 public class KlikBCAUtil{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAUtil.class);
 
 	/**
 	 * 生成 Inquiry output数据.

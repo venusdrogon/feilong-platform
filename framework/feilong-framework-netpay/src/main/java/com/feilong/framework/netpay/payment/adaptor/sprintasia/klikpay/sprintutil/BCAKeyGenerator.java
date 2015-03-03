@@ -6,19 +6,12 @@ package com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.sprintut
 
 import java.security.MessageDigest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The Class BCAKeyGenerator.
  * 
  * @author Brian
  */
 public final class BCAKeyGenerator{
-
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(BCAKeyGenerator.class);
 
 	/**
 	 * Signature.

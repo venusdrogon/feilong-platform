@@ -29,8 +29,6 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.ui.RectangleInsets;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.FontType;
 import com.feilong.commons.core.awt.FontUtil;
@@ -43,21 +41,16 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 3 02:06:10
  */
-@SuppressWarnings("all")
 public abstract class CategoryChartUtil extends ChartUtil{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(CategoryChartUtil.class);
-
 	/** 图表区域对象. */
-	protected CategoryPlot		categoryPlot;
+	protected CategoryPlot	categoryPlot;
 
 	/** The category axis. */
-	private CategoryAxis		categoryAxis;
+	private CategoryAxis	categoryAxis;
 
 	/** The number axis. */
-	private NumberAxis			numberAxis;
+	private NumberAxis		numberAxis;
 
 	/**
 	 * Instantiates a new category chart util.
