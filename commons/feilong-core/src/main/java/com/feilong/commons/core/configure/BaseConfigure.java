@@ -23,4 +23,5 @@ package com.feilong.commons.core.configure;
  * @version 1.0.8 2014年8月4日 上午10:57:16 change abstract class to interface
  * @since 1.0.0
  */
-public interface BaseConfigure{}
+public interface BaseConfigure{
+}
