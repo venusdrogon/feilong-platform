@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.commons.core.tools.json;
 
 import java.util.ArrayList;
@@ -15,14 +30,15 @@ import org.slf4j.LoggerFactory;
 import com.feilong.test.Person;
 
 /**
- * JsonUtil测试类 (C) 2009-9-11, jzj
+ * JsonUtil测试类 (C) 2009-9-11, jzj.
  */
 public class JsonUtilXMLTest{
 
+	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(JsonUtilXMLTest.class);
 
 	/**
-	 * list转XML void
+	 * list转XML void.
 	 */
 	@Test
 	public void testGetXMLFromObj4(){
@@ -40,7 +56,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * set转XML void
+	 * set转XML void.
 	 */
 	@Test
 	public void testGetXMLFromObj5(){
@@ -58,7 +74,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * map转XML void
+	 * map转XML void.
 	 */
 	@Test
 	public void testGetXMLFromObj6(){
@@ -76,7 +92,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * 实体Bean转XML void
+	 * 实体Bean转XML void.
 	 */
 	@Test
 	public void objectToXML7(){
@@ -91,7 +107,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * 从XML对象串转json串 void
+	 * 从XML对象串转json串 void.
 	 */
 	@Test
 	public void xmlToJson1(){
@@ -101,7 +117,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * 从XML数组串转json串 void
+	 * 从XML数组串转json串 void.
 	 */
 	@Test
 	public void xmlToJson2(){
@@ -111,7 +127,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * json对象串转XML void
+	 * json对象串转XML void.
 	 */
 	@Test
 	public void testGetXMLFromObj1(){
@@ -123,7 +139,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * json数组串转XML void
+	 * json数组串转XML void.
 	 */
 	@Test
 	public void testGetXMLFromObj2(){
@@ -134,7 +150,7 @@ public class JsonUtilXMLTest{
 	}
 
 	/**
-	 * java数组转XML void
+	 * java数组转XML void.
 	 */
 	@Test
 	public void testGetXMLFromObj3(){

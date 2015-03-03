@@ -37,7 +37,6 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
 import com.feilong.commons.core.util.StringUtil;
-import com.feilong.commons.core.util.URIComponents;
 import com.feilong.commons.core.util.Validator;
 
 /**
