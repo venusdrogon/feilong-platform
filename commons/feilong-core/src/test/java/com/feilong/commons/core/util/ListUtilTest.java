@@ -93,7 +93,7 @@ public class ListUtilTest{
 	@Test
 	public void testListUtilTest2(){
 		int[] ints = { 1, 2, 3, 4, 5 };
-		List list = Arrays.asList(ints);
+		List<?> list = Arrays.asList(ints);
 		log.debug("list'size：" + list.size());
 
 		if (log.isDebugEnabled()){
@@ -150,9 +150,6 @@ public class ListUtilTest{
 			}
 		};
 
-		//		list.ensureCapacity(20);
-		//
-		//		list.trimToSize();
 		list.add("a");
 		list.add("a7");
 		list.add("a8");
@@ -162,39 +159,11 @@ public class ListUtilTest{
 		list.add("a84");
 		list.add("a85");
 
-		//		for (int i = list.size() - 1; i >= 0; --i){
-		//
-		//			String aString = list.get(i);
-		//
-		//			if ("a7".equals(aString)){
-		//				list.remove(aString);
-		//			}
-		//		}
-
-		// java.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-		//		for (int i = 0, j = list.size(); i < j; ++i){
-		//			String aString = list.get(i);
-		//
-		//			if ("a7".equals(aString)){
-		//				list.remove(i);
-		//			}
-		//
-		//		}
-
 		for (String string : list){
 			if ("a7".equals(string)){
 				list.remove(string);
 			}
 		}
-		//				for (String string : list){
-		//					if ("a".equals(string)){
-		//						list.remove(string);
-		//					}
-		//				}
-		//		if (log.isDebugEnabled()){
-		//			log.debug(JsonUtil.format(list));
-		//		}
-
 	}
 
 	/**
@@ -209,28 +178,7 @@ public class ListUtilTest{
 				list.remove(name);
 			}
 		}
-		//
-		//		for (int i = 0; i < list.size(); ++i){
-		//			String name = list.get(i);
-		//			if (name.equals(spy)){
-		//				list.remove(name);
-		//			}
-		//		}
 
-		//		Iterator<String> iterator = list.iterator();
-		//		while (iterator.hasNext()){
-		//			String name = iterator.next();
-		//			if (name.equals(spy)){
-		//				list.remove(name);
-		//			}
-		//		}
-
-		//		for (Iterator<String> iterator = list.iterator(); iterator.hasNext();){
-		//			String name = iterator.next();
-		//			if (name.equals(spy)){
-		//				list.remove(name);
-		//			}
-		//		}
 		log.debug(JsonUtil.format(list));
 	}
 
@@ -309,8 +257,6 @@ public class ListUtilTest{
 			String string = iterator.next();
 			if ("feilong1".equals(string)){
 				iterator.remove();
-
-				//list.remove(string);	//java.util.ConcurrentModificationException
 			}
 		}
 		log.info("list:{}", JsonUtil.format(list));

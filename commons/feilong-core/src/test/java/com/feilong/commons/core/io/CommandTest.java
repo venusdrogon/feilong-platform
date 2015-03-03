@@ -62,20 +62,4 @@ public class CommandTest{
 	public void execShutdownStop() throws IOException{
 		Command.execShutdownStop();
 	}
-
-	/**
-	 * Exec shutdown at.
-	 */
-	@Test
-	public void execShutdownAt(){
-		// execShutdownAt("04:30");
-	}
-
-	/**
-	 * Exec shutdown.
-	 */
-	@Test
-	public void execShutdown(){
-		// execShutdown(14440);
-	}
 }

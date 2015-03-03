@@ -91,12 +91,6 @@ public class URIUtilTest{
 	 */
 	@Test
 	public void decode(){
-		//		result = URIUtil.decode("上海", CharsetType.GBK);
-		//		log.info(result);
-		//		result = URIUtil.decode("Lifestyle+%2F+Graphic,", CharsetType.UTF8);
-		//		log.info(result);
-		//		result = URIUtil.decode("%E6%88%91%E7%88%B1%E5%BC%A0%E5%85%88%E6%B3%BD%7E%7E%7E%40%E5%BC%A0%E5%85%88%E6%B3%BD", CharsetType.UTF8);
-		//		log.info(result);
 		result = URIUtil.decode(
 						"%E9%87%91%E6%80%BB%EF%BC%8C%E4%BD%A0%E6%83%B3%E6%80%8E%E4%B9%88%E4%B9%88%EF%BC%8C%E5%B0%B1%E6%80%8E%E4%B9%88%E4%B9%88",
 						CharsetType.UTF8);
@@ -176,7 +170,6 @@ public class URIUtilTest{
 	 */
 	@Test
 	public void combineQueryString(){
-		//		String beforeUrl = "www.baidu.com";
 		Map<String, String[]> keyAndArrayMap = new HashMap<String, String[]>();
 		keyAndArrayMap.put("a", new String[] { "aaaa", "bbbb" });
 		String charsetType = CharsetType.UTF8;

@@ -394,7 +394,6 @@ public final class FileUtil{
 
 		if (Validator.isNullOrEmpty(parent)){
 			String name = file.getPath();//E:/--->E:\
-			//file.getName();
 
 			if (log.isDebugEnabled()){
 				log.debug("parent is isNullOrEmpty,return file name:{}", name);
@@ -554,8 +553,6 @@ public final class FileUtil{
 	 * @see File#length()
 	 */
 	public static long getFileSize(File file){
-		// FileInputStream fileInputStream = new FileInputStream(file);
-		// return fileInputStream.available();
 		return file.length();
 	}
 
@@ -658,26 +655,4 @@ public final class FileUtil{
 			{ ">", "" }, // >
 			{ "|", "" }, // |
 													};
-
-	// /**
-	// * 判断excel文件是否是2003的版本 不精准
-	// *
-	// * @param fileName
-	// * 文件名称带后缀 或者是路径名称
-	// * @return 判断excel文件是否是2003的版本
-	// */
-	// public static final boolean isExcel2003(String fileName){
-	// return "xls".equalsIgnoreCase(getFilePostfixName(fileName));
-	// }
-	//
-	// /**
-	// * 判断excel文件是否是2007的版本 不精准
-	// *
-	// * @param fileName
-	// * 文件名称带后缀 或者是路径名称
-	// * @return 判断excel文件是否是2007的版本
-	// */
-	// public static final boolean isExcel2007(String fileName){
-	// return "xlsx".equalsIgnoreCase(getFilePostfixName(fileName));
-	// }
 }
