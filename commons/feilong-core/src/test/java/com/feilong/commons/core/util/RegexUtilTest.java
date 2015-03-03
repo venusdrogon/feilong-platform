@@ -125,7 +125,7 @@ public class RegexUtilTest{
 	 * Test decima l_ tw o_ digit.
 	 */
 	@Test
-	public final void testDECIMAL_TWO_DIGIT(){
+	public final void testDecimalTwoDigit(){
 		assertEquals(false, RegexUtil.matches(RegexPattern.DECIMAL_TWO_DIGIT, "2000阿.00"));
 		assertEquals(false, RegexUtil.matches(RegexPattern.DECIMAL_TWO_DIGIT, "2000.0"));
 		assertEquals(true, RegexUtil.matches(RegexPattern.DECIMAL_TWO_DIGIT, "2000.99"));

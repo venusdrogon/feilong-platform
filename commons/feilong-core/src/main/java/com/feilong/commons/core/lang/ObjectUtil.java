@@ -102,7 +102,7 @@ public final class ObjectUtil{
 	 * @since Commons Collections 1.0
 	 */
 	@SuppressWarnings("unchecked")
-	public final static <T> Iterator<T> toIterator(Object object){
+	public static final <T> Iterator<T> toIterator(Object object){
 		if (null == object){
 			return null;
 		}
@@ -149,7 +149,7 @@ public final class ObjectUtil{
 	 *            object2
 	 * @return 当两个值都不为空,且object.equals(object2)才返回true
 	 */
-	public final static boolean equalsNotNull(Object object,Object object2){
+	public static final boolean equalsNotNull(Object object,Object object2){
 		if (Validator.isNotNullOrEmpty(object) && Validator.isNotNullOrEmpty(object2)){
 			return object.equals(object2);
 		}
@@ -169,7 +169,7 @@ public final class ObjectUtil{
 	 * @see java.util.Objects#equals(Object, Object)
 	 * @see org.apache.commons.lang3.ObjectUtils#equals(Object, Object)
 	 */
-	public final static Boolean equals(Object object,Object object2,boolean nullTypeFlag){
+	public static final Boolean equals(Object object,Object object2,boolean nullTypeFlag){
 		//TODO Either override Object.equals(Object), or totally rename the method to prevent any confusion.
 		//Methods named "equals" should override Object.equals(Object)
 		if (object == object2){
@@ -213,7 +213,7 @@ public final class ObjectUtil{
 	 * @see java.util.Objects#equals(Object, Object)
 	 * @see org.apache.commons.lang3.ObjectUtils#equals(Object, Object)
 	 */
-	public final static Boolean equals(Object object,Object object2){
+	public static final Boolean equals(Object object,Object object2){
 		//TODO Either override Object.equals(Object), or totally rename the method to prevent any confusion.
 		//Methods named "equals" should override Object.equals(Object)
 		return equals(object, object2, false);
@@ -226,7 +226,7 @@ public final class ObjectUtil{
 	 *            对象
 	 * @return 是返回true
 	 */
-	public final static Boolean isBoolean(Object object){
+	public static final Boolean isBoolean(Object object){
 		return object instanceof Boolean;
 	}
 
@@ -237,7 +237,7 @@ public final class ObjectUtil{
 	 *            对象
 	 * @return 是返回true
 	 */
-	public final static Boolean isInteger(Object object){
+	public static final Boolean isInteger(Object object){
 		return object instanceof Integer;
 	}
 
@@ -248,7 +248,7 @@ public final class ObjectUtil{
 	 *            object
 	 * @return boolean
 	 */
-	public final static Boolean toBoolean(Object object){
+	public static final Boolean toBoolean(Object object){
 		if (null == object){
 			throw new IllegalArgumentException("object can't be null/empty!");
 		}
@@ -267,7 +267,7 @@ public final class ObjectUtil{
 	 *         <li>如果value不能转成integer 会抛出 IllegalArgumentException异常</li>
 	 *         </ul>
 	 */
-	public final static Integer toInteger(Object value){
+	public static final Integer toInteger(Object value){
 		Integer returnValue = null;
 		if (Validator.isNotNullOrEmpty(value)){
 			// Integer
@@ -291,7 +291,7 @@ public final class ObjectUtil{
 	 *            值
 	 * @return BigDecimal
 	 */
-	public final static BigDecimal toBigDecimal(Object value){
+	public static final BigDecimal toBigDecimal(Object value){
 		BigDecimal returnValue = null;
 		if (Validator.isNotNullOrEmpty(value)){
 			if (value instanceof BigDecimal){
@@ -313,7 +313,7 @@ public final class ObjectUtil{
 	 *            包含数字的对象.
 	 * @return long 转换后的数值,对不能转换的对象返回null.
 	 */
-	public final static Long toLong(Object value){
+	public static final Long toLong(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
 			if (value instanceof Long){
 				return (Long) value;
@@ -330,7 +330,7 @@ public final class ObjectUtil{
 	 *            the value
 	 * @return the double
 	 */
-	public final static Double toDouble(Object value){
+	public static final Double toDouble(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
 			if (value instanceof Double){
 				return (Double) value;
@@ -347,7 +347,7 @@ public final class ObjectUtil{
 	 *            the value
 	 * @return the float
 	 */
-	public final static Float toFloat(Object value){
+	public static final Float toFloat(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
 			if (value instanceof Float){
 				return (Float) value;
@@ -364,7 +364,7 @@ public final class ObjectUtil{
 	 *            the value
 	 * @return the short
 	 */
-	public final static Short toShort(Object value){
+	public static final Short toShort(Object value){
 		if (Validator.isNotNullOrEmpty(value)){
 			if (value instanceof Short){
 				return (Short) value;
@@ -387,7 +387,7 @@ public final class ObjectUtil{
 	 *         </ul>
 	 * @since 1.0
 	 */
-	public final static String toString(Object value){
+	public static final String toString(Object value){
 		if (null == value){
 			return null;
 		}
@@ -455,7 +455,7 @@ public final class ObjectUtil{
 	 */
 	@SuppressWarnings("unchecked")
 	// XXX
-	public final static <T> T toT(Object value,Class<?> klass){
+	public static final <T> T toT(Object value,Class<?> klass){
 		if (null == value){
 			return null;
 		}
@@ -494,7 +494,7 @@ public final class ObjectUtil{
 	 *            obj
 	 * @return 去除空格
 	 */
-	public final static String trim(Object obj){
+	public static final String trim(Object obj){
 		return obj == null ? "" : obj.toString().trim();
 	}
 }

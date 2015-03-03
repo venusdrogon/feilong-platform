@@ -40,7 +40,9 @@ public class SelectEntity implements Serializable{
 	/**
 	 * Instantiates a new select entity.
 	 */
-	public SelectEntity(){}
+	public SelectEntity(){
+
+	}
 
 	/**
 	 * Instantiates a new select entity.

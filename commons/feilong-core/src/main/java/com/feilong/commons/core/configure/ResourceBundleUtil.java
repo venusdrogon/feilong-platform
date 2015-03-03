@@ -46,7 +46,7 @@ import com.feilong.commons.core.util.Validator;
 public final class ResourceBundleUtil implements BaseConfigure{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(ResourceBundleUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ResourceBundleUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private ResourceBundleUtil(){

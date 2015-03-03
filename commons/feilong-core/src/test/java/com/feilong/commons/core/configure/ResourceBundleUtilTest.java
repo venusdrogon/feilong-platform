@@ -45,7 +45,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 public class ResourceBundleUtilTest{
 
 	/** The Constant log. */
-	private final static Logger	log				= LoggerFactory.getLogger(ResourceBundleUtilTest.class);
+	private static final Logger	log				= LoggerFactory.getLogger(ResourceBundleUtilTest.class);
 
 	/** The base name. */
 	private String				baseName		= "messages/feilong-core-test";

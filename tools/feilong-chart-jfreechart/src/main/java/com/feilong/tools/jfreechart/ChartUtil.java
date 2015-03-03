@@ -277,7 +277,7 @@ public abstract class ChartUtil implements Chart{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public final static void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException{
+	public static final void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException{
 		if (Validator.isNullOrEmpty(chartInfoEntity)){
 			throw new IllegalArgumentException("chartInfoEntity can't be null/empty!");
 		}

@@ -46,7 +46,7 @@ import com.jcraft.jsch.SftpATTRS;
 public class SFTPUtil extends FileTransfer{
 
 	/** The Constant log. */
-	private final static Logger	log				= LoggerFactory.getLogger(SFTPUtil.class);
+	private static final Logger	log				= LoggerFactory.getLogger(SFTPUtil.class);
 
 	/** 主机名. */
 	private String				hostName;

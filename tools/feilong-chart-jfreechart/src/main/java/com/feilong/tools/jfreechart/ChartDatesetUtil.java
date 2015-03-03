@@ -47,7 +47,7 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
 	 *            the pie chart entity
 	 * @return the pie dataset
 	 */
-	public final static PieDataset getPieDataset(PieChartEntity pieChartEntity){
+	public static final PieDataset getPieDataset(PieChartEntity pieChartEntity){
 		Map<String, Number> keyAndDataMap = pieChartEntity.getKeyAndDataMap();
 		if (null != keyAndDataMap){
 			DefaultPieDataset defaultPieDataset = new DefaultPieDataset();

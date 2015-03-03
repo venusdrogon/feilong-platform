@@ -119,7 +119,7 @@ public final class ValidateCodeUtil{
 	 * 
 	 * @return 获得随机的验证码用到的字体
 	 */
-	private final static String getRandomFontNameForValidateCode(){
+	private static final String getRandomFontNameForValidateCode(){
 		// 随机字体长度
 		int fontTypesLength = fontNamesForValidateCode.length;
 		// 创建随机类的实例

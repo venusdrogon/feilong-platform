@@ -36,7 +36,7 @@ import com.feilong.commons.core.util.Validator;
 public final class CSVUtil{
 
 	/** The Constant log. */
-	private final static Logger	log						= LoggerFactory.getLogger(CSVUtil.class);
+	private static final Logger	log						= LoggerFactory.getLogger(CSVUtil.class);
 
 	/** 转义引号用的字符 ". */
 	private static final char	ESCAPE_CHARACTER		= '"';
@@ -70,7 +70,7 @@ public final class CSVUtil{
 	 *             Signals that an I/O exception has occurred.
 	 * @since 1.0
 	 */
-	public final static void write(String fileName,String[] columnTitles,List<Object[]> dataList) throws IOException{
+	public static final void write(String fileName,String[] columnTitles,List<Object[]> dataList) throws IOException{
 		write(fileName, columnTitles, dataList, new CSVParams());
 	}
 
@@ -91,7 +91,7 @@ public final class CSVUtil{
 	 * @see com.feilong.commons.core.io.IOWriteUtil#write(String, String, String)
 	 * @see #getWriteContent(List, CSVParams)
 	 */
-	public final static void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams) throws IOException{
+	public static final void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams) throws IOException{
 
 		// 标题和内容都是空,没有任何意义,不创建文件
 		if (Validator.isNullOrEmpty(columnTitles) && Validator.isNullOrEmpty(dataList)){
@@ -118,7 +118,7 @@ public final class CSVUtil{
 	 *            the csv params
 	 * @return the write content
 	 */
-	private final static String getWriteContent(List<Object[]> allLines,CSVParams csvParams){
+	private static final String getWriteContent(List<Object[]> allLines,CSVParams csvParams){
 		if (Validator.isNotNullOrEmpty(allLines)){
 			StringBuilder sb = new StringBuilder();
 			for (Object[] nextLine : allLines){
@@ -138,7 +138,7 @@ public final class CSVUtil{
 	 *            the csv params
 	 * @return the write content line
 	 */
-	private final static String getWriteContentLine(Object[] line,CSVParams csvParams){
+	private static final String getWriteContentLine(Object[] line,CSVParams csvParams){
 		// *******************用于扩展**********************************
 		char separator = csvParams.getSeparator();
 		char quotechar = DEFAULT_QUOTE_CHARACTER;

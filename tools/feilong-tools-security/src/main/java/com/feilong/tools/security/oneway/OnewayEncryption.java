@@ -202,7 +202,7 @@ final class OnewayEncryption{
 	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
 	 * @see java.security.MessageDigest#getInstance(String)
 	 */
-	private final static MessageDigest getMessageDigest(OnewayType onewayType) throws NullPointerException,EncryptionException{
+	private static final MessageDigest getMessageDigest(OnewayType onewayType) throws NullPointerException,EncryptionException{
 		if (Validator.isNullOrEmpty(onewayType)){
 			throw new NullPointerException("onewayType can't be null/empty!");
 		}

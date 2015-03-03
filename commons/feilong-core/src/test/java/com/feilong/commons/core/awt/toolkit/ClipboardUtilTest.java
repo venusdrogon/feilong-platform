@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
 public class ClipboardUtilTest{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(ClipboardUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ClipboardUtilTest.class);
 
 	/**
 	 * {@link com.feilong.commons.core.awt.toolkit.ClipboardUtil#setClipboardContent(java.lang.String)} 的测试方法。

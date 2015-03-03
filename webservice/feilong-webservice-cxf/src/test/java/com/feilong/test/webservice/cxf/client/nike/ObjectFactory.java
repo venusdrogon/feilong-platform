@@ -40,10 +40,10 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _TransferOrderSign_QNAME. */
-    private final static QName _TransferOrderSign_QNAME = new QName("http://www.nikestore.com.cn/webService", "transferOrderSign");
+    private static final QName _TransferOrderSign_QNAME = new QName("http://www.nikestore.com.cn/webService", "transferOrderSign");
     
     /** The Constant _TransferOrderSignResponse_QNAME. */
-    private final static QName _TransferOrderSignResponse_QNAME = new QName("http://www.nikestore.com.cn/webService", "transferOrderSignResponse");
+    private static final QName _TransferOrderSignResponse_QNAME = new QName("http://www.nikestore.com.cn/webService", "transferOrderSignResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.feilong.test.webservice.cxf.client.nike

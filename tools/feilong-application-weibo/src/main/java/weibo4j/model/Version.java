@@ -36,9 +36,9 @@ import org.slf4j.LoggerFactory;
 
 	private static final Logger	log		= LoggerFactory.getLogger(Version.class);
 
-	private final static String	VERSION	= "1.0.0";
+	private static final String	VERSION	= "1.0.0";
 
-	private final static String	TITLE	= "weibo4jV2";
+	private static final String	TITLE	= "weibo4jV2";
 
 	public static String getVersion(){
 		return VERSION;

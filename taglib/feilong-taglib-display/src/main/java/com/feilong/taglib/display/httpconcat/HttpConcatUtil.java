@@ -77,7 +77,7 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 	 * 
 	 * @since 1.0.7
 	 */
-	private final static boolean						DEFAULT_CACHEENABLE		= true;
+	private static final boolean						DEFAULT_CACHEENABLE		= true;
 
 	/**
 	 * cache size 限制,仅当 {@link #DEFAULT_CACHEENABLE}开启生效, 当cache数达到 {@link #DEFAULT_CACHESIZELIMIT},将不会再缓存结果
@@ -94,7 +94,7 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 	 * 
 	 * @since 1.0.7
 	 */
-	private final static int							DEFAULT_CACHESIZELIMIT	= 300000;
+	private static final int							DEFAULT_CACHESIZELIMIT	= 300000;
 
 	/**
 	 * 将结果缓存到map.<br>
@@ -105,7 +105,7 @@ public final class HttpConcatUtil implements HttpConcatConstants{
 	 */
 	//TODO change to ConcurrentHashMap
 	//这里对 线程安全的要求不高, 仅仅是 插入和读取的操作,即时出了线程安全问题, 重新解析js/css 标签代码 并加载 即可
-	private final static Map<HttpConcatParam, String>	cache					= new HashMap<HttpConcatParam, String>();
+	private static final Map<HttpConcatParam, String>	cache					= new HashMap<HttpConcatParam, String>();
 
 	// XXX 支持多变量
 	static{

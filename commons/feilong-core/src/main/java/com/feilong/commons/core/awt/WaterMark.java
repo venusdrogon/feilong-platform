@@ -58,7 +58,7 @@ public final class WaterMark{
 	 * @param outputStream
 	 *            the output stream
 	 */
-	public final static void pressImage(String targetImg,String pressImg,OutputStream outputStream){
+	public static final void pressImage(String targetImg,String pressImg,OutputStream outputStream){
 		pressImage(targetImg, pressImg, 0, 0, outputStream);
 	}
 
@@ -79,7 +79,7 @@ public final class WaterMark{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public final static void pressImage(String targetImg,String pressImg,int x,int y,String outputFile) throws IOException{
+	public static final void pressImage(String targetImg,String pressImg,int x,int y,String outputFile) throws IOException{
 		OutputStream outputStream = IOUtil.getFileOutputStream(outputFile);
 		pressImage(targetImg, pressImg, x, y, outputStream);
 	}
@@ -99,7 +99,7 @@ public final class WaterMark{
 	 * @param outputStream
 	 *            输出流(可以来自HttpServletReponse的输出)
 	 */
-	public final static void pressImage(String targetImg,String pressImg,int x,int y,OutputStream outputStream){
+	public static final void pressImage(String targetImg,String pressImg,int x,int y,OutputStream outputStream){
 		// 原始图片
 		BufferedImage targetBufferedImage = ImageUtil.getBufferedImage(targetImg);
 		// 基于原始图片产生一个新的BufferedImage

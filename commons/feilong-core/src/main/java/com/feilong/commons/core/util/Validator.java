@@ -95,7 +95,7 @@ public final class Validator{
 	 * @see org.apache.commons.lang.StringUtils#isBlank(String)
 	 * @see org.apache.commons.lang.StringUtils#isEmpty(String)
 	 */
-	public final static boolean isNullOrEmpty(Object value){
+	public static final boolean isNullOrEmpty(Object value){
 		if (null == value){
 			return true;
 		}
@@ -179,7 +179,7 @@ public final class Validator{
 	 * @see org.apache.commons.lang.StringUtils#isBlank(String)
 	 * @see org.apache.commons.lang.StringUtils#isEmpty(String)
 	 */
-	public final static boolean isNotNullOrEmpty(Object value){
+	public static final boolean isNotNullOrEmpty(Object value){
 		return !isNullOrEmpty(value);
 	}
 

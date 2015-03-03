@@ -45,7 +45,7 @@ public class PDFChineseFont{
 	 *            the style
 	 * @return the font
 	 */
-	public final static Font createChineseFont(int size,int style){
+	public static final Font createChineseFont(int size,int style){
 		try{
 			chineseFont = new Font(BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED), size, style);
 		}catch (DocumentException e){

@@ -86,7 +86,7 @@ import com.feilong.commons.core.util.Validator;
 public final class BeanUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(BeanUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(BeanUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private BeanUtil(){

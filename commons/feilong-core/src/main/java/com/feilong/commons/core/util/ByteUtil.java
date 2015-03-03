@@ -44,7 +44,7 @@ public final class ByteUtil{
 	 *            the b
 	 * @return the string
 	 */
-	public final static String bytesToHexStringLowerCase(byte[] b){
+	public static final String bytesToHexStringLowerCase(byte[] b){
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < b.length; ++i){
 			sb.append(byteToHexStringLowerCase(b[i]));
@@ -61,7 +61,7 @@ public final class ByteUtil{
 	 *            the b
 	 * @return the string
 	 */
-	public final static String byteToHexStringLowerCase(byte b){
+	public static final String byteToHexStringLowerCase(byte b){
 		int i = b;
 		if (i < 0){
 			i += 256;
@@ -88,7 +88,7 @@ public final class ByteUtil{
 	 *            the bytes
 	 * @return the string
 	 */
-	public final static String bytesToHexStringUpperCase(byte[] bytes){
+	public static final String bytesToHexStringUpperCase(byte[] bytes){
 		if (null == bytes){
 			throw new IllegalArgumentException("bytes不能为空");
 		}
@@ -112,7 +112,7 @@ public final class ByteUtil{
 //	 * @return 16进制字符串
 //	 * @deprecated ("该方法性能不高,请使用ByteUtil.bytesToHexStringUpperCase(byte[] bytes)")
 //	 */
-//	public final static String bytesToHexString_old(byte[] bytes){
+//	public static final String bytesToHexString_old(byte[] bytes){
 //		if (null == bytes){
 //			throw new IllegalArgumentException("bytes不能为空");
 //		}
@@ -142,7 +142,7 @@ public final class ByteUtil{
 	 *            the byte2
 	 * @return 将两个ASCII字符合成一个字节； 如：{@code "EF"--> 0xEF}
 	 */
-	public final static byte uniteBytes(byte byte1,byte byte2){
+	public static final byte uniteBytes(byte byte1,byte byte2){
 		byte b0 = Byte.decode("0x" + new String(new byte[] { byte1 })).byteValue();
 		b0 = (byte) (b0 << 4);
 		byte b1 = Byte.decode("0x" + new String(new byte[] { byte2 })).byteValue();
@@ -157,7 +157,7 @@ public final class ByteUtil{
 	 *            the bytes
 	 * @return 16进制字符串转成字节数组
 	 */
-	public final static byte[] hexBytesToBytes(byte[] bytes){
+	public static final byte[] hexBytesToBytes(byte[] bytes){
 		if (null != bytes){
 			int length = bytes.length;
 			if ((length % 2) != 0){
@@ -183,7 +183,7 @@ public final class ByteUtil{
 	 *            the bytes
 	 * @return the byte[]
 	 */
-	public final static byte[] hexBytesToBytes2(byte[] bytes){
+	public static final byte[] hexBytesToBytes2(byte[] bytes){
 		int size = bytes.length / 2;
 		byte[] ret = new byte[size];
 		for (int i = 0; i < size; ++i){

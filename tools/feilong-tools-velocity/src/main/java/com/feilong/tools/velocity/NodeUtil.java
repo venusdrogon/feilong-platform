@@ -44,7 +44,7 @@ public class NodeUtil{
 	 *            the node
 	 * @return the node map for log
 	 */
-	public final static Map<String, Object> getNodeMapForLog(InternalContextAdapter internalContextAdapter,Node node){
+	public static final Map<String, Object> getNodeMapForLog(InternalContextAdapter internalContextAdapter,Node node){
 
 		if (log.isDebugEnabled()){
 			//log.debug("node:{}", JsonUtil.format(node));

@@ -194,7 +194,7 @@ public final class FileUtil{
 	 * @throws NullPointerException
 	 *             isNullOrEmpty(fileName) or isNullOrEmpty(newPostfixName)
 	 */
-	public final static String getNewFileName(String fileName,String newPostfixName) throws NullPointerException{
+	public static final String getNewFileName(String fileName,String newPostfixName) throws NullPointerException{
 
 		if (Validator.isNullOrEmpty(fileName)){
 			throw new NullPointerException("fileName can't be null/empty!");
@@ -218,7 +218,7 @@ public final class FileUtil{
 	 *            the file name
 	 * @return true, if successful
 	 */
-	public final static boolean hasPostfixName(String fileName){
+	public static final boolean hasPostfixName(String fileName){
 		String fileNameString = getFileName(fileName);
 		int lastIndexOf = fileNameString.lastIndexOf(".");
 		if (-1 == lastIndexOf){
@@ -247,7 +247,7 @@ public final class FileUtil{
 	 * @see org.apache.commons.io.FilenameUtils#getExtension(String)
 	 * @see java.lang.String#substring(int, int)
 	 */
-	public final static String getFilePostfixName(String fileName){
+	public static final String getFilePostfixName(String fileName){
 		if (hasPostfixName(fileName)){
 			String filePostfixName = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 			return filePostfixName;
@@ -264,7 +264,7 @@ public final class FileUtil{
 	 * @return 不带. 的后缀
 	 * @see org.apache.commons.io.FilenameUtils#getExtension(String)
 	 */
-	public final static String getFilePostfixNameLowerCase(String fileName){
+	public static final String getFilePostfixNameLowerCase(String fileName){
 		String postfixName = getFilePostfixName(fileName);
 		return postfixName.toLowerCase();
 	}
@@ -287,7 +287,7 @@ public final class FileUtil{
 	 * @return 获得文件的不带后缀名的名称
 	 * @see java.lang.String#substring(int, int)
 	 */
-	public final static String getFilePreName(String fileName){
+	public static final String getFilePreName(String fileName){
 		return fileName.substring(0, fileName.lastIndexOf("."));
 	}
 
@@ -300,7 +300,7 @@ public final class FileUtil{
 	 * @return the file name
 	 * @see java.io.File#getName()
 	 */
-	public final static String getFileName(String fileName){
+	public static final String getFileName(String fileName){
 		File file = new File(fileName);
 		return file.getName();
 	}
@@ -326,7 +326,7 @@ public final class FileUtil{
 	 * 
 	 * @since 1.0.7
 	 */
-	public final static String getFileTopParentName(String pathname) throws NullPointerException{
+	public static final String getFileTopParentName(String pathname) throws NullPointerException{
 		if (Validator.isNullOrEmpty(pathname)){
 			throw new NullPointerException("pathname can't be null/empty!");
 		}
@@ -385,7 +385,7 @@ public final class FileUtil{
 	 *             isNullOrEmpty(fileName)
 	 * @since 1.0.7
 	 */
-	public final static String getFileTopParentName(File file) throws NullPointerException{
+	public static final String getFileTopParentName(File file) throws NullPointerException{
 		if (Validator.isNullOrEmpty(file)){
 			throw new NullPointerException("file can't be null/empty!");
 		}
@@ -417,7 +417,7 @@ public final class FileUtil{
 	 *            the file path
 	 * @return 如果文件存在,返回true
 	 */
-	public final static boolean isExistFile(String filePath){
+	public static final boolean isExistFile(String filePath){
 		File file = new File(filePath);
 		return file.exists();
 	}
@@ -430,7 +430,7 @@ public final class FileUtil{
 	 * @return 如果文件不存在,返回true
 	 * @since 1.0.3
 	 */
-	public final static boolean isNotExistFile(String filePath){
+	public static final boolean isNotExistFile(String filePath){
 		return !isExistFile(filePath);
 	}
 
@@ -446,7 +446,7 @@ public final class FileUtil{
 	 *            文件名称,可以是全路径 ,也可以是 部分路径,会解析取到后缀名
 	 * @return 上传的文件是否是常用图片格式
 	 */
-	public final static boolean isCommonImage(String fileName){
+	public static final boolean isCommonImage(String fileName){
 		return isInAppointTypes(fileName, IOConstants.COMMON_IMAGES);
 	}
 
@@ -460,7 +460,7 @@ public final class FileUtil{
 	 * @return 上传的文件是否在指定的文件类型里面
 	 */
 	// XXX 忽视大小写
-	public final static boolean isInAppointTypes(String fileName,String[] appointTypes){
+	public static final boolean isInAppointTypes(String fileName,String[] appointTypes){
 		return ArrayUtil.isContain(appointTypes, getFilePostfixName(fileName));
 	}
 
@@ -484,7 +484,7 @@ public final class FileUtil{
 	 * 
 	 * @see org.apache.commons.io.FileUtils#byteCountToDisplaySize(long)
 	 */
-	public final static String formatSize(long fileSize){
+	public static final String formatSize(long fileSize){
 		String danwei = "Bytes";
 		// 除完之后的余数
 		String yushu = "";
@@ -535,7 +535,7 @@ public final class FileUtil{
 	 * @see org.apache.commons.io.FileUtils#byteCountToDisplaySize(long)
 	 * @since 1.0.7
 	 */
-	public final static String getFileFormatSize(File file) throws NullPointerException{
+	public static final String getFileFormatSize(File file) throws NullPointerException{
 		if (Validator.isNullOrEmpty(file)){
 			throw new NullPointerException("file can't be null/empty!");
 		}
@@ -666,7 +666,7 @@ public final class FileUtil{
 	// * 文件名称带后缀 或者是路径名称
 	// * @return 判断excel文件是否是2003的版本
 	// */
-	// public final static boolean isExcel2003(String fileName){
+	// public static final boolean isExcel2003(String fileName){
 	// return "xls".equalsIgnoreCase(getFilePostfixName(fileName));
 	// }
 	//
@@ -677,7 +677,7 @@ public final class FileUtil{
 	// * 文件名称带后缀 或者是路径名称
 	// * @return 判断excel文件是否是2007的版本
 	// */
-	// public final static boolean isExcel2007(String fileName){
+	// public static final boolean isExcel2007(String fileName){
 	// return "xlsx".equalsIgnoreCase(getFilePostfixName(fileName));
 	// }
 }

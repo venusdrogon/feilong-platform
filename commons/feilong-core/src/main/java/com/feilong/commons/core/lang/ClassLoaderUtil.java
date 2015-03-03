@@ -37,7 +37,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 public final class ClassLoaderUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(ClassLoaderUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ClassLoaderUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private ClassLoaderUtil(){

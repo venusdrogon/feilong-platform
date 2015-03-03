@@ -61,7 +61,7 @@ import com.feilong.commons.core.io.FileType;
 public class FTPUtil extends FileTransfer{
 
 	/** The Constant log. */
-	private final static Logger	log			= LoggerFactory.getLogger(FTPUtil.class);
+	private static final Logger	log			= LoggerFactory.getLogger(FTPUtil.class);
 
 	/** The host name. */
 	private String				hostName;

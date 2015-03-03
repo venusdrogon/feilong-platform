@@ -60,7 +60,7 @@ public class MessageUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	public final static List<MailInfo> toMailInfoList(Message[] messages) throws MessagingException,IOException{
+	public static final List<MailInfo> toMailInfoList(Message[] messages) throws MessagingException,IOException{
 		if (log.isInfoEnabled()){
 			log.info("messages length:[{}]", messages.length);
 		}
@@ -88,7 +88,7 @@ public class MessageUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	public final static MailInfo toMailInfoList(Message message) throws MessagingException,IOException{
+	public static final MailInfo toMailInfoList(Message message) throws MessagingException,IOException{
 		MailInfo mailInfo = new MailInfo();
 
 		String from = getFromAddress(message);
@@ -127,7 +127,7 @@ public class MessageUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	public final static Map<String, Object> getMapForLog(Message message) throws MessagingException,IOException{
+	public static final Map<String, Object> getMapForLog(Message message) throws MessagingException,IOException{
 		Map<String, Object> object = new LinkedHashMap<String, Object>();
 		String address = getFromAddress(message);
 		object.put("from", address);

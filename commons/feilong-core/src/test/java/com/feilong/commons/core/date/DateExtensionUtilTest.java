@@ -59,7 +59,7 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
 	 */
 	@Test
 	public void testGetIntervalDayList(){
-		List<Date> dates = DateExtensionUtil.getIntervalDayList(fromString, toString, DatePattern.COMMON_DATE_AND_TIME);
+		List<Date> dates = DateExtensionUtil.getIntervalDayList(FROMSTRING, TOSTRING, DatePattern.COMMON_DATE_AND_TIME);
 		for (int i = 0; i < dates.size(); ++i){
 			log.debug(DateUtil.date2String(dates.get(i), DatePattern.COMMON_DATE_AND_TIME));
 		}

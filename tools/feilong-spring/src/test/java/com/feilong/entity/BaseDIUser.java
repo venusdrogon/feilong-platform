@@ -30,7 +30,7 @@ import org.springframework.beans.factory.InitializingBean;
 public abstract class BaseDIUser implements InitializingBean,DisposableBean{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(BaseDIUser.class);
+	private static final Logger	log	= LoggerFactory.getLogger(BaseDIUser.class);
 
 	/**
 	 * Inits the.

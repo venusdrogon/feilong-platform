@@ -76,7 +76,7 @@ public final class PagerUtil{
 	 * 
 	 * @since 1.0.7
 	 */
-	private final static boolean					cacheEnable			= false;
+	private static final boolean					cacheEnable			= false;
 
 	/**
 	 * 将结果缓存到map.<br>
@@ -85,7 +85,7 @@ public final class PagerUtil{
 	 * 
 	 * @since 1.0.7
 	 */
-	private final static Map<PagerParams, String>	cache				= new HashMap<PagerParams, String>();
+	private static final Map<PagerParams, String>	cache				= new HashMap<PagerParams, String>();
 
 	/**
 	 * 解析VM模板,生成分页HTML代码.
@@ -157,7 +157,7 @@ public final class PagerUtil{
 	 * @throws NullPointerException
 	 *             if isNullOrEmpty(pagerParams)
 	 */
-	public final static String getPagerContent(PagerParams pagerParams) throws NullPointerException{
+	public static final String getPagerContent(PagerParams pagerParams) throws NullPointerException{
 
 		if (Validator.isNullOrEmpty(pagerParams)){
 			throw new NullPointerException("pagerParams can't be null/empty!");
@@ -239,7 +239,7 @@ public final class PagerUtil{
 	 *         <li>如果参数中不带这个分页参数,或者转换异常 返回1</li>
 	 *         </ul>
 	 */
-	public final static Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
+	public static final Integer getCurrentPageNo(HttpServletRequest request,String pageParamName){
 		// /s/s-t-b-f-a-cBlack-s-f-p-gHeat+Gear-e-i-o.htm?keyword=&pageNo=%uFF1B
 		Integer currentPageNo = null;
 
@@ -389,7 +389,7 @@ public final class PagerUtil{
 	 * @return the index set
 	 * @since 1.0.5
 	 */
-	private final static Set<Integer> getAllIndexSet(Pager pager,int[] startIteratorIndexAndEndIteratorIndexs){
+	private static final Set<Integer> getAllIndexSet(Pager pager,int[] startIteratorIndexAndEndIteratorIndexs){
 		int prePageNo = pager.getPrePageNo();
 		int nextPageNo = pager.getNextPageNo();
 		int allPageNo = pager.getAllPageNo();
@@ -424,7 +424,7 @@ public final class PagerUtil{
 	 *         else return {@link PagerParams#getCurrentPageNo()}
 	 * @since 1.0.5
 	 */
-	private final static int getCurrentPageNo(PagerParams pagerParams){
+	private static final int getCurrentPageNo(PagerParams pagerParams){
 		int currentPageNo = pagerParams.getCurrentPageNo();
 
 		// 解决可能出现界面上 负数的情况
@@ -444,7 +444,7 @@ public final class PagerUtil{
 	 *            索引set
 	 * @return key是分页页码，value是解析之后的链接
 	 */
-	private final static Map<Integer, String> getAllIndexAndHrefMap(PagerParams pagerParams,Set<Integer> indexSet){
+	private static final Map<Integer, String> getAllIndexAndHrefMap(PagerParams pagerParams,Set<Integer> indexSet){
 		String pageUrl = pagerParams.getPageUrl();
 		String charsetType = pagerParams.getCharsetType();
 		String pageParamName = pagerParams.getPageParamName();
@@ -520,7 +520,7 @@ public final class PagerUtil{
 	 * @return 获得开始和结束的索引
 	 * @since 1.0.0
 	 */
-	private final static int[] getStartAndEndIteratorIndexs(int allPageNo,int currentPageNo,PagerParams pagerParams){
+	private static final int[] getStartAndEndIteratorIndexs(int allPageNo,int currentPageNo,PagerParams pagerParams){
 		int maxIndexPages = pagerParams.getMaxIndexPages();
 
 		// 最多显示多少个导航页码
@@ -578,7 +578,7 @@ public final class PagerUtil{
 	 * @deprecated 需要重构
 	 */
 	@Deprecated
-	private final static int getAutoMaxIndexPages(int allPageNo,Integer maxIndexPages){
+	private static final int getAutoMaxIndexPages(int allPageNo,Integer maxIndexPages){
 		if (Validator.isNullOrEmpty(maxIndexPages) || 0 == maxIndexPages){
 			// 总页数超过1000的时候,自动调节导航数量的作用
 			if (allPageNo > 1000){

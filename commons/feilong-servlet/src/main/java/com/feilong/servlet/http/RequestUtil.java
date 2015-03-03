@@ -420,7 +420,7 @@ public final class RequestUtil{
 	 *            属性名称
 	 * @return 取到的object类型会调用 ObjectUtil.toString(value)
 	 */
-	public final static String getAttributeToString(HttpServletRequest request,String name){
+	public static final String getAttributeToString(HttpServletRequest request,String name){
 		Object value = request.getAttribute(name);
 		return ObjectUtil.toString(value);
 	}
@@ -442,7 +442,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return 获得请求的?部分前面的地址
 	 */
-	public final static String getRequestURL(HttpServletRequest request){
+	public static final String getRequestURL(HttpServletRequest request){
 		String forward_request_uri = (String) request.getAttribute(RequestAttributes.FORWARD_REQUEST_URI);
 		if (Validator.isNotNullOrEmpty(forward_request_uri)){
 			return forward_request_uri;
@@ -479,7 +479,7 @@ public final class RequestUtil{
 	 *            编码集 {@link CharsetType}
 	 * @return 如:http://localhost:8080/feilong/requestdemo.jsp?id=2
 	 */
-	public final static String getRequestFullURL(HttpServletRequest request,String charsetType){
+	public static final String getRequestFullURL(HttpServletRequest request,String charsetType){
 		String requestURL = getRequestURL(request);
 
 		String queryString = request.getQueryString();
@@ -499,7 +499,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return 如:http://localhost:8080/feilong/
 	 */
-	public final static String getServerRootWithContextPath(HttpServletRequest request){
+	public static final String getServerRootWithContextPath(HttpServletRequest request){
 
 		StringBuffer url = new StringBuffer();
 		String scheme = request.getScheme();
@@ -532,7 +532,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return Returns the Internet Protocol (IP) address of the interface on which the request was received.
 	 */
-	public final static String getLocalAddr(HttpServletRequest request){
+	public static final String getLocalAddr(HttpServletRequest request){
 		return request.getLocalAddr();
 	}
 
@@ -545,7 +545,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return 获得客户端ip地址
 	 */
-	public final static String getClientIp(HttpServletRequest request){
+	public static final String getClientIp(HttpServletRequest request){
 		// WL-Proxy-Client-IP=215.4.1.29
 		// Proxy-Client-IP=215.4.1.29
 		// X-Forwarded-For=215.4.1.29
@@ -600,7 +600,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return the user agent
 	 */
-	public final static String getHeaderUserAgent(HttpServletRequest request){
+	public static final String getHeaderUserAgent(HttpServletRequest request){
 		return request.getHeader(HttpHeaders.USER_AGENT);
 	}
 
@@ -626,7 +626,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return 上上个请求的URL
 	 */
-	public final static String getHeaderReferer(HttpServletRequest request){
+	public static final String getHeaderReferer(HttpServletRequest request){
 		return request.getHeader(HttpHeaders.REFERER);
 	}
 
@@ -639,7 +639,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return the header origin
 	 */
-	public final static String getHeaderOrigin(HttpServletRequest request){
+	public static final String getHeaderOrigin(HttpServletRequest request){
 		return request.getHeader(HttpHeaders.ORIGIN);
 	}
 
@@ -658,7 +658,7 @@ public final class RequestUtil{
 	 * @return 如果是ajax 请求 返回true
 	 * @see "http://en.wikipedia.org/wiki/X-Requested-With#Requested-With"
 	 */
-	public final static boolean isAjaxRequest(HttpServletRequest request){
+	public static final boolean isAjaxRequest(HttpServletRequest request){
 		String header = request.getHeader(HttpHeaders.X_REQUESTED_WITH);
 		if (Validator.isNotNullOrEmpty(header) && header.equalsIgnoreCase(HttpHeaders.X_REQUESTED_WITH_VALUE_AJAX)){
 			return true;
@@ -673,7 +673,7 @@ public final class RequestUtil{
 	 *            the request
 	 * @return 如果不是ajax 返回true
 	 */
-	public final static boolean isNotAjaxRequest(HttpServletRequest request){
+	public static final boolean isNotAjaxRequest(HttpServletRequest request){
 		return !isAjaxRequest(request);
 	}
 

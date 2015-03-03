@@ -53,7 +53,7 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
 public class NamedQuerys implements Serializable{
 
 	/** The Constant log. */
-	private final static Logger	log					= LoggerFactory.getLogger(NamedQuerys.class);
+	private static final Logger	log					= LoggerFactory.getLogger(NamedQuerys.class);
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -3041827711013056715L;

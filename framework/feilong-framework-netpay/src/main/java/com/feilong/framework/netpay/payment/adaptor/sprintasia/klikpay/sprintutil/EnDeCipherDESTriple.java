@@ -20,7 +20,7 @@ final class EnDeCipherDESTriple{
 
 	private SecretKey	desKey;
 
-	// private final static String HEX_DIGITS = "0123456789ABCDEF";
+	// private static final String HEX_DIGITS = "0123456789ABCDEF";
 
 	public EnDeCipherDESTriple(byte[] key) throws Exception{
 		createCipher(key);

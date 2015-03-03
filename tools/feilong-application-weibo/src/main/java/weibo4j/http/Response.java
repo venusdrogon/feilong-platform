@@ -56,7 +56,7 @@ import weibo4j.model.WeiboException;
  * @author Yusuke Yamamoto - yusuke at mac.com
  */	@SuppressWarnings("all")
 public class Response {
-    private final static boolean DEBUG = Configuration.getDebug();
+    private static final boolean DEBUG = Configuration.getDebug();
     static Logger log = Logger.getLogger(Response.class.getName());
 
 

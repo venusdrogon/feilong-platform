@@ -52,10 +52,10 @@ public class TaoBaoUtilTest{
 	private static final Logger	log			= LoggerFactory.getLogger(TaoBaoUtilTest.class);
 
 	/** The Constant APP_KEY. */
-	public final static String	APP_KEY		= "12398690";
+	public static final String	APP_KEY		= "12398690";
 
 	/** The Constant APP_SERCET. */
-	public final static String	APP_SERCET	= "91d2fc6d34b01f954f44a6751fa2c114";
+	public static final String	APP_SERCET	= "91d2fc6d34b01f954f44a6751fa2c114";
 
 	/** The client. */
 	TaobaoClient				client		= new DefaultTaobaoClient("http://gw.api.taobao.com/router/rest", APP_KEY, APP_SERCET);

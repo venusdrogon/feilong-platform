@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 public final class ScreenShotUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(ScreenShotUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ScreenShotUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private ScreenShotUtil(){

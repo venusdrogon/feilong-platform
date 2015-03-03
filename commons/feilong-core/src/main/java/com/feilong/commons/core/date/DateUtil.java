@@ -182,7 +182,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
-	public final static Date getYesterday(Date date){
+	public static final Date getYesterday(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.add(Calendar.DATE, -1);
 		return calendar.getTime();
@@ -212,7 +212,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
-	public final static Date getFirstDateOfThisWeek(Date date){
+	public static final Date getFirstDateOfThisWeek(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		dayBegin(calendar);
@@ -242,7 +242,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0.1
 	 */
-	public final static Date getLastDateOfThisWeek(Date date){
+	public static final Date getLastDateOfThisWeek(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
 		dayEnd(calendar);
@@ -269,7 +269,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
-	public final static Date getFirstDateOfThisMonth(Date date){
+	public static final Date getFirstDateOfThisMonth(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		dayBegin(calendar);
@@ -295,7 +295,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
-	public final static Date getLastDateOfThisMonth(Date date){
+	public static final Date getLastDateOfThisMonth(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
 		dayEnd(calendar);
@@ -320,7 +320,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
-	public final static Date getFirstDateOfThisYear(Date date){
+	public static final Date getFirstDateOfThisYear(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.set(Calendar.MONTH, Calendar.JANUARY);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -346,7 +346,7 @@ public final class DateUtil{
 	 * @see Calendar#getTime()
 	 * @since 1.0
 	 */
-	public final static Date getLastDateOfThisYear(Date date){
+	public static final Date getLastDateOfThisYear(Date date){
 		Calendar calendar = toCalendar(date);
 		calendar.set(Calendar.MONTH, Calendar.DECEMBER);
 		calendar.set(Calendar.DAY_OF_MONTH, 31);
@@ -377,7 +377,7 @@ public final class DateUtil{
 	 * @see Calendar#YEAR
 	 * @since 1.0
 	 */
-	public final static Date addYear(Date date,int year){
+	public static final Date addYear(Date date,int year){
 		return operateDate(date, Calendar.YEAR, year);
 	}
 
@@ -402,7 +402,7 @@ public final class DateUtil{
 	 * @see #operateDate(Date, int, int)
 	 * @see Calendar#MONTH
 	 */
-	public final static Date addMonth(Date date,int month){
+	public static final Date addMonth(Date date,int month){
 		return operateDate(date, Calendar.MONTH, month);
 	}
 
@@ -433,7 +433,7 @@ public final class DateUtil{
 	 * @see Calendar#DAY_OF_MONTH
 	 * @since 1.0
 	 */
-	public final static Date addDay(Date date,int day){
+	public static final Date addDay(Date date,int day){
 		// Calendar.DAY_OF_MONTH 它与 Calendar.DATE 是同义词.一个月中第一天的值为 1.
 		return operateDate(date, Calendar.DAY_OF_MONTH, day);
 	}
@@ -461,7 +461,7 @@ public final class DateUtil{
 	 * @see Calendar#WEEK_OF_YEAR
 	 * @since 1.0
 	 */
-	public final static Date addWeek(Date date,int week){
+	public static final Date addWeek(Date date,int week){
 		return operateDate(date, Calendar.WEEK_OF_YEAR, week);
 	}
 
@@ -485,7 +485,7 @@ public final class DateUtil{
 	 * @see #operateDate(Date, int, int)
 	 * @see Calendar#HOUR_OF_DAY
 	 */
-	public final static Date addHour(Date date,int hour){
+	public static final Date addHour(Date date,int hour){
 		// Calendar.HOUR——12小时制的小时数
 		// Calendar.HOUR_OF_DAY——24小时制的小时数
 		return operateDate(date, Calendar.HOUR_OF_DAY, hour);
@@ -511,7 +511,7 @@ public final class DateUtil{
 	 * @see #operateDate(Date, int, int)
 	 * @see Calendar#MINUTE
 	 */
-	public final static Date addMinute(Date date,int minute){
+	public static final Date addMinute(Date date,int minute){
 		return operateDate(date, Calendar.MINUTE, minute);
 	}
 
@@ -535,7 +535,7 @@ public final class DateUtil{
 	 * @see #operateDate(Date, int, int)
 	 * @see Calendar#SECOND
 	 */
-	public final static Date addSecond(Date date,int second){
+	public static final Date addSecond(Date date,int second){
 		return operateDate(date, Calendar.SECOND, second);
 	}
 
@@ -561,7 +561,7 @@ public final class DateUtil{
 	 * @see Calendar#add(int, int)
 	 * @since 1.0
 	 */
-	public final static Date operateDate(Date currentDate,int field,int amount){
+	public static final Date operateDate(Date currentDate,int field,int amount){
 		Calendar calendar = toCalendar(currentDate);
 		calendar.add(field, amount);
 		return calendar.getTime();
@@ -585,7 +585,7 @@ public final class DateUtil{
 	 * @see Calendar#YEAR
 	 * @since 1.0
 	 */
-	public final static int getYear(Date date){
+	public static final int getYear(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.YEAR);
 	}
 
@@ -604,7 +604,7 @@ public final class DateUtil{
 	 * @see Calendar#MONTH
 	 * @since 1.0
 	 */
-	public final static int getMonth(Date date){
+	public static final int getMonth(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.MONTH) + 1;
 	}
 
@@ -664,7 +664,7 @@ public final class DateUtil{
 	 * @see Calendar#setMinimalDaysInFirstWeek(int)
 	 * @since 1.0.7
 	 */
-	public final static int getWeekOfYear(Date date){
+	public static final int getWeekOfYear(Date date){
 		//		Calendar calendar = DateUtil.toCalendar(date);
 		//		calendar.setMinimalDaysInFirstWeek(7);
 		//		return calendar.get(Calendar.WEEK_OF_YEAR);
@@ -690,7 +690,7 @@ public final class DateUtil{
 	 * @see #getIntervalDay(Date, Date)
 	 * @since 1.0.2
 	 */
-	public final static int getDayOfYear(Date date){
+	public static final int getDayOfYear(Date date){
 		Date firstDateOfThisYear = getFirstDateOfThisYear(date);
 		return getIntervalDay(date, firstDateOfThisYear) + 1;
 	}
@@ -710,7 +710,7 @@ public final class DateUtil{
 	 * @see Calendar#DAY_OF_MONTH
 	 * @since 1.0
 	 */
-	public final static int getDayOfMonth(Date date){
+	public static final int getDayOfMonth(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.DAY_OF_MONTH);
 	}
 
@@ -742,7 +742,7 @@ public final class DateUtil{
 	 * @see CalendarUtil#getCalendarFieldValue(Date, int)
 	 * @see Calendar#DAY_OF_WEEK
 	 */
-	public final static int getDayOfWeek(Date date){
+	public static final int getDayOfWeek(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.DAY_OF_WEEK);
 	}
 
@@ -761,7 +761,7 @@ public final class DateUtil{
 	 * @see Calendar#HOUR_OF_DAY
 	 * @since 1.0
 	 */
-	public final static int getHourOfDay(Date date){
+	public static final int getHourOfDay(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.HOUR_OF_DAY);
 	}
 
@@ -791,7 +791,7 @@ public final class DateUtil{
 	 * @see #getIntervalHour(Date, Date)
 	 * @since 1.0.2
 	 */
-	public final static int getHourOfYear(Date date){
+	public static final int getHourOfYear(Date date){
 		Date firstDateOfThisYear = getFirstDateOfThisYear(date);
 		return getIntervalHour(firstDateOfThisYear, date);
 	}
@@ -811,7 +811,7 @@ public final class DateUtil{
 	 * @see Calendar#MINUTE
 	 * @since 1.0
 	 */
-	public final static int getMinute(Date date){
+	public static final int getMinute(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.MINUTE);
 	}
 
@@ -830,7 +830,7 @@ public final class DateUtil{
 	 * @see Calendar#SECOND
 	 * @since 1.0
 	 */
-	public final static int getSecond(Date date){
+	public static final int getSecond(Date date){
 		return CalendarUtil.getCalendarFieldValue(date, Calendar.SECOND);
 	}
 
@@ -850,7 +850,7 @@ public final class DateUtil{
 	 * @see #getSecondOfHour(Date)
 	 * @since 1.0.2
 	 */
-	public final static int getSecondOfDay(Date date){
+	public static final int getSecondOfDay(Date date){
 		int hour = getHourOfDay(date);
 		return hour * TimeInterval.SECONDS_PER_HOUR + getSecondOfHour(date);
 	}
@@ -870,7 +870,7 @@ public final class DateUtil{
 	 * @see TimeInterval#SECONDS_PER_HOUR
 	 * @since 1.0.2
 	 */
-	public final static int getSecondOfHour(Date date){
+	public static final int getSecondOfHour(Date date){
 		int minute = getMinute(date);
 		int second = getSecond(date);
 		return second + minute * TimeInterval.SECONDS_PER_MINUTE;
@@ -889,7 +889,7 @@ public final class DateUtil{
 	 * @return date.getTime()
 	 * @since 1.0
 	 */
-	public final static long getTime(Date date){
+	public static final long getTime(Date date){
 		return date.getTime();
 	}
 
@@ -913,7 +913,7 @@ public final class DateUtil{
 	 * @see DateFormatUtil#format(Date, String)
 	 * @since 1.0
 	 */
-	public final static String date2String(Date date,String datePattern){
+	public static final String date2String(Date date,String datePattern){
 		return DateFormatUtil.format(date, datePattern);
 	}
 
@@ -928,7 +928,7 @@ public final class DateUtil{
 	 * @see DateFormatUtil#parse(String, String)
 	 * @since 1.0
 	 */
-	public final static Date string2Date(String dateString,String datePattern){
+	public static final Date string2Date(String dateString,String datePattern){
 		return DateFormatUtil.parse(dateString, datePattern);
 	}
 
@@ -945,7 +945,7 @@ public final class DateUtil{
 	 * @see TimeInterval#SECONDS_PER_HOUR
 	 * @since 1.0
 	 */
-	public final static int getIntervalHour(long spaceMillisecond){
+	public static final int getIntervalHour(long spaceMillisecond){
 		// 相差小时数
 		return (int) (spaceMillisecond / (TimeInterval.SECONDS_PER_HOUR * 1000));
 	}
@@ -959,7 +959,7 @@ public final class DateUtil{
 	 * @see TimeInterval#SECONDS_PER_MINUTE
 	 * @since 1.0
 	 */
-	public final static int getIntervalMinute(long spaceMillisecond){
+	public static final int getIntervalMinute(long spaceMillisecond){
 		// 相差分数
 		return (int) (spaceMillisecond / (TimeInterval.SECONDS_PER_MINUTE * 1000));
 	}
@@ -972,7 +972,7 @@ public final class DateUtil{
 	 * @return 相差的秒数
 	 * @since 1.0
 	 */
-	public final static int getIntervalSecond(long spaceMillisecond){
+	public static final int getIntervalSecond(long spaceMillisecond){
 		// 相差秒数
 		return (int) (spaceMillisecond / 1000);
 	}
@@ -989,7 +989,7 @@ public final class DateUtil{
 	 * @see #getIntervalSecond(long)
 	 * @since 1.0.2
 	 */
-	public final static int getIntervalSecond(Date date1,Date date2){
+	public static final int getIntervalSecond(Date date1,Date date2){
 		// 相差秒数
 		long intervalTime = getIntervalTime(date1, date2);
 		return getIntervalSecond(intervalTime);
@@ -1007,7 +1007,7 @@ public final class DateUtil{
 	 * @see #getIntervalHour(long)
 	 * @since 1.0
 	 */
-	public final static int getIntervalHour(Date date1,Date date2){
+	public static final int getIntervalHour(Date date1,Date date2){
 		long intervalTime = getIntervalTime(date1, date2);
 		return getIntervalHour(intervalTime);
 	}
@@ -1021,7 +1021,7 @@ public final class DateUtil{
 	 * @see TimeInterval#SECONDS_PER_DAY
 	 * @since 1.0
 	 */
-	public final static int getIntervalDay(long spaceTime){
+	public static final int getIntervalDay(long spaceTime){
 		// 相差天数
 		return (int) (spaceTime / (TimeInterval.SECONDS_PER_DAY * 1000));
 	}
@@ -1041,7 +1041,7 @@ public final class DateUtil{
 	 * @see #getIntervalDay(long)
 	 * @since 1.0
 	 */
-	public final static int getIntervalDay(String date1,String date2,String datePattern){
+	public static final int getIntervalDay(String date1,String date2,String datePattern){
 		Date dateOne = string2Date(date1, datePattern);
 		Date dateTwo = string2Date(date2, datePattern);
 		long intervalTime = getIntervalTime(dateOne, dateTwo);
@@ -1060,7 +1060,7 @@ public final class DateUtil{
 	 * @see #getIntervalDay(long)
 	 * @since 1.0
 	 */
-	public final static int getIntervalDay(Date date1,Date date2){
+	public static final int getIntervalDay(Date date1,Date date2){
 		long intervalTime = getIntervalTime(date1, date2);
 		return getIntervalDay(intervalTime);
 	}
@@ -1077,7 +1077,7 @@ public final class DateUtil{
 	 * @see #getTime(Date)
 	 * @since 1.0
 	 */
-	public final static long getIntervalTime(Date date1,Date date2){
+	public static final long getIntervalTime(Date date1,Date date2){
 		return Math.abs(getTime(date2) - getTime(date1));
 	}
 
@@ -1137,7 +1137,7 @@ public final class DateUtil{
 	 * @see #string2Date(String, String)
 	 * @see #isBefore(Date, String, String)
 	 */
-	public final static boolean isBefore(String dateBefore,String dateAfter,String datePattern){
+	public static final boolean isBefore(String dateBefore,String dateAfter,String datePattern){
 		Date before = string2Date(dateBefore, datePattern);
 		return isBefore(before, dateAfter, datePattern);
 	}
@@ -1162,7 +1162,7 @@ public final class DateUtil{
 	 * @see #isBefore(String, String, String)
 	 * @see Date#before(Date)
 	 */
-	public final static boolean isBefore(Date before,String dateAfter,String datePattern){
+	public static final boolean isBefore(Date before,String dateAfter,String datePattern){
 		Date after = string2Date(dateAfter, datePattern);
 		return before.before(after);
 	}
@@ -1194,7 +1194,7 @@ public final class DateUtil{
 	 * @see #string2Date(String, String)
 	 * @see #isInTime(Date, Date, Date)
 	 */
-	public final static boolean isInTime(Date date,String beginTime,String endTime,String datePattern){
+	public static final boolean isInTime(Date date,String beginTime,String endTime,String datePattern){
 		Date beginTimeDate = string2Date(beginTime, datePattern);
 		Date endTimeDate = string2Date(endTime, datePattern);
 		return isInTime(date, beginTimeDate, endTimeDate);
@@ -1221,7 +1221,7 @@ public final class DateUtil{
 	 * @see Date#after(Date)
 	 * @see Date#before(Date)
 	 */
-	public final static boolean isInTime(Date date,Date beginTimeDate,Date endTimeDate){
+	public static final boolean isInTime(Date date,Date beginTimeDate,Date endTimeDate){
 		boolean flag = date.after(beginTimeDate) && date.before(endTimeDate);
 		return flag;
 	}
@@ -1242,7 +1242,7 @@ public final class DateUtil{
 	 * @see #date2String(Date, String)
 	 * @since 1.0.5 change name from isEqual to isEquals
 	 */
-	public final static boolean isEquals(Date date1,Date date2,String datePattern){
+	public static final boolean isEquals(Date date1,Date date2,String datePattern){
 		return date2String(date1, datePattern).equals(date2String(date2, datePattern));
 	}
 
@@ -1275,7 +1275,7 @@ public final class DateUtil{
 	 * @see GregorianCalendar#isLeapYear(int)
 	 * @since 1.0
 	 */
-	public final static boolean isLeapYear(int year){
+	public static final boolean isLeapYear(int year){
 		// GregorianCalendar calendar = new GregorianCalendar();
 		// calendar.isLeapYear(year);
 

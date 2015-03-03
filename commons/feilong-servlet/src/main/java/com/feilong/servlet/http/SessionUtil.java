@@ -47,7 +47,7 @@ import com.feilong.commons.core.util.CollectionsUtil;
 public final class SessionUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(SessionUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(SessionUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private SessionUtil(){

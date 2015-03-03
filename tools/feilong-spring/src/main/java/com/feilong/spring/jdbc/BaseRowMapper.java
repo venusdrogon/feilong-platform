@@ -34,7 +34,7 @@ import org.springframework.jdbc.core.RowMapper;
 public abstract class BaseRowMapper<T> implements RowMapper<T>{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(BaseRowMapper.class);
+	private static final Logger	log	= LoggerFactory.getLogger(BaseRowMapper.class);
 
 	/*
 	 * (non-Javadoc)

@@ -80,7 +80,7 @@ public final class DateExtensionUtil{
 	 * @deprecated 方法名在未来版本可能会更新
 	 */
 	@Deprecated
-	public final static Date[] getExtentToday(){
+	public static final Date[] getExtentToday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendarByDay();
 		Date today = calendar.getTime();
 		// ***************************
@@ -109,7 +109,7 @@ public final class DateExtensionUtil{
 	 * @deprecated 方法名会更新
 	 */
 	@Deprecated
-	public final static Date[] getExtentYesterday(){
+	public static final Date[] getExtentYesterday(){
 		Calendar calendar = CalendarUtil.getResetTodayCalendarByDay();
 		Date today = calendar.getTime();
 		calendar.add(Calendar.DATE, -1);
@@ -145,7 +145,7 @@ public final class DateExtensionUtil{
 	 * @return the interval day list
 	 * @see DateUtil#getIntervalDay(Date, Date)
 	 */
-	public final static List<Date> getIntervalDayList(String fromDateString,String toDateString,String datePattern){
+	public static final List<Date> getIntervalDayList(String fromDateString,String toDateString,String datePattern){
 		List<Date> dateList = new ArrayList<Date>();
 		//***************************************************************/
 		Date beginDate = DateUtil.string2Date(fromDateString, datePattern);
@@ -219,7 +219,7 @@ public final class DateExtensionUtil{
 	 * @deprecated 未来名称可能会更改
 	 */
 	@Deprecated
-	public final static String toHumanizationDateString(Date inDate){
+	public static final String toHumanizationDateString(Date inDate){
 		Date nowDate = new Date();
 
 		//**************************************************************************************/
@@ -316,7 +316,7 @@ public final class DateExtensionUtil{
 	 * @return 如果 Validator.isNotNullOrEmpty(dateList) return null;<br>
 	 *         否则循环date转成string,返回{@code List<String>}
 	 */
-	public final static List<String> toStringList(List<Date> dateList,String datePattern){
+	public static final List<String> toStringList(List<Date> dateList,String datePattern){
 		if (Validator.isNotNullOrEmpty(dateList)){
 			List<String> stringList = new ArrayList<String>();
 			for (Date date : dateList){
@@ -349,7 +349,7 @@ public final class DateExtensionUtil{
 	 * @see DateUtil#getIntervalMinute(long)
 	 * @see DateUtil#getIntervalSecond(long)
 	 */
-	public final static String getIntervalForView(long spaceTime){
+	public static final String getIntervalForView(long spaceTime){
 		if (0 == spaceTime){
 			return "0";
 		}
@@ -405,7 +405,7 @@ public final class DateExtensionUtil{
 	 * @see #getIntervalForView(long)
 	 * @see DateUtil#getIntervalTime(Date, Date)
 	 */
-	public final static String getIntervalForView(Date date1,Date date2){
+	public static final String getIntervalForView(Date date1,Date date2){
 		long spaceTime = DateUtil.getIntervalTime(date1, date2);
 		return getIntervalForView(spaceTime);
 	}

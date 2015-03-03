@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public final class RegeditUtil{
 
 	/** The Constant log. */
-	private final static Logger	log					= LoggerFactory.getLogger(RegeditUtil.class);
+	private static final Logger	log					= LoggerFactory.getLogger(RegeditUtil.class);
 
 	/** 几大根键简写. */
 	public static final String	HKEY_CURRENT_USER	= "HKCU";

@@ -63,7 +63,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
 public final class StringUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(StringUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(StringUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private StringUtil(){
@@ -175,7 +175,7 @@ public final class StringUtil{
 	 *            任意字符串
 	 * @return the string
 	 */
-	public final static String join(boolean isJoinBlankOrNull,String separator,String...elements){
+	public static final String join(boolean isJoinBlankOrNull,String separator,String...elements){
 		if (Validator.isNullOrEmpty(elements)){
 			return null;
 		}
@@ -217,7 +217,7 @@ public final class StringUtil{
 	 * @see org.apache.commons.lang3.StringUtils#swapCase(String)
 	 * @see org.apache.commons.lang3.StringUtils#capitalize(String)
 	 */
-	public final static String firstCharToUpperCase(String word){
+	public static final String firstCharToUpperCase(String word){
 		return StringUtils.capitalize(word);
 	}
 
@@ -238,7 +238,7 @@ public final class StringUtil{
 	 * @return 单词首字母小写
 	 * @see org.apache.commons.lang3.StringUtils#uncapitalize(String)
 	 */
-	public final static String firstCharToLowerCase(String word){
+	public static final String firstCharToLowerCase(String word){
 		return StringUtils.uncapitalize(word);
 	}
 
@@ -254,7 +254,7 @@ public final class StringUtil{
 	 * @return 包含返回true,如果text 为null 返回false
 	 * @see String#indexOf(String)
 	 */
-	public final static boolean isContain(Object text,String beIncludedString){
+	public static final boolean isContain(Object text,String beIncludedString){
 		if (null == text){
 			log.warn("the param \"text\" is null,default return false");
 			return false;
@@ -286,7 +286,7 @@ public final class StringUtil{
 	 *         <li>两个值 转成 小写 ,判断是否包含</li>
 	 *         </ul>
 	 */
-	public final static boolean isContainIgnoreCase(Object text,String beIncludedString){
+	public static final boolean isContainIgnoreCase(Object text,String beIncludedString){
 		if (null == text){
 			log.warn("the param \"text\" is null,default return false");
 			return false;
@@ -314,7 +314,7 @@ public final class StringUtil{
 	 *            用来替换每个匹配项的字符串
 	 * @return 所得String,如果传过来的内容是空,则返回""
 	 */
-	public final static String replaceAll(Object content,String regex,String replacement){
+	public static final String replaceAll(Object content,String regex,String replacement){
 		if (null == content){
 			return "";
 		}
@@ -339,7 +339,7 @@ public final class StringUtil{
 	 *            char 值的替换序列
 	 * @return 所有匹配字面值目标序列的子字符串
 	 */
-	public final static String replace(Object content,String target,Object replacement){
+	public static final String replace(Object content,String target,Object replacement){
 		if (null == content){
 			return "";
 		}
@@ -363,7 +363,7 @@ public final class StringUtil{
 	 *            字段名称
 	 * @return 替换,将内容content 中的需要被替换的内容target 替换成bean里面的filedName属性值
 	 */
-	public final static String replace(Object content,String target,Object bean,String filedName){
+	public static final String replace(Object content,String target,Object bean,String filedName){
 		String replacement = "";
 		// 替换序列是null
 		if (Validator.isNotNullOrEmpty(bean)){
@@ -388,7 +388,7 @@ public final class StringUtil{
 	 *            前缀
 	 * @return 如果参数表示的字符序列是此字符串表示的字符序列的前缀，则返回 true；否则返回 false.还要注意，如果参数是空字符串，或者等于此 String 对象（用 equals(Object) 方法确定），则返回 true.
 	 */
-	public final static boolean startsWith(Object value,String prefix){
+	public static final boolean startsWith(Object value,String prefix){
 		return ObjectUtil.toString(value).startsWith(prefix);
 	}
 
@@ -402,7 +402,7 @@ public final class StringUtil{
 	 *            数字
 	 * @return 字符串和数字相加(一般生成流水号使用)
 	 */
-	public final static String stringAddInt(String str,int i){
+	public static final String stringAddInt(String str,int i){
 		int length = str.length();
 		String pattern = "";
 		for (int j = 0; j < length; ++j){
@@ -433,7 +433,7 @@ public final class StringUtil{
 	 *         <li>else,return text.substring(beginIndex)</li>
 	 *         </ul>
 	 */
-	public final static String substring(Object text,int beginIndex){
+	public static final String substring(Object text,int beginIndex){
 		String t = ObjectUtil.toString(text);
 		if (Validator.isNullOrEmpty(t)){
 			return null;
@@ -470,7 +470,7 @@ public final class StringUtil{
 	 * }
 	 * </pre>
 	 */
-	public final static String substring(Object textObject,int startIndex,int length){
+	public static final String substring(Object textObject,int startIndex,int length){
 		String returnValue = null;
 		if (Validator.isNullOrEmpty(textObject)){
 			return null;
@@ -517,7 +517,7 @@ public final class StringUtil{
 	 *            beginString开始截取的字符串
 	 * @return 调用{@link #substring(String, String, int)}, 默认 shift=0
 	 */
-	public final static String substring(String text,String beginString){
+	public static final String substring(String text,String beginString){
 		return substring(text, beginString, 0);
 	}
 
@@ -548,7 +548,7 @@ public final class StringUtil{
 	 *             {@code  if beginIndex + shift<0}
 	 * 
 	 */
-	public final static String substring(String text,String beginString,int shift) throws IllegalArgumentException{
+	public static final String substring(String text,String beginString,int shift) throws IllegalArgumentException{
 		if (Validator.isNullOrEmpty(text)){
 			return null;
 		}else if (Validator.isNullOrEmpty(beginString)){
@@ -596,7 +596,7 @@ public final class StringUtil{
 	 * 
 	 * </pre>
 	 */
-	public final static String substring(String text,String startString,String endString){
+	public static final String substring(String text,String startString,String endString){
 		if (Validator.isNullOrEmpty(text)){
 			return null;
 		}else if (Validator.isNullOrEmpty(startString)){
@@ -616,7 +616,7 @@ public final class StringUtil{
 	 *            最后的位数
 	 * @return 截取文字最后几个字符串
 	 */
-	public final static String substringLast(String text,int lastLenth){
+	public static final String substringLast(String text,int lastLenth){
 		return text.substring(text.length() - lastLenth);
 	}
 
@@ -629,7 +629,7 @@ public final class StringUtil{
 	 *            最后的位数
 	 * @return 去除最后几位,如果text是空,则返回""
 	 */
-	public final static String substringWithoutLast(String text,int lastLenth){
+	public static final String substringWithoutLast(String text,int lastLenth){
 		if (Validator.isNullOrEmpty(text)){
 			return null;
 		}
@@ -648,7 +648,7 @@ public final class StringUtil{
 	 *            字符串
 	 * @return byte数组
 	 */
-	public final static byte[] toBytes(String value){
+	public static final byte[] toBytes(String value){
 		return value.getBytes();
 	}
 
@@ -663,7 +663,7 @@ public final class StringUtil{
 	 * @see String#getBytes(String)
 	 * @see CharsetType
 	 */
-	public final static byte[] toBytes(String value,String charsetName){
+	public static final byte[] toBytes(String value,String charsetName){
 		try{
 			return value.getBytes(charsetName);
 		}catch (UnsupportedEncodingException e){
@@ -693,7 +693,7 @@ public final class StringUtil{
 	 * </pre>
 	 */
 	@SuppressWarnings("unchecked")
-	public final static <T> T toT(String value,Class<?> class1){
+	public static final <T> T toT(String value,Class<?> class1){
 		return (T) ObjectUtil.toT(value, class1);
 	}
 
@@ -713,7 +713,7 @@ public final class StringUtil{
 	 * @see String#split(String, int)
 	 * @see java.util.regex.Pattern#split(CharSequence)
 	 */
-	public final static String[] splitToStringArray(String value,String regexSpliter){
+	public static final String[] splitToStringArray(String value,String regexSpliter){
 		if (null != value){
 			String[] strings = value.split(regexSpliter);
 			return strings;
@@ -736,7 +736,7 @@ public final class StringUtil{
 	 * @see ArrayUtil#toIntegers(Object[])
 	 * @see java.util.regex.Pattern#split(CharSequence)
 	 */
-	public final static Integer[] splitToIntegerArray(String value,String regexSpliter){
+	public static final Integer[] splitToIntegerArray(String value,String regexSpliter){
 		if (null != value){
 			String[] strings = value.split(regexSpliter);
 			return ArrayUtil.toIntegers(strings);
@@ -766,7 +766,7 @@ public final class StringUtil{
 	 * @see #splitToStringArray(String, String)
 	 */
 	@SuppressWarnings("unchecked")
-	public final static <T> T[] splitToTArray(String value,String regexSpliter,Class<?> typeClass) throws IllegalArgumentException{
+	public static final <T> T[] splitToTArray(String value,String regexSpliter,Class<?> typeClass) throws IllegalArgumentException{
 		if (typeClass == String.class){
 			return (T[]) splitToStringArray(value, regexSpliter);
 		}else if (typeClass == Integer.class){
@@ -930,7 +930,7 @@ public final class StringUtil{
 	 *            原始字符串
 	 * @return the string
 	 */
-	public final static String toHexStringUpperCase(String original){
+	public static final String toHexStringUpperCase(String original){
 		// 先 Charset.defaultCharset() 如果有异常 用 ISO-8859-1
 		String hexStringUpperCase = ByteUtil.bytesToHexStringUpperCase(original.getBytes());
 		log.debug("original:{},hexStringUpperCase:{}", original, hexStringUpperCase);
@@ -946,7 +946,7 @@ public final class StringUtil{
 	 *            字符集 {@link CharsetType}
 	 * @return the string
 	 */
-	public final static String toHexStringUpperCase(String original,String charsetName){
+	public static final String toHexStringUpperCase(String original,String charsetName){
 		try{
 			String hexStringUpperCase = ByteUtil.bytesToHexStringUpperCase(original.getBytes(charsetName));
 			log.debug("original:{},hexStringUpperCase:{}", original, hexStringUpperCase);
@@ -964,7 +964,7 @@ public final class StringUtil{
 	 *            大写的HexString
 	 * @return the string
 	 */
-	public final static String toOriginal(String hexStringUpperCase){
+	public static final String toOriginal(String hexStringUpperCase){
 		byte[] hexBytesToBytes = ByteUtil.hexBytesToBytes(hexStringUpperCase.getBytes());
 		String original = new String(hexBytesToBytes);
 		log.debug("hexStringUpperCase:{},original:{}", hexStringUpperCase, original);
@@ -980,7 +980,7 @@ public final class StringUtil{
 	 *            指定字符集
 	 * @return the string
 	 */
-	public final static String toOriginal(String hexStringUpperCase,String charsetName){
+	public static final String toOriginal(String hexStringUpperCase,String charsetName){
 		byte[] hexBytesToBytes = ByteUtil.hexBytesToBytes(hexStringUpperCase.getBytes());
 		String original = null;
 		try{

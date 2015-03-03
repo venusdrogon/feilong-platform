@@ -45,7 +45,7 @@ public class FolderUtil{
 	 * @throws MessagingException
 	 *             the messaging exception
 	 */
-	public final static Map<String, Object> getMapForLog(Folder folder) throws MessagingException{
+	public static final Map<String, Object> getMapForLog(Folder folder) throws MessagingException{
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("getName", folder.getName());
 		map.put("getFullName", folder.getFullName());

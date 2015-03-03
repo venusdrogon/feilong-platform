@@ -41,11 +41,11 @@ public class DESUtilTest extends BaseSecurityTest{
 
 	// ******************************************************************************************************
 	/** des 默认加密解密的key. */
-	public final static String	config_security_key_des_default	= "feilong";
+	public static final String	config_security_key_des_default	= "feilong";
 
 	// ******************************************************************************************************
 	/** #des 16进制加密解密. */
-	public final static String	config_security_key_des_hex		= "jinxin";
+	public static final String	config_security_key_des_hex		= "jinxin";
 
 	/**
 	 * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.

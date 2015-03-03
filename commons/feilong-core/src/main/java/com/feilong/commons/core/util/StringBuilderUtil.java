@@ -40,7 +40,7 @@ public final class StringBuilderUtil{
 	 *            不定参数
 	 * @return 使用stringBuilder.append来拼接
 	 */
-	public final static String append(Object...strings){
+	public static final String append(Object...strings){
 		if (Validator.isNotNullOrEmpty(strings)){
 			StringBuilder stringBuilder = new StringBuilder();
 			for (Object string : strings){
@@ -59,7 +59,7 @@ public final class StringBuilderUtil{
 	 * @param text
 	 *            需要append 的内容
 	 */
-	public final static void appendTextWithLn(StringBuilder stringBuilder,Object text){
+	public static final void appendTextWithLn(StringBuilder stringBuilder,Object text){
 		stringBuilder.append(text);
 		stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 	}
@@ -72,7 +72,7 @@ public final class StringBuilderUtil{
 	 * @param stringBuilder
 	 *            the string builder
 	 */
-	public final static void appendLn(StringBuilder stringBuilder){
+	public static final void appendLn(StringBuilder stringBuilder){
 		stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 	}
 
@@ -86,7 +86,7 @@ public final class StringBuilderUtil{
 	 * @param value
 	 *            value
 	 */
-	public final static void appendTextWithLn(StringBuilder stringBuilder,String key,Object value){
+	public static final void appendTextWithLn(StringBuilder stringBuilder,String key,Object value){
 		stringBuilder.append(key);
 		stringBuilder.append(":");
 		stringBuilder.append(value);
@@ -103,7 +103,7 @@ public final class StringBuilderUtil{
 	 * @param stringBuilder
 	 *            the string builder
 	 */
-	public final static void appendTextWithSeparated(StringBuilder stringBuilder){
+	public static final void appendTextWithSeparated(StringBuilder stringBuilder){
 		appendTextWithSeparatedWithTitle(stringBuilder, null);
 	}
 
@@ -122,7 +122,7 @@ public final class StringBuilderUtil{
 	 * @param title
 	 *            the title
 	 */
-	public final static void appendTextWithSeparatedWithTitle(StringBuilder stringBuilder,String title){
+	public static final void appendTextWithSeparatedWithTitle(StringBuilder stringBuilder,String title){
 		stringBuilder.append(SystemUtils.LINE_SEPARATOR);
 		stringBuilder.append("**************************");
 		if (Validator.isNotNullOrEmpty(title)){
@@ -137,7 +137,7 @@ public final class StringBuilderUtil{
 	 * 
 	 * @return stringBuilder
 	 */
-	public final static StringBuilder appendTextWithSeparated(){
+	public static final StringBuilder appendTextWithSeparated(){
 		StringBuilder stringBuilder = new StringBuilder();
 		appendTextWithSeparated(stringBuilder);
 		return stringBuilder;

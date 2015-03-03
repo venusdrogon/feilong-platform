@@ -40,7 +40,7 @@ public class StringUtilTest{
 	private static final Logger	log		= LoggerFactory.getLogger(StringUtilTest.class);
 
 	/** <code>{@value}</code>. */
-	private final static String	text	= "jinxin.feilong";
+	private static final String	TEXT	= "jinxin.feilong";
 
 	/**
 	 * Search count.
@@ -77,7 +77,7 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void addDoubleQuotes(){
-		log.info(StringUtil.addDoubleQuotes(text));
+		log.info(StringUtil.addDoubleQuotes(TEXT));
 	}
 
 	/**
@@ -86,11 +86,11 @@ public class StringUtilTest{
 	@Test
 	public void isContainIgnoreCase(){
 		log.info(StringUtil.isContainIgnoreCase(null, "") + "");
-		log.info(StringUtil.isContainIgnoreCase(text, null) + "");
-		log.info(StringUtil.isContainIgnoreCase(text, "") + "");
-		log.info(StringUtil.isContainIgnoreCase(text, "feilong") + "");
-		log.info(StringUtil.isContainIgnoreCase(text, "feilong1") + "");
-		log.info(StringUtil.isContainIgnoreCase(text, "feiLong") + "");
+		log.info(StringUtil.isContainIgnoreCase(TEXT, null) + "");
+		log.info(StringUtil.isContainIgnoreCase(TEXT, "") + "");
+		log.info(StringUtil.isContainIgnoreCase(TEXT, "feilong") + "");
+		log.info(StringUtil.isContainIgnoreCase(TEXT, "feilong1") + "");
+		log.info(StringUtil.isContainIgnoreCase(TEXT, "feiLong") + "");
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void toHexStringUpperCase(){
-		log.info(StringUtil.toHexStringUpperCase(text));
+		log.info(StringUtil.toHexStringUpperCase(TEXT));
 	}
 
 	/**
@@ -198,7 +198,7 @@ public class StringUtilTest{
 	@Test
 	public void substring1(){
 		log.info("3999e85461ce7271dd5292c88f18567e".length() + "");
-		log.info(StringUtil.substring(text, 6));
+		log.info(StringUtil.substring(TEXT, 6));
 	}
 
 	/**
@@ -207,12 +207,12 @@ public class StringUtilTest{
 	@Test
 	public void substring2(){
 		log.info(StringUtil.substring(null, 6, 8));
-		log.info(StringUtil.substring(text, text.length(), 8));
-		log.info(StringUtil.substring(text, text.length() - 1, 8));
-		log.info(StringUtil.substring(text, 1, 0));
-		log.info(StringUtil.substring(text, 0, 5));
-		Assert.assertEquals(".f", StringUtil.substring(text, 6, 2));
-		log.info(StringUtil.substring(text, 6, 20));
+		log.info(StringUtil.substring(TEXT, TEXT.length(), 8));
+		log.info(StringUtil.substring(TEXT, TEXT.length() - 1, 8));
+		log.info(StringUtil.substring(TEXT, 1, 0));
+		log.info(StringUtil.substring(TEXT, 0, 5));
+		Assert.assertEquals(".f", StringUtil.substring(TEXT, 6, 2));
+		log.info(StringUtil.substring(TEXT, 6, 20));
 	}
 
 	/**
@@ -221,13 +221,13 @@ public class StringUtilTest{
 	@Test
 	public void substring3(){
 		log.info(StringUtil.substring(null, "in", 8));
-		log.info(StringUtil.substring(text, null, 8));
-		log.info(StringUtil.substring(text, "sin", 8));
-		log.info(StringUtil.substring(text, "in", 0));
-		log.info(StringUtil.substring(text, "in", 5));
+		log.info(StringUtil.substring(TEXT, null, 8));
+		log.info(StringUtil.substring(TEXT, "sin", 8));
+		log.info(StringUtil.substring(TEXT, "in", 0));
+		log.info(StringUtil.substring(TEXT, "in", 5));
 		// log.info(StringUtil.substring(text, "in", -2));
-		log.info(StringUtil.substring(text, "in", 20));
-		log.info(StringUtil.substring(text, "j", text.length() - 1));
+		log.info(StringUtil.substring(TEXT, "in", 20));
+		log.info(StringUtil.substring(TEXT, "j", TEXT.length() - 1));
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void substring(){
-		log.info(StringUtil.substring(text, "jinxin".length()));
+		log.info(StringUtil.substring(TEXT, "jinxin".length()));
 		String text1 = "Index: src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java";
 		log.info(StringUtil.substring(text1, "Index: ".length()));
 	}
@@ -245,7 +245,7 @@ public class StringUtilTest{
 	 */
 	@Test
 	public void substring6(){
-		log.info(StringUtil.substring(text, "jinxin.", 1));
+		log.info(StringUtil.substring(TEXT, "jinxin.", 1));
 	}
 
 	// @Test

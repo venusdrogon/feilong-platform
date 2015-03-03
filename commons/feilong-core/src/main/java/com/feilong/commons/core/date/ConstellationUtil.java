@@ -31,29 +31,29 @@ public final class ConstellationUtil{
 	 */
 	private static final ConstellationType[]	constellationTypes	= {
 																	// 水瓶座 1月20日-2月18日
-			ConstellationType.Aquarius,
+			ConstellationType.AQUARIUS,
 			// 双鱼座 2月19日-3月20日
-			ConstellationType.Pisces,
+			ConstellationType.PISCES,
 			// 白羊座 3月21日-4月19日
-			ConstellationType.Aries,
+			ConstellationType.ARIES,
 			// 金牛座 4月20日-5月20日
-			ConstellationType.Taurus,
+			ConstellationType.TAURUS,
 			// 双子座 5月21日-6月21日
-			ConstellationType.Gemini,
+			ConstellationType.GEMINI,
 			// 巨蟹座 6月22日-7月22日
-			ConstellationType.Cancer,
+			ConstellationType.CANCER,
 			// 狮子座 7月23日-8月22日
-			ConstellationType.Leo,
+			ConstellationType.LEO,
 			// 处女座 8月23日-9月22日
-			ConstellationType.Virgo,
+			ConstellationType.VIRGO,
 			// 天秤座 9月23日-10月23日
-			ConstellationType.Libra,
+			ConstellationType.LIBRA,
 			// 天蝎座 10月24日-11月22日
-			ConstellationType.Scorpio,
+			ConstellationType.SCORPIO,
 			// 射手座 11月23日-12月21日
-			ConstellationType.Sagittarius,
+			ConstellationType.SAGITTARIUS,
 			// 摩羯座 12月22日-1月19日
-			ConstellationType.Capricorn							};
+			ConstellationType.CAPRICORN							};
 
 	/**
 	 * 星座边界日期

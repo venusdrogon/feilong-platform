@@ -84,7 +84,7 @@ public final class CollectionsUtil{
 	 *         都不是null,会循环,拼接joinStringEntity.getConnector()
 	 */
 	// XXX 空字符串不拼接
-	public final static <T extends Serializable> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
+	public static final <T extends Serializable> String toString(final Collection<T> collection,final JoinStringEntity joinStringEntity){
 
 		if (Validator.isNotNullOrEmpty(collection)){
 
@@ -118,7 +118,7 @@ public final class CollectionsUtil{
 	 * @return Enumeration
 	 * @see Collections#enumeration(Collection)
 	 */
-	public final static <T> Enumeration<T> toEnumeration(final Collection<T> collection){
+	public static final <T> Enumeration<T> toEnumeration(final Collection<T> collection){
 		return Collections.enumeration(collection);
 	}
 
@@ -138,7 +138,7 @@ public final class CollectionsUtil{
 	 * @since 1.0.7
 	 * @since JDK 1.5
 	 */
-	public final static <T> List<T> toList(final Enumeration<T> enumeration){
+	public static final <T> List<T> toList(final Enumeration<T> enumeration){
 		if (Validator.isNullOrEmpty(enumeration)){
 			return Collections.emptyList();
 		}

@@ -51,7 +51,7 @@ import com.feilong.commons.core.util.Validator;
 public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(FeiLongSpringDAO.class);
+	private static final Logger	log	= LoggerFactory.getLogger(FeiLongSpringDAO.class);
 
 	// [start] 查询
 	/**

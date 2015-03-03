@@ -55,7 +55,7 @@ import com.feilong.tools.jsoup.JsoupUtilException;
 public class FeiLongJinBaoWangCrawler{
 
 	/** The Constant log. */
-	private final static Logger	log			= LoggerFactory.getLogger(FeiLongJinBaoWangCrawler.class);
+	private static final Logger	log			= LoggerFactory.getLogger(FeiLongJinBaoWangCrawler.class);
 
 	/** The search page. */
 	private static String		searchPage	= "http://www.jinbaowang.cn/gallery--n,%s-grid.html";

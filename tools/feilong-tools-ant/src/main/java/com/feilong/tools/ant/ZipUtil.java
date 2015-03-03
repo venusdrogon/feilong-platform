@@ -45,7 +45,7 @@ import com.feilong.commons.core.io.IOWriteUtil;
 public final class ZipUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(ZipUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ZipUtil.class);
 
 	/**
 	 * 将文件夹压缩成压缩文件,后缀为zip.

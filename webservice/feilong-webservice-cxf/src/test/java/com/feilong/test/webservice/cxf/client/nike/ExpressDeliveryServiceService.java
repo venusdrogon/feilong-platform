@@ -42,13 +42,13 @@ import javax.xml.ws.WebServiceFeature;
 public class ExpressDeliveryServiceService extends Service {
 
     /** The Constant WSDL_LOCATION. */
-    public final static URL WSDL_LOCATION;
+    public static final URL WSDL_LOCATION;
 
     /** The Constant SERVICE. */
-    public final static QName SERVICE = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServiceService");
+    public static final QName SERVICE = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServiceService");
     
     /** The Constant ExpressDeliveryServicePort. */
-    public final static QName ExpressDeliveryServicePort = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServicePort");
+    public static final QName ExpressDeliveryServicePort = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServicePort");
     static {
         URL url = null;
         try {

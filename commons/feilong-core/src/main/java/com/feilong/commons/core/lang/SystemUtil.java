@@ -338,7 +338,7 @@ public final class SystemUtil{
 	 * @see java.util.TreeMap
 	 * @see "org.springframework.core.env.AbstractEnvironment#getSystemProperties()"
 	 */
-	public final static Map<String, String> getPropertiesMapForLog(){
+	public static final Map<String, String> getPropertiesMapForLog(){
 		Properties properties = System.getProperties();
 		Map<String, String> map = new TreeMap<String, String>(PropertiesUtil.toMap(properties));
 		return map;
@@ -353,7 +353,7 @@ public final class SystemUtil{
 	 * @see java.util.TreeMap
 	 * @see "org.springframework.core.env.AbstractEnvironment#getSystemEnvironment()"
 	 */
-	public final static Map<String, String> getEnvMapForLog(){
+	public static final Map<String, String> getEnvMapForLog(){
 		Map<String, String> envMap = System.getenv();
 		Map<String, String> map = new TreeMap<String, String>(envMap);
 		return map;

@@ -45,12 +45,12 @@ import com.feilong.commons.core.io.CharsetType;
  */
 public class IPSeeker{
 
-	private final static Logger					log					= LoggerFactory.getLogger(IPSeeker.class);
+	private static final Logger					log					= LoggerFactory.getLogger(IPSeeker.class);
 
 	/**
 	 * ip数据库 QQWry.dat
 	 */
-	public final static String					config_ip_Data_Path	= getValue("config/feilong-tools-middleware-ip", "config_ip_Data_Path");
+	public static final String					config_ip_Data_Path	= getValue("config/feilong-tools-middleware-ip", "config_ip_Data_Path");
 
 	/**
 	 * 解决带空格路径的问题

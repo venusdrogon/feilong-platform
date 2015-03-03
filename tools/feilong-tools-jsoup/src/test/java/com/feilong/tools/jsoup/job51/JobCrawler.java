@@ -40,7 +40,7 @@ import com.feilong.tools.jsoup.jinbaowang.entity.Enterprise;
 public class JobCrawler{
 
 	/** The Constant log. */
-	private final static Logger	log					= LoggerFactory.getLogger(JobCrawler.class);
+	private static final Logger	log					= LoggerFactory.getLogger(JobCrawler.class);
 
 	/** 上海所有工作. */
 	public static String		enterprise_ShangHai	= "http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=0200&district=0000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keywordtype=2&curr_page=6&lang=c&stype=2&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=01&lonlat=0,0&radius=-1&ord_field=0&list_type=0&fromType=14";

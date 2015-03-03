@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 public final class IOUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(IOUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(IOUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private IOUtil(){
@@ -62,6 +62,7 @@ public final class IOUtil{
 		Charset defaultCharset = Charset.defaultCharset();
 		String charsetName = defaultCharset.name();
 		log.debug("the param defaultCharset:[{}]", charsetName);
+		
 		return inputStream2String(inputStream, charsetName);
 	}
 
@@ -136,10 +137,11 @@ public final class IOUtil{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public final static byte[] convertFileToByteArray(File file) throws IOException{
+	public static final byte[] convertFileToByteArray(File file) throws IOException{
 		InputStream inputStream = getFileInputStream(file);
 		// *************************************************************************
 		BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		byte[] bytes = new byte[10240];
 		byte[] byteArray = null;
@@ -174,7 +176,7 @@ public final class IOUtil{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public final static FileOutputStream getFileOutputStream(String fileName) throws IOException{
+	public static final FileOutputStream getFileOutputStream(String fileName) throws IOException{
 		FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 		return fileOutputStream;
 	}
@@ -189,7 +191,7 @@ public final class IOUtil{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public final static FileInputStream getFileInputStream(String fileName) throws IOException{
+	public static final FileInputStream getFileInputStream(String fileName) throws IOException{
 		File file = new File(fileName);
 		return getFileInputStream(file);
 	}
@@ -204,7 +206,7 @@ public final class IOUtil{
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public final static FileInputStream getFileInputStream(File file) throws IOException{
+	public static final FileInputStream getFileInputStream(File file) throws IOException{
 		// 如果指定文件不存在，或者它是一个目录，而不是一个常规文件，抑或因为其他某些原因而无法打开进行读取，则抛出 FileNotFoundException.
 		FileInputStream fileInputStream = new FileInputStream(file);
 		return fileInputStream;

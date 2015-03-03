@@ -34,10 +34,10 @@ import com.feilong.tools.security.oneway.MD5Util;
 public class YiChengPay{
 
 	/** 测试地址. */
-	public final static String	post_url_test	= "https://dev.001town.com/selfhelp/payOrderInput.action";
+	public static final String	post_url_test	= "https://dev.001town.com/selfhelp/payOrderInput.action";
 
 	/** 正式地址. */
-	public final static String	post_url_formal	= "https://pay.001town.com/selfhelp/payOrderInput.action";
+	public static final String	post_url_formal	= "https://pay.001town.com/selfhelp/payOrderInput.action";
 
 	/**
 	 * 写内容.

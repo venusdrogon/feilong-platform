@@ -38,7 +38,7 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
 public class DangaMemCachedUtil{
 
 	/** The Constant log. */
-	private final static Logger		log				= LoggerFactory.getLogger(DangaMemCachedUtil.class);
+	private static final Logger		log				= LoggerFactory.getLogger(DangaMemCachedUtil.class);
 
 	/** The config. */
 	private static ResourceBundle	config			= ResourceBundle.getBundle("memcached");

@@ -67,42 +67,42 @@ public class ConstellationUtilTest extends TestCase{
 	@Parameters
 	public static Collection data(){
 		return Arrays.asList(new Object[][] {
-				{ ConstellationType.Capricorn, "1986-12-22" },
-				{ ConstellationType.Capricorn, "1986-12-25" },
-				{ ConstellationType.Aquarius, "1986-01-20" },
-				{ ConstellationType.Aquarius, "1986-01-21" },
-				{ ConstellationType.Aquarius, "1986-02-18" },
-				{ ConstellationType.Pisces, "1986-02-19" },
-				{ ConstellationType.Pisces, "1986-02-20" },
-				{ ConstellationType.Pisces, "1986-02-26" },
-				{ ConstellationType.Pisces, "1986-03-20" },
-				{ ConstellationType.Aries, "1986-03-21" },
-				{ ConstellationType.Aries, "1986-03-25" },
-				{ ConstellationType.Taurus, "1986-04-20" },
-				{ ConstellationType.Taurus, "1986-04-21" },
-				{ ConstellationType.Taurus, "1986-05-10" },
-				{ ConstellationType.Gemini, "1986-05-21" },
-				{ ConstellationType.Gemini, "1986-05-22" },
-				{ ConstellationType.Gemini, "1986-05-25" },
-				{ ConstellationType.Gemini, "1986-06-21" },
-				{ ConstellationType.Cancer, "1986-06-22" },
-				{ ConstellationType.Cancer, "1986-06-28" },
-				{ ConstellationType.Cancer, "1986-07-22" },
-				{ ConstellationType.Leo, "1986-07-23" },
-				{ ConstellationType.Leo, "1986-07-30" },
-				{ ConstellationType.Virgo, "1986-08-23" },
-				{ ConstellationType.Virgo, "1986-08-24" },
-				{ ConstellationType.Virgo, "1986-09-21" },
-				{ ConstellationType.Libra, "1986-09-23" },
-				{ ConstellationType.Libra, "1986-09-24" },
-				{ ConstellationType.Libra, "1986-10-21" },
-				{ ConstellationType.Libra, "1986-10-23" },
-				{ ConstellationType.Scorpio, "1986-10-24" },
-				{ ConstellationType.Scorpio, "1986-11-21" },
-				{ ConstellationType.Scorpio, "1986-11-22" },
-				{ ConstellationType.Sagittarius, "1986-11-23" },
-				{ ConstellationType.Sagittarius, "1986-11-28" },
-				{ ConstellationType.Sagittarius, "1986-12-21" } });
+				{ ConstellationType.CAPRICORN, "1986-12-22" },
+				{ ConstellationType.CAPRICORN, "1986-12-25" },
+				{ ConstellationType.AQUARIUS, "1986-01-20" },
+				{ ConstellationType.AQUARIUS, "1986-01-21" },
+				{ ConstellationType.AQUARIUS, "1986-02-18" },
+				{ ConstellationType.PISCES, "1986-02-19" },
+				{ ConstellationType.PISCES, "1986-02-20" },
+				{ ConstellationType.PISCES, "1986-02-26" },
+				{ ConstellationType.PISCES, "1986-03-20" },
+				{ ConstellationType.ARIES, "1986-03-21" },
+				{ ConstellationType.ARIES, "1986-03-25" },
+				{ ConstellationType.TAURUS, "1986-04-20" },
+				{ ConstellationType.TAURUS, "1986-04-21" },
+				{ ConstellationType.TAURUS, "1986-05-10" },
+				{ ConstellationType.GEMINI, "1986-05-21" },
+				{ ConstellationType.GEMINI, "1986-05-22" },
+				{ ConstellationType.GEMINI, "1986-05-25" },
+				{ ConstellationType.GEMINI, "1986-06-21" },
+				{ ConstellationType.CANCER, "1986-06-22" },
+				{ ConstellationType.CANCER, "1986-06-28" },
+				{ ConstellationType.CANCER, "1986-07-22" },
+				{ ConstellationType.LEO, "1986-07-23" },
+				{ ConstellationType.LEO, "1986-07-30" },
+				{ ConstellationType.VIRGO, "1986-08-23" },
+				{ ConstellationType.VIRGO, "1986-08-24" },
+				{ ConstellationType.VIRGO, "1986-09-21" },
+				{ ConstellationType.LIBRA, "1986-09-23" },
+				{ ConstellationType.LIBRA, "1986-09-24" },
+				{ ConstellationType.LIBRA, "1986-10-21" },
+				{ ConstellationType.LIBRA, "1986-10-23" },
+				{ ConstellationType.SCORPIO, "1986-10-24" },
+				{ ConstellationType.SCORPIO, "1986-11-21" },
+				{ ConstellationType.SCORPIO, "1986-11-22" },
+				{ ConstellationType.SAGITTARIUS, "1986-11-23" },
+				{ ConstellationType.SAGITTARIUS, "1986-11-28" },
+				{ ConstellationType.SAGITTARIUS, "1986-12-21" } });
 	}
 
 	/**
@@ -129,41 +129,41 @@ public class ConstellationUtilTest extends TestCase{
 	@Test
 	@Ignore
 	public void testCalculateConstellation(){
-		assertEquals(ConstellationType.Capricorn, ConstellationUtil.getConstellationType("1986-12-22"));
-		assertEquals(ConstellationType.Capricorn, ConstellationUtil.getConstellationType("1986-12-25"));
-		assertEquals(ConstellationType.Aquarius, ConstellationUtil.getConstellationType("1986-01-20"));
-		assertEquals(ConstellationType.Aquarius, ConstellationUtil.getConstellationType("1986-01-21"));
-		assertEquals(ConstellationType.Aquarius, ConstellationUtil.getConstellationType("1986-02-18"));
-		assertEquals(ConstellationType.Pisces, ConstellationUtil.getConstellationType("1986-02-19"));
-		assertEquals(ConstellationType.Pisces, ConstellationUtil.getConstellationType("1986-02-20"));
-		assertEquals(ConstellationType.Pisces, ConstellationUtil.getConstellationType("1986-02-26"));
-		assertEquals(ConstellationType.Pisces, ConstellationUtil.getConstellationType("1986-03-20"));
-		assertEquals(ConstellationType.Aries, ConstellationUtil.getConstellationType("1986-03-21"));
-		assertEquals(ConstellationType.Aries, ConstellationUtil.getConstellationType("1986-03-25"));
-		assertEquals(ConstellationType.Taurus, ConstellationUtil.getConstellationType("1986-04-20"));
-		assertEquals(ConstellationType.Taurus, ConstellationUtil.getConstellationType("1986-04-21"));
-		assertEquals(ConstellationType.Taurus, ConstellationUtil.getConstellationType("1986-05-10"));
-		assertEquals(ConstellationType.Gemini, ConstellationUtil.getConstellationType("1986-05-21"));
-		assertEquals(ConstellationType.Gemini, ConstellationUtil.getConstellationType("1986-05-22"));
-		assertEquals(ConstellationType.Gemini, ConstellationUtil.getConstellationType("1986-05-25"));
-		assertEquals(ConstellationType.Gemini, ConstellationUtil.getConstellationType("1986-06-21"));
-		assertEquals(ConstellationType.Cancer, ConstellationUtil.getConstellationType("1986-06-22"));
-		assertEquals(ConstellationType.Cancer, ConstellationUtil.getConstellationType("1986-06-28"));
-		assertEquals(ConstellationType.Cancer, ConstellationUtil.getConstellationType("1986-07-22"));
-		assertEquals(ConstellationType.Leo, ConstellationUtil.getConstellationType("1986-07-23"));
-		assertEquals(ConstellationType.Leo, ConstellationUtil.getConstellationType("1986-07-30"));
-		assertEquals(ConstellationType.Virgo, ConstellationUtil.getConstellationType("1986-08-23"));
-		assertEquals(ConstellationType.Virgo, ConstellationUtil.getConstellationType("1986-08-24"));
-		assertEquals(ConstellationType.Virgo, ConstellationUtil.getConstellationType("1986-09-21"));
-		assertEquals(ConstellationType.Libra, ConstellationUtil.getConstellationType("1986-09-23"));
-		assertEquals(ConstellationType.Libra, ConstellationUtil.getConstellationType("1986-09-24"));
-		assertEquals(ConstellationType.Libra, ConstellationUtil.getConstellationType("1986-10-21"));
-		assertEquals(ConstellationType.Libra, ConstellationUtil.getConstellationType("1986-10-23"));
-		assertEquals(ConstellationType.Scorpio, ConstellationUtil.getConstellationType("1986-10-24"));
-		assertEquals(ConstellationType.Scorpio, ConstellationUtil.getConstellationType("1986-11-21"));
-		assertEquals(ConstellationType.Scorpio, ConstellationUtil.getConstellationType("1986-11-22"));
-		assertEquals(ConstellationType.Sagittarius, ConstellationUtil.getConstellationType("1986-11-23"));
-		assertEquals(ConstellationType.Sagittarius, ConstellationUtil.getConstellationType("1986-11-28"));
-		assertEquals(ConstellationType.Sagittarius, ConstellationUtil.getConstellationType("1986-12-21"));
+		assertEquals(ConstellationType.CAPRICORN, ConstellationUtil.getConstellationType("1986-12-22"));
+		assertEquals(ConstellationType.CAPRICORN, ConstellationUtil.getConstellationType("1986-12-25"));
+		assertEquals(ConstellationType.AQUARIUS, ConstellationUtil.getConstellationType("1986-01-20"));
+		assertEquals(ConstellationType.AQUARIUS, ConstellationUtil.getConstellationType("1986-01-21"));
+		assertEquals(ConstellationType.AQUARIUS, ConstellationUtil.getConstellationType("1986-02-18"));
+		assertEquals(ConstellationType.PISCES, ConstellationUtil.getConstellationType("1986-02-19"));
+		assertEquals(ConstellationType.PISCES, ConstellationUtil.getConstellationType("1986-02-20"));
+		assertEquals(ConstellationType.PISCES, ConstellationUtil.getConstellationType("1986-02-26"));
+		assertEquals(ConstellationType.PISCES, ConstellationUtil.getConstellationType("1986-03-20"));
+		assertEquals(ConstellationType.ARIES, ConstellationUtil.getConstellationType("1986-03-21"));
+		assertEquals(ConstellationType.ARIES, ConstellationUtil.getConstellationType("1986-03-25"));
+		assertEquals(ConstellationType.TAURUS, ConstellationUtil.getConstellationType("1986-04-20"));
+		assertEquals(ConstellationType.TAURUS, ConstellationUtil.getConstellationType("1986-04-21"));
+		assertEquals(ConstellationType.TAURUS, ConstellationUtil.getConstellationType("1986-05-10"));
+		assertEquals(ConstellationType.GEMINI, ConstellationUtil.getConstellationType("1986-05-21"));
+		assertEquals(ConstellationType.GEMINI, ConstellationUtil.getConstellationType("1986-05-22"));
+		assertEquals(ConstellationType.GEMINI, ConstellationUtil.getConstellationType("1986-05-25"));
+		assertEquals(ConstellationType.GEMINI, ConstellationUtil.getConstellationType("1986-06-21"));
+		assertEquals(ConstellationType.CANCER, ConstellationUtil.getConstellationType("1986-06-22"));
+		assertEquals(ConstellationType.CANCER, ConstellationUtil.getConstellationType("1986-06-28"));
+		assertEquals(ConstellationType.CANCER, ConstellationUtil.getConstellationType("1986-07-22"));
+		assertEquals(ConstellationType.LEO, ConstellationUtil.getConstellationType("1986-07-23"));
+		assertEquals(ConstellationType.LEO, ConstellationUtil.getConstellationType("1986-07-30"));
+		assertEquals(ConstellationType.VIRGO, ConstellationUtil.getConstellationType("1986-08-23"));
+		assertEquals(ConstellationType.VIRGO, ConstellationUtil.getConstellationType("1986-08-24"));
+		assertEquals(ConstellationType.VIRGO, ConstellationUtil.getConstellationType("1986-09-21"));
+		assertEquals(ConstellationType.LIBRA, ConstellationUtil.getConstellationType("1986-09-23"));
+		assertEquals(ConstellationType.LIBRA, ConstellationUtil.getConstellationType("1986-09-24"));
+		assertEquals(ConstellationType.LIBRA, ConstellationUtil.getConstellationType("1986-10-21"));
+		assertEquals(ConstellationType.LIBRA, ConstellationUtil.getConstellationType("1986-10-23"));
+		assertEquals(ConstellationType.SCORPIO, ConstellationUtil.getConstellationType("1986-10-24"));
+		assertEquals(ConstellationType.SCORPIO, ConstellationUtil.getConstellationType("1986-11-21"));
+		assertEquals(ConstellationType.SCORPIO, ConstellationUtil.getConstellationType("1986-11-22"));
+		assertEquals(ConstellationType.SAGITTARIUS, ConstellationUtil.getConstellationType("1986-11-23"));
+		assertEquals(ConstellationType.SAGITTARIUS, ConstellationUtil.getConstellationType("1986-11-28"));
+		assertEquals(ConstellationType.SAGITTARIUS, ConstellationUtil.getConstellationType("1986-12-21"));
 	}
 }

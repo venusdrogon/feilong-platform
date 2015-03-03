@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 public final class ClipboardUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(ClipboardUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(ClipboardUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private ClipboardUtil(){
@@ -54,7 +54,7 @@ public final class ClipboardUtil{
 	 * @param data
 	 *            the new clipboard content
 	 */
-	public final static void setClipboardContent(String data){
+	public static final void setClipboardContent(String data){
 		Clipboard clipboard = getSystemClipboard();
 		Transferable transferable = new StringSelection(data);
 
@@ -76,7 +76,7 @@ public final class ClipboardUtil{
 	 * @throws IOException
 	 *             the IO exception
 	 */
-	public final static String getClipboardContent() throws UnsupportedFlavorException,IOException{
+	public static final String getClipboardContent() throws UnsupportedFlavorException,IOException{
 		Transferable transferable = getTransferable();
 		// 因为原系的剪贴板里有多种信息, 如文字, 图片, 文件等
 		// 先判断开始取得的可传输的数据是不是文字, 如果是, 取得这些文字
@@ -100,7 +100,7 @@ public final class ClipboardUtil{
 	 *             the IO exception
 	 * @since 1.0.8
 	 */
-	public final static Reader getClipboardReader() throws UnsupportedFlavorException,IOException{
+	public static final Reader getClipboardReader() throws UnsupportedFlavorException,IOException{
 		Transferable transferable = getTransferable();
 
 		DataFlavor dataFlavor = DataFlavor.stringFlavor;
@@ -133,7 +133,7 @@ public final class ClipboardUtil{
 	 * @see java.awt.Toolkit#getDefaultToolkit()
 	 * @see java.awt.Toolkit#getSystemClipboard()
 	 */
-	private final static Clipboard getSystemClipboard(){
+	private static final Clipboard getSystemClipboard(){
 		Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
 		Clipboard clipboard = defaultToolkit.getSystemClipboard();
 		return clipboard;

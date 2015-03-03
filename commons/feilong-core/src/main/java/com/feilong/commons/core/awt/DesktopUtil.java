@@ -38,7 +38,7 @@ import com.feilong.commons.core.net.URIUtil;
 public final class DesktopUtil{
 
 	/** The Constant log. */
-	private final static Logger	log	= LoggerFactory.getLogger(DesktopUtil.class);
+	private static final Logger	log	= LoggerFactory.getLogger(DesktopUtil.class);
 
 	/** Don't let anyone instantiate this class. */
 	private DesktopUtil(){

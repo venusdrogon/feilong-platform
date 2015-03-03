@@ -46,10 +46,10 @@ public class StubStatusMain{
 	private static final Logger	log					= LoggerFactory.getLogger(StubStatusMain.class);
 
 	/** 中间使用tab键分隔 <code>{@value}</code>. */
-	private final static String	pattern_write		= "%s	%s	%s	%s	%s	%s	%s	%s";
+	private static final String	pattern_write		= "%s	%s	%s	%s	%s	%s	%s	%s";
 
 	/** 中间使用tab键分隔 <code>{@value}</code>. */
-	private final static String	pattern_log			= "Active(%s)	Reading(%s)	Writing(%s)	Waiting(%s)";
+	private static final String	pattern_log			= "Active(%s)	Reading(%s)	Writing(%s)	Waiting(%s)";
 
 	/** The encode. */
 	private static String		encode				= CharsetType.GBK;

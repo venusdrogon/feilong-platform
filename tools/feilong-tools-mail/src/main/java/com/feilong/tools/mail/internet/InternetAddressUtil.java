@@ -67,7 +67,7 @@ public final class InternetAddressUtil{
 	 * @see javax.mail.internet.MimeUtility#encodeWord(String, String, String)
 	 * @see javax.mail.internet.MimeUtility#getDefaultMIMECharset()
 	 */
-	public final static InternetAddress[] toInternetAddressArray(Map<String, String> nameAndEmailMap,String charset)
+	public static final InternetAddress[] toInternetAddressArray(Map<String, String> nameAndEmailMap,String charset)
 					throws UnsupportedEncodingException{
 
 		if (Validator.isNullOrEmpty(nameAndEmailMap)){
@@ -97,7 +97,7 @@ public final class InternetAddressUtil{
 	 *            the internet addresses
 	 * @return the list< string>
 	 */
-	public final static List<String> toUnicodeStringList(InternetAddress[] internetAddresses){
+	public static final List<String> toUnicodeStringList(InternetAddress[] internetAddresses){
 
 		if (Validator.isNullOrEmpty(internetAddresses)){
 			throw new NullPointerException("internetAddresses can't be null/empty!");
