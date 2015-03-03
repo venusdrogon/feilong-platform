@@ -44,13 +44,16 @@ public class BareBonesBrowserLaunch{
 		}else{ // assume Unix or Linux
 			String[] browsers = { "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
 			String browser = null;
-			for (int count = 0; count < browsers.length && browser == null; count++)
-				if (Runtime.getRuntime().exec(new String[] { "which", browsers[count] }).waitFor() == 0)
+			for (int count = 0; count < browsers.length && browser == null; count++){
+				if (Runtime.getRuntime().exec(new String[] { "which", browsers[count] }).waitFor() == 0){
 					browser = browsers[count];
-			if (browser == null)
+				}
+			}
+			if (browser == null){
 				throw new NoSuchMethodException("Could not find web browser");
-			else
+			}else{
 				Runtime.getRuntime().exec(new String[] { browser, url });
+			}
 		}
 	}
 

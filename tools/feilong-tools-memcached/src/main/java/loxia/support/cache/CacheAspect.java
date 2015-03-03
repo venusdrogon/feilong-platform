@@ -70,8 +70,9 @@ public class CacheAspect implements Ordered{
 			String[] methodNames = ce.value();
 			for (int i = 0; i < methodNames.length; i++){
 				String mn = methodNames[i];
-				if (mn.trim().length() > 0)
+				if (mn.trim().length() > 0){
 					CacheUtil.clearCache(cacheClient, "_m::" + (ce.encode() ? encodeStr(mn.trim()) : mn.trim()), transcoder);
+				}
 			}
 		}catch (Exception e){
 			logger.error(e.getClass().getName(), e);
@@ -81,8 +82,9 @@ public class CacheAspect implements Ordered{
 
 	private String encodeStr(String key){
 		int delim = key.indexOf(".");
-		if (delim < 0)
+		if (delim < 0){
 			throw new RuntimeException("Cache key in CacheEvict is error.");
+		}
 		String c = key.substring(0, delim);
 		String m = key.substring(delim + 1);
 		return EncodeUtil.intToBase62(c.hashCode()) + "." + EncodeUtil.intToBase62(m.hashCode());
@@ -102,8 +104,9 @@ public class CacheAspect implements Ordered{
 		logger.debug("get cache with key: {}", cacheKey);
 		Object value = cacheClient.get(cacheKey);
 		if (value != null){
-			if (value instanceof NullObject)
+			if (value instanceof NullObject){
 				value = null;
+			}
 			logger.debug("Cached value: {} will be returned as type {} with key [{}]", new Object[] { value, m.getReturnType(), cacheKey });
 			return value;
 		}else{
@@ -115,13 +118,15 @@ public class CacheAspect implements Ordered{
 
 	private Method getMethod(ProceedingJoinPoint pjp,Class<? extends Annotation> clazz){
 		MethodSignature ms = (MethodSignature) pjp.getSignature();
-		if (ms.getMethod().isAnnotationPresent(clazz))
+		if (ms.getMethod().isAnnotationPresent(clazz)){
 			return ms.getMethod();
+		}
 		Method m = ms.getMethod();
 		try{
 			Method m1 = pjp.getTarget().getClass().getMethod(m.getName(), m.getParameterTypes());
-			if (m1.isAnnotationPresent(clazz))
+			if (m1.isAnnotationPresent(clazz)){
 				return m1;
+			}
 		}catch (Exception e){
 			// do nothing
 			logger.error(e.getClass().getName(), e);
@@ -149,11 +154,13 @@ public class CacheAspect implements Ordered{
 	private void cacheValue(String name,boolean needCacheWithMethodName,String cacheKey,Object value,int expire,Map<String, Object> params)
 					throws Exception{
 		for (String key : params.keySet()){
-			if (key.startsWith("M"))
+			if (key.startsWith("M")){
 				appendParamCache(CacheUtil.getParamKey(key.substring(1), params.get(key)), cacheKey);
+			}
 		}
-		if (needCacheWithMethodName)
+		if (needCacheWithMethodName){
 			appendParamCache("_m::" + name, cacheKey);
+		}
 		logger.debug("Cache Value [{}]:[{}] with expire setting: {}.", new Object[] { cacheKey, value, expire });
 		cacheClient.set(cacheKey, expire, value);
 	}

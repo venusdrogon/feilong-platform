@@ -10,8 +10,9 @@ public enum Gender{
 
 	public static String valueOf(Gender gender){
 		int ordinal = gender.ordinal();
-		if (ordinal == 0)
+		if (ordinal == 0){
 			return "m";
+		}
 		return "f";
 	}
 }

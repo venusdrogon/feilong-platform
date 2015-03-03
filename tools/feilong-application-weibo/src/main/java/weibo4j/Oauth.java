@@ -47,8 +47,9 @@ public class Oauth extends Weibo{
 		// 为了和 url encode/decode 不冲突，base64url 编码方式会将
 		// '+'，'/'转换成'-'，'_'，并且去掉结尾的'='。 因此解码之前需要还原到默认的base64编码，结尾的'='可以用以下算法还原
 		int padding = (4 - t[0].length() % 4);
-		for (int i = 0; i < padding; i++)
+		for (int i = 0; i < padding; i++){
 			t[0] += "=";
+		}
 		String part1 = t[0].replace("-", "+").replace("_", "/");
 
 		SecretKey key = new SecretKeySpec(WeiboConfig.getValue("client_SERCRET").getBytes(), "hmacSHA256");

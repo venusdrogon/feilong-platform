@@ -94,8 +94,9 @@ public class Status extends WeiboResponse implements java.io.Serializable{
 			repostsCount = json.getInt("reposts_count");
 			commentsCount = json.getInt("comments_count");
 			annotations = json.getString("annotations");
-			if (!json.isNull("user"))
+			if (!json.isNull("user")){
 				user = new User(json.getJSONObject("user"));
+			}
 			if (!json.isNull("retweeted_status")){
 				retweetedStatus = new Status(json.getJSONObject("retweeted_status"));
 			}
@@ -366,18 +367,23 @@ public class Status extends WeiboResponse implements java.io.Serializable{
 
 	@Override
 	public boolean equals(Object obj){
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		Status other = (Status) obj;
 		if (id == null){
-			if (other.id != null)
+			if (other.id != null){
 				return false;
-		}else if (!id.equals(other.id))
+			}
+		}else if (!id.equals(other.id)){
 			return false;
+		}
 		return true;
 	}
 

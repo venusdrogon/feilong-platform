@@ -66,8 +66,9 @@ public class AuthKey{
 
 			for (int a = 0; a < byteEncryptedHashKey.length; a++){
 				String hex1 = Integer.toHexString(0xFF & byteEncryptedHashKey[a]);
-				if (hex1.length() == 1)
+				if (hex1.length() == 1){
 					hexStringencryptedHashKey.append('0');
+				}
 
 				hexStringencryptedHashKey.append(hex1);
 			}

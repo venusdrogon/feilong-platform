@@ -276,7 +276,7 @@ public final class JsonUtil{
 	 */
 	@SuppressWarnings("cast")
 	public static <T> T toBean(Object json,Class<T> rootClass){
-		return (T) toBean(json, rootClass, null);
+		return toBean(json, rootClass, null);
 	}
 
 	/**
@@ -459,7 +459,7 @@ public final class JsonUtil{
 		int size = jsonArray.size();
 		for (int i = 0; i < size; i++){
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			list.add((T) toBean(jsonObject, clazz, classMap));
+			list.add(toBean(jsonObject, clazz, classMap));
 		}
 		return list;
 	}
@@ -546,7 +546,7 @@ public final class JsonUtil{
 			if (log.isDebugEnabled()){
 				log.debug("key:{} value:{}", key, value);
 			}
-			map.put(key, (T) toBean(value, clazz, classMap));
+			map.put(key, toBean(value, clazz, classMap));
 		}
 		return map;
 	}

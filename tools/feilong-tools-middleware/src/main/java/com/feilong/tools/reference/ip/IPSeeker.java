@@ -661,7 +661,7 @@ public class IPSeeker{
 		// 先检查cache中是否已经包含有这个ip的结果，没有再搜索文件
 		IPLocation location = null;
 		if (ipCache.containsKey(ipStr)){
-			location = (IPLocation) ipCache.get(ipStr);
+			location = ipCache.get(ipStr);
 		}else{
 			location = getIPLocation(ip);
 			ipCache.put(ipStr, location.getCopy());
@@ -697,7 +697,7 @@ public class IPSeeker{
 		// 先检查cache中是否已经包含有这个ip的结果，没有再搜索文件
 		IPLocation location = null;
 		if (ipCache.containsKey(ipStr)){
-			location = (IPLocation) ipCache.get(ipStr);
+			location = ipCache.get(ipStr);
 		}else{
 			location = getIPLocation(ip);
 			ipCache.put(ipStr, location.getCopy());

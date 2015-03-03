@@ -189,8 +189,9 @@ public class PostParameter implements java.io.Serializable{
 		if (obj instanceof PostParameter){
 			PostParameter that = (PostParameter) obj;
 
-			if (file != null ? !file.equals(that.file) : that.file != null)
+			if (file != null ? !file.equals(that.file) : that.file != null){
 				return false;
+			}
 
 			return this.name.equals(that.name) && this.value.equals(that.value);
 		}

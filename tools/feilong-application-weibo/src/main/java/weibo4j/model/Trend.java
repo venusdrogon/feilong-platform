@@ -91,17 +91,21 @@ public class Trend implements java.io.Serializable{
 
 	@Override
 	public boolean equals(Object o){
-		if (this == o)
+		if (this == o){
 			return true;
-		if (!(o instanceof Trend))
+		}
+		if (!(o instanceof Trend)){
 			return false;
+		}
 
 		Trend trend = (Trend) o;
 
-		if (!name.equals(trend.name))
+		if (!name.equals(trend.name)){
 			return false;
-		if (query != null ? !query.equals(trend.query) : trend.query != null)
+		}
+		if (query != null ? !query.equals(trend.query) : trend.query != null){
 			return false;
+		}
 
 		return true;
 	}

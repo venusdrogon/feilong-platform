@@ -48,6 +48,7 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * 
  * 
  * 
+ * 
  * &#064;VarName(name = &quot;BANK&quot;,sampleValue = &quot;BRI&quot;)
  * private String	bank;
  * </pre>

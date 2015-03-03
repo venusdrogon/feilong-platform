@@ -77,7 +77,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public T load(Class<T> clz,Serializable id){
 		try{
 			// 如果找不到符合条件的纪录，而load()将会报出ObjectNotFoundEcception
-			return (T) super.getHibernateTemplate().load(clz, id);
+			return super.getHibernateTemplate().load(clz, id);
 		}catch (Exception ex){
 			ex.printStackTrace();
 		}
@@ -123,7 +123,7 @@ public class FeiLongSpringDAO<T> extends HibernateDaoSupport{
 	public T get(Class<T> clz,Serializable id){
 		// 如果找不到符合条件的纪录，get()方法将返回null．
 		// 根据主键加载特定持久化类的实例
-		return (T) super.getHibernateTemplate().get(clz, id);
+		return super.getHibernateTemplate().get(clz, id);
 	}
 
 	/**

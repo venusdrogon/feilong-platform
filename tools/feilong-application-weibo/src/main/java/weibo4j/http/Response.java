@@ -113,10 +113,11 @@ public class Response{
 	}
 
 	public String getResponseHeader(String name){
-		if (con != null)
+		if (con != null){
 			return con.getHeaderField(name);
-		else
+		}else{
 			return null;
+		}
 	}
 
 	/**

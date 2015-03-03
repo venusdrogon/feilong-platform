@@ -110,18 +110,23 @@ public class Favorites extends WeiboResponse implements java.io.Serializable{
 
 	@Override
 	public boolean equals(Object obj){
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		Favorites other = (Favorites) obj;
 		if (favoritedTime == null){
-			if (other.favoritedTime != null)
+			if (other.favoritedTime != null){
 				return false;
-		}else if (!favoritedTime.equals(other.favoritedTime))
+			}
+		}else if (!favoritedTime.equals(other.favoritedTime)){
 			return false;
+		}
 		return true;
 	}
 

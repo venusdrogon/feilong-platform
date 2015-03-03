@@ -53,7 +53,7 @@ public class ZipUtilTest{
 		String inputFileName = "E:\\test"; // 你要压缩的文件夹
 		String zipFileName = "E:\\test.zip"; // 压缩后的zip文件
 		ZipUtil feiLongZip = new ZipUtil();
-		feiLongZip.zip(inputFileName, zipFileName);
+		ZipUtil.zip(inputFileName, zipFileName);
 		Date date2 = new Date();
 		log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
 		// ,/select E:/Workspaces
@@ -65,7 +65,7 @@ public class ZipUtilTest{
 		Date date1 = new Date();
 		outputFileName = outputFileName + "antUnzip3"; // 解压到文件路径
 		ZipUtil feiLongZip = new ZipUtil();
-		feiLongZip.unZip(unZipFileName, outputFileName);
+		ZipUtil.unZip(unZipFileName, outputFileName);
 		Date date2 = new Date();
 		log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
 	}

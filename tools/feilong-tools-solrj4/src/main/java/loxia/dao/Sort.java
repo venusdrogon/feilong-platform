@@ -15,12 +15,13 @@ public class Sort implements Serializable{
 		String[] strs = sortStr.trim().split(" ");
 		this.field = strs[0];
 		if (strs.length > 1){
-			if (ASC.equalsIgnoreCase(strs[1]))
+			if (ASC.equalsIgnoreCase(strs[1])){
 				this.type = ASC;
-			else if (DESC.equalsIgnoreCase(strs[1]))
+			}else if (DESC.equalsIgnoreCase(strs[1])){
 				this.type = DESC;
-			else
+			}else{
 				throw new IllegalArgumentException("Wrong sort type definition, only asc or desc are supported.");
+			}
 		}
 	}
 
@@ -60,23 +61,30 @@ public class Sort implements Serializable{
 
 	@Override
 	public boolean equals(Object obj){
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		Sort other = (Sort) obj;
 		if (field == null){
-			if (other.field != null)
+			if (other.field != null){
 				return false;
-		}else if (!field.equals(other.field))
+			}
+		}else if (!field.equals(other.field)){
 			return false;
+		}
 		if (type == null){
-			if (other.type != null)
+			if (other.type != null){
 				return false;
-		}else if (!type.equals(other.type))
+			}
+		}else if (!type.equals(other.type)){
 			return false;
+		}
 		return true;
 	}
 

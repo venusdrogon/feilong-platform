@@ -37,8 +37,9 @@ public class UserTrend extends WeiboResponse{
 			num = json.getString("num");
 			hotword = json.getString("hotword");
 			trendId = json.getString("trend_id");
-			if (json.getString("topicid") != null)
+			if (json.getString("topicid") != null){
 				trendId = json.getString("topicid");
+			}
 		}catch (JSONException je){
 			throw new WeiboException(je.getMessage() + ":" + json.toString(), je);
 		}

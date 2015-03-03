@@ -515,8 +515,9 @@ public class JSONObject{
 	 */
 	public boolean getBoolean(String key) throws JSONException{
 		Object o = get(key);
-		if (o == null)
+		if (o == null){
 			return false;
+		}
 		if (o.equals(Boolean.FALSE) || (o instanceof String && ((String) o).equalsIgnoreCase("false"))){
 			return false;
 		}else if (o.equals(Boolean.TRUE) || (o instanceof String && ((String) o).equalsIgnoreCase("true"))){
@@ -537,15 +538,17 @@ public class JSONObject{
 	 */
 	public double getDouble(String key) throws JSONException{
 		Object o = get(key);
-		if (o == null)
+		if (o == null){
 			return 0;
+		}
 		try{
 			if (o instanceof Number){
 				return ((Number) o).doubleValue();
 			}else if (o.toString().length() > 0){
 				return Double.valueOf((o.toString()));
-			}else
+			}else{
 				return 0;
+			}
 		}catch (Exception e){
 			throw new JSONException("JSONObject[" + quote(key) + "] is not a number.");
 		}
@@ -564,8 +567,9 @@ public class JSONObject{
 	 */
 	public int getInt(String key) throws JSONException{
 		Object o = get(key);
-		if (o == null)
+		if (o == null){
 			return 0;
+		}
 		return o instanceof Number ? ((Number) o).intValue() : (int) getDouble(key);
 	}
 
@@ -581,8 +585,9 @@ public class JSONObject{
 	 */
 	public JSONArray getJSONArray(String key) throws JSONException{
 		Object o = get(key);
-		if (o == null)
+		if (o == null){
 			return null;
+		}
 		if (o instanceof JSONArray){
 			return (JSONArray) o;
 		}
@@ -601,8 +606,9 @@ public class JSONObject{
 	 */
 	public JSONObject getJSONObject(String key) throws JSONException{
 		Object o = get(key);
-		if (o == null)
+		if (o == null){
 			return null;
+		}
 		if (o instanceof JSONObject){
 			return (JSONObject) o;
 		}
@@ -623,13 +629,15 @@ public class JSONObject{
 	public long getLong(String key) throws JSONException{
 		Object o = get(key);
 
-		if (o == null)
+		if (o == null){
 			return 0;
+		}
 		if (o instanceof String){
 			if (o.toString().length() > 0){
 				return Long.valueOf((o.toString()));
-			}else
+			}else{
 				return 0;
+			}
 		}
 		return o instanceof Number ? ((Number) o).longValue() : (long) getDouble(key);
 	}
@@ -687,8 +695,9 @@ public class JSONObject{
 	 */
 	public String getString(String key) throws JSONException{
 		Object o = get(key);
-		if (o == null)
+		if (o == null){
 			return "";
+		}
 		return o.toString();
 	}
 

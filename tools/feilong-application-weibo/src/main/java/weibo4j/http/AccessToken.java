@@ -67,28 +67,37 @@ public class AccessToken extends WeiboResponse implements Serializable{
 
 	@Override
 	public boolean equals(Object obj){
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		AccessToken other = (AccessToken) obj;
 		if (accessToken == null){
-			if (other.accessToken != null)
+			if (other.accessToken != null){
 				return false;
-		}else if (!accessToken.equals(other.accessToken))
+			}
+		}else if (!accessToken.equals(other.accessToken)){
 			return false;
+		}
 		if (expireIn == null){
-			if (other.expireIn != null)
+			if (other.expireIn != null){
 				return false;
-		}else if (!expireIn.equals(other.expireIn))
+			}
+		}else if (!expireIn.equals(other.expireIn)){
 			return false;
+		}
 		if (refreshToken == null){
-			if (other.refreshToken != null)
+			if (other.refreshToken != null){
 				return false;
-		}else if (!refreshToken.equals(other.refreshToken))
+			}
+		}else if (!refreshToken.equals(other.refreshToken)){
 			return false;
+		}
 		return true;
 	}
 

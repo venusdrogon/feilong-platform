@@ -9,19 +9,24 @@ public class CacheValueConvertor{
 	public static final String	NULL	= "_nil_";
 
 	public static String convert(Object value){
-		if (value == null)
+		if (value == null){
 			return NULL;
-		if (value instanceof Integer)
+		}
+		if (value instanceof Integer){
 			return Integer.toHexString((Integer) value);
-		if (value instanceof Long)
+		}
+		if (value instanceof Long){
 			return Long.toHexString((Long) value);
-		if (value instanceof Date)
+		}
+		if (value instanceof Date){
 			return Long.toHexString(((Date) value).getTime());
+		}
 		if (value instanceof Collection){
 			Collection<?> coll = (Collection<?>) value;
 			StringBuffer sb = new StringBuffer();
-			for (Object o : coll)
+			for (Object o : coll){
 				sb.append("," + convert(o));
+			}
 			return sb.toString().substring(1);
 		}
 		/*

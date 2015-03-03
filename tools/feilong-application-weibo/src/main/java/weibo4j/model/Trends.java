@@ -145,19 +145,24 @@ public class Trends extends WeiboResponse implements Comparable<Trends>{
 
 	@Override
 	public boolean equals(Object o){
-		if (this == o)
+		if (this == o){
 			return true;
-		if (!(o instanceof Trends))
+		}
+		if (!(o instanceof Trends)){
 			return false;
+		}
 
 		Trends trends1 = (Trends) o;
 
-		if (asOf != null ? !asOf.equals(trends1.asOf) : trends1.asOf != null)
+		if (asOf != null ? !asOf.equals(trends1.asOf) : trends1.asOf != null){
 			return false;
-		if (trendAt != null ? !trendAt.equals(trends1.trendAt) : trends1.trendAt != null)
+		}
+		if (trendAt != null ? !trendAt.equals(trends1.trendAt) : trends1.trendAt != null){
 			return false;
-		if (!Arrays.equals(trends, trends1.trends))
+		}
+		if (!Arrays.equals(trends, trends1.trends)){
 			return false;
+		}
 
 		return true;
 	}

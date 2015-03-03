@@ -69,13 +69,14 @@ public class BooleanConvertor implements DataConvertor<Boolean>{
 		}else if (value instanceof Double){
 			Double value2 = (Double) value;
 			return BooleanUtils.toBooleanObject(value2.intValue());
-		}else
+		}else{
 			throw new ExcelManipulateException(ErrorCode.WRONG_DATA_FORMAT, new Object[] {
 					sheetNo + 1,
 					cellIndex,
 					value,
 					cellDefinition.getPattern(),
 					cellDefinition.getChoiceString() });
+		}
 	}
 
 	/*

@@ -118,15 +118,18 @@ public class IDs extends WeiboResponse{
 
 	@Override
 	public boolean equals(Object o){
-		if (this == o)
+		if (this == o){
 			return true;
-		if (!(o instanceof IDs))
+		}
+		if (!(o instanceof IDs)){
 			return false;
+		}
 
 		IDs iDs = (IDs) o;
 
-		if (!Arrays.equals(ids, iDs.ids))
+		if (!Arrays.equals(ids, iDs.ids)){
 			return false;
+		}
 
 		return true;
 	}

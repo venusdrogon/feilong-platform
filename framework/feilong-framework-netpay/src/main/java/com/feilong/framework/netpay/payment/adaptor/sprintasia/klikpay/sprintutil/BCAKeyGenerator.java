@@ -39,12 +39,14 @@ public final class BCAKeyGenerator{
 					String totalAmount,
 					String currency,
 					String secretKey) throws Exception{
-		if (secretKey.length() == 16)
+		if (secretKey.length() == 16){
 			secretKey = AuthKey.KeyId(secretKey);
-		else if (secretKey.length() != 32)
+		}else if (secretKey.length() != 32){
 			throw new Exception("Invalid keyId or clearKey (" + secretKey + ")");
-		if (!transactionDate.matches("^\\d\\d/\\d\\d/\\d{4} \\d\\d:\\d\\d:\\d\\d$"))
+		}
+		if (!transactionDate.matches("^\\d\\d/\\d\\d/\\d{4} \\d\\d:\\d\\d:\\d\\d$")){
 			throw new Exception("Invalid transactionDate Format (" + transactionDate + ")");
+		}
 
 		// First Value. Using klikPayCode, transactionNo, currency, secretKey.
 		String tmpkey1 = "" + klikPayCode + transactionNo + currency + secretKey;
@@ -77,12 +79,14 @@ public final class BCAKeyGenerator{
 	 */
 	public static String authKey(String klikPayCode,String transactionNo,String currency,String transactionDate,String secretKey)
 					throws Exception{
-		if (secretKey.length() == 16)
+		if (secretKey.length() == 16){
 			secretKey = AuthKey.KeyId(secretKey);
-		else if (secretKey.length() != 32)
+		}else if (secretKey.length() != 32){
 			throw new Exception("Invalid keyId or clearKey (" + secretKey + ")");
-		if (!transactionDate.matches("^\\d\\d/\\d\\d/\\d{4} \\d\\d:\\d\\d:\\d\\d$"))
+		}
+		if (!transactionDate.matches("^\\d\\d/\\d\\d/\\d{4} \\d\\d:\\d\\d:\\d\\d$")){
 			throw new Exception("Invalid transactionDate Format (" + transactionDate + ")");
+		}
 
 		String padded = strpad(klikPayCode, 10, '0', false) + strpad(transactionNo, 18, 'A', false) + strpad(currency, 5, '1', false)
 						+ strpad(transactionDate, 19, 'C', true) + secretKey;
@@ -124,19 +128,24 @@ public final class BCAKeyGenerator{
 	 * @return the string
 	 */
 	public static String strpad(String sstring,Integer len,char padder,boolean PadRight){
-		if (sstring.length() < 1)
+		if (sstring.length() < 1){
 			return "";
+		}
 		char[] c = sstring.toCharArray();
-		if (c.length > len)
+		if (c.length > len){
 			return sstring;
+		}
 		String ret = "";
 		if (PadRight){
 			int indexlen = len - c.length;
-			for (int i = 0; i < len; i++)
+			for (int i = 0; i < len; i++){
 				ret += i < indexlen ? padder : c[i - indexlen];
-		}else
-			for (int i = 0; i < len; i++)
+			}
+		}else{
+			for (int i = 0; i < len; i++){
 				ret += i < c.length ? c[i] : padder;
+			}
+		}
 		return ret;
 	}
 }

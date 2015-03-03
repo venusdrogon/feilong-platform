@@ -318,7 +318,7 @@ public class HttpClient implements java.io.Serializable{
 			if (params != null){
 				int i = 0;
 				for (PostParameter entry : params){
-					parts[i++] = new StringPart(entry.getName(), (String) entry.getValue());
+					parts[i++] = new StringPart(entry.getName(), entry.getValue());
 				}
 				parts[parts.length - 1] = new ByteArrayPart(item.getContent(), item.getName(), item.getContentType());
 			}
@@ -344,7 +344,7 @@ public class HttpClient implements java.io.Serializable{
 			if (params != null){
 				int i = 0;
 				for (PostParameter entry : params){
-					parts[i++] = new StringPart(entry.getName(), (String) entry.getValue());
+					parts[i++] = new StringPart(entry.getName(), entry.getValue());
 				}
 			}
 			FilePart filePart = new FilePart(fileParamName, file.getName(), file, new MimetypesFileTypeMap().getContentType(file), "UTF-8");

@@ -16,9 +16,11 @@ public class CacheUtil{
 		Set<String> values = cacheClient.get(key, transcoder);
 		cacheClient.delete(key);
 		if (values != null){
-			for (String k : values)
-				if (k.length() > 0)
+			for (String k : values){
+				if (k.length() > 0){
 					cacheClient.delete(k);
+				}
+			}
 		}
 	}
 
