@@ -83,6 +83,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	@Override
@@ -125,6 +126,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#verifyNotify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -147,6 +149,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getFeedbackTradeNo(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -215,11 +218,11 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 	 * @return 请求参数map
 	 */
 	private Map<String, String> prepareTradeRequestParamsMap(
-			String code,
-			BigDecimal total_fee,
-			String return_url,
-			String notify_url,
-			Map<String, String> specialSignMap){
+					String code,
+					BigDecimal total_fee,
+					String return_url,
+					String notify_url,
+					Map<String, String> specialSignMap){
 		Map<String, String> hiddenParamMap = new HashMap<String, String>();
 		StringBuffer regData = new StringBuffer();
 		regData.append("<direct_trade_create_req>");
@@ -493,6 +496,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -503,6 +507,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override

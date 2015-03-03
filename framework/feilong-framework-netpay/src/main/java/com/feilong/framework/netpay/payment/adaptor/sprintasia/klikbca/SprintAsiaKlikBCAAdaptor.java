@@ -43,6 +43,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	@Override
@@ -53,6 +54,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -95,6 +97,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -104,6 +107,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -114,6 +118,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override

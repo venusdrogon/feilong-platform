@@ -67,7 +67,8 @@ public abstract class AbstractController{
 	 * @param webDataBinder
 	 *            webDataBinder
 	 */
-	protected void initBinderInternal(@SuppressWarnings("unused") WebDataBinder webDataBinder){}
+	protected void initBinderInternal(@SuppressWarnings("unused") WebDataBinder webDataBinder){
+	}
 
 	/**
 	 * 生成spring 的跳转路径<br>

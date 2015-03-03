@@ -172,11 +172,11 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 	 *            签名参数map
 	 */
 	private void setCommonAlipayParams(
-			String code,
-			BigDecimal total_fee,
-			String return_url,
-			String notify_url,
-			Map<String, String> signParamsMap){
+					String code,
+					BigDecimal total_fee,
+					String return_url,
+					String notify_url,
+					Map<String, String> signParamsMap){
 		// 支付宝合作商户网站,唯一订单号 （确保在商户系统中唯一） String(64)
 		signParamsMap.put("out_trade_no", code);
 
@@ -395,7 +395,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 			}
 
 			String anti_phishing_key = result.toString();
-			
+
 			if (log.isDebugEnabled()){
 				log.debug("anti_phishing_key value:[{}]", anti_phishing_key);
 			}

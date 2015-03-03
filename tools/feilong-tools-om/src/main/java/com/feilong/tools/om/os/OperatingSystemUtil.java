@@ -123,8 +123,8 @@ public final class OperatingSystemUtil{
 				log.debug(JsonUtil.format(inetAddressObjectLog));
 
 				if (_inetAddress.isSiteLocalAddress() // 检查 InetAddress 是否是站点本地地址的实用例行程序。
-						&& !_inetAddress.isLoopbackAddress() // 127.开头的都是lookback地址
-						&& _inetAddress.getHostAddress().indexOf(":") == -1){// 去掉ip6
+								&& !_inetAddress.isLoopbackAddress() // 127.开头的都是lookback地址
+								&& _inetAddress.getHostAddress().indexOf(":") == -1){// 去掉ip6
 					inetAddress = _inetAddress;
 					break;
 				}

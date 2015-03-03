@@ -8,4 +8,5 @@ package com.feilong.application.weather;
  * @since 1.0
  */
 // XXX 转换成对象
-public class WeatherEntity{}
+public class WeatherEntity{
+}

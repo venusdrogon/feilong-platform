@@ -13,11 +13,13 @@ import weibo4j.model.TagWapper;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-@SuppressWarnings("all")public class Tags extends Weibo{
+@SuppressWarnings("all")
+public class Tags extends Weibo{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7047254100483792467L;
+	private static final long	serialVersionUID	= 7047254100483792467L;
 
 	/*----------------------------标签接口----------------------------------------*/
 	/**
@@ -32,10 +34,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/tags">tags</a>
 	 * @since JDK 1.5
 	 */
-	public List<Tag> getTags(String uid) throws WeiboException {
-		return Tag.constructTags(client.get(WeiboConfig.getValue("baseURL")
-						+ "tags.json", new PostParameter[] { new PostParameter(
-						"uid", uid) }));
+	public List<Tag> getTags(String uid) throws WeiboException{
+		return Tag.constructTags(client.get(WeiboConfig.getValue("baseURL") + "tags.json", new PostParameter[] { new PostParameter(
+						"uid",
+						uid) }));
 	}
 
 	/**
@@ -52,11 +54,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/tags">tags</a>
 	 * @since JDK 1.5
 	 */
-	public List<Tag> getTags(String uid, Paging page) throws WeiboException {
-		return Tag
-				.constructTags(client.get(WeiboConfig.getValue("baseURL")
-						+ "tags.json", new PostParameter[] { 
-					new PostParameter("uid", uid) }, page));
+	public List<Tag> getTags(String uid,Paging page) throws WeiboException{
+		return Tag.constructTags(client.get(WeiboConfig.getValue("baseURL") + "tags.json", new PostParameter[] { new PostParameter(
+						"uid",
+						uid) }, page));
 	}
 
 	/**
@@ -68,14 +69,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/tags/tags_batch">tags/tags_batch</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/tags/tags_batch">tags/tags_batch</a>
 	 * @since JDK 1.5
 	 */
-	public TagWapper getTagsBatch(String uids) throws WeiboException {
+	public TagWapper getTagsBatch(String uids) throws WeiboException{
 		return Tag.constructTagWapper(client.get(
-				WeiboConfig.getValue("baseURL") + "tags/tags_batch.json",
-				new PostParameter[] { new PostParameter("uids", uids) }));
+						WeiboConfig.getValue("baseURL") + "tags/tags_batch.json",
+						new PostParameter[] { new PostParameter("uids", uids) }));
 	}
 
 	/**
@@ -85,14 +85,12 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/tags/suggestions">tags/suggestions</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/tags/suggestions">tags/suggestions</a>
 	 * @since JDK 1.5
 	 */
 
-	public List<Tag> getTagsSuggestions() throws WeiboException {
-		return Tag.constructTags(client.get(WeiboConfig
-				.getValue("baseURL") + "tags/suggestions.json"));
+	public List<Tag> getTagsSuggestions() throws WeiboException{
+		return Tag.constructTags(client.get(WeiboConfig.getValue("baseURL") + "tags/suggestions.json"));
 	}
 
 	/**
@@ -107,9 +105,9 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/tags/create">tags/create</a>
 	 * @since JDK 1.5
 	 */
-	public JSONArray createTags(String tags) throws WeiboException {
-		return client.post(WeiboConfig.getValue("baseURL") + "tags/create.json",
-				new PostParameter[] { new PostParameter("tags", tags) }).asJSONArray();
+	public JSONArray createTags(String tags) throws WeiboException{
+		return client.post(WeiboConfig.getValue("baseURL") + "tags/create.json", new PostParameter[] { new PostParameter("tags", tags) })
+						.asJSONArray();
 	}
 
 	/**
@@ -125,10 +123,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/tags/destroy">tags/destroy</a>
 	 * @since JDK 1.5
 	 */
-	public JSONObject destoryTag(Integer tag_id) throws WeiboException {
-			return client.post(WeiboConfig.getValue("baseURL") + "tags/destroy.json",
-							new PostParameter[] { new PostParameter("tag_id",
-									tag_id.toString()) }).asJSONObject();
+	public JSONObject destoryTag(Integer tag_id) throws WeiboException{
+		return client.post(
+						WeiboConfig.getValue("baseURL") + "tags/destroy.json",
+						new PostParameter[] { new PostParameter("tag_id", tag_id.toString()) }).asJSONObject();
 	}
 
 	/**
@@ -140,13 +138,12 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/tags/destroy_batch">tags/destroy_batch</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/tags/destroy_batch">tags/destroy_batch</a>
 	 * @since JDK 1.5
 	 */
-	public List<Tag> destroyTagsBatch(String ids) throws WeiboException {
+	public List<Tag> destroyTagsBatch(String ids) throws WeiboException{
 		return Tag.constructTags(client.post(
-				WeiboConfig.getValue("baseURL") + "tags/destroy_batch.json",
-				new PostParameter[] { new PostParameter("ids", ids) }));
+						WeiboConfig.getValue("baseURL") + "tags/destroy_batch.json",
+						new PostParameter[] { new PostParameter("ids", ids) }));
 	}
 }

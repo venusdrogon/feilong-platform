@@ -37,7 +37,7 @@ public class DangaMemCachedUtilTest extends AbstractJUnit4SpringContextTests{
 	private static final Logger	log	= LoggerFactory.getLogger(DangaMemCachedUtilTest.class);
 
 	/** The mem cached util. */
-	private DangaMemCachedUtil		memCachedUtil;
+	private DangaMemCachedUtil	memCachedUtil;
 
 	/** The mem cached client. */
 	@Autowired

@@ -374,22 +374,22 @@ public class PagerParams implements Serializable{
 		//理想情况下 每个类不同
 		HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
 		return hashCodeBuilder//
-				.append(debugIsNotParseVM)//
-				.append(charsetType) //
-				.append(locale)//
-				.append(pageParamName)//
-				.append(pageUrl)//
-				.append(skin)//
-				.append(vmPath)//
+						.append(debugIsNotParseVM)//
+						.append(charsetType) //
+						.append(locale)//
+						.append(pageParamName)//
+						.append(pageUrl)//
+						.append(skin)//
+						.append(vmPath)//
 
-				.append(debugIsNotParseVM)//
+						.append(debugIsNotParseVM)//
 
-				.append(currentPageNo)//
-				.append(maxIndexPages)//
-				.append(maxShowPageNo)//
-				.append(pageSize)//
-				.append(totalCount)//
-				.toHashCode();
+						.append(currentPageNo)//
+						.append(maxIndexPages)//
+						.append(maxShowPageNo)//
+						.append(pageSize)//
+						.append(totalCount)//
+						.toHashCode();
 	}
 
 	/*
@@ -418,21 +418,21 @@ public class PagerParams implements Serializable{
 		EqualsBuilder equalsBuilder = new EqualsBuilder();
 
 		return equalsBuilder //
-				//.appendSuper(super.equals(obj))//
-				.append(this.charsetType, pagerParams.getCharsetType())//
-				.append(this.locale, pagerParams.getLocale())//
-				.append(this.pageParamName, pagerParams.getPageParamName())//
-				.append(this.pageUrl, pagerParams.getPageUrl())//
-				.append(this.skin, pagerParams.getSkin())//
-				.append(this.vmPath, pagerParams.getVmPath())//
+						//.appendSuper(super.equals(obj))//
+						.append(this.charsetType, pagerParams.getCharsetType())//
+						.append(this.locale, pagerParams.getLocale())//
+						.append(this.pageParamName, pagerParams.getPageParamName())//
+						.append(this.pageUrl, pagerParams.getPageUrl())//
+						.append(this.skin, pagerParams.getSkin())//
+						.append(this.vmPath, pagerParams.getVmPath())//
 
-				.append(this.debugIsNotParseVM, pagerParams.getDebugIsNotParseVM())//
-				.append(this.currentPageNo, pagerParams.getCurrentPageNo())//
-				.append(this.maxIndexPages, pagerParams.getMaxIndexPages())//
-				.append(this.maxShowPageNo, pagerParams.getMaxShowPageNo())//
-				.append(this.pageSize, pagerParams.getPageSize())//
-				.append(this.totalCount, pagerParams.getTotalCount())//
-				.isEquals();
+						.append(this.debugIsNotParseVM, pagerParams.getDebugIsNotParseVM())//
+						.append(this.currentPageNo, pagerParams.getCurrentPageNo())//
+						.append(this.maxIndexPages, pagerParams.getMaxIndexPages())//
+						.append(this.maxShowPageNo, pagerParams.getMaxShowPageNo())//
+						.append(this.pageSize, pagerParams.getPageSize())//
+						.append(this.totalCount, pagerParams.getTotalCount())//
+						.isEquals();
 	}
 
 	/*

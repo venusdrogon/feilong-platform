@@ -50,7 +50,8 @@ public class FTPUtilTest extends FileTransferTest{
 	 * Inits the.
 	 */
 	@Before
-	public void init(){}
+	public void init(){
+	}
 
 	/**
 	 * 传送单个文件.

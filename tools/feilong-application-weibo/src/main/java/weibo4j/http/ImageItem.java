@@ -19,76 +19,84 @@ import com.sun.imageio.plugins.png.PNGImageReader;
 /**
  * 临时存储上传图片的内容，格式，文件信息等
  * 
- */@SuppressWarnings("all")
-public class ImageItem {
-	private byte[] content;
-	private String name;
-	private String contentType;
-	public ImageItem(byte[] content) throws WeiboException {
-	    this(Constants.UPLOAD_MODE,content);
+ */
+@SuppressWarnings("all")
+public class ImageItem{
+
+	private byte[]	content;
+
+	private String	name;
+
+	private String	contentType;
+
+	public ImageItem(byte[] content) throws WeiboException{
+		this(Constants.UPLOAD_MODE, content);
 	}
-	public ImageItem(String name,byte[] content) throws WeiboException{
+
+	public ImageItem(String name, byte[] content) throws WeiboException{
 		String imgtype = null;
-		try {
-		    imgtype = getContentType(content);
-		} catch (IOException e) {
-		    throw new WeiboException(e);
+		try{
+			imgtype = getContentType(content);
+		}catch (IOException e){
+			throw new WeiboException(e);
 		}
-		
-	    if(imgtype!=null&&(imgtype.equalsIgnoreCase("image/gif")||imgtype.equalsIgnoreCase("image/png")
-	            ||imgtype.equalsIgnoreCase("image/jpeg"))){
-	    	this.content=content;
-	    	this.name=name;
-	    	this.contentType=imgtype;
-	    }else{
-	    	throw new WeiboException(
-            "Unsupported image type, Only Suport JPG ,GIF,PNG!");
-	    }
+
+		if (imgtype != null
+						&& (imgtype.equalsIgnoreCase("image/gif") || imgtype.equalsIgnoreCase("image/png") || imgtype
+										.equalsIgnoreCase("image/jpeg"))){
+			this.content = content;
+			this.name = name;
+			this.contentType = imgtype;
+		}else{
+			throw new WeiboException("Unsupported image type, Only Suport JPG ,GIF,PNG!");
+		}
 	}
-	
-	public byte[] getContent() {
+
+	public byte[] getContent(){
 		return content;
 	}
-	public String getName() {
+
+	public String getName(){
 		return name;
 	}
-	public String getContentType() {
+
+	public String getContentType(){
 		return contentType;
 	}
 
-	public static String getContentType(byte[] mapObj) throws IOException {
+	public static String getContentType(byte[] mapObj) throws IOException{
 
 		String type = "";
 		ByteArrayInputStream bais = null;
 		MemoryCacheImageInputStream mcis = null;
-		try {
+		try{
 			bais = new ByteArrayInputStream(mapObj);
 			mcis = new MemoryCacheImageInputStream(bais);
 			Iterator itr = ImageIO.getImageReaders(mcis);
-			while (itr.hasNext()) {
+			while (itr.hasNext()){
 				ImageReader reader = (ImageReader) itr.next();
-				if (reader instanceof GIFImageReader) {
+				if (reader instanceof GIFImageReader){
 					type = "image/gif";
-				} else if (reader instanceof JPEGImageReader) {
+				}else if (reader instanceof JPEGImageReader){
 					type = "image/jpeg";
-				} else if (reader instanceof PNGImageReader) {
+				}else if (reader instanceof PNGImageReader){
 					type = "image/png";
-				} else if (reader instanceof BMPImageReader) {
+				}else if (reader instanceof BMPImageReader){
 					type = "application/x-bmp";
 				}
 			}
-		} finally {
-			if (bais != null) {
-				try {
+		}finally{
+			if (bais != null){
+				try{
 					bais.close();
-				} catch (IOException ioe) {
+				}catch (IOException ioe){
 
 				}
 			}
-			if (mcis != null) {
-				try {
+			if (mcis != null){
+				try{
 					mcis.close();
-				} catch (IOException ioe) {
+				}catch (IOException ioe){
 
 				}
 			}

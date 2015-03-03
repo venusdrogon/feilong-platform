@@ -24,4 +24,5 @@ import com.feilong.framework.bind.parse.varcommand.VarCommand;
  * @version 1.0.6 2014年5月8日 下午2:07:34
  * @since 1.0.6
  */
-public interface QueryResultCommand extends VarCommand{}
+public interface QueryResultCommand extends VarCommand{
+}

@@ -51,7 +51,8 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 21 01:54:44
  */
-@SuppressWarnings("all")public class GanttChartUtil extends CategoryChartUtil{
+@SuppressWarnings("all")
+public class GanttChartUtil extends CategoryChartUtil{
 
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(GanttChartUtil.class);
@@ -329,5 +330,6 @@ import com.feilong.tools.jfreechart.category.CategoryChartUtil;
 	 * @see com.feilong.tools.jfreechart.category.CategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
 	 */
 	@Override
-	protected void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis){}
+	protected void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis){
+	}
 }

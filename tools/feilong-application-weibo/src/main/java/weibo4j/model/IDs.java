@@ -4,12 +4,12 @@ All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
+ * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
+ * Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-    * Neither the name of the Yusuke Yamamoto nor the
+ * Neither the name of the Yusuke Yamamoto nor the
       names of its contributors may be used to endorse or promote products
       derived from this software without specific prior written permission.
 
@@ -23,7 +23,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 package weibo4j.model;
 
 import java.util.Arrays;
@@ -40,99 +40,104 @@ import weibo4j.http.Response;
  *
  * @author Yusuke Yamamoto - yusuke at mac.com
  * @editor SinaWeibo
- */@SuppressWarnings("all")
-public class IDs extends WeiboResponse {
-    private long[] ids;           //ids
-    private long previousCursor;  //当前cursor
-    private long nextCursor;      //下一个cursor
-    private static final long serialVersionUID = -6585026560164704953L;
-    /*package*/ IDs(Response res,Weibo w) throws WeiboException {
-        super(res);
-        if("[]\n".equals(res.asString())){
-        	previousCursor=0;
-        	nextCursor=0;
-        	ids= new long[0];
-        	return;
-        }
-        JSONObject json=  res.asJSONObject();
-        try {
-        	previousCursor = json.getLong("previous_cursor");
-            nextCursor = json.getLong("next_cursor");
-        	
-            if(!json.isNull("ids")){
-        		JSONArray jsona= json.getJSONArray("ids");
-        		int size=jsona.length();
-        		ids =new long[ size];
-        		for (int i = 0; i < size; i++) {
-        			ids[i] =jsona.getLong(i);
+ */
+@SuppressWarnings("all")
+public class IDs extends WeiboResponse{
+
+	private long[]				ids;											//ids
+
+	private long				previousCursor;								//当前cursor
+
+	private long				nextCursor;									//下一个cursor
+
+	private static final long	serialVersionUID	= -6585026560164704953L;
+
+	/* package */IDs(Response res, Weibo w) throws WeiboException{
+		super(res);
+		if ("[]\n".equals(res.asString())){
+			previousCursor = 0;
+			nextCursor = 0;
+			ids = new long[0];
+			return;
+		}
+		JSONObject json = res.asJSONObject();
+		try{
+			previousCursor = json.getLong("previous_cursor");
+			nextCursor = json.getLong("next_cursor");
+
+			if (!json.isNull("ids")){
+				JSONArray jsona = json.getJSONArray("ids");
+				int size = jsona.length();
+				ids = new long[size];
+				for (int i = 0; i < size; i++){
+					ids[i] = jsona.getLong(i);
 				}
-        	}
-        	
-         } catch (JSONException jsone) {
-             throw new WeiboException(jsone);
-         } 
-        
-    }
+			}
 
-    public long[] getIDs() {
-        return ids;
-    }
+		}catch (JSONException jsone){
+			throw new WeiboException(jsone);
+		}
 
-    /**
-     *
-     * @since weibo4j-V2 1.0.0
-     */
-    public boolean hasPrevious(){
-        return 0 != previousCursor;
-    }
+	}
 
-    /**
-     *
-     * @since weibo4j-V2 1.0.0
-     */
-    public long getPreviousCursor() {
-        return previousCursor;
-    }
+	public long[] getIDs(){
+		return ids;
+	}
 
-    /**
-     *
-     * @since weibo4j-V2 1.0.0
-     */
-    public boolean hasNext(){
-        return 0 != nextCursor;
-    }
+	/**
+	 *
+	 * @since weibo4j-V2 1.0.0
+	 */
+	public boolean hasPrevious(){
+		return 0 != previousCursor;
+	}
 
-    /**
-     *
-     * @since weibo4j-V2 1.0.0
-     */
-    public long getNextCursor() {
-        return nextCursor;
-    }
+	/**
+	 *
+	 * @since weibo4j-V2 1.0.0
+	 */
+	public long getPreviousCursor(){
+		return previousCursor;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof IDs)) return false;
+	/**
+	 *
+	 * @since weibo4j-V2 1.0.0
+	 */
+	public boolean hasNext(){
+		return 0 != nextCursor;
+	}
 
-        IDs iDs = (IDs) o;
+	/**
+	 *
+	 * @since weibo4j-V2 1.0.0
+	 */
+	public long getNextCursor(){
+		return nextCursor;
+	}
 
-        if (!Arrays.equals(ids, iDs.ids)) return false;
+	@Override
+	public boolean equals(Object o){
+		if (this == o)
+			return true;
+		if (!(o instanceof IDs))
+			return false;
 
-        return true;
-    }
+		IDs iDs = (IDs) o;
 
-    @Override
-    public int hashCode() {
-        return ids != null ? Arrays.hashCode(ids) : 0;
-    }
+		if (!Arrays.equals(ids, iDs.ids))
+			return false;
 
-    @Override
-    public String toString() {
-        return "IDs{" +
-                "ids=" + ids +
-                ", previousCursor=" + previousCursor +
-                ", nextCursor=" + nextCursor +
-                '}';
-    }
+		return true;
+	}
+
+	@Override
+	public int hashCode(){
+		return ids != null ? Arrays.hashCode(ids) : 0;
+	}
+
+	@Override
+	public String toString(){
+		return "IDs{" + "ids=" + ids + ", previousCursor=" + previousCursor + ", nextCursor=" + nextCursor + '}';
+	}
 }

@@ -61,7 +61,9 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariableValue(javax.servlet.http.HttpServletRequest, java.lang.String)}.
+	 * Test method for
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariableValue(javax.servlet.http.HttpServletRequest, java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testGetUriTemplateVariableValue(){
@@ -69,7 +71,8 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#hasPathVarName(javax.servlet.http.HttpServletRequest, java.lang.String)}.
+	 * Test method for
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#hasPathVarName(javax.servlet.http.HttpServletRequest, java.lang.String)}.
 	 */
 	@Test
 	public void testHasPathVarName(){
@@ -94,7 +97,8 @@ public class UriTemplateUtilTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}.
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testExpandBestMatchingPattern(){
@@ -103,7 +107,8 @@ public class UriTemplateUtilTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testExpandWithVariable3(){
@@ -148,7 +153,8 @@ public class UriTemplateUtilTest{
 	}
 
 	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testExpandWithVariable2(){

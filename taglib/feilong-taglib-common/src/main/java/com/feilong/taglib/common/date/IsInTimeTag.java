@@ -41,7 +41,8 @@ public class IsInTimeTag extends AbstractConditionalTag{
 	private static final long	serialVersionUID	= -7116181842162212131L;
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log					= LoggerFactory.getLogger(IsInTimeTag.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log					= LoggerFactory.getLogger(IsInTimeTag.class);
 
 	/** 一个时间,如果为null,则使用当前时间. */
 	private Date				date				= null;
@@ -65,6 +66,7 @@ public class IsInTimeTag extends AbstractConditionalTag{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.AbstractConditionalTag#condition()
 	 */
 	@Override

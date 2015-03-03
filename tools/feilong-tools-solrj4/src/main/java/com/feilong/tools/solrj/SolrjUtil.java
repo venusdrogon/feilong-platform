@@ -54,7 +54,8 @@ public final class SolrjUtil{
 	/**
 	 * Instantiates a new solrj util.
 	 */
-	private SolrjUtil(){}
+	private SolrjUtil(){
+	}
 
 	/**
 	 * 获得solrQuery 关键属性,成map,以便使用 JsonUtil format log输出.

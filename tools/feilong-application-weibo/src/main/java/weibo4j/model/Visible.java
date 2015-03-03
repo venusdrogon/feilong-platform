@@ -3,37 +3,45 @@ package weibo4j.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-@SuppressWarnings("all")public class Visible {
-	private int type;
-	private int list_id;
-	
-	public Visible(JSONObject json) throws JSONException {
-			this.type = json.getInt("type");
-			this.list_id = json.getInt("list_id");
+@SuppressWarnings("all")
+public class Visible{
+
+	private int	type;
+
+	private int	list_id;
+
+	public Visible(JSONObject json) throws JSONException{
+		this.type = json.getInt("type");
+		this.list_id = json.getInt("list_id");
 	}
-	public int getType() {
+
+	public int getType(){
 		return type;
 	}
-	public void setType(int type) {
+
+	public void setType(int type){
 		this.type = type;
 	}
-	public int getList_id() {
+
+	public int getList_id(){
 		return list_id;
 	}
-	public void setList_id(int list_id) {
+
+	public void setList_id(int list_id){
 		this.list_id = list_id;
 	}
-	
+
 	@Override
-	public int hashCode() {
+	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + list_id;
 		result = prime * result + type;
 		return result;
 	}
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj){
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -47,9 +55,10 @@ import org.json.JSONObject;
 			return false;
 		return true;
 	}
+
 	@Override
-	public String toString() {
+	public String toString(){
 		return "Visible [type=" + type + ", list_id=" + list_id + "]";
 	}
-	
+
 }

@@ -31,12 +31,12 @@ import javax.xml.ws.ResponseWrapper;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-6-25 16:29:05
  */
- 
-@WebService(targetNamespace = "http://www.nikestore.com.cn/webService", name = "ExpressDeliveryService")
-@XmlSeeAlso({ObjectFactory.class})
-public interface ExpressDeliveryService {
 
-    /**
+@WebService(targetNamespace = "http://www.nikestore.com.cn/webService",name = "ExpressDeliveryService")
+@XmlSeeAlso({ ObjectFactory.class })
+public interface ExpressDeliveryService{
+
+	/**
 	 * Transfer order sign.
 	 * 
 	 * @param arg0
@@ -45,14 +45,11 @@ public interface ExpressDeliveryService {
 	 *            the arg1
 	 * @return the java.lang. string
 	 */
-    @WebResult(name = "returnInfo", targetNamespace = "")
-    @RequestWrapper(localName = "transferOrderSign", targetNamespace = "http://www.nikestore.com.cn/webService", className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSign")
-    @WebMethod
-    @ResponseWrapper(localName = "transferOrderSignResponse", targetNamespace = "http://www.nikestore.com.cn/webService", className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSignResponse")
-    public java.lang.String transferOrderSign(
-        @WebParam(name = "arg0", targetNamespace = "")
-        java.lang.String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        java.lang.String arg1
-    );
+	@WebResult(name = "returnInfo",targetNamespace = "")
+	@RequestWrapper(localName = "transferOrderSign",targetNamespace = "http://www.nikestore.com.cn/webService",className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSign")
+	@WebMethod
+	@ResponseWrapper(localName = "transferOrderSignResponse",targetNamespace = "http://www.nikestore.com.cn/webService",className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSignResponse")
+	public java.lang.String transferOrderSign(
+					@WebParam(name = "arg0",targetNamespace = "") java.lang.String arg0,
+					@WebParam(name = "arg1",targetNamespace = "") java.lang.String arg1);
 }

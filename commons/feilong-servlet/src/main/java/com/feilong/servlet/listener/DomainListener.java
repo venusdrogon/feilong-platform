@@ -94,5 +94,6 @@ public class DomainListener implements ServletContextListener{
 	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
 	 */
 	@Override
-	public void contextDestroyed(ServletContextEvent sce){}
+	public void contextDestroyed(ServletContextEvent sce){
+	}
 }

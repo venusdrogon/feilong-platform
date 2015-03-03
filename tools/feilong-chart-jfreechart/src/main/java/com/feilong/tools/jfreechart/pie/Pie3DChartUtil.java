@@ -30,7 +30,8 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:16:30
  */
-@SuppressWarnings("all")public final class Pie3DChartUtil extends BasePieChartUtil{
+@SuppressWarnings("all")
+public final class Pie3DChartUtil extends BasePieChartUtil{
 
 	/** The Constant log. */
 	@SuppressWarnings("unused")

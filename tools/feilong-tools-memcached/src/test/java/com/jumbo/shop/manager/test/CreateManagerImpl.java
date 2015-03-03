@@ -40,7 +40,7 @@ public class CreateManagerImpl implements CreateManager{
 	}
 
 	@Override
-	@CacheEvict({ "CreateManagerImpl.testCreate"})
+	@CacheEvict({ "CreateManagerImpl.testCreate" })
 	public void publicSku(String name){
 		log.info("publicSku" + name);
 	}

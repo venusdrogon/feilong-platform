@@ -52,7 +52,8 @@ public final class SHA1Util{
 	/**
 	 * Instantiates a new SH a1 util.
 	 */
-	private SHA1Util(){}
+	private SHA1Util(){
+	}
 
 	/** The oneway type. */
 	private static OnewayType	onewayType	= OnewayType.SHA1;

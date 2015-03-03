@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.LocalSessionFactoryBean;

@@ -234,6 +234,7 @@ public class StubStatusCommand implements Serializable,Comparable<StubStatusComm
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override

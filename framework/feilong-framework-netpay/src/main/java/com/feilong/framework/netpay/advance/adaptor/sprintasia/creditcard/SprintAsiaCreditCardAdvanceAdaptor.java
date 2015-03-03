@@ -211,7 +211,9 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
 			QueryResult queryResult = new QueryResult();
 			PaymentResult paymentResult = toPaymentResult(transactionStatus);
 			queryResult.setGatewayAmount(new BigDecimal(creditCardQueryResult.getAmount()));
-			queryResult.setGatewayPaymentTime(DateUtil.string2Date(creditCardQueryResult.getTransactionDate(), DatePattern.COMMON_DATE_AND_TIME));
+			queryResult.setGatewayPaymentTime(DateUtil.string2Date(
+							creditCardQueryResult.getTransactionDate(),
+							DatePattern.COMMON_DATE_AND_TIME));
 			queryResult.setGatewayResult(wddxPacketXML);
 			queryResult.setGatewayTradeNo(creditCardQueryResult.getTransactionID());
 			queryResult.setPaymentResult(paymentResult);

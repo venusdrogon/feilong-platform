@@ -20,7 +20,7 @@ package com.feilong.tools.reference.ip;
 import com.feilong.commons.core.util.Validator;
 
 /**
- *ip工具包
+ * ip工具包
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-31 下午06:24:40

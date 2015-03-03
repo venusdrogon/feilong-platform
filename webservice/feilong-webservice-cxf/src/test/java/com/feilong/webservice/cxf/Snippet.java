@@ -1,4 +1,5 @@
 package com.feilong.webservice.cxf;
+
 ///*
 // * Copyright (C) 2008 feilong (venusdrogon@163.com)
 // *

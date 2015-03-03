@@ -38,7 +38,8 @@ import com.feilong.commons.core.awt.FontUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-12-31 下午05:18:15
  */
-@SuppressWarnings("all")public final class LineChartUtil extends CategoryChartUtil{
+@SuppressWarnings("all")
+public final class LineChartUtil extends CategoryChartUtil{
 
 	/** The Constant log. */
 	@SuppressWarnings("unused")

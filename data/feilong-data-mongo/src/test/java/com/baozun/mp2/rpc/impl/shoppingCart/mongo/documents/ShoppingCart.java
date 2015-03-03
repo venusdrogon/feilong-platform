@@ -43,7 +43,7 @@ public class ShoppingCart{
 	private Long	skuId;
 
 	/** The quality. */
-//	@Field
+	//	@Field
 	private Integer	quantity;
 
 	/**

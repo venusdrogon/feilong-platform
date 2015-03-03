@@ -9,61 +9,62 @@ import org.json.JSONObject;
 
 import weibo4j.http.Response;
 
-@SuppressWarnings("all")public class School extends WeiboResponse {
+@SuppressWarnings("all")
+public class School extends WeiboResponse{
 
-	private static final long serialVersionUID = -5991828656755790609L;
-	private int id; // 学校id
-	private String name; // 学校名称
+	private static final long	serialVersionUID	= -5991828656755790609L;
 
-	public School(Response res) throws WeiboException {
+	private int					id;											// 学校id
+
+	private String				name;											// 学校名称
+
+	public School(Response res) throws WeiboException{
 		super(res);
 		JSONObject json = res.asJSONObject();
-		try {
+		try{
 			id = json.getInt("id");
 			name = json.getString("name");
-		} catch (JSONException je) {
-			throw new WeiboException(je.getMessage() + ":" + json.toString(),
-					je);
+		}catch (JSONException je){
+			throw new WeiboException(je.getMessage() + ":" + json.toString(), je);
 		}
 	}
 
-	public School(JSONObject json) throws WeiboException {
-		try {
+	public School(JSONObject json) throws WeiboException{
+		try{
 			id = json.getInt("id");
 			name = json.getString("name");
-		} catch (JSONException je) {
-			throw new WeiboException(je.getMessage() + ":" + json.toString(),
-					je);
+		}catch (JSONException je){
+			throw new WeiboException(je.getMessage() + ":" + json.toString(), je);
 		}
 	}
 
-	public static List<School> constructSchool(Response res) throws WeiboException {
-		try {
+	public static List<School> constructSchool(Response res) throws WeiboException{
+		try{
 			JSONArray list = res.asJSONArray();
 			int size = list.length();
 			List<School> schools = new ArrayList<School>(size);
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++){
 				schools.add(new School(list.getJSONObject(i)));
 			}
 			return schools;
-		} catch (JSONException jsone) {
+		}catch (JSONException jsone){
 			throw new WeiboException(jsone);
-		} catch (WeiboException te) {
+		}catch (WeiboException te){
 			throw te;
 		}
 
 	}
 
-	public int getId() {
+	public int getId(){
 		return id;
 	}
 
-	public String getName() {
+	public String getName(){
 		return name;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
@@ -71,7 +72,7 @@ import weibo4j.http.Response;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj){
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -85,7 +86,7 @@ import weibo4j.http.Response;
 	}
 
 	@Override
-	public String toString() {
+	public String toString(){
 		return "School [id=" + id + ", name=" + name + "]";
 	}
 

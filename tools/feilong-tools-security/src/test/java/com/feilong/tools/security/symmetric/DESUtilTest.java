@@ -56,8 +56,8 @@ public class DESUtilTest extends BaseSecurityTest{
 	@Test
 	public final void decryptBase64() throws NullPointerException,EncryptionException{
 		assertEquals(TestConstants.testString, new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).decryptBase64(
-				"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
-				CharsetType.UTF8));
+						"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
+						CharsetType.UTF8));
 	}
 
 	/**
@@ -69,10 +69,10 @@ public class DESUtilTest extends BaseSecurityTest{
 	@Test
 	public final void encrypBase641() throws NullPointerException,EncryptionException{
 		assertEquals(
-				"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
-				new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).encryptBase64(
-						TestConstants.testString,
-						CharsetType.UTF8));
+						"LdCGo0dplVBHZP+lIOybBPy+v57iXIRX",
+						new SymmetricEncryption(SymmetricType.DES, config_security_key_des_default).encryptBase64(
+										TestConstants.testString,
+										CharsetType.UTF8));
 	}
 
 	/**
@@ -105,8 +105,8 @@ public class DESUtilTest extends BaseSecurityTest{
 		//						CharsetType.UTF8));
 		//		log.debug(new SymmetricEncryption(SymmetricType.DES, "jiyoutua").encryptHex("金总，好喜欢你哟", CharsetType.UTF8));
 		log.debug(new SymmetricEncryption(SymmetricType.DES, "jiyoutua", CipherMode.ECB, CipherPadding.NoPadding).encryptHex(
-				"金总，好喜欢你哟",
-				CharsetType.UTF8));
+						"金总，好喜欢你哟",
+						CharsetType.UTF8));
 		//		log.debug(new SymmetricEncryption(SymmetricType.DES, "A1B2C3D4E5F60708").encryptHex("amigoxie", CharsetType.ISO_8859_1));
 		//		log.debug(symmetricEncryption.decryptHex("9F4FB63737EAFD60EEA0B8FBD546C9752A0D1621A348341F0B6D3AC2E6672EF3", CharsetType.UTF8));
 
@@ -123,15 +123,15 @@ public class DESUtilTest extends BaseSecurityTest{
 		SymmetricType symmetricType = SymmetricType.DES;
 		//		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
 		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(
-				symmetricType,
-				keyString,
-				CipherMode.ECB,
-				CipherPadding.ISO10126Padding);
+						symmetricType,
+						keyString,
+						CipherMode.ECB,
+						CipherPadding.ISO10126Padding);
 
 		String miString = symmetricEncryption.encryptHex(TestConstants.testString, CharsetType.UTF8);
 
 		String mingString = symmetricEncryption.decryptHex(miString, CharsetType.UTF8);
-		
+
 		Assert.assertEquals(mingString, TestConstants.testString);
 	}
 }

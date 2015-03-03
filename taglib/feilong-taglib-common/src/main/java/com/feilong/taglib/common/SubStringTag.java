@@ -34,7 +34,9 @@ public class SubStringTag extends AbstractCommonTag{
 	/** 截取长度. */
 	private int					length;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
 	 */
 	@Override

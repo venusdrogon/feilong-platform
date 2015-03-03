@@ -42,7 +42,8 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-30 16:00:43
  */
-@SuppressWarnings("all")public class CreatePDF{
+@SuppressWarnings("all")
+public class CreatePDF{
 
 	private static final Logger	log	= LoggerFactory.getLogger(CreatePDF.class);
 
@@ -127,13 +128,13 @@ import com.feilong.tools.jfreechart.ChartUtil;
 			// create a chart...  
 			XYDataset dataset = createDataset();
 			JFreeChart chart = ChartFactory.createTimeSeriesChart(
-					"Legal & General Unit Trust Prices",
-					"Date",
-					"Price Per Unit",
-					dataset,
-					true,
-					true,
-					false);
+							"Legal & General Unit Trust Prices",
+							"Date",
+							"Price Per Unit",
+							dataset,
+							true,
+							true,
+							false);
 			// some additional chart customisation here...  
 			XYPlot plot = chart.getXYPlot();
 			XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();

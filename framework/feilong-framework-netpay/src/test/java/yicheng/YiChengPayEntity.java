@@ -102,7 +102,7 @@ public class YiChengPayEntity implements Serializable{
 	 *            important 必须和数据库订单创建时间一致
 	 */
 	public YiChengPayEntity(String merchantNo, String orderId, String amount, String callBackUrl, String isFull, String terminalNo,
-			String key, Date createTime){
+					String key, Date createTime){
 		this.merchantNo = merchantNo;
 		this.orderId = orderId;
 		this.serialNo = YiChengPay.getSerialNo(createTime);

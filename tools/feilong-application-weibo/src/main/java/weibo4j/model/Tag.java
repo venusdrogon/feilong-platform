@@ -17,7 +17,8 @@ import weibo4j.http.Response;
  * @author sinaWeibo
  * 
  */
-@SuppressWarnings("all")public class Tag extends WeiboResponse implements java.io.Serializable{
+@SuppressWarnings("all")
+public class Tag extends WeiboResponse implements java.io.Serializable{
 
 	private static final Logger	log					= LoggerFactory.getLogger(Tag.class);
 

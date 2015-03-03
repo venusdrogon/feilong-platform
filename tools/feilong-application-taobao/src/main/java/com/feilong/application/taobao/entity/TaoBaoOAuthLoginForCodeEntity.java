@@ -18,7 +18,7 @@ package com.feilong.application.taobao.entity;
 import java.io.Serializable;
 
 /**
- *基于OAuth2.0的登录验证授权,获取授权码Code
+ * 基于OAuth2.0的登录验证授权,获取授权码Code
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-17 下午02:40:09

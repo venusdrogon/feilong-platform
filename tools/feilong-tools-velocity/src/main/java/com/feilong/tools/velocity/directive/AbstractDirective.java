@@ -57,6 +57,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#init(org.apache.velocity.runtime.RuntimeServices,
 	 * org.apache.velocity.context.InternalContextAdapter, org.apache.velocity.runtime.parser.node.Node)
 	 */
@@ -81,12 +82,13 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer,
 	 * org.apache.velocity.runtime.parser.node.Node)
 	 */
 	@Override
 	public boolean render(InternalContextAdapter context,Writer writer,Node node) throws IOException,ResourceNotFoundException,
-			ParseErrorException,MethodInvocationException{
+					ParseErrorException,MethodInvocationException{
 
 		// 其中 render 方法的最后一个参数 node 表示为该指定对应在 Velocity 模板中的节点对象，
 		// 通过调用 node 的 jjtGetChild 方法可以获取到传递给该指令的参数以及包含在该指令的脚本内容。
@@ -118,10 +120,11 @@ public abstract class AbstractDirective extends Directive{
 	 *             the method invocation exception
 	 */
 	protected abstract boolean doRender(InternalContextAdapter context,Writer writer,Node node) throws IOException,
-			ResourceNotFoundException,ParseErrorException,MethodInvocationException;
+					ResourceNotFoundException,ParseErrorException,MethodInvocationException;
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#preRender(org.apache.velocity.context.InternalContextAdapter)
 	 */
 	@Override
@@ -134,6 +137,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#postRender(org.apache.velocity.context.InternalContextAdapter)
 	 */
 	@Override
@@ -147,6 +151,7 @@ public abstract class AbstractDirective extends Directive{
 	// ******************************************************************************
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#setLocation(int, int)
 	 */
 	@Override
@@ -156,6 +161,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#setLocation(int, int, java.lang.String)
 	 */
 	@Override
@@ -165,6 +171,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getLine()
 	 */
 	@Override
@@ -174,6 +181,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getColumn()
 	 */
 	@Override
@@ -183,6 +191,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getTemplateName()
 	 */
 	@Override
@@ -192,6 +201,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#getScopeName()
 	 */
 	@Override
@@ -201,6 +211,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#isScopeProvided()
 	 */
 	@Override
@@ -210,6 +221,7 @@ public abstract class AbstractDirective extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#makeScope(java.lang.Object)
 	 */
 	@Override

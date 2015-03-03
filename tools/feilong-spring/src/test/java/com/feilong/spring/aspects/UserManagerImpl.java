@@ -31,16 +31,20 @@ public class UserManagerImpl implements UserManager{
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(UserManagerImpl.class);
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.spring.aspects.UserManager#addUser(java.lang.String, java.lang.String)
 	 */
 	@Override
-	@Log(level="debug")
+	@Log(level = "debug")
 	public void addUser(String id,String name){
 		log.info("---UsreManagerImpl中的addUser方法的实现-----");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.spring.aspects.UserManager#delUser(int)
 	 */
 	@Override
@@ -48,7 +52,9 @@ public class UserManagerImpl implements UserManager{
 		log.info("-----UserManagerImpl delUser方法的实现-----");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.spring.aspects.UserManager#modifyUser(int, java.lang.String, int)
 	 */
 	@Override

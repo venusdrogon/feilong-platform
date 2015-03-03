@@ -36,7 +36,6 @@ import org.slf4j.LoggerFactory;
 //import sun.misc.BASE64Decoder;
 //import sun.misc.BASE64Encoder;
 
-
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.ByteUtil;
@@ -200,7 +199,7 @@ public final class SymmetricEncryption{
 	 * @since 1.0.7
 	 */
 	public SymmetricEncryption(SymmetricType symmetricType, String keyString, CipherMode cipherMode, CipherPadding cipherPadding)
-			throws NullPointerException,EncryptionException{
+					throws NullPointerException,EncryptionException{
 		if (Validator.isNullOrEmpty(keyString)){
 			throw new NullPointerException("the keyString can't be null");
 		}
@@ -532,7 +531,7 @@ public final class SymmetricEncryption{
 	 * @see Cipher#doFinal(byte[])
 	 */
 	private byte[] opBytes(byte[] bytes,int opmode) throws NoSuchAlgorithmException,NoSuchPaddingException,InvalidKeyException,
-			IllegalBlockSizeException,BadPaddingException{
+					IllegalBlockSizeException,BadPaddingException{
 
 		// 此类为加密和解密提供密码功能。它构成了 Java Cryptographic Extension (JCE) 框架的核心。
 		// 转换transformation始终包括加密算法的名称（例如，DES），后面可能跟有一个反馈模式和填充方案。

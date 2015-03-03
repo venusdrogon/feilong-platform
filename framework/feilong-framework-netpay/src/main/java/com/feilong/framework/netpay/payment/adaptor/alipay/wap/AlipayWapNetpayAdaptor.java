@@ -32,6 +32,7 @@ public class AlipayWapNetpayAdaptor extends AlipayWapAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.alipay.wap.AlipayWapAdaptor#validatorSpecialSignMap(java.util.Map)
 	 */
 	@Override

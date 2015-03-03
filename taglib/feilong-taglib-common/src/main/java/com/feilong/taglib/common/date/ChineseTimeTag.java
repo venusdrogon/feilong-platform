@@ -47,7 +47,9 @@ public class ChineseTimeTag extends AbstractCommonTag{
 	/** 带不带颜色. */
 	private boolean				hasColor;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
 	 */
 	@Override

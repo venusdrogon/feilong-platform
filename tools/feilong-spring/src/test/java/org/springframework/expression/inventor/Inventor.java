@@ -3,7 +3,8 @@ package org.springframework.expression.inventor;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-@SuppressWarnings("all")public class Inventor{
+@SuppressWarnings("all")
+public class Inventor{
 
 	private String			name;
 
@@ -28,7 +29,8 @@ import java.util.GregorianCalendar;
 		this.birthdate = birthdate;
 	}
 
-	public Inventor(){}
+	public Inventor(){
+	}
 
 	public String getName(){
 		return name;

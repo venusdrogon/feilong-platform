@@ -7,10 +7,10 @@ import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-@SuppressWarnings("all")public class Users extends Weibo{
+@SuppressWarnings("all")
+public class Users extends Weibo{
 
-	private static final long serialVersionUID = 4742830953302255953L;
-
+	private static final long	serialVersionUID	= 4742830953302255953L;
 
 	/*----------------------------用户接口----------------------------------------*/
 	/**
@@ -25,11 +25,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/users/show">users/show</a>
 	 * @since JDK 1.5
 	 */
-	public User showUserById(String uid) throws WeiboException {
+	public User showUserById(String uid) throws WeiboException{
 		return new User(client.get(
-				WeiboConfig.getValue("baseURL") + "users/show.json",
-				new PostParameter[] { new PostParameter("uid", uid) })
-				.asJSONObject());
+						WeiboConfig.getValue("baseURL") + "users/show.json",
+						new PostParameter[] { new PostParameter("uid", uid) }).asJSONObject());
 	}
 
 	/**
@@ -44,11 +43,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/users/show">users/show</a>
 	 * @since JDK 1.5
 	 */
-	public User showUserByScreenName(String screen_name) throws WeiboException {
+	public User showUserByScreenName(String screen_name) throws WeiboException{
 		return new User(client.get(
-				WeiboConfig.getValue("baseURL") + "users/show.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }).asJSONObject());
+						WeiboConfig.getValue("baseURL") + "users/show.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }).asJSONObject());
 	}
 
 	/**
@@ -60,16 +58,15 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/users/domain_show">users/domain_show</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/users/domain_show">users/domain_show</a>
 	 * @since JDK 1.5
 	 */
-	public User showUserByDomain(String domain) throws WeiboException {
+	public User showUserByDomain(String domain) throws WeiboException{
 		return new User(client.get(
-				WeiboConfig.getValue("baseURL") + "users/domain_show.json",
-				new PostParameter[] { new PostParameter("domain", domain) })
-				.asJSONObject());
+						WeiboConfig.getValue("baseURL") + "users/domain_show.json",
+						new PostParameter[] { new PostParameter("domain", domain) }).asJSONObject());
 	}
+
 	/**
 	 * 批量获取用户的粉丝数、关注数、微博数
 	 * 
@@ -79,12 +76,11 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/users/domain_show">users/domain_show</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/users/domain_show">users/domain_show</a>
 	 * @since JDK 1.5
 	 */
 	public JSONArray getUserCount(String uids) throws WeiboException{
-		return  client.get(WeiboConfig.getValue("baseURL") + "users/counts.json",
-				new PostParameter[] { new PostParameter("uids", uids)}).asJSONArray();
+		return client.get(WeiboConfig.getValue("baseURL") + "users/counts.json", new PostParameter[] { new PostParameter("uids", uids) })
+						.asJSONArray();
 	}
 }

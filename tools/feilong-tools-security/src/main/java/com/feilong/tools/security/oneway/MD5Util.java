@@ -47,7 +47,8 @@ public final class MD5Util{
 	/**
 	 * Instantiates a new m d5 util.
 	 */
-	private MD5Util(){}
+	private MD5Util(){
+	}
 
 	/** The oneway type. */
 	private static OnewayType	onewayType	= OnewayType.MD5;

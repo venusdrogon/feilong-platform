@@ -38,7 +38,8 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 14 05:59:29
  */
-@SuppressWarnings("all")public final class ChartDatesetUtil{
+@SuppressWarnings("all")
+public final class ChartDatesetUtil{
 
 	/**
 	 * 获得 PieDataset.
@@ -92,10 +93,10 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
 		}
 		String[] rowKeys = freeChartEntity.getRowKeys();
 		CategoryDataset categoryDataset = DatasetUtilities.createCategoryDataset(//
-				rowKeys,// Y轴数据 
-				columnKeys,// 填充所要的实际数据
-				data// X轴数据
-				);
+						rowKeys,// Y轴数据 
+						columnKeys,// 填充所要的实际数据
+						data// X轴数据
+						);
 		return categoryDataset;
 	}
 

@@ -91,13 +91,13 @@ public class JaxWsDynamicClientUtilTest{
 	@Test
 	public void call() throws Exception{
 		String wddxPacketXML = JaxWsDynamicClientUtil.call(
-				wsdlUrl,
-				operationName,
-				merchantTransactionID,
-				serviceVersion,
-				siteID,
-				transactionID,
-				transactionType);
+						wsdlUrl,
+						operationName,
+						merchantTransactionID,
+						serviceVersion,
+						siteID,
+						transactionID,
+						transactionType);
 		log.info(wddxPacketXML);
 
 	}
@@ -130,11 +130,11 @@ public class JaxWsDynamicClientUtilTest{
 		if (log.isInfoEnabled()){
 
 			String transactionQuery = bcaOperation.transactionQuery(
-					merchantTransactionID,
-					serviceVersion,
-					siteID,
-					merchantTransactionID,
-					transactionType);
+							merchantTransactionID,
+							serviceVersion,
+							siteID,
+							merchantTransactionID,
+							transactionType);
 			log.info(transactionQuery);
 		}
 	}

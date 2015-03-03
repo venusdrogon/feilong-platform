@@ -39,8 +39,9 @@ public final class AntUtil{
 	 * @param messageOutputLevel
 	 *            日志级别 *
 	 *            <P>
-	 *            Constants for the message levels are in the {@link Project Project} class. The order of the levels, from least to most verbose, is
-	 *            <code>MSG_ERR</code>, <code>MSG_WARN</code>, <code>MSG_INFO</code>, <code>MSG_VERBOSE</code>, <code>MSG_DEBUG</code>.
+	 *            Constants for the message levels are in the {@link Project Project} class. The order of the levels, from least to most
+	 *            verbose, is <code>MSG_ERR</code>, <code>MSG_WARN</code>, <code>MSG_INFO</code>, <code>MSG_VERBOSE</code>,
+	 *            <code>MSG_DEBUG</code>.
 	 *            <P>
 	 *            The default message level for DefaultLogger is Project.MSG_ERR.
 	 */

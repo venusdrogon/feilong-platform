@@ -42,6 +42,7 @@ public class HttpConcatItemTag extends AbstractCommonTag{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
 	 */
 	@Override

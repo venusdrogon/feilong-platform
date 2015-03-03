@@ -53,11 +53,11 @@ public class CommonAction extends DispatchAction{
 		String redirectHref = request.getParameter("redirectHref");
 		// 返回路径
 		session.setAttribute("backURL", RequestUtil.getHeaderReferer(request));
-//		try{
-//			//response.sendRedirect(FeiLongSecurity.getDecryptParam(redirectHref));
-//		}catch (IOException e){
-//			log.error(e.getClass().getName(), e);
-//		}
+		//		try{
+		//			//response.sendRedirect(FeiLongSecurity.getDecryptParam(redirectHref));
+		//		}catch (IOException e){
+		//			log.error(e.getClass().getName(), e);
+		//		}
 		return null;
 	}
 	// public ActionForward test(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){

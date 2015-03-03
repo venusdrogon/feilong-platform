@@ -36,6 +36,7 @@ public class IsContainTag extends AbstractConditionalTag{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.taglib.base.AbstractConditionalTag#condition()
 	 */
 	@Override

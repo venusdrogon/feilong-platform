@@ -57,7 +57,8 @@ final class OnewayEncryption{
 	/**
 	 * Instantiates a new oneway encryption.
 	 */
-	private OnewayEncryption(){}
+	private OnewayEncryption(){
+	}
 
 	/**
 	 * 使用算法 单向加密字符串.

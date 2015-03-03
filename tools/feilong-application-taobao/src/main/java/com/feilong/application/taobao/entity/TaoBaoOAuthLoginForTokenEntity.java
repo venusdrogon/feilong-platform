@@ -42,7 +42,7 @@ public class TaoBaoOAuthLoginForTokenEntity implements Serializable{
 	 *            the client secret
 	 */
 	public TaoBaoOAuthLoginForTokenEntity(String requestUrl, String clientId, String redirectUri, String grantType, String code,
-			String clientSecret){
+					String clientSecret){
 		super();
 		this.requestUrl = requestUrl;
 		client_id = clientId;

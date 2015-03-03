@@ -9,11 +9,13 @@ import weibo4j.model.UserWapper;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-@SuppressWarnings("all")public class Friendships extends Weibo{
+@SuppressWarnings("all")
+public class Friendships extends Weibo{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3603512821159421447L;
+	private static final long	serialVersionUID	= 3603512821159421447L;
 
 	/*----------------------------关系接口----------------------------------------*/
 	/**
@@ -23,14 +25,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends">friendships/friends</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends">friendships/friends</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFriendsByID(String id) throws WeiboException {
+	public UserWapper getFriendsByID(String id) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/friends.json",
-				new PostParameter[] { new PostParameter("uid", id) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends.json",
+						new PostParameter[] { new PostParameter("uid", id) }));
 	}
 
 	/**
@@ -40,16 +41,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends">friendships/friends</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends">friendships/friends</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFriendsByScreenName(String screen_name)
-			throws WeiboException {
+	public UserWapper getFriendsByScreenName(String screen_name) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/friends.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }));
 	}
 
 	/**
@@ -61,15 +59,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/in_common">friendships/friends/in_common</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/in_common">friendships/friends/in_common</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFriendsInCommon(String uid) throws WeiboException {
+	public UserWapper getFriendsInCommon(String uid) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/in_common.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/in_common.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -87,17 +83,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/in_common">friendships/friends/in_common</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/in_common">friendships/friends/in_common</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFriendsInCommon(String uid, String suid, Paging page)
-			throws WeiboException {
+	public UserWapper getFriendsInCommon(String uid,String suid,Paging page) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/friends/in_common.json",
-				new PostParameter[] { 
-					new PostParameter("uid", uid),
-					new PostParameter("suid", suid)}, page));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/in_common.json",
+						new PostParameter[] { new PostParameter("uid", uid), new PostParameter("suid", suid) },
+						page));
 	}
 
 	/**
@@ -109,15 +102,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/bilateral">friendships/friends/bilateral</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/bilateral">friendships/friends/bilateral</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFriendsBilateral(String uid) throws WeiboException {
+	public UserWapper getFriendsBilateral(String uid) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/bilateral.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/bilateral.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -135,18 +126,15 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @return 
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/bilateral">friendships/friends/bilateral</a>
+	 * @return
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/bilateral">friendships/friends/bilateral</a>
 	 * @since JDK 1.5
 	 */
-	public  UserWapper getFriendsBilateral(String uid, Integer sort, Paging page)
-			throws WeiboException {
+	public UserWapper getFriendsBilateral(String uid,Integer sort,Paging page) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/bilateral.json",
-				new PostParameter[] { new PostParameter("uid", uid),
-						new PostParameter("sort", sort.toString()) }, page));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/bilateral.json",
+						new PostParameter[] { new PostParameter("uid", uid), new PostParameter("sort", sort.toString()) },
+						page));
 	}
 
 	/**
@@ -158,15 +146,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/bilateral/ids">friendships/friends/bilateral/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/bilateral/ids">friendships/friends/bilateral/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFriendsBilateralIds(String uid) throws WeiboException {
+	public String[] getFriendsBilateralIds(String uid) throws WeiboException{
 		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/bilateral/ids.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/bilateral/ids.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -184,17 +170,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/bilateral/ids">friendships/friends/bilateral/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/bilateral/ids">friendships/friends/bilateral/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFriendsBilateralIds(String uid, Integer sort, Paging page)
-			throws WeiboException {
+	public String[] getFriendsBilateralIds(String uid,Integer sort,Paging page) throws WeiboException{
 		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/bilateral/ids.json",
-				new PostParameter[] { new PostParameter("uid", uid),
-						new PostParameter("sort", sort.toString()) }, page));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/bilateral/ids.json",
+						new PostParameter[] { new PostParameter("uid", uid), new PostParameter("sort", sort.toString()) },
+						page));
 	}
 
 	/**
@@ -206,15 +189,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFriendsIdsByUid(String uid) throws WeiboException {
+	public String[] getFriendsIdsByUid(String uid) throws WeiboException{
 		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/ids.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/ids.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -226,17 +207,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFriendsIdsByName(String screen_name)
-			throws WeiboException {
+	public String[] getFriendsIdsByName(String screen_name) throws WeiboException{
 		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/ids.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends/ids.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }));
 	}
 
 	/**
@@ -252,18 +229,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFriendsIdsByUid(String uid, Integer count, Integer cursor)
-			throws WeiboException {
-		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/ids.json", new PostParameter[] {
-						new PostParameter("uid", uid),
-						new PostParameter("count", count.toString()),
-						new PostParameter("cursor", cursor.toString()) }));
+	public String[] getFriendsIdsByUid(String uid,Integer count,Integer cursor) throws WeiboException{
+		return User.constructIds(client.get(WeiboConfig.getValue("baseURL") + "friendships/friends/ids.json", new PostParameter[] {
+				new PostParameter("uid", uid),
+				new PostParameter("count", count.toString()),
+				new PostParameter("cursor", cursor.toString()) }));
 	}
 
 	/**
@@ -279,18 +252,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/ids">friendships/friends/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFriendsIdsByName(String screen_name, Integer count,
-			Integer cursor) throws WeiboException {
-		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/ids.json", new PostParameter[] {
-						new PostParameter("screen_name", screen_name),
-						new PostParameter("count", count.toString()),
-						new PostParameter("cursor", cursor.toString()) }));
+	public String[] getFriendsIdsByName(String screen_name,Integer count,Integer cursor) throws WeiboException{
+		return User.constructIds(client.get(WeiboConfig.getValue("baseURL") + "friendships/friends/ids.json", new PostParameter[] {
+				new PostParameter("screen_name", screen_name),
+				new PostParameter("count", count.toString()),
+				new PostParameter("cursor", cursor.toString()) }));
 	}
 
 	/**
@@ -302,15 +271,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends/remark_batch">friendships/friends/remark_batch</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends/remark_batch">friendships/friends/remark_batch</a>
 	 * @since JDK 1.5
 	 */
-	public JSONArray getRemark(String uids) throws WeiboException {
+	public JSONArray getRemark(String uids) throws WeiboException{
 		return client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends/remark_batch.json",
-				new PostParameter[] { new PostParameter("uids", uids) }).asJSONArray();	
+						WeiboConfig.getValue("baseURL") + "friendships/friends/remark_batch.json",
+						new PostParameter[] { new PostParameter("uids", uids) }).asJSONArray();
 	}
 
 	/**
@@ -322,62 +289,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFollowersByName(String screen_name)
-			throws WeiboException {
+	public UserWapper getFollowersByName(String screen_name) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/followers.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }));
-	}
-
-	/**
-	 * 获取用户的粉丝列表
-	 * 
-	 * @param screen_name
-	 *            需要查询的用户昵称
-	 * @param count
-	 *            单页返回的记录条数，默认为500，最大不超过5000
-	 * @param cursor
-	 *            返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0
-	 * @return list of users
-	 * @throws WeiboException
-	 *             when Weibo service or network is unavailable
-	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
-	 * @since JDK 1.5
-	 */
-	public UserWapper getFollowersByName(String screen_name, Integer count,
-			Integer cursor) throws WeiboException {
-		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/followers.json",
-				new PostParameter[] {
-						new PostParameter("screen_name", screen_name),
-						new PostParameter("count", count.toString()),
-						new PostParameter("cursor", cursor.toString()) }));
-	}
-
-	/**
-	 * 获取用户的粉丝列表
-	 * 
-	 * @param screen_name
-	 *            需要查询的用户昵称
-	 * @return list of users
-	 * @throws WeiboException
-	 *             when Weibo service or network is unavailable
-	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
-	 * @since JDK 1.5
-	 */
-	public UserWapper getFollowersById(String uid) throws WeiboException {
-		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/followers.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/followers.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }));
 	}
 
 	/**
@@ -393,17 +311,55 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFollowersById(String uid, Integer count, Integer cursor)
-			throws WeiboException {
+	public UserWapper getFollowersByName(String screen_name,Integer count,Integer cursor) throws WeiboException{
+		return User.constructWapperUsers(client.get(WeiboConfig.getValue("baseURL") + "friendships/followers.json", new PostParameter[] {
+				new PostParameter("screen_name", screen_name),
+				new PostParameter("count", count.toString()),
+				new PostParameter("cursor", cursor.toString()) }));
+	}
+
+	/**
+	 * 获取用户的粉丝列表
+	 * 
+	 * @param screen_name
+	 *            需要查询的用户昵称
+	 * @return list of users
+	 * @throws WeiboException
+	 *             when Weibo service or network is unavailable
+	 * @version weibo4j-V2 1.0.0
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
+	 * @since JDK 1.5
+	 */
+	public UserWapper getFollowersById(String uid) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL") + "friendships/followers.json",
-				new PostParameter[] { new PostParameter("uid", uid),
-						new PostParameter("count", count.toString()),
-						new PostParameter("cursor", cursor.toString()) }));
+						WeiboConfig.getValue("baseURL") + "friendships/followers.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
+	}
+
+	/**
+	 * 获取用户的粉丝列表
+	 * 
+	 * @param screen_name
+	 *            需要查询的用户昵称
+	 * @param count
+	 *            单页返回的记录条数，默认为500，最大不超过5000
+	 * @param cursor
+	 *            返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0
+	 * @return list of users
+	 * @throws WeiboException
+	 *             when Weibo service or network is unavailable
+	 * @version weibo4j-V2 1.0.0
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers">friendships/followers</a>
+	 * @since JDK 1.5
+	 */
+	public UserWapper getFollowersById(String uid,Integer count,Integer cursor) throws WeiboException{
+		return User.constructWapperUsers(client.get(WeiboConfig.getValue("baseURL") + "friendships/followers.json", new PostParameter[] {
+				new PostParameter("uid", uid),
+				new PostParameter("count", count.toString()),
+				new PostParameter("cursor", cursor.toString()) }));
 	}
 
 	/**
@@ -415,15 +371,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFollowersIdsById(String uid) throws WeiboException {
+	public String[] getFollowersIdsById(String uid) throws WeiboException{
 		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/followers/ids.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/followers/ids.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -439,18 +393,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFollowersIdsById(String uid, Integer count,
-			Integer cursor) throws WeiboException {
-		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/followers/ids.json",
-				new PostParameter[] { new PostParameter("uid", uid),
-						new PostParameter("count", count.toString()),
-						new PostParameter("cursor", cursor.toString()) }));
+	public String[] getFollowersIdsById(String uid,Integer count,Integer cursor) throws WeiboException{
+		return User.constructIds(client.get(WeiboConfig.getValue("baseURL") + "friendships/followers/ids.json", new PostParameter[] {
+				new PostParameter("uid", uid),
+				new PostParameter("count", count.toString()),
+				new PostParameter("cursor", cursor.toString()) }));
 	}
 
 	/**
@@ -462,17 +412,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFollowersIdsByName(String screen_name)
-			throws WeiboException {
+	public String[] getFollowersIdsByName(String screen_name) throws WeiboException{
 		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/followers/ids.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }));
+						WeiboConfig.getValue("baseURL") + "friendships/followers/ids.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }));
 	}
 
 	/**
@@ -488,19 +434,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers/ids">friendships/followers/ids</a>
 	 * @since JDK 1.5
 	 */
-	public String[] getFollowersIdsByName(String screen_name, Integer count,
-			Integer cursor) throws WeiboException {
-		return User.constructIds(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/followers/ids.json",
-				new PostParameter[] {
-						new PostParameter("screen_name", screen_name),
-						new PostParameter("count", count.toString()),
-						new PostParameter("cursor", cursor.toString()) }));
+	public String[] getFollowersIdsByName(String screen_name,Integer count,Integer cursor) throws WeiboException{
+		return User.constructIds(client.get(WeiboConfig.getValue("baseURL") + "friendships/followers/ids.json", new PostParameter[] {
+				new PostParameter("screen_name", screen_name),
+				new PostParameter("count", count.toString()),
+				new PostParameter("cursor", cursor.toString()) }));
 	}
 
 	/**
@@ -512,15 +453,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers/active">friendships/followers/active</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers/active">friendships/followers/active</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFollowersActive(String uid) throws WeiboException {
+	public UserWapper getFollowersActive(String uid) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/followers/active.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/followers/active.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -534,17 +473,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/followers/active">friendships/followers/active</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/followers/active">friendships/followers/active</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFollowersActive(String uid, Integer count)
-			throws WeiboException {
+	public UserWapper getFollowersActive(String uid,Integer count) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/followers/active.json",
-				new PostParameter[] { new PostParameter("uid", uid),
-						new PostParameter("count", count.toString()) }));
+						WeiboConfig.getValue("baseURL") + "friendships/followers/active.json",
+						new PostParameter[] { new PostParameter("uid", uid), new PostParameter("count", count.toString()) }));
 	}
 
 	/**
@@ -556,16 +491,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/friends_chain/followers">friendships/friends_chain/followers</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/friends_chain/followers">friendships/friends_chain/followers</a>
 	 * @since JDK 1.5
 	 */
-	public UserWapper getFriendsChainFollowers(String uid)
-			throws WeiboException {
+	public UserWapper getFriendsChainFollowers(String uid) throws WeiboException{
 		return User.constructWapperUsers(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "friendships/friends_chain/followers.json",
-				new PostParameter[] { new PostParameter("uid", uid) }));
+						WeiboConfig.getValue("baseURL") + "friendships/friends_chain/followers.json",
+						new PostParameter[] { new PostParameter("uid", uid) }));
 	}
 
 	/**
@@ -577,15 +509,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/create">friendships/create</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/create">friendships/create</a>
 	 * @since JDK 1.5
 	 */
-	public User createFriendshipsById(String uid) throws WeiboException {
+	public User createFriendshipsById(String uid) throws WeiboException{
 		return new User(client.post(
-				WeiboConfig.getValue("baseURL") + "friendships/create.json",
-				new PostParameter[] { new PostParameter("uid", uid) })
-				.asJSONObject());
+						WeiboConfig.getValue("baseURL") + "friendships/create.json",
+						new PostParameter[] { new PostParameter("uid", uid) }).asJSONObject());
 	}
 
 	/**
@@ -597,16 +527,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/create">friendships/create</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/create">friendships/create</a>
 	 * @since JDK 1.5
 	 */
-	public User createFriendshipsByName(String screen_name)
-			throws WeiboException {
+	public User createFriendshipsByName(String screen_name) throws WeiboException{
 		return new User(client.post(
-				WeiboConfig.getValue("baseURL") + "friendships/create.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }).asJSONObject());
+						WeiboConfig.getValue("baseURL") + "friendships/create.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }).asJSONObject());
 	}
 
 	/**
@@ -618,15 +545,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/destroy">friendships/destroy</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/destroy">friendships/destroy</a>
 	 * @since JDK 1.5
 	 */
-	public User destroyFriendshipsDestroyById(String uid) throws WeiboException {
+	public User destroyFriendshipsDestroyById(String uid) throws WeiboException{
 		return new User(client.post(
-				WeiboConfig.getValue("baseURL") + "friendships/destroy.json",
-				new PostParameter[] { new PostParameter("uid", uid) })
-				.asJSONObject());
+						WeiboConfig.getValue("baseURL") + "friendships/destroy.json",
+						new PostParameter[] { new PostParameter("uid", uid) }).asJSONObject());
 	}
 
 	/**
@@ -638,15 +563,12 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/friendships/destroy">friendships/destroy</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/friendships/destroy">friendships/destroy</a>
 	 * @since JDK 1.5
 	 */
-	public User destroyFriendshipsDestroyByName(String screen_name)
-			throws WeiboException {
+	public User destroyFriendshipsDestroyByName(String screen_name) throws WeiboException{
 		return new User(client.post(
-				WeiboConfig.getValue("baseURL") + "friendships/destroy.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }).asJSONObject());
+						WeiboConfig.getValue("baseURL") + "friendships/destroy.json",
+						new PostParameter[] { new PostParameter("screen_name", screen_name) }).asJSONObject());
 	}
 }

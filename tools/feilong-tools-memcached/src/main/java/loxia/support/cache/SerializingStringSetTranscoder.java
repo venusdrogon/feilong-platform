@@ -6,7 +6,8 @@ import net.spy.memcached.CachedData;
 import net.spy.memcached.transcoders.BaseSerializingTranscoder;
 import net.spy.memcached.transcoders.Transcoder;
 
-@SuppressWarnings("all")public class SerializingStringSetTranscoder extends BaseSerializingTranscoder implements Transcoder<Set<String>>{
+@SuppressWarnings("all")
+public class SerializingStringSetTranscoder extends BaseSerializingTranscoder implements Transcoder<Set<String>>{
 
 	// General flags
 	static final int	SERIALIZED			= 1;
@@ -54,6 +55,7 @@ import net.spy.memcached.transcoders.Transcoder;
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see net.spy.memcached.Transcoder#decode(net.spy.memcached.CachedData)
 	 */
 	@Override
@@ -68,6 +70,7 @@ import net.spy.memcached.transcoders.Transcoder;
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see net.spy.memcached.Transcoder#encode(java.lang.Object)
 	 */
 	@Override

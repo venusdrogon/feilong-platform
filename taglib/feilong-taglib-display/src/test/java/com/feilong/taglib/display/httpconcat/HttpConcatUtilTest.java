@@ -70,7 +70,7 @@ public class HttpConcatUtilTest extends BaseHttpConcatTest{
 		list.add(50000);
 		list.add(100000);
 		list.add(1000000);
-//		list.add(300001);
+		//		list.add(300001);
 
 		Map<Integer, Object> map = new LinkedHashMap<Integer, Object>(list.size());
 		for (Integer j : list){
@@ -79,8 +79,8 @@ public class HttpConcatUtilTest extends BaseHttpConcatTest{
 				//log.info(i);
 				HttpConcatParam httpConcatParam = getHttpConcatParamByI(null);
 				HttpConcatUtil.getWriteContent(httpConcatParam);
-//				httpConcatParam = null;
-//				System.gc();
+				//				httpConcatParam = null;
+				//				System.gc();
 			}
 			Date endDate = new Date();
 			map.put(j, DateExtensionUtil.getIntervalForView(beginDate, endDate));

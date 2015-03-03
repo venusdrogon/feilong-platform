@@ -342,8 +342,8 @@ public class IdCardUtil{
 	 */
 	public static boolean is15IdCard(String idCard){
 		return idCard == null || "".equals(idCard) ? false : Pattern.matches(
-				"^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$",
-				idCard);
+						"^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$",
+						idCard);
 	}
 
 	/**

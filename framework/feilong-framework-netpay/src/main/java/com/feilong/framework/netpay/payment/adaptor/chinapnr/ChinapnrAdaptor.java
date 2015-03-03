@@ -56,6 +56,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
 	 */
 	@Override
@@ -93,7 +94,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 		String DivDetails = "";
 		String PayUsrId = "";
 		String MerData = Version + CmdId + MerId + OrdId + OrdAmt + CurCode + Pid + RetUrl + MerPriv + GateId + UsrMp + DivDetails
-				+ PayUsrId + BgRetUrl;
+						+ PayUsrId + BgRetUrl;
 
 		SecureLink secureLink = new SecureLink();
 		int ret = secureLink.SignMsg(MerId, merKeyFile, MerData);
@@ -127,6 +128,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#getFeedbackSoCode(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -136,6 +138,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -145,6 +148,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -154,6 +158,7 @@ public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.jumbo.brandstore.payment.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
 	 */
 	@Override

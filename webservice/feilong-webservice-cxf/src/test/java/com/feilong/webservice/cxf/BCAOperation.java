@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package com.feilong.webservice.cxf;
+
 import javax.jws.WebService;
 
 /*
@@ -57,9 +58,9 @@ public interface BCAOperation{
 	 * @return the string
 	 */
 	public String transactionQuery(
-			String merchantTransactionID,
-			String serviceVersion,
-			String siteID,
-			String transactionID,
-			String transactionType);
+					String merchantTransactionID,
+					String serviceVersion,
+					String siteID,
+					String transactionID,
+					String transactionType);
 }

@@ -131,7 +131,8 @@ public class SFTPUtilTest extends FileTransferTest{
 	 * @see com.feilong.tools.net.FileTransferTest#sendLocalFileToRemote_dir_chinese()
 	 */
 	@Override
-	public void sendLocalFileToRemote_dir_chinese() throws Exception{}
+	public void sendLocalFileToRemote_dir_chinese() throws Exception{
+	}
 
 	@Override
 	@Test

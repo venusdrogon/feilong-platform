@@ -18,7 +18,7 @@ package com.feilong.application.taobao.entity;
 import java.io.Serializable;
 
 /**
- *淘宝退出登录(基于淘宝开放平台技术标准登录验证授权)
+ * 淘宝退出登录(基于淘宝开放平台技术标准登录验证授权)
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-10-17 14:24

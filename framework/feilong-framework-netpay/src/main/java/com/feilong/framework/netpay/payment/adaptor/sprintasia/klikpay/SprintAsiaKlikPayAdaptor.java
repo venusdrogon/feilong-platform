@@ -108,10 +108,10 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 		int callbackUrlLength = callbackUrl.length();
 		if (callbackUrlLength > callbackUrlMaxLength){
 			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-					"callbackUrl:[{}] ,length:[{}] can't >{}",
-					callbackUrl,
-					callbackUrlLength,
-					callbackUrlMaxLength));
+							"callbackUrl:[{}] ,length:[{}] can't >{}",
+							callbackUrl,
+							callbackUrlLength,
+							callbackUrlMaxLength));
 		}
 
 		// *******************************************************
@@ -119,17 +119,17 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 		String regexPattern_transactionNo = "^[0-9a-zA-Z]{1,18}+$";
 		if (!RegexUtil.matches(regexPattern_transactionNo, transactionNo)){
 			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-					"transactionNo:[{}] ,don't match:[{}]",
-					transactionNo,
-					regexPattern_transactionNo));
+							"transactionNo:[{}] ,don't match:[{}]",
+							transactionNo,
+							regexPattern_transactionNo));
 		}
 
 		// **************************验证时间************************************************
 		Date createDate = payRequest.getCreateDate();
 		if (Validator.isNullOrEmpty(createDate)){
 			throw new IllegalArgumentException(Slf4jUtil.formatMessage(
-					"transactionNo:[{}],payRequest's createDate can't be null/empty!",
-					transactionNo));
+							"transactionNo:[{}],payRequest's createDate can't be null/empty!",
+							transactionNo));
 		}
 
 		Date transactionDate = createDate;
@@ -271,11 +271,11 @@ public class SprintAsiaKlikPayAdaptor extends AbstractPaymentAdaptor{
 
 		String keyId = KlikPayUtil.getKeyId(clearkey);
 		String ourAuthKey = KlikPayUtil.getAuthKey(
-				klikPayCode,
-				DateUtil.string2Date(transactionDate, DatePattern.ddMMyyyyHHmmss),
-				transactionNo,
-				currency,
-				keyId);
+						klikPayCode,
+						DateUtil.string2Date(transactionDate, DatePattern.ddMMyyyyHHmmss),
+						transactionNo,
+						currency,
+						keyId);
 
 		// 如果 参数中的加密值 和我们算出来的不相等, 那么失败
 		if (!ourAuthKey.equals(authKey)){

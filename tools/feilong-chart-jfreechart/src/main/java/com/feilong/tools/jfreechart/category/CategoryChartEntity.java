@@ -52,7 +52,8 @@ public class CategoryChartEntity extends BaseChartEntity{
 	/**
 	 * Instantiates a new category chart entity.
 	 */
-	public CategoryChartEntity(){}
+	public CategoryChartEntity(){
+	}
 
 	/**
 	 * Gets the category axis label.

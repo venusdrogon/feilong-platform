@@ -22,4 +22,5 @@ package com.feilong.framework.bind.parse.varcommand;
  * @version 1.0.6 2014年5月8日 上午11:19:15
  * @since 1.0.6
  */
-public interface VarCommand{}
+public interface VarCommand{
+}

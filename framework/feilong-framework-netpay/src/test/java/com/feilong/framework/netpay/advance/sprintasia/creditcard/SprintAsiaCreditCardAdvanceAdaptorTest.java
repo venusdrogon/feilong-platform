@@ -35,7 +35,7 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
 public class SprintAsiaCreditCardAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
 
 	/** The Constant log. */
-	@SuppressWarnings({ "unused"  })
+	@SuppressWarnings({ "unused" })
 	private static final Logger		log	= LoggerFactory.getLogger(SprintAsiaCreditCardAdvanceAdaptorTest.class);
 
 	/** The payment adaptor. */

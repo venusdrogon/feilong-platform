@@ -15,7 +15,8 @@ import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.runtime.parser.node.ASTBlock;
 import org.apache.velocity.runtime.parser.node.Node;
 
-@SuppressWarnings("all")public class TruncateBlockDirective extends Directive{
+@SuppressWarnings("all")
+public class TruncateBlockDirective extends Directive{
 
 	private Log		log;
 
@@ -49,7 +50,7 @@ import org.apache.velocity.runtime.parser.node.Node;
 
 	@Override
 	public boolean render(InternalContextAdapter context,Writer writer,Node node) throws IOException,ResourceNotFoundException,
-			ParseErrorException,MethodInvocationException{
+					ParseErrorException,MethodInvocationException{
 
 		log.debug("truncateBlock directive render() call");
 

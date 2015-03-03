@@ -18,7 +18,7 @@
 package com.feilong.tools.middleware.mobile;
 
 /**
- *网络标准
+ * 网络标准
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-4 下午01:35:38

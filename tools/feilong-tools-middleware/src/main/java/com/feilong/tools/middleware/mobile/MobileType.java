@@ -1,6 +1,5 @@
 package com.feilong.tools.middleware.mobile;
 
-
 /**
  * 手机
  * 
@@ -113,10 +112,10 @@ public enum MobileType{
 
 	//*************************************************************************************************************
 	// 号码段
-	private String						numberSegment;
+	private String					numberSegment;
 
 	// 运营商
-	private MobileOperatorType	mobileOperatorType;
+	private MobileOperatorType		mobileOperatorType;
 
 	// 第几代通讯技术 3rd-generation
 	private MobileGenerationType	mobileGenerationType;
@@ -124,7 +123,7 @@ public enum MobileType{
 	/**
 	 * 网络标准
 	 */
-	private NetworkStandardType	networkStandardType;
+	private NetworkStandardType		networkStandardType;
 
 	//*************************************************************************************************************
 	/**
@@ -156,8 +155,8 @@ public enum MobileType{
 	 * @param networkStandard
 	 *            网络标准
 	 */
-	private MobileType(String numberSegment, MobileOperatorType mobileOperatorType,
-			MobileGenerationType mobileGenerationType, NetworkStandardType networkStandardType){
+	private MobileType(String numberSegment, MobileOperatorType mobileOperatorType, MobileGenerationType mobileGenerationType,
+					NetworkStandardType networkStandardType){
 		this.numberSegment = numberSegment;
 		this.mobileOperatorType = mobileOperatorType;
 		this.mobileGenerationType = mobileGenerationType;

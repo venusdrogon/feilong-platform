@@ -218,7 +218,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	 *             if null==solrQuery
 	 */
 	SolrData<T> findByQuery(SolrQuery solrQuery,Integer pageNumber,int rows,Sort[] sorts,FacetParamsCommand facetParamCommand)
-			throws NullPointerException;
+					throws NullPointerException;
 
 	// **************************************待重新封装(可调用)***********************************************************
 	/**
@@ -243,7 +243,7 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	@Deprecated
 	//TODO
 	Map<String, Integer> findFacetQueryMap(SolrQuery solrQuery,String[] facetQuerys,Integer facetQueryMinCount)
-			throws NullPointerException,SolrException;
+					throws NullPointerException,SolrException;
 
 	// **************************************待重新封装***********************************************************
 	/**
@@ -275,10 +275,10 @@ public interface BaseSolrRepository<T, PK extends Serializable> {
 	@Deprecated
 	//TODO
 	SolrGroupData<T> findByQueryWithGroup(
-			SolrQuery solrQuery,
-			Integer pageNumber,
-			int rows,
-			Sort[] sorts,
-			String[] facetFields,
-			GroupParamsCommand groupParamCommand) throws SolrException,NullPointerException;
+					SolrQuery solrQuery,
+					Integer pageNumber,
+					int rows,
+					Sort[] sorts,
+					String[] facetFields,
+					GroupParamsCommand groupParamCommand) throws SolrException,NullPointerException;
 }

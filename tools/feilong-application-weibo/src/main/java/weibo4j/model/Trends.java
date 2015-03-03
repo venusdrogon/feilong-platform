@@ -45,19 +45,23 @@ import weibo4j.http.Response;
  * @author Yusuke Yamamoto - yusuke at mac.com
  * @since weibo4j-V2 1.0.1
  */
-@SuppressWarnings("all")public class Trends extends WeiboResponse implements Comparable<Trends> {
-	private Date asOf; // asof
-	private Date trendAt; // 话题时间
-	private Trend[] trends; // 话题对象
-	private static final long serialVersionUID = -7151479143843312309L;
+@SuppressWarnings("all")
+public class Trends extends WeiboResponse implements Comparable<Trends>{
+
+	private Date				asOf;											// asof
+
+	private Date				trendAt;										// 话题时间
+
+	private Trend[]				trends;										// 话题对象
+
+	private static final long	serialVersionUID	= -7151479143843312309L;
 
 	@Override
-	public int compareTo(Trends that) {
+	public int compareTo(Trends that){
 		return this.trendAt.compareTo(that.trendAt);
 	}
 
-	/* package */Trends(Response res, Date asOf, Date trendAt, Trend[] trends)
-			throws WeiboException {
+	/* package */Trends(Response res, Date asOf, Date trendAt, Trend[] trends) throws WeiboException{
 		super(res);
 		this.asOf = asOf;
 		this.trendAt = trendAt;
@@ -65,90 +69,82 @@ import weibo4j.http.Response;
 	}
 
 	/* package */
-	public static List<Trends> constructTrendsList(Response res)
-			throws WeiboException {
+	public static List<Trends> constructTrendsList(Response res) throws WeiboException{
 		JSONObject json = res.asJSONObject();
 		List<Trends> trends;
-		try {
+		try{
 			Date asOf = parseDate(json.getString("as_of"));
 			JSONObject trendsJson = json.getJSONObject("trends");
 			trends = new ArrayList<Trends>(trendsJson.length());
 			Iterator ite = trendsJson.keys();
-			while (ite.hasNext()) {
+			while (ite.hasNext()){
 				String key = (String) ite.next();
 				JSONArray array = trendsJson.getJSONArray(key);
 				Trend[] trendsArray = jsonArrayToTrendArray(array);
-				if (key.length() == 19) {
+				if (key.length() == 19){
 					// current trends
-					trends.add(new Trends(res, asOf, parseDate(key,
-							"yyyy-MM-dd HH:mm:ss"), trendsArray));
-				} else if (key.length() == 16) {
+					trends.add(new Trends(res, asOf, parseDate(key, "yyyy-MM-dd HH:mm:ss"), trendsArray));
+				}else if (key.length() == 16){
 					// daily trends
-					trends.add(new Trends(res, asOf, parseDate(key,
-							"yyyy-MM-dd HH:mm"), trendsArray));
-				} else if (key.length() == 10) {
+					trends.add(new Trends(res, asOf, parseDate(key, "yyyy-MM-dd HH:mm"), trendsArray));
+				}else if (key.length() == 10){
 					// weekly trends
-					trends.add(new Trends(res, asOf, parseDate(key,
-							"yyyy-MM-dd"), trendsArray));
+					trends.add(new Trends(res, asOf, parseDate(key, "yyyy-MM-dd"), trendsArray));
 				}
 			}
 			Collections.sort(trends);
 			return trends;
-		} catch (JSONException jsone) {
-			throw new WeiboException(jsone.getMessage() + ":" + res.asString(),
-					jsone);
+		}catch (JSONException jsone){
+			throw new WeiboException(jsone.getMessage() + ":" + res.asString(), jsone);
 		}
 	}
 
 	/* package */
-	static Trends constructTrends(Response res) throws WeiboException {
+	static Trends constructTrends(Response res) throws WeiboException{
 		JSONObject json = res.asJSONObject();
-		try {
+		try{
 			Date asOf = parseDate(json.getString("as_of"));
 			JSONArray array = json.getJSONArray("trends");
 			Trend[] trendsArray = jsonArrayToTrendArray(array);
 			return new Trends(res, asOf, asOf, trendsArray);
-		} catch (JSONException jsone) {
-			throw new WeiboException(jsone.getMessage() + ":" + res.asString(),
-					jsone);
+		}catch (JSONException jsone){
+			throw new WeiboException(jsone.getMessage() + ":" + res.asString(), jsone);
 		}
 	}
 
-	private static Date parseDate(String asOfStr) throws WeiboException {
+	private static Date parseDate(String asOfStr) throws WeiboException{
 		Date parsed;
-		if (asOfStr.length() == 10) {
+		if (asOfStr.length() == 10){
 			parsed = new Date(Long.parseLong(asOfStr) * 1000);
-		} else {
-			parsed = WeiboResponse.parseDate(asOfStr,
-					"EEE, d MMM yyyy HH:mm:ss z");
+		}else{
+			parsed = WeiboResponse.parseDate(asOfStr, "EEE, d MMM yyyy HH:mm:ss z");
 		}
 		return parsed;
 	}
 
-	private static Trend[] jsonArrayToTrendArray(JSONArray array)
-			throws JSONException {
+	private static Trend[] jsonArrayToTrendArray(JSONArray array) throws JSONException{
 		Trend[] trends = new Trend[array.length()];
-		for (int i = 0; i < array.length(); i++) {
+		for (int i = 0; i < array.length(); i++){
 			JSONObject trend = array.getJSONObject(i);
 			trends[i] = new Trend(trend);
 		}
 		return trends;
 	}
 
-	public Trend[] getTrends() {
+	public Trend[] getTrends(){
 		return this.trends;
 	}
 
-	public Date getAsOf() {
+	public Date getAsOf(){
 		return asOf;
 	}
 
-	public Date getTrendAt() {
+	public Date getTrendAt(){
 		return trendAt;
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(Object o){
 		if (this == o)
 			return true;
 		if (!(o instanceof Trends))
@@ -158,8 +154,7 @@ import weibo4j.http.Response;
 
 		if (asOf != null ? !asOf.equals(trends1.asOf) : trends1.asOf != null)
 			return false;
-		if (trendAt != null ? !trendAt.equals(trends1.trendAt)
-				: trends1.trendAt != null)
+		if (trendAt != null ? !trendAt.equals(trends1.trendAt) : trends1.trendAt != null)
 			return false;
 		if (!Arrays.equals(trends, trends1.trends))
 			return false;
@@ -168,7 +163,7 @@ import weibo4j.http.Response;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode(){
 		int result = asOf != null ? asOf.hashCode() : 0;
 		result = 31 * result + (trendAt != null ? trendAt.hashCode() : 0);
 		result = 31 * result + (trends != null ? Arrays.hashCode(trends) : 0);
@@ -176,9 +171,7 @@ import weibo4j.http.Response;
 	}
 
 	@Override
-	public String toString() {
-		return "Trends{" + "asOf=" + asOf + ", trendAt=" + trendAt
-				+ ", trends=" + (trends == null ? null : Arrays.asList(trends))
-				+ '}';
+	public String toString(){
+		return "Trends{" + "asOf=" + asOf + ", trendAt=" + trendAt + ", trends=" + (trends == null ? null : Arrays.asList(trends)) + '}';
 	}
 }

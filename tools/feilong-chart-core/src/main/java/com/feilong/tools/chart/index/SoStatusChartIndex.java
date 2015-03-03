@@ -71,7 +71,7 @@ public class SoStatusChartIndex{
 	 * @param storeCancelCount
 	 */
 	public SoStatusChartIndex(String dimension, Integer createCount, Integer paymentCount, Integer personalCancelCount,
-			Integer storeCancelCount){
+					Integer storeCancelCount){
 		super();
 		this.dimension = dimension;
 		this.createCount = createCount;

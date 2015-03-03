@@ -72,7 +72,7 @@ public class MultiUriTemplateUtil{
 
 		UrlPathHelper urlPathHelper = new UrlPathHelper();
 		return urlPathHelper.getOriginatingContextPath(request) + expandUrl
-				+ (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
+						+ (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
 	}
 
 	/**
@@ -109,11 +109,11 @@ public class MultiUriTemplateUtil{
 	 *         参数部分 需要自己添加
 	 */
 	public static String expandWithMultiVariable(
-			String requestPath,
-			String matchingPatternPath,
-			String variableName,
-			String value,
-			String valueSeparator){
+					String requestPath,
+					String matchingPatternPath,
+					String variableName,
+					String value,
+					String valueSeparator){
 		Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
 		return expandWithMultiVariable(matchingPatternPath, map, variableName, value, valueSeparator);
 	}
@@ -150,11 +150,11 @@ public class MultiUriTemplateUtil{
 	 * @return the string
 	 */
 	public static String expandWithMultiVariable(
-			String matchingPatternPath,
-			Map<String, String> map,
-			String variableName,
-			String value,
-			String valueSeparator){
+					String matchingPatternPath,
+					Map<String, String> map,
+					String variableName,
+					String value,
+					String valueSeparator){
 		if (Validator.isNullOrEmpty(map)){
 			map = new HashMap<String, String>();
 		}
@@ -211,11 +211,11 @@ public class MultiUriTemplateUtil{
 	 *         </ul>
 	 */
 	public static String removeMultiVariableValue(
-			String requestPath,
-			String matchingPatternPath,
-			String variableName,
-			String value,
-			String valueSeparator){
+					String requestPath,
+					String matchingPatternPath,
+					String variableName,
+					String value,
+					String valueSeparator){
 		Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
 
 		String oldValue = map.get(variableName);

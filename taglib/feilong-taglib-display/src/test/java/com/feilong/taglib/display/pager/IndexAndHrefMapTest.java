@@ -57,7 +57,7 @@ public class IndexAndHrefMapTest extends BasePagerTest{
 	 */
 	@Test
 	public void getAllIndexAndHrefMap() throws IllegalArgumentException,IllegalAccessException,InvocationTargetException,SecurityException,
-			NoSuchMethodException{
+					NoSuchMethodException{
 
 		int z = 80000;
 

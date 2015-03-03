@@ -168,7 +168,7 @@ public final class Concat extends AbstractDirective{
 	 */
 	@Override
 	public boolean doRender(InternalContextAdapter internalContextAdapter,Writer writer,Node node) throws IOException,
-			ResourceNotFoundException,ParseErrorException,MethodInvocationException{
+					ResourceNotFoundException,ParseErrorException,MethodInvocationException{
 
 		HttpConcatParam httpConcatParam = getHttpConcatParam(internalContextAdapter, node);
 		if (null == httpConcatParam){

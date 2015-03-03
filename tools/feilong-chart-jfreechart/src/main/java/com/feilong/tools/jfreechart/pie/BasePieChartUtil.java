@@ -35,7 +35,8 @@ import com.feilong.tools.jfreechart.ChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 3 02:13:44
  */
-@SuppressWarnings("all")public abstract class BasePieChartUtil extends ChartUtil{
+@SuppressWarnings("all")
+public abstract class BasePieChartUtil extends ChartUtil{
 
 	/** The Constant log. */
 	@SuppressWarnings("unused")
@@ -91,7 +92,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
 		// plot.setBaseSectionPaint(Color.BLACK);
 		// 图片中显示百分比:自定义方式，{0} 表示选项， {1} 表示数值， {2} 表示所占比例 ,小数点后两位
 		piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})", NumberFormat.getNumberInstance(), new DecimalFormat(
-				"0.00%")));
+						"0.00%")));
 		// 图例显示百分比:自定义方式， {0} 表示选项， {1} 表示数值， {2} 表示所占比例
 		piePlot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})"));
 		// 指定显示的饼图上圆形(false)还椭圆形(true)

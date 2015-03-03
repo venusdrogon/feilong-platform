@@ -15,7 +15,6 @@
  */
 package com.jumbo.shop.manager.test;
 
-
 /**
  * The Interface CreateManager.
  * 

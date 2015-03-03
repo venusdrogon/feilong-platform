@@ -75,7 +75,7 @@ public final class ExcelCreateUtil{
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public void createExcel(String[] columnsTitle,List<?> dataList,ExcelConfigEntity excelConfigEntity,OutputStream outputStream)
-			throws IOException{
+					throws IOException{
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet();

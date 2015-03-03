@@ -51,15 +51,15 @@ public final class StackedBarChartUtil extends CategoryChartUtil{
 	 */
 	public StackedBarChartUtil(CategoryChartEntity categoryChartEntity){
 		super(ChartFactory.createStackedBarChart(//
-				categoryChartEntity.getChartTitle(), // 图表标题
-				categoryChartEntity.getCategoryAxisLabel(), // 目录轴的显示标签
-				categoryChartEntity.getValueAxisLabel(),// 数值轴的显示标签
-				ChartDatesetUtil.getCategoryDataset(categoryChartEntity), // 数据集
-				categoryChartEntity.getPlotOrientation(), // 图表方向，垂直（竖向）horizontal平行的
-				categoryChartEntity.isShowLegend(),// 是否显示图例(对于简单的柱状图必须是false) 是否显示legend，即下面说明
-				categoryChartEntity.isTooltips(),// 
-				categoryChartEntity.isUrls()// 是否生成URL链接
-				));
+						categoryChartEntity.getChartTitle(), // 图表标题
+						categoryChartEntity.getCategoryAxisLabel(), // 目录轴的显示标签
+						categoryChartEntity.getValueAxisLabel(),// 数值轴的显示标签
+						ChartDatesetUtil.getCategoryDataset(categoryChartEntity), // 数据集
+						categoryChartEntity.getPlotOrientation(), // 图表方向，垂直（竖向）horizontal平行的
+						categoryChartEntity.isShowLegend(),// 是否显示图例(对于简单的柱状图必须是false) 是否显示legend，即下面说明
+						categoryChartEntity.isTooltips(),// 
+						categoryChartEntity.isUrls()// 是否生成URL链接
+						));
 	}
 
 	/*

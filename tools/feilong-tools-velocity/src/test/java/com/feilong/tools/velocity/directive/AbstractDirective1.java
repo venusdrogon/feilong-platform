@@ -36,12 +36,13 @@ public abstract class AbstractDirective1 extends Directive{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.apache.velocity.runtime.directive.Directive#render(org.apache.velocity.context.InternalContextAdapter, java.io.Writer,
 	 * org.apache.velocity.runtime.parser.node.Node)
 	 */
 	@Override
 	public boolean render(InternalContextAdapter internalContext,Writer writer,Node node) throws IOException,ResourceNotFoundException,
-			ParseErrorException,MethodInvocationException{
+					ParseErrorException,MethodInvocationException{
 
 		// 问题我自己解决，解决方式如下：
 		// 通过查看代码，发现指令的render方法中有个context参数，有一个方法：getInternalUserContext可以获取一个ViewToolContext对象，而这个对象在velocity的servlet中被初始化了，将request对象和response对象放在这个对象里。也就是说，获取这个ViewToolContext，就可以获取我想要的东西。
@@ -96,5 +97,5 @@ public abstract class AbstractDirective1 extends Directive{
 	 *             the method invocation exception
 	 */
 	protected abstract boolean doRender(InternalContextAdapter internalContext,ViewToolContext context,Writer writer,Node node)
-			throws IOException,ResourceNotFoundException,ParseErrorException,MethodInvocationException;
+					throws IOException,ResourceNotFoundException,ParseErrorException,MethodInvocationException;
 }

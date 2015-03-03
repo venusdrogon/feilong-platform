@@ -54,7 +54,8 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.tools.jfreechart.ChartInfoEntity;
 import com.feilong.tools.jfreechart.ChartUtil;
 
-@SuppressWarnings("all")public class FreeChart{
+@SuppressWarnings("all")
+public class FreeChart{
 
 	private static final Logger					log								= LoggerFactory.getLogger(FreeChart.class);
 
@@ -208,8 +209,8 @@ import com.feilong.tools.jfreechart.ChartUtil;
 						vTimeSeries.add(new Hour(vItemDate.getHours(), vDay), Double.parseDouble(strElementArray[nIndex]));
 					}else{
 						vTimeSeries.add(
-								new Day(vItemDate.getDate(), 1 + vItemDate.getMonth(), 1900 + vItemDate.getYear()),
-								Double.parseDouble(strElementArray[nIndex]));
+										new Day(vItemDate.getDate(), 1 + vItemDate.getMonth(), 1900 + vItemDate.getYear()),
+										Double.parseDouble(strElementArray[nIndex]));
 					}
 				}catch (Exception e){
 					log.info(e.getMessage());
@@ -326,16 +327,16 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 2:
 				vFreeChart = ChartFactory.createPieChart(
-						strFreeChartInfo,
-						this.getPieDataset(),
-						this.getPieDataset(),
-						0,
-						false,
-						true,
-						false,
-						false,
-						false,
-						false);
+								strFreeChartInfo,
+								this.getPieDataset(),
+								this.getPieDataset(),
+								0,
+								false,
+								true,
+								false,
+								false,
+								false,
+								false);
 				try{
 					vPiePlot = (PiePlot) vFreeChart.getPlot();
 					if (vPiePlot != null){
@@ -360,12 +361,12 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 3:
 				vFreeChart = ChartFactory.createMultiplePieChart(
-						strFreeChartInfo,
-						this.getCategoryDataset(),
-						TableOrder.BY_ROW,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								this.getCategoryDataset(),
+								TableOrder.BY_ROW,
+								true,
+								false,
+								false);
 				try{
 					vMultiplePiePlot = (MultiplePiePlot) vFreeChart.getPlot();
 					if (vMultiplePiePlot != null){
@@ -413,12 +414,12 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 5:
 				vFreeChart = ChartFactory.createMultiplePieChart3D(
-						strFreeChartInfo,
-						this.getCategoryDataset(),
-						TableOrder.BY_ROW,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								this.getCategoryDataset(),
+								TableOrder.BY_ROW,
+								true,
+								false,
+								false);
 				try{
 					vMultiplePiePlot = (MultiplePiePlot) vFreeChart.getPlot();
 					if (vMultiplePiePlot != null){
@@ -444,14 +445,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 6:
 				vFreeChart = ChartFactory.createBarChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -478,14 +479,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 7:
 				vFreeChart = ChartFactory.createStackedBarChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -496,9 +497,9 @@ import com.feilong.tools.jfreechart.ChartUtil;
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vStackedBarRenderer.setSeriesPaint(iIndex, new Color(
-											0,
-											0 + iIndex * (255 / strCategoryArray.length),
-											255));
+													0,
+													0 + iIndex * (255 / strCategoryArray.length),
+													255));
 									vStackedBarRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -514,14 +515,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 8:
 				vFreeChart = ChartFactory.createBarChart3D(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -548,14 +549,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 9:
 				vFreeChart = ChartFactory.createStackedBarChart3D(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -566,9 +567,9 @@ import com.feilong.tools.jfreechart.ChartUtil;
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vStackedBarRenderer3D.setSeriesPaint(iIndex, new Color(
-											0,
-											0 + iIndex * (255 / strCategoryArray.length),
-											255));
+													0,
+													0 + iIndex * (255 / strCategoryArray.length),
+													255));
 									vStackedBarRenderer3D.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -584,14 +585,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 10:
 				vFreeChart = ChartFactory.createAreaChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getDefaultCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getDefaultCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -602,7 +603,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
 							if (strItemArray.length > 0){
 								for (int iIndex = 0; iIndex < strItemArray.length; iIndex++){
 									vStackedAreaRenderer
-											.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
+													.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strItemArray.length), 255));
 									vStackedAreaRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -620,14 +621,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 11:
 				vFreeChart = ChartFactory.createStackedAreaChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -638,9 +639,9 @@ import com.feilong.tools.jfreechart.ChartUtil;
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vStackedAreaRenderer.setSeriesPaint(iIndex, new Color(
-											0,
-											0 + iIndex * (255 / strCategoryArray.length),
-											255));
+													0,
+													0 + iIndex * (255 / strCategoryArray.length),
+													255));
 									vStackedAreaRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -656,14 +657,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 12:
 				vFreeChart = ChartFactory.createLineChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -674,9 +675,9 @@ import com.feilong.tools.jfreechart.ChartUtil;
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vLineAndShapeRenderer.setSeriesPaint(iIndex, new Color(
-											0,
-											0 + iIndex * (255 / strCategoryArray.length),
-											255));
+													0,
+													0 + iIndex * (255 / strCategoryArray.length),
+													255));
 									vLineAndShapeRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -692,14 +693,14 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 13:
 				vFreeChart = ChartFactory.createLineChart3D(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -711,9 +712,9 @@ import com.feilong.tools.jfreechart.ChartUtil;
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vLineRenderer3D.setSeriesPaint(iIndex, new Color(0, 0 + iIndex * (255 / strCategoryArray.length), 255));
 									vLineRenderer3D.setSeriesFillPaint(iIndex, new Color(
-											0,
-											0 + iIndex * (255 / strCategoryArray.length),
-											255));
+													0,
+													0 + iIndex * (255 / strCategoryArray.length),
+													255));
 									vLineRenderer3D.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -729,24 +730,24 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 14:
 				vFreeChart = ChartFactory.createGanttChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getIntervalCategoryDataset(),
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getIntervalCategoryDataset(),
+								true,
+								false,
+								false);
 				break;
 			case 15:
 				vFreeChart = ChartFactory.createWaterfallChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getCategoryDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getCategoryDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vCategoryPlot = vFreeChart.getCategoryPlot();
 					if (vCategoryPlot != null){
@@ -757,11 +758,11 @@ import com.feilong.tools.jfreechart.ChartUtil;
 							if (strCategoryArray.length > 0){
 								for (int iIndex = 0; iIndex < strCategoryArray.length; iIndex++){
 									vWaterfallBarRenderer.setSeriesPaint(iIndex, new Color(
-											0,
-											0 + iIndex * (255 / strCategoryArray.length),
-											255));
+													0,
+													0 + iIndex * (255 / strCategoryArray.length),
+													255));
 									vWaterfallBarRenderer.setSeriesFillPaint(iIndex, new Color(0, 0 + iIndex
-											* (255 / strCategoryArray.length), 255));
+													* (255 / strCategoryArray.length), 255));
 									vWaterfallBarRenderer.setSeriesOutlinePaint(0, Color.BLACK);
 								}
 							}
@@ -782,59 +783,59 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 17:
 				vFreeChart = ChartFactory.createScatterPlot(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 18:
 				vFreeChart = ChartFactory.createXYBarChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						false,
-						strFreeChartYInfo,
-						this.getIntervalXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								false,
+								strFreeChartYInfo,
+								this.getIntervalXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 19:
 				vFreeChart = ChartFactory.createXYAreaChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 20:
 				vFreeChart = ChartFactory.createStackedXYAreaChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getTableXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getTableXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 21:
 				vFreeChart = ChartFactory.createXYLineChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				try{
 					vXYPlot = vFreeChart.getXYPlot();
 					if (vXYPlot != null){
@@ -862,35 +863,35 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 22:
 				vFreeChart = ChartFactory.createXYStepChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 23:
 				vFreeChart = ChartFactory.createXYStepAreaChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 24:
 				vFreeChart = ChartFactory.createTimeSeriesChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYDataset(),
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYDataset(),
+								true,
+								false,
+								false);
 				try{
 					vXYPlot = vFreeChart.getXYPlot();
 					if (vXYPlot != null){
@@ -926,27 +927,27 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 25:
 				vFreeChart = ChartFactory.createCandlestickChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getOHLCDataset(),
-						true);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getOHLCDataset(),
+								true);
 				break;
 			case 26:
 				vFreeChart = ChartFactory.createHighLowChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getOHLCDataset(),
-						true);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getOHLCDataset(),
+								true);
 				break;
 			case 27:
 				vFreeChart = ChartFactory.createHighLowChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getOHLCDataset(),
-						true);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getOHLCDataset(),
+								true);
 				break;
 			case 28:
 				// vFreeChart = ChartFactory.createSignalChart(strFreeChartInfo, strFreeChartXInfo, strFreeChartYInfo,
@@ -954,52 +955,52 @@ import com.feilong.tools.jfreechart.ChartUtil;
 				break;
 			case 29:
 				vFreeChart = ChartFactory.createBubbleChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getXYZDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getXYZDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 30:
 				vFreeChart = ChartFactory.createHistogram(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getIntervalXYDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getIntervalXYDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			case 31:
 				vFreeChart = ChartFactory.createBoxAndWhiskerChart(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getBoxAndWhiskerXYDataset(),
-						true);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getBoxAndWhiskerXYDataset(),
+								true);
 				break;
 			case 32:
 				vFreeChart = ChartFactory.createWindPlot(
-						strFreeChartInfo,
-						strFreeChartXInfo,
-						strFreeChartYInfo,
-						this.getWindDataset(),
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								strFreeChartXInfo,
+								strFreeChartYInfo,
+								this.getWindDataset(),
+								true,
+								false,
+								false);
 				break;
 			case 33:
 				vFreeChart = ChartFactory.createWaferMapChart(
-						strFreeChartInfo,
-						this.getWaferMapDataset(),
-						PlotOrientation.VERTICAL,
-						true,
-						false,
-						false);
+								strFreeChartInfo,
+								this.getWaferMapDataset(),
+								PlotOrientation.VERTICAL,
+								true,
+								false,
+								false);
 				break;
 			default:
 				vFreeChart = ChartFactory.createPieChart(strFreeChartInfo, this.getPieDataset(), true, false, false);

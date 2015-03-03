@@ -56,12 +56,13 @@ public class IdCardEntity implements Serializable{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString(){
 		return "省份：" + province + ",城市:" + city + "区县:" + region + "年份:" + year + "月份:" + month + "" + "日期:" + day + "性别：" + gender
-				+ ",出生日期：" + birthday;
+						+ ",出生日期：" + birthday;
 	}
 
 	/**

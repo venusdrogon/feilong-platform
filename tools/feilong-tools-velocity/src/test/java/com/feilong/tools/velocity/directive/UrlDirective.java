@@ -24,7 +24,7 @@ public class UrlDirective extends AbstractDirective1{
 		String url = (String) sn.value(internalContext);
 
 		// get context path
-		String contextPath=null;
+		String contextPath = null;
 		//= context.getRequest().getContextPath();
 		if ("/".equals(contextPath)){
 			contextPath = "";

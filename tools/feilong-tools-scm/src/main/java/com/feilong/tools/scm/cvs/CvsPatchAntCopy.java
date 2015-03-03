@@ -60,7 +60,8 @@ public final class CvsPatchAntCopy extends AbstractScmAntCopy{
 	/**
 	 * Instantiates a new patch util.
 	 */
-	public CvsPatchAntCopy(){}
+	public CvsPatchAntCopy(){
+	}
 
 	/**
 	 * {@inheritDoc}

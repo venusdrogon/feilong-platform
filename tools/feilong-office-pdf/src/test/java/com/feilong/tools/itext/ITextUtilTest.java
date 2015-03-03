@@ -83,7 +83,7 @@ public class ITextUtilTest{
 		document.addHeader("aaaaa", "nbbbb");
 		// ③打开文档。
 		document.open();
-		
+
 		BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
 		Font font = new Font(bfChinese, 12, Font.NORMAL);
 		// ④向文档中添加内容。

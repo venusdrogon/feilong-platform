@@ -53,7 +53,7 @@ public final class SkuSalesOrderChartIndex{
 	 *            the store cancel count
 	 */
 	public SkuSalesOrderChartIndex(String skuCode, Integer totalInventoryCount, Integer createSalesOrderCount, Integer personalCancelCount,
-			Integer storeCancelCount){
+					Integer storeCancelCount){
 		super();
 		this.skuCode = skuCode;
 		this.createSalesOrderCount = createSalesOrderCount;

@@ -49,7 +49,8 @@ public class ImportForm extends ActionForm{
 	}
 
 	@Override
-	public void reset(ActionMapping mapping,HttpServletRequest request){}
+	public void reset(ActionMapping mapping,HttpServletRequest request){
+	}
 
 	/**
 	 * @return the formFile

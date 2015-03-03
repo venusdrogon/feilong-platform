@@ -30,7 +30,8 @@ import org.slf4j.LoggerFactory;
 public class MySecurityManagerImpl implements MySecurityManager{
 
 	/** The Constant log. */
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(MySecurityManagerImpl.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(MySecurityManagerImpl.class);
 
 	/**
 	 * 定义切入点,切入该方法只是一个标识（而且只作为标识并不是常态下的方法， 并不供人调用所以该方法返回值为void,最好设置为private）,该方法只是一个标识，就象配置文件的id<br>
@@ -62,15 +63,15 @@ public class MySecurityManagerImpl implements MySecurityManager{
 	@Override
 	public void security(JoinPoint joinPoint){
 		// 在来得到方法名吧，就是通知所要织入目标对象中的方法名称
-//		String method = joinPoint.getSignature().getName();
-//		log.info("methodName:{}", method);
-//		Object[] args = joinPoint.getArgs();
-//		log.info("begin log args......");
-//		for (Object o : args){
-//			log.info(o.toString());
-//		}
-//		log.info("end log args......");
-//		log.info("@Before -----调用security方法-------");
+		//		String method = joinPoint.getSignature().getName();
+		//		log.info("methodName:{}", method);
+		//		Object[] args = joinPoint.getArgs();
+		//		log.info("begin log args......");
+		//		for (Object o : args){
+		//			log.info(o.toString());
+		//		}
+		//		log.info("end log args......");
+		//		log.info("@Before -----调用security方法-------");
 	}
 
 	/**

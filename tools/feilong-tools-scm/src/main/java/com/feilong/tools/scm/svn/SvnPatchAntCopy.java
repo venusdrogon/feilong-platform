@@ -45,7 +45,8 @@ public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 	/**
 	 * The Constructor.
 	 */
-	public SvnPatchAntCopy(){}
+	public SvnPatchAntCopy(){
+	}
 
 	/**
 	 * To patch command list map.

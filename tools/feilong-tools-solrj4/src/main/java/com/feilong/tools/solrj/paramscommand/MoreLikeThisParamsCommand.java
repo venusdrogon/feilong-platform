@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
@@ -24,7 +24,7 @@ import org.apache.solr.common.params.MoreLikeThisParams;
  * 和MoreLikeThis 相关的参数
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0  2013-12-20 01:06
+ * @version 1.0 2013-12-20 01:06
  * @see MoreLikeThisParams
  */
 public class MoreLikeThisParamsCommand implements Serializable{

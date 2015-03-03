@@ -91,7 +91,7 @@ public class UriTemplateUtil{
 	public static Map<String, String> getUriTemplateVariables(HttpServletRequest request){
 		@SuppressWarnings("unchecked")
 		Map<String, String> uriTemplateVariables = (Map<String, String>) request
-				.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
+						.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 		return uriTemplateVariables;
 	}
 
@@ -131,7 +131,7 @@ public class UriTemplateUtil{
 		}
 		UrlPathHelper urlPathHelper = new UrlPathHelper();
 		return urlPathHelper.getOriginatingContextPath(request) + expandUrl
-				+ (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
+						+ (Validator.isNullOrEmpty(queryString) ? "?" + queryString : "");
 	}
 
 	/**

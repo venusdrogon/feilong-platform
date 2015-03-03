@@ -11,7 +11,8 @@ public class Pagination<T> implements Serializable{
 	 */
 	private static final long	serialVersionUID	= 520741651051423364L;
 
-	public Pagination(){}
+	public Pagination(){
+	}
 
 	public Pagination(List<T> items, long count){
 		this.items = items;

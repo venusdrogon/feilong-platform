@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
  * <p>
  * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
@@ -13,7 +13,6 @@
  * 	THIS SOFTWARE OR ITS DERIVATIVES.
  * </p>
  */
-
 
 package com.feilong.tools.solrj.paramscommand;
 

@@ -25,7 +25,8 @@ import org.slf4j.LoggerFactory;
  */
 public class Dom4jUtilTest{
 
-	@SuppressWarnings("unused")private static final Logger	log	= LoggerFactory.getLogger(Dom4jUtilTest.class);
+	@SuppressWarnings("unused")
+	private static final Logger	log	= LoggerFactory.getLogger(Dom4jUtilTest.class);
 
 	/**
 	 * Test method for {@link com.feilong.tools.dom4j.Dom4jUtil#getDocument(java.lang.String)}.

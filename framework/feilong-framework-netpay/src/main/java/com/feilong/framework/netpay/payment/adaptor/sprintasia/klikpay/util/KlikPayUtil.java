@@ -81,12 +81,12 @@ public class KlikPayUtil{
 	 * @return the sign
 	 */
 	public static String getSignature(
-			String klikPayCode,
-			Date transactionDate,
-			String transactionNo,
-			String totalAmount,
-			String currency,
-			String keyId){
+					String klikPayCode,
+					Date transactionDate,
+					String transactionNo,
+					String totalAmount,
+					String currency,
+					String keyId){
 		String firstValue = klikPayCode + transactionNo + currency + keyId;
 
 		String datePattern = "ddMMyyyy";

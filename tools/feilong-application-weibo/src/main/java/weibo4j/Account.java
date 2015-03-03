@@ -10,9 +10,10 @@ import weibo4j.model.School;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-@SuppressWarnings("all")public class Account extends Weibo{
+@SuppressWarnings("all")
+public class Account extends Weibo{
 
-	private static final long serialVersionUID = 3816005087976772682L;
+	private static final long	serialVersionUID	= 3816005087976772682L;
 
 	/**
 	 * OAuth授权之后，获取授权用户的UID
@@ -21,13 +22,11 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/account/get_uid">account/get_uid</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/account/get_uid">account/get_uid</a>
 	 * @since JDK 1.5
 	 */
-	public JSONObject getUid() throws WeiboException {
-		return client.get(
-				WeiboConfig.getValue("baseURL") + "account/get_uid.json").asJSONObject();
+	public JSONObject getUid() throws WeiboException{
+		return client.get(WeiboConfig.getValue("baseURL") + "account/get_uid.json").asJSONObject();
 	}
 
 	/**
@@ -38,14 +37,11 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/account/get_privacy">account/get_privacy</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/account/get_privacy">account/get_privacy</a>
 	 * @since JDK 1.5
 	 */
-	public JSONObject getAccountPrivacy() throws WeiboException {
-		return client.get(
-				WeiboConfig.getValue("baseURL") + "account/get_privacy.json")
-				.asJSONObject();
+	public JSONObject getAccountPrivacy() throws WeiboException{
+		return client.get(WeiboConfig.getValue("baseURL") + "account/get_privacy.json").asJSONObject();
 	}
 
 	/**
@@ -55,13 +51,11 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/account/profile/school_list">account/profile/school_list</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/account/profile/school_list">account/profile/school_list</a>
 	 * @since JDK 1.5
 	 */
-	public List<School> getAccountPrpfileSchoolList() throws WeiboException {
-		return School.constructSchool(client.get(WeiboConfig
-				.getValue("baseURL") + "account/profile/school_list.json"));
+	public List<School> getAccountPrpfileSchoolList() throws WeiboException{
+		return School.constructSchool(client.get(WeiboConfig.getValue("baseURL") + "account/profile/school_list.json"));
 	}
 
 	/**
@@ -73,24 +67,25 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/account/profile/school_list">account/profile/school_list</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/account/profile/school_list">account/profile/school_list</a>
 	 * @since JDK 1.5
 	 */
-	public List<School> getAccountPrpfileSchoolList(Integer province,
-			Integer city, Integer area, Integer type, String capital,
-			String keyword, Integer count) throws WeiboException {
-		return School.constructSchool(client.get(
-				WeiboConfig.getValue("baseURL")
-						+ "account/profile/school_list.json",
-				new PostParameter[] {
-						new PostParameter("province", province.toString()),
-						new PostParameter("city", city.toString()),
-						new PostParameter("area", area.toString()),
-						new PostParameter("type", type.toString()),
-						new PostParameter("capital", capital),
-						new PostParameter("keyword", keyword),
-						new PostParameter("count", count.toString()) }));
+	public List<School> getAccountPrpfileSchoolList(
+					Integer province,
+					Integer city,
+					Integer area,
+					Integer type,
+					String capital,
+					String keyword,
+					Integer count) throws WeiboException{
+		return School.constructSchool(client.get(WeiboConfig.getValue("baseURL") + "account/profile/school_list.json", new PostParameter[] {
+				new PostParameter("province", province.toString()),
+				new PostParameter("city", city.toString()),
+				new PostParameter("area", area.toString()),
+				new PostParameter("type", type.toString()),
+				new PostParameter("capital", capital),
+				new PostParameter("keyword", keyword),
+				new PostParameter("count", count.toString()) }));
 	}
 
 	/**
@@ -100,12 +95,10 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/account/rate_limit_status">account/rate_limit_status</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/account/rate_limit_status">account/rate_limit_status</a>
 	 * @since JDK 1.5
 	 */
-	public RateLimitStatus getAccountRateLimitStatus() throws WeiboException {
-		return new RateLimitStatus(client.get(WeiboConfig
-				.getValue("baseURL") + "account/rate_limit_status.json"));
+	public RateLimitStatus getAccountRateLimitStatus() throws WeiboException{
+		return new RateLimitStatus(client.get(WeiboConfig.getValue("baseURL") + "account/rate_limit_status.json"));
 	}
 }

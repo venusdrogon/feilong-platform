@@ -40,5 +40,6 @@ public class MailHeader{
 	/**
 	 * The Constructor.
 	 */
-	private MailHeader(){}
+	private MailHeader(){
+	}
 }

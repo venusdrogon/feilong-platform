@@ -240,12 +240,12 @@ public class CodeGenerator{
 
 		if (log.isDebugEnabled()){
 			log.debug(
-					"{}-->{},buyerId:[{}],sellerId:[{}],codeType:[{}]",
-					DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
-					result,
-					buyerId,
-					sellerId,
-					codeType);
+							"{}-->{},buyerId:[{}],sellerId:[{}],codeType:[{}]",
+							DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
+							result,
+							buyerId,
+							sellerId,
+							codeType);
 		}
 
 		return result;

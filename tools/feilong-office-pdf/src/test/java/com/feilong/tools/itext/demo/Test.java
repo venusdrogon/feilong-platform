@@ -12,22 +12,21 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
-package com.feilong.tools.itext.demo; 
+ */
+package com.feilong.tools.itext.demo;
 
-/** 
- * @author jcoder 
- 
- */ 
-public class Test { 
+/**
+ * @author jcoder
+ */
+public class Test{
 
-    /**
+	/**
 	 * The main method.
 	 * 
 	 * @param args
 	 *            the arguments
 	 */
-    public static void main(String[] args) { 
-        PDFWriter pdf = new MyWriter("E:/mine.pdf"); 
-    } 
-} 
+	public static void main(String[] args){
+		PDFWriter pdf = new MyWriter("E:/mine.pdf");
+	}
+}

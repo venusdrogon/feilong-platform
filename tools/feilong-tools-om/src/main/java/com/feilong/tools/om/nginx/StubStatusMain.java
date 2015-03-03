@@ -133,25 +133,25 @@ public class StubStatusMain{
 		String filePath = parseFilePath(path, crawlDate);
 
 		String logContent = StringUtil.format(
-				pattern_log,
-				stubStatusCommand.getActiveConnections(),
-				stubStatusCommand.getReading(),
-				stubStatusCommand.getWriting(),
-				stubStatusCommand.getWaiting());
+						pattern_log,
+						stubStatusCommand.getActiveConnections(),
+						stubStatusCommand.getReading(),
+						stubStatusCommand.getWriting(),
+						stubStatusCommand.getWaiting());
 
 		log.info(logContent);
 		// ****************************************************************
 		String writecontent = StringUtil.format(
-				pattern_write,
-				DateUtil.date2String(crawlDate, pattern_crawlDate),
-				stubStatusCommand.getActiveConnections(),
-				stubStatusCommand.getServerAccepts(),
-				stubStatusCommand.getServerHandled(),
-				stubStatusCommand.getServerRequests(),
-				stubStatusCommand.getReading(),
-				stubStatusCommand.getWriting(),
-				stubStatusCommand.getWaiting())
-				+ "\n";
+						pattern_write,
+						DateUtil.date2String(crawlDate, pattern_crawlDate),
+						stubStatusCommand.getActiveConnections(),
+						stubStatusCommand.getServerAccepts(),
+						stubStatusCommand.getServerHandled(),
+						stubStatusCommand.getServerRequests(),
+						stubStatusCommand.getReading(),
+						stubStatusCommand.getWriting(),
+						stubStatusCommand.getWaiting())
+						+ "\n";
 
 		IOWriteUtil.write(filePath, writecontent, encode, FileWriteMode.APPEND);
 

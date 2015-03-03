@@ -81,5 +81,6 @@ public class WaterMarkFilter extends HttpServlet implements Filter{
 	 * @see javax.servlet.GenericServlet#destroy()
 	 */
 	@Override
-	public void destroy(){}
+	public void destroy(){
+	}
 }

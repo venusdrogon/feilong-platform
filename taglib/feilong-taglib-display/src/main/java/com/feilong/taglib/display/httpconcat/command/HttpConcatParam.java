@@ -209,14 +209,14 @@ public final class HttpConcatParam implements Serializable{
 
 		HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(3, 5);
 		return hashCodeBuilder//
-				.append(this.domain)//
-				.append(this.httpConcatSupport)//
-				.append(this.root)//
-				.append(this.type)//
-				.append(this.version)//
-				.append(this.domain)//
-				.append(itemSrcArray)//
-				.toHashCode();
+						.append(this.domain)//
+						.append(this.httpConcatSupport)//
+						.append(this.root)//
+						.append(this.type)//
+						.append(this.version)//
+						.append(this.domain)//
+						.append(itemSrcArray)//
+						.toHashCode();
 	}
 
 	/*
@@ -255,13 +255,13 @@ public final class HttpConcatParam implements Serializable{
 		}
 
 		return equalsBuilder //
-				//.appendSuper(super.equals(obj))//
-				.append(this.domain, t.getDomain())//
-				.append(this.httpConcatSupport, t.getHttpConcatSupport())//
-				.append(this.root, t.getRoot())//
-				.append(this.type, t.getType())//
-				.append(this.version, t.getVersion())//
-				.append(itemSrcArray, itemSrcArray2)//
-				.isEquals();
+						//.appendSuper(super.equals(obj))//
+						.append(this.domain, t.getDomain())//
+						.append(this.httpConcatSupport, t.getHttpConcatSupport())//
+						.append(this.root, t.getRoot())//
+						.append(this.type, t.getType())//
+						.append(this.version, t.getVersion())//
+						.append(itemSrcArray, itemSrcArray2)//
+						.isEquals();
 	}
 }

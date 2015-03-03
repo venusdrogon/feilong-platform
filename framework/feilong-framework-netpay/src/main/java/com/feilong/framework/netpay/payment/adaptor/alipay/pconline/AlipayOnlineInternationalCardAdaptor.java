@@ -22,4 +22,5 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
  * @version 1.0.5 2014-5-6 20:38 change name
  * @see AlipayOnlineAdaptor
  */
-public class AlipayOnlineInternationalCardAdaptor extends AlipayOnlineAdaptor{}
+public class AlipayOnlineInternationalCardAdaptor extends AlipayOnlineAdaptor{
+}

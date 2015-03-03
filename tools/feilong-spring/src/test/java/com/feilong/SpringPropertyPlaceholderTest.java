@@ -37,10 +37,10 @@ public class SpringPropertyPlaceholderTest extends AbstractJUnit4SpringContextTe
 	/** The Constant log. */
 	private static final Logger	log	= LoggerFactory.getLogger(SpringPropertyPlaceholderTest.class);
 
-//	@Value("#{p_testProperties['name']}")
+	//	@Value("#{p_testProperties['name']}")
 	private String				name;
 
-//	@Value("#{p_testProperties['skills']}")
+	//	@Value("#{p_testProperties['skills']}")
 	private String				skills;
 
 	@Value("#{p_testProperties['skills']}")

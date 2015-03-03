@@ -67,7 +67,7 @@ public class ZookeeperUtil{
 			File[] files = file.listFiles();
 			for (int i = 0; i < files.length; i++){
 				if (!files[i].isDirectory() && files[i].getPath().endsWith(".properties")
-						&& !files[i].getPath().endsWith("init.properties")){
+								&& !files[i].getPath().endsWith("init.properties")){
 					log.info("File:" + files[i].getCanonicalPath());
 					properties.load(new FileInputStream(files[i]));
 				}
@@ -96,8 +96,7 @@ public class ZookeeperUtil{
 			for (Object objKey : properties.keySet()){
 				String key = objKey.toString();
 				log.info(key + "\t" + properties.getProperty(key));
-				zooKeeper
-						.create(zooPath + "/" + key, properties.get(key).toString().getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+				zooKeeper.create(zooPath + "/" + key, properties.get(key).toString().getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 			}
 
 		}catch (Exception e){

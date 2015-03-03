@@ -33,9 +33,9 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
 public class Pie3DChartUtilTest{
 
 	@SuppressWarnings("unused")
-	private static final Logger		log	= LoggerFactory.getLogger(Pie3DChartUtilTest.class);
+	private static final Logger	log	= LoggerFactory.getLogger(Pie3DChartUtilTest.class);
 
-	private ChartInfoEntity	chartInfoEntity;
+	private ChartInfoEntity		chartInfoEntity;
 
 	/**
 	 * 生成饼状图

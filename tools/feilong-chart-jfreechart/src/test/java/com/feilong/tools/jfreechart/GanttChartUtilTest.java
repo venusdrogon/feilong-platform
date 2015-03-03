@@ -16,7 +16,8 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartEntity;
 import com.feilong.tools.jfreechart.category.gantt.GanttChartUtil;
 
-@SuppressWarnings("all")public class GanttChartUtilTest{
+@SuppressWarnings("all")
+public class GanttChartUtilTest{
 
 	public static Task getTask(String description,String start,String end,String pattern){
 		Date startDate = DateUtil.string2Date(start, pattern);

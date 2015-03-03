@@ -42,6 +42,7 @@ public class PagerTagExtraInfo extends BaseTagTEL{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagExtraInfo#validate(javax.servlet.jsp.tagext.TagData)
 	 */
 	@Override
@@ -77,6 +78,7 @@ public class PagerTagExtraInfo extends BaseTagTEL{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagExtraInfo#getVariableInfo(javax.servlet.jsp.tagext.TagData)
 	 */
 	@Override
@@ -89,6 +91,7 @@ public class PagerTagExtraInfo extends BaseTagTEL{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagExtraInfo#isValid(javax.servlet.jsp.tagext.TagData)
 	 */
 	@Override

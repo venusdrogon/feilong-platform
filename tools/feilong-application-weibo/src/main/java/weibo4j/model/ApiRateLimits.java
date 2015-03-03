@@ -2,64 +2,67 @@ package weibo4j.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 @SuppressWarnings("all")
 public class ApiRateLimits implements java.io.Serializable{
 
-	private static final long serialVersionUID = 8550645887134692311L;
-	private String api;                 //接口
-	private int limit;                  //接口限制
-	private String limitTimeUnit;       //限制单元
-	private long remainingHits;         //剩余调用次数
-    
-	ApiRateLimits(JSONObject json) throws WeiboException {
-		try {
+	private static final long	serialVersionUID	= 8550645887134692311L;
+
+	private String				api;										//接口
+
+	private int					limit;										//接口限制
+
+	private String				limitTimeUnit;								//限制单元
+
+	private long				remainingHits;								//剩余调用次数
+
+	ApiRateLimits(JSONObject json) throws WeiboException{
+		try{
 			api = json.getString("api");
 			limit = json.getInt("limit");
 			limitTimeUnit = json.getString("limit_time_unit");
 			remainingHits = json.getLong("remaining_hits");
-		} catch (JSONException jsone) {
+		}catch (JSONException jsone){
 			throw new WeiboException(jsone.getMessage() + ":" + json.toString(), jsone);
 		}
 	}
 
-	public String getApi() {
+	public String getApi(){
 		return api;
 	}
 
-	public void setApi(String api) {
+	public void setApi(String api){
 		this.api = api;
 	}
 
-	public int getLimit() {
+	public int getLimit(){
 		return limit;
 	}
 
-	public void setLimit(int limit) {
+	public void setLimit(int limit){
 		this.limit = limit;
 	}
 
-	public String getLimitTimeUnit() {
+	public String getLimitTimeUnit(){
 		return limitTimeUnit;
 	}
 
-	public void setLimitTimeUnit(String limitTimeUnit) {
+	public void setLimitTimeUnit(String limitTimeUnit){
 		this.limitTimeUnit = limitTimeUnit;
 	}
 
-	public long getRemainingHits() {
+	public long getRemainingHits(){
 		return remainingHits;
 	}
 
-	public void setRemainingHits(long remainingHits) {
+	public void setRemainingHits(long remainingHits){
 		this.remainingHits = remainingHits;
 	}
 
 	@Override
-	public String toString() {
-		return "api_rate_limits [api=" + api + ", limit=" + limit
-				+ ", limitTimeUnit=" + limitTimeUnit + ", remainingHits="
-				+ remainingHits + "]";
+	public String toString(){
+		return "api_rate_limits [api=" + api + ", limit=" + limit + ", limitTimeUnit=" + limitTimeUnit + ", remainingHits=" + remainingHits
+						+ "]";
 	}
-	
-	
+
 }

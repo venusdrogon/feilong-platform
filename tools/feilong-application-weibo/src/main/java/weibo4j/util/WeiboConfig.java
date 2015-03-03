@@ -12,7 +12,8 @@ public class WeiboConfig{
 
 	private static final Logger	log	= LoggerFactory.getLogger(WeiboConfig.class);
 
-	public WeiboConfig(){}
+	public WeiboConfig(){
+	}
 
 	private static Properties	props	= new Properties();
 	static{

@@ -39,8 +39,7 @@ class OnewayEncryptionTest extends BaseSecurityTest{
 
 	/**
 	 * Test method for
-	 * {@link com.feilong.tools.security.oneway.OnewayEncryption#encode(com.feilong.tools.security.oneway.OnewayType, java.lang.String)}
-	 * .
+	 * {@link com.feilong.tools.security.oneway.OnewayEncryption#encode(com.feilong.tools.security.oneway.OnewayType, java.lang.String)} .
 	 */
 	@Test
 	public final void testEncodeOnewayTypeString(){
@@ -54,12 +53,12 @@ class OnewayEncryptionTest extends BaseSecurityTest{
 		assertEquals("670d9743542cae3ea7ebe36af56bd53648b0a1126162e78d81a32934a711302e", OnewayEncryption.encode(OnewayType.SHA256, "你好"));
 		// 正确
 		assertEquals(
-				"05f076c7d180e91d80a56d70b226fca01e2353554c315ac1e8caaaeca2ce0dc0d9d84e206a2bf1143a0ae1b9be9bcfa8",
-				OnewayEncryption.encode(OnewayType.SHA384, "你好"));
+						"05f076c7d180e91d80a56d70b226fca01e2353554c315ac1e8caaaeca2ce0dc0d9d84e206a2bf1143a0ae1b9be9bcfa8",
+						OnewayEncryption.encode(OnewayType.SHA384, "你好"));
 		// 正确
 		assertEquals(
-				"5232181bc0d9888f5c9746e410b4740eb461706ba5dacfbc93587cecfc8d068bac7737e92870d6745b11a25e9cd78b55f4ffc706f73cfcae5345f1b53fb8f6b5",
-				OnewayEncryption.encode(OnewayType.SHA512, "你好"));
+						"5232181bc0d9888f5c9746e410b4740eb461706ba5dacfbc93587cecfc8d068bac7737e92870d6745b11a25e9cd78b55f4ffc706f73cfcae5345f1b53fb8f6b5",
+						OnewayEncryption.encode(OnewayType.SHA512, "你好"));
 
 		// log.info(OnewayEncryption.encode(OnewayType.HmacSHA512, "你好"));
 	}

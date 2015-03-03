@@ -21,4 +21,5 @@ package com.feilong.framework.netpay.payment.adaptor.doku;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 11, 2014 5:05:30 PM
  */
-public class BRIEPayAdaptor extends AbstractDokuPayAdaptor{}
+public class BRIEPayAdaptor extends AbstractDokuPayAdaptor{
+}

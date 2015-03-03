@@ -62,7 +62,8 @@ import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.RefineryUtilities;
 
 /**
- * An example of a time series chart. For the most part, default settings are used, except that the renderer is modified to show filled shapes (as well as
+ * An example of a time series chart. For the most part, default settings are used, except that the renderer is modified to show filled
+ * shapes (as well as
  * lines) at each data point.
  */
 public class TimeSeriesChartDemo1 extends ApplicationFrame{
@@ -96,13 +97,13 @@ public class TimeSeriesChartDemo1 extends ApplicationFrame{
 	 */
 	private static JFreeChart createChart(XYDataset dataset){
 		JFreeChart chart = ChartFactory.createTimeSeriesChart("Legal & General Unit Trust Prices", // title
-				"Date", // x-axis label
-				"Price Per Unit", // y-axis label
-				dataset, // data
-				true, // create legend?
-				true, // generate tooltips?
-				false // generate URLs?
-				);
+						"Date", // x-axis label
+						"Price Per Unit", // y-axis label
+						dataset, // data
+						true, // create legend?
+						true, // generate tooltips?
+						false // generate URLs?
+						);
 		chart.setBackgroundPaint(Color.white);
 		XYPlot plot = (XYPlot) chart.getPlot();
 		plot.setBackgroundPaint(Color.lightGray);

@@ -15,7 +15,6 @@
  */
 package com.feilong.spring.aspects;
 
-
 //@Log
 /**
  * The Interface UserManager.

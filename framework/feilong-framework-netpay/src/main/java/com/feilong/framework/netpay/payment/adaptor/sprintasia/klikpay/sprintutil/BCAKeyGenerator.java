@@ -40,12 +40,12 @@ public final class BCAKeyGenerator{
 	 *             the exception
 	 */
 	public static String signature(
-			String klikPayCode,
-			String transactionDate,
-			String transactionNo,
-			String totalAmount,
-			String currency,
-			String secretKey) throws Exception{
+					String klikPayCode,
+					String transactionDate,
+					String transactionNo,
+					String totalAmount,
+					String currency,
+					String secretKey) throws Exception{
 		if (secretKey.length() == 16)
 			secretKey = AuthKey.KeyId(secretKey);
 		else if (secretKey.length() != 32)
@@ -58,7 +58,7 @@ public final class BCAKeyGenerator{
 
 		// Second Value. Using transactionDate, totalAmount.
 		String tmpkey2 = Integer.toString(Integer.parseInt(transactionDate.substring(0, 10).replaceAll("/", ""))
-				+ new Double(totalAmount).intValue());
+						+ new Double(totalAmount).intValue());
 
 		// log.debug("tmpkey1: {}", tmpkey1);
 		// log.debug("tmpkey2: {}", tmpkey2);
@@ -83,7 +83,7 @@ public final class BCAKeyGenerator{
 	 *             the exception
 	 */
 	public static String authKey(String klikPayCode,String transactionNo,String currency,String transactionDate,String secretKey)
-			throws Exception{
+					throws Exception{
 		if (secretKey.length() == 16)
 			secretKey = AuthKey.KeyId(secretKey);
 		else if (secretKey.length() != 32)
@@ -92,7 +92,7 @@ public final class BCAKeyGenerator{
 			throw new Exception("Invalid transactionDate Format (" + transactionDate + ")");
 
 		String padded = strpad(klikPayCode, 10, '0', false) + strpad(transactionNo, 18, 'A', false) + strpad(currency, 5, '1', false)
-				+ strpad(transactionDate, 19, 'C', true) + secretKey;
+						+ strpad(transactionDate, 19, 'C', true) + secretKey;
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		md.update(padded.getBytes());
 		byte[] hbyte = md.digest();

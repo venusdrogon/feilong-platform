@@ -48,11 +48,11 @@ public class MSWordManager{
 			// 设置word不可见
 			Dispatch docs = app.getProperty("Documents").toDispatch();
 			Dispatch doc = Dispatch.invoke(
-					docs,
-					"Open",
-					Dispatch.Method,
-					new Object[] { docfile, new Variant(false), new Variant(true) },
-					new int[1]).toDispatch();
+							docs,
+							"Open",
+							Dispatch.Method,
+							new Object[] { docfile, new Variant(false), new Variant(true) },
+							new int[1]).toDispatch();
 			// 打开word文件
 			Dispatch.invoke(doc, "SaveAs", Dispatch.Method, new Object[] { htmlfile, new Variant(8) }, new int[1]);
 			// 作为html格式保存到临时文件

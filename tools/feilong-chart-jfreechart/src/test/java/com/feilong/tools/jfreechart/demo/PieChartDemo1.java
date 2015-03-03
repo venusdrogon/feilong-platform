@@ -100,10 +100,10 @@ public class PieChartDemo1 extends ApplicationFrame{
 	 */
 	private static JFreeChart createChart(PieDataset dataset){
 		JFreeChart chart = ChartFactory.createPieChart("Pie Chart Demo 1", // chart title
-				dataset, // data
-				true, // include legend
-				true,
-				false);
+						dataset, // data
+						true, // include legend
+						true,
+						false);
 		PiePlot plot = (PiePlot) chart.getPlot();
 		plot.setSectionOutlinesVisible(false);
 		plot.setNoDataMessage("No data available");

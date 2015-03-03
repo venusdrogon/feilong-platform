@@ -31,7 +31,8 @@ import com.feilong.tools.jfreechart.pie.PieType;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 16 01:20:44
  */
-@SuppressWarnings("all")public class PieChartFactoryTest{
+@SuppressWarnings("all")
+public class PieChartFactoryTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(PieChartFactoryTest.class);

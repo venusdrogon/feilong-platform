@@ -25,7 +25,7 @@ import org.apache.struts.util.IteratorAdapter;
 import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
- *FeiLongStrutsTaglibUtil
+ * FeiLongStrutsTaglibUtil
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-19 下午01:14:39

@@ -13,11 +13,13 @@ import weibo4j.model.Tag;
 import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
-@SuppressWarnings("all")public class Favorite extends Weibo{
+@SuppressWarnings("all")
+public class Favorite extends Weibo{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2298934944028795652L;
+	private static final long	serialVersionUID	= 2298934944028795652L;
 
 	/*----------------------------收藏接口----------------------------------------*/
 	/**
@@ -30,9 +32,8 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/favorites">favorites</a>
 	 * @since JDK 1.5
 	 */
-	public List<Favorites> getFavorites() throws WeiboException {
-		return Favorites.constructFavorites(client.get(WeiboConfig
-				.getValue("baseURL") + "favorites.json"));
+	public List<Favorites> getFavorites() throws WeiboException{
+		return Favorites.constructFavorites(client.get(WeiboConfig.getValue("baseURL") + "favorites.json"));
 	}
 
 	/**
@@ -47,11 +48,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/favorites">favorites</a>
 	 * @since JDK 1.5
 	 */
-	public List<Favorites> getFavorites(Paging page) throws WeiboException {
-		return Favorites.constructFavorites(client.get(
-						WeiboConfig.getValue("baseURL") + "favorites.json",
-						null, page));
+	public List<Favorites> getFavorites(Paging page) throws WeiboException{
+		return Favorites.constructFavorites(client.get(WeiboConfig.getValue("baseURL") + "favorites.json", null, page));
 	}
+
 	/**
 	 * 获取当前登录用户的收藏列表ID
 	 * 
@@ -62,10 +62,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/favorites">favorites</a>
 	 * @since JDK 1.5
 	 */
-	public JSONObject getFavoritesIds() throws WeiboException {
-		return client.get(WeiboConfig
-				.getValue("baseURL") + "favorites/ids.json").asJSONObject();
+	public JSONObject getFavoritesIds() throws WeiboException{
+		return client.get(WeiboConfig.getValue("baseURL") + "favorites/ids.json").asJSONObject();
 	}
+
 	/**
 	 * 获取当前登录用户的收藏列表ID
 	 * 
@@ -76,10 +76,10 @@ import weibo4j.util.WeiboConfig;
 	 * @see <a href="http://open.weibo.com/wiki/2/favorites">favorites</a>
 	 * @since JDK 1.5
 	 */
-	public JSONObject getFavoritesIds(Paging page) throws WeiboException {
-		return client.get(WeiboConfig
-				.getValue("baseURL") + "favorites/ids.json",null,page).asJSONObject();
+	public JSONObject getFavoritesIds(Paging page) throws WeiboException{
+		return client.get(WeiboConfig.getValue("baseURL") + "favorites/ids.json", null, page).asJSONObject();
 	}
+
 	/**
 	 * 根据收藏ID获取指定的收藏信息
 	 * 
@@ -88,14 +88,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/show">favorites/show</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/show">favorites/show</a>
 	 * @since JDK 1.5
 	 */
-	public Favorites showFavorites(String id) throws WeiboException {
-		return new Favorites(client.get(WeiboConfig.getValue("baseURL")
-				+ "favorites/show.json",
-				new PostParameter[] { new PostParameter("id", id) }));
+	public Favorites showFavorites(String id) throws WeiboException{
+		return new Favorites(client.get(WeiboConfig.getValue("baseURL") + "favorites/show.json", new PostParameter[] { new PostParameter(
+						"id",
+						id) }));
 	}
 
 	/**
@@ -106,14 +105,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/by_tags">favorites/by_tags</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/by_tags">favorites/by_tags</a>
 	 * @since JDK 1.5
 	 */
-	public List<Favorites> getFavoritesByTags(String tid) throws WeiboException {
+	public List<Favorites> getFavoritesByTags(String tid) throws WeiboException{
 		return Favorites.constructFavorites(client.get(
-				WeiboConfig.getValue("baseURL") + "favorites/by_tags.json",
-				new PostParameter[] { new PostParameter("tid", tid) }));
+						WeiboConfig.getValue("baseURL") + "favorites/by_tags.json",
+						new PostParameter[] { new PostParameter("tid", tid) }));
 	}
 
 	/**
@@ -125,15 +123,14 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/show">favorites/show</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/show">favorites/show</a>
 	 * @since JDK 1.5
 	 */
-	public List<Favorites> getFavoritesByTags(String tid, Paging page)
-			throws WeiboException {
+	public List<Favorites> getFavoritesByTags(String tid,Paging page) throws WeiboException{
 		return Favorites.constructFavorites(client.get(
-				WeiboConfig.getValue("baseURL") + "favorites/by_tags.json",
-				new PostParameter[] { new PostParameter("tid", tid) }, page));
+						WeiboConfig.getValue("baseURL") + "favorites/by_tags.json",
+						new PostParameter[] { new PostParameter("tid", tid) },
+						page));
 	}
 
 	/**
@@ -144,13 +141,11 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.1
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/tags">favorites/tags</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/tags">favorites/tags</a>
 	 * @since JDK 1.5
 	 */
-	public List<FavoritesTag> getFavoritesTags() throws WeiboException {
-		return Tag.constructTag(client.get(WeiboConfig
-				.getValue("baseURL") + "favorites/tags.json"));
+	public List<FavoritesTag> getFavoritesTags() throws WeiboException{
+		return Tag.constructTag(client.get(WeiboConfig.getValue("baseURL") + "favorites/tags.json"));
 
 	}
 
@@ -163,14 +158,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/create">favorites/create</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/create">favorites/create</a>
 	 * @since JDK 1.5
 	 */
-	public Favorites createFavorites(String id) throws WeiboException {
-		return new Favorites(client.post(WeiboConfig.getValue("baseURL")
-				+ "favorites/create.json",
-				new PostParameter[] { new PostParameter("id", id) }));
+	public Favorites createFavorites(String id) throws WeiboException{
+		return new Favorites(client.post(
+						WeiboConfig.getValue("baseURL") + "favorites/create.json",
+						new PostParameter[] { new PostParameter("id", id) }));
 	}
 
 	/**
@@ -182,14 +176,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/destroy">favorites/destroy</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/destroy">favorites/destroy</a>
 	 * @since JDK 1.5
 	 */
-	public Favorites destroyFavorites(String id) throws WeiboException {
-		return new Favorites(client.post(WeiboConfig.getValue("baseURL")
-				+ "favorites/destroy.json",
-				new PostParameter[] { new PostParameter("id", id) }));
+	public Favorites destroyFavorites(String id) throws WeiboException{
+		return new Favorites(client.post(
+						WeiboConfig.getValue("baseURL") + "favorites/destroy.json",
+						new PostParameter[] { new PostParameter("id", id) }));
 	}
 
 	/**
@@ -201,18 +194,16 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/destroy_batch">favorites/destroy_batch</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/destroy_batch">favorites/destroy_batch</a>
 	 * @since JDK 1.5
 	 */
-	public Boolean destroyFavoritesBatch(String ids) throws WeiboException {
-		try {
+	public Boolean destroyFavoritesBatch(String ids) throws WeiboException{
+		try{
 			return client
-					.post(WeiboConfig.getValue("baseURL")
-							+ "favorites/destroy_batch.json",
-							new PostParameter[] { new PostParameter("ids", ids) })
-					.asJSONObject().getBoolean("result");
-		} catch (JSONException e) {
+							.post(
+											WeiboConfig.getValue("baseURL") + "favorites/destroy_batch.json",
+											new PostParameter[] { new PostParameter("ids", ids) }).asJSONObject().getBoolean("result");
+		}catch (JSONException e){
 			throw new WeiboException(e);
 		}
 	}
@@ -226,14 +217,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/tags/update">favorites/tags/update</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/tags/update">favorites/tags/update</a>
 	 * @since JDK 1.5
 	 */
-	public Favorites updateFavoritesTags(String id) throws WeiboException {
-		return new Favorites(client.post(WeiboConfig.getValue("baseURL")
-				+ "favorites/tags/update.json",
-				new PostParameter[] { new PostParameter("id", id) }));
+	public Favorites updateFavoritesTags(String id) throws WeiboException{
+		return new Favorites(client.post(
+						WeiboConfig.getValue("baseURL") + "favorites/tags/update.json",
+						new PostParameter[] { new PostParameter("id", id) }));
 	}
 
 	/**
@@ -247,15 +237,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/tags/update">favorites/tags/update</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/tags/update">favorites/tags/update</a>
 	 * @since JDK 1.5
 	 */
-	public Favorites updateFavoritesTags(String id, String tags)
-			throws WeiboException {
-		return new Favorites(client.post(WeiboConfig.getValue("baseURL")
-				+ "favorites/tags/update.json", new PostParameter[] {
-				new PostParameter("id", id), new PostParameter("tags", tags) }));
+	public Favorites updateFavoritesTags(String id,String tags) throws WeiboException{
+		return new Favorites(client.post(WeiboConfig.getValue("baseURL") + "favorites/tags/update.json", new PostParameter[] {
+				new PostParameter("id", id),
+				new PostParameter("tags", tags) }));
 	}
 
 	/**
@@ -267,17 +255,13 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/tags/update_batch">favorites/tags/update_batch</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/tags/update_batch">favorites/tags/update_batch</a>
 	 * @since JDK 1.5
 	 */
-	public JSONObject updateFavoritesTagsBatch(String tid, String tag)
-			throws WeiboException {
+	public JSONObject updateFavoritesTagsBatch(String tid,String tag) throws WeiboException{
 		return client.post(
-				WeiboConfig.getValue("baseURL")
-						+ "favorites/tags/update_batch.json",
-				new PostParameter[] { new PostParameter("tid", tid),
-						new PostParameter("tag", tag) }).asJSONObject();
+						WeiboConfig.getValue("baseURL") + "favorites/tags/update_batch.json",
+						new PostParameter[] { new PostParameter("tid", tid), new PostParameter("tag", tag) }).asJSONObject();
 	}
 
 	/**
@@ -289,18 +273,16 @@ import weibo4j.util.WeiboConfig;
 	 * @throws WeiboException
 	 *             when Weibo service or network is unavailable
 	 * @version weibo4j-V2 1.0.0
-	 * @see <a
-	 *      href="http://open.weibo.com/wiki/2/favorites/tags/destroy_batch">favorites/tags/destroy_batch</a>
+	 * @see <a href="http://open.weibo.com/wiki/2/favorites/tags/destroy_batch">favorites/tags/destroy_batch</a>
 	 * @since JDK 1.5
 	 */
-	public Boolean destroyFavoritesTagsBatch(String ids) throws WeiboException {
-		try {
+	public Boolean destroyFavoritesTagsBatch(String ids) throws WeiboException{
+		try{
 			return client
-					.post(WeiboConfig.getValue("baseURL")
-							+ "favorites/destroy_batch.json",
-							new PostParameter[] { new PostParameter("ids", ids) })
-					.asJSONObject().getBoolean("result");
-		} catch (JSONException e) {
+							.post(
+											WeiboConfig.getValue("baseURL") + "favorites/destroy_batch.json",
+											new PostParameter[] { new PostParameter("ids", ids) }).asJSONObject().getBoolean("result");
+		}catch (JSONException e){
 			throw new WeiboException(e);
 		}
 	}

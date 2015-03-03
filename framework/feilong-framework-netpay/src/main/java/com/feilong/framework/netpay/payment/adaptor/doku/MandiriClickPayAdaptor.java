@@ -15,11 +15,11 @@
  */
 package com.feilong.framework.netpay.payment.adaptor.doku;
 
-
 /**
  * Doku Mandiri ClickPay 支付方式.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 11, 2014 5:05:30 PM
  */
-public class MandiriClickPayAdaptor extends AbstractDokuPayAdaptor{}
+public class MandiriClickPayAdaptor extends AbstractDokuPayAdaptor{
+}

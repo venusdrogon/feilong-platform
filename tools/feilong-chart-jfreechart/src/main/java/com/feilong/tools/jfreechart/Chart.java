@@ -36,5 +36,5 @@ public interface Chart{
 	 */
 	void createImage(ChartInfoEntity chartInfoEntity) throws IOException;
 
-//	void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException;
+	//	void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException;
 }

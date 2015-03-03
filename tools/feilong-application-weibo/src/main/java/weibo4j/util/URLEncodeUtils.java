@@ -1,17 +1,20 @@
 package weibo4j.util;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.BitSet;
+
 /**
  * @author sinaWeibo
  * 
  */
-@SuppressWarnings("all")public class URLEncodeUtils {
+@SuppressWarnings("all")
+public class URLEncodeUtils{
 
-	static BitSet dontNeedEncoding;
+	static BitSet	dontNeedEncoding;
 
-	static {
+	static{
 
 		/*
 		 * The list of characters that are not encoded has been determined as
@@ -46,13 +49,13 @@ import java.util.BitSet;
 
 		dontNeedEncoding = new BitSet(256);
 		int i;
-		for (i = 'a'; i <= 'z'; i++) {
+		for (i = 'a'; i <= 'z'; i++){
 			dontNeedEncoding.set(i);
 		}
-		for (i = 'A'; i <= 'Z'; i++) {
+		for (i = 'A'; i <= 'Z'; i++){
 			dontNeedEncoding.set(i);
 		}
-		for (i = '0'; i <= '9'; i++) {
+		for (i = '0'; i <= '9'; i++){
 			dontNeedEncoding.set(i);
 		}
 		dontNeedEncoding.set(' '); /*
@@ -75,42 +78,43 @@ import java.util.BitSet;
 	 * @param str
 	 * @return
 	 */
-	public static final boolean isURLEncoded(String str) {
-		if (str==null||"".equals(str)) {
+	public static final boolean isURLEncoded(String str){
+		if (str == null || "".equals(str)){
 			return false;
 		}
 		char[] chars = str.toCharArray();
 		boolean containsPercent = false;
-		for (char c : chars) {
-			if (Character.isWhitespace(c)) {
+		for (char c : chars){
+			if (Character.isWhitespace(c)){
 				return false;
 			}
-			if (!dontNeedEncoding.get(c)) {
+			if (!dontNeedEncoding.get(c)){
 				return false;
 			}
-			if(c == '%'){
+			if (c == '%'){
 				containsPercent = true;
 			}
 		}
-		if(!containsPercent){
+		if (!containsPercent){
 			return false;
 		}
 		return true;
 	}
 
-	public static final String encodeURL(String str) {
-		try {
+	public static final String encodeURL(String str){
+		try{
 			return URLEncoder.encode(str, "utf-8");
-		} catch (UnsupportedEncodingException e) {
+		}catch (UnsupportedEncodingException e){
 			throw new RuntimeException(e);
 		}
 	}
-	public static final String decodeURL(String str) {
-		try {
+
+	public static final String decodeURL(String str){
+		try{
 			return URLDecoder.decode(str, "utf-8");
-		} catch (UnsupportedEncodingException e) {
+		}catch (UnsupportedEncodingException e){
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 }

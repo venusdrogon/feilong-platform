@@ -130,7 +130,7 @@ public class ParseJPATest{
 	 * @throws IllegalArgumentException
 	 */
 	private void outputLongtextAlter(List<Column> longTextColumnlist,ParseJPA parseJPA,String ouputfilePath)
-			throws IllegalArgumentException,IOException{
+					throws IllegalArgumentException,IOException{
 		StringBuilder sb = new StringBuilder();
 
 		List<Column> totalColumnList = parseJPA.getColumnList();
@@ -145,7 +145,7 @@ public class ParseJPATest{
 				String lowerCaseTable = column.getTableName().toLowerCase();
 				String lowerCaseColumn = column.getColumnName().toLowerCase();
 				if (lowerCaseTable.equals(_column.getTableName().toLowerCase()) //
-						&& lowerCaseColumn.equals(_column.getColumnName().toLowerCase())//
+								&& lowerCaseColumn.equals(_column.getColumnName().toLowerCase())//
 				){
 					String length = _column.getLength();
 
@@ -158,19 +158,19 @@ public class ParseJPATest{
 						if (Integer.parseInt(length) > JpaConstants.MYSQL5_MAXLENGTH_VARCHAR_UTF8){
 							String format = "\n\nin java code,find [{}] [{}], but length is [{}]>[{}] \n\n\n";
 							String warn = Slf4jUtil.formatMessage(
-									format,
-									lowerCaseTable,
-									lowerCaseColumn,
-									length,
-									JpaConstants.MYSQL5_MAXLENGTH_VARCHAR_UTF8);
+											format,
+											lowerCaseTable,
+											lowerCaseColumn,
+											length,
+											JpaConstants.MYSQL5_MAXLENGTH_VARCHAR_UTF8);
 							StringBuilderUtil.appendTextWithLn(sb, warn);
 						}else{
 							String alterSql = Slf4jUtil.formatMessage(
-									JpaConstants.TEMPLATE_MODIFY_COLUMN,
-									column.getTableName(),
-									column.getColumnName(),
-									"varchar",
-									length);
+											JpaConstants.TEMPLATE_MODIFY_COLUMN,
+											column.getTableName(),
+											column.getColumnName(),
+											"varchar",
+											length);
 							log.debug("{}", alterSql);
 							StringBuilderUtil.appendTextWithLn(sb, alterSql);
 						}

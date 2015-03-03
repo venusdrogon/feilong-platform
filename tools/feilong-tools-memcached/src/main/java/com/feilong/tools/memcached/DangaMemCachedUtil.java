@@ -38,49 +38,49 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
 public class DangaMemCachedUtil{
 
 	/** The Constant log. */
-	private static final Logger		log				= LoggerFactory.getLogger(DangaMemCachedUtil.class);
+	private static final Logger			log				= LoggerFactory.getLogger(DangaMemCachedUtil.class);
 
 	/** The config. */
-	private static ResourceBundle	config			= ResourceBundle.getBundle("memcached");
+	private static ResourceBundle		config			= ResourceBundle.getBundle("memcached");
 
 	/** The poolname. */
-	private final String			poolname		= config.getString("memcached.poolname");
+	private final String				poolname		= config.getString("memcached.poolname");
 
 	/** The expire time. */
-	private final Integer			EXPIRE_TIME		= ResourceBundleUtil.getValue(config, "memcached.expiretime", Integer.class);
+	private final Integer				EXPIRE_TIME		= ResourceBundleUtil.getValue(config, "memcached.expiretime", Integer.class);
 
 	/** The serverlist. */
-	private final String[]			serverlist		= ResourceBundleUtil.getArray(config, "memcached.serverlist", ",");
+	private final String[]				serverlist		= ResourceBundleUtil.getArray(config, "memcached.serverlist", ",");
 
 	/** 权重. */
-	private final Integer[]			weight			= ResourceBundleUtil.getArray(config, "memcached.serverweight", ",", Integer.class);
+	private final Integer[]				weight			= ResourceBundleUtil.getArray(config, "memcached.serverweight", ",", Integer.class);
 
 	/** The init connection. */
-	private final Integer			INIT_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.initconnection", Integer.class);
+	private final Integer				INIT_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.initconnection", Integer.class);
 
 	/** The min connection. */
-	private final Integer			MIN_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.minconnection", Integer.class);
+	private final Integer				MIN_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.minconnection", Integer.class);
 
 	/** The max connection. */
-	private final Integer			MAX_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.maxconnection", Integer.class);
+	private final Integer				MAX_CONNECTION	= ResourceBundleUtil.getValue(config, "memcached.maxconnection", Integer.class);
 
 	/** 设置主线程睡眠时间，每30秒苏醒一次，维持连接池大小. */
-	private final Integer			maintSleep		= ResourceBundleUtil.getValue(config, "memcached.maintSleep", Integer.class);
+	private final Integer				maintSleep		= ResourceBundleUtil.getValue(config, "memcached.maintSleep", Integer.class);
 
 	/** 关闭套接字缓存. */
-	private final Boolean			NAGLE			= ResourceBundleUtil.getValue(config, "memcached.nagle", Boolean.class);
+	private final Boolean				NAGLE			= ResourceBundleUtil.getValue(config, "memcached.nagle", Boolean.class);
 
 	/** 连接建立后的超时时间. */
-	private final Integer			SOCKET_TO		= ResourceBundleUtil.getValue(config, "memcached.socketto", Integer.class);
+	private final Integer				SOCKET_TO		= ResourceBundleUtil.getValue(config, "memcached.socketto", Integer.class);
 
 	/** The alive check. */
-	private final Boolean			ALIVE_CHECK		= ResourceBundleUtil.getValue(config, "memcached.alivecheck", Boolean.class);
+	private final Boolean				ALIVE_CHECK		= ResourceBundleUtil.getValue(config, "memcached.alivecheck", Boolean.class);
 
 	/** ***********************************************************************************. */
 	private static DangaMemCachedUtil	memCachedUtil	= null;
 
 	/** The sock io pool. */
-	private SockIOPool				sockIOPool		= null;
+	private SockIOPool					sockIOPool		= null;
 
 	/**
 	 * *************************************************************************.

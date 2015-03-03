@@ -20,7 +20,6 @@ import java.util.Map;
 
 import com.feilong.tools.solrj.command.SolrGroupCommand;
 
-
 /**
  * group solr 存储数据.
  * 

@@ -38,6 +38,7 @@ public class SwitchTag extends BaseTag{
 
 	/*
 	 * 当遇到switch标签时，所有的子标签都不执行。
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
 	 */
 	@Override
@@ -70,6 +71,7 @@ public class SwitchTag extends BaseTag{
 
 	/*
 	 * 销毁到该方法。
+	 * 
 	 * @see javax.servlet.jsp.tagext.TagSupport#release()
 	 */
 	@Override

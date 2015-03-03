@@ -22,7 +22,6 @@ import yicheng.YiChengPayEntity;
 
 import com.feilong.taglib.base.AbstractCommonTag;
 
-
 /**
  * 生成新华一城 支付form表单
  * 
@@ -92,14 +91,14 @@ public class YiChengPayTag extends AbstractCommonTag{
 	@Override
 	protected Object writeContent(){
 		YiChengPayEntity feiLongYiChengPayEntity = new YiChengPayEntity(
-				merchantNo,
-				orderId,
-				amount,
-				callBackUrl,
-				isFull,
-				terminalNo,
-				key,
-				createTime);
+						merchantNo,
+						orderId,
+						amount,
+						callBackUrl,
+						isFull,
+						terminalNo,
+						key,
+						createTime);
 		return YiChengPay.getWriteContent(action, feiLongYiChengPayEntity);
 	}
 

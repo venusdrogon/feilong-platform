@@ -64,15 +64,15 @@ public class SymmetricEncryptionTest extends BaseSecurityTest{
 	public void base64String() throws NullPointerException,EncryptionException{
 		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info(
-				"SymmetricType.ARCFOUR:{}",
-				new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encryptBase64(original, CharsetType.UTF8));
+						"SymmetricType.ARCFOUR:{}",
+						new SymmetricEncryption(SymmetricType.ARCFOUR, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info(
-				"SymmetricType.Blowfish:{}",
-				new SymmetricEncryption(SymmetricType.Blowfish, keyString).encryptBase64(original, CharsetType.UTF8));
+						"SymmetricType.Blowfish:{}",
+						new SymmetricEncryption(SymmetricType.Blowfish, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info("SymmetricType.DES:{}", new SymmetricEncryption(SymmetricType.DES, keyString).encryptBase64(original, CharsetType.UTF8));
 		log.info(
-				"SymmetricType.DESede:{}",
-				new SymmetricEncryption(SymmetricType.DESede, keyString).encryptBase64(original, CharsetType.UTF8));
+						"SymmetricType.DESede:{}",
+						new SymmetricEncryption(SymmetricType.DESede, keyString).encryptBase64(original, CharsetType.UTF8));
 
 	}
 
@@ -106,10 +106,10 @@ public class SymmetricEncryptionTest extends BaseSecurityTest{
 	 *             the encryption exception
 	 */
 	@Test
-	public void decryptBase64String() throws NullPointerException, EncryptionException {
+	public void decryptBase64String() throws NullPointerException,EncryptionException{
 		log.info("SymmetricType.AES:{}", new SymmetricEncryption(SymmetricType.AES, keyString).decryptBase64(
-				"NvHLVz3ADOlx3K2dMa8TZjjP5fkAPus2ienTEkOdUX4=",
-				CharsetType.UTF8));
+						"NvHLVz3ADOlx3K2dMa8TZjjP5fkAPus2ienTEkOdUX4=",
+						CharsetType.UTF8));
 	}
 
 	/**

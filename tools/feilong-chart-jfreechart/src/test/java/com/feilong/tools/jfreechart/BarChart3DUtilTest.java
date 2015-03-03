@@ -29,7 +29,8 @@ import com.feilong.tools.jfreechart.category.Line3DChartUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012 1 16 00:07:18
  */
-@SuppressWarnings("all")public class BarChart3DUtilTest{
+@SuppressWarnings("all")
+public class BarChart3DUtilTest{
 
 	@SuppressWarnings("unused")
 	private static final Logger	log	= LoggerFactory.getLogger(BarChart3DUtilTest.class);
@@ -68,7 +69,7 @@ import com.feilong.tools.jfreechart.category.Line3DChartUtil;
 		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
 		chartInfoEntity.setWidth(width);
 		chartInfoEntity.setHeight(height);
-		
+
 		ChartUtil jfreeChartUtil = new Line3DChartUtil(categoryChartEntity);
 		jfreeChartUtil.createImage(chartInfoEntity);
 	}
