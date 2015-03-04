@@ -247,6 +247,7 @@
 		<module>framework</module>
 		<module>webservice</module>
 		<module>data</module>
+		<module>webfragment</module>
 	</modules>
 
 	<dependencies>
