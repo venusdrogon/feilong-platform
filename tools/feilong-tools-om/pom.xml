@@ -10,10 +10,6 @@
 	<name>feilong-tools-om</name>
 	<description>feilong-tools-om</description>
 
-	<properties>
-		<scope.slf4j-log4j12>compile</scope.slf4j-log4j12>
-		<scope.log4j>compile</scope.log4j>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.feilong.platform.tools</groupId>
