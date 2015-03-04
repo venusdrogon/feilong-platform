@@ -21,6 +21,4 @@
 		<module>feilong-db-jdbc</module>
 	</modules>
 
-	<dependencies>
-	</dependencies>
 </project>

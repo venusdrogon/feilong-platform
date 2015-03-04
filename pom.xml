@@ -247,7 +247,6 @@
 		<module>framework</module>
 		<module>webservice</module>
 		<module>data</module>
-		<module>webfragment</module>
 	</modules>
 
 	<dependencies>
@@ -262,6 +261,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>${scope.slf4j-log4j12}</scope>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-api</artifactId>
@@ -273,12 +273,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<scope>${scope.log4j}</scope>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
 		</dependency>
+
 
 		<!--***************************** test************************** -->
 		<!-- junit -->
@@ -299,6 +302,9 @@
 				</exclusion>
 				</exclusions> -->
 		</dependency>
+
+
+
 
 	</dependencies>
 
