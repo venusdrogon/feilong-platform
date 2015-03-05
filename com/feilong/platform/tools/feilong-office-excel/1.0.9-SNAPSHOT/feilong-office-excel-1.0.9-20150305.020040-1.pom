@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>com.feilong.platform.tools</groupId>
+		<version>1.0.9-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>feilong-office-excel</artifactId>
+	<name>feilong-office-excel</name>
+	<description>feilong-office-excel</description>
+
+	<properties>
+		<version.loxia>2.5.2</version.loxia>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-servlet</artifactId>
+		</dependency>
+
+		<!-- poi HSSF is our port of the Microsoft Excel 97(-2007) file format (BIFF8) to pure Java. -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${version.poi}</version>
+		</dependency>
+
+		<!-- poi-ooxml XSSF is our port of the Microsoft Excel XML (2007+) file format (OOXML) to pure Java -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${version.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-examples</artifactId>
+			<version>${version.poi}</version>
+			<optional>true</optional>
+		</dependency>
+<!-- 
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>ooxml-schemas</artifactId>
+			<version>${version.ooxml-schemas}</version>
+		</dependency>
+		 -->
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${version.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>loxia2</groupId>
+			<artifactId>loxia2-support</artifactId>
+			<version>${version.loxia}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spymemcached</artifactId>
+					<groupId>spy</groupId>
+				</exclusion>
+				<!-- <exclusion>
+					<artifactId>ognl</artifactId>
+					<groupId>ognl</groupId>
+					</exclusion> -->
+				<exclusion>
+					<groupId>com.sun.javax.media</groupId>
+					<artifactId>jai_codec</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.javax.media</groupId>
+					<artifactId>jai_core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+		</dependency>
+	</dependencies>
+</project>
