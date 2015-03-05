@@ -18,8 +18,6 @@ package com.feilong.tools.net.httpclient3;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.json.JSONException;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,117 +32,133 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
  */
 public class HttpClientUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(HttpClientUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(HttpClientUtilTest.class);
 
-	/**
-	 * Gets the http method with execute.
-	 * 
-	 * @throws HttpClientException
-	 *             the http client util exception
-	 */
-	@Test
-	public void getHttpMethodWithExecute() throws HttpClientException{
-		String uri = "http://www.google.com.hk/search?client=aff-cs-360se&forid=1&ie=utf-8&oe=UTF-8&q=enumeration";
-		uri = "http://www.d9cn.org/d9cnbook/50/50537/10967924.html";
-		uri = "http://www.kenwen.com/egbk/31/31186/4395342.txt";
-		uri = "http://pandavip.www.net.cn/cgi-bin/Check.cgi?queryType=0&domain=feihe&big5=n&sign=2&url=www.net.cn&com=yes&cn=no&mobi=no&net=no&comcn=no&image.x=19&image.y=10";
-		// HttpMethodParams params = new HttpMethodParams();
-		// params.setParameter(HttpMethodParams.USER_AGENT, "");
-		// httpMethod.setParams(params);
+    /**
+     * 获得 http method with execute1.
+     *
+     * @throws HttpClientException
+     *             the http client exception
+     */
+    @Test
+    public void getHttpMethodWithExecute1() throws HttpClientException{
+        String uri = "http://10.8.25.80:6666/template.txt?sign=123456";
 
-		HttpClientConfig httpClientConfig = new HttpClientConfig();
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
 
-		httpClientConfig.setUri(uri);
-		httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+        httpClientConfig.setUri(uri);
+        httpClientConfig.setHttpMethodType(HttpMethodType.GET);
 
-		String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+        String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
 
-		log.debug("responseBodyAsString:{}", responseBodyAsString);
-		log.debug("print httpMethod.getResponseHeaders()=======================");
-	}
+        log.debug("responseBodyAsString:{}", responseBodyAsString);
+    }
 
-	/**
-	 * Gets the fL logistics track.
-	 * 
-	 * @throws HttpClientException
-	 *             the http client util exception
-	 * @throws JSONException
-	 *             the jSON exception
-	 */
-	@Test
-	public void getFLLogisticsTrack() throws HttpClientException{
-		String uri = "http://firstlogistics.co.id/ws/demo/post/";
+    /**
+     * Gets the http method with execute.
+     * 
+     * @throws HttpClientException
+     *             the http client util exception
+     */
+    @Test
+    public void getHttpMethodWithExecute() throws HttpClientException{
+        String uri = "http://www.google.com.hk/search?client=aff-cs-360se&forid=1&ie=utf-8&oe=UTF-8&q=enumeration";
+        uri = "http://www.d9cn.org/d9cnbook/50/50537/10967924.html";
+        uri = "http://www.kenwen.com/egbk/31/31186/4395342.txt";
+        uri = "http://pandavip.www.net.cn/cgi-bin/Check.cgi?queryType=0&domain=feihe&big5=n&sign=2&url=www.net.cn&com=yes&cn=no&mobi=no&net=no&comcn=no&image.x=19&image.y=10";
+        // HttpMethodParams params = new HttpMethodParams();
+        // params.setParameter(HttpMethodParams.USER_AGENT, "");
+        // httpMethod.setParams(params);
 
-		Map<String, String> params = new HashMap<String, String>();
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
 
-		params.put("APPID", "EBDEMO01");
-		params.put("ACCOUNT", "1300000430");
-		params.put("FUNCTION", "track");
-		params.put("REF", "MPE100503");
+        httpClientConfig.setUri(uri);
+        httpClientConfig.setHttpMethodType(HttpMethodType.GET);
 
-		uri = "http://117.102.249.96/ws/mpe/";
+        String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
 
-		uri = "http://117.102.249.96/ws/ecom/";
-		params = new HashMap<String, String>();
-		params.put("APPID", "MP4PP01");
-		params.put("ACCOUNT", "1300000430");
-		params.put("FUNCTION", "track");
-		params.put("REF", "81131531");
+        log.debug("responseBodyAsString:{}", responseBodyAsString);
+        log.debug("print httpMethod.getResponseHeaders()=======================");
+    }
 
-		// method = POST
-		// Account = 1300000430
-		// AppID = MP4PP01
-		// Function = track
-		//
-		// And you can use this AWB to test, it's a real AWB 81129754
+    /**
+     * Gets the fL logistics track.
+     *
+     * @throws HttpClientException
+     *             the http client util exception
+     */
+    @Test
+    public void getFLLogisticsTrack() throws HttpClientException{
+        String uri = "http://firstlogistics.co.id/ws/demo/post/";
 
-		// MPE100503 - SHIPPED
-		// MPE100501 - PICKED UP
-		// MPE100500 - FAILED
-		// MPE100498 - DELIVERED
+        Map<String, String> params = new HashMap<String, String>();
 
-		HttpClientConfig httpClientConfig = new HttpClientConfig();
+        params.put("APPID", "EBDEMO01");
+        params.put("ACCOUNT", "1300000430");
+        params.put("FUNCTION", "track");
+        params.put("REF", "MPE100503");
 
-		httpClientConfig.setUri(uri);
-		httpClientConfig.setHttpMethodType(HttpMethodType.POST);
-		httpClientConfig.setParams(params);
+        uri = "http://117.102.249.96/ws/mpe/";
 
-		String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
-		if (log.isInfoEnabled()){
-			log.info(responseBodyAsString);
-		}
-	}
+        uri = "http://117.102.249.96/ws/ecom/";
+        params = new HashMap<String, String>();
+        params.put("APPID", "MP4PP01");
+        params.put("ACCOUNT", "1300000430");
+        params.put("FUNCTION", "track");
+        params.put("REF", "81131531");
 
-	/**
-	 * Check tcash transaction.
-	 *
-	 * @throws HttpClientException
-	 *             the http client exception
-	 * @throws JSONException
-	 *             the JSON exception
-	 */
-	@Test
-	public void checkTcashTransaction() throws HttpClientException{
-		//		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction?refNum=290914112053368&userKey=testing&passKey=1234&signKey=1234";
-		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction";
-		Map<String, String> params = new HashMap<String, String>();
+        // method = POST
+        // Account = 1300000430
+        // AppID = MP4PP01
+        // Function = track
+        //
+        // And you can use this AWB to test, it's a real AWB 81129754
 
-		params.put("terminalId", "8021");
-		params.put("refNum", "290914112053368");
-		params.put("userKey", "testing");
-		params.put("passKey", "1234");
-		params.put("signKey", "1234");
+        // MPE100503 - SHIPPED
+        // MPE100501 - PICKED UP
+        // MPE100500 - FAILED
+        // MPE100498 - DELIVERED
 
-		HttpClientConfig httpClientConfig = new HttpClientConfig();
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
 
-		httpClientConfig.setUri(uri);
-		httpClientConfig.setHttpMethodType(HttpMethodType.GET);
-		httpClientConfig.setParams(params);
+        httpClientConfig.setUri(uri);
+        httpClientConfig.setHttpMethodType(HttpMethodType.POST);
+        httpClientConfig.setParams(params);
 
-		String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
-		if (log.isInfoEnabled()){
-			log.info(responseBodyAsString);
-		}
-	}
+        String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+        if (log.isInfoEnabled()){
+            log.info(responseBodyAsString);
+        }
+    }
+
+    /**
+     * Check tcash transaction.
+     *
+     * @throws HttpClientException
+     *             the http client exception
+     */
+    @Test
+    public void checkTcashTransaction() throws HttpClientException{
+        //		String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction?refNum=290914112053368&userKey=testing&passKey=1234&signKey=1234";
+        String uri = "http://202.3.208.89:11080/tcash-api/api/check/customer/transaction";
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("terminalId", "8021");
+        params.put("refNum", "290914112053368");
+        params.put("userKey", "testing");
+        params.put("passKey", "1234");
+        params.put("signKey", "1234");
+
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
+
+        httpClientConfig.setUri(uri);
+        httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+        httpClientConfig.setParams(params);
+
+        String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+        if (log.isInfoEnabled()){
+            log.info(responseBodyAsString);
+        }
+    }
 }

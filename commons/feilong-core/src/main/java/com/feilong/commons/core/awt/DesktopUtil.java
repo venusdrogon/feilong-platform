@@ -37,68 +37,68 @@ import com.feilong.commons.core.net.URIUtil;
  */
 public final class DesktopUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DesktopUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(DesktopUtil.class);
 
-	/** Don't let anyone instantiate this class. */
-	private DesktopUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private DesktopUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 使用系统默认浏览器,打开url.
-	 * 
-	 * @param url
-	 *            url地址
-	 */
-	public static void browse(String url){
-		// 判断当前系统是否支持Java AWT Desktop扩展
-		if (Desktop.isDesktopSupported()){
-			// 创建一个URI实例
-			URI uri = URIUtil.create(url, CharsetType.UTF8);
-			// 获取当前系统桌面扩展
-			Desktop desktop = Desktop.getDesktop();
-			// 判断系统桌面是否支持要执行的功能
-			if (desktop.isSupported(Action.BROWSE)){
-				// 获取系统默认浏览器打开链接
-				try{
-					desktop.browse(uri);
-				}catch (IOException e){
-					log.error("", e);
-				}
-			}
-		}else{
-			log.error("don'nt Support Desktop");
-		}
-	}
+    /**
+     * 使用系统默认浏览器,打开url.
+     * 
+     * @param url
+     *            url地址
+     */
+    public static void browse(String url){
+        // 判断当前系统是否支持Java AWT Desktop扩展
+        if (Desktop.isDesktopSupported()){
+            // 创建一个URI实例
+            URI uri = URIUtil.create(url, CharsetType.UTF8);
+            // 获取当前系统桌面扩展
+            Desktop desktop = Desktop.getDesktop();
+            // 判断系统桌面是否支持要执行的功能
+            if (desktop.isSupported(Action.BROWSE)){
+                // 获取系统默认浏览器打开链接
+                try{
+                    desktop.browse(uri);
+                }catch (IOException e){
+                    log.error("", e);
+                }
+            }
+        }else{
+            log.error("don'nt Support Desktop");
+        }
+    }
 
-	/**
-	 * 启动关联应用程序来打开文件..
-	 * 
-	 * @param url
-	 *            url地址
-	 */
-	public static void open(String url){
-		// 判断当前系统是否支持Java AWT Desktop扩展
-		if (Desktop.isDesktopSupported()){
+    /**
+     * 启动关联应用程序来打开文件..
+     * 
+     * @param url
+     *            url地址
+     */
+    public static void open(String url){
+        // 判断当前系统是否支持Java AWT Desktop扩展
+        if (Desktop.isDesktopSupported()){
 
-			// 获取当前系统桌面扩展
-			Desktop desktop = Desktop.getDesktop();
+            // 获取当前系统桌面扩展
+            Desktop desktop = Desktop.getDesktop();
 
-			// 判断系统桌面是否支持要执行的功能
-			if (desktop.isSupported(Action.OPEN)){
-				// 启动关联应用程序来打开文件
-				File file = new File(url);
-				try{
-					desktop.open(file);
-				}catch (IOException e){
-					log.error(e.getClass().getName(), e);
-				}
-			}
-		}else{
-			log.error("don't Support Desktop");
-		}
-	}
+            // 判断系统桌面是否支持要执行的功能
+            if (desktop.isSupported(Action.OPEN)){
+                // 启动关联应用程序来打开文件
+                File file = new File(url);
+                try{
+                    desktop.open(file);
+                }catch (IOException e){
+                    log.error(e.getClass().getName(), e);
+                }
+            }
+        }else{
+            log.error("don't Support Desktop");
+        }
+    }
 }
