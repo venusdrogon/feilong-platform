@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.net;
 
+import com.feilong.commons.core.io.CharsetType;
+
 /**
  * URLConnectionParam.
  * 
@@ -24,63 +26,85 @@ package com.feilong.commons.core.net;
  */
 public abstract class URLConnectionParam{
 
-	/**
-	 * 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
-	 * 超时时间为零表示无穷大超时.<br>
-	 * 如果在建立连接之前超时期满，则会引发一个 java.net.SocketTimeoutException.
-	 */
-	private int	connectTimeout	= 60000;
+    /**
+     * 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在建立连接之前超时期满，则会引发一个 java.net.SocketTimeoutException.
+     */
+    private int    connectTimeout = 60000;
 
-	/**
-	 * 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
-	 * 超时时间为零表示无穷大超时.<br>
-	 * 如果在数据可读取之前超时期满，则会引发一个 java.net.SocketTimeoutException.
-	 */
-	private int	readTimeout		= 60000;
+    /**
+     * 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在数据可读取之前超时期满，则会引发一个 java.net.SocketTimeoutException.
+     */
+    private int    readTimeout    = 60000;
 
-	/**
-	 * Gets the 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
-	 * 超时时间为零表示无穷大超时.<br>
-	 * 如果在建立连接之前超时期满，则会引发一个 java.
-	 * 
-	 * @return the connectTimeout
-	 */
-	public int getConnectTimeout(){
-		return connectTimeout;
-	}
+    /** 内容的字符集. */
+    private String contentCharset = CharsetType.UTF8;
 
-	/**
-	 * Sets the 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
-	 * 超时时间为零表示无穷大超时.<br>
-	 * 如果在建立连接之前超时期满，则会引发一个 java.
-	 * 
-	 * @param connectTimeout
-	 *            the connectTimeout to set
-	 */
-	public void setConnectTimeout(int connectTimeout){
-		this.connectTimeout = connectTimeout;
-	}
+    /**
+     * Gets the 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在建立连接之前超时期满，则会引发一个 java.
+     * 
+     * @return the connectTimeout
+     */
+    public int getConnectTimeout(){
+        return connectTimeout;
+    }
 
-	/**
-	 * Gets the 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
-	 * 超时时间为零表示无穷大超时.<br>
-	 * 如果在数据可读取之前超时期满，则会引发一个 java.
-	 * 
-	 * @return the readTimeout
-	 */
-	public int getReadTimeout(){
-		return readTimeout;
-	}
+    /**
+     * Sets the 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在建立连接之前超时期满，则会引发一个 java.
+     * 
+     * @param connectTimeout
+     *            the connectTimeout to set
+     */
+    public void setConnectTimeout(int connectTimeout){
+        this.connectTimeout = connectTimeout;
+    }
 
-	/**
-	 * Sets the 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
-	 * 超时时间为零表示无穷大超时.<br>
-	 * 如果在数据可读取之前超时期满，则会引发一个 java.
-	 * 
-	 * @param readTimeout
-	 *            the readTimeout to set
-	 */
-	public void setReadTimeout(int readTimeout){
-		this.readTimeout = readTimeout;
-	}
+    /**
+     * Gets the 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在数据可读取之前超时期满，则会引发一个 java.
+     * 
+     * @return the readTimeout
+     */
+    public int getReadTimeout(){
+        return readTimeout;
+    }
+
+    /**
+     * Sets the 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在数据可读取之前超时期满，则会引发一个 java.
+     * 
+     * @param readTimeout
+     *            the readTimeout to set
+     */
+    public void setReadTimeout(int readTimeout){
+        this.readTimeout = readTimeout;
+    }
+
+    /**
+     * 获得 内容的字符集.
+     *
+     * @return the contentCharset
+     */
+    public String getContentCharset(){
+        return contentCharset;
+    }
+
+    /**
+     * 设置 内容的字符集.
+     *
+     * @param contentCharset
+     *            the contentCharset to set
+     */
+    public void setContentCharset(String contentCharset){
+        this.contentCharset = contentCharset;
+    }
 }

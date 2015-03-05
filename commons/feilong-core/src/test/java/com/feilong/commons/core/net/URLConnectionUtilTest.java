@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,76 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package com.feilong.commons.core.net;
-
-import java.net.Proxy;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.CharsetType;
+
 /**
+ * The Class URLConnectionUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 27, 2013 10:55:18 AM
  */
 public class URLConnectionUtilTest{
 
-	private static final Logger	log				= LoggerFactory.getLogger(URLConnectionUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log          = LoggerFactory.getLogger(URLConnectionUtilTest.class);
 
-	private String				urlString		= "http://www.nikestore.com.cn/?t=" + System.currentTimeMillis();
+    /** The url string. */
+    private String              urlString    = "http://www.nikestore.com.cn/?t=" + System.currentTimeMillis();
 
-	private String				proxyAddress	= "10.8.12.205";
+    /** The proxy address. */
+    private String              proxyAddress = "10.8.12.205";
 
-	private int					proxyPort		= 3128;
+    /** The proxy port. */
+    private int                 proxyPort    = 3128;
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.commons.core.net.URLConnectionUtil#readLineWithProxy(java.lang.String, java.lang.String, java.lang.Integer)} .
-	 */
-	@Test
-	public final void readLineWithProxy1(){
-		Proxy proxy = null;
+    /**
+     * 获得 response body as string.
+     */
+    @Test
+    public final void getResponseBodyAsString(){
+        String templateFile = "http://10.8.25.80:6666/template.csv?sign=123456";
 
-		HttpURLConnectionParam httpURLConnectionParam = new HttpURLConnectionParam();
+        HttpURLConnectionParam httpURLConnectionParam = new HttpURLConnectionParam();
+        httpURLConnectionParam.setContentCharset(CharsetType.GBK);
 
-		String readLineWithProxy = URLConnectionUtil.readLineWithProxy(urlString, proxy, httpURLConnectionParam);
-		log.info(readLineWithProxy);
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.net.URLConnectionUtil#readLineWithProxy(java.lang.String, java.net.Proxy)}.
-	 */
-	@Test
-	public final void readLineWithProxy(){
-		String readLineWithProxy = URLConnectionUtil.readLineWithProxy(urlString, proxyAddress, proxyPort);
-		log.info(readLineWithProxy);
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.net.URLConnectionUtil#readLineWithProxy(java.lang.String, java.net.Proxy)}.
-	 */
-	@Test
-	public final void getResponseBodyAsStringWithProxy(){
-		String responseBodyAsStringWithProxy = URLConnectionUtil.getResponseBodyAsStringWithProxy(urlString, proxyAddress, proxyPort);
-		log.info(responseBodyAsStringWithProxy);
-	}
-
-	/**
-	 * Test method for {@link com.feilong.commons.core.net.URLConnectionUtil#readLineWithProxy(java.lang.String, java.net.Proxy)}.
-	 */
-	@Test
-	public final void getResponseBodyAsString(){
-		String responseBodyAsString = URLConnectionUtil.getResponseBodyAsString(urlString);
-		log.info(responseBodyAsString);
-	}
+        String responseBodyAsString = URLConnectionUtil.getResponseBodyAsString(templateFile, httpURLConnectionParam);
+        log.info(responseBodyAsString);
+    }
 }
