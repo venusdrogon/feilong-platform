@@ -29,6 +29,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
+
 /**
  * 提供jsp 标签帮助menthods
  * 
@@ -41,6 +43,7 @@ import org.slf4j.LoggerFactory;
  */
 public class TagUtils{
 
+    /** The Constant log. */
     private static final Logger               log      = LoggerFactory.getLogger(TagUtils.class);
 
     /**
@@ -208,37 +211,43 @@ public class TagUtils{
      * Write the specified text as the response to the writer associated with this page. <strong>WARNING</strong> - If you are writing body
      * content from the <code>doAfterBody()</code> method of a custom tag class that implements <code>BodyTag</code>, you should be calling
      * <code>writePrevious()</code> instead.
-     * 
+     *
      * @param pageContext
      *            The PageContext object for this page
      * @param text
      *            The text to be written
-     * @throws JspException
-     *             if an input/output error occurs (already saved)
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public void write(PageContext pageContext,String text) throws JspException{
+    public void write(PageContext pageContext,String text) throws UncheckedIOException{
         JspWriter writer = pageContext.getOut();
         try{
             writer.print(text);
-        }catch (IOException e){}
+        }catch (IOException e){
+            throw new UncheckedIOException(e);
+        }
     }
 
     /**
      * Write the specified text as the response to the writer associated with the body content for the tag within which we are currently
      * nested.
-     * 
+     *
      * @param pageContext
      *            The PageContext object for this page
      * @param text
      *            The text to be written
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public void writePrevious(PageContext pageContext,String text){
+    public void writePrevious(PageContext pageContext,String text) throws UncheckedIOException{
         JspWriter writer = pageContext.getOut();
         if (writer instanceof BodyContent){
             writer = ((BodyContent) writer).getEnclosingWriter();
         }
         try{
             writer.print(text);
-        }catch (IOException e){}
+        }catch (IOException e){
+            throw new UncheckedIOException(e);
+        }
     }
 }

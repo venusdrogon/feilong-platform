@@ -20,6 +20,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
@@ -51,7 +52,7 @@ public class PDFChineseFont{
         }catch (DocumentException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return chineseFont;
     }

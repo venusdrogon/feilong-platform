@@ -21,9 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.lang.ClassLoaderUtil;
 
 /**
@@ -34,9 +32,6 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
  * @since 1.0.0
  */
 public final class PropertiesUtil implements BaseConfigure{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(PropertiesUtil.class);
 
     /** Don't let anyone instantiate this class. */
     private PropertiesUtil(){
@@ -150,27 +145,30 @@ public final class PropertiesUtil implements BaseConfigure{
 
     /**
      * 获取Properties.
-     * 
+     *
      * @param inputStream
      *            inputStream
      * @return <ul>
-     *         <li>如果null==inputStream,返回null</li>
-     *         <li>如果发生异常,返回null</li>
-     *         <li>正常情况,返回 properties.load(inputStream)</li>
+     *         <li>正常情况,返回 {@link java.util.Properties#load(InputStream)}</li>
      *         </ul>
+     * @throws NullPointerException
+     *             if null==inputStream
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @see java.util.Properties#load(InputStream)
      */
-    public static Properties getProperties(InputStream inputStream){
-        if (null != inputStream){
-            try{
-                Properties properties = new Properties();
-                properties.load(inputStream);
-                return properties;
-            }catch (IOException e){
-                log.error(e.getClass().getName(), e);
-            }
+    public static Properties getProperties(InputStream inputStream) throws NullPointerException,UncheckedIOException{
+        if (null == inputStream){
+            throw new NullPointerException("the inputStream is null or empty!");
         }
-        log.warn("the inputStream is null,can't load properties!and will return null");
-        return null;
+        Properties properties = new Properties();
+
+        try{
+            properties.load(inputStream);
+            return properties;
+        }catch (IOException e){
+            throw new UncheckedIOException(e);
+        }
     }
 
     // [end]

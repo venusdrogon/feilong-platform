@@ -38,6 +38,7 @@ import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.command.PaymentResult;
@@ -404,7 +405,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }catch (DocumentException e){
             log.error(e.getClass().getName(), e);
         }finally{
@@ -413,7 +414,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
                     inputStream.close();
                 }
             }catch (IOException e){
-                log.error(e.getClass().getName(), e);
+                throw new UncheckedIOException(e);
             }
         }
         // 内部 不控制,不能影响订单的创建

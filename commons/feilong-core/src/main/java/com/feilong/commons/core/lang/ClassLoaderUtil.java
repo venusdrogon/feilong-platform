@@ -25,6 +25,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
@@ -94,14 +95,14 @@ public final class ClassLoaderUtil{
      * @param callingClass
      *            The Class object of the calling object
      * @return the resource as stream
+     * @see #getResource(String, Class)
      */
     public static InputStream getResourceAsStream(String resourceName,Class<?> callingClass){
         URL url = getResource(resourceName, callingClass);
         try{
             return (url != null) ? url.openStream() : null;
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
-            return null;
+            throw new UncheckedIOException(e);
         }
     }
 

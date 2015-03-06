@@ -27,6 +27,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -66,7 +67,7 @@ public final class PDFUtil{
         }catch (FileNotFoundException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 

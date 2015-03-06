@@ -30,6 +30,7 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.FileWriteMode;
 import com.feilong.commons.core.io.IOWriteUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
@@ -86,7 +87,7 @@ public class StubStatusMain{
                 try{
                     crawStubStatusNike(uri, userName, password, path);
                 }catch (IOException e){
-                    log.error(e.getClass().getName(), e);
+                    throw new UncheckedIOException(e);
                 }
             }
         };
@@ -165,7 +166,7 @@ public class StubStatusMain{
             }catch (MessagingException e){
                 log.error(e.getClass().getName(), e);
             }catch (IOException e){
-                log.error(e.getClass().getName(), e);
+                throw new UncheckedIOException(e);
             }
         }
     }

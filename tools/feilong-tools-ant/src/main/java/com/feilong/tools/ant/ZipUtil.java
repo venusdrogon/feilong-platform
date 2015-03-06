@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOWriteUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
  * 飞龙压缩和解压缩工具类 <br>
@@ -79,7 +80,7 @@ public final class ZipUtil{
         try{
             zipOutputStream.close();
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
@@ -146,14 +147,11 @@ public final class ZipUtil{
                 }
             }
         }catch (ZipException e){
-            log.debug(e.getMessage());
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }catch (FileNotFoundException e){
-            log.debug(e.getMessage());
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }catch (IOException e){
-            log.debug(e.getMessage());
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
@@ -172,7 +170,7 @@ public final class ZipUtil{
         try{
             zipOutputStream.putNextEntry(zipEntry);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 }

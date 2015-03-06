@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.URIUtil;
 
 /**
@@ -49,11 +50,13 @@ public final class DesktopUtil{
 
     /**
      * 使用系统默认浏览器,打开url.
-     * 
+     *
      * @param url
      *            url地址
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static void browse(String url){
+    public static void browse(String url) throws UncheckedIOException{
         // 判断当前系统是否支持Java AWT Desktop扩展
         if (Desktop.isDesktopSupported()){
             // 创建一个URI实例
@@ -66,21 +69,23 @@ public final class DesktopUtil{
                 try{
                     desktop.browse(uri);
                 }catch (IOException e){
-                    log.error("", e);
+                    throw new UncheckedIOException(e);
                 }
             }
         }else{
-            log.error("don'nt Support Desktop");
+            log.error("don't Support Desktop");
         }
     }
 
     /**
      * 启动关联应用程序来打开文件..
-     * 
+     *
      * @param url
      *            url地址
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static void open(String url){
+    public static void open(String url) throws UncheckedIOException{
         // 判断当前系统是否支持Java AWT Desktop扩展
         if (Desktop.isDesktopSupported()){
 
@@ -94,7 +99,7 @@ public final class DesktopUtil{
                 try{
                     desktop.open(file);
                 }catch (IOException e){
-                    log.error(e.getClass().getName(), e);
+                    throw new UncheckedIOException(e);
                 }
             }
         }else{

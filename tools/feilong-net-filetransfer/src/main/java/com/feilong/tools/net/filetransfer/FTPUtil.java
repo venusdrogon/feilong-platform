@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.io.FileType;
+import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
  * ftp 相关的工具类, 注:依赖于 commons-net<br>
@@ -128,8 +129,8 @@ public class FTPUtil extends FileTransfer{
             log.error(e.getClass().getName(), e);
             disconnect();
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
             disconnect();
+            throw new UncheckedIOException(e);
         }
         log.info("connect :{}", isSuccess);
         return isSuccess;
@@ -150,7 +151,7 @@ public class FTPUtil extends FileTransfer{
                 ftpClient.disconnect();
                 log.debug("ftpClient disconnect...");
             }catch (IOException e){
-                log.error(e.getClass().getName(), e);
+                throw new UncheckedIOException(e);
             }
         }
     }

@@ -22,6 +22,7 @@ package com.feilong.commons.core.io;
  * @version 1.0 2011-5-30 下午01:19:46
  * @version 1.0.5 2014-5-4 00:24 改成interface
  * @since 1.0.0
+ * @see com.feilong.commons.core.io.MimeType
  */
 public final class ImageType{
 

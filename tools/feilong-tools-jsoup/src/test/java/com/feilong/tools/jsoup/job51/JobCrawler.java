@@ -27,6 +27,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.tools.jsoup.JsoupUtil;
 import com.feilong.tools.jsoup.JsoupUtilException;
 import com.feilong.tools.jsoup.jinbaowang.entity.Enterprise;
@@ -69,7 +70,7 @@ public class JobCrawler{
                 log.info(enterprise.getTelephone());
             }
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 

@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtilException;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.lang.EnumUtil;
 import com.feilong.commons.core.util.NumberPattern;
 import com.feilong.commons.core.util.NumberUtil;
@@ -165,9 +166,8 @@ public class ExcelParseUtil{
         try{
             return new HSSFWorkbook(inputStream);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
-        return null;
     }
 
     /**

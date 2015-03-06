@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.struts1.web.form.ImportForm;
 
@@ -56,7 +57,7 @@ public class StrutsImportUtil{
         }catch (FileNotFoundException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return null;
     }

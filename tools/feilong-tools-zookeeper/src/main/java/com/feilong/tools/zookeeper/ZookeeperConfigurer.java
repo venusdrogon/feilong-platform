@@ -86,7 +86,6 @@ public class ZookeeperConfigurer extends PropertyPlaceholderConfigurer implement
                 }
             }
         }catch (IOException e){
-            log.error("Failed to connect to zk server" + zkhost, e);
             throw new ApplicationContextException("Failed to connect to zk server" + zkhost, e);
         }
         super.processProperties(configurableListableBeanFactory, properties);

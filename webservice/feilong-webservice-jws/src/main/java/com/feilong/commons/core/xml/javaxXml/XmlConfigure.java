@@ -37,6 +37,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.feilong.commons.core.configure.BaseConfigure;
+import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
  * xml配置文件.
@@ -114,7 +115,7 @@ public final class XmlConfigure implements BaseConfigure{
         }catch (SAXException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return document;
     }

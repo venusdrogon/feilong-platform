@@ -24,6 +24,8 @@ import org.apache.struts.upload.FormFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
+
 /**
  * 飞龙 struts 上传.
  * 
@@ -56,7 +58,7 @@ public class StrutsUpload{
         }catch (FileNotFoundException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return false;
     }

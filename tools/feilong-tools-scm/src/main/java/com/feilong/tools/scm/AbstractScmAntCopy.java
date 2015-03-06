@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.toolkit.ClipboardUtil;
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.util.StringBuilderUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -168,7 +169,7 @@ public abstract class AbstractScmAntCopy implements ScmAntCopy{
 
             log.info(builder.insert(0, SystemUtils.LINE_SEPARATOR).toString());
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 

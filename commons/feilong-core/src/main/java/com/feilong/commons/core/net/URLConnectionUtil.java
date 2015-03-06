@@ -161,8 +161,11 @@ public final class URLConnectionUtil{
      * @param httpURLConnectionParam
      *            httpURLConnectionParam
      * @return the http url connection
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    private static HttpURLConnection getHttpURLConnection(String urlString,HttpURLConnectionParam httpURLConnectionParam){
+    private static HttpURLConnection getHttpURLConnection(String urlString,HttpURLConnectionParam httpURLConnectionParam)
+                    throws UncheckedIOException{
 
         HttpURLConnection httpURLConnection = null;
         try{
@@ -204,7 +207,7 @@ public final class URLConnectionUtil{
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return null;
     }

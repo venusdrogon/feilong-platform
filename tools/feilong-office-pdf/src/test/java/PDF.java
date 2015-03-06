@@ -34,20 +34,20 @@ public class PDF{
     // } catch (FileNotFoundException e) {
     // log.error(e.getClass().getName(), e);
     // } catch (IOException e) {
-    // log.error(e.getClass().getName(), e);
+    // throw new UncheckedIOException(e);
     // } finally {
     // if (is != null) {
     // try {
     // is.close();
     // } catch (IOException e) {
-    // log.error(e.getClass().getName(), e);
+    // throw new UncheckedIOException(e);
     // }
     // }
     // if (document != null) {
     // try {
     // document.close();
     // } catch (IOException e) {
-    // log.error(e.getClass().getName(), e);
+    // throw new UncheckedIOException(e);
     // }
     // }
     // }

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.feilong.taglib.base;
 
 import java.io.IOException;
@@ -25,8 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
  * 飞龙自定义标签的父类,所有飞龙自定义标签的基类,包含通用的方法 <br>
@@ -49,42 +47,44 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseTag extends BodyTagSupport{
 
-    private static final Logger log              = LoggerFactory.getLogger(BaseTag.class);
-
     /** The Constant serialVersionUID. */
-    private static final long   serialVersionUID = -5494214419937813707L;
+    private static final long serialVersionUID = -5494214419937813707L;
 
     /**
      * 将文字输出到页面.
-     * 
-     * @param object
-     *            the object
+     *
      * @author 金鑫
      * @version 1.0 2010-5-5 下午03:27:25
+     * @param object
+     *            the object
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    protected void print(Object object){
+    protected void print(Object object) throws UncheckedIOException{
         JspWriter jspWriter = pageContext.getOut();
         try{
             jspWriter.print(object);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
     /**
      * 将文字输出到页面.
-     * 
-     * @param object
-     *            the object
+     *
      * @author 金鑫
      * @version 1.0 2010-5-5 下午03:53:12
+     * @param object
+     *            the object
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    protected void println(Object object){
+    protected void println(Object object) throws UncheckedIOException{
         JspWriter jspWriter = pageContext.getOut();
         try{
             jspWriter.println(object.toString());
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
@@ -99,10 +99,10 @@ public abstract class BaseTag extends BodyTagSupport{
     // [start] 公用方法
     /**
      * 获得HttpServletRequest.
-     * 
-     * @return the http servlet request
+     *
      * @author 金鑫
      * @version 1.0 2010-2-3 下午01:59:09
+     * @return the http servlet request
      */
     protected final HttpServletRequest getHttpServletRequest(){
         return (HttpServletRequest) getServletRequest();
@@ -110,9 +110,9 @@ public abstract class BaseTag extends BodyTagSupport{
 
     /**
      * 获得ServletRequest.
-     * 
-     * @return the servlet request
+     *
      * @version 1.0 2010-2-3 下午01:58:55
+     * @return the servlet request
      */
     protected final ServletRequest getServletRequest(){
         return this.pageContext.getRequest();
@@ -120,10 +120,10 @@ public abstract class BaseTag extends BodyTagSupport{
 
     /**
      * 获得 HttpSession.
-     * 
-     * @return HttpSession
+     *
      * @author 金鑫
      * @version 1.0 2010-3-18 上午11:04:27
+     * @return HttpSession
      */
     protected final HttpSession getHttpSession(){
         return this.pageContext.getSession();
@@ -131,10 +131,10 @@ public abstract class BaseTag extends BodyTagSupport{
 
     /**
      * 获得HttpServletResponse.
-     * 
-     * @return the http servlet response
+     *
      * @author 金鑫
      * @version 1.0 2010-3-15 下午06:25:18
+     * @return the http servlet response
      */
     protected final HttpServletResponse getHttpServletResponse(){
         return (HttpServletResponse) pageContext.getResponse();

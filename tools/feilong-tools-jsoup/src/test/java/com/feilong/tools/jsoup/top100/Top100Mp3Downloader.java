@@ -33,6 +33,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
+
 /**
  * 用jsoup分析下载巨鲸的mp3.
  * 
@@ -89,7 +91,7 @@ public class Top100Mp3Downloader{
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return null;
     }
@@ -121,7 +123,7 @@ public class Top100Mp3Downloader{
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         return null;
     }
@@ -168,7 +170,7 @@ public class Top100Mp3Downloader{
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 }

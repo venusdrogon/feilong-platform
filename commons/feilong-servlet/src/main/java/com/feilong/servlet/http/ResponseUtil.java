@@ -141,15 +141,15 @@ public final class ResponseUtil{
      *            the request
      * @param response
      *            the response
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
     private static void downLoadData(
                     String saveFileName,
                     InputStream inputStream,
                     Number contentLength,
                     HttpServletRequest request,
-                    HttpServletResponse response) throws IOException{
+                    HttpServletResponse response) throws UncheckedIOException{
         Date beginDate = new Date();
 
         if (log.isInfoEnabled()){
@@ -190,7 +190,7 @@ public final class ResponseUtil{
                                 RequestUtil.getHeaderUserAgent(request));
             }else{
                 log.error("[download exception],exception name: " + exceptionName, e);
-                throw e;
+                throw new UncheckedIOException(e);
             }
         }
     }
@@ -286,7 +286,6 @@ public final class ResponseUtil{
         try{
             response.sendRedirect(url);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
             throw new UncheckedIOException(e);
         }
     }
@@ -402,7 +401,6 @@ public final class ResponseUtil{
             //http://www.iteye.com/problems/56543
             //你是用了tomcat，jetty这样的容器，就不需要 printWriter.close();
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
             throw new UncheckedIOException(e);
         }
     }

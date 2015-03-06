@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
  * The Class PropertiesUtilTest.
@@ -62,7 +63,7 @@ public class PropertiesUtilTest{
         try{
             inputStream.close();
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
@@ -80,7 +81,7 @@ public class PropertiesUtilTest{
 //		}catch (FileNotFoundException e){
 //			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			log.error(e.getClass().getName(), e);
+//			throw new UncheckedIOException(e);
 //		}
 //		return true;
 //	}
@@ -93,7 +94,7 @@ public class PropertiesUtilTest{
 //		}catch (FileNotFoundException e){
 //			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			log.error(e.getClass().getName(), e);
+//			throw new UncheckedIOException(e);
 //		}
 //		log.debug(properties.get("a.b.c"));
 //		log.debug(properties.get("aaa"));
@@ -117,7 +118,7 @@ public class PropertiesUtilTest{
 //			// 将此 Properties 表中的属性列表（键和元素对）写入输出流
 //			props.store(fos, "Update '" + keyname + "' value");
 //		}catch (IOException e){
-//			System.err.println("属性文件更新错误");
+//			throw new UncheckedIOException(e);
 //		}
 //	}
 //
@@ -140,7 +141,7 @@ public class PropertiesUtilTest{
 //			// 将此 Properties 表中的属性列表（键和元素对）写入输出流
 //			props.store(fos, "Update '" + keyname + "' value");
 //		}catch (IOException e){
-//			System.err.println("属性文件更新错误");
+//			throw new UncheckedIOException(e);
 //		}
 //	}
 

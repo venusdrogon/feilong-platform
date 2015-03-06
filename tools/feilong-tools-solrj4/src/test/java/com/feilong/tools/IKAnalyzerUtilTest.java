@@ -21,6 +21,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
+
 /**
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 20, 2012 7:09:40 PM
@@ -48,7 +50,7 @@ public class IKAnalyzerUtilTest{
             }
 
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 }

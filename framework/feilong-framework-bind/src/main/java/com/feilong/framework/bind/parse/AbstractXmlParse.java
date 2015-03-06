@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.lang.reflect.TypeUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.bind.exception.BuildCommandException;
@@ -43,6 +44,9 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * {@link com.feilong.framework.bind.parse.varcommand.VarName} 标识,可以来处理 XML中字段可能全部是大写 比如BANK,但是javabean 中的字段却是 bank,可以使用下面的代码来实现隐射
  * 
  * <pre>
+ * 
+ * 
+ * 
  * 
  * 
  * 
@@ -100,7 +104,7 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
                 Writer writer = new StringWriter();
                 log.debug("formatXML:{}", Dom4jUtil.format(xml, CharsetType.UTF8, writer));
             }catch (IOException e){
-                log.error(e.getClass().getName(), e);
+                throw new UncheckedIOException(e);
             }
         }
 

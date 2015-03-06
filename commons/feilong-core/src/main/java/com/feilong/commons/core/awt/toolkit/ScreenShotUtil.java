@@ -30,6 +30,8 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
+
 /**
  * 截屏操作.
  * 
@@ -92,7 +94,7 @@ public final class ScreenShotUtil{
         }catch (AWTException e){
             log.error("", e);
         }catch (IOException e){
-            log.error("", e);
+            throw new UncheckedIOException(e);
         }
     }
 }

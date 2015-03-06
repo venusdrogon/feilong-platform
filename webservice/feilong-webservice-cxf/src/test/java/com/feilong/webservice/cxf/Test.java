@@ -41,7 +41,7 @@ package com.feilong.webservice.cxf;
 //		}catch (ClientProtocolException e){
 //			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			log.error(e.getClass().getName(), e);
+//			throw new UncheckedIOException(e);
 //		}
 //		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
@@ -72,7 +72,7 @@ package com.feilong.webservice.cxf;
 //		}catch (ClientProtocolException e){
 //			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			log.error(e.getClass().getName(), e);
+//			throw new UncheckedIOException(e);
 //		}
 //		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();
@@ -106,7 +106,7 @@ package com.feilong.webservice.cxf;
 //		}catch (ClientProtocolException e){
 //			log.error(e.getClass().getName(), e);
 //		}catch (IOException e){
-//			log.error(e.getClass().getName(), e);
+//			throw new UncheckedIOException(e);
 //		}
 //		log.info(responseBody);
 //		httpclient.getConnectionManager().shutdown();

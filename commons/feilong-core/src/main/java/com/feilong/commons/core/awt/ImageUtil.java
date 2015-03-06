@@ -30,6 +30,9 @@ import javax.imageio.stream.ImageInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.ImageType;
+import com.feilong.commons.core.io.UncheckedIOException;
+
 /**
  * 图片工具类.
  * 
@@ -51,23 +54,25 @@ public final class ImageUtil{
 
     /**
      * Write.
-     * 
+     *
      * @param outputStream
      *            outputStream will close
      * @param renderedImage
      *            renderedImage
      * @param formatName
-     *            formatName a String containg the informal name of the format.
+     *            a String containg the informal name of the format {@link ImageType}.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @see javax.imageio.ImageIO#write(RenderedImage, String, OutputStream)
      */
-    public static void write(OutputStream outputStream,RenderedImage renderedImage,String formatName){
+    public static void write(OutputStream outputStream,RenderedImage renderedImage,String formatName) throws UncheckedIOException{
         try{
             // JPEGImageEncoder jpegImageEncoder = JPEGCodec.createJPEGEncoder(outputStream);
             // jpegImageEncoder.encode(bufferedImage);
             ImageIO.write(renderedImage, formatName, outputStream);
             outputStream.close();
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
@@ -127,36 +132,40 @@ public final class ImageUtil{
     /**
      * 获得image/BufferedImage 对象<br>
      * BufferedImage 子类描述具有 可访问图像数据缓冲区的 Image.
-     * 
+     *
      * @param filePath
      *            图像路径
      * @return the buffered image
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static BufferedImage getBufferedImage(String filePath){
+    public static BufferedImage getBufferedImage(String filePath) throws UncheckedIOException{
         File file = new File(filePath);
         try{
             BufferedImage bufferedImage = ImageIO.read(file);
             log.debug("image filePath:{}", filePath);
             log.debug("image width:{}", bufferedImage.getWidth());
             log.debug("image height:{}", bufferedImage.getHeight());
+
             // log.debug("getPropertyNames:{}", bufferedImage.getData());
             return bufferedImage;
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
-        return null;
     }
 
     /**
      * 是否是cmyk类型.
-     * 
+     *
      * @param filename
      *            文件
      * @return 是否是cmyk类型,是返回true
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @deprecated 未成功验证,暂时不要调用
      */
     @Deprecated
-    public static boolean isCMYKType(String filename){
+    public static boolean isCMYKType(String filename) throws UncheckedIOException{
         File file = new File(filename);
         try{
             ImageInputStream imageInputStream = ImageIO.createImageInputStream(file);
@@ -169,9 +178,10 @@ public final class ImageUtil{
 
                 return colorSpaceType == ColorSpace.TYPE_CMYK;
             }
+
+            return false;
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
-        return false;
     }
 }

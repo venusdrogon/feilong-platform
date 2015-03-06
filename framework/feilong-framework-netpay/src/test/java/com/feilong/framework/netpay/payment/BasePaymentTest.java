@@ -15,7 +15,6 @@
  */
 package com.feilong.framework.netpay.payment;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
@@ -108,12 +107,9 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
      * @param html
      */
     private void writeAndOpen(String filePath,String html){
-        try{
-            IOWriteUtil.write(filePath, html, encode_file);
-            DesktopUtil.open(filePath);
-        }catch (IOException e){
-            log.error(e.getClass().getName(), e);
-        }
+        IOWriteUtil.write(filePath, html, encode_file);
+        DesktopUtil.open(filePath);
+
     }
 
     /**

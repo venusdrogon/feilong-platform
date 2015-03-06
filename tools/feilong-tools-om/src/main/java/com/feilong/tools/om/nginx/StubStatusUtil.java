@@ -25,6 +25,7 @@ import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
@@ -115,11 +116,11 @@ public final class StubStatusUtil{
                 }catch (NumberFormatException e){
                     log.error(e.getClass().getName(), e);
                 }catch (IOException e){
-                    log.error(e.getClass().getName(), e);
+                    throw new UncheckedIOException(e);
                 }
             }
-        }catch (HttpClientException e1){
-            e1.printStackTrace();
+        }catch (HttpClientException e){
+            log.error("", e);
         }
 
         // **************有可能异常情况, 设置为默认值*****************************************

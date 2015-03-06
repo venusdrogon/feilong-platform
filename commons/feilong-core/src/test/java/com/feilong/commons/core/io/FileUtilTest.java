@@ -57,7 +57,7 @@ public class FileUtilTest{
             int contentLength = urlConnection.getContentLength();
             log.info(FileUtil.formatSize(contentLength));
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
         try{
             URL url = new URL("http://localhost:8080/TestHttpURLConnectionPro/index.jsp");
@@ -66,7 +66,7 @@ public class FileUtilTest{
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 

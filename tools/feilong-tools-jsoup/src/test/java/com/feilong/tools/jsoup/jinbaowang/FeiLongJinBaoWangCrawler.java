@@ -38,6 +38,7 @@ import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.CSVUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
@@ -89,9 +90,9 @@ public class FeiLongJinBaoWangCrawler{
             out.writeObject(skuCodeAndImagesMap);
             out.close();
         }catch (FileNotFoundException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 
@@ -112,7 +113,7 @@ public class FeiLongJinBaoWangCrawler{
         }catch (FileNotFoundException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }catch (ClassNotFoundException e){
             log.error(e.getClass().getName(), e);
         }

@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.ValidateCodeUtil;
 import com.feilong.commons.core.io.ImageType;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.servlet.http.ResponseUtil;
 
@@ -124,7 +125,7 @@ public class CaptchaServlet extends HttpServlet{
             // jspWriter.clear();
             // jspWriter = pageContext.pushBody();
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }
     }
 

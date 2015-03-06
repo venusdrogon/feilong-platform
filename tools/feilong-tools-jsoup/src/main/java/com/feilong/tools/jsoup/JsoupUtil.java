@@ -54,7 +54,6 @@ public final class JsoupUtil{
             Document document = Jsoup.parse(url, timeoutMillis);
             return document;
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
             throw new JsoupUtilException(e);
         }
     }
@@ -80,7 +79,6 @@ public final class JsoupUtil{
             Document document = Jsoup.connect(url).userAgent(userAgent).timeout(millis).get();
             return document;
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
             throw new JsoupUtilException(e);
         }
 
