@@ -23,8 +23,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class JsoupUtil.
@@ -33,9 +31,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0 2011-4-11 下午11:17:42
  */
 public final class JsoupUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(JsoupUtil.class);
 
     // *******************************************************************************
     /**

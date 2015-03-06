@@ -280,7 +280,7 @@ public final class HttpClientUtil{
 
         try{
             httpMethod = executeMethod(httpMethod, httpClientConfig);
-            // httpMethod.getParams().setContentCharset(charSet);
+            //httpMethod.getParams().setContentCharset(charSet);
 
             // 第一种，getResponseBody，该方法返回的是目标的二进制的byte流；
             // 第二种，getResponseBodyAsString，这个方法返回的是String类型，值得注意的是该方法返回的String的编码是根据系统默认的编码方式，所以返回的String值可能编码类型有误，在本文的"字符编码"部分中将对此做详细介绍；

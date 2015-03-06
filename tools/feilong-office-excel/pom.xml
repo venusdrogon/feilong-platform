@@ -46,13 +46,13 @@
 			<version>${version.poi}</version>
 			<optional>true</optional>
 		</dependency>
-<!-- 
-		<dependency>
+		<!--
+			<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>ooxml-schemas</artifactId>
 			<version>${version.ooxml-schemas}</version>
-		</dependency>
-		 -->
+			</dependency>
+		-->
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -92,6 +92,10 @@
 				<exclusion>
 					<groupId>com.sun.javax.media</groupId>
 					<artifactId>jai_core</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsoup</artifactId>
+					<groupId>org.jsoup</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>

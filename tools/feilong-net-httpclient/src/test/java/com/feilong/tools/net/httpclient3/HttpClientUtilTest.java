@@ -43,7 +43,7 @@ public class HttpClientUtilTest{
      */
     @Test
     public void getHttpMethodWithExecute1() throws HttpClientException{
-        String uri = "http://10.8.25.80:6666/template.txt?sign=123456";
+        String uri = "http://127.0.0.1:6666/template.txt?sign=123456";
 
         HttpClientConfig httpClientConfig = new HttpClientConfig();
 
