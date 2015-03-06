@@ -27,6 +27,7 @@ import org.apache.commons.lang3.SystemUtils;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-22 下午11:45:57
  * @since 1.0.0
+ * @see org.apache.commons.lang3.SystemUtils
  */
 public final class SpecialFolder{
 
@@ -45,13 +46,13 @@ public final class SpecialFolder{
      * </ul>
      * 
      * @return 操作系统临时文件夹
+     * 
+     * @see org.apache.commons.lang3.SystemUtils#JAVA_IO_TMPDIR
      */
     public static final String getTemp(){
         // XXX 提取 java.io.tmpdir 这些环境变量名称
         //		String property = "java.io.tmpdir";
-        //		
         //		String tempDir = System.getProperty(property);
-        //		return tempDir;
         return SystemUtils.JAVA_IO_TMPDIR;
     }
 

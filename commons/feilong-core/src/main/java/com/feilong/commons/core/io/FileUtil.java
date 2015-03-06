@@ -60,38 +60,41 @@ public final class FileUtil{
 
     /**
      * 将文件转成ByteArray.
-     * 
+     *
      * @param file
      *            file
      * @return byteArrayOutputStream.toByteArray();
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static final byte[] convertFileToByteArray(File file) throws IOException{
+    public static final byte[] convertFileToByteArray(File file) throws UncheckedIOException{
         InputStream inputStream = FileUtil.getFileInputStream(file);
-        // *************************************************************************
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
 
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        byte[] bytes = new byte[10240];
-        byte[] byteArray = null;
+
+        byte[] bytes = new byte[IOConstants.DEFAULT_BUFFER_LENGTH];
         int j;
+
         try{
             while ((j = bufferedInputStream.read(bytes)) != -1){
                 byteArrayOutputStream.write(bytes, 0, j);
             }
             byteArrayOutputStream.flush();
-            byteArray = byteArrayOutputStream.toByteArray();
+
+            return byteArrayOutputStream.toByteArray();
         }catch (IOException e){
-            log.error("IOException:", e);
-            throw e;
+            throw new UncheckedIOException(e);
         }finally{
-            // 为避免内存泄漏，Stream的Close是必须的.即使中途发生了异常，也必须Close，
-            // 因此请在finally Block中描述close()
-            byteArrayOutputStream.close();
-            bufferedInputStream.close();
+            try{
+                // 为避免内存泄漏，Stream的Close是必须的.即使中途发生了异常，也必须Close，
+                // 因此请在finally Block中描述close()
+                byteArrayOutputStream.close();
+                bufferedInputStream.close();
+            }catch (IOException e){
+                throw new UncheckedIOException(e);
+            }
         }
-        return byteArray;
     }
 
     //*******************************************************************************

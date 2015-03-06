@@ -26,16 +26,19 @@ package com.feilong.commons.core.io;
 public final class IOConstants{
 
     /** KB 1024. */
-    public static final Integer  KB            = 1024;
+    public static final Integer  KB                    = 1024;
 
     /** MB 1024 * 1024 1048576. */
-    public static final Integer  MB            = 1024 * KB;
+    public static final Integer  MB                    = 1024 * KB;
 
     /**
      * GB 1024 * 1024 * 1024 1073741824.<br>
      * <b>注意,{@link Integer#MAX_VALUE}=2147483647 是2G大小</b>
      * */
-    public static final Integer  GB            = 1024 * MB;
+    public static final Integer  GB                    = 1024 * MB;
+
+    /** 默认缓冲大小 10k <code>{@value}</code> */
+    public static final Integer  DEFAULT_BUFFER_LENGTH = IOConstants.KB * 10;
 
     /**
      * 常用图片格式.
@@ -43,7 +46,7 @@ public final class IOConstants{
      * @deprecated 表述不清晰,将会重构
      */
     @Deprecated
-    public static final String[] COMMON_IMAGES = { "gif", "bmp", "jpg", "png" };
+    public static final String[] COMMON_IMAGES         = { "gif", "bmp", "jpg", "png" };
 
     /** Don't let anyone instantiate this class. */
     private IOConstants(){

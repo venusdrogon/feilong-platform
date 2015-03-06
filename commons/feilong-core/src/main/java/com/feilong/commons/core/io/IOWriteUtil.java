@@ -53,10 +53,7 @@ import com.feilong.commons.core.util.Validator;
 public final class IOWriteUtil{
 
     /** The Constant log. */
-    private static final Logger log                   = LoggerFactory.getLogger(IOWriteUtil.class);
-
-    /** 默认缓冲大小 <code>{@value}</code> */
-    public static final Integer DEFAULT_BUFFER_LENGTH = IOConstants.KB * 10;
+    private static final Logger log = LoggerFactory.getLogger(IOWriteUtil.class);
 
     /** Don't let anyone instantiate this class. */
     private IOWriteUtil(){
@@ -121,7 +118,7 @@ public final class IOWriteUtil{
         //The below basic example writes it in blocks of 10KB.
         //This way you end up with a consistent memory usage of only 10KB instead of the complete content length. 
         //Also the enduser will start getting parts of the content much sooner.
-        write(DEFAULT_BUFFER_LENGTH, inputStream, outputStream);
+        write(IOConstants.DEFAULT_BUFFER_LENGTH, inputStream, outputStream);
     }
 
     /**
@@ -281,13 +278,13 @@ public final class IOWriteUtil{
      * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
      * <li>如果不设置encode,则默认使用 {@link CharsetType#GBK}编码</li>
      * </ul>
-     * 
+     *
      * @param filePath
      *            文件路径
      * @param content
      *            字符串内容
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @throws IllegalArgumentException
      *             <ul>
      *             <li>如果filePath文件存在,且isDirectory</li>
@@ -296,7 +293,7 @@ public final class IOWriteUtil{
      * @see FileWriteMode
      * @see CharsetType
      */
-    public static void write(String filePath,String content) throws IOException,IllegalArgumentException{
+    public static void write(String filePath,String content) throws UncheckedIOException,IllegalArgumentException{
         write(filePath, content, null);
     }
 
@@ -307,15 +304,15 @@ public final class IOWriteUtil{
      * <li>如果文件不存在,自动创建;包括其父文件夹(级联创建文件夹)</li>
      * <li>如果文件存在,则覆盖旧文件 ,默认 以覆盖的模式 {@link FileWriteMode#COVER}内容.</li>
      * </ul>
-     * 
+     *
      * @param filePath
      *            文件路径
      * @param content
      *            字符串内容
      * @param encode
      *            编码,如果isNullOrEmpty,则默认使用 {@link CharsetType#GBK}编码 {@link CharsetType}
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @throws IllegalArgumentException
      *             <ul>
      *             <li>如果filePath文件存在,且isDirectory</li>
@@ -325,7 +322,7 @@ public final class IOWriteUtil{
      * @see CharsetType
      * @see #write(String, String, String, FileWriteMode)
      */
-    public static void write(String filePath,String content,String encode) throws IOException,IllegalArgumentException{
+    public static void write(String filePath,String content,String encode) throws UncheckedIOException,IllegalArgumentException{
         write(filePath, content, encode, FileWriteMode.COVER);
     }
 
@@ -336,7 +333,7 @@ public final class IOWriteUtil{
      * <li>如果文件不存在,自动创建,包括其父文件夹 (支持级联创建 文件夹)</li>
      * <li>如果文件存在则覆盖旧文件,可以通过 指定 {@link FileWriteMode#APPEND}来表示追加内容而非覆盖</li>
      * </ul>
-     * 
+     *
      * @param filePath
      *            文件路径
      * @param content
@@ -345,8 +342,8 @@ public final class IOWriteUtil{
      *            编码,如果isNullOrEmpty,则默认使用 {@link CharsetType#GBK}编码 {@link CharsetType}
      * @param fileWriteMode
      *            写模式
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @throws IllegalArgumentException
      *             <ul>
      *             <li>如果filePath文件存在,且isDirectory</li>
@@ -354,8 +351,10 @@ public final class IOWriteUtil{
      *             </ul>
      * @see FileWriteMode
      * @see CharsetType
+     * @see com.feilong.commons.core.io.FileUtil#cascadeMkdirs(String)
+     * @see java.io.FileOutputStream#FileOutputStream(File, boolean)
      */
-    public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws IOException,
+    public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws UncheckedIOException,
                     IllegalArgumentException{
 
         if (Validator.isNullOrEmpty(encode)){
@@ -367,22 +366,25 @@ public final class IOWriteUtil{
 
         boolean append = (fileWriteMode == FileWriteMode.APPEND);
 
-        OutputStream outputStream = new FileOutputStream(file, append);
-        Writer outputStreamWriter = new OutputStreamWriter(outputStream, encode);
+        try{
+            OutputStream outputStream = new FileOutputStream(file, append);
+            Writer outputStreamWriter = new OutputStreamWriter(outputStream, encode);
 
-        Writer writer = new PrintWriter(outputStreamWriter);
-        writer.write(content);
-        writer.close();
+            Writer writer = new PrintWriter(outputStreamWriter);
+            writer.write(content);
+            writer.close();
 
-        if (log.isInfoEnabled()){
-            log.info(
-                            "fileWriteMode:[{}],contentLength:[{}],encode:[{}],fileSize:[{}],absolutePath:[{}]",
-                            fileWriteMode,
-                            content.length(),
-                            encode,
-                            FileUtil.getFileFormatSize(file),
-                            file.getAbsolutePath());
+            if (log.isInfoEnabled()){
+                log.info(
+                                "fileWriteMode:[{}],contentLength:[{}],encode:[{}],fileSize:[{}],absolutePath:[{}]",
+                                fileWriteMode,
+                                content.length(),
+                                encode,
+                                FileUtil.getFileFormatSize(file),
+                                file.getAbsolutePath());
+            }
+        }catch (IOException e){
+            throw new UncheckedIOException(e);
         }
     }
-
 }

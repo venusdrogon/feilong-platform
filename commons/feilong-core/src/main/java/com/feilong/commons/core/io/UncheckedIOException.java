@@ -27,9 +27,11 @@ import java.util.Objects;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.9 2014年12月5日 下午3:19:59
  * @since 1.0.9
+ * @since jdk1.7
  */
 public class UncheckedIOException extends RuntimeException{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -8134305061645241065L;
 
     /**
@@ -39,9 +41,6 @@ public class UncheckedIOException extends RuntimeException{
      *            the detail message, can be null
      * @param cause
      *            the {@code IOException}
-     *
-     * @throws NullPointerException
-     *             if the cause is {@code null}
      */
     public UncheckedIOException(String message, IOException cause){
         super(message, Objects.requireNonNull(cause));
@@ -52,9 +51,6 @@ public class UncheckedIOException extends RuntimeException{
      *
      * @param cause
      *            the {@code IOException}
-     *
-     * @throws NullPointerException
-     *             if the cause is {@code null}
      */
     public UncheckedIOException(IOException cause){
         super(Objects.requireNonNull(cause));
@@ -73,9 +69,12 @@ public class UncheckedIOException extends RuntimeException{
     /**
      * Called to read the object from a stream.
      *
-     * @throws InvalidObjectException
-     *             if the object is invalid or has a cause that is not
-     *             an {@code IOException}
+     * @param s
+     *            the s
+     * @throws IOException
+     *             the IO exception
+     * @throws ClassNotFoundException
+     *             the class not found exception
      */
     private void readObject(ObjectInputStream s) throws IOException,ClassNotFoundException{
         s.defaultReadObject();

@@ -24,9 +24,6 @@ import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -38,9 +35,6 @@ import com.feilong.commons.core.util.Validator;
  * @since 1.0.0
  */
 public final class IOReaderUtil{
-
-    /** The Constant log. */
-    private static final Logger log                  = LoggerFactory.getLogger(IOReaderUtil.class);
 
     /** 默认编码. */
     private static final String DEFAULT_CHARSET_NAME = CharsetType.UTF8;
@@ -58,10 +52,10 @@ public final class IOReaderUtil{
      * @param path
      *            路径
      * @return 文件内容string
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static String getFileContent(String path) throws IOException{
+    public static String getFileContent(String path) throws UncheckedIOException{
         return getFileContent(path, DEFAULT_CHARSET_NAME);
     }
 
@@ -73,11 +67,11 @@ public final class IOReaderUtil{
      * @param charsetName
      *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
      * @return the file content
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @since 1.0.8
      */
-    public static String getFileContent(String path,String charsetName) throws IOException{
+    public static String getFileContent(String path,String charsetName) throws UncheckedIOException{
         File file = new File(path);
         return getFileContent(file, charsetName);
     }
@@ -90,12 +84,12 @@ public final class IOReaderUtil{
      * @param charsetName
      *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
      * @return the file content
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @throws NullPointerException
      *             if isNullOrEmpty(file)
      */
-    public static String getFileContent(File file,String charsetName) throws IOException,NullPointerException{
+    public static String getFileContent(File file,String charsetName) throws UncheckedIOException,NullPointerException{
         if (Validator.isNullOrEmpty(file)){
             throw new NullPointerException("the file is null or empty!");
         }
@@ -124,18 +118,21 @@ public final class IOReaderUtil{
                 sb.append(charBuffer.toString());
                 byteBuffer.clear();
             }
+            return sb.toString();
+
         }catch (FileNotFoundException e){
-            log.error("FileNotFoundException:", e);
-            throw new IOException(e);
+            throw new UncheckedIOException(e);
         }catch (IOException e){
-            log.error("IOException:", e);
-            throw new IOException(e);
+            throw new UncheckedIOException(e);
         }finally{
-            // 用完关闭流 是个好习惯,^_^
-            if (fileInputStream != null){
-                fileInputStream.close();
+            try{
+                // 用完关闭流 是个好习惯,^_^
+                if (fileInputStream != null){
+                    fileInputStream.close();
+                }
+            }catch (IOException e){
+                throw new UncheckedIOException(e);
             }
         }
-        return sb.toString();
     }
 }
