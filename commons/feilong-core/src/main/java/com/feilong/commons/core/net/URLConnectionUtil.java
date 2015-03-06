@@ -170,7 +170,7 @@ public final class URLConnectionUtil{
         HttpURLConnection httpURLConnection = null;
         try{
 
-            log.debug("urlString:{}", urlString);
+            log.debug("url String:[{}]", urlString);
             URL url = new URL(urlString);
 
             Proxy proxy = getProxy(httpURLConnectionParam.getProxyAddress(), httpURLConnectionParam.getProxyPort());
