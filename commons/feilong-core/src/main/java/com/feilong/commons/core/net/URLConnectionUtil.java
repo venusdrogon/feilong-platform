@@ -27,7 +27,9 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.InputStreamUtil;
+import com.feilong.commons.core.io.ReaderUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -73,8 +75,10 @@ public final class URLConnectionUtil{
      * @param httpURLConnectionParam
      *            the http url connection param
      * @return the string
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static String readLine(String urlString,HttpURLConnectionParam httpURLConnectionParam){
+    public static String readLine(String urlString,HttpURLConnectionParam httpURLConnectionParam) throws UncheckedIOException{
         if (null == httpURLConnectionParam){
             httpURLConnectionParam = new HttpURLConnectionParam();
         }
@@ -83,15 +87,13 @@ public final class URLConnectionUtil{
         try{
 
             InputStream inputStream = httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = IOUtil.inputStream2BufferedReader(inputStream, httpURLConnectionParam.getContentCharset());
+            BufferedReader bufferedReader = InputStreamUtil.toBufferedReader(inputStream, httpURLConnectionParam.getContentCharset());
 
             if (null != bufferedReader){
-                // 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
-                String readLine = bufferedReader.readLine();
-                return readLine;
+                return ReaderUtil.readLine(bufferedReader);
             }
         }catch (IOException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }finally{
             if (null != httpURLConnection){
                 // 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
@@ -122,8 +124,11 @@ public final class URLConnectionUtil{
      * @param httpURLConnectionParam
      *            httpURLConnectionParam
      * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static String getResponseBodyAsString(String urlString,HttpURLConnectionParam httpURLConnectionParam){
+    public static String getResponseBodyAsString(String urlString,HttpURLConnectionParam httpURLConnectionParam)
+                    throws UncheckedIOException{
         if (null == httpURLConnectionParam){
             httpURLConnectionParam = new HttpURLConnectionParam();
         }
@@ -134,16 +139,11 @@ public final class URLConnectionUtil{
 
             try{
                 InputStream inputStream = httpURLConnection.getInputStream();
+                String inputStream2String = InputStreamUtil.inputStream2String(inputStream, httpURLConnectionParam.getContentCharset());
 
-                String inputStream2String = IOUtil.inputStream2String(inputStream, httpURLConnectionParam.getContentCharset());
-
-                if (log.isDebugEnabled()){
-                    log.debug(httpURLConnection.getContentEncoding());
-                    log.debug(httpURLConnection.getContentType());
-                }
                 return inputStream2String;
             }catch (IOException e){
-                log.error(e.getClass().getName(), e);
+                throw new UncheckedIOException(e);
             }finally{
                 // 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
                 httpURLConnection.disconnect();
@@ -155,11 +155,9 @@ public final class URLConnectionUtil{
     // ****************************************************************************************
     /**
      * 获得 HttpURLConnection.
-     * 
+     *
      * @param urlString
      *            the url string
-     * @param proxy
-     *            代理, 如果为null 则不设置代理
      * @param httpURLConnectionParam
      *            httpURLConnectionParam
      * @return the http url connection

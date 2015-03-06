@@ -33,7 +33,7 @@ import loxia.support.excel.convertor.DataConvertorConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.office.excel.loxia.convertor.BooleanConvertor;
@@ -43,142 +43,142 @@ import com.feilong.tools.office.excel.loxia.convertor.BooleanConvertor;
  */
 public abstract class LoxiaExcelUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(LoxiaExcelUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(LoxiaExcelUtil.class);
 
-	static{
-		//处理boolean 类型
-		DataConvertorConfigurator.getInstance().registerDataConvertor(new BooleanConvertor());
-	}
+    static{
+        //处理boolean 类型
+        DataConvertorConfigurator.getInstance().registerDataConvertor(new BooleanConvertor());
+    }
 
-	/**
-	 * 获得 list.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param configuration
-	 *            the configuration
-	 * @param sheet
-	 *            the sheet
-	 * @param dataName
-	 *            the data name
-	 * @param fileName
-	 *            the file name
-	 * @param sheetNo
-	 *            the sheet no
-	 * @return the list
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static <T> List<T> getList(String configuration,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
-		String[] configurations = { configuration };
-		return getList(configurations, sheet, dataName, fileName, sheetNo);
-	}
+    /**
+     * 获得 list.
+     *
+     * @param <T>
+     *            the generic type
+     * @param configuration
+     *            the configuration
+     * @param sheet
+     *            the sheet
+     * @param dataName
+     *            the data name
+     * @param fileName
+     *            the file name
+     * @param sheetNo
+     *            the sheet no
+     * @return the list
+     * @throws IOException
+     *             the IO exception
+     */
+    public static <T> List<T> getList(String configuration,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
+        String[] configurations = { configuration };
+        return getList(configurations, sheet, dataName, fileName, sheetNo);
+    }
 
-	/**
-	 * 获得 list.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param configurations
-	 *            the configurations
-	 * @param sheet
-	 *            the sheet
-	 * @param dataName
-	 *            the data name
-	 * @param fileName
-	 *            the file name
-	 * @param sheetNo
-	 *            the sheet no
-	 * @return the list
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static <T> List<T> getList(String[] configurations,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
-		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
-		excelManipulatorFactory.setConfig(configurations);
+    /**
+     * 获得 list.
+     *
+     * @param <T>
+     *            the generic type
+     * @param configurations
+     *            the configurations
+     * @param sheet
+     *            the sheet
+     * @param dataName
+     *            the data name
+     * @param fileName
+     *            the file name
+     * @param sheetNo
+     *            the sheet no
+     * @return the list
+     * @throws IOException
+     *             the IO exception
+     */
+    public static <T> List<T> getList(String[] configurations,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
+        ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
+        excelManipulatorFactory.setConfig(configurations);
 
-		ExcelReader excelReader = excelManipulatorFactory.createExcelReader(sheet);
+        ExcelReader excelReader = excelManipulatorFactory.createExcelReader(sheet);
 
-		return getList(excelReader, dataName, fileName, sheetNo);
-	}
+        return getList(excelReader, dataName, fileName, sheetNo);
+    }
 
-	/**
-	 * 获得 list.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param excelReader
-	 *            the excel reader
-	 * @param dataName
-	 *            the data name
-	 * @param fileName
-	 *            the file name
-	 * @param sheetNo
-	 *            the sheet no
-	 * @return the list
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static <T> List<T> getList(ExcelReader excelReader,String dataName,String fileName,int sheetNo) throws IOException{
-		InputStream is = IOUtil.getFileInputStream(fileName);
+    /**
+     * 获得 list.
+     *
+     * @param <T>
+     *            the generic type
+     * @param excelReader
+     *            the excel reader
+     * @param dataName
+     *            the data name
+     * @param fileName
+     *            the file name
+     * @param sheetNo
+     *            the sheet no
+     * @return the list
+     * @throws IOException
+     *             the IO exception
+     */
+    public static <T> List<T> getList(ExcelReader excelReader,String dataName,String fileName,int sheetNo) throws IOException{
+        InputStream is = FileUtil.getFileInputStream(fileName);
 
-		Map<String, Object> beans = new HashMap<String, Object>();
-		beans.put(dataName, new ArrayList<T>());
+        Map<String, Object> beans = new HashMap<String, Object>();
+        beans.put(dataName, new ArrayList<T>());
 
-		ReadStatus readStatus = excelReader.readSheet(is, sheetNo, beans);
+        ReadStatus readStatus = excelReader.readSheet(is, sheetNo, beans);
 
-		int status = readStatus.getStatus();
-		if (status == ReadStatus.STATUS_SUCCESS){
-			@SuppressWarnings("unchecked")
-			List<T> trainSignUpEntityList = (List<T>) beans.get(dataName);
-			return trainSignUpEntityList;
-		}else{
+        int status = readStatus.getStatus();
+        if (status == ReadStatus.STATUS_SUCCESS){
+            @SuppressWarnings("unchecked")
+            List<T> trainSignUpEntityList = (List<T>) beans.get(dataName);
+            return trainSignUpEntityList;
+        }else{
 
-			List<Exception> exceptions = readStatus.getExceptions();
+            List<Exception> exceptions = readStatus.getExceptions();
 
-			if (Validator.isNotNullOrEmpty(exceptions)){
-				log.error("read excel exception,readStatus:[" + readStatus.getStatus() + "],getMessage:[" + readStatus.getMessage()
-								+ "],and exceptions size is :[" + exceptions.size() + "],first exception is:", exceptions.get(0));
-			}
+            if (Validator.isNotNullOrEmpty(exceptions)){
+                log.error("read excel exception,readStatus:[" + readStatus.getStatus() + "],getMessage:[" + readStatus.getMessage()
+                                + "],and exceptions size is :[" + exceptions.size() + "],first exception is:", exceptions.get(0));
+            }
 
-			throw new IOException("read excel exception,and exceptions size is :[" + exceptions.size() + "]");
-		}
-	}
+            throw new IOException("read excel exception,and exceptions size is :[" + exceptions.size() + "]");
+        }
+    }
 
-	/**
-	 * Write.
-	 *
-	 * @param configurations
-	 *            the configuration
-	 * @param sheet
-	 *            the sheet
-	 * @param templateFileName
-	 *            the template file name
-	 * @param outputFileName
-	 *            the output file name
-	 * @param beans
-	 *            the beans
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static void write(String configurations,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
-					throws IOException{
-		ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
-		excelManipulatorFactory.setConfig(configurations);
+    /**
+     * Write.
+     *
+     * @param configurations
+     *            the configuration
+     * @param sheet
+     *            the sheet
+     * @param templateFileName
+     *            the template file name
+     * @param outputFileName
+     *            the output file name
+     * @param beans
+     *            the beans
+     * @throws IOException
+     *             the IO exception
+     */
+    public static void write(String configurations,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
+                    throws IOException{
+        ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
+        excelManipulatorFactory.setConfig(configurations);
 
-		ExcelWriter excelWriter = excelManipulatorFactory.createExcelWriter(sheet);
+        ExcelWriter excelWriter = excelManipulatorFactory.createExcelWriter(sheet);
 
-		InputStream is = IOUtil.getFileInputStream(templateFileName);
-		OutputStream os = IOUtil.getFileOutputStream(outputFileName);
+        InputStream is = FileUtil.getFileInputStream(templateFileName);
+        OutputStream os = FileUtil.getFileOutputStream(outputFileName);
 
-		WriteStatus writeStatus = excelWriter.write(is, os, beans);
+        WriteStatus writeStatus = excelWriter.write(is, os, beans);
 
-		if (writeStatus.getStatus() == ReadStatus.STATUS_SUCCESS){
-			log.info("write excel SUCCESS,outputFileName:[{}]", outputFileName);
-		}else{
-			log.warn(JsonUtil.format(writeStatus));
-			throw new IOException("write excel exception,and writeStatus is :[" + writeStatus + "]");
-		}
-	}
+        if (writeStatus.getStatus() == ReadStatus.STATUS_SUCCESS){
+            log.info("write excel SUCCESS,outputFileName:[{}]", outputFileName);
+        }else{
+            log.warn(JsonUtil.format(writeStatus));
+            throw new IOException("write excel exception,and writeStatus is :[" + writeStatus + "]");
+        }
+    }
 }

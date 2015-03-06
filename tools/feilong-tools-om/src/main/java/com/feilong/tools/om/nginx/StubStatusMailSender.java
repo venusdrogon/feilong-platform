@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.FileUtil;
-import com.feilong.commons.core.io.IOUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.mail.MailSenderUtil;
 import com.feilong.tools.mail.entity.MailSenderConfig;
@@ -52,154 +51,154 @@ import com.feilong.tools.velocity.VelocityUtil;
  */
 public class StubStatusMailSender{
 
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(StubStatusMailSender.class);
+    /** The Constant log. */
+    private static final Logger log                 = LoggerFactory.getLogger(StubStatusMailSender.class);
 
-	/** 发送. */
-	private static String[]		tos					= { "xin.jin@baozun.com" };
+    /** 发送. */
+    private static String[]     tos                 = { "xin.jin@baozun.com" };
 
-	/** The template in class path. */
-	private static String		templateInClassPath	= "velocity/nginxStubStatusMail.vm";
+    /** The template in class path. */
+    private static String       templateInClassPath = "velocity/nginxStubStatusMail.vm";
 
-	/**
-	 * 发送监控邮件.
-	 * 
-	 * @param filePath
-	 *            文件路径
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static void sendMonitorMail(String filePath) throws MessagingException,IOException{
+    /**
+     * 发送监控邮件.
+     * 
+     * @param filePath
+     *            文件路径
+     * @throws MessagingException
+     *             the messaging exception
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static void sendMonitorMail(String filePath) throws MessagingException,IOException{
 
-		if (Validator.isNullOrEmpty(filePath)){
-			throw new IllegalArgumentException("filePath can't be null/empty!");
-		}
+        if (Validator.isNullOrEmpty(filePath)){
+            throw new IllegalArgumentException("filePath can't be null/empty!");
+        }
 
-		String userName = "sanguoxuhuang@163.com";
-		String password = "521000";
+        String userName = "sanguoxuhuang@163.com";
+        String password = "521000";
 
-		MailSenderUtil mailSenderUtil = new MailSenderUtil();
+        MailSenderUtil mailSenderUtil = new MailSenderUtil();
 
-		MailSenderConfig mailSenderConfig = new MailSenderConfig();
-		mailSenderConfig.setMailServerHost("smtp.163.com");
-		mailSenderConfig.setMailServerPort("25");
+        MailSenderConfig mailSenderConfig = new MailSenderConfig();
+        mailSenderConfig.setMailServerHost("smtp.163.com");
+        mailSenderConfig.setMailServerPort("25");
 
-		mailSenderConfig.setUserName(userName);
-		mailSenderConfig.setPassword(password);
+        mailSenderConfig.setUserName(userName);
+        mailSenderConfig.setPassword(password);
 
-		mailSenderConfig.setFromAddress(userName);
-		mailSenderConfig.setPersonal("小K监控");
+        mailSenderConfig.setFromAddress(userName);
+        mailSenderConfig.setPersonal("小K监控");
 
-		mailSenderConfig.setTos(tos);
+        mailSenderConfig.setTos(tos);
 
-		mailSenderConfig.setSubject("小K监控-NginxStubStatus");// + DateUtil.date2String(new Date())
+        mailSenderConfig.setSubject("小K监控-NginxStubStatus");// + DateUtil.date2String(new Date())
 
-		String textContent = getTextContentForEmail(filePath);
-		mailSenderConfig.setContent(textContent);
+        String textContent = getTextContentForEmail(filePath);
+        mailSenderConfig.setContent(textContent);
 
-		String[] filenameString = { FileUtil.getFileName(filePath) };
-		mailSenderConfig.setAttachFileNames(filenameString);
+        String[] filenameString = { FileUtil.getFileName(filePath) };
+        mailSenderConfig.setAttachFileNames(filenameString);
 
-		List<byte[]> attachList = new ArrayList<byte[]>();
-		attachList.add(IOUtil.convertFileToByteArray(new File(filePath)));
-		mailSenderConfig.setAttachList(attachList);
+        List<byte[]> attachList = new ArrayList<byte[]>();
+        attachList.add(FileUtil.convertFileToByteArray(new File(filePath)));
+        mailSenderConfig.setAttachList(attachList);
 
-		mailSenderUtil.sendMail(mailSenderConfig);
-	}
+        mailSenderUtil.sendMail(mailSenderConfig);
+    }
 
-	/**
-	 * 基于文件 获得要发送邮件的内容.
-	 * 
-	 * @param filePath
-	 *            the file path
-	 * @return the text content for email
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static String getTextContentForEmail(String filePath) throws IOException{
+    /**
+     * 基于文件 获得要发送邮件的内容.
+     * 
+     * @param filePath
+     *            the file path
+     * @return the text content for email
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static String getTextContentForEmail(String filePath) throws IOException{
 
-		if (Validator.isNullOrEmpty(filePath)){
-			throw new IllegalArgumentException("filePath can't be null/empty!");
-		}
+        if (Validator.isNullOrEmpty(filePath)){
+            throw new IllegalArgumentException("filePath can't be null/empty!");
+        }
 
-		if (FileUtil.isNotExistFile(filePath)){
-			throw new IllegalArgumentException("filePath is not exist");
-		}
+        if (FileUtil.isNotExistFile(filePath)){
+            throw new IllegalArgumentException("filePath is not exist");
+        }
 
-		// *************************************************************************
+        // *************************************************************************
 
-		LinkedList<StubStatusCommand> stubStatusCommandList = new LinkedList<StubStatusCommand>();
+        LinkedList<StubStatusCommand> stubStatusCommandList = new LinkedList<StubStatusCommand>();
 
-		Reader reader = new FileReader(filePath);
-		LineNumberReader lineNumberReader = new LineNumberReader(reader);
-		String line = null;
+        Reader reader = new FileReader(filePath);
+        LineNumberReader lineNumberReader = new LineNumberReader(reader);
+        String line = null;
 
-		while ((line = lineNumberReader.readLine()) != null){
-			int lineNumber = lineNumberReader.getLineNumber();
-			log.debug("the param lineNumber:{}", lineNumber);
+        while ((line = lineNumberReader.readLine()) != null){
+            int lineNumber = lineNumberReader.getLineNumber();
+            log.debug("the param lineNumber:{}", lineNumber);
 
-			StubStatusCommand nginxStubStatusCommand = toNginxStubStatusCommand(line);
-			stubStatusCommandList.add(nginxStubStatusCommand);
-		}
+            StubStatusCommand nginxStubStatusCommand = toNginxStubStatusCommand(line);
+            stubStatusCommandList.add(nginxStubStatusCommand);
+        }
 
-		if (Validator.isNullOrEmpty(stubStatusCommandList)){
-			throw new NullPointerException("the nginxStubStatusCommandList is null or empty!");
-		}
-		// *************************************************************************
-		ActiveConnectionsComparator activeConnectionsComparator = new ActiveConnectionsComparator();
+        if (Validator.isNullOrEmpty(stubStatusCommandList)){
+            throw new NullPointerException("the nginxStubStatusCommandList is null or empty!");
+        }
+        // *************************************************************************
+        ActiveConnectionsComparator activeConnectionsComparator = new ActiveConnectionsComparator();
 
-		StubStatusCommand maxActiveConnectionsStubStatusCommand = Collections.max(stubStatusCommandList, activeConnectionsComparator);
-		StubStatusCommand minActiveConnectionsStubStatusCommand = Collections.min(stubStatusCommandList, activeConnectionsComparator);
+        StubStatusCommand maxActiveConnectionsStubStatusCommand = Collections.max(stubStatusCommandList, activeConnectionsComparator);
+        StubStatusCommand minActiveConnectionsStubStatusCommand = Collections.min(stubStatusCommandList, activeConnectionsComparator);
 
-		// *************************************************************************
-		StubStatusVMCommand stubStatusVMCommand = new StubStatusVMCommand();
-		stubStatusVMCommand.setBeginDate(stubStatusCommandList.getFirst().getCrawlDate());
-		stubStatusVMCommand.setEndDate(stubStatusCommandList.getLast().getCrawlDate());
-		stubStatusVMCommand.setStubStatusCommandList(stubStatusCommandList);
+        // *************************************************************************
+        StubStatusVMCommand stubStatusVMCommand = new StubStatusVMCommand();
+        stubStatusVMCommand.setBeginDate(stubStatusCommandList.getFirst().getCrawlDate());
+        stubStatusVMCommand.setEndDate(stubStatusCommandList.getLast().getCrawlDate());
+        stubStatusVMCommand.setStubStatusCommandList(stubStatusCommandList);
 
-		stubStatusVMCommand.setMaxActiveConnectionsStubStatusCommand(maxActiveConnectionsStubStatusCommand);
-		stubStatusVMCommand.setMinActiveConnectionsStubStatusCommand(minActiveConnectionsStubStatusCommand);
-		// ******************************************************************************************
-		Map<String, Object> contextKeyValues = new HashMap<String, Object>();
-		contextKeyValues.put("DateUtil", DateUtil.class);
-		contextKeyValues.put("stubStatusVMCommand", stubStatusVMCommand);
+        stubStatusVMCommand.setMaxActiveConnectionsStubStatusCommand(maxActiveConnectionsStubStatusCommand);
+        stubStatusVMCommand.setMinActiveConnectionsStubStatusCommand(minActiveConnectionsStubStatusCommand);
+        // ******************************************************************************************
+        Map<String, Object> contextKeyValues = new HashMap<String, Object>();
+        contextKeyValues.put("DateUtil", DateUtil.class);
+        contextKeyValues.put("stubStatusVMCommand", stubStatusVMCommand);
 
-		// ******************************************************************************************
-		String textContent = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
-		return textContent;
-	}
+        // ******************************************************************************************
+        String textContent = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
+        return textContent;
+    }
 
-	/**
-	 * 将line 解析成 NginxStubStatusCommand.
-	 * 
-	 * @param line
-	 *            the line
-	 * @return the stub status command
-	 */
-	private static StubStatusCommand toNginxStubStatusCommand(String line){
-		String[] split = line.split("	");
+    /**
+     * 将line 解析成 NginxStubStatusCommand.
+     * 
+     * @param line
+     *            the line
+     * @return the stub status command
+     */
+    private static StubStatusCommand toNginxStubStatusCommand(String line){
+        String[] split = line.split("	");
 
-		Date now = DateUtil.string2Date(split[0], StubStatusMain.pattern_crawlDate);
-		Integer activeConnections = Integer.parseInt(split[1]);
+        Date now = DateUtil.string2Date(split[0], StubStatusMain.pattern_crawlDate);
+        Integer activeConnections = Integer.parseInt(split[1]);
 
-		Long serverAccepts = Long.parseLong(split[2]);
-		Long serverHandled = Long.parseLong(split[3]);
-		Long serverRequests = Long.parseLong(split[4]);
-		Integer reading = Integer.parseInt(split[5]);
-		Integer writing = Integer.parseInt(split[6]);
-		Integer waiting = Integer.parseInt(split[7]);
+        Long serverAccepts = Long.parseLong(split[2]);
+        Long serverHandled = Long.parseLong(split[3]);
+        Long serverRequests = Long.parseLong(split[4]);
+        Integer reading = Integer.parseInt(split[5]);
+        Integer writing = Integer.parseInt(split[6]);
+        Integer waiting = Integer.parseInt(split[7]);
 
-		StubStatusCommand stubStatusCommand = new StubStatusCommand();
-		stubStatusCommand.setActiveConnections(activeConnections);
-		stubStatusCommand.setReading(reading);
-		stubStatusCommand.setServerAccepts(serverAccepts);
-		stubStatusCommand.setServerHandled(serverHandled);
-		stubStatusCommand.setServerRequests(serverRequests);
-		stubStatusCommand.setWaiting(waiting);
-		stubStatusCommand.setWriting(writing);
-		stubStatusCommand.setCrawlDate(now);
-		return stubStatusCommand;
-	}
+        StubStatusCommand stubStatusCommand = new StubStatusCommand();
+        stubStatusCommand.setActiveConnections(activeConnections);
+        stubStatusCommand.setReading(reading);
+        stubStatusCommand.setServerAccepts(serverAccepts);
+        stubStatusCommand.setServerHandled(serverHandled);
+        stubStatusCommand.setServerRequests(serverRequests);
+        stubStatusCommand.setWaiting(waiting);
+        stubStatusCommand.setWriting(writing);
+        stubStatusCommand.setCrawlDate(now);
+        return stubStatusCommand;
+    }
 }

@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
-import com.feilong.commons.core.io.IOUtil;
+import com.feilong.commons.core.io.FileUtil;
 
 /**
  * The Class PropertiesUtilTest.
@@ -36,37 +36,37 @@ import com.feilong.commons.core.io.IOUtil;
  */
 public class PropertiesUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PropertiesUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PropertiesUtilTest.class);
 
-	/**
-	 * Gets the properties value.
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void testGetPropertiesValue() throws IOException{
-		String propertiesPath = "I:/Ebook/book.properties";
-		InputStream inputStream = IOUtil.getFileInputStream(propertiesPath);
-		Properties properties = PropertiesUtil.getProperties(inputStream);
+    /**
+     * Gets the properties value.
+     * 
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void testGetPropertiesValue() throws IOException{
+        String propertiesPath = "I:/Ebook/book.properties";
+        InputStream inputStream = FileUtil.getFileInputStream(propertiesPath);
+        Properties properties = PropertiesUtil.getProperties(inputStream);
 
-		try{
-			for (Object iterableElement : properties.keySet()){
-				log.info(new String(iterableElement.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
-			}
-		}catch (UnsupportedEncodingException e1){
-			log.error("", e1);
-		}
-		// = PropertiesUtil.getPropertiesValue(FeiLongPropertiesUtilTest.class, propertiesPath, "锦衣夜行");
-		try{
-			inputStream.close();
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+        try{
+            for (Object iterableElement : properties.keySet()){
+                log.info(new String(iterableElement.toString().getBytes(CharsetType.ISO_8859_1), CharsetType.GBK));
+            }
+        }catch (UnsupportedEncodingException e1){
+            log.error("", e1);
+        }
+        // = PropertiesUtil.getPropertiesValue(FeiLongPropertiesUtilTest.class, propertiesPath, "锦衣夜行");
+        try{
+            inputStream.close();
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	// @formatter:off
+    // @formatter:off
 
 //	public static boolean write(String fileName){
 //		// 建立Properties对象
