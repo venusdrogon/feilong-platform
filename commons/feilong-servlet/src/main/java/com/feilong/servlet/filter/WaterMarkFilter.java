@@ -37,50 +37,50 @@ import com.feilong.commons.core.awt.WaterMark;
 @Deprecated
 public class WaterMarkFilter extends HttpServlet implements Filter{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 1L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
-	/** The filter config. */
-	private FilterConfig		filterConfig;
+    /** The filter config. */
+    private FilterConfig      filterConfig;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
-	 */
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException{
-		this.filterConfig = filterConfig;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
+     */
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException{
+        this.filterConfig = filterConfig;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
-	 */
-	@Override
-	public void doFilter(ServletRequest request,ServletResponse response,FilterChain filterChain) throws IOException,ServletException{
-		HttpServletRequest req = (HttpServletRequest) request;
-		// 获取请求中的图片路径
-		String filePath = req.getServletPath();// 这是相对路径(并且包括了上下文路径)
-		String fileRealPath = filterConfig.getServletContext().getRealPath(filePath);// 得到绝对路径
-		// 水印图片
-		String pressImage = filterConfig.getServletContext().getRealPath("res/feilong/images/face/xy2/17.gif");
-		// 调用工具类加水印(由于是动态从流中加水印，因此不会修改服务器上原图片)
-		// 写文字
-		// WaterPress.pressText("ParamsFeiLong.projectChineseName", fileRealPath, "宋体", 1, Color.ORANGE.getRGB(), 15, 180, 15, response.getOutputStream());
-		// 图片
-		WaterMark.pressImage(fileRealPath, pressImage, 15, 180, response.getOutputStream());
-		filterChain.doFilter(request, response);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+     */
+    @Override
+    public void doFilter(ServletRequest request,ServletResponse response,FilterChain filterChain) throws IOException,ServletException{
+        HttpServletRequest req = (HttpServletRequest) request;
+        // 获取请求中的图片路径
+        String filePath = req.getServletPath();// 这是相对路径(并且包括了上下文路径)
+        String fileRealPath = filterConfig.getServletContext().getRealPath(filePath);// 得到绝对路径
+        // 水印图片
+        String pressImage = filterConfig.getServletContext().getRealPath("res/feilong/images/face/xy2/17.gif");
+        // 调用工具类加水印(由于是动态从流中加水印，因此不会修改服务器上原图片)
+        // 写文字
+        // WaterPress.pressText("ParamsFeiLong.projectChineseName", fileRealPath, "宋体", 1, Color.ORANGE.getRGB(), 15, 180, 15, response.getOutputStream());
+        // 图片
+        WaterMark.pressImage(fileRealPath, pressImage, 15, 180, response.getOutputStream());
+        filterChain.doFilter(request, response);
+    }
 
-	// Clean up resources
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.GenericServlet#destroy()
-	 */
-	@Override
-	public void destroy(){
-	}
+    // Clean up resources
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.GenericServlet#destroy()
+     */
+    @Override
+    public void destroy(){
+    }
 }

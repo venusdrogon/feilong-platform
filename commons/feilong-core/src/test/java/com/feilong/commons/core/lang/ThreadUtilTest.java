@@ -27,42 +27,42 @@ import org.slf4j.LoggerFactory;
  */
 public class ThreadUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ThreadUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ThreadUtilTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ThreadUtil#getCurrentMethodName(java.lang.Thread)}.
-	 */
-	@Test
-	public void testGetMethodName(){
-		Thread currentThread = Thread.currentThread();
-		log.info(ThreadUtil.getCurrentMethodName(currentThread));
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.lang.ThreadUtil#getCurrentMethodName(java.lang.Thread)}.
+     */
+    @Test
+    public void testGetMethodName(){
+        Thread currentThread = Thread.currentThread();
+        log.info(ThreadUtil.getCurrentMethodName(currentThread));
+    }
 
-	/**
-	 * Test get method name1.
-	 */
-	@Test
-	public void testGetMethodName1(){
-		log.info("1");
-		testGetMethodName2();
-	}
+    /**
+     * Test get method name1.
+     */
+    @Test
+    public void testGetMethodName1(){
+        log.info("1");
+        testGetMethodName2();
+    }
 
-	/**
-	 * Test get method name2.
-	 */
-	@Test
-	public void testGetMethodName2(){
-		log.info("2");
-		testGetMethodName3();
-	}
+    /**
+     * Test get method name2.
+     */
+    @Test
+    public void testGetMethodName2(){
+        log.info("2");
+        testGetMethodName3();
+    }
 
-	/**
-	 * Test get method name3.
-	 */
-	@Test
-	public void testGetMethodName3(){
-		log.info("3");
-		testGetMethodName();
-	}
+    /**
+     * Test get method name3.
+     */
+    @Test
+    public void testGetMethodName3(){
+        log.info("3");
+        testGetMethodName();
+    }
 }

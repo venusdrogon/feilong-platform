@@ -27,59 +27,59 @@ import com.feilong.commons.core.lang.EnumUtil;
  */
 public enum HttpMethodType{
 
-	/** get方式. */
-	GET("get"),
+    /** get方式. */
+    GET("get"),
 
-	/** post方式. */
-	POST("post");
+    /** post方式. */
+    POST("post");
 
-	// *********************************************************************
+    // *********************************************************************
 
-	/** The method. */
-	private String	method;
+    /** The method. */
+    private String method;
 
-	/**
-	 * Instantiates a new http method type.
-	 * 
-	 * @param method
-	 *            the method
-	 */
-	private HttpMethodType(String method){
-		this.method = method;
-	}
+    /**
+     * Instantiates a new http method type.
+     * 
+     * @param method
+     *            the method
+     */
+    private HttpMethodType(String method){
+        this.method = method;
+    }
 
-	/**
-	 * Gets the by method value ignore case.
-	 * 
-	 * @param methodValue
-	 *            the method value
-	 * @return the by method value ignore case
-	 * @throws NoSuchFieldException
-	 *             找不到匹配的枚举
-	 * @see EnumUtil#getEnumByPropertyValueIgnoreCase(Class, String, Object)
-	 * @since 1.0.8
-	 */
-	public static HttpMethodType getByMethodValueIgnoreCase(String methodValue) throws NoSuchFieldException{
-		String propertyName = "method";
-		return EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, propertyName, methodValue);
-	}
+    /**
+     * Gets the by method value ignore case.
+     * 
+     * @param methodValue
+     *            the method value
+     * @return the by method value ignore case
+     * @throws NoSuchFieldException
+     *             找不到匹配的枚举
+     * @see EnumUtil#getEnumByPropertyValueIgnoreCase(Class, String, Object)
+     * @since 1.0.8
+     */
+    public static HttpMethodType getByMethodValueIgnoreCase(String methodValue) throws NoSuchFieldException{
+        String propertyName = "method";
+        return EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, propertyName, methodValue);
+    }
 
-	/**
-	 * Gets the method.
-	 * 
-	 * @return the method
-	 */
-	public String getMethod(){
-		return method;
-	}
+    /**
+     * Gets the method.
+     * 
+     * @return the method
+     */
+    public String getMethod(){
+        return method;
+    }
 
-	/**
-	 * Sets the method.
-	 * 
-	 * @param method
-	 *            the method to set
-	 */
-	public void setMethod(String method){
-		this.method = method;
-	}
+    /**
+     * Sets the method.
+     * 
+     * @param method
+     *            the method to set
+     */
+    public void setMethod(String method){
+        this.method = method;
+    }
 }

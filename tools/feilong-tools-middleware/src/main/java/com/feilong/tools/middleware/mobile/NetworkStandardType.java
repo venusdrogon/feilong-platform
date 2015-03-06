@@ -24,46 +24,46 @@ package com.feilong.tools.middleware.mobile;
  * @version 1.0 2011-3-4 下午01:35:38
  */
 public enum NetworkStandardType{
-	/**
-	 * GSM
-	 */
-	GSM("GSM"),
-	/**
-	 * TD-SCDMA
-	 */
-	TD_SCDMA("TD-SCDMA"),
-	/**
-	 * WCDMA
-	 */
-	WCDMA("WCDMA"),
-	/**
-	 * CDMA
-	 */
-	CDMA("CDMA"),
-	/**
-	 * CDMA2000
-	 */
-	CDMA2000("CDMA2000");
+    /**
+     * GSM
+     */
+    GSM("GSM"),
+    /**
+     * TD-SCDMA
+     */
+    TD_SCDMA("TD-SCDMA"),
+    /**
+     * WCDMA
+     */
+    WCDMA("WCDMA"),
+    /**
+     * CDMA
+     */
+    CDMA("CDMA"),
+    /**
+     * CDMA2000
+     */
+    CDMA2000("CDMA2000");
 
-	//****************************************************************************
-	private String	name;
+    //****************************************************************************
+    private String name;
 
-	private NetworkStandardType(String name){
-		this.name = name;
-	}
+    private NetworkStandardType(String name){
+        this.name = name;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName(){
-		return name;
-	}
+    /**
+     * @return the name
+     */
+    public String getName(){
+        return name;
+    }
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name){
+        this.name = name;
+    }
 }

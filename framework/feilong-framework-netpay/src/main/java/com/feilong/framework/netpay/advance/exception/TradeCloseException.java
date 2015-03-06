@@ -30,57 +30,57 @@ import com.feilong.framework.netpay.advance.command.TradeRole;
  */
 public class TradeCloseException extends Exception{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 7111227268129628604L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 7111227268129628604L;
 
-	/**
-	 * The Constructor.
-	 */
-	public TradeCloseException(){
-		super();
-	}
+    /**
+     * The Constructor.
+     */
+    public TradeCloseException(){
+        super();
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public TradeCloseException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * The Constructor.
+     *
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public TradeCloseException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param message
-	 *            the message
-	 */
-	public TradeCloseException(String message){
-		super(message);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param message
+     *            the message
+     */
+    public TradeCloseException(String message){
+        super(message);
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param cause
-	 *            the cause
-	 */
-	public TradeCloseException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param cause
+     *            the cause
+     */
+    public TradeCloseException(Throwable cause){
+        super(cause);
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public TradeCloseException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public TradeCloseException(String message, Throwable cause){
+        super(message, cause);
+    }
 }

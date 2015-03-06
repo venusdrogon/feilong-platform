@@ -27,46 +27,46 @@ import org.slf4j.LoggerFactory;
  */
 public class ClassLoaderUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ClassLoaderUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ClassLoaderUtilTest.class);
 
-	/**
-	 * {@link com.feilong.commons.core.lang.ClassLoaderUtil#getResource(java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public void testGetResource(){
-		log.info(ClassLoaderUtil.getResource("") + "");
-		log.info("" + ClassLoaderUtil.getResource("com"));
-		ClassLoaderUtil.getResource("jstl-1.2", this.getClass());
-	}
+    /**
+     * {@link com.feilong.commons.core.lang.ClassLoaderUtil#getResource(java.lang.String)} 的测试方法。
+     */
+    @Test
+    public void testGetResource(){
+        log.info(ClassLoaderUtil.getResource("") + "");
+        log.info("" + ClassLoaderUtil.getResource("com"));
+        ClassLoaderUtil.getResource("jstl-1.2", this.getClass());
+    }
 
-	/**
-	 * Test get class path.
-	 */
-	@Test
-	public void testGetClassPath(){
-		log.info("" + ClassLoaderUtil.getClassPath());
-	}
+    /**
+     * Test get class path.
+     */
+    @Test
+    public void testGetClassPath(){
+        log.info("" + ClassLoaderUtil.getClassPath());
+    }
 
-	/**
-	 * Prints the.
-	 */
-	@Test
-	public void testPrint(){
-		// /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/
-		String a = this.getClass().getClassLoader().getResource(".").getPath();
-		// /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/temple/io/
-		String b = this.getClass().getResource("").getPath();
-		// /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/temple/io/%20
-		String c = this.getClass().getResource(" ").getPath();
-		// 获得编译类根目录
-		// /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/
-		String d = this.getClass().getResource("/").getPath();
-		// 获得应用程序完整路径
-		// E:\Workspaces\eclipse3.5\feilong-platform\feilong-common
-		log.info(a);
-		log.info(b);
-		log.info(c);
-		log.info(d);
-	}
+    /**
+     * Prints the.
+     */
+    @Test
+    public void testPrint(){
+        // /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/
+        String a = this.getClass().getClassLoader().getResource(".").getPath();
+        // /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/temple/io/
+        String b = this.getClass().getResource("").getPath();
+        // /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/temple/io/%20
+        String c = this.getClass().getResource(" ").getPath();
+        // 获得编译类根目录
+        // /E:/Workspaces/eclipse3.5/feilong-platform/feilong-common/target/classes/
+        String d = this.getClass().getResource("/").getPath();
+        // 获得应用程序完整路径
+        // E:\Workspaces\eclipse3.5\feilong-platform\feilong-common
+        log.info(a);
+        log.info(b);
+        log.info(c);
+        log.info(d);
+    }
 }

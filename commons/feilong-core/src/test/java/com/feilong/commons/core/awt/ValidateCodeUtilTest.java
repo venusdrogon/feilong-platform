@@ -25,13 +25,13 @@ import org.slf4j.LoggerFactory;
  */
 public class ValidateCodeUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(ValidateCodeUtilTest.class);
+    private static final Logger log = LoggerFactory.getLogger(ValidateCodeUtilTest.class);
 
-	/**
-	 * {@link com.feilong.commons.core.awt.ValidateCodeUtil#generateValidateCode(int)} 的测试方法。
-	 */
-	@Test
-	public final void testGenerateValidateCode(){
-		log.info(ValidateCodeUtil.generateValidateCode(4));
-	}
+    /**
+     * {@link com.feilong.commons.core.awt.ValidateCodeUtil#generateValidateCode(int)} 的测试方法。
+     */
+    @Test
+    public final void testGenerateValidateCode(){
+        log.info(ValidateCodeUtil.generateValidateCode(4));
+    }
 }

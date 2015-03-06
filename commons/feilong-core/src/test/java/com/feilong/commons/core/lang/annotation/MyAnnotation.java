@@ -36,27 +36,27 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation{
 
-	/** The name_english. */
-	String	name_english	= "venusdrogon";
+    /** The name_english. */
+    String name_english = "venusdrogon";
 
-	/**
-	 * name属性.
-	 * 
-	 * @return the string
-	 */
-	String name() default "金鑫";
+    /**
+     * name属性.
+     * 
+     * @return the string
+     */
+    String name() default "金鑫";
 
-	/**
-	 * 性别 1=男.
-	 * 
-	 * @return the int
-	 */
-	int sex() default 1;
+    /**
+     * 性别 1=男.
+     * 
+     * @return the int
+     */
+    int sex() default 1;
 
-	/**
-	 * Love strings.
-	 * 
-	 * @return the string[]
-	 */
-	String[] loveStrings();
+    /**
+     * Love strings.
+     * 
+     * @return the string[]
+     */
+    String[] loveStrings();
 }

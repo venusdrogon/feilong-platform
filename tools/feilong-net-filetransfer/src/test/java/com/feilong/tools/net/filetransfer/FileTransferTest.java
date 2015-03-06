@@ -27,92 +27,92 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 @ContextConfiguration(value = { "classpath*:spring/spring-fileTransfer.xml" })
 public abstract class FileTransferTest extends AbstractJUnit4SpringContextTests{
 
-	/**
-	 * 传送单个文件.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void sendLocalFileToRemote() throws Exception;
+    /**
+     * 传送单个文件.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void sendLocalFileToRemote() throws Exception;
 
-	/**
-	 * 传送文件夹.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void sendLocalFileToRemote_dir() throws Exception;
+    /**
+     * 传送文件夹.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void sendLocalFileToRemote_dir() throws Exception;
 
-	/**
-	 * 批量传文件.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void sendLocalFileToRemote_dirs() throws Exception;
+    /**
+     * 批量传文件.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void sendLocalFileToRemote_dirs() throws Exception;
 
-	/**
-	 * 传送文件夹(中文目录).
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void sendLocalFileToRemote_dir_chinese() throws Exception;
+    /**
+     * 传送文件夹(中文目录).
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void sendLocalFileToRemote_dir_chinese() throws Exception;
 
-	/**
-	 * 删除一个普通文件/文件夹.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void delete() throws Exception;
+    /**
+     * 删除一个普通文件/文件夹.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void delete() throws Exception;
 
-	/**
-	 * 删除文件夹.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void delete_dir() throws Exception;
+    /**
+     * 删除文件夹.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void delete_dir() throws Exception;
 
-	/**
-	 * 删除 空的文件夹.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void delete_dir_empty() throws Exception;
+    /**
+     * 删除 空的文件夹.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void delete_dir_empty() throws Exception;
 
-	/**
-	 * 删除不存在的文件/文件夹.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void delete_not_exist() throws Exception;
+    /**
+     * 删除不存在的文件/文件夹.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void delete_not_exist() throws Exception;
 
-	/**
-	 * Download_file.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void download_file() throws Exception;
+    /**
+     * Download_file.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void download_file() throws Exception;
 
-	/**
-	 * Download_dir.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void download_dir() throws Exception;
+    /**
+     * Download_dir.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void download_dir() throws Exception;
 
-	/**
-	 * 获得某特定文件夹下面 指定文件名相关信息.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	public abstract void testGetFileEntityMap() throws Exception;
-	// E:\test\1
+    /**
+     * 获得某特定文件夹下面 指定文件名相关信息.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    public abstract void testGetFileEntityMap() throws Exception;
+    // E:\test\1
 }

@@ -34,64 +34,64 @@ import com.feilong.tools.xstream.XStreamUtil;
  */
 public class KlikBCAUtil{
 
-	/**
-	 * 生成 Inquiry output数据.
-	 * 
-	 * @param userID
-	 *            the user id
-	 * @param additionalData
-	 *            the additional data
-	 * @param outputDetailPayments
-	 *            the output detail payments
-	 * @return the payment inquiry xml
-	 */
-	public static String getPaymentInquiryXML(String userID,String additionalData,List<OutputDetailPayment> outputDetailPayments){
+    /**
+     * 生成 Inquiry output数据.
+     * 
+     * @param userID
+     *            the user id
+     * @param additionalData
+     *            the additional data
+     * @param outputDetailPayments
+     *            the output detail payments
+     * @return the payment inquiry xml
+     */
+    public static String getPaymentInquiryXML(String userID,String additionalData,List<OutputDetailPayment> outputDetailPayments){
 
-		if (Validator.isNullOrEmpty(userID)){
-			throw new IllegalArgumentException("userID can't be null/empty!");
-		}
+        if (Validator.isNullOrEmpty(userID)){
+            throw new IllegalArgumentException("userID can't be null/empty!");
+        }
 
-		// ********************************************************************
+        // ********************************************************************
 
-		OutputListTransactionPGW outputListTransactionPGW = new OutputListTransactionPGW();
-		outputListTransactionPGW.setUserID(userID);
-		outputListTransactionPGW.setAdditionalData(additionalData);
+        OutputListTransactionPGW outputListTransactionPGW = new OutputListTransactionPGW();
+        outputListTransactionPGW.setUserID(userID);
+        outputListTransactionPGW.setAdditionalData(additionalData);
 
-		outputListTransactionPGW.setOutputDetailPayments(outputDetailPayments);
+        outputListTransactionPGW.setOutputDetailPayments(outputDetailPayments);
 
-		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
-		aliasMap.put("OutputListTransactionPGW", OutputListTransactionPGW.class);
-		aliasMap.put("OutputDetailPayment", OutputDetailPayment.class);
+        Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
+        aliasMap.put("OutputListTransactionPGW", OutputListTransactionPGW.class);
+        aliasMap.put("OutputDetailPayment", OutputDetailPayment.class);
 
-		Map<String, Class<?>> implicitCollectionMap = new HashMap<String, Class<?>>();
-		implicitCollectionMap.put("outputDetailPayments", OutputListTransactionPGW.class);
+        Map<String, Class<?>> implicitCollectionMap = new HashMap<String, Class<?>>();
+        implicitCollectionMap.put("outputDetailPayments", OutputListTransactionPGW.class);
 
-		ToXmlConfig toXmlConfig = new ToXmlConfig();
-		toXmlConfig.setAliasMap(aliasMap);
-		toXmlConfig.setImplicitCollectionMap(implicitCollectionMap);
+        ToXmlConfig toXmlConfig = new ToXmlConfig();
+        toXmlConfig.setAliasMap(aliasMap);
+        toXmlConfig.setImplicitCollectionMap(implicitCollectionMap);
 
-		return XStreamUtil.toXML(outputListTransactionPGW, toXmlConfig);
-	}
+        return XStreamUtil.toXML(outputListTransactionPGW, toXmlConfig);
+    }
 
-	/**
-	 * 获得支付确认 返回的xml.
-	 * 
-	 * @param outputPaymentPGW
-	 *            the output payment pgw
-	 * @return the payment confirmation xml
-	 */
-	public static String getPaymentConfirmationXML(OutputPaymentPGW outputPaymentPGW){
+    /**
+     * 获得支付确认 返回的xml.
+     * 
+     * @param outputPaymentPGW
+     *            the output payment pgw
+     * @return the payment confirmation xml
+     */
+    public static String getPaymentConfirmationXML(OutputPaymentPGW outputPaymentPGW){
 
-		if (Validator.isNullOrEmpty(outputPaymentPGW)){
-			throw new IllegalArgumentException("outputPaymentPGW can't be null/empty!");
-		}
+        if (Validator.isNullOrEmpty(outputPaymentPGW)){
+            throw new IllegalArgumentException("outputPaymentPGW can't be null/empty!");
+        }
 
-		Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
-		aliasMap.put("OutputPaymentPGW", OutputPaymentPGW.class);
+        Map<String, Class<?>> aliasMap = new HashMap<String, Class<?>>();
+        aliasMap.put("OutputPaymentPGW", OutputPaymentPGW.class);
 
-		ToXmlConfig toXmlConfig = new ToXmlConfig();
-		toXmlConfig.setAliasMap(aliasMap);
+        ToXmlConfig toXmlConfig = new ToXmlConfig();
+        toXmlConfig.setAliasMap(aliasMap);
 
-		return XStreamUtil.toXML(outputPaymentPGW, toXmlConfig);
-	}
+        return XStreamUtil.toXML(outputPaymentPGW, toXmlConfig);
+    }
 }

@@ -24,45 +24,45 @@ package com.feilong.tools.net.httpclient3;
  */
 public class HttpClientException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 4485565007832406655L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 4485565007832406655L;
 
-	/**
-	 * Instantiates a new http client util exception.
-	 */
-	public HttpClientException(){
-		super();
-	}
+    /**
+     * Instantiates a new http client util exception.
+     */
+    public HttpClientException(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new http client util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public HttpClientException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new http client util exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public HttpClientException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new http client util exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public HttpClientException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new http client util exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public HttpClientException(Throwable cause){
+        super(cause);
+    }
 
-	/**
-	 * Instantiates a new http client util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public HttpClientException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new http client util exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public HttpClientException(String message, Throwable cause){
+        super(message, cause);
+    }
 }

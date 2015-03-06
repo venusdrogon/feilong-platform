@@ -30,8 +30,8 @@ import org.apache.struts.actions.DispatchAction;
  */
 public class OnlineAction extends DispatchAction{
 
-	@Override
-	public ActionForward execute(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
-		return null;
-	}
+    @Override
+    public ActionForward execute(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
+        return null;
+    }
 }

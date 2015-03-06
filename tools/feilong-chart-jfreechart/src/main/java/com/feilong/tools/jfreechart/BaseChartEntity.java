@@ -24,105 +24,105 @@ import java.io.Serializable;
  */
 public abstract class BaseChartEntity implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 1L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
-	// 图表标题
-	/** The chart title. */
-	private String				chartTitle			= "";
+    // 图表标题
+    /** The chart title. */
+    private String            chartTitle       = "";
 
-	/** 是否显示legend，即下面说明. */
-	private boolean				isShowLegend		= true;
+    /** 是否显示legend，即下面说明. */
+    private boolean           isShowLegend     = true;
 
-	/**
-	 * configure chart to generate tool tips? <br>
-	 * 是否生成工具 当鼠标放在某个块上面是否显示该块信息（如所占百分比）.
-	 */
-	private boolean				tooltips			= false;
+    /**
+     * configure chart to generate tool tips? <br>
+     * 是否生成工具 当鼠标放在某个块上面是否显示该块信息（如所占百分比）.
+     */
+    private boolean           tooltips         = false;
 
-	/**
-	 * configure chart to generate URLs?<br>
-	 * 是否生成URL链接.
-	 */
-	private boolean				urls				= false;
+    /**
+     * configure chart to generate URLs?<br>
+     * 是否生成URL链接.
+     */
+    private boolean           urls             = false;
 
-	/**
-	 * Gets the chart title.
-	 * 
-	 * @return the chartTitle
-	 */
-	public String getChartTitle(){
-		return chartTitle;
-	}
+    /**
+     * Gets the chart title.
+     * 
+     * @return the chartTitle
+     */
+    public String getChartTitle(){
+        return chartTitle;
+    }
 
-	/**
-	 * Sets the chart title.
-	 * 
-	 * @param chartTitle
-	 *            the chartTitle to set
-	 */
-	public void setChartTitle(String chartTitle){
-		this.chartTitle = chartTitle;
-	}
+    /**
+     * Sets the chart title.
+     * 
+     * @param chartTitle
+     *            the chartTitle to set
+     */
+    public void setChartTitle(String chartTitle){
+        this.chartTitle = chartTitle;
+    }
 
-	/**
-	 * Checks if is show legend.
-	 * 
-	 * @return the isShowLegend
-	 */
-	public boolean isShowLegend(){
-		return isShowLegend;
-	}
+    /**
+     * Checks if is show legend.
+     * 
+     * @return the isShowLegend
+     */
+    public boolean isShowLegend(){
+        return isShowLegend;
+    }
 
-	/**
-	 * Sets the show legend.
-	 * 
-	 * @param isShowLegend
-	 *            the isShowLegend to set
-	 */
-	public void setShowLegend(boolean isShowLegend){
-		this.isShowLegend = isShowLegend;
-	}
+    /**
+     * Sets the show legend.
+     * 
+     * @param isShowLegend
+     *            the isShowLegend to set
+     */
+    public void setShowLegend(boolean isShowLegend){
+        this.isShowLegend = isShowLegend;
+    }
 
-	/**
-	 * Checks if is configure chart to generate tool tips? <br>
-	 * 是否生成工具 当鼠标放在某个块上面是否显示该块信息（如所占百分比）.
-	 * 
-	 * @return the tooltips
-	 */
-	public boolean isTooltips(){
-		return tooltips;
-	}
+    /**
+     * Checks if is configure chart to generate tool tips? <br>
+     * 是否生成工具 当鼠标放在某个块上面是否显示该块信息（如所占百分比）.
+     * 
+     * @return the tooltips
+     */
+    public boolean isTooltips(){
+        return tooltips;
+    }
 
-	/**
-	 * 设置 configure chart to generate tool tips? <br>
-	 * 是否生成工具 当鼠标放在某个块上面是否显示该块信息（如所占百分比）.
-	 * 
-	 * @param tooltips
-	 *            the tooltips to set
-	 */
-	public void setTooltips(boolean tooltips){
-		this.tooltips = tooltips;
-	}
+    /**
+     * 设置 configure chart to generate tool tips? <br>
+     * 是否生成工具 当鼠标放在某个块上面是否显示该块信息（如所占百分比）.
+     * 
+     * @param tooltips
+     *            the tooltips to set
+     */
+    public void setTooltips(boolean tooltips){
+        this.tooltips = tooltips;
+    }
 
-	/**
-	 * Checks if is configure chart to generate URLs?<br>
-	 * 是否生成URL链接.
-	 * 
-	 * @return the urls
-	 */
-	public boolean isUrls(){
-		return urls;
-	}
+    /**
+     * Checks if is configure chart to generate URLs?<br>
+     * 是否生成URL链接.
+     * 
+     * @return the urls
+     */
+    public boolean isUrls(){
+        return urls;
+    }
 
-	/**
-	 * 设置 configure chart to generate URLs?<br>
-	 * 是否生成URL链接.
-	 * 
-	 * @param urls
-	 *            the urls to set
-	 */
-	public void setUrls(boolean urls){
-		this.urls = urls;
-	}
+    /**
+     * 设置 configure chart to generate URLs?<br>
+     * 是否生成URL链接.
+     * 
+     * @param urls
+     *            the urls to set
+     */
+    public void setUrls(boolean urls){
+        this.urls = urls;
+    }
 }

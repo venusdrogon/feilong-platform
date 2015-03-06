@@ -33,28 +33,28 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @TransactionConfiguration(defaultRollback = false)
 public class CreateManagerTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(CreateManagerTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(CreateManagerTest.class);
 
-	/** The create manager. */
-	@Autowired
-	private CreateManager		createManager;
+    /** The create manager. */
+    @Autowired
+    private CreateManager       createManager;
 
-	/**
-	 * Test test create.
-	 */
-	@Test
-	public void testTestCreate(){
-		String testCreate = createManager.testCreate("jinxin");
+    /**
+     * Test test create.
+     */
+    @Test
+    public void testTestCreate(){
+        String testCreate = createManager.testCreate("jinxin");
 
-		log.info(testCreate);
-	}
+        log.info(testCreate);
+    }
 
-	/**
-	 * Test public sku.
-	 */
-	@Test
-	public void testPublicSku(){
-		createManager.publicSku("asdasdasd");
-	}
+    /**
+     * Test public sku.
+     */
+    @Test
+    public void testPublicSku(){
+        createManager.publicSku("asdasdasd");
+    }
 }

@@ -33,39 +33,39 @@ import com.feilong.servlet.http.RequestUtil;
  */
 public class CommonAction extends DispatchAction{
 
-	/**
-	 * 保存当前路径跳转到某个页面.
-	 * 
-	 * @author 金鑫
-	 * @version 1.0 2010-2-2 下午01:27:26
-	 * @param mapping
-	 *            the mapping
-	 * @param form
-	 *            the form
-	 * @param request
-	 *            the request
-	 * @param response
-	 *            the response
-	 * @return the action forward
-	 */
-	public ActionForward doSaveUrlSendRedirect(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
-		HttpSession session = request.getSession();
-		String redirectHref = request.getParameter("redirectHref");
-		// 返回路径
-		session.setAttribute("backURL", RequestUtil.getHeaderReferer(request));
-		//		try{
-		//			//response.sendRedirect(FeiLongSecurity.getDecryptParam(redirectHref));
-		//		}catch (IOException e){
-		//			log.error(e.getClass().getName(), e);
-		//		}
-		return null;
-	}
-	// public ActionForward test(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
-	// try{
-	// response.sendRedirect("http://127.0.0.1:8080/zhaogong/ccmgm.jsp?t=2010031801&jobId=7241%23workerGroup");
-	// }catch (IOException e){
-	// log.error(e.getClass().getName(), e);
-	// }
-	// return null;
-	// }
+    /**
+     * 保存当前路径跳转到某个页面.
+     * 
+     * @author 金鑫
+     * @version 1.0 2010-2-2 下午01:27:26
+     * @param mapping
+     *            the mapping
+     * @param form
+     *            the form
+     * @param request
+     *            the request
+     * @param response
+     *            the response
+     * @return the action forward
+     */
+    public ActionForward doSaveUrlSendRedirect(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
+        HttpSession session = request.getSession();
+        String redirectHref = request.getParameter("redirectHref");
+        // 返回路径
+        session.setAttribute("backURL", RequestUtil.getHeaderReferer(request));
+        //		try{
+        //			//response.sendRedirect(FeiLongSecurity.getDecryptParam(redirectHref));
+        //		}catch (IOException e){
+        //			log.error(e.getClass().getName(), e);
+        //		}
+        return null;
+    }
+    // public ActionForward test(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
+    // try{
+    // response.sendRedirect("http://127.0.0.1:8080/zhaogong/ccmgm.jsp?t=2010031801&jobId=7241%23workerGroup");
+    // }catch (IOException e){
+    // log.error(e.getClass().getName(), e);
+    // }
+    // return null;
+    // }
 }

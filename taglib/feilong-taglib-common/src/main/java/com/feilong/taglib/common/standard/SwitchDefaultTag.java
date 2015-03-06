@@ -26,16 +26,16 @@ import com.feilong.taglib.base.BaseTag;
  */
 public class SwitchDefaultTag extends BaseTag{
 
-	private static final long	serialVersionUID	= 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public int doStartTag(){
-		Tag tag = getParent();
-		SwitchTag switchTag = (SwitchTag) tag;
-		if (!switchTag.isExecuteTag()){
-			switchTag.setExecuteTag();
-			return EVAL_BODY_INCLUDE;
-		}
-		return SKIP_BODY;
-	}
+    @Override
+    public int doStartTag(){
+        Tag tag = getParent();
+        SwitchTag switchTag = (SwitchTag) tag;
+        if (!switchTag.isExecuteTag()){
+            switchTag.setExecuteTag();
+            return EVAL_BODY_INCLUDE;
+        }
+        return SKIP_BODY;
+    }
 }

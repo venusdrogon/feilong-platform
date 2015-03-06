@@ -55,132 +55,132 @@ import org.slf4j.LoggerFactory;
  */
 public class JaxWsDynamicClientUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log						= LoggerFactory.getLogger(JaxWsDynamicClientUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log                   = LoggerFactory.getLogger(JaxWsDynamicClientUtilTest.class);
 
-	/** The wsdl url. */
-	private String				wsdlUrl					= "https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl";
+    /** The wsdl url. */
+    private String              wsdlUrl               = "https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl";
 
-	/** The namespace. */
-	private String				namespace				= "http://api.sprintasia";
+    /** The namespace. */
+    private String              namespace             = "http://api.sprintasia";
 
-	/** The operation name. */
-	private String				operationName			= "transactionQuery";
+    /** The operation name. */
+    private String              operationName         = "transactionQuery";
 
-	/** The merchant transaction id. */
-	private String				merchantTransactionID	= "010003170001";
+    /** The merchant transaction id. */
+    private String              merchantTransactionID = "010003170001";
 
-	/** The service version. */
-	private String				serviceVersion			= "2.0";
+    /** The service version. */
+    private String              serviceVersion        = "2.0";
 
-	/** The site id. */
-	private String				siteID					= "Blanja2";
+    /** The site id. */
+    private String              siteID                = "Blanja2";
 
-	/** The transaction id. */
-	private String				transactionID			= "";
+    /** The transaction id. */
+    private String              transactionID         = "";
 
-	/** The transaction type. */
-	private String				transactionType			= "AUTHORIZATION";
+    /** The transaction type. */
+    private String              transactionType       = "AUTHORIZATION";
 
-	/**
-	 * Call.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void call() throws Exception{
-		String wddxPacketXML = JaxWsDynamicClientUtil.call(
-						wsdlUrl,
-						operationName,
-						merchantTransactionID,
-						serviceVersion,
-						siteID,
-						transactionID,
-						transactionType);
-		log.info(wddxPacketXML);
+    /**
+     * Call.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public void call() throws Exception{
+        String wddxPacketXML = JaxWsDynamicClientUtil.call(
+                        wsdlUrl,
+                        operationName,
+                        merchantTransactionID,
+                        serviceVersion,
+                        siteID,
+                        transactionID,
+                        transactionType);
+        log.info(wddxPacketXML);
 
-	}
+    }
 
-	/**
-	 * Name1.
-	 * 
-	 * @throws MalformedURLException
-	 *             the malformed url exception
-	 */
-	@Test
-	public void name1() throws MalformedURLException{
-		URL url = new URL(wsdlUrl);
-		operationName = "AdvanceService";
-		QName qName = new QName(namespace, operationName);
+    /**
+     * Name1.
+     * 
+     * @throws MalformedURLException
+     *             the malformed url exception
+     */
+    @Test
+    public void name1() throws MalformedURLException{
+        URL url = new URL(wsdlUrl);
+        operationName = "AdvanceService";
+        QName qName = new QName(namespace, operationName);
 
-		// 根据targetNamespace，serverName来查找服务
-		Service service = Service.create(url, qName);
+        // 根据targetNamespace，serverName来查找服务
+        Service service = Service.create(url, qName);
 
-		if (log.isInfoEnabled()){
-			Iterator<QName> ports = service.getPorts();
+        if (log.isInfoEnabled()){
+            Iterator<QName> ports = service.getPorts();
 
-			while (ports.hasNext()){
-				QName qName2 = ports.next();
-				log.info(qName2.toString());
-			}
-		}
-		BCAOperation bcaOperation = service.getPort(BCAOperation.class);
+            while (ports.hasNext()){
+                QName qName2 = ports.next();
+                log.info(qName2.toString());
+            }
+        }
+        BCAOperation bcaOperation = service.getPort(BCAOperation.class);
 
-		if (log.isInfoEnabled()){
+        if (log.isInfoEnabled()){
 
-			String transactionQuery = bcaOperation.transactionQuery(
-							merchantTransactionID,
-							serviceVersion,
-							siteID,
-							merchantTransactionID,
-							transactionType);
-			log.info(transactionQuery);
-		}
-	}
+            String transactionQuery = bcaOperation.transactionQuery(
+                            merchantTransactionID,
+                            serviceVersion,
+                            siteID,
+                            merchantTransactionID,
+                            transactionType);
+            log.info(transactionQuery);
+        }
+    }
 
-	/**
-	 * Name122.
-	 * 
-	 * @throws SOAPException
-	 *             the SOAP exception
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void name122() throws SOAPException,IOException{
-		URL url = new URL(wsdlUrl);
+    /**
+     * Name122.
+     * 
+     * @throws SOAPException
+     *             the SOAP exception
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void name122() throws SOAPException,IOException{
+        URL url = new URL(wsdlUrl);
 
-		operationName = "AdvanceService";
-		QName serviceName = new QName(namespace, operationName);
+        operationName = "AdvanceService";
+        QName serviceName = new QName(namespace, operationName);
 
-		QName portName = new QName(namespace, "advance.cfc");
-		Service service = Service.create(url, serviceName);
+        QName portName = new QName(namespace, "advance.cfc");
+        Service service = Service.create(url, serviceName);
 
-		MessageFactory messageFactory = MessageFactory.newInstance();
-		SOAPMessage soapMessage = messageFactory.createMessage();
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
 
-		Dispatch<SOAPMessage> dispatch = service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE);
-		SOAPMessage res = dispatch.invoke(soapMessage);
-		res.writeTo(System.out);
-	}
+        Dispatch<SOAPMessage> dispatch = service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE);
+        SOAPMessage res = dispatch.invoke(soapMessage);
+        res.writeTo(System.out);
+    }
 
-	/**
-	 * Name12.
-	 */
-	@Test
-	public void name12(){
-		// ClientProxyFactoryBean factory = new ClientProxyFactoryBean();
-		//
-		// factory.setAddress("https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl");
-		// factory.getServiceFactory().setDataBinding(new AegisDatabinding());
-		// HelloWorld client = factory.create(HelloWorld.class);
-		// log.info("Invoke sayHi()....");
-		// log.info(client.sayHi(System.getProperty("user.name")));
-		// Document doc = client.getADocument();
-		// Element e = (Element) doc.getFirstChild();
-		// log.info(e.getTagName());
-		// Text t = (Text) e.getFirstChild();
-		// log.info(t);
-	}
+    /**
+     * Name12.
+     */
+    @Test
+    public void name12(){
+        // ClientProxyFactoryBean factory = new ClientProxyFactoryBean();
+        //
+        // factory.setAddress("https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl");
+        // factory.getServiceFactory().setDataBinding(new AegisDatabinding());
+        // HelloWorld client = factory.create(HelloWorld.class);
+        // log.info("Invoke sayHi()....");
+        // log.info(client.sayHi(System.getProperty("user.name")));
+        // Document doc = client.getADocument();
+        // Element e = (Element) doc.getFirstChild();
+        // log.info(e.getTagName());
+        // Text t = (Text) e.getFirstChild();
+        // log.info(t);
+    }
 }

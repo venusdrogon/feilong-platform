@@ -20,34 +20,34 @@ package com.feilong.framework.netpay.advance.adaptor.sprintasia.creditcard.comma
  */
 public interface TransactionType{
 
-	// Required
-	// Value:
-	//  AUTHORIZATION
-	//  CAPTURE
-	//  VOID CAPTURE
-	//  SALES
-	//  VOID
-	//  REFUND
-	//  FORCE
+    // Required
+    // Value:
+    //  AUTHORIZATION
+    //  CAPTURE
+    //  VOID CAPTURE
+    //  SALES
+    //  VOID
+    //  REFUND
+    //  FORCE
 
-	/** The AUTHORIZATION. */
-	String	AUTHORIZATION	= "AUTHORIZATION";
+    /** The AUTHORIZATION. */
+    String AUTHORIZATION = "AUTHORIZATION";
 
-	/** The CAPTURE. */
-	String	CAPTURE			= "CAPTURE";
+    /** The CAPTURE. */
+    String CAPTURE       = "CAPTURE";
 
-	/** The VOIDCAPTURE. */
-	String	VOIDCAPTURE		= "VOID CAPTURE";
+    /** The VOIDCAPTURE. */
+    String VOIDCAPTURE   = "VOID CAPTURE";
 
-	/** The SALES. */
-	String	SALES			= "SALES";
+    /** The SALES. */
+    String SALES         = "SALES";
 
-	/** The VOID. */
-	String	VOID			= "VOID";
+    /** The VOID. */
+    String VOID          = "VOID";
 
-	/** The REFUND. */
-	String	REFUND			= "REFUND";
+    /** The REFUND. */
+    String REFUND        = "REFUND";
 
-	/** The FORCE. */
-	String	FORCE			= "FORCE";
+    /** The FORCE. */
+    String FORCE         = "FORCE";
 }

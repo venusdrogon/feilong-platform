@@ -25,42 +25,42 @@ package com.feilong.commons.core.io;
  */
 public final class ImageType{
 
-	/**
-	 * <code>{@value}</code><br>
-	 * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
-	 */
-	public static final String	JPG		= "JPG";
+    /**
+     * <code>{@value}</code><br>
+     * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
+     */
+    public static final String JPG  = "JPG";
 
-	/**
-	 * <code>{@value}</code><br>
-	 * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
-	 */
-	public static final String	JPEG	= "JPEG";
+    /**
+     * <code>{@value}</code><br>
+     * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
+     */
+    public static final String JPEG = "JPEG";
 
-	/**
-	 * <code>{@value}</code><br>
-	 * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式.
-	 */
-	public static final String	PNG		= "PNG";
+    /**
+     * <code>{@value}</code><br>
+     * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式.
+     */
+    public static final String PNG  = "PNG";
 
-	/**
-	 * <code>{@value}</code><br>
-	 * GIF Graphics Interchange format（图形交换格式） .
-	 */
-	public static final String	GIF		= "GIF";
+    /**
+     * <code>{@value}</code><br>
+     * GIF Graphics Interchange format（图形交换格式） .
+     */
+    public static final String GIF  = "GIF";
 
-	/**
-	 * <code>{@value}</code><br>
-	 * BMP Windows 位图<br>
-	 * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件.<br>
-	 * BMP 文件适用于 Windows 中的墙纸 .
-	 */
-	public static final String	BMP		= "BMP";
+    /**
+     * <code>{@value}</code><br>
+     * BMP Windows 位图<br>
+     * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件.<br>
+     * BMP 文件适用于 Windows 中的墙纸 .
+     */
+    public static final String BMP  = "BMP";
 
-	/** Don't let anyone instantiate this class. */
-	private ImageType(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private ImageType(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 }

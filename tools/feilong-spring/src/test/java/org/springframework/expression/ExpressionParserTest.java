@@ -25,21 +25,21 @@ import com.feilong.test.User;
 @SuppressWarnings("all")
 public class ExpressionParserTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(ExpressionParserTest.class);
+    private static final Logger log = LoggerFactory.getLogger(ExpressionParserTest.class);
 
-	@Test
-	public void test(){
+    @Test
+    public void test(){
 
-		//  The constructor arguments are name, age.
-		User user2 = new User("jinxin", 29);
-		ExpressionParser expressionParser = new SpelExpressionParser();
-		Expression expression = expressionParser.parseExpression("name.equals('jinxin') and (4+3)==(7-0)");
-		Object name = null;
-		//		EvaluationContext context = new StandardEvaluationContext(user);
-		//		  name = exp.getValue(context);
-		//log.info(name);
-		//exp = parser.parseExpression("name");
-		name = expression.getValue(user2, Boolean.class);
-		log.info("" + name);
-	}
+        //  The constructor arguments are name, age.
+        User user2 = new User("jinxin", 29);
+        ExpressionParser expressionParser = new SpelExpressionParser();
+        Expression expression = expressionParser.parseExpression("name.equals('jinxin') and (4+3)==(7-0)");
+        Object name = null;
+        //		EvaluationContext context = new StandardEvaluationContext(user);
+        //		  name = exp.getValue(context);
+        //log.info(name);
+        //exp = parser.parseExpression("name");
+        name = expression.getValue(user2, Boolean.class);
+        log.info("" + name);
+    }
 }

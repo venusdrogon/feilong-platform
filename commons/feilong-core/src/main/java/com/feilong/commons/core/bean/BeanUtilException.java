@@ -35,57 +35,57 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public final class BeanUtilException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -1699987643831455524L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -1699987643831455524L;
 
-	/**
-	 * Instantiates a new bean util exception.
-	 */
-	public BeanUtilException(){
-		super();
-	}
+    /**
+     * Instantiates a new bean util exception.
+     */
+    public BeanUtilException(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new bean util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public BeanUtilException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new bean util exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public BeanUtilException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new bean util exception.
-	 * 
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public BeanUtilException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * Instantiates a new bean util exception.
+     * 
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public BeanUtilException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * Instantiates a new bean util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public BeanUtilException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new bean util exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public BeanUtilException(String message, Throwable cause){
+        super(message, cause);
+    }
 
-	/**
-	 * Instantiates a new bean util exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public BeanUtilException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new bean util exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public BeanUtilException(Throwable cause){
+        super(cause);
+    }
 }

@@ -23,23 +23,23 @@ package com.feilong.taglib.base;
  */
 public abstract class AbstractConditionalTag extends BaseTag{
 
-	private static final long	serialVersionUID	= -7583054141845571177L;
+    private static final long serialVersionUID = -7583054141845571177L;
 
-	/**
-	 * 标签开始
-	 */
-	@Override
-	public int doStartTag(){
-		if (condition()){
-			return EVAL_BODY_INCLUDE;
-		}
-		return SKIP_BODY;
-	}
+    /**
+     * 标签开始
+     */
+    @Override
+    public int doStartTag(){
+        if (condition()){
+            return EVAL_BODY_INCLUDE;
+        }
+        return SKIP_BODY;
+    }
 
-	/**
-	 * 自定义条件
-	 * 
-	 * @return 条件满足,返回true,页面会EVAL_BODY_INCLUDE,否则SKIP_BODY
-	 */
-	protected abstract boolean condition();
+    /**
+     * 自定义条件
+     * 
+     * @return 条件满足,返回true,页面会EVAL_BODY_INCLUDE,否则SKIP_BODY
+     */
+    protected abstract boolean condition();
 }

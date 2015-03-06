@@ -23,95 +23,95 @@ package com.feilong.tools.security.symmetric;
  * @since 1.0.7
  */
 public enum CipherMode{
-	/**
-	 * No mode.
-	 */
-	NONE,
+    /**
+     * No mode.
+     */
+    NONE,
 
-	/**
-	 * (electronic codebook)
-	 * 
-	 * RC4 (ARCFOUR) does not support ECB (electronic codebook)
-	 * 
-	 * <pre>
-	 * {@code
-	 * 	优点：
-	 * 	1.简单；
-	 * 	2.有利于并行计算；
-	 * 	3.误差不会被传送；
-	 * 	缺点：
-	 * 	1.不能隐藏明文的模式；
-	 * 	2.可能对明文进行主动攻击。
-	 * 
-	 * }
-	 * </pre>
-	 */
-	ECB,
+    /**
+     * (electronic codebook)
+     * 
+     * RC4 (ARCFOUR) does not support ECB (electronic codebook)
+     * 
+     * <pre>
+     * {@code
+     * 	优点：
+     * 	1.简单；
+     * 	2.有利于并行计算；
+     * 	3.误差不会被传送；
+     * 	缺点：
+     * 	1.不能隐藏明文的模式；
+     * 	2.可能对明文进行主动攻击。
+     * 
+     * }
+     * </pre>
+     */
+    ECB,
 
-	/**
-	 * (cipher block chaining) 密码分组链接模式
-	 * RC4 (ARCFOUR) does not support CBC (cipher block chaining).
-	 * 
-	 * <pre>
-	 * {@code
-	 * 	优点：
-	 * 	1.不容易主动攻击,安全性好于ECB,适合传输长度长的报文,是SSL、IPSec的标准。
-	 * 	缺点：
-	 * 	1、不利于并行计算；
-	 * 	2、误差传递；
-	 * 	3、需要初始化向量IV。
-	 * 
-	 * }
-	 * </pre>
-	 */
-	CBC,
+    /**
+     * (cipher block chaining) 密码分组链接模式
+     * RC4 (ARCFOUR) does not support CBC (cipher block chaining).
+     * 
+     * <pre>
+     * {@code
+     * 	优点：
+     * 	1.不容易主动攻击,安全性好于ECB,适合传输长度长的报文,是SSL、IPSec的标准。
+     * 	缺点：
+     * 	1、不利于并行计算；
+     * 	2、误差传递；
+     * 	3、需要初始化向量IV。
+     * 
+     * }
+     * </pre>
+     */
+    CBC,
 
-	/**
-	 * (cipher feedback) 密码发反馈模式
-	 * RC4 (ARCFOUR) does not support CFB (cipher feedback).
-	 * 
-	 * <pre>
-	 * {@code
-	 * 	优点：
-	 * 	1、隐藏了明文模式；
-	 * 	2、分组密码转化为流模式；
-	 * 	3、可以及时加密传送小于分组的数据。
-	 * 	缺点:
-	 * 	1、不利于并行计算；
-	 * 	2、误差传送：一个明文单元损坏影响多个单元；
-	 * 	3、唯一的IV。
-	 * 
-	 * }
-	 * </pre>
-	 */
-	CFB,
+    /**
+     * (cipher feedback) 密码发反馈模式
+     * RC4 (ARCFOUR) does not support CFB (cipher feedback).
+     * 
+     * <pre>
+     * {@code
+     * 	优点：
+     * 	1、隐藏了明文模式；
+     * 	2、分组密码转化为流模式；
+     * 	3、可以及时加密传送小于分组的数据。
+     * 	缺点:
+     * 	1、不利于并行计算；
+     * 	2、误差传送：一个明文单元损坏影响多个单元；
+     * 	3、唯一的IV。
+     * 
+     * }
+     * </pre>
+     */
+    CFB,
 
-	/**
-	 * (output feedback, in 8bit) 输出反馈模式
-	 * RC4 (ARCFOUR) does not support OFB (output feedback, in 8bit).
-	 * 
-	 * <pre>
-	 * {@code
-	 * 	优点：
-	 * 	1、隐藏了明文模式；
-	 * 	2、分组密码转化为流模式；
-	 * 	3、可以及时加密传送小于分组的数据。
-	 * 	缺点：
-	 * 	1、不利于并行计算；
-	 * 	2、对明文的主动攻击是可能的；
-	 * 	3、误差传送：一个明文单元损坏影响多个单元。
-	 * 
-	 * }
-	 * </pre>
-	 */
-	OFB,
+    /**
+     * (output feedback, in 8bit) 输出反馈模式
+     * RC4 (ARCFOUR) does not support OFB (output feedback, in 8bit).
+     * 
+     * <pre>
+     * {@code
+     * 	优点：
+     * 	1、隐藏了明文模式；
+     * 	2、分组密码转化为流模式；
+     * 	3、可以及时加密传送小于分组的数据。
+     * 	缺点：
+     * 	1、不利于并行计算；
+     * 	2、对明文的主动攻击是可能的；
+     * 	3、误差传送：一个明文单元损坏影响多个单元。
+     * 
+     * }
+     * </pre>
+     */
+    OFB,
 
-	/**
-	 * (output feedback, in nbit)
-	 * 
-	 * AES does not support NOFB mode.
-	 * RC4 (ARCFOUR) does not support NOFB (output feedback, in nbit)
-	 */
-	NOFB
+    /**
+     * (output feedback, in nbit)
+     * 
+     * AES does not support NOFB mode.
+     * RC4 (ARCFOUR) does not support NOFB (output feedback, in nbit)
+     */
+    NOFB
 
 }

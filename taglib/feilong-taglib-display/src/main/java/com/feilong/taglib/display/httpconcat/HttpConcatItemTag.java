@@ -28,38 +28,38 @@ import com.feilong.taglib.base.AbstractCommonTag;
 @Deprecated
 public class HttpConcatItemTag extends AbstractCommonTag{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -4587653933261044593L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -4587653933261044593L;
 
-	/** css/js的src. */
-	private String				src;
+    /** css/js的src. */
+    private String            src;
 
-	/** The BEGI n_ tag. */
-	public static String		BEGIN_TAG			= "<TengineFile>";
+    /** The BEGI n_ tag. */
+    public static String      BEGIN_TAG        = "<TengineFile>";
 
-	/** The EN d_ tag. */
-	public static String		END_TAG				= "</TengineFile>";
+    /** The EN d_ tag. */
+    public static String      END_TAG          = "</TengineFile>";
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
-	 */
-	@Override
-	protected Object writeContent(){
-		if (Validator.isNotNullOrEmpty(src)){
-			return BEGIN_TAG + src + END_TAG;
-		}
-		return "";
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
+     */
+    @Override
+    protected Object writeContent(){
+        if (Validator.isNotNullOrEmpty(src)){
+            return BEGIN_TAG + src + END_TAG;
+        }
+        return "";
+    }
 
-	/**
-	 * Sets the css/js的src.
-	 * 
-	 * @param src
-	 *            the new css/js的src
-	 */
-	public void setSrc(String src){
-		this.src = src;
-	}
+    /**
+     * Sets the css/js的src.
+     * 
+     * @param src
+     *            the new css/js的src
+     */
+    public void setSrc(String src){
+        this.src = src;
+    }
 }

@@ -42,149 +42,149 @@ import com.feilong.tools.om.nginx.command.StubStatusCommand;
  */
 public class StubStatusMain{
 
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(StubStatusMain.class);
+    /** The Constant log. */
+    private static final Logger log               = LoggerFactory.getLogger(StubStatusMain.class);
 
-	/** 中间使用tab键分隔 <code>{@value}</code>. */
-	private static final String	pattern_write		= "%s	%s	%s	%s	%s	%s	%s	%s";
+    /** 中间使用tab键分隔 <code>{@value}</code>. */
+    private static final String pattern_write     = "%s	%s	%s	%s	%s	%s	%s	%s";
 
-	/** 中间使用tab键分隔 <code>{@value}</code>. */
-	private static final String	pattern_log			= "Active(%s)	Reading(%s)	Writing(%s)	Waiting(%s)";
+    /** 中间使用tab键分隔 <code>{@value}</code>. */
+    private static final String pattern_log       = "Active(%s)	Reading(%s)	Writing(%s)	Waiting(%s)";
 
-	/** The encode. */
-	private static String		encode				= CharsetType.GBK;
+    /** The encode. */
+    private static String       encode            = CharsetType.GBK;
 
-	/** The pattern_crawl date. */
-	public static String		pattern_crawlDate	= DatePattern.COMMON_DATE_AND_TIME;
+    /** The pattern_crawl date. */
+    public static String        pattern_crawlDate = DatePattern.COMMON_DATE_AND_TIME;
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the args
-	 */
-	public static void main(String[] args){
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the args
+     */
+    public static void main(String[] args){
 
-		final String uri = System.getProperty("StubStatus.uri");
+        final String uri = System.getProperty("StubStatus.uri");
 
-		final String userName = System.getProperty("StubStatus.userName");
-		final String password = System.getProperty("StubStatus.password");
-		// ::生成文件的路径
-		// ::目前支持以下的变量 ${year} ${monthAndDay} ${hour}
-		final String path = System.getProperty("StubStatus.path");
+        final String userName = System.getProperty("StubStatus.userName");
+        final String password = System.getProperty("StubStatus.password");
+        // ::生成文件的路径
+        // ::目前支持以下的变量 ${year} ${monthAndDay} ${hour}
+        final String path = System.getProperty("StubStatus.path");
 
-		if (Validator.isNullOrEmpty(uri)){
-			throw new IllegalArgumentException("StubStatus.uri can't be null/empty!");
-		}
+        if (Validator.isNullOrEmpty(uri)){
+            throw new IllegalArgumentException("StubStatus.uri can't be null/empty!");
+        }
 
-		Timer timer = new Timer();
+        Timer timer = new Timer();
 
-		TimerTask task = new TimerTask(){
+        TimerTask task = new TimerTask(){
 
-			@Override
-			public void run(){
-				try{
-					crawStubStatusNike(uri, userName, password, path);
-				}catch (IOException e){
-					log.error(e.getClass().getName(), e);
-				}
-			}
-		};
-		timer.schedule(task, 2L, 1000);
-	}
+            @Override
+            public void run(){
+                try{
+                    crawStubStatusNike(uri, userName, password, path);
+                }catch (IOException e){
+                    log.error(e.getClass().getName(), e);
+                }
+            }
+        };
+        timer.schedule(task, 2L, 1000);
+    }
 
-	/**
-	 * nike爬取信息.
-	 * 
-	 * @param uri
-	 *            the uri
-	 * @param userName
-	 *            the user name
-	 * @param password
-	 *            the password
-	 * @param path
-	 *            the patch
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static void crawStubStatusNike(String uri,String userName,String password,String path) throws IOException{
-		crawStubStatus(uri, userName, password, path);
-	}
+    /**
+     * nike爬取信息.
+     * 
+     * @param uri
+     *            the uri
+     * @param userName
+     *            the user name
+     * @param password
+     *            the password
+     * @param path
+     *            the patch
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static void crawStubStatusNike(String uri,String userName,String password,String path) throws IOException{
+        crawStubStatus(uri, userName, password, path);
+    }
 
-	/**
-	 * 爬取 StubStatus 信息.
-	 * 
-	 * @param stubStatusURI
-	 *            stubStatusURI
-	 * @param userName
-	 *            bisic 用户名
-	 * @param password
-	 *            bisic 密码
-	 * @param path
-	 *            the patch
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	private static void crawStubStatus(String stubStatusURI,String userName,String password,String path) throws IOException{
-		StubStatusCommand stubStatusCommand = StubStatusUtil.getStubStatusCommand(stubStatusURI, userName, password);
+    /**
+     * 爬取 StubStatus 信息.
+     * 
+     * @param stubStatusURI
+     *            stubStatusURI
+     * @param userName
+     *            bisic 用户名
+     * @param password
+     *            bisic 密码
+     * @param path
+     *            the patch
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    private static void crawStubStatus(String stubStatusURI,String userName,String password,String path) throws IOException{
+        StubStatusCommand stubStatusCommand = StubStatusUtil.getStubStatusCommand(stubStatusURI, userName, password);
 
-		Date crawlDate = stubStatusCommand.getCrawlDate();
+        Date crawlDate = stubStatusCommand.getCrawlDate();
 
-		String filePath = parseFilePath(path, crawlDate);
+        String filePath = parseFilePath(path, crawlDate);
 
-		String logContent = StringUtil.format(
-						pattern_log,
-						stubStatusCommand.getActiveConnections(),
-						stubStatusCommand.getReading(),
-						stubStatusCommand.getWriting(),
-						stubStatusCommand.getWaiting());
+        String logContent = StringUtil.format(
+                        pattern_log,
+                        stubStatusCommand.getActiveConnections(),
+                        stubStatusCommand.getReading(),
+                        stubStatusCommand.getWriting(),
+                        stubStatusCommand.getWaiting());
 
-		log.info(logContent);
-		// ****************************************************************
-		String writecontent = StringUtil.format(
-						pattern_write,
-						DateUtil.date2String(crawlDate, pattern_crawlDate),
-						stubStatusCommand.getActiveConnections(),
-						stubStatusCommand.getServerAccepts(),
-						stubStatusCommand.getServerHandled(),
-						stubStatusCommand.getServerRequests(),
-						stubStatusCommand.getReading(),
-						stubStatusCommand.getWriting(),
-						stubStatusCommand.getWaiting())
-						+ "\n";
+        log.info(logContent);
+        // ****************************************************************
+        String writecontent = StringUtil.format(
+                        pattern_write,
+                        DateUtil.date2String(crawlDate, pattern_crawlDate),
+                        stubStatusCommand.getActiveConnections(),
+                        stubStatusCommand.getServerAccepts(),
+                        stubStatusCommand.getServerHandled(),
+                        stubStatusCommand.getServerRequests(),
+                        stubStatusCommand.getReading(),
+                        stubStatusCommand.getWriting(),
+                        stubStatusCommand.getWaiting())
+                        + "\n";
 
-		IOWriteUtil.write(filePath, writecontent, encode, FileWriteMode.APPEND);
+        IOWriteUtil.write(filePath, writecontent, encode, FileWriteMode.APPEND);
 
-		// 每小时 最后一秒
-		int minute = DateUtil.getMinute(crawlDate);
-		int second = DateUtil.getSecond(crawlDate);
-		boolean isLastSecondOfHour = (59 == minute && 59 == second);
-		if (isLastSecondOfHour){
-			try{
-				StubStatusMailSender.sendMonitorMail(filePath);
-			}catch (MessagingException e){
-				log.error(e.getClass().getName(), e);
-			}catch (IOException e){
-				log.error(e.getClass().getName(), e);
-			}
-		}
-	}
+        // 每小时 最后一秒
+        int minute = DateUtil.getMinute(crawlDate);
+        int second = DateUtil.getSecond(crawlDate);
+        boolean isLastSecondOfHour = (59 == minute && 59 == second);
+        if (isLastSecondOfHour){
+            try{
+                StubStatusMailSender.sendMonitorMail(filePath);
+            }catch (MessagingException e){
+                log.error(e.getClass().getName(), e);
+            }catch (IOException e){
+                log.error(e.getClass().getName(), e);
+            }
+        }
+    }
 
-	/**
-	 * 解析文件路径.
-	 * 
-	 * @param path
-	 *            the path
-	 * @param crawlDate
-	 *            the crawl date
-	 * @return the string
-	 */
-	protected static String parseFilePath(String path,Date crawlDate){
-		String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.MONTH_AND_DAY);
-		String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
-		String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
+    /**
+     * 解析文件路径.
+     * 
+     * @param path
+     *            the path
+     * @param crawlDate
+     *            the crawl date
+     * @return the string
+     */
+    protected static String parseFilePath(String path,Date crawlDate){
+        String monthAndDay = DateUtil.date2String(crawlDate, DatePattern.MONTH_AND_DAY);
+        String year = DateUtil.date2String(crawlDate, DatePattern.yyyy);
+        String hour = DateUtil.date2String(crawlDate, DatePattern.HH);
 
-		String filePath = path.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
-		return filePath;
-	}
+        String filePath = path.replace("${year}", year).replace("${monthAndDay}", monthAndDay).replace("${hour}", hour);
+        return filePath;
+    }
 }

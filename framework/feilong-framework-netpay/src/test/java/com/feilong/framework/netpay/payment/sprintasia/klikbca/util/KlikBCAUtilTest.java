@@ -34,39 +34,39 @@ import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.util.Klik
  */
 public class KlikBCAUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(KlikBCAUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(KlikBCAUtilTest.class);
 
-	/**
-	 * Test object.
-	 */
-	@Test
-	public final void getPaymentConfirmationXML(){
+    /**
+     * Test object.
+     */
+    @Test
+    public final void getPaymentConfirmationXML(){
 
-		String additionalData = "additionalData";
-		String reason = "";
-		String transactionDate = DateUtil.date2String(new Date(), DatePattern.ddMMyyyyHHmmss);
-		String status = "00";
-		String transactionNo = "010000130002";
-		String userID = "123456";
+        String additionalData = "additionalData";
+        String reason = "";
+        String transactionDate = DateUtil.date2String(new Date(), DatePattern.ddMMyyyyHHmmss);
+        String status = "00";
+        String transactionNo = "010000130002";
+        String userID = "123456";
 
-		OutputPaymentPGW outputPaymentPGW = new OutputPaymentPGW();
-		outputPaymentPGW.setAdditionalData(additionalData);
-		outputPaymentPGW.setReason(reason);
-		outputPaymentPGW.setStatus(status);
-		outputPaymentPGW.setTransactionDate(transactionDate);
-		outputPaymentPGW.setTransactionNo(transactionNo);
-		outputPaymentPGW.setUserID(userID);
+        OutputPaymentPGW outputPaymentPGW = new OutputPaymentPGW();
+        outputPaymentPGW.setAdditionalData(additionalData);
+        outputPaymentPGW.setReason(reason);
+        outputPaymentPGW.setStatus(status);
+        outputPaymentPGW.setTransactionDate(transactionDate);
+        outputPaymentPGW.setTransactionNo(transactionNo);
+        outputPaymentPGW.setUserID(userID);
 
-		log.info(KlikBCAUtil.getPaymentConfirmationXML(outputPaymentPGW));
+        log.info(KlikBCAUtil.getPaymentConfirmationXML(outputPaymentPGW));
 
-		// <OutputPaymentPGW>
-		// <userID>user01</userID>
-		// <transactionNo>1234ABC5678EFG4321</transactionNo>
-		// <transactionDate>20/10/2010 10:08:09</transactionDate>
-		// <status>00</status>
-		// <reason>Success</reason>
-		// <additionalData> </additionalData>
-		// </OutputPaymentPGW>
-	}
+        // <OutputPaymentPGW>
+        // <userID>user01</userID>
+        // <transactionNo>1234ABC5678EFG4321</transactionNo>
+        // <transactionDate>20/10/2010 10:08:09</transactionDate>
+        // <status>00</status>
+        // <reason>Success</reason>
+        // <additionalData> </additionalData>
+        // </OutputPaymentPGW>
+    }
 }

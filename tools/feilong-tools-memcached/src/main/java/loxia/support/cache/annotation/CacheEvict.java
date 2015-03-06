@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 @SuppressWarnings("all")
 public @interface CacheEvict{
 
-	String[] value() default "";
+    String[] value() default "";
 
-	boolean encode() default true;
+    boolean encode() default true;
 }

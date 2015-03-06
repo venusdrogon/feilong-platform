@@ -29,25 +29,25 @@ import com.feilong.web.entity.browser.BrowserUtil;
  */
 public class BrowserUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log		= LoggerFactory.getLogger(BrowserUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log    = LoggerFactory.getLogger(BrowserUtilTest.class);
 
-	/** The iphone. */
-	private String				iphone	= "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7";
+    /** The iphone. */
+    private String              iphone = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7";
 
-	/** The ipad. */
-	private String				ipad	= "Mozilla/5.0 (iPad; U; CPU  OS 4_1 like Mac OS X; en-us)AppleWebKit/532.9(KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7";
+    /** The ipad. */
+    private String              ipad   = "Mozilla/5.0 (iPad; U; CPU  OS 4_1 like Mac OS X; en-us)AppleWebKit/532.9(KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7";
 
-	/** The chrome. */
-	private String				chrome	= "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17";
+    /** The chrome. */
+    private String              chrome = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17";
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void test(){
-		log.info(BrowserUtil.getIsMobileDevice(iphone) + "");
-		log.info(BrowserUtil.getIsMobileDevice(ipad) + "");
-		log.info(BrowserUtil.getIsMobileDevice(chrome) + "");
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void test(){
+        log.info(BrowserUtil.getIsMobileDevice(iphone) + "");
+        log.info(BrowserUtil.getIsMobileDevice(ipad) + "");
+        log.info(BrowserUtil.getIsMobileDevice(chrome) + "");
+    }
 }

@@ -25,117 +25,117 @@ import com.feilong.tools.scm.command.ScmPatchCommand;
  */
 public class CvsPatchCommand extends ScmPatchCommand{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 2469900787893755928L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 2469900787893755928L;
 
-	/** 索引的文件行. */
-	private String				index;
+    /** 索引的文件行. */
+    private String            index;
 
-	/** rcs 行. */
-	private String				rcs;
+    /** rcs 行. */
+    private String            rcs;
 
-	/** diff 行. */
-	private String				diff;
+    /** diff 行. */
+    private String            diff;
 
-	/** remote 行. */
-	private String				remote;
+    /** remote 行. */
+    private String            remote;
 
-	/** local 行. */
-	private String				local;
+    /** local 行. */
+    private String            local;
 
-	/**
-	 * Gets the 索引的文件行.
-	 * 
-	 * @return the index
-	 */
-	public String getIndex(){
-		return index;
-	}
+    /**
+     * Gets the 索引的文件行.
+     * 
+     * @return the index
+     */
+    public String getIndex(){
+        return index;
+    }
 
-	/**
-	 * Sets the 索引的文件行.
-	 * 
-	 * @param index
-	 *            the index to set
-	 */
-	public void setIndex(String index){
-		this.index = index;
-	}
+    /**
+     * Sets the 索引的文件行.
+     * 
+     * @param index
+     *            the index to set
+     */
+    public void setIndex(String index){
+        this.index = index;
+    }
 
-	/**
-	 * Gets the rcs 行.
-	 * 
-	 * @return the rcs
-	 */
-	public String getRcs(){
-		return rcs;
-	}
+    /**
+     * Gets the rcs 行.
+     * 
+     * @return the rcs
+     */
+    public String getRcs(){
+        return rcs;
+    }
 
-	/**
-	 * Sets the rcs 行.
-	 * 
-	 * @param rcs
-	 *            the rcs to set
-	 */
-	public void setRcs(String rcs){
-		this.rcs = rcs;
-	}
+    /**
+     * Sets the rcs 行.
+     * 
+     * @param rcs
+     *            the rcs to set
+     */
+    public void setRcs(String rcs){
+        this.rcs = rcs;
+    }
 
-	/**
-	 * Gets the diff 行.
-	 * 
-	 * @return the diff
-	 */
-	public String getDiff(){
-		return diff;
-	}
+    /**
+     * Gets the diff 行.
+     * 
+     * @return the diff
+     */
+    public String getDiff(){
+        return diff;
+    }
 
-	/**
-	 * Sets the diff 行.
-	 * 
-	 * @param diff
-	 *            the diff to set
-	 */
-	public void setDiff(String diff){
-		this.diff = diff;
-	}
+    /**
+     * Sets the diff 行.
+     * 
+     * @param diff
+     *            the diff to set
+     */
+    public void setDiff(String diff){
+        this.diff = diff;
+    }
 
-	/**
-	 * Gets the remote 行.
-	 * 
-	 * @return the remote
-	 */
-	public String getRemote(){
-		return remote;
-	}
+    /**
+     * Gets the remote 行.
+     * 
+     * @return the remote
+     */
+    public String getRemote(){
+        return remote;
+    }
 
-	/**
-	 * Sets the remote 行.
-	 * 
-	 * @param remote
-	 *            the remote to set
-	 */
-	public void setRemote(String remote){
-		this.remote = remote;
-	}
+    /**
+     * Sets the remote 行.
+     * 
+     * @param remote
+     *            the remote to set
+     */
+    public void setRemote(String remote){
+        this.remote = remote;
+    }
 
-	/**
-	 * Gets the local 行.
-	 * 
-	 * @return the local
-	 */
-	public String getLocal(){
-		return local;
-	}
+    /**
+     * Gets the local 行.
+     * 
+     * @return the local
+     */
+    public String getLocal(){
+        return local;
+    }
 
-	/**
-	 * Sets the local 行.
-	 * 
-	 * @param local
-	 *            the local to set
-	 */
-	public void setLocal(String local){
-		this.local = local;
-	}
+    /**
+     * Sets the local 行.
+     * 
+     * @param local
+     *            the local to set
+     */
+    public void setLocal(String local){
+        this.local = local;
+    }
 
 }

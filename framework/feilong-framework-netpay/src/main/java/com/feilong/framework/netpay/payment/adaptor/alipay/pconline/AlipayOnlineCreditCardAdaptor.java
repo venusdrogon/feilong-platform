@@ -25,7 +25,7 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
  */
 public class AlipayOnlineCreditCardAdaptor extends AlipayOnlineAdaptor{
 
-	// 目前方法 完全和 alipay 支付一样
-	// 只是 注入的 sign参数 增加了 default_login
-	// paymethod 值不同
+    // 目前方法 完全和 alipay 支付一样
+    // 只是 注入的 sign参数 增加了 default_login
+    // paymethod 值不同
 }

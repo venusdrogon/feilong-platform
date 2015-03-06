@@ -35,115 +35,115 @@ import com.feilong.commons.core.util.ArrayUtil;
  */
 public abstract class AbstractAspect{
 
-	private static final Logger	log	= LoggerFactory.getLogger(AbstractAspect.class);
+    private static final Logger log = LoggerFactory.getLogger(AbstractAspect.class);
 
-	/**
-	 * 获得运行的annotaion
-	 * 
-	 * @param joinPoint
-	 * @param annotationClass
-	 * @return
-	 */
-	protected Annotation getAnnotation(JoinPoint joinPoint,Class<? extends Annotation> annotationClass){
-		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-		Method method = methodSignature.getMethod();
-		Target _target = annotationClass.getAnnotation(Target.class);
-		Annotation annotation = null;
-		// 如果当前代理的接口方法有这个annotaion,那么直接返回这个annotation
-		if (method.isAnnotationPresent(annotationClass)){
-			annotation = method.getAnnotation(annotationClass);
-		}else{
-			try{
-				Object target = joinPoint.getTarget();
-				// 运行期间 实现类的 类型
-				Class<? extends Object> targetClass = target.getClass();
-				String methodName = method.getName();
-				Class<?>[] parameterTypes = method.getParameterTypes();
-				method = targetClass.getMethod(methodName, parameterTypes);
-				ElementType[] elementTypes = _target.value();
-				// 是否支持方法级别ElementType.METHOD的annotation
-				boolean isMethodAnnotation = ArrayUtil.isContain(elementTypes, ElementType.METHOD);
-				// 是否支持 类型级别ElementType.TYPE的annotation
-				boolean isTypeAnnotation = ArrayUtil.isContain(elementTypes, ElementType.TYPE);
-				if (isMethodAnnotation){
-					if (method.isAnnotationPresent(annotationClass)){
-						annotation = method.getAnnotation(annotationClass);
-					}
-				}else if (isTypeAnnotation){
-					annotation = targetClass.getAnnotation(annotationClass);
-					if (null != annotation){
-						//
-					}
-				}
-			}catch (Exception e){
-				log.error(e.getClass().getName(), e);
-			}
-		}
-		return annotation;
-	}
+    /**
+     * 获得运行的annotaion
+     * 
+     * @param joinPoint
+     * @param annotationClass
+     * @return
+     */
+    protected Annotation getAnnotation(JoinPoint joinPoint,Class<? extends Annotation> annotationClass){
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        Target _target = annotationClass.getAnnotation(Target.class);
+        Annotation annotation = null;
+        // 如果当前代理的接口方法有这个annotaion,那么直接返回这个annotation
+        if (method.isAnnotationPresent(annotationClass)){
+            annotation = method.getAnnotation(annotationClass);
+        }else{
+            try{
+                Object target = joinPoint.getTarget();
+                // 运行期间 实现类的 类型
+                Class<? extends Object> targetClass = target.getClass();
+                String methodName = method.getName();
+                Class<?>[] parameterTypes = method.getParameterTypes();
+                method = targetClass.getMethod(methodName, parameterTypes);
+                ElementType[] elementTypes = _target.value();
+                // 是否支持方法级别ElementType.METHOD的annotation
+                boolean isMethodAnnotation = ArrayUtil.isContain(elementTypes, ElementType.METHOD);
+                // 是否支持 类型级别ElementType.TYPE的annotation
+                boolean isTypeAnnotation = ArrayUtil.isContain(elementTypes, ElementType.TYPE);
+                if (isMethodAnnotation){
+                    if (method.isAnnotationPresent(annotationClass)){
+                        annotation = method.getAnnotation(annotationClass);
+                    }
+                }else if (isTypeAnnotation){
+                    annotation = targetClass.getAnnotation(annotationClass);
+                    if (null != annotation){
+                        //
+                    }
+                }
+            }catch (Exception e){
+                log.error(e.getClass().getName(), e);
+            }
+        }
+        return annotation;
+    }
 
-	protected Method getMethod(JoinPoint joinPoint,Class<? extends Annotation> clazz){
-		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-		Method method = methodSignature.getMethod();
-		if (method.isAnnotationPresent(clazz)){
-			return method;
-		}
-		Target annotation = clazz.getAnnotation(Target.class);
-		ElementType[] value = annotation.value();
-		try{
-			Object target = joinPoint.getTarget();
-			Class<? extends Object> targetClass = target.getClass();
-			String methodName = method.getName();
-			Class<?>[] parameterTypes = method.getParameterTypes();
-			Method m1 = targetClass.getMethod(methodName, parameterTypes);
-			if (m1.isAnnotationPresent(clazz)){
-				return m1;
-			}
-		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
-		}
-		throw new RuntimeException("No Proper annotation found.");
-	}
+    protected Method getMethod(JoinPoint joinPoint,Class<? extends Annotation> clazz){
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        if (method.isAnnotationPresent(clazz)){
+            return method;
+        }
+        Target annotation = clazz.getAnnotation(Target.class);
+        ElementType[] value = annotation.value();
+        try{
+            Object target = joinPoint.getTarget();
+            Class<? extends Object> targetClass = target.getClass();
+            String methodName = method.getName();
+            Class<?>[] parameterTypes = method.getParameterTypes();
+            Method m1 = targetClass.getMethod(methodName, parameterTypes);
+            if (m1.isAnnotationPresent(clazz)){
+                return m1;
+            }
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+        }
+        throw new RuntimeException("No Proper annotation found.");
+    }
 
-	protected boolean isAnnotationPresent(JoinPoint joinPoint,Class<? extends Annotation> clazz){
-		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-		Method method = methodSignature.getMethod();
-		if (method.isAnnotationPresent(clazz)){
-			return true;
-		}
-		Target annotation = clazz.getAnnotation(Target.class);
-		ElementType[] value = annotation.value();
-		try{
-			Object target = joinPoint.getTarget();
-			Class<? extends Object> targetClass = target.getClass();
-			String methodName = method.getName();
-			Class<?>[] parameterTypes = method.getParameterTypes();
-			Method m1 = targetClass.getMethod(methodName, parameterTypes);
-			if (m1.isAnnotationPresent(clazz)){
-				return true;
-			}
-		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
-		}
-		return false;
-	}
-	// private boolean hasLogAnnotation(MethodSignature signature){
-	// Method method = signature.getMethod();
-	// Class<?> declaringClass = method.getDeclaringClass();
-	// // log.info(declaringClass.getName());
-	// _log = declaringClass.getAnnotation(Log.class);
-	// if (null != _log){
-	// log.debug("method:{},declaringClass has @Log", method.getName());
-	// }else{
-	// _log = method.getAnnotation(Log.class);
-	// if (null != _log){
-	// log.debug("method:{},has @Log", method.getName());
-	// }
-	// }
-	// return null != _log;
-	// }
-	// @After(value = "pointcut()")
-	// public void after(JoinPoint joinPoint){
-	//
-	// }
+    protected boolean isAnnotationPresent(JoinPoint joinPoint,Class<? extends Annotation> clazz){
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        if (method.isAnnotationPresent(clazz)){
+            return true;
+        }
+        Target annotation = clazz.getAnnotation(Target.class);
+        ElementType[] value = annotation.value();
+        try{
+            Object target = joinPoint.getTarget();
+            Class<? extends Object> targetClass = target.getClass();
+            String methodName = method.getName();
+            Class<?>[] parameterTypes = method.getParameterTypes();
+            Method m1 = targetClass.getMethod(methodName, parameterTypes);
+            if (m1.isAnnotationPresent(clazz)){
+                return true;
+            }
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+        }
+        return false;
+    }
+    // private boolean hasLogAnnotation(MethodSignature signature){
+    // Method method = signature.getMethod();
+    // Class<?> declaringClass = method.getDeclaringClass();
+    // // log.info(declaringClass.getName());
+    // _log = declaringClass.getAnnotation(Log.class);
+    // if (null != _log){
+    // log.debug("method:{},declaringClass has @Log", method.getName());
+    // }else{
+    // _log = method.getAnnotation(Log.class);
+    // if (null != _log){
+    // log.debug("method:{},has @Log", method.getName());
+    // }
+    // }
+    // return null != _log;
+    // }
+    // @After(value = "pointcut()")
+    // public void after(JoinPoint joinPoint){
+    //
+    // }
 }

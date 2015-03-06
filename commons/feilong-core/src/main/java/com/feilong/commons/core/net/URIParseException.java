@@ -35,57 +35,57 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public final class URIParseException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -1699987643831455524L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -1699987643831455524L;
 
-	/**
-	 * The Constructor.
-	 */
-	public URIParseException(){
-		super();
-	}
+    /**
+     * The Constructor.
+     */
+    public URIParseException(){
+        super();
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param message
-	 *            the message
-	 */
-	public URIParseException(String message){
-		super(message);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param message
+     *            the message
+     */
+    public URIParseException(String message){
+        super(message);
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public URIParseException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * The Constructor.
+     *
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public URIParseException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public URIParseException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public URIParseException(String message, Throwable cause){
+        super(message, cause);
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param cause
-	 *            the cause
-	 */
-	public URIParseException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param cause
+     *            the cause
+     */
+    public URIParseException(Throwable cause){
+        super(cause);
+    }
 }

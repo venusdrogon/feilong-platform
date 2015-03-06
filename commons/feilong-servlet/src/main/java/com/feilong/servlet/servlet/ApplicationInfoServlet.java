@@ -41,90 +41,90 @@ import com.feilong.servlet.ServletContextUtil;
  */
 public class ApplicationInfoServlet extends HttpServlet{
 
-	private static final long	serialVersionUID	= 672020928153455796L;
+    private static final long serialVersionUID = 672020928153455796L;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.GenericServlet#init()
-	 */
-	@Override
-	public void init() throws ServletException{
-		ServletContext servletContext = getServletContext();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.GenericServlet#init()
+     */
+    @Override
+    public void init() throws ServletException{
+        ServletContext servletContext = getServletContext();
 
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("Charset defaultCharset", Charset.defaultCharset().name());
-		map.put("ServletContext Info", ServletContextUtil.getServletContextInfoMapForLog(servletContext));
-		map.put("ServletContext initParameter Map", ServletContextUtil.getInitParameterMap(servletContext));
-		//		map.put("ServletContext attributeNames", CollectionsUtil.toList(servletContext.getAttributeNames()));
-		map.put("ServletContext Attribute String Map", ServletContextUtil.getAttributeStringMapForLog(servletContext));
-		map.put("System Env Map", SystemUtil.getEnvMapForLog());
-		map.put("System Properties Map", SystemUtil.getPropertiesMapForLog());
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("Charset defaultCharset", Charset.defaultCharset().name());
+        map.put("ServletContext Info", ServletContextUtil.getServletContextInfoMapForLog(servletContext));
+        map.put("ServletContext initParameter Map", ServletContextUtil.getInitParameterMap(servletContext));
+        //		map.put("ServletContext attributeNames", CollectionsUtil.toList(servletContext.getAttributeNames()));
+        map.put("ServletContext Attribute String Map", ServletContextUtil.getAttributeStringMapForLog(servletContext));
+        map.put("System Env Map", SystemUtil.getEnvMapForLog());
+        map.put("System Properties Map", SystemUtil.getPropertiesMapForLog());
 
-		//		if (log.isInfoEnabled()){
-		//			log.info("ServletInfoListener:{}", JsonUtil.format(map));
-		//		}
-		servletContext.log("ServletInfoListener" + JsonUtil.format(map));
-		super.init();
-	}
+        //		if (log.isInfoEnabled()){
+        //			log.info("ServletInfoListener:{}", JsonUtil.format(map));
+        //		}
+        servletContext.log("ServletInfoListener" + JsonUtil.format(map));
+        super.init();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	@Override
-	protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doGet(req, resp);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    @Override
+    protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
+        super.doGet(req, resp);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#getLastModified(javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	protected long getLastModified(HttpServletRequest req){
-		return super.getLastModified(req);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServlet#getLastModified(javax.servlet.http.HttpServletRequest)
+     */
+    @Override
+    protected long getLastModified(HttpServletRequest req){
+        return super.getLastModified(req);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.doPost(req, resp);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    @Override
+    protected void doPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
+        super.doPost(req, resp);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	@Override
-	protected void service(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
-		super.service(req, resp);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    @Override
+    protected void service(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{
+        super.service(req, resp);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
-	 */
-	@Override
-	public void service(ServletRequest req,ServletResponse res) throws ServletException,IOException{
-		super.service(req, res);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServlet#service(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
+     */
+    @Override
+    public void service(ServletRequest req,ServletResponse res) throws ServletException,IOException{
+        super.service(req, res);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.GenericServlet#destroy()
-	 */
-	@Override
-	public void destroy(){
-		super.destroy();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.GenericServlet#destroy()
+     */
+    @Override
+    public void destroy(){
+        super.destroy();
+    }
 }

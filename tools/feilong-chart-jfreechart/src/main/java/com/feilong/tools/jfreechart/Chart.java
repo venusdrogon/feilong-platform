@@ -26,15 +26,15 @@ import java.io.IOException;
  */
 public interface Chart{
 
-	/**
-	 * Creates the image.
-	 *
-	 * @param chartInfoEntity
-	 *            the chart info entity
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	void createImage(ChartInfoEntity chartInfoEntity) throws IOException;
+    /**
+     * Creates the image.
+     *
+     * @param chartInfoEntity
+     *            the chart info entity
+     * @throws IOException
+     *             the IO exception
+     */
+    void createImage(ChartInfoEntity chartInfoEntity) throws IOException;
 
-	//	void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException;
+    //	void createImage(JFreeChart freeChart,ChartInfoEntity chartInfoEntity) throws IOException;
 }

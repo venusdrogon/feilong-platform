@@ -54,82 +54,82 @@ import com.feilong.tools.scm.command.ScmPatchCommand;
  */
 public final class CvsPatchAntCopy extends AbstractScmAntCopy{
 
-	/** 项目名称 <code>{@value}</code>. */
-	private static final String	PREFIX_PROJECTNAME	= "#P ";
+    /** 项目名称 <code>{@value}</code>. */
+    private static final String PREFIX_PROJECTNAME = "#P ";
 
-	/**
-	 * Instantiates a new patch util.
-	 */
-	public CvsPatchAntCopy(){
-	}
+    /**
+     * Instantiates a new patch util.
+     */
+    public CvsPatchAntCopy(){
+    }
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see com.feilong.tools.scm.AbstractScmAntCopy#toPatchCommandListMap(java.io.BufferedReader)
-	 */
-	@Override
-	@SuppressWarnings("null")
-	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
-		String line = null;
-		CvsPatchCommand patchCommand = null;
+    /**
+     * {@inheritDoc}
+     * 
+     * @see com.feilong.tools.scm.AbstractScmAntCopy#toPatchCommandListMap(java.io.BufferedReader)
+     */
+    @Override
+    @SuppressWarnings("null")
+    protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
+        String line = null;
+        CvsPatchCommand patchCommand = null;
 
-		List<CvsPatchCommand> addList = new ArrayList<CvsPatchCommand>();
-		List<CvsPatchCommand> updateList = new ArrayList<CvsPatchCommand>();
-		List<CvsPatchCommand> deleteList = new ArrayList<CvsPatchCommand>();
-		while ((line = bufferedReader.readLine()) != null){
-			// 项目名称
-			if (line.startsWith(PREFIX_PROJECTNAME)){
-				setProjectName(parseProjectName(line));
-			}
-			if (line.startsWith("Index:")){
-				// 开始
-				patchCommand = new CvsPatchCommand();
-				patchCommand.setIndex(line);
-				patchCommand.setFilePath(line);
-			}else if (line.startsWith("RCS file:")){
-				patchCommand.setRcs(line);
-			}else if (line.startsWith("diff")){
-				patchCommand.setDiff(line);
-			}else if (line.startsWith("---")){
-				patchCommand.setRemote(line);
-				if (line.startsWith("--- /dev/null")){
-					patchCommand.setPatchType(PatchType.ADD);
-				}
-			}else if (line.startsWith("+++")){
-				patchCommand.setLocal(line);
-				if (line.startsWith("+++ /dev/null")){
-					patchCommand.setPatchType(PatchType.DELETE);
-				}
-				switch (patchCommand.getPatchType()) {
-					case ADD:
-						patchCommand.setFilePath(patchCommand.getRcs());
-						addList.add(patchCommand);
-						break;
-					case UPDATE:
-						patchCommand.setFilePath(StringUtil.substringWithoutLast(patchCommand.getRcs(), ",v".length()));
-						updateList.add(patchCommand);
-						break;
-					case DELETE:
-						patchCommand.setFilePath(patchCommand.getRcs());
-						deleteList.add(patchCommand);
-						break;
-					default:
-						break;
-				}
-			}
-		}
-		return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
-	}
+        List<CvsPatchCommand> addList = new ArrayList<CvsPatchCommand>();
+        List<CvsPatchCommand> updateList = new ArrayList<CvsPatchCommand>();
+        List<CvsPatchCommand> deleteList = new ArrayList<CvsPatchCommand>();
+        while ((line = bufferedReader.readLine()) != null){
+            // 项目名称
+            if (line.startsWith(PREFIX_PROJECTNAME)){
+                setProjectName(parseProjectName(line));
+            }
+            if (line.startsWith("Index:")){
+                // 开始
+                patchCommand = new CvsPatchCommand();
+                patchCommand.setIndex(line);
+                patchCommand.setFilePath(line);
+            }else if (line.startsWith("RCS file:")){
+                patchCommand.setRcs(line);
+            }else if (line.startsWith("diff")){
+                patchCommand.setDiff(line);
+            }else if (line.startsWith("---")){
+                patchCommand.setRemote(line);
+                if (line.startsWith("--- /dev/null")){
+                    patchCommand.setPatchType(PatchType.ADD);
+                }
+            }else if (line.startsWith("+++")){
+                patchCommand.setLocal(line);
+                if (line.startsWith("+++ /dev/null")){
+                    patchCommand.setPatchType(PatchType.DELETE);
+                }
+                switch (patchCommand.getPatchType()) {
+                    case ADD:
+                        patchCommand.setFilePath(patchCommand.getRcs());
+                        addList.add(patchCommand);
+                        break;
+                    case UPDATE:
+                        patchCommand.setFilePath(StringUtil.substringWithoutLast(patchCommand.getRcs(), ",v".length()));
+                        updateList.add(patchCommand);
+                        break;
+                    case DELETE:
+                        patchCommand.setFilePath(patchCommand.getRcs());
+                        deleteList.add(patchCommand);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
+    }
 
-	/**
-	 * 获得项目名称.
-	 *
-	 * @param line
-	 *            the line
-	 * @return the project name
-	 */
-	private static String parseProjectName(String line){
-		return StringUtil.substring(line, PREFIX_PROJECTNAME.length());
-	}
+    /**
+     * 获得项目名称.
+     *
+     * @param line
+     *            the line
+     * @return the project name
+     */
+    private static String parseProjectName(String line){
+        return StringUtil.substring(line, PREFIX_PROJECTNAME.length());
+    }
 }

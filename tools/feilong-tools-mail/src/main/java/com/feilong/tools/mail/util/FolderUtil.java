@@ -33,34 +33,34 @@ import org.slf4j.LoggerFactory;
  */
 public class FolderUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(FolderUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(FolderUtil.class);
 
-	/**
-	 * 获得 map for log.
-	 *
-	 * @param folder
-	 *            the folder
-	 * @return the map for log
-	 * @throws MessagingException
-	 *             the messaging exception
-	 */
-	public static final Map<String, Object> getMapForLog(Folder folder) throws MessagingException{
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("getName", folder.getName());
-		map.put("getFullName", folder.getFullName());
-		map.put("getMode", folder.getMode());
+    /**
+     * 获得 map for log.
+     *
+     * @param folder
+     *            the folder
+     * @return the map for log
+     * @throws MessagingException
+     *             the messaging exception
+     */
+    public static final Map<String, Object> getMapForLog(Folder folder) throws MessagingException{
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("getName", folder.getName());
+        map.put("getFullName", folder.getFullName());
+        map.put("getMode", folder.getMode());
 
-		map.put("getMessageCount", folder.getMessageCount());
-		map.put("getDeletedMessageCount", folder.getDeletedMessageCount());
-		map.put("getNewMessageCount", folder.getNewMessageCount());
-		map.put("getUnreadMessageCount", folder.getUnreadMessageCount());
+        map.put("getMessageCount", folder.getMessageCount());
+        map.put("getDeletedMessageCount", folder.getDeletedMessageCount());
+        map.put("getNewMessageCount", folder.getNewMessageCount());
+        map.put("getUnreadMessageCount", folder.getUnreadMessageCount());
 
-		map.put("getPermanentFlags", folder.getPermanentFlags());
-		map.put("getSeparator", "" + folder.getSeparator());
-		map.put("getType", folder.getType());
-		map.put("getURLName", "" + folder.getURLName());
+        map.put("getPermanentFlags", folder.getPermanentFlags());
+        map.put("getSeparator", "" + folder.getSeparator());
+        map.put("getType", folder.getType());
+        map.put("getURLName", "" + folder.getURLName());
 
-		return map;
-	}
+        return map;
+    }
 }

@@ -23,89 +23,89 @@ package com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.command;
  */
 public enum ReasonEnum{
 
-	/** The SUCCESS. */
-	SUCCESS("Success","Sukses"),
+    /** The SUCCESS. */
+    SUCCESS("Success","Sukses"),
 
-	/** The CANCELED. */
-	//	Order has been canceled by admin*
-	CANCELED("Your transaction has been canceled","Transaksi anda sudah dibatalkan"),
+    /** The CANCELED. */
+    //	Order has been canceled by admin*
+    CANCELED("Your transaction has been canceled","Transaksi anda sudah dibatalkan"),
 
-	/** The PAID. */
-	//Order has been paid before
-	PAID("Your transaction has been paid","Transaksi anda sudah dibayar"),
+    /** The PAID. */
+    //Order has been paid before
+    PAID("Your transaction has been paid","Transaksi anda sudah dibayar"),
 
-	/**
-	 * The transaction has expired or exceeded Time limit given..
-	 */
-	//Order time expired*
-	EXPIRED("Your transaction already expired","Transaksi anda telah kedaluarsa"),
+    /**
+     * The transaction has expired or exceeded Time limit given..
+     */
+    //Order time expired*
+    EXPIRED("Your transaction already expired","Transaksi anda telah kedaluarsa"),
 
-	/** The CANNOTBEPROCESSED,Technical issues . */
-	//Any other technical problem
-	CANNOTBEPROCESSED("Your transaction cannot be processed","Transaksi anda tidak dapat diproses");
+    /** The CANNOTBEPROCESSED,Technical issues . */
+    //Any other technical problem
+    CANNOTBEPROCESSED("Your transaction cannot be processed","Transaksi anda tidak dapat diproses");
 
-	//	Order item currently out of stock*
-	//
-	//	Transaksi anda tidak dapat diproses
-	//
-	//	Your transaction cannot be processed
+    //	Order item currently out of stock*
+    //
+    //	Transaksi anda tidak dapat diproses
+    //
+    //	Your transaction cannot be processed
 
-	// ***********************************************************************
+    // ***********************************************************************
 
-	/** The english. */
-	private String	english;
+    /** The english. */
+    private String english;
 
-	/** The indonesian. */
-	private String	indonesian;
+    /** The indonesian. */
+    private String indonesian;
 
-	/**
-	 * Instantiates a new reason enum.
-	 * 
-	 * @param english
-	 *            the english
-	 * @param indonesian
-	 *            the indonesian
-	 */
-	private ReasonEnum(String english, String indonesian){
-		this.english = english;
-		this.indonesian = indonesian;
-	}
+    /**
+     * Instantiates a new reason enum.
+     * 
+     * @param english
+     *            the english
+     * @param indonesian
+     *            the indonesian
+     */
+    private ReasonEnum(String english, String indonesian){
+        this.english = english;
+        this.indonesian = indonesian;
+    }
 
-	/**
-	 * Gets the indonesian.
-	 * 
-	 * @return the indonesian
-	 */
-	public String getIndonesian(){
-		return indonesian;
-	}
+    /**
+     * Gets the indonesian.
+     * 
+     * @return the indonesian
+     */
+    public String getIndonesian(){
+        return indonesian;
+    }
 
-	/**
-	 * Sets the indonesian.
-	 * 
-	 * @param indonesian
-	 *            the indonesian to set
-	 */
-	public void setIndonesian(String indonesian){
-		this.indonesian = indonesian;
-	}
+    /**
+     * Sets the indonesian.
+     * 
+     * @param indonesian
+     *            the indonesian to set
+     */
+    public void setIndonesian(String indonesian){
+        this.indonesian = indonesian;
+    }
 
-	/**
-	 * Gets the english.
-	 * 
-	 * @return the english
-	 */
-	public String getEnglish(){
-		return english;
-	}
+    /**
+     * Gets the english.
+     * 
+     * @return the english
+     */
+    public String getEnglish(){
+        return english;
+    }
 
-	/**
-	 * Sets the english.
-	 * 
-	 * @param english
-	 *            the english to set
-	 */
-	public void setEnglish(String english){
-		this.english = english;
-	}
+    /**
+     * Sets the english.
+     * 
+     * @param english
+     *            the english to set
+     */
+    public void setEnglish(String english){
+        this.english = english;
+    }
 }

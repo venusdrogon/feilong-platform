@@ -38,52 +38,52 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  */
 public class IndexAndHrefMapTest extends BasePagerTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(IndexAndHrefMapTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(IndexAndHrefMapTest.class);
 
-	/**
-	 * Gets the all index and href map.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 * @throws InvocationTargetException
-	 *             the invocation target exception
-	 * @throws SecurityException
-	 *             the security exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
-	 */
-	@Test
-	public void getAllIndexAndHrefMap() throws IllegalArgumentException,IllegalAccessException,InvocationTargetException,SecurityException,
-					NoSuchMethodException{
+    /**
+     * Gets the all index and href map.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws IllegalAccessException
+     *             the illegal access exception
+     * @throws InvocationTargetException
+     *             the invocation target exception
+     * @throws SecurityException
+     *             the security exception
+     * @throws NoSuchMethodException
+     *             the no such method exception
+     */
+    @Test
+    public void getAllIndexAndHrefMap() throws IllegalArgumentException,IllegalAccessException,InvocationTargetException,SecurityException,
+                    NoSuchMethodException{
 
-		int z = 80000;
+        int z = 80000;
 
-		Date beginDate = new Date();
+        Date beginDate = new Date();
 
-		Method declaredMethod = PagerUtil.class.getDeclaredMethod("getAllIndexAndHrefMap", PagerParams.class, Set.class);
-		declaredMethod.setAccessible(true);
+        Method declaredMethod = PagerUtil.class.getDeclaredMethod("getAllIndexAndHrefMap", PagerParams.class, Set.class);
+        declaredMethod.setAccessible(true);
 
-		Set<Integer> set = new HashSet<Integer>();
-		set.add(PagerConstants.DEFAULT_TEMPLATE_PAGE_NO);
+        Set<Integer> set = new HashSet<Integer>();
+        set.add(PagerConstants.DEFAULT_TEMPLATE_PAGE_NO);
 
-		for (int i = 100; i < 120; ++i){
-			set.add(i);
-		}
-		PagerParams pagerParams = getPagerParams();
-		if (log.isInfoEnabled()){
-			log.info(JsonUtil.format(pagerParams));
-		}
+        for (int i = 100; i < 120; ++i){
+            set.add(i);
+        }
+        PagerParams pagerParams = getPagerParams();
+        if (log.isInfoEnabled()){
+            log.info(JsonUtil.format(pagerParams));
+        }
 
-		for (int j = 0; j < z; ++j){
-			//@SuppressWarnings({ "unchecked", "unused" })
-			//Map<Integer, String> invoke = (Map<Integer, String>) 
-			declaredMethod.invoke(PagerUtil.class, pagerParams, set);
-		}
+        for (int j = 0; j < z; ++j){
+            //@SuppressWarnings({ "unchecked", "unused" })
+            //Map<Integer, String> invoke = (Map<Integer, String>) 
+            declaredMethod.invoke(PagerUtil.class, pagerParams, set);
+        }
 
-		Date endDate = new Date();
-		log.info("{},time:{}", z, DateUtil.getIntervalTime(beginDate, endDate));
-	}
+        Date endDate = new Date();
+        log.info("{},time:{}", z, DateUtil.getIntervalTime(beginDate, endDate));
+    }
 }

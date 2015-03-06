@@ -27,13 +27,13 @@ import org.apache.log4j.spi.TriggeringEventEvaluator;
  */
 public class InfoTriggeringEventEvaluator implements TriggeringEventEvaluator{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.log4j.spi.TriggeringEventEvaluator#isTriggeringEvent(org.apache.log4j.spi.LoggingEvent)
-	 */
-	@Override
-	public boolean isTriggeringEvent(LoggingEvent event){
-		return event.getLevel().isGreaterOrEqual(Level.INFO);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.log4j.spi.TriggeringEventEvaluator#isTriggeringEvent(org.apache.log4j.spi.LoggingEvent)
+     */
+    @Override
+    public boolean isTriggeringEvent(LoggingEvent event){
+        return event.getLevel().isGreaterOrEqual(Level.INFO);
+    }
 }

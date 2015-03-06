@@ -25,14 +25,14 @@ import org.slf4j.LoggerFactory;
  */
 public class StringBuilderUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(StringBuilderUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(StringBuilderUtilTest.class);
 
-	/**
-	 * Append.
-	 */
-	@Test
-	public void append(){
-		log.info(StringBuilderUtil.append("1", 2, 5.2f, 6.03d));
-	}
+    /**
+     * Append.
+     */
+    @Test
+    public void append(){
+        log.info(StringBuilderUtil.append("1", 2, 5.2f, 6.03d));
+    }
 }

@@ -34,66 +34,66 @@ import org.slf4j.LoggerFactory;
  */
 public class GenericTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(GenericTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(GenericTest.class);
 
-	/**
-	 * Gets the value.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param a
-	 *            the a
-	 * @param clz
-	 *            the clz
-	 * @return the value
-	 */
-	public static <T> T getValue(String a,Class<?> clz){
-		log.info(a + "" + (clz == String.class));
-		T aT = null;
-		try{
-			Method method = GenericTest.class.getMethod("getValue", String.class, Class.class);
-			TypeVariable<?> typeVariable = (TypeVariable<?>) method.getGenericReturnType();
-			log.info(typeVariable.toString());
-			log.info(typeVariable.getName());
-			log.info("" + typeVariable.getBounds()[0]);
-			log.info(typeVariable.getGenericDeclaration().toString());
-			log.info(method.toGenericString());
-			log.info(method.toString());
-		}catch (SecurityException e){
-			log.error(e.getClass().getName(), e);
-		}catch (NoSuchMethodException e){
-			log.error(e.getClass().getName(), e);
-		}
-		return aT;
-	}
+    /**
+     * Gets the value.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param a
+     *            the a
+     * @param clz
+     *            the clz
+     * @return the value
+     */
+    public static <T> T getValue(String a,Class<?> clz){
+        log.info(a + "" + (clz == String.class));
+        T aT = null;
+        try{
+            Method method = GenericTest.class.getMethod("getValue", String.class, Class.class);
+            TypeVariable<?> typeVariable = (TypeVariable<?>) method.getGenericReturnType();
+            log.info(typeVariable.toString());
+            log.info(typeVariable.getName());
+            log.info("" + typeVariable.getBounds()[0]);
+            log.info(typeVariable.getGenericDeclaration().toString());
+            log.info(method.toGenericString());
+            log.info(method.toString());
+        }catch (SecurityException e){
+            log.error(e.getClass().getName(), e);
+        }catch (NoSuchMethodException e){
+            log.error(e.getClass().getName(), e);
+        }
+        return aT;
+    }
 
-	/**
-	 * TestGenericTest1.
-	 * 
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 * @throws SecurityException
-	 *             the security exception
-	 */
-	@Test
-	public void testGenericTest1() throws NoSuchFieldException,SecurityException{
-		Field field = GenericTest.class.getField("list");
-		ParameterizedType pt = (ParameterizedType) field.getGenericType();
-		Type[] actualTypeArguments = pt.getActualTypeArguments();
-		log.info("" + actualTypeArguments.length);
-		log.info("" + actualTypeArguments[0]);
+    /**
+     * TestGenericTest1.
+     * 
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     * @throws SecurityException
+     *             the security exception
+     */
+    @Test
+    public void testGenericTest1() throws NoSuchFieldException,SecurityException{
+        Field field = GenericTest.class.getField("list");
+        ParameterizedType pt = (ParameterizedType) field.getGenericType();
+        Type[] actualTypeArguments = pt.getActualTypeArguments();
+        log.info("" + actualTypeArguments.length);
+        log.info("" + actualTypeArguments[0]);
 
-	}
+    }
 
-	/**
-	 * TestGenericTest.
-	 */
-	@Test
-	public void testGenericTest(){
-		if (log.isInfoEnabled()){
-			log.info(getValue("jinxin", String.class));
-			log.info(getValue("jinxin", Integer.class));
-		}
-	}
+    /**
+     * TestGenericTest.
+     */
+    @Test
+    public void testGenericTest(){
+        if (log.isInfoEnabled()){
+            log.info(getValue("jinxin", String.class));
+            log.info(getValue("jinxin", Integer.class));
+        }
+    }
 }

@@ -23,11 +23,11 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public abstract class BaseSecurityTest{
 
-	/**
-	 * @param encode
-	 * @return
-	 */
-	protected String debugSecurityValue(String encode){
-		return Slf4jUtil.formatMessage(" {} [{}]", encode, encode.length());
-	}
+    /**
+     * @param encode
+     * @return
+     */
+    protected String debugSecurityValue(String encode){
+        return Slf4jUtil.formatMessage(" {} [{}]", encode, encode.length());
+    }
 }

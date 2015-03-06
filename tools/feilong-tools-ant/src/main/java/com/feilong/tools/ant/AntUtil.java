@@ -29,41 +29,41 @@ import org.apache.tools.ant.ProjectHelper;
  */
 public final class AntUtil{
 
-	/**
-	 * 执行某个任务
-	 * 
-	 * @param antFilePath
-	 *            ant文件路径
-	 * @param targetName
-	 *            targetName
-	 * @param messageOutputLevel
-	 *            日志级别 *
-	 *            <P>
-	 *            Constants for the message levels are in the {@link Project Project} class. The order of the levels, from least to most
-	 *            verbose, is <code>MSG_ERR</code>, <code>MSG_WARN</code>, <code>MSG_INFO</code>, <code>MSG_VERBOSE</code>,
-	 *            <code>MSG_DEBUG</code>.
-	 *            <P>
-	 *            The default message level for DefaultLogger is Project.MSG_ERR.
-	 */
-	public static void executeTarget(String antFilePath,String targetName,int messageOutputLevel){
-		Project project = new Project();
-		// 添加日志输出
-		DefaultLogger consoleLogger = new DefaultLogger();
-		consoleLogger.setErrorPrintStream(System.err);
-		consoleLogger.setOutputPrintStream(System.out);
-		// 输出信息级别
-		consoleLogger.setMessageOutputLevel(messageOutputLevel);
-		project.addBuildListener(consoleLogger);
+    /**
+     * 执行某个任务
+     * 
+     * @param antFilePath
+     *            ant文件路径
+     * @param targetName
+     *            targetName
+     * @param messageOutputLevel
+     *            日志级别 *
+     *            <P>
+     *            Constants for the message levels are in the {@link Project Project} class. The order of the levels, from least to most
+     *            verbose, is <code>MSG_ERR</code>, <code>MSG_WARN</code>, <code>MSG_INFO</code>, <code>MSG_VERBOSE</code>,
+     *            <code>MSG_DEBUG</code>.
+     *            <P>
+     *            The default message level for DefaultLogger is Project.MSG_ERR.
+     */
+    public static void executeTarget(String antFilePath,String targetName,int messageOutputLevel){
+        Project project = new Project();
+        // 添加日志输出
+        DefaultLogger consoleLogger = new DefaultLogger();
+        consoleLogger.setErrorPrintStream(System.err);
+        consoleLogger.setOutputPrintStream(System.out);
+        // 输出信息级别
+        consoleLogger.setMessageOutputLevel(messageOutputLevel);
+        project.addBuildListener(consoleLogger);
 
-		project.init();
+        project.init();
 
-		ProjectHelper projectHelper = ProjectHelper.getProjectHelper();
-		File buildFile = new File(antFilePath);
+        ProjectHelper projectHelper = ProjectHelper.getProjectHelper();
+        File buildFile = new File(antFilePath);
 
-		// see http://yxhcquedu.iteye.com/blog/861110 但是我的层次太多了
-		// ProjectHelper.configureProject(project, new File("E:/DataCommon/java/Taglib/Apache Ant/config/build-config-common-nested.xml"));
-		// ProjectHelper.configureProject(project, new File("E:/DataCommon/java/Taglib/Apache Ant/config/build-feilong-nested.xml"));
-		projectHelper.parse(project, buildFile);
-		project.executeTarget(targetName);
-	}
+        // see http://yxhcquedu.iteye.com/blog/861110 但是我的层次太多了
+        // ProjectHelper.configureProject(project, new File("E:/DataCommon/java/Taglib/Apache Ant/config/build-config-common-nested.xml"));
+        // ProjectHelper.configureProject(project, new File("E:/DataCommon/java/Taglib/Apache Ant/config/build-feilong-nested.xml"));
+        projectHelper.parse(project, buildFile);
+        project.executeTarget(targetName);
+    }
 }

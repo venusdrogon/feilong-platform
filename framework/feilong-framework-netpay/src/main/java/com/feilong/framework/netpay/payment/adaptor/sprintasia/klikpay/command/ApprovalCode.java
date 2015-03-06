@@ -25,51 +25,51 @@ import java.io.Serializable;
  */
 public class ApprovalCode implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/** The full transaction. */
-	private String				fullTransaction;
+    /** The full transaction. */
+    private String            fullTransaction;
 
-	/** The installment transaction. */
-	private String				installmentTransaction;
+    /** The installment transaction. */
+    private String            installmentTransaction;
 
-	/**
-	 * Gets the full transaction.
-	 * 
-	 * @return the fullTransaction
-	 */
-	public String getFullTransaction(){
-		return fullTransaction;
-	}
+    /**
+     * Gets the full transaction.
+     * 
+     * @return the fullTransaction
+     */
+    public String getFullTransaction(){
+        return fullTransaction;
+    }
 
-	/**
-	 * Sets the full transaction.
-	 * 
-	 * @param fullTransaction
-	 *            the fullTransaction to set
-	 */
-	public void setFullTransaction(String fullTransaction){
-		this.fullTransaction = fullTransaction;
-	}
+    /**
+     * Sets the full transaction.
+     * 
+     * @param fullTransaction
+     *            the fullTransaction to set
+     */
+    public void setFullTransaction(String fullTransaction){
+        this.fullTransaction = fullTransaction;
+    }
 
-	/**
-	 * Gets the installment transaction.
-	 * 
-	 * @return the installmentTransaction
-	 */
-	public String getInstallmentTransaction(){
-		return installmentTransaction;
-	}
+    /**
+     * Gets the installment transaction.
+     * 
+     * @return the installmentTransaction
+     */
+    public String getInstallmentTransaction(){
+        return installmentTransaction;
+    }
 
-	/**
-	 * Sets the installment transaction.
-	 * 
-	 * @param installmentTransaction
-	 *            the installmentTransaction to set
-	 */
-	public void setInstallmentTransaction(String installmentTransaction){
-		this.installmentTransaction = installmentTransaction;
-	}
+    /**
+     * Sets the installment transaction.
+     * 
+     * @param installmentTransaction
+     *            the installmentTransaction to set
+     */
+    public void setInstallmentTransaction(String installmentTransaction){
+        this.installmentTransaction = installmentTransaction;
+    }
 
 }

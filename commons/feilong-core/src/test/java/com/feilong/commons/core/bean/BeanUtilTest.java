@@ -45,152 +45,152 @@ import com.feilong.test.User;
  */
 public class BeanUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(BeanUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(BeanUtilTest.class);
 
-	/** The sales order. */
-	private SalesOrder			salesOrder;
+    /** The sales order. */
+    private SalesOrder          salesOrder;
 
-	/**
-	 * Inits the.
-	 */
-	@Before
-	public void init(){
-		salesOrder = new SalesOrder();
-		salesOrder.setCreateTime(new Date());
-		salesOrder.setCode("258415-002");
-		salesOrder.setId(5L);
-		salesOrder.setPrice(new BigDecimal(566));
+    /**
+     * Inits the.
+     */
+    @Before
+    public void init(){
+        salesOrder = new SalesOrder();
+        salesOrder.setCreateTime(new Date());
+        salesOrder.setCode("258415-002");
+        salesOrder.setId(5L);
+        salesOrder.setPrice(new BigDecimal(566));
 
-		Member member = new Member();
-		member.setCode("222222");
-		long memberId = 888L;
-		member.setId(memberId);
-		member.setLoginName("feilong");
+        Member member = new Member();
+        member.setCode("222222");
+        long memberId = 888L;
+        member.setId(memberId);
+        member.setLoginName("feilong");
 
-		Map<String, String> loveMap = new HashMap<>();
-		loveMap.put("蜀国", "赵子龙");
-		loveMap.put("魏国", "张文远");
-		loveMap.put("吴国", "甘兴霸");
-		member.setLoveMap(loveMap);
+        Map<String, String> loveMap = new HashMap<>();
+        loveMap.put("蜀国", "赵子龙");
+        loveMap.put("魏国", "张文远");
+        loveMap.put("吴国", "甘兴霸");
+        member.setLoveMap(loveMap);
 
-		MemberAddress memberAddress1 = new MemberAddress();
-		memberAddress1.setAddress("上海市宝山区真大路333弄22号1503室");
-		memberAddress1.setAddTime(DateUtil.string2Date("20140615", DatePattern.yyyyMMdd));
-		memberAddress1.setId(1L);
-		memberAddress1.setMemberId(memberId);
+        MemberAddress memberAddress1 = new MemberAddress();
+        memberAddress1.setAddress("上海市宝山区真大路333弄22号1503室");
+        memberAddress1.setAddTime(DateUtil.string2Date("20140615", DatePattern.yyyyMMdd));
+        memberAddress1.setId(1L);
+        memberAddress1.setMemberId(memberId);
 
-		MemberAddress memberAddress2 = new MemberAddress();
-		memberAddress2.setAddress("上海市闸北区阳城路280弄25号802室(阳城贵都)");
-		memberAddress2.setAddTime(DateUtil.string2Date("20101001", DatePattern.yyyyMMdd));
-		memberAddress2.setId(1L);
-		memberAddress2.setMemberId(memberId);
+        MemberAddress memberAddress2 = new MemberAddress();
+        memberAddress2.setAddress("上海市闸北区阳城路280弄25号802室(阳城贵都)");
+        memberAddress2.setAddTime(DateUtil.string2Date("20101001", DatePattern.yyyyMMdd));
+        memberAddress2.setId(1L);
+        memberAddress2.setMemberId(memberId);
 
-		MemberAddress[] memberAddresses = { memberAddress1, memberAddress2 };
-		member.setMemberAddresses(memberAddresses);
+        MemberAddress[] memberAddresses = { memberAddress1, memberAddress2 };
+        member.setMemberAddresses(memberAddresses);
 
-		salesOrder.setMember(member);
-	}
+        salesOrder.setMember(member);
+    }
 
-	/**
-	 * Copy property.
-	 */
-	@Test
-	public void copyProperty(){
-		User a = new User();
-		a.setId(5L);
-		a.setMoney(new BigDecimal(500000));
-		a.setDate(new Date());
-		User b = new User();
-		// DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
-		ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);
+    /**
+     * Copy property.
+     */
+    @Test
+    public void copyProperty(){
+        User a = new User();
+        a.setId(5L);
+        a.setMoney(new BigDecimal(500000));
+        a.setDate(new Date());
+        User b = new User();
+        // DateConverter converter = new DateConverter(DatePattern.forToString, Locale.US);
+        ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);
 
-		String[] strs = { "date", "money" };
-		BeanUtil.copyProperties(b, a, strs);
-		log.info(b.getDate() + "");
-		log.info(b.getMoney() + "");
-	}
+        String[] strs = { "date", "money" };
+        BeanUtil.copyProperties(b, a, strs);
+        log.info(b.getDate() + "");
+        log.info(b.getMoney() + "");
+    }
 
-	/**
-	 * Copy properties.
-	 */
-	@Test
-	public void copyProperties(){
-		User a = new User();
-		a.setId(5L);
-		a.setDate(new Date());
-		String[] nickName = { "feilong", "飞天奔月", "venusdrogon" };
-		a.setNickName(nickName);
+    /**
+     * Copy properties.
+     */
+    @Test
+    public void copyProperties(){
+        User a = new User();
+        a.setId(5L);
+        a.setDate(new Date());
+        String[] nickName = { "feilong", "飞天奔月", "venusdrogon" };
+        a.setNickName(nickName);
 
-		User b = new User();
+        User b = new User();
 
-		String[] aStrings = { "date", "id", "nickName" };
-		ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);
-		BeanUtil.copyProperties(b, a, aStrings);
+        String[] aStrings = { "date", "id", "nickName" };
+        ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);
+        BeanUtil.copyProperties(b, a, aStrings);
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(b));
-		}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(b));
+        }
 
-	}
+    }
 
-	/**
-	 * Copy properties1.
-	 */
-	@Test
-	public void copyProperties1(){
-		SalesOrderDto salesOrderDto = new SalesOrderDto();
+    /**
+     * Copy properties1.
+     */
+    @Test
+    public void copyProperties1(){
+        SalesOrderDto salesOrderDto = new SalesOrderDto();
 
-		//ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);
-		BeanUtil.copyProperties(salesOrderDto, salesOrder);
+        //ConvertUtils.register(new DateLocaleConverter(Locale.US, DatePattern.forToString), Date.class);
+        BeanUtil.copyProperties(salesOrderDto, salesOrder);
 
-		if (log.isDebugEnabled()){
-			log.debug("salesOrderDto:{}", JsonUtil.format(salesOrderDto));
-		}
+        if (log.isDebugEnabled()){
+            log.debug("salesOrderDto:{}", JsonUtil.format(salesOrderDto));
+        }
 
-	}
+    }
 
-	/**
-	 * Describe.
-	 */
-	@Test
-	public void describe(){
-		User a = new User();
-		a.setId(5L);
-		Date now = new Date();
-		a.setDate(now);
-		Map<String, String> map = BeanUtil.describe(a);
+    /**
+     * Describe.
+     */
+    @Test
+    public void describe(){
+        User a = new User();
+        a.setId(5L);
+        Date now = new Date();
+        a.setDate(now);
+        Map<String, String> map = BeanUtil.describe(a);
 
-		log.info("map:{}", JsonUtil.format(map));
-	}
+        log.info("map:{}", JsonUtil.format(map));
+    }
 
-	/**
-	 * Populate.
-	 */
-	@Test
-	public void populate(){
-		User a = new User();
-		a.setId(5L);
-		Date now = new Date();
-		a.setDate(now);
-		// DateConverter converter = new DateConverter("yyyy");
-		// ConvertUtils.register(converter, Date.class);
-		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("id", 8L);
-		// properties.put("date", 2010);
-		BeanUtil.populate(a, properties);
-		log.info(JsonUtil.format(a));
-	}
+    /**
+     * Populate.
+     */
+    @Test
+    public void populate(){
+        User a = new User();
+        a.setId(5L);
+        Date now = new Date();
+        a.setDate(now);
+        // DateConverter converter = new DateConverter("yyyy");
+        // ConvertUtils.register(converter, Date.class);
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put("id", 8L);
+        // properties.put("date", 2010);
+        BeanUtil.populate(a, properties);
+        log.info(JsonUtil.format(a));
+    }
 
-	/**
-	 * Clone bean.
-	 */
-	@Test
-	public void cloneBean(){
-		SalesOrder salesOrder1 = BeanUtil.cloneBean(salesOrder);
+    /**
+     * Clone bean.
+     */
+    @Test
+    public void cloneBean(){
+        SalesOrder salesOrder1 = BeanUtil.cloneBean(salesOrder);
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(salesOrder1));
-		}
-	}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(salesOrder1));
+        }
+    }
 }

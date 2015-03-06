@@ -20,13 +20,13 @@ package com.feilong.tools.itext.demo;
  */
 public class Test{
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(String[] args){
-		PDFWriter pdf = new MyWriter("E:/mine.pdf");
-	}
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments
+     */
+    public static void main(String[] args){
+        PDFWriter pdf = new MyWriter("E:/mine.pdf");
+    }
 }

@@ -38,68 +38,68 @@ import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
  */
 public class HttpConcatUtilTest extends BaseHttpConcatTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(HttpConcatUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(HttpConcatUtilTest.class);
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.taglib.display.httpconcat.HttpConcatUtil#getWriteContent(com.feilong.taglib.display.httpconcat.command.HttpConcatParam)}
-	 * .
-	 */
-	@Test
-	public final void testGetWriteContent(){
-		HttpConcatParam httpConcatParam = getHttpConcatParam();
-		String writeContent = HttpConcatUtil.getWriteContent(httpConcatParam);
-		log.info(writeContent);
-	}
+    /**
+     * Test method for
+     * {@link com.feilong.taglib.display.httpconcat.HttpConcatUtil#getWriteContent(com.feilong.taglib.display.httpconcat.command.HttpConcatParam)}
+     * .
+     */
+    @Test
+    public final void testGetWriteContent(){
+        HttpConcatParam httpConcatParam = getHttpConcatParam();
+        String writeContent = HttpConcatUtil.getWriteContent(httpConcatParam);
+        log.info(writeContent);
+    }
 
-	/**
-	 * Performance test.
-	 */
-	@Test
-	public void performanceTest(){
-		List<Integer> list = new ArrayList<Integer>();
+    /**
+     * Performance test.
+     */
+    @Test
+    public void performanceTest(){
+        List<Integer> list = new ArrayList<Integer>();
 
-		list.add(2);
-		list.add(10);
-		list.add(100);
-		list.add(1000);
-		list.add(5000);
-		list.add(10000);
-		list.add(20000);
-		list.add(50000);
-		list.add(100000);
-		list.add(1000000);
-		//		list.add(300001);
+        list.add(2);
+        list.add(10);
+        list.add(100);
+        list.add(1000);
+        list.add(5000);
+        list.add(10000);
+        list.add(20000);
+        list.add(50000);
+        list.add(100000);
+        list.add(1000000);
+        //		list.add(300001);
 
-		Map<Integer, Object> map = new LinkedHashMap<Integer, Object>(list.size());
-		for (Integer j : list){
-			Date beginDate = new Date();
-			for (int i = 0; i < j; ++i){
-				//log.info(i);
-				HttpConcatParam httpConcatParam = getHttpConcatParamByI(null);
-				HttpConcatUtil.getWriteContent(httpConcatParam);
-				//				httpConcatParam = null;
-				//				System.gc();
-			}
-			Date endDate = new Date();
-			map.put(j, DateExtensionUtil.getIntervalForView(beginDate, endDate));
-		}
-		log.info(JsonUtil.format(map));
-	}
+        Map<Integer, Object> map = new LinkedHashMap<Integer, Object>(list.size());
+        for (Integer j : list){
+            Date beginDate = new Date();
+            for (int i = 0; i < j; ++i){
+                //log.info(i);
+                HttpConcatParam httpConcatParam = getHttpConcatParamByI(null);
+                HttpConcatUtil.getWriteContent(httpConcatParam);
+                //				httpConcatParam = null;
+                //				System.gc();
+            }
+            Date endDate = new Date();
+            map.put(j, DateExtensionUtil.getIntervalForView(beginDate, endDate));
+        }
+        log.info(JsonUtil.format(map));
+    }
 
-	/**
-	 * Test get write content1.
-	 */
-	@Test
-	public final void testGetWriteContent1(){
-		HttpConcatParam httpConcatParam = new HttpConcatParam();
-		httpConcatParam.setType("js");
-		//httpConcatParam.setDomain("http://www.feilong.com");
-		httpConcatParam.setRoot("/js/");
-		httpConcatParam.setHttpConcatSupport(true);
-		httpConcatParam.setItemSrcList(null);
-		httpConcatParam.setVersion("20140517");
-		log.info(HttpConcatUtil.getWriteContent(httpConcatParam));
-	}
+    /**
+     * Test get write content1.
+     */
+    @Test
+    public final void testGetWriteContent1(){
+        HttpConcatParam httpConcatParam = new HttpConcatParam();
+        httpConcatParam.setType("js");
+        //httpConcatParam.setDomain("http://www.feilong.com");
+        httpConcatParam.setRoot("/js/");
+        httpConcatParam.setHttpConcatSupport(true);
+        httpConcatParam.setItemSrcList(null);
+        httpConcatParam.setVersion("20140517");
+        log.info(HttpConcatUtil.getWriteContent(httpConcatParam));
+    }
 }

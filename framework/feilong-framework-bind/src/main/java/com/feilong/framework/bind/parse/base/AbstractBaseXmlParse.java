@@ -37,35 +37,35 @@ import com.feilong.framework.bind.parse.AbstractXmlParse;
  */
 public abstract class AbstractBaseXmlParse<T> extends AbstractXmlParse<T>{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AbstractBaseXmlParse.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(AbstractBaseXmlParse.class);
 
-	/**
-	 * Builds the command.
-	 * 
-	 * @param modelClass
-	 *            the model class
-	 * @param varNameAndValueMap
-	 *            the var name and value map
-	 * @return the t
-	 * @throws BuildCommandException
-	 *             the build command exception
-	 */
-	@Override
-	protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
+    /**
+     * Builds the command.
+     * 
+     * @param modelClass
+     *            the model class
+     * @param varNameAndValueMap
+     *            the var name and value map
+     * @return the t
+     * @throws BuildCommandException
+     *             the build command exception
+     */
+    @Override
+    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
 
-		try{
-			T t = ConstructorUtil.newInstance(modelClass);
+        try{
+            T t = ConstructorUtil.newInstance(modelClass);
 
-			BeanUtil.populate(t, varNameAndValueMap);
+            BeanUtil.populate(t, varNameAndValueMap);
 
-			if (log.isInfoEnabled()){
-				log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
-			}
-			return t;
-		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
-			throw new BuildCommandException(e);
-		}
-	}
+            if (log.isInfoEnabled()){
+                log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
+            }
+            return t;
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+            throw new BuildCommandException(e);
+        }
+    }
 }

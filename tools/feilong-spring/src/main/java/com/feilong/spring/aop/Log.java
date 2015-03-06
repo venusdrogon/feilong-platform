@@ -39,11 +39,11 @@ import org.apache.log4j.Level;
 // , ElementType.TYPE
 public @interface Log{
 
-	/**
-	 * log级别 {@link Level#toLevel(String, Level)}.
-	 * 
-	 * @return the string
-	 */
-	String level() default "debug";
+    /**
+     * log级别 {@link Level#toLevel(String, Level)}.
+     * 
+     * @return the string
+     */
+    String level() default "debug";
 
 }

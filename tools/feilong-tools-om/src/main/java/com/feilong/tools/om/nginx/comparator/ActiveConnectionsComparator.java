@@ -27,18 +27,18 @@ import com.feilong.tools.om.nginx.command.StubStatusCommand;
  */
 public class ActiveConnectionsComparator implements Comparator<StubStatusCommand>{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public int compare(StubStatusCommand o1,StubStatusCommand o2){
-		if (o1.getActiveConnections() == o2.getActiveConnections()){
-			return 0;
-		}else if (o1.getActiveConnections() < o2.getActiveConnections()){
-			return -1;
-		}
-		return 1;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+     */
+    @Override
+    public int compare(StubStatusCommand o1,StubStatusCommand o2){
+        if (o1.getActiveConnections() == o2.getActiveConnections()){
+            return 0;
+        }else if (o1.getActiveConnections() < o2.getActiveConnections()){
+            return -1;
+        }
+        return 1;
+    }
 }

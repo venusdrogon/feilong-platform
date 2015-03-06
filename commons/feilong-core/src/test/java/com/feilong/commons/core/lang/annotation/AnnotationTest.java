@@ -32,43 +32,43 @@ import org.slf4j.LoggerFactory;
 @MyAnnotation(name = "feilong",sex = 0,loveStrings = { "胡伟立", "三国" })
 public class AnnotationTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AnnotationTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(AnnotationTest.class);
 
-	/**
-	 * Feilong.
-	 */
-	@MyAnnotation(name = "feilong",sex = 0,loveStrings = { "王菲" })
-	public void feilong(){
-		throw new NotImplementedException("feilong is not implemented!");
-	}
+    /**
+     * Feilong.
+     */
+    @MyAnnotation(name = "feilong",sex = 0,loveStrings = { "王菲" })
+    public void feilong(){
+        throw new NotImplementedException("feilong is not implemented!");
+    }
 
-	/**
-	 * Jinxin.
-	 */
-	@MyAnnotation(name = "金鑫",sex = 1,loveStrings = { "胡伟立", "三国" })
-	public void jinxin(){
-		throw new NotImplementedException("jinxin is not implemented!");
-	}
+    /**
+     * Jinxin.
+     */
+    @MyAnnotation(name = "金鑫",sex = 1,loveStrings = { "胡伟立", "三国" })
+    public void jinxin(){
+        throw new NotImplementedException("jinxin is not implemented!");
+    }
 
-	/**
-	 * TestAnnotationTest.
-	 */
-	@Test
-	public void testAnnotationTest(){
-		log.info("" + AnnotationTest.class.isAnnotationPresent(MyAnnotation.class));
+    /**
+     * TestAnnotationTest.
+     */
+    @Test
+    public void testAnnotationTest(){
+        log.info("" + AnnotationTest.class.isAnnotationPresent(MyAnnotation.class));
 
-		MyAnnotation myAnnotation = AnnotationTest.class.getAnnotation(MyAnnotation.class);
-		log.info(myAnnotation.name());
+        MyAnnotation myAnnotation = AnnotationTest.class.getAnnotation(MyAnnotation.class);
+        log.info(myAnnotation.name());
 
-		// *************************************************************
-		Method[] methods = AnnotationTest.class.getDeclaredMethods();
-		for (Method method : methods){
-			if (method.isAnnotationPresent(MyAnnotation.class)){
-				log.info("[Test." + method.getName() + "].annotation:");
-				MyAnnotation fieldAnnotation = method.getAnnotation(MyAnnotation.class);
-				log.info(ArrayUtils.toString(fieldAnnotation.loveStrings()));
-			}
-		}
-	}
+        // *************************************************************
+        Method[] methods = AnnotationTest.class.getDeclaredMethods();
+        for (Method method : methods){
+            if (method.isAnnotationPresent(MyAnnotation.class)){
+                log.info("[Test." + method.getName() + "].annotation:");
+                MyAnnotation fieldAnnotation = method.getAnnotation(MyAnnotation.class);
+                log.info(ArrayUtils.toString(fieldAnnotation.loveStrings()));
+            }
+        }
+    }
 }

@@ -30,31 +30,31 @@ import com.feilong.tools.jfreechart.pie.PieChartEntity;
  */
 public class Pie3DChartUtilTest{
 
-	private ChartInfoEntity	chartInfoEntity;
+    private ChartInfoEntity chartInfoEntity;
 
-	/**
-	 * 生成饼状图
-	 * 
-	 * @throws IOException
-	 */
-	@Test
-	public void makePie3DChart() throws IOException{
-		Map<String, Number> keyAndDataMap = new LinkedHashMap<String, Number>();
-		keyAndDataMap.put("失败率", 50);
-		keyAndDataMap.put("成功率", 250);
-		String chartTitle = "饼状图";
-		String imageNameOrOutputStream = chartTitle + ".png";
-		int width = 800;
-		int height = 600;
-		PieChartEntity chartEntiry = new PieChartEntity();
-		chartEntiry.setChartTitle(chartTitle);
-		chartEntiry.setKeyAndDataMap(keyAndDataMap);
-		Pie3DChartUtil jfreeChartUtil = new Pie3DChartUtil(chartEntiry);
-		//jfreeChartUtil.getPiePlot3D().setBackgroundPaint(Color.black);
-		chartInfoEntity = new ChartInfoEntity();
-		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
-		chartInfoEntity.setWidth(width);
-		chartInfoEntity.setHeight(height);
-		jfreeChartUtil.createImage(chartInfoEntity);
-	}
+    /**
+     * 生成饼状图
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void makePie3DChart() throws IOException{
+        Map<String, Number> keyAndDataMap = new LinkedHashMap<String, Number>();
+        keyAndDataMap.put("失败率", 50);
+        keyAndDataMap.put("成功率", 250);
+        String chartTitle = "饼状图";
+        String imageNameOrOutputStream = chartTitle + ".png";
+        int width = 800;
+        int height = 600;
+        PieChartEntity chartEntiry = new PieChartEntity();
+        chartEntiry.setChartTitle(chartTitle);
+        chartEntiry.setKeyAndDataMap(keyAndDataMap);
+        Pie3DChartUtil jfreeChartUtil = new Pie3DChartUtil(chartEntiry);
+        //jfreeChartUtil.getPiePlot3D().setBackgroundPaint(Color.black);
+        chartInfoEntity = new ChartInfoEntity();
+        chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
+        chartInfoEntity.setWidth(width);
+        chartInfoEntity.setHeight(height);
+        jfreeChartUtil.createImage(chartInfoEntity);
+    }
 }

@@ -75,214 +75,214 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  */
 public class PagerTag extends AbstractCommonTag{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID		= 1L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID       = 1L;
 
-	/** 数据总数. */
-	private Integer				count;
+    /** 数据总数. */
+    private Integer           count;
 
-	// *******************************************************************
+    // *******************************************************************
 
-	/** 每页显示多少行,默认20. */
-	private Integer				pageSize				= PagerConstants.DEFAULT_PAGESIZE;
+    /** 每页显示多少行,默认20. */
+    private Integer           pageSize               = PagerConstants.DEFAULT_PAGESIZE;
 
-	// *******************************************************************
+    // *******************************************************************
 
-	/**
-	 * 最多显示多少个导航页码.
-	 * 
-	 * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
-	 */
-	@Deprecated
-	private Integer				maxIndexPages;
+    /**
+     * 最多显示多少个导航页码.
+     * 
+     * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
+     */
+    @Deprecated
+    private Integer           maxIndexPages;
 
-	/** url页码参数,默认 pageNo. */
-	private String				pageParamName			= PagerConstants.DEFAULT_PAGE_PARAM_NAME;
+    /** url页码参数,默认 pageNo. */
+    private String            pageParamName          = PagerConstants.DEFAULT_PAGE_PARAM_NAME;
 
-	/** The vm path. */
-	private String				vmPath					= PagerConstants.DEFAULT_TEMPLATE_IN_CLASSPATH;
+    /** The vm path. */
+    private String            vmPath                 = PagerConstants.DEFAULT_TEMPLATE_IN_CLASSPATH;
 
-	/** 皮肤 默认digg. */
-	private String				skin					= PagerConstants.DEFAULT_SKIN;
+    /** 皮肤 默认digg. */
+    private String            skin                   = PagerConstants.DEFAULT_SKIN;
 
-	// *************************************************************************************************
-	/**
-	 * 最多显示页数,(-1或者不设置,默认显示所有页数)<br>
-	 * 类似于淘宝不管搜索东西多少,最多显示100页<br>
-	 * 这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。<br>
-	 * 新浪微博的时间轴也只给出了10页，同样的折中处理。.
-	 * 
-	 * @since 1.0.5
-	 */
-	private Integer				maxShowPageNo			= Pager.DEFAULT_LIMITED_MAX_PAGENO;
+    // *************************************************************************************************
+    /**
+     * 最多显示页数,(-1或者不设置,默认显示所有页数)<br>
+     * 类似于淘宝不管搜索东西多少,最多显示100页<br>
+     * 这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。<br>
+     * 新浪微博的时间轴也只给出了10页，同样的折中处理。.
+     * 
+     * @since 1.0.5
+     */
+    private Integer           maxShowPageNo          = Pager.DEFAULT_LIMITED_MAX_PAGENO;
 
-	/**
-	 * 国际化语言 .
-	 * 
-	 * @since 1.0.5
-	 */
-	private Locale				locale					= Locale.getDefault();
+    /**
+     * 国际化语言 .
+     * 
+     * @since 1.0.5
+     */
+    private Locale            locale                 = Locale.getDefault();
 
-	/**
-	 * url编码.
-	 * 
-	 * @since 1.0.5
-	 */
-	private String				charsetType				= CharsetType.UTF8;
+    /**
+     * url编码.
+     * 
+     * @since 1.0.5
+     */
+    private String            charsetType            = CharsetType.UTF8;
 
-	/**
-	 * vm被解析出来的文本会被存在在这个变量中,作用域为pageContext,以便重复使用,比如某些页面,上面下面都要显示同样的分页,方便用户操作<br>
-	 * 此外,此变量名称允许变更,以便实现,同一页页面不同功能的的分页.
-	 * 
-	 * @since 1.0.5
-	 */
-	private String				pagerHtmlAttributeName	= PagerConstants.DEFAULT_PAGE_ATTRIBUTE_PAGER_HTML_NAME;
+    /**
+     * vm被解析出来的文本会被存在在这个变量中,作用域为pageContext,以便重复使用,比如某些页面,上面下面都要显示同样的分页,方便用户操作<br>
+     * 此外,此变量名称允许变更,以便实现,同一页页面不同功能的的分页.
+     * 
+     * @since 1.0.5
+     */
+    private String            pagerHtmlAttributeName = PagerConstants.DEFAULT_PAGE_ATTRIBUTE_PAGER_HTML_NAME;
 
-	// *****************************end**************************************************.
+    // *****************************end**************************************************.
 
-	/**
-	 * Write content.
-	 * 
-	 * @return the string
-	 */
-	@Override
-	public String writeContent(){
-		HttpServletRequest request = getHttpServletRequest();
+    /**
+     * Write content.
+     * 
+     * @return the string
+     */
+    @Override
+    public String writeContent(){
+        HttpServletRequest request = getHttpServletRequest();
 
-		// **********************************************************************
-		// 当前页码
-		int currentPageNo = PagerUtil.getCurrentPageNo(request, pageParamName);
-		// 当前全路径
-		String pageUrl = RequestUtil.getRequestFullURL(request, charsetType);
+        // **********************************************************************
+        // 当前页码
+        int currentPageNo = PagerUtil.getCurrentPageNo(request, pageParamName);
+        // 当前全路径
+        String pageUrl = RequestUtil.getRequestFullURL(request, charsetType);
 
-		// ****************************************************************************
-		PagerParams pagerParams = new PagerParams(count, pageUrl);
+        // ****************************************************************************
+        PagerParams pagerParams = new PagerParams(count, pageUrl);
 
-		pagerParams.setCurrentPageNo(currentPageNo);
-		pagerParams.setPageSize(pageSize);
-		pagerParams.setMaxIndexPages(maxIndexPages);
-		pagerParams.setSkin(skin);
-		pagerParams.setPageParamName(pageParamName);
-		pagerParams.setVmPath(vmPath);
-		pagerParams.setCharsetType(charsetType);
-		pagerParams.setLocale(locale);
-		pagerParams.setMaxShowPageNo(maxShowPageNo);
+        pagerParams.setCurrentPageNo(currentPageNo);
+        pagerParams.setPageSize(pageSize);
+        pagerParams.setMaxIndexPages(maxIndexPages);
+        pagerParams.setSkin(skin);
+        pagerParams.setPageParamName(pageParamName);
+        pagerParams.setVmPath(vmPath);
+        pagerParams.setCharsetType(charsetType);
+        pagerParams.setLocale(locale);
+        pagerParams.setMaxShowPageNo(maxShowPageNo);
 
-		// debugNotParseVM=true参数可以来控制 是否解析vm模板,以便测试
-		String parameter = request.getParameter(PagerConstants.DEFAULT_PARAM_DEBUG_NOT_PARSEVM);
-		boolean debugIsNotParseVM = PagerConstants.DEFAULT_PARAM_DEBUG_NOT_PARSEVM_VALUE.equals(parameter);
-		pagerParams.setDebugIsNotParseVM(debugIsNotParseVM);
+        // debugNotParseVM=true参数可以来控制 是否解析vm模板,以便测试
+        String parameter = request.getParameter(PagerConstants.DEFAULT_PARAM_DEBUG_NOT_PARSEVM);
+        boolean debugIsNotParseVM = PagerConstants.DEFAULT_PARAM_DEBUG_NOT_PARSEVM_VALUE.equals(parameter);
+        pagerParams.setDebugIsNotParseVM(debugIsNotParseVM);
 
-		String html = PagerUtil.getPagerContent(pagerParams);
-		// 解析之后的变量设置在 pageContext作用域中
-		pageContext.setAttribute(pagerHtmlAttributeName, html);
-		return html;
-	}
+        String html = PagerUtil.getPagerContent(pagerParams);
+        // 解析之后的变量设置在 pageContext作用域中
+        pageContext.setAttribute(pagerHtmlAttributeName, html);
+        return html;
+    }
 
-	/**
-	 * Sets the 数据总数.
-	 * 
-	 * @param count
-	 *            the count to set
-	 */
-	public void setCount(Integer count){
-		this.count = count;
-	}
+    /**
+     * Sets the 数据总数.
+     * 
+     * @param count
+     *            the count to set
+     */
+    public void setCount(Integer count){
+        this.count = count;
+    }
 
-	/**
-	 * Sets the 每页显示多少行,默认20.
-	 * 
-	 * @param pageSize
-	 *            the pageSize to set
-	 */
-	public void setPageSize(Integer pageSize){
-		this.pageSize = pageSize;
-	}
+    /**
+     * Sets the 每页显示多少行,默认20.
+     * 
+     * @param pageSize
+     *            the pageSize to set
+     */
+    public void setPageSize(Integer pageSize){
+        this.pageSize = pageSize;
+    }
 
-	/**
-	 * Sets the 最多显示多少个导航页码.
-	 * 
-	 * @param maxIndexPages
-	 *            the maxIndexPages to set
-	 * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
-	 */
-	@Deprecated
-	public void setMaxIndexPages(Integer maxIndexPages){
-		this.maxIndexPages = maxIndexPages;
-	}
+    /**
+     * Sets the 最多显示多少个导航页码.
+     * 
+     * @param maxIndexPages
+     *            the maxIndexPages to set
+     * @deprecated 参数名字取得不好,在将来的版本会更改替换,不建议使用这个参数
+     */
+    @Deprecated
+    public void setMaxIndexPages(Integer maxIndexPages){
+        this.maxIndexPages = maxIndexPages;
+    }
 
-	/**
-	 * Sets the url页码参数,默认 pageNo.
-	 * 
-	 * @param pageParamName
-	 *            the pageParamName to set
-	 */
-	public void setPageParamName(String pageParamName){
-		this.pageParamName = pageParamName;
-	}
+    /**
+     * Sets the url页码参数,默认 pageNo.
+     * 
+     * @param pageParamName
+     *            the pageParamName to set
+     */
+    public void setPageParamName(String pageParamName){
+        this.pageParamName = pageParamName;
+    }
 
-	/**
-	 * Sets the vm path.
-	 * 
-	 * @param vmPath
-	 *            the vmPath to set
-	 */
-	public void setVmPath(String vmPath){
-		this.vmPath = vmPath;
-	}
+    /**
+     * Sets the vm path.
+     * 
+     * @param vmPath
+     *            the vmPath to set
+     */
+    public void setVmPath(String vmPath){
+        this.vmPath = vmPath;
+    }
 
-	/**
-	 * Sets the 皮肤 默认digg.
-	 * 
-	 * @param skin
-	 *            the skin to set
-	 */
-	public void setSkin(String skin){
-		this.skin = skin;
-	}
+    /**
+     * Sets the 皮肤 默认digg.
+     * 
+     * @param skin
+     *            the skin to set
+     */
+    public void setSkin(String skin){
+        this.skin = skin;
+    }
 
-	/**
-	 * Sets the 最多显示页数,(-1或者不设置,默认显示所有页数)<br>
-	 * 类似于淘宝不管搜索东西多少,最多显示100页<br>
-	 * 这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。<br>
-	 * 新浪微博的时间轴也只给出了10页，同样的折中处理。.
-	 * 
-	 * @param maxShowPageNo
-	 *            the maxShowPageNo to set
-	 */
-	public void setMaxShowPageNo(Integer maxShowPageNo){
-		this.maxShowPageNo = maxShowPageNo;
-	}
+    /**
+     * Sets the 最多显示页数,(-1或者不设置,默认显示所有页数)<br>
+     * 类似于淘宝不管搜索东西多少,最多显示100页<br>
+     * 这是一种折中的处理方式，空间换时间。 数据查询越往后翻，对服务器的压力越大，速度越低，而且从业务上来讲商品质量也越差，所以就没有必要给太多了。<br>
+     * 新浪微博的时间轴也只给出了10页，同样的折中处理。.
+     * 
+     * @param maxShowPageNo
+     *            the maxShowPageNo to set
+     */
+    public void setMaxShowPageNo(Integer maxShowPageNo){
+        this.maxShowPageNo = maxShowPageNo;
+    }
 
-	/**
-	 * Sets the 国际化语言 .
-	 * 
-	 * @param locale
-	 *            the locale to set
-	 */
-	public void setLocale(Locale locale){
-		this.locale = locale;
-	}
+    /**
+     * Sets the 国际化语言 .
+     * 
+     * @param locale
+     *            the locale to set
+     */
+    public void setLocale(Locale locale){
+        this.locale = locale;
+    }
 
-	/**
-	 * Sets the url编码.
-	 * 
-	 * @param charsetType
-	 *            the charsetType to set
-	 */
-	public void setCharsetType(String charsetType){
-		this.charsetType = charsetType;
-	}
+    /**
+     * Sets the url编码.
+     * 
+     * @param charsetType
+     *            the charsetType to set
+     */
+    public void setCharsetType(String charsetType){
+        this.charsetType = charsetType;
+    }
 
-	/**
-	 * Sets the vm被解析出来的文本会被存在在这个变量中,作用域为pageContext,以便重复使用,比如某些页面,上面下面都要显示同样的分页,方便用户操作<br>
-	 * 此外,此变量名称允许变更,以便实现,同一页页面不同功能的的分页.
-	 * 
-	 * @param pagerHtmlAttributeName
-	 *            the pagerHtmlAttributeName to set
-	 */
-	public void setPagerHtmlAttributeName(String pagerHtmlAttributeName){
-		this.pagerHtmlAttributeName = pagerHtmlAttributeName;
-	}
+    /**
+     * Sets the vm被解析出来的文本会被存在在这个变量中,作用域为pageContext,以便重复使用,比如某些页面,上面下面都要显示同样的分页,方便用户操作<br>
+     * 此外,此变量名称允许变更,以便实现,同一页页面不同功能的的分页.
+     * 
+     * @param pagerHtmlAttributeName
+     *            the pagerHtmlAttributeName to set
+     */
+    public void setPagerHtmlAttributeName(String pagerHtmlAttributeName){
+        this.pagerHtmlAttributeName = pagerHtmlAttributeName;
+    }
 
 }

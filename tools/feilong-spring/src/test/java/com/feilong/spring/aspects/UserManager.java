@@ -24,33 +24,33 @@ package com.feilong.spring.aspects;
  */
 public interface UserManager{
 
-	/**
-	 * Adds the user.
-	 * 
-	 * @param string
-	 *            the string
-	 * @param name
-	 *            the name
-	 */
-	void addUser(String string,String name);
+    /**
+     * Adds the user.
+     * 
+     * @param string
+     *            the string
+     * @param name
+     *            the name
+     */
+    void addUser(String string,String name);
 
-	/**
-	 * Del user.
-	 * 
-	 * @param id
-	 *            the id
-	 */
-	void delUser(int id);
+    /**
+     * Del user.
+     * 
+     * @param id
+     *            the id
+     */
+    void delUser(int id);
 
-	/**
-	 * Modify user.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param name
-	 *            the name
-	 * @param age
-	 *            the age
-	 */
-	void modifyUser(int id,String name,int age);
+    /**
+     * Modify user.
+     * 
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param age
+     *            the age
+     */
+    void modifyUser(int id,String name,int age);
 }

@@ -37,17 +37,17 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface VarName{
 
-	/**
-	 * 对应xml里面的名称.
-	 * 
-	 * @return the string
-	 */
-	String name();
+    /**
+     * 对应xml里面的名称.
+     * 
+     * @return the string
+     */
+    String name();
 
-	/**
-	 * 示例结果(仅供查看的时候,知道这个字段的结果值格式和大致的值,没有其他作用).
-	 * 
-	 * @return the string
-	 */
-	String sampleValue() default "";
+    /**
+     * 示例结果(仅供查看的时候,知道这个字段的结果值格式和大致的值,没有其他作用).
+     * 
+     * @return the string
+     */
+    String sampleValue() default "";
 }

@@ -43,108 +43,108 @@ package com.feilong.commons.core.date;
  */
 public enum ConstellationType{
 
-	/** 摩羯座 12月22日-1月19日. */
-	CAPRICORN(1,"摩羯座","12月22日","1月19日"),
+    /** 摩羯座 12月22日-1月19日. */
+    CAPRICORN(1,"摩羯座","12月22日","1月19日"),
 
-	/** 水瓶座 1月20日-2月18日. */
-	AQUARIUS(2,"水瓶座","1月20日","2月18日"),
+    /** 水瓶座 1月20日-2月18日. */
+    AQUARIUS(2,"水瓶座","1月20日","2月18日"),
 
-	/** 双鱼座 2月19日-3月20日. */
-	PISCES(3,"双鱼座"," 2月19日","3月20日"),
+    /** 双鱼座 2月19日-3月20日. */
+    PISCES(3,"双鱼座"," 2月19日","3月20日"),
 
-	/** 白羊座 3月21日-4月19日. */
-	ARIES(4,"白羊座","3月21日","4月19日"),
+    /** 白羊座 3月21日-4月19日. */
+    ARIES(4,"白羊座","3月21日","4月19日"),
 
-	/** 金牛座 4月20日-5月20日. */
-	TAURUS(5,"金牛座","4月20日","5月20日"),
+    /** 金牛座 4月20日-5月20日. */
+    TAURUS(5,"金牛座","4月20日","5月20日"),
 
-	/** 双子座 5月21日-6月21日. */
-	GEMINI(6,"双子座"," 5月21日","6月21日"),
+    /** 双子座 5月21日-6月21日. */
+    GEMINI(6,"双子座"," 5月21日","6月21日"),
 
-	/** 巨蟹座 6月22日-7月22日. */
-	CANCER(7,"巨蟹座","6月22日","7月22日"),
+    /** 巨蟹座 6月22日-7月22日. */
+    CANCER(7,"巨蟹座","6月22日","7月22日"),
 
-	/** 狮子座 7月23日-8月22日. */
-	LEO(8,"狮子座","7月23日","8月22日"),
+    /** 狮子座 7月23日-8月22日. */
+    LEO(8,"狮子座","7月23日","8月22日"),
 
-	/** 处女座 8月23日-9月22日. */
-	VIRGO(9,"处女座"," 8月23日","9月22日"),
+    /** 处女座 8月23日-9月22日. */
+    VIRGO(9,"处女座"," 8月23日","9月22日"),
 
-	/** 天秤座 9月23日-10月23日. */
-	LIBRA(10,"天秤座","9月23日","10月23日"),
+    /** 天秤座 9月23日-10月23日. */
+    LIBRA(10,"天秤座","9月23日","10月23日"),
 
-	/** 天蝎座 10月24日-11月22日. */
-	SCORPIO(11,"天蝎座","10月24日","11月22日"),
+    /** 天蝎座 10月24日-11月22日. */
+    SCORPIO(11,"天蝎座","10月24日","11月22日"),
 
-	/** 射手座 11月23日-12月21日. */
-	SAGITTARIUS(12,"射手座","11月23日","12月21日");
+    /** 射手座 11月23日-12月21日. */
+    SAGITTARIUS(12,"射手座","11月23日","12月21日");
 
-	// *****************************************************************************************
-	/** The code. */
-	private int		code;
+    // *****************************************************************************************
+    /** The code. */
+    private int    code;
 
-	/** The chinese name. */
-	private String	chineseName;
+    /** The chinese name. */
+    private String chineseName;
 
-	/** The begin date string. */
-	private String	beginDateString;
+    /** The begin date string. */
+    private String beginDateString;
 
-	/** The end date string. */
-	private String	endDateString;
+    /** The end date string. */
+    private String endDateString;
 
-	// *****************************************************************************************
-	/**
-	 * Instantiates a new constellation type.
-	 * 
-	 * @param code
-	 *            the code
-	 * @param chineseName
-	 *            the chinese name
-	 * @param beginDateString
-	 *            the begin date string
-	 * @param endDateString
-	 *            the end date string
-	 */
-	private ConstellationType(int code, String chineseName, String beginDateString, String endDateString){
-		this.code = code;
-		this.chineseName = chineseName;
-		this.beginDateString = beginDateString;
-		this.endDateString = endDateString;
-	}
+    // *****************************************************************************************
+    /**
+     * Instantiates a new constellation type.
+     * 
+     * @param code
+     *            the code
+     * @param chineseName
+     *            the chinese name
+     * @param beginDateString
+     *            the begin date string
+     * @param endDateString
+     *            the end date string
+     */
+    private ConstellationType(int code, String chineseName, String beginDateString, String endDateString){
+        this.code = code;
+        this.chineseName = chineseName;
+        this.beginDateString = beginDateString;
+        this.endDateString = endDateString;
+    }
 
-	/**
-	 * Gets the code.
-	 * 
-	 * @return the code
-	 */
-	public int getCode(){
-		return this.code;
-	}
+    /**
+     * Gets the code.
+     * 
+     * @return the code
+     */
+    public int getCode(){
+        return this.code;
+    }
 
-	/**
-	 * Gets the chinese name.
-	 * 
-	 * @return the chinese name
-	 */
-	public String getChineseName(){
-		return this.chineseName;
-	}
+    /**
+     * Gets the chinese name.
+     * 
+     * @return the chinese name
+     */
+    public String getChineseName(){
+        return this.chineseName;
+    }
 
-	/**
-	 * Gets the begin date string.
-	 * 
-	 * @return the begin date string
-	 */
-	public String getBeginDateString(){
-		return beginDateString;
-	}
+    /**
+     * Gets the begin date string.
+     * 
+     * @return the begin date string
+     */
+    public String getBeginDateString(){
+        return beginDateString;
+    }
 
-	/**
-	 * Gets the end date string.
-	 * 
-	 * @return the end date string
-	 */
-	public String getEndDateString(){
-		return endDateString;
-	}
+    /**
+     * Gets the end date string.
+     * 
+     * @return the end date string
+     */
+    public String getEndDateString(){
+        return endDateString;
+    }
 }

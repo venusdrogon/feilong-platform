@@ -28,22 +28,22 @@ import com.lowagie.text.Font;
  */
 public class PDFCell extends Cell{
 
-	/**
-	 * Instantiates a new PDF cell.
-	 * 
-	 * @param content
-	 *            the content
-	 * @param rowspan
-	 *            the rowspan
-	 * @param colspan
-	 *            the colspan
-	 * @throws BadElementException
-	 *             the bad element exception
-	 */
-	public PDFCell(String content, int rowspan, int colspan) throws BadElementException{
-		super(new Chunk(content, PDFChineseFont.createChineseFont(10, Font.NORMAL)));
-		setRowspan(rowspan);
-		setColspan(colspan);
-		setHeader(false);
-	}
+    /**
+     * Instantiates a new PDF cell.
+     * 
+     * @param content
+     *            the content
+     * @param rowspan
+     *            the rowspan
+     * @param colspan
+     *            the colspan
+     * @throws BadElementException
+     *             the bad element exception
+     */
+    public PDFCell(String content, int rowspan, int colspan) throws BadElementException{
+        super(new Chunk(content, PDFChineseFont.createChineseFont(10, Font.NORMAL)));
+        setRowspan(rowspan);
+        setColspan(colspan);
+        setHeader(false);
+    }
 }

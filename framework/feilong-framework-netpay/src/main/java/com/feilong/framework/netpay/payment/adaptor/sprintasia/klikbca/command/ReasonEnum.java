@@ -23,56 +23,56 @@ package com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.command;
  */
 public enum ReasonEnum{
 
-	/** The SUCCESS. */
-	SUCCESS("Success"),
+    /** The SUCCESS. */
+    SUCCESS("Success"),
 
-	/** The CANCELED. */
-	CANCELED("Transaction has been canceled."),
+    /** The CANCELED. */
+    CANCELED("Transaction has been canceled."),
 
-	/** The PAID. */
-	PAID("Transaction has been paid."),
+    /** The PAID. */
+    PAID("Transaction has been paid."),
 
-	/**
-	 * The transaction has expired or exceeded Time limit given..
-	 */
-	EXPIRED("Transaction has expired."),
+    /**
+     * The transaction has expired or exceeded Time limit given..
+     */
+    EXPIRED("Transaction has expired."),
 
-	/** The CANNOTBEPROCESSED,Technical issues . */
-	CANNOTBEPROCESSED("Transaction cannot be processed.");
+    /** The CANNOTBEPROCESSED,Technical issues . */
+    CANNOTBEPROCESSED("Transaction cannot be processed.");
 
-	// ***********************************************************************
+    // ***********************************************************************
 
-	/** The english. */
-	private String	english;
+    /** The english. */
+    private String english;
 
-	/**
-	 * Instantiates a new reason enum.
-	 * 
-	 * @param english
-	 *            the english
-	 * @param indonesian
-	 *            the indonesian
-	 */
-	private ReasonEnum(String english){
-		this.english = english;
-	}
+    /**
+     * Instantiates a new reason enum.
+     * 
+     * @param english
+     *            the english
+     * @param indonesian
+     *            the indonesian
+     */
+    private ReasonEnum(String english){
+        this.english = english;
+    }
 
-	/**
-	 * Gets the english.
-	 * 
-	 * @return the english
-	 */
-	public String getEnglish(){
-		return english;
-	}
+    /**
+     * Gets the english.
+     * 
+     * @return the english
+     */
+    public String getEnglish(){
+        return english;
+    }
 
-	/**
-	 * Sets the english.
-	 * 
-	 * @param english
-	 *            the english to set
-	 */
-	public void setEnglish(String english){
-		this.english = english;
-	}
+    /**
+     * Sets the english.
+     * 
+     * @param english
+     *            the english to set
+     */
+    public void setEnglish(String english){
+        this.english = english;
+    }
 }

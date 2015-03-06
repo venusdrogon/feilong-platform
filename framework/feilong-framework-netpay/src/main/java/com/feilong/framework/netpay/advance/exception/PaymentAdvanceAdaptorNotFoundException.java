@@ -29,57 +29,57 @@ import com.feilong.framework.netpay.advance.PaymentAdvanceAdaptorFactory;
  */
 public class PaymentAdvanceAdaptorNotFoundException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 7111227268129628604L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 7111227268129628604L;
 
-	/**
-	 * The Constructor.
-	 */
-	public PaymentAdvanceAdaptorNotFoundException(){
-		super();
-	}
+    /**
+     * The Constructor.
+     */
+    public PaymentAdvanceAdaptorNotFoundException(){
+        super();
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public PaymentAdvanceAdaptorNotFoundException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * The Constructor.
+     *
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public PaymentAdvanceAdaptorNotFoundException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param message
-	 *            the message
-	 */
-	public PaymentAdvanceAdaptorNotFoundException(String message){
-		super(message);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param message
+     *            the message
+     */
+    public PaymentAdvanceAdaptorNotFoundException(String message){
+        super(message);
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param cause
-	 *            the cause
-	 */
-	public PaymentAdvanceAdaptorNotFoundException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param cause
+     *            the cause
+     */
+    public PaymentAdvanceAdaptorNotFoundException(Throwable cause){
+        super(cause);
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public PaymentAdvanceAdaptorNotFoundException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * The Constructor.
+     *
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public PaymentAdvanceAdaptorNotFoundException(String message, Throwable cause){
+        super(message, cause);
+    }
 }

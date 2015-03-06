@@ -46,220 +46,220 @@ import com.feilong.tools.mail.entity.MailInfo;
  */
 public class MessageUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MessageUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MessageUtil.class);
 
-	/**
-	 * To mail info list.
-	 *
-	 * @param messages
-	 *            the messages
-	 * @return the list< mail info>
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static final List<MailInfo> toMailInfoList(Message[] messages) throws MessagingException,IOException{
-		if (log.isInfoEnabled()){
-			log.info("messages length:[{}]", messages.length);
-		}
-		//******************************************************
+    /**
+     * To mail info list.
+     *
+     * @param messages
+     *            the messages
+     * @return the list< mail info>
+     * @throws MessagingException
+     *             the messaging exception
+     * @throws IOException
+     *             the IO exception
+     */
+    public static final List<MailInfo> toMailInfoList(Message[] messages) throws MessagingException,IOException{
+        if (log.isInfoEnabled()){
+            log.info("messages length:[{}]", messages.length);
+        }
+        //******************************************************
 
-		List<MailInfo> list = new ArrayList<MailInfo>();
+        List<MailInfo> list = new ArrayList<MailInfo>();
 
-		for (int i = 0, n = messages.length; i < n; i++){
-			Message message = messages[i];
-			MailInfo mailInfo = toMailInfoList(message);
-			list.add(mailInfo);
-			//log.debug(JsonUtil.format(MessageUtil.getMapForLog(message)));
-		}
-		return list;
-	}
+        for (int i = 0, n = messages.length; i < n; i++){
+            Message message = messages[i];
+            MailInfo mailInfo = toMailInfoList(message);
+            list.add(mailInfo);
+            //log.debug(JsonUtil.format(MessageUtil.getMapForLog(message)));
+        }
+        return list;
+    }
 
-	/**
-	 * To mail info list.
-	 *
-	 * @param message
-	 *            the message
-	 * @return the mail info
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static final MailInfo toMailInfoList(Message message) throws MessagingException,IOException{
-		MailInfo mailInfo = new MailInfo();
+    /**
+     * To mail info list.
+     *
+     * @param message
+     *            the message
+     * @return the mail info
+     * @throws MessagingException
+     *             the messaging exception
+     * @throws IOException
+     *             the IO exception
+     */
+    public static final MailInfo toMailInfoList(Message message) throws MessagingException,IOException{
+        MailInfo mailInfo = new MailInfo();
 
-		String from = getFromAddress(message);
-		mailInfo.setFrom(from);
+        String from = getFromAddress(message);
+        mailInfo.setFrom(from);
 
-		mailInfo.setContentType(message.getContentType());
-		mailInfo.setContent(getContent(message));
-		mailInfo.setReceivedDate(message.getReceivedDate());
+        mailInfo.setContentType(message.getContentType());
+        mailInfo.setContent(getContent(message));
+        mailInfo.setReceivedDate(message.getReceivedDate());
 
-		String[] recipients = null;
-		Address[] allRecipients = message.getAllRecipients();
-		if (Validator.isNotNullOrEmpty(allRecipients)){
-			int length = allRecipients.length;
+        String[] recipients = null;
+        Address[] allRecipients = message.getAllRecipients();
+        if (Validator.isNotNullOrEmpty(allRecipients)){
+            int length = allRecipients.length;
 
-			recipients = new String[length];
-			for (int i = 0, j = length; i < j; ++i){
-				Address address = allRecipients[i];
-				recipients[i] = getAddress(address);
-			}
-		}
-		mailInfo.setRecipients(recipients);
-		mailInfo.setSentDate(message.getSentDate());
-		mailInfo.setSize(FileUtil.formatSize(message.getSize()));
-		mailInfo.setSubject(message.getSubject());
-		return mailInfo;
-	}
+            recipients = new String[length];
+            for (int i = 0, j = length; i < j; ++i){
+                Address address = allRecipients[i];
+                recipients[i] = getAddress(address);
+            }
+        }
+        mailInfo.setRecipients(recipients);
+        mailInfo.setSentDate(message.getSentDate());
+        mailInfo.setSize(FileUtil.formatSize(message.getSize()));
+        mailInfo.setSubject(message.getSubject());
+        return mailInfo;
+    }
 
-	/**
-	 * 获得 map for log.
-	 *
-	 * @param message
-	 *            the message
-	 * @return the map for log
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static final Map<String, Object> getMapForLog(Message message) throws MessagingException,IOException{
-		Map<String, Object> object = new LinkedHashMap<String, Object>();
-		String address = getFromAddress(message);
-		object.put("from", address);
-		object.put("sentDate", message.getSentDate());
-		object.put("size", FileUtil.formatSize(message.getSize()));
-		object.put("subject", message.getSubject());
-		//object.put("content", message.getContent());
+    /**
+     * 获得 map for log.
+     *
+     * @param message
+     *            the message
+     * @return the map for log
+     * @throws MessagingException
+     *             the messaging exception
+     * @throws IOException
+     *             the IO exception
+     */
+    public static final Map<String, Object> getMapForLog(Message message) throws MessagingException,IOException{
+        Map<String, Object> object = new LinkedHashMap<String, Object>();
+        String address = getFromAddress(message);
+        object.put("from", address);
+        object.put("sentDate", message.getSentDate());
+        object.put("size", FileUtil.formatSize(message.getSize()));
+        object.put("subject", message.getSubject());
+        //object.put("content", message.getContent());
 
-		object.put("allHeaders", message.getAllHeaders());
-		object.put("allRecipients", message.getAllRecipients());
-		object.put("contentType", message.getContentType());
-		//object.put("getDataHandler", message.getDataHandler());
-		object.put("description", message.getDescription());
-		object.put("getFileName", message.getFileName());
-		object.put("getFlags", message.getFlags().toString());
-		object.put("getFolder", message.getFolder().getFullName());
-		object.put("getLineCount", message.getLineCount());
-		object.put("getMessageNumber", message.getMessageNumber());
-		object.put("getReceivedDate", message.getReceivedDate());
+        object.put("allHeaders", message.getAllHeaders());
+        object.put("allRecipients", message.getAllRecipients());
+        object.put("contentType", message.getContentType());
+        //object.put("getDataHandler", message.getDataHandler());
+        object.put("description", message.getDescription());
+        object.put("getFileName", message.getFileName());
+        object.put("getFlags", message.getFlags().toString());
+        object.put("getFolder", message.getFolder().getFullName());
+        object.put("getLineCount", message.getLineCount());
+        object.put("getMessageNumber", message.getMessageNumber());
+        object.put("getReceivedDate", message.getReceivedDate());
 
-		Address[] replyTo = message.getReplyTo();
-		object.put("getReplyTo", replyTo);
-		return object;
-	}
+        Address[] replyTo = message.getReplyTo();
+        object.put("getReplyTo", replyTo);
+        return object;
+    }
 
-	/**
-	 * 获得 from address.
-	 *
-	 * @param message
-	 *            the message
-	 * @return the from address
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @since 1.0.9
-	 */
-	private static String getFromAddress(Message message) throws MessagingException{
-		Address[] from = message.getFrom();
-		Address value = from[0];
-		return getAddress(value);
-	}
+    /**
+     * 获得 from address.
+     *
+     * @param message
+     *            the message
+     * @return the from address
+     * @throws MessagingException
+     *             the messaging exception
+     * @since 1.0.9
+     */
+    private static String getFromAddress(Message message) throws MessagingException{
+        Address[] from = message.getFrom();
+        Address value = from[0];
+        return getAddress(value);
+    }
 
-	/**
-	 * 获得 address.
-	 *
-	 * @param value
-	 *            the value
-	 * @return the address
-	 * @since 1.0.9
-	 */
-	private static String getAddress(Address value){
-		InternetAddress internetAddress = (InternetAddress) value;
-		String address = internetAddress.getAddress();
-		return address;
-	}
+    /**
+     * 获得 address.
+     *
+     * @param value
+     *            the value
+     * @return the address
+     * @since 1.0.9
+     */
+    private static String getAddress(Address value){
+        InternetAddress internetAddress = (InternetAddress) value;
+        String address = internetAddress.getAddress();
+        return address;
+    }
 
-	/**
-	 * 获得 content.
-	 *
-	 * @param part
-	 *            the p
-	 * @return the string
-	 * @throws IOException
-	 *             the IO exception
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @see javax.mail.search.BodyTerm#matchPart(Part)
-	 * @deprecated
-	 */
-	//TODO
-	@Deprecated
-	public static String getContent1(Part part) throws IOException,MessagingException{
-		Object partContent = part.getContent();
+    /**
+     * 获得 content.
+     *
+     * @param part
+     *            the p
+     * @return the string
+     * @throws IOException
+     *             the IO exception
+     * @throws MessagingException
+     *             the messaging exception
+     * @see javax.mail.search.BodyTerm#matchPart(Part)
+     * @deprecated
+     */
+    //TODO
+    @Deprecated
+    public static String getContent1(Part part) throws IOException,MessagingException{
+        Object partContent = part.getContent();
 
-		//String
-		if (partContent instanceof String){
-			return (String) partContent;
-		}
+        //String
+        if (partContent instanceof String){
+            return (String) partContent;
+        }
 
-		//Multipart
-		else if (partContent instanceof Multipart){
-			Multipart multipart = (Multipart) partContent;
-			int count = multipart.getCount();
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < count; i++){
-				BodyPart bodyPart = multipart.getBodyPart(i);
-				sb.append(getContent(bodyPart));
-			}
-			return sb.toString();
-		}
+        //Multipart
+        else if (partContent instanceof Multipart){
+            Multipart multipart = (Multipart) partContent;
+            int count = multipart.getCount();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < count; i++){
+                BodyPart bodyPart = multipart.getBodyPart(i);
+                sb.append(getContent(bodyPart));
+            }
+            return sb.toString();
+        }
 
-		//InputStream
-		else if (partContent instanceof InputStream){
-			//return IOUtil.inputStream2String((InputStream) partContent);
+        //InputStream
+        else if (partContent instanceof InputStream){
+            //return IOUtil.inputStream2String((InputStream) partContent);
 
-			//TODO not support
-			return null;
-		}else{
-			throw new UnsupportedOperationException("partContent not support!");
-		}
-	}
+            //TODO not support
+            return null;
+        }else{
+            throw new UnsupportedOperationException("partContent not support!");
+        }
+    }
 
-	/**
-	 * 获得 content.
-	 *
-	 * @param part
-	 *            the part
-	 * @return the content
-	 * @throws MessagingException
-	 *             the messaging exception
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static String getContent(Part part) throws MessagingException,IOException{
-		// Using isMimeType to determine the content type 
-		//avoids fetching the actual content data until we need it.
-		if (part.isMimeType("text/*")){
-			String s = (String) part.getContent();
-			return s;
-		}else if (part.isMimeType("multipart/*")){
-			StringBuilder sb = new StringBuilder();
+    /**
+     * 获得 content.
+     *
+     * @param part
+     *            the part
+     * @return the content
+     * @throws MessagingException
+     *             the messaging exception
+     * @throws IOException
+     *             the IO exception
+     */
+    public static String getContent(Part part) throws MessagingException,IOException{
+        // Using isMimeType to determine the content type 
+        //avoids fetching the actual content data until we need it.
+        if (part.isMimeType("text/*")){
+            String s = (String) part.getContent();
+            return s;
+        }else if (part.isMimeType("multipart/*")){
+            StringBuilder sb = new StringBuilder();
 
-			Multipart mp = (Multipart) part.getContent();
-			int count = mp.getCount();
-			for (int i = 0; i < count; i++){
-				sb.append(getContent(mp.getBodyPart(i)));
-			}
-			return sb.toString();
-		}else if (part.isMimeType("message/rfc822")){
-			return getContent((Part) part.getContent());
-		}else{
-			log.info("part getContentType:{}", part.getContentType());
-			return null;
-		}
-	}
+            Multipart mp = (Multipart) part.getContent();
+            int count = mp.getCount();
+            for (int i = 0; i < count; i++){
+                sb.append(getContent(mp.getBodyPart(i)));
+            }
+            return sb.toString();
+        }else if (part.isMimeType("message/rfc822")){
+            return getContent((Part) part.getContent());
+        }else{
+            log.info("part getContentType:{}", part.getContentType());
+            return null;
+        }
+    }
 }

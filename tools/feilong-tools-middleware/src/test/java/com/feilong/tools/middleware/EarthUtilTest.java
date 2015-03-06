@@ -27,14 +27,14 @@ import org.slf4j.LoggerFactory;
  */
 public class EarthUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(EarthUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(EarthUtilTest.class);
 
-	/**
-	 * {@link com.feilong.tools.middleware.EarthUtil#getDistance(double, double, double, double)} 的测试方法。
-	 */
-	@Test
-	public void testGetDistance(){
-		log.info("" + EarthUtil.getDistance(120, 36, 121, 36));
-	}
+    /**
+     * {@link com.feilong.tools.middleware.EarthUtil#getDistance(double, double, double, double)} 的测试方法。
+     */
+    @Test
+    public void testGetDistance(){
+        log.info("" + EarthUtil.getDistance(120, 36, 121, 36));
+    }
 }

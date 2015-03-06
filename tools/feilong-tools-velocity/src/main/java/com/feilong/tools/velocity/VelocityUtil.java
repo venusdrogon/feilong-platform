@@ -65,98 +65,98 @@ import com.feilong.commons.core.util.Validator;
 // String parseVMTemplateAfterInitVelocity = parseVMTemplateAfterInitVelocity(templateName, contextKeyValues);
 public final class VelocityUtil{
 
-	/** The Constant log. */
-	private static final Logger		log						= LoggerFactory.getLogger(VelocityUtil.class);
+    /** The Constant log. */
+    private static final Logger   log                   = LoggerFactory.getLogger(VelocityUtil.class);
 
-	/** The feilong string velocity. */
-	private static String			feilongStringVelocity	= "feilongStringVelocity";
+    /** The feilong string velocity. */
+    private static String         feilongStringVelocity = "feilongStringVelocity";
 
-	/** The properties path. */
-	private static String			PROPERTIES_PATH			= "config/feilong-velocity.properties";
+    /** The properties path. */
+    private static String         PROPERTIES_PATH       = "config/feilong-velocity.properties";
 
-	// 分离实例 避免影响其他的 项目
-	/** The velocity engine. */
-	private static VelocityEngine	velocityEngine			= null;
+    // 分离实例 避免影响其他的 项目
+    /** The velocity engine. */
+    private static VelocityEngine velocityEngine        = null;
 
-	static{
-		Properties properties = PropertiesUtil.getPropertiesWithClassLoader(VelocityUtil.class, PROPERTIES_PATH);
+    static{
+        Properties properties = PropertiesUtil.getPropertiesWithClassLoader(VelocityUtil.class, PROPERTIES_PATH);
 
-		if (Validator.isNullOrEmpty(properties)){
-			String messagePattern = "can't load [{}],this properties is use for init velocityEngine,Please make sure that the location of the file path";
-			String formatMessage = Slf4jUtil.formatMessage(messagePattern, PROPERTIES_PATH);
-			log.error(formatMessage);
-			throw new IllegalArgumentException(formatMessage);
-		}
+        if (Validator.isNullOrEmpty(properties)){
+            String messagePattern = "can't load [{}],this properties is use for init velocityEngine,Please make sure that the location of the file path";
+            String formatMessage = Slf4jUtil.formatMessage(messagePattern, PROPERTIES_PATH);
+            log.error(formatMessage);
+            throw new IllegalArgumentException(formatMessage);
+        }
 
-		if (log.isInfoEnabled()){
-			log.info("velocity init, properties:{}", JsonUtil.format(properties));
-		}
+        if (log.isInfoEnabled()){
+            log.info("velocity init, properties:{}", JsonUtil.format(properties));
+        }
 
-		// log.info(RuntimeSingleton.isInitialized() + "");
-		// 单列模式
-		// Velocity.init(properties);
+        // log.info(RuntimeSingleton.isInitialized() + "");
+        // 单列模式
+        // Velocity.init(properties);
 
-		// 分离实例 避免影响其他的 项目
-		velocityEngine = new VelocityEngine();
-		velocityEngine.init(properties);
+        // 分离实例 避免影响其他的 项目
+        velocityEngine = new VelocityEngine();
+        velocityEngine.init(properties);
 
-		// log.info(RuntimeSingleton.isInitialized() + "");
-		// XMLToolboxManager box = new XMLToolboxManager();
-		// box.load(ClassLoaderUtils.getResourceAsStream("toolbox.xml", this.getClass()));
-	}
+        // log.info(RuntimeSingleton.isInitialized() + "");
+        // XMLToolboxManager box = new XMLToolboxManager();
+        // box.load(ClassLoaderUtils.getResourceAsStream("toolbox.xml", this.getClass()));
+    }
 
-	/**
-	 * 解析vm模板文件.
-	 *
-	 * @param templateInClassPath
-	 *            vm文件,模版classpath 下面的路径,比如 \\loxia\\excel\\template\\trainReport.html
-	 * @param contextKeyValues
-	 *            参数
-	 * @return the string
-	 * @throws VelocityException
-	 *             the velocity exception
-	 * @see Template
-	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
-	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
-	 * @see VelocityEngine#getTemplate(String)
-	 * @see VelocityEngine#getTemplate(String, String)
-	 * @see Template#merge(org.apache.velocity.context.Context, Writer)
-	 */
-	public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues)
-					throws VelocityException{
-		String encoding = CharsetType.UTF8;
+    /**
+     * 解析vm模板文件.
+     *
+     * @param templateInClassPath
+     *            vm文件,模版classpath 下面的路径,比如 \\loxia\\excel\\template\\trainReport.html
+     * @param contextKeyValues
+     *            参数
+     * @return the string
+     * @throws VelocityException
+     *             the velocity exception
+     * @see Template
+     * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
+     * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
+     * @see VelocityEngine#getTemplate(String)
+     * @see VelocityEngine#getTemplate(String, String)
+     * @see Template#merge(org.apache.velocity.context.Context, Writer)
+     */
+    public static String parseTemplateWithClasspathResourceLoader(String templateInClassPath,Map<String, Object> contextKeyValues)
+                    throws VelocityException{
+        String encoding = CharsetType.UTF8;
 
-		VelocityContext velocityContext = new VelocityContext(contextKeyValues);
-		Writer writer = new StringWriter();
+        VelocityContext velocityContext = new VelocityContext(contextKeyValues);
+        Writer writer = new StringWriter();
 
-		Template template = velocityEngine.getTemplate(templateInClassPath, encoding);
-		template.merge(velocityContext, writer);
-		try{
-			writer.flush();
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-			throw new VelocityException(e);
-		}
-		return writer.toString();
-	}
+        Template template = velocityEngine.getTemplate(templateInClassPath, encoding);
+        template.merge(velocityContext, writer);
+        try{
+            writer.flush();
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+            throw new VelocityException(e);
+        }
+        return writer.toString();
+    }
 
-	/**
-	 * 解析vm文件内容字符串.
-	 * 
-	 * @param vmContent
-	 *            vm字符串
-	 * @param contextKeyValues
-	 *            vm参数
-	 * @return the string
-	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
-	 * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
-	 */
-	public static String parseString(String vmContent,Map<String, Object> contextKeyValues){
-		VelocityContext context = new VelocityContext(contextKeyValues);
+    /**
+     * 解析vm文件内容字符串.
+     * 
+     * @param vmContent
+     *            vm字符串
+     * @param contextKeyValues
+     *            vm参数
+     * @return the string
+     * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_TEMPLATE
+     * @see org.apache.velocity.runtime.resource.ResourceManager#RESOURCE_CONTENT
+     */
+    public static String parseString(String vmContent,Map<String, Object> contextKeyValues){
+        VelocityContext context = new VelocityContext(contextKeyValues);
 
-		Writer writer = new StringWriter();
-		velocityEngine.evaluate(context, writer, feilongStringVelocity, vmContent);
+        Writer writer = new StringWriter();
+        velocityEngine.evaluate(context, writer, feilongStringVelocity, vmContent);
 
-		return writer.toString();
-	}
+        return writer.toString();
+    }
 }

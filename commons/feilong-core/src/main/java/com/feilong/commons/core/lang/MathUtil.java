@@ -24,34 +24,34 @@ package com.feilong.commons.core.lang;
  */
 public final class MathUtil{
 
-	/** Don't let anyone instantiate this class. */
-	private MathUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private MathUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 弧度转成度 .
-	 * 
-	 * @param radians
-	 *            the radians
-	 * @return the double
-	 */
-	public static double radian2Degree(double radians){
-		double degree = radians * 180 / Math.PI;
-		return degree;
-	}
+    /**
+     * 弧度转成度 .
+     * 
+     * @param radians
+     *            the radians
+     * @return the double
+     */
+    public static double radian2Degree(double radians){
+        double degree = radians * 180 / Math.PI;
+        return degree;
+    }
 
-	/**
-	 * 度转成弧度.
-	 * 
-	 * @param degree
-	 *            the degree
-	 * @return the double
-	 */
-	public static double degree2Radian(double degree){
-		double radians = degree * Math.PI / 180;
-		return radians;
-	}
+    /**
+     * 度转成弧度.
+     * 
+     * @param degree
+     *            the degree
+     * @return the double
+     */
+    public static double degree2Radian(double degree){
+        double radians = degree * Math.PI / 180;
+        return radians;
+    }
 }

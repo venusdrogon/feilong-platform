@@ -24,9 +24,9 @@ package com.feilong.framework.netpay.payment.adaptor.doku.command;
  */
 public interface Resultmsg{
 
-	/** SUCCESS. */
-	String	SUCCESS	= "SUCCESS";
+    /** SUCCESS. */
+    String SUCCESS = "SUCCESS";
 
-	/** FAILED. */
-	String	FAILED	= "FAILED";
+    /** FAILED. */
+    String FAILED  = "FAILED";
 }

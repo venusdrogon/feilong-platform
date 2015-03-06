@@ -34,33 +34,33 @@ import com.feilong.web.entity.browser.Browser;
 @Deprecated
 public class BrowserInterceptor extends HandlerInterceptorAdapter{
 
-	/** 默认的 变量名称 <code>{@value}</code>. */
-	public static final String	DEFAULT_BROWSER_REQUEST_NAME	= "feilongBrowser";
+    /** 默认的 变量名称 <code>{@value}</code>. */
+    public static final String DEFAULT_BROWSER_REQUEST_NAME = "feilongBrowser";
 
-	/** 请求参数,可以通过spring注入的方式 修改. */
-	private String				attributeName					= DEFAULT_BROWSER_REQUEST_NAME;
+    /** 请求参数,可以通过spring注入的方式 修改. */
+    private String             attributeName                = DEFAULT_BROWSER_REQUEST_NAME;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
-	 * javax.servlet.http.HttpServletResponse, java.lang.Object)
-	 */
-	@Override
-	public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
-		Browser browser = new Browser(request);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
+     * javax.servlet.http.HttpServletResponse, java.lang.Object)
+     */
+    @Override
+    public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
+        Browser browser = new Browser(request);
 
-		request.setAttribute(attributeName, browser);
-		return true;
-	}
+        request.setAttribute(attributeName, browser);
+        return true;
+    }
 
-	/**
-	 * Sets the 请求参数.
-	 * 
-	 * @param attributeName
-	 *            the attributeName to set
-	 */
-	public void setAttributeName(String attributeName){
-		this.attributeName = attributeName;
-	}
+    /**
+     * Sets the 请求参数.
+     * 
+     * @param attributeName
+     *            the attributeName to set
+     */
+    public void setAttributeName(String attributeName){
+        this.attributeName = attributeName;
+    }
 }

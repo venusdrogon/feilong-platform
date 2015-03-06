@@ -34,136 +34,136 @@ import com.feilong.test.Person;
  */
 public class JsonUtilXMLTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(JsonUtilXMLTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(JsonUtilXMLTest.class);
 
-	/**
-	 * list转XML void.
-	 */
-	@Test
-	public void testGetXMLFromObj4(){
-		Person ps = new Person();
-		ps.setDateAttr(new Date());
-		ps.setName("get");
-		List list = new ArrayList();
-		list.add(ps);
+    /**
+     * list转XML void.
+     */
+    @Test
+    public void testGetXMLFromObj4(){
+        Person ps = new Person();
+        ps.setDateAttr(new Date());
+        ps.setName("get");
+        List list = new ArrayList();
+        list.add(ps);
 
-		log.info(JsonUtil.objectToXML(list));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e class="object"> <dateAttr type="string">2009-09-12 07:02:31</dateAttr> <name
-		 * type="string">get</name> </e> </a>
-		 */
-	}
+        log.info(JsonUtil.objectToXML(list));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e class="object"> <dateAttr type="string">2009-09-12 07:02:31</dateAttr> <name
+         * type="string">get</name> </e> </a>
+         */
+    }
 
-	/**
-	 * set转XML void.
-	 */
-	@Test
-	public void testGetXMLFromObj5(){
-		Person ps = new Person();
-		ps.setDateAttr(new Date());
-		ps.setName("get");
-		Set set = new LinkedHashSet();
-		set.add(ps);
+    /**
+     * set转XML void.
+     */
+    @Test
+    public void testGetXMLFromObj5(){
+        Person ps = new Person();
+        ps.setDateAttr(new Date());
+        ps.setName("get");
+        Set set = new LinkedHashSet();
+        set.add(ps);
 
-		log.info(JsonUtil.objectToXML(set));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e class="object"> <dateAttr type="string">2009-09-12 07:04:38</dateAttr> <name
-		 * type="string">get</name> </e> </a>
-		 */
-	}
+        log.info(JsonUtil.objectToXML(set));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e class="object"> <dateAttr type="string">2009-09-12 07:04:38</dateAttr> <name
+         * type="string">get</name> </e> </a>
+         */
+    }
 
-	/**
-	 * map转XML void.
-	 */
-	@Test
-	public void testGetXMLFromObj6(){
-		Person ps = new Person();
-		ps.setDateAttr(new Date());
-		ps.setName("get");
-		Map map = new HashMap();
-		map.put("person1", ps);
+    /**
+     * map转XML void.
+     */
+    @Test
+    public void testGetXMLFromObj6(){
+        Person ps = new Person();
+        ps.setDateAttr(new Date());
+        ps.setName("get");
+        Map map = new HashMap();
+        map.put("person1", ps);
 
-		log.info(JsonUtil.objectToXML(map));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <person1 class="object"> <dateAttr type="string">2009-09-12 07:08:35</dateAttr>
-		 * <name type="string">get</name> </person1> </o>
-		 */
-	}
+        log.info(JsonUtil.objectToXML(map));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <o> <person1 class="object"> <dateAttr type="string">2009-09-12 07:08:35</dateAttr>
+         * <name type="string">get</name> </person1> </o>
+         */
+    }
 
-	/**
-	 * 实体Bean转XML void.
-	 */
-	@Test
-	public void objectToXML7(){
-		Person ps = new Person();
-		ps.setDateAttr(new Date());
-		ps.setName("get");
-		log.info(JsonUtil.objectToXML(ps));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <dateAttr type="string">2009-09-12 07:13:02</dateAttr> <name
-		 * type="string">get</name> </o>
-		 */
-	}
+    /**
+     * 实体Bean转XML void.
+     */
+    @Test
+    public void objectToXML7(){
+        Person ps = new Person();
+        ps.setDateAttr(new Date());
+        ps.setName("get");
+        log.info(JsonUtil.objectToXML(ps));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <o> <dateAttr type="string">2009-09-12 07:13:02</dateAttr> <name
+         * type="string">get</name> </o>
+         */
+    }
 
-	/**
-	 * 从XML对象串转json串 void.
-	 */
-	@Test
-	public void xmlToJson1(){
-		String xml = "<o><dateAttr type='string'>2009-09-12 07:13:02</dateAttr><name type='string'>get</name></o>";
-		// print: {"dateAttr":"2009-09-12 07:13:02","name":"get"}
-		log.info(JsonUtil.xmlToJSON(xml).toString(4, 4));
-	}
+    /**
+     * 从XML对象串转json串 void.
+     */
+    @Test
+    public void xmlToJson1(){
+        String xml = "<o><dateAttr type='string'>2009-09-12 07:13:02</dateAttr><name type='string'>get</name></o>";
+        // print: {"dateAttr":"2009-09-12 07:13:02","name":"get"}
+        log.info(JsonUtil.xmlToJSON(xml).toString(4, 4));
+    }
 
-	/**
-	 * 从XML数组串转json串 void.
-	 */
-	@Test
-	public void xmlToJson2(){
-		String xml = "<a class='array'><e class='object'><dateAttr type='string'>2009-09-12 07:04:38</dateAttr><name type='string'>get</name></e></a>";
-		// print: [{"dateAttr":"2009-09-12 07:04:38","name":"get"}]
-		log.info(JsonUtil.xmlToJSON(xml).toString(4, 4));
-	}
+    /**
+     * 从XML数组串转json串 void.
+     */
+    @Test
+    public void xmlToJson2(){
+        String xml = "<a class='array'><e class='object'><dateAttr type='string'>2009-09-12 07:04:38</dateAttr><name type='string'>get</name></e></a>";
+        // print: [{"dateAttr":"2009-09-12 07:04:38","name":"get"}]
+        log.info(JsonUtil.xmlToJSON(xml).toString(4, 4));
+    }
 
-	/**
-	 * json对象串转XML void.
-	 */
-	@Test
-	public void testGetXMLFromObj1(){
-		log.info(JsonUtil.objectToXML("{\"name\":\"json\",\"bool\":true,\"int\":1}"));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <o> <bool type="boolean">true</bool> <int type="number">1</int> <name
-		 * type="string">json</name> </o>
-		 */
-	}
+    /**
+     * json对象串转XML void.
+     */
+    @Test
+    public void testGetXMLFromObj1(){
+        log.info(JsonUtil.objectToXML("{\"name\":\"json\",\"bool\":true,\"int\":1}"));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <o> <bool type="boolean">true</bool> <int type="number">1</int> <name
+         * type="string">json</name> </o>
+         */
+    }
 
-	/**
-	 * json数组串转XML void.
-	 */
-	@Test
-	public void testGetXMLFromObj2(){
-		log.info(JsonUtil.objectToXML("[1,2,3]"));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e type="number">1</e> <e type="number">2</e> <e type="number">3</e> </a>
-		 */
-	}
+    /**
+     * json数组串转XML void.
+     */
+    @Test
+    public void testGetXMLFromObj2(){
+        log.info(JsonUtil.objectToXML("[1,2,3]"));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e type="number">1</e> <e type="number">2</e> <e type="number">3</e> </a>
+         */
+    }
 
-	/**
-	 * java数组转XML void.
-	 */
-	@Test
-	public void testGetXMLFromObj3(){
-		Person ps = new Person();
-		ps.setDateAttr(new Date());
-		ps.setName("get");
-		Person[] personArr = new Person[2];
-		personArr[0] = ps;
+    /**
+     * java数组转XML void.
+     */
+    @Test
+    public void testGetXMLFromObj3(){
+        Person ps = new Person();
+        ps.setDateAttr(new Date());
+        ps.setName("get");
+        Person[] personArr = new Person[2];
+        personArr[0] = ps;
 
-		log.info(JsonUtil.objectToXML(personArr));
-		/*
-		 * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e class="object"> <dateAttr type="string">2009-09-12 06:58:55</dateAttr> <name
-		 * type="string">get</name> </e> </a>
-		 */
-	}
+        log.info(JsonUtil.objectToXML(personArr));
+        /*
+         * print: <?xml version="1.0" encoding="UTF-8"?> <a> <e class="object"> <dateAttr type="string">2009-09-12 06:58:55</dateAttr> <name
+         * type="string">get</name> </e> </a>
+         */
+    }
 }

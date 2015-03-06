@@ -34,24 +34,24 @@ import com.feilong.tools.scm.command.PatchType;
  */
 public class PatchTypeEnumMapTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PatchTypeEnumMapTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PatchTypeEnumMapTest.class);
 
-	/**
-	 * Test patch type enum map test.
-	 */
-	@Test
-	public void testPatchTypeEnumMapTest(){
+    /**
+     * Test patch type enum map test.
+     */
+    @Test
+    public void testPatchTypeEnumMapTest(){
 
-		Map<PatchType, String> map = new EnumMap<PatchType, String>(PatchType.class);
+        Map<PatchType, String> map = new EnumMap<PatchType, String>(PatchType.class);
 
-		map.put(PatchType.ADD, "1");
-		map.put(PatchType.UNKNOWN, "3");
-		map.put(PatchType.DELETE, "2");
-		map.put(PatchType.UPDATE, "4");
+        map.put(PatchType.ADD, "1");
+        map.put(PatchType.UNKNOWN, "3");
+        map.put(PatchType.DELETE, "2");
+        map.put(PatchType.UPDATE, "4");
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(map));
-		}
-	}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(map));
+        }
+    }
 }

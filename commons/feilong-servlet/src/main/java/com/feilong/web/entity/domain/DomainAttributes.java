@@ -23,25 +23,25 @@ package com.feilong.web.entity.domain;
  */
 public final class DomainAttributes{
 
-	/** 样式表 域名的变量. */
-	public static final String	ATTRIBUTE_DOMAIN_CSS		= "domain_css";
+    /** 样式表 域名的变量. */
+    public static final String ATTRIBUTE_DOMAIN_CSS      = "domain_css";
 
-	/** js 域名的变量. */
-	public static final String	ATTRIBUTE_DOMAIN_JS			= "domain_js";
+    /** js 域名的变量. */
+    public static final String ATTRIBUTE_DOMAIN_JS       = "domain_js";
 
-	/** image 域名的变量. */
-	public static final String	ATTRIBUTE_DOMAIN_IMAGE		= "domain_image";
+    /** image 域名的变量. */
+    public static final String ATTRIBUTE_DOMAIN_IMAGE    = "domain_image";
 
-	/** 商品图片 resource 域名的变量. */
-	public static final String	ATTRIBUTE_DOMAIN_RESOURCE	= "domain_resource";
+    /** 商品图片 resource 域名的变量. */
+    public static final String ATTRIBUTE_DOMAIN_RESOURCE = "domain_resource";
 
-	/** store 域名的变量,商城的网址，一般用于不同环境 第三方数据传递 比如微博等. */
-	public static final String	ATTRIBUTE_DOMAIN_STORE		= "domain_store";
+    /** store 域名的变量,商城的网址，一般用于不同环境 第三方数据传递 比如微博等. */
+    public static final String ATTRIBUTE_DOMAIN_STORE    = "domain_store";
 
-	/** Don't let anyone instantiate this class. */
-	private DomainAttributes(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private DomainAttributes(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 }

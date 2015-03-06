@@ -31,24 +31,24 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
  */
 public class TcashAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
 
-	/** The payment adaptor. */
-	@Autowired
-	@Qualifier("tcashAdvanceAdaptor")
-	private PaymentAdvanceAdaptor	paymentAdvanceAdaptor;
+    /** The payment adaptor. */
+    @Autowired
+    @Qualifier("tcashAdvanceAdaptor")
+    private PaymentAdvanceAdaptor paymentAdvanceAdaptor;
 
-	/**
-	 * Gets the query result.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void getQueryResult() throws Exception{
-		String refNum = "290914112053368";
+    /**
+     * Gets the query result.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void getQueryResult() throws Exception{
+        String refNum = "290914112053368";
 
-		QueryRequest queryRequest = new QueryRequest();
-		queryRequest.setGatewayTradeNo(refNum);
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setGatewayTradeNo(refNum);
 
-		getQueryResult(paymentAdvanceAdaptor, queryRequest);
-	}
+        getQueryResult(paymentAdvanceAdaptor, queryRequest);
+    }
 }

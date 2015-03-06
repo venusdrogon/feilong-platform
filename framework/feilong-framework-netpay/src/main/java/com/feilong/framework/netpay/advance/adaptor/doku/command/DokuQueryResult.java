@@ -53,352 +53,352 @@ import com.feilong.framework.netpay.advance.command.QueryResultCommand;
  */
 public final class DokuQueryResult implements Serializable,QueryResultCommand{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/** The amount. */
-	@VarName(name = "AMOUNT",sampleValue = "7790000.00")
-	private String				amount;
+    /** The amount. */
+    @VarName(name = "AMOUNT",sampleValue = "7790000.00")
+    private String            amount;
 
-	/** The transid merchant. */
-	@VarName(name = "TRANSIDMERCHANT",sampleValue = "010003660001")
-	private String				transidMerchant;
+    /** The transid merchant. */
+    @VarName(name = "TRANSIDMERCHANT",sampleValue = "010003660001")
+    private String            transidMerchant;
 
-	/** The words. */
-	@VarName(name = "WORDS",sampleValue = "e9e6ed65c872f1646644001f1b67fc8bc5de8df6")
-	private String				words;
+    /** The words. */
+    @VarName(name = "WORDS",sampleValue = "e9e6ed65c872f1646644001f1b67fc8bc5de8df6")
+    private String            words;
 
-	/** The response code. */
-	@VarName(name = "RESPONSECODE",sampleValue = "0000")
-	private String				responseCode;
+    /** The response code. */
+    @VarName(name = "RESPONSECODE",sampleValue = "0000")
+    private String            responseCode;
 
-	/** The approval code. */
-	@VarName(name = "APPROVALCODE",sampleValue = "RB1234567890")
-	private String				approvalCode;
+    /** The approval code. */
+    @VarName(name = "APPROVALCODE",sampleValue = "RB1234567890")
+    private String            approvalCode;
 
-	/** The resultmsg. */
-	@VarName(name = "RESULTMSG",sampleValue = "SUCCESS")
-	private String				resultmsg;
+    /** The resultmsg. */
+    @VarName(name = "RESULTMSG",sampleValue = "SUCCESS")
+    private String            resultmsg;
 
-	/** The payment channel. */
-	@VarName(name = "PAYMENTCHANNEL",sampleValue = "06")
-	private String				paymentChannel;
+    /** The payment channel. */
+    @VarName(name = "PAYMENTCHANNEL",sampleValue = "06")
+    private String            paymentChannel;
 
-	/** The payment code. */
-	@VarName(name = "PAYMENTCODE")
-	private String				paymentCode;
+    /** The payment code. */
+    @VarName(name = "PAYMENTCODE")
+    private String            paymentCode;
 
-	/** The session id. */
-	@VarName(name = "SESSIONID",sampleValue = "20140508105926")
-	private String				sessionId;
+    /** The session id. */
+    @VarName(name = "SESSIONID",sampleValue = "20140508105926")
+    private String            sessionId;
 
-	/** The bank. */
-	@VarName(name = "BANK",sampleValue = "BRI")
-	private String				bank;
+    /** The bank. */
+    @VarName(name = "BANK",sampleValue = "BRI")
+    private String            bank;
 
-	/** The mcn. */
-	@VarName(name = "MCN")
-	private String				mcn;
+    /** The mcn. */
+    @VarName(name = "MCN")
+    private String            mcn;
 
-	/** 20140508095526 The payment date time. */
-	@VarName(name = "PAYMENTDATETIME",sampleValue = "20140508095526")
-	private String				paymentDateTime;
+    /** 20140508095526 The payment date time. */
+    @VarName(name = "PAYMENTDATETIME",sampleValue = "20140508095526")
+    private String            paymentDateTime;
 
-	/** The verify id. */
-	@VarName(name = "VERIFYID")
-	private String				verifyId;
+    /** The verify id. */
+    @VarName(name = "VERIFYID")
+    private String            verifyId;
 
-	/** The verify score. */
-	@VarName(name = "VERIFYSCORE",sampleValue = "-1")
-	private String				verifyScore;
+    /** The verify score. */
+    @VarName(name = "VERIFYSCORE",sampleValue = "-1")
+    private String            verifyScore;
 
-	/** The verify status. */
-	@VarName(name = "VERIFYSTATUS",sampleValue = "NA")
-	private String				verifyStatus;
+    /** The verify status. */
+    @VarName(name = "VERIFYSTATUS",sampleValue = "NA")
+    private String            verifyStatus;
 
-	/**
-	 * 获得 the amount.
-	 * 
-	 * @return the amount
-	 */
-	public String getAmount(){
-		return amount;
-	}
+    /**
+     * 获得 the amount.
+     * 
+     * @return the amount
+     */
+    public String getAmount(){
+        return amount;
+    }
 
-	/**
-	 * 设置 the amount.
-	 * 
-	 * @param amount
-	 *            the amount to set
-	 */
-	public void setAmount(String amount){
-		this.amount = amount;
-	}
+    /**
+     * 设置 the amount.
+     * 
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(String amount){
+        this.amount = amount;
+    }
 
-	/**
-	 * 获得 the transid merchant.
-	 * 
-	 * @return the transidMerchant
-	 */
-	public String getTransidMerchant(){
-		return transidMerchant;
-	}
+    /**
+     * 获得 the transid merchant.
+     * 
+     * @return the transidMerchant
+     */
+    public String getTransidMerchant(){
+        return transidMerchant;
+    }
 
-	/**
-	 * 设置 the transid merchant.
-	 * 
-	 * @param transidMerchant
-	 *            the transidMerchant to set
-	 */
-	public void setTransidMerchant(String transidMerchant){
-		this.transidMerchant = transidMerchant;
-	}
+    /**
+     * 设置 the transid merchant.
+     * 
+     * @param transidMerchant
+     *            the transidMerchant to set
+     */
+    public void setTransidMerchant(String transidMerchant){
+        this.transidMerchant = transidMerchant;
+    }
 
-	/**
-	 * 获得 the words.
-	 * 
-	 * @return the words
-	 */
-	public String getWords(){
-		return words;
-	}
+    /**
+     * 获得 the words.
+     * 
+     * @return the words
+     */
+    public String getWords(){
+        return words;
+    }
 
-	/**
-	 * 设置 the words.
-	 * 
-	 * @param words
-	 *            the words to set
-	 */
-	public void setWords(String words){
-		this.words = words;
-	}
+    /**
+     * 设置 the words.
+     * 
+     * @param words
+     *            the words to set
+     */
+    public void setWords(String words){
+        this.words = words;
+    }
 
-	/**
-	 * 获得 the response code.
-	 * 
-	 * @return the responseCode
-	 */
-	public String getResponseCode(){
-		return responseCode;
-	}
+    /**
+     * 获得 the response code.
+     * 
+     * @return the responseCode
+     */
+    public String getResponseCode(){
+        return responseCode;
+    }
 
-	/**
-	 * 设置 the response code.
-	 * 
-	 * @param responseCode
-	 *            the responseCode to set
-	 */
-	public void setResponseCode(String responseCode){
-		this.responseCode = responseCode;
-	}
+    /**
+     * 设置 the response code.
+     * 
+     * @param responseCode
+     *            the responseCode to set
+     */
+    public void setResponseCode(String responseCode){
+        this.responseCode = responseCode;
+    }
 
-	/**
-	 * 获得 the approval code.
-	 * 
-	 * @return the approvalCode
-	 */
-	public String getApprovalCode(){
-		return approvalCode;
-	}
+    /**
+     * 获得 the approval code.
+     * 
+     * @return the approvalCode
+     */
+    public String getApprovalCode(){
+        return approvalCode;
+    }
 
-	/**
-	 * 设置 the approval code.
-	 * 
-	 * @param approvalCode
-	 *            the approvalCode to set
-	 */
-	public void setApprovalCode(String approvalCode){
-		this.approvalCode = approvalCode;
-	}
+    /**
+     * 设置 the approval code.
+     * 
+     * @param approvalCode
+     *            the approvalCode to set
+     */
+    public void setApprovalCode(String approvalCode){
+        this.approvalCode = approvalCode;
+    }
 
-	/**
-	 * 获得 the resultmsg.
-	 * 
-	 * @return the resultmsg
-	 */
-	public String getResultmsg(){
-		return resultmsg;
-	}
+    /**
+     * 获得 the resultmsg.
+     * 
+     * @return the resultmsg
+     */
+    public String getResultmsg(){
+        return resultmsg;
+    }
 
-	/**
-	 * 设置 the resultmsg.
-	 * 
-	 * @param resultmsg
-	 *            the resultmsg to set
-	 */
-	public void setResultmsg(String resultmsg){
-		this.resultmsg = resultmsg;
-	}
+    /**
+     * 设置 the resultmsg.
+     * 
+     * @param resultmsg
+     *            the resultmsg to set
+     */
+    public void setResultmsg(String resultmsg){
+        this.resultmsg = resultmsg;
+    }
 
-	/**
-	 * 获得 the payment channel.
-	 * 
-	 * @return the paymentChannel
-	 */
-	public String getPaymentChannel(){
-		return paymentChannel;
-	}
+    /**
+     * 获得 the payment channel.
+     * 
+     * @return the paymentChannel
+     */
+    public String getPaymentChannel(){
+        return paymentChannel;
+    }
 
-	/**
-	 * 设置 the payment channel.
-	 * 
-	 * @param paymentChannel
-	 *            the paymentChannel to set
-	 */
-	public void setPaymentChannel(String paymentChannel){
-		this.paymentChannel = paymentChannel;
-	}
+    /**
+     * 设置 the payment channel.
+     * 
+     * @param paymentChannel
+     *            the paymentChannel to set
+     */
+    public void setPaymentChannel(String paymentChannel){
+        this.paymentChannel = paymentChannel;
+    }
 
-	/**
-	 * 获得 the payment code.
-	 * 
-	 * @return the paymentCode
-	 */
-	public String getPaymentCode(){
-		return paymentCode;
-	}
+    /**
+     * 获得 the payment code.
+     * 
+     * @return the paymentCode
+     */
+    public String getPaymentCode(){
+        return paymentCode;
+    }
 
-	/**
-	 * 设置 the payment code.
-	 * 
-	 * @param paymentCode
-	 *            the paymentCode to set
-	 */
-	public void setPaymentCode(String paymentCode){
-		this.paymentCode = paymentCode;
-	}
+    /**
+     * 设置 the payment code.
+     * 
+     * @param paymentCode
+     *            the paymentCode to set
+     */
+    public void setPaymentCode(String paymentCode){
+        this.paymentCode = paymentCode;
+    }
 
-	/**
-	 * 获得 the session id.
-	 * 
-	 * @return the sessionId
-	 */
-	public String getSessionId(){
-		return sessionId;
-	}
+    /**
+     * 获得 the session id.
+     * 
+     * @return the sessionId
+     */
+    public String getSessionId(){
+        return sessionId;
+    }
 
-	/**
-	 * 设置 the session id.
-	 * 
-	 * @param sessionId
-	 *            the sessionId to set
-	 */
-	public void setSessionId(String sessionId){
-		this.sessionId = sessionId;
-	}
+    /**
+     * 设置 the session id.
+     * 
+     * @param sessionId
+     *            the sessionId to set
+     */
+    public void setSessionId(String sessionId){
+        this.sessionId = sessionId;
+    }
 
-	/**
-	 * 获得 the bank.
-	 * 
-	 * @return the bank
-	 */
-	public String getBank(){
-		return bank;
-	}
+    /**
+     * 获得 the bank.
+     * 
+     * @return the bank
+     */
+    public String getBank(){
+        return bank;
+    }
 
-	/**
-	 * 设置 the bank.
-	 * 
-	 * @param bank
-	 *            the bank to set
-	 */
-	public void setBank(String bank){
-		this.bank = bank;
-	}
+    /**
+     * 设置 the bank.
+     * 
+     * @param bank
+     *            the bank to set
+     */
+    public void setBank(String bank){
+        this.bank = bank;
+    }
 
-	/**
-	 * 获得 the mcn.
-	 * 
-	 * @return the mcn
-	 */
-	public String getMcn(){
-		return mcn;
-	}
+    /**
+     * 获得 the mcn.
+     * 
+     * @return the mcn
+     */
+    public String getMcn(){
+        return mcn;
+    }
 
-	/**
-	 * 设置 the mcn.
-	 * 
-	 * @param mcn
-	 *            the mcn to set
-	 */
-	public void setMcn(String mcn){
-		this.mcn = mcn;
-	}
+    /**
+     * 设置 the mcn.
+     * 
+     * @param mcn
+     *            the mcn to set
+     */
+    public void setMcn(String mcn){
+        this.mcn = mcn;
+    }
 
-	/**
-	 * 获得 the payment date time.
-	 * 
-	 * @return the paymentDateTime
-	 */
-	public String getPaymentDateTime(){
-		return paymentDateTime;
-	}
+    /**
+     * 获得 the payment date time.
+     * 
+     * @return the paymentDateTime
+     */
+    public String getPaymentDateTime(){
+        return paymentDateTime;
+    }
 
-	/**
-	 * 设置 the payment date time.
-	 * 
-	 * @param paymentDateTime
-	 *            the paymentDateTime to set
-	 */
-	public void setPaymentDateTime(String paymentDateTime){
-		this.paymentDateTime = paymentDateTime;
-	}
+    /**
+     * 设置 the payment date time.
+     * 
+     * @param paymentDateTime
+     *            the paymentDateTime to set
+     */
+    public void setPaymentDateTime(String paymentDateTime){
+        this.paymentDateTime = paymentDateTime;
+    }
 
-	/**
-	 * 获得 the verify id.
-	 * 
-	 * @return the verifyId
-	 */
-	public String getVerifyId(){
-		return verifyId;
-	}
+    /**
+     * 获得 the verify id.
+     * 
+     * @return the verifyId
+     */
+    public String getVerifyId(){
+        return verifyId;
+    }
 
-	/**
-	 * 设置 the verify id.
-	 * 
-	 * @param verifyId
-	 *            the verifyId to set
-	 */
-	public void setVerifyId(String verifyId){
-		this.verifyId = verifyId;
-	}
+    /**
+     * 设置 the verify id.
+     * 
+     * @param verifyId
+     *            the verifyId to set
+     */
+    public void setVerifyId(String verifyId){
+        this.verifyId = verifyId;
+    }
 
-	/**
-	 * 获得 the verify score.
-	 * 
-	 * @return the verifyScore
-	 */
-	public String getVerifyScore(){
-		return verifyScore;
-	}
+    /**
+     * 获得 the verify score.
+     * 
+     * @return the verifyScore
+     */
+    public String getVerifyScore(){
+        return verifyScore;
+    }
 
-	/**
-	 * 设置 the verify score.
-	 * 
-	 * @param verifyScore
-	 *            the verifyScore to set
-	 */
-	public void setVerifyScore(String verifyScore){
-		this.verifyScore = verifyScore;
-	}
+    /**
+     * 设置 the verify score.
+     * 
+     * @param verifyScore
+     *            the verifyScore to set
+     */
+    public void setVerifyScore(String verifyScore){
+        this.verifyScore = verifyScore;
+    }
 
-	/**
-	 * 获得 the verify status.
-	 * 
-	 * @return the verifyStatus
-	 */
-	public String getVerifyStatus(){
-		return verifyStatus;
-	}
+    /**
+     * 获得 the verify status.
+     * 
+     * @return the verifyStatus
+     */
+    public String getVerifyStatus(){
+        return verifyStatus;
+    }
 
-	/**
-	 * 设置 the verify status.
-	 * 
-	 * @param verifyStatus
-	 *            the verifyStatus to set
-	 */
-	public void setVerifyStatus(String verifyStatus){
-		this.verifyStatus = verifyStatus;
-	}
+    /**
+     * 设置 the verify status.
+     * 
+     * @param verifyStatus
+     *            the verifyStatus to set
+     */
+    public void setVerifyStatus(String verifyStatus){
+        this.verifyStatus = verifyStatus;
+    }
 
 }

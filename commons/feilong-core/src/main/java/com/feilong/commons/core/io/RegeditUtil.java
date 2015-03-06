@@ -31,104 +31,104 @@ import org.slf4j.LoggerFactory;
  */
 public final class RegeditUtil{
 
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(RegeditUtil.class);
+    /** The Constant log. */
+    private static final Logger log               = LoggerFactory.getLogger(RegeditUtil.class);
 
-	/** 几大根键简写. */
-	public static final String	HKEY_CURRENT_USER	= "HKCU";
+    /** 几大根键简写. */
+    public static final String  HKEY_CURRENT_USER = "HKCU";
 
-	// hklm | hkcu | hkcr | hku | hkcc
-	/** The Constant REGQUERY_UTIL. */
-	public static final String	REGQUERY_UTIL		= "reg query ";
+    // hklm | hkcu | hkcr | hku | hkcc
+    /** The Constant REGQUERY_UTIL. */
+    public static final String  REGQUERY_UTIL     = "reg query ";
 
-	/** The Constant REGSTR_TOKEN. */
-	public static final String	REGSTR_TOKEN		= "REG_SZ";
+    /** The Constant REGSTR_TOKEN. */
+    public static final String  REGSTR_TOKEN      = "REG_SZ";
 
-	/** Don't let anyone instantiate this class. */
-	private RegeditUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private RegeditUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 查询注册表.
-	 * 
-	 * @param cmdCommand
-	 *            cmd 命令
-	 * @return 返回查询的结果
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static String query(String cmdCommand) throws IOException{
-		Process process = Command.exec(cmdCommand);
-		InputStream inputStream = process.getInputStream();
-		FeiLongStreamReaderThread feiLongStreamReaderThread = new FeiLongStreamReaderThread(inputStream);
-		// *********************************************************************
-		// 使该线程开始执行；Java 虚拟机调用该线程的 run 方法.
-		feiLongStreamReaderThread.start();
-		try{
-			// 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止.
-			process.waitFor();
-			// 等待该线程终止
-			feiLongStreamReaderThread.join();
-		}catch (InterruptedException e){
-			log.error(e.getMessage(), e);
-		}
-		String result = feiLongStreamReaderThread.getResult();
-		return result;
-	}
+    /**
+     * 查询注册表.
+     * 
+     * @param cmdCommand
+     *            cmd 命令
+     * @return 返回查询的结果
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static String query(String cmdCommand) throws IOException{
+        Process process = Command.exec(cmdCommand);
+        InputStream inputStream = process.getInputStream();
+        FeiLongStreamReaderThread feiLongStreamReaderThread = new FeiLongStreamReaderThread(inputStream);
+        // *********************************************************************
+        // 使该线程开始执行；Java 虚拟机调用该线程的 run 方法.
+        feiLongStreamReaderThread.start();
+        try{
+            // 导致当前线程等待，如有必要，一直要等到由该 Process 对象表示的进程已经终止.
+            process.waitFor();
+            // 等待该线程终止
+            feiLongStreamReaderThread.join();
+        }catch (InterruptedException e){
+            log.error(e.getMessage(), e);
+        }
+        String result = feiLongStreamReaderThread.getResult();
+        return result;
+    }
 
-	/**
-	 * StreamReaderThread.
-	 * 
-	 * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
-	 * @version 1.0 2014-5-4 14:41:10
-	 */
-	public static class FeiLongStreamReaderThread extends Thread{
+    /**
+     * StreamReaderThread.
+     * 
+     * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
+     * @version 1.0 2014-5-4 14:41:10
+     */
+    public static class FeiLongStreamReaderThread extends Thread{
 
-		/** The input stream. */
-		private InputStream		inputStream;
+        /** The input stream. */
+        private InputStream  inputStream;
 
-		/** The string writer. */
-		private StringWriter	stringWriter;
+        /** The string writer. */
+        private StringWriter stringWriter;
 
-		/**
-		 * Instantiates a new fei long stream reader thread.
-		 * 
-		 * @param is
-		 *            the is
-		 */
-		public FeiLongStreamReaderThread(InputStream is){
-			this.inputStream = is;
-			stringWriter = new StringWriter();
-		}
+        /**
+         * Instantiates a new fei long stream reader thread.
+         * 
+         * @param is
+         *            the is
+         */
+        public FeiLongStreamReaderThread(InputStream is){
+            this.inputStream = is;
+            stringWriter = new StringWriter();
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Thread#run()
-		 */
-		@Override
-		public void run(){
-			int i;
-			try{
-				while ((i = inputStream.read()) != -1){
-					stringWriter.write(i);
-				}
-			}catch (IOException e){
-				log.error(e.getMessage(), e);
-			}
-		}
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.lang.Thread#run()
+         */
+        @Override
+        public void run(){
+            int i;
+            try{
+                while ((i = inputStream.read()) != -1){
+                    stringWriter.write(i);
+                }
+            }catch (IOException e){
+                log.error(e.getMessage(), e);
+            }
+        }
 
-		// **************************************************************
-		/**
-		 * Gets the result.
-		 * 
-		 * @return the result
-		 */
-		public String getResult(){
-			return stringWriter.toString();
-		}
-	}
+        // **************************************************************
+        /**
+         * Gets the result.
+         * 
+         * @return the result
+         */
+        public String getResult(){
+            return stringWriter.toString();
+        }
+    }
 }

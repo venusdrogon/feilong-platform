@@ -31,28 +31,28 @@ import com.lowagie.text.pdf.BaseFont;
  */
 public class PDFChineseFont{
 
-	private static final Logger	log	= LoggerFactory.getLogger(PDFChineseFont.class);
+    private static final Logger log = LoggerFactory.getLogger(PDFChineseFont.class);
 
-	/** The chinese font. */
-	private static Font			chineseFont;
+    /** The chinese font. */
+    private static Font         chineseFont;
 
-	/**
-	 * Creates the chinese font.
-	 * 
-	 * @param size
-	 *            the size
-	 * @param style
-	 *            the style
-	 * @return the font
-	 */
-	public static final Font createChineseFont(int size,int style){
-		try{
-			chineseFont = new Font(BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED), size, style);
-		}catch (DocumentException e){
-			log.error(e.getClass().getName(), e);
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-		return chineseFont;
-	}
+    /**
+     * Creates the chinese font.
+     * 
+     * @param size
+     *            the size
+     * @param style
+     *            the style
+     * @return the font
+     */
+    public static final Font createChineseFont(int size,int style){
+        try{
+            chineseFont = new Font(BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED), size, style);
+        }catch (DocumentException e){
+            log.error(e.getClass().getName(), e);
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+        return chineseFont;
+    }
 }

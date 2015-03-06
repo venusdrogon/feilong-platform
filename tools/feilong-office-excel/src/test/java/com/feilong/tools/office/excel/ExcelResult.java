@@ -37,61 +37,61 @@ import com.feilong.servlet.jsp.ResultUtil;
  */
 public class ExcelResult{
 
-	private static final Logger	log	= LoggerFactory.getLogger(ExcelResult.class);
+    private static final Logger log = LoggerFactory.getLogger(ExcelResult.class);
 
-	/**
-	 * 将生成的excel数据保存到物理路径中
-	 * 
-	 * @param result
-	 *            数据集
-	 * @param fileName
-	 *            生成的路径
-	 * @param excelConfigEntity
-	 *            feiLongExcelEntity
-	 * @author 金鑫
-	 * @version 1.0 2009-5-19下午09:22:31
-	 * @version 1.1 2010-7-7 下午02:05:29
-	 */
-	public void convertResultToExcel(Result result,String fileName,ExcelConfigEntity excelConfigEntity){
-		try{
-			FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-			convertResultToExcel(result, excelConfigEntity, fileOutputStream);
-		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * 将生成的excel数据保存到物理路径中
+     * 
+     * @param result
+     *            数据集
+     * @param fileName
+     *            生成的路径
+     * @param excelConfigEntity
+     *            feiLongExcelEntity
+     * @author 金鑫
+     * @version 1.0 2009-5-19下午09:22:31
+     * @version 1.1 2010-7-7 下午02:05:29
+     */
+    public void convertResultToExcel(Result result,String fileName,ExcelConfigEntity excelConfigEntity){
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+            convertResultToExcel(result, excelConfigEntity, fileOutputStream);
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	/**
-	 * 将生成的excel数据保存到流当中
-	 * 
-	 * @param result
-	 *            数据集
-	 * @param excelConfigEntity
-	 *            feiLongExcelEntity
-	 * @param outputStream
-	 *            流
-	 * @author 金鑫
-	 * @version 1.0 2009-5-20上午11:32:29
-	 * @version 1.1 2010-7-7 下午02:02:49
-	 * @throws IOException
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws NoSuchMethodException
-	 * @throws ClassNotFoundException
-	 * @throws IllegalArgumentException
-	 * @throws SecurityException
-	 */
-	public void convertResultToExcel(Result result,ExcelConfigEntity excelConfigEntity,OutputStream outputStream) throws IOException,
-					SecurityException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
-					IllegalAccessException,InvocationTargetException{
-		/**
-		 * 标题数组
-		 */
-		String[] columnsTitle = result.getColumnNames();
-		List<?> list = ResultUtil.convertResultToList(result, ExcelConfigEntity.class);
+    /**
+     * 将生成的excel数据保存到流当中
+     * 
+     * @param result
+     *            数据集
+     * @param excelConfigEntity
+     *            feiLongExcelEntity
+     * @param outputStream
+     *            流
+     * @author 金鑫
+     * @version 1.0 2009-5-20上午11:32:29
+     * @version 1.1 2010-7-7 下午02:02:49
+     * @throws IOException
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws NoSuchMethodException
+     * @throws ClassNotFoundException
+     * @throws IllegalArgumentException
+     * @throws SecurityException
+     */
+    public void convertResultToExcel(Result result,ExcelConfigEntity excelConfigEntity,OutputStream outputStream) throws IOException,
+                    SecurityException,IllegalArgumentException,ClassNotFoundException,NoSuchMethodException,InstantiationException,
+                    IllegalAccessException,InvocationTargetException{
+        /**
+         * 标题数组
+         */
+        String[] columnsTitle = result.getColumnNames();
+        List<?> list = ResultUtil.convertResultToList(result, ExcelConfigEntity.class);
 
-		ExcelCreateUtil excel = new ExcelCreateUtil();
-		excel.createExcel(columnsTitle, list, excelConfigEntity, outputStream);
-	}
+        ExcelCreateUtil excel = new ExcelCreateUtil();
+        excel.createExcel(columnsTitle, list, excelConfigEntity, outputStream);
+    }
 }

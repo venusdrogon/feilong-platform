@@ -24,54 +24,54 @@ package com.feilong.tools.office.excel;
  */
 public enum CellType{
 
-	/** The numeric. */
-	NUMERIC(0),
+    /** The numeric. */
+    NUMERIC(0),
 
-	/** The string. */
-	STRING(1),
+    /** The string. */
+    STRING(1),
 
-	/** The formula. */
-	FORMULA(2),
+    /** The formula. */
+    FORMULA(2),
 
-	/** The blank. */
-	BLANK(3),
+    /** The blank. */
+    BLANK(3),
 
-	/** The boolean. */
-	BOOLEAN(4),
+    /** The boolean. */
+    BOOLEAN(4),
 
-	/** The error. */
-	ERROR(5);
+    /** The error. */
+    ERROR(5);
 
-	/** The value. */
-	private Integer	value;
+    /** The value. */
+    private Integer value;
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param value
-	 *            the value
-	 */
-	private CellType(Integer value){
-		this.value = value;
-	}
+    /**
+     * The Constructor.
+     *
+     * @param value
+     *            the value
+     */
+    private CellType(Integer value){
+        this.value = value;
+    }
 
-	/**
-	 * 获得 value.
-	 *
-	 * @return the value
-	 */
-	public Integer getValue(){
-		return value;
-	}
+    /**
+     * 获得 value.
+     *
+     * @return the value
+     */
+    public Integer getValue(){
+        return value;
+    }
 
-	/**
-	 * 设置 value.
-	 *
-	 * @param value
-	 *            the value to set
-	 */
-	public void setValue(Integer value){
-		this.value = value;
-	}
+    /**
+     * 设置 value.
+     *
+     * @param value
+     *            the value to set
+     */
+    public void setValue(Integer value){
+        this.value = value;
+    }
 
 }

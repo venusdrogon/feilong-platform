@@ -32,137 +32,137 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class SFTPUtilTest extends FileTransferTest{
 
-	private static final Logger	log				= LoggerFactory.getLogger(SFTPUtilTest.class);
+    private static final Logger log             = LoggerFactory.getLogger(SFTPUtilTest.class);
 
-	@Autowired
-	@Qualifier("nikeSFTPUtil")
-	private FileTransfer		fileTransfer;
+    @Autowired
+    @Qualifier("nikeSFTPUtil")
+    private FileTransfer        fileTransfer;
 
-	//	private String				remoteDirectory	= "/home/appuser/test";
-	private String				remoteDirectory	= "/home/bzuser/test";
+    //	private String				remoteDirectory	= "/home/appuser/test";
+    private String              remoteDirectory = "/home/bzuser/test";
 
-	@Override
-	@Test
-	public void sendLocalFileToRemote() throws Exception{
-		String singleLocalFileFullPath = "E:\\1.txt";
-		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
+    @Override
+    @Test
+    public void sendLocalFileToRemote() throws Exception{
+        String singleLocalFileFullPath = "E:\\1.txt";
+        fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
 
-		singleLocalFileFullPath = "E:/hahaha.txt";
-		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
-	}
+        singleLocalFileFullPath = "E:/hahaha.txt";
+        fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
+    }
 
-	@Override
-	@Test
-	public void sendLocalFileToRemote_dir() throws Exception{
-		String singleLocalFileFullPath = "C:\\Users\\feilong\\Downloads\\1.pdf";
-		fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
-	}
+    @Override
+    @Test
+    public void sendLocalFileToRemote_dir() throws Exception{
+        String singleLocalFileFullPath = "C:\\Users\\feilong\\Downloads\\1.pdf";
+        fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
+    }
 
-	@Override
-	@Test
-	public void sendLocalFileToRemote_dirs() throws Exception{
-		String[] batchLocalFileFullPaths = { "E:\\test", "E:\\1.txt", "E:\\test1" };
-		fileTransfer.sendLocalFileToRemote(batchLocalFileFullPaths, remoteDirectory);
-	}
+    @Override
+    @Test
+    public void sendLocalFileToRemote_dirs() throws Exception{
+        String[] batchLocalFileFullPaths = { "E:\\test", "E:\\1.txt", "E:\\test1" };
+        fileTransfer.sendLocalFileToRemote(batchLocalFileFullPaths, remoteDirectory);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransferTest#delete()
-	 */
-	@Override
-	@Test
-	public void delete() throws Exception{
-		String remoteAbsolutePath = "/home/appuser/test/pg_ctl.conf";
-		fileTransfer.delete(remoteAbsolutePath);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransferTest#delete()
+     */
+    @Override
+    @Test
+    public void delete() throws Exception{
+        String remoteAbsolutePath = "/home/appuser/test/pg_ctl.conf";
+        fileTransfer.delete(remoteAbsolutePath);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransferTest#delete_dir()
-	 */
-	@Override
-	@Test
-	public void delete_dir() throws Exception{
-		String remoteAbsolutePath = "/home/niketest/out/test/2011-07-07";
-		fileTransfer.delete(remoteAbsolutePath);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransferTest#delete_dir()
+     */
+    @Override
+    @Test
+    public void delete_dir() throws Exception{
+        String remoteAbsolutePath = "/home/niketest/out/test/2011-07-07";
+        fileTransfer.delete(remoteAbsolutePath);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransferTest#delete_dir_empty()
-	 */
-	@Override
-	@Test
-	public void delete_dir_empty() throws Exception{
-		String remoteAbsolutePath = "/home/appuser/test/2013-01-06";
-		fileTransfer.delete(remoteAbsolutePath);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransferTest#delete_dir_empty()
+     */
+    @Override
+    @Test
+    public void delete_dir_empty() throws Exception{
+        String remoteAbsolutePath = "/home/appuser/test/2013-01-06";
+        fileTransfer.delete(remoteAbsolutePath);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransferTest#delete_not_exist()
-	 */
-	@Override
-	@Test
-	public void delete_not_exist() throws Exception{
-		String remoteAbsolutePath = "/home/appuser/test/2011-07-051/";
-		fileTransfer.delete(remoteAbsolutePath);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransferTest#delete_not_exist()
+     */
+    @Override
+    @Test
+    public void delete_not_exist() throws Exception{
+        String remoteAbsolutePath = "/home/appuser/test/2011-07-051/";
+        fileTransfer.delete(remoteAbsolutePath);
+    }
 
-	/**
-	 * Delete_not_exist1.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void delete_not_exist1() throws Exception{
-		String remoteAbsolutePath = "/";
-		fileTransfer.delete(remoteAbsolutePath);
-	}
+    /**
+     * Delete_not_exist1.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public void delete_not_exist1() throws Exception{
+        String remoteAbsolutePath = "/";
+        fileTransfer.delete(remoteAbsolutePath);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransferTest#sendLocalFileToRemote_dir_chinese()
-	 */
-	@Override
-	public void sendLocalFileToRemote_dir_chinese() throws Exception{
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransferTest#sendLocalFileToRemote_dir_chinese()
+     */
+    @Override
+    public void sendLocalFileToRemote_dir_chinese() throws Exception{
+    }
 
-	@Override
-	@Test
-	public void download_file() throws Exception{
-		String remotePath = "/home/niketest/out/test/2011-07-07/nikeid_pix_cancel.csv";
-		String localAbsoluteDirectoryPath = "E:\\test\\1";
-		fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
-	}
+    @Override
+    @Test
+    public void download_file() throws Exception{
+        String remotePath = "/home/niketest/out/test/2011-07-07/nikeid_pix_cancel.csv";
+        String localAbsoluteDirectoryPath = "E:\\test\\1";
+        fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransferTest#download_dir()
-	 */
-	@Override
-	@Test
-	public void download_dir() throws Exception{
-		String remotePath = "/home/niketest/out/test";
-		String localAbsoluteDirectoryPath = "E:\\test\\1";
-		fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransferTest#download_dir()
+     */
+    @Override
+    @Test
+    public void download_dir() throws Exception{
+        String remotePath = "/home/niketest/out/test";
+        String localAbsoluteDirectoryPath = "E:\\test\\1";
+        fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
+    }
 
-	@Override
-	@Test
-	public void testGetFileEntityMap() throws Exception{
-		String remoteAbsolutePath = "/home/appuser/test/2013-12-04-1938";
-		String[] fileNames = { "SportActivity.dat", "SubCategory.dat", "aaa" };
-		Map<String, FileInfoEntity> fileEntityMap = fileTransfer.getFileEntityMap(remoteAbsolutePath, fileNames);
+    @Override
+    @Test
+    public void testGetFileEntityMap() throws Exception{
+        String remoteAbsolutePath = "/home/appuser/test/2013-12-04-1938";
+        String[] fileNames = { "SportActivity.dat", "SubCategory.dat", "aaa" };
+        Map<String, FileInfoEntity> fileEntityMap = fileTransfer.getFileEntityMap(remoteAbsolutePath, fileNames);
 
-		log.info(JsonUtil.format(fileEntityMap));
-	}
+        log.info(JsonUtil.format(fileEntityMap));
+    }
 
 }

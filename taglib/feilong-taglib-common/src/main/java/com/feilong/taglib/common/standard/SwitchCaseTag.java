@@ -26,41 +26,41 @@ import com.feilong.taglib.base.BaseTag;
  */
 public class SwitchCaseTag extends BaseTag{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 1L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
-	/** 值. */
-	private String				value;
+    /** 值. */
+    private String            value;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.jsp.tagext.BodyTagSupport#doStartTag()
-	 */
-	@Override
-	public int doStartTag(){
-		Tag tag = getParent();
-		SwitchTag switchTag = (SwitchTag) tag;
-		// 判断是否可以执行本身。
-		if (!switchTag.isExecuteTag()){
-			// 如果当前的value=switch的value，
-			// 通知父类。表示已经有了一个符合条件的。 否则，忽略标签体。
-			String parentValue = switchTag.getValue();
-			if (this.value.equals(parentValue)){
-				switchTag.setExecuteTag();
-				return EVAL_BODY_INCLUDE;
-			}
-		}
-		return SKIP_BODY;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.jsp.tagext.BodyTagSupport#doStartTag()
+     */
+    @Override
+    public int doStartTag(){
+        Tag tag = getParent();
+        SwitchTag switchTag = (SwitchTag) tag;
+        // 判断是否可以执行本身。
+        if (!switchTag.isExecuteTag()){
+            // 如果当前的value=switch的value，
+            // 通知父类。表示已经有了一个符合条件的。 否则，忽略标签体。
+            String parentValue = switchTag.getValue();
+            if (this.value.equals(parentValue)){
+                switchTag.setExecuteTag();
+                return EVAL_BODY_INCLUDE;
+            }
+        }
+        return SKIP_BODY;
+    }
 
-	/**
-	 * Sets the 值.
-	 * 
-	 * @param value
-	 *            the value to set
-	 */
-	public void setValue(String value){
-		this.value = value;
-	}
+    /**
+     * Sets the 值.
+     * 
+     * @param value
+     *            the value to set
+     */
+    public void setValue(String value){
+        this.value = value;
+    }
 }

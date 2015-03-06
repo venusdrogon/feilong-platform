@@ -33,89 +33,89 @@ import com.feilong.commons.core.net.URIUtil;
  */
 public class MultiUriTemplateUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MultiUriTemplateUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MultiUriTemplateUtilTest.class);
 
-	/**
-	 * Test expand with multi variable.
-	 */
-	@Test
-	public void testExpandWithMultiVariable(){
-		String requestPath = "/s/c-m-c-s-k-s100-o.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "style";
-		String value = "Lifestyle / Graphic";
-		String valueSeparator = ",";
-		log.info(MultiUriTemplateUtil.expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator));
-	}
+    /**
+     * Test expand with multi variable.
+     */
+    @Test
+    public void testExpandWithMultiVariable(){
+        String requestPath = "/s/c-m-c-s-k-s100-o.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "style";
+        String value = "Lifestyle / Graphic";
+        String valueSeparator = ",";
+        log.info(MultiUriTemplateUtil.expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator));
+    }
 
-	/**
-	 * Expand with multi variable map.
-	 */
-	@Test
-	public void expandWithMultiVariableMap(){
+    /**
+     * Expand with multi variable map.
+     */
+    @Test
+    public void expandWithMultiVariableMap(){
 
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("categoryCode", "2541");
-		map.put("style", "100");
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("categoryCode", "2541");
+        map.put("style", "100");
 
-		String variableName = "style";
+        String variableName = "style";
 
-		String value = URIUtil.encode("Lifestyle / Graphic", CharsetType.UTF8);
-		String valueSeparator = ",";
-		log.info(MultiUriTemplateUtil.expandWithMultiVariable(matchingPatternPath, map, variableName, value, valueSeparator));
-	}
+        String value = URIUtil.encode("Lifestyle / Graphic", CharsetType.UTF8);
+        String valueSeparator = ",";
+        log.info(MultiUriTemplateUtil.expandWithMultiVariable(matchingPatternPath, map, variableName, value, valueSeparator));
+    }
 
-	/**
-	 * Test expand with multi variable2.
-	 */
-	@Test
-	public void testExpandWithMultiVariable2(){
-		String requestPath = "/s/c-m-c-s-k-s100,200-o.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "style";
-		String value = "Lifestyle / Graphic";
-		String valueSeparator = "@";
-		log.info(MultiUriTemplateUtil.expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator));
-	}
+    /**
+     * Test expand with multi variable2.
+     */
+    @Test
+    public void testExpandWithMultiVariable2(){
+        String requestPath = "/s/c-m-c-s-k-s100,200-o.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "style";
+        String value = "Lifestyle / Graphic";
+        String valueSeparator = "@";
+        log.info(MultiUriTemplateUtil.expandWithMultiVariable(requestPath, matchingPatternPath, variableName, value, valueSeparator));
+    }
 
-	/**
-	 * Removes the multi variable value.
-	 */
-	@Test
-	public void removeMultiVariableValue(){
-		String requestPath = "/s/c-m-c-s-k-s500,100,200,9000-o.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "style";
-		String value = "200";
-		String valueSeparator = ",";
-		log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
-	}
+    /**
+     * Removes the multi variable value.
+     */
+    @Test
+    public void removeMultiVariableValue(){
+        String requestPath = "/s/c-m-c-s-k-s500,100,200,9000-o.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "style";
+        String value = "200";
+        String valueSeparator = ",";
+        log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
+    }
 
-	/**
-	 * Removes the multi variable value222.
-	 */
-	@Test
-	public void removeMultiVariableValue222(){
-		String requestPath = "/s/c-m-c-s-k-s-o.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "style";
-		String value = "200";
-		String valueSeparator = ",";
-		log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
-	}
+    /**
+     * Removes the multi variable value222.
+     */
+    @Test
+    public void removeMultiVariableValue222(){
+        String requestPath = "/s/c-m-c-s-k-s-o.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "style";
+        String value = "200";
+        String valueSeparator = ",";
+        log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
+    }
 
-	/**
-	 * Removes the multi variable value2222.
-	 */
-	@Test
-	public void removeMultiVariableValue2222(){
-		String requestPath = "/s/c-m-c-s-k-s500,100,200,9000-o.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "style";
-		String value = "20000";
-		String valueSeparator = ",";
-		log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
-	}
+    /**
+     * Removes the multi variable value2222.
+     */
+    @Test
+    public void removeMultiVariableValue2222(){
+        String requestPath = "/s/c-m-c-s-k-s500,100,200,9000-o.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "style";
+        String value = "20000";
+        String valueSeparator = ",";
+        log.info(MultiUriTemplateUtil.removeMultiVariableValue(requestPath, matchingPatternPath, variableName, value, valueSeparator));
+    }
 }

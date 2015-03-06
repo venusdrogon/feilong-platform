@@ -27,23 +27,23 @@ import com.feilong.taglib.base.AbstractCommonTag;
  */
 public class CurrentTimeTag extends AbstractCommonTag{
 
-	private static final long	serialVersionUID	= 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 显示模式
-	 */
-	private String				pattern				= "yyyy-MM-dd";
+    /**
+     * 显示模式
+     */
+    private String            pattern          = "yyyy-MM-dd";
 
-	@Override
-	public String writeContent(){
-		return DateUtil.date2String(new Date(), pattern);
-	}
+    @Override
+    public String writeContent(){
+        return DateUtil.date2String(new Date(), pattern);
+    }
 
-	/**
-	 * @param pattern
-	 *            the pattern to set
-	 */
-	public void setPattern(String pattern){
-		this.pattern = pattern;
-	}
+    /**
+     * @param pattern
+     *            the pattern to set
+     */
+    public void setPattern(String pattern){
+        this.pattern = pattern;
+    }
 }

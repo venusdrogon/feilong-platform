@@ -24,45 +24,45 @@ package com.feilong.tools.scm;
  */
 public interface ScmAntCopy{
 
-	/**
-	 * 读取剪切板的信息.
-	 */
-	void printlnClipboardContent();
+    /**
+     * 读取剪切板的信息.
+     */
+    void printlnClipboardContent();
 
-	/**
-	 * 读取剪切板的信息.
-	 *
-	 * @param excludeFileNames
-	 *            过滤不想传的文件 采用 endWith 来 匹配
-	 */
-	void printlnClipboardContent(String[] excludeFileNames);
+    /**
+     * 读取剪切板的信息.
+     *
+     * @param excludeFileNames
+     *            过滤不想传的文件 采用 endWith 来 匹配
+     */
+    void printlnClipboardContent(String[] excludeFileNames);
 
-	/**
-	 * 解析patch 文件.
-	 *
-	 * @param fileName
-	 *            the file name
-	 */
-	void printlnFileContent(String fileName);
+    /**
+     * 解析patch 文件.
+     *
+     * @param fileName
+     *            the file name
+     */
+    void printlnFileContent(String fileName);
 
-	/**
-	 * 解析patch 文件.
-	 *
-	 * @param fileName
-	 *            the file name
-	 * @param excludeFileNames
-	 *            过滤不想传的文件 采用 endWith 来 匹配
-	 */
-	void printlnFileContent(String fileName,String[] excludeFileNames);
+    /**
+     * 解析patch 文件.
+     *
+     * @param fileName
+     *            the file name
+     * @param excludeFileNames
+     *            过滤不想传的文件 采用 endWith 来 匹配
+     */
+    void printlnFileContent(String fileName,String[] excludeFileNames);
 
-	/**
-	 * Println file content.
-	 *
-	 * @param fileName
-	 *            the file name
-	 * @param scmAntCopyConfig
-	 *            the scm ant copy config
-	 * @since 1.0.8
-	 */
-	void printlnFileContent(String fileName,ScmAntCopyConfig scmAntCopyConfig);
+    /**
+     * Println file content.
+     *
+     * @param fileName
+     *            the file name
+     * @param scmAntCopyConfig
+     *            the scm ant copy config
+     * @since 1.0.8
+     */
+    void printlnFileContent(String fileName,ScmAntCopyConfig scmAntCopyConfig);
 }

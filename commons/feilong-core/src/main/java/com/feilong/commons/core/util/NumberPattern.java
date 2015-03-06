@@ -114,30 +114,30 @@ import java.text.DecimalFormat;
  */
 public final class NumberPattern{
 
-	/**
-	 * 整数,不含小数 <code>{@value}</code>.
-	 * 
-	 * @since 1.0.7
-	 * */
-	public static final String	NO_SCALE				= "#";
+    /**
+     * 整数,不含小数 <code>{@value}</code>.
+     * 
+     * @since 1.0.7
+     * */
+    public static final String NO_SCALE             = "#";
 
-	/** 百分数的表达式(不带小数) <code>{@value}</code>. */
-	public static final String	PERCENT_WITH_NOPOINT	= "##%";
+    /** 百分数的表达式(不带小数) <code>{@value}</code>. */
+    public static final String PERCENT_WITH_NOPOINT = "##%";
 
-	/** 百分数的表达式(2位小数点) <code>{@value}</code>. */
-	public static final String	PERCENT_WITH_2POINT		= "#0.00%";
+    /** 百分数的表达式(2位小数点) <code>{@value}</code>. */
+    public static final String PERCENT_WITH_2POINT  = "#0.00%";
 
-	/**
-	 * 百分数的表达式(1位小数点) <code>{@value}</code>.
-	 * 
-	 * @since 1.0.7
-	 */
-	public static final String	PERCENT_WITH_1POINT		= "#0.0%";
+    /**
+     * 百分数的表达式(1位小数点) <code>{@value}</code>.
+     * 
+     * @since 1.0.7
+     */
+    public static final String PERCENT_WITH_1POINT  = "#0.0%";
 
-	/** Don't let anyone instantiate this class. */
-	private NumberPattern(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private NumberPattern(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 }

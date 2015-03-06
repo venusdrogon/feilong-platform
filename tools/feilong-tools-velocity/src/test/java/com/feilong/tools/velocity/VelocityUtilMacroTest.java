@@ -24,22 +24,22 @@ import org.slf4j.LoggerFactory;
  */
 public class VelocityUtilMacroTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(VelocityUtilMacroTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(VelocityUtilMacroTest.class);
 
-	/**
-	 * Parses the vm template with classpath resource loader.
-	 */
-	@Test
-	public void parseVMTemplateWithClasspathResourceLoader(){
-		// Properties properties = new Properties();
-		// //设置模板的路径
-		// properties.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, "target/test-classes/scripts");
-		//
+    /**
+     * Parses the vm template with classpath resource loader.
+     */
+    @Test
+    public void parseVMTemplateWithClasspathResourceLoader(){
+        // Properties properties = new Properties();
+        // //设置模板的路径
+        // properties.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, "target/test-classes/scripts");
+        //
 
-		String templateInClassPath = "velocity/test_macro.vm";
-		String parseVMTemplate = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, null);
-		log.info(parseVMTemplate);
-	}
+        String templateInClassPath = "velocity/test_macro.vm";
+        String parseVMTemplate = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, null);
+        log.info(parseVMTemplate);
+    }
 
 }

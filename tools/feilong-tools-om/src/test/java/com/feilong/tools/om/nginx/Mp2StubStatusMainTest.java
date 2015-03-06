@@ -27,23 +27,23 @@ import org.junit.Test;
  */
 public class Mp2StubStatusMainTest{
 
-	/**
-	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.
-	 * 
-	 * @throws IOException
-	 */
-	@Test
-	public final void testCrawStubStatusNike() throws IOException{
+    /**
+     * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.
+     * 
+     * @throws IOException
+     */
+    @Test
+    public final void testCrawStubStatusNike() throws IOException{
 
-		final String uri = "http://www.nikestore.com.cn/nginx_status";
+        final String uri = "http://www.nikestore.com.cn/nginx_status";
 
-		final String userName = "nginx_status";
-		final String password = "baozun_nikestore_status";
+        final String userName = "nginx_status";
+        final String password = "baozun_nikestore_status";
 
-		// 此参数暂时不设置成 可配置式的
-		final String patch = "F:\\stubstatus\\nike\\${year}\\${monthAndDay}\\${hour}.txt";
+        // 此参数暂时不设置成 可配置式的
+        final String patch = "F:\\stubstatus\\nike\\${year}\\${monthAndDay}\\${hour}.txt";
 
-		StubStatusMain.crawStubStatusNike(uri, userName, password, patch);
-	}
+        StubStatusMain.crawStubStatusNike(uri, userName, password, patch);
+    }
 
 }

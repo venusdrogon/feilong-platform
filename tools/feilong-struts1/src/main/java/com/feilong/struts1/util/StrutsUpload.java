@@ -32,48 +32,48 @@ import org.slf4j.LoggerFactory;
  */
 public class StrutsUpload{
 
-	private static final Logger	log	= LoggerFactory.getLogger(StrutsUpload.class);
+    private static final Logger log = LoggerFactory.getLogger(StrutsUpload.class);
 
-	/**
-	 * 上传文件.
-	 * 
-	 * @author 金鑫
-	 * @version 1.0 2010-1-6 上午10:51:08
-	 * @param formFile
-	 *            FormFile
-	 * @param directoryName
-	 *            文件夹名称 最后不带"/"
-	 * @param fileName
-	 *            文件名称+后缀
-	 * @return true, if successful
-	 */
-	public boolean uploadFile(FormFile formFile,String directoryName,String fileName){
-		try{
-			OutputStream os = new FileOutputStream(directoryName + "/" + fileName);
-			os.write(formFile.getFileData());
-			os.close();
-			return true;
-		}catch (FileNotFoundException e){
-			log.error(e.getClass().getName(), e);
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-		return false;
-	}
+    /**
+     * 上传文件.
+     * 
+     * @author 金鑫
+     * @version 1.0 2010-1-6 上午10:51:08
+     * @param formFile
+     *            FormFile
+     * @param directoryName
+     *            文件夹名称 最后不带"/"
+     * @param fileName
+     *            文件名称+后缀
+     * @return true, if successful
+     */
+    public boolean uploadFile(FormFile formFile,String directoryName,String fileName){
+        try{
+            OutputStream os = new FileOutputStream(directoryName + "/" + fileName);
+            os.write(formFile.getFileData());
+            os.close();
+            return true;
+        }catch (FileNotFoundException e){
+            log.error(e.getClass().getName(), e);
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+        return false;
+    }
 
-	/**
-	 * formFile 是否含有文件, 即是否上传了文件.
-	 * 
-	 * @author 金鑫
-	 * @version 1.0 2010-9-14 下午05:40:51
-	 * @param formFile
-	 *            the form file
-	 * @return true 表示有
-	 */
-	public static boolean isHasFile(FormFile formFile){
-		if (null == formFile || formFile.getFileSize() == 0){
-			return false;
-		}
-		return true;
-	}
+    /**
+     * formFile 是否含有文件, 即是否上传了文件.
+     * 
+     * @author 金鑫
+     * @version 1.0 2010-9-14 下午05:40:51
+     * @param formFile
+     *            the form file
+     * @return true 表示有
+     */
+    public static boolean isHasFile(FormFile formFile){
+        if (null == formFile || formFile.getFileSize() == 0){
+            return false;
+        }
+        return true;
+    }
 }

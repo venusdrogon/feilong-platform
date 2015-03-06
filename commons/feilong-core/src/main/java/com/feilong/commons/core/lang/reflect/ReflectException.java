@@ -35,57 +35,57 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public final class ReflectException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -1699987643831455524L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -1699987643831455524L;
 
-	/**
-	 * Instantiates a new reflect exception.
-	 */
-	public ReflectException(){
-		super();
-	}
+    /**
+     * Instantiates a new reflect exception.
+     */
+    public ReflectException(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new reflect exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public ReflectException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new reflect exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public ReflectException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new reflect exception(支持slf4j格式写法).
-	 * 
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public ReflectException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * Instantiates a new reflect exception(支持slf4j格式写法).
+     * 
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public ReflectException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * Instantiates a new reflect exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public ReflectException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new reflect exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public ReflectException(String message, Throwable cause){
+        super(message, cause);
+    }
 
-	/**
-	 * Instantiates a new reflect exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public ReflectException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new reflect exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public ReflectException(Throwable cause){
+        super(cause);
+    }
 }

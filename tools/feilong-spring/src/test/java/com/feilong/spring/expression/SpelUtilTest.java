@@ -28,20 +28,20 @@ import org.slf4j.LoggerFactory;
  */
 public class SpelUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SpelUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SpelUtilTest.class);
 
-	/**
-	 * 获得 value.
-	 */
-	@Test
-	public void getValue(){
-		String ex = "'Hello,World'";
-		log.info("" + SpelUtil.getValue(ex));
-		log.info("" + SpelUtil.getValue(ex + ".length()"));
-		log.info("" + SpelUtil.getValue(ex + ".concat('!')"));
-		log.info("" + SpelUtil.getValue(ex + ".class"));
-		log.info("" + SpelUtil.getValue(ex + ".bytes.length"));
-		log.info("" + SpelUtil.getValue("new String(" + ex + ").toUpperCase()"));
-	}
+    /**
+     * 获得 value.
+     */
+    @Test
+    public void getValue(){
+        String ex = "'Hello,World'";
+        log.info("" + SpelUtil.getValue(ex));
+        log.info("" + SpelUtil.getValue(ex + ".length()"));
+        log.info("" + SpelUtil.getValue(ex + ".concat('!')"));
+        log.info("" + SpelUtil.getValue(ex + ".class"));
+        log.info("" + SpelUtil.getValue(ex + ".bytes.length"));
+        log.info("" + SpelUtil.getValue("new String(" + ex + ").toUpperCase()"));
+    }
 }

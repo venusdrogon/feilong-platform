@@ -29,124 +29,124 @@ import com.feilong.tools.jfreechart.BaseChartEntity;
  */
 public class CategoryChartEntity extends BaseChartEntity{
 
-	/** The Constant serialVersionUID. */
-	private static final long		serialVersionUID	= -5823129547441566221L;
+    /** The Constant serialVersionUID. */
+    private static final long     serialVersionUID  = -5823129547441566221L;
 
-	// 目录轴的显示标签
-	/** The category axis label. */
-	private String					categoryAxisLabel	= "";
+    // 目录轴的显示标签
+    /** The category axis label. */
+    private String                categoryAxisLabel = "";
 
-	// 数值轴的显示标签
-	/** The value axis label. */
-	private String					valueAxisLabel		= "";
+    // 数值轴的显示标签
+    /** The value axis label. */
+    private String                valueAxisLabel    = "";
 
-	/** X轴数据. */
-	private String[]				rowKeys;
+    /** X轴数据. */
+    private String[]              rowKeys;
 
-	/** The category and values. */
-	private Map<String, double[]>	categoryAndValues;
+    /** The category and values. */
+    private Map<String, double[]> categoryAndValues;
 
-	/** 图片方向 默认竖型 垂直（竖向）horizontal平行的. */
-	private PlotOrientation			plotOrientation		= PlotOrientation.VERTICAL;
+    /** 图片方向 默认竖型 垂直（竖向）horizontal平行的. */
+    private PlotOrientation       plotOrientation   = PlotOrientation.VERTICAL;
 
-	/**
-	 * Instantiates a new category chart entity.
-	 */
-	public CategoryChartEntity(){
-	}
+    /**
+     * Instantiates a new category chart entity.
+     */
+    public CategoryChartEntity(){
+    }
 
-	/**
-	 * Gets the category axis label.
-	 * 
-	 * @return the categoryAxisLabel
-	 */
-	public String getCategoryAxisLabel(){
-		return categoryAxisLabel;
-	}
+    /**
+     * Gets the category axis label.
+     * 
+     * @return the categoryAxisLabel
+     */
+    public String getCategoryAxisLabel(){
+        return categoryAxisLabel;
+    }
 
-	/**
-	 * Sets the category axis label.
-	 * 
-	 * @param categoryAxisLabel
-	 *            the categoryAxisLabel to set
-	 */
-	public void setCategoryAxisLabel(String categoryAxisLabel){
-		this.categoryAxisLabel = categoryAxisLabel;
-	}
+    /**
+     * Sets the category axis label.
+     * 
+     * @param categoryAxisLabel
+     *            the categoryAxisLabel to set
+     */
+    public void setCategoryAxisLabel(String categoryAxisLabel){
+        this.categoryAxisLabel = categoryAxisLabel;
+    }
 
-	/**
-	 * Gets the value axis label.
-	 * 
-	 * @return the valueAxisLabel
-	 */
-	public String getValueAxisLabel(){
-		return valueAxisLabel;
-	}
+    /**
+     * Gets the value axis label.
+     * 
+     * @return the valueAxisLabel
+     */
+    public String getValueAxisLabel(){
+        return valueAxisLabel;
+    }
 
-	/**
-	 * Sets the value axis label.
-	 * 
-	 * @param valueAxisLabel
-	 *            the valueAxisLabel to set
-	 */
-	public void setValueAxisLabel(String valueAxisLabel){
-		this.valueAxisLabel = valueAxisLabel;
-	}
+    /**
+     * Sets the value axis label.
+     * 
+     * @param valueAxisLabel
+     *            the valueAxisLabel to set
+     */
+    public void setValueAxisLabel(String valueAxisLabel){
+        this.valueAxisLabel = valueAxisLabel;
+    }
 
-	/**
-	 * Gets the category and values.
-	 * 
-	 * @return the categoryAndValues
-	 */
-	public Map<String, double[]> getCategoryAndValues(){
-		return categoryAndValues;
-	}
+    /**
+     * Gets the category and values.
+     * 
+     * @return the categoryAndValues
+     */
+    public Map<String, double[]> getCategoryAndValues(){
+        return categoryAndValues;
+    }
 
-	/**
-	 * 设置 category and values.
-	 * 
-	 * @param categoryAndValues
-	 *            the categoryAndValues to set
-	 */
-	public void setCategoryAndValues(Map<String, double[]> categoryAndValues){
-		this.categoryAndValues = categoryAndValues;
-	}
+    /**
+     * 设置 category and values.
+     * 
+     * @param categoryAndValues
+     *            the categoryAndValues to set
+     */
+    public void setCategoryAndValues(Map<String, double[]> categoryAndValues){
+        this.categoryAndValues = categoryAndValues;
+    }
 
-	/**
-	 * 获得 x轴数据.
-	 * 
-	 * @return the rowKeys
-	 */
-	public String[] getRowKeys(){
-		return rowKeys;
-	}
+    /**
+     * 获得 x轴数据.
+     * 
+     * @return the rowKeys
+     */
+    public String[] getRowKeys(){
+        return rowKeys;
+    }
 
-	/**
-	 * 设置 x轴数据.
-	 * 
-	 * @param rowKeys
-	 *            the rowKeys to set
-	 */
-	public void setRowKeys(String[] rowKeys){
-		this.rowKeys = rowKeys;
-	}
+    /**
+     * 设置 x轴数据.
+     * 
+     * @param rowKeys
+     *            the rowKeys to set
+     */
+    public void setRowKeys(String[] rowKeys){
+        this.rowKeys = rowKeys;
+    }
 
-	/**
-	 * 获得 图片方向 默认竖型 垂直（竖向）horizontal平行的.
-	 * 
-	 * @return the plotOrientation
-	 */
-	public PlotOrientation getPlotOrientation(){
-		return plotOrientation;
-	}
+    /**
+     * 获得 图片方向 默认竖型 垂直（竖向）horizontal平行的.
+     * 
+     * @return the plotOrientation
+     */
+    public PlotOrientation getPlotOrientation(){
+        return plotOrientation;
+    }
 
-	/**
-	 * 设置 图片方向 默认竖型 垂直（竖向）horizontal平行的.
-	 * 
-	 * @param plotOrientation
-	 *            the plotOrientation to set
-	 */
-	public void setPlotOrientation(PlotOrientation plotOrientation){
-		this.plotOrientation = plotOrientation;
-	}
+    /**
+     * 设置 图片方向 默认竖型 垂直（竖向）horizontal平行的.
+     * 
+     * @param plotOrientation
+     *            the plotOrientation to set
+     */
+    public void setPlotOrientation(PlotOrientation plotOrientation){
+        this.plotOrientation = plotOrientation;
+    }
 }

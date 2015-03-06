@@ -25,12 +25,12 @@ import org.aspectj.lang.JoinPoint;
  */
 public interface MySecurityManager{
 
-	/**
-	 * Security.
-	 * 
-	 * @param joinPoint
-	 *            the join point
-	 */
-	public void security(JoinPoint joinPoint);
+    /**
+     * Security.
+     * 
+     * @param joinPoint
+     *            the join point
+     */
+    public void security(JoinPoint joinPoint);
 
 }

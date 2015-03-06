@@ -30,31 +30,31 @@ import com.feilong.tools.jfreechart.category.DefaultCategoryChartUtil;
  */
 public class DefaultCategoryChartUtilTest{
 
-	@Test
-	public void createImage() throws IOException{
-		CategoryChartType chartType = CategoryChartType.STACKEDBAR3D;
-		String[] rowKeys = { "First", "Second", "Third" };
-		LinkedHashMap<String, double[]> categoryAndValues = new LinkedHashMap<String, double[]>();
-		categoryAndValues.put("原始(1 channel)", new double[] { 143, 37, 35 });
-		categoryAndValues.put("优化sql(1 channel)", new double[] { 118, 6, 5 });
-		categoryAndValues.put("加缓存(1 channel)", new double[] { 124, 6, 5 });
-		String chartTitle = "Nike取价优化性能对比图(" + chartType + ")V1.0";
-		String categoryAxisLabel = "One member has one channel";
-		String valueAxisLabel = "单位(毫秒)";
-		String imageNameOrOutputStream = chartTitle + ".png";
-		int width = 1200;
-		int height = 800;
-		CategoryChartEntity categoryChartEntity = new CategoryChartEntity();
-		categoryChartEntity.setRowKeys(rowKeys);
-		categoryChartEntity.setChartTitle(chartTitle);
-		categoryChartEntity.setCategoryAndValues(categoryAndValues);
-		categoryChartEntity.setCategoryAxisLabel(categoryAxisLabel);
-		categoryChartEntity.setValueAxisLabel(valueAxisLabel);
-		ChartInfoEntity chartInfoEntity = new ChartInfoEntity();
-		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
-		chartInfoEntity.setWidth(width);
-		chartInfoEntity.setHeight(height);
-		ChartUtil jfreeChartUtil = new DefaultCategoryChartUtil(categoryChartEntity, chartType);
-		jfreeChartUtil.createImage(chartInfoEntity);
-	}
+    @Test
+    public void createImage() throws IOException{
+        CategoryChartType chartType = CategoryChartType.STACKEDBAR3D;
+        String[] rowKeys = { "First", "Second", "Third" };
+        LinkedHashMap<String, double[]> categoryAndValues = new LinkedHashMap<String, double[]>();
+        categoryAndValues.put("原始(1 channel)", new double[] { 143, 37, 35 });
+        categoryAndValues.put("优化sql(1 channel)", new double[] { 118, 6, 5 });
+        categoryAndValues.put("加缓存(1 channel)", new double[] { 124, 6, 5 });
+        String chartTitle = "Nike取价优化性能对比图(" + chartType + ")V1.0";
+        String categoryAxisLabel = "One member has one channel";
+        String valueAxisLabel = "单位(毫秒)";
+        String imageNameOrOutputStream = chartTitle + ".png";
+        int width = 1200;
+        int height = 800;
+        CategoryChartEntity categoryChartEntity = new CategoryChartEntity();
+        categoryChartEntity.setRowKeys(rowKeys);
+        categoryChartEntity.setChartTitle(chartTitle);
+        categoryChartEntity.setCategoryAndValues(categoryAndValues);
+        categoryChartEntity.setCategoryAxisLabel(categoryAxisLabel);
+        categoryChartEntity.setValueAxisLabel(valueAxisLabel);
+        ChartInfoEntity chartInfoEntity = new ChartInfoEntity();
+        chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
+        chartInfoEntity.setWidth(width);
+        chartInfoEntity.setHeight(height);
+        ChartUtil jfreeChartUtil = new DefaultCategoryChartUtil(categoryChartEntity, chartType);
+        jfreeChartUtil.createImage(chartInfoEntity);
+    }
 }

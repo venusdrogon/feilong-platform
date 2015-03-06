@@ -37,65 +37,65 @@ import com.feilong.taglib.base.BaseTagTEL;
  */
 public class PagerTagExtraInfo extends BaseTagTEL{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PagerTagExtraInfo.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PagerTagExtraInfo.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.jsp.tagext.TagExtraInfo#validate(javax.servlet.jsp.tagext.TagData)
-	 */
-	@Override
-	// JSP 2.0 and higher containers call validate() instead of isValid().
-	// The default implementation of this method is to call isValid().
-	// If isValid() returns false, a generic ValidationMessage[] is returned indicating isValid() returned false.
-	public ValidationMessage[] validate(TagData tagData){
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.jsp.tagext.TagExtraInfo#validate(javax.servlet.jsp.tagext.TagData)
+     */
+    @Override
+    // JSP 2.0 and higher containers call validate() instead of isValid().
+    // The default implementation of this method is to call isValid().
+    // If isValid() returns false, a generic ValidationMessage[] is returned indicating isValid() returned false.
+    public ValidationMessage[] validate(TagData tagData){
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(tagData));
-			Map<String, Object> map = toMap(tagData);
-			log.debug(JsonUtil.format(map));
-		}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(tagData));
+            Map<String, Object> map = toMap(tagData);
+            log.debug(JsonUtil.format(map));
+        }
 
-		// Object count = tagData.getAttribute("maxElements");
-		// if (TagData.REQUEST_TIME_VALUE == count){
-		// // String id = tagData.getId();
-		// // return new ValidationMessage[] { new ValidationMessage(id, "asdasdasdad") };
-		// }
-		// if (TagData.REQUEST_TIME_VALUE == count){
-		// showAttributes(tagData);
-		// Object allPageNo = tagData.getAttribute("allPageNo");
-		// Object pageParamName = tagData.getAttribute("pageParamName");
-		// // if (maxElements < 0){
-		// // log.debug("the param maxElements:{},must >=0", maxElements);
-		// // return false;
-		// // }
-		// // Object maxIndexPages = tagData.getAttribute("maxIndexPages");
-		// // Object skin = tagData.getAttribute("skin");
-		// }
-		return super.validate(tagData);
-	}
+        // Object count = tagData.getAttribute("maxElements");
+        // if (TagData.REQUEST_TIME_VALUE == count){
+        // // String id = tagData.getId();
+        // // return new ValidationMessage[] { new ValidationMessage(id, "asdasdasdad") };
+        // }
+        // if (TagData.REQUEST_TIME_VALUE == count){
+        // showAttributes(tagData);
+        // Object allPageNo = tagData.getAttribute("allPageNo");
+        // Object pageParamName = tagData.getAttribute("pageParamName");
+        // // if (maxElements < 0){
+        // // log.debug("the param maxElements:{},must >=0", maxElements);
+        // // return false;
+        // // }
+        // // Object maxIndexPages = tagData.getAttribute("maxIndexPages");
+        // // Object skin = tagData.getAttribute("skin");
+        // }
+        return super.validate(tagData);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.jsp.tagext.TagExtraInfo#getVariableInfo(javax.servlet.jsp.tagext.TagData)
-	 */
-	@Override
-	public VariableInfo[] getVariableInfo(TagData tagData){
-		// VariableInfo[] variableInfos = new VariableInfo[1];
-		// variableInfos[0] = new VariableInfo(tagData.getAttributeString("id"), "java.lang.String[]", true, VariableInfo.NESTED);
-		// return (variableInfos);
-		return super.getVariableInfo(tagData);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.jsp.tagext.TagExtraInfo#getVariableInfo(javax.servlet.jsp.tagext.TagData)
+     */
+    @Override
+    public VariableInfo[] getVariableInfo(TagData tagData){
+        // VariableInfo[] variableInfos = new VariableInfo[1];
+        // variableInfos[0] = new VariableInfo(tagData.getAttributeString("id"), "java.lang.String[]", true, VariableInfo.NESTED);
+        // return (variableInfos);
+        return super.getVariableInfo(tagData);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.jsp.tagext.TagExtraInfo#isValid(javax.servlet.jsp.tagext.TagData)
-	 */
-	@Override
-	public boolean isValid(TagData tagData){
-		return super.isValid(tagData);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.jsp.tagext.TagExtraInfo#isValid(javax.servlet.jsp.tagext.TagData)
+     */
+    @Override
+    public boolean isValid(TagData tagData){
+        return super.isValid(tagData);
+    }
 }

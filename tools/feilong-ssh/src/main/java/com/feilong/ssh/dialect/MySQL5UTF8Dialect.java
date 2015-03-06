@@ -61,17 +61,17 @@ import org.hibernate.dialect.MySQL5Dialect;
  */
 public class MySQL5UTF8Dialect extends MySQL5Dialect{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hibernate.dialect.MySQL5Dialect#registerVarcharTypes()
-	 */
-	@Override
-	protected void registerVarcharTypes(){
-		super.registerVarcharTypes();
-		registerColumnType(Types.VARCHAR, 21844, "varchar($l)");
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.hibernate.dialect.MySQL5Dialect#registerVarcharTypes()
+     */
+    @Override
+    protected void registerVarcharTypes(){
+        super.registerVarcharTypes();
+        registerColumnType(Types.VARCHAR, 21844, "varchar($l)");
 
-		//将MySQL5Dialect中的给覆盖掉
-		registerColumnType(Types.VARCHAR, 65535, "longtext");
-	}
+        //将MySQL5Dialect中的给覆盖掉
+        registerColumnType(Types.VARCHAR, 65535, "longtext");
+    }
 }

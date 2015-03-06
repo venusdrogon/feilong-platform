@@ -26,73 +26,73 @@ import java.util.Date;
  */
 public class MemberAddress implements Serializable{
 
-	private static final long	serialVersionUID	= 288232184048495608L;
+    private static final long serialVersionUID = 288232184048495608L;
 
-	private Long				id;
+    private Long              id;
 
-	private String				address;
+    private String            address;
 
-	private Long				memberId;
+    private Long              memberId;
 
-	private Date				addTime;
+    private Date              addTime;
 
-	/**
-	 * @return the id
-	 */
-	public Long getId(){
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public Long getId(){
+        return id;
+    }
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Long id){
-		this.id = id;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(Long id){
+        this.id = id;
+    }
 
-	/**
-	 * @return the address
-	 */
-	public String getAddress(){
-		return address;
-	}
+    /**
+     * @return the address
+     */
+    public String getAddress(){
+        return address;
+    }
 
-	/**
-	 * @param address
-	 *            the address to set
-	 */
-	public void setAddress(String address){
-		this.address = address;
-	}
+    /**
+     * @param address
+     *            the address to set
+     */
+    public void setAddress(String address){
+        this.address = address;
+    }
 
-	/**
-	 * @return the memberId
-	 */
-	public Long getMemberId(){
-		return memberId;
-	}
+    /**
+     * @return the memberId
+     */
+    public Long getMemberId(){
+        return memberId;
+    }
 
-	/**
-	 * @param memberId
-	 *            the memberId to set
-	 */
-	public void setMemberId(Long memberId){
-		this.memberId = memberId;
-	}
+    /**
+     * @param memberId
+     *            the memberId to set
+     */
+    public void setMemberId(Long memberId){
+        this.memberId = memberId;
+    }
 
-	/**
-	 * @return the addTime
-	 */
-	public Date getAddTime(){
-		return addTime;
-	}
+    /**
+     * @return the addTime
+     */
+    public Date getAddTime(){
+        return addTime;
+    }
 
-	/**
-	 * @param addTime
-	 *            the addTime to set
-	 */
-	public void setAddTime(Date addTime){
-		this.addTime = addTime;
-	}
+    /**
+     * @param addTime
+     *            the addTime to set
+     */
+    public void setAddTime(Date addTime){
+        this.addTime = addTime;
+    }
 }

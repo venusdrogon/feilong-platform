@@ -36,35 +36,35 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 public class Anchor{
 
-	/**
-	 * TestAnchor.
-	 * 
-	 * @throws DocumentException
-	 * @throws FileNotFoundException
-	 */
-	@Test
-	public void testAnchor() throws FileNotFoundException,DocumentException{
+    /**
+     * TestAnchor.
+     * 
+     * @throws DocumentException
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void testAnchor() throws FileNotFoundException,DocumentException{
 
-		Document document = new Document();
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("E://anchor.pdf"));
-		document.open();
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("E://anchor.pdf"));
+        document.open();
 
-		// Code 1
-		Font font = new Font();
-		font.setColor(Color.BLUE);
-		font.setStyle(Font.UNDERLINE);
+        // Code 1
+        Font font = new Font();
+        font.setColor(Color.BLUE);
+        font.setStyle(Font.UNDERLINE);
 
-		document.add(new Chunk("Chapter 1"));
+        document.add(new Chunk("Chapter 1"));
 
-		document.add(new Paragraph(new Chunk("Press here to go chapter 2", font).setLocalGoto("2")));// Code 2
+        document.add(new Paragraph(new Chunk("Press here to go chapter 2", font).setLocalGoto("2")));// Code 2
 
-		document.newPage();
+        document.newPage();
 
-		document.add(new Chunk("Chapter 2").setLocalDestination("2"));
-		document.add(new Paragraph(new Chunk("http://www.geek-tutorials.com", font).setAnchor("http://www.geek-tutorials.com")));// Code 3
+        document.add(new Chunk("Chapter 2").setLocalDestination("2"));
+        document.add(new Paragraph(new Chunk("http://www.geek-tutorials.com", font).setAnchor("http://www.geek-tutorials.com")));// Code 3
 
-		document.add(new Paragraph(new Chunk("Open outline.pdf chapter 3", font).setRemoteGoto("outline.pdf", "3")));// Code 4
+        document.add(new Paragraph(new Chunk("Open outline.pdf chapter 3", font).setRemoteGoto("outline.pdf", "3")));// Code 4
 
-		document.close();
-	}
+        document.close();
+    }
 }

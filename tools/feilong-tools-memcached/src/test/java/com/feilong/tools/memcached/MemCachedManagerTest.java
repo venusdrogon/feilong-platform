@@ -33,56 +33,56 @@ import com.feilong.commons.core.date.TimeInterval;
 @ContextConfiguration(locations = { "classpath:spring-memcached.xml" })
 public class MemCachedManagerTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MemCachedManagerTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MemCachedManagerTest.class);
 
-	/** The mem cached manager. */
-	@Autowired
-	private MemCachedManager	memCachedManager;
+    /** The mem cached manager. */
+    @Autowired
+    private MemCachedManager    memCachedManager;
 
-	/** The key. */
-	private String				key	= "name";
+    /** The key. */
+    private String              key = "name";
 
-	/**
-	 * Test method for {@link com.feilong.tools.memcached.MemCachedManager#set(java.lang.String, int, java.lang.Object)}.
-	 */
-	@Test
-	public final void testSet(){
-		memCachedManager.set(key, TimeInterval.SECONDS_PER_MINUTE, "金鑫");
-	}
+    /**
+     * Test method for {@link com.feilong.tools.memcached.MemCachedManager#set(java.lang.String, int, java.lang.Object)}.
+     */
+    @Test
+    public final void testSet(){
+        memCachedManager.set(key, TimeInterval.SECONDS_PER_MINUTE, "金鑫");
+    }
 
-	/**
-	 * Test method for {@link com.feilong.tools.memcached.MemCachedManager#get(java.lang.String)}.
-	 */
-	@Test
-	public final void testGet(){
-		String value = memCachedManager.get(key);
-		log.info(value);
-	}
+    /**
+     * Test method for {@link com.feilong.tools.memcached.MemCachedManager#get(java.lang.String)}.
+     */
+    @Test
+    public final void testGet(){
+        String value = memCachedManager.get(key);
+        log.info(value);
+    }
 
-	/**
-	 * 设置.
-	 */
-	@Test
-	public void set(){
-		memCachedManager.set(key, "5");
-		log.info(memCachedManager.get(key) + "");
-	}
+    /**
+     * 设置.
+     */
+    @Test
+    public void set(){
+        memCachedManager.set(key, "5");
+        log.info(memCachedManager.get(key) + "");
+    }
 
-	/**
-	 * Test incr.
-	 */
-	@Test
-	public void testIncr(){
-		log.info(memCachedManager.get(key) + "");
-		log.info(memCachedManager.incr(key, 1) + "");
-	}
+    /**
+     * Test incr.
+     */
+    @Test
+    public void testIncr(){
+        log.info(memCachedManager.get(key) + "");
+        log.info(memCachedManager.incr(key, 1) + "");
+    }
 
-	/**
-	 * Test decr.
-	 */
-	@Test
-	public void testDecr(){
-		log.info(memCachedManager.decr(key, 1) + "");
-	}
+    /**
+     * Test decr.
+     */
+    @Test
+    public void testDecr(){
+        log.info(memCachedManager.decr(key, 1) + "");
+    }
 }

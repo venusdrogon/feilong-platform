@@ -39,103 +39,103 @@ import com.feilong.commons.core.util.Validator;
  */
 public final class IOReaderUtil{
 
-	/** The Constant log. */
-	private static final Logger	log						= LoggerFactory.getLogger(IOReaderUtil.class);
+    /** The Constant log. */
+    private static final Logger log                  = LoggerFactory.getLogger(IOReaderUtil.class);
 
-	/** 默认编码. */
-	private static final String	DEFAULT_CHARSET_NAME	= CharsetType.UTF8;
+    /** 默认编码. */
+    private static final String DEFAULT_CHARSET_NAME = CharsetType.UTF8;
 
-	/** Don't let anyone instantiate this class. */
-	private IOReaderUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private IOReaderUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 读取文件内容.
-	 *
-	 * @param path
-	 *            路径
-	 * @return 文件内容string
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	public static String getFileContent(String path) throws IOException{
-		return getFileContent(path, DEFAULT_CHARSET_NAME);
-	}
+    /**
+     * 读取文件内容.
+     *
+     * @param path
+     *            路径
+     * @return 文件内容string
+     * @throws IOException
+     *             the IO exception
+     */
+    public static String getFileContent(String path) throws IOException{
+        return getFileContent(path, DEFAULT_CHARSET_NAME);
+    }
 
-	/**
-	 * 获得 file content.
-	 *
-	 * @param path
-	 *            the path
-	 * @param charsetName
-	 *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
-	 * @return the file content
-	 * @throws IOException
-	 *             the IO exception
-	 * @since 1.0.8
-	 */
-	public static String getFileContent(String path,String charsetName) throws IOException{
-		File file = new File(path);
-		return getFileContent(file, charsetName);
-	}
+    /**
+     * 获得 file content.
+     *
+     * @param path
+     *            the path
+     * @param charsetName
+     *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
+     * @return the file content
+     * @throws IOException
+     *             the IO exception
+     * @since 1.0.8
+     */
+    public static String getFileContent(String path,String charsetName) throws IOException{
+        File file = new File(path);
+        return getFileContent(file, charsetName);
+    }
 
-	/**
-	 * 读取文件内容.
-	 *
-	 * @param file
-	 *            文件
-	 * @param charsetName
-	 *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
-	 * @return the file content
-	 * @throws IOException
-	 *             the IO exception
-	 * @throws NullPointerException
-	 *             if isNullOrEmpty(file)
-	 */
-	public static String getFileContent(File file,String charsetName) throws IOException,NullPointerException{
-		if (Validator.isNullOrEmpty(file)){
-			throw new NullPointerException("the file is null or empty!");
-		}
+    /**
+     * 读取文件内容.
+     *
+     * @param file
+     *            文件
+     * @param charsetName
+     *            字符编码,如果是isNullOrEmpty,那么默认使用 {@link CharsetType#UTF8}
+     * @return the file content
+     * @throws IOException
+     *             the IO exception
+     * @throws NullPointerException
+     *             if isNullOrEmpty(file)
+     */
+    public static String getFileContent(File file,String charsetName) throws IOException,NullPointerException{
+        if (Validator.isNullOrEmpty(file)){
+            throw new NullPointerException("the file is null or empty!");
+        }
 
-		// 分配新的直接字节缓冲区
-		final int capacity = 186140;
-		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(capacity);
-		StringBuilder sb = new StringBuilder(capacity);
+        // 分配新的直接字节缓冲区
+        final int capacity = 186140;
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(capacity);
+        StringBuilder sb = new StringBuilder(capacity);
 
-		FileInputStream fileInputStream = null;
-		try{
-			fileInputStream = new FileInputStream(file);
+        FileInputStream fileInputStream = null;
+        try{
+            fileInputStream = new FileInputStream(file);
 
-			// 用于读取、写入、映射和操作文件的通道.
-			FileChannel fileChannel = fileInputStream.getChannel();
+            // 用于读取、写入、映射和操作文件的通道.
+            FileChannel fileChannel = fileInputStream.getChannel();
 
-			// 编码字符集和字符编码方案的组合,用于处理中文,可以更改
-			if (Validator.isNullOrEmpty(charsetName)){
-				charsetName = DEFAULT_CHARSET_NAME;
-			}
-			Charset charset = Charset.forName(charsetName);
-			while (fileChannel.read(byteBuffer) != -1){
-				// 反转此缓冲区
-				byteBuffer.flip();
-				CharBuffer charBuffer = charset.decode(byteBuffer);
-				sb.append(charBuffer.toString());
-				byteBuffer.clear();
-			}
-		}catch (FileNotFoundException e){
-			log.error("FileNotFoundException:", e);
-			throw new IOException(e);
-		}catch (IOException e){
-			log.error("IOException:", e);
-			throw new IOException(e);
-		}finally{
-			// 用完关闭流 是个好习惯,^_^
-			if (fileInputStream != null){
-				fileInputStream.close();
-			}
-		}
-		return sb.toString();
-	}
+            // 编码字符集和字符编码方案的组合,用于处理中文,可以更改
+            if (Validator.isNullOrEmpty(charsetName)){
+                charsetName = DEFAULT_CHARSET_NAME;
+            }
+            Charset charset = Charset.forName(charsetName);
+            while (fileChannel.read(byteBuffer) != -1){
+                // 反转此缓冲区
+                byteBuffer.flip();
+                CharBuffer charBuffer = charset.decode(byteBuffer);
+                sb.append(charBuffer.toString());
+                byteBuffer.clear();
+            }
+        }catch (FileNotFoundException e){
+            log.error("FileNotFoundException:", e);
+            throw new IOException(e);
+        }catch (IOException e){
+            log.error("IOException:", e);
+            throw new IOException(e);
+        }finally{
+            // 用完关闭流 是个好习惯,^_^
+            if (fileInputStream != null){
+                fileInputStream.close();
+            }
+        }
+        return sb.toString();
+    }
 }

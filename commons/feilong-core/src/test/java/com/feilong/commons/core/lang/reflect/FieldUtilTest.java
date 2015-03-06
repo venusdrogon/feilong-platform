@@ -31,50 +31,50 @@ import com.feilong.test.User;
  */
 public class FieldUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(FieldUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(FieldUtilTest.class);
 
-	/**
-	 * Test get static property.
-	 */
-	@Test
-	public void testGetStaticProperty(){
-		if (log.isInfoEnabled()){
-			log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.ImageType", "JPG"));
-			log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.IOConstants", "GB"));
-		}
-	}
+    /**
+     * Test get static property.
+     */
+    @Test
+    public void testGetStaticProperty(){
+        if (log.isInfoEnabled()){
+            log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.ImageType", "JPG"));
+            log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.IOConstants", "GB"));
+        }
+    }
 
-	/**
-	 * Creates the payment form.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 */
-	@Test
-	public final void testGetFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
+    /**
+     * Creates the payment form.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws IllegalAccessException
+     *             the illegal access exception
+     */
+    @Test
+    public final void testGetFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
 
-		User user = new User(12L);
+        User user = new User(12L);
 
-		log.info(JsonUtil.format(FieldUtil.getFieldValueMap(user)));
+        log.info(JsonUtil.format(FieldUtil.getFieldValueMap(user)));
 
-		// BeanInfo beanInfo = Introspector.getBeanInfo(class1);
-		//
-		// PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-		//
-		// for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
-		// String name = propertyDescriptor.getName();
-		// log.info(name);
-		// if ("class".equals(name) && "classLoader".equals(name)){
-		// // Ignore Class.getClassLoader() method - nobody needs to bind to that
-		// continue;
-		// }
-		//
-		// // Method readMethod = propertyDescriptor.getReadMethod();
-		// // Object invoke = readMethod.invoke(class1);
-		// // log.info(invoke.toString());
-		// }
-	}
+        // BeanInfo beanInfo = Introspector.getBeanInfo(class1);
+        //
+        // PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        //
+        // for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
+        // String name = propertyDescriptor.getName();
+        // log.info(name);
+        // if ("class".equals(name) && "classLoader".equals(name)){
+        // // Ignore Class.getClassLoader() method - nobody needs to bind to that
+        // continue;
+        // }
+        //
+        // // Method readMethod = propertyDescriptor.getReadMethod();
+        // // Object invoke = readMethod.invoke(class1);
+        // // log.info(invoke.toString());
+        // }
+    }
 }

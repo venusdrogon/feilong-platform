@@ -26,43 +26,43 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public interface JpaConstants{
 
-	/** \@Table 捕获的正则表达式 <code>{@value}</code>. */
-	String	REGEX_PATTERN_TABLE				= ".*@Table.*name.*\"(.*?)\".*";
+    /** \@Table 捕获的正则表达式 <code>{@value}</code>. */
+    String REGEX_PATTERN_TABLE           = ".*@Table.*name.*\"(.*?)\".*";
 
-	/** \@Index 捕获的正则表达式<code>{@value}</code>. */
-	String	REGEX_PATTERN_INDEX				= ".*@Index.*name.*\"(.*?)\".*";
+    /** \@Index 捕获的正则表达式<code>{@value}</code>. */
+    String REGEX_PATTERN_INDEX           = ".*@Index.*name.*\"(.*?)\".*";
 
-	/**
-	 * \@COLUMN 捕获的正则表达式<code>{@value}</code>.
-	 * 
-	 * @Column(name = \"PROPERTIES\", length=200)
-	 */
-	String	REGEX_PATTERN_COLUMN			= ".*@Column.*name.*\"(.*?)\".*length\\s*=\\s*(\\d+).*";
+    /**
+     * \@COLUMN 捕获的正则表达式<code>{@value}</code>.
+     * 
+     * @Column(name = \"PROPERTIES\", length=200)
+     */
+    String REGEX_PATTERN_COLUMN          = ".*@Column.*name.*\"(.*?)\".*length\\s*=\\s*(\\d+).*";
 
-	/**
-	 * \@COLUMN 捕获的正则表达式,只有名称<code>{@value}</code>.
-	 * 
-	 * @Column(name = \"PROPERTIES\")
-	 */
-	String	REGEX_PATTERN_COLUMN_ONLYNAME	= ".*@Column.*name.*\"(.*?)\".*";
+    /**
+     * \@COLUMN 捕获的正则表达式,只有名称<code>{@value}</code>.
+     * 
+     * @Column(name = \"PROPERTIES\")
+     */
+    String REGEX_PATTERN_COLUMN_ONLYNAME = ".*@Column.*name.*\"(.*?)\".*";
 
-	/**
-	 * 修改列类型<code>{@value}</code>
-	 * <ul>
-	 * <li>第一个参数 是表名,比如 t_product_item</li>
-	 * <li>第二个参数是列名 PROPERTIES</li>
-	 * <li>第三个参数是类型 比如 varchar</li>
-	 * <li>第四个参数是 长度,比如 1000</li>
-	 * </ul>
-	 * 
-	 * 返回:
-	 * <blockquote>ALTER TABLE t_product_item MODIFY COLUMN PROPERTIES varchar(512);</blockquote>.
-	 * 
-	 * @see Slf4jUtil#formatMessage(String, Object...)
-	 */
-	String	TEMPLATE_MODIFY_COLUMN			= "ALTER TABLE {} MODIFY COLUMN {} {}({});";
+    /**
+     * 修改列类型<code>{@value}</code>
+     * <ul>
+     * <li>第一个参数 是表名,比如 t_product_item</li>
+     * <li>第二个参数是列名 PROPERTIES</li>
+     * <li>第三个参数是类型 比如 varchar</li>
+     * <li>第四个参数是 长度,比如 1000</li>
+     * </ul>
+     * 
+     * 返回:
+     * <blockquote>ALTER TABLE t_product_item MODIFY COLUMN PROPERTIES varchar(512);</blockquote>.
+     * 
+     * @see Slf4jUtil#formatMessage(String, Object...)
+     */
+    String TEMPLATE_MODIFY_COLUMN        = "ALTER TABLE {} MODIFY COLUMN {} {}({});";
 
-	/** mysql varchar 类型 最大字符长度. */
-	int		MYSQL5_MAXLENGTH_VARCHAR_UTF8	= 21844;
+    /** mysql varchar 类型 最大字符长度. */
+    int    MYSQL5_MAXLENGTH_VARCHAR_UTF8 = 21844;
 
 }

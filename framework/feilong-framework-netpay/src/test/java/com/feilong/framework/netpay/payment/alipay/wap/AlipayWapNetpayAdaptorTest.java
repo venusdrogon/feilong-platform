@@ -33,19 +33,19 @@ import com.feilong.framework.netpay.payment.PaymentAdaptor;
  */
 public class AlipayWapNetpayAdaptorTest extends BasePaymentTest{
 
-	/** The payment adaptor. */
-	@Autowired
-	@Qualifier("alipayWapNetpayAdaptor")
-	private PaymentAdaptor	paymentAdaptor;
+    /** The payment adaptor. */
+    @Autowired
+    @Qualifier("alipayWapNetpayAdaptor")
+    private PaymentAdaptor paymentAdaptor;
 
-	/**
-	 * Creates the payment form.
-	 */
-	@Test
-	public final void createPaymentForm(){
-		Map<String, String> specialSignMap = new HashMap<String, String>();
+    /**
+     * Creates the payment form.
+     */
+    @Test
+    public final void createPaymentForm(){
+        Map<String, String> specialSignMap = new HashMap<String, String>();
 
-		specialSignMap.put("defaultbank", "DEBITCARD_CITIC");
-		createPaymentForm(paymentAdaptor, specialSignMap);
-	}
+        specialSignMap.put("defaultbank", "DEBITCARD_CITIC");
+        createPaymentForm(paymentAdaptor, specialSignMap);
+    }
 }

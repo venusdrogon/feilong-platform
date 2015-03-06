@@ -33,36 +33,36 @@ import com.danga.MemCached.MemCachedClient;
 @ContextConfiguration(locations = { "classpath:feilong-memcached.xml" })
 public class DangaMemCachedUtilTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DangaMemCachedUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(DangaMemCachedUtilTest.class);
 
-	/** The mem cached util. */
-	private DangaMemCachedUtil	memCachedUtil;
+    /** The mem cached util. */
+    private DangaMemCachedUtil  memCachedUtil;
 
-	/** The mem cached client. */
-	@Autowired
-	MemCachedClient				memCachedClient;
+    /** The mem cached client. */
+    @Autowired
+    MemCachedClient             memCachedClient;
 
-	// @Test
-	// public void get(){
-	// memCachedUtil.add("jinxin", "My name is jinxin ,feilong owner");
-	// memCachedUtil.add("jinxin2", "My name is jinxin2 ,feilong owner");
-	// log.debug(memCachedUtil.get("jinxin").toString());
-	// }
-	/**
-	 * Name.
-	 */
-	@Test
-	public void name(){
-		log.debug("the param localVar:{}", memCachedClient.keyExists("user"));
-	}
+    // @Test
+    // public void get(){
+    // memCachedUtil.add("jinxin", "My name is jinxin ,feilong owner");
+    // memCachedUtil.add("jinxin2", "My name is jinxin2 ,feilong owner");
+    // log.debug(memCachedUtil.get("jinxin").toString());
+    // }
+    /**
+     * Name.
+     */
+    @Test
+    public void name(){
+        log.debug("the param localVar:{}", memCachedClient.keyExists("user"));
+    }
 
-	/**
-	 * Adds the.
-	 */
-	@Test
-	public void add(){
-		memCachedClient.add("user", "jinxin");
-		// log.debug("the param localVar:{}", memCachedClient.keyExists("user"));
-	}
+    /**
+     * Adds the.
+     */
+    @Test
+    public void add(){
+        memCachedClient.add("user", "jinxin");
+        // log.debug("the param localVar:{}", memCachedClient.keyExists("user"));
+    }
 }

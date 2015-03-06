@@ -5,62 +5,62 @@ import java.util.List;
 @SuppressWarnings("all")
 public class CommentWapper{
 
-	private List<Comment>	comments;
+    private List<Comment> comments;
 
-	private long			previousCursor;
+    private long          previousCursor;
 
-	private long			nextCursor;
+    private long          nextCursor;
 
-	private long			totalNumber;
+    private long          totalNumber;
 
-	private String			hasvisible;
+    private String        hasvisible;
 
-	public CommentWapper(List<Comment> comments, long previousCursor, long nextCursor, long totalNumber, String hasvisible){
-		this.comments = comments;
-		this.previousCursor = previousCursor;
-		this.nextCursor = nextCursor;
-		this.totalNumber = totalNumber;
-		this.hasvisible = hasvisible;
-	}
+    public CommentWapper(List<Comment> comments, long previousCursor, long nextCursor, long totalNumber, String hasvisible){
+        this.comments = comments;
+        this.previousCursor = previousCursor;
+        this.nextCursor = nextCursor;
+        this.totalNumber = totalNumber;
+        this.hasvisible = hasvisible;
+    }
 
-	public List<Comment> getComments(){
-		return comments;
-	}
+    public List<Comment> getComments(){
+        return comments;
+    }
 
-	public void setComments(List<Comment> comments){
-		this.comments = comments;
-	}
+    public void setComments(List<Comment> comments){
+        this.comments = comments;
+    }
 
-	public long getPreviousCursor(){
-		return previousCursor;
-	}
+    public long getPreviousCursor(){
+        return previousCursor;
+    }
 
-	public void setPreviousCursor(long previousCursor){
-		this.previousCursor = previousCursor;
-	}
+    public void setPreviousCursor(long previousCursor){
+        this.previousCursor = previousCursor;
+    }
 
-	public long getNextCursor(){
-		return nextCursor;
-	}
+    public long getNextCursor(){
+        return nextCursor;
+    }
 
-	public void setNextCursor(long nextCursor){
-		this.nextCursor = nextCursor;
-	}
+    public void setNextCursor(long nextCursor){
+        this.nextCursor = nextCursor;
+    }
 
-	public long getTotalNumber(){
-		return totalNumber;
-	}
+    public long getTotalNumber(){
+        return totalNumber;
+    }
 
-	public void setTotalNumber(long totalNumber){
-		this.totalNumber = totalNumber;
-	}
+    public void setTotalNumber(long totalNumber){
+        this.totalNumber = totalNumber;
+    }
 
-	public String getHasvisible(){
-		return hasvisible;
-	}
+    public String getHasvisible(){
+        return hasvisible;
+    }
 
-	public void setHasvisible(String hasvisible){
-		this.hasvisible = hasvisible;
-	}
+    public void setHasvisible(String hasvisible){
+        this.hasvisible = hasvisible;
+    }
 
 }

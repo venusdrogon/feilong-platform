@@ -28,14 +28,14 @@ import com.feilong.framework.bind.exception.BuildCommandException;
  */
 public interface XmlParse<T> {
 
-	/**
-	 * 解析xml到对象,将xml转成对象.
-	 * 
-	 * @param xml
-	 *            the xml
-	 * @return the t
-	 * @throws BuildCommandException
-	 *             构建对象异常
-	 */
-	T parseXML(String xml);
+    /**
+     * 解析xml到对象,将xml转成对象.
+     * 
+     * @param xml
+     *            the xml
+     * @return the t
+     * @throws BuildCommandException
+     *             构建对象异常
+     */
+    T parseXML(String xml);
 }

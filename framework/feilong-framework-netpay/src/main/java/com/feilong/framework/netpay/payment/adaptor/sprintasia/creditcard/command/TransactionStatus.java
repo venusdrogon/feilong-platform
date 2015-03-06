@@ -24,35 +24,35 @@ package com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.comma
  */
 public interface TransactionStatus{
 
-	// Value: DOacquire transaction status
-	// Format:
-	//  PENDING (transaction still in process)
-	//  APPROVE (transaction has been authorized by the partner bank/acquirer)
-	//  DECLINE (transaction has been rejected by the partner bank/acquirer)
-	//  SCRUB (transaction has been rejected based on account risk policy)
-	//  ERROR (network connectivity error with the partner bank/acquirer)
-	//  CANCEL (cardholder did not complete the transaction)
+    // Value: DOacquire transaction status
+    // Format:
+    //  PENDING (transaction still in process)
+    //  APPROVE (transaction has been authorized by the partner bank/acquirer)
+    //  DECLINE (transaction has been rejected by the partner bank/acquirer)
+    //  SCRUB (transaction has been rejected based on account risk policy)
+    //  ERROR (network connectivity error with the partner bank/acquirer)
+    //  CANCEL (cardholder did not complete the transaction)
 
-	// Jim, list of revised statuses should be as follows:
-	// - APPROVED instead of APPROVE
-	// - DECLINED instead of DECLINE
-	// - SCRUBBED instead of SCRUBB
+    // Jim, list of revised statuses should be as follows:
+    // - APPROVED instead of APPROVE
+    // - DECLINED instead of DECLINE
+    // - SCRUBBED instead of SCRUBB
 
-	/** The PENDING,transaction still in process. */
-	String	PENDING		= "PENDING";
+    /** The PENDING,transaction still in process. */
+    String PENDING  = "PENDING";
 
-	/** The APPROVED,transaction has been authorized by the partner bank/acquirer. */
-	String	APPROVED	= "APPROVED";	// - APPROVED instead of APPROVE
+    /** The APPROVED,transaction has been authorized by the partner bank/acquirer. */
+    String APPROVED = "APPROVED"; // - APPROVED instead of APPROVE
 
-	/** The DECLINED,transaction has been rejected by the partner bank/acquirer. */
-	String	DECLINED	= "DECLINED";	// - DECLINED instead of DECLINE
+    /** The DECLINED,transaction has been rejected by the partner bank/acquirer. */
+    String DECLINED = "DECLINED"; // - DECLINED instead of DECLINE
 
-	/** The SCRUBBED,transaction has been rejected based on account risk policy. */
-	String	SCRUBBED	= "SCRUBBED";	// - SCRUBBED instead of SCRUBB
+    /** The SCRUBBED,transaction has been rejected based on account risk policy. */
+    String SCRUBBED = "SCRUBBED"; // - SCRUBBED instead of SCRUBB
 
-	/** The ERROR,network connectivity error with the partner bank/acquirer. */
-	String	ERROR		= "ERROR";
+    /** The ERROR,network connectivity error with the partner bank/acquirer. */
+    String ERROR    = "ERROR";
 
-	/** The CANCEL,cardholder did not complete the transaction. */
-	String	CANCEL		= "CANCEL";
+    /** The CANCEL,cardholder did not complete the transaction. */
+    String CANCEL   = "CANCEL";
 }

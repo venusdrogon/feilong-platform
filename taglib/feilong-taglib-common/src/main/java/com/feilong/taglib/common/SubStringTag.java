@@ -25,51 +25,51 @@ import com.feilong.taglib.base.AbstractCommonTag;
  */
 public class SubStringTag extends AbstractCommonTag{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 1L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
-	/** 需要被截取的内容. */
-	private String				content;
+    /** 需要被截取的内容. */
+    private String            content;
 
-	/** 截取长度. */
-	private int					length;
+    /** 截取长度. */
+    private int               length;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
-	 */
-	@Override
-	public String writeContent(){
-		String returnValue = "";
-		if (Validator.isNotNullOrEmpty(content)){
-			content = content.trim();
-			if (content.length() > length){
-				returnValue = content.substring(0, length) + "...";
-			}else{
-				returnValue = content;
-			}
-		}
-		return returnValue;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
+     */
+    @Override
+    public String writeContent(){
+        String returnValue = "";
+        if (Validator.isNotNullOrEmpty(content)){
+            content = content.trim();
+            if (content.length() > length){
+                returnValue = content.substring(0, length) + "...";
+            }else{
+                returnValue = content;
+            }
+        }
+        return returnValue;
+    }
 
-	/**
-	 * 设置 需要被截取的内容.
-	 * 
-	 * @param content
-	 *            the new 需要被截取的内容
-	 */
-	public void setContent(String content){
-		this.content = content;
-	}
+    /**
+     * 设置 需要被截取的内容.
+     * 
+     * @param content
+     *            the new 需要被截取的内容
+     */
+    public void setContent(String content){
+        this.content = content;
+    }
 
-	/**
-	 * 设置 截取长度.
-	 * 
-	 * @param length
-	 *            the new 截取长度
-	 */
-	public void setLength(int length){
-		this.length = length;
-	}
+    /**
+     * 设置 截取长度.
+     * 
+     * @param length
+     *            the new 截取长度
+     */
+    public void setLength(int length){
+        this.length = length;
+    }
 }

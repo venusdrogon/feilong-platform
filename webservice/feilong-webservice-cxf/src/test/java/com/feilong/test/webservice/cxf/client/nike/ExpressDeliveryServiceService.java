@@ -37,81 +37,79 @@ import javax.xml.ws.WebServiceFeature;
 @WebServiceClient(name = "ExpressDeliveryServiceService",wsdlLocation = "http://192.168.2.236:8001/nikestore/cxf/expressDeliveryService?wsdl",targetNamespace = "http://www.nikestore.com.cn/webService")
 public class ExpressDeliveryServiceService extends Service{
 
-	/** The Constant WSDL_LOCATION. */
-	public static final URL		WSDL_LOCATION;
+    /** The Constant WSDL_LOCATION. */
+    public static final URL   WSDL_LOCATION;
 
-	/** The Constant SERVICE. */
-	public static final QName	SERVICE						= new QName(
-																			"http://www.nikestore.com.cn/webService",
-																			"ExpressDeliveryServiceService");
+    /** The Constant SERVICE. */
+    public static final QName SERVICE                    = new QName(
+                                                                         "http://www.nikestore.com.cn/webService",
+                                                                         "ExpressDeliveryServiceService");
 
-	/** The Constant ExpressDeliveryServicePort. */
-	public static final QName	ExpressDeliveryServicePort	= new QName(
-																			"http://www.nikestore.com.cn/webService",
-																			"ExpressDeliveryServicePort");
-	static{
-		URL url = null;
-		try{
-			url = new URL("http://192.168.2.236:8001/nikestore/cxf/expressDeliveryService?wsdl");
-		}catch (MalformedURLException e){
-			java.util.logging.Logger.getLogger(ExpressDeliveryServiceService.class.getName()).log(
-							java.util.logging.Level.INFO,
-							"Can not initialize the default wsdl from {0}",
-							"http://192.168.2.236:8001/nikestore/cxf/expressDeliveryService?wsdl");
-		}
-		WSDL_LOCATION = url;
-	}
+    /** The Constant ExpressDeliveryServicePort. */
+    public static final QName ExpressDeliveryServicePort = new QName("http://www.nikestore.com.cn/webService", "ExpressDeliveryServicePort");
+    static{
+        URL url = null;
+        try{
+            url = new URL("http://192.168.2.236:8001/nikestore/cxf/expressDeliveryService?wsdl");
+        }catch (MalformedURLException e){
+            java.util.logging.Logger.getLogger(ExpressDeliveryServiceService.class.getName()).log(
+                            java.util.logging.Level.INFO,
+                            "Can not initialize the default wsdl from {0}",
+                            "http://192.168.2.236:8001/nikestore/cxf/expressDeliveryService?wsdl");
+        }
+        WSDL_LOCATION = url;
+    }
 
-	/**
-	 * Instantiates a new express delivery service service.
-	 * 
-	 * @param wsdlLocation
-	 *            the wsdl location
-	 */
-	public ExpressDeliveryServiceService(URL wsdlLocation){
-		super(wsdlLocation, SERVICE);
-	}
+    /**
+     * Instantiates a new express delivery service service.
+     * 
+     * @param wsdlLocation
+     *            the wsdl location
+     */
+    public ExpressDeliveryServiceService(URL wsdlLocation){
+        super(wsdlLocation, SERVICE);
+    }
 
-	/**
-	 * Instantiates a new express delivery service service.
-	 * 
-	 * @param wsdlLocation
-	 *            the wsdl location
-	 * @param serviceName
-	 *            the service name
-	 */
-	public ExpressDeliveryServiceService(URL wsdlLocation, QName serviceName){
-		super(wsdlLocation, serviceName);
-	}
+    /**
+     * Instantiates a new express delivery service service.
+     * 
+     * @param wsdlLocation
+     *            the wsdl location
+     * @param serviceName
+     *            the service name
+     */
+    public ExpressDeliveryServiceService(URL wsdlLocation, QName serviceName){
+        super(wsdlLocation, serviceName);
+    }
 
-	/**
-	 * Instantiates a new express delivery service service.
-	 */
-	public ExpressDeliveryServiceService(){
-		super(WSDL_LOCATION, SERVICE);
-	}
+    /**
+     * Instantiates a new express delivery service service.
+     */
+    public ExpressDeliveryServiceService(){
+        super(WSDL_LOCATION, SERVICE);
+    }
 
-	/**
-	 * Gets the express delivery service port.
-	 * 
-	 * @return returns ExpressDeliveryService
-	 */
-	@WebEndpoint(name = "ExpressDeliveryServicePort")
-	public ExpressDeliveryService getExpressDeliveryServicePort(){
-		return super.getPort(ExpressDeliveryServicePort, ExpressDeliveryService.class);
-	}
+    /**
+     * Gets the express delivery service port.
+     * 
+     * @return returns ExpressDeliveryService
+     */
+    @WebEndpoint(name = "ExpressDeliveryServicePort")
+    public ExpressDeliveryService getExpressDeliveryServicePort(){
+        return super.getPort(ExpressDeliveryServicePort, ExpressDeliveryService.class);
+    }
 
-	/**
-	 * Gets the express delivery service port.
-	 * 
-	 * @param features
-	 *            A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy. Supported features not in the
-	 *            <code>features</code> parameter will have their default values.
-	 * @return returns ExpressDeliveryService
-	 */
-	@WebEndpoint(name = "ExpressDeliveryServicePort")
-	public ExpressDeliveryService getExpressDeliveryServicePort(WebServiceFeature...features){
-		return super.getPort(ExpressDeliveryServicePort, ExpressDeliveryService.class, features);
-	}
+    /**
+     * Gets the express delivery service port.
+     * 
+     * @param features
+     *            A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy. Supported features not in the
+     *            <code>features</code> parameter will have their default values.
+     * @return returns ExpressDeliveryService
+     */
+    @WebEndpoint(name = "ExpressDeliveryServicePort")
+    public ExpressDeliveryService getExpressDeliveryServicePort(WebServiceFeature...features){
+        return super.getPort(ExpressDeliveryServicePort, ExpressDeliveryService.class, features);
+    }
 
 }

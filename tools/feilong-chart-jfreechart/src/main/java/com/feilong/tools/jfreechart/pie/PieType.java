@@ -23,12 +23,12 @@ package com.feilong.tools.jfreechart.pie;
  */
 public enum PieType{
 
-	/** The pie3 d. */
-	PIE3D,
+    /** The pie3 d. */
+    PIE3D,
 
-	/** The pie. */
-	PIE,
+    /** The pie. */
+    PIE,
 
-	/** The ring. */
-	RING
+    /** The ring. */
+    RING
 }

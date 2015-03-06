@@ -37,114 +37,114 @@ import com.feilong.commons.core.date.TimeInterval;
 @Service("memCachedManager")
 public class SpyMemCachedManagerImpl implements MemCachedManager{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SpyMemCachedManagerImpl.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SpyMemCachedManagerImpl.class);
 
-	/** The memcached client. */
-	@Autowired(required = false)
-	// 设置为 required=false 这样不需要的商城 启动不会报错
-	private MemcachedClient		memcachedClient;
+    /** The memcached client. */
+    @Autowired(required = false)
+    // 设置为 required=false 这样不需要的商城 启动不会报错
+    private MemcachedClient     memcachedClient;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#set(java.lang.String, java.lang.Object)
-	 */
-	@Override
-	public Future<Boolean> set(String key,Object value){
-		int expiredTime = TimeInterval.SECONDS_PER_DAY * 29;
-		return set(key, expiredTime, value);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#set(java.lang.String, java.lang.Object)
+     */
+    @Override
+    public Future<Boolean> set(String key,Object value){
+        int expiredTime = TimeInterval.SECONDS_PER_DAY * 29;
+        return set(key, expiredTime, value);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#incr(java.lang.String, int)
-	 */
-	@Override
-	public long incr(String key,int by){
-		return memcachedClient.incr(key, by);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#incr(java.lang.String, int)
+     */
+    @Override
+    public long incr(String key,int by){
+        return memcachedClient.incr(key, by);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#decr(java.lang.String, int)
-	 */
-	@Override
-	public long decr(String key,int by){
-		return memcachedClient.decr(key, by);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#decr(java.lang.String, int)
+     */
+    @Override
+    public long decr(String key,int by){
+        return memcachedClient.decr(key, by);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#set(java.lang.String, int, java.lang.Object)
-	 */
-	@Override
-	public Future<Boolean> set(String key,int expiredTime,Object value){
-		// 借鉴 CacheAspect
-		if (null == value){
-			NullObject NULL = new NullObject();
-			value = NULL;
-		}
-		return memcachedClient.set(key, expiredTime, value);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#set(java.lang.String, int, java.lang.Object)
+     */
+    @Override
+    public Future<Boolean> set(String key,int expiredTime,Object value){
+        // 借鉴 CacheAspect
+        if (null == value){
+            NullObject NULL = new NullObject();
+            value = NULL;
+        }
+        return memcachedClient.set(key, expiredTime, value);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#get(java.lang.String)
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T get(String key){
-		try{
-			Object object = memcachedClient.get(key);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#get(java.lang.String)
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key){
+        try{
+            Object object = memcachedClient.get(key);
 
-			if (null == object){
-				log.debug("key :{} doesn't exists", key);
-				return null;
-			}
+            if (null == object){
+                log.debug("key :{} doesn't exists", key);
+                return null;
+            }
 
-			if (object instanceof NullObject){
-				log.debug("key :{} exists,value is NullObject", key);
-				return null;
-			}
-			return (T) object;
-		}catch (RuntimeException e){
-			log.error(e.getClass().getName(), e);
-			return null;
-		}
-	}
+            if (object instanceof NullObject){
+                log.debug("key :{} exists,value is NullObject", key);
+                return null;
+            }
+            return (T) object;
+        }catch (RuntimeException e){
+            log.error(e.getClass().getName(), e);
+            return null;
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#delete(java.lang.String)
-	 */
-	@Override
-	public Future<Boolean> delete(String key){
-		return memcachedClient.delete(key);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#delete(java.lang.String)
+     */
+    @Override
+    public Future<Boolean> delete(String key){
+        return memcachedClient.delete(key);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#shutDown()
-	 */
-	@Override
-	public void shutDown(){
-		memcachedClient.shutdown();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#shutDown()
+     */
+    @Override
+    public void shutDown(){
+        memcachedClient.shutdown();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#flushAll()
-	 */
-	@Override
-	public void flushAll(){
-		throw new NotImplementedException("flushAll is not implemented!");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.memcached.MemCachedManager#flushAll()
+     */
+    @Override
+    public void flushAll(){
+        throw new NotImplementedException("flushAll is not implemented!");
+    }
 }

@@ -27,58 +27,58 @@ import org.jfree.chart.plot.CategoryPlot;
  */
 public final class Line3DChartUtil extends CategoryChartUtil{
 
-	/**
-	 * Instantiates a new line3 d chart util.
-	 * 
-	 * @param categoryChartEntity
-	 *            the category chart entity
-	 */
-	public Line3DChartUtil(CategoryChartEntity categoryChartEntity){
-		super(categoryChartEntity, CategoryChartType.LINE3D);
-	}
+    /**
+     * Instantiates a new line3 d chart util.
+     * 
+     * @param categoryChartEntity
+     *            the category chart entity
+     */
+    public Line3DChartUtil(CategoryChartEntity categoryChartEntity){
+        super(categoryChartEntity, CategoryChartType.LINE3D);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryAxisAttributes(org.jfree.chart.axis.CategoryAxis
-	 * )
-	 */
-	@Override
-	protected void setChildDefaultCategoryAxisAttributes(CategoryAxis categoryAxis){
-		// TODO Auto-generated method stub
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryAxisAttributes(org.jfree.chart.axis.CategoryAxis
+     * )
+     */
+    @Override
+    protected void setChildDefaultCategoryAxisAttributes(CategoryAxis categoryAxis){
+        // TODO Auto-generated method stub
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryPlotAttributes(org.jfree.chart.plot.CategoryPlot
-	 * )
-	 */
-	@Override
-	protected void setChildDefaultCategoryPlotAttributes(CategoryPlot categoryPlot){
-		// TODO Auto-generated method stub
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultCategoryPlotAttributes(org.jfree.chart.plot.CategoryPlot
+     * )
+     */
+    @Override
+    protected void setChildDefaultCategoryPlotAttributes(CategoryPlot categoryPlot){
+        // TODO Auto-generated method stub
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
-	 */
-	@Override
-	protected void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis){
-		// TODO Auto-generated method stub
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setChildDefaultNumberAxisAttributes(org.jfree.chart.axis.NumberAxis)
+     */
+    @Override
+    protected void setChildDefaultNumberAxisAttributes(NumberAxis numberAxis){
+        // TODO Auto-generated method stub
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setDefaultCategoryItemRenderer()
-	 */
-	@Override
-	protected void setDefaultCategoryItemRenderer(){
-		// TODO Auto-generated method stub
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.jfreechart.category.FeiLongCategoryChartUtil#setDefaultCategoryItemRenderer()
+     */
+    @Override
+    protected void setDefaultCategoryItemRenderer(){
+        // TODO Auto-generated method stub
+    }
 }

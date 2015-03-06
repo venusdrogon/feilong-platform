@@ -33,40 +33,40 @@ import com.feilong.framework.netpay.advance.exception.PaymentAdvanceAdaptorNotFo
 // @Service("paymentAdaptorManager")
 public class DefaultAdvanceAdaptorManagerFactory implements PaymentAdvanceAdaptorFactory{
 
-	// @Value("#{paymentAdvanceAdaptorManager}")
-	/** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误. */
-	private Map<String, PaymentAdvanceAdaptor>	paymentAdvanceAdaptorMap;
+    // @Value("#{paymentAdvanceAdaptorManager}")
+    /** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误. */
+    private Map<String, PaymentAdvanceAdaptor> paymentAdvanceAdaptorMap;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.framework.netpay.advance.PaymentAdvanceAdaptorFactory#getPaymentAdvanceAdaptor(java.lang.String)
-	 */
-	@Override
-	public PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException{
-		if (Validator.isNullOrEmpty(paymentAdvanceAdaptorMap)){
-			throw new IllegalArgumentException("paymentAdvanceAdaptorMap can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(paymentType)){
-			throw new IllegalArgumentException("paymentType can't be null/empty!");
-		}
-		if (!paymentAdvanceAdaptorMap.containsKey(paymentType)){
-			throw new PaymentAdvanceAdaptorNotFoundException(
-							"paymentAdvanceAdaptorMap not containsKey paymentType:[{}],paymentAdvanceAdaptorMap info:{}",
-							paymentType,
-							paymentAdvanceAdaptorMap);
-		}
-		PaymentAdvanceAdaptor paymentAdvanceAdaptor = paymentAdvanceAdaptorMap.get(paymentType);
-		return paymentAdvanceAdaptor;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.framework.netpay.advance.PaymentAdvanceAdaptorFactory#getPaymentAdvanceAdaptor(java.lang.String)
+     */
+    @Override
+    public PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException{
+        if (Validator.isNullOrEmpty(paymentAdvanceAdaptorMap)){
+            throw new IllegalArgumentException("paymentAdvanceAdaptorMap can't be null/empty!");
+        }
+        if (Validator.isNullOrEmpty(paymentType)){
+            throw new IllegalArgumentException("paymentType can't be null/empty!");
+        }
+        if (!paymentAdvanceAdaptorMap.containsKey(paymentType)){
+            throw new PaymentAdvanceAdaptorNotFoundException(
+                            "paymentAdvanceAdaptorMap not containsKey paymentType:[{}],paymentAdvanceAdaptorMap info:{}",
+                            paymentType,
+                            paymentAdvanceAdaptorMap);
+        }
+        PaymentAdvanceAdaptor paymentAdvanceAdaptor = paymentAdvanceAdaptorMap.get(paymentType);
+        return paymentAdvanceAdaptor;
+    }
 
-	/**
-	 * 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.
-	 * 
-	 * @param paymentAdvanceAdaptorMap
-	 *            the paymentAdvanceAdaptorMap to set
-	 */
-	public void setPaymentAdvanceAdaptorMap(Map<String, PaymentAdvanceAdaptor> paymentAdvanceAdaptorMap){
-		this.paymentAdvanceAdaptorMap = paymentAdvanceAdaptorMap;
-	}
+    /**
+     * 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.
+     * 
+     * @param paymentAdvanceAdaptorMap
+     *            the paymentAdvanceAdaptorMap to set
+     */
+    public void setPaymentAdvanceAdaptorMap(Map<String, PaymentAdvanceAdaptor> paymentAdvanceAdaptorMap){
+        this.paymentAdvanceAdaptorMap = paymentAdvanceAdaptorMap;
+    }
 }

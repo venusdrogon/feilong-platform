@@ -35,147 +35,147 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class UriTemplateUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(UriTemplateUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log             = LoggerFactory.getLogger(UriTemplateUtilTest.class);
 
-	/** The uri template path. */
-	String						uriTemplatePath	= "/c{categoryCode}/m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+    /** The uri template path. */
+    String                      uriTemplatePath = "/c{categoryCode}/m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
 
-	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getVariableNames(java.lang.String)}.
-	 */
-	@Test
-	public void testGetVariableNames(){
-		List<String> list = UriTemplateUtil.getVariableNames(uriTemplatePath);
+    /**
+     * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getVariableNames(java.lang.String)}.
+     */
+    @Test
+    public void testGetVariableNames(){
+        List<String> list = UriTemplateUtil.getVariableNames(uriTemplatePath);
 
-		log.info("list:{}", JsonUtil.format(list));
-	}
+        log.info("list:{}", JsonUtil.format(list));
+    }
 
-	/**
-	 * Test expand with variable.
-	 */
-	@Test
-	public void testExpandWithVariable(){
-		String list = UriTemplateUtil.expandWithVariable(uriTemplatePath, "color", "a");
-		log.info(list);
-	}
+    /**
+     * Test expand with variable.
+     */
+    @Test
+    public void testExpandWithVariable(){
+        String list = UriTemplateUtil.expandWithVariable(uriTemplatePath, "color", "a");
+        log.info(list);
+    }
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariableValue(javax.servlet.http.HttpServletRequest, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testGetUriTemplateVariableValue(){
-		fail("Not yet implemented");
-	}
+    /**
+     * Test method for
+     * {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariableValue(javax.servlet.http.HttpServletRequest, java.lang.String)}
+     * .
+     */
+    @Test
+    public void testGetUriTemplateVariableValue(){
+        fail("Not yet implemented");
+    }
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#hasPathVarName(javax.servlet.http.HttpServletRequest, java.lang.String)}.
-	 */
-	@Test
-	public void testHasPathVarName(){
+    /**
+     * Test method for
+     * {@link com.feilong.spring.web.util.UriTemplateUtil#hasPathVarName(javax.servlet.http.HttpServletRequest, java.lang.String)}.
+     */
+    @Test
+    public void testHasPathVarName(){
 
-	}
+    }
 
-	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariables(javax.servlet.http.HttpServletRequest)}.
-	 */
-	@Test
-	public void testGetUriTemplateVariables(){
-		fail("Not yet implemented");
-	}
+    /**
+     * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getUriTemplateVariables(javax.servlet.http.HttpServletRequest)}.
+     */
+    @Test
+    public void testGetUriTemplateVariables(){
+        fail("Not yet implemented");
+    }
 
-	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getBestMatchingPattern(javax.servlet.http.HttpServletRequest)}.
-	 */
-	@Test
-	public void testGetBestMatchingPattern(){
-		fail("Not yet implemented");
-	}
+    /**
+     * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#getBestMatchingPattern(javax.servlet.http.HttpServletRequest)}.
+     */
+    @Test
+    public void testGetBestMatchingPattern(){
+        fail("Not yet implemented");
+    }
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testExpandBestMatchingPattern(){
-		fail("Not yet implemented");
-	}
+    /**
+     * Test method for
+     * {@link com.feilong.spring.web.util.UriTemplateUtil#expandBestMatchingPattern(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)}
+     * .
+     */
+    @Test
+    public void testExpandBestMatchingPattern(){
+        fail("Not yet implemented");
+    }
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testExpandWithVariable3(){
-		String requestPath = "/s/c-m-c-s-k-s100-o.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "color";
-		String value = "100";
-		log.info(UriTemplateUtil.expandWithVariable(requestPath, matchingPatternPath, variableName, value));
-	}
+    /**
+     * Test method for
+     * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+     * .
+     */
+    @Test
+    public void testExpandWithVariable3(){
+        String requestPath = "/s/c-m-c-s-k-s100-o.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "color";
+        String value = "100";
+        log.info(UriTemplateUtil.expandWithVariable(requestPath, matchingPatternPath, variableName, value));
+    }
 
-	/**
-	 * Clear variables value.
-	 */
-	@Test
-	public void clearVariablesValue(){
-		String requestPath = "/s/c500-m60-cred-s-k-s100-o6.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String[] variableNames = { "color", "style" };
-		log.info(UriTemplateUtil.clearVariablesValue(requestPath, matchingPatternPath, variableNames));
-	}
+    /**
+     * Clear variables value.
+     */
+    @Test
+    public void clearVariablesValue(){
+        String requestPath = "/s/c500-m60-cred-s-k-s100-o6.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String[] variableNames = { "color", "style" };
+        log.info(UriTemplateUtil.clearVariablesValue(requestPath, matchingPatternPath, variableNames));
+    }
 
-	/**
-	 * Retain variables value.
-	 */
-	@Test
-	public void retainVariablesValue(){
-		String requestPath = "/s/c500-m60-cred-s-k-s100-o6.htm";
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String[] variableNames = { "color", "style" };
-		log.info(UriTemplateUtil.retainVariablesValue(requestPath, matchingPatternPath, variableNames));
-	}
+    /**
+     * Retain variables value.
+     */
+    @Test
+    public void retainVariablesValue(){
+        String requestPath = "/s/c500-m60-cred-s-k-s100-o6.htm";
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String[] variableNames = { "color", "style" };
+        log.info(UriTemplateUtil.retainVariablesValue(requestPath, matchingPatternPath, variableNames));
+    }
 
-	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#extractUriTemplateVariables(java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testExtractUriTemplateVariables(){
-		String requestPath = "/c/m-caaa-s-k-s-o.htm";
-		String matchingPatternPath = uriTemplatePath;
-		Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
-		log.info("map:{}", JsonUtil.format(map));
-	}
+    /**
+     * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#extractUriTemplateVariables(java.lang.String, java.lang.String)}.
+     */
+    @Test
+    public void testExtractUriTemplateVariables(){
+        String requestPath = "/c/m-caaa-s-k-s-o.htm";
+        String matchingPatternPath = uriTemplatePath;
+        Map<String, String> map = UriTemplateUtil.extractUriTemplateVariables(requestPath, matchingPatternPath);
+        log.info("map:{}", JsonUtil.format(map));
+    }
 
-	/**
-	 * Test method for
-	 * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testExpandWithVariable2(){
+    /**
+     * Test method for
+     * {@link com.feilong.spring.web.util.UriTemplateUtil#expandWithVariable(java.lang.String, java.lang.String, java.lang.String)}.
+     */
+    @Test
+    public void testExpandWithVariable2(){
 
-		String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		String variableName = "color";
-		String value = "100";
-		log.info(UriTemplateUtil.expandWithVariable(matchingPatternPath, variableName, value));
+        String matchingPatternPath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        String variableName = "color";
+        String value = "100";
+        log.info(UriTemplateUtil.expandWithVariable(matchingPatternPath, variableName, value));
 
-	}
+    }
 
-	/**
-	 * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#expand(java.lang.String, java.util.Map)}.
-	 */
-	@Test
-	public void testExpand(){
-		String uriTemplatePath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("color", "100");
-		map.put("size", "L");
-		map.put("K", "aaaa");
-		log.info(UriTemplateUtil.expand(uriTemplatePath, map));
-	}
+    /**
+     * Test method for {@link com.feilong.spring.web.util.UriTemplateUtil#expand(java.lang.String, java.util.Map)}.
+     */
+    @Test
+    public void testExpand(){
+        String uriTemplatePath = "/s/c{categoryCode}-m{material}-c{color}-s{size}-k{kind}-s{style}-o{order}.htm";
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("color", "100");
+        map.put("size", "L");
+        map.put("K", "aaaa");
+        log.info(UriTemplateUtil.expand(uriTemplatePath, map));
+    }
 }

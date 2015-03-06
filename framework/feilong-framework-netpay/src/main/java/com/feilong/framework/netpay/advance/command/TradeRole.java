@@ -22,9 +22,9 @@ package com.feilong.framework.netpay.advance.command;
  * @version 1.0 Mar 2, 2013 5:09:03 PM
  */
 public enum TradeRole{
-	/** 买家 */
-	BUYER,
+    /** 买家 */
+    BUYER,
 
-	/** 卖家 */
-	SELLER;
+    /** 卖家 */
+    SELLER;
 }

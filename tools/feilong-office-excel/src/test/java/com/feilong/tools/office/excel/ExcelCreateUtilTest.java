@@ -32,42 +32,42 @@ import com.feilong.commons.core.date.DateUtil;
  */
 public class ExcelCreateUtilTest{
 
-	/**
-	 * Creates the excel.
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void createExcel() throws IOException{
-		String[] columnsTitle = new String[30];
-		columnsTitle[0] = "姓名";
-		columnsTitle[1] = "地址";
-		columnsTitle[2] = "email";
-		for (int i = 3; i < 30; i++){
-			columnsTitle[i] = "呵呵" + i;
-		}
-		List<Object> list = new ArrayList<Object>();
-		String[] temp = null;
-		for (int i = 0; i < 200; i++){
-			temp = new String[30];
-			temp[0] = "1";
-			temp[1] = "GABC22222";
-			temp[2] = "xy2venus@163.com";
-			for (int j = 3; j < 30; j++){
-				temp[j] = "呵呵" + j;
-			}
-			list.add(temp);
-		}
+    /**
+     * Creates the excel.
+     * 
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void createExcel() throws IOException{
+        String[] columnsTitle = new String[30];
+        columnsTitle[0] = "姓名";
+        columnsTitle[1] = "地址";
+        columnsTitle[2] = "email";
+        for (int i = 3; i < 30; i++){
+            columnsTitle[i] = "呵呵" + i;
+        }
+        List<Object> list = new ArrayList<Object>();
+        String[] temp = null;
+        for (int i = 0; i < 200; i++){
+            temp = new String[30];
+            temp[0] = "1";
+            temp[1] = "GABC22222";
+            temp[2] = "xy2venus@163.com";
+            for (int j = 3; j < 30; j++){
+                temp[j] = "呵呵" + j;
+            }
+            list.add(temp);
+        }
 
-		// *********************************************************************
-		ExcelConfigEntity excelEntity = new ExcelConfigEntity();
-		excelEntity.setSpecialString("G");
-		excelEntity.setIsHasSpecialStringToAddStyle(true);
-		excelEntity.setIsRowChangeColor(true);
-		String fileName = "D://test" + DateUtil.date2String(new Date(), "yyyyMMddHHmmss") + ".xls";
+        // *********************************************************************
+        ExcelConfigEntity excelEntity = new ExcelConfigEntity();
+        excelEntity.setSpecialString("G");
+        excelEntity.setIsHasSpecialStringToAddStyle(true);
+        excelEntity.setIsRowChangeColor(true);
+        String fileName = "D://test" + DateUtil.date2String(new Date(), "yyyyMMddHHmmss") + ".xls";
 
-		ExcelCreateUtil excel = new ExcelCreateUtil();
-		excel.createExcel(columnsTitle, list, fileName, excelEntity);
-	}
+        ExcelCreateUtil excel = new ExcelCreateUtil();
+        excel.createExcel(columnsTitle, list, fileName, excelEntity);
+    }
 }

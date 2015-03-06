@@ -37,30 +37,30 @@ import org.slf4j.LoggerFactory;
  */
 public class URLEscapeEditor extends PropertyEditorSupport{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(URLEscapeEditor.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(URLEscapeEditor.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
-	 */
-	@Override
-	public void setAsText(String text) throws IllegalArgumentException{
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < text.length(); i++){
-			char c = text.charAt(i);
-			// These characters are part of the query syntax and must be escaped
-			if (c == '\\' || c == '+' || c == '-' || c == '!' || c == '(' || c == ')' || c == ':' || c == '^' || c == '[' || c == ']'
-							|| c == '\"' || c == '{' || c == '}' || c == '~' || c == '*' || c == '?' || c == '|' || c == '&'){
-				sb.append('\\');
-			}
-			sb.append(c);
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
+     */
+    @Override
+    public void setAsText(String text) throws IllegalArgumentException{
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < text.length(); i++){
+            char c = text.charAt(i);
+            // These characters are part of the query syntax and must be escaped
+            if (c == '\\' || c == '+' || c == '-' || c == '!' || c == '(' || c == ')' || c == ':' || c == '^' || c == '[' || c == ']'
+                            || c == '\"' || c == '{' || c == '}' || c == '~' || c == '*' || c == '?' || c == '|' || c == '&'){
+                sb.append('\\');
+            }
+            sb.append(c);
+        }
 
-		String newText = sb.toString();
+        String newText = sb.toString();
 
-		log.debug("the old text:{},new text:{}", text, newText);
-		setValue(newText);
-	}
+        log.debug("the old text:{},new text:{}", text, newText);
+        setValue(newText);
+    }
 }

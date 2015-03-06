@@ -29,17 +29,17 @@ import org.slf4j.LoggerFactory;
  */
 public class ResultUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ResultUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ResultUtilTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void test(){
-		// 获得一个字符串并将它转换成普通 Java 变量名称大写形式的实用工具方法。
-		//这通常意味着将首字符从大写转换成小写，但在（不平常的）特殊情况下，当有多个字符且第一个和第二个字符都是大写字符时，不执行任何操作。
-		// 因此 "FooBah" 变成 "fooBah"，"X" 变成 "x"，但 "URL" 仍然是 "URL"。
-		log.info(Introspector.decapitalize("Jinxin"));
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void test(){
+        // 获得一个字符串并将它转换成普通 Java 变量名称大写形式的实用工具方法。
+        //这通常意味着将首字符从大写转换成小写，但在（不平常的）特殊情况下，当有多个字符且第一个和第二个字符都是大写字符时，不执行任何操作。
+        // 因此 "FooBah" 变成 "fooBah"，"X" 变成 "x"，但 "URL" 仍然是 "URL"。
+        log.info(Introspector.decapitalize("Jinxin"));
+    }
 }

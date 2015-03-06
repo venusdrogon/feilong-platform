@@ -29,174 +29,174 @@ import java.util.Vector;
  */
 public class DIUser extends BaseDIUser{
 
-	/** The user name. */
-	private String				userName;
+    /** The user name. */
+    private String              userName;
 
-	/** The array. */
-	private String[]			array;
+    /** The array. */
+    private String[]            array;
 
-	/** The list. */
-	private List<String>		list;
+    /** The list. */
+    private List<String>        list;
 
-	/** The map. */
-	private Map<String, Object>	map;
+    /** The map. */
+    private Map<String, Object> map;
 
-	/** The properties. */
-	private Properties			properties;
+    /** The properties. */
+    private Properties          properties;
 
-	/** The set. */
-	private Set<String>			set;
+    /** The set. */
+    private Set<String>         set;
 
-	/** The vector. */
-	private Vector<Object>		vector;
+    /** The vector. */
+    private Vector<Object>      vector;
 
-	private DIUserArray			diUserArray;
+    private DIUserArray         diUserArray;
 
-	/**
-	 * Gets the list.
-	 * 
-	 * @return the list
-	 */
-	public List<String> getList(){
-		return list;
-	}
+    /**
+     * Gets the list.
+     * 
+     * @return the list
+     */
+    public List<String> getList(){
+        return list;
+    }
 
-	/**
-	 * Sets the list.
-	 * 
-	 * @param list
-	 *            the new list
-	 */
-	public void setList(List<String> list){
-		this.list = list;
-	}
+    /**
+     * Sets the list.
+     * 
+     * @param list
+     *            the new list
+     */
+    public void setList(List<String> list){
+        this.list = list;
+    }
 
-	/**
-	 * Gets the map.
-	 * 
-	 * @return the map
-	 */
-	public Map<String, Object> getMap(){
-		return map;
-	}
+    /**
+     * Gets the map.
+     * 
+     * @return the map
+     */
+    public Map<String, Object> getMap(){
+        return map;
+    }
 
-	/**
-	 * 设置 map.
-	 * 
-	 * @param map
-	 *            the map
-	 */
-	public void setMap(Map<String, Object> map){
-		this.map = map;
-	}
+    /**
+     * 设置 map.
+     * 
+     * @param map
+     *            the map
+     */
+    public void setMap(Map<String, Object> map){
+        this.map = map;
+    }
 
-	/**
-	 * Gets the properties.
-	 * 
-	 * @return the properties
-	 */
-	public Properties getProperties(){
-		return properties;
-	}
+    /**
+     * Gets the properties.
+     * 
+     * @return the properties
+     */
+    public Properties getProperties(){
+        return properties;
+    }
 
-	/**
-	 * Sets the properties.
-	 * 
-	 * @param properties
-	 *            the new properties
-	 */
-	public void setProperties(Properties properties){
-		this.properties = properties;
-	}
+    /**
+     * Sets the properties.
+     * 
+     * @param properties
+     *            the new properties
+     */
+    public void setProperties(Properties properties){
+        this.properties = properties;
+    }
 
-	/**
-	 * Gets the 设置.
-	 * 
-	 * @return the 设置
-	 */
-	public Set<String> getSet(){
-		return set;
-	}
+    /**
+     * Gets the 设置.
+     * 
+     * @return the 设置
+     */
+    public Set<String> getSet(){
+        return set;
+    }
 
-	/**
-	 * Sets the 设置.
-	 * 
-	 * @param set
-	 *            the new 设置
-	 */
-	public void setSet(Set<String> set){
-		this.set = set;
-	}
+    /**
+     * Sets the 设置.
+     * 
+     * @param set
+     *            the new 设置
+     */
+    public void setSet(Set<String> set){
+        this.set = set;
+    }
 
-	/**
-	 * Gets the vector.
-	 * 
-	 * @return the vector
-	 */
-	public Vector<Object> getVector(){
-		return vector;
-	}
+    /**
+     * Gets the vector.
+     * 
+     * @return the vector
+     */
+    public Vector<Object> getVector(){
+        return vector;
+    }
 
-	/**
-	 * Sets the vector.
-	 * 
-	 * @param vector
-	 *            the new vector
-	 */
-	public void setVector(Vector<Object> vector){
-		this.vector = vector;
-	}
+    /**
+     * Sets the vector.
+     * 
+     * @param vector
+     *            the new vector
+     */
+    public void setVector(Vector<Object> vector){
+        this.vector = vector;
+    }
 
-	/**
-	 * Gets the array.
-	 * 
-	 * @return the array
-	 */
-	public String[] getArray(){
-		return array;
-	}
+    /**
+     * Gets the array.
+     * 
+     * @return the array
+     */
+    public String[] getArray(){
+        return array;
+    }
 
-	/**
-	 * Sets the array.
-	 * 
-	 * @param array
-	 *            the array to set
-	 */
-	public void setArray(String[] array){
-		this.array = array;
-	}
+    /**
+     * Sets the array.
+     * 
+     * @param array
+     *            the array to set
+     */
+    public void setArray(String[] array){
+        this.array = array;
+    }
 
-	/**
-	 * Gets the user name.
-	 * 
-	 * @return the user name
-	 */
-	public String getUserName(){
-		return userName;
-	}
+    /**
+     * Gets the user name.
+     * 
+     * @return the user name
+     */
+    public String getUserName(){
+        return userName;
+    }
 
-	/**
-	 * Sets the user name.
-	 * 
-	 * @param userName
-	 *            the new user name
-	 */
-	public void setUserName(String userName){
-		this.userName = userName;
-	}
+    /**
+     * Sets the user name.
+     * 
+     * @param userName
+     *            the new user name
+     */
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
 
-	/**
-	 * @param diUserArray
-	 *            the diUserArray to set
-	 */
-	public void setDiUserArray(DIUserArray diUserArray){
-		this.diUserArray = diUserArray;
-	}
+    /**
+     * @param diUserArray
+     *            the diUserArray to set
+     */
+    public void setDiUserArray(DIUserArray diUserArray){
+        this.diUserArray = diUserArray;
+    }
 
-	/**
-	 * @return the diUserArray
-	 */
-	public DIUserArray getDiUserArray(){
-		return diUserArray;
-	}
+    /**
+     * @return the diUserArray
+     */
+    public DIUserArray getDiUserArray(){
+        return diUserArray;
+    }
 }

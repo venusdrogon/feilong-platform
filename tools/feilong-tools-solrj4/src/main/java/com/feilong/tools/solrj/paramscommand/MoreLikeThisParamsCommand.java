@@ -29,6 +29,6 @@ import org.apache.solr.common.params.MoreLikeThisParams;
  */
 public class MoreLikeThisParamsCommand implements Serializable{
 
-	private static final long	serialVersionUID	= -6106620459037519690L;
+    private static final long serialVersionUID = -6106620459037519690L;
 
 }

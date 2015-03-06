@@ -31,34 +31,34 @@ import org.slf4j.LoggerFactory;
  */
 public class JDBCDAOTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(JDBCDAOTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(JDBCDAOTest.class);
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(String[] args){
-		try{
-			Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();// 加载驱动
-			Connection conn = DriverManager.getConnection("jdbc:derby:myfeilongdb;create=true");// 连接数据库
-			Statement st = conn.createStatement();
-			//			st.execute("create table CITY (ID INT NOT NULL,CITYNAME VARCHAR(10) NOT NULL)");// 建表
-			//			st.executeUpdate("insert into CITY(ID,CITYNAME) values (1,'北京')");// 插入数据
-			//			st.executeUpdate("insert into CITY(ID,CITYNAME) values (2,'上海')");// 插入数据
-			ResultSet rs = st.executeQuery("select * from CITY");// 读取刚插入的数据
-			while (rs.next()){
-				int id = rs.getInt(1);
-				String cityName = rs.getString(2);
-				log.info("ID=" + id);
-				log.info("CITYNAME=" + cityName);
-			}
-			rs.close();
-			conn.close();
-		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments
+     */
+    public static void main(String[] args){
+        try{
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();// 加载驱动
+            Connection conn = DriverManager.getConnection("jdbc:derby:myfeilongdb;create=true");// 连接数据库
+            Statement st = conn.createStatement();
+            //			st.execute("create table CITY (ID INT NOT NULL,CITYNAME VARCHAR(10) NOT NULL)");// 建表
+            //			st.executeUpdate("insert into CITY(ID,CITYNAME) values (1,'北京')");// 插入数据
+            //			st.executeUpdate("insert into CITY(ID,CITYNAME) values (2,'上海')");// 插入数据
+            ResultSet rs = st.executeQuery("select * from CITY");// 读取刚插入的数据
+            while (rs.next()){
+                int id = rs.getInt(1);
+                String cityName = rs.getString(2);
+                log.info("ID=" + id);
+                log.info("CITYNAME=" + cityName);
+            }
+            rs.close();
+            conn.close();
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 }

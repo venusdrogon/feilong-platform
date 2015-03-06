@@ -36,107 +36,107 @@ import com.feilong.tools.scm.command.ScmPatchCommand;
  */
 public final class SvnPatchAntCopy extends AbstractScmAntCopy{
 
-	/** 项目名称 <code>{@value}</code>. */
-	private static final String	PREFIX_PROJECTNAME	= "#P ";
+    /** 项目名称 <code>{@value}</code>. */
+    private static final String PREFIX_PROJECTNAME = "#P ";
 
-	/** Index <code>{@value}</code>. */
-	private static final String	PREFIX_INDEX		= "Index: ";
+    /** Index <code>{@value}</code>. */
+    private static final String PREFIX_INDEX       = "Index: ";
 
-	/**
-	 * The Constructor.
-	 */
-	public SvnPatchAntCopy(){
-	}
+    /**
+     * The Constructor.
+     */
+    public SvnPatchAntCopy(){
+    }
 
-	/**
-	 * To patch command list map.
-	 *
-	 * @param bufferedReader
-	 *            the buffered reader
-	 * @return the map
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	@Override
-	protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
-		List<SvnPatchCommand> addList = new ArrayList<SvnPatchCommand>();
-		List<SvnPatchCommand> updateList = new ArrayList<SvnPatchCommand>();
-		List<SvnPatchCommand> deleteList = new ArrayList<SvnPatchCommand>();
+    /**
+     * To patch command list map.
+     *
+     * @param bufferedReader
+     *            the buffered reader
+     * @return the map
+     * @throws IOException
+     *             the IO exception
+     */
+    @Override
+    protected Map<PatchType, List<? extends ScmPatchCommand>> toPatchCommandListMap(BufferedReader bufferedReader) throws IOException{
+        List<SvnPatchCommand> addList = new ArrayList<SvnPatchCommand>();
+        List<SvnPatchCommand> updateList = new ArrayList<SvnPatchCommand>();
+        List<SvnPatchCommand> deleteList = new ArrayList<SvnPatchCommand>();
 
-		//*********************************************************************************
+        //*********************************************************************************
 
-		// Index 行寄存器,每个index 先设置这里面 ,如果下面 有--- +++ 等 就从这寄存器里面移除,剩下的都是add 的
-		LinkedList<SvnPatchCommand> indexStorageList = new LinkedList<SvnPatchCommand>();
+        // Index 行寄存器,每个index 先设置这里面 ,如果下面 有--- +++ 等 就从这寄存器里面移除,剩下的都是add 的
+        LinkedList<SvnPatchCommand> indexStorageList = new LinkedList<SvnPatchCommand>();
 
-		SvnPatchCommand patchCommand = null;
-		String line = null;
-		// 每 次循环到 Index 重新赋值
-		String filePath = "";
-		while ((line = bufferedReader.readLine()) != null){
-			// 项目名称
-			if (line.startsWith(PREFIX_PROJECTNAME)){
-				setProjectName(StringUtil.substring(line, PREFIX_PROJECTNAME.length()));
-			}
+        SvnPatchCommand patchCommand = null;
+        String line = null;
+        // 每 次循环到 Index 重新赋值
+        String filePath = "";
+        while ((line = bufferedReader.readLine()) != null){
+            // 项目名称
+            if (line.startsWith(PREFIX_PROJECTNAME)){
+                setProjectName(StringUtil.substring(line, PREFIX_PROJECTNAME.length()));
+            }
 
-			// 开始
-			if (line.startsWith(PREFIX_INDEX)){
-				patchCommand = new SvnPatchCommand();
-				patchCommand.setIndex(line);
+            // 开始
+            if (line.startsWith(PREFIX_INDEX)){
+                patchCommand = new SvnPatchCommand();
+                patchCommand.setIndex(line);
 
-				// 每 次循环到 Index 重新赋值
-				filePath = StringUtil.substring(line, PREFIX_INDEX.length());
-				patchCommand.setFilePath(filePath);
-				// 先寄存
-				indexStorageList.add(patchCommand);
-			}else{
+                // 每 次循环到 Index 重新赋值
+                filePath = StringUtil.substring(line, PREFIX_INDEX.length());
+                patchCommand.setFilePath(filePath);
+                // 先寄存
+                indexStorageList.add(patchCommand);
+            }else{
 
-				if (line.startsWith("---") || line.startsWith("+++") || line.startsWith("@@ ")){
-					if (null == patchCommand){
-						throw new NullPointerException("the patchCommand is null or empty!");
-					}
+                if (line.startsWith("---") || line.startsWith("+++") || line.startsWith("@@ ")){
+                    if (null == patchCommand){
+                        throw new NullPointerException("the patchCommand is null or empty!");
+                    }
 
-					if (line.startsWith("---")){// --- src/main/java/com/jumbo/shop/web/UserDetails.java (revision 47866)
+                    if (line.startsWith("---")){// --- src/main/java/com/jumbo/shop/web/UserDetails.java (revision 47866)
 
-						// 寄存器 删除 最后一个
-						indexStorageList.removeLast();
-						patchCommand.setRemote(line);
+                        // 寄存器 删除 最后一个
+                        indexStorageList.removeLast();
+                        patchCommand.setRemote(line);
 
-					}else if (line.startsWith("+++")){// +++ src/main/java/com/jumbo/shop/web/UserDetails.java (working copy)
-						patchCommand.setLocal(line);
-					}else if (line.startsWith("@@ ")){
+                    }else if (line.startsWith("+++")){// +++ src/main/java/com/jumbo/shop/web/UserDetails.java (working copy)
+                        patchCommand.setLocal(line);
+                    }else if (line.startsWith("@@ ")){
 
-						// @@ -1,34 +0,0 @@ delete
-						// @@ -98,10 +98,18 @@ update
-						patchCommand.getTwoAt().add(line);
+                        // @@ -1,34 +0,0 @@ delete
+                        // @@ -98,10 +98,18 @@ update
+                        patchCommand.getTwoAt().add(line);
 
-						//add
-						if (StringUtil.isContain(patchCommand.getRemote(), "(revision 0)")){
-							// --- src/main/webapp/css/portal11.css (revision 0)
-							// +++ src/main/webapp/css/portal11.css (working copy)
-							// @@ -0,0 +1,129 @@
-							addIgnoreSameFilePath(addList, patchCommand, PatchType.ADD);
-						}else{
-							//delete
-							if (StringUtil.isContain(line, "+0,0")){
-								addIgnoreSameFilePath(deleteList, patchCommand, PatchType.DELETE);
-							}else{
-								// 一个index 下面 可能 修改了 好多行 会产生很多 (选择基于路径)
-								// @@ -157,18 +157,18 @@
-								// xxxx
-								// @@ -478,9 +478,9 @@
-								// xxxx
+                        //add
+                        if (StringUtil.isContain(patchCommand.getRemote(), "(revision 0)")){
+                            // --- src/main/webapp/css/portal11.css (revision 0)
+                            // +++ src/main/webapp/css/portal11.css (working copy)
+                            // @@ -0,0 +1,129 @@
+                            addIgnoreSameFilePath(addList, patchCommand, PatchType.ADD);
+                        }else{
+                            //delete
+                            if (StringUtil.isContain(line, "+0,0")){
+                                addIgnoreSameFilePath(deleteList, patchCommand, PatchType.DELETE);
+                            }else{
+                                // 一个index 下面 可能 修改了 好多行 会产生很多 (选择基于路径)
+                                // @@ -157,18 +157,18 @@
+                                // xxxx
+                                // @@ -478,9 +478,9 @@
+                                // xxxx
 
-								//update
-								addIgnoreSameFilePath(updateList, patchCommand, PatchType.UPDATE);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (Validator.isNotNullOrEmpty(indexStorageList)){
-			addList = indexStorageList;
-		}
-		return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
-	}
+                                //update
+                                addIgnoreSameFilePath(updateList, patchCommand, PatchType.UPDATE);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (Validator.isNotNullOrEmpty(indexStorageList)){
+            addList = indexStorageList;
+        }
+        return super.constructPatchTypeSCMCommandMap(addList, updateList, deleteList);
+    }
 }

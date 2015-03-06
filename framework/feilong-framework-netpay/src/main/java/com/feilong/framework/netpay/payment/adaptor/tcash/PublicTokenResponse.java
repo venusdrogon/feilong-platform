@@ -26,88 +26,88 @@ import com.feilong.framework.netpay.payment.adaptor.AdaptorParseUsableData;
  */
 public final class PublicTokenResponse implements AdaptorParseUsableData{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/**
-	 * Public token that used by customer when they redirect into T-Cash landing page<br>
-	 * Example 1: -----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.47\n\nhQEOAyYtPQbS+5JtEAP/fI1MbXcrVa/83WlZS6y+76g
-	 */
-	private String				pgpToken;
+    /**
+     * Public token that used by customer when they redirect into T-Cash landing page<br>
+     * Example 1: -----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.47\n\nhQEOAyYtPQbS+5JtEAP/fI1MbXcrVa/83WlZS6y+76g
+     */
+    private String            pgpToken;
 
-	/**
-	 * T-Cash reference number that will be used by merchant for checking customer transaction<br>
-	 * Example 1: 2506141402007010.
-	 */
-	private String				refNum;
+    /**
+     * T-Cash reference number that will be used by merchant for checking customer transaction<br>
+     * Example 1: 2506141402007010.
+     */
+    private String            refNum;
 
-	/**
-	 * Limit time for using public token (in milisecond)<br>
-	 * Example 1: 1403679721180.
-	 */
-	private String				fastTime;
+    /**
+     * Limit time for using public token (in milisecond)<br>
+     * Example 1: 1403679721180.
+     */
+    private String            fastTime;
 
-	/**
-	 * 获得 public token that used by customer when they redirect into T-Cash landing page<br>
-	 * Example 1: -----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.
-	 * 
-	 * @return the pgpToken
-	 */
-	public String getPgpToken(){
-		return pgpToken;
-	}
+    /**
+     * 获得 public token that used by customer when they redirect into T-Cash landing page<br>
+     * Example 1: -----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.
+     * 
+     * @return the pgpToken
+     */
+    public String getPgpToken(){
+        return pgpToken;
+    }
 
-	/**
-	 * 设置 public token that used by customer when they redirect into T-Cash landing page<br>
-	 * Example 1: -----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.
-	 * 
-	 * @param pgpToken
-	 *            the pgpToken to set
-	 */
-	public void setPgpToken(String pgpToken){
-		this.pgpToken = pgpToken;
-	}
+    /**
+     * 设置 public token that used by customer when they redirect into T-Cash landing page<br>
+     * Example 1: -----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.
+     * 
+     * @param pgpToken
+     *            the pgpToken to set
+     */
+    public void setPgpToken(String pgpToken){
+        this.pgpToken = pgpToken;
+    }
 
-	/**
-	 * 获得 t-Cash reference number that will be used by merchant for checking customer transaction<br>
-	 * Example 1: 2506141402007010.
-	 * 
-	 * @return the refNum
-	 */
-	public String getRefNum(){
-		return refNum;
-	}
+    /**
+     * 获得 t-Cash reference number that will be used by merchant for checking customer transaction<br>
+     * Example 1: 2506141402007010.
+     * 
+     * @return the refNum
+     */
+    public String getRefNum(){
+        return refNum;
+    }
 
-	/**
-	 * 设置 t-Cash reference number that will be used by merchant for checking customer transaction<br>
-	 * Example 1: 2506141402007010.
-	 * 
-	 * @param refNum
-	 *            the refNum to set
-	 */
-	public void setRefNum(String refNum){
-		this.refNum = refNum;
-	}
+    /**
+     * 设置 t-Cash reference number that will be used by merchant for checking customer transaction<br>
+     * Example 1: 2506141402007010.
+     * 
+     * @param refNum
+     *            the refNum to set
+     */
+    public void setRefNum(String refNum){
+        this.refNum = refNum;
+    }
 
-	/**
-	 * 获得 limit time for using public token (in milisecond)<br>
-	 * Example 1: 1403679721180.
-	 * 
-	 * @return the fastTime
-	 */
-	public String getFastTime(){
-		return fastTime;
-	}
+    /**
+     * 获得 limit time for using public token (in milisecond)<br>
+     * Example 1: 1403679721180.
+     * 
+     * @return the fastTime
+     */
+    public String getFastTime(){
+        return fastTime;
+    }
 
-	/**
-	 * 设置 limit time for using public token (in milisecond)<br>
-	 * Example 1: 1403679721180.
-	 * 
-	 * @param fastTime
-	 *            the fastTime to set
-	 */
-	public void setFastTime(String fastTime){
-		this.fastTime = fastTime;
-	}
+    /**
+     * 设置 limit time for using public token (in milisecond)<br>
+     * Example 1: 1403679721180.
+     * 
+     * @param fastTime
+     *            the fastTime to set
+     */
+    public void setFastTime(String fastTime){
+        this.fastTime = fastTime;
+    }
 
 }

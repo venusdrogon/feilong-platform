@@ -31,23 +31,23 @@ import com.feilong.test.User;
  */
 public class ConstructorUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ConstructorUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ConstructorUtilTest.class);
 
-	/**
-	 * New instance.
-	 *
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
-	 */
-	@Test
-	public final void newInstance() throws ClassNotFoundException{
+    /**
+     * New instance.
+     *
+     * @throws ClassNotFoundException
+     *             the class not found exception
+     */
+    @Test
+    public final void newInstance() throws ClassNotFoundException{
 
-		User user = ConstructorUtil.newInstance("com.feilong.test.User");
-		log.info(JsonUtil.format(user));
+        User user = ConstructorUtil.newInstance("com.feilong.test.User");
+        log.info(JsonUtil.format(user));
 
-		User user1 = ConstructorUtil.newInstance("com.feilong.test.User", 100L);
-		log.info(JsonUtil.format(user1));
-	}
+        User user1 = ConstructorUtil.newInstance("com.feilong.test.User", 100L);
+        log.info(JsonUtil.format(user1));
+    }
 
 }

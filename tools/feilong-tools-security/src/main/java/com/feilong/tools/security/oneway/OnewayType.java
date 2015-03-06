@@ -82,91 +82,91 @@ package com.feilong.tools.security.oneway;
 //无访问控制符修饰的内容可以被同一个包中的类访问，
 enum OnewayType{
 
-	/**
-	 * Message Digest algorithm 5，信息摘要算法<br>
-	 * 将任意长度的"字节串"变换成一个128bit的大整数.
-	 */
-	MD5("MD5"),
+    /**
+     * Message Digest algorithm 5，信息摘要算法<br>
+     * 将任意长度的"字节串"变换成一个128bit的大整数.
+     */
+    MD5("MD5"),
 
-	// *****SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
-	/**
-	 * 值和 {@link #SHA1} 其实是一样的<br>
-	 * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
-	 * 
-	 * @see #SHA1
-	 */
-	SHA("SHA"),
-	/**
-	 * Secure Hash Algorithm，安全散列算法.
-	 * 
-	 * <p>
-	 * 在1993年，安全散列算法（SHA）由美国国家标准和技术协会（NIST)提出，并作为联邦信息处理标准（FIPS PUB 180）公布； 1995年又发布了一个修订版FIPS PUB 180-1，通常称之为SHA-1。
-	 * SHA-1是基于MD4算法的，并且它的设计在很大程度上是模仿MD4的。现在已成为公认的最安全的散列算法之一，并被广泛使用。
-	 * </p>
-	 * 
-	 * <br>
-	 * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
-	 * 
-	 * @see #SHA
-	 * 
-	 */
-	SHA1("SHA-1"),
+    // *****SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
+    /**
+     * 值和 {@link #SHA1} 其实是一样的<br>
+     * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
+     * 
+     * @see #SHA1
+     */
+    SHA("SHA"),
+    /**
+     * Secure Hash Algorithm，安全散列算法.
+     * 
+     * <p>
+     * 在1993年，安全散列算法（SHA）由美国国家标准和技术协会（NIST)提出，并作为联邦信息处理标准（FIPS PUB 180）公布； 1995年又发布了一个修订版FIPS PUB 180-1，通常称之为SHA-1。
+     * SHA-1是基于MD4算法的，并且它的设计在很大程度上是模仿MD4的。现在已成为公认的最安全的散列算法之一，并被广泛使用。
+     * </p>
+     * 
+     * <br>
+     * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
+     * 
+     * @see #SHA
+     * 
+     */
+    SHA1("SHA-1"),
 
-	// java.lang.IllegalArgumentException: No such algorithm [SHA-2]
-	// SHA2("SHA-2"),
+    // java.lang.IllegalArgumentException: No such algorithm [SHA-2]
+    // SHA2("SHA-2"),
 
-	// No such algorithm [SHA-224] java不支持 java.lang.IllegalArgumentException:
-	// SHA224("SHA-224"),
+    // No such algorithm [SHA-224] java不支持 java.lang.IllegalArgumentException:
+    // SHA224("SHA-224"),
 
-	/**
-	 * The SH a256<br>
-	 * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
-	 */
-	SHA256("SHA-256"),
+    /**
+     * The SH a256<br>
+     * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
+     */
+    SHA256("SHA-256"),
 
-	/**
-	 * The SH a384<br>
-	 * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
-	 */
-	SHA384("SHA-384"),
+    /**
+     * The SH a384<br>
+     * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
+     */
+    SHA384("SHA-384"),
 
-	/**
-	 * The SH a512<br>
-	 * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
-	 */
-	SHA512("SHA-512");
+    /**
+     * The SH a512<br>
+     * 注:SHA家族的五个算法，分别是SHA-1、SHA-224(java 不支持)、SHA-256、SHA-384，和SHA-512
+     */
+    SHA512("SHA-512");
 
-	// ****************************************************************************
+    // ****************************************************************************
 
-	/** 算法. */
-	private String	algorithm;
+    /** 算法. */
+    private String algorithm;
 
-	/**
-	 * Instantiates a new oneway type.
-	 * 
-	 * @param algorithm
-	 *            the algorithm
-	 */
-	private OnewayType(String algorithm){
-		this.algorithm = algorithm;
-	}
+    /**
+     * Instantiates a new oneway type.
+     * 
+     * @param algorithm
+     *            the algorithm
+     */
+    private OnewayType(String algorithm){
+        this.algorithm = algorithm;
+    }
 
-	/**
-	 * Gets the 算法.
-	 * 
-	 * @return the algorithm
-	 */
-	public String getAlgorithm(){
-		return algorithm;
-	}
+    /**
+     * Gets the 算法.
+     * 
+     * @return the algorithm
+     */
+    public String getAlgorithm(){
+        return algorithm;
+    }
 
-	/**
-	 * Sets the 算法.
-	 * 
-	 * @param algorithm
-	 *            the algorithm to set
-	 */
-	public void setAlgorithm(String algorithm){
-		this.algorithm = algorithm;
-	}
+    /**
+     * Sets the 算法.
+     * 
+     * @param algorithm
+     *            the algorithm to set
+     */
+    public void setAlgorithm(String algorithm){
+        this.algorithm = algorithm;
+    }
 }

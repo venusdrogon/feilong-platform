@@ -52,329 +52,329 @@ import com.feilong.tools.security.oneway.SHA1Util;
  */
 public class DokuAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DokuAdvanceAdaptor.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(DokuAdvanceAdaptor.class);
 
-	/** The MALLID. */
-	private String				MALLID;
+    /** The MALLID. */
+    private String              MALLID;
 
-	/** The CHAINMERCHANT. */
-	private String				CHAINMERCHANT;
+    /** The CHAINMERCHANT. */
+    private String              CHAINMERCHANT;
 
-	/** The Shared_key. */
-	private String				Shared_key;
+    /** The Shared_key. */
+    private String              Shared_key;
 
-	/** 查询网关提交地址. */
-	private String				queryGateway;
+    /** 查询网关提交地址. */
+    private String              queryGateway;
 
-	/** queryMethod. */
-	private String				queryMethod;
+    /** queryMethod. */
+    private String              queryMethod;
 
-	/**
-	 * Payment Channel
-	 * <ul>
-	 * <li>01 Credit Card Visa/Master</li>
-	 * <li>02 Mandiri ClickPay</li>
-	 * <li>05 Permata VA LITE</li>
-	 * <li>06 BRI e-Pay</li>
-	 * </ul>
-	 * .
-	 */
-	private String				PAYMENTCHANNEL;
+    /**
+     * Payment Channel
+     * <ul>
+     * <li>01 Credit Card Visa/Master</li>
+     * <li>02 Mandiri ClickPay</li>
+     * <li>05 Permata VA LITE</li>
+     * <li>06 BRI e-Pay</li>
+     * </ul>
+     * .
+     */
+    private String              PAYMENTCHANNEL;
 
-	// Andi 拿出的 DOKU 邮件里面的script 是 "ISO-8859-1"
-	/** The charset name for sh a1. */
-	private String				charsetNameForSHA1;
+    // Andi 拿出的 DOKU 邮件里面的script 是 "ISO-8859-1"
+    /** The charset name for sh a1. */
+    private String              charsetNameForSHA1;
 
-	/**
-	 * Validate param.
-	 */
-	@PostConstruct
-	public void validateParam(){
-		if (Validator.isNullOrEmpty(MALLID)){
-			throw new IllegalArgumentException("MALLID can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(CHAINMERCHANT)){
-			throw new IllegalArgumentException("CHAINMERCHANT can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(Shared_key)){
-			throw new IllegalArgumentException("Shared_key can't be null/empty!");
-		}
-		if (Validator.isNullOrEmpty(queryMethod)){
-			throw new IllegalArgumentException("queryMethod can't be null/empty!");
-		}
+    /**
+     * Validate param.
+     */
+    @PostConstruct
+    public void validateParam(){
+        if (Validator.isNullOrEmpty(MALLID)){
+            throw new IllegalArgumentException("MALLID can't be null/empty!");
+        }
+        if (Validator.isNullOrEmpty(CHAINMERCHANT)){
+            throw new IllegalArgumentException("CHAINMERCHANT can't be null/empty!");
+        }
+        if (Validator.isNullOrEmpty(Shared_key)){
+            throw new IllegalArgumentException("Shared_key can't be null/empty!");
+        }
+        if (Validator.isNullOrEmpty(queryMethod)){
+            throw new IllegalArgumentException("queryMethod can't be null/empty!");
+        }
 
-		// TODO
-		// if (Validator.isNullOrEmpty(PAYMENTCHANNEL)){
-		// throw new IllegalArgumentException("PAYMENTCHANNEL can't be null/empty!");
-		// }
-		if (Validator.isNullOrEmpty(charsetNameForSHA1)){
-			throw new IllegalArgumentException("charsetNameForSHA1 can't be null/empty!");
-		}
-	}
+        // TODO
+        // if (Validator.isNullOrEmpty(PAYMENTCHANNEL)){
+        // throw new IllegalArgumentException("PAYMENTCHANNEL can't be null/empty!");
+        // }
+        if (Validator.isNullOrEmpty(charsetNameForSHA1)){
+            throw new IllegalArgumentException("charsetNameForSHA1 can't be null/empty!");
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.feilong.netpay.advanceadaptor.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest
-	 * )
-	 */
-	@Override
-	public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.feilong.netpay.advanceadaptor.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest
+     * )
+     */
+    @Override
+    public QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException{
 
-		// queryRequest
-		if (Validator.isNullOrEmpty(queryRequest)){
-			throw new IllegalArgumentException("oh,queryRequest can't be null/empty!");
-		}
+        // queryRequest
+        if (Validator.isNullOrEmpty(queryRequest)){
+            throw new IllegalArgumentException("oh,queryRequest can't be null/empty!");
+        }
 
-		// tradeNo
-		String TRANSIDMERCHANT = queryRequest.getTradeNo();
-		if (Validator.isNullOrEmpty(TRANSIDMERCHANT)){
-			throw new IllegalArgumentException("queryRequest.getTradeNo() can't be null/empty!What do you query for?");
-		}
+        // tradeNo
+        String TRANSIDMERCHANT = queryRequest.getTradeNo();
+        if (Validator.isNullOrEmpty(TRANSIDMERCHANT)){
+            throw new IllegalArgumentException("queryRequest.getTradeNo() can't be null/empty!What do you query for?");
+        }
 
-		// buyer
-		Serializable buyer = queryRequest.getBuyer();
-		if (Validator.isNullOrEmpty(buyer)){
-			throw new IllegalArgumentException(
-							"buyer can't be null/empty!,this time,queryRequest.getBuyer() use for generateSessionId,very important!");
-		}
-		HttpMethodType httpMethodType = null;
-		try{
-			httpMethodType = EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", queryMethod);
-		}catch (NoSuchFieldException e){
-			throw new TradeQueryException(e);
-		}
+        // buyer
+        Serializable buyer = queryRequest.getBuyer();
+        if (Validator.isNullOrEmpty(buyer)){
+            throw new IllegalArgumentException(
+                            "buyer can't be null/empty!,this time,queryRequest.getBuyer() use for generateSessionId,very important!");
+        }
+        HttpMethodType httpMethodType = null;
+        try{
+            httpMethodType = EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", queryMethod);
+        }catch (NoSuchFieldException e){
+            throw new TradeQueryException(e);
+        }
 
-		if (Validator.isNullOrEmpty(httpMethodType)){
-			throw new IllegalArgumentException(
-							"httpMethodType can't be null/empty!Do you Forget to configure correct queryMethod?and only support get/post now");
-		}
+        if (Validator.isNullOrEmpty(httpMethodType)){
+            throw new IllegalArgumentException(
+                            "httpMethodType can't be null/empty!Do you Forget to configure correct queryMethod?and only support get/post now");
+        }
 
-		// ***********************************************************************************
-		String SESSIONID = DokuAdaptorUtil.generateSessionId(buyer);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("MALLID", MALLID); // Given by DOKU
-		map.put("CHAINMERCHANT", CHAINMERCHANT);// Given by DOKU
-		map.put("TRANSIDMERCHANT", TRANSIDMERCHANT);// Transaction ID from Merchant
-		map.put("SESSIONID", SESSIONID);
-		map.put("PAYMENTCHANNEL", PAYMENTCHANNEL);// See payment channel code list
-		// WORDS AN ...200 Hashed key combination encryption (use SHA1 meth- od).
-		// The hashed key generated from combining these parameters value in this order : MALLID+<shared key>+TRANSIDMERCHANT
-		map.put("WORDS", getWORDSForCheckStatus(TRANSIDMERCHANT));
+        // ***********************************************************************************
+        String SESSIONID = DokuAdaptorUtil.generateSessionId(buyer);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("MALLID", MALLID); // Given by DOKU
+        map.put("CHAINMERCHANT", CHAINMERCHANT);// Given by DOKU
+        map.put("TRANSIDMERCHANT", TRANSIDMERCHANT);// Transaction ID from Merchant
+        map.put("SESSIONID", SESSIONID);
+        map.put("PAYMENTCHANNEL", PAYMENTCHANNEL);// See payment channel code list
+        // WORDS AN ...200 Hashed key combination encryption (use SHA1 meth- od).
+        // The hashed key generated from combining these parameters value in this order : MALLID+<shared key>+TRANSIDMERCHANT
+        map.put("WORDS", getWORDSForCheckStatus(TRANSIDMERCHANT));
 
-		HttpClientConfig httpClientConfig = new HttpClientConfig();
-		httpClientConfig.setUri(queryGateway);
-		httpClientConfig.setHttpMethodType(httpMethodType);
-		httpClientConfig.setParams(map);
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
+        httpClientConfig.setUri(queryGateway);
+        httpClientConfig.setHttpMethodType(httpMethodType);
+        httpClientConfig.setParams(map);
 
-		// // <?xml
-		// version="1.0"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>
-		String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+        // // <?xml
+        // version="1.0"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>
+        String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
 
-		if (Resultmsg.FAILED.equals(responseBodyAsString)){
-			log.error("responseBodyAsString:[{}],httpClientConfig:{}", responseBodyAsString, JsonUtil.format(httpClientConfig));
-			return null;
-		}
+        if (Resultmsg.FAILED.equals(responseBodyAsString)){
+            log.error("responseBodyAsString:[{}],httpClientConfig:{}", responseBodyAsString, JsonUtil.format(httpClientConfig));
+            return null;
+        }
 
-		DokuQueryResultParse dokuQueryResultParse = new DokuQueryResultParse();
-		DokuQueryResult dokuQueryResult = dokuQueryResultParse.parseXML(responseBodyAsString);
-		PaymentResult paymentResult = toPaymentResult(dokuQueryResult);
+        DokuQueryResultParse dokuQueryResultParse = new DokuQueryResultParse();
+        DokuQueryResult dokuQueryResult = dokuQueryResultParse.parseXML(responseBodyAsString);
+        PaymentResult paymentResult = toPaymentResult(dokuQueryResult);
 
-		// DOKU 取不到
-		String paymentGatewayTradeNo = null;
+        // DOKU 取不到
+        String paymentGatewayTradeNo = null;
 
-		QueryResult queryResult = new QueryResult();
+        QueryResult queryResult = new QueryResult();
 
-		queryResult.setGatewayAmount(new BigDecimal(dokuQueryResult.getAmount()));
-		// 20140508095526
-		queryResult.setGatewayPaymentTime(DateUtil.string2Date(dokuQueryResult.getPaymentDateTime(), DatePattern.TIMESTAMP));
-		queryResult.setGatewayResult(responseBodyAsString);
-		queryResult.setGatewayTradeNo(paymentGatewayTradeNo);
-		queryResult.setPaymentResult(paymentResult);
-		queryResult.setQueryResultCommand(dokuQueryResult);
-		queryResult.setTradeNo(TRANSIDMERCHANT);
+        queryResult.setGatewayAmount(new BigDecimal(dokuQueryResult.getAmount()));
+        // 20140508095526
+        queryResult.setGatewayPaymentTime(DateUtil.string2Date(dokuQueryResult.getPaymentDateTime(), DatePattern.TIMESTAMP));
+        queryResult.setGatewayResult(responseBodyAsString);
+        queryResult.setGatewayTradeNo(paymentGatewayTradeNo);
+        queryResult.setPaymentResult(paymentResult);
+        queryResult.setQueryResultCommand(dokuQueryResult);
+        queryResult.setTradeNo(TRANSIDMERCHANT);
 
-		if (log.isDebugEnabled()){
-			log.debug("queryResult:{}", JsonUtil.format(queryResult));
-		}
-		return queryResult;
-	}
+        if (log.isDebugEnabled()){
+            log.debug("queryResult:{}", JsonUtil.format(queryResult));
+        }
+        return queryResult;
+    }
 
-	/**
-	 * To payment result.
-	 * 
-	 * @param dokuQueryResult
-	 *            the doku query result
-	 * @return the payment result
-	 */
-	private PaymentResult toPaymentResult(DokuQueryResult dokuQueryResult){
-		String resultmsg = dokuQueryResult.getResultmsg();
+    /**
+     * To payment result.
+     * 
+     * @param dokuQueryResult
+     *            the doku query result
+     * @return the payment result
+     */
+    private PaymentResult toPaymentResult(DokuQueryResult dokuQueryResult){
+        String resultmsg = dokuQueryResult.getResultmsg();
 
-		// 成功
-		if (Resultmsg.SUCCESS.equals(resultmsg)){
-			return PaymentResult.PAID;
-		}
-		// 失败
-		else if (Resultmsg.FAILED.equals(resultmsg)){
-			return PaymentResult.NO_PAID;
-		}
-		// 其余抛出异常
-		else{
-			throw new UnsupportedOperationException("resultmsg:" + resultmsg + " not support!");
-		}
-	}
+        // 成功
+        if (Resultmsg.SUCCESS.equals(resultmsg)){
+            return PaymentResult.PAID;
+        }
+        // 失败
+        else if (Resultmsg.FAILED.equals(resultmsg)){
+            return PaymentResult.NO_PAID;
+        }
+        // 其余抛出异常
+        else{
+            throw new UnsupportedOperationException("resultmsg:" + resultmsg + " not support!");
+        }
+    }
 
-	/**
-	 * Gets the wORDS for check status.
-	 * 
-	 * @param TRANSIDMERCHANT
-	 *            the tRANSIDMERCHANT
-	 * @return the wORDS for check status
-	 */
-	// Hashed key combination encryption (use SHA1 meth- od).
-	// The hashed key generated from combining these parameters value in this order : MALLID+<shared key>+TRANSIDMERCHANT
-	private String getWORDSForCheckStatus(String TRANSIDMERCHANT){
-		String WORDS = MALLID + Shared_key + TRANSIDMERCHANT;
-		return SHA1Util.encode(WORDS, charsetNameForSHA1);
-	}
+    /**
+     * Gets the wORDS for check status.
+     * 
+     * @param TRANSIDMERCHANT
+     *            the tRANSIDMERCHANT
+     * @return the wORDS for check status
+     */
+    // Hashed key combination encryption (use SHA1 meth- od).
+    // The hashed key generated from combining these parameters value in this order : MALLID+<shared key>+TRANSIDMERCHANT
+    private String getWORDSForCheckStatus(String TRANSIDMERCHANT){
+        String WORDS = MALLID + Shared_key + TRANSIDMERCHANT;
+        return SHA1Util.encode(WORDS, charsetNameForSHA1);
+    }
 
-	// ****************************************************************************************************************************
+    // ****************************************************************************************************************************
 
-	/**
-	 * Gets the mALLID.
-	 * 
-	 * @return the mALLID
-	 */
-	public String getMALLID(){
-		return MALLID;
-	}
+    /**
+     * Gets the mALLID.
+     * 
+     * @return the mALLID
+     */
+    public String getMALLID(){
+        return MALLID;
+    }
 
-	/**
-	 * Sets the mALLID.
-	 * 
-	 * @param mALLID
-	 *            the mALLID to set
-	 */
-	public void setMALLID(String mALLID){
-		MALLID = mALLID;
-	}
+    /**
+     * Sets the mALLID.
+     * 
+     * @param mALLID
+     *            the mALLID to set
+     */
+    public void setMALLID(String mALLID){
+        MALLID = mALLID;
+    }
 
-	/**
-	 * Gets the cHAINMERCHANT.
-	 * 
-	 * @return the cHAINMERCHANT
-	 */
-	public String getCHAINMERCHANT(){
-		return CHAINMERCHANT;
-	}
+    /**
+     * Gets the cHAINMERCHANT.
+     * 
+     * @return the cHAINMERCHANT
+     */
+    public String getCHAINMERCHANT(){
+        return CHAINMERCHANT;
+    }
 
-	/**
-	 * Sets the cHAINMERCHANT.
-	 * 
-	 * @param cHAINMERCHANT
-	 *            the cHAINMERCHANT to set
-	 */
-	public void setCHAINMERCHANT(String cHAINMERCHANT){
-		CHAINMERCHANT = cHAINMERCHANT;
-	}
+    /**
+     * Sets the cHAINMERCHANT.
+     * 
+     * @param cHAINMERCHANT
+     *            the cHAINMERCHANT to set
+     */
+    public void setCHAINMERCHANT(String cHAINMERCHANT){
+        CHAINMERCHANT = cHAINMERCHANT;
+    }
 
-	/**
-	 * Gets the shared_key.
-	 * 
-	 * @return the shared_key
-	 */
-	public String getShared_key(){
-		return Shared_key;
-	}
+    /**
+     * Gets the shared_key.
+     * 
+     * @return the shared_key
+     */
+    public String getShared_key(){
+        return Shared_key;
+    }
 
-	/**
-	 * Sets the shared_key.
-	 * 
-	 * @param shared_key
-	 *            the shared_key to set
-	 */
-	public void setShared_key(String shared_key){
-		Shared_key = shared_key;
-	}
+    /**
+     * Sets the shared_key.
+     * 
+     * @param shared_key
+     *            the shared_key to set
+     */
+    public void setShared_key(String shared_key){
+        Shared_key = shared_key;
+    }
 
-	/**
-	 * 获得 查询网关提交地址.
-	 * 
-	 * @return the queryGateway
-	 */
-	public String getQueryGateway(){
-		return queryGateway;
-	}
+    /**
+     * 获得 查询网关提交地址.
+     * 
+     * @return the queryGateway
+     */
+    public String getQueryGateway(){
+        return queryGateway;
+    }
 
-	/**
-	 * 设置 查询网关提交地址.
-	 * 
-	 * @param queryGateway
-	 *            the queryGateway to set
-	 */
-	public void setQueryGateway(String queryGateway){
-		this.queryGateway = queryGateway;
-	}
+    /**
+     * 设置 查询网关提交地址.
+     * 
+     * @param queryGateway
+     *            the queryGateway to set
+     */
+    public void setQueryGateway(String queryGateway){
+        this.queryGateway = queryGateway;
+    }
 
-	/**
-	 * 获得 queryMethod.
-	 * 
-	 * @return the queryMethod
-	 */
-	public String getQueryMethod(){
-		return queryMethod;
-	}
+    /**
+     * 获得 queryMethod.
+     * 
+     * @return the queryMethod
+     */
+    public String getQueryMethod(){
+        return queryMethod;
+    }
 
-	/**
-	 * 设置 queryMethod.
-	 * 
-	 * @param queryMethod
-	 *            the queryMethod to set
-	 */
-	public void setQueryMethod(String queryMethod){
-		this.queryMethod = queryMethod;
-	}
+    /**
+     * 设置 queryMethod.
+     * 
+     * @param queryMethod
+     *            the queryMethod to set
+     */
+    public void setQueryMethod(String queryMethod){
+        this.queryMethod = queryMethod;
+    }
 
-	/**
-	 * Gets the pAYMENTCHANNEL.
-	 * 
-	 * @return the pAYMENTCHANNEL
-	 */
-	public String getPAYMENTCHANNEL(){
-		return PAYMENTCHANNEL;
-	}
+    /**
+     * Gets the pAYMENTCHANNEL.
+     * 
+     * @return the pAYMENTCHANNEL
+     */
+    public String getPAYMENTCHANNEL(){
+        return PAYMENTCHANNEL;
+    }
 
-	/**
-	 * Sets the pAYMENTCHANNEL.
-	 * 
-	 * @param pAYMENTCHANNEL
-	 *            the pAYMENTCHANNEL to set
-	 */
-	public void setPAYMENTCHANNEL(String pAYMENTCHANNEL){
-		PAYMENTCHANNEL = pAYMENTCHANNEL;
-	}
+    /**
+     * Sets the pAYMENTCHANNEL.
+     * 
+     * @param pAYMENTCHANNEL
+     *            the pAYMENTCHANNEL to set
+     */
+    public void setPAYMENTCHANNEL(String pAYMENTCHANNEL){
+        PAYMENTCHANNEL = pAYMENTCHANNEL;
+    }
 
-	/**
-	 * 获得 the charset name for sh a1.
-	 * 
-	 * @return the charsetNameForSHA1
-	 */
-	public String getCharsetNameForSHA1(){
-		return charsetNameForSHA1;
-	}
+    /**
+     * 获得 the charset name for sh a1.
+     * 
+     * @return the charsetNameForSHA1
+     */
+    public String getCharsetNameForSHA1(){
+        return charsetNameForSHA1;
+    }
 
-	/**
-	 * 设置 the charset name for sh a1.
-	 * 
-	 * @param charsetNameForSHA1
-	 *            the charsetNameForSHA1 to set
-	 */
-	public void setCharsetNameForSHA1(String charsetNameForSHA1){
-		this.charsetNameForSHA1 = charsetNameForSHA1;
-	}
+    /**
+     * 设置 the charset name for sh a1.
+     * 
+     * @param charsetNameForSHA1
+     *            the charsetNameForSHA1 to set
+     */
+    public void setCharsetNameForSHA1(String charsetNameForSHA1){
+        this.charsetNameForSHA1 = charsetNameForSHA1;
+    }
 
-	// ****************************************************************************************************************************
+    // ****************************************************************************************************************************
 
 }

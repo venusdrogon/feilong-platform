@@ -6,13 +6,13 @@ package weibo4j.model;
  */
 @SuppressWarnings("all")
 public enum Gender{
-	MALE, FEMALE;
+    MALE, FEMALE;
 
-	public static String valueOf(Gender gender){
-		int ordinal = gender.ordinal();
-		if (ordinal == 0){
-			return "m";
-		}
-		return "f";
-	}
+    public static String valueOf(Gender gender){
+        int ordinal = gender.ordinal();
+        if (ordinal == 0){
+            return "m";
+        }
+        return "f";
+    }
 }

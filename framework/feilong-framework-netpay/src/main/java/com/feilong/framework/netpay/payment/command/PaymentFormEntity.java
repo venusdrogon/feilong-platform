@@ -82,111 +82,111 @@ import com.feilong.framework.netpay.payment.adaptor.AdaptorParseUsableData;
  */
 public class PaymentFormEntity implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long		serialVersionUID	= -8414890066925723419L;
+    /** The Constant serialVersionUID. */
+    private static final long      serialVersionUID = -8414890066925723419L;
 
-	/** 表单 action 提交的url. */
-	private String					action;
+    /** 表单 action 提交的url. */
+    private String                 action;
 
-	/** form 的method 有get 和post. */
-	private String					method;
+    /** form 的method 有get 和post. */
+    private String                 method;
 
-	/** 一堆的隐藏域 map key 为 hidden name,value 为 hidden value. */
-	private Map<String, String>		hiddenParamMap;
+    /** 一堆的隐藏域 map key 为 hidden name,value 为 hidden value. */
+    private Map<String, String>    hiddenParamMap;
 
-	/**
-	 * 一个在adaptor里面解析,并且可以用于controller的对象,数据来源可以是支付网关的数据,也可以是自己parse之后或者加工之后的数据.
-	 * 
-	 * @since 1.0.8
-	 */
-	private AdaptorParseUsableData	adaptorParseUsableData;
+    /**
+     * 一个在adaptor里面解析,并且可以用于controller的对象,数据来源可以是支付网关的数据,也可以是自己parse之后或者加工之后的数据.
+     * 
+     * @since 1.0.8
+     */
+    private AdaptorParseUsableData adaptorParseUsableData;
 
-	/**
-	 * 完整的请求路径.
-	 * 
-	 * @return the full encoded url
-	 */
-	public String getFullEncodedUrl(){
-		return URIUtil.getEncodedUrlByValueMap(action, hiddenParamMap, CharsetType.UTF8);
-	}
+    /**
+     * 完整的请求路径.
+     * 
+     * @return the full encoded url
+     */
+    public String getFullEncodedUrl(){
+        return URIUtil.getEncodedUrlByValueMap(action, hiddenParamMap, CharsetType.UTF8);
+    }
 
-	// ************************************************************
+    // ************************************************************
 
-	/**
-	 * Gets the action.
-	 * 
-	 * @return the action
-	 */
-	public String getAction(){
-		return action;
-	}
+    /**
+     * Gets the action.
+     * 
+     * @return the action
+     */
+    public String getAction(){
+        return action;
+    }
 
-	/**
-	 * Sets the action.
-	 * 
-	 * @param action
-	 *            the action to set
-	 */
-	public void setAction(String action){
-		this.action = action;
-	}
+    /**
+     * Sets the action.
+     * 
+     * @param action
+     *            the action to set
+     */
+    public void setAction(String action){
+        this.action = action;
+    }
 
-	/**
-	 * Gets the method.
-	 * 
-	 * @return the method
-	 */
-	public String getMethod(){
-		return method;
-	}
+    /**
+     * Gets the method.
+     * 
+     * @return the method
+     */
+    public String getMethod(){
+        return method;
+    }
 
-	/**
-	 * Sets the method.
-	 * 
-	 * @param method
-	 *            the method to set
-	 */
-	public void setMethod(String method){
-		this.method = method;
-	}
+    /**
+     * Sets the method.
+     * 
+     * @param method
+     *            the method to set
+     */
+    public void setMethod(String method){
+        this.method = method;
+    }
 
-	/**
-	 * Gets the hidden param map.
-	 * 
-	 * @return the hiddenParamMap
-	 */
-	public Map<String, String> getHiddenParamMap(){
-		return hiddenParamMap;
-	}
+    /**
+     * Gets the hidden param map.
+     * 
+     * @return the hiddenParamMap
+     */
+    public Map<String, String> getHiddenParamMap(){
+        return hiddenParamMap;
+    }
 
-	/**
-	 * Sets the hidden param map.
-	 * 
-	 * @param hiddenParamMap
-	 *            the hiddenParamMap to set
-	 */
-	public void setHiddenParamMap(Map<String, String> hiddenParamMap){
-		this.hiddenParamMap = hiddenParamMap;
-	}
+    /**
+     * Sets the hidden param map.
+     * 
+     * @param hiddenParamMap
+     *            the hiddenParamMap to set
+     */
+    public void setHiddenParamMap(Map<String, String> hiddenParamMap){
+        this.hiddenParamMap = hiddenParamMap;
+    }
 
-	/**
-	 * 获得 一个在adaptor里面解析,并且可以用于controller的对象,数据来源可以是支付网关的数据,也可以是自己parse之后或者加工之后的数据.
-	 *
-	 * @return the adaptorParseUsableData
-	 * @since 1.0.8
-	 */
-	public AdaptorParseUsableData getAdaptorParseUsableData(){
-		return adaptorParseUsableData;
-	}
+    /**
+     * 获得 一个在adaptor里面解析,并且可以用于controller的对象,数据来源可以是支付网关的数据,也可以是自己parse之后或者加工之后的数据.
+     *
+     * @return the adaptorParseUsableData
+     * @since 1.0.8
+     */
+    public AdaptorParseUsableData getAdaptorParseUsableData(){
+        return adaptorParseUsableData;
+    }
 
-	/**
-	 * 设置 一个在adaptor里面解析,并且可以用于controller的对象,数据来源可以是支付网关的数据,也可以是自己parse之后或者加工之后的数据.
-	 *
-	 * @param adaptorParseUsableData
-	 *            the adaptorParseUsableData to set
-	 * @since 1.0.8
-	 */
-	public void setAdaptorParseUsableData(AdaptorParseUsableData adaptorParseUsableData){
-		this.adaptorParseUsableData = adaptorParseUsableData;
-	}
+    /**
+     * 设置 一个在adaptor里面解析,并且可以用于controller的对象,数据来源可以是支付网关的数据,也可以是自己parse之后或者加工之后的数据.
+     *
+     * @param adaptorParseUsableData
+     *            the adaptorParseUsableData to set
+     * @since 1.0.8
+     */
+    public void setAdaptorParseUsableData(AdaptorParseUsableData adaptorParseUsableData){
+        this.adaptorParseUsableData = adaptorParseUsableData;
+    }
 }

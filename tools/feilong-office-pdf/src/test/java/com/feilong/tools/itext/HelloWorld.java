@@ -30,20 +30,20 @@ import com.lowagie.text.Paragraph;
  */
 public class HelloWorld{
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(String[] args){
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments
+     */
+    public static void main(String[] args){
 
-		// 定义输出位置并把文档对象装入输出对象中
-		String outputFileName = "E:/hello.pdf";
+        // 定义输出位置并把文档对象装入输出对象中
+        String outputFileName = "E:/hello.pdf";
 
-		List<Element> arrayList = new ArrayList<Element>();
+        List<Element> arrayList = new ArrayList<Element>();
 
-		arrayList.add(new Paragraph("HelloWorld"));
-		PDFUtil.write(outputFileName, arrayList);
-	}
+        arrayList.add(new Paragraph("HelloWorld"));
+        PDFUtil.write(outputFileName, arrayList);
+    }
 }

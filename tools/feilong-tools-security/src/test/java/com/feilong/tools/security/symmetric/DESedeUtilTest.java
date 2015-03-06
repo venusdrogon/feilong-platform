@@ -36,77 +36,77 @@ import com.feilong.tools.security.EncryptionException;
 @SuppressWarnings("all")
 public class DESedeUtilTest extends BaseSecurityTest{
 
-	/** The Constant log. */
-	private static final Logger	log								= LoggerFactory.getLogger(DESedeUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log                             = LoggerFactory.getLogger(DESedeUtilTest.class);
 
-	// ******************************************************************************************************
-	/** des 默认加密解密的key. */
-	public static final String	config_security_key_des_default	= "feilong";
+    // ******************************************************************************************************
+    /** des 默认加密解密的key. */
+    public static final String  config_security_key_des_default = "feilong";
 
-	// ******************************************************************************************************
-	/** #des 16进制加密解密. */
-	public static final String	config_security_key_des_hex		= "jinxin";
+    // ******************************************************************************************************
+    /** #des 16进制加密解密. */
+    public static final String  config_security_key_des_hex     = "jinxin";
 
-	/** The symmetric type. */
-	private SymmetricType		symmetricType					= SymmetricType.DESede;
+    /** The symmetric type. */
+    private SymmetricType       symmetricType                   = SymmetricType.DESede;
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.
-	 * 
-	 * @throws EncryptionException
-	 */
-	@Test
-	public final void decryptBase64() throws EncryptionException{
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, config_security_key_des_default);
-		String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==", CharsetType.UTF8);
-		log.debug(mingsString);
-		assertEquals(TestConstants.testString, mingsString);
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.
+     * 
+     * @throws EncryptionException
+     */
+    @Test
+    public final void decryptBase64() throws EncryptionException{
+        SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, config_security_key_des_default);
+        String mingsString = symmetricEncryption.decryptBase64("LdCGo0dplVASWwJrvlHqpw==", CharsetType.UTF8);
+        log.debug(mingsString);
+        assertEquals(TestConstants.testString, mingsString);
+    }
 
-	/**
-	 * Encryp base641.
-	 * 
-	 * @throws EncryptionException
-	 * @throws NullPointerException
-	 */
-	@Test
-	public final void encrypBase641() throws NullPointerException,EncryptionException{
-		SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_default);
-		log.debug(dESUtil.encryptBase64("金鑫金鑫金鑫", CharsetType.UTF8));
-	}
+    /**
+     * Encryp base641.
+     * 
+     * @throws EncryptionException
+     * @throws NullPointerException
+     */
+    @Test
+    public final void encrypBase641() throws NullPointerException,EncryptionException{
+        SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_default);
+        log.debug(dESUtil.encryptBase64("金鑫金鑫金鑫", CharsetType.UTF8));
+    }
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.security.DESUtil#decryptBase64(java.lang.String)}.
-	 * 
-	 * @throws EncryptionException
-	 * @throws NullPointerException
-	 */
-	@Test
-	// @Ignore
-	public final void encrypBase64() throws NullPointerException,EncryptionException{
-		SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_hex);
-		//	assertEquals(expected, actual);
-		// oKLAr5N7UK2VzL0kLwnKDA9BoaAU62rV
-		//oKLAr5N7UK2VzL0kLwnKDPg/nQZBlrXn
-		log.debug(dESUtil.encryptBase64(TestConstants.testString, CharsetType.UTF8));
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.security.DESUtil#decryptBase64(java.lang.String)}.
+     * 
+     * @throws EncryptionException
+     * @throws NullPointerException
+     */
+    @Test
+    // @Ignore
+    public final void encrypBase64() throws NullPointerException,EncryptionException{
+        SymmetricEncryption dESUtil = new SymmetricEncryption(symmetricType, config_security_key_des_hex);
+        //	assertEquals(expected, actual);
+        // oKLAr5N7UK2VzL0kLwnKDA9BoaAU62rV
+        //oKLAr5N7UK2VzL0kLwnKDPg/nQZBlrXn
+        log.debug(dESUtil.encryptBase64(TestConstants.testString, CharsetType.UTF8));
+    }
 
-	/**
-	 * Encrypt hex.
-	 * 
-	 * @throws EncryptionException
-	 * @throws NullPointerException
-	 */
-	@Test
-	public void encryptHex() throws NullPointerException,EncryptionException{
-		String keyString = "jinxin";
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
-		String miString = symmetricEncryption.encryptHex(TestConstants.testString, CharsetType.UTF8);
-		// String miString = dESUtil.encryptToHexString(TestConstants.testString);
-		log.debug("encryptOriginalToHexString:{}", miString);
-		String mingString = symmetricEncryption.decryptHex(miString, CharsetType.UTF8);
-		log.debug(mingString);
-		Assert.assertEquals(mingString, TestConstants.testString);
-		log.info("055976934539FAAAD7F0EB5C83FE0D5D".length() + "");
-	}
+    /**
+     * Encrypt hex.
+     * 
+     * @throws EncryptionException
+     * @throws NullPointerException
+     */
+    @Test
+    public void encryptHex() throws NullPointerException,EncryptionException{
+        String keyString = "jinxin";
+        SymmetricEncryption symmetricEncryption = new SymmetricEncryption(symmetricType, keyString);
+        String miString = symmetricEncryption.encryptHex(TestConstants.testString, CharsetType.UTF8);
+        // String miString = dESUtil.encryptToHexString(TestConstants.testString);
+        log.debug("encryptOriginalToHexString:{}", miString);
+        String mingString = symmetricEncryption.decryptHex(miString, CharsetType.UTF8);
+        log.debug(mingString);
+        Assert.assertEquals(mingString, TestConstants.testString);
+        log.info("055976934539FAAAD7F0EB5C83FE0D5D".length() + "");
+    }
 }

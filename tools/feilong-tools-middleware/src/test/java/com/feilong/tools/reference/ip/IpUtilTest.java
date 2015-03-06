@@ -34,36 +34,36 @@ import com.feilong.commons.core.util.CollectionsUtil;
  */
 public class IpUtilTest{
 
-	private static final Logger	log		= LoggerFactory.getLogger(IpUtilTest.class);
+    private static final Logger log  = LoggerFactory.getLogger(IpUtilTest.class);
 
-	/** <code>{@value}</code>. */
-	private static String		name	= "103.10.129.";
+    /** <code>{@value}</code>. */
+    private static String       name = "103.10.129.";
 
-	/**
-	 * Name.
-	 */
-	@Test
-	public void name(){
-		List<String> list = new ArrayList<String>();
-		for (int i = 0; i <= 255; ++i){
-			list.add(name + i);
-		}
+    /**
+     * Name.
+     */
+    @Test
+    public void name(){
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i <= 255; ++i){
+            list.add(name + i);
+        }
 
-		JoinStringEntity joinStringEntity = new JoinStringEntity(";");
-		String ipgWhiteListIPs = CollectionsUtil.toString(list, joinStringEntity);
-		String[] array = ipgWhiteListIPs.split(";");
+        JoinStringEntity joinStringEntity = new JoinStringEntity(";");
+        String ipgWhiteListIPs = CollectionsUtil.toString(list, joinStringEntity);
+        String[] array = ipgWhiteListIPs.split(";");
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(array));
-		}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(array));
+        }
 
-	}
+    }
 
-	/**
-	 * Test ip to address.
-	 */
-	@Test
-	public void testIpToAddress(){
-		log.info(IpUtil.ipToAddress("58.25.165.250", "all"));
-	}
+    /**
+     * Test ip to address.
+     */
+    @Test
+    public void testIpToAddress(){
+        log.info(IpUtil.ipToAddress("58.25.165.250", "all"));
+    }
 }

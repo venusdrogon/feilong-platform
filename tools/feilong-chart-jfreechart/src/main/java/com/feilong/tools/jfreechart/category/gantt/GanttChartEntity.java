@@ -28,58 +28,58 @@ import com.feilong.tools.jfreechart.BaseChartEntity;
  */
 public class GanttChartEntity extends BaseChartEntity{
 
-	private static final long		serialVersionUID	= 2226545713841259013L;
+    private static final long       serialVersionUID  = 2226545713841259013L;
 
-	// 目录轴的显示标签
-	private String					categoryAxisLabel	= "";
+    // 目录轴的显示标签
+    private String                  categoryAxisLabel = "";
 
-	// 日期轴的显示标签
-	private String					dateAxisLabel		= "";
+    // 日期轴的显示标签
+    private String                  dateAxisLabel     = "";
 
-	private Map<String, List<Task>>	seriesAndDataMap;
+    private Map<String, List<Task>> seriesAndDataMap;
 
-	/**
-	 * @return the categoryAxisLabel
-	 */
-	public String getCategoryAxisLabel(){
-		return categoryAxisLabel;
-	}
+    /**
+     * @return the categoryAxisLabel
+     */
+    public String getCategoryAxisLabel(){
+        return categoryAxisLabel;
+    }
 
-	/**
-	 * @param categoryAxisLabel
-	 *            the categoryAxisLabel to set
-	 */
-	public void setCategoryAxisLabel(String categoryAxisLabel){
-		this.categoryAxisLabel = categoryAxisLabel;
-	}
+    /**
+     * @param categoryAxisLabel
+     *            the categoryAxisLabel to set
+     */
+    public void setCategoryAxisLabel(String categoryAxisLabel){
+        this.categoryAxisLabel = categoryAxisLabel;
+    }
 
-	/**
-	 * @return the dateAxisLabel
-	 */
-	public String getDateAxisLabel(){
-		return dateAxisLabel;
-	}
+    /**
+     * @return the dateAxisLabel
+     */
+    public String getDateAxisLabel(){
+        return dateAxisLabel;
+    }
 
-	/**
-	 * @param dateAxisLabel
-	 *            the dateAxisLabel to set
-	 */
-	public void setDateAxisLabel(String dateAxisLabel){
-		this.dateAxisLabel = dateAxisLabel;
-	}
+    /**
+     * @param dateAxisLabel
+     *            the dateAxisLabel to set
+     */
+    public void setDateAxisLabel(String dateAxisLabel){
+        this.dateAxisLabel = dateAxisLabel;
+    }
 
-	/**
-	 * @return the seriesAndDataMap
-	 */
-	public Map<String, List<Task>> getSeriesAndDataMap(){
-		return seriesAndDataMap;
-	}
+    /**
+     * @return the seriesAndDataMap
+     */
+    public Map<String, List<Task>> getSeriesAndDataMap(){
+        return seriesAndDataMap;
+    }
 
-	/**
-	 * @param seriesAndDataMap
-	 *            the seriesAndDataMap to set
-	 */
-	public void setSeriesAndDataMap(Map<String, List<Task>> seriesAndDataMap){
-		this.seriesAndDataMap = seriesAndDataMap;
-	}
+    /**
+     * @param seriesAndDataMap
+     *            the seriesAndDataMap to set
+     */
+    public void setSeriesAndDataMap(Map<String, List<Task>> seriesAndDataMap){
+        this.seriesAndDataMap = seriesAndDataMap;
+    }
 }

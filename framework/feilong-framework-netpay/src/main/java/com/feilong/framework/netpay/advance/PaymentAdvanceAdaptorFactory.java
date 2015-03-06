@@ -26,14 +26,14 @@ import com.feilong.framework.netpay.advance.exception.PaymentAdvanceAdaptorNotFo
  */
 public interface PaymentAdvanceAdaptorFactory{
 
-	/**
-	 * 通过支付类型 获得PaymentAdvanceAdaptor.
-	 *
-	 * @param paymentType
-	 *            支付类型
-	 * @return the payment adaptor
-	 * @throws PaymentAdvanceAdaptorNotFoundException
-	 *             找不到 {@link PaymentAdvanceAdaptor},将会抛出这个异常
-	 */
-	PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException;
+    /**
+     * 通过支付类型 获得PaymentAdvanceAdaptor.
+     *
+     * @param paymentType
+     *            支付类型
+     * @return the payment adaptor
+     * @throws PaymentAdvanceAdaptorNotFoundException
+     *             找不到 {@link PaymentAdvanceAdaptor},将会抛出这个异常
+     */
+    PaymentAdvanceAdaptor getPaymentAdvanceAdaptor(String paymentType) throws PaymentAdvanceAdaptorNotFoundException;
 }

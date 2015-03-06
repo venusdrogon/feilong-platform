@@ -25,27 +25,27 @@ package com.feilong.commons.core.net;
  */
 public final class URIComponents{
 
-	/** 查询片段 <code>{@value}</code>. */
-	public static final String	FRAGMENT		= "#";
+    /** 查询片段 <code>{@value}</code>. */
+    public static final String FRAGMENT     = "#";
 
-	/** <code>{@value}</code> The question mark is used as a separator and is not part of the query string. */
-	public static final String	QUESTIONMARK	= "?";
+    /** <code>{@value}</code> The question mark is used as a separator and is not part of the query string. */
+    public static final String QUESTIONMARK = "?";
 
-	/** The Constant ampersand<code>{@value}</code>. */
-	public static final String	AMPERSAND		= "&";
+    /** The Constant ampersand<code>{@value}</code>. */
+    public static final String AMPERSAND    = "&";
 
-	/** http协议<code>{@value}</code>. */
-	public static final String	SCHEME_HTTP		= "http";
+    /** http协议<code>{@value}</code>. */
+    public static final String SCHEME_HTTP  = "http";
 
-	/** https协议<code>{@value}</code>. */
-	public static final String	SCHEME_HTTPS	= "https";
+    /** https协议<code>{@value}</code>. */
+    public static final String SCHEME_HTTPS = "https";
 
-	// public static final String equal = "=";
+    // public static final String equal = "=";
 
-	/** Don't let anyone instantiate this class. */
-	private URIComponents(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private URIComponents(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 }

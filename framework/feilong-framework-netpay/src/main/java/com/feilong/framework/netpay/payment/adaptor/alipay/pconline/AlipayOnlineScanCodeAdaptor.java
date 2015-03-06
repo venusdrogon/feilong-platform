@@ -24,7 +24,7 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
  */
 public class AlipayOnlineScanCodeAdaptor extends AlipayOnlineAdaptor{
 
-	// 目前方法 alipay 支付一样
-	// 新增 qr_pay_mode 参数
-	// paymethod 值不同
+    // 目前方法 alipay 支付一样
+    // 新增 qr_pay_mode 参数
+    // paymethod 值不同
 }

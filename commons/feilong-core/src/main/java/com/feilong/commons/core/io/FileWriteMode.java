@@ -28,13 +28,13 @@ package com.feilong.commons.core.io;
  */
 public enum FileWriteMode{
 
-	/** 覆盖. */
-	COVER,
+    /** 覆盖. */
+    COVER,
 
-	/**
-	 * 追加 then bytes will be written to the end of the file rather than the beginning.
-	 * 
-	 * @see java.io.FileOutputStream#FileOutputStream(java.io.File, boolean)
-	 */
-	APPEND
+    /**
+     * 追加 then bytes will be written to the end of the file rather than the beginning.
+     * 
+     * @see java.io.FileOutputStream#FileOutputStream(java.io.File, boolean)
+     */
+    APPEND
 }

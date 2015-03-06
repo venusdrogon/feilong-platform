@@ -27,41 +27,41 @@ import com.feilong.tools.jfreechart.BaseChartEntity;
  */
 public class PieChartEntity extends BaseChartEntity{
 
-	/** The Constant serialVersionUID. */
-	private static final long		serialVersionUID	= -7723192818168964170L;
+    /** The Constant serialVersionUID. */
+    private static final long     serialVersionUID = -7723192818168964170L;
 
-	/**
-	 * 文字和 数据
-	 * 
-	 * <pre>
-	 * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;();
-	 * keyAndDataMap.put(&quot;失败率&quot;, 50);
-	 * keyAndDataMap.put(&quot;成功率&quot;, 250);
-	 * </pre>
-	 */
-	protected Map<String, Number>	keyAndDataMap;
+    /**
+     * 文字和 数据
+     * 
+     * <pre>
+     * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;();
+     * keyAndDataMap.put(&quot;失败率&quot;, 50);
+     * keyAndDataMap.put(&quot;成功率&quot;, 250);
+     * </pre>
+     */
+    protected Map<String, Number> keyAndDataMap;
 
-	/**
-	 * 获得 文字和 数据
-	 * 
-	 * <pre>
-	 * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;(); keyAndDataMap.
-	 * 
-	 * @return the keyAndDataMap
-	 */
-	public Map<String, Number> getKeyAndDataMap(){
-		return keyAndDataMap;
-	}
+    /**
+     * 获得 文字和 数据
+     * 
+     * <pre>
+     * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;(); keyAndDataMap.
+     * 
+     * @return the keyAndDataMap
+     */
+    public Map<String, Number> getKeyAndDataMap(){
+        return keyAndDataMap;
+    }
 
-	/**
-	 * 设置 文字和 数据
-	 * 
-	 * <pre>
-	 * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;(); keyAndDataMap.
-	 * 
-	 * @param keyAndDataMap            the keyAndDataMap to set
-	 */
-	public void setKeyAndDataMap(Map<String, Number> keyAndDataMap){
-		this.keyAndDataMap = keyAndDataMap;
-	}
+    /**
+     * 设置 文字和 数据
+     * 
+     * <pre>
+     * Map&lt;String, Number&gt; keyAndDataMap = new LinkedHashMap&lt;String, Number&gt;(); keyAndDataMap.
+     * 
+     * @param keyAndDataMap            the keyAndDataMap to set
+     */
+    public void setKeyAndDataMap(Map<String, Number> keyAndDataMap){
+        this.keyAndDataMap = keyAndDataMap;
+    }
 }

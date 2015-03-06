@@ -35,38 +35,38 @@ import com.feilong.commons.core.date.DateUtil;
 @SuppressWarnings("all")
 public class ZipUtilTest{
 
-	private static final Logger	log				= LoggerFactory.getLogger(ZipUtilTest.class);
+    private static final Logger log            = LoggerFactory.getLogger(ZipUtilTest.class);
 
-	/**
-	 * 需要被解压的zip文件
-	 */
-	String						unZipFileName	= "E:\\test.zip";
+    /**
+     * 需要被解压的zip文件
+     */
+    String                      unZipFileName  = "E:\\test.zip";
 
-	/**
-	 * 解压到哪个目录
-	 */
-	String						outputFileName	= "E:\\test" + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP); // 解压到文件路径
+    /**
+     * 解压到哪个目录
+     */
+    String                      outputFileName = "E:\\test" + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP); // 解压到文件路径
 
-	//@Test
-	public void testZip() throws IOException{
-		Date date1 = new Date();
-		String inputFileName = "E:\\test"; // 你要压缩的文件夹
-		String zipFileName = "E:\\test.zip"; // 压缩后的zip文件
-		ZipUtil feiLongZip = new ZipUtil();
-		ZipUtil.zip(inputFileName, zipFileName);
-		Date date2 = new Date();
-		log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
-		// ,/select E:/Workspaces
-		// Command.execFileOrDirectoryFocus("E:\\test,E:\\Project");
-	}
+    //@Test
+    public void testZip() throws IOException{
+        Date date1 = new Date();
+        String inputFileName = "E:\\test"; // 你要压缩的文件夹
+        String zipFileName = "E:\\test.zip"; // 压缩后的zip文件
+        ZipUtil feiLongZip = new ZipUtil();
+        ZipUtil.zip(inputFileName, zipFileName);
+        Date date2 = new Date();
+        log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
+        // ,/select E:/Workspaces
+        // Command.execFileOrDirectoryFocus("E:\\test,E:\\Project");
+    }
 
-	@Test
-	public void testUnZip3(){
-		Date date1 = new Date();
-		outputFileName = outputFileName + "antUnzip3"; // 解压到文件路径
-		ZipUtil feiLongZip = new ZipUtil();
-		ZipUtil.unZip(unZipFileName, outputFileName);
-		Date date2 = new Date();
-		log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
-	}
+    @Test
+    public void testUnZip3(){
+        Date date1 = new Date();
+        outputFileName = outputFileName + "antUnzip3"; // 解压到文件路径
+        ZipUtil feiLongZip = new ZipUtil();
+        ZipUtil.unZip(unZipFileName, outputFileName);
+        Date date2 = new Date();
+        log.info("耗时：" + DateExtensionUtil.getIntervalForView(date1, date2));
+    }
 }

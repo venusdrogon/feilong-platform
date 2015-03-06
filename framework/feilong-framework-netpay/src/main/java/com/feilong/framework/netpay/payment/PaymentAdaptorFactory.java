@@ -25,15 +25,15 @@ import com.feilong.framework.netpay.payment.exception.PaymentAdaptorNotFoundExce
  */
 public interface PaymentAdaptorFactory{
 
-	/**
-	 * 通过支付类型 paymentType, 获得{@link PaymentAdaptor},<br>
-	 * 具体的实现细节,视每个实现类决定, {@link DefaultPaymentAdaptorFactory} 的实现是基于 map隐射决定的,可以定制.
-	 * 
-	 * @param paymentType
-	 *            支付类型,目前暂定为 String类型,将来可能会升级
-	 * @return {@link PaymentAdaptor}
-	 * @throws PaymentAdaptorNotFoundException
-	 *             找不到 {@link PaymentAdaptor}, 将会抛出这个异常
-	 */
-	PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException;
+    /**
+     * 通过支付类型 paymentType, 获得{@link PaymentAdaptor},<br>
+     * 具体的实现细节,视每个实现类决定, {@link DefaultPaymentAdaptorFactory} 的实现是基于 map隐射决定的,可以定制.
+     * 
+     * @param paymentType
+     *            支付类型,目前暂定为 String类型,将来可能会升级
+     * @return {@link PaymentAdaptor}
+     * @throws PaymentAdaptorNotFoundException
+     *             找不到 {@link PaymentAdaptor}, 将会抛出这个异常
+     */
+    PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException;
 }

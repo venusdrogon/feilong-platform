@@ -148,188 +148,188 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  */
 public final class Concat extends AbstractDirective{
 
-	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(Concat.class);
+    /** The Constant log. */
+    private static final Logger log            = LoggerFactory.getLogger(Concat.class);
 
-	// **************************************************************
-	// 由于继承 字段是不会被覆盖的,所以下面的 两个方法 必须每个实现类重写
-	// ****************************************************************
-	/** 自定义标签名称. */
-	private String				DIRECTIVE_NAME	= "concat";
+    // **************************************************************
+    // 由于继承 字段是不会被覆盖的,所以下面的 两个方法 必须每个实现类重写
+    // ****************************************************************
+    /** 自定义标签名称. */
+    private String              DIRECTIVE_NAME = "concat";
 
-	/** 自定义标签类型. */
-	private int					DIRECTIVE_TYPE	= BLOCK;
+    /** 自定义标签类型. */
+    private int                 DIRECTIVE_TYPE = BLOCK;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.velocity.directive.AbstractDirective#doRender(org.apache.velocity.context.InternalContextAdapter,
-	 * java.io.Writer, org.apache.velocity.runtime.parser.node.Node)
-	 */
-	@Override
-	public boolean doRender(InternalContextAdapter internalContextAdapter,Writer writer,Node node) throws IOException,
-					ResourceNotFoundException,ParseErrorException,MethodInvocationException{
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.velocity.directive.AbstractDirective#doRender(org.apache.velocity.context.InternalContextAdapter,
+     * java.io.Writer, org.apache.velocity.runtime.parser.node.Node)
+     */
+    @Override
+    public boolean doRender(InternalContextAdapter internalContextAdapter,Writer writer,Node node) throws IOException,
+                    ResourceNotFoundException,ParseErrorException,MethodInvocationException{
 
-		HttpConcatParam httpConcatParam = getHttpConcatParam(internalContextAdapter, node);
-		if (null == httpConcatParam){
-			log.warn("httpConcatParam is isNullOrEmpty,will not concat,just return");
-			return true;
-		}
+        HttpConcatParam httpConcatParam = getHttpConcatParam(internalContextAdapter, node);
+        if (null == httpConcatParam){
+            log.warn("httpConcatParam is isNullOrEmpty,will not concat,just return");
+            return true;
+        }
 
-		String writeContent = HttpConcatUtil.getWriteContent(httpConcatParam);
-		writer.write(writeContent);
-		return true;
-	}
+        String writeContent = HttpConcatUtil.getWriteContent(httpConcatParam);
+        writer.write(writeContent);
+        return true;
+    }
 
-	/**
-	 * 获得 http concat content.
-	 * 
-	 * @param internalContextAdapter
-	 *            the internal context adapter
-	 * @param node
-	 *            the node
-	 * @return the http concat content
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	private HttpConcatParam getHttpConcatParam(InternalContextAdapter internalContextAdapter,Node node) throws IOException{
-		// block content
-		String blockContent = getBlockContent(internalContextAdapter, node);
+    /**
+     * 获得 http concat content.
+     * 
+     * @param internalContextAdapter
+     *            the internal context adapter
+     * @param node
+     *            the node
+     * @return the http concat content
+     * @throws IOException
+     *             the IO exception
+     */
+    private HttpConcatParam getHttpConcatParam(InternalContextAdapter internalContextAdapter,Node node) throws IOException{
+        // block content
+        String blockContent = getBlockContent(internalContextAdapter, node);
 
-		// 如果文字 isNullOrEmpty 那么仅仅 log warn
-		if (Validator.isNullOrEmpty(blockContent)){
-			log.warn("blockContent is isNullOrEmpty...,you should write source list between #{} and #end", DIRECTIVE_NAME);
-			return null;
-		}
-		// **********************parse params******************************************************
+        // 如果文字 isNullOrEmpty 那么仅仅 log warn
+        if (Validator.isNullOrEmpty(blockContent)){
+            log.warn("blockContent is isNullOrEmpty...,you should write source list between #{} and #end", DIRECTIVE_NAME);
+            return null;
+        }
+        // **********************parse params******************************************************
 
-		String type = "";
-		String version = "";
-		String domain = "";
-		String root = "";
-		Boolean httpConcatSupport = null;
+        String type = "";
+        String version = "";
+        String domain = "";
+        String root = "";
+        Boolean httpConcatSupport = null;
 
-		// loop through all "params"
-		for (int i = 0, j = node.jjtGetNumChildren(); i < j; i++){
-			Node jjtGetChild = node.jjtGetChild(i);
-			if (null != jjtGetChild){
-				if (!(jjtGetChild instanceof ASTBlock)){
-					// reading and casting inline parameters
-					Object value = jjtGetChild.value(internalContextAdapter);
-					if (i == 0){
-						type = "" + value;
-					}else if (i == 1){
-						version = "" + value;
-					}else if (i == 2){
-						domain = "" + value;
-					}else if (i == 3){
-						root = "" + value;
-					}else if (i == 4){
-						httpConcatSupport = Boolean.parseBoolean("" + value);
-					}else{
-						break;
-					}
-				}
+        // loop through all "params"
+        for (int i = 0, j = node.jjtGetNumChildren(); i < j; i++){
+            Node jjtGetChild = node.jjtGetChild(i);
+            if (null != jjtGetChild){
+                if (!(jjtGetChild instanceof ASTBlock)){
+                    // reading and casting inline parameters
+                    Object value = jjtGetChild.value(internalContextAdapter);
+                    if (i == 0){
+                        type = "" + value;
+                    }else if (i == 1){
+                        version = "" + value;
+                    }else if (i == 2){
+                        domain = "" + value;
+                    }else if (i == 3){
+                        root = "" + value;
+                    }else if (i == 4){
+                        httpConcatSupport = Boolean.parseBoolean("" + value);
+                    }else{
+                        break;
+                    }
+                }
 
-				// else{
-				// // reading block content and rendering it
-				// StringWriter stringWriter = new StringWriter();
-				// jjtGetChild.render(internalContextAdapter, stringWriter);
-				//
-				// blockContent = blockContent.toString();
-				// break;
-				// }
-			}
-		}
+                // else{
+                // // reading block content and rendering it
+                // StringWriter stringWriter = new StringWriter();
+                // jjtGetChild.render(internalContextAdapter, stringWriter);
+                //
+                // blockContent = blockContent.toString();
+                // break;
+                // }
+            }
+        }
 
-		// *******************************************************************************************
-		// 转成item src list
-		List<String> itemSrcList = toItemSrcList(blockContent);
+        // *******************************************************************************************
+        // 转成item src list
+        List<String> itemSrcList = toItemSrcList(blockContent);
 
-		HttpConcatParam httpConcatParam = new HttpConcatParam();
+        HttpConcatParam httpConcatParam = new HttpConcatParam();
 
-		httpConcatParam.setDomain(domain);
-		httpConcatParam.setRoot(root);
-		httpConcatParam.setType(type);
-		httpConcatParam.setVersion(version);
-		httpConcatParam.setItemSrcList(itemSrcList);
-		httpConcatParam.setHttpConcatSupport(httpConcatSupport);
+        httpConcatParam.setDomain(domain);
+        httpConcatParam.setRoot(root);
+        httpConcatParam.setType(type);
+        httpConcatParam.setVersion(version);
+        httpConcatParam.setItemSrcList(itemSrcList);
+        httpConcatParam.setHttpConcatSupport(httpConcatSupport);
 
-		return httpConcatParam;
-	}
+        return httpConcatParam;
+    }
 
-	/**
-	 * 获得 block content.
-	 * 
-	 * @param internalContextAdapter
-	 *            the internal context adapter
-	 * @param node
-	 *            the node
-	 * @return the block content
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	private String getBlockContent(InternalContextAdapter internalContextAdapter,Node node) throws IOException{
-		int jjtGetNumChildren = node.jjtGetNumChildren();
-		Node endNode = node.jjtGetChild(jjtGetNumChildren - 1);
+    /**
+     * 获得 block content.
+     * 
+     * @param internalContextAdapter
+     *            the internal context adapter
+     * @param node
+     *            the node
+     * @return the block content
+     * @throws IOException
+     *             the IO exception
+     */
+    private String getBlockContent(InternalContextAdapter internalContextAdapter,Node node) throws IOException{
+        int jjtGetNumChildren = node.jjtGetNumChildren();
+        Node endNode = node.jjtGetChild(jjtGetNumChildren - 1);
 
-		StringWriter stringWriter = new StringWriter();
-		endNode.render(internalContextAdapter, stringWriter);
+        StringWriter stringWriter = new StringWriter();
+        endNode.render(internalContextAdapter, stringWriter);
 
-		String blockContent = stringWriter.toString();
-		return blockContent;
-	}
+        String blockContent = stringWriter.toString();
+        return blockContent;
+    }
 
-	// ***************************************************************
+    // ***************************************************************
 
-	/**
-	 * 获得 items array.
-	 * 
-	 * @param blockContent
-	 *            内容,目前 以 \n 分隔
-	 * @return the items array
-	 */
-	private List<String> toItemSrcList(String blockContent){
-		String regex = "\n";
-		String[] items = blockContent.trim().split(regex);
-		int length = items.length;
+    /**
+     * 获得 items array.
+     * 
+     * @param blockContent
+     *            内容,目前 以 \n 分隔
+     * @return the items array
+     */
+    private List<String> toItemSrcList(String blockContent){
+        String regex = "\n";
+        String[] items = blockContent.trim().split(regex);
+        int length = items.length;
 
-		List<String> list = new ArrayList<String>(length);
-		for (int i = 0; i < length; ++i){
-			String item = items[i];
-			// 忽视空行
-			if (Validator.isNotNullOrEmpty(item)){
-				// 去除空格
-				list.add(item.trim());
-			}
-		}
-		return list;
-	}
+        List<String> list = new ArrayList<String>(length);
+        for (int i = 0; i < length; ++i){
+            String item = items[i];
+            // 忽视空行
+            if (Validator.isNotNullOrEmpty(item)){
+                // 去除空格
+                list.add(item.trim());
+            }
+        }
+        return list;
+    }
 
-	// ***************************************************************
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.velocity.runtime.directive.Directive#getName()
-	 */
-	@Override
-	public String getName(){
-		if (log.isDebugEnabled()){
-			log.debug("DIRECTIVE_NAME:[{}]", DIRECTIVE_NAME);
-		}
-		return DIRECTIVE_NAME;
-	}
+    // ***************************************************************
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.velocity.runtime.directive.Directive#getName()
+     */
+    @Override
+    public String getName(){
+        if (log.isDebugEnabled()){
+            log.debug("DIRECTIVE_NAME:[{}]", DIRECTIVE_NAME);
+        }
+        return DIRECTIVE_NAME;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.velocity.runtime.directive.Directive#getType()
-	 */
-	@Override
-	public int getType(){
-		if (log.isDebugEnabled()){
-			log.debug("DIRECTIVE_TYPE:[{}]", DIRECTIVE_TYPE);
-		}
-		return DIRECTIVE_TYPE;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.velocity.runtime.directive.Directive#getType()
+     */
+    @Override
+    public int getType(){
+        if (log.isDebugEnabled()){
+            log.debug("DIRECTIVE_TYPE:[{}]", DIRECTIVE_TYPE);
+        }
+        return DIRECTIVE_TYPE;
+    }
 }

@@ -36,56 +36,56 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class MessageFormatUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MessageFormatUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MessageFormatUtilTest.class);
 
-	/**
-	 * Format.
-	 * 
-	 * @throws ParseException
-	 *             the parse exception
-	 */
-	@Test
-	public final void format() throws ParseException{
-		log.info(MessageFormatUtil.format("name=张三{0}a{1}", "jin", "xin"));
-		log.info(MessageFormatUtil.format("name=张三{0,number}a{1}", 5, "xin"));
-		log.info(MessageFormatUtil.format("name=张三{0,date}a{1}", 15, "xin"));
-	}
+    /**
+     * Format.
+     * 
+     * @throws ParseException
+     *             the parse exception
+     */
+    @Test
+    public final void format() throws ParseException{
+        log.info(MessageFormatUtil.format("name=张三{0}a{1}", "jin", "xin"));
+        log.info(MessageFormatUtil.format("name=张三{0,number}a{1}", 5, "xin"));
+        log.info(MessageFormatUtil.format("name=张三{0,date}a{1}", 15, "xin"));
+    }
 
-	/**
-	 * Test get value with arguments1.
-	 * 
-	 * @throws ParseException
-	 *             the parse exception
-	 */
-	@Test
-	public final void testGetValueWithArguments1() throws ParseException{
-		MessageFormat mf = new MessageFormat("{0}, {0}, {0}");
-		String forParsing = "x, y, z";
-		Object[] objs = mf.parse(forParsing, new ParsePosition(0));
-		// result now equals {new String("z")}
-		log.info(Arrays.toString(objs));
+    /**
+     * Test get value with arguments1.
+     * 
+     * @throws ParseException
+     *             the parse exception
+     */
+    @Test
+    public final void testGetValueWithArguments1() throws ParseException{
+        MessageFormat mf = new MessageFormat("{0}, {0}, {0}");
+        String forParsing = "x, y, z";
+        Object[] objs = mf.parse(forParsing, new ParsePosition(0));
+        // result now equals {new String("z")}
+        log.info(Arrays.toString(objs));
 
-		log.info("objs:{}", JsonUtil.format(objs));
+        log.info("objs:{}", JsonUtil.format(objs));
 
-		int planet = 7;
-		String event = "a disturbance in the Force";
-		String result = MessageFormat.format(
-						"At {1,time} on {1,date}, there was {2} on planet {0,number,integer}.",
-						planet,
-						new Date(),
-						event);
-		log.info(result);
+        int planet = 7;
+        String event = "a disturbance in the Force";
+        String result = MessageFormat.format(
+                        "At {1,time} on {1,date}, there was {2} on planet {0,number,integer}.",
+                        planet,
+                        new Date(),
+                        event);
+        log.info(result);
 
-		MessageFormat form = new MessageFormat("The disk \"{1}\" contains {0}.");
-		double[] filelimits = { 0, 1, 2 };
-		String[] filepart = { "no files", "one file", "{0,number} files" };
+        MessageFormat form = new MessageFormat("The disk \"{1}\" contains {0}.");
+        double[] filelimits = { 0, 1, 2 };
+        String[] filepart = { "no files", "one file", "{0,number} files" };
 
-		ChoiceFormat fileform = new ChoiceFormat(filelimits, filepart);
-		form.setFormatByArgumentIndex(0, fileform);
-		int fileCount = 0;
-		String diskName = "MyDisk";
-		Object[] testArgs = { new Long(fileCount), diskName };
-		log.info(form.format(testArgs));
-	}
+        ChoiceFormat fileform = new ChoiceFormat(filelimits, filepart);
+        form.setFormatByArgumentIndex(0, fileform);
+        int fileCount = 0;
+        String diskName = "MyDisk";
+        Object[] testArgs = { new Long(fileCount), diskName };
+        log.info(form.format(testArgs));
+    }
 }

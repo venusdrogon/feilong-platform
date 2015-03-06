@@ -29,85 +29,85 @@ import java.util.Map;
  */
 public abstract class BaseSolrData<T> implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long				serialVersionUID	= -6466942586535105967L;
+    /** The Constant serialVersionUID. */
+    private static final long              serialVersionUID = -6466942586535105967L;
 
-	/**
-	 * 数据结构:<br>
-	 * 
-	 * <pre>
-	 * facetMap.put("c1_id",
-	 * 		<"女装",18>
-	 * 		<"男装",28>
-	 * 		<"童装",8>
-	 * );
-	 * </pre>
-	 */
-	private Map<String, Map<String, Long>>	facetMap;
+    /**
+     * 数据结构:<br>
+     * 
+     * <pre>
+     * facetMap.put("c1_id",
+     * 		<"女装",18>
+     * 		<"男装",28>
+     * 		<"童装",8>
+     * );
+     * </pre>
+     */
+    private Map<String, Map<String, Long>> facetMap;
 
-	/**
-	 * 数据结构:<br>
-	 * 此时没有过滤0的分组,为了良好的扩展性需要自行代码过滤
-	 * 
-	 * <pre>
-	 *         "facetQueryMap": {
-	 *             "price_1:[0.0 TO 200.0]": 13,
-	 *             "price_1:[200.0 TO 400.0]": 100,
-	 *             "price_1:[400.0 TO 600.0]": 0,
-	 *             "price_1:[600.0 TO 900.0]": 31
-	 *         }
-	 * </pre>
-	 */
-	private Map<String, Integer>			facetQueryMap;
+    /**
+     * 数据结构:<br>
+     * 此时没有过滤0的分组,为了良好的扩展性需要自行代码过滤
+     * 
+     * <pre>
+     *         "facetQueryMap": {
+     *             "price_1:[0.0 TO 200.0]": 13,
+     *             "price_1:[200.0 TO 400.0]": 100,
+     *             "price_1:[400.0 TO 600.0]": 0,
+     *             "price_1:[600.0 TO 900.0]": 31
+     *         }
+     * </pre>
+     */
+    private Map<String, Integer>           facetQueryMap;
 
-	/**
-	 * Gets the 数据结构:<br>
-	 * 
-	 * <pre>
-	 * facetMap.
-	 * 
-	 * @return the facetMap
-	 */
-	public Map<String, Map<String, Long>> getFacetMap(){
-		return facetMap;
-	}
+    /**
+     * Gets the 数据结构:<br>
+     * 
+     * <pre>
+     * facetMap.
+     * 
+     * @return the facetMap
+     */
+    public Map<String, Map<String, Long>> getFacetMap(){
+        return facetMap;
+    }
 
-	/**
-	 * Sets the 数据结构:<br>
-	 * 
-	 * <pre>
-	 * facetMap.
-	 * 
-	 * @param facetMap the facetMap to set
-	 */
-	public void setFacetMap(Map<String, Map<String, Long>> facetMap){
-		this.facetMap = facetMap;
-	}
+    /**
+     * Sets the 数据结构:<br>
+     * 
+     * <pre>
+     * facetMap.
+     * 
+     * @param facetMap the facetMap to set
+     */
+    public void setFacetMap(Map<String, Map<String, Long>> facetMap){
+        this.facetMap = facetMap;
+    }
 
-	/**
-	 * Gets the 数据结构:<br>
-	 * 此时没有过滤0的分组,为了良好的扩展性需要自行代码过滤
-	 * 
-	 * <pre>
-	 * "facetQueryMap": { "price_1:[0.
-	 * 
-	 * @return the facetQueryMap
-	 */
-	public Map<String, Integer> getFacetQueryMap(){
-		return facetQueryMap;
-	}
+    /**
+     * Gets the 数据结构:<br>
+     * 此时没有过滤0的分组,为了良好的扩展性需要自行代码过滤
+     * 
+     * <pre>
+     * "facetQueryMap": { "price_1:[0.
+     * 
+     * @return the facetQueryMap
+     */
+    public Map<String, Integer> getFacetQueryMap(){
+        return facetQueryMap;
+    }
 
-	/**
-	 * Sets the 数据结构:<br>
-	 * 此时没有过滤0的分组,为了良好的扩展性需要自行代码过滤
-	 * 
-	 * <pre>
-	 * "facetQueryMap": { "price_1:[0.
-	 * 
-	 * @param facetQueryMap the facetQueryMap to set
-	 */
-	public void setFacetQueryMap(Map<String, Integer> facetQueryMap){
-		this.facetQueryMap = facetQueryMap;
-	}
+    /**
+     * Sets the 数据结构:<br>
+     * 此时没有过滤0的分组,为了良好的扩展性需要自行代码过滤
+     * 
+     * <pre>
+     * "facetQueryMap": { "price_1:[0.
+     * 
+     * @param facetQueryMap the facetQueryMap to set
+     */
+    public void setFacetQueryMap(Map<String, Integer> facetQueryMap){
+        this.facetQueryMap = facetQueryMap;
+    }
 
 }

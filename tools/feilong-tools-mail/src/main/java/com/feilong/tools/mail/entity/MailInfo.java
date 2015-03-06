@@ -26,179 +26,179 @@ import java.util.Date;
  */
 public class MailInfo{
 
-	/** 发件人. */
-	private String		from;
+    /** 发件人. */
+    private String   from;
 
-	/** 发送时间. */
-	private Date		sentDate;
+    /** 发送时间. */
+    private Date     sentDate;
 
-	/** 大小. */
-	private String		size;
+    /** 大小. */
+    private String   size;
 
-	/** 标题. */
-	private String		subject;
+    /** 标题. */
+    private String   subject;
 
-	/** 收件人. */
-	private String[]	recipients;
+    /** 收件人. */
+    private String[] recipients;
 
-	/** The content type. */
-	private String		contentType;
+    /** The content type. */
+    private String   contentType;
 
-	/** The content. */
-	private String		content;
+    /** The content. */
+    private String   content;
 
-	/** The received date. */
-	private Date		receivedDate;
+    /** The received date. */
+    private Date     receivedDate;
 
-	/**
-	 * 获得 发件人.
-	 *
-	 * @return the from
-	 */
-	public String getFrom(){
-		return from;
-	}
+    /**
+     * 获得 发件人.
+     *
+     * @return the from
+     */
+    public String getFrom(){
+        return from;
+    }
 
-	/**
-	 * 设置 发件人.
-	 *
-	 * @param from
-	 *            the from to set
-	 */
-	public void setFrom(String from){
-		this.from = from;
-	}
+    /**
+     * 设置 发件人.
+     *
+     * @param from
+     *            the from to set
+     */
+    public void setFrom(String from){
+        this.from = from;
+    }
 
-	/**
-	 * 获得 发送时间.
-	 *
-	 * @return the sentDate
-	 */
-	public Date getSentDate(){
-		return sentDate;
-	}
+    /**
+     * 获得 发送时间.
+     *
+     * @return the sentDate
+     */
+    public Date getSentDate(){
+        return sentDate;
+    }
 
-	/**
-	 * 设置 发送时间.
-	 *
-	 * @param sentDate
-	 *            the sentDate to set
-	 */
-	public void setSentDate(Date sentDate){
-		this.sentDate = sentDate;
-	}
+    /**
+     * 设置 发送时间.
+     *
+     * @param sentDate
+     *            the sentDate to set
+     */
+    public void setSentDate(Date sentDate){
+        this.sentDate = sentDate;
+    }
 
-	/**
-	 * 获得 大小.
-	 *
-	 * @return the size
-	 */
-	public String getSize(){
-		return size;
-	}
+    /**
+     * 获得 大小.
+     *
+     * @return the size
+     */
+    public String getSize(){
+        return size;
+    }
 
-	/**
-	 * 设置 大小.
-	 *
-	 * @param size
-	 *            the size to set
-	 */
-	public void setSize(String size){
-		this.size = size;
-	}
+    /**
+     * 设置 大小.
+     *
+     * @param size
+     *            the size to set
+     */
+    public void setSize(String size){
+        this.size = size;
+    }
 
-	/**
-	 * 获得 标题.
-	 *
-	 * @return the subject
-	 */
-	public String getSubject(){
-		return subject;
-	}
+    /**
+     * 获得 标题.
+     *
+     * @return the subject
+     */
+    public String getSubject(){
+        return subject;
+    }
 
-	/**
-	 * 设置 标题.
-	 *
-	 * @param subject
-	 *            the subject to set
-	 */
-	public void setSubject(String subject){
-		this.subject = subject;
-	}
+    /**
+     * 设置 标题.
+     *
+     * @param subject
+     *            the subject to set
+     */
+    public void setSubject(String subject){
+        this.subject = subject;
+    }
 
-	/**
-	 * 获得 收件人.
-	 *
-	 * @return the recipients
-	 */
-	public String[] getRecipients(){
-		return recipients;
-	}
+    /**
+     * 获得 收件人.
+     *
+     * @return the recipients
+     */
+    public String[] getRecipients(){
+        return recipients;
+    }
 
-	/**
-	 * 设置 收件人.
-	 *
-	 * @param recipients
-	 *            the recipients to set
-	 */
-	public void setRecipients(String[] recipients){
-		this.recipients = recipients;
-	}
+    /**
+     * 设置 收件人.
+     *
+     * @param recipients
+     *            the recipients to set
+     */
+    public void setRecipients(String[] recipients){
+        this.recipients = recipients;
+    }
 
-	/**
-	 * 获得 the content type.
-	 *
-	 * @return the contentType
-	 */
-	public String getContentType(){
-		return contentType;
-	}
+    /**
+     * 获得 the content type.
+     *
+     * @return the contentType
+     */
+    public String getContentType(){
+        return contentType;
+    }
 
-	/**
-	 * 设置 the content type.
-	 *
-	 * @param contentType
-	 *            the contentType to set
-	 */
-	public void setContentType(String contentType){
-		this.contentType = contentType;
-	}
+    /**
+     * 设置 the content type.
+     *
+     * @param contentType
+     *            the contentType to set
+     */
+    public void setContentType(String contentType){
+        this.contentType = contentType;
+    }
 
-	/**
-	 * 获得 the received date.
-	 *
-	 * @return the receivedDate
-	 */
-	public Date getReceivedDate(){
-		return receivedDate;
-	}
+    /**
+     * 获得 the received date.
+     *
+     * @return the receivedDate
+     */
+    public Date getReceivedDate(){
+        return receivedDate;
+    }
 
-	/**
-	 * 设置 the received date.
-	 *
-	 * @param receivedDate
-	 *            the receivedDate to set
-	 */
-	public void setReceivedDate(Date receivedDate){
-		this.receivedDate = receivedDate;
-	}
+    /**
+     * 设置 the received date.
+     *
+     * @param receivedDate
+     *            the receivedDate to set
+     */
+    public void setReceivedDate(Date receivedDate){
+        this.receivedDate = receivedDate;
+    }
 
-	/**
-	 * 获得 content.
-	 *
-	 * @return the content
-	 */
-	public String getContent(){
-		return content;
-	}
+    /**
+     * 获得 content.
+     *
+     * @return the content
+     */
+    public String getContent(){
+        return content;
+    }
 
-	/**
-	 * 设置 content.
-	 *
-	 * @param content
-	 *            the content to set
-	 */
-	public void setContent(String content){
-		this.content = content;
-	}
+    /**
+     * 设置 content.
+     *
+     * @param content
+     *            the content to set
+     */
+    public void setContent(String content){
+        this.content = content;
+    }
 }

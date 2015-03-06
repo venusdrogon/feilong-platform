@@ -28,29 +28,29 @@ import com.feilong.commons.core.util.Validator;
  */
 public class DokuAdaptorUtil{
 
-	/**
-	 * 生成session id 参数<br>
-	 * 
-	 * @param buyer
-	 *            目前取的是 交易的buyerId
-	 * @return "" + buyer
-	 * @throws IllegalArgumentException
-	 *             如果 payRequest.getBuyer() isNullOrEmpty
-	 * @see <a href="http://180.168.119.194:8005/redmine/issues/22170">Blanja.com "SESSIONID" field now put what value?</a>
-	 *      blanja原来设置的是 (the sessionid use md5 of the order id),由于 新的网站支持合并订单付款,所以不使用. 此处设置buyerId 已经可以满足开发需求<br>
-	 *      关闭交易的时候 需要使用这里的sessionId值
-	 */
-	public static String generateSessionId(Serializable buyer){
-		if (Validator.isNullOrEmpty(buyer)){
-			StringBuilder sb = new StringBuilder();
-			sb.append("In all DOKU payAdaptor,buyer can't be null/empty!buyer is useful for DOKU,");
-			sb.append("this value will set to sessionID param,");
-			sb.append("and sessionID value will usefor DOKU advance adaptor");
-			throw new IllegalArgumentException(sb.toString());
-		}
+    /**
+     * 生成session id 参数<br>
+     * 
+     * @param buyer
+     *            目前取的是 交易的buyerId
+     * @return "" + buyer
+     * @throws IllegalArgumentException
+     *             如果 payRequest.getBuyer() isNullOrEmpty
+     * @see <a href="http://180.168.119.194:8005/redmine/issues/22170">Blanja.com "SESSIONID" field now put what value?</a>
+     *      blanja原来设置的是 (the sessionid use md5 of the order id),由于 新的网站支持合并订单付款,所以不使用. 此处设置buyerId 已经可以满足开发需求<br>
+     *      关闭交易的时候 需要使用这里的sessionId值
+     */
+    public static String generateSessionId(Serializable buyer){
+        if (Validator.isNullOrEmpty(buyer)){
+            StringBuilder sb = new StringBuilder();
+            sb.append("In all DOKU payAdaptor,buyer can't be null/empty!buyer is useful for DOKU,");
+            sb.append("this value will set to sessionID param,");
+            sb.append("and sessionID value will usefor DOKU advance adaptor");
+            throw new IllegalArgumentException(sb.toString());
+        }
 
-		// 目前设置的是 buyer
-		String SESSIONID = "" + buyer;
-		return SESSIONID;
-	}
+        // 目前设置的是 buyer
+        String SESSIONID = "" + buyer;
+        return SESSIONID;
+    }
 }

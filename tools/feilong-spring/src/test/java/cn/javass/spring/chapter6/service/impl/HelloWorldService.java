@@ -8,10 +8,10 @@ import cn.javass.spring.chapter6.service.IHelloWorldService;
 @SuppressWarnings("all")
 public class HelloWorldService implements IHelloWorldService{
 
-	private static final Logger	log	= LoggerFactory.getLogger(HelloWorldService.class);
+    private static final Logger log = LoggerFactory.getLogger(HelloWorldService.class);
 
-	@Override
-	public void sayHello(){
-		log.info("============Hello World!");
-	}
+    @Override
+    public void sayHello(){
+        log.info("============Hello World!");
+    }
 }

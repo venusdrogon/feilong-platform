@@ -28,98 +28,98 @@ import org.slf4j.LoggerFactory;
  */
 public class RegQuery{
 
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(RegQuery.class);
+    /** The Constant log. */
+    private static final Logger log                 = LoggerFactory.getLogger(RegQuery.class);
 
-	/** The Constant REGQUERY_UTIL. */
-	private static final String	REGQUERY_UTIL		= "reg query ";
+    /** The Constant REGQUERY_UTIL. */
+    private static final String REGQUERY_UTIL       = "reg query ";
 
-	/** The Constant REGSTR_TOKEN. */
-	private static final String	REGSTR_TOKEN		= "REG_SZ";
+    /** The Constant REGSTR_TOKEN. */
+    private static final String REGSTR_TOKEN        = "REG_SZ";
 
-	/** The Constant REGDWORD_TOKEN. */
-	private static final String	REGDWORD_TOKEN		= "REG_DWORD";
+    /** The Constant REGDWORD_TOKEN. */
+    private static final String REGDWORD_TOKEN      = "REG_DWORD";
 
-	/** The Constant PERSONAL_FOLDER_CMD. */
-	private static final String	PERSONAL_FOLDER_CMD	= REGQUERY_UTIL + "\"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\"
-																	+ "Explorer\\Shell Folders\" /v Personal";
+    /** The Constant PERSONAL_FOLDER_CMD. */
+    private static final String PERSONAL_FOLDER_CMD = REGQUERY_UTIL + "\"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\"
+                                                                    + "Explorer\\Shell Folders\" /v Personal";
 
-	/** The Constant CPU_SPEED_CMD. */
-	private static final String	CPU_SPEED_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
-																	+ " /v ~MHz";
+    /** The Constant CPU_SPEED_CMD. */
+    private static final String CPU_SPEED_CMD       = REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
+                                                                    + " /v ~MHz";
 
-	/** The Constant CPU_NAME_CMD. */
-	private static final String	CPU_NAME_CMD		= REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
-																	+ " /v ProcessorNameString";
+    /** The Constant CPU_NAME_CMD. */
+    private static final String CPU_NAME_CMD        = REGQUERY_UTIL + "\"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\""
+                                                                    + " /v ProcessorNameString";
 
-	/** Don't let anyone instantiate this class. */
-	private RegQuery(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private RegQuery(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * Gets the current user personal folder path.
-	 * 
-	 * @return the current user personal folder path
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static String getCurrentUserPersonalFolderPath() throws IOException{
-		String result = RegeditUtil.query(PERSONAL_FOLDER_CMD);
-		int p = result.indexOf(REGSTR_TOKEN);
-		if (p == -1){
-			return null;
-		}
-		return result.substring(p + REGSTR_TOKEN.length()).trim();
-	}
+    /**
+     * Gets the current user personal folder path.
+     * 
+     * @return the current user personal folder path
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static String getCurrentUserPersonalFolderPath() throws IOException{
+        String result = RegeditUtil.query(PERSONAL_FOLDER_CMD);
+        int p = result.indexOf(REGSTR_TOKEN);
+        if (p == -1){
+            return null;
+        }
+        return result.substring(p + REGSTR_TOKEN.length()).trim();
+    }
 
-	/**
-	 * Gets the CPU speed.
-	 * 
-	 * @return the CPU speed
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static String getCPUSpeed() throws IOException{
-		String result = RegeditUtil.query(CPU_SPEED_CMD);
-		int p = result.indexOf(REGDWORD_TOKEN);
-		if (p == -1){
-			return null;
-		}
-		// CPU speed in Mhz (minus 1) in HEX notation, convert it to DEC
-		String temp = result.substring(p + REGDWORD_TOKEN.length()).trim();
-		return Integer.toString(Integer.parseInt(temp.substring("0x".length()), 16) + 1);
-	}
+    /**
+     * Gets the CPU speed.
+     * 
+     * @return the CPU speed
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static String getCPUSpeed() throws IOException{
+        String result = RegeditUtil.query(CPU_SPEED_CMD);
+        int p = result.indexOf(REGDWORD_TOKEN);
+        if (p == -1){
+            return null;
+        }
+        // CPU speed in Mhz (minus 1) in HEX notation, convert it to DEC
+        String temp = result.substring(p + REGDWORD_TOKEN.length()).trim();
+        return Integer.toString(Integer.parseInt(temp.substring("0x".length()), 16) + 1);
+    }
 
-	/**
-	 * Gets the CPU name.
-	 * 
-	 * @return the CPU name
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static String getCPUName() throws IOException{
-		String result = RegeditUtil.query(CPU_NAME_CMD);
-		int p = result.indexOf(REGSTR_TOKEN);
-		if (p == -1){
-			return null;
-		}
-		return result.substring(p + REGSTR_TOKEN.length()).trim();
-	}
+    /**
+     * Gets the CPU name.
+     * 
+     * @return the CPU name
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static String getCPUName() throws IOException{
+        String result = RegeditUtil.query(CPU_NAME_CMD);
+        int p = result.indexOf(REGSTR_TOKEN);
+        if (p == -1){
+            return null;
+        }
+        return result.substring(p + REGSTR_TOKEN.length()).trim();
+    }
 
-	/**
-	 * The main method.
-	 * 
-	 * @param s
-	 *            the arguments
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static void main(String[] s) throws IOException{
-		log.info("Personal directory : " + getCurrentUserPersonalFolderPath());
-		log.info("CPU Name : " + getCPUName());
-		log.info("CPU Speed : " + getCPUSpeed() + " Mhz");
-	}
+    /**
+     * The main method.
+     * 
+     * @param s
+     *            the arguments
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    public static void main(String[] s) throws IOException{
+        log.info("Personal directory : " + getCurrentUserPersonalFolderPath());
+        log.info("CPU Name : " + getCPUName());
+        log.info("CPU Speed : " + getCPUSpeed() + " Mhz");
+    }
 }

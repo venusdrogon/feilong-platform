@@ -39,65 +39,65 @@ import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.util.Klik
  */
 public class SprintAsiaKlikPayAdaptorTest extends BasePaymentTest{
 
-	/** The payment adaptor. */
-	@Autowired
-	@Qualifier("sprintAsiaKlikPayAdaptor")
-	private PaymentAdaptor	paymentAdaptor;
+    /** The payment adaptor. */
+    @Autowired
+    @Qualifier("sprintAsiaKlikPayAdaptor")
+    private PaymentAdaptor paymentAdaptor;
 
-	/**
-	 * Creates the payment form.
-	 */
-	@Test
-	public final void createPaymentForm(){
-		Map<String, String> specialSignMap = null;
-		createPaymentForm(paymentAdaptor, specialSignMap);
-	}
+    /**
+     * Creates the payment form.
+     */
+    @Test
+    public final void createPaymentForm(){
+        Map<String, String> specialSignMap = null;
+        createPaymentForm(paymentAdaptor, specialSignMap);
+    }
 
-	/**
-	 * Test do auth key.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void testDoAuthKey() throws Exception{
-		// Input  F7468B69D12BB6CE76D6206419A6AC28
-		// Encrypt by KeyId  12345678901234561234567890123456
-		// authKey will become  BF81501C562D6FEA2FCB905D392D5851
+    /**
+     * Test do auth key.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void testDoAuthKey() throws Exception{
+        // Input  F7468B69D12BB6CE76D6206419A6AC28
+        // Encrypt by KeyId  12345678901234561234567890123456
+        // authKey will become  BF81501C562D6FEA2FCB905D392D5851
 
-		String input = "F7468B69D12BB6CE76D6206419A6AC28";
-		String encryptByKeyId = "12345678901234561234567890123456";
+        String input = "F7468B69D12BB6CE76D6206419A6AC28";
+        String encryptByKeyId = "12345678901234561234567890123456";
 
-		Assert.assertEquals("BF81501C562D6FEA2FCB905D392D5851", AuthKey.doAuthKey(input, encryptByKeyId));
-	}
+        Assert.assertEquals("BF81501C562D6FEA2FCB905D392D5851", AuthKey.doAuthKey(input, encryptByKeyId));
+    }
 
-	/**
-	 * Test get sign.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void testGetSign() throws Exception{
-		// "miscFee": "0.00",
-		// "descp": "",
-		// "payType": "01",
-		// "signature": "1995880609",
+    /**
+     * Test get sign.
+     *
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void testGetSign() throws Exception{
+        // "miscFee": "0.00",
+        // "descp": "",
+        // "payType": "01",
+        // "signature": "1995880609",
 
-		String klikPayCode = "03BELAV220";
+        String klikPayCode = "03BELAV220";
 
-		String dateString = "23/04/2014 18:20:20";
-		Date transactionDate = DateUtil.string2Date(dateString, DatePattern.ddMMyyyyHHmmss);
-		String transactionNo = "010003240001";
-		String totalAmount = "9000009.00";
-		String currency = "IDR";
+        String dateString = "23/04/2014 18:20:20";
+        Date transactionDate = DateUtil.string2Date(dateString, DatePattern.ddMMyyyyHHmmss);
+        String transactionNo = "010003240001";
+        String totalAmount = "9000009.00";
+        String currency = "IDR";
 
-		String keyId = KlikPayUtil.getKeyId("ClearKeyDev2Blj2");
-		String sign = KlikPayUtil.getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currency, keyId);
-		String sign1 = BCAKeyGenerator.signature(klikPayCode, dateString, transactionNo, totalAmount, currency, keyId);
-		log.info("{},{}", sign, sign1);
+        String keyId = KlikPayUtil.getKeyId("ClearKeyDev2Blj2");
+        String sign = KlikPayUtil.getSignature(klikPayCode, transactionDate, transactionNo, totalAmount, currency, keyId);
+        String sign1 = BCAKeyGenerator.signature(klikPayCode, dateString, transactionNo, totalAmount, currency, keyId);
+        log.info("{},{}", sign, sign1);
 
-		Assert.assertEquals(sign, sign1);
-	}
+        Assert.assertEquals(sign, sign1);
+    }
 
 }

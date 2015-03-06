@@ -23,18 +23,18 @@ package com.feilong.framework.netpay.command;
  */
 public enum PaymentResult{
 
-	/** 已支付. */
-	PAID,
+    /** 已支付. */
+    PAID,
 
-	/** 未支付. */
-	NO_PAID,
+    /** 未支付. */
+    NO_PAID,
 
-	/** 支付失败. */
-	FAIL,
+    /** 支付失败. */
+    FAIL,
 
-	/**
-	 * PENDING transaction still in process<br>
-	 * (极少数的支付方式会有这样的状态),目前只有 bca credit card有这个状态
-	 */
-	PENDING
+    /**
+     * PENDING transaction still in process<br>
+     * (极少数的支付方式会有这样的状态),目前只有 bca credit card有这个状态
+     */
+    PENDING
 }

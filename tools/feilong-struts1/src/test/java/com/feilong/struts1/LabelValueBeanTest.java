@@ -28,17 +28,17 @@ import org.slf4j.LoggerFactory;
  */
 public class LabelValueBeanTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(LabelValueBeanTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(LabelValueBeanTest.class);
 
-	/**
-	 * F.
-	 */
-	@Test
-	public void f(){
-		LabelValueBean labelValueBean = new LabelValueBean();
-		labelValueBean.setLabel("haha");
-		labelValueBean.setValue("ssssss");
-		log.info(labelValueBean.getLabel());
-	}
+    /**
+     * F.
+     */
+    @Test
+    public void f(){
+        LabelValueBean labelValueBean = new LabelValueBean();
+        labelValueBean.setLabel("haha");
+        labelValueBean.setValue("ssssss");
+        log.info(labelValueBean.getLabel());
+    }
 }

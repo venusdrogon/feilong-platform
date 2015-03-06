@@ -32,37 +32,37 @@ import com.feilong.framework.netpay.advance.exception.TradeQueryException;
  */
 public interface PaymentAdvanceAdaptor{
 
-	/**
-	 * Gets the query result.
-	 *
-	 * @param queryRequest
-	 *            the query request
-	 * @return the query result
-	 * @throws TradeQueryException
-	 *             查询出现异常
-	 */
-	QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException;
+    /**
+     * Gets the query result.
+     *
+     * @param queryRequest
+     *            the query request
+     * @return the query result
+     * @throws TradeQueryException
+     *             查询出现异常
+     */
+    QueryResult getQueryResult(QueryRequest queryRequest) throws TradeQueryException;
 
-	// *******************************************************************************
+    // *******************************************************************************
 
-	/**
-	 * 是否支持关闭接口.
-	 * 
-	 * @return true, if is support close trade
-	 */
-	boolean isSupportCloseTrade();
+    /**
+     * 是否支持关闭接口.
+     * 
+     * @return true, if is support close trade
+     */
+    boolean isSupportCloseTrade();
 
-	/**
-	 * 关闭交易.
-	 *
-	 * @param orderNo
-	 *            交易号(订单号) 官方商城唯一订单号
-	 * @param tradeRole
-	 *            (关闭角色) 一般有 商家 或者 买家 取消交易方：B-买家取消；S-卖家取消
-	 * @return 成功返回true
-	 * @throws TradeCloseException
-	 *             the close trade exception
-	 */
-	boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException;
+    /**
+     * 关闭交易.
+     *
+     * @param orderNo
+     *            交易号(订单号) 官方商城唯一订单号
+     * @param tradeRole
+     *            (关闭角色) 一般有 商家 或者 买家 取消交易方：B-买家取消；S-卖家取消
+     * @return 成功返回true
+     * @throws TradeCloseException
+     *             the close trade exception
+     */
+    boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException;
 
 }

@@ -33,24 +33,24 @@ import com.feilong.commons.core.io.FileUtil;
  */
 public final class MultipartFileUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MultipartFileUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MultipartFileUtil.class);
 
-	/**
-	 * 获得 multipart file info map for log map.
-	 *
-	 * @param importFile
-	 *            the import file
-	 * @return the multipart file info map for log map
-	 * @since 1.0.9
-	 */
-	public static Map<String, Object> getMultipartFileInfoMapForLogMap(MultipartFile importFile){
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("importFile.getContentType()", importFile.getContentType());
-		map.put("importFile.getName()", importFile.getName());
-		map.put("importFile.getOriginalFilename()", importFile.getOriginalFilename());
-		map.put("importFile.getSize()", FileUtil.formatSize(importFile.getSize()));
-		map.put("importFile.isEmpty()", importFile.isEmpty());
-		return map;
-	}
+    /**
+     * 获得 multipart file info map for log map.
+     *
+     * @param importFile
+     *            the import file
+     * @return the multipart file info map for log map
+     * @since 1.0.9
+     */
+    public static Map<String, Object> getMultipartFileInfoMapForLogMap(MultipartFile importFile){
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("importFile.getContentType()", importFile.getContentType());
+        map.put("importFile.getName()", importFile.getName());
+        map.put("importFile.getOriginalFilename()", importFile.getOriginalFilename());
+        map.put("importFile.getSize()", FileUtil.formatSize(importFile.getSize()));
+        map.put("importFile.isEmpty()", importFile.isEmpty());
+        return map;
+    }
 }

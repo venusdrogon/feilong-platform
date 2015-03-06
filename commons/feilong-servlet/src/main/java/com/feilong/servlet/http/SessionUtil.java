@@ -46,208 +46,208 @@ import com.feilong.commons.core.util.CollectionsUtil;
  */
 public final class SessionUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SessionUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SessionUtil.class);
 
-	/** Don't let anyone instantiate this class. */
-	private SessionUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private SessionUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * Gets the session map for log(仅仅用于log和debug使用).
-	 * 
-	 * @param session
-	 *            the session
-	 * @return the session map for log,如果session is null,则返回 empty的{@link LinkedHashMap}
-	 * @see HttpSession#getId()
-	 * @see HttpSession#getCreationTime()
-	 * @see HttpSession#getLastAccessedTime()
-	 * @see HttpSession#getMaxInactiveInterval()
-	 * @see HttpSession#getAttributeNames()
-	 * @see HttpSession#isNew()
-	 */
-	public static Map<String, Object> getSessionInfoMapForLog(HttpSession session){
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
+    /**
+     * Gets the session map for log(仅仅用于log和debug使用).
+     * 
+     * @param session
+     *            the session
+     * @return the session map for log,如果session is null,则返回 empty的{@link LinkedHashMap}
+     * @see HttpSession#getId()
+     * @see HttpSession#getCreationTime()
+     * @see HttpSession#getLastAccessedTime()
+     * @see HttpSession#getMaxInactiveInterval()
+     * @see HttpSession#getAttributeNames()
+     * @see HttpSession#isNew()
+     */
+    public static Map<String, Object> getSessionInfoMapForLog(HttpSession session){
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
 
-		if (null != session){
+        if (null != session){
 
-			Date now = new Date();
+            Date now = new Date();
 
-			// 返回SESSION创建时JSP引擎为它设的惟一ID号 
-			map.put("session.getId()", session.getId());
+            // 返回SESSION创建时JSP引擎为它设的惟一ID号 
+            map.put("session.getId()", session.getId());
 
-			//返回SESSION创建时间
-			long creationTime = session.getCreationTime();
-			Date creationTimeDate = new Date(creationTime);
-			map.put(
-							"session.getCreationTime()",
-							Slf4jUtil.formatMessage(
-											"[{}],format:[{}],intervalToNow:[{}]",
-											creationTime,
-											DateUtil.date2String(creationTimeDate, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
-											DateExtensionUtil.getIntervalForView(creationTimeDate, now)));
+            //返回SESSION创建时间
+            long creationTime = session.getCreationTime();
+            Date creationTimeDate = new Date(creationTime);
+            map.put(
+                            "session.getCreationTime()",
+                            Slf4jUtil.formatMessage(
+                                            "[{}],format:[{}],intervalToNow:[{}]",
+                                            creationTime,
+                                            DateUtil.date2String(creationTimeDate, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
+                                            DateExtensionUtil.getIntervalForView(creationTimeDate, now)));
 
-			//返回此SESSION里客户端最近一次请求时间 
-			long lastAccessedTime = session.getLastAccessedTime();
-			Date lastAccessedTimeDate = new Date(lastAccessedTime);
-			map.put(
-							"session.getLastAccessedTime()",
-							Slf4jUtil.formatMessage(
-											"[{}],format:[{}],intervalToNow:[{}]",
-											lastAccessedTime,
-											DateUtil.date2String(lastAccessedTimeDate, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
-											DateExtensionUtil.getIntervalForView(lastAccessedTimeDate, now)));
+            //返回此SESSION里客户端最近一次请求时间 
+            long lastAccessedTime = session.getLastAccessedTime();
+            Date lastAccessedTimeDate = new Date(lastAccessedTime);
+            map.put(
+                            "session.getLastAccessedTime()",
+                            Slf4jUtil.formatMessage(
+                                            "[{}],format:[{}],intervalToNow:[{}]",
+                                            lastAccessedTime,
+                                            DateUtil.date2String(lastAccessedTimeDate, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND),
+                                            DateExtensionUtil.getIntervalForView(lastAccessedTimeDate, now)));
 
-			//返回两次请求间隔多长时间此SESSION被取消(ms) 
-			int maxInactiveInterval = session.getMaxInactiveInterval();
-			map.put(
-							"session.getMaxInactiveInterval()",
-							maxInactiveInterval + "s,format:" + DateExtensionUtil.getIntervalForView(maxInactiveInterval * 1000));
+            //返回两次请求间隔多长时间此SESSION被取消(ms) 
+            int maxInactiveInterval = session.getMaxInactiveInterval();
+            map.put(
+                            "session.getMaxInactiveInterval()",
+                            maxInactiveInterval + "s,format:" + DateExtensionUtil.getIntervalForView(maxInactiveInterval * 1000));
 
-			// 返回服务器创建的一个SESSION,客户端是否已经加入 
-			map.put("session.isNew()", session.isNew());
+            // 返回服务器创建的一个SESSION,客户端是否已经加入 
+            map.put("session.isNew()", session.isNew());
 
-			@SuppressWarnings({ "cast", "unchecked" })
-			Enumeration<String> attributeNames = (Enumeration<String>) session.getAttributeNames();
-			map.put("session.getAttributeNames()", CollectionsUtil.toList(attributeNames));
-		}
+            @SuppressWarnings({ "cast", "unchecked" })
+            Enumeration<String> attributeNames = (Enumeration<String>) session.getAttributeNames();
+            map.put("session.getAttributeNames()", CollectionsUtil.toList(attributeNames));
+        }
 
-		return map;
-	}
+        return map;
+    }
 
-	// [start] getAttributeMap
+    // [start] getAttributeMap
 
-	/**
-	 * 遍历显示session的attribute,将 name /attributeValue 存入到map.
-	 * 
-	 * @param session
-	 *            the session
-	 * @return the attribute map
-	 */
-	public static Map<String, Object> getAttributeMap(HttpSession session){
-		Map<String, Object> map = new HashMap<String, Object>();
+    /**
+     * 遍历显示session的attribute,将 name /attributeValue 存入到map.
+     * 
+     * @param session
+     *            the session
+     * @return the attribute map
+     */
+    public static Map<String, Object> getAttributeMap(HttpSession session){
+        Map<String, Object> map = new HashMap<String, Object>();
 
-		@SuppressWarnings("unchecked")
-		Enumeration<String> attributeNames = session.getAttributeNames();
-		while (attributeNames.hasMoreElements()){
-			String name = attributeNames.nextElement();
-			Object attributeValue = session.getAttribute(name);
-			map.put(name, attributeValue);
-		}
-		return map;
-	}
+        @SuppressWarnings("unchecked")
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        while (attributeNames.hasMoreElements()){
+            String name = attributeNames.nextElement();
+            Object attributeValue = session.getAttribute(name);
+            map.put(name, attributeValue);
+        }
+        return map;
+    }
 
-	// [end]
+    // [end]
 
-	// [start] replaceSession
+    // [start] replaceSession
 
-	/**
-	 * 替换session,防止利用JSESSIONID 伪造url进行session hack.
-	 * 
-	 * @param request
-	 *            request
-	 * @return the http session
-	 * @see "org.springframework.security.util.SessionUtils#startNewSessionIfRequired(HttpServletRequest, boolean, SessionRegistry)"
-	 */
-	public static HttpSession replaceSession(HttpServletRequest request){
-		// 当session存在时返回该session，否则不会新建session，返回null
-		HttpSession session = request.getSession(false);
-		if (null != session){
-			// getSession()/getSession(true)：当session存在时返回该session，否则新建一个session并返回该对象
-			session = request.getSession();
-			Map<String, Object> map = getAttributeMap(session);
-			log.debug("old session: {}", session.getId());
+    /**
+     * 替换session,防止利用JSESSIONID 伪造url进行session hack.
+     * 
+     * @param request
+     *            request
+     * @return the http session
+     * @see "org.springframework.security.util.SessionUtils#startNewSessionIfRequired(HttpServletRequest, boolean, SessionRegistry)"
+     */
+    public static HttpSession replaceSession(HttpServletRequest request){
+        // 当session存在时返回该session，否则不会新建session，返回null
+        HttpSession session = request.getSession(false);
+        if (null != session){
+            // getSession()/getSession(true)：当session存在时返回该session，否则新建一个session并返回该对象
+            session = request.getSession();
+            Map<String, Object> map = getAttributeMap(session);
+            log.debug("old session: {}", session.getId());
 
-			session.invalidate();
+            session.invalidate();
 
-			session = request.getSession();
-			log.debug("new session: {}", session.getId());
+            session = request.getSession();
+            log.debug("new session: {}", session.getId());
 
-			for (String key : map.keySet()){
-				session.setAttribute(key, map.get(key));
-			}
-		}else{
-			// 是null 新建一个
-			session = request.getSession();
-		}
-		return session;
-	}
+            for (String key : map.keySet()){
+                session.setAttribute(key, map.get(key));
+            }
+        }else{
+            // 是null 新建一个
+            session = request.getSession();
+        }
+        return session;
+    }
 
-	// [end]
+    // [end]
 
-	// [start] getAttribute
+    // [start] getAttribute
 
-	/**
-	 * 获取属性值Integer类型.
-	 * 
-	 * @param attributeName
-	 *            session里面的 属性名称
-	 * @param object
-	 *            request or session
-	 * @return 获取属性值Integer类型
-	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-	 */
-	@Deprecated
-	public static Integer getAttributeToInteger(String attributeName,Object object){
-		Object value = getAttribute(attributeName, object);
-		return ObjectUtil.toInteger(value);
-	}
+    /**
+     * 获取属性值Integer类型.
+     * 
+     * @param attributeName
+     *            session里面的 属性名称
+     * @param object
+     *            request or session
+     * @return 获取属性值Integer类型
+     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
+     */
+    @Deprecated
+    public static Integer getAttributeToInteger(String attributeName,Object object){
+        Object value = getAttribute(attributeName, object);
+        return ObjectUtil.toInteger(value);
+    }
 
-	/**
-	 * 获取属性值BigDecimal类型.
-	 * 
-	 * @param attributeName
-	 *            session里面的 属性名称
-	 * @param object
-	 *            request or session
-	 * @return 获取属性值BigDecimal类型
-	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-	 */
-	@Deprecated
-	public static BigDecimal getAttributeToBigDecimal(String attributeName,Object object){
-		Object value = getAttribute(attributeName, object);
-		return ObjectUtil.toBigDecimal(value);
-	}
+    /**
+     * 获取属性值BigDecimal类型.
+     * 
+     * @param attributeName
+     *            session里面的 属性名称
+     * @param object
+     *            request or session
+     * @return 获取属性值BigDecimal类型
+     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
+     */
+    @Deprecated
+    public static BigDecimal getAttributeToBigDecimal(String attributeName,Object object){
+        Object value = getAttribute(attributeName, object);
+        return ObjectUtil.toBigDecimal(value);
+    }
 
-	/**
-	 * 将属性值转换成字符串.
-	 * 
-	 * @param attributeName
-	 *            属性名称
-	 * @param object
-	 *            request or session
-	 * @return 将属性值转换成字符串
-	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-	 */
-	@Deprecated
-	public static String getAttributeToString(String attributeName,Object object){
-		return ObjectUtil.toString(getAttribute(attributeName, object));
-	}
+    /**
+     * 将属性值转换成字符串.
+     * 
+     * @param attributeName
+     *            属性名称
+     * @param object
+     *            request or session
+     * @return 将属性值转换成字符串
+     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
+     */
+    @Deprecated
+    public static String getAttributeToString(String attributeName,Object object){
+        return ObjectUtil.toString(getAttribute(attributeName, object));
+    }
 
-	/**
-	 * 直接获取属性值.
-	 * 
-	 * @param attributeName
-	 *            属性名称
-	 * @param object
-	 *            request or session
-	 * @return 直接获取属性值
-	 * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-	 */
-	@Deprecated
-	public static Object getAttribute(String attributeName,Object object){
-		HttpSession session = null;
-		if (object instanceof HttpServletRequest){
-			session = ((HttpServletRequest) object).getSession();
-		}else if (object instanceof HttpSession){
-			session = (HttpSession) object;
-		}else{
-			throw new IllegalArgumentException("object must instanceof HttpServletRequest/HttpSession");
-		}
-		return session.getAttribute(attributeName);
-	}
-	// [end]
+    /**
+     * 直接获取属性值.
+     * 
+     * @param attributeName
+     *            属性名称
+     * @param object
+     *            request or session
+     * @return 直接获取属性值
+     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
+     */
+    @Deprecated
+    public static Object getAttribute(String attributeName,Object object){
+        HttpSession session = null;
+        if (object instanceof HttpServletRequest){
+            session = ((HttpServletRequest) object).getSession();
+        }else if (object instanceof HttpSession){
+            session = (HttpSession) object;
+        }else{
+            throw new IllegalArgumentException("object must instanceof HttpServletRequest/HttpSession");
+        }
+        return session.getAttribute(attributeName);
+    }
+    // [end]
 }

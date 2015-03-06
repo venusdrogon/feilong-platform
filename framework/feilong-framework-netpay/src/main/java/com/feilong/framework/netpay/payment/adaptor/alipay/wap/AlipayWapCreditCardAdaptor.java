@@ -30,48 +30,48 @@ import com.feilong.commons.core.util.Validator;
  */
 public class AlipayWapCreditCardAdaptor extends AlipayWapAdaptor{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.adaptor.alipay.wap.AlipayWapAdaptor#validatorSpecialSignMap(java.util.Map)
-	 */
-	@Override
-	protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
-		if (Validator.isNullOrEmpty(specialSignMap)){
-			throw new NullPointerException("the specialSignMap is null or empty!");
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.adaptor.alipay.wap.AlipayWapAdaptor#validatorSpecialSignMap(java.util.Map)
+     */
+    @Override
+    protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
+        if (Validator.isNullOrEmpty(specialSignMap)){
+            throw new NullPointerException("the specialSignMap is null or empty!");
+        }
 
-		String bankCode = specialSignMap.get(PARAM_DEFAULT_BANK);
-		if (Validator.isNullOrEmpty(bankCode)){
-			throw new NullPointerException("the defaultbank param is null or empty!");
-		}
+        String bankCode = specialSignMap.get(PARAM_DEFAULT_BANK);
+        if (Validator.isNullOrEmpty(bankCode)){
+            throw new NullPointerException("the defaultbank param is null or empty!");
+        }
 
-		if (!isSupportBank(bankCode)){
-			throw new IllegalArgumentException("bankCode:" + bankCode + " don't support,please see document");
-		}
+        if (!isSupportBank(bankCode)){
+            throw new IllegalArgumentException("bankCode:" + bankCode + " don't support,please see document");
+        }
 
-		return super.validatorSpecialSignMap(specialSignMap);
-	}
+        return super.validatorSpecialSignMap(specialSignMap);
+    }
 
-	/**
-	 * 判断传入的 银行code 是否 支持.
-	 * 
-	 * @param defaultbank
-	 *            the defaultbank
-	 * @return true, if is support bank
-	 */
-	private boolean isSupportBank(String defaultbank){
-		return ArrayUtil.isContain(SUPPORT_BANKS, defaultbank);
-	}
+    /**
+     * 判断传入的 银行code 是否 支持.
+     * 
+     * @param defaultbank
+     *            the defaultbank
+     * @return true, if is support bank
+     */
+    private boolean isSupportBank(String defaultbank){
+        return ArrayUtil.isContain(SUPPORT_BANKS, defaultbank);
+    }
 
-	/** 支持的银行code. */
-	private static final String[]	SUPPORT_BANKS	= {
-													// ******************************信用卡
-			"CREDITCARD_CMB",// 招行信用卡
-			"CREDITCARD_CCB",// 建行信用卡
-			"CREDITCARD_ICBC",// 工行信用卡
-			"CREDITCARD_GDB",// 广发信用卡
-			"CREDITCARD_BOC",// 中行信用卡
-			"CREDITCARD",// 信用卡默认code，跳转到支付宝会有选择界面
-													};
+    /** 支持的银行code. */
+    private static final String[] SUPPORT_BANKS = {
+                                                // ******************************信用卡
+            "CREDITCARD_CMB",// 招行信用卡
+            "CREDITCARD_CCB",// 建行信用卡
+            "CREDITCARD_ICBC",// 工行信用卡
+            "CREDITCARD_GDB",// 广发信用卡
+            "CREDITCARD_BOC",// 中行信用卡
+            "CREDITCARD",// 信用卡默认code，跳转到支付宝会有选择界面
+                                                };
 }

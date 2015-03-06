@@ -23,26 +23,26 @@ package com.feilong.taglib.base;
  */
 public abstract class AbstractCommonTag extends BaseTag{
 
-	private static final long	serialVersionUID	= -3092134818447347878L;
+    private static final long serialVersionUID = -3092134818447347878L;
 
-	/**
-	 * 标签开始,
-	 */
-	@Override
-	public int doStartTag(){
-		// 开始执行的部分
-		print(this.writeContent());
-		// 开始:跳过了开始和结束标签之间的代码。
-		return SKIP_BODY;
-	}
+    /**
+     * 标签开始,
+     */
+    @Override
+    public int doStartTag(){
+        // 开始执行的部分
+        print(this.writeContent());
+        // 开始:跳过了开始和结束标签之间的代码。
+        return SKIP_BODY;
+    }
 
-	// *******************************************************************
-	/**
-	 * 标签体内容
-	 * 
-	 * @return
-	 * @author 金鑫
-	 * @version 1.0 2010-5-27 下午11:50:40
-	 */
-	protected abstract Object writeContent();
+    // *******************************************************************
+    /**
+     * 标签体内容
+     * 
+     * @return
+     * @author 金鑫
+     * @version 1.0 2010-5-27 下午11:50:40
+     */
+    protected abstract Object writeContent();
 }

@@ -35,56 +35,56 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class JaxWsDynamicClientUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(JaxWsDynamicClientUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(JaxWsDynamicClientUtil.class);
 
-	/**
-	 * 调用webservice. <br>
-	 * CXF provides two factory classes for dynamic classes.
-	 * <ul>
-	 * <li>If your service is defined in terms of JAX-WS concepts, you should use the JaxWsDynamicClientFactory.</li>
-	 * <li>If you do not want or need JAX-WS semantics, use the DynamicClientFactory.</li>
-	 * </ul>
-	 * 
-	 * @param wsdlUrl
-	 *            the wsdl url
-	 * @param operationName
-	 *            the operation name
-	 * @param params
-	 *            the params
-	 * @return The return values that matche the parts of the output message of the operation
-	 * @throws Exception
-	 *             the exception
-	 */
-	public static String call(String wsdlUrl,String operationName,Object...params) throws Exception{
-		if (log.isInfoEnabled()){
-			Map<String, Object> traceMap = getTraceMapForLog(wsdlUrl, operationName, params);
-			log.info(JsonUtil.format(traceMap));
-		}
-		DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
-		Client client = dynamicClientFactory.createClient(wsdlUrl);
-		Object[] obj = client.invoke(operationName, params);
-		String result = "" + obj[0];
-		return result;
-	}
+    /**
+     * 调用webservice. <br>
+     * CXF provides two factory classes for dynamic classes.
+     * <ul>
+     * <li>If your service is defined in terms of JAX-WS concepts, you should use the JaxWsDynamicClientFactory.</li>
+     * <li>If you do not want or need JAX-WS semantics, use the DynamicClientFactory.</li>
+     * </ul>
+     * 
+     * @param wsdlUrl
+     *            the wsdl url
+     * @param operationName
+     *            the operation name
+     * @param params
+     *            the params
+     * @return The return values that matche the parts of the output message of the operation
+     * @throws Exception
+     *             the exception
+     */
+    public static String call(String wsdlUrl,String operationName,Object...params) throws Exception{
+        if (log.isInfoEnabled()){
+            Map<String, Object> traceMap = getTraceMapForLog(wsdlUrl, operationName, params);
+            log.info(JsonUtil.format(traceMap));
+        }
+        DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
+        Client client = dynamicClientFactory.createClient(wsdlUrl);
+        Object[] obj = client.invoke(operationName, params);
+        String result = "" + obj[0];
+        return result;
+    }
 
-	/**
-	 * 获得 map for log.
-	 *
-	 * @param wsdlUrl
-	 *            the wsdl url
-	 * @param operationName
-	 *            the operation name
-	 * @param params
-	 *            the params
-	 * @return the map for log
-	 * @since 1.0.9
-	 */
-	public static Map<String, Object> getTraceMapForLog(String wsdlUrl,String operationName,Object...params){
-		Map<String, Object> object = new HashMap<String, Object>();
-		object.put("wsdlUrl", wsdlUrl);
-		object.put("operationName", operationName);
-		object.put("params", params);
-		return object;
-	}
+    /**
+     * 获得 map for log.
+     *
+     * @param wsdlUrl
+     *            the wsdl url
+     * @param operationName
+     *            the operation name
+     * @param params
+     *            the params
+     * @return the map for log
+     * @since 1.0.9
+     */
+    public static Map<String, Object> getTraceMapForLog(String wsdlUrl,String operationName,Object...params){
+        Map<String, Object> object = new HashMap<String, Object>();
+        object.put("wsdlUrl", wsdlUrl);
+        object.put("operationName", operationName);
+        object.put("params", params);
+        return object;
+    }
 }

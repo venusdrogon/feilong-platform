@@ -29,18 +29,18 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class PagerTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PagerTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PagerTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void test(){
-		Pager pager = new Pager(2, 10, 10000);
-		pager.setMaxShowPageNo(-2);
-		if (log.isInfoEnabled()){
-			log.info(JsonUtil.format(pager));
-		}
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void test(){
+        Pager pager = new Pager(2, 10, 10000);
+        pager.setMaxShowPageNo(-2);
+        if (log.isInfoEnabled()){
+            log.info(JsonUtil.format(pager));
+        }
+    }
 }

@@ -26,12 +26,12 @@ import org.junit.Test;
  */
 public class NumberFormatUtilTest{
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.text.NumberFormatUtil#format(java.lang.Number, java.lang.String)}.
-	 */
-	@Test
-	public final void testFormat(){
-		assertEquals("26", NumberFormatUtil.format(25.5, "#####"));
-		assertEquals("RP 26", NumberFormatUtil.format(25.5, "RP #####"));
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.text.NumberFormatUtil#format(java.lang.Number, java.lang.String)}.
+     */
+    @Test
+    public final void testFormat(){
+        assertEquals("26", NumberFormatUtil.format(25.5, "#####"));
+        assertEquals("RP 26", NumberFormatUtil.format(25.5, "RP #####"));
+    }
 }

@@ -23,29 +23,29 @@ package com.feilong.framework.netpay.payment.adaptor.doku;
  */
 public class PermataVALITEPayAdaptor extends AbstractDokuPayAdaptor{
 
-	/** 5511 Not an error, payment code has not been paid by Customer. */
-	private String	atmRedirectSuccessStatusCode;
+    /** 5511 Not an error, payment code has not been paid by Customer. */
+    private String atmRedirectSuccessStatusCode;
 
-	/**
-	 * Validate status.
-	 * 
-	 * @param STATUSCODE
-	 *            the sTATUSCODE
-	 * @return true, if successful
-	 */
-	@Override
-	protected boolean validateRedirectStatusParam(String STATUSCODE){
-		boolean statusSuccess = atmRedirectSuccessStatusCode.equals(STATUSCODE);
-		return statusSuccess;
-	}
+    /**
+     * Validate status.
+     * 
+     * @param STATUSCODE
+     *            the sTATUSCODE
+     * @return true, if successful
+     */
+    @Override
+    protected boolean validateRedirectStatusParam(String STATUSCODE){
+        boolean statusSuccess = atmRedirectSuccessStatusCode.equals(STATUSCODE);
+        return statusSuccess;
+    }
 
-	/**
-	 * Sets the 5511 Not an error, payment code has not been paid by Customer.
-	 * 
-	 * @param atmRedirectSuccessStatusCode
-	 *            the atmRedirectSuccessStatusCode to set
-	 */
-	public void setAtmRedirectSuccessStatusCode(String atmRedirectSuccessStatusCode){
-		this.atmRedirectSuccessStatusCode = atmRedirectSuccessStatusCode;
-	}
+    /**
+     * Sets the 5511 Not an error, payment code has not been paid by Customer.
+     * 
+     * @param atmRedirectSuccessStatusCode
+     *            the atmRedirectSuccessStatusCode to set
+     */
+    public void setAtmRedirectSuccessStatusCode(String atmRedirectSuccessStatusCode){
+        this.atmRedirectSuccessStatusCode = atmRedirectSuccessStatusCode;
+    }
 }

@@ -29,35 +29,35 @@ import java.text.MessageFormat;
  */
 public final class MessageFormatUtil{
 
-	/** Don't let anyone instantiate this class. */
-	private MessageFormatUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private MessageFormatUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 格式化.<br>
-	 * 用法:
-	 * 
-	 * <pre>
-	 * MessageFormatUtil.format(&quot;name=张三{0}a{1}&quot;, &quot;jin&quot;, &quot;xin&quot;)
-	 * 
-	 * 返回: name=张三jinaxin
-	 * </pre>
-	 * 
-	 * @param pattern
-	 *            占位符有三种方式书写方式：
-	 *            <ul>
-	 *            <li>{argumentIndex}: 0-9 之间的数字，表示要格式化对象数据在参数数组中的索引号</li>
-	 *            <li>{argumentIndex,formatType}: 参数的格式化类型</li>
-	 *            <li>{argumentIndex,formatType,FormatStyle}: 格式化的样式，它的值必须是与格式化类型相匹配的合法模式、或表示合法模式的字符串.</li>
-	 *            </ul>
-	 * @param arguments
-	 *            动态参数
-	 * @return the string
-	 */
-	public static String format(String pattern,Object...arguments){
-		return MessageFormat.format(pattern, arguments);
-	}
+    /**
+     * 格式化.<br>
+     * 用法:
+     * 
+     * <pre>
+     * MessageFormatUtil.format(&quot;name=张三{0}a{1}&quot;, &quot;jin&quot;, &quot;xin&quot;)
+     * 
+     * 返回: name=张三jinaxin
+     * </pre>
+     * 
+     * @param pattern
+     *            占位符有三种方式书写方式：
+     *            <ul>
+     *            <li>{argumentIndex}: 0-9 之间的数字，表示要格式化对象数据在参数数组中的索引号</li>
+     *            <li>{argumentIndex,formatType}: 参数的格式化类型</li>
+     *            <li>{argumentIndex,formatType,FormatStyle}: 格式化的样式，它的值必须是与格式化类型相匹配的合法模式、或表示合法模式的字符串.</li>
+     *            </ul>
+     * @param arguments
+     *            动态参数
+     * @return the string
+     */
+    public static String format(String pattern,Object...arguments){
+        return MessageFormat.format(pattern, arguments);
+    }
 }

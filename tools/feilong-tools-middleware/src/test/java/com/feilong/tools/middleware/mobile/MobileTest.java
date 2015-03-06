@@ -29,28 +29,28 @@ import org.slf4j.LoggerFactory;
  */
 public class MobileTest{
 
-	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(MobileTest.class);
+    /** The Constant log. */
+    private static final Logger log          = LoggerFactory.getLogger(MobileTest.class);
 
-	/** The mobile number. */
-	String						mobileNumber	= "15001841318";
+    /** The mobile number. */
+    String                      mobileNumber = "15001841318";
 
-	/**
-	 * {@link com.feilong.tools.middleware.mobile.MobileUtil#getMobileNumberHided(java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public void testGetMobileNumberHided(){
-		assertEquals("150****1318", MobileUtil.getMobileNumberHided(mobileNumber));
+    /**
+     * {@link com.feilong.tools.middleware.mobile.MobileUtil#getMobileNumberHided(java.lang.String)} 的测试方法。
+     */
+    @Test
+    public void testGetMobileNumberHided(){
+        assertEquals("150****1318", MobileUtil.getMobileNumberHided(mobileNumber));
 
-		log.info(MobileUtil.getMobileNumberHided(mobileNumber, 15));
-		// assertEquals(mobileNumber, FeiLongMobile.getMobileNumberHided(mobileNumber,4));
-	}
+        log.info(MobileUtil.getMobileNumberHided(mobileNumber, 15));
+        // assertEquals(mobileNumber, FeiLongMobile.getMobileNumberHided(mobileNumber,4));
+    }
 
-	// @Test
-	/**
-	 * Test get mobile number number segment.
-	 */
-	public void testGetMobileNumberNumberSegment(){
-		assertEquals("150", MobileUtil.getMobileNumberNumberSegment(mobileNumber));
-	}
+    // @Test
+    /**
+     * Test get mobile number number segment.
+     */
+    public void testGetMobileNumberNumberSegment(){
+        assertEquals("150", MobileUtil.getMobileNumberNumberSegment(mobileNumber));
+    }
 }

@@ -34,88 +34,88 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  */
 public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
-	 */
-	@Override
-	public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-		// KlikBCA 的支付方式 是 网关主动在 inquery,和通用的不一样
-		throw new UnsupportedOperationException("KlikBCAAdaptor not support getPaymentFormEntity");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
+     */
+    @Override
+    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+        // KlikBCA 的支付方式 是 网关主动在 inquery,和通用的不一样
+        throw new UnsupportedOperationException("KlikBCAAdaptor not support getPaymentFormEntity");
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	public PaymentResult verifyNotify(HttpServletRequest request){
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.PaymentAdaptor#doNotifyVerify(javax.servlet.http.HttpServletRequest)
+     */
+    @Override
+    public PaymentResult verifyNotify(HttpServletRequest request){
 
-		String userid = request.getParameter("userid");
+        String userid = request.getParameter("userid");
 
-		String transno = request.getParameter("transno");
+        String transno = request.getParameter("transno");
 
-		// 19 DD/mm/YYYY HH:MM:SS
-		String transdate = request.getParameter("transdate");
+        // 19 DD/mm/YYYY HH:MM:SS
+        String transdate = request.getParameter("transdate");
 
-		// 999999999999.99
-		String amount = request.getParameter("amount");
-		String type = request.getParameter("type");
+        // 999999999999.99
+        String amount = request.getParameter("amount");
+        String type = request.getParameter("type");
 
-		@SuppressWarnings("unused")
-		String adddata = request.getParameter("adddata");
+        @SuppressWarnings("unused")
+        String adddata = request.getParameter("adddata");
 
-		boolean validateParam = true;
+        boolean validateParam = true;
 
-		if (Validator.isNullOrEmpty(userid)){
-			validateParam = false;
-		}else if (Validator.isNullOrEmpty(transno)){
-			validateParam = false;
-		}else if (Validator.isNullOrEmpty(transdate)){
-			validateParam = false;
-		}else if (Validator.isNullOrEmpty(amount)){
-			validateParam = false;
-		}else if (Validator.isNullOrEmpty(type)){
-			validateParam = false;
-		}else if (!"N".equals(type)){// Value of type field always N
-			validateParam = false;
-		}
+        if (Validator.isNullOrEmpty(userid)){
+            validateParam = false;
+        }else if (Validator.isNullOrEmpty(transno)){
+            validateParam = false;
+        }else if (Validator.isNullOrEmpty(transdate)){
+            validateParam = false;
+        }else if (Validator.isNullOrEmpty(amount)){
+            validateParam = false;
+        }else if (Validator.isNullOrEmpty(type)){
+            validateParam = false;
+        }else if (!"N".equals(type)){// Value of type field always N
+            validateParam = false;
+        }
 
-		// 这里未发现 参数有状态的判断
+        // 这里未发现 参数有状态的判断
 
-		return validateParam ? PaymentResult.PAID : PaymentResult.FAIL;
-	}
+        return validateParam ? PaymentResult.PAID : PaymentResult.FAIL;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	public String getFeedbackTradeNo(HttpServletRequest request){
-		return request.getParameter("transno");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackSoCode(javax.servlet.http.HttpServletRequest)
+     */
+    @Override
+    public String getFeedbackTradeNo(HttpServletRequest request){
+        return request.getParameter("transno");
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	public String getFeedbackTotalFee(HttpServletRequest request){
-		// amount fields consist of 3 digits of currency and 11 digits of numeric format
-		return StringUtil.substring(request.getParameter("amount"), 3);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.PaymentAdaptor#doGetFeedbackTotalFee(javax.servlet.http.HttpServletRequest)
+     */
+    @Override
+    public String getFeedbackTotalFee(HttpServletRequest request){
+        // amount fields consist of 3 digits of currency and 11 digits of numeric format
+        return StringUtil.substring(request.getParameter("amount"), 3);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	public PaymentResult verifyRedirect(HttpServletRequest request){
-		throw new UnsupportedOperationException("KlikBCAAdaptor not support doRedirectVerify");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.adaptor.PaymentAdaptor#doRedirectVerify(javax.servlet.http.HttpServletRequest)
+     */
+    @Override
+    public PaymentResult verifyRedirect(HttpServletRequest request){
+        throw new UnsupportedOperationException("KlikBCAAdaptor not support doRedirectVerify");
+    }
 }

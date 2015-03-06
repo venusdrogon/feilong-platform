@@ -26,50 +26,50 @@ import java.io.Serializable;
  */
 public class PagerUrlTemplate implements Serializable{
 
-	private static final long	serialVersionUID	= 288232184048495608L;
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/** 链接的模板,以便前端js 替换. */
-	private String				href;
+    /** 链接的模板,以便前端js 替换. */
+    private String            href;
 
-	/** 模板链接里面的分页号码. */
-	private Integer				templateValue		= PagerConstants.DEFAULT_TEMPLATE_PAGE_NO;
+    /** 模板链接里面的分页号码. */
+    private Integer           templateValue    = PagerConstants.DEFAULT_TEMPLATE_PAGE_NO;
 
-	/**
-	 * 获得 链接的模板,以便前端js 替换.
-	 * 
-	 * @return the href
-	 */
-	public String getHref(){
-		return href;
-	}
+    /**
+     * 获得 链接的模板,以便前端js 替换.
+     * 
+     * @return the href
+     */
+    public String getHref(){
+        return href;
+    }
 
-	/**
-	 * 设置 链接的模板,以便前端js 替换.
-	 * 
-	 * @param href
-	 *            the href to set
-	 */
-	public void setHref(String href){
-		this.href = href;
-	}
+    /**
+     * 设置 链接的模板,以便前端js 替换.
+     * 
+     * @param href
+     *            the href to set
+     */
+    public void setHref(String href){
+        this.href = href;
+    }
 
-	/**
-	 * 获得 模板链接里面的分页号码.
-	 * 
-	 * @return the templateValue
-	 */
-	public Integer getTemplateValue(){
-		return templateValue;
-	}
+    /**
+     * 获得 模板链接里面的分页号码.
+     * 
+     * @return the templateValue
+     */
+    public Integer getTemplateValue(){
+        return templateValue;
+    }
 
-	/**
-	 * 设置 模板链接里面的分页号码.
-	 * 
-	 * @param templateValue
-	 *            the templateValue to set
-	 */
-	public void setTemplateValue(Integer templateValue){
-		this.templateValue = templateValue;
-	}
+    /**
+     * 设置 模板链接里面的分页号码.
+     * 
+     * @param templateValue
+     *            the templateValue to set
+     */
+    public void setTemplateValue(Integer templateValue){
+        this.templateValue = templateValue;
+    }
 
 }

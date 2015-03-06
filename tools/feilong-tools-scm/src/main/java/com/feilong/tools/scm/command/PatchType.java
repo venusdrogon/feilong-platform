@@ -22,15 +22,15 @@ package com.feilong.tools.scm.command;
  * @version 1.0 2012-7-10 下午5:44:43
  */
 public enum PatchType{
-	/** 增加. */
-	ADD,
+    /** 增加. */
+    ADD,
 
-	/** 更新. */
-	UPDATE,
+    /** 更新. */
+    UPDATE,
 
-	/** 删除 . */
-	DELETE,
+    /** 删除 . */
+    DELETE,
 
-	/** 未知. */
-	UNKNOWN
+    /** 未知. */
+    UNKNOWN
 }

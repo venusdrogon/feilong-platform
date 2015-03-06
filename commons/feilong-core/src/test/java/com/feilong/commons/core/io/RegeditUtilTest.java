@@ -29,23 +29,23 @@ import org.slf4j.LoggerFactory;
  */
 public class RegeditUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log				= LoggerFactory.getLogger(RegeditUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log            = LoggerFactory.getLogger(RegeditUtilTest.class);
 
-	/** The Constant EXCEL_PATH_CMD. */
-	public static final String	EXCEL_PATH_CMD	= RegeditUtil.REGQUERY_UTIL
-																+ "\""
-																+ RegeditUtil.HKEY_CURRENT_USER
-																+ "\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\" /v Personal";
+    /** The Constant EXCEL_PATH_CMD. */
+    public static final String  EXCEL_PATH_CMD = RegeditUtil.REGQUERY_UTIL
+                                                               + "\""
+                                                               + RegeditUtil.HKEY_CURRENT_USER
+                                                               + "\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\" /v Personal";
 
-	/**
-	 * Test get excel install root.
-	 *
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	@Test
-	public final void testGetExcelInstallRoot() throws IOException{
-		log.info(RegeditUtil.query(EXCEL_PATH_CMD));
-	}
+    /**
+     * Test get excel install root.
+     *
+     * @throws IOException
+     *             the IO exception
+     */
+    @Test
+    public final void testGetExcelInstallRoot() throws IOException{
+        log.info(RegeditUtil.query(EXCEL_PATH_CMD));
+    }
 }

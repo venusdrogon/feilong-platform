@@ -84,37 +84,37 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  */
 public final class DokuQueryResultParse extends AbstractVarCommandXmlParse<DokuQueryResult>{
 
-	/** The Constant log. */
-	private static final Logger	log						= LoggerFactory.getLogger(DokuQueryResultParse.class);
+    /** The Constant log. */
+    private static final Logger log                  = LoggerFactory.getLogger(DokuQueryResultParse.class);
 
-	/** The Constant XPATH_EXPRESSION_VAR. */
-	private static final String	XPATH_EXPRESSION_VAR	= "/PAYMENT_STATUS/*";
+    /** The Constant XPATH_EXPRESSION_VAR. */
+    private static final String XPATH_EXPRESSION_VAR = "/PAYMENT_STATUS/*";
 
-	/**
-	 * 解析 wddxPacketXML ,获得我们需要的 var name 和值.
-	 * 
-	 * @param xml
-	 *            the wddx packet xml
-	 * @return the var name and value map
-	 */
-	@Override
-	protected Map<String, String> getVarNameAndValueMap(String xml){
-		Document document = Dom4jUtil.string2Document(xml);
+    /**
+     * 解析 wddxPacketXML ,获得我们需要的 var name 和值.
+     * 
+     * @param xml
+     *            the wddx packet xml
+     * @return the var name and value map
+     */
+    @Override
+    protected Map<String, String> getVarNameAndValueMap(String xml){
+        Document document = Dom4jUtil.string2Document(xml);
 
-		@SuppressWarnings("unchecked")
-		List<Node> selectNodes = document.selectNodes(XPATH_EXPRESSION_VAR);
+        @SuppressWarnings("unchecked")
+        List<Node> selectNodes = document.selectNodes(XPATH_EXPRESSION_VAR);
 
-		Map<String, String> varNameAndValueMap = new HashMap<String, String>();
+        Map<String, String> varNameAndValueMap = new HashMap<String, String>();
 
-		for (Node node : selectNodes){
-			String varName = node.getName();
-			String stringValue = node.getStringValue();
-			varNameAndValueMap.put(varName, stringValue);
-		}
+        for (Node node : selectNodes){
+            String varName = node.getName();
+            String stringValue = node.getStringValue();
+            varNameAndValueMap.put(varName, stringValue);
+        }
 
-		if (log.isDebugEnabled()){
-			log.debug("varNameAndValueMap:{}", JsonUtil.format(varNameAndValueMap));
-		}
-		return varNameAndValueMap;
-	}
+        if (log.isDebugEnabled()){
+            log.debug("varNameAndValueMap:{}", JsonUtil.format(varNameAndValueMap));
+        }
+        return varNameAndValueMap;
+    }
 }

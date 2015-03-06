@@ -42,25 +42,25 @@ import javax.jws.WebService;
 @WebService
 public interface BCAOperation{
 
-	/**
-	 * Transaction query.
-	 * 
-	 * @param merchantTransactionID
-	 *            the merchant transaction id
-	 * @param serviceVersion
-	 *            the service version
-	 * @param siteID
-	 *            the site id
-	 * @param transactionID
-	 *            the transaction id
-	 * @param transactionType
-	 *            the transaction type
-	 * @return the string
-	 */
-	public String transactionQuery(
-					String merchantTransactionID,
-					String serviceVersion,
-					String siteID,
-					String transactionID,
-					String transactionType);
+    /**
+     * Transaction query.
+     * 
+     * @param merchantTransactionID
+     *            the merchant transaction id
+     * @param serviceVersion
+     *            the service version
+     * @param siteID
+     *            the site id
+     * @param transactionID
+     *            the transaction id
+     * @param transactionType
+     *            the transaction type
+     * @return the string
+     */
+    public String transactionQuery(
+                    String merchantTransactionID,
+                    String serviceVersion,
+                    String siteID,
+                    String transactionID,
+                    String transactionType);
 }

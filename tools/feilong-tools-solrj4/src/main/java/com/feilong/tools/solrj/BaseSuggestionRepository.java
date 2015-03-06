@@ -28,13 +28,13 @@ import com.feilong.tools.solrj.paramscommand.SpellingParamCommand;
  */
 public interface BaseSuggestionRepository{
 
-	/**
-	 * 根据spellingParamCommand 查找推荐的词素list<br>
-	 * 名词Lexeme 来源于 org.wltea.analyzer.Lexeme
-	 * 
-	 * @param spellingParamCommand
-	 *            the spelling param command
-	 * @return the list
-	 */
-	List<String> findSuggestionLexeme(SpellingParamCommand spellingParamCommand);
+    /**
+     * 根据spellingParamCommand 查找推荐的词素list<br>
+     * 名词Lexeme 来源于 org.wltea.analyzer.Lexeme
+     * 
+     * @param spellingParamCommand
+     *            the spelling param command
+     * @return the list
+     */
+    List<String> findSuggestionLexeme(SpellingParamCommand spellingParamCommand);
 }

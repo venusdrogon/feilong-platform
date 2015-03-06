@@ -42,132 +42,132 @@ import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 @Deprecated
 public class HttpConcatTag extends AbstractCommonTag{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -3447592871482978718L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -3447592871482978718L;
 
-	/** 类型css/js. */
-	private String				type;
+    /** 类型css/js. */
+    private String            type;
 
-	/** 版本号. */
-	private String				version;
+    /** 版本号. */
+    private String            version;
 
-	/**
-	 * 根目录<br>
-	 * 如果设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801
-	 */
-	private String				root;
+    /**
+     * 根目录<br>
+     * 如果设置root为'/script' 会拼成http://staging.nikestore.com.cn/script/??jquery/jquery-1.4.2.min.js?2013022801
+     */
+    private String            root;
 
-	/** The domain. */
-	private String				domain;
+    /** The domain. */
+    private String            domain;
 
-	// ***********************************************************************************
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
-	 */
-	@Override
-	protected Object writeContent(){
-		String bodyContentSrc = bodyContent.getString();
-		bodyContentSrc = bodyContentSrc.replaceAll("[\r\n\\s]", "");
+    // ***********************************************************************************
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.taglib.base.AbstractCommonTag#writeContent()
+     */
+    @Override
+    protected Object writeContent(){
+        String bodyContentSrc = bodyContent.getString();
+        bodyContentSrc = bodyContentSrc.replaceAll("[\r\n\\s]", "");
 
-		if (Validator.isNullOrEmpty(bodyContentSrc) || Validator.isNullOrEmpty(type)){
-			return "";
-		}
+        if (Validator.isNullOrEmpty(bodyContentSrc) || Validator.isNullOrEmpty(type)){
+            return "";
+        }
 
-		List<String> itemSrcList = getItemSrcList(bodyContentSrc, new ArrayList<String>());
+        List<String> itemSrcList = getItemSrcList(bodyContentSrc, new ArrayList<String>());
 
-		HttpConcatParam httpConcatParam = new HttpConcatParam();
-		httpConcatParam.setDomain(domain);
-		httpConcatParam.setRoot(root);
-		httpConcatParam.setType(type);
-		httpConcatParam.setVersion(version);
-		httpConcatParam.setItemSrcList(itemSrcList);
+        HttpConcatParam httpConcatParam = new HttpConcatParam();
+        httpConcatParam.setDomain(domain);
+        httpConcatParam.setRoot(root);
+        httpConcatParam.setType(type);
+        httpConcatParam.setVersion(version);
+        httpConcatParam.setItemSrcList(itemSrcList);
 
-		return HttpConcatUtil.getWriteContent(httpConcatParam);
-	}
+        return HttpConcatUtil.getWriteContent(httpConcatParam);
+    }
 
-	/**
-	 * 递归获取bodyContent中的TengineFile.
-	 * 
-	 * @param bodyContentSrc
-	 *            the body content
-	 * @param fileList
-	 *            the file list
-	 * @return the file list
-	 */
-	private List<String> getItemSrcList(String bodyContentSrc,List<String> fileList){
-		int begin = bodyContentSrc.indexOf(HttpConcatItemTag.BEGIN_TAG);
-		int end = bodyContentSrc.indexOf(HttpConcatItemTag.END_TAG);
-		if (begin < 0 || end < 0){
-			return fileList;
-		}
-		fileList.add(bodyContentSrc.substring(begin + HttpConcatItemTag.BEGIN_TAG.length(), end));
-		return getItemSrcList(bodyContentSrc.substring(end + HttpConcatItemTag.END_TAG.length()), fileList);
-	}
+    /**
+     * 递归获取bodyContent中的TengineFile.
+     * 
+     * @param bodyContentSrc
+     *            the body content
+     * @param fileList
+     *            the file list
+     * @return the file list
+     */
+    private List<String> getItemSrcList(String bodyContentSrc,List<String> fileList){
+        int begin = bodyContentSrc.indexOf(HttpConcatItemTag.BEGIN_TAG);
+        int end = bodyContentSrc.indexOf(HttpConcatItemTag.END_TAG);
+        if (begin < 0 || end < 0){
+            return fileList;
+        }
+        fileList.add(bodyContentSrc.substring(begin + HttpConcatItemTag.BEGIN_TAG.length(), end));
+        return getItemSrcList(bodyContentSrc.substring(end + HttpConcatItemTag.END_TAG.length()), fileList);
+    }
 
-	// ******************************************************************************
+    // ******************************************************************************
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.jsp.tagext.BodyTagSupport#doEndTag()
-	 */
-	@Override
-	public int doEndTag() throws JspException{
-		print(this.writeContent());
-		return EVAL_PAGE;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.jsp.tagext.BodyTagSupport#doEndTag()
+     */
+    @Override
+    public int doEndTag() throws JspException{
+        print(this.writeContent());
+        return EVAL_PAGE;
+    }
 
-	// **************************************************************************
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.taglib.base.AbstractCommonTag#doStartTag()
-	 */
-	@Override
-	public int doStartTag(){
-		return EVAL_BODY_BUFFERED;
-	}
+    // **************************************************************************
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.taglib.base.AbstractCommonTag#doStartTag()
+     */
+    @Override
+    public int doStartTag(){
+        return EVAL_BODY_BUFFERED;
+    }
 
-	/**
-	 * Sets the 类型css/js.
-	 * 
-	 * @param type
-	 *            the new 类型css/js
-	 */
-	public void setType(String type){
-		this.type = type;
-	}
+    /**
+     * Sets the 类型css/js.
+     * 
+     * @param type
+     *            the new 类型css/js
+     */
+    public void setType(String type){
+        this.type = type;
+    }
 
-	/**
-	 * Sets the 版本号.
-	 * 
-	 * @param version
-	 *            the new 版本号
-	 */
-	public void setVersion(String version){
-		this.version = version;
-	}
+    /**
+     * Sets the 版本号.
+     * 
+     * @param version
+     *            the new 版本号
+     */
+    public void setVersion(String version){
+        this.version = version;
+    }
 
-	/**
-	 * Sets the 根目录<br>
-	 * 如果设置root为'/script' 会拼成http://staging.
-	 * 
-	 * @param root
-	 *            the new 根目录<br>
-	 *            如果设置root为'/script' 会拼成http://staging
-	 */
-	public void setRoot(String root){
-		this.root = root;
-	}
+    /**
+     * Sets the 根目录<br>
+     * 如果设置root为'/script' 会拼成http://staging.
+     * 
+     * @param root
+     *            the new 根目录<br>
+     *            如果设置root为'/script' 会拼成http://staging
+     */
+    public void setRoot(String root){
+        this.root = root;
+    }
 
-	/**
-	 * @param domain
-	 *            the domain to set
-	 */
-	public void setDomain(String domain){
-		this.domain = domain;
-	}
+    /**
+     * @param domain
+     *            the domain to set
+     */
+    public void setDomain(String domain){
+        this.domain = domain;
+    }
 
 }

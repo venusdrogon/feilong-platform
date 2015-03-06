@@ -30,36 +30,36 @@ import org.junit.Test;
 
 public class CommandTest{
 
-	/**
-	 * Assoc.
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void assoc() throws IOException{
-		Command.assoc(".txt", "txtfile");
-	}
+    /**
+     * Assoc.
+     * 
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void assoc() throws IOException{
+        Command.assoc(".txt", "txtfile");
+    }
 
-	/**
-	 * Assoc list.
-	 *
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	@Test
-	public void assocList() throws IOException{
-		Command.callCmd(Command.assocList());
-	}
+    /**
+     * Assoc list.
+     *
+     * @throws IOException
+     *             the IO exception
+     */
+    @Test
+    public void assocList() throws IOException{
+        Command.callCmd(Command.assocList());
+    }
 
-	/**
-	 * Exec shutdown stop.
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void execShutdownStop() throws IOException{
-		Command.execShutdownStop();
-	}
+    /**
+     * Exec shutdown stop.
+     * 
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void execShutdownStop() throws IOException{
+        Command.execShutdownStop();
+    }
 }

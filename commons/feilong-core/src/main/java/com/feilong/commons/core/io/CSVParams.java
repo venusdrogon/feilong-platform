@@ -24,47 +24,47 @@ package com.feilong.commons.core.io;
  */
 public class CSVParams{
 
-	/** 编码. */
-	private String	encode		= CharsetType.GBK;
+    /** 编码. */
+    private String encode    = CharsetType.GBK;
 
-	/** filed 分隔符 默认,逗号. */
-	private char	separator	= ',';
+    /** filed 分隔符 默认,逗号. */
+    private char   separator = ',';
 
-	/**
-	 * Gets the 编码.
-	 * 
-	 * @return the encode
-	 */
-	public String getEncode(){
-		return encode;
-	}
+    /**
+     * Gets the 编码.
+     * 
+     * @return the encode
+     */
+    public String getEncode(){
+        return encode;
+    }
 
-	/**
-	 * Sets the 编码.
-	 * 
-	 * @param encode
-	 *            the encode to set
-	 */
-	public void setEncode(String encode){
-		this.encode = encode;
-	}
+    /**
+     * Sets the 编码.
+     * 
+     * @param encode
+     *            the encode to set
+     */
+    public void setEncode(String encode){
+        this.encode = encode;
+    }
 
-	/**
-	 * Gets the filed 分隔符 默认,逗号.
-	 * 
-	 * @return the separator
-	 */
-	public char getSeparator(){
-		return separator;
-	}
+    /**
+     * Gets the filed 分隔符 默认,逗号.
+     * 
+     * @return the separator
+     */
+    public char getSeparator(){
+        return separator;
+    }
 
-	/**
-	 * Sets the filed 分隔符 默认,逗号.
-	 * 
-	 * @param separator
-	 *            the separator to set
-	 */
-	public void setSeparator(char separator){
-		this.separator = separator;
-	}
+    /**
+     * Sets the filed 分隔符 默认,逗号.
+     * 
+     * @param separator
+     *            the separator to set
+     */
+    public void setSeparator(char separator){
+        this.separator = separator;
+    }
 }

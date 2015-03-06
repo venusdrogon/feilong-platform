@@ -23,27 +23,27 @@ package com.feilong.tools.jfreechart.category;
  */
 public enum CategoryChartType{
 
-	/** The line. */
-	LINE,
+    /** The line. */
+    LINE,
 
-	/** The line3 d. */
-	LINE3D,
+    /** The line3 d. */
+    LINE3D,
 
-	/** The bar. */
-	BAR,
+    /** The bar. */
+    BAR,
 
-	/** The bar3 d. */
-	BAR3D,
+    /** The bar3 d. */
+    BAR3D,
 
-	/** The area. */
-	AREA,
+    /** The area. */
+    AREA,
 
-	/** The stacked area. */
-	STACKEDAREA,
+    /** The stacked area. */
+    STACKEDAREA,
 
-	/** The stacked bar. */
-	STACKEDBAR,
+    /** The stacked bar. */
+    STACKEDBAR,
 
-	/** The stacked bar3 d. */
-	STACKEDBAR3D
+    /** The stacked bar3 d. */
+    STACKEDBAR3D
 }

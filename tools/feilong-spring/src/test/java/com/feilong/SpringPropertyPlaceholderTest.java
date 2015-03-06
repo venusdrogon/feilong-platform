@@ -34,29 +34,29 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 @ContextConfiguration(locations = { "classpath:spring-property-placeholder.xml" })
 public class SpringPropertyPlaceholderTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SpringPropertyPlaceholderTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SpringPropertyPlaceholderTest.class);
 
-	//	@Value("#{p_testProperties['name']}")
-	private String				name;
+    //	@Value("#{p_testProperties['name']}")
+    private String              name;
 
-	//	@Value("#{p_testProperties['skills']}")
-	private String				skills;
+    //	@Value("#{p_testProperties['skills']}")
+    private String              skills;
 
-	@Value("#{p_testProperties['skills']}")
-	private String[]			skillsArray;
+    @Value("#{p_testProperties['skills']}")
+    private String[]            skillsArray;
 
-	@Value("${skills}")
-	private String[]			skillsArray2;
+    @Value("${skills}")
+    private String[]            skillsArray2;
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public void testDIUserArray(){
-		log.info(name);
-		log.info(skills);
-		log.info(JsonUtil.format(skillsArray));
-		log.info(JsonUtil.format(skillsArray2));
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public void testDIUserArray(){
+        log.info(name);
+        log.info(skills);
+        log.info(JsonUtil.format(skillsArray));
+        log.info(JsonUtil.format(skillsArray2));
+    }
 }

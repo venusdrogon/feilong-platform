@@ -30,47 +30,47 @@ import com.feilong.commons.core.io.CharsetType;
  */
 public class PagerParamsTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(PagerParamsTest.class);
+    private static final Logger log = LoggerFactory.getLogger(PagerParamsTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.taglib.display.pager.command.PagerParams#hashCode()}.
-	 */
-	@Test
-	public final void testHashCode(){
-		PagerParams pagerParams1 = new PagerParams(0, "a");
+    /**
+     * Test method for {@link com.feilong.taglib.display.pager.command.PagerParams#hashCode()}.
+     */
+    @Test
+    public final void testHashCode(){
+        PagerParams pagerParams1 = new PagerParams(0, "a");
 
-		if (log.isInfoEnabled()){
-			log.info("" + pagerParams1.hashCode());
-			pagerParams1.setCharsetType(null);
-			log.info("" + pagerParams1.hashCode());
-		}
-	}
+        if (log.isInfoEnabled()){
+            log.info("" + pagerParams1.hashCode());
+            pagerParams1.setCharsetType(null);
+            log.info("" + pagerParams1.hashCode());
+        }
+    }
 
-	/**
-	 * Test method for {@link com.feilong.taglib.display.pager.command.PagerParams#equals(java.lang.Object)}.
-	 */
-	@SuppressWarnings("cast")
-	@Test
-	public final void testEqualsObject(){
-		PagerParams pagerParams1 = new PagerParams(0, "a");
-		PagerParams pagerParams2 = new PagerParams(0, "a");
+    /**
+     * Test method for {@link com.feilong.taglib.display.pager.command.PagerParams#equals(java.lang.Object)}.
+     */
+    @SuppressWarnings("cast")
+    @Test
+    public final void testEqualsObject(){
+        PagerParams pagerParams1 = new PagerParams(0, "a");
+        PagerParams pagerParams2 = new PagerParams(0, "a");
 
-		if (log.isInfoEnabled()){
-			Assert.assertEquals(true, pagerParams1.equals(pagerParams1));
-			Assert.assertEquals(false, pagerParams1.equals(null));
-			Assert.assertEquals(true, pagerParams1.equals(pagerParams2));
+        if (log.isInfoEnabled()){
+            Assert.assertEquals(true, pagerParams1.equals(pagerParams1));
+            Assert.assertEquals(false, pagerParams1.equals(null));
+            Assert.assertEquals(true, pagerParams1.equals(pagerParams2));
 
-			pagerParams2.setCharsetType(CharsetType.GB18030);
-			Assert.assertEquals(false, pagerParams1.equals(pagerParams2));
+            pagerParams2.setCharsetType(CharsetType.GB18030);
+            Assert.assertEquals(false, pagerParams1.equals(pagerParams2));
 
-			pagerParams1.setCharsetType(CharsetType.GB18030);
-			Assert.assertEquals(true, pagerParams1.equals(pagerParams2));
+            pagerParams1.setCharsetType(CharsetType.GB18030);
+            Assert.assertEquals(true, pagerParams1.equals(pagerParams2));
 
-			pagerParams1.setCharsetType(null);
-			Assert.assertEquals(false, pagerParams1.equals(pagerParams2));
-			Assert.assertEquals(false, (null instanceof PagerParams));
-			Assert.assertEquals(true, (pagerParams1 instanceof PagerParams));
-			Assert.assertEquals(false, (null instanceof Object));
-		}
-	}
+            pagerParams1.setCharsetType(null);
+            Assert.assertEquals(false, pagerParams1.equals(pagerParams2));
+            Assert.assertEquals(false, (null instanceof PagerParams));
+            Assert.assertEquals(true, (pagerParams1 instanceof PagerParams));
+            Assert.assertEquals(false, (null instanceof Object));
+        }
+    }
 }

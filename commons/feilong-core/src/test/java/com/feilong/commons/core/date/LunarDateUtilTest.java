@@ -29,23 +29,23 @@ import org.slf4j.LoggerFactory;
  */
 public class LunarDateUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(LunarDateUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(LunarDateUtilTest.class);
 
-	/**
-	 * Gets the lunar date string.
-	 * 
-	 */
-	@Test
-	public void testGetLunarDateString(){
-		log.info(LunarDateUtil.getLunarDateString(new Date()));
-	}
+    /**
+     * Gets the lunar date string.
+     * 
+     */
+    @Test
+    public void testGetLunarDateString(){
+        log.info(LunarDateUtil.getLunarDateString(new Date()));
+    }
 
-	/**
-	 * Convert lundar calendar to solar.
-	 */
-	@Test
-	public void toSolar(){
-		log.info(LunarDateUtil.toSolar(2014, 12, 30));
-	}
+    /**
+     * Convert lundar calendar to solar.
+     */
+    @Test
+    public void toSolar(){
+        log.info(LunarDateUtil.toSolar(2014, 12, 30));
+    }
 }

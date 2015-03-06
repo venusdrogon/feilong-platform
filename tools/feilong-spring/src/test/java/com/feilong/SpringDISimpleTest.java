@@ -33,28 +33,28 @@ import com.feilong.entity.DIUser;
  */
 public class SpringDISimpleTest{
 
-	/** The Constant log. */
-	private static final Logger			log	= LoggerFactory.getLogger(SpringDISimpleTest.class);
+    /** The Constant log. */
+    private static final Logger       log = LoggerFactory.getLogger(SpringDISimpleTest.class);
 
-	/** The file system context. */
-	private static ApplicationContext	fileSystemContext;
+    /** The file system context. */
+    private static ApplicationContext fileSystemContext;
 
-	/**
-	 * Before class.
-	 */
-	@BeforeClass
-	public static void beforeClass(){
-		fileSystemContext = new FileSystemXmlApplicationContext("classpath:spring-DI-Array.xml", "classpath:spring-DI-simple.xml");
-	}
+    /**
+     * Before class.
+     */
+    @BeforeClass
+    public static void beforeClass(){
+        fileSystemContext = new FileSystemXmlApplicationContext("classpath:spring-DI-Array.xml", "classpath:spring-DI-simple.xml");
+    }
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public void testUser(){
-		DIUser diUser = (DIUser) fileSystemContext.getBean("spring-DI-simple");
-		if (log.isInfoEnabled()){
-			log.info(JsonUtil.format(diUser));
-		}
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public void testUser(){
+        DIUser diUser = (DIUser) fileSystemContext.getBean("spring-DI-simple");
+        if (log.isInfoEnabled()){
+            log.info(JsonUtil.format(diUser));
+        }
+    }
 }

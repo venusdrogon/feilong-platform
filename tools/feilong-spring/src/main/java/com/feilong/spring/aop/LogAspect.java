@@ -37,58 +37,58 @@ import com.feilong.commons.core.util.StringUtil;
 @Aspect
 public class LogAspect extends AbstractAspect{
 
-	// log4j
-	/** The log. */
-	private Logger	log	= Logger.getLogger(LogAspect.class);
+    // log4j
+    /** The log. */
+    private Logger log = Logger.getLogger(LogAspect.class);
 
-	/** The _log. */
-	private Log		_log;
+    /** The _log. */
+    private Log    _log;
 
-	// && @annotation(com.feilong.commons.core.aop.Log)
-	/**
-	 * Pointcut.
-	 */
-	@Pointcut("execution(* com.feilong.spring.aspects.**.*(..))")
-	// @Pointcut("execution(* @annotation(com.feilong.commons.core.aop.Log))")
-	private void pointcut(){
-	}
+    // && @annotation(com.feilong.commons.core.aop.Log)
+    /**
+     * Pointcut.
+     */
+    @Pointcut("execution(* com.feilong.spring.aspects.**.*(..))")
+    // @Pointcut("execution(* @annotation(com.feilong.commons.core.aop.Log))")
+    private void pointcut(){
+    }
 
-	// com.feilong.spring.aspects.UserManager
-	/**
-	 * Around.
-	 * 
-	 * @param joinPoint
-	 *            the join point
-	 * @throws Throwable
-	 *             the throwable
-	 */
-	@Around(value = "pointcut()")
-	public void around(ProceedingJoinPoint joinPoint) throws Throwable{
-		// LoggerFactory.
-		// log.
-		Method method = getMethod(joinPoint, Log.class);
-		String methodName = method.getName();
-		Date begin = new Date();
-		// 通过反射执行目标对象的连接点处的方法
-		joinPoint.proceed();
-		// 在来得到方法名吧，就是通知所要织入目标对象中的方法名称
-		Date end = new Date();
-		Object[] args = joinPoint.getArgs();
-		// for (Object arg : args){
-		// log.info("arg:{}", arg.toString());
-		// }
-		// log.info("{},{}", begin, end);
+    // com.feilong.spring.aspects.UserManager
+    /**
+     * Around.
+     * 
+     * @param joinPoint
+     *            the join point
+     * @throws Throwable
+     *             the throwable
+     */
+    @Around(value = "pointcut()")
+    public void around(ProceedingJoinPoint joinPoint) throws Throwable{
+        // LoggerFactory.
+        // log.
+        Method method = getMethod(joinPoint, Log.class);
+        String methodName = method.getName();
+        Date begin = new Date();
+        // 通过反射执行目标对象的连接点处的方法
+        joinPoint.proceed();
+        // 在来得到方法名吧，就是通知所要织入目标对象中的方法名称
+        Date end = new Date();
+        Object[] args = joinPoint.getArgs();
+        // for (Object arg : args){
+        // log.info("arg:{}", arg.toString());
+        // }
+        // log.info("{},{}", begin, end);
 
-		_log = (Log) getAnnotation(joinPoint, Log.class);
-		String level = _log.level();
-		// log.debug("level:{}", level);
-		// 输出的日志 怪怪的 02:13:10 INFO (NativeMethodAccessorImpl.java:?) [invoke0()] method:addUser([1018, Jummy]),耗时:0
-		// ReflectUtil.invokeMethod(log, level, "method:{}({}),耗时:{}", objects);
+        _log = (Log) getAnnotation(joinPoint, Log.class);
+        String level = _log.level();
+        // log.debug("level:{}", level);
+        // 输出的日志 怪怪的 02:13:10 INFO (NativeMethodAccessorImpl.java:?) [invoke0()] method:addUser([1018, Jummy]),耗时:0
+        // ReflectUtil.invokeMethod(log, level, "method:{}({}),耗时:{}", objects);
 
-		String format = "method:%s(%s),耗时:%s";
-		Object[] objects = { methodName, args, DateExtensionUtil.getIntervalForView(begin, end) };
+        String format = "method:%s(%s),耗时:%s";
+        Object[] objects = { methodName, args, DateExtensionUtil.getIntervalForView(begin, end) };
 
-		Object message = StringUtil.format(format, objects);
-		log.log(Level.toLevel(level), message);
-	}
+        Object message = StringUtil.format(format, objects);
+        log.log(Level.toLevel(level), message);
+    }
 }

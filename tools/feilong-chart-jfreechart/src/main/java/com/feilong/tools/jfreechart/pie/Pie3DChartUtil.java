@@ -30,47 +30,47 @@ import org.jfree.chart.plot.PiePlot3D;
  */
 public final class Pie3DChartUtil extends BasePieChartUtil{
 
-	/** 3d饼状图图表区域对象. */
-	protected PiePlot3D	piePlot3D;
+    /** 3d饼状图图表区域对象. */
+    protected PiePlot3D piePlot3D;
 
-	/**
-	 * Instantiates a new pie3 d chart util.
-	 * 
-	 * @param pieChartEntity
-	 *            the pie chart entity
-	 */
-	public Pie3DChartUtil(PieChartEntity pieChartEntity){
-		super(pieChartEntity, PieType.PIE3D);
-		setDefaultPiePlot3D(pieChartEntity);
-	}
+    /**
+     * Instantiates a new pie3 d chart util.
+     * 
+     * @param pieChartEntity
+     *            the pie chart entity
+     */
+    public Pie3DChartUtil(PieChartEntity pieChartEntity){
+        super(pieChartEntity, PieType.PIE3D);
+        setDefaultPiePlot3D(pieChartEntity);
+    }
 
-	/**
-	 * 饼状图.
-	 * 
-	 * @param pieChartEntity
-	 *            the new default pie plot3 d
-	 */
-	public void setDefaultPiePlot3D(PieChartEntity pieChartEntity){
-		piePlot3D = (PiePlot3D) getJFreeChart().getPlot();
-		/**
-		 * piePlot3D 每个面饼的颜色
-		 */
-		Paint[] paints_PiePlot3DPaint = { new Color(244, 194, 144), new Color(144, 233, 144), Color.BLACK, Color.BLUE };
-		Map<String, Number> keyAndDataMap = pieChartEntity.getKeyAndDataMap();
-		int i = 0;
-		for (Entry<String, Number> entry : keyAndDataMap.entrySet()){
-			// 设置分饼颜色
-			piePlot.setSectionPaint(entry.getKey(), paints_PiePlot3DPaint[i]);
-			i++;
-		}
-	}
+    /**
+     * 饼状图.
+     * 
+     * @param pieChartEntity
+     *            the new default pie plot3 d
+     */
+    public void setDefaultPiePlot3D(PieChartEntity pieChartEntity){
+        piePlot3D = (PiePlot3D) getJFreeChart().getPlot();
+        /**
+         * piePlot3D 每个面饼的颜色
+         */
+        Paint[] paints_PiePlot3DPaint = { new Color(244, 194, 144), new Color(144, 233, 144), Color.BLACK, Color.BLUE };
+        Map<String, Number> keyAndDataMap = pieChartEntity.getKeyAndDataMap();
+        int i = 0;
+        for (Entry<String, Number> entry : keyAndDataMap.entrySet()){
+            // 设置分饼颜色
+            piePlot.setSectionPaint(entry.getKey(), paints_PiePlot3DPaint[i]);
+            i++;
+        }
+    }
 
-	/**
-	 * 获得 3d饼状图图表区域对象.
-	 * 
-	 * @return the piePlot3D
-	 */
-	public PiePlot3D getPiePlot3D(){
-		return piePlot3D;
-	}
+    /**
+     * 获得 3d饼状图图表区域对象.
+     * 
+     * @return the piePlot3D
+     */
+    public PiePlot3D getPiePlot3D(){
+        return piePlot3D;
+    }
 }

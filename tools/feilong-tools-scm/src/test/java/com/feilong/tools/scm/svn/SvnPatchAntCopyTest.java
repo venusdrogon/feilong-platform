@@ -28,40 +28,40 @@ import com.feilong.tools.scm.ScmAntCopyConfig;
  */
 public class SvnPatchAntCopyTest{
 
-	/** 过滤不想传的文件 采用 endWith 来 匹配. */
-	private static final String[]	excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };
+    /** 过滤不想传的文件 采用 endWith 来 匹配. */
+    private static final String[] excludeFileNames = { "log4j.xml", "messages/interface-config.properties" };
 
-	/** The svn patch util. */
-	private ScmAntCopy				scmAntCopy			= new SvnPatchAntCopy();
+    /** The svn patch util. */
+    private ScmAntCopy            scmAntCopy       = new SvnPatchAntCopy();
 
-	/**
-	 * 剪切板patch测试.
-	 */
-	@Test
-	public void printlnClipboardContent(){
-		scmAntCopy.printlnClipboardContent(excludeFileNames);
-	}
+    /**
+     * 剪切板patch测试.
+     */
+    @Test
+    public void printlnClipboardContent(){
+        scmAntCopy.printlnClipboardContent(excludeFileNames);
+    }
 
-	/**
-	 * 剪切板patch测试.
-	 */
-	@Test
-	public void printlnClipboardContent1(){
-		scmAntCopy.printlnClipboardContent();
-	}
+    /**
+     * 剪切板patch测试.
+     */
+    @Test
+    public void printlnClipboardContent1(){
+        scmAntCopy.printlnClipboardContent();
+    }
 
-	/**
-	 * 文件patch测试.
-	 */
-	@Test
-	public void printlnFileContent(){
-		String fileName = "C:\\Users\\feilong\\Desktop\\jim code 20141231";
+    /**
+     * 文件patch测试.
+     */
+    @Test
+    public void printlnFileContent(){
+        String fileName = "C:\\Users\\feilong\\Desktop\\jim code 20141231";
 
-		ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
-		//		scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
-		scmAntCopyConfig.setIgnoreNotRuleFile(false);
-		scmAntCopyConfig.setChangeJavaFileExtensionNameToClass(false);
+        ScmAntCopyConfig scmAntCopyConfig = new ScmAntCopyConfig();
+        //		scmAntCopyConfig.setExcludeFileNames(excludeFileNames);
+        scmAntCopyConfig.setIgnoreNotRuleFile(false);
+        scmAntCopyConfig.setChangeJavaFileExtensionNameToClass(false);
 
-		scmAntCopy.printlnFileContent(fileName, scmAntCopyConfig);
-	}
+        scmAntCopy.printlnFileContent(fileName, scmAntCopyConfig);
+    }
 }

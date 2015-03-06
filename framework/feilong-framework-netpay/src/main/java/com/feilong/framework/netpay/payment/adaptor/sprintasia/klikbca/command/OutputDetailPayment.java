@@ -25,94 +25,94 @@ import java.io.Serializable;
  */
 public class OutputDetailPayment implements Serializable{
 
-	private static final long	serialVersionUID	= 4985013088026800559L;
+    private static final long serialVersionUID = 4985013088026800559L;
 
-	/** (Mandatory) The transaction no. */
-	private String				transactionNo;
+    /** (Mandatory) The transaction no. */
+    private String            transactionNo;
 
-	/** (Mandatory)DD/mm/YYYY HH:MM:SS. */
-	private String				transactionDate;
+    /** (Mandatory)DD/mm/YYYY HH:MM:SS. */
+    private String            transactionDate;
 
-	/** amount fields consist of 3 digits of currency and 11 digits of numeric format. */
-	private String				amount;
+    /** amount fields consist of 3 digits of currency and 11 digits of numeric format. */
+    private String            amount;
 
-	/** The description. */
-	private String				description;
+    /** The description. */
+    private String            description;
 
-	/**
-	 * Gets the (Mandatory) The transaction no.
-	 * 
-	 * @return the transactionNo
-	 */
-	public String getTransactionNo(){
-		return transactionNo;
-	}
+    /**
+     * Gets the (Mandatory) The transaction no.
+     * 
+     * @return the transactionNo
+     */
+    public String getTransactionNo(){
+        return transactionNo;
+    }
 
-	/**
-	 * Sets the (Mandatory) The transaction no.
-	 * 
-	 * @param transactionNo
-	 *            the transactionNo to set
-	 */
-	public void setTransactionNo(String transactionNo){
-		this.transactionNo = transactionNo;
-	}
+    /**
+     * Sets the (Mandatory) The transaction no.
+     * 
+     * @param transactionNo
+     *            the transactionNo to set
+     */
+    public void setTransactionNo(String transactionNo){
+        this.transactionNo = transactionNo;
+    }
 
-	/**
-	 * Gets the (Mandatory)DD/mm/YYYY HH:MM:SS.
-	 * 
-	 * @return the transactionDate
-	 */
-	public String getTransactionDate(){
-		return transactionDate;
-	}
+    /**
+     * Gets the (Mandatory)DD/mm/YYYY HH:MM:SS.
+     * 
+     * @return the transactionDate
+     */
+    public String getTransactionDate(){
+        return transactionDate;
+    }
 
-	/**
-	 * Sets the (Mandatory)DD/mm/YYYY HH:MM:SS.
-	 * 
-	 * @param transactionDate
-	 *            the transactionDate to set
-	 */
-	public void setTransactionDate(String transactionDate){
-		this.transactionDate = transactionDate;
-	}
+    /**
+     * Sets the (Mandatory)DD/mm/YYYY HH:MM:SS.
+     * 
+     * @param transactionDate
+     *            the transactionDate to set
+     */
+    public void setTransactionDate(String transactionDate){
+        this.transactionDate = transactionDate;
+    }
 
-	/**
-	 * Gets the amount fields consist of 3 digits of currency and 11 digits of numeric format.
-	 * 
-	 * @return the amount
-	 */
-	public String getAmount(){
-		return amount;
-	}
+    /**
+     * Gets the amount fields consist of 3 digits of currency and 11 digits of numeric format.
+     * 
+     * @return the amount
+     */
+    public String getAmount(){
+        return amount;
+    }
 
-	/**
-	 * Sets the amount fields consist of 3 digits of currency and 11 digits of numeric format.
-	 * 
-	 * @param amount
-	 *            the amount to set
-	 */
-	public void setAmount(String amount){
-		this.amount = amount;
-	}
+    /**
+     * Sets the amount fields consist of 3 digits of currency and 11 digits of numeric format.
+     * 
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(String amount){
+        this.amount = amount;
+    }
 
-	/**
-	 * Gets the description.
-	 * 
-	 * @return the description
-	 */
-	public String getDescription(){
-		return description;
-	}
+    /**
+     * Gets the description.
+     * 
+     * @return the description
+     */
+    public String getDescription(){
+        return description;
+    }
 
-	/**
-	 * Sets the description.
-	 * 
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description){
-		this.description = description;
-	}
+    /**
+     * Sets the description.
+     * 
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description){
+        this.description = description;
+    }
 
 }

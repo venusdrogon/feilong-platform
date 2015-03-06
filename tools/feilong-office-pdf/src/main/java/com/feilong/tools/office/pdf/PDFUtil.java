@@ -41,61 +41,61 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 public final class PDFUtil{
 
-	private static final Logger	log	= LoggerFactory.getLogger(PDFUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(PDFUtil.class);
 
-	/**
-	 * html文件转换成pdf
-	 * 
-	 * @param htmlPath
-	 *            需要被转换的html路径及名称
-	 * @param outputFileName
-	 *            输出pdf文件路径级名称
-	 * @author 金鑫
-	 * @version 1.0 2010-2-26 下午06:01:45
-	 */
-	public static void htmlToPDF(String htmlPath,String outputFileName){
-		try{
-			Reader reader = new FileReader(htmlPath);
+    /**
+     * html文件转换成pdf
+     * 
+     * @param htmlPath
+     *            需要被转换的html路径及名称
+     * @param outputFileName
+     *            输出pdf文件路径级名称
+     * @author 金鑫
+     * @version 1.0 2010-2-26 下午06:01:45
+     */
+    public static void htmlToPDF(String htmlPath,String outputFileName){
+        try{
+            Reader reader = new FileReader(htmlPath);
 
-			StyleSheet styleSheet = new StyleSheet();
-			styleSheet.loadTagStyle("body", "leading", "16,0");
+            StyleSheet styleSheet = new StyleSheet();
+            styleSheet.loadTagStyle("body", "leading", "16,0");
 
-			@SuppressWarnings("unchecked")
-			ArrayList<Element> arrayList = HTMLWorker.parseToList(reader, styleSheet);
-			write(outputFileName, arrayList);
-		}catch (FileNotFoundException e){
-			log.error(e.getClass().getName(), e);
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+            @SuppressWarnings("unchecked")
+            ArrayList<Element> arrayList = HTMLWorker.parseToList(reader, styleSheet);
+            write(outputFileName, arrayList);
+        }catch (FileNotFoundException e){
+            log.error(e.getClass().getName(), e);
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	/**
-	 * 输出pdf 文件
-	 * 
-	 * @param outputFileName
-	 *            地址
-	 * @param elementList
-	 */
-	public static void write(String outputFileName,List<Element> elementList){
-		// 创建一个文档对象
-		Document document = new Document();
-		try{
-			OutputStream outputStream = new FileOutputStream(outputFileName);
-			PdfWriter.getInstance(document, outputStream);
-			// 打开文档对象
-			document.open();
+    /**
+     * 输出pdf 文件
+     * 
+     * @param outputFileName
+     *            地址
+     * @param elementList
+     */
+    public static void write(String outputFileName,List<Element> elementList){
+        // 创建一个文档对象
+        Document document = new Document();
+        try{
+            OutputStream outputStream = new FileOutputStream(outputFileName);
+            PdfWriter.getInstance(document, outputStream);
+            // 打开文档对象
+            document.open();
 
-			for (Element element : elementList){
-				document.add(element);
-			}
+            for (Element element : elementList){
+                document.add(element);
+            }
 
-			// 关闭文档对象，释放资源
-			document.close();
-		}catch (FileNotFoundException e){
-			log.error(e.getClass().getName(), e);
-		}catch (DocumentException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+            // 关闭文档对象，释放资源
+            document.close();
+        }catch (FileNotFoundException e){
+            log.error(e.getClass().getName(), e);
+        }catch (DocumentException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 }

@@ -44,65 +44,65 @@ import com.feilong.commons.core.util.Validator;
  */
 public final class MimeTypeUtil{
 
-	/** The Constant fileExtensionMap. */
-	private static final Map<String, String>	fileExtensionMap;
+    /** The Constant fileExtensionMap. */
+    private static final Map<String, String> fileExtensionMap;
 
-	/** Don't let anyone instantiate this class. */
-	private MimeTypeUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private MimeTypeUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	static{
-		fileExtensionMap = new HashMap<String, String>();
-		for (MimeType mimeType : MimeType.values()){
-			fileExtensionMap.put(mimeType.getExtension(), mimeType.getMime());
-		}
-	}
+    static{
+        fileExtensionMap = new HashMap<String, String>();
+        for (MimeType mimeType : MimeType.values()){
+            fileExtensionMap.put(mimeType.getExtension(), mimeType.getMime());
+        }
+    }
 
-	/**
-	 * 获得 content type by file name.<br>
-	 * 
-	 * //TODO
-	 * <b>
-	 * Very incomplete function. As of Java 7, html, pdf and jpeg extensions return the correct mime-type but js and css return null! </b> <br>
-	 * 
-	 * <p>
-	 * I tried Apache Tika but it is huge with tons of dependencies, <br>
-	 * URLConnection doesn't use the bytes of the files, <br>
-	 * MimetypesFileTypeMap also just looks at files names,<br>
-	 * and I couldn't move to Java 7.
-	 * </p>
-	 * 
-	 * @param fileName
-	 *            the file name
-	 * @return the content type by file name
-	 * @see java.net.URLConnection#getFileNameMap()
-	 * @see javax.activation.MimetypesFileTypeMap#getContentType(java.io.File)
-	 * @see java.net.FileNameMap#getContentTypeFor(String)
-	 * @see org.apache.commons.io.FilenameUtils#getExtension(String)
-	 * @see java.net.URLConnection#guessContentTypeFromName(String)
-	 * @see java.net.URLConnection#guessContentTypeFromStream(java.io.InputStream)
-	 * @see Files#probeContentType(java.nio.file.Path)
-	 */
-	public static String getContentTypeByFileName(String fileName){
+    /**
+     * 获得 content type by file name.<br>
+     * 
+     * //TODO
+     * <b>
+     * Very incomplete function. As of Java 7, html, pdf and jpeg extensions return the correct mime-type but js and css return null! </b> <br>
+     * 
+     * <p>
+     * I tried Apache Tika but it is huge with tons of dependencies, <br>
+     * URLConnection doesn't use the bytes of the files, <br>
+     * MimetypesFileTypeMap also just looks at files names,<br>
+     * and I couldn't move to Java 7.
+     * </p>
+     * 
+     * @param fileName
+     *            the file name
+     * @return the content type by file name
+     * @see java.net.URLConnection#getFileNameMap()
+     * @see javax.activation.MimetypesFileTypeMap#getContentType(java.io.File)
+     * @see java.net.FileNameMap#getContentTypeFor(String)
+     * @see org.apache.commons.io.FilenameUtils#getExtension(String)
+     * @see java.net.URLConnection#guessContentTypeFromName(String)
+     * @see java.net.URLConnection#guessContentTypeFromStream(java.io.InputStream)
+     * @see Files#probeContentType(java.nio.file.Path)
+     */
+    public static String getContentTypeByFileName(String fileName){
 
-		String extension = FilenameUtils.getExtension(fileName);
-		if (Validator.isNullOrEmpty(extension)){
-			return null;
-		}
+        String extension = FilenameUtils.getExtension(fileName);
+        if (Validator.isNullOrEmpty(extension)){
+            return null;
+        }
 
-		// 1. first use java's build-in utils
-		//从数据文件加载文件名映射（一个 mimetable）。它首先尝试加载由 "content.types.user.table" 属性定义的特定于用户的表。如果加载失败，它会尝试加载位于 java 主目录下的 lib/content-types.properties 中的默认内置表。
-		FileNameMap fileNameMap = URLConnection.getFileNameMap();
-		String contentType = fileNameMap.getContentTypeFor(fileName);
+        // 1. first use java's build-in utils
+        //从数据文件加载文件名映射（一个 mimetable）。它首先尝试加载由 "content.types.user.table" 属性定义的特定于用户的表。如果加载失败，它会尝试加载位于 java 主目录下的 lib/content-types.properties 中的默认内置表。
+        FileNameMap fileNameMap = URLConnection.getFileNameMap();
+        String contentType = fileNameMap.getContentTypeFor(fileName);
 
-		// 2. nothing found -> lookup our in extension map to find types like ".doc" or ".docx"
-		if (Validator.isNullOrEmpty(contentType)){
-			contentType = fileExtensionMap.get(extension.toLowerCase());
-		}
+        // 2. nothing found -> lookup our in extension map to find types like ".doc" or ".docx"
+        if (Validator.isNullOrEmpty(contentType)){
+            contentType = fileExtensionMap.get(extension.toLowerCase());
+        }
 
-		return contentType;
-	}
+        return contentType;
+    }
 }

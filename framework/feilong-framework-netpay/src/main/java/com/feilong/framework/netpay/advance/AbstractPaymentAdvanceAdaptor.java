@@ -39,58 +39,58 @@ import com.feilong.framework.netpay.advance.exception.TradeCloseException;
  */
 public abstract class AbstractPaymentAdvanceAdaptor implements PaymentAdvanceAdaptor{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AbstractPaymentAdvanceAdaptor.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(AbstractPaymentAdvanceAdaptor.class);
 
-	/**
-	 * Post construct.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 */
-	@PostConstruct
-	protected void postConstruct() throws IllegalArgumentException,IllegalAccessException{
-		if (log.isDebugEnabled()){
-			// FieldCallback fc;
-			// ReflectionUtils.doWithFields(getClass(), fc);
-			// ReflectUtils.
-			Map<String, Object> map = FieldUtil.getFieldValueMap(this);
-			Class<? extends AbstractPaymentAdvanceAdaptor> clz = getClass();
-			log.debug("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
-		}
-	}
+    /**
+     * Post construct.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws IllegalAccessException
+     *             the illegal access exception
+     */
+    @PostConstruct
+    protected void postConstruct() throws IllegalArgumentException,IllegalAccessException{
+        if (log.isDebugEnabled()){
+            // FieldCallback fc;
+            // ReflectionUtils.doWithFields(getClass(), fc);
+            // ReflectUtils.
+            Map<String, Object> map = FieldUtil.getFieldValueMap(this);
+            Class<? extends AbstractPaymentAdvanceAdaptor> clz = getClass();
+            log.debug("\n{}\n{}", clz.getCanonicalName(), JsonUtil.format(map));
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest)
-	 */
-	@Override
-	public QueryResult getQueryResult(QueryRequest queryRequest){
-		// 抛出表示代码块尚未实施。这一例外补充UnsupportedOperationException异常提供更加丰富的语义描述的问题。
-		// NotImplementedException代表作者已经实现的逻辑在程序中的情况。这可以作为基础的TODO标记一个例外。因为这个逻辑可能在catch块，该异常等异常链。
-		throw new NotImplementedException("getQueryResult is not implemented!");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#getQueryResult(com.feilong.netpay.advanceadaptor.command.QueryRequest)
+     */
+    @Override
+    public QueryResult getQueryResult(QueryRequest queryRequest){
+        // 抛出表示代码块尚未实施。这一例外补充UnsupportedOperationException异常提供更加丰富的语义描述的问题。
+        // NotImplementedException代表作者已经实现的逻辑在程序中的情况。这可以作为基础的TODO标记一个例外。因为这个逻辑可能在catch块，该异常等异常链。
+        throw new NotImplementedException("getQueryResult is not implemented!");
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#isSupportCloseTrade()
-	 */
-	@Override
-	public boolean isSupportCloseTrade(){
-		throw new NotImplementedException("isSupportCloseTrade is not implemented!");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#isSupportCloseTrade()
+     */
+    @Override
+    public boolean isSupportCloseTrade(){
+        throw new NotImplementedException("isSupportCloseTrade is not implemented!");
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#closeTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
-	 */
-	@Override
-	public boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException{
-		throw new NotImplementedException("closeTrade is not implemented!");
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.netpay.advanceadaptor.PaymentAdvanceAdaptor#closeTrade(java.lang.String, com.feilong.netpay.command.TradeRole)
+     */
+    @Override
+    public boolean closeTrade(String orderNo,TradeRole tradeRole) throws TradeCloseException{
+        throw new NotImplementedException("closeTrade is not implemented!");
+    }
 }

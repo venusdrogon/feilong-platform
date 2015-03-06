@@ -31,21 +31,21 @@ import org.slf4j.LoggerFactory;
  */
 public class DirectoryScannerUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DirectoryScannerUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(DirectoryScannerUtilTest.class);
 
-	/**
-	 * 获得 included file list.
-	 */
-	@Test
-	public void getIncludedFileList(){
-		/** The folder. */
-		String WORK_FOLDER = "E:\\Workspaces\\baozun\\BaozunSql\\train";
+    /**
+     * 获得 included file list.
+     */
+    @Test
+    public void getIncludedFileList(){
+        /** The folder. */
+        String WORK_FOLDER = "E:\\Workspaces\\baozun\\BaozunSql\\train";
 
-		String courseNickName = "0926SQL优化";
+        String courseNickName = "0926SQL优化";
 
-		String basedir = WORK_FOLDER + "\\" + courseNickName;
-		String[] includes = { "ppt-contents*.png" };
-		List<File> includedFileList = DirectoryScannerUtil.getIncludedFileList(basedir, includes);
-	}
+        String basedir = WORK_FOLDER + "\\" + courseNickName;
+        String[] includes = { "ppt-contents*.png" };
+        List<File> includedFileList = DirectoryScannerUtil.getIncludedFileList(basedir, includes);
+    }
 }

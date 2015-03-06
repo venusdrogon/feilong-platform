@@ -31,36 +31,36 @@ import org.slf4j.LoggerFactory;
  */
 public class ClipboardUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ClipboardUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ClipboardUtilTest.class);
 
-	/**
-	 * {@link com.feilong.commons.core.awt.toolkit.ClipboardUtil#setClipboardContent(java.lang.String)} 的测试方法。
-	 *
-	 * @throws UnsupportedFlavorException
-	 *             the unsupported flavor exception
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	@Test
-	public final void testSetClipboardContents() throws UnsupportedFlavorException,IOException{
-		log.info(ClipboardUtil.getClipboardContent());
-	}
+    /**
+     * {@link com.feilong.commons.core.awt.toolkit.ClipboardUtil#setClipboardContent(java.lang.String)} 的测试方法。
+     *
+     * @throws UnsupportedFlavorException
+     *             the unsupported flavor exception
+     * @throws IOException
+     *             the IO exception
+     */
+    @Test
+    public final void testSetClipboardContents() throws UnsupportedFlavorException,IOException{
+        log.info(ClipboardUtil.getClipboardContent());
+    }
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public void test(){
-		String aString = "L,M,S,XL,XS,XXL";
-		StringBuilder stringBuilder = new StringBuilder();
-		String[] strings = aString.split(",");
-		stringBuilder.append("<enum type=\"string\">");
-		for (String string : strings){
-			stringBuilder.append("<item>" + string + "</item>");
-		}
-		stringBuilder.append("</enum>");
-		ClipboardUtil.setClipboardContent(stringBuilder.toString());
-		log.info(stringBuilder.toString());
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public void test(){
+        String aString = "L,M,S,XL,XS,XXL";
+        StringBuilder stringBuilder = new StringBuilder();
+        String[] strings = aString.split(",");
+        stringBuilder.append("<enum type=\"string\">");
+        for (String string : strings){
+            stringBuilder.append("<item>" + string + "</item>");
+        }
+        stringBuilder.append("</enum>");
+        ClipboardUtil.setClipboardContent(stringBuilder.toString());
+        log.info(stringBuilder.toString());
+    }
 }

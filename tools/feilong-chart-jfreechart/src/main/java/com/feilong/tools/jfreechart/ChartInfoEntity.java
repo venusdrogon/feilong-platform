@@ -34,128 +34,128 @@ import com.feilong.commons.core.io.SpecialFolder;
  */
 public final class ChartInfoEntity{
 
-	/**
-	 * 目录文件夹路径,默认桌面,<br>
-	 * 仅当输出的是硬盘图片文件时需要设置改值,<br>
-	 * 自动将其拼接成图片路径,转成fileOutputStream.
-	 */
-	private String	chartPath	= SpecialFolder.getDesktop();
+    /**
+     * 目录文件夹路径,默认桌面,<br>
+     * 仅当输出的是硬盘图片文件时需要设置改值,<br>
+     * 自动将其拼接成图片路径,转成fileOutputStream.
+     */
+    private String chartPath = SpecialFolder.getDesktop();
 
-	/** 图片宽度 默认500. */
-	private int		width		= 500;
+    /** 图片宽度 默认500. */
+    private int    width     = 500;
 
-	/** 图片高度 默认400. */
-	private int		height		= 400;
+    /** 图片高度 默认400. */
+    private int    height    = 400;
 
-	/**
-	 * 输出流,或者图片名称<br>
-	 * 代码中会自动识别.
-	 */
-	private Object	imageNameOrOutputStream;
+    /**
+     * 输出流,或者图片名称<br>
+     * 代码中会自动识别.
+     */
+    private Object imageNameOrOutputStream;
 
-	/**
-	 * Instantiates a new chart info entity.
-	 */
-	public ChartInfoEntity(){
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Instantiates a new chart info entity.
+     */
+    public ChartInfoEntity(){
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * Instantiates a new chart info entity.
-	 * 
-	 * @param imageNameOrOutputStream
-	 *            the image name or output stream
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public ChartInfoEntity(Object imageNameOrOutputStream, int width, int height){
-		this.imageNameOrOutputStream = imageNameOrOutputStream;
-		this.width = width;
-		this.height = height;
-	}
+    /**
+     * Instantiates a new chart info entity.
+     * 
+     * @param imageNameOrOutputStream
+     *            the image name or output stream
+     * @param width
+     *            the width
+     * @param height
+     *            the height
+     */
+    public ChartInfoEntity(Object imageNameOrOutputStream, int width, int height){
+        this.imageNameOrOutputStream = imageNameOrOutputStream;
+        this.width = width;
+        this.height = height;
+    }
 
-	/**
-	 * 获得图片宽度 默认500.
-	 * 
-	 * @return the width
-	 */
-	public int getWidth(){
-		return width;
-	}
+    /**
+     * 获得图片宽度 默认500.
+     * 
+     * @return the width
+     */
+    public int getWidth(){
+        return width;
+    }
 
-	/**
-	 * 设置图片宽度.
-	 * 
-	 * @param width
-	 *            the width to set
-	 */
-	public void setWidth(int width){
-		this.width = width;
-	}
+    /**
+     * 设置图片宽度.
+     * 
+     * @param width
+     *            the width to set
+     */
+    public void setWidth(int width){
+        this.width = width;
+    }
 
-	/**
-	 * 返回图片高度 默认400.
-	 * 
-	 * @return the height
-	 */
-	public int getHeight(){
-		return height;
-	}
+    /**
+     * 返回图片高度 默认400.
+     * 
+     * @return the height
+     */
+    public int getHeight(){
+        return height;
+    }
 
-	/**
-	 * 设置图片高度.
-	 * 
-	 * @param height
-	 *            the height to set
-	 */
-	public void setHeight(int height){
-		this.height = height;
-	}
+    /**
+     * 设置图片高度.
+     * 
+     * @param height
+     *            the height to set
+     */
+    public void setHeight(int height){
+        this.height = height;
+    }
 
-	/**
-	 * 目录文件夹路径,默认桌面,<br>
-	 * 仅当输出的是硬盘图片文件时需要设置改值,<br>
-	 * 自动将其拼接成图片路径,转成fileOutputStream.
-	 * 
-	 * @return the chartPath
-	 */
-	public String getChartPath(){
-		return chartPath;
-	}
+    /**
+     * 目录文件夹路径,默认桌面,<br>
+     * 仅当输出的是硬盘图片文件时需要设置改值,<br>
+     * 自动将其拼接成图片路径,转成fileOutputStream.
+     * 
+     * @return the chartPath
+     */
+    public String getChartPath(){
+        return chartPath;
+    }
 
-	/**
-	 * 目录文件夹路径,默认桌面,<br>
-	 * 仅当输出的是硬盘图片文件时需要设置改值,<br>
-	 * 自动将其拼接成图片路径,转成fileOutputStream.
-	 * 
-	 * @param chartPath
-	 *            the chartPath to set
-	 */
-	public void setChartPath(String chartPath){
-		this.chartPath = chartPath;
-	}
+    /**
+     * 目录文件夹路径,默认桌面,<br>
+     * 仅当输出的是硬盘图片文件时需要设置改值,<br>
+     * 自动将其拼接成图片路径,转成fileOutputStream.
+     * 
+     * @param chartPath
+     *            the chartPath to set
+     */
+    public void setChartPath(String chartPath){
+        this.chartPath = chartPath;
+    }
 
-	/**
-	 * 输出流,或者图片名称<br>
-	 * 代码中会自动识别.
-	 * 
-	 * @return the imageNameOrOutputStream
-	 */
-	public Object getImageNameOrOutputStream(){
-		return imageNameOrOutputStream;
-	}
+    /**
+     * 输出流,或者图片名称<br>
+     * 代码中会自动识别.
+     * 
+     * @return the imageNameOrOutputStream
+     */
+    public Object getImageNameOrOutputStream(){
+        return imageNameOrOutputStream;
+    }
 
-	/**
-	 * 输出流,或者图片名称<br>
-	 * 代码中会自动识别.
-	 * 
-	 * @param imageNameOrOutputStream
-	 *            the imageNameOrOutputStream to set
-	 */
-	public void setImageNameOrOutputStream(Object imageNameOrOutputStream){
-		this.imageNameOrOutputStream = imageNameOrOutputStream;
-	}
+    /**
+     * 输出流,或者图片名称<br>
+     * 代码中会自动识别.
+     * 
+     * @param imageNameOrOutputStream
+     *            the imageNameOrOutputStream to set
+     */
+    public void setImageNameOrOutputStream(Object imageNameOrOutputStream){
+        this.imageNameOrOutputStream = imageNameOrOutputStream;
+    }
 }

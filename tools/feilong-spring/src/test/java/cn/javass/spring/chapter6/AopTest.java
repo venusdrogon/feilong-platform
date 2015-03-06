@@ -10,11 +10,11 @@ import cn.javass.spring.chapter6.service.IHelloWorldService;
 @SuppressWarnings("all")
 public class AopTest{
 
-	@Test
-	public void testHelloworld(){
-		BeanFactory beanFactory;
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("test.xml");
-		IHelloWorldService helloworldService = ctx.getBean("helloWorldService", IHelloWorldService.class);
-		helloworldService.sayHello();
-	}
+    @Test
+    public void testHelloworld(){
+        BeanFactory beanFactory;
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("test.xml");
+        IHelloWorldService helloworldService = ctx.getBean("helloWorldService", IHelloWorldService.class);
+        helloworldService.sayHello();
+    }
 }

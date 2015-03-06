@@ -28,146 +28,146 @@ import java.io.Serializable;
  */
 public class BreadCrumbEntity<PK> implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -2739340747216481761L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -2739340747216481761L;
 
-	/** current id, 可以是Number String 或者其他类型.. */
-	private PK					id;
+    /** current id, 可以是Number String 或者其他类型.. */
+    private PK                id;
 
-	/** name,用于拼接. */
-	private String				name;
+    /** name,用于拼接. */
+    private String            name;
 
-	/** title. */
-	private String				title;
+    /** title. */
+    private String            title;
 
-	/** 匹配的路径. */
-	private String				requestMapping;
+    /** 匹配的路径. */
+    private String            requestMapping;
 
-	/** parent id ,可以是Number String 或者其他类型.. */
-	private PK					parentId;
+    /** parent id ,可以是Number String 或者其他类型.. */
+    private PK                parentId;
 
-	/**
-	 * Instantiates a new site map entity.
-	 */
-	public BreadCrumbEntity(){
-		super();
-	}
+    /**
+     * Instantiates a new site map entity.
+     */
+    public BreadCrumbEntity(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new site map entity.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param name
-	 *            the name
-	 * @param title
-	 *            the title
-	 * @param requestMapping
-	 *            the request mapping
-	 * @param parentId
-	 *            the parent id
-	 */
-	public BreadCrumbEntity(PK id, String name, String title, String requestMapping, PK parentId){
-		super();
-		this.id = id;
-		this.name = name;
-		this.title = title;
-		this.requestMapping = requestMapping;
-		this.parentId = parentId;
-	}
+    /**
+     * Instantiates a new site map entity.
+     * 
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param title
+     *            the title
+     * @param requestMapping
+     *            the request mapping
+     * @param parentId
+     *            the parent id
+     */
+    public BreadCrumbEntity(PK id, String name, String title, String requestMapping, PK parentId){
+        super();
+        this.id = id;
+        this.name = name;
+        this.title = title;
+        this.requestMapping = requestMapping;
+        this.parentId = parentId;
+    }
 
-	/**
-	 * Gets the name,用于拼接.
-	 * 
-	 * @return the name
-	 */
-	public String getName(){
-		return name;
-	}
+    /**
+     * Gets the name,用于拼接.
+     * 
+     * @return the name
+     */
+    public String getName(){
+        return name;
+    }
 
-	/**
-	 * Sets the name,用于拼接.
-	 * 
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
+    /**
+     * Sets the name,用于拼接.
+     * 
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name){
+        this.name = name;
+    }
 
-	/**
-	 * Gets the title.
-	 * 
-	 * @return the title
-	 */
-	public String getTitle(){
-		return title;
-	}
+    /**
+     * Gets the title.
+     * 
+     * @return the title
+     */
+    public String getTitle(){
+        return title;
+    }
 
-	/**
-	 * Sets the title.
-	 * 
-	 * @param title
-	 *            the title to set
-	 */
-	public void setTitle(String title){
-		this.title = title;
-	}
+    /**
+     * Sets the title.
+     * 
+     * @param title
+     *            the title to set
+     */
+    public void setTitle(String title){
+        this.title = title;
+    }
 
-	/**
-	 * Gets the 匹配的路径.
-	 * 
-	 * @return the requestMapping
-	 */
-	public String getRequestMapping(){
-		return requestMapping;
-	}
+    /**
+     * Gets the 匹配的路径.
+     * 
+     * @return the requestMapping
+     */
+    public String getRequestMapping(){
+        return requestMapping;
+    }
 
-	/**
-	 * Sets the 匹配的路径.
-	 * 
-	 * @param requestMapping
-	 *            the requestMapping to set
-	 */
-	public void setRequestMapping(String requestMapping){
-		this.requestMapping = requestMapping;
-	}
+    /**
+     * Sets the 匹配的路径.
+     * 
+     * @param requestMapping
+     *            the requestMapping to set
+     */
+    public void setRequestMapping(String requestMapping){
+        this.requestMapping = requestMapping;
+    }
 
-	/**
-	 * 获得 current id, 可以是Number String 或者其他类型.
-	 * 
-	 * @return the id
-	 */
-	public PK getId(){
-		return id;
-	}
+    /**
+     * 获得 current id, 可以是Number String 或者其他类型.
+     * 
+     * @return the id
+     */
+    public PK getId(){
+        return id;
+    }
 
-	/**
-	 * 设置 current id, 可以是Number String 或者其他类型.
-	 * 
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(PK id){
-		this.id = id;
-	}
+    /**
+     * 设置 current id, 可以是Number String 或者其他类型.
+     * 
+     * @param id
+     *            the id to set
+     */
+    public void setId(PK id){
+        this.id = id;
+    }
 
-	/**
-	 * 设置 parent id ,可以是Number String 或者其他类型.
-	 * 
-	 * @param parentId
-	 *            the parentId to set
-	 */
-	public void setParentId(PK parentId){
-		this.parentId = parentId;
-	}
+    /**
+     * 设置 parent id ,可以是Number String 或者其他类型.
+     * 
+     * @param parentId
+     *            the parentId to set
+     */
+    public void setParentId(PK parentId){
+        this.parentId = parentId;
+    }
 
-	/**
-	 * 获得 parent id ,可以是Number String 或者其他类型.
-	 * 
-	 * @return the parentId
-	 */
-	public PK getParentId(){
-		return parentId;
-	}
+    /**
+     * 获得 parent id ,可以是Number String 或者其他类型.
+     * 
+     * @return the parentId
+     */
+    public PK getParentId(){
+        return parentId;
+    }
 }

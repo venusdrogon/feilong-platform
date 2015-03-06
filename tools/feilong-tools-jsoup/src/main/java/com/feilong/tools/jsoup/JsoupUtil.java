@@ -34,97 +34,97 @@ import org.slf4j.LoggerFactory;
  */
 public final class JsoupUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(JsoupUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(JsoupUtil.class);
 
-	// *******************************************************************************
-	/**
-	 * 通过url 获得文档.
-	 * 
-	 * @param urlString
-	 *            the url string
-	 * @return the document
-	 * @throws JsoupUtilException
-	 *             if Exception
-	 */
-	public static Document getDocument(String urlString) throws JsoupUtilException{
-		try{
-			URL url = new URL(urlString);
-			int timeoutMillis = 10 * 1000;
-			Document document = Jsoup.parse(url, timeoutMillis);
-			return document;
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-			throw new JsoupUtilException(e);
-		}
-	}
+    // *******************************************************************************
+    /**
+     * 通过url 获得文档.
+     * 
+     * @param urlString
+     *            the url string
+     * @return the document
+     * @throws JsoupUtilException
+     *             if Exception
+     */
+    public static Document getDocument(String urlString) throws JsoupUtilException{
+        try{
+            URL url = new URL(urlString);
+            int timeoutMillis = 10 * 1000;
+            Document document = Jsoup.parse(url, timeoutMillis);
+            return document;
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+            throw new JsoupUtilException(e);
+        }
+    }
 
-	/**
-	 * 通过url 获得文档.
-	 * 
-	 * @param url
-	 *            the url
-	 * @param userAgent
-	 *            the user agent
-	 * @return the document
-	 * @throws JsoupUtilException
-	 *             if Exception
-	 * @see org.jsoup.Jsoup#connect(String)
-	 * @see org.jsoup.Connection#userAgent(String)
-	 * @see org.jsoup.Connection#timeout(int)
-	 * @see org.jsoup.Connection#get()
-	 */
-	public static Document getDocument(String url,String userAgent) throws JsoupUtilException{
-		try{
-			int millis = 10 * 1000;
-			Document document = Jsoup.connect(url).userAgent(userAgent).timeout(millis).get();
-			return document;
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-			throw new JsoupUtilException(e);
-		}
+    /**
+     * 通过url 获得文档.
+     * 
+     * @param url
+     *            the url
+     * @param userAgent
+     *            the user agent
+     * @return the document
+     * @throws JsoupUtilException
+     *             if Exception
+     * @see org.jsoup.Jsoup#connect(String)
+     * @see org.jsoup.Connection#userAgent(String)
+     * @see org.jsoup.Connection#timeout(int)
+     * @see org.jsoup.Connection#get()
+     */
+    public static Document getDocument(String url,String userAgent) throws JsoupUtilException{
+        try{
+            int millis = 10 * 1000;
+            Document document = Jsoup.connect(url).userAgent(userAgent).timeout(millis).get();
+            return document;
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+            throw new JsoupUtilException(e);
+        }
 
-	}
+    }
 
-	/**
-	 * Gets the elements by select.
-	 * 
-	 * @param url
-	 *            the url
-	 * @param selectQuery
-	 *            the select query
-	 * @return the elements by select
-	 * @throws JsoupUtilException
-	 *             the jsoup util exception
-	 * @see #getDocument(String)
-	 * @see org.jsoup.nodes.Element#select(String)
-	 */
-	public static Elements getElementsBySelect(String url,String selectQuery) throws JsoupUtilException{
-		Validate.notEmpty(url);
-		Validate.notEmpty(selectQuery);
-		Document document = getDocument(url);
-		Elements elements = document.select(selectQuery);
-		return elements;
-	}
+    /**
+     * Gets the elements by select.
+     * 
+     * @param url
+     *            the url
+     * @param selectQuery
+     *            the select query
+     * @return the elements by select
+     * @throws JsoupUtilException
+     *             the jsoup util exception
+     * @see #getDocument(String)
+     * @see org.jsoup.nodes.Element#select(String)
+     */
+    public static Elements getElementsBySelect(String url,String selectQuery) throws JsoupUtilException{
+        Validate.notEmpty(url);
+        Validate.notEmpty(selectQuery);
+        Document document = getDocument(url);
+        Elements elements = document.select(selectQuery);
+        return elements;
+    }
 
-	/**
-	 * getElementById.
-	 * 
-	 * @param url
-	 *            the url
-	 * @param id
-	 *            the id
-	 * @return getElementById
-	 * @throws JsoupUtilException
-	 *             the jsoup util exception
-	 * @see #getDocument(String)
-	 * @see org.jsoup.nodes.Element#getElementById(String)
-	 */
-	public static Element getElementById(String url,String id) throws JsoupUtilException{
-		Validate.notEmpty(url);
-		Validate.notEmpty(id);
-		Document document = getDocument(url);
-		Element element = document.getElementById(id);
-		return element;
-	}
+    /**
+     * getElementById.
+     * 
+     * @param url
+     *            the url
+     * @param id
+     *            the id
+     * @return getElementById
+     * @throws JsoupUtilException
+     *             the jsoup util exception
+     * @see #getDocument(String)
+     * @see org.jsoup.nodes.Element#getElementById(String)
+     */
+    public static Element getElementById(String url,String id) throws JsoupUtilException{
+        Validate.notEmpty(url);
+        Validate.notEmpty(id);
+        Document document = getDocument(url);
+        Element element = document.getElementById(id);
+        return element;
+    }
 }

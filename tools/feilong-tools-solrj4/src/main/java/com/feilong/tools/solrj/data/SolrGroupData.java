@@ -30,37 +30,37 @@ import com.feilong.tools.solrj.command.SolrGroupCommand;
  */
 public class SolrGroupData<T> extends BaseSolrData<T>{
 
-	/** The Constant serialVersionUID. */
-	private static final long					serialVersionUID	= -6466942586535105967L;
+    /** The Constant serialVersionUID. */
+    private static final long                serialVersionUID = -6466942586535105967L;
 
-	/**
-	 * 如果使用了 group by 功能,才会封装,否则没用<br>
-	 * 数据结构:<br>
-	 * key 是 传入的 GroupParams.GROUP_FIELD 每个值<br>
-	 * value 是这个字段 查询 封装的 solrGroupCommandMap 对象
-	 */
-	private Map<String, SolrGroupCommand<T>>	solrGroupCommandMap;
+    /**
+     * 如果使用了 group by 功能,才会封装,否则没用<br>
+     * 数据结构:<br>
+     * key 是 传入的 GroupParams.GROUP_FIELD 每个值<br>
+     * value 是这个字段 查询 封装的 solrGroupCommandMap 对象
+     */
+    private Map<String, SolrGroupCommand<T>> solrGroupCommandMap;
 
-	/**
-	 * Gets the 如果使用了 group by 功能,才会封装,否则没用<br>
-	 * 数据结构:<br>
-	 * key 是 传入的 GroupParams.
-	 * 
-	 * @return the solrGroupCommandMap
-	 */
-	public Map<String, SolrGroupCommand<T>> getSolrGroupCommandMap(){
-		return solrGroupCommandMap;
-	}
+    /**
+     * Gets the 如果使用了 group by 功能,才会封装,否则没用<br>
+     * 数据结构:<br>
+     * key 是 传入的 GroupParams.
+     * 
+     * @return the solrGroupCommandMap
+     */
+    public Map<String, SolrGroupCommand<T>> getSolrGroupCommandMap(){
+        return solrGroupCommandMap;
+    }
 
-	/**
-	 * Sets the 如果使用了 group by 功能,才会封装,否则没用<br>
-	 * 数据结构:<br>
-	 * key 是 传入的 GroupParams.
-	 * 
-	 * @param solrGroupCommandMap
-	 *            the solrGroupCommandMap to set
-	 */
-	public void setSolrGroupCommandMap(Map<String, SolrGroupCommand<T>> solrGroupCommandMap){
-		this.solrGroupCommandMap = solrGroupCommandMap;
-	}
+    /**
+     * Sets the 如果使用了 group by 功能,才会封装,否则没用<br>
+     * 数据结构:<br>
+     * key 是 传入的 GroupParams.
+     * 
+     * @param solrGroupCommandMap
+     *            the solrGroupCommandMap to set
+     */
+    public void setSolrGroupCommandMap(Map<String, SolrGroupCommand<T>> solrGroupCommandMap){
+        this.solrGroupCommandMap = solrGroupCommandMap;
+    }
 }

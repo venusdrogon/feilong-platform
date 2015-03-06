@@ -39,66 +39,66 @@ import org.springframework.context.ApplicationContextException;
  */
 public class ZookeeperConfigurer extends PropertyPlaceholderConfigurer implements Watcher{
 
-	/** The log. */
-	private Logger	log	= LoggerFactory.getLogger(ZookeeperConfigurer.class);
+    /** The log. */
+    private Logger log = LoggerFactory.getLogger(ZookeeperConfigurer.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#processProperties(org.springframework.beans.factory.config
-	 * .ConfigurableListableBeanFactory, java.util.Properties)
-	 */
-	@Override
-	protected void processProperties(ConfigurableListableBeanFactory configurableListableBeanFactory,Properties properties)
-					throws BeansException{
-		String zkhost = properties.getProperty("zkhost");
-		String znodes = properties.getProperty("znodes");
-		try{
-			ZooKeeper zooKeeper = new ZooKeeper(zkhost, 30000, this);
-			try{
-				for (String znode : znodes.split(",")){
-					boolean watch = true;
-					String path = znode.trim();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#processProperties(org.springframework.beans.factory.config
+     * .ConfigurableListableBeanFactory, java.util.Properties)
+     */
+    @Override
+    protected void processProperties(ConfigurableListableBeanFactory configurableListableBeanFactory,Properties properties)
+                    throws BeansException{
+        String zkhost = properties.getProperty("zkhost");
+        String znodes = properties.getProperty("znodes");
+        try{
+            ZooKeeper zooKeeper = new ZooKeeper(zkhost, 30000, this);
+            try{
+                for (String znode : znodes.split(",")){
+                    boolean watch = true;
+                    String path = znode.trim();
 
-					List<String> children = zooKeeper.getChildren(path, watch);
-					for (String child : children){
+                    List<String> children = zooKeeper.getChildren(path, watch);
+                    for (String child : children){
 
-						Watcher watcher = null;
-						Stat stat = null;
+                        Watcher watcher = null;
+                        Stat stat = null;
 
-						byte[] data = zooKeeper.getData(znode + "/" + child, watcher, stat);
-						String value = new String(data);
-						properties.setProperty(child, value);
-					}
-				}
-			}catch (KeeperException e){
-				log.error("Failed to get property from zk server" + zkhost, e);
-				throw new ApplicationContextException("Failed to get property from zk server" + zkhost, e);
-			}catch (InterruptedException e){
-				log.error("Failed to get property from zk server" + zkhost, e);
-				throw new ApplicationContextException("Failed to get property from zk server" + zkhost, e);
-			}finally{
-				try{
-					zooKeeper.close();
-				}catch (InterruptedException e){
-					log.error("Error found when close zookeeper connection.", e);
-				}
-			}
-		}catch (IOException e){
-			log.error("Failed to connect to zk server" + zkhost, e);
-			throw new ApplicationContextException("Failed to connect to zk server" + zkhost, e);
-		}
-		super.processProperties(configurableListableBeanFactory, properties);
-	}
+                        byte[] data = zooKeeper.getData(znode + "/" + child, watcher, stat);
+                        String value = new String(data);
+                        properties.setProperty(child, value);
+                    }
+                }
+            }catch (KeeperException e){
+                log.error("Failed to get property from zk server" + zkhost, e);
+                throw new ApplicationContextException("Failed to get property from zk server" + zkhost, e);
+            }catch (InterruptedException e){
+                log.error("Failed to get property from zk server" + zkhost, e);
+                throw new ApplicationContextException("Failed to get property from zk server" + zkhost, e);
+            }finally{
+                try{
+                    zooKeeper.close();
+                }catch (InterruptedException e){
+                    log.error("Error found when close zookeeper connection.", e);
+                }
+            }
+        }catch (IOException e){
+            log.error("Failed to connect to zk server" + zkhost, e);
+            throw new ApplicationContextException("Failed to connect to zk server" + zkhost, e);
+        }
+        super.processProperties(configurableListableBeanFactory, properties);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.zookeeper.Watcher#process(org.apache.zookeeper.WatchedEvent)
-	 */
-	@Override
-	public void process(WatchedEvent event){
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.zookeeper.Watcher#process(org.apache.zookeeper.WatchedEvent)
+     */
+    @Override
+    public void process(WatchedEvent event){
+    }
 
 }

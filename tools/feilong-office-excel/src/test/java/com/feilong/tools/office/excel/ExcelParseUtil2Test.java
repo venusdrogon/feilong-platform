@@ -38,36 +38,36 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class ExcelParseUtil2Test{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ExcelParseUtil2Test.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ExcelParseUtil2Test.class);
 
-	/**
-	 * Parses the.
-	 *
-	 * @throws IOException
-	 *             the IO exception
-	 */
-	@Test
-	public void parse() throws IOException{
-		String name = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\Kota Surabaya.xlsx";
-		InputStream inputStream = new FileInputStream(name);
+    /**
+     * Parses the.
+     *
+     * @throws IOException
+     *             the IO exception
+     */
+    @Test
+    public void parse() throws IOException{
+        String name = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\Kota Surabaya.xlsx";
+        InputStream inputStream = new FileInputStream(name);
 
-		// 2013
-		Workbook workbook = new XSSFWorkbook(inputStream);
-		Sheet sheet = workbook.getSheetAt(0);
-		Map<String, Object> map = ExcelParseUtil.getSheetMapForLog(sheet);
-		log.info(JsonUtil.format(map));
+        // 2013
+        Workbook workbook = new XSSFWorkbook(inputStream);
+        Sheet sheet = workbook.getSheetAt(0);
+        Map<String, Object> map = ExcelParseUtil.getSheetMapForLog(sheet);
+        log.info(JsonUtil.format(map));
 
-		Row row = sheet.getRow(0);
+        Row row = sheet.getRow(0);
 
-		Map<String, Object> rowMapLog = ExcelParseUtil.getRowMapForLog(row);
-		log.info(JsonUtil.format(rowMapLog));
+        Map<String, Object> rowMapLog = ExcelParseUtil.getRowMapForLog(row);
+        log.info(JsonUtil.format(rowMapLog));
 
-		Cell cell = row.getCell(0);
+        Cell cell = row.getCell(0);
 
-		String cellValue = ExcelParseUtil.getCellValue(cell);
+        String cellValue = ExcelParseUtil.getCellValue(cell);
 
-		log.debug("getCellMapForLog0:{}", JsonUtil.format(ExcelParseUtil.getCellMapForLog(cell)));
-		log.debug("the param cellValue0:{}", cellValue);
-	}
+        log.debug("getCellMapForLog0:{}", JsonUtil.format(ExcelParseUtil.getCellMapForLog(cell)));
+        log.debug("the param cellValue0:{}", cellValue);
+    }
 }

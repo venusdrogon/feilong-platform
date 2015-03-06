@@ -49,95 +49,95 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseTag extends BodyTagSupport{
 
-	private static final Logger	log					= LoggerFactory.getLogger(BaseTag.class);
+    private static final Logger log              = LoggerFactory.getLogger(BaseTag.class);
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -5494214419937813707L;
+    /** The Constant serialVersionUID. */
+    private static final long   serialVersionUID = -5494214419937813707L;
 
-	/**
-	 * 将文字输出到页面.
-	 * 
-	 * @param object
-	 *            the object
-	 * @author 金鑫
-	 * @version 1.0 2010-5-5 下午03:27:25
-	 */
-	protected void print(Object object){
-		JspWriter jspWriter = pageContext.getOut();
-		try{
-			jspWriter.print(object);
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * 将文字输出到页面.
+     * 
+     * @param object
+     *            the object
+     * @author 金鑫
+     * @version 1.0 2010-5-5 下午03:27:25
+     */
+    protected void print(Object object){
+        JspWriter jspWriter = pageContext.getOut();
+        try{
+            jspWriter.print(object);
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	/**
-	 * 将文字输出到页面.
-	 * 
-	 * @param object
-	 *            the object
-	 * @author 金鑫
-	 * @version 1.0 2010-5-5 下午03:53:12
-	 */
-	protected void println(Object object){
-		JspWriter jspWriter = pageContext.getOut();
-		try{
-			jspWriter.println(object.toString());
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * 将文字输出到页面.
+     * 
+     * @param object
+     *            the object
+     * @author 金鑫
+     * @version 1.0 2010-5-5 下午03:53:12
+     */
+    protected void println(Object object){
+        JspWriter jspWriter = pageContext.getOut();
+        try{
+            jspWriter.println(object.toString());
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	// /**
-	// * 标签结束 javax.servlet.jsp.tagext.TagSupport.doEndTag() 默认 EVAL_PAGE
-	// */
-	// @Override
-	// public int doEndTag(){
-	// return EVAL_PAGE;// 处理标签后，继续处理JSP后面的内容
-	// }
+    // /**
+    // * 标签结束 javax.servlet.jsp.tagext.TagSupport.doEndTag() 默认 EVAL_PAGE
+    // */
+    // @Override
+    // public int doEndTag(){
+    // return EVAL_PAGE;// 处理标签后，继续处理JSP后面的内容
+    // }
 
-	// [start] 公用方法
-	/**
-	 * 获得HttpServletRequest.
-	 * 
-	 * @return the http servlet request
-	 * @author 金鑫
-	 * @version 1.0 2010-2-3 下午01:59:09
-	 */
-	protected final HttpServletRequest getHttpServletRequest(){
-		return (HttpServletRequest) getServletRequest();
-	}
+    // [start] 公用方法
+    /**
+     * 获得HttpServletRequest.
+     * 
+     * @return the http servlet request
+     * @author 金鑫
+     * @version 1.0 2010-2-3 下午01:59:09
+     */
+    protected final HttpServletRequest getHttpServletRequest(){
+        return (HttpServletRequest) getServletRequest();
+    }
 
-	/**
-	 * 获得ServletRequest.
-	 * 
-	 * @return the servlet request
-	 * @version 1.0 2010-2-3 下午01:58:55
-	 */
-	protected final ServletRequest getServletRequest(){
-		return this.pageContext.getRequest();
-	}
+    /**
+     * 获得ServletRequest.
+     * 
+     * @return the servlet request
+     * @version 1.0 2010-2-3 下午01:58:55
+     */
+    protected final ServletRequest getServletRequest(){
+        return this.pageContext.getRequest();
+    }
 
-	/**
-	 * 获得 HttpSession.
-	 * 
-	 * @return HttpSession
-	 * @author 金鑫
-	 * @version 1.0 2010-3-18 上午11:04:27
-	 */
-	protected final HttpSession getHttpSession(){
-		return this.pageContext.getSession();
-	}
+    /**
+     * 获得 HttpSession.
+     * 
+     * @return HttpSession
+     * @author 金鑫
+     * @version 1.0 2010-3-18 上午11:04:27
+     */
+    protected final HttpSession getHttpSession(){
+        return this.pageContext.getSession();
+    }
 
-	/**
-	 * 获得HttpServletResponse.
-	 * 
-	 * @return the http servlet response
-	 * @author 金鑫
-	 * @version 1.0 2010-3-15 下午06:25:18
-	 */
-	protected final HttpServletResponse getHttpServletResponse(){
-		return (HttpServletResponse) pageContext.getResponse();
-	}
-	// [end]
+    /**
+     * 获得HttpServletResponse.
+     * 
+     * @return the http servlet response
+     * @author 金鑫
+     * @version 1.0 2010-3-15 下午06:25:18
+     */
+    protected final HttpServletResponse getHttpServletResponse(){
+        return (HttpServletResponse) pageContext.getResponse();
+    }
+    // [end]
 }

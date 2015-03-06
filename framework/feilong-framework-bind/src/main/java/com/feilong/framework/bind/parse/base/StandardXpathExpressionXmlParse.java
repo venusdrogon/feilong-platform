@@ -78,69 +78,69 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  */
 public class StandardXpathExpressionXmlParse<T> extends AbstractBaseXmlParse<T>{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(StandardXpathExpressionXmlParse.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(StandardXpathExpressionXmlParse.class);
 
-	/** The xpath expression . */
-	private String				xpathExpression;
+    /** The xpath expression . */
+    private String              xpathExpression;
 
-	/** The t class. */
-	private Class<T>			tClass;
+    /** The t class. */
+    private Class<T>            tClass;
 
-	/**
-	 * Instantiates a new standard xpath expression xml parse.
-	 * 
-	 * @param tClass
-	 *            the t class
-	 * @param xpathExpression
-	 *            the xpath expression
-	 */
-	public StandardXpathExpressionXmlParse(Class<T> tClass, String xpathExpression){
-		super();
-		if (Validator.isNullOrEmpty(xpathExpression)){
-			throw new IllegalArgumentException("xpathExpression can't be null/empty!");
-		}
-		this.xpathExpression = xpathExpression;
-		this.tClass = tClass;
-	}
+    /**
+     * Instantiates a new standard xpath expression xml parse.
+     * 
+     * @param tClass
+     *            the t class
+     * @param xpathExpression
+     *            the xpath expression
+     */
+    public StandardXpathExpressionXmlParse(Class<T> tClass, String xpathExpression){
+        super();
+        if (Validator.isNullOrEmpty(xpathExpression)){
+            throw new IllegalArgumentException("xpathExpression can't be null/empty!");
+        }
+        this.xpathExpression = xpathExpression;
+        this.tClass = tClass;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.framework.bind.parse.AbstractXmlParse#parseModelClass()
-	 */
-	@Override
-	protected Class<T> parseModelClass(){
-		return tClass;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.framework.bind.parse.AbstractXmlParse#parseModelClass()
+     */
+    @Override
+    protected Class<T> parseModelClass(){
+        return tClass;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.framework.bind.parse.AbstractXmlParse#getVarNameAndValueMap(java.lang.String)
-	 */
-	@Override
-	protected Map<String, String> getVarNameAndValueMap(String xml){
-		if (Validator.isNullOrEmpty(xml)){
-			throw new IllegalArgumentException("xml can't be null/empty!");
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.framework.bind.parse.AbstractXmlParse#getVarNameAndValueMap(java.lang.String)
+     */
+    @Override
+    protected Map<String, String> getVarNameAndValueMap(String xml){
+        if (Validator.isNullOrEmpty(xml)){
+            throw new IllegalArgumentException("xml can't be null/empty!");
+        }
 
-		Document document = Dom4jUtil.string2Document(xml);
+        Document document = Dom4jUtil.string2Document(xml);
 
-		@SuppressWarnings("unchecked")
-		List<Node> selectNodes = document.selectNodes(xpathExpression);
+        @SuppressWarnings("unchecked")
+        List<Node> selectNodes = document.selectNodes(xpathExpression);
 
-		Map<String, String> varNameAndValueMap = new TreeMap<String, String>();
+        Map<String, String> varNameAndValueMap = new TreeMap<String, String>();
 
-		for (Node node : selectNodes){
-			String varName = node.getName();
-			String stringValue = node.getStringValue();
-			varNameAndValueMap.put(varName, stringValue);
-		}
+        for (Node node : selectNodes){
+            String varName = node.getName();
+            String stringValue = node.getStringValue();
+            varNameAndValueMap.put(varName, stringValue);
+        }
 
-		if (log.isDebugEnabled()){
-			log.debug("varNameAndValueMap:{}", JsonUtil.format(varNameAndValueMap));
-		}
-		return varNameAndValueMap;
-	}
+        if (log.isDebugEnabled()){
+            log.debug("varNameAndValueMap:{}", JsonUtil.format(varNameAndValueMap));
+        }
+        return varNameAndValueMap;
+    }
 }

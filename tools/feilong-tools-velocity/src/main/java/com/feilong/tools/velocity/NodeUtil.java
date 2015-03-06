@@ -32,46 +32,46 @@ import org.slf4j.LoggerFactory;
  */
 public class NodeUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(NodeUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(NodeUtil.class);
 
-	/**
-	 * 获得 node map for log.
-	 * 
-	 * @param internalContextAdapter
-	 *            the internal context adapter
-	 * @param node
-	 *            the node
-	 * @return the node map for log
-	 */
-	public static final Map<String, Object> getNodeMapForLog(InternalContextAdapter internalContextAdapter,Node node){
+    /**
+     * 获得 node map for log.
+     * 
+     * @param internalContextAdapter
+     *            the internal context adapter
+     * @param node
+     *            the node
+     * @return the node map for log
+     */
+    public static final Map<String, Object> getNodeMapForLog(InternalContextAdapter internalContextAdapter,Node node){
 
-		if (log.isDebugEnabled()){
-			//log.debug("node:{}", JsonUtil.format(node));
-		}
+        if (log.isDebugEnabled()){
+            //log.debug("node:{}", JsonUtil.format(node));
+        }
 
-		Map<String, Object> object = new LinkedHashMap<String, Object>();
+        Map<String, Object> object = new LinkedHashMap<String, Object>();
 
-		int jjtGetNumChildren = node.jjtGetNumChildren();
+        int jjtGetNumChildren = node.jjtGetNumChildren();
 
-		object.put("node.jjtGetNumChildren()", jjtGetNumChildren);
-		object.put("node.getType()", node.getType());
-		object.put("node.getColumn()", node.getColumn());
-		object.put("node.getInfo()", node.getInfo());
-		object.put("node.getLine()", node.getLine());
-		object.put("node.getTemplateName()", node.getTemplateName());
-		object.put("node.getType()", node.getType());
-		object.put("node.isInvalid()", node.isInvalid());
-		object.put("node.value(context)", node.value(internalContextAdapter));
-		object.put("node.getFirstToken()", node.getFirstToken());
-		object.put("node.getLastToken()", node.getLastToken());
+        object.put("node.jjtGetNumChildren()", jjtGetNumChildren);
+        object.put("node.getType()", node.getType());
+        object.put("node.getColumn()", node.getColumn());
+        object.put("node.getInfo()", node.getInfo());
+        object.put("node.getLine()", node.getLine());
+        object.put("node.getTemplateName()", node.getTemplateName());
+        object.put("node.getType()", node.getType());
+        object.put("node.isInvalid()", node.isInvalid());
+        object.put("node.value(context)", node.value(internalContextAdapter));
+        object.put("node.getFirstToken()", node.getFirstToken());
+        object.put("node.getLastToken()", node.getLastToken());
 
-		for (int i = 0; i < jjtGetNumChildren; ++i){
-			Node jjtGetChild = node.jjtGetChild(i);
-			Object value = jjtGetChild.value(internalContextAdapter);
-			object.put("node.jjtGetChild(" + i + ").value", value);
-		}
+        for (int i = 0; i < jjtGetNumChildren; ++i){
+            Node jjtGetChild = node.jjtGetChild(i);
+            Object value = jjtGetChild.value(internalContextAdapter);
+            object.put("node.jjtGetChild(" + i + ").value", value);
+        }
 
-		return object;
-	}
+        return object;
+    }
 }

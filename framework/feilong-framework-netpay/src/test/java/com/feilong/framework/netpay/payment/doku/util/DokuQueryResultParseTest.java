@@ -33,19 +33,19 @@ import com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultPar
  */
 public class DokuQueryResultParseTest{
 
-	/** The Constant log. */
-	@SuppressWarnings("unused")
-	private static final Logger	log	= LoggerFactory.getLogger(DokuQueryResultParseTest.class);
+    /** The Constant log. */
+    @SuppressWarnings("unused")
+    private static final Logger log = LoggerFactory.getLogger(DokuQueryResultParseTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultParse#parseXML(java.lang.String)}.
-	 */
-	@Test
-	public final void testParseXML(){
-		String xml = "<?xml version=\"1.0\"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>";
+    /**
+     * Test method for {@link com.feilong.framework.netpay.advance.adaptor.doku.util.DokuQueryResultParse#parseXML(java.lang.String)}.
+     */
+    @Test
+    public final void testParseXML(){
+        String xml = "<?xml version=\"1.0\"?><PAYMENT_STATUS><AMOUNT>7790000.00</AMOUNT><TRANSIDMERCHANT>010003660001</TRANSIDMERCHANT><WORDS>e9e6ed65c872f1646644001f1b67fc8bc5de8df6</WORDS><RESPONSECODE>0000</RESPONSECODE><APPROVALCODE>RB1234567890</APPROVALCODE><RESULTMSG>SUCCESS</RESULTMSG><PAYMENTCHANNEL>06</PAYMENTCHANNEL><PAYMENTCODE></PAYMENTCODE><SESSIONID>20140508105926</SESSIONID><BANK>BRI</BANK><MCN></MCN><PAYMENTDATETIME>20140508095526</PAYMENTDATETIME><VERIFYID></VERIFYID><VERIFYSCORE>-1</VERIFYSCORE><VERIFYSTATUS>NA</VERIFYSTATUS></PAYMENT_STATUS>";
 
-		XmlParse<DokuQueryResult> queryResultXmlParse = new DokuQueryResultParse();
-		@SuppressWarnings("unused")
-		VarCommand varCommand = queryResultXmlParse.parseXML(xml);
-	}
+        XmlParse<DokuQueryResult> queryResultXmlParse = new DokuQueryResultParse();
+        @SuppressWarnings("unused")
+        VarCommand varCommand = queryResultXmlParse.parseXML(xml);
+    }
 }

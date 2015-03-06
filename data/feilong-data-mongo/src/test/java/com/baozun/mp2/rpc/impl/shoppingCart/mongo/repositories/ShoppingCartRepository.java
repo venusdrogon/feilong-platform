@@ -28,50 +28,50 @@ import com.baozun.mp2.rpc.impl.shoppingCart.mongo.documents.ShoppingCart;
 @Repository
 public interface ShoppingCartRepository extends MongoRepository<ShoppingCart, String>{
 
-	/**
-	 * 获取未登录购物车信息.
-	 *
-	 * @return the list< shopping cart>
-	 */
-	List<ShoppingCart> findByMemberIdNull();
+    /**
+     * 获取未登录购物车信息.
+     *
+     * @return the list< shopping cart>
+     */
+    List<ShoppingCart> findByMemberIdNull();
 
-	/**
-	 * 获取某个用户购物车信息.
-	 *
-	 * @param memberId
-	 *            the member id
-	 * @return the list< shopping cart>
-	 */
-	List<ShoppingCart> findByMemberId(Long memberId);
+    /**
+     * 获取某个用户购物车信息.
+     *
+     * @param memberId
+     *            the member id
+     * @return the list< shopping cart>
+     */
+    List<ShoppingCart> findByMemberId(Long memberId);
 
-	/**
-	 * 获取某个购物车行信息.
-	 *
-	 * @param id
-	 *            the id
-	 * @return the shopping cart
-	 */
-	ShoppingCart findById(String id);
+    /**
+     * 获取某个购物车行信息.
+     *
+     * @param id
+     *            the id
+     * @return the shopping cart
+     */
+    ShoppingCart findById(String id);
 
-	/**
-	 * Find by sku id and uid.
-	 *
-	 * @param skuId
-	 *            the sku id
-	 * @param uid
-	 *            the uid
-	 * @return the shopping cart
-	 */
-	ShoppingCart findBySkuIdAndUid(Long skuId,String uid);
+    /**
+     * Find by sku id and uid.
+     *
+     * @param skuId
+     *            the sku id
+     * @param uid
+     *            the uid
+     * @return the shopping cart
+     */
+    ShoppingCart findBySkuIdAndUid(Long skuId,String uid);
 
-	/**
-	 * Find by sku id and member id.
-	 *
-	 * @param skuId
-	 *            the sku id
-	 * @param memberId
-	 *            the member id
-	 * @return the shopping cart
-	 */
-	ShoppingCart findBySkuIdAndMemberId(Long skuId,Long memberId);
+    /**
+     * Find by sku id and member id.
+     *
+     * @param skuId
+     *            the sku id
+     * @param memberId
+     *            the member id
+     * @return the shopping cart
+     */
+    ShoppingCart findBySkuIdAndMemberId(Long skuId,Long memberId);
 }

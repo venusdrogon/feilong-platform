@@ -28,95 +28,95 @@ import com.feilong.tools.scm.command.ScmPatchCommand;
  */
 public class SvnPatchCommand extends ScmPatchCommand{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -5625187072452879828L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -5625187072452879828L;
 
-	/** 索引的文件行. */
-	private String				index;
+    /** 索引的文件行. */
+    private String            index;
 
-	/** remote 行. */
-	private String				remote;
+    /** remote 行. */
+    private String            remote;
 
-	/** local 行. */
-	private String				local;
+    /** local 行. */
+    private String            local;
 
-	/** 双@(可能有多处). */
-	private List<String>		twoAt				= new ArrayList<String>();
+    /** 双@(可能有多处). */
+    private List<String>      twoAt            = new ArrayList<String>();
 
-	/**
-	 * Gets the 索引的文件行.
-	 * 
-	 * @return the index
-	 */
-	public String getIndex(){
-		return index;
-	}
+    /**
+     * Gets the 索引的文件行.
+     * 
+     * @return the index
+     */
+    public String getIndex(){
+        return index;
+    }
 
-	/**
-	 * Sets the 索引的文件行.
-	 * 
-	 * @param index
-	 *            the index to set
-	 */
-	public void setIndex(String index){
-		this.index = index;
-	}
+    /**
+     * Sets the 索引的文件行.
+     * 
+     * @param index
+     *            the index to set
+     */
+    public void setIndex(String index){
+        this.index = index;
+    }
 
-	/**
-	 * Gets the remote 行.
-	 * 
-	 * @return the remote
-	 */
-	public String getRemote(){
-		return remote;
-	}
+    /**
+     * Gets the remote 行.
+     * 
+     * @return the remote
+     */
+    public String getRemote(){
+        return remote;
+    }
 
-	/**
-	 * Sets the remote 行.
-	 * 
-	 * @param remote
-	 *            the remote to set
-	 */
-	public void setRemote(String remote){
-		this.remote = remote;
-	}
+    /**
+     * Sets the remote 行.
+     * 
+     * @param remote
+     *            the remote to set
+     */
+    public void setRemote(String remote){
+        this.remote = remote;
+    }
 
-	/**
-	 * Gets the local 行.
-	 * 
-	 * @return the local
-	 */
-	public String getLocal(){
-		return local;
-	}
+    /**
+     * Gets the local 行.
+     * 
+     * @return the local
+     */
+    public String getLocal(){
+        return local;
+    }
 
-	/**
-	 * Sets the local 行.
-	 * 
-	 * @param local
-	 *            the local to set
-	 */
-	public void setLocal(String local){
-		this.local = local;
-	}
+    /**
+     * Sets the local 行.
+     * 
+     * @param local
+     *            the local to set
+     */
+    public void setLocal(String local){
+        this.local = local;
+    }
 
-	/**
-	 * Gets the 双@(可能有多处).
-	 * 
-	 * @return the twoAt
-	 */
-	public List<String> getTwoAt(){
-		return twoAt;
-	}
+    /**
+     * Gets the 双@(可能有多处).
+     * 
+     * @return the twoAt
+     */
+    public List<String> getTwoAt(){
+        return twoAt;
+    }
 
-	/**
-	 * Sets the 双@(可能有多处).
-	 * 
-	 * @param twoAt
-	 *            the twoAt to set
-	 */
-	public void setTwoAt(List<String> twoAt){
-		this.twoAt = twoAt;
-	}
+    /**
+     * Sets the 双@(可能有多处).
+     * 
+     * @param twoAt
+     *            the twoAt to set
+     */
+    public void setTwoAt(List<String> twoAt){
+        this.twoAt = twoAt;
+    }
 
 }

@@ -32,46 +32,46 @@ import com.feilong.framework.netpay.payment.exception.PaymentAdaptorNotFoundExce
 // @Service("paymentAdaptorManager")
 public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
 
-	// @Value("#{paymentAdaptorMap}")
-	/** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.. */
-	private Map<String, PaymentAdaptor>	paymentAdaptorMap;
+    // @Value("#{paymentAdaptorMap}")
+    /** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.. */
+    private Map<String, PaymentAdaptor> paymentAdaptorMap;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.framework.netpay.payment.PaymentAdaptorFactory#getPaymentAdaptor(java.lang.String)
-	 */
-	@Override
-	public PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException{
-		if (Validator.isNullOrEmpty(paymentAdaptorMap)){
-			throw new IllegalArgumentException("paymentAdaptorMap can't be null/empty!");
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.framework.netpay.payment.PaymentAdaptorFactory#getPaymentAdaptor(java.lang.String)
+     */
+    @Override
+    public PaymentAdaptor getPaymentAdaptor(String paymentType) throws PaymentAdaptorNotFoundException{
+        if (Validator.isNullOrEmpty(paymentAdaptorMap)){
+            throw new IllegalArgumentException("paymentAdaptorMap can't be null/empty!");
+        }
 
-		// 全部 配置,测试环境不可以去付款
+        // 全部 配置,测试环境不可以去付款
 
-		// if (Constants.pay_isCanGoToPay){
+        // if (Constants.pay_isCanGoToPay){
 
-		if (!paymentAdaptorMap.containsKey(paymentType)){
-			throw new PaymentAdaptorNotFoundException(
-							"paymentAdaptorMap not containsKey paymentType:[{}],paymentAdaptorMap info:{}",
-							paymentType,
-							paymentAdaptorMap);
-		}
-		PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
-		return paymentAdaptor;
-		// }else{
-		// log.warn("Constants.pay_isCanGoToPay:{}", Constants.pay_isCanGoToPay);
-		// }
+        if (!paymentAdaptorMap.containsKey(paymentType)){
+            throw new PaymentAdaptorNotFoundException(
+                            "paymentAdaptorMap not containsKey paymentType:[{}],paymentAdaptorMap info:{}",
+                            paymentType,
+                            paymentAdaptorMap);
+        }
+        PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
+        return paymentAdaptor;
+        // }else{
+        // log.warn("Constants.pay_isCanGoToPay:{}", Constants.pay_isCanGoToPay);
+        // }
 
-	}
+    }
 
-	/**
-	 * Sets the 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.
-	 * 
-	 * @param paymentAdaptorMap
-	 *            the paymentAdaptorMap to set
-	 */
-	public void setPaymentAdaptorMap(Map<String, PaymentAdaptor> paymentAdaptorMap){
-		this.paymentAdaptorMap = paymentAdaptorMap;
-	}
+    /**
+     * Sets the 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.
+     * 
+     * @param paymentAdaptorMap
+     *            the paymentAdaptorMap to set
+     */
+    public void setPaymentAdaptorMap(Map<String, PaymentAdaptor> paymentAdaptorMap){
+        this.paymentAdaptorMap = paymentAdaptorMap;
+    }
 }

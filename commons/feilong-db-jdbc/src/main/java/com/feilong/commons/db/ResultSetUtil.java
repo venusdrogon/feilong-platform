@@ -32,56 +32,56 @@ import org.slf4j.LoggerFactory;
  */
 public class ResultSetUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ResultSetUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ResultSetUtil.class);
 
-	/**
-	 * 将 resultSet值 安装顺序 转成 Object[]数组.
-	 * 
-	 * @param resultSet
-	 *            the result set
-	 * @return the object[]
-	 */
-	public static Object[] toObjects(ResultSet resultSet){
-		try{
-			// ResultSet 对象中列的类型和属性信息的对象
-			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-			// 返回此 ResultSet 对象中的列数。
-			int columnCount = resultSetMetaData.getColumnCount();
-			Object[] objects = new Object[columnCount];
-			for (int i = 0; i < columnCount; ++i){
-				objects[i] = resultSet.getObject(i + 1);
-			}
-			return objects;
-		}catch (SQLException e){
-			log.error(e.getClass().getName(), e);
-		}
-		return null;
-	}
+    /**
+     * 将 resultSet值 安装顺序 转成 Object[]数组.
+     * 
+     * @param resultSet
+     *            the result set
+     * @return the object[]
+     */
+    public static Object[] toObjects(ResultSet resultSet){
+        try{
+            // ResultSet 对象中列的类型和属性信息的对象
+            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+            // 返回此 ResultSet 对象中的列数。
+            int columnCount = resultSetMetaData.getColumnCount();
+            Object[] objects = new Object[columnCount];
+            for (int i = 0; i < columnCount; ++i){
+                objects[i] = resultSet.getObject(i + 1);
+            }
+            return objects;
+        }catch (SQLException e){
+            log.error(e.getClass().getName(), e);
+        }
+        return null;
+    }
 
-	/**
-	 * 获得 resultSet 列名 list.
-	 * 
-	 * @param resultSet
-	 *            resultSet
-	 * @return List<String>
-	 */
-	public static List<String> getColumnNameList(ResultSet resultSet){
-		List<String> columnNameList = null;
-		try{
-			// ResultSet 对象中列的类型和属性信息的对象
-			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-			// 返回此 ResultSet 对象中的列数。
-			int columnCount = resultSetMetaData.getColumnCount();
-			columnNameList = new ArrayList<String>(columnCount);
-			for (int i = 0; i < columnCount; ++i){
-				String columnName = resultSetMetaData.getColumnName(i + 1);
-				columnNameList.add(columnName);
-			}
-		}catch (SQLException e){
-			log.debug(e.getMessage());
-			log.error(e.getClass().getName(), e);
-		}
-		return columnNameList;
-	}
+    /**
+     * 获得 resultSet 列名 list.
+     * 
+     * @param resultSet
+     *            resultSet
+     * @return List<String>
+     */
+    public static List<String> getColumnNameList(ResultSet resultSet){
+        List<String> columnNameList = null;
+        try{
+            // ResultSet 对象中列的类型和属性信息的对象
+            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+            // 返回此 ResultSet 对象中的列数。
+            int columnCount = resultSetMetaData.getColumnCount();
+            columnNameList = new ArrayList<String>(columnCount);
+            for (int i = 0; i < columnCount; ++i){
+                String columnName = resultSetMetaData.getColumnName(i + 1);
+                columnNameList.add(columnName);
+            }
+        }catch (SQLException e){
+            log.debug(e.getMessage());
+            log.error(e.getClass().getName(), e);
+        }
+        return columnNameList;
+    }
 }

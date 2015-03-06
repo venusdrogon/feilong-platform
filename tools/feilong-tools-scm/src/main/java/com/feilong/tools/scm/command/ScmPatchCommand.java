@@ -25,52 +25,52 @@ import java.io.Serializable;
  */
 public abstract class ScmPatchCommand implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 566966317818490406L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 566966317818490406L;
 
-	/**
-	 * 文件路径 如 src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java
-	 */
-	private String				filePath;
+    /**
+     * 文件路径 如 src/main/java/com/jumbo/shop/web/command/PageCacheCommand.java
+     */
+    private String            filePath;
 
-	/** 标识类型,默认更新. */
-	private PatchType			patchType			= PatchType.UPDATE;
+    /** 标识类型,默认更新. */
+    private PatchType         patchType        = PatchType.UPDATE;
 
-	/**
-	 * Gets the 文件路径 如 src/main/java/com/jumbo/shop/web/command/PageCacheCommand.
-	 * 
-	 * @return the filePath
-	 */
-	public String getFilePath(){
-		return filePath;
-	}
+    /**
+     * Gets the 文件路径 如 src/main/java/com/jumbo/shop/web/command/PageCacheCommand.
+     * 
+     * @return the filePath
+     */
+    public String getFilePath(){
+        return filePath;
+    }
 
-	/**
-	 * Sets the 文件路径 如 src/main/java/com/jumbo/shop/web/command/PageCacheCommand.
-	 * 
-	 * @param filePath
-	 *            the filePath to set
-	 */
-	public void setFilePath(String filePath){
-		this.filePath = filePath;
-	}
+    /**
+     * Sets the 文件路径 如 src/main/java/com/jumbo/shop/web/command/PageCacheCommand.
+     * 
+     * @param filePath
+     *            the filePath to set
+     */
+    public void setFilePath(String filePath){
+        this.filePath = filePath;
+    }
 
-	/**
-	 * Gets the 标识类型,默认更新.
-	 * 
-	 * @return the patchType
-	 */
-	public PatchType getPatchType(){
-		return patchType;
-	}
+    /**
+     * Gets the 标识类型,默认更新.
+     * 
+     * @return the patchType
+     */
+    public PatchType getPatchType(){
+        return patchType;
+    }
 
-	/**
-	 * Sets the 标识类型,默认更新.
-	 * 
-	 * @param patchType
-	 *            the patchType to set
-	 */
-	public void setPatchType(PatchType patchType){
-		this.patchType = patchType;
-	}
+    /**
+     * Sets the 标识类型,默认更新.
+     * 
+     * @param patchType
+     *            the patchType to set
+     */
+    public void setPatchType(PatchType patchType){
+        this.patchType = patchType;
+    }
 }

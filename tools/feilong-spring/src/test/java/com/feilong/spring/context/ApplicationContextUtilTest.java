@@ -35,16 +35,16 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 @ContextConfiguration(locations = { "classpath:spring-DI.xml" })
 public class ApplicationContextUtilTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ApplicationContextUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ApplicationContextUtilTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void test(){
-		Map<String, Object> applicationContextForLogMap = ApplicationContextUtil.getApplicationContextForLogMap(applicationContext);
-		log.debug("ApplicationContextForLogMap:{}", JsonUtil.format(applicationContextForLogMap));
-		log.info("" + applicationContext.containsBean("paymentAdaptorFactory"));
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void test(){
+        Map<String, Object> applicationContextForLogMap = ApplicationContextUtil.getApplicationContextForLogMap(applicationContext);
+        log.debug("ApplicationContextForLogMap:{}", JsonUtil.format(applicationContextForLogMap));
+        log.info("" + applicationContext.containsBean("paymentAdaptorFactory"));
+    }
 }

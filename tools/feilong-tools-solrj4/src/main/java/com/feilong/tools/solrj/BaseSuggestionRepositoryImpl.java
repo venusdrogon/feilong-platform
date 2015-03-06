@@ -41,111 +41,111 @@ import com.feilong.tools.solrj.paramscommand.SpellingParamCommand;
  */
 public abstract class BaseSuggestionRepositoryImpl implements BaseSuggestionRepository{
 
-	private static final Logger	log	= LoggerFactory.getLogger(BaseSuggestionRepositoryImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(BaseSuggestionRepositoryImpl.class);
 
-	// Don't Autowired
-	protected SolrServer		solrServer;
+    // Don't Autowired
+    protected SolrServer        solrServer;
 
-	/**
-	 * 默认为"/suggest" 可以通过spring DI change this value,You can see Converse project
-	 */
-	private String				qt	= "/suggest";
+    /**
+     * 默认为"/suggest" 可以通过spring DI change this value,You can see Converse project
+     */
+    private String              qt  = "/suggest";
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jumbo.brandstore.manager.solr.BaseSuggestionRepository#findSuggestionLexeme(com.jumbo.brandstore.manager.solr.command.
-	 * SpellingParamCommand)
-	 */
-	@Override
-	public List<String> findSuggestionLexeme(SpellingParamCommand spellingParamCommand){
-		SolrQuery solrQuery = new SolrQuery();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.jumbo.brandstore.manager.solr.BaseSuggestionRepository#findSuggestionLexeme(com.jumbo.brandstore.manager.solr.command.
+     * SpellingParamCommand)
+     */
+    @Override
+    public List<String> findSuggestionLexeme(SpellingParamCommand spellingParamCommand){
+        SolrQuery solrQuery = new SolrQuery();
 
-		solrQuery.setQueryType(qt);
-		solrQuery.set(CommonParams.Q, "*:*");
+        solrQuery.setQueryType(qt);
+        solrQuery.set(CommonParams.Q, "*:*");
 
-		float accuracy = spellingParamCommand.getAccuracy();
-		solrQuery.set(SpellingParams.SPELLCHECK_ACCURACY, accuracy + "");
+        float accuracy = spellingParamCommand.getAccuracy();
+        solrQuery.set(SpellingParams.SPELLCHECK_ACCURACY, accuracy + "");
 
-		boolean isBuild = spellingParamCommand.isBuild();
-		if (Validator.isNotNullOrEmpty(isBuild)){
-			// spellcheck.build=true which is needed only once to build the spellcheck index from the main Solr index.
-			// It takes time and should not be specified with each request.
-			solrQuery.set(SpellingParams.SPELLCHECK_BUILD, isBuild);
-		}
+        boolean isBuild = spellingParamCommand.isBuild();
+        if (Validator.isNotNullOrEmpty(isBuild)){
+            // spellcheck.build=true which is needed only once to build the spellcheck index from the main Solr index.
+            // It takes time and should not be specified with each request.
+            solrQuery.set(SpellingParams.SPELLCHECK_BUILD, isBuild);
+        }
 
-		//
-		String collate = spellingParamCommand.getCollate();
-		if (Validator.isNotNullOrEmpty(collate)){
-			// solrQuery.set(SpellingParams.SPELLCHECK_COLLATE, true);
-		}
+        //
+        String collate = spellingParamCommand.getCollate();
+        if (Validator.isNotNullOrEmpty(collate)){
+            // solrQuery.set(SpellingParams.SPELLCHECK_COLLATE, true);
+        }
 
-		//
-		boolean isCollateExtendedResults = spellingParamCommand.isCollateExtendedResults();
-		solrQuery.set(SpellingParams.SPELLCHECK_COLLATE_EXTENDED_RESULTS, isCollateExtendedResults);
+        //
+        boolean isCollateExtendedResults = spellingParamCommand.isCollateExtendedResults();
+        solrQuery.set(SpellingParams.SPELLCHECK_COLLATE_EXTENDED_RESULTS, isCollateExtendedResults);
 
-		//
-		int count = spellingParamCommand.getCount();
-		if (Validator.isNotNullOrEmpty(count)){
-			solrQuery.set(SpellingParams.SPELLCHECK_COUNT, count);
-		}
+        //
+        int count = spellingParamCommand.getCount();
+        if (Validator.isNotNullOrEmpty(count)){
+            solrQuery.set(SpellingParams.SPELLCHECK_COUNT, count);
+        }
 
-		boolean extendedResults = spellingParamCommand.isExtendedResults();
-		solrQuery.set(SpellingParams.SPELLCHECK_EXTENDED_RESULTS, extendedResults);
+        boolean extendedResults = spellingParamCommand.isExtendedResults();
+        solrQuery.set(SpellingParams.SPELLCHECK_EXTENDED_RESULTS, extendedResults);
 
-		String q = spellingParamCommand.getQ();
-		if (Validator.isNotNullOrEmpty(q)){
-			solrQuery.set(SpellingParams.SPELLCHECK_Q, q);
-		}
+        String q = spellingParamCommand.getQ();
+        if (Validator.isNotNullOrEmpty(q)){
+            solrQuery.set(SpellingParams.SPELLCHECK_Q, q);
+        }
 
-		String dictionary = spellingParamCommand.getDictionary();
+        String dictionary = spellingParamCommand.getDictionary();
 
-		String maxCollationEvaluations = spellingParamCommand.getMaxCollationEvaluations();
+        String maxCollationEvaluations = spellingParamCommand.getMaxCollationEvaluations();
 
-		String maxCollations = spellingParamCommand.getMaxCollations();
+        String maxCollations = spellingParamCommand.getMaxCollations();
 
-		String maxCollationTries = spellingParamCommand.getMaxCollationTries();
+        String maxCollationTries = spellingParamCommand.getMaxCollationTries();
 
-		String onlyMorePopular = spellingParamCommand.getOnlyMorePopular();
+        String onlyMorePopular = spellingParamCommand.getOnlyMorePopular();
 
-		String reload = spellingParamCommand.getReload();
+        String reload = spellingParamCommand.getReload();
 
-		// ****************************************************************************************************
-		QueryResponse queryResponse = null;
-		try{
-			queryResponse = solrServer.query(solrQuery);
-		}catch (SolrServerException e){
-			log.error(e.getClass().getName(), e);
-		}
+        // ****************************************************************************************************
+        QueryResponse queryResponse = null;
+        try{
+            queryResponse = solrServer.query(solrQuery);
+        }catch (SolrServerException e){
+            log.error(e.getClass().getName(), e);
+        }
 
-		SolrjUtil.showSpellCheckResponse(queryResponse, q);
+        SolrjUtil.showSpellCheckResponse(queryResponse, q);
 
-		SpellCheckResponse spellCheckResponse = queryResponse.getSpellCheckResponse();
-		List<Suggestion> suggestionList = spellCheckResponse.getSuggestions();
-		if (Validator.isNotNullOrEmpty(suggestionList)){
-			List<String> suggestionNameList = new ArrayList<String>();
-			for (Suggestion suggestion : suggestionList){
-				List<String> alternatives = suggestion.getAlternatives();
-				suggestionNameList.addAll(alternatives);
-			}
-			return suggestionNameList;
-		}
-		return null;
-	}
+        SpellCheckResponse spellCheckResponse = queryResponse.getSpellCheckResponse();
+        List<Suggestion> suggestionList = spellCheckResponse.getSuggestions();
+        if (Validator.isNotNullOrEmpty(suggestionList)){
+            List<String> suggestionNameList = new ArrayList<String>();
+            for (Suggestion suggestion : suggestionList){
+                List<String> alternatives = suggestion.getAlternatives();
+                suggestionNameList.addAll(alternatives);
+            }
+            return suggestionNameList;
+        }
+        return null;
+    }
 
-	/**
-	 * @param qt
-	 *            the qt to set
-	 */
-	public void setQt(String qt){
-		this.qt = qt;
-	}
+    /**
+     * @param qt
+     *            the qt to set
+     */
+    public void setQt(String qt){
+        this.qt = qt;
+    }
 
-	/**
-	 * @param solrServer
-	 *            the solrServer to set
-	 */
-	public void setSolrServer(SolrServer solrServer){
-		this.solrServer = solrServer;
-	}
+    /**
+     * @param solrServer
+     *            the solrServer to set
+     */
+    public void setSolrServer(SolrServer solrServer){
+        this.solrServer = solrServer;
+    }
 }

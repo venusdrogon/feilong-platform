@@ -25,118 +25,118 @@ import java.io.Serializable;
  */
 public class Address implements Serializable{
 
-	private static final long	serialVersionUID	= -7167354662891178506L;
+    private static final long serialVersionUID = -7167354662891178506L;
 
-	/** The zip code. */
-	private String				zipCode;
+    /** The zip code. */
+    private String            zipCode;
 
-	/** The addr. */
-	private String				addr;
+    /** The addr. */
+    private String            addr;
 
-	/** The city. */
-	private String				city;
+    /** The city. */
+    private String            city;
 
-	/** The country. */
-	private String				country;
+    /** The country. */
+    private String            country;
 
-	/**
-	 * Instantiates a new address.
-	 */
-	public Address(){
-	}
+    /**
+     * Instantiates a new address.
+     */
+    public Address(){
+    }
 
-	/**
-	 * Instantiates a new address.
-	 * 
-	 * @param zipCode
-	 *            the zip code
-	 * @param addr
-	 *            the addr
-	 * @param city
-	 *            the city
-	 * @param country
-	 *            the country
-	 */
-	public Address(String zipCode, String addr, String city, String country){
-		this.zipCode = zipCode;
-		this.addr = addr;
-		this.city = city;
-		this.country = country;
-	}
+    /**
+     * Instantiates a new address.
+     * 
+     * @param zipCode
+     *            the zip code
+     * @param addr
+     *            the addr
+     * @param city
+     *            the city
+     * @param country
+     *            the country
+     */
+    public Address(String zipCode, String addr, String city, String country){
+        this.zipCode = zipCode;
+        this.addr = addr;
+        this.city = city;
+        this.country = country;
+    }
 
-	/**
-	 * Gets the addr.
-	 * 
-	 * @return the addr
-	 */
-	public String getAddr(){
-		return addr;
-	}
+    /**
+     * Gets the addr.
+     * 
+     * @return the addr
+     */
+    public String getAddr(){
+        return addr;
+    }
 
-	/**
-	 * Sets the addr.
-	 * 
-	 * @param addr
-	 *            the new addr
-	 */
-	public void setAddr(String addr){
-		this.addr = addr;
-	}
+    /**
+     * Sets the addr.
+     * 
+     * @param addr
+     *            the new addr
+     */
+    public void setAddr(String addr){
+        this.addr = addr;
+    }
 
-	/**
-	 * Gets the city.
-	 * 
-	 * @return the city
-	 */
-	public String getCity(){
-		return city;
-	}
+    /**
+     * Gets the city.
+     * 
+     * @return the city
+     */
+    public String getCity(){
+        return city;
+    }
 
-	/**
-	 * Sets the city.
-	 * 
-	 * @param city
-	 *            the new city
-	 */
-	public void setCity(String city){
-		this.city = city;
-	}
+    /**
+     * Sets the city.
+     * 
+     * @param city
+     *            the new city
+     */
+    public void setCity(String city){
+        this.city = city;
+    }
 
-	/**
-	 * Gets the country.
-	 * 
-	 * @return the country
-	 */
-	public String getCountry(){
-		return country;
-	}
+    /**
+     * Gets the country.
+     * 
+     * @return the country
+     */
+    public String getCountry(){
+        return country;
+    }
 
-	/**
-	 * Sets the country.
-	 * 
-	 * @param country
-	 *            the new country
-	 */
-	public void setCountry(String country){
-		this.country = country;
-	}
+    /**
+     * Sets the country.
+     * 
+     * @param country
+     *            the new country
+     */
+    public void setCountry(String country){
+        this.country = country;
+    }
 
-	/**
-	 * Gets the zip code.
-	 * 
-	 * @return the zip code
-	 */
-	public String getZipCode(){
-		return zipCode;
-	}
+    /**
+     * Gets the zip code.
+     * 
+     * @return the zip code
+     */
+    public String getZipCode(){
+        return zipCode;
+    }
 
-	/**
-	 * Sets the zip code.
-	 * 
-	 * @param zipCode
-	 *            the new zip code
-	 */
-	public void setZipCode(String zipCode){
-		this.zipCode = zipCode;
-	}
+    /**
+     * Sets the zip code.
+     * 
+     * @param zipCode
+     *            the new zip code
+     */
+    public void setZipCode(String zipCode){
+        this.zipCode = zipCode;
+    }
 }

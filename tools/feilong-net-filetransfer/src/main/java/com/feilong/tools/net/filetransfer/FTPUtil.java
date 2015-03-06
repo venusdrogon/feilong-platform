@@ -60,336 +60,336 @@ import com.feilong.commons.core.io.FileType;
  */
 public class FTPUtil extends FileTransfer{
 
-	/** The Constant log. */
-	private static final Logger	log			= LoggerFactory.getLogger(FTPUtil.class);
+    /** The Constant log. */
+    private static final Logger log      = LoggerFactory.getLogger(FTPUtil.class);
 
-	/** The host name. */
-	private String				hostName;
+    /** The host name. */
+    private String              hostName;
 
-	/** 用户名,默认 anonymous. */
-	private String				userName	= "anonymous";
+    /** 用户名,默认 anonymous. */
+    private String              userName = "anonymous";
 
-	/** 密码,默认 anonymous. */
-	private String				password	= "anonymous";
+    /** 密码,默认 anonymous. */
+    private String              password = "anonymous";
 
-	// ********************************************************
+    // ********************************************************
 
-	/** The ftp client. */
-	private FTPClient			ftpClient;
+    /** The ftp client. */
+    private FTPClient           ftpClient;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#connect()
-	 */
-	@Override
-	protected boolean connect(){
-		// 是否连接成功, 默认不成功
-		boolean isSuccess = false;
-		try{
-			// 连接
-			ftpClient.connect(hostName);
-			log.debug("connect hostName:{}", hostName);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#connect()
+     */
+    @Override
+    protected boolean connect(){
+        // 是否连接成功, 默认不成功
+        boolean isSuccess = false;
+        try{
+            // 连接
+            ftpClient.connect(hostName);
+            log.debug("connect hostName:{}", hostName);
 
-			boolean isLoginSuccess = ftpClient.login(userName, password);
-			Object[] params = { userName, password, isLoginSuccess };
-			log.debug("login:[{}] [{}], {}~~~", params);
+            boolean isLoginSuccess = ftpClient.login(userName, password);
+            Object[] params = { userName, password, isLoginSuccess };
+            log.debug("login:[{}] [{}], {}~~~", params);
 
-			if (isLoginSuccess){
-				int replyCode = ftpClient.getReplyCode();
-				if (!FTPReply.isPositiveCompletion(replyCode)){
-					log.error("FTP 服务拒绝连接！ReplyCode is:{},will ftpClient.disconnect()", replyCode);
-					ftpClient.disconnect();
-					return false;
-				}else{
-					// *******************************************************************************************
-					// 设置 本机被动模式 这个到不用在login之后执行, 因为它只改变FTPClient实例的内部属性.
-					ftpClient.enterLocalPassiveMode();
+            if (isLoginSuccess){
+                int replyCode = ftpClient.getReplyCode();
+                if (!FTPReply.isPositiveCompletion(replyCode)){
+                    log.error("FTP 服务拒绝连接！ReplyCode is:{},will ftpClient.disconnect()", replyCode);
+                    ftpClient.disconnect();
+                    return false;
+                }else{
+                    // *******************************************************************************************
+                    // 设置 本机被动模式 这个到不用在login之后执行, 因为它只改变FTPClient实例的内部属性.
+                    ftpClient.enterLocalPassiveMode();
 
-					// FTPClient默认使用ASCII作为传输模式, 所有不能传输二进制文件
-					// 设置以二进制流的方式传输,图片保真,[要在login以后执行]. 因为这个方法要向服务器发送"TYPE I"命令
-					ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                    // FTPClient默认使用ASCII作为传输模式, 所有不能传输二进制文件
+                    // 设置以二进制流的方式传输,图片保真,[要在login以后执行]. 因为这个方法要向服务器发送"TYPE I"命令
+                    ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
-					String systemName = ftpClient.getSystemName();
-					log.debug("ftpClient systemName:[{}]", systemName);
+                    String systemName = ftpClient.getSystemName();
+                    log.debug("ftpClient systemName:[{}]", systemName);
 
-					// 设置FTP客服端的配置--一般可以不设置 
-					// FTPClientConfig ftpConfig = new FTPClientConfig(FTPClientConfig.SYST_UNIX);
-					// ftpConfig.setServerLanguageCode(FTP.DEFAULT_CONTROL_ENCODING);
-					// ftpClient.configure(ftpClientConfig);
+                    // 设置FTP客服端的配置--一般可以不设置 
+                    // FTPClientConfig ftpConfig = new FTPClientConfig(FTPClientConfig.SYST_UNIX);
+                    // ftpConfig.setServerLanguageCode(FTP.DEFAULT_CONTROL_ENCODING);
+                    // ftpClient.configure(ftpClientConfig);
 
-					// ftpClient.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
+                    // ftpClient.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
 
-					// 没有异常则 确定成功
-					isSuccess = true;
-				}
-			}
-		}catch (SocketException e){
-			log.error(e.getClass().getName(), e);
-			disconnect();
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-			disconnect();
-		}
-		log.info("connect :{}", isSuccess);
-		return isSuccess;
-	}
+                    // 没有异常则 确定成功
+                    isSuccess = true;
+                }
+            }
+        }catch (SocketException e){
+            log.error(e.getClass().getName(), e);
+            disconnect();
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+            disconnect();
+        }
+        log.info("connect :{}", isSuccess);
+        return isSuccess;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#disconnect()
-	 */
-	@Override
-	protected void disconnect(){
-		if (ftpClient != null && ftpClient.isConnected()){
-			try{
-				boolean logout = ftpClient.logout();
-				log.debug("ftpClient logout:[{}]", logout);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#disconnect()
+     */
+    @Override
+    protected void disconnect(){
+        if (ftpClient != null && ftpClient.isConnected()){
+            try{
+                boolean logout = ftpClient.logout();
+                log.debug("ftpClient logout:[{}]", logout);
 
-				ftpClient.disconnect();
-				log.debug("ftpClient disconnect...");
-			}catch (IOException e){
-				log.error(e.getClass().getName(), e);
-			}
-		}
-	}
+                ftpClient.disconnect();
+                log.debug("ftpClient disconnect...");
+            }catch (IOException e){
+                log.error(e.getClass().getName(), e);
+            }
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#cd(java.lang.String)
-	 */
-	@Override
-	protected boolean cd(String remoteDirectory) throws Exception{
-		// 转移到FTP服务器目录
-		boolean flag = ftpClient.changeWorkingDirectory(remoteDirectory);
-		if (flag){
-			log.info("cd :[{}]:[{}]", remoteDirectory, flag);
-		}else{
-			log.warn("cd: [{}] error,ReplyString is:{}", remoteDirectory, ftpClient.getReplyString());
-		}
-		return flag;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#cd(java.lang.String)
+     */
+    @Override
+    protected boolean cd(String remoteDirectory) throws Exception{
+        // 转移到FTP服务器目录
+        boolean flag = ftpClient.changeWorkingDirectory(remoteDirectory);
+        if (flag){
+            log.info("cd :[{}]:[{}]", remoteDirectory, flag);
+        }else{
+            log.warn("cd: [{}] error,ReplyString is:{}", remoteDirectory, ftpClient.getReplyString());
+        }
+        return flag;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#mkdir(java.lang.String)
-	 */
-	@Override
-	protected boolean mkdir(String remoteDirectory) throws Exception{
-		boolean flag = ftpClient.makeDirectory(remoteDirectory);
-		if (flag){
-			log.info("mkdir :{} :{}", remoteDirectory, flag);
-		}else{
-			log.error("mkdir error,ReplyString is:{}", ftpClient.getReplyString());
-		}
-		return flag;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#mkdir(java.lang.String)
+     */
+    @Override
+    protected boolean mkdir(String remoteDirectory) throws Exception{
+        boolean flag = ftpClient.makeDirectory(remoteDirectory);
+        if (flag){
+            log.info("mkdir :{} :{}", remoteDirectory, flag);
+        }else{
+            log.error("mkdir error,ReplyString is:{}", ftpClient.getReplyString());
+        }
+        return flag;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#put(java.io.FileInputStream, java.lang.String)
-	 */
-	@Override
-	protected boolean put(FileInputStream fileInputStream_local,String toFileName) throws Exception{
-		boolean flag = ftpClient.storeFile(toFileName, fileInputStream_local);
-		if (flag){
-			log.info("put :[{}] :[{}]", toFileName, flag);
-		}else{
-			log.error("stor file error,ReplyString is:{}", ftpClient.getReplyString());
-		}
-		return flag;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#put(java.io.FileInputStream, java.lang.String)
+     */
+    @Override
+    protected boolean put(FileInputStream fileInputStream_local,String toFileName) throws Exception{
+        boolean flag = ftpClient.storeFile(toFileName, fileInputStream_local);
+        if (flag){
+            log.info("put :[{}] :[{}]", toFileName, flag);
+        }else{
+            log.error("stor file error,ReplyString is:{}", ftpClient.getReplyString());
+        }
+        return flag;
 
-	}
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
-	 */
-	@Override
-	protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
-		Map<String, FileInfoEntity> map = new HashMap<String, FileInfoEntity>();
-		FTPFile[] ftpFiles = ftpClient.listFiles(remotePath);
-		for (FTPFile ftpFile : ftpFiles){
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#getLsFileMap(java.lang.String)
+     */
+    @Override
+    protected Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception{
+        Map<String, FileInfoEntity> map = new HashMap<String, FileInfoEntity>();
+        FTPFile[] ftpFiles = ftpClient.listFiles(remotePath);
+        for (FTPFile ftpFile : ftpFiles){
 
-			String filename = ftpFile.getName();
+            String filename = ftpFile.getName();
 
-			boolean isDirectory = ftpFile.isDirectory();
+            boolean isDirectory = ftpFile.isDirectory();
 
-			FileInfoEntity fileEntity = new FileInfoEntity();
-			fileEntity.setFileType(isDirectory ? FileType.DIRECTORY : FileType.FILE);
-			fileEntity.setName(filename);
-			fileEntity.setSize(ftpFile.getSize());
-			fileEntity.setLastModified(ftpFile.getTimestamp().getTimeInMillis());
+            FileInfoEntity fileEntity = new FileInfoEntity();
+            fileEntity.setFileType(isDirectory ? FileType.DIRECTORY : FileType.FILE);
+            fileEntity.setName(filename);
+            fileEntity.setSize(ftpFile.getSize());
+            fileEntity.setLastModified(ftpFile.getTimestamp().getTimeInMillis());
 
-			map.put(filename, fileEntity);
-		}
-		return map;
-	}
+            map.put(filename, fileEntity);
+        }
+        return map;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#rmdir(java.lang.String)
-	 */
-	@Override
-	protected boolean rmdir(String remotePath) throws Exception{
-		boolean flag = false;
-		// 不知道为什么 此处 需要 先 cd / 否则 删除不了文件夹
-		log.info("ftpClient cwd root .....");
-		cd("/");
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#rmdir(java.lang.String)
+     */
+    @Override
+    protected boolean rmdir(String remotePath) throws Exception{
+        boolean flag = false;
+        // 不知道为什么 此处 需要 先 cd / 否则 删除不了文件夹
+        log.info("ftpClient cwd root .....");
+        cd("/");
 
-		// if empty
-		flag = ftpClient.removeDirectory(remotePath);
+        // if empty
+        flag = ftpClient.removeDirectory(remotePath);
 
-		if (flag){
-			log.info("ftpClient removeDirectory,remotePath [{}]:[{}]", remotePath, flag);
-		}else{
-			Object[] params = { remotePath, flag, ftpClient.getReplyCode() };
-			log.warn("ftpClient removeDirectory,remotePath [{}]:[{}] ReplyCode:{}", params);
-		}
-		return flag;
-	}
+        if (flag){
+            log.info("ftpClient removeDirectory,remotePath [{}]:[{}]", remotePath, flag);
+        }else{
+            Object[] params = { remotePath, flag, ftpClient.getReplyCode() };
+            log.warn("ftpClient removeDirectory,remotePath [{}]:[{}] ReplyCode:{}", params);
+        }
+        return flag;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#rm(java.lang.String)
-	 */
-	@Override
-	protected boolean rm(String remotePath) throws Exception{
-		boolean flag = false;
-		log.info("remotePath is [not directory],deleteFile.....");
-		flag = ftpClient.deleteFile(remotePath);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#rm(java.lang.String)
+     */
+    @Override
+    protected boolean rm(String remotePath) throws Exception{
+        boolean flag = false;
+        log.info("remotePath is [not directory],deleteFile.....");
+        flag = ftpClient.deleteFile(remotePath);
 
-		if (flag){
-			log.info("ftpClient deleteFile,remotePath[{}] : [{}]", remotePath, flag);
-		}else{
-			Object[] params = { remotePath, flag, ftpClient.getReplyCode() };
-			log.warn("ftpClient deleteFile,remotePath[{}] : [{}] , ReplyCode:[{}]", params);
-		}
-		return flag;
-	}
+        if (flag){
+            log.info("ftpClient deleteFile,remotePath[{}] : [{}]", remotePath, flag);
+        }else{
+            Object[] params = { remotePath, flag, ftpClient.getReplyCode() };
+            log.warn("ftpClient deleteFile,remotePath[{}] : [{}] , ReplyCode:[{}]", params);
+        }
+        return flag;
+    }
 
-	/**
-	 * Log ftp file.
-	 * 
-	 * @param ftpFile
-	 *            the ftp file
-	 */
-	private void logFTPFile(FTPFile ftpFile){
-		String ftpFileName = ftpFile.getName();
-		Object[] params = { ftpFileName, ftpFile.isDirectory(), ftpFile.getType() };
-		log.info("ftpFile Name:[{}] ,isDirectory:[{}],ftpFile type:[{}]", params);
-	}
+    /**
+     * Log ftp file.
+     * 
+     * @param ftpFile
+     *            the ftp file
+     */
+    private void logFTPFile(FTPFile ftpFile){
+        String ftpFileName = ftpFile.getName();
+        Object[] params = { ftpFileName, ftpFile.isDirectory(), ftpFile.getType() };
+        log.info("ftpFile Name:[{}] ,isDirectory:[{}],ftpFile type:[{}]", params);
+    }
 
-	// TODO 可能不精准
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.filetransfer.FileTransfer#isDirectory(java.lang.String)
-	 */
-	@Override
-	protected boolean isDirectory(String remotePath) throws Exception{
-		// 可以成功进入 代表 是文件夹
-		// 经测试 如果 remotePath 不存在 返回false ,如果是文件 返回false
+    // TODO 可能不精准
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.filetransfer.FileTransfer#isDirectory(java.lang.String)
+     */
+    @Override
+    protected boolean isDirectory(String remotePath) throws Exception{
+        // 可以成功进入 代表 是文件夹
+        // 经测试 如果 remotePath 不存在 返回false ,如果是文件 返回false
 
-		// 文件夹 213
-		// 文件213
-		//
-		// int mlsd = ftpClient.mlsd(remotePath);
-		// log.info("mlsd:{}", mlsd);
-		// FTPListParseEngine ftpListParseEngine = ftpClient.initiateListParsing(remotePath);
-		//
-		// FTPFile[] files = ftpListParseEngine.getFiles();
-		//
-		// for (FTPFile ftpFile : files){
-		// log.info("ftpListParseEngine:[{}]", ftpFile);
-		// }
+        // 文件夹 213
+        // 文件213
+        //
+        // int mlsd = ftpClient.mlsd(remotePath);
+        // log.info("mlsd:{}", mlsd);
+        // FTPListParseEngine ftpListParseEngine = ftpClient.initiateListParsing(remotePath);
+        //
+        // FTPFile[] files = ftpListParseEngine.getFiles();
+        //
+        // for (FTPFile ftpFile : files){
+        // log.info("ftpListParseEngine:[{}]", ftpFile);
+        // }
 
-		// log.debug("remotePath:{}", remotePath);
+        // log.debug("remotePath:{}", remotePath);
 
-		// log.info("{}", ftpClient.getStatus(remotePath));
-		// boolean success = FTPReply.isPositiveCompletion(sendCommand(FTPCommand.MLST, pathname));
-		// if (success){
-		// String entry = getReplyStrings()[1].substring(1); // skip leading space for parser
-		// return MLSxEntryParser.parseEntry(entry);
-		// } else {
-		// return null;
-		// }
+        // log.info("{}", ftpClient.getStatus(remotePath));
+        // boolean success = FTPReply.isPositiveCompletion(sendCommand(FTPCommand.MLST, pathname));
+        // if (success){
+        // String entry = getReplyStrings()[1].substring(1); // skip leading space for parser
+        // return MLSxEntryParser.parseEntry(entry);
+        // } else {
+        // return null;
+        // }
 
-		// FTPFile listFiles = ftpClient.mlistFile(remotePath);
-		// log.info("ftpFile getReplyString:[{}]", ftpClient.getReplyString());
-		//
-		// log.info(listFiles.isDirectory() + "");
-		// log.info(ftpClient.getModificationTime(remotePath) + "");
-		// for (FTPFile ftpFile : listFiles){
-		//
-		// }
+        // FTPFile listFiles = ftpClient.mlistFile(remotePath);
+        // log.info("ftpFile getReplyString:[{}]", ftpClient.getReplyString());
+        //
+        // log.info(listFiles.isDirectory() + "");
+        // log.info(ftpClient.getModificationTime(remotePath) + "");
+        // for (FTPFile ftpFile : listFiles){
+        //
+        // }
 
-		return cd(remotePath);
+        return cd(remotePath);
 
-		// return true;
-	}
+        // return true;
+    }
 
-	// *****************************************************************************************************
-	/**
-	 * Sets the ftp client.
-	 * 
-	 * @param ftpClient
-	 *            the ftpClient to set
-	 */
-	public void setFtpClient(FTPClient ftpClient){
-		this.ftpClient = ftpClient;
-	}
+    // *****************************************************************************************************
+    /**
+     * Sets the ftp client.
+     * 
+     * @param ftpClient
+     *            the ftpClient to set
+     */
+    public void setFtpClient(FTPClient ftpClient){
+        this.ftpClient = ftpClient;
+    }
 
-	/**
-	 * Sets the host name.
-	 * 
-	 * @param hostName
-	 *            the hostName to set
-	 */
-	public void setHostName(String hostName){
-		this.hostName = hostName;
-	}
+    /**
+     * Sets the host name.
+     * 
+     * @param hostName
+     *            the hostName to set
+     */
+    public void setHostName(String hostName){
+        this.hostName = hostName;
+    }
 
-	/**
-	 * Sets the 用户名,如果用户名和密码有一个为null/"",则使用anonymous/anonymous 登陆.
-	 * 
-	 * @param userName
-	 *            the userName to set
-	 */
-	public void setUserName(String userName){
-		this.userName = userName;
-	}
+    /**
+     * Sets the 用户名,如果用户名和密码有一个为null/"",则使用anonymous/anonymous 登陆.
+     * 
+     * @param userName
+     *            the userName to set
+     */
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
 
-	/**
-	 * Sets the 密码,如果用户名和密码有一个为null/"",则使用anonymous/anonymous 登陆.
-	 * 
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password){
-		this.password = password;
-	}
+    /**
+     * Sets the 密码,如果用户名和密码有一个为null/"",则使用anonymous/anonymous 登陆.
+     * 
+     * @param password
+     *            the password to set
+     */
+    public void setPassword(String password){
+        this.password = password;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.tools.net.FileTransfer#_downRemoteSingleFile(java.lang.String, java.lang.String)
-	 */
-	@Override
-	protected boolean _downRemoteSingleFile(String remoteSingleFile,String filePath) throws Exception{
-		BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
-		boolean success = ftpClient.retrieveFile(remoteSingleFile, bufferedOutputStream);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.FileTransfer#_downRemoteSingleFile(java.lang.String, java.lang.String)
+     */
+    @Override
+    protected boolean _downRemoteSingleFile(String remoteSingleFile,String filePath) throws Exception{
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
+        boolean success = ftpClient.retrieveFile(remoteSingleFile, bufferedOutputStream);
 
-		bufferedOutputStream.flush();
-		bufferedOutputStream.close();
-		return success;
-	}
+        bufferedOutputStream.flush();
+        bufferedOutputStream.close();
+        return success;
+    }
 
 }

@@ -34,72 +34,72 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 @ContextConfiguration(locations = { "classpath:spring-mongo.xml" })
 public class ShoppingCartRepositoryTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger		log	= LoggerFactory.getLogger(ShoppingCartRepositoryTest.class);
+    /** The Constant log. */
+    private static final Logger    log = LoggerFactory.getLogger(ShoppingCartRepositoryTest.class);
 
-	/** The shopping cart repository. */
-	@Autowired
-	private ShoppingCartRepository	shoppingCartRepository;
+    /** The shopping cart repository. */
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
-	/**
-	 * TestShoppingCartServiceImplTest.
-	 */
-	@Test
-	public void testShoppingCartServiceImplTest(){
+    /**
+     * TestShoppingCartServiceImplTest.
+     */
+    @Test
+    public void testShoppingCartServiceImplTest(){
 
-		ShoppingCart cartSku = shoppingCartRepository.findById("543cfedd07dd1c8dad126879");
+        ShoppingCart cartSku = shoppingCartRepository.findById("543cfedd07dd1c8dad126879");
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(cartSku));
-		}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(cartSku));
+        }
 
-	}
+    }
 
-	/**
-	 * Test save.
-	 */
-	@Test
-	public void testSave(){
+    /**
+     * Test save.
+     */
+    @Test
+    public void testSave(){
 
-		ShoppingCart shoppingCart = new ShoppingCart();
+        ShoppingCart shoppingCart = new ShoppingCart();
 
-		shoppingCart.setId("5");
+        shoppingCart.setId("5");
 
-		shoppingCart.setMemberId(5L);
-		shoppingCart.setQuantity(5);
-		shoppingCart.setShopId(5L);
-		shoppingCart.setSkuId(5L);
+        shoppingCart.setMemberId(5L);
+        shoppingCart.setQuantity(5);
+        shoppingCart.setShopId(5L);
+        shoppingCart.setSkuId(5L);
 
-		final ShoppingCart save = shoppingCartRepository.save(shoppingCart);
+        final ShoppingCart save = shoppingCartRepository.save(shoppingCart);
 
-		log.debug(JsonUtil.format(save));
-	}
+        log.debug(JsonUtil.format(save));
+    }
 
-	/**
-	 * Test save.
-	 */
-	@Test
-	public void testCount(){
-		final Long count = shoppingCartRepository.count();
-		log.debug("" + count);
-	}
+    /**
+     * Test save.
+     */
+    @Test
+    public void testCount(){
+        final Long count = shoppingCartRepository.count();
+        log.debug("" + count);
+    }
 
-	/**
-	 * Test find all.
-	 */
-	@Test
-	public void testFindAll(){
-		final List<ShoppingCart> findAll = shoppingCartRepository.findAll();
-		log.debug(JsonUtil.format(findAll));
-	}
+    /**
+     * Test find all.
+     */
+    @Test
+    public void testFindAll(){
+        final List<ShoppingCart> findAll = shoppingCartRepository.findAll();
+        log.debug(JsonUtil.format(findAll));
+    }
 
-	/**
-	 * findOne.
-	 */
-	@Test
-	public void testFindOne(){
-		ShoppingCart shoppingCart = shoppingCartRepository.findOne("5");
-		log.debug(JsonUtil.format(shoppingCart));
-	}
+    /**
+     * findOne.
+     */
+    @Test
+    public void testFindOne(){
+        ShoppingCart shoppingCart = shoppingCartRepository.findOne("5");
+        log.debug(JsonUtil.format(shoppingCart));
+    }
 
 }

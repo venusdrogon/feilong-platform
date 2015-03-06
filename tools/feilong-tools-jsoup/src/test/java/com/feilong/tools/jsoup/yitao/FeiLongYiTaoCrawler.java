@@ -32,35 +32,35 @@ import com.feilong.tools.jsoup.JsoupUtilException;
  */
 public class FeiLongYiTaoCrawler{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(FeiLongYiTaoCrawler.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(FeiLongYiTaoCrawler.class);
 
-	/** The url. */
-	String						url	= "http://s.etao.com/search?q=439182-452&tbpm=t";
+    /** The url. */
+    String                      url = "http://s.etao.com/search?q=439182-452&tbpm=t";
 
-	/**
-	 * Test.
-	 * 
-	 * @throws JsoupUtilException
-	 */
-	@Test
-	public void test() throws JsoupUtilException{
-		// 数据
-		Elements elements = JsoupUtil.getElementsBySelect(url, ".section");
-		Element element = elements.get(0);
-		// 列表数据
-		Elements elements1 = elements.select(".listview");
-		Element element1 = elements1.get(0);
-		// 列表li
-		Elements lis = element1.select(".listitem");
-		for (Element li : lis){
-			log.info("title:{}", li.select(".title a").get(0).text());
-			log.info("price:{}", li.select(".price").get(0).text());
-			log.info("freight:{}", li.select(".freight").get(0).text());
-			log.info("url:{}", li.select(".title a").get(0).attr("href"));
-			log.info("--------------------------------------------------");
-		}
-		// log.info(element.html());
-		// log.info(element1.html());
-	}
+    /**
+     * Test.
+     * 
+     * @throws JsoupUtilException
+     */
+    @Test
+    public void test() throws JsoupUtilException{
+        // 数据
+        Elements elements = JsoupUtil.getElementsBySelect(url, ".section");
+        Element element = elements.get(0);
+        // 列表数据
+        Elements elements1 = elements.select(".listview");
+        Element element1 = elements1.get(0);
+        // 列表li
+        Elements lis = element1.select(".listitem");
+        for (Element li : lis){
+            log.info("title:{}", li.select(".title a").get(0).text());
+            log.info("price:{}", li.select(".price").get(0).text());
+            log.info("freight:{}", li.select(".freight").get(0).text());
+            log.info("url:{}", li.select(".title a").get(0).attr("href"));
+            log.info("--------------------------------------------------");
+        }
+        // log.info(element.html());
+        // log.info(element1.html());
+    }
 }

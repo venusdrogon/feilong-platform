@@ -24,26 +24,26 @@ package com.feilong.taglib.display.httpconcat;
  */
 public interface HttpConcatConstants{
 
-	/** 配置文件 <code>{@value}</code>. */
-	String	CONFIG_FILE				= "config/httpconcat";
+    /** 配置文件 <code>{@value}</code>. */
+    String CONFIG_FILE            = "config/httpconcat";
 
-	//**************************************************************
-	/** css <code>{@value}</code>. */
-	String	TYPE_CSS				= "css";
+    //**************************************************************
+    /** css <code>{@value}</code>. */
+    String TYPE_CSS               = "css";
 
-	/** js <code>{@value}</code>. */
-	String	TYPE_JS					= "js";
+    /** js <code>{@value}</code>. */
+    String TYPE_JS                = "js";
 
-	//**************************************************************
+    //**************************************************************
 
-	/** <code>{@value}</code>. */
-	String	KEY_HTTPCONCAT_SUPPORT	= "httpconcatSupport";
+    /** <code>{@value}</code>. */
+    String KEY_HTTPCONCAT_SUPPORT = "httpconcatSupport";
 
-	//**************************************************************
+    //**************************************************************
 
-	/** <code>{@value}</code>. */
-	String	KEY_TEMPLATE_CSS		= "template.css";
+    /** <code>{@value}</code>. */
+    String KEY_TEMPLATE_CSS       = "template.css";
 
-	/** <code>{@value}</code>. */
-	String	KEY_TEMPLATE_JS			= "template.js";
+    /** <code>{@value}</code>. */
+    String KEY_TEMPLATE_JS        = "template.js";
 }

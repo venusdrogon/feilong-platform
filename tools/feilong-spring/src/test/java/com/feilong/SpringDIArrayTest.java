@@ -34,15 +34,15 @@ import com.feilong.entity.DIUserArray;
 @ContextConfiguration(locations = { "classpath:spring-DI-Array.xml" })
 public class SpringDIArrayTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SpringDIArrayTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SpringDIArrayTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public void testDIUserArray(){
-		DIUserArray diUserArray = applicationContext.getBean(DIUserArray.class);
-		log.info(JsonUtil.format(diUserArray));
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public void testDIUserArray(){
+        DIUserArray diUserArray = applicationContext.getBean(DIUserArray.class);
+        log.info(JsonUtil.format(diUserArray));
+    }
 }

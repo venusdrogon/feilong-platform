@@ -26,42 +26,42 @@ import com.lowagie.text.Paragraph;
  */
 public class PDFParagragh extends Paragraph{
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -8869269657304423472L;
+    private static final long serialVersionUID = -8869269657304423472L;
 
-	/**
-	 * Instantiates a new PDF paragragh.
-	 * 
-	 * @param content
-	 *            the content
-	 * @param alignment
-	 *            the alignment
-	 * @param fontSize
-	 *            the font size
-	 */
-	public PDFParagragh(String content, int alignment, int fontSize){
-		super(content, PDFChineseFont.createChineseFont(fontSize, Font.NORMAL));
-		setAlignment(alignment);
-	}
+    /**
+     * Instantiates a new PDF paragragh.
+     * 
+     * @param content
+     *            the content
+     * @param alignment
+     *            the alignment
+     * @param fontSize
+     *            the font size
+     */
+    public PDFParagragh(String content, int alignment, int fontSize){
+        super(content, PDFChineseFont.createChineseFont(fontSize, Font.NORMAL));
+        setAlignment(alignment);
+    }
 
-	/** The Constant CENTER. */
-	public static final int	CENTER	= Element.ALIGN_CENTER;
+    /** The Constant CENTER. */
+    public static final int CENTER = Element.ALIGN_CENTER;
 
-	/** The Constant LEFT. */
-	public static final int	LEFT	= Element.ALIGN_LEFT;
+    /** The Constant LEFT. */
+    public static final int LEFT   = Element.ALIGN_LEFT;
 
-	/** The Constant RIGHT. */
-	public static final int	RIGHT	= Element.ALIGN_RIGHT;
+    /** The Constant RIGHT. */
+    public static final int RIGHT  = Element.ALIGN_RIGHT;
 
-	/** The Constant TOP. */
-	public static final int	TOP		= Element.ALIGN_TOP;
+    /** The Constant TOP. */
+    public static final int TOP    = Element.ALIGN_TOP;
 
-	/** The Constant MIDDLE. */
-	public static final int	MIDDLE	= Element.ALIGN_MIDDLE;
+    /** The Constant MIDDLE. */
+    public static final int MIDDLE = Element.ALIGN_MIDDLE;
 
-	/** The Constant BOTTOM. */
-	public static final int	BOTTOM	= Element.ALIGN_BOTTOM;
+    /** The Constant BOTTOM. */
+    public static final int BOTTOM = Element.ALIGN_BOTTOM;
 
 }

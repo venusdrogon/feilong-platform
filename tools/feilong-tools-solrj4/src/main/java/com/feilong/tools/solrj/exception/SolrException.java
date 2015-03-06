@@ -23,45 +23,45 @@ package com.feilong.tools.solrj.exception;
  */
 public class SolrException extends Exception{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 6991993033857005758L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 6991993033857005758L;
 
-	/**
-	 * Instantiates a new solr exception.
-	 */
-	public SolrException(){
-		super();
-	}
+    /**
+     * Instantiates a new solr exception.
+     */
+    public SolrException(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new solr exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public SolrException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new solr exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public SolrException(String message, Throwable cause){
+        super(message, cause);
+    }
 
-	/**
-	 * Instantiates a new solr exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public SolrException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new solr exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public SolrException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new solr exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public SolrException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new solr exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public SolrException(Throwable cause){
+        super(cause);
+    }
 }

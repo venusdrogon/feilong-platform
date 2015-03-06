@@ -31,11 +31,11 @@ import com.feilong.commons.core.io.CharsetType;
  */
 public class CharsetTypeTest{
 
-	/**
-	 * Checks if is supported.
-	 */
-	@Test
-	public void isSupported(){
-		assertEquals(true, Charset.isSupported(CharsetType.ISO_8859_1));
-	}
+    /**
+     * Checks if is supported.
+     */
+    @Test
+    public void isSupported(){
+        assertEquals(true, Charset.isSupported(CharsetType.ISO_8859_1));
+    }
 }

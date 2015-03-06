@@ -31,39 +31,39 @@ import org.slf4j.LoggerFactory;
  */
 public class ServletContextPathListener implements ServletContextListener{
 
-	/** The Constant log. */
-	private static final Logger	log							= LoggerFactory.getLogger(ServletContextPathListener.class);
+    /** The Constant log. */
+    private static final Logger log                       = LoggerFactory.getLogger(ServletContextPathListener.class);
 
-	/** base 路径. */
-	//TODO 设置 init param
-	private static String		APPLICATIONATTRIBUTE_BASE	= "base";
+    /** base 路径. */
+    //TODO 设置 init param
+    private static String       APPLICATIONATTRIBUTE_BASE = "base";
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
-	 */
-	@Override
-	public void contextInitialized(ServletContextEvent sce){
-		ServletContext servletContext = sce.getServletContext();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+     */
+    @Override
+    public void contextInitialized(ServletContextEvent sce){
+        ServletContext servletContext = sce.getServletContext();
 
-		String contextPath = servletContext.getContextPath();
-		servletContext.setAttribute(APPLICATIONATTRIBUTE_BASE, contextPath);
+        String contextPath = servletContext.getContextPath();
+        servletContext.setAttribute(APPLICATIONATTRIBUTE_BASE, contextPath);
 
-		String msg = "Set servletContext setAttribute: '" + APPLICATIONATTRIBUTE_BASE + "' = [" + contextPath + "]";
-		servletContext.log(msg);
+        String msg = "Set servletContext setAttribute: '" + APPLICATIONATTRIBUTE_BASE + "' = [" + contextPath + "]";
+        servletContext.log(msg);
 
-		if (log.isInfoEnabled()){
-			log.info(msg);
-		}
-	}
+        if (log.isInfoEnabled()){
+            log.info(msg);
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
-	 */
-	@Override
-	public void contextDestroyed(ServletContextEvent sce){
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+     */
+    @Override
+    public void contextDestroyed(ServletContextEvent sce){
+    }
 }

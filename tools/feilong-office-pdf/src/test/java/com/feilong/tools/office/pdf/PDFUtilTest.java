@@ -38,73 +38,73 @@ import com.lowagie.text.Section;
  */
 public class PDFUtilTest{
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void test(){
-		String outputFileName = "e://html.pdf";
-		String htmlPath = "e://1.htm";
-		PDFUtil.htmlToPDF(htmlPath, outputFileName);
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void test(){
+        String outputFileName = "e://html.pdf";
+        String htmlPath = "e://1.htm";
+        PDFUtil.htmlToPDF(htmlPath, outputFileName);
+    }
 
-	/**
-	 * Write.
-	 */
-	@Test
-	public void write(){
-		// 定义输出位置并把文档对象装入输出对象中
-		String outputFileName = "E:/hello.pdf";
+    /**
+     * Write.
+     */
+    @Test
+    public void write(){
+        // 定义输出位置并把文档对象装入输出对象中
+        String outputFileName = "E:/hello.pdf";
 
-		List<Element> arrayList = new ArrayList<Element>();
-		arrayList.add(new Chapter("HelloWorld Chapter1", 1));
-		Phrase e = new Phrase("HelloWorld Phrase");
-		e.add("aaa");
-		arrayList.add(e);
-		arrayList.add(new Paragraph("HelloWorld Paragraph"));
-		arrayList.add(new Chunk("HelloWorld Chunk"));
+        List<Element> arrayList = new ArrayList<Element>();
+        arrayList.add(new Chapter("HelloWorld Chapter1", 1));
+        Phrase e = new Phrase("HelloWorld Phrase");
+        e.add("aaa");
+        arrayList.add(e);
+        arrayList.add(new Paragraph("HelloWorld Paragraph"));
+        arrayList.add(new Chunk("HelloWorld Chunk"));
 
-		Chapter chapter = new Chapter("HelloWorld Chapter2", 2);
-		chapter.setBookmarkOpen(true);
-		chapter.setBookmarkTitle("aaaa");
-		chapter.setTitle(new Paragraph("HelloWorld Paragraph"));
+        Chapter chapter = new Chapter("HelloWorld Chapter2", 2);
+        chapter.setBookmarkOpen(true);
+        chapter.setBookmarkTitle("aaaa");
+        chapter.setTitle(new Paragraph("HelloWorld Paragraph"));
 
-		arrayList.add(chapter);
-		PDFUtil.write(outputFileName, arrayList);
-	}
+        arrayList.add(chapter);
+        PDFUtil.write(outputFileName, arrayList);
+    }
 
-	/**
-	 * Write1.
-	 */
-	@Test
-	public void write1(){
-		Paragraph title2 = new Paragraph("This is Chapter 2", FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new Color(
-						0,
-						0,
-						255)));
+    /**
+     * Write1.
+     */
+    @Test
+    public void write1(){
+        Paragraph title2 = new Paragraph("This is Chapter 2", FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new Color(
+                        0,
+                        0,
+                        255)));
 
-		Chapter chapter2 = new Chapter(title2, 2);
-		chapter2.setNumberDepth(0);
+        Chapter chapter2 = new Chapter(title2, 2);
+        chapter2.setNumberDepth(0);
 
-		Paragraph someText = new Paragraph("This is some text");
-		chapter2.add(someText);
+        Paragraph someText = new Paragraph("This is some text");
+        chapter2.add(someText);
 
-		Paragraph title21 = new Paragraph("This is Section 1 in Chapter 2", FontFactory.getFont(
-						FontFactory.HELVETICA,
-						16,
-						Font.BOLD,
-						new Color(255, 0, 0)));
-		Section section1 = chapter2.addSection(title21);
-		Paragraph someSectionText = new Paragraph(
-						"This is some silly paragraph in a chapter and/or section. It contains some text to test the functionality of Chapters and Section.");
-		section1.add(someSectionText);
+        Paragraph title21 = new Paragraph("This is Section 1 in Chapter 2", FontFactory.getFont(
+                        FontFactory.HELVETICA,
+                        16,
+                        Font.BOLD,
+                        new Color(255, 0, 0)));
+        Section section1 = chapter2.addSection(title21);
+        Paragraph someSectionText = new Paragraph(
+                        "This is some silly paragraph in a chapter and/or section. It contains some text to test the functionality of Chapters and Section.");
+        section1.add(someSectionText);
 
-		// 定义输出位置并把文档对象装入输出对象中
-		String outputFileName = "E:/hello1.pdf";
+        // 定义输出位置并把文档对象装入输出对象中
+        String outputFileName = "E:/hello1.pdf";
 
-		List<Element> arrayList = new ArrayList<Element>();
+        List<Element> arrayList = new ArrayList<Element>();
 
-		arrayList.add(chapter2);
-		PDFUtil.write(outputFileName, arrayList);
-	}
+        arrayList.add(chapter2);
+        PDFUtil.write(outputFileName, arrayList);
+    }
 }

@@ -30,82 +30,82 @@ import loxia.dao.Pagination;
  */
 public class SolrData<T> extends BaseSolrData<T>{
 
-	/** The Constant serialVersionUID. */
-	private static final long			serialVersionUID	= -6466942586535105967L;
+    /** The Constant serialVersionUID. */
+    private static final long          serialVersionUID = -6466942586535105967L;
 
-	/** 聚合前的总数. */
-	private int							matches;
+    /** 聚合前的总数. */
+    private int                        matches;
 
-	/** The pagination. */
-	private Pagination<T>				pagination;
+    /** The pagination. */
+    private Pagination<T>              pagination;
 
-	/**
-	 * 如果使用了 group by 功能,才会封装,否则没用<br>
-	 * 数据结构:<br>
-	 * key 是 传入的 GroupParams.GROUP_FIELD 每个值<br>
-	 * value 是这个字段 查询结果
-	 */
-	private Map<String, Pagination<T>>	groupMap;
+    /**
+     * 如果使用了 group by 功能,才会封装,否则没用<br>
+     * 数据结构:<br>
+     * key 是 传入的 GroupParams.GROUP_FIELD 每个值<br>
+     * value 是这个字段 查询结果
+     */
+    private Map<String, Pagination<T>> groupMap;
 
-	/**
-	 * Gets the pagination.
-	 * 
-	 * @return the pagination
-	 */
-	public Pagination<T> getPagination(){
-		return pagination;
-	}
+    /**
+     * Gets the pagination.
+     * 
+     * @return the pagination
+     */
+    public Pagination<T> getPagination(){
+        return pagination;
+    }
 
-	/**
-	 * Sets the pagination.
-	 * 
-	 * @param pagination
-	 *            the pagination to set
-	 */
-	public void setPagination(Pagination<T> pagination){
-		this.pagination = pagination;
-	}
+    /**
+     * Sets the pagination.
+     * 
+     * @param pagination
+     *            the pagination to set
+     */
+    public void setPagination(Pagination<T> pagination){
+        this.pagination = pagination;
+    }
 
-	/**
-	 * Gets the 如果使用了 group by 功能,才会封装,否则没用<br>
-	 * 数据结构:<br>
-	 * key 是 传入的 GroupParams.
-	 * 
-	 * @return the groupMap
-	 */
-	public Map<String, Pagination<T>> getGroupMap(){
-		return groupMap;
-	}
+    /**
+     * Gets the 如果使用了 group by 功能,才会封装,否则没用<br>
+     * 数据结构:<br>
+     * key 是 传入的 GroupParams.
+     * 
+     * @return the groupMap
+     */
+    public Map<String, Pagination<T>> getGroupMap(){
+        return groupMap;
+    }
 
-	/**
-	 * Sets the 如果使用了 group by 功能,才会封装,否则没用<br>
-	 * 数据结构:<br>
-	 * key 是 传入的 GroupParams.
-	 * 
-	 * @param groupMap
-	 *            the groupMap to set
-	 */
-	public void setGroupMap(Map<String, Pagination<T>> groupMap){
-		this.groupMap = groupMap;
-	}
+    /**
+     * Sets the 如果使用了 group by 功能,才会封装,否则没用<br>
+     * 数据结构:<br>
+     * key 是 传入的 GroupParams.
+     * 
+     * @param groupMap
+     *            the groupMap to set
+     */
+    public void setGroupMap(Map<String, Pagination<T>> groupMap){
+        this.groupMap = groupMap;
+    }
 
-	/**
-	 * Gets the 聚合前的总数.
-	 * 
-	 * @return the 聚合前的总数
-	 */
-	public int getMatches(){
-		return matches;
-	}
+    /**
+     * Gets the 聚合前的总数.
+     * 
+     * @return the 聚合前的总数
+     */
+    public int getMatches(){
+        return matches;
+    }
 
-	/**
-	 * Sets the 聚合前的总数.
-	 * 
-	 * @param matches
-	 *            the new 聚合前的总数
-	 */
-	public void setMatches(int matches){
-		this.matches = matches;
-	}
+    /**
+     * Sets the 聚合前的总数.
+     * 
+     * @param matches
+     *            the new 聚合前的总数
+     */
+    public void setMatches(int matches){
+        this.matches = matches;
+    }
 
 }

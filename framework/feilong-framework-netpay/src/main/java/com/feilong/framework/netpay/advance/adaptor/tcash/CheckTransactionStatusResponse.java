@@ -28,112 +28,112 @@ import com.feilong.framework.netpay.advance.command.QueryResultCommand;
  */
 public final class CheckTransactionStatusResponse implements QueryResultCommand,Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/**
-	 * T-Cash reference number that generated when merchant generate public token and used by customer when confirm transaction.<br>
-	 * Example 1: 1709131628081576
-	 */
-	private String				refNum;
+    /**
+     * T-Cash reference number that generated when merchant generate public token and used by customer when confirm transaction.<br>
+     * Example 1: 1709131628081576
+     */
+    private String            refNum;
 
-	/**
-	 * Customer transaction amount <br>
-	 * Example 1: 1250.
-	 */
-	private String				amount;
+    /**
+     * Customer transaction amount <br>
+     * Example 1: 1250.
+     */
+    private String            amount;
 
-	/**
-	 * Transaction Date <br>
-	 * Example 1: 17/09/2013 16:49:50.<br>
-	 * Confirmed the format is dd/MM/yyyy HH:mm:ss
-	 */
-	private String				transactionDate;
+    /**
+     * Transaction Date <br>
+     * Example 1: 17/09/2013 16:49:50.<br>
+     * Confirmed the format is dd/MM/yyyy HH:mm:ss
+     */
+    private String            transactionDate;
 
-	/**
-	 * Status Customer Transaction <br>
-	 * Example 1: SUCCESS_COMPLETED.
-	 */
-	private String				Status;
+    /**
+     * Status Customer Transaction <br>
+     * Example 1: SUCCESS_COMPLETED.
+     */
+    private String            Status;
 
-	/**
-	 * 获得 t-Cash reference number that generated when merchant generate public token and used by customer when confirm transaction.
-	 *
-	 * @return the refNum
-	 */
-	public String getRefNum(){
-		return refNum;
-	}
+    /**
+     * 获得 t-Cash reference number that generated when merchant generate public token and used by customer when confirm transaction.
+     *
+     * @return the refNum
+     */
+    public String getRefNum(){
+        return refNum;
+    }
 
-	/**
-	 * 设置 t-Cash reference number that generated when merchant generate public token and used by customer when confirm transaction.
-	 *
-	 * @param refNum
-	 *            the refNum to set
-	 */
-	public void setRefNum(String refNum){
-		this.refNum = refNum;
-	}
+    /**
+     * 设置 t-Cash reference number that generated when merchant generate public token and used by customer when confirm transaction.
+     *
+     * @param refNum
+     *            the refNum to set
+     */
+    public void setRefNum(String refNum){
+        this.refNum = refNum;
+    }
 
-	/**
-	 * 获得 customer transaction amount <br>
-	 * Example 1: 1250.
-	 *
-	 * @return the amount
-	 */
-	public String getAmount(){
-		return amount;
-	}
+    /**
+     * 获得 customer transaction amount <br>
+     * Example 1: 1250.
+     *
+     * @return the amount
+     */
+    public String getAmount(){
+        return amount;
+    }
 
-	/**
-	 * 设置 customer transaction amount <br>
-	 * Example 1: 1250.
-	 *
-	 * @param amount
-	 *            the amount to set
-	 */
-	public void setAmount(String amount){
-		this.amount = amount;
-	}
+    /**
+     * 设置 customer transaction amount <br>
+     * Example 1: 1250.
+     *
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(String amount){
+        this.amount = amount;
+    }
 
-	/**
-	 * 获得 transaction Date <br>
-	 * Example 1: 17/09/2013 16:49:50.
-	 *
-	 * @return the transactionDate
-	 */
-	public String getTransactionDate(){
-		return transactionDate;
-	}
+    /**
+     * 获得 transaction Date <br>
+     * Example 1: 17/09/2013 16:49:50.
+     *
+     * @return the transactionDate
+     */
+    public String getTransactionDate(){
+        return transactionDate;
+    }
 
-	/**
-	 * 设置 transaction Date <br>
-	 * Example 1: 17/09/2013 16:49:50.
-	 *
-	 * @param transactionDate
-	 *            the transactionDate to set
-	 */
-	public void setTransactionDate(String transactionDate){
-		this.transactionDate = transactionDate;
-	}
+    /**
+     * 设置 transaction Date <br>
+     * Example 1: 17/09/2013 16:49:50.
+     *
+     * @param transactionDate
+     *            the transactionDate to set
+     */
+    public void setTransactionDate(String transactionDate){
+        this.transactionDate = transactionDate;
+    }
 
-	/**
-	 * 获得 status.
-	 *
-	 * @return the status
-	 */
-	public String getStatus(){
-		return Status;
-	}
+    /**
+     * 获得 status.
+     *
+     * @return the status
+     */
+    public String getStatus(){
+        return Status;
+    }
 
-	/**
-	 * 设置 status.
-	 *
-	 * @param status
-	 *            the status to set
-	 */
-	public void setStatus(String status){
-		Status = status;
-	}
+    /**
+     * 设置 status.
+     *
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(String status){
+        Status = status;
+    }
 
 }

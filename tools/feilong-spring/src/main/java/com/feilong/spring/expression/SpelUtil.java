@@ -27,20 +27,20 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
  */
 public class SpelUtil{
 
-	/** The expression parser. */
-	private static ExpressionParser	expressionParser	= new SpelExpressionParser();
+    /** The expression parser. */
+    private static ExpressionParser expressionParser = new SpelExpressionParser();
 
-	/**
-	 * Gets the value.
-	 * 
-	 * @param expressionString
-	 *            the expression string
-	 * @return the value
-	 */
-	public static Object getValue(String expressionString){
-		Expression expression = expressionParser.parseExpression(expressionString);
-		//		String message = expression.getValue(String.class);
-		//		log.info(message);
-		return expression.getValue();
-	}
+    /**
+     * Gets the value.
+     * 
+     * @param expressionString
+     *            the expression string
+     * @return the value
+     */
+    public static Object getValue(String expressionString){
+        Expression expression = expressionParser.parseExpression(expressionString);
+        //		String message = expression.getValue(String.class);
+        //		log.info(message);
+        return expression.getValue();
+    }
 }

@@ -33,45 +33,45 @@ package com.feilong.framework.bind.exception;
  */
 public class BuildCommandException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 7791021324380086044L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 7791021324380086044L;
 
-	/**
-	 * Instantiates a new http client util exception.
-	 */
-	public BuildCommandException(){
-		super();
-	}
+    /**
+     * Instantiates a new http client util exception.
+     */
+    public BuildCommandException(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new http client util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public BuildCommandException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new http client util exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public BuildCommandException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new http client util exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public BuildCommandException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new http client util exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public BuildCommandException(Throwable cause){
+        super(cause);
+    }
 
-	/**
-	 * Instantiates a new http client util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public BuildCommandException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new http client util exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public BuildCommandException(String message, Throwable cause){
+        super(message, cause);
+    }
 }

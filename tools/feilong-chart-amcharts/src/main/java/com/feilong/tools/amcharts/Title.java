@@ -43,118 +43,118 @@ import java.io.Serializable;
  */
 public class Title implements Serializable{
 
-	private static final long	serialVersionUID	= 288232184048495608L;
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/**
-	 * Unique id of a Title. <br>
-	 * You don't need to set it, unless you want to.
-	 */
-	private String				id;
+    /**
+     * Unique id of a Title. <br>
+     * You don't need to set it, unless you want to.
+     */
+    private String            id;
 
-	/** Opacity of a title. */
-	private Number				alpha				= 1;
+    /** Opacity of a title. */
+    private Number            alpha            = 1;
 
-	/** Specifies if title should be bold or not.; */
-	private boolean				bold				= false;
+    /** Specifies if title should be bold or not.; */
+    private boolean           bold             = false;
 
-	/** Color Text color of a title. */
-	private String				color;
+    /** Color Text color of a title. */
+    private String            color;
 
-	/** Text size of a title. */
-	private Integer				size;
+    /** Text size of a title. */
+    private Integer           size;
 
-	/**
-	 * Text of a title
-	 */
-	private String				text;
+    /**
+     * Text of a title
+     */
+    private String            text;
 
-	/**
-	 * @return the id
-	 */
-	public String getId(){
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public String getId(){
+        return id;
+    }
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(String id){
-		this.id = id;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id){
+        this.id = id;
+    }
 
-	/**
-	 * @return the alpha
-	 */
-	public Number getAlpha(){
-		return alpha;
-	}
+    /**
+     * @return the alpha
+     */
+    public Number getAlpha(){
+        return alpha;
+    }
 
-	/**
-	 * @param alpha
-	 *            the alpha to set
-	 */
-	public void setAlpha(Number alpha){
-		this.alpha = alpha;
-	}
+    /**
+     * @param alpha
+     *            the alpha to set
+     */
+    public void setAlpha(Number alpha){
+        this.alpha = alpha;
+    }
 
-	/**
-	 * @return the bold
-	 */
-	public boolean getBold(){
-		return bold;
-	}
+    /**
+     * @return the bold
+     */
+    public boolean getBold(){
+        return bold;
+    }
 
-	/**
-	 * @param bold
-	 *            the bold to set
-	 */
-	public void setBold(boolean bold){
-		this.bold = bold;
-	}
+    /**
+     * @param bold
+     *            the bold to set
+     */
+    public void setBold(boolean bold){
+        this.bold = bold;
+    }
 
-	/**
-	 * @return the color
-	 */
-	public String getColor(){
-		return color;
-	}
+    /**
+     * @return the color
+     */
+    public String getColor(){
+        return color;
+    }
 
-	/**
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColor(String color){
-		this.color = color;
-	}
+    /**
+     * @param color
+     *            the color to set
+     */
+    public void setColor(String color){
+        this.color = color;
+    }
 
-	/**
-	 * @return the size
-	 */
-	public Integer getSize(){
-		return size;
-	}
+    /**
+     * @return the size
+     */
+    public Integer getSize(){
+        return size;
+    }
 
-	/**
-	 * @param size
-	 *            the size to set
-	 */
-	public void setSize(Integer size){
-		this.size = size;
-	}
+    /**
+     * @param size
+     *            the size to set
+     */
+    public void setSize(Integer size){
+        this.size = size;
+    }
 
-	/**
-	 * @return the text
-	 */
-	public String getText(){
-		return text;
-	}
+    /**
+     * @return the text
+     */
+    public String getText(){
+        return text;
+    }
 
-	/**
-	 * @param text
-	 *            the text to set
-	 */
-	public void setText(String text){
-		this.text = text;
-	}
+    /**
+     * @param text
+     *            the text to set
+     */
+    public void setText(String text){
+        this.text = text;
+    }
 }

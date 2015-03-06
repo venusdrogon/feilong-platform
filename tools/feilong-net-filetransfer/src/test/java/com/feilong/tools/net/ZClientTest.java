@@ -32,47 +32,47 @@ import org.slf4j.LoggerFactory;
  */
 public class ZClientTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ZClientTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ZClientTest.class);
 
-	/**
-	 * Gets the files.
-	 * 
-	 * @param ftp
-	 *            the ftp
-	 * @param localDir
-	 *            the local dir
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	private static void testGetFiles(FTPClient ftp,File localDir) throws IOException{
-		String[] names = ftp.listNames();
-		for (String name : names){
-			File file = new File(localDir.getPath() + File.separator + name);
-			if (!file.exists()){
-				file.createNewFile();
-			}
-			long pos = file.length();
-			RandomAccessFile raf = new RandomAccessFile(file, "rw");
-			raf.seek(pos);
-			ftp.setRestartOffset(pos);
-			InputStream is = ftp.retrieveFileStream(name);
-			if (is == null){
-				log.info("no such file:" + name);
-			}else{
-				log.info("start getting file:" + name);
-				int b;
-				while ((b = is.read()) != -1){
-					raf.write(b);
-				}
-				is.close();
-				if (ftp.completePendingCommand()){
-					log.info("done!");
-				}else{
-					log.info("can't get file:" + name);
-				}
-			}
-			raf.close();
-		}
-	}
+    /**
+     * Gets the files.
+     * 
+     * @param ftp
+     *            the ftp
+     * @param localDir
+     *            the local dir
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    private static void testGetFiles(FTPClient ftp,File localDir) throws IOException{
+        String[] names = ftp.listNames();
+        for (String name : names){
+            File file = new File(localDir.getPath() + File.separator + name);
+            if (!file.exists()){
+                file.createNewFile();
+            }
+            long pos = file.length();
+            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            raf.seek(pos);
+            ftp.setRestartOffset(pos);
+            InputStream is = ftp.retrieveFileStream(name);
+            if (is == null){
+                log.info("no such file:" + name);
+            }else{
+                log.info("start getting file:" + name);
+                int b;
+                while ((b = is.read()) != -1){
+                    raf.write(b);
+                }
+                is.close();
+                if (ftp.completePendingCommand()){
+                    log.info("done!");
+                }else{
+                    log.info("can't get file:" + name);
+                }
+            }
+            raf.close();
+        }
+    }
 }

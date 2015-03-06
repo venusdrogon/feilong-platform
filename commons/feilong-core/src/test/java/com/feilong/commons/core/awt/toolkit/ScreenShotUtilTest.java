@@ -30,13 +30,13 @@ import com.feilong.commons.core.io.ImageType;
  */
 public class ScreenShotUtilTest{
 
-	/**
-	 * {@link com.feilong.commons.core.awt.toolkit.ScreenShotUtil#screenshot(java.lang.String, java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public final void testScreenshot(){
-		// 根据文件前缀变量和文件格式变量，自动生成文件名
-		String name = "e:/" + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP) + "." + "png"; //"png"
-		ScreenShotUtil.screenshot(name, ImageType.PNG);
-	}
+    /**
+     * {@link com.feilong.commons.core.awt.toolkit.ScreenShotUtil#screenshot(java.lang.String, java.lang.String)} 的测试方法。
+     */
+    @Test
+    public final void testScreenshot(){
+        // 根据文件前缀变量和文件格式变量，自动生成文件名
+        String name = "e:/" + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP) + "." + "png"; //"png"
+        ScreenShotUtil.screenshot(name, ImageType.PNG);
+    }
 }

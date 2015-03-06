@@ -22,93 +22,93 @@ import java.io.Serializable;
  */
 public class Customer implements Serializable{
 
-	private static final long	serialVersionUID	= -7749159103412879389L;
+    private static final long serialVersionUID = -7749159103412879389L;
 
-	/** The id. */
-	private long				id;
+    /** The id. */
+    private long              id;
 
-	/** The name. */
-	private String				name;
+    /** The name. */
+    private String            name;
 
-	/** The addresses. */
-	private Address[]			addresses;
+    /** The addresses. */
+    private Address[]         addresses;
 
-	/**
-	 * The Constructor.
-	 */
-	public Customer(){
-	}
+    /**
+     * The Constructor.
+     */
+    public Customer(){
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param id
-	 *            the id
-	 * @param name
-	 *            the name
-	 * @param addresses
-	 *            the addresses
-	 */
-	public Customer(long id, String name, Address[] addresses){
-		this.id = id;
-		this.name = name;
-		this.addresses = addresses;
-	}
+    /**
+     * The Constructor.
+     *
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param addresses
+     *            the addresses
+     */
+    public Customer(long id, String name, Address[] addresses){
+        this.id = id;
+        this.name = name;
+        this.addresses = addresses;
+    }
 
-	/**
-	 * 获得 addresses.
-	 *
-	 * @return the addresses
-	 */
-	public Address[] getAddresses(){
-		return addresses;
-	}
+    /**
+     * 获得 addresses.
+     *
+     * @return the addresses
+     */
+    public Address[] getAddresses(){
+        return addresses;
+    }
 
-	/**
-	 * 设置 addresses.
-	 *
-	 * @param addresses
-	 *            the addresses
-	 */
-	public void setAddresses(Address[] addresses){
-		this.addresses = addresses;
-	}
+    /**
+     * 设置 addresses.
+     *
+     * @param addresses
+     *            the addresses
+     */
+    public void setAddresses(Address[] addresses){
+        this.addresses = addresses;
+    }
 
-	/**
-	 * 获得 id.
-	 *
-	 * @return the id
-	 */
-	public long getId(){
-		return id;
-	}
+    /**
+     * 获得 id.
+     *
+     * @return the id
+     */
+    public long getId(){
+        return id;
+    }
 
-	/**
-	 * 设置 id.
-	 *
-	 * @param id
-	 *            the id
-	 */
-	public void setId(long id){
-		this.id = id;
-	}
+    /**
+     * 设置 id.
+     *
+     * @param id
+     *            the id
+     */
+    public void setId(long id){
+        this.id = id;
+    }
 
-	/**
-	 * 获得 name.
-	 *
-	 * @return the name
-	 */
-	public String getName(){
-		return name;
-	}
+    /**
+     * 获得 name.
+     *
+     * @return the name
+     */
+    public String getName(){
+        return name;
+    }
 
-	/**
-	 * 设置 name.
-	 *
-	 * @param name
-	 *            the name
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
+    /**
+     * 设置 name.
+     *
+     * @param name
+     *            the name
+     */
+    public void setName(String name){
+        this.name = name;
+    }
 }

@@ -28,57 +28,57 @@ import com.feilong.framework.netpay.payment.PaymentAdaptorFactory;
  */
 public class PaymentAdaptorNotFoundException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 4485565007832406655L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 4485565007832406655L;
 
-	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 */
-	public PaymentAdaptorNotFoundException(){
-		super();
-	}
+    /**
+     * Instantiates a new payment adaptor not found exception.
+     */
+    public PaymentAdaptorNotFoundException(){
+        super();
+    }
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public PaymentAdaptorNotFoundException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * The Constructor.
+     *
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public PaymentAdaptorNotFoundException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public PaymentAdaptorNotFoundException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new payment adaptor not found exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public PaymentAdaptorNotFoundException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public PaymentAdaptorNotFoundException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new payment adaptor not found exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public PaymentAdaptorNotFoundException(Throwable cause){
+        super(cause);
+    }
 
-	/**
-	 * Instantiates a new payment adaptor not found exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public PaymentAdaptorNotFoundException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new payment adaptor not found exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public PaymentAdaptorNotFoundException(String message, Throwable cause){
+        super(message, cause);
+    }
 }

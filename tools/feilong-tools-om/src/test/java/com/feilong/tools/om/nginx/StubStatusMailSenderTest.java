@@ -27,15 +27,15 @@ import org.junit.Test;
  */
 public class StubStatusMailSenderTest{
 
-	/**
-	 * Test method for {@link com.feilong.tools.om.nginx.StubStatusMailSender#sendMonitorMail(java.lang.String)}.
-	 * 
-	 * @throws IOException
-	 * @throws MessagingException
-	 */
-	@Test
-	public final void testSendMonitorMail() throws MessagingException,IOException{
-		String filePath = "F:\\stubstatus\\2014\\02-06\\02.txt";
-		StubStatusMailSender.sendMonitorMail(filePath);
-	}
+    /**
+     * Test method for {@link com.feilong.tools.om.nginx.StubStatusMailSender#sendMonitorMail(java.lang.String)}.
+     * 
+     * @throws IOException
+     * @throws MessagingException
+     */
+    @Test
+    public final void testSendMonitorMail() throws MessagingException,IOException{
+        String filePath = "F:\\stubstatus\\2014\\02-06\\02.txt";
+        StubStatusMailSender.sendMonitorMail(filePath);
+    }
 }

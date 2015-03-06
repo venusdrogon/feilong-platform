@@ -35,31 +35,31 @@ import com.feilong.framework.netpay.advance.command.QueryResult;
 @ContextConfiguration(locations = { "classpath*:spring/payment/advance/spring-payment-advanceAdaptor.xml" })
 public class BaseAdvanceAdaptorTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	private static final Logger		log	= LoggerFactory.getLogger(BaseAdvanceAdaptorTest.class);
+    /** The Constant log. */
+    private static final Logger  log = LoggerFactory.getLogger(BaseAdvanceAdaptorTest.class);
 
-	// private String code = "44";
+    // private String code = "44";
 
-	/** The application context. */
-	@SuppressWarnings("hiding")
-	@Autowired
-	protected ApplicationContext	applicationContext;
+    /** The application context. */
+    @SuppressWarnings("hiding")
+    @Autowired
+    protected ApplicationContext applicationContext;
 
-	/**
-	 * Gets the query result.
-	 * 
-	 * @param paymentAdvanceAdaptor
-	 *            the payment advance adaptor
-	 * @param queryRequest
-	 *            the query request
-	 * @throws Exception
-	 *             the exception
-	 */
-	protected void getQueryResult(PaymentAdvanceAdaptor paymentAdvanceAdaptor,QueryRequest queryRequest) throws Exception{
-		QueryResult queryResult = paymentAdvanceAdaptor.getQueryResult(queryRequest);
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(queryResult));
-		}
-	}
+    /**
+     * Gets the query result.
+     * 
+     * @param paymentAdvanceAdaptor
+     *            the payment advance adaptor
+     * @param queryRequest
+     *            the query request
+     * @throws Exception
+     *             the exception
+     */
+    protected void getQueryResult(PaymentAdvanceAdaptor paymentAdvanceAdaptor,QueryRequest queryRequest) throws Exception{
+        QueryResult queryResult = paymentAdvanceAdaptor.getQueryResult(queryRequest);
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(queryResult));
+        }
+    }
 
 }

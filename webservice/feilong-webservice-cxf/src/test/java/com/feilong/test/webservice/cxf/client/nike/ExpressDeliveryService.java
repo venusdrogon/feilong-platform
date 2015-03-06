@@ -36,20 +36,20 @@ import javax.xml.ws.ResponseWrapper;
 @XmlSeeAlso({ ObjectFactory.class })
 public interface ExpressDeliveryService{
 
-	/**
-	 * Transfer order sign.
-	 * 
-	 * @param arg0
-	 *            the arg0
-	 * @param arg1
-	 *            the arg1
-	 * @return the java.lang. string
-	 */
-	@WebResult(name = "returnInfo",targetNamespace = "")
-	@RequestWrapper(localName = "transferOrderSign",targetNamespace = "http://www.nikestore.com.cn/webService",className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSign")
-	@WebMethod
-	@ResponseWrapper(localName = "transferOrderSignResponse",targetNamespace = "http://www.nikestore.com.cn/webService",className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSignResponse")
-	public java.lang.String transferOrderSign(
-					@WebParam(name = "arg0",targetNamespace = "") java.lang.String arg0,
-					@WebParam(name = "arg1",targetNamespace = "") java.lang.String arg1);
+    /**
+     * Transfer order sign.
+     * 
+     * @param arg0
+     *            the arg0
+     * @param arg1
+     *            the arg1
+     * @return the java.lang. string
+     */
+    @WebResult(name = "returnInfo",targetNamespace = "")
+    @RequestWrapper(localName = "transferOrderSign",targetNamespace = "http://www.nikestore.com.cn/webService",className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSign")
+    @WebMethod
+    @ResponseWrapper(localName = "transferOrderSignResponse",targetNamespace = "http://www.nikestore.com.cn/webService",className = "com.feilong.test.webservice.cxf.client.nike.TransferOrderSignResponse")
+    public java.lang.String transferOrderSign(
+                    @WebParam(name = "arg0",targetNamespace = "") java.lang.String arg0,
+                    @WebParam(name = "arg1",targetNamespace = "") java.lang.String arg1);
 }

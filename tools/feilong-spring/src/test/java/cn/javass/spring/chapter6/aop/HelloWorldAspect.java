@@ -11,27 +11,27 @@ import com.feilong.commons.core.date.DateExtensionUtil;
 @SuppressWarnings("all")
 public class HelloWorldAspect{
 
-	private static final Logger	log	= LoggerFactory.getLogger(HelloWorldAspect.class);
+    private static final Logger log = LoggerFactory.getLogger(HelloWorldAspect.class);
 
-	private Date				begin;
+    private Date                begin;
 
-	private Date				end;
+    private Date                end;
 
-	// 前置通知
-	public void beforeAdvice(){
-		begin = new Date();
-		log.info("1.......before advice,{}", begin);
-	}
+    // 前置通知
+    public void beforeAdvice(){
+        begin = new Date();
+        log.info("1.......before advice,{}", begin);
+    }
 
-	// 后置最终通知
-	public void afterFinallyAdvice(){
-		end = new Date();
-		log.info("2.......after finally advice,{},耗时:{}", begin, DateExtensionUtil.getIntervalForView(begin, end));
-	}
+    // 后置最终通知
+    public void afterFinallyAdvice(){
+        end = new Date();
+        log.info("2.......after finally advice,{},耗时:{}", begin, DateExtensionUtil.getIntervalForView(begin, end));
+    }
 
-	public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
-		Object[] args = { "a" };
-		proceedingJoinPoint.proceed();
-		log.info("around");
-	}
+    public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+        Object[] args = { "a" };
+        proceedingJoinPoint.proceed();
+        log.info("around");
+    }
 }

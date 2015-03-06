@@ -29,34 +29,34 @@ import com.feilong.taglib.base.AbstractConditionalTag;
  */
 public class IsExistsFileTag extends AbstractConditionalTag{
 
-	private static final long	serialVersionUID	= 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 文件路径,<br>
-	 * 目前 仅支持 相对于根目录路径,使用/ 开头
-	 */
-	private String				filePath;
+    /**
+     * 文件路径,<br>
+     * 目前 仅支持 相对于根目录路径,使用/ 开头
+     */
+    private String            filePath;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.feilong.taglib.base.FeiLongBaseConditionalTag#condition()
-	 */
-	@Override
-	protected boolean condition(){
-		//web classes 目录
-		String classPath = ClassLoaderUtil.getClassPath().getPath();
-		//web 根目录
-		File rootPath = new File(classPath).getParentFile().getParentFile();
-		File file = new File(rootPath.getAbsolutePath() + filePath);
-		return file.exists();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.taglib.base.FeiLongBaseConditionalTag#condition()
+     */
+    @Override
+    protected boolean condition(){
+        //web classes 目录
+        String classPath = ClassLoaderUtil.getClassPath().getPath();
+        //web 根目录
+        File rootPath = new File(classPath).getParentFile().getParentFile();
+        File file = new File(rootPath.getAbsolutePath() + filePath);
+        return file.exists();
+    }
 
-	/**
-	 * @param filePath
-	 *            the filePath to set
-	 */
-	public void setFilePath(String filePath){
-		this.filePath = filePath;
-	}
+    /**
+     * @param filePath
+     *            the filePath to set
+     */
+    public void setFilePath(String filePath){
+        this.filePath = filePath;
+    }
 }

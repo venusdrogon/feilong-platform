@@ -32,74 +32,74 @@ import org.apache.solr.common.params.FacetParams;
  */
 public class SolrGroup<T> implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/** The group value. */
-	private String				groupValue;
+    /** The group value. */
+    private String            groupValue;
 
-	/** 这个聚合值的 总数. */
-	// = solrDocumentList.getNumFound();
-	private Long				numFound;
+    /** 这个聚合值的 总数. */
+    // = solrDocumentList.getNumFound();
+    private Long              numFound;
 
-	/** 将聚合的 每个 document 转成 bean. */
-	private List<T>				beans				= null;
+    /** 将聚合的 每个 document 转成 bean. */
+    private List<T>           beans            = null;
 
-	/**
-	 * Gets the group value.
-	 * 
-	 * @return the groupValue
-	 */
-	public String getGroupValue(){
-		return groupValue;
-	}
+    /**
+     * Gets the group value.
+     * 
+     * @return the groupValue
+     */
+    public String getGroupValue(){
+        return groupValue;
+    }
 
-	/**
-	 * Sets the group value.
-	 * 
-	 * @param groupValue
-	 *            the groupValue to set
-	 */
-	public void setGroupValue(String groupValue){
-		this.groupValue = groupValue;
-	}
+    /**
+     * Sets the group value.
+     * 
+     * @param groupValue
+     *            the groupValue to set
+     */
+    public void setGroupValue(String groupValue){
+        this.groupValue = groupValue;
+    }
 
-	/**
-	 * Gets the 这个聚合值的 总数.
-	 * 
-	 * @return the numFound
-	 */
-	public Long getNumFound(){
-		return numFound;
-	}
+    /**
+     * Gets the 这个聚合值的 总数.
+     * 
+     * @return the numFound
+     */
+    public Long getNumFound(){
+        return numFound;
+    }
 
-	/**
-	 * Sets the 这个聚合值的 总数.
-	 * 
-	 * @param numFound
-	 *            the numFound to set
-	 */
-	public void setNumFound(Long numFound){
-		this.numFound = numFound;
-	}
+    /**
+     * Sets the 这个聚合值的 总数.
+     * 
+     * @param numFound
+     *            the numFound to set
+     */
+    public void setNumFound(Long numFound){
+        this.numFound = numFound;
+    }
 
-	/**
-	 * Gets the 将聚合的 每个 document 转成 bean.
-	 * 
-	 * @return the beans
-	 */
-	public List<T> getBeans(){
-		return beans;
-	}
+    /**
+     * Gets the 将聚合的 每个 document 转成 bean.
+     * 
+     * @return the beans
+     */
+    public List<T> getBeans(){
+        return beans;
+    }
 
-	/**
-	 * Sets the 将聚合的 每个 document 转成 bean.
-	 * 
-	 * @param beans
-	 *            the beans to set
-	 */
-	public void setBeans(List<T> beans){
-		this.beans = beans;
-	}
+    /**
+     * Sets the 将聚合的 每个 document 转成 bean.
+     * 
+     * @param beans
+     *            the beans to set
+     */
+    public void setBeans(List<T> beans){
+        this.beans = beans;
+    }
 
 }

@@ -43,88 +43,88 @@ import com.feilong.commons.core.util.StringUtil;
  */
 public final class BrowserUtil{
 
-	/** Don't let anyone instantiate this class. */
-	private BrowserUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private BrowserUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 判断 userAgent 是否是移动设备.
-	 *
-	 * @param userAgent
-	 *            the user agent
-	 * @return the checks if is mobile device
-	 */
-	public static boolean getIsMobileDevice(String userAgent){
-		//if ( $http_user_agent ~ "(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC\-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT\-)|(SonyEricsson)|(NEC\-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi\-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG\-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC\-)|(SED\-)|(EMOL\-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)" )
-		if (//命中率高的 放前面
-		StringUtil.isContainIgnoreCase(userAgent, "iPhone")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Mobile")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Window CE")
-						||
-						//StringUtil.isContainIgnoreCase(userAgent, "WAPPER")||
-						StringUtil.isContainIgnoreCase(userAgent, "WAP") || StringUtil.isContainIgnoreCase(userAgent, "Android") ||
+    /**
+     * 判断 userAgent 是否是移动设备.
+     *
+     * @param userAgent
+     *            the user agent
+     * @return the checks if is mobile device
+     */
+    public static boolean getIsMobileDevice(String userAgent){
+        //if ( $http_user_agent ~ "(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC\-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT\-)|(SonyEricsson)|(NEC\-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi\-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG\-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC\-)|(SED\-)|(EMOL\-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)" )
+        if (//命中率高的 放前面
+        StringUtil.isContainIgnoreCase(userAgent, "iPhone")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Mobile")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Window CE")
+                        ||
+                        //StringUtil.isContainIgnoreCase(userAgent, "WAPPER")||
+                        StringUtil.isContainIgnoreCase(userAgent, "WAP") || StringUtil.isContainIgnoreCase(userAgent, "Android") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Alcatel") || StringUtil.isContainIgnoreCase(userAgent, "Amoisonic")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Amoi-") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Alcatel") || StringUtil.isContainIgnoreCase(userAgent, "Amoisonic")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Amoi-") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "AU.Browser") || StringUtil.isContainIgnoreCase(userAgent, "Arima") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "AU.Browser") || StringUtil.isContainIgnoreCase(userAgent, "Arima") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Bird") || StringUtil.isContainIgnoreCase(userAgent, "BenQ") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Bird") || StringUtil.isContainIgnoreCase(userAgent, "BenQ") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "CTL") || StringUtil.isContainIgnoreCase(userAgent, "CECT")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Compal") || StringUtil.isContainIgnoreCase(userAgent, "CLDC")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Capitel") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "CTL") || StringUtil.isContainIgnoreCase(userAgent, "CECT")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Compal") || StringUtil.isContainIgnoreCase(userAgent, "CLDC")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Capitel") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Daxian") || StringUtil.isContainIgnoreCase(userAgent, "DBTEL")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Dopod") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Daxian") || StringUtil.isContainIgnoreCase(userAgent, "DBTEL")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Dopod") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Eastcom") || StringUtil.isContainIgnoreCase(userAgent, "EMOL-")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Ericsson") || StringUtil.isContainIgnoreCase(userAgent, "EG900") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Eastcom") || StringUtil.isContainIgnoreCase(userAgent, "EMOL-")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Ericsson") || StringUtil.isContainIgnoreCase(userAgent, "EG900") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "G900/V1.0") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "G900/V1.0") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Haier") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Haier") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "INNO55") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "INNO55") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "kejian") || StringUtil.isContainIgnoreCase(userAgent, "KONKA")
-						|| StringUtil.isContainIgnoreCase(userAgent, "KM.Browser") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "kejian") || StringUtil.isContainIgnoreCase(userAgent, "KONKA")
+                        || StringUtil.isContainIgnoreCase(userAgent, "KM.Browser") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Lenovo") || StringUtil.isContainIgnoreCase(userAgent, "LG-") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Lenovo") || StringUtil.isContainIgnoreCase(userAgent, "LG-") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Mitsu") || StringUtil.isContainIgnoreCase(userAgent, "Motorola")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Mini") || StringUtil.isContainIgnoreCase(userAgent, "MOT-")
-						|| StringUtil.isContainIgnoreCase(userAgent, "MIDP") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Mitsu") || StringUtil.isContainIgnoreCase(userAgent, "Motorola")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Mini") || StringUtil.isContainIgnoreCase(userAgent, "MOT-")
+                        || StringUtil.isContainIgnoreCase(userAgent, "MIDP") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Nokia") || StringUtil.isContainIgnoreCase(userAgent, "NEC-") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Nokia") || StringUtil.isContainIgnoreCase(userAgent, "NEC-") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Obigo") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Obigo") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "PANTECH") || StringUtil.isContainIgnoreCase(userAgent, "PHILIPS")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Palm") || StringUtil.isContainIgnoreCase(userAgent, "Panasonic") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "PANTECH") || StringUtil.isContainIgnoreCase(userAgent, "PHILIPS")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Palm") || StringUtil.isContainIgnoreCase(userAgent, "Panasonic") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "Soutec") || StringUtil.isContainIgnoreCase(userAgent, "SOUTEC")
-						|| StringUtil.isContainIgnoreCase(userAgent, "SAGEM") || StringUtil.isContainIgnoreCase(userAgent, "SEC-")
-						|| StringUtil.isContainIgnoreCase(userAgent, "SEMC-Browser")
-						|| StringUtil.isContainIgnoreCase(userAgent, "Symbian") || StringUtil.isContainIgnoreCase(userAgent, "Smartphone")
-						|| StringUtil.isContainIgnoreCase(userAgent, "SHARP") || StringUtil.isContainIgnoreCase(userAgent, "SonyEricsson")
-						|| StringUtil.isContainIgnoreCase(userAgent, "SAMSUNG") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "Soutec") || StringUtil.isContainIgnoreCase(userAgent, "SOUTEC")
+                        || StringUtil.isContainIgnoreCase(userAgent, "SAGEM") || StringUtil.isContainIgnoreCase(userAgent, "SEC-")
+                        || StringUtil.isContainIgnoreCase(userAgent, "SEMC-Browser")
+                        || StringUtil.isContainIgnoreCase(userAgent, "Symbian") || StringUtil.isContainIgnoreCase(userAgent, "Smartphone")
+                        || StringUtil.isContainIgnoreCase(userAgent, "SHARP") || StringUtil.isContainIgnoreCase(userAgent, "SonyEricsson")
+                        || StringUtil.isContainIgnoreCase(userAgent, "SAMSUNG") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "TDG") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "TDG") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "UCWEB") || StringUtil.isContainIgnoreCase(userAgent, "UP.Browser")
-						|| StringUtil.isContainIgnoreCase(userAgent, "UP.Link") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "UCWEB") || StringUtil.isContainIgnoreCase(userAgent, "UP.Browser")
+                        || StringUtil.isContainIgnoreCase(userAgent, "UP.Link") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "wxd.Mms") || StringUtil.isContainIgnoreCase(userAgent, "WxdB.Browser") ||
+                        StringUtil.isContainIgnoreCase(userAgent, "wxd.Mms") || StringUtil.isContainIgnoreCase(userAgent, "WxdB.Browser") ||
 
-						StringUtil.isContainIgnoreCase(userAgent, "ZTE")
+                        StringUtil.isContainIgnoreCase(userAgent, "ZTE")
 
-		){
-			return true;
-		}
-		return false;
-	}
+        ){
+            return true;
+        }
+        return false;
+    }
 }

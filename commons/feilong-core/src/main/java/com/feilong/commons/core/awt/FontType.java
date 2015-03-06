@@ -25,25 +25,25 @@ package com.feilong.commons.core.awt;
  */
 public final class FontType{
 
-	/** <code>{@value}</code>. */
-	public static final String	KAITI		= "楷体_gb2312";
+    /** <code>{@value}</code>. */
+    public static final String KAITI       = "楷体_gb2312";
 
-	/** <code>{@value}</code>. */
-	public static final String	SONGTI		= "宋体";
+    /** <code>{@value}</code>. */
+    public static final String SONGTI      = "宋体";
 
-	/** <code>{@value}</code>. */
-	public static final String	YAHEI		= "微软雅黑";
+    /** <code>{@value}</code>. */
+    public static final String YAHEI       = "微软雅黑";
 
-	/** <code>{@value}</code>. */
-	public static final String	VERDANA		= "Verdana";
+    /** <code>{@value}</code>. */
+    public static final String VERDANA     = "Verdana";
 
-	/** <code>{@value}</code>. */
-	public static final String	COURIER_NEW	= "Courier New";
+    /** <code>{@value}</code>. */
+    public static final String COURIER_NEW = "Courier New";
 
-	/** Don't let anyone instantiate this class. */
-	private FontType(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private FontType(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 }

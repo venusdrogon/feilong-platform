@@ -31,25 +31,25 @@ import com.feilong.tools.jfreechart.pie.PieType;
  */
 public class PieChartFactoryTest{
 
-	@Test
-	public void createImage() throws IOException{
-		PieType pieType = PieType.RING;
-		Map<String, Number> keyAndDataMap = new LinkedHashMap<String, Number>();
-		keyAndDataMap.put("失败率", 50);
-		keyAndDataMap.put("成功率", 250);
-		String chartTitle = "饼状图" + pieType;
-		String imageNameOrOutputStream = chartTitle + ".png";
-		int width = 800;
-		int height = 600;
-		PieChartEntity chartEntiry = new PieChartEntity();
-		chartEntiry.setChartTitle(chartTitle);
-		chartEntiry.setKeyAndDataMap(keyAndDataMap);
-		ChartInfoEntity chartInfoEntity = new ChartInfoEntity();
-		chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
-		chartInfoEntity.setWidth(width);
-		chartInfoEntity.setHeight(height);
-		ChartUtil jfreeChartUtil = PieChartFactory.createChartUtil(chartEntiry, pieType);
-		//jfreeChartUtil.getPiePlot3D().setBackgroundPaint(Color.black);
-		jfreeChartUtil.createImage(chartInfoEntity);
-	}
+    @Test
+    public void createImage() throws IOException{
+        PieType pieType = PieType.RING;
+        Map<String, Number> keyAndDataMap = new LinkedHashMap<String, Number>();
+        keyAndDataMap.put("失败率", 50);
+        keyAndDataMap.put("成功率", 250);
+        String chartTitle = "饼状图" + pieType;
+        String imageNameOrOutputStream = chartTitle + ".png";
+        int width = 800;
+        int height = 600;
+        PieChartEntity chartEntiry = new PieChartEntity();
+        chartEntiry.setChartTitle(chartTitle);
+        chartEntiry.setKeyAndDataMap(keyAndDataMap);
+        ChartInfoEntity chartInfoEntity = new ChartInfoEntity();
+        chartInfoEntity.setImageNameOrOutputStream(imageNameOrOutputStream);
+        chartInfoEntity.setWidth(width);
+        chartInfoEntity.setHeight(height);
+        ChartUtil jfreeChartUtil = PieChartFactory.createChartUtil(chartEntiry, pieType);
+        //jfreeChartUtil.getPiePlot3D().setBackgroundPaint(Color.black);
+        jfreeChartUtil.createImage(chartInfoEntity);
+    }
 }

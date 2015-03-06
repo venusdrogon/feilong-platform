@@ -16,41 +16,41 @@ import org.apache.velocity.tools.view.ViewToolContext;
 @SuppressWarnings("all")
 public class UrlDirective extends AbstractDirective1{
 
-	@Override
-	protected boolean doRender(InternalContextAdapter internalContext,ViewToolContext context,Writer writer,Node node) throws IOException,
-					ResourceNotFoundException,ParseErrorException,MethodInvocationException{
-		// get url
-		SimpleNode sn = (SimpleNode) node.jjtGetChild(0);
-		String url = (String) sn.value(internalContext);
+    @Override
+    protected boolean doRender(InternalContextAdapter internalContext,ViewToolContext context,Writer writer,Node node) throws IOException,
+                    ResourceNotFoundException,ParseErrorException,MethodInvocationException{
+        // get url
+        SimpleNode sn = (SimpleNode) node.jjtGetChild(0);
+        String url = (String) sn.value(internalContext);
 
-		// get context path
-		String contextPath = null;
-		//= context.getRequest().getContextPath();
-		if ("/".equals(contextPath)){
-			contextPath = "";
-		}
+        // get context path
+        String contextPath = null;
+        //= context.getRequest().getContextPath();
+        if ("/".equals(contextPath)){
+            contextPath = "";
+        }
 
-		// if (context.getResponse() instanceof UrlRewriteWrappedResponse){
-		// url = context.getResponse().encodeURL(url);
-		// }else{
-		// url = context + url;
-		// }
+        // if (context.getResponse() instanceof UrlRewriteWrappedResponse){
+        // url = context.getResponse().encodeURL(url);
+        // }else{
+        // url = context + url;
+        // }
 
-		url = context + url;
+        url = context + url;
 
-		writer.write(url);
+        writer.write(url);
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String getName(){
-		return "url";
-	}
+    @Override
+    public String getName(){
+        return "url";
+    }
 
-	@Override
-	public int getType(){
-		return LINE;
-	}
+    @Override
+    public int getType(){
+        return LINE;
+    }
 
 }

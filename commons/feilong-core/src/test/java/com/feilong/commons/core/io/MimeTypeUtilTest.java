@@ -29,19 +29,19 @@ import org.slf4j.LoggerFactory;
  */
 public class MimeTypeUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(MimeTypeUtilTest.class);
+    private static final Logger log = LoggerFactory.getLogger(MimeTypeUtilTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.io.MimeTypeUtil#getContentTypeByFileName(java.lang.String)}.
-	 */
-	@Test
-	public final void testGetContentTypeByFileName(){
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.mkv"));
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.oxt"));
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.jpg"));
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.js"));
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.css"));
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.ppt"));
-		log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.pdf"));
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.io.MimeTypeUtil#getContentTypeByFileName(java.lang.String)}.
+     */
+    @Test
+    public final void testGetContentTypeByFileName(){
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.mkv"));
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.oxt"));
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.jpg"));
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.js"));
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.css"));
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.ppt"));
+        log.debug(getContentTypeByFileName("E:\\2009 阿凡达 詹姆斯·卡梅隆 178分钟加长收藏版.pdf"));
+    }
 }

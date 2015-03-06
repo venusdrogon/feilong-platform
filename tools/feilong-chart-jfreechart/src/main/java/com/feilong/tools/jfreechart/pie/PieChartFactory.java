@@ -30,48 +30,48 @@ import com.feilong.tools.jfreechart.ChartUtil;
  */
 public class PieChartFactory{
 
-	/**
-	 * Creates a new PieChart object.
-	 * 
-	 * @param pieChartEntity
-	 *            the pie chart entity
-	 * @param pieType
-	 *            the pie type
-	 * @return the chart util
-	 */
-	public static ChartUtil createChartUtil(PieChartEntity pieChartEntity,PieType pieType){
-		switch (pieType) {
-			case PIE3D:
-				return new Pie3DChartUtil(pieChartEntity);
-			default:
-				return new DefaultPieChartUtil(pieChartEntity, pieType);
-		}
-	}
+    /**
+     * Creates a new PieChart object.
+     * 
+     * @param pieChartEntity
+     *            the pie chart entity
+     * @param pieType
+     *            the pie type
+     * @return the chart util
+     */
+    public static ChartUtil createChartUtil(PieChartEntity pieChartEntity,PieType pieType){
+        switch (pieType) {
+            case PIE3D:
+                return new Pie3DChartUtil(pieChartEntity);
+            default:
+                return new DefaultPieChartUtil(pieChartEntity, pieType);
+        }
+    }
 
-	/**
-	 * Creates a new PieChart object.
-	 * 
-	 * @param pieChartEntity
-	 *            the pie chart entity
-	 * @param pieType
-	 *            the pie type
-	 * @return the j free chart
-	 */
-	public static JFreeChart createJFreeChart(PieChartEntity pieChartEntity,PieType pieType){
-		String chartTitle = pieChartEntity.getChartTitle();// freeChart title
-		PieDataset pieDataset = ChartDatesetUtil.getPieDataset(pieChartEntity);// data
-		boolean showLegend = pieChartEntity.isShowLegend();// include legend
-		boolean tooltips = pieChartEntity.isTooltips();
-		boolean urls = pieChartEntity.isUrls();
-		switch (pieType) {
-			case PIE3D:
-				return ChartFactory.createPieChart3D(chartTitle, pieDataset, showLegend, tooltips, urls);
-			case PIE:
-				return ChartFactory.createPieChart(chartTitle, pieDataset, showLegend, tooltips, urls);
-			case RING:
-				return ChartFactory.createRingChart(chartTitle, pieDataset, showLegend, tooltips, urls);
-			default:
-				throw new IllegalArgumentException("FeiLongBasePieChartUtil don't support " + pieType);
-		}
-	}
+    /**
+     * Creates a new PieChart object.
+     * 
+     * @param pieChartEntity
+     *            the pie chart entity
+     * @param pieType
+     *            the pie type
+     * @return the j free chart
+     */
+    public static JFreeChart createJFreeChart(PieChartEntity pieChartEntity,PieType pieType){
+        String chartTitle = pieChartEntity.getChartTitle();// freeChart title
+        PieDataset pieDataset = ChartDatesetUtil.getPieDataset(pieChartEntity);// data
+        boolean showLegend = pieChartEntity.isShowLegend();// include legend
+        boolean tooltips = pieChartEntity.isTooltips();
+        boolean urls = pieChartEntity.isUrls();
+        switch (pieType) {
+            case PIE3D:
+                return ChartFactory.createPieChart3D(chartTitle, pieDataset, showLegend, tooltips, urls);
+            case PIE:
+                return ChartFactory.createPieChart(chartTitle, pieDataset, showLegend, tooltips, urls);
+            case RING:
+                return ChartFactory.createRingChart(chartTitle, pieDataset, showLegend, tooltips, urls);
+            default:
+                throw new IllegalArgumentException("FeiLongBasePieChartUtil don't support " + pieType);
+        }
+    }
 }

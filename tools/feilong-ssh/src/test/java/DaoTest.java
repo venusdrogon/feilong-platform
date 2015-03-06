@@ -27,20 +27,20 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * @version 1.0.7 2014-6-25 16:29:22
  */
 @ContextConfiguration(locations = { "classpath*:loxia-hibernate-context.xml",//
-									"classpath*:loxia-service-context.xml",//
-									"classpath*:spring/spring-dao.xml"//
+                                   "classpath*:loxia-service-context.xml",//
+                                   "classpath*:spring/spring-dao.xml"//
 })
 public class DaoTest extends AbstractJUnit4SpringContextTests{
 
-	/** The session factory. */
-	@Autowired
-	private LocalSessionFactoryBean	sessionFactory;
+    /** The session factory. */
+    @Autowired
+    private LocalSessionFactoryBean sessionFactory;
 
-	/**
-	 * Creates the tables.
-	 */
-	@Test
-	public void createTables(){
-		sessionFactory.updateDatabaseSchema();
-	}
+    /**
+     * Creates the tables.
+     */
+    @Test
+    public void createTables(){
+        sessionFactory.updateDatabaseSchema();
+    }
 }

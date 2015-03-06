@@ -28,49 +28,49 @@ import net.sf.json.processors.JsonValueProcessor;
  */
 public class DoubleJsonValueProcessor implements JsonValueProcessor{
 
-	/**
-	 * Instantiates a new double json value processor.
-	 */
-	public DoubleJsonValueProcessor(){
+    /**
+     * Instantiates a new double json value processor.
+     */
+    public DoubleJsonValueProcessor(){
 
-	}
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.json.processors.JsonValueProcessor#processArrayValue(java.lang.Object, net.sf.json.JsonConfig)
-	 */
-	@Override
-	public Object processArrayValue(Object arg0,JsonConfig arg1){
-		return process(arg0);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see net.sf.json.processors.JsonValueProcessor#processArrayValue(java.lang.Object, net.sf.json.JsonConfig)
+     */
+    @Override
+    public Object processArrayValue(Object arg0,JsonConfig arg1){
+        return process(arg0);
+    }
 
-	/**
-	 * Process.
-	 * 
-	 * @param arg0
-	 *            the arg0
-	 * @return the object
-	 */
-	private Object process(Object arg0){
-		if (arg0 == null){
-			return "";
-		}else{
-			//对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
-			//new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
-			//BigDecimal.valueOf(0.1) ====>  0.1
-			BigDecimal a = BigDecimal.valueOf((Double) arg0);
-			return String.valueOf(a);
-		}
-	}
+    /**
+     * Process.
+     * 
+     * @param arg0
+     *            the arg0
+     * @return the object
+     */
+    private Object process(Object arg0){
+        if (arg0 == null){
+            return "";
+        }else{
+            //对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
+            //new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
+            //BigDecimal.valueOf(0.1) ====>  0.1
+            BigDecimal a = BigDecimal.valueOf((Double) arg0);
+            return String.valueOf(a);
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.json.processors.JsonValueProcessor#processObjectValue(java.lang.String, java.lang.Object, net.sf.json.JsonConfig)
-	 */
-	@Override
-	public Object processObjectValue(String arg0,Object arg1,JsonConfig arg2){
-		return process(arg1);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see net.sf.json.processors.JsonValueProcessor#processObjectValue(java.lang.String, java.lang.Object, net.sf.json.JsonConfig)
+     */
+    @Override
+    public Object processObjectValue(String arg0,Object arg1,JsonConfig arg2){
+        return process(arg1);
+    }
 }

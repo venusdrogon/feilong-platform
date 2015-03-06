@@ -98,37 +98,37 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  */
 public final class CreditCardQueryResultPaser extends AbstractVarCommandXmlParse<CreditCardQueryResult>{
 
-	/** The Constant log. */
-	private static final Logger	log						= LoggerFactory.getLogger(CreditCardQueryResultPaser.class);
+    /** The Constant log. */
+    private static final Logger log                  = LoggerFactory.getLogger(CreditCardQueryResultPaser.class);
 
-	/** The Constant XPATH_EXPRESSION_VAR. */
-	private static final String	XPATH_EXPRESSION_VAR	= "/wddxPacket/data/struct/var";
+    /** The Constant XPATH_EXPRESSION_VAR. */
+    private static final String XPATH_EXPRESSION_VAR = "/wddxPacket/data/struct/var";
 
-	/**
-	 * 解析 wddxPacketXML ,获得我们需要的 var name 和值.
-	 * 
-	 * @param wddxPacketXML
-	 *            the wddx packet xml
-	 * @return the var name and value map
-	 */
-	@Override
-	protected Map<String, String> getVarNameAndValueMap(String wddxPacketXML){
-		Document document = Dom4jUtil.string2Document(wddxPacketXML);
+    /**
+     * 解析 wddxPacketXML ,获得我们需要的 var name 和值.
+     * 
+     * @param wddxPacketXML
+     *            the wddx packet xml
+     * @return the var name and value map
+     */
+    @Override
+    protected Map<String, String> getVarNameAndValueMap(String wddxPacketXML){
+        Document document = Dom4jUtil.string2Document(wddxPacketXML);
 
-		@SuppressWarnings("unchecked")
-		List<Node> selectNodes = document.selectNodes(XPATH_EXPRESSION_VAR);
+        @SuppressWarnings("unchecked")
+        List<Node> selectNodes = document.selectNodes(XPATH_EXPRESSION_VAR);
 
-		Map<String, String> varNameAndValueMap = new HashMap<String, String>();
+        Map<String, String> varNameAndValueMap = new HashMap<String, String>();
 
-		for (Node node : selectNodes){
-			String varName = Dom4jUtil.getAttributeValue(node, "name");
-			String stringValue = node.getStringValue();
-			varNameAndValueMap.put(varName, stringValue);
-		}
+        for (Node node : selectNodes){
+            String varName = Dom4jUtil.getAttributeValue(node, "name");
+            String stringValue = node.getStringValue();
+            varNameAndValueMap.put(varName, stringValue);
+        }
 
-		if (log.isInfoEnabled()){
-			log.info("varNameAndValueMap:{}", JsonUtil.format(varNameAndValueMap));
-		}
-		return varNameAndValueMap;
-	}
+        if (log.isInfoEnabled()){
+            log.info("varNameAndValueMap:{}", JsonUtil.format(varNameAndValueMap));
+        }
+        return varNameAndValueMap;
+    }
 }

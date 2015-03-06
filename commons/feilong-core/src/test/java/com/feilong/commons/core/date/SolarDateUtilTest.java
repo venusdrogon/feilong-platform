@@ -27,14 +27,14 @@ import org.slf4j.LoggerFactory;
  */
 public class SolarDateUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SolarDateUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SolarDateUtilTest.class);
 
-	/**
-	 * To lundar.
-	 */
-	@Test
-	public void toLundar(){
-		log.info(SolarDateUtil.toLundar(2013, 1, 8));
-	}
+    /**
+     * To lundar.
+     */
+    @Test
+    public void toLundar(){
+        log.info(SolarDateUtil.toLundar(2013, 1, 8));
+    }
 }

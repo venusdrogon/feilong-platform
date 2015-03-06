@@ -49,84 +49,84 @@ import com.feilong.tools.velocity.VelocityUtil;
 @ContextConfiguration(locations = { "classpath*:spring/payment/payment/spring-payment-adaptor.xml" })
 public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
 
-	/** The Constant log. */
-	protected static final Logger	log					= LoggerFactory.getLogger(BasePaymentTest.class);
+    /** The Constant log. */
+    protected static final Logger log                 = LoggerFactory.getLogger(BasePaymentTest.class);
 
-	/** The template in class path. */
-	private String					templateInClassPath	= "paymentChannel.vm";
+    /** The template in class path. */
+    private String                templateInClassPath = "paymentChannel.vm";
 
-	/** The encode. */
-	private String					encode_file			= CharsetType.UTF8;
+    /** The encode. */
+    private String                encode_file         = CharsetType.UTF8;
 
-	/** The open file. */
-	private boolean					openFile			= true;
+    /** The open file. */
+    private boolean               openFile            = true;
 
-	/**
-	 * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
-	 * 
-	 * @param paymentAdaptor
-	 *            the payment adaptor
-	 * @param specialSignMap
-	 *            the special sign map
-	 */
-	protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
-		PayRequest payRequest = PaymentTest.construcTestPayRequest();
+    /**
+     * 通用的测试方法(自动取到paymentAdaptor 的 Qualifier value).
+     * 
+     * @param paymentAdaptor
+     *            the payment adaptor
+     * @param specialSignMap
+     *            the special sign map
+     */
+    protected void createPaymentForm(PaymentAdaptor paymentAdaptor,Map<String, String> specialSignMap){
+        PayRequest payRequest = PaymentTest.construcTestPayRequest();
 
-		PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
+        PaymentFormEntity paymentFormEntity = paymentAdaptor.getPaymentFormEntity(payRequest, specialSignMap);
 
-		if (null == paymentFormEntity){
-			throw new IllegalArgumentException("paymentFormEntity can't be null/empty!,do you implements complete?");
-		}
+        if (null == paymentFormEntity){
+            throw new IllegalArgumentException("paymentFormEntity can't be null/empty!,do you implements complete?");
+        }
 
-		if (openFile){
-			log.info(JsonUtil.format(paymentFormEntity));
+        if (openFile){
+            log.info(JsonUtil.format(paymentFormEntity));
 
-			String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
-			log.info(fullEncodedUrl);
+            String fullEncodedUrl = paymentFormEntity.getFullEncodedUrl();
+            log.info(fullEncodedUrl);
 
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("paymentFormEntity", paymentFormEntity);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("paymentFormEntity", paymentFormEntity);
 
-			String method = paymentFormEntity.getMethod();
+            String method = paymentFormEntity.getMethod();
 
-			// if (method.toLowerCase().equals("get")){
-			// DesktopUtil.browse(fullEncodedUrl);
-			// }else{
+            // if (method.toLowerCase().equals("get")){
+            // DesktopUtil.browse(fullEncodedUrl);
+            // }else{
 
-			String filePath = getFilePath();
+            String filePath = getFilePath();
 
-			String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
-			log.info(html);
+            String html = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
+            log.info(html);
 
-			writeAndOpen(filePath, html);
-			// }
-		}
-	}
+            writeAndOpen(filePath, html);
+            // }
+        }
+    }
 
-	/**
-	 * @param filePath
-	 * @param html
-	 */
-	private void writeAndOpen(String filePath,String html){
-		try{
-			IOWriteUtil.write(filePath, html, encode_file);
-			DesktopUtil.open(filePath);
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * @param filePath
+     * @param html
+     */
+    private void writeAndOpen(String filePath,String html){
+        try{
+            IOWriteUtil.write(filePath, html, encode_file);
+            DesktopUtil.open(filePath);
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	/**
-	 * @return
-	 */
-	private String getFilePath(){
-		Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
-		Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
-		String paymentAdaptorName = qualifier.value();
-		String fileName = paymentAdaptorName + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
+    /**
+     * @return
+     */
+    private String getFilePath(){
+        Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");
+        Qualifier qualifier = declaredField.getAnnotation(Qualifier.class);
+        String paymentAdaptorName = qualifier.value();
+        String fileName = paymentAdaptorName + DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
 
-		String folderPath = SystemUtils.USER_HOME + "\\feilong\\payment\\" + paymentAdaptorName;
-		String filePath = folderPath + "\\" + fileName + ".html";
-		return filePath;
-	}
+        String folderPath = SystemUtils.USER_HOME + "\\feilong\\payment\\" + paymentAdaptorName;
+        String filePath = folderPath + "\\" + fileName + ".html";
+        return filePath;
+    }
 }

@@ -44,140 +44,140 @@ import com.feilong.test.User;
  */
 public class ObjectUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ObjectUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ObjectUtilTest.class);
 
-	/**
-	 * Name.
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void name() throws IOException{
-		//		 log.info("Size of Object: " + ObjectUtil.size(new Object()));
-		log.info("Size of Calendar: " + ObjectUtil.size(Calendar.getInstance()));
-		log.info("Size of HashMap: " + ObjectUtil.size(new HashMap<String, String>()));
-	}
+    /**
+     * Name.
+     * 
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void name() throws IOException{
+        //		 log.info("Size of Object: " + ObjectUtil.size(new Object()));
+        log.info("Size of Calendar: " + ObjectUtil.size(Calendar.getInstance()));
+        log.info("Size of HashMap: " + ObjectUtil.size(new HashMap<String, String>()));
+    }
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equalsNotNull(java.lang.Object, java.lang.Object)}.
-	 */
-	@Test
-	public final void testEqualsNotNull(){
-		Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, 2));
-		Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, null));
-		Assert.assertEquals(false, ObjectUtil.equalsNotNull(null, 2));
-		Assert.assertEquals(false, ObjectUtil.equalsNotNull(null, null));
+    /**
+     * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#equalsNotNull(java.lang.Object, java.lang.Object)}.
+     */
+    @Test
+    public final void testEqualsNotNull(){
+        Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, 2));
+        Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, null));
+        Assert.assertEquals(false, ObjectUtil.equalsNotNull(null, 2));
+        Assert.assertEquals(false, ObjectUtil.equalsNotNull(null, null));
 
-		Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, "1"));
-		Assert.assertEquals(true, ObjectUtil.equalsNotNull(1, 1));
-		Assert.assertEquals(true, ObjectUtil.equalsNotNull("1", "1"));
-	}
+        Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, "1"));
+        Assert.assertEquals(true, ObjectUtil.equalsNotNull(1, 1));
+        Assert.assertEquals(true, ObjectUtil.equalsNotNull("1", "1"));
+    }
 
-	/**
-	 * Assert equals.
-	 */
-	@Test
-	public final void assertEquals(){
+    /**
+     * Assert equals.
+     */
+    @Test
+    public final void assertEquals(){
 
-		Long a = new Long(1L);
-		Long b = new Long(1L);
+        Long a = new Long(1L);
+        Long b = new Long(1L);
 
-		log.info((a == b) + "");
-		log.info(a.equals(b) + "");
+        log.info((a == b) + "");
+        log.info(a.equals(b) + "");
 
-		User user = new User(1L);
-		List<User> list = new ArrayList<User>();
+        User user = new User(1L);
+        List<User> list = new ArrayList<User>();
 
-		list.add(user);
-		list.add(new User(1L));
-		list.add(new User(new Long(1L)));
-		list.add(new User(new Long(1L)));
-		list.add(new User(new Long(1L)));
+        list.add(user);
+        list.add(new User(1L));
+        list.add(new User(new Long(1L)));
+        list.add(new User(new Long(1L)));
+        list.add(new User(new Long(1L)));
 
-		for (User user2 : list){
-			log.info((user2.getId() == user.getId()) + "");
-		}
-	}
+        for (User user2 : list){
+            log.info((user2.getId() == user.getId()) + "");
+        }
+    }
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toIterator(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToIterator(){
+    /**
+     * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toIterator(java.lang.Object)}.
+     */
+    @Test
+    public final void testToIterator(){
 
-		// *************************逗号分隔的数组********************************
-		log.info(StringUtils.center("逗号分隔的数组", 60, "*"));
-		Iterator<?> iterator = ObjectUtil.toIterator("1,2");
-		printIterator(iterator);
+        // *************************逗号分隔的数组********************************
+        log.info(StringUtils.center("逗号分隔的数组", 60, "*"));
+        Iterator<?> iterator = ObjectUtil.toIterator("1,2");
+        printIterator(iterator);
 
-		// ************************map*********************************
-		log.info(StringUtils.center("map", 60, "*"));
-		Map<String, String> map = new HashMap<String, String>();
+        // ************************map*********************************
+        log.info(StringUtils.center("map", 60, "*"));
+        Map<String, String> map = new HashMap<String, String>();
 
-		map.put("a", "1");
-		map.put("b", "2");
+        map.put("a", "1");
+        map.put("b", "2");
 
-		iterator = ObjectUtil.toIterator(map);
-		printIterator(iterator);
+        iterator = ObjectUtil.toIterator(map);
+        printIterator(iterator);
 
-		// ***************************array******************************
-		log.info(StringUtils.center("array", 60, "*"));
-		Object[] array = { "5", 8 };
-		iterator = ObjectUtil.toIterator(array);
-		printIterator(iterator);
-		// ***************************collection******************************
-		log.info(StringUtils.center("collection", 60, "*"));
-		Collection<String> collection = new ArrayList<String>();
-		collection.add("aaaa");
-		collection.add("nnnnn");
+        // ***************************array******************************
+        log.info(StringUtils.center("array", 60, "*"));
+        Object[] array = { "5", 8 };
+        iterator = ObjectUtil.toIterator(array);
+        printIterator(iterator);
+        // ***************************collection******************************
+        log.info(StringUtils.center("collection", 60, "*"));
+        Collection<String> collection = new ArrayList<String>();
+        collection.add("aaaa");
+        collection.add("nnnnn");
 
-		iterator = ObjectUtil.toIterator(collection);
-		printIterator(iterator);
+        iterator = ObjectUtil.toIterator(collection);
+        printIterator(iterator);
 
-		// **********************enumeration***********************************
-		log.info(StringUtils.center("enumeration", 60, "*"));
-		Enumeration<Object> enumeration = new StringTokenizer("this is a test");
-		log.debug(JsonUtil.format(ObjectUtil.toIterator(enumeration)));
-	}
+        // **********************enumeration***********************************
+        log.info(StringUtils.center("enumeration", 60, "*"));
+        Enumeration<Object> enumeration = new StringTokenizer("this is a test");
+        log.debug(JsonUtil.format(ObjectUtil.toIterator(enumeration)));
+    }
 
-	/**
-	 * Prints the iterator.
-	 * 
-	 * @param iterator
-	 *            the iterator
-	 */
-	private void printIterator(Iterator<?> iterator){
-		while (iterator.hasNext()){
-			Object object = iterator.next();
-			log.info(object.toString());
-		}
-	}
+    /**
+     * Prints the iterator.
+     * 
+     * @param iterator
+     *            the iterator
+     */
+    private void printIterator(Iterator<?> iterator){
+        while (iterator.hasNext()){
+            Object object = iterator.next();
+            log.info(object.toString());
+        }
+    }
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toInteger(java.lang.Object)}.
-	 */
-	@Test
-	public final void testToInteger(){
-		Assert.assertEquals(8, ObjectUtil.toInteger(8L).intValue());
-		Assert.assertEquals(8, ObjectUtil.toInteger("8").intValue());
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toInteger(java.lang.Object)}.
+     */
+    @Test
+    public final void testToInteger(){
+        Assert.assertEquals(8, ObjectUtil.toInteger(8L).intValue());
+        Assert.assertEquals(8, ObjectUtil.toInteger("8").intValue());
+    }
 
-	/**
-	 * Test to string object.
-	 */
-	@Test
-	public final void testToStringObject(){
-		String[] aaaa = { "aa", "aaa" };
-		log.info(ObjectUtil.toString(aaaa));
-	}
+    /**
+     * Test to string object.
+     */
+    @Test
+    public final void testToStringObject(){
+        String[] aaaa = { "aa", "aaa" };
+        log.info(ObjectUtil.toString(aaaa));
+    }
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toT(java.lang.Object, java.lang.Class)}.
-	 */
-	@Test
-	public final void testToT(){
-		log.info(ObjectUtil.toT(BigDecimal.ONE, Float.class) + "");
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.lang.ObjectUtil#toT(java.lang.Object, java.lang.Class)}.
+     */
+    @Test
+    public final void testToT(){
+        log.info(ObjectUtil.toT(BigDecimal.ONE, Float.class) + "");
+    }
 }

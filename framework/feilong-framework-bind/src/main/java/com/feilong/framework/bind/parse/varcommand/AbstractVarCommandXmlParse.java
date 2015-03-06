@@ -37,56 +37,56 @@ import com.feilong.framework.bind.parse.AbstractXmlParse;
  */
 public abstract class AbstractVarCommandXmlParse<T extends VarCommand> extends AbstractXmlParse<T>{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(AbstractVarCommandXmlParse.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(AbstractVarCommandXmlParse.class);
 
-	/**
-	 * Builds the command.
-	 * 
-	 * @param modelClass
-	 *            the model class
-	 * @param varNameAndValueMap
-	 *            the var name and value map
-	 * @return the t
-	 * @throws BuildCommandException
-	 *             the build command exception
-	 */
-	@Override
-	protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
+    /**
+     * Builds the command.
+     * 
+     * @param modelClass
+     *            the model class
+     * @param varNameAndValueMap
+     *            the var name and value map
+     * @return the t
+     * @throws BuildCommandException
+     *             the build command exception
+     */
+    @Override
+    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
 
-		try{
-			T t = ConstructorUtil.newInstance(modelClass);
+        try{
+            T t = ConstructorUtil.newInstance(modelClass);
 
-			// 通过反射机制 省却一堆的 set
-			// DokuQueryResult dokuQueryResult = new DokuQueryResult();
+            // 通过反射机制 省却一堆的 set
+            // DokuQueryResult dokuQueryResult = new DokuQueryResult();
 
-			Field[] fields = modelClass.getDeclaredFields();
-			for (Field field : fields){
-				if (field.isAnnotationPresent(VarName.class)){
-					VarName varName = field.getAnnotation(VarName.class);
-					if (log.isInfoEnabled()){
-						String varNameName = varName.name();
+            Field[] fields = modelClass.getDeclaredFields();
+            for (Field field : fields){
+                if (field.isAnnotationPresent(VarName.class)){
+                    VarName varName = field.getAnnotation(VarName.class);
+                    if (log.isInfoEnabled()){
+                        String varNameName = varName.name();
 
-						if (log.isDebugEnabled()){
-							String fieldName = field.getName();
-							log.debug("{}:{}", fieldName, varNameName);
-						}
+                        if (log.isDebugEnabled()){
+                            String fieldName = field.getName();
+                            log.debug("{}:{}", fieldName, varNameName);
+                        }
 
-						String value = varNameAndValueMap.get(varNameName);
-						field.setAccessible(true);
+                        String value = varNameAndValueMap.get(varNameName);
+                        field.setAccessible(true);
 
-						// 将指定对象变量上此 Field 对象表示的字段设置为指定的新值。如果底层字段的类型为基本类型，则对新值进行自动解包
-						field.set(t, value);
-					}
-				}
-			}
-			if (log.isInfoEnabled()){
-				log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
-			}
-			return t;
-		}catch (Exception e){
-			log.error(e.getClass().getName(), e);
-			throw new BuildCommandException(e);
-		}
-	}
+                        // 将指定对象变量上此 Field 对象表示的字段设置为指定的新值。如果底层字段的类型为基本类型，则对新值进行自动解包
+                        field.set(t, value);
+                    }
+                }
+            }
+            if (log.isInfoEnabled()){
+                log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
+            }
+            return t;
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+            throw new BuildCommandException(e);
+        }
+    }
 }

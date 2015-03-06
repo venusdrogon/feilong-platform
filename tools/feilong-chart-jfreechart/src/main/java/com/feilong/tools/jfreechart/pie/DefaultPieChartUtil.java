@@ -25,25 +25,25 @@ import org.jfree.chart.JFreeChart;
  */
 public class DefaultPieChartUtil extends BasePieChartUtil{
 
-	/**
-	 * Instantiates a new default pie chart util.
-	 * 
-	 * @param freeChart
-	 *            the free chart
-	 */
-	public DefaultPieChartUtil(JFreeChart freeChart){
-		super(freeChart);
-	}
+    /**
+     * Instantiates a new default pie chart util.
+     * 
+     * @param freeChart
+     *            the free chart
+     */
+    public DefaultPieChartUtil(JFreeChart freeChart){
+        super(freeChart);
+    }
 
-	/**
-	 * Instantiates a new default pie chart util.
-	 * 
-	 * @param pieChartEntity
-	 *            the pie chart entity
-	 * @param pieType
-	 *            the pie type
-	 */
-	public DefaultPieChartUtil(PieChartEntity pieChartEntity, PieType pieType){
-		super(pieChartEntity, pieType);
-	}
+    /**
+     * Instantiates a new default pie chart util.
+     * 
+     * @param pieChartEntity
+     *            the pie chart entity
+     * @param pieType
+     *            the pie type
+     */
+    public DefaultPieChartUtil(PieChartEntity pieChartEntity, PieType pieType){
+        super(pieChartEntity, pieType);
+    }
 }

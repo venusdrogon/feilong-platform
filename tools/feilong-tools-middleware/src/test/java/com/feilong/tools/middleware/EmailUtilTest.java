@@ -28,43 +28,43 @@ import com.feilong.tools.middleware.email.EmailUtil;
  */
 public class EmailUtilTest{
 
-	private static final Logger	log		= LoggerFactory.getLogger(EmailUtilTest.class);
+    private static final Logger log   = LoggerFactory.getLogger(EmailUtilTest.class);
 
-	String						email	= "venusdrogon@163.com";
+    String                      email = "venusdrogon@163.com";
 
-	/**
-	 * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailLoginHrefByEmail(java.lang.String)} 的测试方法。
-	 */
-	// @Test
-	// public void testGetEmailLoginHrefByEmail(){
-	// log.info(EmailUtil.getEmailLoginHrefByEmail(email));
-	// }
+    /**
+     * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailLoginHrefByEmail(java.lang.String)} 的测试方法。
+     */
+    // @Test
+    // public void testGetEmailLoginHrefByEmail(){
+    // log.info(EmailUtil.getEmailLoginHrefByEmail(email));
+    // }
 
-	/**
-	 * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailChineseName(java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public void testGetEmailChineseName(){
-		log.info(EmailUtil.getEmailChineseName(email));
-	}
+    /**
+     * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailChineseName(java.lang.String)} 的测试方法。
+     */
+    @Test
+    public void testGetEmailChineseName(){
+        log.info(EmailUtil.getEmailChineseName(email));
+    }
 
-	/**
-	 * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailType(java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public void testGetFeiLongEmailType(){
-		EmailType emailType = EmailUtil.getEmailType(email);
-		log.info(emailType.getChineseName());
-		emailType.setChineseName("hahahaha");
-		log.info(emailType.toString());
-		log.info(emailType.getChineseName());
-	}
+    /**
+     * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailType(java.lang.String)} 的测试方法。
+     */
+    @Test
+    public void testGetFeiLongEmailType(){
+        EmailType emailType = EmailUtil.getEmailType(email);
+        log.info(emailType.getChineseName());
+        emailType.setChineseName("hahahaha");
+        log.info(emailType.toString());
+        log.info(emailType.getChineseName());
+    }
 
-	/**
-	 * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailPostfix(java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public void testGetEmailPostfix(){
-		log.info(EmailUtil.getEmailPostfix(email));
-	}
+    /**
+     * {@link com.feilong.tools.middleware.email.EmailUtil#getEmailPostfix(java.lang.String)} 的测试方法。
+     */
+    @Test
+    public void testGetEmailPostfix(){
+        log.info(EmailUtil.getEmailPostfix(email));
+    }
 }

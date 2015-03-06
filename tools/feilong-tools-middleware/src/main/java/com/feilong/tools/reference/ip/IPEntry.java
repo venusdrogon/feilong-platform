@@ -7,37 +7,37 @@ package com.feilong.tools.reference.ip;
  */
 public class IPEntry{
 
-	/********************************************************************************/
-	/**
-	 * 起始IP
-	 */
-	public String	beginIp;
+    /********************************************************************************/
+    /**
+     * 起始IP
+     */
+    public String beginIp;
 
-	/**
-	 * 结束IP
-	 */
-	public String	endIp;
+    /**
+     * 结束IP
+     */
+    public String endIp;
 
-	/**
-	 * 国家
-	 */
-	public String	country;
+    /**
+     * 国家
+     */
+    public String country;
 
-	/**
-	 * 区域
-	 */
-	public String	area;
+    /**
+     * 区域
+     */
+    public String area;
 
-	/********************************************************************************/
-	public IPEntry(){
-		beginIp = "";
-		endIp = "";
-		country = "";
-		area = "";
-	}
+    /********************************************************************************/
+    public IPEntry(){
+        beginIp = "";
+        endIp = "";
+        country = "";
+        area = "";
+    }
 
-	@Override
-	public String toString(){
-		return this.area + "  " + this.country + "  IP范围:" + this.beginIp + "-" + this.endIp;
-	}
+    @Override
+    public String toString(){
+        return this.area + "  " + this.country + "  IP范围:" + this.beginIp + "-" + this.endIp;
+    }
 }

@@ -32,76 +32,76 @@ import com.feilong.commons.core.ConfigConstants;
  */
 public class RandomUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(RandomUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(RandomUtilTest.class);
 
-	/**
-	 * {@link com.feilong.commons.core.util.RandomUtil#createRandom(Number)} 的测试方法。
-	 */
-	@Test
-	public final void testCreateRandom(){
-		log.info(RandomUtil.createRandom(8) + "");
-	}
+    /**
+     * {@link com.feilong.commons.core.util.RandomUtil#createRandom(Number)} 的测试方法。
+     */
+    @Test
+    public final void testCreateRandom(){
+        log.info(RandomUtil.createRandom(8) + "");
+    }
 
-	/**
-	 * {@link com.feilong.commons.core.util.RandomUtil#createRandomWithLength(int)} 的测试方法。
-	 */
-	@Test
-	public final void createRandomWithLength(){
-		for (int i = 0, j = 100; i < j; ++i){
-			log.info(RandomUtil.createRandomWithLength(2) + "");
-		}
-	}
+    /**
+     * {@link com.feilong.commons.core.util.RandomUtil#createRandomWithLength(int)} 的测试方法。
+     */
+    @Test
+    public final void createRandomWithLength(){
+        for (int i = 0, j = 100; i < j; ++i){
+            log.info(RandomUtil.createRandomWithLength(2) + "");
+        }
+    }
 
-	/**
-	 * Creates the random with length2.
-	 */
-	@Test
-	public final void createRandomWithLength2(){
-		for (int i = 0, j = 100; i < j; ++i){
-			Random rand = new Random();
-			log.info("" + rand.nextDouble());
-		}
-	}
+    /**
+     * Creates the random with length2.
+     */
+    @Test
+    public final void createRandomWithLength2(){
+        for (int i = 0, j = 100; i < j; ++i){
+            Random rand = new Random();
+            log.info("" + rand.nextDouble());
+        }
+    }
 
-	/**
-	 * Testget random from string.
-	 */
-	@Test
-	public final void testgetRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERSANDALLLETTERS, 5));
-		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 200));
-	}
+    /**
+     * Testget random from string.
+     */
+    @Test
+    public final void testgetRandomFromString(){
+        log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERSANDALLLETTERS, 5));
+        log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 200));
+    }
 
-	/**
-	 * Testget random from string1.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public final void testgetRandomFromString1(){
-		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 0));
-	}
+    /**
+     * Testget random from string1.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public final void testgetRandomFromString1(){
+        log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 0));
+    }
 
-	/**
-	 * Testget random from string2.
-	 */
-	@Test(expected = NullPointerException.class)
-	public final void testgetRandomFromString2(){
-		log.info(RandomUtil.createRandomFromString("", 5));
-	}
+    /**
+     * Testget random from string2.
+     */
+    @Test(expected = NullPointerException.class)
+    public final void testgetRandomFromString2(){
+        log.info(RandomUtil.createRandomFromString("", 5));
+    }
 
-	/**
-	 * Creates the random from string.
-	 */
-	@Test
-	public final void createRandomFromString(){
-		log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 8, 20));
-	}
+    /**
+     * Creates the random from string.
+     */
+    @Test
+    public final void createRandomFromString(){
+        log.info(RandomUtil.createRandomFromString(ConfigConstants.NUMBERS, 8, 20));
+    }
 
-	/**
-	 * Creates the random.
-	 */
-	@Test
-	public final void createRandom(){
-		log.info(RandomUtil.createRandom(10, 12) + "");
-	}
+    /**
+     * Creates the random.
+     */
+    @Test
+    public final void createRandom(){
+        log.info(RandomUtil.createRandom(10, 12) + "");
+    }
 }

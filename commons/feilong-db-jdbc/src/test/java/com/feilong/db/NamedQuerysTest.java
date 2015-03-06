@@ -29,16 +29,16 @@ import com.feilong.commons.db.NamedQuerys;
  */
 public class NamedQuerysTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(NamedQuerysTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(NamedQuerysTest.class);
 
-	/**
-	 * Gets the query by name.
-	 * 
-	 */
-	@Test
-	public void testGetQueryByName(){
-		NamedQuerys namedQuerys = new NamedQuerys();
-		log.info(namedQuerys.getQueryByName("findProductSizeBatchNumberList"));
-	}
+    /**
+     * Gets the query by name.
+     * 
+     */
+    @Test
+    public void testGetQueryByName(){
+        NamedQuerys namedQuerys = new NamedQuerys();
+        log.info(namedQuerys.getQueryByName("findProductSizeBatchNumberList"));
+    }
 }

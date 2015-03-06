@@ -51,89 +51,89 @@ import com.feilong.servlet.http.RequestUtil;
  */
 public class Browser implements Serializable{
 
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(Browser.class);
+    /** The Constant log. */
+    private static final Logger log              = LoggerFactory.getLogger(Browser.class);
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -3594490109178217925L;
+    /** The Constant serialVersionUID. */
+    private static final long   serialVersionUID = -3594490109178217925L;
 
-	/** userAgent. */
-	private String				userAgent;
+    /** userAgent. */
+    private String              userAgent;
 
-	/** 是不是移动设备. */
-	private boolean				isMobileDevice;
+    /** 是不是移动设备. */
+    private boolean             isMobileDevice;
 
-	/** 是不是 ipad. */
-	private boolean				isIpad;
+    /** 是不是 ipad. */
+    private boolean             isIpad;
 
-	/** 是不是 isIphone. */
-	private boolean				isIphone;
+    /** 是不是 isIphone. */
+    private boolean             isIphone;
 
-	// /** 浏览器版本号. */
-	// private String version;
+    // /** 浏览器版本号. */
+    // private String version;
 
-	/**
-	 * Instantiates a new browser.
-	 * 
-	 * @param request
-	 *            the request
-	 */
-	public Browser(HttpServletRequest request){
-		this.userAgent = RequestUtil.getHeaderUserAgent(request);
+    /**
+     * Instantiates a new browser.
+     * 
+     * @param request
+     *            the request
+     */
+    public Browser(HttpServletRequest request){
+        this.userAgent = RequestUtil.getHeaderUserAgent(request);
 
-		if (log.isDebugEnabled()){
-			log.debug("the user-agent:[{}]", userAgent);
-		}
+        if (log.isDebugEnabled()){
+            log.debug("the user-agent:[{}]", userAgent);
+        }
 
-		this.isIpad = StringUtil.isContainIgnoreCase(userAgent, "ipad");
-		this.isIphone = StringUtil.isContainIgnoreCase(userAgent, "iphone");
+        this.isIpad = StringUtil.isContainIgnoreCase(userAgent, "ipad");
+        this.isIphone = StringUtil.isContainIgnoreCase(userAgent, "iphone");
 
-		this.isMobileDevice = BrowserUtil.getIsMobileDevice(userAgent);
-	}
+        this.isMobileDevice = BrowserUtil.getIsMobileDevice(userAgent);
+    }
 
-	/**
-	 * Gets the userAgent.
-	 * 
-	 * @return the userAgent
-	 */
-	public String getUserAgent(){
-		return userAgent;
-	}
+    /**
+     * Gets the userAgent.
+     * 
+     * @return the userAgent
+     */
+    public String getUserAgent(){
+        return userAgent;
+    }
 
-	/**
-	 * Gets the 是不是移动设备.
-	 * 
-	 * @return the isMobileDevice
-	 */
-	public boolean getIsMobileDevice(){
-		return isMobileDevice;
-	}
+    /**
+     * Gets the 是不是移动设备.
+     * 
+     * @return the isMobileDevice
+     */
+    public boolean getIsMobileDevice(){
+        return isMobileDevice;
+    }
 
-	/**
-	 * Gets the 是不是 ipad.
-	 * 
-	 * @return the isIpad
-	 */
-	public boolean getIsIpad(){
-		return isIpad;
-	}
+    /**
+     * Gets the 是不是 ipad.
+     * 
+     * @return the isIpad
+     */
+    public boolean getIsIpad(){
+        return isIpad;
+    }
 
-	/**
-	 * Gets the 是不是 isIphone.
-	 * 
-	 * @return the isIphone
-	 */
-	public boolean getIsIphone(){
-		return isIphone;
-	}
+    /**
+     * Gets the 是不是 isIphone.
+     * 
+     * @return the isIphone
+     */
+    public boolean getIsIphone(){
+        return isIphone;
+    }
 
-	/**
-	 * Gets the 浏览器版本号.
-	 * 
-	 * @return the version
-	 */
-	// public String getVersion(){
-	// String version = "";
-	// return version;
-	// }
+    /**
+     * Gets the 浏览器版本号.
+     * 
+     * @return the version
+     */
+    // public String getVersion(){
+    // String version = "";
+    // return version;
+    // }
 }

@@ -37,59 +37,59 @@ import com.feilong.framework.netpay.payment.command.PaySoLine;
  */
 public class PaymentTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PaymentTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PaymentTest.class);
 
-	/**
-	 * Construct pay request.
-	 *
-	 * @return the pay request
-	 */
-	public static PayRequest construcTestPayRequest(){
+    /**
+     * Construct pay request.
+     *
+     * @return the pay request
+     */
+    public static PayRequest construcTestPayRequest(){
 
-		/** The code. */
-		String code = DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
-		//code="feilong1111";
+        /** The code. */
+        String code = DateUtil.date2String(new Date(), DatePattern.TIMESTAMP);
+        //code="feilong1111";
 
-		// ******************************************************************
-		String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
-		return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
-		String notify_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
+        // ******************************************************************
+        String return_url = "http://www.esprit.cn/payment/redirect/klikPay";
+        return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
+        String notify_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
 
-		int per = 100;
+        int per = 100;
 
-		BigDecimal total_fee = BigDecimal.valueOf(60.00f * per);
+        BigDecimal total_fee = BigDecimal.valueOf(60.00f * per);
 
-		PayRequest payRequest = new PayRequest();
+        PayRequest payRequest = new PayRequest();
 
-		payRequest.setTradeNo(code);
-		payRequest.setTotalFee(total_fee);
-		payRequest.setBuyerEmail("venusdrogon@163.com");
-		payRequest.setBuyerName("jinxin");
-		payRequest.setBuyer(888);
+        payRequest.setTradeNo(code);
+        payRequest.setTotalFee(total_fee);
+        payRequest.setBuyerEmail("venusdrogon@163.com");
+        payRequest.setBuyerName("jinxin");
+        payRequest.setBuyer(888);
 
-		payRequest.setTransferFee(new BigDecimal(10.00f * per));
+        payRequest.setTransferFee(new BigDecimal(10.00f * per));
 
-		List<PaySoLine> paySoLineList = payRequest.getPaySoLineList();
+        List<PaySoLine> paySoLineList = payRequest.getPaySoLineList();
 
-		PaySoLine paySoLine1 = new PaySoLine();
-		paySoLine1.setItemName("nike ;s free 5.0");
-		paySoLine1.setUnitPrice(new BigDecimal(20 * per));
-		paySoLine1.setQuantity(1);
-		paySoLine1.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine1.getUnitPrice(), paySoLine1.getQuantity()));
-		paySoLineList.add(paySoLine1);
+        PaySoLine paySoLine1 = new PaySoLine();
+        paySoLine1.setItemName("nike ;s free 5.0");
+        paySoLine1.setUnitPrice(new BigDecimal(20 * per));
+        paySoLine1.setQuantity(1);
+        paySoLine1.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine1.getUnitPrice(), paySoLine1.getQuantity()));
+        paySoLineList.add(paySoLine1);
 
-		PaySoLine paySoLine2 = new PaySoLine();
-		paySoLine2.setItemName("nike free 4.0");
-		paySoLine2.setUnitPrice(new BigDecimal(15 * per));
-		paySoLine2.setQuantity(2);
-		paySoLine2.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine2.getUnitPrice(), paySoLine2.getQuantity()));
-		paySoLineList.add(paySoLine2);
+        PaySoLine paySoLine2 = new PaySoLine();
+        paySoLine2.setItemName("nike free 4.0");
+        paySoLine2.setUnitPrice(new BigDecimal(15 * per));
+        paySoLine2.setQuantity(2);
+        paySoLine2.setSubTotalPrice(NumberUtil.getMultiplyValue(paySoLine2.getUnitPrice(), paySoLine2.getQuantity()));
+        paySoLineList.add(paySoLine2);
 
-		payRequest.setCreateDate(new Date());
+        payRequest.setCreateDate(new Date());
 
-		payRequest.setReturnUrl(return_url);
-		payRequest.setNotifyUrl(notify_url);
-		return payRequest;
-	}
+        payRequest.setReturnUrl(return_url);
+        payRequest.setNotifyUrl(notify_url);
+        return payRequest;
+    }
 }

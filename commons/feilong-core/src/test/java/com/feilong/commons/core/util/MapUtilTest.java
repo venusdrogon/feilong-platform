@@ -33,77 +33,77 @@ import com.feilong.commons.core.tools.json.JsonUtil;
  */
 public class MapUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MapUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MapUtilTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.util.MapUtil#getMinValue(java.util.Map, java.lang.String[])}.
-	 */
-	@Test
-	public void testGetMinValue(){
+    /**
+     * Test method for {@link com.feilong.commons.core.util.MapUtil#getMinValue(java.util.Map, java.lang.String[])}.
+     */
+    @Test
+    public void testGetMinValue(){
 
-		Map<String, Integer> object = new HashMap<String, Integer>();
+        Map<String, Integer> object = new HashMap<String, Integer>();
 
-		object.put("a", 3007);
-		object.put("b", 3001);
-		object.put("c", 3002);
-		object.put("d", 3003);
-		object.put("e", 3004);
-		object.put("f", 3005);
-		object.put("g", -1005);
+        object.put("a", 3007);
+        object.put("b", 3001);
+        object.put("c", 3002);
+        object.put("d", 3003);
+        object.put("e", 3004);
+        object.put("f", 3005);
+        object.put("g", -1005);
 
-		String[] keys = { "a", "b", "d", "g", "m" };
-		Integer minValue = MapUtil.getMinValue(object, keys);
+        String[] keys = { "a", "b", "d", "g", "m" };
+        Integer minValue = MapUtil.getMinValue(object, keys);
 
-		log.info(minValue + "");
-	}
+        log.info(minValue + "");
+    }
 
-	/**
-	 * TestMapUtilTest.
-	 */
-	@Test
-	public void testMapUtilTest(){
+    /**
+     * TestMapUtilTest.
+     */
+    @Test
+    public void testMapUtilTest(){
 
-		Map<String, String> object = new LinkedHashMap<String, String>();
+        Map<String, String> object = new LinkedHashMap<String, String>();
 
-		object.put("1", "1");
-		object.put("2", "2");
-		object.put("3", "3");
-		object.put("3", "4");
-		object.put("2", "7");
-		object.put("3", "6");
-		object.put("4", "8");
+        object.put("1", "1");
+        object.put("2", "2");
+        object.put("3", "3");
+        object.put("3", "4");
+        object.put("2", "7");
+        object.put("3", "6");
+        object.put("4", "8");
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(object));
-		}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(object));
+        }
 
-	}
+    }
 
-	/**
-	 * Test linked hash map.
-	 */
-	@Test
-	public void testLinkedHashMap(){
+    /**
+     * Test linked hash map.
+     */
+    @Test
+    public void testLinkedHashMap(){
 
-		Map<String, String> object = new LinkedHashMap<String, String>();
+        Map<String, String> object = new LinkedHashMap<String, String>();
 
-		object.put("a", "123");
-		object.put("b", "234");
-		object.put("c", "345");
-		object.put("b", "8910");
+        object.put("a", "123");
+        object.put("b", "234");
+        object.put("c", "345");
+        object.put("b", "8910");
 
-		//2
-		//a
-		//c
-		//b 8910
+        //2
+        //a
+        //c
+        //b 8910
 
-		//a
-		//b 8910
-		//c
+        //a
+        //b 8910
+        //c
 
-		if (log.isDebugEnabled()){
-			log.debug(JsonUtil.format(object));
-		}
-	}
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(object));
+        }
+    }
 }

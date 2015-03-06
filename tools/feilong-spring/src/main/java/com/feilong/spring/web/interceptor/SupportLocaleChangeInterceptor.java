@@ -35,57 +35,57 @@ import com.feilong.commons.core.util.Validator;
  */
 public class SupportLocaleChangeInterceptor extends LocaleChangeInterceptor{
 
-	/** The support locales. */
-	private List<String>	supportLocales;
+    /** The support locales. */
+    private List<String> supportLocales;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.web.servlet.i18n.LocaleChangeInterceptor#preHandle(javax.servlet.http.HttpServletRequest,
-	 * javax.servlet.http.HttpServletResponse, java.lang.Object)
-	 */
-	@Override
-	public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws ServletException{
-		boolean canHandle = isSupport(request);
-		if (canHandle){
-			super.preHandle(request, response, handler);
-		}
-		//不管支不支持  都return true
-		return true;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.web.servlet.i18n.LocaleChangeInterceptor#preHandle(javax.servlet.http.HttpServletRequest,
+     * javax.servlet.http.HttpServletResponse, java.lang.Object)
+     */
+    @Override
+    public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws ServletException{
+        boolean canHandle = isSupport(request);
+        if (canHandle){
+            super.preHandle(request, response, handler);
+        }
+        //不管支不支持  都return true
+        return true;
+    }
 
-	/**
-	 * Checks if is support.
-	 *
-	 * @param request
-	 *            the request
-	 * @return true, if checks if is support
-	 * @since 1.0.9
-	 */
-	private boolean isSupport(HttpServletRequest request){
-		boolean canHandle = false;
+    /**
+     * Checks if is support.
+     *
+     * @param request
+     *            the request
+     * @return true, if checks if is support
+     * @since 1.0.9
+     */
+    private boolean isSupport(HttpServletRequest request){
+        boolean canHandle = false;
 
-		if (Validator.isNotNullOrEmpty(supportLocales)){
-			String newLocale = request.getParameter(getParamName());
-			if (supportLocales.contains(newLocale)){
-				canHandle = true;
-			}
-			//不属于 支持的locale
-		}else{
-			//如果isNotNullOrEmpty  supportLocales ，那么 就是个普通的  LocaleChangeInterceptor
-			canHandle = true;
-		}
-		return canHandle;
-	}
+        if (Validator.isNotNullOrEmpty(supportLocales)){
+            String newLocale = request.getParameter(getParamName());
+            if (supportLocales.contains(newLocale)){
+                canHandle = true;
+            }
+            //不属于 支持的locale
+        }else{
+            //如果isNotNullOrEmpty  supportLocales ，那么 就是个普通的  LocaleChangeInterceptor
+            canHandle = true;
+        }
+        return canHandle;
+    }
 
-	/**
-	 * 设置 support locales.
-	 *
-	 * @param supportLocales
-	 *            the supportLocales to set
-	 */
-	public void setSupportLocales(List<String> supportLocales){
-		this.supportLocales = supportLocales;
-	}
+    /**
+     * 设置 support locales.
+     *
+     * @param supportLocales
+     *            the supportLocales to set
+     */
+    public void setSupportLocales(List<String> supportLocales){
+        this.supportLocales = supportLocales;
+    }
 
 }

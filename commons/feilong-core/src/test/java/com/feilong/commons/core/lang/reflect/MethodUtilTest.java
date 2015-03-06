@@ -35,55 +35,55 @@ import com.feilong.commons.core.util.StringUtil;
  */
 public class MethodUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MethodUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MethodUtilTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void testInvokeMethod(){
-		if (log.isInfoEnabled()){
-			BackWarnEntity backWarnEntity = new BackWarnEntity();
-			String methodName = "getIsSuccess";
-			Object[] params = new Object[0];
-			log.info("" + MethodUtil.invokeMethod(backWarnEntity, methodName, params));
-		}
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void testInvokeMethod(){
+        if (log.isInfoEnabled()){
+            BackWarnEntity backWarnEntity = new BackWarnEntity();
+            String methodName = "getIsSuccess";
+            Object[] params = new Object[0];
+            log.info("" + MethodUtil.invokeMethod(backWarnEntity, methodName, params));
+        }
+    }
 
-	/**
-	 * Test invoke static method.
-	 */
-	@Test(expected = ReflectException.class)
-	public final void testInvokeStaticMethod(){
-		if (log.isInfoEnabled()){
-			log.info("" + MethodUtil.invokeStaticMethod("com.feilong.commons.core.entity.BackWarnEntity", "getIsSuccess", new Object[0]));
-		}
-	}
+    /**
+     * Test invoke static method.
+     */
+    @Test(expected = ReflectException.class)
+    public final void testInvokeStaticMethod(){
+        if (log.isInfoEnabled()){
+            log.info("" + MethodUtil.invokeStaticMethod("com.feilong.commons.core.entity.BackWarnEntity", "getIsSuccess", new Object[0]));
+        }
+    }
 
-	/**
-	 * Test invoke static method.
-	 */
-	@Test()
-	public final void testInvokeStaticMethod1(){
-		Assert.assertEquals(
-						"eilong",
-						MethodUtil.invokeStaticMethod("com.feilong.commons.core.util.StringUtil", "substring", "feilong", "ei"));
-	}
+    /**
+     * Test invoke static method.
+     */
+    @Test()
+    public final void testInvokeStaticMethod1(){
+        Assert.assertEquals(
+                        "eilong",
+                        MethodUtil.invokeStaticMethod("com.feilong.commons.core.util.StringUtil", "substring", "feilong", "ei"));
+    }
 
-	/**
-	 * Test invoke static method.
-	 * 
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws NoSuchMethodException
-	 */
-	@Test()
-	public final void testInvokeStaticMethod2() throws NoSuchMethodException,IllegalAccessException,InvocationTargetException{
-		//		Assert.assertEquals(
-		//				"fjinxinlong",
-		//				MethodUtil.invokeStaticMethod("com.feilong.commons.core.util.StringUtil", "replace", "feilong", "ei", "jinxin"));
+    /**
+     * Test invoke static method.
+     * 
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws NoSuchMethodException
+     */
+    @Test()
+    public final void testInvokeStaticMethod2() throws NoSuchMethodException,IllegalAccessException,InvocationTargetException{
+        //		Assert.assertEquals(
+        //				"fjinxinlong",
+        //				MethodUtil.invokeStaticMethod("com.feilong.commons.core.util.StringUtil", "replace", "feilong", "ei", "jinxin"));
 
-		Assert.assertEquals("fjinxinlong", MethodUtils.invokeStaticMethod(StringUtil.class, "replace", "feilong", "ei", "jinxin"));
-	}
+        Assert.assertEquals("fjinxinlong", MethodUtils.invokeStaticMethod(StringUtil.class, "replace", "feilong", "ei", "jinxin"));
+    }
 }

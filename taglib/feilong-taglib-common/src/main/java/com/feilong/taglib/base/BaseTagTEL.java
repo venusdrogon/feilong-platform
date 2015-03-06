@@ -30,20 +30,20 @@ import javax.servlet.jsp.tagext.TagExtraInfo;
  */
 public abstract class BaseTagTEL extends TagExtraInfo{
 
-	/**
-	 * 显示 tagData 里面的信息 一般用于 debug.
-	 * 
-	 * @param tagData
-	 *            the tag data
-	 */
-	protected Map<String, Object> toMap(TagData tagData){
-		Map<String, Object> map = new HashMap<String, Object>();
-		Enumeration<String> attributes = tagData.getAttributes();
-		while (attributes.hasMoreElements()){
-			String key = attributes.nextElement();
-			Object value = tagData.getAttribute(key);
-			map.put(key, value);
-		}
-		return map;
-	}
+    /**
+     * 显示 tagData 里面的信息 一般用于 debug.
+     * 
+     * @param tagData
+     *            the tag data
+     */
+    protected Map<String, Object> toMap(TagData tagData){
+        Map<String, Object> map = new HashMap<String, Object>();
+        Enumeration<String> attributes = tagData.getAttributes();
+        while (attributes.hasMoreElements()){
+            String key = attributes.nextElement();
+            Object value = tagData.getAttribute(key);
+            map.put(key, value);
+        }
+        return map;
+    }
 }

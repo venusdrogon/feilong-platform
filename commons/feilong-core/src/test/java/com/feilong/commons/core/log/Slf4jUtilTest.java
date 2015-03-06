@@ -27,18 +27,18 @@ import org.slf4j.LoggerFactory;
  */
 public class Slf4jUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(Slf4jUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(Slf4jUtilTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public final void test(){
-		log.info(Slf4jUtil.formatMessage("{},{}", "今天", "aaaa"));
-		log.info(Slf4jUtil.formatMessage(null, "今天", "aaaa"));
-		log.info(Slf4jUtil.formatMessage("", "今天", "aaaa"));
-		log.info(Slf4jUtil.formatMessage("", null));
-		log.info(Slf4jUtil.formatMessage("", ""));
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public final void test(){
+        log.info(Slf4jUtil.formatMessage("{},{}", "今天", "aaaa"));
+        log.info(Slf4jUtil.formatMessage(null, "今天", "aaaa"));
+        log.info(Slf4jUtil.formatMessage("", "今天", "aaaa"));
+        log.info(Slf4jUtil.formatMessage("", null));
+        log.info(Slf4jUtil.formatMessage("", ""));
+    }
 }

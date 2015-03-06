@@ -25,21 +25,21 @@ package com.feilong.tools.mail;
  */
 public class MailHeader{
 
-	/** 是否需要回执. */
-	public static final String	DISPOSITION_NOTIFICATION_TO	= "Disposition-Notification-To";
+    /** 是否需要回执. */
+    public static final String DISPOSITION_NOTIFICATION_TO = "Disposition-Notification-To";
 
-	/** 邮件的优先级. */
-	public static final String	X_PRIORITY					= "X-Priority";
+    /** 邮件的优先级. */
+    public static final String X_PRIORITY                  = "X-Priority";
 
-	/** 邮件客户端 版本. */
-	public static final String	X_MAILER					= "X-mailer";
+    /** 邮件客户端 版本. */
+    public static final String X_MAILER                    = "X-mailer";
 
-	/** 邮件客户端 版本. */
-	public static final String	X_MAILER_VALUE				= "FeiLong MailSender Api 1.0.9";
+    /** 邮件客户端 版本. */
+    public static final String X_MAILER_VALUE              = "FeiLong MailSender Api 1.0.9";
 
-	/**
-	 * The Constructor.
-	 */
-	private MailHeader(){
-	}
+    /**
+     * The Constructor.
+     */
+    private MailHeader(){
+    }
 }

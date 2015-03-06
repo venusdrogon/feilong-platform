@@ -31,65 +31,65 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 @SuppressWarnings("all")
 public class OperatingSystemUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(OperatingSystemUtilTest.class);
+    private static final Logger log = LoggerFactory.getLogger(OperatingSystemUtilTest.class);
 
-	@Test
-	public void getThreadGroupActiveCount(){
-		log.info(ThreadUtil.getTopThreadGroupActiveCount() + "");
-	}
+    @Test
+    public void getThreadGroupActiveCount(){
+        log.info(ThreadUtil.getTopThreadGroupActiveCount() + "");
+    }
 
-	@Test
-	public void isWindowsOS(){
-		log.info(OperatingSystemUtil.isWindowsOS() + "");
-	}
+    @Test
+    public void isWindowsOS(){
+        log.info(OperatingSystemUtil.isWindowsOS() + "");
+    }
 
-	@Test
-	public void getMacMap(){
-		log.info(JsonUtil.format(OperatingSystemUtil.getMacAddressMap()));
-	}
+    @Test
+    public void getMacMap(){
+        log.info(JsonUtil.format(OperatingSystemUtil.getMacAddressMap()));
+    }
 
-	@Test
-	public void getMacAddressByHost(){
-		log.info(OperatingSystemUtil.getMacAddressByHost("10.8.17.84"));
-		log.info(OperatingSystemUtil.getMacAddressByHost("10.8.12.194"));
+    @Test
+    public void getMacAddressByHost(){
+        log.info(OperatingSystemUtil.getMacAddressByHost("10.8.17.84"));
+        log.info(OperatingSystemUtil.getMacAddressByHost("10.8.12.194"));
 
-		// 180.168.119.194
-	}
+        // 180.168.119.194
+    }
 
-	@Test
-	public void getMacAddressByName(){
-		log.info(OperatingSystemUtil.getMacAddressByName("eth3"));
-	}
+    @Test
+    public void getMacAddressByName(){
+        log.info(OperatingSystemUtil.getMacAddressByName("eth3"));
+    }
 
-	@Test
-	public void getMonitorInfoEntity(){
-		MonitorInfoEntity monitorInfoEntity = OperatingSystemUtil.getMonitorInfoEntity();
-		log.info(JsonUtil.format(monitorInfoEntity));
-	}
+    @Test
+    public void getMonitorInfoEntity(){
+        MonitorInfoEntity monitorInfoEntity = OperatingSystemUtil.getMonitorInfoEntity();
+        log.info(JsonUtil.format(monitorInfoEntity));
+    }
 
-	@Test
-	public final void getSystemPropertiesLog(){
-		log.info(OperatingSystemUtil.getSystemPropertiesLog());
-	}
+    @Test
+    public final void getSystemPropertiesLog(){
+        log.info(OperatingSystemUtil.getSystemPropertiesLog());
+    }
 
-	@Test
-	public final void getDiskInfoLog(){
-		log.info(OperatingSystemUtil.getDiskInfoLog());
-	}
+    @Test
+    public final void getDiskInfoLog(){
+        log.info(OperatingSystemUtil.getDiskInfoLog());
+    }
 
-	/**
-	 * 获取本机IP地址
-	 */
-	@Test
-	public final void getLocalIP(){
-		log.debug(OperatingSystemUtil.getLocalHostAddress());
-	}
+    /**
+     * 获取本机IP地址
+     */
+    @Test
+    public final void getLocalIP(){
+        log.debug(OperatingSystemUtil.getLocalHostAddress());
+    }
 
-	/**
-	 * 获取本机,计算机名
-	 */
-	@Test
-	public final void getLocalHostName(){
-		log.debug(OperatingSystemUtil.getLocalHostName());
-	}
+    /**
+     * 获取本机,计算机名
+     */
+    @Test
+    public final void getLocalHostName(){
+        log.debug(OperatingSystemUtil.getLocalHostName());
+    }
 }

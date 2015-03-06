@@ -23,9 +23,9 @@ package com.feilong.framework.netpay.payment.adaptor.alipay;
  */
 public interface AlipayPaymentResultType{
 
-	/** 支付成功 <code>{@value}</code> */
-	String	SUCCESS	= "success";
+    /** 支付成功 <code>{@value}</code> */
+    String SUCCESS = "success";
 
-	/** 支付失败 <code>{@value}</code> */
-	String	FAIL	= "fail";
+    /** 支付失败 <code>{@value}</code> */
+    String FAIL    = "fail";
 }

@@ -30,34 +30,34 @@ import org.slf4j.LoggerFactory;
  */
 public final class ESAPIValidatorUtil{
 
-	/** The Constant log. */
-	private static final Logger		log			= LoggerFactory.getLogger(ESAPIValidatorUtil.class);
+    /** The Constant log. */
+    private static final Logger    log       = LoggerFactory.getLogger(ESAPIValidatorUtil.class);
 
-	/** The validator. */
-	private static final Validator	validator	= ESAPI.validator();
+    /** The validator. */
+    private static final Validator validator = ESAPI.validator();
 
-	/** Don't let anyone instantiate this class. */
-	private ESAPIValidatorUtil(){
-		//AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
-		//see 《Effective Java》 2nd
-		throw new AssertionError("No " + getClass().getName() + " instances for you!");
-	}
+    /** Don't let anyone instantiate this class. */
+    private ESAPIValidatorUtil(){
+        //AssertionError不是必须的。但它可以避免不小心在类的内部调用构造器。保证该类在任何情况下都不会被实例化。
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
-	/**
-	 * 获得安全的html代码.
-	 * 
-	 * @param input
-	 *            the input
-	 * @return the valid safe html
-	 */
-	public static String getValidSafeHTML(String input){
-		try{
-			return validator.getValidSafeHTML("html", input, Integer.MAX_VALUE, true);
-		}catch (ValidationException e){
-			log.error(e.getClass().getName(), e);
-		}catch (IntrusionException e){
-			log.error(e.getClass().getName(), e);
-		}
-		return null;
-	}
+    /**
+     * 获得安全的html代码.
+     * 
+     * @param input
+     *            the input
+     * @return the valid safe html
+     */
+    public static String getValidSafeHTML(String input){
+        try{
+            return validator.getValidSafeHTML("html", input, Integer.MAX_VALUE, true);
+        }catch (ValidationException e){
+            log.error(e.getClass().getName(), e);
+        }catch (IntrusionException e){
+            log.error(e.getClass().getName(), e);
+        }
+        return null;
+    }
 }

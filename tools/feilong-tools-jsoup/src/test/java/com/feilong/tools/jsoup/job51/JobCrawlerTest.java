@@ -25,11 +25,11 @@ import org.junit.Test;
  */
 public class JobCrawlerTest{
 
-	/**
-	 * Gets the enterprise info.
-	 * 
-	 */
-	@Test
-	public void testGetEnterpriseInfo(){
-	}
+    /**
+     * Gets the enterprise info.
+     * 
+     */
+    @Test
+    public void testGetEnterpriseInfo(){
+    }
 }

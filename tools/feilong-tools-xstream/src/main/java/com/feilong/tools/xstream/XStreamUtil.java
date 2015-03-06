@@ -28,46 +28,46 @@ import com.thoughtworks.xstream.XStream;
  */
 public class XStreamUtil{
 
-	/**
-	 * 将object转成xml字符串.
-	 * 
-	 * @param obj
-	 *            the obj
-	 * @param toXmlConfig
-	 *            the to xml config
-	 * @return the string
-	 * @see com.thoughtworks.xstream.XStream#toXML(Object)
-	 * @see com.thoughtworks.xstream.XStream#alias(String, Class)
-	 * @see com.thoughtworks.xstream.XStream#addImplicitCollection(Class, String)
-	 */
-	public static String toXML(Object obj,ToXmlConfig toXmlConfig){
-		XStream xstream = new XStream();
+    /**
+     * 将object转成xml字符串.
+     * 
+     * @param obj
+     *            the obj
+     * @param toXmlConfig
+     *            the to xml config
+     * @return the string
+     * @see com.thoughtworks.xstream.XStream#toXML(Object)
+     * @see com.thoughtworks.xstream.XStream#alias(String, Class)
+     * @see com.thoughtworks.xstream.XStream#addImplicitCollection(Class, String)
+     */
+    public static String toXML(Object obj,ToXmlConfig toXmlConfig){
+        XStream xstream = new XStream();
 
-		// *******************alias********************************************
-		Map<String, Class<?>> aliasMap = toXmlConfig.getAliasMap();
-		if (Validator.isNotNullOrEmpty(aliasMap)){
-			for (Map.Entry<String, Class<?>> entry : aliasMap.entrySet()){
-				String key = entry.getKey();
-				Class<?> value = entry.getValue();
-				// 类重命名
-				xstream.alias(key, value);
-			}
-		}
-		// *******************implicitCollectionMap********************************************
-		Map<String, Class<?>> implicitCollectionMap = toXmlConfig.getImplicitCollectionMap();
-		if (Validator.isNotNullOrEmpty(implicitCollectionMap)){
-			for (Map.Entry<String, Class<?>> entry : implicitCollectionMap.entrySet()){
-				String key = entry.getKey();
-				Class<?> value = entry.getValue();
-				xstream.addImplicitCollection(value, key);
-			}
-		}
+        // *******************alias********************************************
+        Map<String, Class<?>> aliasMap = toXmlConfig.getAliasMap();
+        if (Validator.isNotNullOrEmpty(aliasMap)){
+            for (Map.Entry<String, Class<?>> entry : aliasMap.entrySet()){
+                String key = entry.getKey();
+                Class<?> value = entry.getValue();
+                // 类重命名
+                xstream.alias(key, value);
+            }
+        }
+        // *******************implicitCollectionMap********************************************
+        Map<String, Class<?>> implicitCollectionMap = toXmlConfig.getImplicitCollectionMap();
+        if (Validator.isNotNullOrEmpty(implicitCollectionMap)){
+            for (Map.Entry<String, Class<?>> entry : implicitCollectionMap.entrySet()){
+                String key = entry.getKey();
+                Class<?> value = entry.getValue();
+                xstream.addImplicitCollection(value, key);
+            }
+        }
 
-		// 属性重命名
-		// xstream.aliasField(alias, definedIn, fieldName);
-		// 包重命名
-		// xstream.aliasPackage(name, pkgName);
-		String xml = xstream.toXML(obj);
-		return xml;
-	}
+        // 属性重命名
+        // xstream.aliasField(alias, definedIn, fieldName);
+        // 包重命名
+        // xstream.aliasPackage(name, pkgName);
+        String xml = xstream.toXML(obj);
+        return xml;
+    }
 }

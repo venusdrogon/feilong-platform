@@ -26,52 +26,52 @@ import java.io.Serializable;
  */
 public final class JoinStringEntity implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 3182446945343865398L;
+    /** The Constant serialVersionUID. */
+    private static final long  serialVersionUID  = 3182446945343865398L;
 
-	/**
-	 * 默认逗号连接 <code>{@value}</code>.
-	 * 
-	 * @since 1.0.6
-	 */
-	public static final String	DEFAULT_CONNECTOR	= ",";
+    /**
+     * 默认逗号连接 <code>{@value}</code>.
+     * 
+     * @since 1.0.6
+     */
+    public static final String DEFAULT_CONNECTOR = ",";
 
-	/** 连接符,默认={@link #DEFAULT_CONNECTOR}. */
-	private String				connector			= DEFAULT_CONNECTOR;
+    /** 连接符,默认={@link #DEFAULT_CONNECTOR}. */
+    private String             connector         = DEFAULT_CONNECTOR;
 
-	/**
-	 * Instantiates a new join string entity.
-	 */
-	public JoinStringEntity(){
-	}
+    /**
+     * Instantiates a new join string entity.
+     */
+    public JoinStringEntity(){
+    }
 
-	/**
-	 * Instantiates a new join string entity.
-	 * 
-	 * @param connector
-	 *            the connector
-	 */
-	public JoinStringEntity(String connector){
-		this.connector = connector;
-	}
+    /**
+     * Instantiates a new join string entity.
+     * 
+     * @param connector
+     *            the connector
+     */
+    public JoinStringEntity(String connector){
+        this.connector = connector;
+    }
 
-	/**
-	 * 获得 连接符,默认={@link #DEFAULT_CONNECTOR}.
-	 * 
-	 * @return the connector
-	 */
-	public String getConnector(){
-		return connector;
-	}
+    /**
+     * 获得 连接符,默认={@link #DEFAULT_CONNECTOR}.
+     * 
+     * @return the connector
+     */
+    public String getConnector(){
+        return connector;
+    }
 
-	/**
-	 * 设置 连接符,默认={@link #DEFAULT_CONNECTOR}.
-	 * 
-	 * @param connector
-	 *            the connector to set
-	 */
-	public void setConnector(String connector){
-		this.connector = connector;
-	}
+    /**
+     * 设置 连接符,默认={@link #DEFAULT_CONNECTOR}.
+     * 
+     * @param connector
+     *            the connector to set
+     */
+    public void setConnector(String connector){
+        this.connector = connector;
+    }
 
 }

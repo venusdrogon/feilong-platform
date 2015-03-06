@@ -38,64 +38,64 @@ import org.apache.commons.lang3.BooleanUtils;
  */
 public class BooleanConvertor implements DataConvertor<Boolean>{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see loxia.support.excel.convertor.DataConvertor#convert(java.lang.Object, int, java.lang.String,
-	 * loxia.support.excel.definition.ExcelCell)
-	 */
-	@Override
-	public Boolean convert(Object value,int sheetNo,String cellIndex,ExcelCell cellDefinition) throws ExcelManipulateException{
-		if (value == null && cellDefinition.isMandatory()){
-			throw new ExcelManipulateException(ErrorCode.WRONG_DATA_NULL, new Object[] {
-					sheetNo + 1,
-					cellIndex,
-					null,
-					cellDefinition.getPattern(),
-					cellDefinition.getChoiceString() });
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see loxia.support.excel.convertor.DataConvertor#convert(java.lang.Object, int, java.lang.String,
+     * loxia.support.excel.definition.ExcelCell)
+     */
+    @Override
+    public Boolean convert(Object value,int sheetNo,String cellIndex,ExcelCell cellDefinition) throws ExcelManipulateException{
+        if (value == null && cellDefinition.isMandatory()){
+            throw new ExcelManipulateException(ErrorCode.WRONG_DATA_NULL, new Object[] {
+                    sheetNo + 1,
+                    cellIndex,
+                    null,
+                    cellDefinition.getPattern(),
+                    cellDefinition.getChoiceString() });
+        }
 
-		if (value == null){
-			return null;
-		}
+        if (value == null){
+            return null;
+        }
 
-		//*************************************************************************************
+        //*************************************************************************************
 
-		if (value instanceof Boolean){
-			return (Boolean) value;
-		}else if (value instanceof String){
-			String str = (String) value;
-			return BooleanUtils.toBooleanObject(str);
-		}else if (value instanceof Double){
-			Double value2 = (Double) value;
-			return BooleanUtils.toBooleanObject(value2.intValue());
-		}else{
-			throw new ExcelManipulateException(ErrorCode.WRONG_DATA_FORMAT, new Object[] {
-					sheetNo + 1,
-					cellIndex,
-					value,
-					cellDefinition.getPattern(),
-					cellDefinition.getChoiceString() });
-		}
-	}
+        if (value instanceof Boolean){
+            return (Boolean) value;
+        }else if (value instanceof String){
+            String str = (String) value;
+            return BooleanUtils.toBooleanObject(str);
+        }else if (value instanceof Double){
+            Double value2 = (Double) value;
+            return BooleanUtils.toBooleanObject(value2.intValue());
+        }else{
+            throw new ExcelManipulateException(ErrorCode.WRONG_DATA_FORMAT, new Object[] {
+                    sheetNo + 1,
+                    cellIndex,
+                    value,
+                    cellDefinition.getPattern(),
+                    cellDefinition.getChoiceString() });
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see loxia.support.excel.convertor.DataConvertor#getDataTypeAbbr()
-	 */
-	@Override
-	public String getDataTypeAbbr(){
-		return "boolean";
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see loxia.support.excel.convertor.DataConvertor#getDataTypeAbbr()
+     */
+    @Override
+    public String getDataTypeAbbr(){
+        return "boolean";
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see loxia.support.excel.convertor.DataConvertor#supportClass()
-	 */
-	@Override
-	public Class<Boolean> supportClass(){
-		return Boolean.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see loxia.support.excel.convertor.DataConvertor#supportClass()
+     */
+    @Override
+    public Class<Boolean> supportClass(){
+        return Boolean.class;
+    }
 }

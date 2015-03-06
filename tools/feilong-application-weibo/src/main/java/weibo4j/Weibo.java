@@ -5,12 +5,12 @@ import weibo4j.http.HttpClient;
 @SuppressWarnings("all")
 public class Weibo implements java.io.Serializable{
 
-	private static final long	serialVersionUID	= 4282616848978535016L;
+    private static final long serialVersionUID = 4282616848978535016L;
 
-	public HttpClient			client				= new HttpClient();
+    public HttpClient         client           = new HttpClient();
 
-	public void setToken(String token){
-		client.setToken(token);
-	}
+    public void setToken(String token){
+        client.setToken(token);
+    }
 
 }

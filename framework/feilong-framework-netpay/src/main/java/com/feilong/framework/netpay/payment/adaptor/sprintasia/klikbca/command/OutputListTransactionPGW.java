@@ -27,73 +27,73 @@ import java.util.List;
  */
 public class OutputListTransactionPGW implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long			serialVersionUID		= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long         serialVersionUID     = 288232184048495608L;
 
-	/** (Mandatory)The user id. */
-	private String						userID;
+    /** (Mandatory)The user id. */
+    private String                    userID;
 
-	/** Optional. */
-	private String						additionalData			= "";
+    /** Optional. */
+    private String                    additionalData       = "";
 
-	/** The output detail payments. */
-	private List<OutputDetailPayment>	outputDetailPayments	= new ArrayList<OutputDetailPayment>();
+    /** The output detail payments. */
+    private List<OutputDetailPayment> outputDetailPayments = new ArrayList<OutputDetailPayment>();
 
-	/**
-	 * Gets the (Mandatory)The user id.
-	 * 
-	 * @return the userID
-	 */
-	public String getUserID(){
-		return userID;
-	}
+    /**
+     * Gets the (Mandatory)The user id.
+     * 
+     * @return the userID
+     */
+    public String getUserID(){
+        return userID;
+    }
 
-	/**
-	 * Sets the (Mandatory)The user id.
-	 * 
-	 * @param userID
-	 *            the userID to set
-	 */
-	public void setUserID(String userID){
-		this.userID = userID;
-	}
+    /**
+     * Sets the (Mandatory)The user id.
+     * 
+     * @param userID
+     *            the userID to set
+     */
+    public void setUserID(String userID){
+        this.userID = userID;
+    }
 
-	/**
-	 * Gets the optional.
-	 * 
-	 * @return the additionalData
-	 */
-	public String getAdditionalData(){
-		return additionalData;
-	}
+    /**
+     * Gets the optional.
+     * 
+     * @return the additionalData
+     */
+    public String getAdditionalData(){
+        return additionalData;
+    }
 
-	/**
-	 * Sets the optional.
-	 * 
-	 * @param additionalData
-	 *            the additionalData to set
-	 */
-	public void setAdditionalData(String additionalData){
-		this.additionalData = additionalData;
-	}
+    /**
+     * Sets the optional.
+     * 
+     * @param additionalData
+     *            the additionalData to set
+     */
+    public void setAdditionalData(String additionalData){
+        this.additionalData = additionalData;
+    }
 
-	/**
-	 * Gets the output detail payments.
-	 * 
-	 * @return the outputDetailPayments
-	 */
-	public List<OutputDetailPayment> getOutputDetailPayments(){
-		return outputDetailPayments;
-	}
+    /**
+     * Gets the output detail payments.
+     * 
+     * @return the outputDetailPayments
+     */
+    public List<OutputDetailPayment> getOutputDetailPayments(){
+        return outputDetailPayments;
+    }
 
-	/**
-	 * Sets the output detail payments.
-	 * 
-	 * @param outputDetailPayments
-	 *            the outputDetailPayments to set
-	 */
-	public void setOutputDetailPayments(List<OutputDetailPayment> outputDetailPayments){
-		this.outputDetailPayments = outputDetailPayments;
-	}
+    /**
+     * Sets the output detail payments.
+     * 
+     * @param outputDetailPayments
+     *            the outputDetailPayments to set
+     */
+    public void setOutputDetailPayments(List<OutputDetailPayment> outputDetailPayments){
+        this.outputDetailPayments = outputDetailPayments;
+    }
 
 }

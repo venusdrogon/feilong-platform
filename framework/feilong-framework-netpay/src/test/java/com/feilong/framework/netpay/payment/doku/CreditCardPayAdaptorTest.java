@@ -32,17 +32,17 @@ import com.feilong.framework.netpay.payment.PaymentAdaptor;
  */
 public class CreditCardPayAdaptorTest extends BasePaymentTest{
 
-	/** The payment adaptor. */
-	@Autowired
-	@Qualifier("creditCardPayAdaptor")
-	private PaymentAdaptor	paymentAdaptor;
+    /** The payment adaptor. */
+    @Autowired
+    @Qualifier("creditCardPayAdaptor")
+    private PaymentAdaptor paymentAdaptor;
 
-	/**
-	 * Creates the payment form.
-	 */
-	@Test
-	public final void createPaymentForm(){
-		Map<String, String> specialSignMap = null;
-		createPaymentForm(paymentAdaptor, specialSignMap);
-	}
+    /**
+     * Creates the payment form.
+     */
+    @Test
+    public final void createPaymentForm(){
+        Map<String, String> specialSignMap = null;
+        createPaymentForm(paymentAdaptor, specialSignMap);
+    }
 }

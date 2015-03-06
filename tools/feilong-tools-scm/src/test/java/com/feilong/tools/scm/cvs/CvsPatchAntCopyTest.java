@@ -27,37 +27,37 @@ import com.feilong.tools.scm.ScmAntCopy;
  */
 public class CvsPatchAntCopyTest{
 
-	/**
-	 * 过滤不想传的文件 采用 endWith 来 匹配.
-	 */
-	private String[]	excludeFileNames	= { "log4j.xml", "messages/interface-config.properties" };
+    /**
+     * 过滤不想传的文件 采用 endWith 来 匹配.
+     */
+    private String[]   excludeFileNames = { "log4j.xml", "messages/interface-config.properties" };
 
-	/** The cvs patch util. */
-	private ScmAntCopy	scmAntCopy			= new CvsPatchAntCopy();
+    /** The cvs patch util. */
+    private ScmAntCopy scmAntCopy       = new CvsPatchAntCopy();
 
-	/**
-	 * 剪切板patch测试.
-	 */
-	@Test
-	public void printlnClipboardContent(){
-		scmAntCopy.printlnClipboardContent(excludeFileNames);
-	}
+    /**
+     * 剪切板patch测试.
+     */
+    @Test
+    public void printlnClipboardContent(){
+        scmAntCopy.printlnClipboardContent(excludeFileNames);
+    }
 
-	/**
-	 * 剪切板patch测试.
-	 */
-	@Test
-	public void printlnClipboardContent1(){
-		scmAntCopy.printlnClipboardContent();
-	}
+    /**
+     * 剪切板patch测试.
+     */
+    @Test
+    public void printlnClipboardContent1(){
+        scmAntCopy.printlnClipboardContent();
+    }
 
-	/**
-	 * 文件patch测试.
-	 */
-	@Test
-	public void printlnFileContent(){
-		String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\cvs\\cvs-add update delete patch.txt";
-		scmAntCopy.printlnFileContent(fileName, excludeFileNames);
+    /**
+     * 文件patch测试.
+     */
+    @Test
+    public void printlnFileContent(){
+        String fileName = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-tools-scm\\src\\test\\java\\com\\feilong\\tools\\scm\\cvs\\cvs-add update delete patch.txt";
+        scmAntCopy.printlnFileContent(fileName, excludeFileNames);
 
-	}
+    }
 }

@@ -29,28 +29,28 @@ import org.slf4j.LoggerFactory;
  */
 public class MathUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MathUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MathUtilTest.class);
 
-	/**
-	 * Atan2.
-	 */
-	@Test
-	public void atan2(){
-		Point b = new Point(3, 3);
-		Point d = new Point(5, 5);
+    /**
+     * Atan2.
+     */
+    @Test
+    public void atan2(){
+        Point b = new Point(3, 3);
+        Point d = new Point(5, 5);
 
-		b = new Point(747, 417);
-		d = new Point(652, 570);
+        b = new Point(747, 417);
+        d = new Point(652, 570);
 
-		double angle = Math.atan2(d.y - b.y, b.x - d.x);
+        double angle = Math.atan2(d.y - b.y, b.x - d.x);
 
-		log.info(Math.atan(1) + "");
-		log.info(180 * Math.atan(1) / Math.PI + "");
-		log.info("angle:" + angle);
-		// x=180*x/Math.PI//转换为角度值
+        log.info(Math.atan(1) + "");
+        log.info(180 * Math.atan(1) / Math.PI + "");
+        log.info("angle:" + angle);
+        // x=180*x/Math.PI//转换为角度值
 
-		double du = 180 * Math.atan2(d.y - b.y, b.x - d.x) / Math.PI;
-		log.info(du + "");
-	}
+        double du = 180 * Math.atan2(d.y - b.y, b.x - d.x) / Math.PI;
+        log.info(du + "");
+    }
 }

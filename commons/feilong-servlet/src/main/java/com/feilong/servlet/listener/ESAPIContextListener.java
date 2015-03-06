@@ -44,44 +44,44 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
  */
 public class ESAPIContextListener implements ServletContextListener{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ESAPIContextListener.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ESAPIContextListener.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
-	 */
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent){
-		ServletContext servletContext = servletContextEvent.getServletContext();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+     */
+    @Override
+    public void contextInitialized(ServletContextEvent servletContextEvent){
+        ServletContext servletContext = servletContextEvent.getServletContext();
 
-		try{
-			// 取到classes/esapi 绝对地址,
-			// 此处不能直接使用ClassLoaderUtil.getResource("esapi") 做org.owasp.esapi.resources 参数值
-			// 否则 后面拼接的路径 会将 file:/ 纯粹当 文件路径一部分拼接
-			File esapiDirectory = new File(ClassLoaderUtil.getResource("esapi").toURI());
-			String customDirectory = esapiDirectory.getAbsolutePath();
+        try{
+            // 取到classes/esapi 绝对地址,
+            // 此处不能直接使用ClassLoaderUtil.getResource("esapi") 做org.owasp.esapi.resources 参数值
+            // 否则 后面拼接的路径 会将 file:/ 纯粹当 文件路径一部分拼接
+            File esapiDirectory = new File(ClassLoaderUtil.getResource("esapi").toURI());
+            String customDirectory = esapiDirectory.getAbsolutePath();
 
-			File file = new File(customDirectory, "ESAPI.properties");
+            File file = new File(customDirectory, "ESAPI.properties");
 
-			servletContext.log("ESAPI.properties getAbsolutePath():" + file.getAbsolutePath());
-			servletContext.log("customDirectory != null && file.canRead():" + (customDirectory != null && file.canRead()) + "");
+            servletContext.log("ESAPI.properties getAbsolutePath():" + file.getAbsolutePath());
+            servletContext.log("customDirectory != null && file.canRead():" + (customDirectory != null && file.canRead()) + "");
 
-			// 设置值 以便esapi使用
-			System.setProperty("org.owasp.esapi.resources", customDirectory);
-			servletContext.log("set setProperty org.owasp.esapi.resources:" + customDirectory);
-		}catch (URISyntaxException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+            // 设置值 以便esapi使用
+            System.setProperty("org.owasp.esapi.resources", customDirectory);
+            servletContext.log("set setProperty org.owasp.esapi.resources:" + customDirectory);
+        }catch (URISyntaxException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
-	 */
-	@Override
-	public void contextDestroyed(ServletContextEvent sce){
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+     */
+    @Override
+    public void contextDestroyed(ServletContextEvent sce){
+    }
 }

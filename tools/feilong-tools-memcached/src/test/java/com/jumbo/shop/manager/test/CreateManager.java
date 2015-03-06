@@ -23,20 +23,20 @@ package com.jumbo.shop.manager.test;
  */
 public interface CreateManager{
 
-	/**
-	 * Test create.
-	 * 
-	 * @param name
-	 *            the name
-	 * @return the string
-	 */
-	String testCreate(String name);
+    /**
+     * Test create.
+     * 
+     * @param name
+     *            the name
+     * @return the string
+     */
+    String testCreate(String name);
 
-	/**
-	 * Public sku.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	void publicSku(String name);
+    /**
+     * Public sku.
+     * 
+     * @param name
+     *            the name
+     */
+    void publicSku(String name);
 }

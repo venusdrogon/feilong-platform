@@ -35,58 +35,58 @@ import com.feilong.web.entity.domain.DomainUtil;
  */
 public class DomainListener implements ServletContextListener{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
-	 */
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent){
-		ServletContext servletContext = servletContextEvent.getServletContext();
-		initDomain(servletContext);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+     */
+    @Override
+    public void contextInitialized(ServletContextEvent servletContextEvent){
+        ServletContext servletContext = servletContextEvent.getServletContext();
+        initDomain(servletContext);
+    }
 
-	/**
-	 * 初始化二级域名.
-	 * 
-	 * @param servletContext
-	 *            the servlet context
-	 */
-	private void initDomain(ServletContext servletContext){
-		// ********************************domain****************************************
-		String domain_css = DomainUtil.getDomain(servletContext, DomainType.CSS);
-		servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_CSS, domain_css);
-		// ******************
-		String domain_js = DomainUtil.getDomain(servletContext, DomainType.JS);
-		servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_JS, domain_js);
-		// ******************
-		String domain_image = DomainUtil.getDomain(servletContext, DomainType.IMAGE);
-		servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_IMAGE, domain_image);
-		// ******************
-		String domain_resource = DomainUtil.getDomain(servletContext, DomainType.RESOURCE);
-		servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_RESOURCE, domain_resource);
-		// ******************
-		String domain_store = DomainUtil.getDomain(servletContext, DomainType.STORE);
-		servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_STORE, domain_store);
-		// *******************************************************************
+    /**
+     * 初始化二级域名.
+     * 
+     * @param servletContext
+     *            the servlet context
+     */
+    private void initDomain(ServletContext servletContext){
+        // ********************************domain****************************************
+        String domain_css = DomainUtil.getDomain(servletContext, DomainType.CSS);
+        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_CSS, domain_css);
+        // ******************
+        String domain_js = DomainUtil.getDomain(servletContext, DomainType.JS);
+        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_JS, domain_js);
+        // ******************
+        String domain_image = DomainUtil.getDomain(servletContext, DomainType.IMAGE);
+        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_IMAGE, domain_image);
+        // ******************
+        String domain_resource = DomainUtil.getDomain(servletContext, DomainType.RESOURCE);
+        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_RESOURCE, domain_resource);
+        // ******************
+        String domain_store = DomainUtil.getDomain(servletContext, DomainType.STORE);
+        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_STORE, domain_store);
+        // *******************************************************************
 
-		Map<String, String> map = new LinkedHashMap<String, String>();
+        Map<String, String> map = new LinkedHashMap<String, String>();
 
-		map.put("\n[domain_js]:", domain_js);
-		map.put("\n[domain_css]:", domain_css);
-		map.put("\n[domain_image]:", domain_image);
-		map.put("\n[domain_resource]:", domain_resource);
-		map.put("\n[domain_store]:", domain_store);
+        map.put("\n[domain_js]:", domain_js);
+        map.put("\n[domain_css]:", domain_css);
+        map.put("\n[domain_image]:", domain_image);
+        map.put("\n[domain_resource]:", domain_resource);
+        map.put("\n[domain_store]:", domain_store);
 
-		servletContext.log(JsonUtil.format(map));
-	}
+        servletContext.log(JsonUtil.format(map));
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
-	 */
-	@Override
-	public void contextDestroyed(ServletContextEvent sce){
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+     */
+    @Override
+    public void contextDestroyed(ServletContextEvent sce){
+    }
 }

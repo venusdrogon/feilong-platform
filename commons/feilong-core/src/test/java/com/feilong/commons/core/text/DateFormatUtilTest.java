@@ -32,31 +32,31 @@ import com.feilong.commons.core.date.DatePattern;
  */
 public class DateFormatUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(DateFormatUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(DateFormatUtilTest.class);
 
-	/**
-	 * Format.
-	 */
-	@Test
-	public void format(){
-		Date now = new Date();
-		log.info(now.toString());
-		String pattern = DatePattern.COMMON_DATE;
-		pattern = "EEE MMM dd HH:mm:ss zzz yyyy";
-		String nowString = DateFormatUtil.format(now, pattern, Locale.ENGLISH);
-		log.info(nowString);
-		log.info(now.toString().equals(nowString) + "");
-	}
+    /**
+     * Format.
+     */
+    @Test
+    public void format(){
+        Date now = new Date();
+        log.info(now.toString());
+        String pattern = DatePattern.COMMON_DATE;
+        pattern = "EEE MMM dd HH:mm:ss zzz yyyy";
+        String nowString = DateFormatUtil.format(now, pattern, Locale.ENGLISH);
+        log.info(nowString);
+        log.info(now.toString().equals(nowString) + "");
+    }
 
-	/**
-	 * Parses the.
-	 */
-	@Test
-	public void parse(){
-		Date now = new Date();
-		log.info(now.toString());
-		Date now1 = DateFormatUtil.parse(now.toString(), "EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-		log.info(now1.toString());
-	}
+    /**
+     * Parses the.
+     */
+    @Test
+    public void parse(){
+        Date now = new Date();
+        log.info(now.toString());
+        Date now1 = DateFormatUtil.parse(now.toString(), "EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+        log.info(now1.toString());
+    }
 }

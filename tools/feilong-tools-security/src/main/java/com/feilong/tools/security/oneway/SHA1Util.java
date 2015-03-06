@@ -49,58 +49,58 @@ import com.feilong.tools.security.EncryptionException;
  */
 public final class SHA1Util{
 
-	/**
-	 * Instantiates a new SH a1 util.
-	 */
-	private SHA1Util(){
-	}
+    /**
+     * Instantiates a new SH a1 util.
+     */
+    private SHA1Util(){
+    }
 
-	/** The oneway type. */
-	private static OnewayType	onewayType	= OnewayType.SHA1;
+    /** The oneway type. */
+    private static OnewayType onewayType = OnewayType.SHA1;
 
-	/**
-	 * 使用算法 单向加密字符串.
-	 * 
-	 * @param origin
-	 *            原始字符串,将使用默认的 {@link String#getBytes()} 转成字节数组<br>
-	 * @return 加密之后的转成小写的16进制字符串
-	 * @throws EncryptionException
-	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
-	 * @see OnewayEncryption#encode(OnewayType, String)
-	 */
-	public static String encode(String origin) throws EncryptionException{
-		return OnewayEncryption.encode(onewayType, origin);
-	}
+    /**
+     * 使用算法 单向加密字符串.
+     * 
+     * @param origin
+     *            原始字符串,将使用默认的 {@link String#getBytes()} 转成字节数组<br>
+     * @return 加密之后的转成小写的16进制字符串
+     * @throws EncryptionException
+     *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+     * @see OnewayEncryption#encode(OnewayType, String)
+     */
+    public static String encode(String origin) throws EncryptionException{
+        return OnewayEncryption.encode(onewayType, origin);
+    }
 
-	/**
-	 * 使用算法 单向加密字符串.
-	 * 
-	 * @param origin
-	 *            原始字符串,将使用默认的 value.getBytes() 转成字节数组<br>
-	 *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(String, String)}
-	 * @param charsetName
-	 *            受支持的 {@link CharsetType} 名称,比如 utf-8
-	 * @return 加密之后的转成小写的16进制字符串
-	 * @throws EncryptionException
-	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
-	 * @see CharsetType
-	 * @see OnewayEncryption#encode(OnewayType, String, String)
-	 */
-	public static String encode(String origin,String charsetName) throws EncryptionException{
-		return OnewayEncryption.encode(onewayType, origin, charsetName);
-	}
+    /**
+     * 使用算法 单向加密字符串.
+     * 
+     * @param origin
+     *            原始字符串,将使用默认的 value.getBytes() 转成字节数组<br>
+     *            如果需要string 转码,请自行调用value.getBytes(string chartsetname),再调用{@link #encode(String, String)}
+     * @param charsetName
+     *            受支持的 {@link CharsetType} 名称,比如 utf-8
+     * @return 加密之后的转成小写的16进制字符串
+     * @throws EncryptionException
+     *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+     * @see CharsetType
+     * @see OnewayEncryption#encode(OnewayType, String, String)
+     */
+    public static String encode(String origin,String charsetName) throws EncryptionException{
+        return OnewayEncryption.encode(onewayType, origin, charsetName);
+    }
 
-	/**
-	 * 计算文件的单向加密值.
-	 * 
-	 * @param filePath
-	 *            文件路径 {@link java.io.File#File(String)}
-	 * @return the string
-	 * @throws EncryptionException
-	 *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
-	 * @see OnewayEncryption#encodeFile(OnewayType, String)
-	 */
-	public static String encodeFile(String filePath) throws EncryptionException{
-		return OnewayEncryption.encodeFile(onewayType, filePath);
-	}
+    /**
+     * 计算文件的单向加密值.
+     * 
+     * @param filePath
+     *            文件路径 {@link java.io.File#File(String)}
+     * @return the string
+     * @throws EncryptionException
+     *             如果在加密解密的过程中发生了异常,会以EncryptionException形式抛出
+     * @see OnewayEncryption#encodeFile(OnewayType, String)
+     */
+    public static String encodeFile(String filePath) throws EncryptionException{
+        return OnewayEncryption.encodeFile(onewayType, filePath);
+    }
 }

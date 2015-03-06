@@ -37,12 +37,12 @@ package com.feilong.tools.middleware.mobile;
  * @version 1.0 2011-3-4 下午01:51:52
  */
 public enum MobileGenerationType{
-	/**
-	 * 第二代
-	 */
-	Two,
-	/**
-	 * 第三代
-	 */
-	Third;
+    /**
+     * 第二代
+     */
+    Two,
+    /**
+     * 第三代
+     */
+    Third;
 }

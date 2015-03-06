@@ -29,50 +29,50 @@ import org.slf4j.LoggerFactory;
  */
 public class IOReaderUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(IOReaderUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(IOReaderUtilTest.class);
 
-	/**
-	 * Testname.
-	 * 
-	 * @throws IOException
-	 */
-	@Test
-	public void testname() throws IOException{
-		String fileName = "F:\\Life 生活\\Job 工作\\淘宝开店\\商家编码.txt";
-		String content = IOReaderUtil.getFileContent(fileName, CharsetType.UTF8);
-		// 将内容以换行符转成数组
-		String[] rowsContents = content.split("\r\n");
-		log.info(content);
-		log.info("" + rowsContents.length);
-	}
+    /**
+     * Testname.
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void testname() throws IOException{
+        String fileName = "F:\\Life 生活\\Job 工作\\淘宝开店\\商家编码.txt";
+        String content = IOReaderUtil.getFileContent(fileName, CharsetType.UTF8);
+        // 将内容以换行符转成数组
+        String[] rowsContents = content.split("\r\n");
+        log.info(content);
+        log.info("" + rowsContents.length);
+    }
 
-	/**
-	 * Parses the nginx.
-	 * 
-	 * @throws IOException
-	 */
-	@Test
-	public void parseNginx() throws IOException{
-		String fileName = "C:\\Users\\feilong\\Documents\\AJ11\\AJ11\\1.txt";
-		String content = IOReaderUtil.getFileContent(fileName, CharsetType.UTF8);
+    /**
+     * Parses the nginx.
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void parseNginx() throws IOException{
+        String fileName = "C:\\Users\\feilong\\Documents\\AJ11\\AJ11\\1.txt";
+        String content = IOReaderUtil.getFileContent(fileName, CharsetType.UTF8);
 
-		content.split("");
+        content.split("");
 
-		// 将内容以换行符转成数组
-		// String[] rowsContents = content.split("\r\n");
-		log.info(content);
-	}
+        // 将内容以换行符转成数组
+        // String[] rowsContents = content.split("\r\n");
+        log.info(content);
+    }
 
-	/**
-	 * Gets the file content.
-	 * 
-	 * @throws IOException
-	 * 
-	 */
-	@Test
-	public void testGetFileContent() throws IOException{
-		String propertiesPath = "I:/Ebook/book.properties";
-		log.info(IOReaderUtil.getFileContent(propertiesPath, CharsetType.UTF8));
-	}
+    /**
+     * Gets the file content.
+     * 
+     * @throws IOException
+     * 
+     */
+    @Test
+    public void testGetFileContent() throws IOException{
+        String propertiesPath = "I:/Ebook/book.properties";
+        log.info(IOReaderUtil.getFileContent(propertiesPath, CharsetType.UTF8));
+    }
 }

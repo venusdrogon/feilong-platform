@@ -35,59 +35,59 @@ import com.feilong.tools.security.EncryptionException;
 @SuppressWarnings("all")
 public class BlowfishTest implements TestConstants{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(BlowfishTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(BlowfishTest.class);
 
-	/** The symmetric encryption. */
-	private SymmetricEncryption	symmetricEncryption;
+    /** The symmetric encryption. */
+    private SymmetricEncryption symmetricEncryption;
 
-	/**
-	 * Blowfish.
-	 * 
-	 * @throws NullPointerException
-	 *             the null pointer exception
-	 * @throws EncryptionException
-	 *             the encryption exception
-	 */
-	@Test
-	public void blowfishEncryptHex() throws NullPointerException,EncryptionException{
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		String encryptHex = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
-		log.info("SymmetricType.Blowfish:{}", encryptHex);
-		assertEquals("055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6", encryptHex);
-		// 055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
-	}
+    /**
+     * Blowfish.
+     * 
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @throws EncryptionException
+     *             the encryption exception
+     */
+    @Test
+    public void blowfishEncryptHex() throws NullPointerException,EncryptionException{
+        SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
+        String encryptHex = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
+        log.info("SymmetricType.Blowfish:{}", encryptHex);
+        assertEquals("055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6", encryptHex);
+        // 055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6
+    }
 
-	/**
-	 * Base64 string221.
-	 * 
-	 * @throws NullPointerException
-	 *             the null pointer exception
-	 * @throws EncryptionException
-	 *             the encryption exception
-	 */
-	@Test
-	public void blowfishDecryptHex() throws NullPointerException,EncryptionException{
-		SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
-		String decryptHex = symmetricEncryption.decryptHex(hexString, CharsetType.UTF8);
-		log.info(decryptHex);
-	}
+    /**
+     * Base64 string221.
+     * 
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @throws EncryptionException
+     *             the encryption exception
+     */
+    @Test
+    public void blowfishDecryptHex() throws NullPointerException,EncryptionException{
+        SymmetricEncryption symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
+        String hexString = "055976934539FAAA2439E23AB9F165552F179E4C04C1F7F6";
+        String decryptHex = symmetricEncryption.decryptHex(hexString, CharsetType.UTF8);
+        log.info(decryptHex);
+    }
 
-	/**
-	 * Encrypt to hex string.
-	 * 
-	 * @throws NullPointerException
-	 *             the null pointer exception
-	 * @throws EncryptionException
-	 *             the encryption exception
-	 */
-	@Test
-	public void encryptToHexString() throws NullPointerException,EncryptionException{
-		String original = TestConstants.testString;
+    /**
+     * Encrypt to hex string.
+     * 
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @throws EncryptionException
+     *             the encryption exception
+     */
+    @Test
+    public void encryptToHexString() throws NullPointerException,EncryptionException{
+        String original = TestConstants.testString;
 
-		symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
-		String base64 = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
-		log.info(base64);
-	}
+        symmetricEncryption = new SymmetricEncryption(SymmetricType.Blowfish, keyString);
+        String base64 = symmetricEncryption.encryptHex(original, CharsetType.UTF8);
+        log.info(base64);
+    }
 }

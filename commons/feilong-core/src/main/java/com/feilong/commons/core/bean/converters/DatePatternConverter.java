@@ -53,96 +53,96 @@ import com.feilong.commons.core.util.Validator;
  */
 public class DatePatternConverter extends DateTimeConverter{
 
-	/** pattern {@link DatePattern}. */
-	private String	pattern;
+    /** pattern {@link DatePattern}. */
+    private String pattern;
 
-	/** The locale. */
-	private Locale	locale	= Locale.getDefault();
+    /** The locale. */
+    private Locale locale = Locale.getDefault();
 
-	/**
-	 * Instantiates a new date converter.
-	 * 
-	 * @param datePattern
-	 *            {@link DatePattern}
-	 * 
-	 * @see org.apache.commons.beanutils.converters.DateConverter
-	 * @see org.apache.commons.beanutils.converters.DateTimeConverter
-	 * @see org.apache.commons.beanutils.converters.AbstractConverter
-	 * @see org.apache.commons.beanutils.Converter
-	 * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
-	 */
-	public DatePatternConverter(String datePattern){
-		this.pattern = datePattern;
-	}
+    /**
+     * Instantiates a new date converter.
+     * 
+     * @param datePattern
+     *            {@link DatePattern}
+     * 
+     * @see org.apache.commons.beanutils.converters.DateConverter
+     * @see org.apache.commons.beanutils.converters.DateTimeConverter
+     * @see org.apache.commons.beanutils.converters.AbstractConverter
+     * @see org.apache.commons.beanutils.Converter
+     * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
+     */
+    public DatePatternConverter(String datePattern){
+        this.pattern = datePattern;
+    }
 
-	/**
-	 * Instantiates a new date converter.
-	 * 
-	 * @param datePattern
-	 *            {@link DatePattern}
-	 * @param locale
-	 *            the locale
-	 * 
-	 * @see org.apache.commons.beanutils.converters.DateConverter
-	 * @see org.apache.commons.beanutils.converters.DateTimeConverter
-	 * @see org.apache.commons.beanutils.converters.AbstractConverter
-	 * @see org.apache.commons.beanutils.Converter
-	 * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
-	 */
-	public DatePatternConverter(String datePattern, Locale locale){
-		this.pattern = datePattern;
-		this.locale = locale;
-	}
+    /**
+     * Instantiates a new date converter.
+     * 
+     * @param datePattern
+     *            {@link DatePattern}
+     * @param locale
+     *            the locale
+     * 
+     * @see org.apache.commons.beanutils.converters.DateConverter
+     * @see org.apache.commons.beanutils.converters.DateTimeConverter
+     * @see org.apache.commons.beanutils.converters.AbstractConverter
+     * @see org.apache.commons.beanutils.Converter
+     * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
+     */
+    public DatePatternConverter(String datePattern, Locale locale){
+        this.pattern = datePattern;
+        this.locale = locale;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.commons.beanutils.converters.AbstractConverter#getDefaultType()
-	 */
-	@Override
-	protected Class<?> getDefaultType(){
-		return Date.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.commons.beanutils.converters.AbstractConverter#getDefaultType()
+     */
+    @Override
+    protected Class<?> getDefaultType(){
+        return Date.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(java.lang.Class, java.lang.Object)
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> T convert(Class<T> type,Object value){
-		if (Validator.isNullOrEmpty(pattern)){
-			throw new IllegalArgumentException("value can't be null/empty!");
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(java.lang.Class, java.lang.Object)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T convert(Class<T> type,Object value){
+        if (Validator.isNullOrEmpty(pattern)){
+            throw new IllegalArgumentException("value can't be null/empty!");
+        }
 
-		if (Validator.isNullOrEmpty(value)){
-			return null;
-		}
-		Date dateObj = null;
-		if (value instanceof String){
-			dateObj = DateFormatUtil.parse(value.toString(), pattern, locale);
-		}
-		return (T) dateObj;
-	}
+        if (Validator.isNullOrEmpty(value)){
+            return null;
+        }
+        Date dateObj = null;
+        if (value instanceof String){
+            dateObj = DateFormatUtil.parse(value.toString(), pattern, locale);
+        }
+        return (T) dateObj;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.commons.beanutils.converters.DateTimeConverter#setPattern(java.lang.String)
-	 */
-	@Override
-	public void setPattern(String pattern){
-		this.pattern = pattern;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.commons.beanutils.converters.DateTimeConverter#setPattern(java.lang.String)
+     */
+    @Override
+    public void setPattern(String pattern){
+        this.pattern = pattern;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.commons.beanutils.converters.DateTimeConverter#setLocale(java.util.Locale)
-	 */
-	@Override
-	public void setLocale(Locale locale){
-		this.locale = locale;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.commons.beanutils.converters.DateTimeConverter#setLocale(java.util.Locale)
+     */
+    @Override
+    public void setLocale(Locale locale){
+        this.locale = locale;
+    }
 }

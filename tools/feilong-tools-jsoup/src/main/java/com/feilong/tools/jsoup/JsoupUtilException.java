@@ -35,57 +35,57 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public final class JsoupUtilException extends Exception{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -1699987643831455524L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -1699987643831455524L;
 
-	/**
-	 * Instantiates a new jsoup util exception.
-	 */
-	public JsoupUtilException(){
-		super();
-	}
+    /**
+     * Instantiates a new jsoup util exception.
+     */
+    public JsoupUtilException(){
+        super();
+    }
 
-	/**
-	 * Instantiates a new jsoup util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public JsoupUtilException(String message){
-		super(message);
-	}
+    /**
+     * Instantiates a new jsoup util exception.
+     * 
+     * @param message
+     *            the message
+     */
+    public JsoupUtilException(String message){
+        super(message);
+    }
 
-	/**
-	 * Instantiates a new jsoup util exception.
-	 * 
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public JsoupUtilException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * Instantiates a new jsoup util exception.
+     * 
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public JsoupUtilException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * Instantiates a new jsoup util exception.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public JsoupUtilException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new jsoup util exception.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public JsoupUtilException(String message, Throwable cause){
+        super(message, cause);
+    }
 
-	/**
-	 * Instantiates a new jsoup util exception.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public JsoupUtilException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * Instantiates a new jsoup util exception.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public JsoupUtilException(Throwable cause){
+        super(cause);
+    }
 }

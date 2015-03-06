@@ -27,21 +27,21 @@ import org.slf4j.LoggerFactory;
  */
 public class WeatherServiceTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(WeatherServiceTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(WeatherServiceTest.class);
 
-	/**
-	 * Test.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void test() throws Exception{
-		final String city = "南通";
-		if (log.isInfoEnabled()){
-			log.info(WeatherService.getWeatherContent(city));
-		}
-	}
+    /**
+     * Test.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void test() throws Exception{
+        final String city = "南通";
+        if (log.isInfoEnabled()){
+            log.info(WeatherService.getWeatherContent(city));
+        }
+    }
 
 }

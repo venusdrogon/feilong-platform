@@ -35,61 +35,61 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 abstract public class PDFWriter{
 
-	private static final Logger	log			= LoggerFactory.getLogger(PDFWriter.class);
+    private static final Logger log      = LoggerFactory.getLogger(PDFWriter.class);
 
-	/** The document. */
-	protected Document			document	= null;
+    /** The document. */
+    protected Document          document = null;
 
-	/** The out. */
-	protected FileOutputStream	out			= null;
+    /** The out. */
+    protected FileOutputStream  out      = null;
 
-	/** The page size. */
-	protected Rectangle			pageSize	= null;
+    /** The page size. */
+    protected Rectangle         pageSize = null;
 
-	/** The file path. */
-	protected String			filePath	= null;
+    /** The file path. */
+    protected String            filePath = null;
 
-	/** The cell. */
-	protected Cell				cell		= null;
+    /** The cell. */
+    protected Cell              cell     = null;
 
-	/** The header. */
-	protected Paragraph			header		= null;
+    /** The header. */
+    protected Paragraph         header   = null;
 
-	/** The prg. */
-	protected Paragraph			prg			= null;
+    /** The prg. */
+    protected Paragraph         prg      = null;
 
-	/** The table. */
-	protected Table				table		= null;
+    /** The table. */
+    protected Table             table    = null;
 
-	/**
-	 * Instantiates a new PDF writer.
-	 * 
-	 * @param filePath
-	 *            the file path
-	 */
-	public PDFWriter(String filePath){
-		try{
-			this.filePath = filePath;
-			document = new Document();
-			out = new FileOutputStream(filePath);
-			PdfWriter.getInstance(document, out);
-			document.open();
-		}catch (FileNotFoundException e){
-			log.error(e.getClass().getName(), e);
-		}catch (DocumentException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * Instantiates a new PDF writer.
+     * 
+     * @param filePath
+     *            the file path
+     */
+    public PDFWriter(String filePath){
+        try{
+            this.filePath = filePath;
+            document = new Document();
+            out = new FileOutputStream(filePath);
+            PdfWriter.getInstance(document, out);
+            document.open();
+        }catch (FileNotFoundException e){
+            log.error(e.getClass().getName(), e);
+        }catch (DocumentException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 
-	/**
-	 * Close.
-	 */
-	public void close(){
-		try{
-			document.close();
-			out.close();
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+    /**
+     * Close.
+     */
+    public void close(){
+        try{
+            document.close();
+            out.close();
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 }

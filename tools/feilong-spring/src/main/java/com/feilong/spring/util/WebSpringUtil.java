@@ -39,264 +39,264 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  */
 public final class WebSpringUtil{
 
-	//	/**
-	//	 * 获得消息信息
-	//	 * 
-	//	 * @param request
-	//	 * @param messageSourceResolvable
-	//	 *            适用于 ObjectError 以及 FieldError
-	//	 * @return
-	//	 */
-	//	public static String getMessage(MessageSourceResolvable messageSourceResolvable,HttpServletRequest request){
-	//		HttpSession session = request.getSession();
-	//		ServletContext servletContext = session.getServletContext();
-	//		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-	//		return webApplicationContext.getMessage(messageSourceResolvable, request.getLocale());
-	//	}
+    //	/**
+    //	 * 获得消息信息
+    //	 * 
+    //	 * @param request
+    //	 * @param messageSourceResolvable
+    //	 *            适用于 ObjectError 以及 FieldError
+    //	 * @return
+    //	 */
+    //	public static String getMessage(MessageSourceResolvable messageSourceResolvable,HttpServletRequest request){
+    //		HttpSession session = request.getSession();
+    //		ServletContext servletContext = session.getServletContext();
+    //		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+    //		return webApplicationContext.getMessage(messageSourceResolvable, request.getLocale());
+    //	}
 
-	/**
-	 * 普通类获得spring 注入的类方法<br>
-	 * 注意:<b>(如果找不到bean会抛出异常)</b><br>
-	 * 推荐使用{@link #getRequiredBean(HttpServletRequest, String)}.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param request
-	 *            request
-	 * @param beanName
-	 *            xml文件中配置的bean beanName
-	 * @return 注入的bean
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getBean(HttpServletRequest request,String beanName){
-		HttpSession session = request.getSession();
-		return (T) getBean(session, beanName);
-	}
+    /**
+     * 普通类获得spring 注入的类方法<br>
+     * 注意:<b>(如果找不到bean会抛出异常)</b><br>
+     * 推荐使用{@link #getRequiredBean(HttpServletRequest, String)}.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param request
+     *            request
+     * @param beanName
+     *            xml文件中配置的bean beanName
+     * @return 注入的bean
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(HttpServletRequest request,String beanName){
+        HttpSession session = request.getSession();
+        return (T) getBean(session, beanName);
+    }
 
-	/**
-	 * Gets the bean<br>
-	 * 推荐使用{@link #getRequiredBean(HttpServletRequest, Class)}.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param request
-	 *            the request
-	 * @param requiredType
-	 *            the required type
-	 * @return the bean
-	 */
-	@SuppressWarnings("cast")
-	public static <T> T getBean(HttpServletRequest request,Class<T> requiredType){
-		HttpSession session = request.getSession();
-		return getBean(session, requiredType);
-	}
+    /**
+     * Gets the bean<br>
+     * 推荐使用{@link #getRequiredBean(HttpServletRequest, Class)}.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param request
+     *            the request
+     * @param requiredType
+     *            the required type
+     * @return the bean
+     */
+    @SuppressWarnings("cast")
+    public static <T> T getBean(HttpServletRequest request,Class<T> requiredType){
+        HttpSession session = request.getSession();
+        return getBean(session, requiredType);
+    }
 
-	/**
-	 * 普通类获得spring 注入的类方法<br>
-	 * 注意:<b>(如果找不到bean,返回null)</b>.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param session
-	 *            session
-	 * @param beanName
-	 *            xml文件中配置的bean beanName
-	 * @return 注入的bean
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getBean(HttpSession session,String beanName){
-		ServletContext servletContext = session.getServletContext();
-		return (T) getBean(servletContext, beanName);
-	}
+    /**
+     * 普通类获得spring 注入的类方法<br>
+     * 注意:<b>(如果找不到bean,返回null)</b>.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param session
+     *            session
+     * @param beanName
+     *            xml文件中配置的bean beanName
+     * @return 注入的bean
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(HttpSession session,String beanName){
+        ServletContext servletContext = session.getServletContext();
+        return (T) getBean(servletContext, beanName);
+    }
 
-	/**
-	 * Gets the bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param session
-	 *            the session
-	 * @param requiredType
-	 *            the required type
-	 * @return the bean
-	 */
-	@SuppressWarnings("cast")
-	public static <T> T getBean(HttpSession session,Class<T> requiredType){
-		ServletContext servletContext = session.getServletContext();
-		return getBean(servletContext, requiredType);
-	}
+    /**
+     * Gets the bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param session
+     *            the session
+     * @param requiredType
+     *            the required type
+     * @return the bean
+     */
+    @SuppressWarnings("cast")
+    public static <T> T getBean(HttpSession session,Class<T> requiredType){
+        ServletContext servletContext = session.getServletContext();
+        return getBean(servletContext, requiredType);
+    }
 
-	/**
-	 * 普通类获得spring 注入的类方法<br>
-	 * 注意:<b>(如果找不到bean,返回null)</b>.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param servletContext
-	 *            servletContext
-	 * @param beanName
-	 *            xml文件中配置的bean beanName
-	 * @return 注入的bean
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getBean(ServletContext servletContext,String beanName){
-		// getWebApplicationContext 如果是空,返回null
-		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-		return (T) getBean(webApplicationContext, beanName);
-	}
+    /**
+     * 普通类获得spring 注入的类方法<br>
+     * 注意:<b>(如果找不到bean,返回null)</b>.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param servletContext
+     *            servletContext
+     * @param beanName
+     *            xml文件中配置的bean beanName
+     * @return 注入的bean
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(ServletContext servletContext,String beanName){
+        // getWebApplicationContext 如果是空,返回null
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        return (T) getBean(webApplicationContext, beanName);
+    }
 
-	/**
-	 * Gets the bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param servletContext
-	 *            the servlet context
-	 * @param requiredType
-	 *            the required type
-	 * @return the bean
-	 */
-	@SuppressWarnings("cast")
-	public static <T> T getBean(ServletContext servletContext,Class<T> requiredType){
-		// getWebApplicationContext 如果是空,返回null
-		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-		return getBean(webApplicationContext, requiredType);
-	}
+    /**
+     * Gets the bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param servletContext
+     *            the servlet context
+     * @param requiredType
+     *            the required type
+     * @return the bean
+     */
+    @SuppressWarnings("cast")
+    public static <T> T getBean(ServletContext servletContext,Class<T> requiredType){
+        // getWebApplicationContext 如果是空,返回null
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        return getBean(webApplicationContext, requiredType);
+    }
 
-	/**
-	 * 普通类获得spring 注入的类方法<br>
-	 * 注意:<b>(如果找不到bean会抛出异常)</b>.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param request
-	 *            request
-	 * @param beanName
-	 *            xml文件中配置的bean beanName
-	 * @return 注入的bean
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getRequiredBean(HttpServletRequest request,String beanName){
-		HttpSession session = request.getSession();
-		return (T) getBean(session, beanName);
-	}
+    /**
+     * 普通类获得spring 注入的类方法<br>
+     * 注意:<b>(如果找不到bean会抛出异常)</b>.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param request
+     *            request
+     * @param beanName
+     *            xml文件中配置的bean beanName
+     * @return 注入的bean
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getRequiredBean(HttpServletRequest request,String beanName){
+        HttpSession session = request.getSession();
+        return (T) getBean(session, beanName);
+    }
 
-	/**
-	 * Gets the required bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param request
-	 *            the request
-	 * @param requiredType
-	 *            the required type
-	 * @return the required bean
-	 */
-	@SuppressWarnings("cast")
-	public static <T> T getRequiredBean(HttpServletRequest request,Class<T> requiredType){
-		HttpSession session = request.getSession();
-		return getBean(session, requiredType);
-	}
+    /**
+     * Gets the required bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param request
+     *            the request
+     * @param requiredType
+     *            the required type
+     * @return the required bean
+     */
+    @SuppressWarnings("cast")
+    public static <T> T getRequiredBean(HttpServletRequest request,Class<T> requiredType){
+        HttpSession session = request.getSession();
+        return getBean(session, requiredType);
+    }
 
-	/**
-	 * Gets the required bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param session
-	 *            the session
-	 * @param beanName
-	 *            the bean name
-	 * @return the required bean
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getRequiredBean(HttpSession session,String beanName){
-		ServletContext servletContext = session.getServletContext();
-		return (T) getBean(servletContext, beanName);
-	}
+    /**
+     * Gets the required bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param session
+     *            the session
+     * @param beanName
+     *            the bean name
+     * @return the required bean
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getRequiredBean(HttpSession session,String beanName){
+        ServletContext servletContext = session.getServletContext();
+        return (T) getBean(servletContext, beanName);
+    }
 
-	/**
-	 * Gets the required bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param session
-	 *            the session
-	 * @param requiredType
-	 *            the required type
-	 * @return the required bean
-	 */
-	@SuppressWarnings("cast")
-	public static <T> T getRequiredBean(HttpSession session,Class<T> requiredType){
-		ServletContext servletContext = session.getServletContext();
-		return getBean(servletContext, requiredType);
-	}
+    /**
+     * Gets the required bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param session
+     *            the session
+     * @param requiredType
+     *            the required type
+     * @return the required bean
+     */
+    @SuppressWarnings("cast")
+    public static <T> T getRequiredBean(HttpSession session,Class<T> requiredType){
+        ServletContext servletContext = session.getServletContext();
+        return getBean(servletContext, requiredType);
+    }
 
-	/**
-	 * Gets the required bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param servletContext
-	 *            the servlet context
-	 * @param beanName
-	 *            the bean name
-	 * @return the required bean
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getRequiredBean(ServletContext servletContext,String beanName){
-		// getRequiredWebApplicationContext 如果是空会抛出异常
-		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-		return (T) getBean(webApplicationContext, beanName);
-	}
+    /**
+     * Gets the required bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param servletContext
+     *            the servlet context
+     * @param beanName
+     *            the bean name
+     * @return the required bean
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getRequiredBean(ServletContext servletContext,String beanName){
+        // getRequiredWebApplicationContext 如果是空会抛出异常
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        return (T) getBean(webApplicationContext, beanName);
+    }
 
-	/**
-	 * Gets the required bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param servletContext
-	 *            the servlet context
-	 * @param requiredType
-	 *            the required type
-	 * @return the required bean
-	 */
-	@SuppressWarnings("cast")
-	public static <T> T getRequiredBean(ServletContext servletContext,Class<T> requiredType){
-		// getRequiredWebApplicationContext 如果是空会抛出异常
-		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-		return getBean(webApplicationContext, requiredType);
-	}
+    /**
+     * Gets the required bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param servletContext
+     *            the servlet context
+     * @param requiredType
+     *            the required type
+     * @return the required bean
+     */
+    @SuppressWarnings("cast")
+    public static <T> T getRequiredBean(ServletContext servletContext,Class<T> requiredType){
+        // getRequiredWebApplicationContext 如果是空会抛出异常
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        return getBean(webApplicationContext, requiredType);
+    }
 
-	/**
-	 * Gets the bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param webApplicationContext
-	 *            the web application context
-	 * @param beanName
-	 *            the bean name
-	 * @return the bean
-	 */
-	@SuppressWarnings("unchecked")
-	private static <T> T getBean(WebApplicationContext webApplicationContext,String beanName){
-		return (T) webApplicationContext.getBean(beanName);
-	}
+    /**
+     * Gets the bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param webApplicationContext
+     *            the web application context
+     * @param beanName
+     *            the bean name
+     * @return the bean
+     */
+    @SuppressWarnings("unchecked")
+    private static <T> T getBean(WebApplicationContext webApplicationContext,String beanName){
+        return (T) webApplicationContext.getBean(beanName);
+    }
 
-	/**
-	 * Gets the bean.
-	 * 
-	 * @param <T>
-	 *            the generic type
-	 * @param webApplicationContext
-	 *            the web application context
-	 * @param requiredType
-	 *            the required type
-	 * @return the bean
-	 */
-	@SuppressWarnings("cast")
-	private static <T> T getBean(WebApplicationContext webApplicationContext,Class<T> requiredType){
-		return webApplicationContext.getBean(requiredType);
-	}
+    /**
+     * Gets the bean.
+     * 
+     * @param <T>
+     *            the generic type
+     * @param webApplicationContext
+     *            the web application context
+     * @param requiredType
+     *            the required type
+     * @return the bean
+     */
+    @SuppressWarnings("cast")
+    private static <T> T getBean(WebApplicationContext webApplicationContext,Class<T> requiredType){
+        return webApplicationContext.getBean(requiredType);
+    }
 }

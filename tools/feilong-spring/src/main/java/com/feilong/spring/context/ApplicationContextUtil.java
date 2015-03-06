@@ -34,55 +34,55 @@ import org.springframework.core.env.Environment;
  */
 public final class ApplicationContextUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ApplicationContextUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ApplicationContextUtil.class);
 
-	/**
-	 * 获得 application context for log map.
-	 *
-	 * @param applicationContext
-	 *            the application context
-	 * @return the application context for log map
-	 */
-	public static Map<String, Object> getApplicationContextForLogMap(ApplicationContext applicationContext){
-		Map<String, Object> applicationContextForLogMap = new LinkedHashMap<String, Object>();
+    /**
+     * 获得 application context for log map.
+     *
+     * @param applicationContext
+     *            the application context
+     * @return the application context for log map
+     */
+    public static Map<String, Object> getApplicationContextForLogMap(ApplicationContext applicationContext){
+        Map<String, Object> applicationContextForLogMap = new LinkedHashMap<String, Object>();
 
-		applicationContextForLogMap.put("applicationContext.getBeanDefinitionCount()", applicationContext.getBeanDefinitionCount());
+        applicationContextForLogMap.put("applicationContext.getBeanDefinitionCount()", applicationContext.getBeanDefinitionCount());
 
-		applicationContextForLogMap.put("applicationContext.getApplicationName()", applicationContext.getApplicationName());
-		applicationContextForLogMap.put("applicationContext.getDisplayName()", applicationContext.getDisplayName());
+        applicationContextForLogMap.put("applicationContext.getApplicationName()", applicationContext.getApplicationName());
+        applicationContextForLogMap.put("applicationContext.getDisplayName()", applicationContext.getDisplayName());
 
-		applicationContextForLogMap.put("applicationContext.getId()", applicationContext.getId());
-		applicationContextForLogMap.put("applicationContext.getStartupDate()", applicationContext.getStartupDate());
+        applicationContextForLogMap.put("applicationContext.getId()", applicationContext.getId());
+        applicationContextForLogMap.put("applicationContext.getStartupDate()", applicationContext.getStartupDate());
 
-		applicationContextForLogMap.put("ApplicationContext.CLASSPATH_ALL_URL_PREFIX", ApplicationContext.CLASSPATH_ALL_URL_PREFIX);
-		applicationContextForLogMap.put("ApplicationContext.CLASSPATH_URL_PREFIX", ApplicationContext.CLASSPATH_URL_PREFIX);
-		applicationContextForLogMap.put("ApplicationContext.FACTORY_BEAN_PREFIX", ApplicationContext.FACTORY_BEAN_PREFIX);
+        applicationContextForLogMap.put("ApplicationContext.CLASSPATH_ALL_URL_PREFIX", ApplicationContext.CLASSPATH_ALL_URL_PREFIX);
+        applicationContextForLogMap.put("ApplicationContext.CLASSPATH_URL_PREFIX", ApplicationContext.CLASSPATH_URL_PREFIX);
+        applicationContextForLogMap.put("ApplicationContext.FACTORY_BEAN_PREFIX", ApplicationContext.FACTORY_BEAN_PREFIX);
 
-		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-		Arrays.sort(beanDefinitionNames);
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        Arrays.sort(beanDefinitionNames);
 
-		//applicationContextForLogMap.put("applicationContext.getBeanDefinitionNames()", beanDefinitionNames);
+        //applicationContextForLogMap.put("applicationContext.getBeanDefinitionNames()", beanDefinitionNames);
 
-		Map<String, Object> beanDefinitionNamesAndClassMap = new LinkedHashMap<String, Object>();
-		for (String beanDefinitionName : beanDefinitionNames){
-			try{
-				Object bean = applicationContext.getBean(beanDefinitionName);
-				String canonicalName = bean.getClass().getCanonicalName();
-				Object vObject = canonicalName
-								+ (applicationContext.isPrototype(beanDefinitionName) ? "[Prototype]" : (applicationContext
-												.isSingleton(beanDefinitionName) ? "[Singleton]" : ""));
-				beanDefinitionNamesAndClassMap.put(beanDefinitionName, vObject);
-			}catch (BeansException e){
-				beanDefinitionNamesAndClassMap.put(beanDefinitionName, e.getMessage());
-			}
-		}
+        Map<String, Object> beanDefinitionNamesAndClassMap = new LinkedHashMap<String, Object>();
+        for (String beanDefinitionName : beanDefinitionNames){
+            try{
+                Object bean = applicationContext.getBean(beanDefinitionName);
+                String canonicalName = bean.getClass().getCanonicalName();
+                Object vObject = canonicalName
+                                + (applicationContext.isPrototype(beanDefinitionName) ? "[Prototype]" : (applicationContext
+                                                .isSingleton(beanDefinitionName) ? "[Singleton]" : ""));
+                beanDefinitionNamesAndClassMap.put(beanDefinitionName, vObject);
+            }catch (BeansException e){
+                beanDefinitionNamesAndClassMap.put(beanDefinitionName, e.getMessage());
+            }
+        }
 
-		applicationContextForLogMap.put("beanDefinitionNamesAndClassMap", beanDefinitionNamesAndClassMap);
+        applicationContextForLogMap.put("beanDefinitionNamesAndClassMap", beanDefinitionNamesAndClassMap);
 
-		Environment environment = applicationContext.getEnvironment();
-		applicationContextForLogMap.put("applicationContext.getEnvironment()", environment);
+        Environment environment = applicationContext.getEnvironment();
+        applicationContextForLogMap.put("applicationContext.getEnvironment()", environment);
 
-		return applicationContextForLogMap;
-	}
+        return applicationContextForLogMap;
+    }
 }

@@ -30,16 +30,16 @@ import com.feilong.tools.velocity.VelocityUtil;
  */
 public class ConcatTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(ConcatTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ConcatTest.class);
 
-	/**
-	 * Parses the vm template with classpath resource loader.
-	 */
-	@Test
-	public void parseVMTemplateWithClasspathResourceLoader(){
-		String templateInClassPath = "velocity/concat.vm";
-		String parseVMTemplate = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, null);
-		log.info(parseVMTemplate);
-	}
+    /**
+     * Parses the vm template with classpath resource loader.
+     */
+    @Test
+    public void parseVMTemplateWithClasspathResourceLoader(){
+        String templateInClassPath = "velocity/concat.vm";
+        String parseVMTemplate = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, null);
+        log.info(parseVMTemplate);
+    }
 }

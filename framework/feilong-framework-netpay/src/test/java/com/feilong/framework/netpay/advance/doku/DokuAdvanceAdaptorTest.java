@@ -30,24 +30,24 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
  */
 public class DokuAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
 
-	/** The payment adaptor. */
-	@Autowired
-	@Qualifier("dokuAdvanceAdaptor")
-	private PaymentAdvanceAdaptor	paymentAdvanceAdaptor;
+    /** The payment adaptor. */
+    @Autowired
+    @Qualifier("dokuAdvanceAdaptor")
+    private PaymentAdvanceAdaptor paymentAdvanceAdaptor;
 
-	/**
-	 * Gets the query result.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void getQueryResult() throws Exception{
-		QueryRequest queryRequest = new QueryRequest();
+    /**
+     * Gets the query result.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void getQueryResult() throws Exception{
+        QueryRequest queryRequest = new QueryRequest();
 
-		queryRequest.setTradeNo("010003660001");
-		queryRequest.setBuyer("20140508105926");// 222
+        queryRequest.setTradeNo("010003660001");
+        queryRequest.setBuyer("20140508105926");// 222
 
-		getQueryResult(paymentAdvanceAdaptor, queryRequest);
-	}
+        getQueryResult(paymentAdvanceAdaptor, queryRequest);
+    }
 }

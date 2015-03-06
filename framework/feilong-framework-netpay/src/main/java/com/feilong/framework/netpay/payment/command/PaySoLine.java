@@ -26,94 +26,94 @@ import java.math.BigDecimal;
  */
 public class PaySoLine implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/** 购买商品的名称. */
-	private String				itemName;
+    /** 购买商品的名称. */
+    private String            itemName;
 
-	/** 支付单价. */
-	private BigDecimal			unitPrice;
+    /** 支付单价. */
+    private BigDecimal        unitPrice;
 
-	/** 购买数量. */
-	private Integer				quantity;
+    /** 购买数量. */
+    private Integer           quantity;
 
-	/** 小计. */
-	private BigDecimal			subTotalPrice;
+    /** 小计. */
+    private BigDecimal        subTotalPrice;
 
-	/**
-	 * Gets the 购买商品的名称.
-	 * 
-	 * @return the itemName
-	 */
-	public String getItemName(){
-		return itemName;
-	}
+    /**
+     * Gets the 购买商品的名称.
+     * 
+     * @return the itemName
+     */
+    public String getItemName(){
+        return itemName;
+    }
 
-	/**
-	 * Sets the 购买商品的名称.
-	 * 
-	 * @param itemName
-	 *            the itemName to set
-	 */
-	public void setItemName(String itemName){
-		this.itemName = itemName;
-	}
+    /**
+     * Sets the 购买商品的名称.
+     * 
+     * @param itemName
+     *            the itemName to set
+     */
+    public void setItemName(String itemName){
+        this.itemName = itemName;
+    }
 
-	/**
-	 * Gets the 支付单价.
-	 * 
-	 * @return the unitPrice
-	 */
-	public BigDecimal getUnitPrice(){
-		return unitPrice;
-	}
+    /**
+     * Gets the 支付单价.
+     * 
+     * @return the unitPrice
+     */
+    public BigDecimal getUnitPrice(){
+        return unitPrice;
+    }
 
-	/**
-	 * Sets the 支付单价.
-	 * 
-	 * @param unitPrice
-	 *            the unitPrice to set
-	 */
-	public void setUnitPrice(BigDecimal unitPrice){
-		this.unitPrice = unitPrice;
-	}
+    /**
+     * Sets the 支付单价.
+     * 
+     * @param unitPrice
+     *            the unitPrice to set
+     */
+    public void setUnitPrice(BigDecimal unitPrice){
+        this.unitPrice = unitPrice;
+    }
 
-	/**
-	 * Gets the 购买数量.
-	 * 
-	 * @return the quantity
-	 */
-	public Integer getQuantity(){
-		return quantity;
-	}
+    /**
+     * Gets the 购买数量.
+     * 
+     * @return the quantity
+     */
+    public Integer getQuantity(){
+        return quantity;
+    }
 
-	/**
-	 * Sets the 购买数量.
-	 * 
-	 * @param quantity
-	 *            the quantity to set
-	 */
-	public void setQuantity(Integer quantity){
-		this.quantity = quantity;
-	}
+    /**
+     * Sets the 购买数量.
+     * 
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(Integer quantity){
+        this.quantity = quantity;
+    }
 
-	/**
-	 * Gets the 小计.
-	 * 
-	 * @return the subTotalPrice
-	 */
-	public BigDecimal getSubTotalPrice(){
-		return subTotalPrice;
-	}
+    /**
+     * Gets the 小计.
+     * 
+     * @return the subTotalPrice
+     */
+    public BigDecimal getSubTotalPrice(){
+        return subTotalPrice;
+    }
 
-	/**
-	 * Sets the 小计.
-	 * 
-	 * @param subTotalPrice
-	 *            the subTotalPrice to set
-	 */
-	public void setSubTotalPrice(BigDecimal subTotalPrice){
-		this.subTotalPrice = subTotalPrice;
-	}
+    /**
+     * Sets the 小计.
+     * 
+     * @param subTotalPrice
+     *            the subTotalPrice to set
+     */
+    public void setSubTotalPrice(BigDecimal subTotalPrice){
+        this.subTotalPrice = subTotalPrice;
+    }
 }

@@ -27,30 +27,30 @@ import org.slf4j.LoggerFactory;
  */
 public class SpecialFolderTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SpecialFolderTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SpecialFolderTest.class);
 
-	/**
-	 * Test get desktop.
-	 */
-	@Test
-	public void testGetDesktop(){
-		log.info("桌面地址:" + SpecialFolder.getDesktop());
-	}
+    /**
+     * Test get desktop.
+     */
+    @Test
+    public void testGetDesktop(){
+        log.info("桌面地址:" + SpecialFolder.getDesktop());
+    }
 
-	/**
-	 * Test get my documents.
-	 */
-	@Test
-	public void testGetMyDocuments(){
-		log.info("我的文档:" + SpecialFolder.getMyDocuments());
-	}
+    /**
+     * Test get my documents.
+     */
+    @Test
+    public void testGetMyDocuments(){
+        log.info("我的文档:" + SpecialFolder.getMyDocuments());
+    }
 
-	/**
-	 * Test get temp.
-	 */
-	@Test
-	public void testGetTemp(){
-		log.info("临时文件夹:" + SpecialFolder.getTemp());
-	}
+    /**
+     * Test get temp.
+     */
+    @Test
+    public void testGetTemp(){
+        log.info("临时文件夹:" + SpecialFolder.getTemp());
+    }
 }

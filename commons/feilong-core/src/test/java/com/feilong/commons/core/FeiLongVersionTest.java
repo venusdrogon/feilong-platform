@@ -27,14 +27,14 @@ import org.slf4j.LoggerFactory;
  */
 public class FeiLongVersionTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(FeiLongVersionTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(FeiLongVersionTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.FeiLongVersion#getVersion()}.
-	 */
-	@Test
-	public final void testGetVersion(){
-		log.info(FeiLongVersion.getVersion());
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.FeiLongVersion#getVersion()}.
+     */
+    @Test
+    public final void testGetVersion(){
+        log.info(FeiLongVersion.getVersion());
+    }
 }

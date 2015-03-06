@@ -30,48 +30,48 @@ import com.feilong.taglib.display.pager.command.PagerParams;
  */
 public abstract class BasePagerTest{
 
-	// Locale.ENGLISH;
-	/** The locale. */
-	private Locale	locale				= Locale.SIMPLIFIED_CHINESE;
+    // Locale.ENGLISH;
+    /** The locale. */
+    private Locale locale            = Locale.SIMPLIFIED_CHINESE;
 
-	/** The debug is not parse vm. */
-	boolean			debugIsNotParseVM	= false;
+    /** The debug is not parse vm. */
+    boolean        debugIsNotParseVM = false;
 
-	/**
-	 * Gets the pager params.
-	 * 
-	 * @return the pager params
-	 */
-	protected PagerParams getPagerParams(){
-		int count = 1024;
-		int currentPageNo = -1;
-		int pageSize = 10;
-		int maxIndexPages = 8;
-		String skin = PagerConstants.DEFAULT_SKIN;
-		//		String pageUrl = "http://localhost:8888/pager.htm?a=b&b=c&d=a&name=jinxin";
-		String pageUrl = "http://item.blanja.com/items/search?oneNav=1190&priceTo=&twoNav=101706&priceFrom=100&pageNo=1&keyWords=Samsung";
-		//		String pageUrl = "http://localhost:8888/pager.htm";
+    /**
+     * Gets the pager params.
+     * 
+     * @return the pager params
+     */
+    protected PagerParams getPagerParams(){
+        int count = 1024;
+        int currentPageNo = -1;
+        int pageSize = 10;
+        int maxIndexPages = 8;
+        String skin = PagerConstants.DEFAULT_SKIN;
+        //		String pageUrl = "http://localhost:8888/pager.htm?a=b&b=c&d=a&name=jinxin";
+        String pageUrl = "http://item.blanja.com/items/search?oneNav=1190&priceTo=&twoNav=101706&priceFrom=100&pageNo=1&keyWords=Samsung";
+        //		String pageUrl = "http://localhost:8888/pager.htm";
 
-		// pageUrl =
-		// "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
+        // pageUrl =
+        // "http://www.underarmour.cn/cmens-bottoms-pant/t-b-f-a-c-s-fLoose-p-g-e-i-o.htm?'\"--></style></script><script>netsparker(0x0000E1)</script>=";
 
-		String pageParamName = "pageNo";
-		String vmPath = PagerConstants.DEFAULT_TEMPLATE_IN_CLASSPATH;
+        String pageParamName = "pageNo";
+        String vmPath = PagerConstants.DEFAULT_TEMPLATE_IN_CLASSPATH;
 
-		// log.debug("===================================================");
+        // log.debug("===================================================");
 
-		PagerParams pagerParams = new PagerParams(count, pageUrl);
-		pagerParams.setCurrentPageNo(currentPageNo);
-		pagerParams.setPageSize(pageSize);
-		pagerParams.setMaxIndexPages(maxIndexPages);
-		pagerParams.setSkin(skin);
-		pagerParams.setPageParamName(pageParamName);
-		pagerParams.setVmPath(vmPath);
-		pagerParams.setCharsetType(CharsetType.UTF8);
+        PagerParams pagerParams = new PagerParams(count, pageUrl);
+        pagerParams.setCurrentPageNo(currentPageNo);
+        pagerParams.setPageSize(pageSize);
+        pagerParams.setMaxIndexPages(maxIndexPages);
+        pagerParams.setSkin(skin);
+        pagerParams.setPageParamName(pageParamName);
+        pagerParams.setVmPath(vmPath);
+        pagerParams.setCharsetType(CharsetType.UTF8);
 
-		pagerParams.setDebugIsNotParseVM(debugIsNotParseVM);
+        pagerParams.setDebugIsNotParseVM(debugIsNotParseVM);
 
-		pagerParams.setLocale(locale);
-		return pagerParams;
-	}
+        pagerParams.setLocale(locale);
+        return pagerParams;
+    }
 }

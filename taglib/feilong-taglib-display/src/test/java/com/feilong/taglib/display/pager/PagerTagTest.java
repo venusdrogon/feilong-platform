@@ -27,19 +27,19 @@ import org.slf4j.LoggerFactory;
  */
 public class PagerTagTest{
 
-	/** The Constant log. */
-	private static final Logger	log			= LoggerFactory.getLogger(PagerTagTest.class);
+    /** The Constant log. */
+    private static final Logger log      = LoggerFactory.getLogger(PagerTagTest.class);
 
-	/** The pager tag. */
-	private PagerTag			pagerTag	= new PagerTag();
+    /** The pager tag. */
+    private PagerTag            pagerTag = new PagerTag();
 
-	// private TagTestHelper helper = new TagTestHelper(tag);
+    // private TagTestHelper helper = new TagTestHelper(tag);
 
-	/**
-	 * Test method for {@link com.feilong.taglib.display.pager.PagerTag#writeContent()}.
-	 */
-	@Test
-	public void testWriteContent(){
-		log.info(pagerTag.writeContent());
-	}
+    /**
+     * Test method for {@link com.feilong.taglib.display.pager.PagerTag#writeContent()}.
+     */
+    @Test
+    public void testWriteContent(){
+        log.info(pagerTag.writeContent());
+    }
 }

@@ -32,26 +32,26 @@ import com.feilong.commons.core.lang.ObjectUtil;
  */
 public class StrutsTaglibUtil{
 
-	/**
-	 * 数组/map/Collection/Iterator/Enumeration转成Iterator
-	 * 
-	 * @param currentCollection
-	 *            Object
-	 * @return Iterator
-	 * @author 金鑫
-	 * @version 1.0 2010-5-12 下午05:07:41
-	 */
-	public static Iterator objectToIterator(Object currentCollection){
-		Iterator iterator = ObjectUtil.toIterator(currentCollection);
-		if (null == iterator){
-			// currentCollection 不是空
-			if (null != currentCollection){
-				// 构建此集合的迭代器
-				if (currentCollection instanceof Enumeration){
-					iterator = new IteratorAdapter((Enumeration<?>) currentCollection);
-				}
-			}
-		}
-		return iterator;
-	}
+    /**
+     * 数组/map/Collection/Iterator/Enumeration转成Iterator
+     * 
+     * @param currentCollection
+     *            Object
+     * @return Iterator
+     * @author 金鑫
+     * @version 1.0 2010-5-12 下午05:07:41
+     */
+    public static Iterator objectToIterator(Object currentCollection){
+        Iterator iterator = ObjectUtil.toIterator(currentCollection);
+        if (null == iterator){
+            // currentCollection 不是空
+            if (null != currentCollection){
+                // 构建此集合的迭代器
+                if (currentCollection instanceof Enumeration){
+                    iterator = new IteratorAdapter((Enumeration<?>) currentCollection);
+                }
+            }
+        }
+        return iterator;
+    }
 }

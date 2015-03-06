@@ -27,70 +27,70 @@ import java.io.Serializable;
  */
 public class BackWarnEntity implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 3703766119930341844L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 3703766119930341844L;
 
-	/** 是否成功. */
-	private boolean				isSuccess;
+    /** 是否成功. */
+    private boolean           isSuccess;
 
-	/** 描述. */
-	private Serializable		description;
+    /** 描述. */
+    private Serializable      description;
 
-	/**
-	 * Instantiates a new back warn entity.
-	 */
-	public BackWarnEntity(){
+    /**
+     * Instantiates a new back warn entity.
+     */
+    public BackWarnEntity(){
 
-	}
+    }
 
-	/**
-	 * Instantiates a new back warn entity.
-	 * 
-	 * @param isSuccess
-	 *            the is success
-	 * @param description
-	 *            the description
-	 */
-	public BackWarnEntity(boolean isSuccess, Serializable description){
-		this.isSuccess = isSuccess;
-		this.description = description;
-	}
+    /**
+     * Instantiates a new back warn entity.
+     * 
+     * @param isSuccess
+     *            the is success
+     * @param description
+     *            the description
+     */
+    public BackWarnEntity(boolean isSuccess, Serializable description){
+        this.isSuccess = isSuccess;
+        this.description = description;
+    }
 
-	/**
-	 * 获得 是否成功.
-	 *
-	 * @return the isSuccess
-	 */
-	public boolean getIsSuccess(){
-		return isSuccess;
-	}
+    /**
+     * 获得 是否成功.
+     *
+     * @return the isSuccess
+     */
+    public boolean getIsSuccess(){
+        return isSuccess;
+    }
 
-	/**
-	 * 设置 是否成功.
-	 *
-	 * @param isSuccess
-	 *            the isSuccess to set
-	 */
-	public void setIsSuccess(boolean isSuccess){
-		this.isSuccess = isSuccess;
-	}
+    /**
+     * 设置 是否成功.
+     *
+     * @param isSuccess
+     *            the isSuccess to set
+     */
+    public void setIsSuccess(boolean isSuccess){
+        this.isSuccess = isSuccess;
+    }
 
-	/**
-	 * 获得 描述.
-	 *
-	 * @return the description
-	 */
-	public Serializable getDescription(){
-		return description;
-	}
+    /**
+     * 获得 描述.
+     *
+     * @return the description
+     */
+    public Serializable getDescription(){
+        return description;
+    }
 
-	/**
-	 * 设置 描述.
-	 *
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(Serializable description){
-		this.description = description;
-	}
+    /**
+     * 设置 描述.
+     *
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(Serializable description){
+        this.description = description;
+    }
 }

@@ -27,15 +27,15 @@ import org.slf4j.LoggerFactory;
  */
 public class MoneyTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MoneyTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MoneyTest.class);
 
-	/**
-	 * 人民币转成大写测试 Debug: hangeToBig(100203.04)=壹拾零贰佰零叁圆零角肆分
-	 */
-	@Test
-	public void testtoRMB(){
-		double value = 100203.04;
-		log.info(MoneyUtil.convertMoneyToChineseMoney(value));
-	}
+    /**
+     * 人民币转成大写测试 Debug: hangeToBig(100203.04)=壹拾零贰佰零叁圆零角肆分
+     */
+    @Test
+    public void testtoRMB(){
+        double value = 100203.04;
+        log.info(MoneyUtil.convertMoneyToChineseMoney(value));
+    }
 }

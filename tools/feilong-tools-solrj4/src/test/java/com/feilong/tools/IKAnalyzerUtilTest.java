@@ -27,28 +27,28 @@ import org.slf4j.LoggerFactory;
  */
 public class IKAnalyzerUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(IKAnalyzerUtilTest.class);
+    private static final Logger log = LoggerFactory.getLogger(IKAnalyzerUtilTest.class);
 
-	/**
-	 * Test method for {@link com.feilong.tools.IKAnalyzerUtil#getLexemeTexts(java.lang.String, boolean)}.
-	 */
-	@Test
-	public final void testGetLexemeTexts(){
+    /**
+     * Test method for {@link com.feilong.tools.IKAnalyzerUtil#getLexemeTexts(java.lang.String, boolean)}.
+     */
+    @Test
+    public final void testGetLexemeTexts(){
 
-		try{
-			String text = "Chuck Taylor All Star Classic Boot 经典工装靴款";
-			//			 String text = "Air force";
-			//			 String text = "中华人民共和国";
-			//			String text = "556426-600";
+        try{
+            String text = "Chuck Taylor All Star Classic Boot 经典工装靴款";
+            //			 String text = "Air force";
+            //			 String text = "中华人民共和国";
+            //			String text = "556426-600";
 
-			String[] analizedText = IKAnalyzerUtil.getLexemeTexts(text, true);
+            String[] analizedText = IKAnalyzerUtil.getLexemeTexts(text, true);
 
-			for (String string : analizedText){
-				log.info(string);
-			}
+            for (String string : analizedText){
+                log.info(string);
+            }
 
-		}catch (IOException e){
-			log.error(e.getClass().getName(), e);
-		}
-	}
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+    }
 }

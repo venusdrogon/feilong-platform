@@ -33,33 +33,33 @@ import org.slf4j.LoggerFactory;
  */
 public class PropertyStrategyWrapper extends PropertySetStrategy{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PropertyStrategyWrapper.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PropertyStrategyWrapper.class);
 
-	/** The original. */
-	private PropertySetStrategy	propertySetStrategy;
+    /** The original. */
+    private PropertySetStrategy propertySetStrategy;
 
-	/**
-	 * Instantiates a new property strategy wrapper.
-	 * 
-	 * @param propertySetStrategy
-	 *            the property set strategy
-	 */
-	public PropertyStrategyWrapper(PropertySetStrategy propertySetStrategy){
-		this.propertySetStrategy = propertySetStrategy;
-	}
+    /**
+     * Instantiates a new property strategy wrapper.
+     * 
+     * @param propertySetStrategy
+     *            the property set strategy
+     */
+    public PropertyStrategyWrapper(PropertySetStrategy propertySetStrategy){
+        this.propertySetStrategy = propertySetStrategy;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.sf.json.util.PropertySetStrategy#setProperty(java.lang.Object, java.lang.String, java.lang.Object)
-	 */
-	@Override
-	public void setProperty(Object o,String string,Object o1) throws JSONException{
-		try{
-			propertySetStrategy.setProperty(o, string, o1);
-		}catch (Exception e){
-			log.warn(e.getMessage(), e);
-		}
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see net.sf.json.util.PropertySetStrategy#setProperty(java.lang.Object, java.lang.String, java.lang.Object)
+     */
+    @Override
+    public void setProperty(Object o,String string,Object o1) throws JSONException{
+        try{
+            propertySetStrategy.setProperty(o, string, o1);
+        }catch (Exception e){
+            log.warn(e.getMessage(), e);
+        }
+    }
 }

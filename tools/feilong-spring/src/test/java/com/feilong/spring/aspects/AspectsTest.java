@@ -29,16 +29,16 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 @ContextConfiguration(locations = "classpath:spring-aop.xml")
 public class AspectsTest extends AbstractJUnit4SpringContextTests{
 
-	/** The user manager. */
-	@Autowired
-	private UserManager	userManager;
+    /** The user manager. */
+    @Autowired
+    private UserManager userManager;
 
-	/**
-	 * Name.
-	 */
-	@Test
-	public void name(){
-		userManager.addUser("1018", "Jummy");
-		// userManager.delUser(5);
-	}
+    /**
+     * Name.
+     */
+    @Test
+    public void name(){
+        userManager.addUser("1018", "Jummy");
+        // userManager.delUser(5);
+    }
 }

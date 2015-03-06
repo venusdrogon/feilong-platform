@@ -25,17 +25,17 @@ import org.slf4j.LoggerFactory;
  */
 public class InetAddressTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(InetAddressTest.class);
+    private static final Logger log = LoggerFactory.getLogger(InetAddressTest.class);
 
-	/**
-	 * {@link com.feilong.commons.core.net.InetAddressUtil#domainName2IpAddress(java.lang.String)} 的测试方法。
-	 */
-	@Test
-	public final void domainName2IpAddress(){
-		String domainName = "www.e-lining.com";
-		domainName = "www.baidu.com";
-		domainName = "www.nikestore.com.cn";
-		log.info("ip:" + InetAddressUtil.domainName2IpAddress(domainName));
-		log.info("ip:" + InetAddressUtil.domainName2IpAddress("127.0.0.1"));
-	}
+    /**
+     * {@link com.feilong.commons.core.net.InetAddressUtil#domainName2IpAddress(java.lang.String)} 的测试方法。
+     */
+    @Test
+    public final void domainName2IpAddress(){
+        String domainName = "www.e-lining.com";
+        domainName = "www.baidu.com";
+        domainName = "www.nikestore.com.cn";
+        log.info("ip:" + InetAddressUtil.domainName2IpAddress(domainName));
+        log.info("ip:" + InetAddressUtil.domainName2IpAddress("127.0.0.1"));
+    }
 }

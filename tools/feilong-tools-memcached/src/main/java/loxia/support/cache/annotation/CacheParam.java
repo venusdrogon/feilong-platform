@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 @SuppressWarnings("all")
 public @interface CacheParam{
 
-	String value() default "";
+    String value() default "";
 
-	boolean ignore() default true;
+    boolean ignore() default true;
 }

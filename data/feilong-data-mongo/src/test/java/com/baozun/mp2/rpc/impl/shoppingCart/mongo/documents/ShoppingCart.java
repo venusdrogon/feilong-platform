@@ -27,118 +27,118 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "shoppingCart")
 public class ShoppingCart{
 
-	/** The id. */
-	@Id()
-	private String	id;
+    /** The id. */
+    @Id()
+    private String  id;
 
-	/** The member id. */
-	@Indexed
-	private Long	memberId;
+    /** The member id. */
+    @Indexed
+    private Long    memberId;
 
-	/** The shop id. */
-	private Long	shopId;
+    /** The shop id. */
+    private Long    shopId;
 
-	/** The sku id. */
-	@Indexed
-	private Long	skuId;
+    /** The sku id. */
+    @Indexed
+    private Long    skuId;
 
-	/** The quality. */
-	//	@Field
-	private Integer	quantity;
+    /** The quality. */
+    //	@Field
+    private Integer quantity;
 
-	/**
-	 * 获得 the id.
-	 *
-	 * @return the id
-	 */
-	public String getId(){
-		return id;
-	}
+    /**
+     * 获得 the id.
+     *
+     * @return the id
+     */
+    public String getId(){
+        return id;
+    }
 
-	/**
-	 * 设置 the id.
-	 *
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(String id){
-		this.id = id;
-	}
+    /**
+     * 设置 the id.
+     *
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id){
+        this.id = id;
+    }
 
-	/**
-	 * 获得 the member id.
-	 *
-	 * @return the memberId
-	 */
-	public Long getMemberId(){
-		return memberId;
-	}
+    /**
+     * 获得 the member id.
+     *
+     * @return the memberId
+     */
+    public Long getMemberId(){
+        return memberId;
+    }
 
-	/**
-	 * 设置 the member id.
-	 *
-	 * @param memberId
-	 *            the memberId to set
-	 */
-	public void setMemberId(Long memberId){
-		this.memberId = memberId;
-	}
+    /**
+     * 设置 the member id.
+     *
+     * @param memberId
+     *            the memberId to set
+     */
+    public void setMemberId(Long memberId){
+        this.memberId = memberId;
+    }
 
-	/**
-	 * 获得 the shop id.
-	 *
-	 * @return the shopId
-	 */
-	public Long getShopId(){
-		return shopId;
-	}
+    /**
+     * 获得 the shop id.
+     *
+     * @return the shopId
+     */
+    public Long getShopId(){
+        return shopId;
+    }
 
-	/**
-	 * 设置 the shop id.
-	 *
-	 * @param shopId
-	 *            the shopId to set
-	 */
-	public void setShopId(Long shopId){
-		this.shopId = shopId;
-	}
+    /**
+     * 设置 the shop id.
+     *
+     * @param shopId
+     *            the shopId to set
+     */
+    public void setShopId(Long shopId){
+        this.shopId = shopId;
+    }
 
-	/**
-	 * 获得 the sku id.
-	 *
-	 * @return the skuId
-	 */
-	public Long getSkuId(){
-		return skuId;
-	}
+    /**
+     * 获得 the sku id.
+     *
+     * @return the skuId
+     */
+    public Long getSkuId(){
+        return skuId;
+    }
 
-	/**
-	 * 设置 the sku id.
-	 *
-	 * @param skuId
-	 *            the skuId to set
-	 */
-	public void setSkuId(Long skuId){
-		this.skuId = skuId;
-	}
+    /**
+     * 设置 the sku id.
+     *
+     * @param skuId
+     *            the skuId to set
+     */
+    public void setSkuId(Long skuId){
+        this.skuId = skuId;
+    }
 
-	/**
-	 * 获得 the quality.
-	 *
-	 * @return the quantity
-	 */
-	public Integer getQuantity(){
-		return quantity;
-	}
+    /**
+     * 获得 the quality.
+     *
+     * @return the quantity
+     */
+    public Integer getQuantity(){
+        return quantity;
+    }
 
-	/**
-	 * 设置 the quality.
-	 *
-	 * @param quantity
-	 *            the quantity to set
-	 */
-	public void setQuantity(Integer quantity){
-		this.quantity = quantity;
-	}
+    /**
+     * 设置 the quality.
+     *
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(Integer quantity){
+        this.quantity = quantity;
+    }
 
 }

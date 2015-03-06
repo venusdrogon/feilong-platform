@@ -28,14 +28,14 @@ import org.slf4j.LoggerFactory;
  */
 public class MessageConstantsTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(MessageConstantsTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(MessageConstantsTest.class);
 
-	/**
-	 * Test.
-	 */
-	@Test
-	public void test(){
-		log.debug(MessageConstants.DATE_MINUTE);
-	}
+    /**
+     * Test.
+     */
+    @Test
+    public void test(){
+        log.debug(MessageConstants.DATE_MINUTE);
+    }
 }

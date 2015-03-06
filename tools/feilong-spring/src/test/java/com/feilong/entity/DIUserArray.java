@@ -24,48 +24,48 @@ package com.feilong.entity;
  */
 public class DIUserArray extends BaseDIUser{
 
-	/** The skills. */
-	private String[]	skills;
+    /** The skills. */
+    private String[] skills;
 
-	/** The secret strategys. */
-	private String[]	secretStrategys;
+    /** The secret strategys. */
+    private String[] secretStrategys;
 
-	/**
-	 * 获得 skills.
-	 *
-	 * @return the skills
-	 */
-	public String[] getSkills(){
-		return skills;
-	}
+    /**
+     * 获得 skills.
+     *
+     * @return the skills
+     */
+    public String[] getSkills(){
+        return skills;
+    }
 
-	/**
-	 * 设置 skills.
-	 *
-	 * @param skills
-	 *            the skills to set
-	 */
-	public void setSkills(String[] skills){
-		this.skills = skills;
-	}
+    /**
+     * 设置 skills.
+     *
+     * @param skills
+     *            the skills to set
+     */
+    public void setSkills(String[] skills){
+        this.skills = skills;
+    }
 
-	/**
-	 * 获得 secret strategys.
-	 *
-	 * @return the secretStrategys
-	 */
-	public String[] getSecretStrategys(){
-		return secretStrategys;
-	}
+    /**
+     * 获得 secret strategys.
+     *
+     * @return the secretStrategys
+     */
+    public String[] getSecretStrategys(){
+        return secretStrategys;
+    }
 
-	/**
-	 * 设置 secret strategys.
-	 *
-	 * @param secretStrategys
-	 *            the secretStrategys to set
-	 */
-	public void setSecretStrategys(String[] secretStrategys){
-		this.secretStrategys = secretStrategys;
-	}
+    /**
+     * 设置 secret strategys.
+     *
+     * @param secretStrategys
+     *            the secretStrategys to set
+     */
+    public void setSecretStrategys(String[] secretStrategys){
+        this.secretStrategys = secretStrategys;
+    }
 
 }

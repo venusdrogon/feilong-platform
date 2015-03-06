@@ -29,33 +29,33 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public abstract class BaseDIUser implements InitializingBean,DisposableBean{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(BaseDIUser.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(BaseDIUser.class);
 
-	/**
-	 * Inits the.
-	 */
-	public void init(){
-		log.info("init.....:[{}]", this.getClass().getName());
-	}
+    /**
+     * Inits the.
+     */
+    public void init(){
+        log.info("init.....:[{}]", this.getClass().getName());
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-	 */
-	@Override
-	public void afterPropertiesSet() throws Exception{
-		log.info("afterPropertiesSet.....:[{}]", this.getClass().getName());
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception{
+        log.info("afterPropertiesSet.....:[{}]", this.getClass().getName());
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.beans.factory.DisposableBean#destroy()
-	 */
-	@Override
-	public void destroy() throws Exception{
-		log.info("destroy.....:[{}]", this.getClass().getName());
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.beans.factory.DisposableBean#destroy()
+     */
+    @Override
+    public void destroy() throws Exception{
+        log.info("destroy.....:[{}]", this.getClass().getName());
+    }
 }

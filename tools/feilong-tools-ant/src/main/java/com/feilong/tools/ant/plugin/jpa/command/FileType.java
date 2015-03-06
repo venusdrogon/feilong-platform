@@ -22,13 +22,13 @@ package com.feilong.tools.ant.plugin.jpa.command;
  * @since 1.0.7
  */
 public enum FileType{
-	/**
-	 * class文件
-	 */
-	CLASS,
+    /**
+     * class文件
+     */
+    CLASS,
 
-	/**
-	 * 枚举文件
-	 */
-	ENUM
+    /**
+     * 枚举文件
+     */
+    ENUM
 }

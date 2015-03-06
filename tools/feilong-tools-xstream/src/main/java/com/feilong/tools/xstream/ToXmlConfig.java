@@ -25,47 +25,47 @@ import java.util.Map;
  */
 public final class ToXmlConfig{
 
-	/** 别名. */
-	private Map<String, Class<?>>	aliasMap;
+    /** 别名. */
+    private Map<String, Class<?>> aliasMap;
 
-	/** 隐式集合 隐藏,隐藏,比如下面有list. */
-	private Map<String, Class<?>>	implicitCollectionMap;
+    /** 隐式集合 隐藏,隐藏,比如下面有list. */
+    private Map<String, Class<?>> implicitCollectionMap;
 
-	/**
-	 * Gets the 别名.
-	 * 
-	 * @return the aliasMap
-	 */
-	public Map<String, Class<?>> getAliasMap(){
-		return aliasMap;
-	}
+    /**
+     * Gets the 别名.
+     * 
+     * @return the aliasMap
+     */
+    public Map<String, Class<?>> getAliasMap(){
+        return aliasMap;
+    }
 
-	/**
-	 * Sets the 别名.
-	 * 
-	 * @param aliasMap
-	 *            the aliasMap to set
-	 */
-	public void setAliasMap(Map<String, Class<?>> aliasMap){
-		this.aliasMap = aliasMap;
-	}
+    /**
+     * Sets the 别名.
+     * 
+     * @param aliasMap
+     *            the aliasMap to set
+     */
+    public void setAliasMap(Map<String, Class<?>> aliasMap){
+        this.aliasMap = aliasMap;
+    }
 
-	/**
-	 * Gets the 隐式集合 隐藏,隐藏,比如下面有list.
-	 * 
-	 * @return the implicitCollectionMap
-	 */
-	public Map<String, Class<?>> getImplicitCollectionMap(){
-		return implicitCollectionMap;
-	}
+    /**
+     * Gets the 隐式集合 隐藏,隐藏,比如下面有list.
+     * 
+     * @return the implicitCollectionMap
+     */
+    public Map<String, Class<?>> getImplicitCollectionMap(){
+        return implicitCollectionMap;
+    }
 
-	/**
-	 * Sets the 隐式集合 隐藏,隐藏,比如下面有list.
-	 * 
-	 * @param implicitCollectionMap
-	 *            the implicitCollectionMap to set
-	 */
-	public void setImplicitCollectionMap(Map<String, Class<?>> implicitCollectionMap){
-		this.implicitCollectionMap = implicitCollectionMap;
-	}
+    /**
+     * Sets the 隐式集合 隐藏,隐藏,比如下面有list.
+     * 
+     * @param implicitCollectionMap
+     *            the implicitCollectionMap to set
+     */
+    public void setImplicitCollectionMap(Map<String, Class<?>> implicitCollectionMap){
+        this.implicitCollectionMap = implicitCollectionMap;
+    }
 }

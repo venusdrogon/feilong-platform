@@ -33,95 +33,95 @@ import org.apache.solr.common.params.FacetParams;
  */
 public class SolrGroupCommand<T> implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long			serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long        serialVersionUID = 288232184048495608L;
 
-	/** filedName 按照什么聚合的. */
-	private String						name;
+    /** filedName 按照什么聚合的. */
+    private String                   name;
 
-	/** 聚合的结果(包含分页信息). */
-	private Pagination<SolrGroup<T>>	pagination;
+    /** 聚合的结果(包含分页信息). */
+    private Pagination<SolrGroup<T>> pagination;
 
-	/** 聚合前的总数. */
-	private int							matches;
+    /** 聚合前的总数. */
+    private int                      matches;
 
-	/** 聚合后的总数. */
-	private Integer						ngroups;
+    /** 聚合后的总数. */
+    private Integer                  ngroups;
 
-	/**
-	 * Gets the filedName 按照什么聚合.
-	 * 
-	 * @return the name
-	 */
-	public String getName(){
-		return name;
-	}
+    /**
+     * Gets the filedName 按照什么聚合.
+     * 
+     * @return the name
+     */
+    public String getName(){
+        return name;
+    }
 
-	/**
-	 * Sets the filedName 按照什么聚合.
-	 * 
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
+    /**
+     * Sets the filedName 按照什么聚合.
+     * 
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name){
+        this.name = name;
+    }
 
-	/**
-	 * Gets the 聚合前的总数.
-	 * 
-	 * @return the matches
-	 */
-	public int getMatches(){
-		return matches;
-	}
+    /**
+     * Gets the 聚合前的总数.
+     * 
+     * @return the matches
+     */
+    public int getMatches(){
+        return matches;
+    }
 
-	/**
-	 * Sets the 聚合前的总数.
-	 * 
-	 * @param matches
-	 *            the matches to set
-	 */
-	public void setMatches(int matches){
-		this.matches = matches;
-	}
+    /**
+     * Sets the 聚合前的总数.
+     * 
+     * @param matches
+     *            the matches to set
+     */
+    public void setMatches(int matches){
+        this.matches = matches;
+    }
 
-	/**
-	 * Gets the 聚合后的总数.
-	 * 
-	 * @return the ngroups
-	 */
-	public Integer getNgroups(){
-		return ngroups;
-	}
+    /**
+     * Gets the 聚合后的总数.
+     * 
+     * @return the ngroups
+     */
+    public Integer getNgroups(){
+        return ngroups;
+    }
 
-	/**
-	 * Sets the 聚合后的总数.
-	 * 
-	 * @param ngroups
-	 *            the ngroups to set
-	 */
-	public void setNgroups(Integer ngroups){
-		this.ngroups = ngroups;
-	}
+    /**
+     * Sets the 聚合后的总数.
+     * 
+     * @param ngroups
+     *            the ngroups to set
+     */
+    public void setNgroups(Integer ngroups){
+        this.ngroups = ngroups;
+    }
 
-	/**
-	 * Gets the 聚合的结果(包含分页信息).
-	 * 
-	 * @return the pagination
-	 */
-	public Pagination<SolrGroup<T>> getPagination(){
-		return pagination;
-	}
+    /**
+     * Gets the 聚合的结果(包含分页信息).
+     * 
+     * @return the pagination
+     */
+    public Pagination<SolrGroup<T>> getPagination(){
+        return pagination;
+    }
 
-	/**
-	 * Sets the 聚合的结果(包含分页信息).
-	 * 
-	 * @param pagination
-	 *            the pagination to set
-	 */
-	public void setPagination(Pagination<SolrGroup<T>> pagination){
-		this.pagination = pagination;
-	}
+    /**
+     * Sets the 聚合的结果(包含分页信息).
+     * 
+     * @param pagination
+     *            the pagination to set
+     */
+    public void setPagination(Pagination<SolrGroup<T>> pagination){
+        this.pagination = pagination;
+    }
 
 }

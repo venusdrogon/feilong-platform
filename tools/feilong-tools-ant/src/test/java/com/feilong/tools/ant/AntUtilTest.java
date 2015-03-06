@@ -26,14 +26,14 @@ import org.junit.Test;
  */
 public class AntUtilTest{
 
-	/**
-	 * Test method for {@link com.feilong.tools.ant.AntUtil#executeTarget(java.lang.String, java.lang.String, int)}.
-	 */
-	@Test
-	public final void testExecuteTarget(){
-		String antFilePath = "build.xml";
-		String targetName = "test";
-		int messageOutputLevel = Project.MSG_DEBUG;
-		AntUtil.executeTarget(antFilePath, targetName, messageOutputLevel);
-	}
+    /**
+     * Test method for {@link com.feilong.tools.ant.AntUtil#executeTarget(java.lang.String, java.lang.String, int)}.
+     */
+    @Test
+    public final void testExecuteTarget(){
+        String antFilePath = "build.xml";
+        String targetName = "test";
+        int messageOutputLevel = Project.MSG_DEBUG;
+        AntUtil.executeTarget(antFilePath, targetName, messageOutputLevel);
+    }
 }

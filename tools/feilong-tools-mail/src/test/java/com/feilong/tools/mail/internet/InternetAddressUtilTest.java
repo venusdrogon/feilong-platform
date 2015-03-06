@@ -34,23 +34,23 @@ import com.feilong.commons.core.io.CharsetType;
  */
 public class InternetAddressUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(InternetAddressUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(InternetAddressUtilTest.class);
 
-	/**
-	 * Test.
-	 *
-	 * @throws UnsupportedEncodingException
-	 *             the unsupported encoding exception
-	 */
-	@Test
-	public final void test() throws UnsupportedEncodingException{
-		InternetAddress internetAddress = new InternetAddress("longxia@baozun.cn", "夏龙", CharsetType.UTF8);
-		InternetAddress internetAddress1 = new InternetAddress("zhen.yao@baozun.cn", "姚真", CharsetType.UTF8);
+    /**
+     * Test.
+     *
+     * @throws UnsupportedEncodingException
+     *             the unsupported encoding exception
+     */
+    @Test
+    public final void test() throws UnsupportedEncodingException{
+        InternetAddress internetAddress = new InternetAddress("longxia@baozun.cn", "夏龙", CharsetType.UTF8);
+        InternetAddress internetAddress1 = new InternetAddress("zhen.yao@baozun.cn", "姚真", CharsetType.UTF8);
 
-		InternetAddress[] internetAddresses = { internetAddress, internetAddress1 };
+        InternetAddress[] internetAddresses = { internetAddress, internetAddress1 };
 
-		log.debug("\n{}", internetAddress.toUnicodeString());
-		log.debug("\n{}", InternetAddress.toString(internetAddresses, 0));
-	}
+        log.debug("\n{}", internetAddress.toUnicodeString());
+        log.debug("\n{}", InternetAddress.toString(internetAddresses, 0));
+    }
 }

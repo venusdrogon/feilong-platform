@@ -32,21 +32,21 @@ import com.thoughtworks.xstream.XStream;
  */
 public class XStreamUtilTest implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long   serialVersionUID = 288232184048495608L;
 
-	/** The Constant log. */
-	private static final Logger	log					= LoggerFactory.getLogger(XStreamUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log              = LoggerFactory.getLogger(XStreamUtilTest.class);
 
-	/**
-	 * Name.
-	 */
-	@Test
-	public void name(){
-		User user = new User(1L);
+    /**
+     * Name.
+     */
+    @Test
+    public void name(){
+        User user = new User(1L);
 
-		XStream xStream = new XStream();
-		xStream.alias("user", User.class);
-		log.info(xStream.toXML(user));
-	}
+        XStream xStream = new XStream();
+        xStream.alias("user", User.class);
+        log.info(xStream.toXML(user));
+    }
 }

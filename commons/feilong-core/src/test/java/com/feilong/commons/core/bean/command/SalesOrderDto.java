@@ -28,116 +28,116 @@ import java.util.Date;
  */
 public class SalesOrderDto implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	/** The id. */
-	private Long				id;
+    /** The id. */
+    private Long              id;
 
-	/** The code. */
-	private String				code;
+    /** The code. */
+    private String            code;
 
-	/** The price. */
-	private BigDecimal			price;
+    /** The price. */
+    private BigDecimal        price;
 
-	/** The create time. */
-	private Date				createTime;
+    /** The create time. */
+    private Date              createTime;
 
-	/** The member. */
-	private Member				member;
+    /** The member. */
+    private Member            member;
 
-	/**
-	 * Gets the id.
-	 * 
-	 * @return the id
-	 */
-	public Long getId(){
-		return id;
-	}
+    /**
+     * Gets the id.
+     * 
+     * @return the id
+     */
+    public Long getId(){
+        return id;
+    }
 
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Long id){
-		this.id = id;
-	}
+    /**
+     * Sets the id.
+     * 
+     * @param id
+     *            the id to set
+     */
+    public void setId(Long id){
+        this.id = id;
+    }
 
-	/**
-	 * Gets the code.
-	 * 
-	 * @return the code
-	 */
-	public String getCode(){
-		return code;
-	}
+    /**
+     * Gets the code.
+     * 
+     * @return the code
+     */
+    public String getCode(){
+        return code;
+    }
 
-	/**
-	 * Sets the code.
-	 * 
-	 * @param code
-	 *            the code to set
-	 */
-	public void setCode(String code){
-		this.code = code;
-	}
+    /**
+     * Sets the code.
+     * 
+     * @param code
+     *            the code to set
+     */
+    public void setCode(String code){
+        this.code = code;
+    }
 
-	/**
-	 * Gets the price.
-	 * 
-	 * @return the price
-	 */
-	public BigDecimal getPrice(){
-		return price;
-	}
+    /**
+     * Gets the price.
+     * 
+     * @return the price
+     */
+    public BigDecimal getPrice(){
+        return price;
+    }
 
-	/**
-	 * Sets the price.
-	 * 
-	 * @param price
-	 *            the price to set
-	 */
-	public void setPrice(BigDecimal price){
-		this.price = price;
-	}
+    /**
+     * Sets the price.
+     * 
+     * @param price
+     *            the price to set
+     */
+    public void setPrice(BigDecimal price){
+        this.price = price;
+    }
 
-	/**
-	 * Gets the creates the time.
-	 * 
-	 * @return the createTime
-	 */
-	public Date getCreateTime(){
-		return createTime;
-	}
+    /**
+     * Gets the creates the time.
+     * 
+     * @return the createTime
+     */
+    public Date getCreateTime(){
+        return createTime;
+    }
 
-	/**
-	 * Sets the creates the time.
-	 * 
-	 * @param createTime
-	 *            the createTime to set
-	 */
-	public void setCreateTime(Date createTime){
-		this.createTime = createTime;
-	}
+    /**
+     * Sets the creates the time.
+     * 
+     * @param createTime
+     *            the createTime to set
+     */
+    public void setCreateTime(Date createTime){
+        this.createTime = createTime;
+    }
 
-	/**
-	 * Gets the member.
-	 * 
-	 * @return the member
-	 */
-	public Member getMember(){
-		return member;
-	}
+    /**
+     * Gets the member.
+     * 
+     * @return the member
+     */
+    public Member getMember(){
+        return member;
+    }
 
-	/**
-	 * Sets the member.
-	 * 
-	 * @param member
-	 *            the member to set
-	 */
-	public void setMember(Member member){
-		this.member = member;
-	}
+    /**
+     * Sets the member.
+     * 
+     * @param member
+     *            the member to set
+     */
+    public void setMember(Member member){
+        this.member = member;
+    }
 }

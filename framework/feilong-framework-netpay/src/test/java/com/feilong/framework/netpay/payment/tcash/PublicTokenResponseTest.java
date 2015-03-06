@@ -31,21 +31,21 @@ import com.feilong.framework.netpay.payment.adaptor.tcash.PublicTokenResponse;
  */
 public class PublicTokenResponseTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(PublicTokenResponseTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(PublicTokenResponseTest.class);
 
-	/**
-	 * To bean12.
-	 */
-	@Test
-	public void toBean12(){
-		String json = "{'pgpToken':'-----BEGIN PGP MESSAGE-----\\nVersion: BCPG v1.47\\n\\nhQEOAyYtPQbS+5JtEAP/fI1MbXcrVa/83WlZS6y+76g','refNum':'2506141402007010','fastTime':'1403679721180'}";
-		PublicTokenResponse publicTokenResponse = JsonUtil.toBean(json, PublicTokenResponse.class);
+    /**
+     * To bean12.
+     */
+    @Test
+    public void toBean12(){
+        String json = "{'pgpToken':'-----BEGIN PGP MESSAGE-----\\nVersion: BCPG v1.47\\n\\nhQEOAyYtPQbS+5JtEAP/fI1MbXcrVa/83WlZS6y+76g','refNum':'2506141402007010','fastTime':'1403679721180'}";
+        PublicTokenResponse publicTokenResponse = JsonUtil.toBean(json, PublicTokenResponse.class);
 
-		if (log.isDebugEnabled()){
-			String[] excludes = { "class" };
-			log.debug(JsonUtil.format(publicTokenResponse, excludes, 0, 0));
-		}
+        if (log.isDebugEnabled()){
+            String[] excludes = { "class" };
+            log.debug(JsonUtil.format(publicTokenResponse, excludes, 0, 0));
+        }
 
-	}
+    }
 }

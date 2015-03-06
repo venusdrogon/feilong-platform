@@ -23,50 +23,50 @@ package com.feilong.web.entity.domain;
  */
 public enum DomainType{
 
-	/** 样式表. */
-	CSS(DomainConstants.DOMAIN_CSS),
+    /** 样式表. */
+    CSS(DomainConstants.DOMAIN_CSS),
 
-	/** js. */
-	JS(DomainConstants.DOMAIN_JS),
+    /** js. */
+    JS(DomainConstants.DOMAIN_JS),
 
-	/** 图片. */
-	IMAGE(DomainConstants.DOMAIN_IMAGE),
+    /** 图片. */
+    IMAGE(DomainConstants.DOMAIN_IMAGE),
 
-	/** 资源图片,如PDP商品图片,在测试环境 可能 商品图片使用外部 而Image图片使用内部. */
-	RESOURCE(DomainConstants.DOMAIN_RESOURCE),
+    /** 资源图片,如PDP商品图片,在测试环境 可能 商品图片使用外部 而Image图片使用内部. */
+    RESOURCE(DomainConstants.DOMAIN_RESOURCE),
 
-	/** 商城的网址，一般用于不同环境 第三方数据传递 比如微博等. */
-	STORE(DomainConstants.DOMAIN_STORE);
+    /** 商城的网址，一般用于不同环境 第三方数据传递 比如微博等. */
+    STORE(DomainConstants.DOMAIN_STORE);
 
-	/** The path. */
-	private String	path;
+    /** The path. */
+    private String path;
 
-	/**
-	 * The Constructor.
-	 *
-	 * @param path
-	 *            the path
-	 */
-	private DomainType(String path){
-		this.path = path;
-	}
+    /**
+     * The Constructor.
+     *
+     * @param path
+     *            the path
+     */
+    private DomainType(String path){
+        this.path = path;
+    }
 
-	/**
-	 * 获得 path.
-	 *
-	 * @return the path
-	 */
-	public String getPath(){
-		return path;
-	}
+    /**
+     * 获得 path.
+     *
+     * @return the path
+     */
+    public String getPath(){
+        return path;
+    }
 
-	/**
-	 * 设置 path.
-	 *
-	 * @param path
-	 *            the path to set
-	 */
-	public void setPath(String path){
-		this.path = path;
-	}
+    /**
+     * 设置 path.
+     *
+     * @param path
+     *            the path to set
+     */
+    public void setPath(String path){
+        this.path = path;
+    }
 }

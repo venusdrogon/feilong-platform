@@ -31,91 +31,91 @@ import com.feilong.commons.core.enumeration.HttpMethodType;
  */
 public class EnumUtilTest{
 
-	/**
-	 * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValue(Class, String, Object)}.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test
-	public final void testGetEnum() throws IllegalArgumentException,NoSuchFieldException{
-		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
-	}
+    /**
+     * Test method for {@link com.feilong.commons.core.lang.EnumUtil#getEnumByPropertyValue(Class, String, Object)}.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test
+    public final void testGetEnum() throws IllegalArgumentException,NoSuchFieldException{
+        assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
+    }
 
-	/**
-	 * Test get http method type.
-	 *
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test
-	public final void testGetHttpMethodType() throws IllegalArgumentException,NoSuchFieldException{
-		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "post"));
-		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "pOst"));
-		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "POST"));
-		assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "posT"));
-		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
-		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "gEt"));
-		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "geT"));
-		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "GET"));
+    /**
+     * Test get http method type.
+     *
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test
+    public final void testGetHttpMethodType() throws IllegalArgumentException,NoSuchFieldException{
+        assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "post"));
+        assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "pOst"));
+        assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "POST"));
+        assertEquals(HttpMethodType.POST, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "posT"));
+        assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
+        assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "gEt"));
+        assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "geT"));
+        assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "GET"));
 
-	}
+    }
 
-	/**
-	 * Test get http method type1.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test(expected = NoSuchFieldException.class)
-	public final void testGetHttpMethodType1() throws IllegalArgumentException,NoSuchFieldException{
-		assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "post111"));
-	}
+    /**
+     * Test get http method type1.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test(expected = NoSuchFieldException.class)
+    public final void testGetHttpMethodType1() throws IllegalArgumentException,NoSuchFieldException{
+        assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "post111"));
+    }
 
-	/**
-	 * Test get http method type2.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test(expected = NoSuchFieldException.class)
-	public final void testGetHttpMethodType2() throws IllegalArgumentException,NoSuchFieldException{
-		assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", ""));
-	}
+    /**
+     * Test get http method type2.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test(expected = NoSuchFieldException.class)
+    public final void testGetHttpMethodType2() throws IllegalArgumentException,NoSuchFieldException{
+        assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", ""));
+    }
 
-	/**
-	 * Test get http method type3.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test(expected = NoSuchFieldException.class)
-	public final void testGetHttpMethodType3() throws IllegalArgumentException,NoSuchFieldException{
-		assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", null));
-	}
+    /**
+     * Test get http method type3.
+     * 
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test(expected = NoSuchFieldException.class)
+    public final void testGetHttpMethodType3() throws IllegalArgumentException,NoSuchFieldException{
+        assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", null));
+    }
 
-	/**
-	 * Test get http method type4.
-	 *
-	 * @throws IllegalArgumentException
-	 *             the illegal argument exception
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 * @throws BeanUtilException
-	 *             the bean util exception
-	 */
-	@Test(expected = BeanUtilException.class)
-	public final void testGetHttpMethodType4() throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
-		assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method2222", null));
-	}
+    /**
+     * Test get http method type4.
+     *
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     * @throws BeanUtilException
+     *             the bean util exception
+     */
+    @Test(expected = BeanUtilException.class)
+    public final void testGetHttpMethodType4() throws IllegalArgumentException,NoSuchFieldException,BeanUtilException{
+        assertEquals(null, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method2222", null));
+    }
 }

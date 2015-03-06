@@ -31,15 +31,15 @@ import org.slf4j.LoggerFactory;
  */
 public class SpringVersionTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(SpringVersionTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(SpringVersionTest.class);
 
-	/**
-	 * Gets the version.
-	 * 
-	 */
-	@Test
-	public void testGetVersion(){
-		log.info(SpringVersion.getVersion());
-	}
+    /**
+     * Gets the version.
+     * 
+     */
+    @Test
+    public void testGetVersion(){
+        log.info(SpringVersion.getVersion());
+    }
 }

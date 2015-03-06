@@ -32,34 +32,34 @@ import com.feilong.framework.netpay.advance.command.QueryRequest;
  */
 public class SprintAsiaCreditCardAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
 
-	/** The payment adaptor. */
-	@Autowired
-	@Qualifier("sprintAsiaCreditCardAdvanceAdaptor")
-	private PaymentAdvanceAdaptor	paymentAdvanceAdaptor;
+    /** The payment adaptor. */
+    @Autowired
+    @Qualifier("sprintAsiaCreditCardAdvanceAdaptor")
+    private PaymentAdvanceAdaptor paymentAdvanceAdaptor;
 
-	/**
-	 * Gets the query result.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void getQueryResult() throws Exception{
-		QueryRequest queryRequest = new QueryRequest();
-		queryRequest.setTradeNo("010003170001");
-		getQueryResult(paymentAdvanceAdaptor, queryRequest);
-	}
+    /**
+     * Gets the query result.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void getQueryResult() throws Exception{
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setTradeNo("010003170001");
+        getQueryResult(paymentAdvanceAdaptor, queryRequest);
+    }
 
-	/**
-	 * Gets the query result1.
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public final void getQueryResult1() throws Exception{
-		QueryRequest queryRequest = new QueryRequest();
-		queryRequest.setTradeNo("010003420004");
-		getQueryResult(paymentAdvanceAdaptor, queryRequest);
-	}
+    /**
+     * Gets the query result1.
+     * 
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public final void getQueryResult1() throws Exception{
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setTradeNo("010003420004");
+        getQueryResult(paymentAdvanceAdaptor, queryRequest);
+    }
 }

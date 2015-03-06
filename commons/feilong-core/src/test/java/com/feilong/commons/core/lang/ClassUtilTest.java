@@ -29,16 +29,16 @@ import com.feilong.commons.core.date.DatePattern;
  */
 public class ClassUtilTest{
 
-	private static final Logger	log	= LoggerFactory.getLogger(ClassUtilTest.class);
+    private static final Logger log = LoggerFactory.getLogger(ClassUtilTest.class);
 
-	/**
-	 * Test is interface.
-	 */
-	@Test
-	public void testIsInterface(){
-		if (log.isInfoEnabled()){
-			log.info("" + ClassUtil.isInterface(this.getClass()));
-			log.info("" + ClassUtil.isInterface(DatePattern.class));
-		}
-	}
+    /**
+     * Test is interface.
+     */
+    @Test
+    public void testIsInterface(){
+        if (log.isInfoEnabled()){
+            log.info("" + ClassUtil.isInterface(this.getClass()));
+            log.info("" + ClassUtil.isInterface(DatePattern.class));
+        }
+    }
 }

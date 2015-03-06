@@ -31,35 +31,35 @@ import com.feilong.commons.core.lang.EnumUtil;
  */
 public class HttpMethodTypeTest{
 
-	/**
-	 * Name.
-	 *
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test
-	public void name() throws NoSuchFieldException{
-		assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GET"));
-		assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
-		assertEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get"));
-	}
+    /**
+     * Name.
+     *
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test
+    public void name() throws NoSuchFieldException{
+        assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GET"));
+        assertEquals(HttpMethodType.GET, EnumUtil.getEnumByPropertyValueIgnoreCase(HttpMethodType.class, "method", "get"));
+        assertEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get"));
+    }
 
-	/**
-	 * Name2.
-	 *
-	 * @throws NoSuchFieldException
-	 *             the no such field exception
-	 */
-	@Test(expected = NoSuchFieldException.class)
-	public void name2() throws NoSuchFieldException{
-		assertNotEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get1"));
-	}
+    /**
+     * Name2.
+     *
+     * @throws NoSuchFieldException
+     *             the no such field exception
+     */
+    @Test(expected = NoSuchFieldException.class)
+    public void name2() throws NoSuchFieldException{
+        assertNotEquals(HttpMethodType.GET, HttpMethodType.getByMethodValueIgnoreCase("Get1"));
+    }
 
-	/**
-	 * Name1.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void name1(){
-		assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GeT"));
-	}
+    /**
+     * Name1.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void name1(){
+        assertEquals(HttpMethodType.GET, HttpMethodType.valueOf("GeT"));
+    }
 }

@@ -33,11 +33,12 @@ import com.feilong.commons.core.net.URIUtil;
  * 
  * 
  * 
+ * 
  * &#064;InitBinder({ &quot;categoryCode&quot; })
  * // 此处的参数也可以是ServletRequestDataBinder类型
  * public void initBinder(WebDataBinder binder) throws Exception{
- * 	// 注册自定义的属性编辑器
- * 	binder.registerCustomEditor(String.class, new URLDecoderEditor(CharsetType.UTF8));
+ *     // 注册自定义的属性编辑器
+ *     binder.registerCustomEditor(String.class, new URLDecoderEditor(CharsetType.UTF8));
  * }
  * 
  * </pre>
@@ -47,31 +48,31 @@ import com.feilong.commons.core.net.URIUtil;
  */
 public class URLDecoderEditor extends PropertyEditorSupport{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(URLDecoderEditor.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(URLDecoderEditor.class);
 
-	/** 编码. */
-	private String				charsetType;
+    /** 编码. */
+    private String              charsetType;
 
-	/**
-	 * Instantiates a new uRL decoder editor.
-	 * 
-	 * @param charsetType
-	 *            编码.
-	 */
-	public URLDecoderEditor(String charsetType){
-		this.charsetType = charsetType;
-	}
+    /**
+     * Instantiates a new uRL decoder editor.
+     * 
+     * @param charsetType
+     *            编码.
+     */
+    public URLDecoderEditor(String charsetType){
+        this.charsetType = charsetType;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
-	 */
-	@Override
-	public void setAsText(String text) throws IllegalArgumentException{
-		String newText = URIUtil.decode(text, charsetType);
-		log.debug("the old text:{},new text:{}", text, newText);
-		setValue(newText);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
+     */
+    @Override
+    public void setAsText(String text) throws IllegalArgumentException{
+        String newText = URIUtil.decode(text, charsetType);
+        log.debug("the old text:{},new text:{}", text, newText);
+        setValue(newText);
+    }
 }

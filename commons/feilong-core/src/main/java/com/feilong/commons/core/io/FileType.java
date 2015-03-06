@@ -24,9 +24,9 @@ package com.feilong.commons.core.io;
  */
 public enum FileType{
 
-	/** 文件. */
-	FILE,
+    /** 文件. */
+    FILE,
 
-	/** 文件夹. */
-	DIRECTORY
+    /** 文件夹. */
+    DIRECTORY
 }

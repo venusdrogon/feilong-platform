@@ -38,66 +38,66 @@ import com.feilong.tools.velocity.VelocityUtil;
  */
 public class SiteMapURLTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(Test.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(Test.class);
 
-	/**
-	 * Test.
-	 * 
-	 * @throws IOException
-	 * @throws IllegalArgumentException
-	 */
-	@Test
-	public void test() throws IllegalArgumentException,IOException{
-		String templateInClassPath = "velocity/sitemap.vm";
-		Map<String, Object> contextKeyValues = new HashMap<String, Object>();
+    /**
+     * Test.
+     * 
+     * @throws IOException
+     * @throws IllegalArgumentException
+     */
+    @Test
+    public void test() throws IllegalArgumentException,IOException{
+        String templateInClassPath = "velocity/sitemap.vm";
+        Map<String, Object> contextKeyValues = new HashMap<String, Object>();
 
-		List<SiteMapURL> siteMapURLList = new ArrayList<SiteMapURL>();
-		SiteMapURL siteMapURL = new SiteMapURL();
-		siteMapURL.setChangefreq(ChangeFreq.daily);
-		siteMapURL.setLastmod(new Date());
-		siteMapURL.setLoc("http://www.example.com/?>>> >>>>>>>>>>>><<<<<<<<<<<<<<<<<&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'''''''''''''''''''''");
-		siteMapURL.setPriority(0.5f);
-		siteMapURLList.add(siteMapURL);
+        List<SiteMapURL> siteMapURLList = new ArrayList<SiteMapURL>();
+        SiteMapURL siteMapURL = new SiteMapURL();
+        siteMapURL.setChangefreq(ChangeFreq.daily);
+        siteMapURL.setLastmod(new Date());
+        siteMapURL.setLoc("http://www.example.com/?>>> >>>>>>>>>>>><<<<<<<<<<<<<<<<<&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'''''''''''''''''''''");
+        siteMapURL.setPriority(0.5f);
+        siteMapURLList.add(siteMapURL);
 
-		siteMapURL = new SiteMapURL();
-		siteMapURL.setChangefreq(ChangeFreq.monthly);
-		//siteMapURL.setLastmod("2005-01-01");
-		siteMapURL.setLoc("http://www.example.com/2");
-		siteMapURL.setPriority(0.5f);
-		siteMapURLList.add(siteMapURL);
+        siteMapURL = new SiteMapURL();
+        siteMapURL.setChangefreq(ChangeFreq.monthly);
+        //siteMapURL.setLastmod("2005-01-01");
+        siteMapURL.setLoc("http://www.example.com/2");
+        siteMapURL.setPriority(0.5f);
+        siteMapURLList.add(siteMapURL);
 
-		siteMapURL = new SiteMapURL();
-		//siteMapURL.setChangefreq(ChangeFreq.monthly);
-		//siteMapURL.setLastmod("2005-01-01");
-		siteMapURL.setLoc("http://www.example.com/1");
-		siteMapURL.setPriority(0.5f);
-		siteMapURLList.add(siteMapURL);
+        siteMapURL = new SiteMapURL();
+        //siteMapURL.setChangefreq(ChangeFreq.monthly);
+        //siteMapURL.setLastmod("2005-01-01");
+        siteMapURL.setLoc("http://www.example.com/1");
+        siteMapURL.setPriority(0.5f);
+        siteMapURLList.add(siteMapURL);
 
-		siteMapURL = new SiteMapURL();
-		//siteMapURL.setChangefreq(ChangeFreq.monthly);
-		//siteMapURL.setLastmod("2005-01-01");
-		siteMapURL.setLoc("http://www.example.com/1");
-		siteMapURL.setPriority(0.5f);
-		siteMapURLList.add(siteMapURL);
+        siteMapURL = new SiteMapURL();
+        //siteMapURL.setChangefreq(ChangeFreq.monthly);
+        //siteMapURL.setLastmod("2005-01-01");
+        siteMapURL.setLoc("http://www.example.com/1");
+        siteMapURL.setPriority(0.5f);
+        siteMapURLList.add(siteMapURL);
 
-		//siteMapURL = new SiteMapURL();
-		//siteMapURL.setLoc("http://www.example.com/1");
-		//siteMapURLList.add(siteMapURL);
+        //siteMapURL = new SiteMapURL();
+        //siteMapURL.setLoc("http://www.example.com/1");
+        //siteMapURLList.add(siteMapURL);
 
-		siteMapURLList.add(null);
+        siteMapURLList.add(null);
 
-		contextKeyValues.put("siteMapURLList", siteMapURLList);
-		String aString = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
-		//xstre
-		String filePath = SystemUtils.USER_HOME + "/feilong/sitemap.xml";
+        contextKeyValues.put("siteMapURLList", siteMapURLList);
+        String aString = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
+        //xstre
+        String filePath = SystemUtils.USER_HOME + "/feilong/sitemap.xml";
 
-		if (log.isInfoEnabled()){
-			log.info(aString);
-		}
-		//		Document document = Dom4jUtil.getDocument(filePath);
-		//		
-		//		//document.
-		IOWriteUtil.write(filePath, aString);
-	}
+        if (log.isInfoEnabled()){
+            log.info(aString);
+        }
+        //		Document document = Dom4jUtil.getDocument(filePath);
+        //		
+        //		//document.
+        IOWriteUtil.write(filePath, aString);
+    }
 }

@@ -40,99 +40,99 @@ import com.feilong.tools.om.nginx.command.StubStatusCommand;
  */
 public final class StubStatusUtil{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(StubStatusUtil.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(StubStatusUtil.class);
 
-	/**
-	 * 解析nginx stub status 成 NginxStubStatusCommand.
-	 * 
-	 * @param uri
-	 *            uri
-	 * @param userName
-	 *            用户名
-	 * @param password
-	 *            密码
-	 * @return the stub status command
-	 */
-	public static StubStatusCommand getStubStatusCommand(String uri,String userName,String password){
-		Date now = new Date();
+    /**
+     * 解析nginx stub status 成 NginxStubStatusCommand.
+     * 
+     * @param uri
+     *            uri
+     * @param userName
+     *            用户名
+     * @param password
+     *            密码
+     * @return the stub status command
+     */
+    public static StubStatusCommand getStubStatusCommand(String uri,String userName,String password){
+        Date now = new Date();
 
-		Integer activeConnections = 0;
-		Long serverAccepts = 0L;
-		Long serverHandled = 0L;
-		Long serverRequests = 0L;
-		Integer reading = 0;
-		Integer writing = 0;
-		Integer waiting = 0;
+        Integer activeConnections = 0;
+        Long serverAccepts = 0L;
+        Long serverHandled = 0L;
+        Long serverRequests = 0L;
+        Integer reading = 0;
+        Integer writing = 0;
+        Integer waiting = 0;
 
-		// **************************************************************************
+        // **************************************************************************
 
-		UsernamePasswordCredentials usernamePasswordCredentials = new UsernamePasswordCredentials(userName, password);
+        UsernamePasswordCredentials usernamePasswordCredentials = new UsernamePasswordCredentials(userName, password);
 
-		HttpClientConfig httpClientConfig = new HttpClientConfig();
-		httpClientConfig.setUri(uri);
-		httpClientConfig.setHttpMethodType(HttpMethodType.GET);
-		httpClientConfig.setUsernamePasswordCredentials(usernamePasswordCredentials);
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
+        httpClientConfig.setUri(uri);
+        httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+        httpClientConfig.setUsernamePasswordCredentials(usernamePasswordCredentials);
 
-		try{
-			String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+        try{
+            String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
 
-			if (Validator.isNotNullOrEmpty(responseBodyAsString)){
+            if (Validator.isNotNullOrEmpty(responseBodyAsString)){
 
-				log.debug("responseBodyAsString:\n{}", responseBodyAsString);
+                log.debug("responseBodyAsString:\n{}", responseBodyAsString);
 
-				Reader reader = new StringReader(responseBodyAsString);
-				LineNumberReader lineNumberReader = new LineNumberReader(reader);
+                Reader reader = new StringReader(responseBodyAsString);
+                LineNumberReader lineNumberReader = new LineNumberReader(reader);
 
-				String line = null;
+                String line = null;
 
-				try{
-					while ((line = lineNumberReader.readLine()) != null){
-						int lineNumber = lineNumberReader.getLineNumber();
-						log.debug("the param lineNumber:{}", lineNumber);
-						if (1 == lineNumber){
-							String[] split = line.split(":");
-							activeConnections = Integer.parseInt(split[1].trim());
-						}else if (2 == lineNumber){
-							// nothing to do,only text "server accepts handled requests"
-						}else if (3 == lineNumber){
-							String[] split = line.trim().split(" ");
+                try{
+                    while ((line = lineNumberReader.readLine()) != null){
+                        int lineNumber = lineNumberReader.getLineNumber();
+                        log.debug("the param lineNumber:{}", lineNumber);
+                        if (1 == lineNumber){
+                            String[] split = line.split(":");
+                            activeConnections = Integer.parseInt(split[1].trim());
+                        }else if (2 == lineNumber){
+                            // nothing to do,only text "server accepts handled requests"
+                        }else if (3 == lineNumber){
+                            String[] split = line.trim().split(" ");
 
-							serverAccepts = Long.parseLong(split[0].trim());
-							serverHandled = Long.parseLong(split[1].trim());
-							serverRequests = Long.parseLong(split[2].trim());
+                            serverAccepts = Long.parseLong(split[0].trim());
+                            serverHandled = Long.parseLong(split[1].trim());
+                            serverRequests = Long.parseLong(split[2].trim());
 
-						}else if (4 == lineNumber){
-							String[] split = line.trim().split(" ");
+                        }else if (4 == lineNumber){
+                            String[] split = line.trim().split(" ");
 
-							reading = Integer.parseInt(split[1].trim());
-							writing = Integer.parseInt(split[3].trim());
-							waiting = Integer.parseInt(split[5].trim());
-						}else{
-							break;
-						}
-					}
-				}catch (NumberFormatException e){
-					log.error(e.getClass().getName(), e);
-				}catch (IOException e){
-					log.error(e.getClass().getName(), e);
-				}
-			}
-		}catch (HttpClientException e1){
-			e1.printStackTrace();
-		}
+                            reading = Integer.parseInt(split[1].trim());
+                            writing = Integer.parseInt(split[3].trim());
+                            waiting = Integer.parseInt(split[5].trim());
+                        }else{
+                            break;
+                        }
+                    }
+                }catch (NumberFormatException e){
+                    log.error(e.getClass().getName(), e);
+                }catch (IOException e){
+                    log.error(e.getClass().getName(), e);
+                }
+            }
+        }catch (HttpClientException e1){
+            e1.printStackTrace();
+        }
 
-		// **************有可能异常情况, 设置为默认值*****************************************
-		StubStatusCommand stubStatusCommand = new StubStatusCommand();
-		stubStatusCommand.setActiveConnections(activeConnections);
-		stubStatusCommand.setReading(reading);
-		stubStatusCommand.setServerAccepts(serverAccepts);
-		stubStatusCommand.setServerHandled(serverHandled);
-		stubStatusCommand.setServerRequests(serverRequests);
-		stubStatusCommand.setWaiting(waiting);
-		stubStatusCommand.setWriting(writing);
-		stubStatusCommand.setCrawlDate(now);
+        // **************有可能异常情况, 设置为默认值*****************************************
+        StubStatusCommand stubStatusCommand = new StubStatusCommand();
+        stubStatusCommand.setActiveConnections(activeConnections);
+        stubStatusCommand.setReading(reading);
+        stubStatusCommand.setServerAccepts(serverAccepts);
+        stubStatusCommand.setServerHandled(serverHandled);
+        stubStatusCommand.setServerRequests(serverRequests);
+        stubStatusCommand.setWaiting(waiting);
+        stubStatusCommand.setWriting(writing);
+        stubStatusCommand.setCrawlDate(now);
 
-		return stubStatusCommand;
-	}
+        return stubStatusCommand;
+    }
 }

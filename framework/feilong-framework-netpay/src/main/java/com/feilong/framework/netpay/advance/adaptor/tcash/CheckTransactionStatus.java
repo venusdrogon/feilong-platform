@@ -24,9 +24,9 @@ package com.feilong.framework.netpay.advance.adaptor.tcash;
  */
 public interface CheckTransactionStatus{
 
-	/** success transaction . */
-	String	SUCCESS_COMPLETED	= "SUCCESS_COMPLETED";
+    /** success transaction . */
+    String SUCCESS_COMPLETED = "SUCCESS_COMPLETED";
 
-	/** failed transaction. */
-	String	FAILED				= "FAILED";			//failed transaction;
+    /** failed transaction. */
+    String FAILED            = "FAILED";           //failed transaction;
 }

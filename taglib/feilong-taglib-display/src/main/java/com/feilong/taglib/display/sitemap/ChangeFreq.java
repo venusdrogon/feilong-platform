@@ -41,24 +41,24 @@ package com.feilong.taglib.display.sitemap;
  */
 public enum ChangeFreq{
 
-	/** 每次访问都不一样,使用这个参数 describe documents that change each time they are accessed. */
-	always,
+    /** 每次访问都不一样,使用这个参数 describe documents that change each time they are accessed. */
+    always,
 
-	/** The hourly. */
-	hourly,
+    /** The hourly. */
+    hourly,
 
-	/** The daily. */
-	daily,
+    /** The daily. */
+    daily,
 
-	/** The weekly. */
-	weekly,
+    /** The weekly. */
+    weekly,
 
-	/** The monthly. */
-	monthly,
+    /** The monthly. */
+    monthly,
 
-	/** The yearly. */
-	yearly,
+    /** The yearly. */
+    yearly,
 
-	/** 用来形容 archived URLs 归档url/历史url. */
-	never
+    /** 用来形容 archived URLs 归档url/历史url. */
+    never
 }

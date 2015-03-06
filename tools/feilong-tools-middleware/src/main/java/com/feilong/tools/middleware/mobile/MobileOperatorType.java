@@ -24,41 +24,41 @@ package com.feilong.tools.middleware.mobile;
  * @version 1.0 2011-3-4 下午01:27:15
  */
 public enum MobileOperatorType{
-	/**
-	 * 移动
-	 */
-	ChinaMobile("移动"),
-	/**
-	 * 联通
-	 */
-	ChinaUnicom("联通"),
-	/**
-	 * 电信
-	 */
-	ChinaTelecom("电信");
+    /**
+     * 移动
+     */
+    ChinaMobile("移动"),
+    /**
+     * 联通
+     */
+    ChinaUnicom("联通"),
+    /**
+     * 电信
+     */
+    ChinaTelecom("电信");
 
-	/**
-	 * 名称
-	 */
-	private String	name;
+    /**
+     * 名称
+     */
+    private String name;
 
-	//***********************************************************************
-	private MobileOperatorType(String name){
-		this.name = name;
-	}
+    //***********************************************************************
+    private MobileOperatorType(String name){
+        this.name = name;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName(){
-		return name;
-	}
+    /**
+     * @return the name
+     */
+    public String getName(){
+        return name;
+    }
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name){
+        this.name = name;
+    }
 }

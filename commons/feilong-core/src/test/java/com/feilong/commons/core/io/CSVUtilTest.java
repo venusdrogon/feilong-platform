@@ -35,26 +35,26 @@ import com.feilong.commons.core.date.DateUtil;
  */
 public class CSVUtilTest{
 
-	/** The Constant log. */
-	private static final Logger	log	= LoggerFactory.getLogger(CSVUtilTest.class);
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(CSVUtilTest.class);
 
-	/**
-	 * Test write.
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void testWrite() throws IOException{
-		String path = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_demand.csv";
-		path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.COMMON_DATE));
-		log.info(path);
-		String[] columnTitles = { "a", "b" };
-		List<Object[]> list = new ArrayList<Object[]>();
-		for (int i = 0; i < 20; i++){
-			Object[] object = { i + "金,鑫", i + "jin'\"xin" };
-			list.add(object);
-		}
-		CSVUtil.write(path, columnTitles, list);
-	}
+    /**
+     * Test write.
+     * 
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    @Test
+    public void testWrite() throws IOException{
+        String path = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_demand.csv";
+        path = path.replace("${date}", DateUtil.date2String(DateUtil.getYesterday(new Date()), DatePattern.COMMON_DATE));
+        log.info(path);
+        String[] columnTitles = { "a", "b" };
+        List<Object[]> list = new ArrayList<Object[]>();
+        for (int i = 0; i < 20; i++){
+            Object[] object = { i + "金,鑫", i + "jin'\"xin" };
+            list.add(object);
+        }
+        CSVUtil.write(path, columnTitles, list);
+    }
 }

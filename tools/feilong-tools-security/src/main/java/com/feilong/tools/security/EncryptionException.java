@@ -36,57 +36,57 @@ import com.feilong.commons.core.log.Slf4jUtil;
  */
 public class EncryptionException extends RuntimeException{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -4887057961178296909L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -4887057961178296909L;
 
-	/**
-	 * Instantiates a new encryption exception.
-	 */
-	public EncryptionException(){
-		super();
-	}
+    /**
+     * Instantiates a new encryption exception.
+     */
+    public EncryptionException(){
+        super();
+    }
 
-	/**
-	 * 加密解密的异常.
-	 * 
-	 * @param message
-	 *            the message
-	 */
-	public EncryptionException(String message){
-		super(message);
-	}
+    /**
+     * 加密解密的异常.
+     * 
+     * @param message
+     *            the message
+     */
+    public EncryptionException(String message){
+        super(message);
+    }
 
-	/**
-	 * 加密解密的异常(支持slf4j格式写法).
-	 * 
-	 * @param messagePattern
-	 *            the message pattern
-	 * @param args
-	 *            the args
-	 */
-	public EncryptionException(String messagePattern, Object...args){
-		super(Slf4jUtil.formatMessage(messagePattern, args));
-	}
+    /**
+     * 加密解密的异常(支持slf4j格式写法).
+     * 
+     * @param messagePattern
+     *            the message pattern
+     * @param args
+     *            the args
+     */
+    public EncryptionException(String messagePattern, Object...args){
+        super(Slf4jUtil.formatMessage(messagePattern, args));
+    }
 
-	/**
-	 * 加密解密的异常.
-	 * 
-	 * @param message
-	 *            the message
-	 * @param cause
-	 *            the cause
-	 */
-	public EncryptionException(String message, Throwable cause){
-		super(message, cause);
-	}
+    /**
+     * 加密解密的异常.
+     * 
+     * @param message
+     *            the message
+     * @param cause
+     *            the cause
+     */
+    public EncryptionException(String message, Throwable cause){
+        super(message, cause);
+    }
 
-	/**
-	 * 加密解密的异常.
-	 * 
-	 * @param cause
-	 *            the cause
-	 */
-	public EncryptionException(Throwable cause){
-		super(cause);
-	}
+    /**
+     * 加密解密的异常.
+     * 
+     * @param cause
+     *            the cause
+     */
+    public EncryptionException(Throwable cause){
+        super(cause);
+    }
 }

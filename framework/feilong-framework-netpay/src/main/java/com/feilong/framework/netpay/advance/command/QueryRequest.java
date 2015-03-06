@@ -25,74 +25,74 @@ import java.io.Serializable;
  */
 public class QueryRequest implements Serializable{
 
-	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= 288232184048495608L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 288232184048495608L;
 
-	// **********************required******************************************************
-	/** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
-	private String				tradeNo;
+    // **********************required******************************************************
+    /** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
+    private String            tradeNo;
 
-	/** 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash. */
-	private String				gatewayTradeNo;
+    /** 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash. */
+    private String            gatewayTradeNo;
 
-	/** 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定. */
-	private Serializable		buyer;
+    /** 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定. */
+    private Serializable      buyer;
 
-	/**
-	 * Gets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
-	 * 
-	 * @return the tradeNo
-	 */
-	public String getTradeNo(){
-		return tradeNo;
-	}
+    /**
+     * Gets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
+     * 
+     * @return the tradeNo
+     */
+    public String getTradeNo(){
+        return tradeNo;
+    }
 
-	/**
-	 * Sets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
-	 * 
-	 * @param tradeNo
-	 *            the tradeNo to set
-	 */
-	public void setTradeNo(String tradeNo){
-		this.tradeNo = tradeNo;
-	}
+    /**
+     * Sets the 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
+     * 
+     * @param tradeNo
+     *            the tradeNo to set
+     */
+    public void setTradeNo(String tradeNo){
+        this.tradeNo = tradeNo;
+    }
 
-	/**
-	 * 获得 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
-	 * 
-	 * @return the buyer
-	 */
-	public Serializable getBuyer(){
-		return buyer;
-	}
+    /**
+     * 获得 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
+     * 
+     * @return the buyer
+     */
+    public Serializable getBuyer(){
+        return buyer;
+    }
 
-	/**
-	 * 设置 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
-	 * 
-	 * @param buyer
-	 *            the buyer to set
-	 */
-	public void setBuyer(Serializable buyer){
-		this.buyer = buyer;
-	}
+    /**
+     * 设置 买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定.
+     * 
+     * @param buyer
+     *            the buyer to set
+     */
+    public void setBuyer(Serializable buyer){
+        this.buyer = buyer;
+    }
 
-	/**
-	 * 获得 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash.
-	 * 
-	 * @return the gatewayTradeNo
-	 */
-	public String getGatewayTradeNo(){
-		return gatewayTradeNo;
-	}
+    /**
+     * 获得 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash.
+     * 
+     * @return the gatewayTradeNo
+     */
+    public String getGatewayTradeNo(){
+        return gatewayTradeNo;
+    }
 
-	/**
-	 * 设置 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash.
-	 * 
-	 * @param gatewayTradeNo
-	 *            the gatewayTradeNo to set
-	 */
-	public void setGatewayTradeNo(String gatewayTradeNo){
-		this.gatewayTradeNo = gatewayTradeNo;
-	}
+    /**
+     * 设置 支付网关的交易号,一般来说,大部分支付网关都支持 {@link #tradeNo}我们平台的交易号查询, 但是个别的支付网关就只支持他们自己的交易号, 比如 t-cash.
+     * 
+     * @param gatewayTradeNo
+     *            the gatewayTradeNo to set
+     */
+    public void setGatewayTradeNo(String gatewayTradeNo){
+        this.gatewayTradeNo = gatewayTradeNo;
+    }
 
 }
