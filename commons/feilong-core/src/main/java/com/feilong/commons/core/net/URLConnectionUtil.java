@@ -79,26 +79,11 @@ public final class URLConnectionUtil{
      *             the unchecked io exception
      */
     public static String readLine(String urlString,HttpURLConnectionParam httpURLConnectionParam) throws UncheckedIOException{
-        if (null == httpURLConnectionParam){
-            httpURLConnectionParam = new HttpURLConnectionParam();
-        }
+        InputStream inputStream = getInputStream(urlString, httpURLConnectionParam);
+        BufferedReader bufferedReader = InputStreamUtil.toBufferedReader(inputStream, httpURLConnectionParam.getContentCharset());
 
-        HttpURLConnection httpURLConnection = getHttpURLConnection(urlString, httpURLConnectionParam);
-        try{
-
-            InputStream inputStream = httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = InputStreamUtil.toBufferedReader(inputStream, httpURLConnectionParam.getContentCharset());
-
-            if (null != bufferedReader){
-                return ReaderUtil.readLine(bufferedReader);
-            }
-        }catch (IOException e){
-            throw new UncheckedIOException(e);
-        }finally{
-            if (null != httpURLConnection){
-                // 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
-                httpURLConnection.disconnect();
-            }
+        if (null != bufferedReader){
+            return ReaderUtil.readLine(bufferedReader);
         }
         return null;
     }
@@ -129,6 +114,37 @@ public final class URLConnectionUtil{
      */
     public static String getResponseBodyAsString(String urlString,HttpURLConnectionParam httpURLConnectionParam)
                     throws UncheckedIOException{
+        InputStream inputStream = getInputStream(urlString, httpURLConnectionParam);
+        String inputStream2String = InputStreamUtil.inputStream2String(inputStream, httpURLConnectionParam.getContentCharset());
+        return inputStream2String;
+
+    }
+
+    /**
+     * 获得 input stream.
+     *
+     * @param urlString
+     *            the url string
+     * @return the input stream
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     */
+    public static InputStream getInputStream(String urlString) throws UncheckedIOException{
+        return getInputStream(urlString, null);
+    }
+
+    /**
+     * 获得 input stream.
+     *
+     * @param urlString
+     *            the url string
+     * @param httpURLConnectionParam
+     *            the http url connection param
+     * @return the input stream
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     */
+    public static InputStream getInputStream(String urlString,HttpURLConnectionParam httpURLConnectionParam) throws UncheckedIOException{
         if (null == httpURLConnectionParam){
             httpURLConnectionParam = new HttpURLConnectionParam();
         }
@@ -139,14 +155,13 @@ public final class URLConnectionUtil{
 
             try{
                 InputStream inputStream = httpURLConnection.getInputStream();
-                String inputStream2String = InputStreamUtil.inputStream2String(inputStream, httpURLConnectionParam.getContentCharset());
-
-                return inputStream2String;
+                return inputStream;
             }catch (IOException e){
                 throw new UncheckedIOException(e);
             }finally{
+                //TODO
                 // 指示近期服务器不太可能有其他请求.调用 disconnect() 并不意味着可以对其他请求重用此 HttpURLConnection 实例.
-                httpURLConnection.disconnect();
+                // httpURLConnection.disconnect();
             }
         }
         return null;

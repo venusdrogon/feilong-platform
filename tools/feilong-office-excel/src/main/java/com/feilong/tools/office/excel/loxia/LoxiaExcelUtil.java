@@ -34,6 +34,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.office.excel.loxia.convertor.BooleanConvertor;
@@ -67,12 +68,39 @@ public abstract class LoxiaExcelUtil{
      * @param sheetNo
      *            the sheet no
      * @return the list
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static <T> List<T> getList(String configuration,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
+    public static <T> List<T> getList(String configuration,String sheet,String dataName,String fileName,int sheetNo)
+                    throws UncheckedIOException{
         String[] configurations = { configuration };
         return getList(configurations, sheet, dataName, fileName, sheetNo);
+    }
+
+    /**
+     * 获得 list.
+     *
+     * @param <T>
+     *            the generic type
+     * @param configuration
+     *            the configuration
+     * @param sheet
+     *            the sheet
+     * @param dataName
+     *            the data name
+     * @param is
+     *            the is
+     * @param sheetNo
+     *            the sheet no
+     * @return the list
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     */
+    public static <T> List<T> getList(String configuration,String sheet,String dataName,InputStream is,int sheetNo)
+                    throws UncheckedIOException{
+        String[] configurations = { configuration };
+        ExcelReader excelReader = getExcelReader(configurations, sheet);
+        return getList(excelReader, dataName, is, sheetNo);
     }
 
     /**
@@ -91,16 +119,30 @@ public abstract class LoxiaExcelUtil{
      * @param sheetNo
      *            the sheet no
      * @return the list
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static <T> List<T> getList(String[] configurations,String sheet,String dataName,String fileName,int sheetNo) throws IOException{
+    public static <T> List<T> getList(String[] configurations,String sheet,String dataName,String fileName,int sheetNo)
+                    throws UncheckedIOException{
+        ExcelReader excelReader = getExcelReader(configurations, sheet);
+        return getList(excelReader, dataName, fileName, sheetNo);
+    }
+
+    /**
+     * 获得 excel reader.
+     *
+     * @param configurations
+     *            the configurations
+     * @param sheet
+     *            the sheet
+     * @return the excel reader
+     * @since 1.0.9
+     */
+    private static ExcelReader getExcelReader(String[] configurations,String sheet){
         ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
         excelManipulatorFactory.setConfig(configurations);
-
         ExcelReader excelReader = excelManipulatorFactory.createExcelReader(sheet);
-
-        return getList(excelReader, dataName, fileName, sheetNo);
+        return excelReader;
     }
 
     /**
@@ -117,12 +159,31 @@ public abstract class LoxiaExcelUtil{
      * @param sheetNo
      *            the sheet no
      * @return the list
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static <T> List<T> getList(ExcelReader excelReader,String dataName,String fileName,int sheetNo) throws IOException{
+    private static <T> List<T> getList(ExcelReader excelReader,String dataName,String fileName,int sheetNo) throws UncheckedIOException{
         InputStream is = FileUtil.getFileInputStream(fileName);
+        return getList(excelReader, dataName, is, sheetNo);
+    }
 
+    /**
+     * A.
+     *
+     * @param <T>
+     *            the generic type
+     * @param excelReader
+     *            the excel reader
+     * @param dataName
+     *            the data name
+     * @param is
+     *            the is
+     * @param sheetNo
+     *            the sheet no
+     * @return the list< t>
+     * @since 1.0.9
+     */
+    private static <T> List<T> getList(ExcelReader excelReader,String dataName,InputStream is,int sheetNo){
         Map<String, Object> beans = new HashMap<String, Object>();
         beans.put(dataName, new ArrayList<T>());
 
@@ -141,8 +202,7 @@ public abstract class LoxiaExcelUtil{
                 log.error("read excel exception,readStatus:[" + readStatus.getStatus() + "],getMessage:[" + readStatus.getMessage()
                                 + "],and exceptions size is :[" + exceptions.size() + "],first exception is:", exceptions.get(0));
             }
-
-            throw new IOException("read excel exception,and exceptions size is :[" + exceptions.size() + "]");
+            throw new UncheckedIOException(new IOException("read excel exception,and exceptions size is :[" + exceptions.size() + "]"));
         }
     }
 
@@ -159,11 +219,11 @@ public abstract class LoxiaExcelUtil{
      *            the output file name
      * @param beans
      *            the beans
-     * @throws IOException
-     *             the IO exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
     public static void write(String configurations,String sheet,String templateFileName,String outputFileName,Map<String, Object> beans)
-                    throws IOException{
+                    throws UncheckedIOException{
         ExcelManipulatorFactory excelManipulatorFactory = new ExcelManipulatorFactory();
         excelManipulatorFactory.setConfig(configurations);
 
@@ -178,7 +238,7 @@ public abstract class LoxiaExcelUtil{
             log.info("write excel SUCCESS,outputFileName:[{}]", outputFileName);
         }else{
             log.warn(JsonUtil.format(writeStatus));
-            throw new IOException("write excel exception,and writeStatus is :[" + writeStatus + "]");
+            throw new UncheckedIOException(new IOException("write excel exception,and writeStatus is :[" + writeStatus + "]"));
         }
     }
 }
