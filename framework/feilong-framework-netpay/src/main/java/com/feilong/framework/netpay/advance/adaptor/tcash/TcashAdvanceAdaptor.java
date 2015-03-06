@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.enumeration.HttpMethodType;
 import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;

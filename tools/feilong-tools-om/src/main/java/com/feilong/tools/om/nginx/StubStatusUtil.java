@@ -25,7 +25,7 @@ import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientException;

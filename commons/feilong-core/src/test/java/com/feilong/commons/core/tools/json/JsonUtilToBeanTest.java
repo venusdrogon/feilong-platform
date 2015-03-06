@@ -32,7 +32,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.test.MyBean;
 import com.feilong.test.Order;
 import com.feilong.test.Person;

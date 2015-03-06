@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.feilong.commons.core.bean.BeanUtilException;
-import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.HttpMethodType;
 
 /**
  * The Class EnumUtilTest.

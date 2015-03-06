@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 
-import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.HttpMethodType;
 
 /**
  * The Class HttpClientConfig.

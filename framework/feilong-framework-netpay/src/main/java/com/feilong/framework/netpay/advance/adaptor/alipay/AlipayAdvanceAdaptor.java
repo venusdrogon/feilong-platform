@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
-import com.feilong.commons.core.enumeration.HttpMethodType;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
