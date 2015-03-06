@@ -29,8 +29,9 @@ public class Mp2StubStatusMainTest{
 
     /**
      * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public final void testCrawStubStatusNike() throws IOException{

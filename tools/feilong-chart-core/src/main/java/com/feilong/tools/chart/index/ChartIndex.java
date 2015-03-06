@@ -67,10 +67,16 @@ public class ChartIndex implements Serializable,Comparable<ChartIndex>{
     }
 
     /**
+     * The Constructor.
+     *
      * @param code
+     *            the code
      * @param name
+     *            the name
      * @param value
+     *            the value
      * @param color
+     *            the color
      */
     public ChartIndex(String code, String name, Number value, String color){
         super();

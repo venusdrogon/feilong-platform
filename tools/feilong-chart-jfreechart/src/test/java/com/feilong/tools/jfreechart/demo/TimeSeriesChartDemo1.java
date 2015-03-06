@@ -1,42 +1,17 @@
-/* ===========================================================
- * JFreeChart : a free chart library for the Java(tm) platform
- * ===========================================================
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
- * (C) Copyright 2000-2011, by Object Refinery Limited and Contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Project Info:  http://www.jfree.org/jfreechart/index.html
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
- * This library is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2.1 of the License, or
- * (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
- * USA.
- *
- * [Oracle and Java are registered trademarks of Oracle and/or its affiliates. 
- * Other names may be trademarks of their respective owners.]
- *
- * -------------------------
- * TimeSeriesChartDemo1.java
- * -------------------------
- * (C) Copyright 2003-2011, by Object Refinery Limited and Contributors.
- *
- * Original Author:  David Gilbert (for Object Refinery Limited);
- * Contributor(s):   ;
- *
- * Changes
- * -------
- * 09-Mar-2005 : Version 1, copied from the demo collection that ships with
- *               the JFreeChart Developer Guide (DG);
- *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.jfreechart.demo;
 
@@ -68,6 +43,7 @@ import org.jfree.ui.RefineryUtilities;
  */
 public class TimeSeriesChartDemo1 extends ApplicationFrame{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
     {
         // set a theme using the new shadow generator feature available in

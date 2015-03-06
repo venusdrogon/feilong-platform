@@ -18,7 +18,7 @@ package com.feilong.commons.core;
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 
 /**
- * 配置的常量
+ * 配置的常量.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月30日 下午6:00:36
@@ -26,6 +26,7 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
  */
 public final class ConfigConstants{
 
+    /** The Constant $FEILONG_CORE_CONFIG. */
     private static final String $FEILONG_CORE_CONFIG                 = "config/feilong-core-config";
 
     /** 数字和小写的字母. */

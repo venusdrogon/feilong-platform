@@ -47,9 +47,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
  */
 public class GanttDemo2 extends ApplicationFrame{
 
-    /**
-	 * 
-	 */
+    /** The Constant serialVersionUID. */
     private static final long   serialVersionUID = -8634461463485238794L;
 
     /** The Constant log. */
@@ -111,9 +109,7 @@ public class GanttDemo2 extends ApplicationFrame{
      */
     static class CustomRenderer extends GanttRenderer{
 
-        /**
-		 * 
-		 */
+        /** The Constant serialVersionUID. */
         private static final long serialVersionUID = 2798930171665276180L;
 
         /** The colors. */

@@ -23,15 +23,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class AlgorithmTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-21 上午09:51:47
  */
 public class AlgorithmTest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(AlgorithmTest.class);
 
     /**
-     * 测试选择排序
+     * 测试选择排序.
      */
     @Test
     public void testSelectSort(){
@@ -52,7 +55,7 @@ public class AlgorithmTest{
     }
 
     /**
-     * 测试快速排序
+     * 测试快速排序.
      */
     @Test
     public void testQuickSort(){
@@ -69,7 +72,7 @@ public class AlgorithmTest{
     }
 
     /**
-     * 测试快速排序
+     * 测试快速排序.
      */
     @Test
     public void testQuickSort1(){
@@ -87,7 +90,7 @@ public class AlgorithmTest{
     }
 
     /**
-     * 测试快速排序
+     * 测试快速排序.
      */
     @Test
     public void quickSort(){
@@ -104,7 +107,7 @@ public class AlgorithmTest{
     }
 
     /**
-     * 冒泡排序
+     * 冒泡排序.
      */
     @Test
     public void bubbleSort(){
@@ -121,7 +124,7 @@ public class AlgorithmTest{
     }
 
     /**
-     * 测试直接插入排序
+     * 测试直接插入排序.
      */
     @Test
     public void testDirectInsertSort(){
@@ -142,7 +145,7 @@ public class AlgorithmTest{
     }
 
     /**
-     * 测试直接插入排序
+     * 测试直接插入排序.
      */
     @Test
     public void testBinarySearch(){

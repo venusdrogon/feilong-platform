@@ -48,6 +48,7 @@ import com.feilong.commons.core.io.UncheckedIOException;
  */
 public final class XmlConfigure implements BaseConfigure{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(XmlConfigure.class);
 
     /**

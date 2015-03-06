@@ -38,9 +38,11 @@ public class Anchor{
 
     /**
      * TestAnchor.
-     * 
-     * @throws DocumentException
+     *
      * @throws FileNotFoundException
+     *             the file not found exception
+     * @throws DocumentException
+     *             the document exception
      */
     @Test
     public void testAnchor() throws FileNotFoundException,DocumentException{

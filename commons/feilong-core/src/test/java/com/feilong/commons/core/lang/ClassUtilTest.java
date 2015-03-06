@@ -22,13 +22,15 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DatePattern;
 
 /**
- * 
+ * The Class ClassUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年7月21日 下午3:01:52
  * @since 1.0.8
  */
 public class ClassUtilTest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(ClassUtilTest.class);
 
     /**

@@ -26,6 +26,7 @@ import java.io.Serializable;
  */
 public class PagerUrlTemplate implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 288232184048495608L;
 
     /** 链接的模板,以便前端js 替换. */

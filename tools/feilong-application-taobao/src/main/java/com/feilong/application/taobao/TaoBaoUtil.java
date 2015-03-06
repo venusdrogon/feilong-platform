@@ -53,6 +53,7 @@ import com.taobao.api.response.UserGetResponse;
  */
 public class TaoBaoUtil{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(TaoBaoUtil.class);
 
     /**

@@ -23,13 +23,15 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.io.CharsetType;
 
 /**
- * 
+ * The Class PagerParamsTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月23日 下午10:31:59
  * @since 1.0.7
  */
 public class PagerParamsTest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(PagerParamsTest.class);
 
     /**

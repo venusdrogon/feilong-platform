@@ -20,11 +20,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class InetAddressTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-23 下午01:22:29
  */
 public class InetAddressTest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(InetAddressTest.class);
 
     /**

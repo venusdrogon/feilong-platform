@@ -22,6 +22,7 @@ import java.io.Serializable;
  */
 public class Reason implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 5331964326828362389L;
 
     /** The english. */

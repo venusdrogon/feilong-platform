@@ -26,6 +26,8 @@ import com.feilong.framework.netpay.payment.BasePaymentTest;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
 
 /**
+ * The Class AlipayOnlineScanCodeAdaptorTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2014年5月6日 下午9:40:58
  */

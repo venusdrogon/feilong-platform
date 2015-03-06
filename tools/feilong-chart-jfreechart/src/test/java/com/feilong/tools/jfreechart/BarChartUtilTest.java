@@ -45,6 +45,7 @@ import com.feilong.tools.jfreechart.category.CategoryChartEntity;
  */
 public class BarChartUtilTest{
 
+    /** The Constant log. */
     private static final Logger log            = LoggerFactory.getLogger(BarChartUtilTest.class);
 
     /** The jfree chart util. */
@@ -59,7 +60,14 @@ public class BarChartUtilTest{
     String                      pathname       = "E:\\DataOther\\Material\\baozun.png";
 
     /**
+     * Creates the image and open.
+     *
+     * @param jfreeChartUtil
+     *            the jfree chart util
+     * @param chartInfoEntity
+     *            the chart info entity
      * @throws IOException
+     *             the IO exception
      */
     private void createImageAndOpen(BarChartUtil jfreeChartUtil,ChartInfoEntity chartInfoEntity) throws IOException{
         jfreeChartUtil.createImage(chartInfoEntity);

@@ -73,10 +73,13 @@ public class MethodUtilTest{
 
     /**
      * Test invoke static method.
-     * 
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
+     *
      * @throws NoSuchMethodException
+     *             the no such method exception
+     * @throws IllegalAccessException
+     *             the illegal access exception
+     * @throws InvocationTargetException
+     *             the invocation target exception
      */
     @Test()
     public final void testInvokeStaticMethod2() throws NoSuchMethodException,IllegalAccessException,InvocationTargetException{

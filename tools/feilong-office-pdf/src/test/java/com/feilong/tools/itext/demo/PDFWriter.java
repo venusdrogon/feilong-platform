@@ -32,10 +32,13 @@ import com.lowagie.text.Table;
 import com.lowagie.text.pdf.PdfWriter;
 
 /**
+ * The Class PDFWriter.
+ *
  * @author jcoder
  */
 abstract public class PDFWriter{
 
+    /** The Constant log. */
     private static final Logger log      = LoggerFactory.getLogger(PDFWriter.class);
 
     /** The document. */

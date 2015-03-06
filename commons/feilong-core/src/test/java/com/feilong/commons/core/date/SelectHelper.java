@@ -26,13 +26,16 @@ import com.feilong.commons.core.entity.SelectEntity;
 import com.feilong.commons.core.util.RegexUtil;
 
 /**
+ * The Class SelectHelper.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @deprecated
  * @version 1.0 2012-4-6 下午3:11:10
+ * @deprecated
  */
 @Deprecated
 public class SelectHelper{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(SelectHelper.class);
 
     /** Don't let anyone instantiate this class. */
@@ -53,6 +56,8 @@ public class SelectHelper{
      * 
      * </pre>
      * 
+     * .
+     *
      * @param beginYear
      *            开始年份
      * @param endYear
@@ -83,8 +88,8 @@ public class SelectHelper{
     }
 
     /**
-     * 获得月份列表
-     * 
+     * 获得月份列表.
+     *
      * @param desc
      *            是否倒序,年份大的排在上面
      * @return 获得月份列表

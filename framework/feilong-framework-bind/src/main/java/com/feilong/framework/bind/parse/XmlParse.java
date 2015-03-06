@@ -19,23 +19,21 @@ import com.feilong.framework.bind.exception.BuildCommandException;
 
 /**
  * The Interface QueryResultXmlParse.
- * 
- * @param <T>
- *            the generic type
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月8日 上午11:32:24
+ * @param <T>
+ *            the generic type
  * @since 1.0.6
  */
 public interface XmlParse<T> {
 
     /**
      * 解析xml到对象,将xml转成对象.
-     * 
+     *
      * @param xml
      *            the xml
      * @return the t
-     * @throws BuildCommandException
-     *             构建对象异常
      */
     T parseXML(String xml);
 }

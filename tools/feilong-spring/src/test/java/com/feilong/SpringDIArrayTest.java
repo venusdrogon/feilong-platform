@@ -25,7 +25,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.entity.DIUserArray;
 
 /**
- * 
+ * The Class SpringDIArrayTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年10月8日 下午4:03:31

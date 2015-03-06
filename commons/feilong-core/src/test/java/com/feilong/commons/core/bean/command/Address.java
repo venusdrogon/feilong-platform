@@ -25,6 +25,7 @@ import java.io.Serializable;
  */
 public class Address implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -7167354662891178506L;
 
     /** The zip code. */

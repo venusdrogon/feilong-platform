@@ -55,9 +55,10 @@ final class NameValuePairUtil{
     }
 
     /**
-     * 将nameValuePairs转成Map
-     * 
+     * 将nameValuePairs转成Map.
+     *
      * @param nameValuePairs
+     *            the name value pairs
      * @return if (Validator.isNotNullOrEmpty(nameValuePairs)), will return Collections.emptyMap()
      * @since 1.0.9
      */

@@ -29,6 +29,7 @@ import com.lowagie.text.Table;
  */
 public class MyWriter extends PDFWriter{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(MyWriter.class);
 
     /**

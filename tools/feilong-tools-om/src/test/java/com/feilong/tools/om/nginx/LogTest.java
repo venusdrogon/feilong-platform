@@ -39,8 +39,9 @@ public class LogTest{
 
     /**
      * Test aj11visitlogall.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public void testAj11visitlogall() throws IOException{

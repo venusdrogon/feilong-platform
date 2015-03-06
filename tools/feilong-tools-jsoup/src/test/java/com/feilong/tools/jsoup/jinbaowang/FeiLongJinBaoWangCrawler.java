@@ -122,11 +122,12 @@ public class FeiLongJinBaoWangCrawler{
 
     /**
      * 解析商家编码文件.
-     * 
+     *
      * @param filePath
      *            文件路径
      * @return the code list
      * @throws IOException
+     *             the IO exception
      */
     public static List<String> getCodeList(String filePath) throws IOException{
         String content = IOReaderUtil.getFileContent(filePath);
@@ -225,12 +226,13 @@ public class FeiLongJinBaoWangCrawler{
 
     /**
      * 自动抓取该详细页面所有的图片 下载到 directoryName/skuCode 目录下面.
-     * 
+     *
      * @param skuCodeAndImagesMap
      *            the sku code and images map
      * @param directoryName
      *            the directory name
      * @throws IOException
+     *             the IO exception
      */
     public static void downSkuImages(Map<String, List<String>> skuCodeAndImagesMap,String directoryName) throws IOException{
         // 目标文件夹

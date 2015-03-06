@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.jumbo.shop.manager.test;
 
@@ -24,14 +24,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
+ * The Class CreateManagerImpl.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 23, 2013 6:50:49 PM
  */
 @Service
 public class CreateManagerImpl implements CreateManager{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(CreateManagerImpl.class);
 
+    /* (non-Javadoc)
+     * @see com.jumbo.shop.manager.test.CreateManager#testCreate(java.lang.String)
+     */
     @Override
     @Cacheable
     public String testCreate(@CacheParam("name") String name){
@@ -39,6 +45,9 @@ public class CreateManagerImpl implements CreateManager{
         return name;
     }
 
+    /* (non-Javadoc)
+     * @see com.jumbo.shop.manager.test.CreateManager#publicSku(java.lang.String)
+     */
     @Override
     @CacheEvict({ "CreateManagerImpl.testCreate" })
     public void publicSku(String name){

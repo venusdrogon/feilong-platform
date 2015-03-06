@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.mail.entity;
 
@@ -108,8 +108,8 @@ public class MailSenderConfig{
     // *******************************************************************
 
     /**
-     * 邮件附件的文件名
-     * 
+     * 邮件附件的文件名.
+     *
      * @return attachFileNames
      */
     public String[] getAttachFileNames(){
@@ -117,8 +117,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件附件的文件名
-     * 
+     * 邮件附件的文件名.
+     *
      * @param fileNames
      *            the new 邮件附件的文件名
      */
@@ -150,8 +150,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件服务的端口 默认25
-     * 
+     * 邮件服务的端口 默认25.
+     *
      * @return the 邮件服务的端口 默认25
      */
     public String getMailServerPort(){
@@ -159,8 +159,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件服务的端口 默认25
-     * 
+     * 邮件服务的端口 默认25.
+     *
      * @param mailServerPort
      *            the new 邮件服务的端口 默认25
      */
@@ -169,8 +169,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 是否需要身份验证,默认 true
-     * 
+     * 是否需要身份验证,默认 true.
+     *
      * @return the 是否需要身份验证,默认 true
      */
     public boolean isValidate(){
@@ -178,8 +178,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 是否需要身份验证,默认 true
-     * 
+     * 是否需要身份验证,默认 true.
+     *
      * @param validate
      *            the new 是否需要身份验证,默认 true
      */
@@ -209,8 +209,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 登陆邮件发送服务器的密码
-     * 
+     * 登陆邮件发送服务器的密码.
+     *
      * @return the 登陆邮件发送服务器的密码<br>
      *         example:******
      */
@@ -219,8 +219,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 登陆邮件发送服务器的密码
-     * 
+     * 登陆邮件发送服务器的密码.
+     *
      * @param password
      *            the new 登陆邮件发送服务器的密码<br>
      *            example:******
@@ -251,8 +251,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件主题
-     * 
+     * 邮件主题.
+     *
      * @return the 邮件主题
      */
     public String getSubject(){
@@ -260,8 +260,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件主题
-     * 
+     * 邮件主题.
+     *
      * @param subject
      *            the new 邮件主题
      */
@@ -270,8 +270,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件的文本内容
-     * 
+     * 邮件的文本内容.
+     *
      * @return the 邮件的文本内容
      */
     public String getContent(){
@@ -279,8 +279,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 邮件的文本内容
-     * 
+     * 邮件的文本内容.
+     *
      * @param textContent
      *            the new 邮件的文本内容
      */
@@ -289,8 +289,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 个人名义
-     * 
+     * 个人名义.
+     *
      * @return the personal
      */
     public String getPersonal(){
@@ -298,8 +298,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * 个人名义
-     * 
+     * 个人名义.
+     *
      * @param personal
      *            the personal to set
      */
@@ -422,6 +422,8 @@ public class MailSenderConfig{
     }
 
     /**
+     * 获得 获取图片的二进制.
+     *
      * @return the attachList
      */
     public List<byte[]> getAttachList(){
@@ -429,6 +431,8 @@ public class MailSenderConfig{
     }
 
     /**
+     * 设置 获取图片的二进制.
+     *
      * @param attachList
      *            the attachList to set
      */
@@ -437,6 +441,8 @@ public class MailSenderConfig{
     }
 
     /**
+     * 获得 邮件的文本内容.
+     *
      * @return the contentMimeType
      */
     public String getContentMimeType(){
@@ -444,6 +450,8 @@ public class MailSenderConfig{
     }
 
     /**
+     * 设置 邮件的文本内容.
+     *
      * @param contentMimeType
      *            the contentMimeType to set
      */

@@ -40,19 +40,22 @@ import com.feilong.tools.ant.plugin.jpa.command.Column;
 import com.feilong.tools.ant.plugin.jpa.command.JpaConstants;
 
 /**
- * 
+ * The Class ParseJPATest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月26日 下午2:06:28
  * @since 1.0.7
  */
 public class ParseJPATest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(ParseJPATest.class);
 
     /**
      * Test execute target1.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public final void getMyTableList() throws IOException{
@@ -122,12 +125,18 @@ public class ParseJPATest{
     }
 
     /**
-     * 将longtext 类型的输出 需要alter 或者其他
-     * 
+     * 将longtext 类型的输出 需要alter 或者其他.
+     *
      * @param longTextColumnlist
+     *            the long text columnlist
      * @param parseJPA
-     * @throws IOException
+     *            the parse jpa
+     * @param ouputfilePath
+     *            the ouputfile path
      * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws IOException
+     *             the IO exception
      */
     private void outputLongtextAlter(List<Column> longTextColumnlist,ParseJPA parseJPA,String ouputfilePath)
                     throws IllegalArgumentException,IOException{
@@ -194,10 +203,15 @@ public class ParseJPATest{
     }
 
     /**
+     * Aa.
+     *
      * @param longTextFile
-     * @return
+     *            the long text file
+     * @return the list< column>
      * @throws FileNotFoundException
+     *             the file not found exception
      * @throws IOException
+     *             the IO exception
      */
     private List<Column> aa(String longTextFile) throws FileNotFoundException,IOException{
         Reader reader = new FileReader(longTextFile);

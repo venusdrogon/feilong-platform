@@ -29,8 +29,9 @@ public class StubStatusMainTest{
 
     /**
      * Test method for {@link com.feilong.tools.om.nginx.StubStatusMain#crawStubStatusNike(String, String, String, String)}.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public final void testCrawStubStatusNike() throws IOException{
@@ -48,8 +49,9 @@ public class StubStatusMainTest{
 
     /**
      * Test craw stub status feilong.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public final void testCrawStubStatusFeilong() throws IOException{

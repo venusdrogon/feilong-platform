@@ -20,6 +20,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
+ * The Class NumberFormatUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月22日 下午11:31:15
  * @since 1.0.7

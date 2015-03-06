@@ -16,19 +16,17 @@
 package com.feilong.tools.ant.plugin.jpa.command;
 
 /**
- * 
+ * The Enum FileType.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月26日 下午2:16:59
  * @since 1.0.7
  */
 public enum FileType{
-    /**
-     * class文件
-     */
+    
+    /** class文件. */
     CLASS,
 
-    /**
-     * 枚举文件
-     */
+    /** 枚举文件. */
     ENUM
 }

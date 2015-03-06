@@ -25,6 +25,7 @@ import java.io.Serializable;
  */
 public class OutputDetailPayment implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 4985013088026800559L;
 
     /** (Mandatory) The transaction no. */

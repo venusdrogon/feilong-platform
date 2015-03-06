@@ -41,6 +41,7 @@ import com.feilong.servlet.ServletContextUtil;
  */
 public class ApplicationInfoServlet extends HttpServlet{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 672020928153455796L;
 
     /*

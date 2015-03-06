@@ -34,6 +34,7 @@ import com.feilong.commons.core.io.UncheckedIOException;
  */
 public class StrutsUpload{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(StrutsUpload.class);
 
     /**

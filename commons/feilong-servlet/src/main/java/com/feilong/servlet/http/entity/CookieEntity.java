@@ -90,9 +90,7 @@ public class CookieEntity implements Serializable{
      */
     private int               version          = 0;
 
-    /**
-     * Not in cookie specs, but supported by browsers
-     */
+    /** Not in cookie specs, but supported by browsers. */
     private boolean           httpOnly;
 
     /**
@@ -170,6 +168,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 设置存活时间,单位秒.
+     *
      * @return the maxAge
      */
     public int getMaxAge(){
@@ -177,6 +177,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 设置存活时间,单位秒.
+     *
      * @param maxAge
      *            the maxAge to set
      */
@@ -185,6 +187,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 ;Comment=VALUE .
+     *
      * @return the comment
      */
     public String getComment(){
@@ -192,6 +196,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 ;Comment=VALUE .
+     *
      * @param comment
      *            the comment to set
      */
@@ -200,6 +206,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 ;Domain=VALUE .
+     *
      * @return the domain
      */
     public String getDomain(){
@@ -207,6 +215,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 ;Domain=VALUE .
+     *
      * @param domain
      *            the domain to set
      */
@@ -215,6 +225,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 ;Path=VALUE .
+     *
      * @return the path
      */
     public String getPath(){
@@ -222,6 +234,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 ;Path=VALUE .
+     *
      * @param path
      *            the path to set
      */
@@ -230,6 +244,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 ;Secure .
+     *
      * @return the secure
      */
     public boolean getSecure(){
@@ -237,6 +253,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 ;Secure .
+     *
      * @param secure
      *            the secure to set
      */
@@ -245,6 +263,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 this class supports both the Version 0 (by Netscape) and Version 1 (by RFC 2109) cookie specifications.
+     *
      * @return the version
      */
     public int getVersion(){
@@ -252,6 +272,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 this class supports both the Version 0 (by Netscape) and Version 1 (by RFC 2109) cookie specifications.
+     *
      * @param version
      *            the version to set
      */
@@ -260,6 +282,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 获得 not in cookie specs, but supported by browsers.
+     *
      * @return the httpOnly
      */
     public boolean getHttpOnly(){
@@ -267,6 +291,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
+     * 设置 not in cookie specs, but supported by browsers.
+     *
      * @param httpOnly
      *            the httpOnly to set
      */

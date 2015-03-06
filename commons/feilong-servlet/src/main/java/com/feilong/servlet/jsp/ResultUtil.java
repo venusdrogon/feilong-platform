@@ -163,9 +163,9 @@ public final class ResultUtil{
 
     /**
      * 将Result转成list.
-     * 
+     *
      * @param <T>
-     * 
+     *            the generic type
      * @param result
      *            结果集
      * @param clz

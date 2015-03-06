@@ -40,8 +40,9 @@ public class FeiLongYiTaoCrawler{
 
     /**
      * Test.
-     * 
+     *
      * @throws JsoupUtilException
+     *             the jsoup util exception
      */
     @Test
     public void test() throws JsoupUtilException{

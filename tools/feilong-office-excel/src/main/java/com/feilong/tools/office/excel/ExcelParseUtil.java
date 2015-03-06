@@ -47,6 +47,7 @@ import com.feilong.commons.core.util.NumberUtil;
  */
 public class ExcelParseUtil{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(ExcelParseUtil.class);
 
     /**
@@ -254,7 +255,7 @@ public class ExcelParseUtil{
     }
 
     /**
-     * 获得公式单元格计算的结果值
+     * 获得公式单元格计算的结果值.
      *
      * @param cell
      *            the cell

@@ -22,6 +22,7 @@ import java.io.Serializable;
  */
 public class Customer implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -7749159103412879389L;
 
     /** The id. */

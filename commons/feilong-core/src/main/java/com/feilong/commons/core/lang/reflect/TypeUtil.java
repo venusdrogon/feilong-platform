@@ -25,14 +25,15 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * Utility methods focusing on type inspection, particularly with regard to generics.
- * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年7月21日 上午11:01:31
- * @since 1.0.8
  * @see org.apache.commons.lang3.reflect.TypeUtils
+ * @since 1.0.8
  */
 public final class TypeUtil{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(TypeUtil.class);
 
     /** Don't let anyone instantiate this class. */

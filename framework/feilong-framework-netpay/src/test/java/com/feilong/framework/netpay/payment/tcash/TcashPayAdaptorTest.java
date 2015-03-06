@@ -25,7 +25,8 @@ import com.feilong.framework.netpay.payment.BasePaymentTest;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
 
 /**
- * 
+ * The Class TcashPayAdaptorTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年7月17日 下午4:01:22
  * @since 1.0.8

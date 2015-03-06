@@ -28,14 +28,15 @@ import java.util.Map;
  * <p>
  * 因此构建的时候,如果是 value是 null,那么我们将 {@link NullObject} 设置到 {@link Map} 中, 当get的时候,如果是 {@link NullObject},我们转成null返回<br>
  * 
- * 这样一来,我们只需要通过{@link Map#get(Object)} 判断获得的value是null 还是 {@link NullObject} 就可以区分是否包含指定的key,是否设置过数据,对大容量的Map性能会有所提高
- * 
+ * 这样一来,我们只需要通过{@link Map#get(Object)} 判断获得的value是null 还是 {@link NullObject} 就可以区分是否包含指定的key,是否设置过数据,对大容量的Map性能会有所提高.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014-5-24 22:52:37
  * @since 1.0.7
  */
 public class NullObject implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -7374527169034342458L;
 
     /** Don't let anyone instantiate this class. */

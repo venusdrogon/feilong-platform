@@ -34,6 +34,7 @@ import com.feilong.commons.core.util.CollectionsUtil;
  */
 public class IpUtilTest{
 
+    /** The Constant log. */
     private static final Logger log  = LoggerFactory.getLogger(IpUtilTest.class);
 
     /** <code>{@value}</code>. */

@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.ssh.db;
 
@@ -25,27 +25,26 @@ import org.hibernate.mapping.Property;
 import org.hibernate.mapping.Table;
 
 /**
- * 数据库相关工具类
- * 
+ * 数据库相关工具类.
+ *
  * @author 金鑫 2010-2-9 上午10:19:57
  * @deprecated 待重构
  */
 @Deprecated
 public class HibernateUtil{
 
-    /**
-     * 配置文件路径
-     */
+    /** 配置文件路径. */
     private static String        configLocationPath = "/hibernate.cfg.xml";
 
+    /** The configuration. */
     private static Configuration configuration      = null;
 
     /**
      * 获得org.hibernate.cfg.Configuration
-     * 
-     * @return Configuration
+     *
      * @author 金鑫
      * @version 1.0 2010-8-9 上午11:45:51
+     * @return Configuration
      */
     private static Configuration getHibernateConfiguration(){
         if (configuration == null){
@@ -56,12 +55,13 @@ public class HibernateUtil{
     }
 
     /**
-     * 该对象包含相关实体映射的全部信息。特别地，对PersistentClass对象的处理允许在运行时修改实体类的属性设置。
-     * 
-     * @param clazz
-     * @return
+     * 该对象包含相关实体映射的全部信息。特别地，对PersistentClass对象的处理允许在运行时修改实体类的属性设置。.
+     *
      * @author 金鑫
      * @version 1.0 2010-8-9 下午01:49:26
+     * @param clazz
+     *            the clazz
+     * @return the persistent class
      */
     private static PersistentClass getPersistentClass(Class<?> clazz){
         synchronized (HibernateUtil.class){
@@ -75,8 +75,8 @@ public class HibernateUtil{
     }
 
     /**
-     * 获取实体对应的表名
-     * 
+     * 获取实体对应的表名.
+     *
      * @param clazz
      *            实体类
      * @return 表名
@@ -86,8 +86,8 @@ public class HibernateUtil{
     }
 
     /**
-     * 获取实体对应表的主键字段名称
-     * 
+     * 获取实体对应表的主键字段名称.
+     *
      * @param clazz
      *            实体类
      * @return 主键字段名称
@@ -98,8 +98,8 @@ public class HibernateUtil{
     }
 
     /**
-     * 通过实体类和属性，获取实体类属性对应的表字段名称
-     * 
+     * 通过实体类和属性，获取实体类属性对应的表字段名称.
+     *
      * @param clazz
      *            实体类
      * @param propertyName
@@ -118,13 +118,13 @@ public class HibernateUtil{
     }
 
     /**
-     * 获得表的主键
-     * 
+     * 获得表的主键.
+     *
+     * @author 金鑫
+     * @version 1.0 2010-3-26 上午10:31:21
      * @param pojoClass
      *            pojo实体类
      * @return 获得表的主键
-     * @author 金鑫
-     * @version 1.0 2010-3-26 上午10:31:21
      */
     public static String getPrimaryKeyName(Class<?> pojoClass){
         Table table = getTable(pojoClass);
@@ -136,13 +136,13 @@ public class HibernateUtil{
     }
 
     /**
-     * 获得pojoClass对应的关系表
-     * 
+     * 获得pojoClass对应的关系表.
+     *
+     * @author 金鑫
+     * @version 1.0 2010-8-9 上午11:41:14
      * @param pojoClass
      *            pojo实体类
      * @return 获得pojoClass对应的关系表
-     * @author 金鑫
-     * @version 1.0 2010-8-9 上午11:41:14
      */
     public static Table getTable(Class<?> pojoClass){
         String entityName = pojoClass.getName();

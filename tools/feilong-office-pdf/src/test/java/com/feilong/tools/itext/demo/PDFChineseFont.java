@@ -32,6 +32,7 @@ import com.lowagie.text.pdf.BaseFont;
  */
 public class PDFChineseFont{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(PDFChineseFont.class);
 
     /** The chinese font. */

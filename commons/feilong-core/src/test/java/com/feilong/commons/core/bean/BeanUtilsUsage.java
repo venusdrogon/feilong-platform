@@ -32,6 +32,7 @@ import com.feilong.commons.core.bean.command.Customer;
  */
 public class BeanUtilsUsage{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(BeanUtilsUsage.class);
 
     /** Don't let anyone instantiate this class. */

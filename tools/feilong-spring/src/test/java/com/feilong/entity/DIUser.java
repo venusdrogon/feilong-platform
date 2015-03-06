@@ -50,6 +50,7 @@ public class DIUser extends BaseDIUser{
     /** The vector. */
     private Vector<Object>      vector;
 
+    /** The di user array. */
     private DIUserArray         diUserArray;
 
     /**
@@ -186,6 +187,8 @@ public class DIUser extends BaseDIUser{
     }
 
     /**
+     * 设置 di user array.
+     *
      * @param diUserArray
      *            the diUserArray to set
      */
@@ -194,6 +197,8 @@ public class DIUser extends BaseDIUser{
     }
 
     /**
+     * 获得 di user array.
+     *
      * @return the diUserArray
      */
     public DIUserArray getDiUserArray(){

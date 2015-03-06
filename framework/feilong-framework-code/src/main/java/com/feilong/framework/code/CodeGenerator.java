@@ -28,8 +28,8 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * 订单编号生成器(要确保每个订单不编码不重复)<br>
- * 不能100%的保证订单号唯一,各个商城按照需求 定制retry机制
- * 
+ * 不能100%的保证订单号唯一,各个商城按照需求 定制retry机制.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 3, 2013 4:52:16 PM
  * @version 1.1 2014-3-20 16:33 add {@link CodeGenerator#createOrderCode(Long, Long)}
@@ -253,10 +253,11 @@ public class CodeGenerator{
     }
 
     /**
-     * 随机数
-     * 
+     * 随机数.
+     *
      * @param codeType
-     * @return
+     *            the code type
+     * @return the random
      */
     private static String getRandom(CodeType codeType){
         int randomNumberLength = codeType.getRandomNumberLength();

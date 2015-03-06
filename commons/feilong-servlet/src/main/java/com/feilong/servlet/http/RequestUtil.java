@@ -722,14 +722,12 @@ public final class RequestUtil{
     // *********************************获取值**************************************************
     /**
      * 将参数值转换成int类型.
-     * 
+     *
      * @param request
      *            请求
      * @param paramName
      *            参数名称
      * @return 将参数值转换成int类型
-     * @exception IllegalArgumentException
-     *                如果param值 不能转成integer 会抛出 IllegalArgumentException异常
      */
     public static Integer getParameterToInteger(HttpServletRequest request,String paramName){
         String value = getParameter(request, paramName);

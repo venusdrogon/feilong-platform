@@ -43,9 +43,11 @@ public class SiteMapURLTest{
 
     /**
      * Test.
-     * 
-     * @throws IOException
+     *
      * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @throws IOException
+     *             the IO exception
      */
     @Test
     public void test() throws IllegalArgumentException,IOException{

@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.mail;
 
@@ -54,6 +54,7 @@ public class MailSenderUtilTest{
     /** The Constant log. */
     private static final Logger   log            = LoggerFactory.getLogger(MailSenderUtilTest.class);
 
+    /** The resource bundle. */
     private static ResourceBundle resourceBundle = ResourceBundleUtil.getResourceBundleByFileName("E:\\DataCommon\\Files\\mail.properties");
 
     /** 发送. */
@@ -65,10 +66,15 @@ public class MailSenderUtilTest{
     /** bcc. */
     private String[]              bccs           = { "190600641@qq.com", "1151889455@qq.com" };
 
+    /** The personal. */
     private String                personal       = "三国徐晃";
 
+    /** The mail sender config. */
     private MailSenderConfig      mailSenderConfig;
 
+    /**
+     * Before.
+     */
     @Before
     public void before(){
         mailSenderConfig = new MailSenderConfig();
@@ -94,6 +100,12 @@ public class MailSenderUtilTest{
         mailSenderConfig.setIsNeedReturnReceipt(false);
     }
 
+    /**
+     * Send mail1.
+     *
+     * @throws IOException
+     *             the IO exception
+     */
     @Test
     public void sendMail1() throws IOException{
         String path = "C:/Users/feilong/feilong/train/1201单元测试/generalRegulation/generalRegulation-20141125194610.html";
@@ -101,18 +113,30 @@ public class MailSenderUtilTest{
         mailSenderConfig.setContent(textContent);
     }
 
+    /**
+     * Send mail.
+     */
     @Test
     public void sendMail(){
         String textContent = "<html><body><hr/><div style='boder:1px #000 solid;color:red'>222222</div></body></html>";
         mailSenderConfig.setContent(textContent);
     }
 
+    /**
+     * Test send text mail.
+     */
     @Test
     public void testSendTextMail(){
         String textContent = "测试回执";
         mailSenderConfig.setContent(textContent);
     }
 
+    /**
+     * Send mail with attach.
+     *
+     * @throws IOException
+     *             the IO exception
+     */
     @Test
     public void sendMailWithAttach() throws IOException{
         String templateInClassPath = "velocity/mailtest.vm";
@@ -167,6 +191,14 @@ public class MailSenderUtilTest{
         mailSenderConfig.setAttachList(attachList);
     }
 
+    /**
+     * After.
+     *
+     * @throws MessagingException
+     *             the messaging exception
+     * @throws UnsupportedEncodingException
+     *             the unsupported encoding exception
+     */
     @After
     public void after() throws MessagingException,UnsupportedEncodingException{
         MailSenderUtil mailSenderUtil = new MailSenderUtil();

@@ -65,11 +65,12 @@ public final class Dom4jUtil{
 
     /**
      * Gets the document.
-     * 
+     *
      * @param file
      *            the file
      * @return the document
      * @throws IOException
+     *             the IO exception
      */
     public static Document getDocument(String file) throws IOException{
         InputStream inputStream = FileUtil.getFileInputStream(file);

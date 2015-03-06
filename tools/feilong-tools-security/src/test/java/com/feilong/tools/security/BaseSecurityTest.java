@@ -18,14 +18,19 @@ package com.feilong.tools.security;
 import com.feilong.commons.core.log.Slf4jUtil;
 
 /**
+ * The Class BaseSecurityTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 17, 2014 10:27:27 AM
  */
 public abstract class BaseSecurityTest{
 
     /**
+     * Debug security value.
+     *
      * @param encode
-     * @return
+     *            the encode
+     * @return the string
      */
     protected String debugSecurityValue(String encode){
         return Slf4jUtil.formatMessage(" {} [{}]", encode, encode.length());

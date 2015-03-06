@@ -1,4 +1,6 @@
 /**
+ * The Class PDF.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-20 下午07:55:46
  * @since 1.0

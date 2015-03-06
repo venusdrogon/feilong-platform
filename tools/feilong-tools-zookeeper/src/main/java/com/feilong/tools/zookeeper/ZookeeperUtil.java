@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ZookeeperUtil{
 
+    /** The Constant log. */
     private static final Logger  log                    = LoggerFactory.getLogger(ZookeeperUtil.class);
 
     /** ZooKeeper 服务连接超时时间. */

@@ -163,6 +163,8 @@ public class HttpConcatTag extends AbstractCommonTag{
     }
 
     /**
+     * 设置 the domain.
+     *
      * @param domain
      *            the domain to set
      */

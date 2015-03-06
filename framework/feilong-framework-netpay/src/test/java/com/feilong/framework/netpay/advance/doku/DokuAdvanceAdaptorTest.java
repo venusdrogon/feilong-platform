@@ -24,6 +24,8 @@ import com.feilong.framework.netpay.advance.PaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 
 /**
+ * The Class DokuAdvanceAdaptorTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月9日 上午1:58:56
  * @since 1.0.6

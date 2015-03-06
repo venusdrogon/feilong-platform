@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.net.filetransfer;
 
@@ -27,20 +27,30 @@ import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
+ * The Class SFTPUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 3, 2013 3:21:51 PM
  */
 public class SFTPUtilTest extends FileTransferTest{
 
+    /** The Constant log. */
     private static final Logger log             = LoggerFactory.getLogger(SFTPUtilTest.class);
 
+    /** The file transfer. */
     @Autowired
     @Qualifier("nikeSFTPUtil")
     private FileTransfer        fileTransfer;
 
     //	private String				remoteDirectory	= "/home/appuser/test";
+    /** The remote directory. */
     private String              remoteDirectory = "/home/bzuser/test";
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.filetransfer.FileTransferTest#sendLocalFileToRemote()
+     */
     @Override
     @Test
     public void sendLocalFileToRemote() throws Exception{
@@ -51,6 +61,11 @@ public class SFTPUtilTest extends FileTransferTest{
         fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.filetransfer.FileTransferTest#sendLocalFileToRemote_dir()
+     */
     @Override
     @Test
     public void sendLocalFileToRemote_dir() throws Exception{
@@ -58,6 +73,11 @@ public class SFTPUtilTest extends FileTransferTest{
         fileTransfer.sendLocalFileToRemote(singleLocalFileFullPath, remoteDirectory);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.filetransfer.FileTransferTest#sendLocalFileToRemote_dirs()
+     */
     @Override
     @Test
     public void sendLocalFileToRemote_dirs() throws Exception{
@@ -134,6 +154,11 @@ public class SFTPUtilTest extends FileTransferTest{
     public void sendLocalFileToRemote_dir_chinese() throws Exception{
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.filetransfer.FileTransferTest#download_file()
+     */
     @Override
     @Test
     public void download_file() throws Exception{
@@ -155,6 +180,11 @@ public class SFTPUtilTest extends FileTransferTest{
         fileTransfer.download(remotePath, localAbsoluteDirectoryPath);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.tools.net.filetransfer.FileTransferTest#testGetFileEntityMap()
+     */
     @Override
     @Test
     public void testGetFileEntityMap() throws Exception{

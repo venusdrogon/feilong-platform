@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,11 +35,14 @@ import com.feilong.tools.xstream.ToXmlConfig;
 import com.feilong.tools.xstream.XStreamUtil;
 
 /**
+ * The Class KlikPayUtil.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 24, 2014 3:47:53 PM
  */
 public class KlikPayUtil{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(KlikPayUtil.class);
 
     /**

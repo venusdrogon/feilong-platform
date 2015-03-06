@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.office.pdf;
 
@@ -36,23 +36,24 @@ import com.lowagie.text.html.simpleparser.StyleSheet;
 import com.lowagie.text.pdf.PdfWriter;
 
 /**
- * 处理PDF文档 (PDF)
- * 
+ * 处理PDF文档 (PDF).
+ *
  * @author 金鑫 2010-2-27 下午05:14:03
  */
 public final class PDFUtil{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(PDFUtil.class);
 
     /**
-     * html文件转换成pdf
-     * 
+     * html文件转换成pdf.
+     *
+     * @author 金鑫
+     * @version 1.0 2010-2-26 下午06:01:45
      * @param htmlPath
      *            需要被转换的html路径及名称
      * @param outputFileName
      *            输出pdf文件路径级名称
-     * @author 金鑫
-     * @version 1.0 2010-2-26 下午06:01:45
      */
     public static void htmlToPDF(String htmlPath,String outputFileName){
         try{
@@ -72,11 +73,12 @@ public final class PDFUtil{
     }
 
     /**
-     * 输出pdf 文件
-     * 
+     * 输出pdf 文件.
+     *
      * @param outputFileName
      *            地址
      * @param elementList
+     *            the element list
      */
     public static void write(String outputFileName,List<Element> elementList){
         // 创建一个文档对象

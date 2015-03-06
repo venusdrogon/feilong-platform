@@ -52,8 +52,9 @@ public class DESedeUtilTest extends BaseSecurityTest{
 
     /**
      * Test method for {@link com.feilong.commons.core.security.DESUtil#encrypBase64(java.lang.String)}.
-     * 
+     *
      * @throws EncryptionException
+     *             the encryption exception
      */
     @Test
     public final void decryptBase64() throws EncryptionException{
@@ -65,9 +66,11 @@ public class DESedeUtilTest extends BaseSecurityTest{
 
     /**
      * Encryp base641.
-     * 
-     * @throws EncryptionException
+     *
      * @throws NullPointerException
+     *             the null pointer exception
+     * @throws EncryptionException
+     *             the encryption exception
      */
     @Test
     public final void encrypBase641() throws NullPointerException,EncryptionException{
@@ -77,9 +80,11 @@ public class DESedeUtilTest extends BaseSecurityTest{
 
     /**
      * Test method for {@link com.feilong.commons.core.security.DESUtil#decryptBase64(java.lang.String)}.
-     * 
-     * @throws EncryptionException
+     *
      * @throws NullPointerException
+     *             the null pointer exception
+     * @throws EncryptionException
+     *             the encryption exception
      */
     @Test
     // @Ignore
@@ -93,9 +98,11 @@ public class DESedeUtilTest extends BaseSecurityTest{
 
     /**
      * Encrypt hex.
-     * 
-     * @throws EncryptionException
+     *
      * @throws NullPointerException
+     *             the null pointer exception
+     * @throws EncryptionException
+     *             the encryption exception
      */
     @Test
     public void encryptHex() throws NullPointerException,EncryptionException{

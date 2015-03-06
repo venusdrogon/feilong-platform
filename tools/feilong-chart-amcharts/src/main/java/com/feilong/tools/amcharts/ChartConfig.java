@@ -27,8 +27,10 @@ public class ChartConfig{
     /** The type. */
     private String    type;
 
+    /** The title field. */
     private String    titleField;
 
+    /** The category field. */
     private String    categoryField;
 
     /**
@@ -52,15 +54,19 @@ public class ChartConfig{
 
     // chart.fontSize = "4";//Font size
 
+    /** The start duration. */
     private Number    startDuration;
 
+    /** The plot area fill alphas. */
     private Number    plotAreaFillAlphas;
 
     /** The legend. */
     private AmLegend  legend;
 
+    /** The titles. */
     private Title[]   titles;
 
+    /** The data provider. */
     private Object    dataProvider;
 
     /**
@@ -159,6 +165,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 data provider.
+     *
      * @return the dataProvider
      */
     public Object getDataProvider(){
@@ -166,6 +174,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 data provider.
+     *
      * @param dataProvider
      *            the dataProvider to set
      */
@@ -174,6 +184,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 titles.
+     *
      * @return the titles
      */
     public Title[] getTitles(){
@@ -181,6 +193,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 titles.
+     *
      * @param titles
      *            the titles to set
      */
@@ -189,6 +203,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 font family.
+     *
      * @return the fontFamily
      */
     public String getFontFamily(){
@@ -196,6 +212,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 font family.
+     *
      * @param fontFamily
      *            the fontFamily to set
      */
@@ -204,6 +222,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 start duration.
+     *
      * @return the startDuration
      */
     public Number getStartDuration(){
@@ -211,6 +231,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 start duration.
+     *
      * @param startDuration
      *            the startDuration to set
      */
@@ -219,6 +241,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 plot area fill alphas.
+     *
      * @return the plotAreaFillAlphas
      */
     public Number getPlotAreaFillAlphas(){
@@ -226,6 +250,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 plot area fill alphas.
+     *
      * @param plotAreaFillAlphas
      *            the plotAreaFillAlphas to set
      */
@@ -234,6 +260,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 title field.
+     *
      * @return the titleField
      */
     public String getTitleField(){
@@ -241,6 +269,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 title field.
+     *
      * @param titleField
      *            the titleField to set
      */
@@ -249,6 +279,8 @@ public class ChartConfig{
     }
 
     /**
+     * 获得 category field.
+     *
      * @return the categoryField
      */
     public String getCategoryField(){
@@ -256,6 +288,8 @@ public class ChartConfig{
     }
 
     /**
+     * 设置 category field.
+     *
      * @param categoryField
      *            the categoryField to set
      */

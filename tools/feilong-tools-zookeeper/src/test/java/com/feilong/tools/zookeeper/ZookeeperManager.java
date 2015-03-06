@@ -1,18 +1,17 @@
-/**
- * Copyright (c) 2012 Jumbomart All Rights Reserved.
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
- * This software is the confidential and proprietary information of Jumbomart.
- * You shall not disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jumbo.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * JUMBOMART MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. JUMBOMART SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.zookeeper;
 
@@ -32,61 +31,84 @@ import org.junit.Test;
 @SuppressWarnings("all")
 public class ZookeeperManager{
 
-    /******************************************************************
-     * 本地配置文件目录结构说明
-     ******************************************************************/
+    /**
+     * **************************************************************** 本地配置文件目录结构说明
+     * ****************************************************************.
+     */
     // 工程配置文件根目录
     private static final String LOCAL_PLATFORM_URL      = "../mp2-configuration/project";
 
     // 二级目录：模块类型
+    /** The Constant SECOND_MP2_COMMONS. */
     private static final String SECOND_MP2_COMMONS      = "/mp2-commons";
 
+    /** The Constant SECOND_MP2_MODULES. */
     private static final String SECOND_MP2_MODULES      = "/mp2-modules";
 
+    /** The Constant SECOND_MP2_WEB. */
     private static final String SECOND_MP2_WEB          = "/mp2-web";
 
+    /** The Constant SECOND_MP2_SCHEDULED. */
     private static final String SECOND_MP2_SCHEDULED    = "/mp2-schedule";
 
     // 三级目录：工程名称
+    /** The Constant THIRD_MODULE_PLATFORM. */
     private static final String THIRD_MODULE_PLATFORM   = "/mp2-platform";
 
+    /** The Constant THIRD_MODULE_MEMBER. */
     private static final String THIRD_MODULE_MEMBER     = "/mp2-member";
 
+    /** The Constant THIRD_MODULE_SMS. */
     private static final String THIRD_MODULE_SMS        = "/mp2-sms";
 
+    /** The Constant THIRD_MODULE_SHOP. */
     private static final String THIRD_MODULE_SHOP       = "/mp2-shop";
 
+    /** The Constant THIRD_MODULE_TRADE. */
     private static final String THIRD_MODULE_TRADE      = "/mp2-trade";
 
+    /** The Constant THIRD_MODULE_DATACENTER. */
     private static final String THIRD_MODULE_DATACENTER = "/mp2-dataCenter";
 
+    /** The Constant THIRD_MODULE_PRODUCT. */
     private static final String THIRD_MODULE_PRODUCT    = "/mp2-product";
 
+    /** The Constant THIRD_WEB_MEMBER. */
     private static final String THIRD_WEB_MEMBER        = "/mp2-web-marketplace/mp2-web-marketplace-member";
 
+    /** The Constant THIRD_WEB_MAINSITE. */
     private static final String THIRD_WEB_MAINSITE      = "/mp2-web-marketplace/mp2-web-marketplace-mainsite";
 
+    /** The Constant THIRD_WEB_PRODUCT. */
     private static final String THIRD_WEB_PRODUCT       = "/mp2-web-marketplace/mp2-web-marketplace-product";
 
+    /** The Constant THIRD_WEB_TRADE. */
     private static final String THIRD_WEB_TRADE         = "/mp2-web-marketplace/mp2-web-marketplace-trade";
 
+    /** The Constant THIRD_WEB_SHOP. */
     private static final String THIRD_WEB_SHOP          = "/mp2-web-merchanttools";
 
+    /** The Constant THIRD_WEB_MANAGEMENT. */
     private static final String THIRD_WEB_MANAGEMENT    = "/mp2-web-managementsystem";
 
+    /** The Constant THIRD_LIVECHAT. */
     private static final String THIRD_LIVECHAT          = "/mp2-livechat";
 
     // 四级目录： 环境定义
+    /** The Constant FOURTH_DEV. */
     private static final String FOURTH_DEV              = "/dev";
 
+    /** The Constant FOURTH_PRODUCTION. */
     private static final String FOURTH_PRODUCTION       = "/production";
 
+    /** The Constant FOURTH_STAGING. */
     private static final String FOURTH_STAGING          = "/staging";
 
+    /** The Constant FOURTH_TEST. */
     private static final String FOURTH_TEST             = "/test";
 
-    /******************************************************************
-     * zookeeper节点目录结构 mp2_dev/test <br>
+    /**
+     * **************************************************************** zookeeper节点目录结构 mp2_dev/test <br>
      * --consumer <br>
      * ----member <br>
      * --provider <br>
@@ -96,55 +118,75 @@ public class ZookeeperManager{
      * ----member <br>
      * ------dev <br>
      * ------test <br>
-     ********************************************************************/
+     * ******************************************************************.
+     */
 
     // zookeeper节点服务器地址
     // private static final String ZK_HOST = "dev3.mp2.com";
     private static final String ZK_HOST                 = "10.11.10.31";
 
     // 根节点地址
+    /** The Constant ZOO_ROOT_DEV. */
     private static final String ZOO_ROOT_DEV            = "/mp2_dev";
 
+    /** The Constant ZOO_ROOT_TEST. */
     private static final String ZOO_ROOT_TEST           = "/mp2_test";
 
+    /** The Constant ZOO_ROOT_STAGING. */
     private static final String ZOO_ROOT_STAGING        = "/mp2_staging";
 
+    /** The Constant ZOO_ROOT_PRODUCTION. */
     private static final String ZOO_ROOT_PRODUCTION     = "/mp2_production";
 
     // 二级节点：生产者/消费者
+    /** The Constant ZOO_SECOND_COMMONS. */
     private static final String ZOO_SECOND_COMMONS      = "/commons";
 
+    /** The Constant ZOO_SECOND_LIVECHAT. */
     private static final String ZOO_SECOND_LIVECHAT     = "/livechat";
 
+    /** The Constant ZOO_SECOND_MANAGEMENT. */
     private static final String ZOO_SECOND_MANAGEMENT   = "/management";
 
+    /** The Constant ZOO_SECOND_PROVIDER. */
     private static final String ZOO_SECOND_PROVIDER     = "/provider";
 
+    /** The Constant ZOO_SECOND_CONSUMER. */
     private static final String ZOO_SECOND_CONSUMER     = "/consumer";
 
     // 三级节点： 工程名
+    /** The Constant ZOO_THIRD_PLATFORM. */
     private static final String ZOO_THIRD_PLATFORM      = "/platform";
 
+    /** The Constant ZOO_THIRD_TRADE. */
     private static final String ZOO_THIRD_TRADE         = "/trade";
 
+    /** The Constant ZOO_THIRD_DATACENTER. */
     private static final String ZOO_THIRD_DATACENTER    = "/dataCenter";
 
+    /** The Constant ZOO_THIRD_MEMBER. */
     private static final String ZOO_THIRD_MEMBER        = "/member";
 
+    /** The Constant ZOO_THIRD_SMS. */
     private static final String ZOO_THIRD_SMS           = "/sms";
 
+    /** The Constant ZOO_THIRD_MAINSITE. */
     private static final String ZOO_THIRD_MAINSITE      = "/mainsite";
 
+    /** The Constant ZOO_THIRD_SHOP. */
     private static final String ZOO_THIRD_SHOP          = "/shop";
 
+    /** The Constant ZOO_THIRD_PRODUCT. */
     private static final String ZOO_THIRD_PRODUCT       = "/product";
 
+    /** The Constant ZOO_THIRD_WEB_MEMBER. */
     private static final String ZOO_THIRD_WEB_MEMBER    = "/member";
 
+    /** The Constant ZOO_THIRD_SCHEDULED. */
     private static final String ZOO_THIRD_SCHEDULED     = "/schedule";
 
     /**
-     * 递归删除dev节点
+     * 递归删除dev节点.
      */
     @Test
     // @Ignore
@@ -153,7 +195,7 @@ public class ZookeeperManager{
     }
 
     /**
-     * 递归删除test节点
+     * 递归删除test节点.
      */
     @Test
     // @Ignore
@@ -161,21 +203,29 @@ public class ZookeeperManager{
         ZookeeperUtil.deleteNode(ZK_HOST, ZOO_ROOT_TEST);
     }
 
+    /**
+     * Delete staging path.
+     */
     @Test
     // @Ignore
     public void deleteStagingPath(){
         ZookeeperUtil.deleteNode(ZK_HOST, ZOO_ROOT_STAGING);
     }
 
+    /**
+     * Delete production path.
+     */
     @Test
     // @Ignore
     public void deleteProductionPath(){
         ZookeeperUtil.deleteNode(ZK_HOST, ZOO_ROOT_PRODUCTION);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * 共通的配置信息
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-modules/mp2-member/dev/<br>
      * /mp2_dev/provider/member/dev<br>
@@ -191,6 +241,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-modules/mp2-member/test/<br>
      * /mp2_dev/provider/member/test<br>
+     * .
      */
     @Test
     public void uploadCommonsTestProperties(){
@@ -200,6 +251,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload commons staging properties.
+     */
     @Test
     public void uploadCommonsStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_COMMONS + FOURTH_STAGING;
@@ -208,6 +262,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload commons production properties.
+     */
     @Test
     public void uploadCommonsProductionProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_COMMONS + FOURTH_PRODUCTION;
@@ -216,9 +273,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * module-member 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-modules/mp2-member/dev/<br>
      * /mp2_dev/provider/member/dev<br>
@@ -234,6 +293,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-modules/mp2-member/test/<br>
      * /mp2_dev/provider/member/test<br>
+     * .
      */
     @Test
     public void uploadMemberTestProperties(){
@@ -243,6 +303,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload member staging properties.
+     */
     @Test
     public void uploadMemberStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_MEMBER + FOURTH_STAGING;
@@ -251,6 +314,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload member production properties.
+     */
     @Test
     public void uploadMemberProductionProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_MEMBER + FOURTH_PRODUCTION;
@@ -259,9 +325,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * module-platform 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
 
     /**
      * mp2-configuration/project/mp2-modules/mp2-platform/test/<br>
@@ -278,6 +346,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-modules/mp2-platform/test/<br>
      * /mp2_dev/provider/platform/test<br>
+     * .
      */
     @Test
     public void uploadPlatformTestProperties(){
@@ -287,6 +356,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload platform staging properties.
+     */
     @Test
     public void uploadPlatformStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_PLATFORM + FOURTH_STAGING;
@@ -295,6 +367,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload platform production properties.
+     */
     @Test
     public void uploadPlatformProductionProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_PLATFORM + FOURTH_PRODUCTION;
@@ -303,9 +378,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * module-product 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
 
     /**
      * mp2-configuration/project/mp2-modules/mp2-platform/test/<br>
@@ -322,6 +399,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-modules/mp2-shop/test/<br>
      * /mp2_dev/provider/shop/test<br>
+     * .
      */
     @Test
     public void uploadProductTestProperties(){
@@ -331,6 +409,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload product staging properties.
+     */
     @Test
     public void uploadProductStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_PRODUCT + FOURTH_STAGING;
@@ -339,6 +420,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload product product properties.
+     */
     @Test
     public void uploadProductProductProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_PRODUCT + FOURTH_PRODUCTION;
@@ -347,9 +431,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * module-trade 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
 
     @Test
     public void uploadTradeDevProperties(){
@@ -359,6 +445,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload trade test properties.
+     */
     @Test
     public void uploadTradeTestProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_TRADE + FOURTH_TEST;
@@ -367,6 +456,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload trade staging properties.
+     */
     @Test
     public void uploadTradeStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_TRADE + FOURTH_STAGING;
@@ -375,6 +467,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload trade production properties.
+     */
     @Test
     public void uploadTradeProductionProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_TRADE + FOURTH_PRODUCTION;
@@ -383,9 +478,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * modue-dataCenter 数据中心 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
 
     @Test
     public void uploadDataCenterDevProperties(){
@@ -395,6 +492,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload data center test properties.
+     */
     @Test
     public void uploadDataCenterTestProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_DATACENTER + FOURTH_TEST;
@@ -403,6 +503,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload data center staging properties.
+     */
     @Test
     public void uploadDataCenterStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_DATACENTER + FOURTH_STAGING;
@@ -411,6 +514,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload data center production properties.
+     */
     @Test
     public void uploadDataCenterProductionProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_DATACENTER + FOURTH_PRODUCTION;
@@ -419,9 +525,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * module-shop 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
 
     /**
      * mp2-configuration/project/mp2-modules/mp2-shop/test/<br>
@@ -438,6 +546,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-modules/mp2-shop/test/<br>
      * /mp2_dev/provider/shop/test<br>
+     * .
      */
     @Test
     public void uploadShopTestProperties(){
@@ -447,6 +556,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload sms properties.
+     */
     @Test
     public void uploadSMSProperties(){
         String localPropertiesUrl1 = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_SMS + FOURTH_DEV;
@@ -460,6 +572,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl2, zooPath2);
     }
 
+    /**
+     * Upload shop staging properties.
+     */
     @Test
     public void uploadShopStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_MODULES + THIRD_MODULE_SHOP + FOURTH_STAGING;
@@ -468,9 +583,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-mainsite 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web/mp2-web-marketplace/mp2-web-marketplace-mainsite/dev<br>
      * /mp2_dev/consumer/mainsite/dev<br>
@@ -486,6 +603,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-web//mp2-web-marketplace/mp2-web-marketplace-mainsite/test<br>
      * /mp2_dev/consumer/mainsite/test<br>
+     * .
      */
     @Test
     public void uploadWebMainsiteTestProperties(){
@@ -495,6 +613,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web mainsite staging properties.
+     */
     @Test
     public void uploadWebMainsiteStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_MAINSITE + FOURTH_STAGING;
@@ -503,9 +624,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-member 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web/mp2-web-marketplace/mp2-web-marketplace-member/dev<br>
      * /mp2_dev/consumer/mainsite/dev<br>
@@ -521,6 +644,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-web//mp2-web-marketplace/mp2-web-marketplace-member/test<br>
      * /mp2_dev/consumer/mainsite/test<br>
+     * .
      */
     @Test
     public void uploadWebMemberTestProperties(){
@@ -530,6 +654,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web member staging properties.
+     */
     @Test
     public void uploadWebMemberStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_MEMBER + FOURTH_STAGING;
@@ -538,9 +665,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-shop 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web//mp2-web-marketplace/mp2-web-marketplace-member/dev<br>
      * /mp2_dev/provider/platform/dev<br>
@@ -556,6 +685,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-web//mp2-web-marketplace/mp2-web-marketplace-member/test<br>
      * /mp2_dev/provider/platform/test<br>
+     * .
      */
     @Test
     public void uploadWebShopTestProperties(){
@@ -565,6 +695,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web shop staging properties.
+     */
     @Test
     public void uploadWebShopStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_SHOP + FOURTH_STAGING;
@@ -573,9 +706,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-management 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web//mp2-web-managementsystem/dev<br>
      * /mp2_dev/management/dev<br>
@@ -591,6 +726,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-web/mp2-web-managementsystem/test<br>
      * /mp2_dev/management/test<br>
+     * .
      */
     @Test
     public void uploadWebManagementTestProperties(){
@@ -600,6 +736,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web management staging properties.
+     */
     @Test
     public void uploadWebManagementStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_MANAGEMENT + FOURTH_STAGING;
@@ -608,9 +747,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-livechat 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web/mp2-livechat/test<br>
      * /mp2_dev/livechat/test<br>
@@ -626,6 +767,7 @@ public class ZookeeperManager{
     /**
      * mp2-configuration/project/mp2-web/mp2-livechat/test<br>
      * /mp2_dev/livechat/test<br>
+     * .
      */
     @Test
     public void uploadWebLivechatTestProperties(){
@@ -635,6 +777,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web livechat staging properties.
+     */
     @Test
     public void uploadWebLivechatStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_LIVECHAT + FOURTH_STAGING;
@@ -643,9 +788,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-mainsite 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web/mp2-web-marketplace/mp2-web-marketplace-product/dev<br>
      * /mp2_dev/consumer/product/dev<br>
@@ -658,6 +805,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web product test properties.
+     */
     @Test
     public void uploadWebProductTestProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_PRODUCT + FOURTH_TEST;
@@ -666,6 +816,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web product staging properties.
+     */
     @Test
     public void uploadWebProductStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_PRODUCT + FOURTH_STAGING;
@@ -674,9 +827,11 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
-    /******************************************************************
+    /**
+     * ****************************************************************
      * web-member 工程
-     ******************************************************************/
+     * ****************************************************************.
+     */
     /**
      * mp2-configuration/project/mp2-web/mp2-web-marketplace/mp2-web-marketplace-member/dev<br>
      * /mp2_dev/consumer/mainsite/dev<br>
@@ -689,6 +844,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web trade test properties.
+     */
     @Test
     public void uploadWebTradeTestProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_TRADE + FOURTH_TEST;
@@ -697,6 +855,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload web trade staging properties.
+     */
     @Test
     public void uploadWebTradeStagingProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_WEB + THIRD_WEB_TRADE + FOURTH_STAGING;
@@ -705,6 +866,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload scheduled dev properties.
+     */
     @Test
     public void uploadScheduledDevProperties(){
         String localPropertiesUrl1 = LOCAL_PLATFORM_URL + SECOND_MP2_SCHEDULED + FOURTH_DEV;
@@ -713,6 +877,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl1, zooPath1);
     }
 
+    /**
+     * Upload scheduled test properties.
+     */
     @Test
     public void uploadScheduledTestProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_SCHEDULED + FOURTH_TEST;
@@ -721,6 +888,9 @@ public class ZookeeperManager{
         ZookeeperUtil.uploadAllProperties(ZK_HOST, localPropertiesUrl, zooPath);
     }
 
+    /**
+     * Upload scheduled production properties.
+     */
     @Test
     public void uploadScheduledProductionProperties(){
         String localPropertiesUrl = LOCAL_PLATFORM_URL + SECOND_MP2_SCHEDULED + FOURTH_PRODUCTION;

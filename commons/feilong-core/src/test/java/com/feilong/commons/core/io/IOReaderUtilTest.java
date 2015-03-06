@@ -34,8 +34,9 @@ public class IOReaderUtilTest{
 
     /**
      * Testname.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public void testname() throws IOException{
@@ -49,8 +50,9 @@ public class IOReaderUtilTest{
 
     /**
      * Parses the nginx.
-     * 
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public void parseNginx() throws IOException{
@@ -66,9 +68,9 @@ public class IOReaderUtilTest{
 
     /**
      * Gets the file content.
-     * 
+     *
      * @throws IOException
-     * 
+     *             the IO exception
      */
     @Test
     public void testGetFileContent() throws IOException{

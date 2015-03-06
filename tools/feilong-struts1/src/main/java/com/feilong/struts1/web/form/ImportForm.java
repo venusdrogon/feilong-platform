@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.struts1.web.form;
 
@@ -23,36 +23,42 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
 /**
- * 导入文件form
- * 
+ * 导入文件form.
+ *
  * @author 金鑫 2010-4-7 下午01:32:24
  */
 public class ImportForm extends ActionForm{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID  = 1L;
 
+    /** The form file. */
     private FormFile          formFile;
 
-    /**
-     * 最大文件大小,默认大小1024*2 2M
-     */
+    /** 最大文件大小,默认大小1024*2 2M. */
     private int               maxFileSize       = 2 * 1024 * 1024;
 
-    /**
-     * 允许的文件后缀,用逗号隔开
-     */
+    /** 允许的文件后缀,用逗号隔开. */
     private String            allowFilePostfixs = "xls";
 
+    /* (non-Javadoc)
+     * @see org.apache.struts.action.ActionForm#validate(org.apache.struts.action.ActionMapping, javax.servlet.http.HttpServletRequest)
+     */
     @Override
     public ActionErrors validate(ActionMapping mapping,HttpServletRequest request){
         return null;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.struts.action.ActionForm#reset(org.apache.struts.action.ActionMapping, javax.servlet.http.HttpServletRequest)
+     */
     @Override
     public void reset(ActionMapping mapping,HttpServletRequest request){
     }
 
     /**
+     * 获得 form file.
+     *
      * @return the formFile
      */
     public FormFile getFormFile(){
@@ -60,6 +66,8 @@ public class ImportForm extends ActionForm{
     }
 
     /**
+     * 设置 form file.
+     *
      * @param formFile
      *            the formFile to set
      */
@@ -68,8 +76,8 @@ public class ImportForm extends ActionForm{
     }
 
     /**
-     * 最大文件大小
-     * 
+     * 最大文件大小.
+     *
      * @return the maxFileSize
      */
     public int getMaxFileSize(){
@@ -77,8 +85,8 @@ public class ImportForm extends ActionForm{
     }
 
     /**
-     * 最大文件大小
-     * 
+     * 最大文件大小.
+     *
      * @param maxFileSize
      *            the maxFileSize to set
      */
@@ -87,8 +95,8 @@ public class ImportForm extends ActionForm{
     }
 
     /**
-     * 允许的文件后缀,用逗号隔开
-     * 
+     * 允许的文件后缀,用逗号隔开.
+     *
      * @return the allowFilePostfixs
      */
     public String getAllowFilePostfixs(){
@@ -96,8 +104,8 @@ public class ImportForm extends ActionForm{
     }
 
     /**
-     * 允许的文件后缀,用逗号隔开
-     * 
+     * 允许的文件后缀,用逗号隔开.
+     *
      * @param allowFilePostfixs
      *            the allowFilePostfixs to set
      */

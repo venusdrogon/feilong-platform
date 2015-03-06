@@ -16,8 +16,8 @@
 package com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.command;
 
 /**
- * klikbca 失败的原因
- * 
+ * klikbca 失败的原因.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 7, 2014 9:00:13 PM
  */
@@ -47,11 +47,9 @@ public enum ReasonEnum{
 
     /**
      * Instantiates a new reason enum.
-     * 
+     *
      * @param english
      *            the english
-     * @param indonesian
-     *            the indonesian
      */
     private ReasonEnum(String english){
         this.english = english;

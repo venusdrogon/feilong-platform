@@ -24,6 +24,8 @@ import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.ImageType;
 
 /**
+ * The Class ScreenShotUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-30 下午01:36:20
  * @since 1.0

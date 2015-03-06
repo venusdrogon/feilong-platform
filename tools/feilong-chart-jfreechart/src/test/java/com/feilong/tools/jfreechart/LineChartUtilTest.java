@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.feilong.tools.jfreechart;
 
 import java.io.IOException;
@@ -18,15 +33,19 @@ import com.feilong.tools.jfreechart.category.LineChartUtil;
  * 生成折线图 
  * 实际取色的时候一定要16位的，这样比较准确
  * </pre>
+ * 
+ * .
  */
 public class LineChartUtilTest{
 
+    /** The chart info entity. */
     private ChartInfoEntity chartInfoEntity;
 
     /**
-     * 生成折线图
-     * 
+     * 生成折线图.
+     *
      * @throws IOException
+     *             the IO exception
      */
     @Test
     public void makeOneLineAndShapeChart() throws IOException{
@@ -59,6 +78,12 @@ public class LineChartUtilTest{
         jfreeChartUtil.createImage(chartInfoEntity);
     }
 
+    /**
+     * Make one line and shape chart1.
+     *
+     * @throws IOException
+     *             the IO exception
+     */
     @Test
     public void makeOneLineAndShapeChart1() throws IOException{
         String[] rowKeys = { "基调网络压力并发测试 订单创建情况" };

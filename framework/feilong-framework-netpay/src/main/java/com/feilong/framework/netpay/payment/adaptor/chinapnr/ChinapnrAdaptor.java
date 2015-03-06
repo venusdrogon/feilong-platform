@@ -37,6 +37,7 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  */
 public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(ChinapnrAdaptor.class);
 
     /** The gateway. */

@@ -118,9 +118,9 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
     }
 
     /**
-     * 解析 获得 model bean
-     * 
-     * @return
+     * 解析 获得 model bean.
+     *
+     * @return the class< t>
      */
     protected Class<T> parseModelClass(){
         Class<?> klass = this.getClass();

@@ -21,7 +21,8 @@ import java.util.List;
 import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 
 /**
- * 
+ * The Class BaseHttpConcatTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年5月24日 下午11:50:17
  * @since 1.0.7
@@ -29,14 +30,20 @@ import com.feilong.taglib.display.httpconcat.command.HttpConcatParam;
 public abstract class BaseHttpConcatTest{
 
     /**
-     * @return
+     * 获得 http concat param.
+     *
+     * @return the http concat param
      */
     protected HttpConcatParam getHttpConcatParam(){
         return getHttpConcatParamByI(null);
     }
 
     /**
-     * @return
+     * 获得 http concat param by i.
+     *
+     * @param i
+     *            the i
+     * @return the http concat param by i
      */
     protected HttpConcatParam getHttpConcatParamByI(Integer i){
         HttpConcatParam httpConcatParam1 = new HttpConcatParam();

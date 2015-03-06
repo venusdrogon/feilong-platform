@@ -350,6 +350,8 @@ public class SFTPUtil extends FileTransfer{
     }
 
     /**
+     * 设置 the connect timeout.
+     *
      * @param sessionTimeout
      *            the sessionTimeout to set
      */

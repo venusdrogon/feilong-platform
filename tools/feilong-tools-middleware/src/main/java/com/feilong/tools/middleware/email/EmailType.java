@@ -1,23 +1,23 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.middleware.email;
 
 /**
- * 邮箱 枚举
- * 
+ * 邮箱 枚举.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午11:54:50
  * @since 1.0
@@ -113,9 +113,10 @@ public enum EmailType{
 
     // -------------------------------------------------------------------------
     /**
-     * 通过 postfix 获得EmailType
-     * 
+     * 通过 postfix 获得EmailType.
+     *
      * @param postfix
+     *            the postfix
      * @return EmailType
      */
     public static EmailType getEmailTypeByPostfix(String postfix){
@@ -131,14 +132,27 @@ public enum EmailType{
 
     // ***********************************************************************
     // 邮箱中文名
+    /** The chinese name. */
     private String chineseName;
 
     // 网址
+    /** The website. */
     private String website;
 
     // 后缀
+    /** The postfix. */
     private String postfix;
 
+    /**
+     * The Constructor.
+     *
+     * @param chineseName
+     *            the chinese name
+     * @param website
+     *            the website
+     * @param postfix
+     *            the postfix
+     */
     private EmailType(String chineseName, String website, String postfix){
         this.chineseName = chineseName;
         this.website = website;
@@ -146,8 +160,8 @@ public enum EmailType{
     }
 
     /**
-     * 邮箱中文名
-     * 
+     * 邮箱中文名.
+     *
      * @return the chineseName
      */
     public String getChineseName(){
@@ -155,8 +169,8 @@ public enum EmailType{
     }
 
     /**
-     * 邮箱中文名
-     * 
+     * 邮箱中文名.
+     *
      * @param chineseName
      *            the chineseName to set
      */
@@ -165,8 +179,8 @@ public enum EmailType{
     }
 
     /**
-     * 网址
-     * 
+     * 网址.
+     *
      * @return the website
      */
     public String getWebsite(){
@@ -174,8 +188,8 @@ public enum EmailType{
     }
 
     /**
-     * 网址
-     * 
+     * 网址.
+     *
      * @param website
      *            the website to set
      */
@@ -184,8 +198,8 @@ public enum EmailType{
     }
 
     /**
-     * 后缀
-     * 
+     * 后缀.
+     *
      * @return the postfix
      */
     public String getPostfix(){
@@ -193,8 +207,8 @@ public enum EmailType{
     }
 
     /**
-     * 后缀
-     * 
+     * 后缀.
+     *
      * @param postfix
      *            the postfix to set
      */

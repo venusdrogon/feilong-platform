@@ -24,6 +24,7 @@ import com.feilong.framework.netpay.advance.PaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.advance.command.QueryRequest;
 
 /**
+ * The Class TcashAdvanceAdaptorTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年9月29日 上午10:24:31

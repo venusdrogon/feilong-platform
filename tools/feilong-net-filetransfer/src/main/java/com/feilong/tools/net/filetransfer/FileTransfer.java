@@ -1,17 +1,17 @@
-/**
- * Copyright (c) 2008-2014 FeiLong, Inc. All Rights Reserved.
- * <p>
- * 	This software is the confidential and proprietary information of FeiLong Network Technology, Inc. ("Confidential Information").  <br>
- * 	You shall not disclose such Confidential Information and shall use it 
- *  only in accordance with the terms of the license agreement you entered into with FeiLong.
- * </p>
- * <p>
- * 	FeiLong MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, 
- * 	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * 	PURPOSE, OR NON-INFRINGEMENT. <br> 
- * 	FeiLong SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * 	THIS SOFTWARE OR ITS DERIVATIVES.
- * </p>
+/*
+ * Copyright (C) 2008 feilong (venusdrogon@163.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.feilong.tools.net.filetransfer;
 
@@ -46,18 +46,20 @@ import com.feilong.commons.core.util.Validator;
  * <li>{@link #delete(String)}</li>
  * <li>{@link #delete(String[])}</li>
  * </ul>
- * 
+ * .
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 3, 2013 12:57:37 PM
  */
 public abstract class FileTransfer{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(FileTransfer.class);
 
     /**
-     * 打开链接
-     * 
-     * @return
+     * 打开链接.
+     *
+     * @return true, if connect
      */
     protected abstract boolean connect();
 
@@ -75,7 +77,7 @@ public abstract class FileTransfer{
      * 如果  remotePath 是个文件夹(Directory), 首先 会先在 localAbsoluteDirectoryPath 下面创建同名文件夹,并递归下载文件(相当于整个文件夹下载下来)
      * 
      * </pre>
-     * 
+     *
      * @param remotePath
      *            远程路径 可以是单个文件 也可以是个文件夹 <br>
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}
@@ -83,6 +85,7 @@ public abstract class FileTransfer{
      *            本地绝对的目录,如果不存在 支持级联创建 <br>
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}
      * @throws Exception
+     *             the exception
      */
     public void download(String remotePath,String localAbsoluteDirectoryPath) throws Exception{
         String[] remotePaths = { remotePath };
@@ -103,7 +106,7 @@ public abstract class FileTransfer{
      * 如果  remotePath 是个文件夹(Directory), 首先 会先在 localAbsoluteDirectoryPath 下面创建同名文件夹,并<b>递归下载</b>文件(相当于整个文件夹下载下来)
      * 
      * </pre>
-     * 
+     *
      * @param remotePaths
      *            一批 远程文件远程路径 可以是文件 也可以文件夹 <br>
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}<br>
@@ -112,6 +115,7 @@ public abstract class FileTransfer{
      *            本地绝对的目录,如果不存在 支持级联创建 <br>
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}
      * @throws Exception
+     *             the exception
      */
     public void download(String[] remotePaths,String localAbsoluteDirectoryPath) throws Exception{
         if (Validator.isNullOrEmpty(remotePaths)){
@@ -141,13 +145,15 @@ public abstract class FileTransfer{
     }
 
     /**
-     * 不关闭连接 下载
-     * 
+     * 不关闭连接 下载.
+     *
      * @param remotePath
      *            远程文件远程路径 可以是文件 也可以文件夹
      * @param localAbsoluteDirectoryPath
      *            本地绝对的目录,如果不存在 支持级联创建
-     * @return
+     * @return true, if _download dont close
+     * @throws Exception
+     *             the exception
      */
     protected boolean _downloadDontClose(String remotePath,String localAbsoluteDirectoryPath) throws Exception{
 
@@ -182,14 +188,15 @@ public abstract class FileTransfer{
     }
 
     /**
-     * 下载远程单个文件
-     * 
+     * 下载远程单个文件.
+     *
      * @param remoteSingleFile
      *            远程单个文件
      * @param filePath
      *            保存到本地的路径
-     * @return
+     * @return true, if _down remote single file
      * @throws Exception
+     *             the exception
      */
     protected abstract boolean _downRemoteSingleFile(String remoteSingleFile,String filePath) throws Exception;
 
@@ -206,6 +213,8 @@ public abstract class FileTransfer{
      * 注:新的文件的名称和你上传文件的名称一样的,也就是说 你传的什么名称文件/文件夹 到服务器就是什么名称文件/文件夹 <br>
      * </pre>
      * 
+     * .
+     *
      * @param singleLocalFileFullPath
      *            单个路径,全路径 <br>
      *            注意:文件路径最好不要有中文,有些系统支持不好<br>
@@ -216,6 +225,7 @@ public abstract class FileTransfer{
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}
      * @return 操作全部成功 返回true,否则返回false
      * @throws Exception
+     *             the exception
      */
     public boolean sendLocalFileToRemote(String singleLocalFileFullPath,String remoteDirectory) throws Exception{
         String[] batchLocalFileFullPaths = { singleLocalFileFullPath };
@@ -234,17 +244,18 @@ public abstract class FileTransfer{
      *  
      * 注:新的文件的名称和你上传文件的名称一样的,也就是说 你传的什么名称文件/文件夹 到服务器就是什么名称文件/文件夹 <br>
      * </pre>
-     * 
-     * @param remoteDirectory
-     *            要传到哪个文件夹下面,<br>
-     *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}
+     *
      * @param batchLocalFileFullPaths
      *            上传的文件名(数组),全路径 <br>
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}<br>
      *            任意一个值 Null Or Empty, {@link IllegalArgumentException}<br>
      *            任意一个值localFileFullPath文件不存在, {@link IllegalArgumentException}
+     * @param remoteDirectory
+     *            要传到哪个文件夹下面,<br>
+     *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}
      * @return 全部成功返回true,否则一旦有失败则返回false
      * @throws Exception
+     *             the exception
      */
     public boolean sendLocalFileToRemote(String[] batchLocalFileFullPaths,String remoteDirectory) throws Exception{
         if (Validator.isNullOrEmpty(batchLocalFileFullPaths)){
@@ -282,7 +293,7 @@ public abstract class FileTransfer{
      * 递归传递文件夹/文件,<br>
      * 自动辨别 是否是文件还是文件夹<br>
      * 如果是文件夹,先判断remoteDirectory 下面是否已经有同名的文件夹,如果没有,则在对应的 remoteDirectory 创建文件夹.
-     * 
+     *
      * @param singleLocalFileFullPath
      *            要上传的单个文件 全路径 ,自动辨别 是否是文件还是文件夹<br>
      *            如果是文件夹,先判断remoteDirectory 下面是否已经有同名的文件夹,如果没有,则在对应的 remoteDirectory 创建文件夹
@@ -290,6 +301,7 @@ public abstract class FileTransfer{
      *            远程保存目录
      * @return true, if successful
      * @throws Exception
+     *             the exception
      */
     protected boolean _sendLocalFileToRemoteDontClose(String singleLocalFileFullPath,String remoteDirectory) throws Exception{
         File localFile = new File(singleLocalFileFullPath);
@@ -345,39 +357,51 @@ public abstract class FileTransfer{
     }
 
     /**
-     * 切换 远程操作目录
-     * 
+     * 切换 远程操作目录.
+     *
      * @param remoteDirectory
+     *            the remote directory
+     * @return true, if cd
      * @throws Exception
+     *             the exception
      */
 
     protected abstract boolean cd(String remoteDirectory) throws Exception;
 
     /**
-     * 创建远程文件夹
-     * 
+     * 创建远程文件夹.
+     *
      * @param remoteDirectory
+     *            the remote directory
+     * @return true, if mkdir
      * @throws Exception
+     *             the exception
      */
     protected abstract boolean mkdir(String remoteDirectory) throws Exception;
 
     /**
-     * 上传
-     * 
+     * 上传.
+     *
      * @param fileInputStream_local
+     *            the file input stream_local
      * @param toFileName
+     *            the to file name
+     * @return true, if put
      * @throws Exception
+     *             the exception
      */
     protected abstract boolean put(FileInputStream fileInputStream_local,String toFileName) throws Exception;
 
     /**
-     * 是否存在同名且同类型的文件
-     * 
+     * 是否存在同名且同类型的文件.
+     *
      * @param file
+     *            the file
      * @param remotePath
      *            远程路径
      * @return 存在 返回true,否则返回false
      * @throws Exception
+     *             the exception
      */
     protected boolean isExistsSameNameAndTypeFile(File file,String remotePath) throws Exception{
         boolean flag = false;
@@ -417,24 +441,26 @@ public abstract class FileTransfer{
     /**
      * 获得 ls map <br>
      * key 为文件名称(不是全路径),<br>
-     * value FileEntity
-     * 
+     * value FileEntity.
+     *
      * @param remotePath
      *            远程路径
-     * @return
+     * @return the ls file map
      * @throws Exception
+     *             the exception
      */
     protected abstract Map<String, FileInfoEntity> getLsFileMap(String remotePath) throws Exception;
 
     /**
-     * 获得某特定文件夹下面 指定文件名相关信息
-     * 
+     * 获得某特定文件夹下面 指定文件名相关信息.
+     *
      * @param remotePath
      *            远程地址
      * @param fileNames
      *            文件名称组
      * @return 如果fileNames 有文件不在 remotePath 路径下面, 则返回的map中这条数据的value 是null
      * @throws Exception
+     *             the exception
      */
     public Map<String, FileInfoEntity> getFileEntityMap(String remotePath,String[] fileNames) throws Exception{
         if (Validator.isNullOrEmpty(remotePath)){
@@ -456,12 +482,15 @@ public abstract class FileTransfer{
 
     /**
      * 获得远程目录下面 文件信息map,<br>
-     * 传过来几条,返回几条, 如果文件不存在 返回null
-     * 
+     * 传过来几条,返回几条, 如果文件不存在 返回null.
+     *
      * @param remotePath
-     * @param childFile
-     * @return
+     *            the remote path
+     * @param fileNames
+     *            the file names
+     * @return the map< string, file info entity>
      * @throws Exception
+     *             the exception
      */
     protected Map<String, FileInfoEntity> _getFileEntityMap(String remotePath,String[] fileNames) throws Exception{
         Map<String, FileInfoEntity> map = getLsFileMap(remotePath);
@@ -479,7 +508,7 @@ public abstract class FileTransfer{
     };
 
     /**
-     * 关闭链接
+     * 关闭链接.
      */
     protected abstract void disconnect();
 
@@ -495,6 +524,8 @@ public abstract class FileTransfer{
      * 注意:un supported delete '/'remotePath  (危险)
      * </pre>
      * 
+     * .
+     *
      * @param remoteAbsolutePath
      *            文件绝对路径<br>
      *            不能为 Null Or Empty,否则 {@link IllegalArgumentException}<br>
@@ -560,11 +591,13 @@ public abstract class FileTransfer{
     }
 
     /**
-     * 删除 单个文件
-     * 
+     * 删除 单个文件.
+     *
      * @param remoteAbsolutePath
-     * @return
+     *            the remote absolute path
+     * @return true, if _delete single dont close
      * @throws Exception
+     *             the exception
      */
     protected boolean _deleteSingleDontClose(String remoteAbsolutePath) throws Exception{
         String[] remoteAbsolutePaths = { remoteAbsolutePath };
@@ -572,11 +605,13 @@ public abstract class FileTransfer{
     }
 
     /**
-     * 不关闭 链接 删除 一组文件
-     * 
+     * 不关闭 链接 删除 一组文件.
+     *
      * @param remoteAbsolutePaths
-     * @return
+     *            the remote absolute paths
+     * @return true, if _delete dont close
      * @throws Exception
+     *             the exception
      */
     protected boolean _deleteDontClose(String[] remoteAbsolutePaths) throws Exception{
 
@@ -609,42 +644,46 @@ public abstract class FileTransfer{
     }
 
     /**
-     * 删除 文件夹
-     * 
+     * 删除 文件夹.
+     *
      * @param remoteAbsolutePath
      *            远程绝对路径
      * @return 成功返回true 否则 返回false
      * @throws Exception
+     *             the exception
      */
     protected abstract boolean rmdir(String remoteAbsolutePath) throws Exception;
 
     /**
-     * 删除文件
-     * 
+     * 删除文件.
+     *
      * @param remoteAbsolutePath
      *            远程绝对路径
      * @return 成功返回true 否则 返回false
      * @throws Exception
+     *             the exception
      */
     protected abstract boolean rm(String remoteAbsolutePath) throws Exception;
 
     /**
-     * 判断 一个远程地址 是否是文件夹
-     * 
+     * 判断 一个远程地址 是否是文件夹.
+     *
      * @param remoteAbsolutePath
      *            远程绝对路径
      * @return 是文件夹返回true,否则false
      * @throws Exception
+     *             the exception
      */
     protected abstract boolean isDirectory(String remoteAbsolutePath) throws Exception;
 
     /**
-     * 文件夹 和文件 拼接路径
-     * 
+     * 文件夹 和文件 拼接路径.
+     *
      * @param directoryPath
      *            文件夹路径,有得时候 在远程ftp 或者sftp 上面 不知道 这个路径到底是否是文件夹
      * @param ftpFileName
-     * @return
+     *            the ftp file name
+     * @return the string
      */
     // TODO 不满意这种方式
     protected String joinPath(String directoryPath,String ftpFileName){

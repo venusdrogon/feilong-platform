@@ -131,11 +131,9 @@ public enum SymmetricType{
 
     /**
      * Instantiates a new symmetric type.
-     * 
+     *
      * @param algorithm
      *            the algorithm
-     * @param transformation
-     *            the transformation
      */
     private SymmetricType(String algorithm){
         this.algorithm = algorithm;

@@ -103,8 +103,12 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
     }
 
     /**
+     * Write and open.
+     *
      * @param filePath
+     *            the file path
      * @param html
+     *            the html
      */
     private void writeAndOpen(String filePath,String html){
         IOWriteUtil.write(filePath, html, encode_file);
@@ -113,7 +117,9 @@ public class BasePaymentTest extends AbstractJUnit4SpringContextTests{
     }
 
     /**
-     * @return
+     * 获得 file path.
+     *
+     * @return the file path
      */
     private String getFilePath(){
         Field declaredField = FieldUtil.getDeclaredField(this.getClass(), "paymentAdaptor");

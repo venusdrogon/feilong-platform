@@ -25,7 +25,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
- * 
+ * The Class SpringPropertyPlaceholderTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年10月8日 下午4:03:31
@@ -38,14 +38,18 @@ public class SpringPropertyPlaceholderTest extends AbstractJUnit4SpringContextTe
     private static final Logger log = LoggerFactory.getLogger(SpringPropertyPlaceholderTest.class);
 
     //	@Value("#{p_testProperties['name']}")
+    /** The name. */
     private String              name;
 
     //	@Value("#{p_testProperties['skills']}")
+    /** The skills. */
     private String              skills;
 
+    /** The skills array. */
     @Value("#{p_testProperties['skills']}")
     private String[]            skillsArray;
 
+    /** The skills array2. */
     @Value("${skills}")
     private String[]            skillsArray2;
 

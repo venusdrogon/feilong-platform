@@ -44,6 +44,7 @@ import com.feilong.tools.jfreechart.ChartUtil;
  */
 public class CreatePDF{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(CreatePDF.class);
 
     /**

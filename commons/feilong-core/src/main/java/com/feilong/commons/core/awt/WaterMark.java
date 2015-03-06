@@ -39,6 +39,7 @@ import com.feilong.commons.core.io.ImageType;
 @Deprecated
 public final class WaterMark{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(WaterMark.class);
 
     /** Don't let anyone instantiate this class. */

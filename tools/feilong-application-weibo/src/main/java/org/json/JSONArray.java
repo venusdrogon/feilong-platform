@@ -1,5 +1,3 @@
-package org.json;
-
 /*
  Copyright (c) 2002 JSON.org
 
@@ -23,6 +21,7 @@ package org.json;
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
+package org.json;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -157,9 +156,11 @@ public class JSONArray{
     /**
      * Construct a JSONArray from a collection of beans.
      * The collection should have Java Beans.
-     * 
-     * @throws JSONException
-     *             If not an array.
+     *
+     * @param collection
+     *            the collection
+     * @param includeSuperClass
+     *            the include super class
      */
 
     public JSONArray(Collection collection, boolean includeSuperClass){
@@ -172,8 +173,10 @@ public class JSONArray{
     }
 
     /**
-     * Construct a JSONArray from an array
-     * 
+     * Construct a JSONArray from an array.
+     *
+     * @param array
+     *            the array
      * @throws JSONException
      *             If not an array.
      */
@@ -192,7 +195,11 @@ public class JSONArray{
     /**
      * Construct a JSONArray from an array with a bean.
      * The array should have Java Beans.
-     * 
+     *
+     * @param array
+     *            the array
+     * @param includeSuperClass
+     *            the include super class
      * @throws JSONException
      *             If not an array.
      */
@@ -613,9 +620,9 @@ public class JSONArray{
      *
      * @param value
      *            A double value.
+     * @return this.
      * @throws JSONException
      *             if the value is not finite.
-     * @return this.
      */
     public JSONArray put(double value) throws JSONException{
         Double d = new Double(value);
@@ -862,7 +869,7 @@ public class JSONArray{
     /**
      * Make a prettyprinted JSON text of this JSONArray.
      * Warning: This method assumes that the data structure is acyclical.
-     * 
+     *
      * @param indentFactor
      *            The number of spaces to add to each level of
      *            indentation.
@@ -871,6 +878,7 @@ public class JSONArray{
      *         with <code>[</code>&nbsp;<small>(left bracket)</small> and ending
      *         with <code>]</code>&nbsp;<small>(right bracket)</small>.
      * @throws JSONException
+     *             the JSON exception
      */
     public String toString(int indentFactor) throws JSONException{
         return toString(indentFactor, 0);
@@ -879,7 +887,7 @@ public class JSONArray{
     /**
      * Make a prettyprinted JSON text of this JSONArray.
      * Warning: This method assumes that the data structure is acyclical.
-     * 
+     *
      * @param indentFactor
      *            The number of spaces to add to each level of
      *            indentation.
@@ -888,6 +896,7 @@ public class JSONArray{
      * @return a printable, displayable, transmittable
      *         representation of the array.
      * @throws JSONException
+     *             the JSON exception
      */
     String toString(int indentFactor,int indent) throws JSONException{
         int len = length();
@@ -925,8 +934,11 @@ public class JSONArray{
      * <p>
      * Warning: This method assumes that the data structure is acyclical.
      *
+     * @param writer
+     *            the writer
      * @return The writer.
      * @throws JSONException
+     *             the JSON exception
      */
     public Writer write(Writer writer) throws JSONException{
         try{

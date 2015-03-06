@@ -19,24 +19,32 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * The Class MemberAddress.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年6月24日 下午1:36:29
  * @since 1.0.7
  */
 public class MemberAddress implements Serializable{
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 288232184048495608L;
 
+    /** The id. */
     private Long              id;
 
+    /** The address. */
     private String            address;
 
+    /** The member id. */
     private Long              memberId;
 
+    /** The add time. */
     private Date              addTime;
 
     /**
+     * 获得 id.
+     *
      * @return the id
      */
     public Long getId(){
@@ -44,6 +52,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 设置 id.
+     *
      * @param id
      *            the id to set
      */
@@ -52,6 +62,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 获得 address.
+     *
      * @return the address
      */
     public String getAddress(){
@@ -59,6 +71,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 设置 address.
+     *
      * @param address
      *            the address to set
      */
@@ -67,6 +81,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 获得 member id.
+     *
      * @return the memberId
      */
     public Long getMemberId(){
@@ -74,6 +90,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 设置 member id.
+     *
      * @param memberId
      *            the memberId to set
      */
@@ -82,6 +100,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 获得 add time.
+     *
      * @return the addTime
      */
     public Date getAddTime(){
@@ -89,6 +109,8 @@ public class MemberAddress implements Serializable{
     }
 
     /**
+     * 设置 add time.
+     *
      * @param addTime
      *            the addTime to set
      */

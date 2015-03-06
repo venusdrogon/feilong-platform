@@ -20,6 +20,7 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.TriggeringEventEvaluator;
 
 /**
+ * The Class InfoTriggeringEventEvaluator.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年11月9日 上午3:08:18

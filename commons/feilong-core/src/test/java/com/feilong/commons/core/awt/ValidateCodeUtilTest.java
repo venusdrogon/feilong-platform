@@ -20,11 +20,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The Class ValidateCodeUtilTest.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-14 下午01:46:59
  */
 public class ValidateCodeUtilTest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(ValidateCodeUtilTest.class);
 
     /**

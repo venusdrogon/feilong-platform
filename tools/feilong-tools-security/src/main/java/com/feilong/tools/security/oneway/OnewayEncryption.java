@@ -52,6 +52,7 @@ import com.feilong.tools.security.EncryptionException;
 //无访问控制符修饰的内容可以被同一个包中的类访问，
 final class OnewayEncryption{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(OnewayEncryption.class);
 
     /**
