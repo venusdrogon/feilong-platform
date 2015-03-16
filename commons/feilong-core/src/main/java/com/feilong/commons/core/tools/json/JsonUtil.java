@@ -167,7 +167,7 @@ public final class JsonUtil{
      * @return the string
      * @since 1.0.8
      */
-    public static String formatWithIncludes(Object obj,String...includes){
+    public static String formatWithIncludes(Object obj,final String...includes){
 
         if (null == obj){
             return null;

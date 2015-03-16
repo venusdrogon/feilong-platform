@@ -68,6 +68,7 @@ public final class PropertiesUtil implements BaseConfigure{
      * @param key
      *            键
      * @return 获取Properties配置文件键值
+     * @see #getProperties(Class, String)
      */
     public static String getPropertiesValue(Class<?> clz,String propertiesPath,String key){
         Properties properties = getProperties(clz, propertiesPath);
@@ -84,6 +85,8 @@ public final class PropertiesUtil implements BaseConfigure{
      * @param key
      *            用指定的键在此属性列表中搜索属性.如果在此属性列表中未找到该键，则接着递归检查默认属性列表及其默认值.如果未找到属性，则此方法返回 null.
      * @return 通过ClassLoader获得properties值
+     * @see #getPropertiesWithClassLoader(Class, String)
+     * @see java.util.Properties#getProperty(String)
      */
     public static String getPropertiesValueWithClassLoader(Class<?> clz,String propertiesPath,String key){
         Properties properties = getPropertiesWithClassLoader(clz, propertiesPath);
@@ -98,19 +101,23 @@ public final class PropertiesUtil implements BaseConfigure{
      * klass调用ClassLoader,通过ClassLoader 获取Properties.
      * 
      * @param klass
-     *            klass,通过 klass 获得 ClassLoader,然后获得 getResourceAsStream
+     *            通过 klass 获得 ClassLoader,然后获得 getResourceAsStream
      * @param propertiesPath
-     *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties<br>
+     *            假设 class是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties<br>
      *            <ul>
-     *            <li>那么使用 {@link #getProperties(Class, String)} 需要这么写
+     *            <li>如果使用 {@link #getProperties(Class, String)} 需要这么写
      *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-message_en_US.properties")} <br>
-     *            注意此处的propertiesPath 要写成 "/messages/feilong-core-message_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
-     *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
-     *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
-     *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件.<br>
-     *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties"(不需要“/”)</li>
+     *            注意此处的propertiesPath 要写成 <b>"/messages/feilong-core-message_en_US.properties"</b>, 路径可以写成相对路径或者绝对路径</li>
+     *            <li>如果使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
+     *            {@code getPropertiesWithClassLoader(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
+     *            注意此处的propertiesPath 要写成 <b>"messages/feilong-core-message_en_US.properties"</b>,ClassLoader JVM会使用BootstrapLoader去加载资源文件.<br>
+     *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties" 不需要“/”)</li>
      *            </ul>
      * @return Properties
+     * @see ClassLoaderUtil#getClassLoaderByClass(Class)
+     * @see java.lang.ClassLoader#getResourceAsStream(String)
+     * @see #getProperties(InputStream)
+     * @see #getProperties(Class, String)
      */
     public static Properties getPropertiesWithClassLoader(Class<?> klass,String propertiesPath){
         ClassLoader classLoader = ClassLoaderUtil.getClassLoaderByClass(klass);
@@ -119,22 +126,25 @@ public final class PropertiesUtil implements BaseConfigure{
     }
 
     /**
-     * 通过ClassLoader 获取Properties.getResourceAsStream 方法获得 InputStream<br>
+     * 通过{@link Class#getResourceAsStream(String)} 方法获得 InputStream,再调用 {@link #getProperties(InputStream)}.
      * 
      * @param klass
      *            类,会通过 klass 调用
      * @param propertiesPath
-     *            如果 class 是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties<br>
+     *            假设 class是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties<br>
      *            <ul>
-     *            <li>那么使用 {@link #getProperties(Class, String)} 需要这么写
+     *            <li>如果使用 {@link #getProperties(Class, String)} 需要这么写
      *            {@code getProperties(PropertiesUtil.class,"/messages/feilong-core-message_en_US.properties")} <br>
-     *            注意此处的propertiesPath 要写成 "/messages/feilong-core-message_en_US.properties", 路径可以写成相对路径或者绝对路径</li>
-     *            <li>那么使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
-     *            {@code getProperties(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
-     *            注意此处的propertiesPath 要写成 "messages/feilong-core-message_en_US.properties",ClassLoader JVM会使用BootstrapLoader去加载资源文件.<br>
-     *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties"(不需要“/”)</li>
+     *            注意此处的propertiesPath 要写成 <b>"/messages/feilong-core-message_en_US.properties"</b>, 路径可以写成相对路径或者绝对路径</li>
+     *            <li>如果使用 {@link #getPropertiesWithClassLoader(Class, String)} 需要这么写
+     *            {@code getPropertiesWithClassLoader(PropertiesUtil.class,"messages/feilong-core-message_en_US.properties")}<br>
+     *            注意此处的propertiesPath 要写成 <b>"messages/feilong-core-message_en_US.properties"</b>,ClassLoader JVM会使用BootstrapLoader去加载资源文件.<br>
+     *            所以路径还是这种相对于工程的根目录即"messages/feilong-core-message_en_US.properties" 不需要“/”)</li>
      *            </ul>
      * @return 获取Properties
+     * @see java.lang.Class#getResourceAsStream(String)
+     * @see #getProperties(InputStream)
+     * @see #getPropertiesWithClassLoader(Class, String)
      */
     public static Properties getProperties(Class<?> klass,String propertiesPath){
         // klass.getResourceAsStream方法内部会调用classLoader.getResourceAsStream

@@ -101,6 +101,12 @@ public class ValidatorTest{
             public User next(){
                 return null;
             }
+
+            @Override
+            public void remove(){
+                // TODO Auto-generated method stub
+
+            }
         }));
     }
 }

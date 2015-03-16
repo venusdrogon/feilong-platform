@@ -92,8 +92,8 @@ public class GenericTest{
     @Test
     public void testGenericTest(){
         if (log.isInfoEnabled()){
-            log.info(getValue("jinxin", String.class));
-            log.info(getValue("jinxin", Integer.class));
+            log.info((String) getValue("jinxin", String.class));
+            log.info((String) getValue("jinxin", Integer.class));
         }
     }
 }

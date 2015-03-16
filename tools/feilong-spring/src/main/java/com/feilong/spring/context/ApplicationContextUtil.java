@@ -19,8 +19,6 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
@@ -33,9 +31,6 @@ import org.springframework.core.env.Environment;
  * @since 1.0.8
  */
 public final class ApplicationContextUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(ApplicationContextUtil.class);
 
     /**
      * 获得 application context for log map.

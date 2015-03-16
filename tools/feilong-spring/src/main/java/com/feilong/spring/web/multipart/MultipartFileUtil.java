@@ -18,8 +18,6 @@ package com.feilong.spring.web.multipart;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.feilong.commons.core.io.FileUtil;
@@ -32,9 +30,6 @@ import com.feilong.commons.core.io.FileUtil;
  * @since 1.0.9
  */
 public final class MultipartFileUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(MultipartFileUtil.class);
 
     /**
      * 获得 multipart file info map for log map.

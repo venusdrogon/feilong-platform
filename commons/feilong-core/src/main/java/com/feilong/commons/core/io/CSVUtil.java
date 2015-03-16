@@ -15,15 +15,22 @@
  */
 package com.feilong.commons.core.io;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.DateConverter;
+import org.apache.commons.beanutils.converters.DateTimeConverter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.lang.ObjectUtil;
+import com.feilong.commons.core.lang.reflect.FieldUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -58,25 +65,95 @@ public final class CSVUtil{
     }
 
     /**
+     * 将迭代对象写到文件中.<br>
+     * 自动获得泛型中的列明和字段
+     *
+     * @param <T>
+     *            the generic type
+     * @param fileName
+     *            the file name
+     * @param collection
+     *            the iterable
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @see #write(String, String[], List, CSVParams)
+     * @see org.apache.commons.beanutils.ConvertUtils#convert(Object)
+     * @since 1.0.9
+     */
+    public static final <T> void write(String fileName,Collection<T> collection) throws UncheckedIOException,IllegalArgumentException{
+
+        if (Validator.isNullOrEmpty(fileName)){
+            throw new NullPointerException("fileName can't be null/empty!");
+        }
+
+        if (Validator.isNullOrEmpty(collection)){
+            throw new NullPointerException("iterable can't be null/empty!");
+        }
+
+        String[] columnTitles = null;
+        List<Object[]> dataList = new ArrayList<Object[]>(collection.size());
+
+        DateTimeConverter dateTimeConverter = new DateConverter();
+        dateTimeConverter.setPattern(DatePattern.COMMON_DATE_AND_TIME);
+        ConvertUtils.register(dateTimeConverter, java.util.Date.class);
+
+        for (T t : collection){
+            Map<String, Object> fieldValueMap = FieldUtil.getFieldValueMap(t);
+            int size = fieldValueMap.size();
+            Object[] objects = new Object[size];
+
+            boolean createColumnTitlesFlag = (null == columnTitles);
+            if (createColumnTitlesFlag){
+                columnTitles = new String[size];
+            }
+
+            int i = 0;
+            for (Map.Entry<String, Object> entry : fieldValueMap.entrySet()){
+                String key = entry.getKey();
+                Object value = entry.getValue();
+
+                if (Validator.isNullOrEmpty(value)){
+                    objects[i] = StringUtils.EMPTY;
+                }else{
+                    //Converter converter = ConvertUtils.lookup(value.getClass());
+                    objects[i] = ConvertUtils.convert(value, String.class);
+                }
+
+                if (createColumnTitlesFlag && null != columnTitles){
+                    columnTitles[i] = key;
+                }
+                i++;
+            }
+            dataList.add(objects);
+        }
+        write(fileName, columnTitles, dataList, new CSVParams());
+    }
+
+    /**
      * 写cvs文件(默认使用GBK编码).
-     * 
+     *
      * @param fileName
      *            文件名称,全路径,自动生成不存在的父文件夹
      * @param columnTitles
      *            列标题,可以为空
      * @param dataList
      *            数据数组,可以带列名
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @throws IllegalArgumentException
+     *             Validator.isNullOrEmpty(columnTitles) && Validator.isNullOrEmpty(dataList) 标题和内容都是空,没有任何意义,不创建文件
      * @since 1.0
      */
-    public static final void write(String fileName,String[] columnTitles,List<Object[]> dataList) throws IOException{
+    public static final void write(String fileName,String[] columnTitles,List<Object[]> dataList) throws UncheckedIOException,
+                    IllegalArgumentException{
         write(fileName, columnTitles, dataList, new CSVParams());
     }
 
     /**
      * 写cvs文件.
-     * 
+     *
      * @param fileName
      *            文件名称,全路径,自动生成不存在的父文件夹
      * @param columnTitles
@@ -85,14 +162,15 @@ public final class CSVUtil{
      *            数据数组,可以带列名
      * @param csvParams
      *            the csv params
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     * 
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @throws IllegalArgumentException
+     *             Validator.isNullOrEmpty(columnTitles) && Validator.isNullOrEmpty(dataList) 标题和内容都是空,没有任何意义,不创建文件
      * @see com.feilong.commons.core.io.IOWriteUtil#write(String, String, String)
      * @see #getWriteContent(List, CSVParams)
      */
-    public static final void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams) throws IOException{
-
+    public static final void write(String fileName,String[] columnTitles,List<Object[]> dataList,CSVParams csvParams)
+                    throws UncheckedIOException,IllegalArgumentException{
         // 标题和内容都是空,没有任何意义,不创建文件
         if (Validator.isNullOrEmpty(columnTitles) && Validator.isNullOrEmpty(dataList)){
             throw new IllegalArgumentException("columnTitles and dataList all null!");

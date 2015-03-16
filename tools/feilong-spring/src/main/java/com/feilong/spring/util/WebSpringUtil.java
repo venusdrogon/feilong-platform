@@ -85,7 +85,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the bean
      */
-    @SuppressWarnings("cast")
     public static <T> T getBean(HttpServletRequest request,Class<T> requiredType){
         HttpSession session = request.getSession();
         return getBean(session, requiredType);
@@ -103,10 +102,9 @@ public final class WebSpringUtil{
      *            xml文件中配置的bean beanName
      * @return 注入的bean
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getBean(HttpSession session,String beanName){
         ServletContext servletContext = session.getServletContext();
-        return (T) getBean(servletContext, beanName);
+        return getBean(servletContext, beanName);
     }
 
     /**
@@ -120,7 +118,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the bean
      */
-    @SuppressWarnings("cast")
     public static <T> T getBean(HttpSession session,Class<T> requiredType){
         ServletContext servletContext = session.getServletContext();
         return getBean(servletContext, requiredType);
@@ -156,7 +153,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the bean
      */
-    @SuppressWarnings("cast")
     public static <T> T getBean(ServletContext servletContext,Class<T> requiredType){
         // getWebApplicationContext 如果是空,返回null
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
@@ -192,7 +188,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the required bean
      */
-    @SuppressWarnings("cast")
     public static <T> T getRequiredBean(HttpServletRequest request,Class<T> requiredType){
         HttpSession session = request.getSession();
         return getBean(session, requiredType);
@@ -226,7 +221,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the required bean
      */
-    @SuppressWarnings("cast")
     public static <T> T getRequiredBean(HttpSession session,Class<T> requiredType){
         ServletContext servletContext = session.getServletContext();
         return getBean(servletContext, requiredType);
@@ -243,11 +237,10 @@ public final class WebSpringUtil{
      *            the bean name
      * @return the required bean
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getRequiredBean(ServletContext servletContext,String beanName){
         // getRequiredWebApplicationContext 如果是空会抛出异常
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-        return (T) getBean(webApplicationContext, beanName);
+        return getBean(webApplicationContext, beanName);
     }
 
     /**
@@ -261,7 +254,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the required bean
      */
-    @SuppressWarnings("cast")
     public static <T> T getRequiredBean(ServletContext servletContext,Class<T> requiredType){
         // getRequiredWebApplicationContext 如果是空会抛出异常
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
@@ -295,7 +287,6 @@ public final class WebSpringUtil{
      *            the required type
      * @return the bean
      */
-    @SuppressWarnings("cast")
     private static <T> T getBean(WebApplicationContext webApplicationContext,Class<T> requiredType){
         return webApplicationContext.getBean(requiredType);
     }

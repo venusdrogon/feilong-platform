@@ -191,6 +191,7 @@ public final class RequestUtil{
      * @param requestLogSwitch
      *            the request log switch
      * @return the request string for log
+     * @see #getAboutURLMapForLog(HttpServletRequest)
      */
     public static Map<String, Object> getRequestInfoMapForLog(HttpServletRequest request,RequestLogSwitch requestLogSwitch){
         if (null == requestLogSwitch){
@@ -230,41 +231,7 @@ public final class RequestUtil{
 
         // aboutURLMap
         if (requestLogSwitch.getShowURLs()){
-
-            // 1.getServletContext().getRealPath("/") 后包含当前系统的文件夹分隔符（windows系统是"\"，linux系统是"/"），而getPathInfo()以"/"开头。
-            // 2.getPathInfo()与getPathTranslated()在servlet的url-pattern被设置为/*或/aa/*之类的pattern时才有值，其他时候都返回null。
-            // 3.在servlet的url-pattern被设置为*.xx之类的pattern时，getServletPath()返回的是getRequestURI()去掉前面ContextPath的剩余部分。
-
-            Map<String, String> aboutURLMap = new LinkedHashMap<String, String>();
-
-            aboutURLMap.put("request.getContextPath()", request.getContextPath());
-
-            // Returns any extra path information associated with the URL the client sent when it made this request.
-            // Servlet访问路径之后，QueryString之前的中间部分
-            aboutURLMap.put("request.getPathInfo()", request.getPathInfo());
-
-            // web.xml中定义的Servlet访问路径
-            aboutURLMap.put("request.getServletPath()", request.getServletPath());
-
-            // 等于getServletContext().getRealPath("/") + getPathInfo()
-            aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
-
-            // ***********************************************************************
-            aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
-
-            // &之后GET方法的参数部分
-            //Returns the query string that is contained in the request URL after the path. 
-            //This method returns null if the URL does not have a query string. 
-            //Same as the value of the CGI variable QUERY_STRING. 
-            aboutURLMap.put("request.getQueryString()", request.getQueryString());
-
-            // ***********************************************************************
-            // 等于getContextPath() + getServletPath() + getPathInfo()
-            aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
-
-            // 等于getScheme() + "://" + getServerName() + ":" + getServerPort() + getRequestURI()
-            aboutURLMap.put("request.getRequestURL()", "" + request.getRequestURL());
-
+            Map<String, String> aboutURLMap = getAboutURLMapForLog(request);
             map.put("about URL Map", aboutURLMap);
         }
 
@@ -381,7 +348,109 @@ public final class RequestUtil{
     }
 
     /**
-     * 遍历显示request的header 用于debug<br>
+     * 获得 about url map.
+     * 
+     * <h3>关于从request中获得相关路径和url：</h3>
+     * 
+     * <blockquote>
+     * <p>
+     * 
+     * <ol>
+     * <li>getServletContext().getRealPath("/") 后包含当前系统的文件夹分隔符（windows系统是"\"，linux系统是"/"），而getPathInfo()以"/"开头。</li>
+     * <li>getPathInfo()与getPathTranslated()在servlet的url-pattern被设置为/*或/aa/*之类的pattern时才有值，其他时候都返回null。</li>
+     * <li>在servlet的url-pattern被设置为*.xx之类的pattern时，getServletPath()返回的是getRequestURI()去掉前面ContextPath的剩余部分。</li>
+     * </ol>
+     * 
+     * </p>
+     * 
+     * 
+     * <table border="1" cellspacing="0" cellpadding="4">
+     * <tr style="background-color:#ccccff">
+     * <th align=left>字段</th>
+     * <th align=left>说明</th>
+     * </tr>
+     * <tr valign=top>
+     * <td>request.getContextPath()</td>
+     * <td>request.getContextPath()</td>
+     * </tr>
+     * <tr valign=top style="background-color:#eeeeff">
+     * <td>request.getPathInfo()</td>
+     * <td>Returns any extra path information associated with the URL the client sent when it made this request. <br>
+     * Servlet访问路径之后，QueryString之前的中间部分</td>
+     * </tr>
+     * <tr valign=top>
+     * <td>request.getServletPath()</td>
+     * <td>web.xml中定义的Servlet访问路径</td>
+     * </tr>
+     * <tr valign=top style="background-color:#eeeeff">
+     * <td>request.getPathTranslated()</td>
+     * <td>等于getServletContext().getRealPath("/") + getPathInfo()</td>
+     * </tr>
+     * <tr valign=top>
+     * <td>request.getRequestURI()</td>
+     * <td>等于getContextPath() + getServletPath() + getPathInfo()</td>
+     * </tr>
+     * <tr valign=top>
+     * <td>request.getRequestURL()</td>
+     * <td>等于getScheme() + "://" + getServerName() + ":" + getServerPort() + getRequestURI()</td>
+     * </tr>
+     * <tr valign=top style="background-color:#eeeeff">
+     * <td>request.getQueryString()</td>
+     * <td>&之后GET方法的参数部分<br>
+     * Returns the query string that is contained in the request URL after the path. <br>
+     * This method returns null if the URL does not have a query string. <br>
+     * Same as the value of the CGI variable QUERY_STRING.</td>
+     * </tr>
+     * </table>
+     * </blockquote>
+     *
+     * @param request
+     *            the request
+     * @param map
+     *            the map
+     * @return the about url map
+     * @since 1.0.9
+     */
+    private static Map<String, String> getAboutURLMapForLog(HttpServletRequest request){
+        // 1.getServletContext().getRealPath("/") 后包含当前系统的文件夹分隔符（windows系统是"\"，linux系统是"/"），而getPathInfo()以"/"开头。
+        // 2.getPathInfo()与getPathTranslated()在servlet的url-pattern被设置为/*或/aa/*之类的pattern时才有值，其他时候都返回null。
+        // 3.在servlet的url-pattern被设置为*.xx之类的pattern时，getServletPath()返回的是getRequestURI()去掉前面ContextPath的剩余部分。
+
+        Map<String, String> aboutURLMap = new LinkedHashMap<String, String>();
+
+        aboutURLMap.put("request.getContextPath()", request.getContextPath());
+
+        // Returns any extra path information associated with the URL the client sent when it made this request.
+        // Servlet访问路径之后，QueryString之前的中间部分
+        aboutURLMap.put("request.getPathInfo()", request.getPathInfo());
+
+        // web.xml中定义的Servlet访问路径
+        aboutURLMap.put("request.getServletPath()", request.getServletPath());
+
+        // 等于getServletContext().getRealPath("/") + getPathInfo()
+        aboutURLMap.put("request.getPathTranslated()", request.getPathTranslated());
+
+        // ***********************************************************************
+        aboutURLMap.put("getQueryStringLog", getQueryStringLog(request));
+
+        // &之后GET方法的参数部分
+        //Returns the query string that is contained in the request URL after the path. 
+        //This method returns null if the URL does not have a query string. 
+        //Same as the value of the CGI variable QUERY_STRING. 
+        aboutURLMap.put("request.getQueryString()", request.getQueryString());
+
+        // ***********************************************************************
+        // 等于getContextPath() + getServletPath() + getPathInfo()
+        aboutURLMap.put("request.getRequestURI()", request.getRequestURI());
+
+        // 等于getScheme() + "://" + getServerName() + ":" + getServerPort() + getRequestURI()
+        aboutURLMap.put("request.getRequestURL()", "" + request.getRequestURL());
+
+        return aboutURLMap;
+    }
+
+    /**
+     * 遍历显示request的header 用于debug.<br>
      * 将 request header name 和value 封装到map.
      * 
      * @param request
@@ -426,7 +495,7 @@ public final class RequestUtil{
     }
 
     /**
-     * 获得请求的?部分前面的地址<br>
+     * 获得请求的?部分前面的地址.<br>
      * 识别 request 是否 forword
      * 
      * <pre>
@@ -466,12 +535,11 @@ public final class RequestUtil{
     }
 
     /**
-     * 获得请求的全地址
+     * 获得请求的全地址.
      * <ul>
      * <li>如果request不含queryString,直接返回 requestURL(比如post请求)</li>
      * <li>如果request含queryString,直接返回 requestURL+编码后的queryString</li>
      * </ul>
-     * .
      * 
      * @param request
      *            the request

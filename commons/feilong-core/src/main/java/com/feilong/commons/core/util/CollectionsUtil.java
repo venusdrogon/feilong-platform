@@ -57,6 +57,7 @@ import com.feilong.commons.core.lang.ObjectUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Sep 2, 2010 8:08:40 PM
  * @since 1.0.0
+ * @since jdk1.5
  */
 public final class CollectionsUtil{
 
@@ -312,7 +313,7 @@ public final class CollectionsUtil{
     }
 
     /**
-     * 获得 property value collection.
+     * 循环objectCollection,调用 {@link PropertyUtil#getProperty(Object, String)} 获得 propertyName的值，塞到 <code>returnCollection</code> 中返回.
      *
      * @param <T>
      *            the generic type
@@ -329,6 +330,7 @@ public final class CollectionsUtil{
      * @return the property value collection
      * @throws NullPointerException
      *             if Validator.isNullOrEmpty(objectCollection) or Validator.isNullOrEmpty(propertyName) or (null == returnCollection)
+     * @see com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)
      * @since 1.0.8
      */
     private static <T, O, K extends Collection<T>> K getPropertyValueCollection(
@@ -360,7 +362,34 @@ public final class CollectionsUtil{
     }
 
     /**
-     * 循环遍历 <code>objectCollection</code> ,返回 当bean propertyName 属性值 equals 特定value 时候的list.
+     * Finds the first element in the given collection which matches the given predicate.
+     * <p>
+     * If the input collection or predicate is null, or no element of the collection matches the predicate, null is returned.
+     * </p>
+     *
+     * @param <O>
+     *            the generic type
+     * @param <V>
+     *            the value type
+     * @param objectCollection
+     *            the object collection
+     * @param propertyName
+     *            the property name
+     * @param value
+     *            the value
+     * @return the first element of the collection which matches the predicate or null if none could be found
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @see org.apache.commons.collections.CollectionUtils#find(Collection, Predicate)
+     */
+    @SuppressWarnings("unchecked")
+    public static <O, V> O find(Collection<O> objectCollection,String propertyName,V value) throws NullPointerException{
+        Predicate predicate = getObjectEqualsPredicate(propertyName, value);
+        return (O) org.apache.commons.collections.CollectionUtils.find(objectCollection, predicate);
+    }
+
+    /**
+     * 循环遍历 <code>objectCollection</code>,返回 当bean propertyName 属性值 equals 特定value 时候的list.
      *
      * @param <O>
      *            the generic type
@@ -374,7 +403,7 @@ public final class CollectionsUtil{
      *            the value
      * @return the property value list
      * @throws NullPointerException
-     *             the null pointer exception
+     *             if Validator.isNullOrEmpty(objectCollection) || Validator.isNullOrEmpty(propertyName)
      * @see org.apache.commons.collections.CollectionUtils#select(Collection, org.apache.commons.collections.Predicate)
      */
     public static <O, V> List<O> select(Collection<O> objectCollection,String propertyName,V value) throws NullPointerException{
@@ -383,7 +412,8 @@ public final class CollectionsUtil{
     }
 
     /**
-     * Select.
+     * 调用 {@link PropertyUtil#getProperty(Object, String)} 获得 <code>propertyName</code>的值，判断是否 {@link ArrayUtil#isContain(Object[], Object)}
+     * 在 <code>values</code>数组中,如果在，将该对象存入list中返回.
      *
      * @param <O>
      *            the generic type
@@ -395,9 +425,10 @@ public final class CollectionsUtil{
      *            the property name
      * @param values
      *            the values
-     * @return the list< o>
+     * @return 调用 {@link PropertyUtil#getProperty(Object, String)} 获得 <code>propertyName</code>的值，判断是否
+     *         {@link ArrayUtil#isContain(Object[], Object)} 在 <code>values</code>数组中,如果在，将该对象存入list中返回
      * @throws NullPointerException
-     *             the null pointer exception
+     *             if Validator.isNullOrEmpty(objectCollection) || Validator.isNullOrEmpty(propertyName)
      */
     @SuppressWarnings("unchecked")
     public static <O, V> List<O> select(Collection<O> objectCollection,String propertyName,V...values) throws NullPointerException{
@@ -413,7 +444,8 @@ public final class CollectionsUtil{
     }
 
     /**
-     * 获得 array predicate.
+     * 调用 {@link PropertyUtil#getProperty(Object, String)} 获得 <code>propertyName</code>的值，判断是否 {@link ArrayUtil#isContain(V[], V)} 在
+     * <code>values</code>数组中.
      *
      * @param <V>
      *            the value type
@@ -422,10 +454,12 @@ public final class CollectionsUtil{
      * @param values
      *            the values
      * @return the array predicate
+     * @see com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)
+     * @see com.feilong.commons.core.util.ArrayUtil#isContain(V[], V)
      * @since 1.0.9
      */
     @SafeVarargs
-    private static <V> Predicate getArrayContainsPredicate(String propertyName,V...values){
+    private static <V> Predicate getArrayContainsPredicate(final String propertyName,final V...values){
         Predicate predicate = new Predicate(){
 
             @Override
@@ -449,7 +483,7 @@ public final class CollectionsUtil{
      * @return the object equals predicate
      * @since 1.0.9
      */
-    private static <V> Predicate getObjectEqualsPredicate(String propertyName,V value){
+    private static <V> Predicate getObjectEqualsPredicate(final String propertyName,final V value){
         Predicate predicate = new Predicate(){
 
             @Override
