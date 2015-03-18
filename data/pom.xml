@@ -16,6 +16,10 @@
 
 	<modules>
 		<module>feilong-data-mongo</module>
+		<module>feilong-data-memcached</module>
+		<module>feilong-data-redis</module>
+		<module>feilong-data-solrj4</module>
+		<module>feilong-db-jdbc</module>
 	</modules>
 
 	<dependencies>

@@ -18,7 +18,6 @@
 	<modules>
 		<module>feilong-core</module>
 		<module>feilong-servlet</module>
-		<module>feilong-db-jdbc</module>
 	</modules>
 
 </project>
