@@ -81,6 +81,18 @@ import com.feilong.commons.core.util.Validator;
  * @see java.beans.BeanInfo
  * @see java.beans.PropertyDescriptor
  * @see java.beans.MethodDescriptor
+ * 
+ * @see org.apache.commons.beanutils.Converter
+ * @see org.apache.commons.beanutils.converters.DateConverter
+ * @see org.apache.commons.beanutils.converters.DateTimeConverter
+ * @see org.apache.commons.beanutils.converters.AbstractConverter
+ * @see org.apache.commons.beanutils.ConvertUtils#register(org.apache.commons.beanutils.Converter, Class)
+ * 
+ * @see org.apache.commons.beanutils.ConvertUtilsBean#registerPrimitives(boolean)
+ * @see org.apache.commons.beanutils.ConvertUtilsBean#registerStandard(boolean, boolean)
+ * @see org.apache.commons.beanutils.ConvertUtilsBean#registerOther(boolean)
+ * @see org.apache.commons.beanutils.ConvertUtilsBean#registerArrays(boolean, int)
+ * 
  * @since 1.0.0
  */
 public final class BeanUtil{
