@@ -117,7 +117,6 @@ public class JobCrawler{
             log.error(e.getClass().getName(), e);
         }
         return null;
-        //**********************************************************
     }
 
     //	@Test
