@@ -15,6 +15,7 @@
  */
 package com.feilong.commons.core.bean;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
@@ -27,9 +28,12 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 封装了 org.apache.commons.beanutils包下面的类
+ * 封装了 org.apache.commons.beanutils包下面的类.
  * 
  * 
+ * <h3>关于类型转换:</h3>
+ * 
+ * <blockquote>
  * <p>
  * 这里使用偷懒的做法,调用了 {@link org.apache.commons.beanutils.ConvertUtilsBean#register(boolean, boolean, int)}方法<br>
  * 但是有后遗症,这是beanUtils核心公共的方法,可能会影响其他框架或者其他作者开发的代码<br>
@@ -46,7 +50,9 @@ import com.feilong.commons.core.util.Validator;
  * 
  * 最好在用的时候 自行register,{@link org.apache.commons.beanutils.ConvertUtilsBean#deregister(Class)}
  * 
+ * <p>
  * Example 1:
+ * </p>
  * 
  * <pre>
  * 
@@ -69,19 +75,32 @@ import com.feilong.commons.core.util.Validator;
  * 
  * </pre>
  * 
+ * </blockquote>
  * 
+ * 
+ * <h3>{@link PropertyUtils}与 {@link BeanUtils}:</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * {@link PropertyUtils}类和 {@link BeanUtils}类很多的方法在参数上都是相同的，但返回值不同。 <br>
+ * BeanUtils着重于"Bean"，返回值通常是String,<br>
+ * 而PropertyUtils着重于属性，它的返回值通常是Object。 
+ * </p>
+ * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 2010-7-9 下午02:44:36
- * @version 2012-5-15 15:07
+ * @version 1.0.0 2010-7-9 下午02:44:36
+ * @version 1.0.2 2012-5-15 15:07
  * @version 1.0.7 2014年5月21日 下午12:24:53 move to om.feilong.commons.core.bean package
  * @version 1.0.8 2014-7-22 12:37 将异常转成 BeanUtilException 抛出
- * @see org.apache.commons.beanutils.BeanUtils
+ * 
  * @see com.feilong.commons.core.bean.PropertyUtil
+ * 
  * @see java.beans.BeanInfo
  * @see java.beans.PropertyDescriptor
  * @see java.beans.MethodDescriptor
  * 
+ * @see org.apache.commons.beanutils.BeanUtils
  * @see org.apache.commons.beanutils.Converter
  * @see org.apache.commons.beanutils.converters.DateConverter
  * @see org.apache.commons.beanutils.converters.DateTimeConverter
@@ -168,11 +187,10 @@ public final class BeanUtil{
 
     /**
      * <p>
-     * 把Bean的属性值放入到一个Map里面.
+     * 返回一个<code>bean</code>中所有的可读属性，并将属性名/属性值放入一个Map中.
      * </p>
      * 
-     * 这个方法返回一个Object中所有的可读属性，并将属性名/属性值放入一个Map中，<br>
-     * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性
+     * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性.
      * 
      * @param bean
      *            Bean whose properties are to be extracted
@@ -180,16 +198,18 @@ public final class BeanUtil{
      * @return Map of property descriptors
      * 
      * @throws BeanUtilException
-     *             the bean util exception
+     *             if IllegalAccessException | InvocationTargetException | NoSuchMethodException
      * @see org.apache.commons.beanutils.BeanUtils#describe(Object)
      * @see org.apache.commons.beanutils.PropertyUtils#describe(Object)
-     * @see com.feilong.commons.core.bean.PropertyUtil#describe(Object)
+     * @see PropertyUtil#describe(Object)
+     * @see PropertyDescriptor
+     * @see #populate(Object, Map)
      */
     public static Map<String, String> describe(Object bean) throws BeanUtilException{
         try{
             //Return the entire set of properties for which the specified bean provides a read method.
-            Map<String, String> map = BeanUtils.describe(bean);
-            return map;
+            Map<String, String> propertyMap = BeanUtils.describe(bean);
+            return propertyMap;
         }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);

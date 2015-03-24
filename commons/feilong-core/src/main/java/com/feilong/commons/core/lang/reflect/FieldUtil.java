@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.ClassUtil;
+import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -56,18 +57,34 @@ public final class FieldUtil{
     // [start] Field
 
     /**
-     * 获得这个对象 所有字段的值(不是属性).
+     * 获得这个对象 所有字段的值(不是属性),key是 fieldName，value 是值.
      * 
      * @param obj
      *            the obj
-     * @return the field value map
+     * @return the field value map,key是 fieldName，value 是值
      * @throws ReflectException
      *             the reflect exception
      * @see #getDeclaredFields(Object)
+     * @see #getFieldValueMap(Object, String[])
      * @see java.lang.reflect.Modifier#isPrivate(int)
      * @see java.lang.reflect.Modifier#isStatic(int)
      */
     public static Map<String, Object> getFieldValueMap(Object obj) throws ReflectException{
+        return getFieldValueMap(obj, null);
+    }
+
+    /**
+     * 获得这个对象 所有字段的值(不是属性),key是 fieldName，value 是值.
+     *
+     * @param obj
+     *            the obj
+     * @param excludeFieldNames
+     *            需要排除的field names,如果传递过来是nullOrEmpty 那么不会判断
+     * @return the field value map
+     * @throws ReflectException
+     *             the reflect exception
+     */
+    public static Map<String, Object> getFieldValueMap(Object obj,String[] excludeFieldNames) throws ReflectException{
 
         // 获得一个对象所有的声明字段(包括私有的,继承的)
         Field[] fields = getDeclaredFields(obj);
@@ -76,6 +93,11 @@ public final class FieldUtil{
         if (Validator.isNotNullOrEmpty(fields)){
             for (Field field : fields){
                 String fieldName = field.getName();
+
+                if (Validator.isNotNullOrEmpty(excludeFieldNames) && ArrayUtil.isContain(excludeFieldNames, fieldName)){
+                    continue;
+                }
+
                 int modifiers = field.getModifiers();
                 // 私有并且静态 一般是log
                 boolean isPrivateAndStatic = Modifier.isPrivate(modifiers) && Modifier.isStatic(modifiers);
@@ -96,31 +118,30 @@ public final class FieldUtil{
     }
 
     /**
-     * 获得一个对象所有的声明字段(包括私有的 private,继承 inherited 的).
+     * 获得一个对象所有的声明字段 {@link java.lang.reflect.Field}(包括私有的 private,继承 inherited 的).
      * 
      * @param obj
      *            the obj
      * @return the declared fields
      * @see java.lang.Class#getDeclaredFields()
      * @see java.lang.Class#getSuperclass()
+     * @see java.lang.reflect.Field
      * @see org.apache.commons.lang3.ArrayUtils#addAll(boolean[], boolean...)
      */
     private static Field[] getDeclaredFields(Object obj){
-        Field[] fields = null;
+        Class<?> klass = obj.getClass();
+        Class<?> superClass = klass.getSuperclass();
 
-        Class<?> clz = obj.getClass();
-        Class<?> superclass = clz.getSuperclass();
-
-        //  返回Class对象所代表的类或接口中所有成员变量(不限于public)
-        fields = clz.getDeclaredFields();
+        //返回Class对象所代表的类或接口中所有成员变量(不限于public)
+        Field[] fields = klass.getDeclaredFields();
         do{
             if (log.isDebugEnabled()){
-                log.debug("current class:[{}],super class:[{}]", clz.getName(), superclass.getName());
+                log.debug("current class:[{}],super class:[{}]", klass.getName(), superClass.getName());
             }
-            fields = ArrayUtils.addAll(fields, superclass.getDeclaredFields());
-            superclass = superclass.getSuperclass();
+            fields = ArrayUtils.addAll(fields, superClass.getDeclaredFields());
+            superClass = superClass.getSuperclass();
 
-        }while (null != superclass && superclass != Object.class);
+        }while (null != superClass && superClass != Object.class);
 
         return fields;
     }

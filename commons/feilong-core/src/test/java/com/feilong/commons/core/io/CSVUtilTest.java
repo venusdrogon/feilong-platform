@@ -24,8 +24,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.awt.DesktopUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
+import com.feilong.commons.core.entity.BackWarnEntity;
 
 /**
  * The Class CSVUtilTest.
@@ -56,5 +58,18 @@ public class CSVUtilTest{
             list.add(object);
         }
         CSVUtil.write(path, columnTitles, list);
+    }
+
+    @Test
+    public void testWrite1(){
+
+        List<BackWarnEntity> list = new ArrayList<BackWarnEntity>();
+        BackWarnEntity backWarnEntity = new BackWarnEntity();
+        list.add(backWarnEntity);
+
+        String[] excludePropertyNames = { "class" };
+        String url = "d:/1.csv";
+        CSVUtil.write(url, list, excludePropertyNames);
+        DesktopUtil.open(url);
     }
 }

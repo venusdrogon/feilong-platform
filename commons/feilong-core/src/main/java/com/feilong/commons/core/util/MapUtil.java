@@ -75,7 +75,7 @@ public final class MapUtil{
 
     /**
      * 获得 一个map 中的 按照指定的key 整理成新的map.
-     * 
+     *
      * @param <K>
      *            the key type
      * @param <T>
@@ -85,17 +85,16 @@ public final class MapUtil{
      * @param keys
      *            指定key,如果key 不在map key 里面 ,则返回的map 中忽略该key
      * @return the sub map<br>
-     *         如果isNullOrEmpty(keys) 返回null<br>
-     *         如果 isNullOrEmpty(map) 返回null
+     *         if (Validator.isNullOrEmpty(keys)) 返回map<br>
+     * @throws NullPointerException
+     *             if (Validator.isNullOrEmpty(map))
      */
-    public static <K, T> Map<K, T> getSubMap(Map<K, T> map,K[] keys){
-        if (Validator.isNullOrEmpty(keys)){
-            log.debug("the param keys is null/empty");
-            return null;
-        }
+    public static <K, T> Map<K, T> getSubMap(Map<K, T> map,K[] keys) throws NullPointerException{
         if (Validator.isNullOrEmpty(map)){
-            log.debug("the param map is null/empty");
-            return null;
+            throw new NullPointerException("the map is null or empty!");
+        }
+        if (Validator.isNullOrEmpty(keys)){
+            return map;
         }
         Map<K, T> returnMap = new HashMap<K, T>();
 
@@ -103,7 +102,45 @@ public final class MapUtil{
             if (map.containsKey(key)){
                 returnMap.put(key, map.get(key));
             }else{
-                log.debug("map don't contains key:{}", key);
+                log.warn("map don't contains key:[{}]", key);
+            }
+        }
+        return returnMap;
+    }
+
+    /**
+     * 获得 sub map(去除不需要的keys).
+     *
+     * @param <K>
+     *            the key type
+     * @param <T>
+     *            the generic type
+     * @param map
+     *            the map
+     * @param excludeKeys
+     *            the keys
+     * @return the sub map<br>
+     *         if (Validator.isNullOrEmpty(keys)) 返回map<br>
+     * @throws NullPointerException
+     *             if (Validator.isNullOrEmpty(map))
+     * 
+     * @since 1.0.9
+     */
+    public static <K, T> Map<K, T> getSubMapExcludeKeys(Map<K, T> map,K[] excludeKeys) throws NullPointerException{
+        if (Validator.isNullOrEmpty(map)){
+            throw new NullPointerException("the map is null or empty!");
+        }
+        if (Validator.isNullOrEmpty(excludeKeys)){
+            return map;
+        }
+
+        Map<K, T> returnMap = new HashMap<K, T>(map);
+
+        for (K key : excludeKeys){
+            if (map.containsKey(key)){
+                returnMap.remove(key);
+            }else{
+                log.warn("map don't contains key:[{}]", key);
             }
         }
         return returnMap;

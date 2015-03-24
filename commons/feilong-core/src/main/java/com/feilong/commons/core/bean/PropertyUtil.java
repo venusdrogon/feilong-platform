@@ -24,7 +24,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Class PropertyUtil.
+ * 封装了 {@link PropertyUtils}.
+ * 
+ * <h3>{@link PropertyUtils}与 {@link BeanUtils}:</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * {@link PropertyUtils}类和 {@link BeanUtils}类很多的方法在参数上都是相同的，但返回值不同。 <br>
+ * BeanUtils着重于"Bean"，返回值通常是String,<br>
+ * 而PropertyUtils着重于属性，它的返回值通常是Object。 
+ * </p>
+ * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014-7-21 17:45:30
@@ -45,10 +55,9 @@ public final class PropertyUtil{
 
     /**
      * <p>
-     * 把Bean的属性值放入到一个Map里面.
+     * 返回一个<code>bean</code>中所有的可读属性，并将属性名/属性值放入一个Map中.
      * </p>
      * 
-     * 这个方法返回一个Object中所有的可读属性，并将属性名/属性值放入一个Map中，<br>
      * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性
      * 
      * @param bean
@@ -63,8 +72,8 @@ public final class PropertyUtil{
     public static Map<String, Object> describe(Object bean) throws BeanUtilException{
         try{
             //Return the entire set of properties for which the specified bean provides a read method.
-            Map<String, Object> map = PropertyUtils.describe(bean);
-            return map;
+            Map<String, Object> propertyMap = PropertyUtils.describe(bean);
+            return propertyMap;
         }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);

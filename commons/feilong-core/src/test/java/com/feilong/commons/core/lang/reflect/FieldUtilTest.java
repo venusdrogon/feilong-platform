@@ -39,10 +39,8 @@ public class FieldUtilTest{
      */
     @Test
     public void testGetStaticProperty(){
-        if (log.isInfoEnabled()){
-            log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.ImageType", "JPG"));
-            log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.IOConstants", "GB"));
-        }
+        log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.ImageType", "JPG"));
+        log.info("" + FieldUtil.getStaticProperty("com.feilong.commons.core.io.IOConstants", "GB"));
     }
 
     /**
@@ -55,26 +53,7 @@ public class FieldUtilTest{
      */
     @Test
     public final void testGetFieldValueMap() throws IllegalArgumentException,IllegalAccessException{
-
         User user = new User(12L);
-
         log.info(JsonUtil.format(FieldUtil.getFieldValueMap(user)));
-
-        // BeanInfo beanInfo = Introspector.getBeanInfo(class1);
-        //
-        // PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-        //
-        // for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
-        // String name = propertyDescriptor.getName();
-        // log.info(name);
-        // if ("class".equals(name) && "classLoader".equals(name)){
-        // // Ignore Class.getClassLoader() method - nobody needs to bind to that
-        // continue;
-        // }
-        //
-        // // Method readMethod = propertyDescriptor.getReadMethod();
-        // // Object invoke = readMethod.invoke(class1);
-        // // log.info(invoke.toString());
-        // }
     }
 }
