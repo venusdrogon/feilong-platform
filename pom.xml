@@ -37,8 +37,8 @@
 		<native2ascii-maven-plugin.pattern>**/*.properties</native2ascii-maven-plugin.pattern>
 		<native2ascii-maven-plugin.encoding>utf-8</native2ascii-maven-plugin.encoding>
 
-		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
-		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.7</maven-compiler-plugin.target>
 		<maven-compiler-plugin.encoding>utf-8</maven-compiler-plugin.encoding>
 
 		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
@@ -354,6 +354,13 @@
 				<version>${version.jstl}</version>
 			</dependency>
 
+			<!--note: c3p0 放到每个 brandstore 便于各自调整版本,或者选用其他连接池 -->
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${version.c3p0}</version>
+			</dependency>
+
 			<!-- *******************spring********************************* -->
 			<!-- spring-core -->
 			<dependency>
@@ -369,13 +376,6 @@
 				<version>${version.spring}</version>
 			</dependency>
 
-			<!--note: c3p0 放到每个 brandstore 便于各自调整版本,或者选用其他连接池 -->
-			<dependency>
-				<groupId>c3p0</groupId>
-				<artifactId>c3p0</artifactId>
-				<version>${version.c3p0}</version>
-			</dependency>
-
 			<!-- spring-context -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -387,6 +387,20 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-expression -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${version.spring}</version>
+			</dependency>
+
+			<!-- spring-aop -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
 				<version>${version.spring}</version>
 			</dependency>
 
@@ -424,7 +438,6 @@
 				<artifactId>spring-orm</artifactId>
 				<version>${version.spring}</version>
 			</dependency>
-
 
 			<!-- spring-aspects -->
 			<dependency>
