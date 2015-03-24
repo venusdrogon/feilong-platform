@@ -28,9 +28,10 @@ import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.bean.BeanUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.lang.ObjectUtil;
-import com.feilong.commons.core.lang.reflect.FieldUtil;
+import com.feilong.commons.core.util.MapUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -66,7 +67,7 @@ public final class CSVUtil{
 
     /**
      * 将迭代对象写到文件中.<br>
-     * 自动获得泛型中的列明和字段
+     * 自动调用 {@link com.feilong.commons.core.bean.BeanUtil#describe(Object)} 获得对象中的可读属性和值
      *
      * @param <T>
      *            the generic type
@@ -79,10 +80,38 @@ public final class CSVUtil{
      * @throws IllegalArgumentException
      *             the illegal argument exception
      * @see #write(String, String[], List, CSVParams)
+     * @see #write(String, Collection, String[])
+     * @see com.feilong.commons.core.bean.BeanUtil#describe(Object)
      * @see org.apache.commons.beanutils.ConvertUtils#convert(Object)
      * @since 1.0.9
      */
     public static final <T> void write(String fileName,Collection<T> collection) throws UncheckedIOException,IllegalArgumentException{
+        write(fileName, collection, null);
+    }
+
+    /**
+     * 将迭代对象写到文件中.<br>
+     * 自动调用 {@link com.feilong.commons.core.bean.BeanUtil#describe(Object)} 获得对象中的可读属性和值
+     *
+     * @param <T>
+     *            the generic type
+     * @param fileName
+     *            the file name
+     * @param collection
+     *            the iterable
+     * @param excludePropertyNames
+     *            排除的读属性名称
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @see #write(String, String[], List, CSVParams)
+     * @see com.feilong.commons.core.bean.BeanUtil#describe(Object)
+     * @see org.apache.commons.beanutils.ConvertUtils#convert(Object)
+     * @since 1.0.9
+     */
+    public static final <T> void write(String fileName,Collection<T> collection,String[] excludePropertyNames) throws UncheckedIOException,
+                    IllegalArgumentException{
 
         if (Validator.isNullOrEmpty(fileName)){
             throw new NullPointerException("fileName can't be null/empty!");
@@ -100,33 +129,35 @@ public final class CSVUtil{
         ConvertUtils.register(dateTimeConverter, java.util.Date.class);
 
         for (T t : collection){
-            Map<String, Object> fieldValueMap = FieldUtil.getFieldValueMap(t);
-            int size = fieldValueMap.size();
-            Object[] objects = new Object[size];
 
-            boolean createColumnTitlesFlag = (null == columnTitles);
-            if (createColumnTitlesFlag){
+            // Map<String, Object> fieldValueMap = FieldUtil.getFieldValueMap(t, excludeFields);
+            Map<String, String> propertyValueMap = BeanUtil.describe(t);
+            propertyValueMap = MapUtil.getSubMapExcludeKeys(propertyValueMap, excludePropertyNames);
+
+            int size = propertyValueMap.size();
+
+            Object[] rowData = new Object[size];
+
+            //标题列只需要创建一次
+            if (null == columnTitles){
                 columnTitles = new String[size];
             }
 
             int i = 0;
-            for (Map.Entry<String, Object> entry : fieldValueMap.entrySet()){
+            for (Map.Entry<String, String> entry : propertyValueMap.entrySet()){
                 String key = entry.getKey();
                 Object value = entry.getValue();
 
                 if (Validator.isNullOrEmpty(value)){
-                    objects[i] = StringUtils.EMPTY;
+                    rowData[i] = StringUtils.EMPTY;
                 }else{
-                    //Converter converter = ConvertUtils.lookup(value.getClass());
-                    objects[i] = ConvertUtils.convert(value, String.class);
+                    rowData[i] = ConvertUtils.convert(value, String.class);
                 }
 
-                if (createColumnTitlesFlag && null != columnTitles){
-                    columnTitles[i] = key;
-                }
+                columnTitles[i] = key;
                 i++;
             }
-            dataList.add(objects);
+            dataList.add(rowData);
         }
         write(fileName, columnTitles, dataList, new CSVParams());
     }
