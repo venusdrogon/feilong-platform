@@ -60,6 +60,9 @@ public class CSVUtilTest{
         CSVUtil.write(path, columnTitles, list);
     }
 
+    /**
+     * Test write1.
+     */
     @Test
     public void testWrite1(){
 

@@ -61,8 +61,7 @@ public class FileUtilTest{
         }
         try{
             URL url = new URL("http://localhost:8080/TestHttpURLConnectionPro/index.jsp");
-            URLConnection rulConnection = url.openConnection();
-
+            url.openConnection();
         }catch (MalformedURLException e){
             log.error(e.getClass().getName(), e);
         }catch (IOException e){

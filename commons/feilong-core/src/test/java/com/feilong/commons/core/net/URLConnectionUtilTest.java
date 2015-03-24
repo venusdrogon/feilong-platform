@@ -30,16 +30,7 @@ import com.feilong.commons.core.io.CharsetType;
 public class URLConnectionUtilTest{
 
     /** The Constant log. */
-    private static final Logger log          = LoggerFactory.getLogger(URLConnectionUtilTest.class);
-
-    /** The url string. */
-    private String              urlString    = "http://www.nikestore.com.cn/?t=" + System.currentTimeMillis();
-
-    /** The proxy address. */
-    private String              proxyAddress = "10.8.12.205";
-
-    /** The proxy port. */
-    private int                 proxyPort    = 3128;
+    private static final Logger log = LoggerFactory.getLogger(URLConnectionUtilTest.class);
 
     /**
      * 获得 response body as string.

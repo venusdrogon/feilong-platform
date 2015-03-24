@@ -38,7 +38,8 @@ public class Slf4jUtilTest{
         log.info(Slf4jUtil.formatMessage("{},{}", "今天", "aaaa"));
         log.info(Slf4jUtil.formatMessage(null, "今天", "aaaa"));
         log.info(Slf4jUtil.formatMessage("", "今天", "aaaa"));
-        log.info(Slf4jUtil.formatMessage("", null));
+        Object arg = null;
+        log.info(Slf4jUtil.formatMessage("", arg));
         log.info(Slf4jUtil.formatMessage("", ""));
     }
 }
