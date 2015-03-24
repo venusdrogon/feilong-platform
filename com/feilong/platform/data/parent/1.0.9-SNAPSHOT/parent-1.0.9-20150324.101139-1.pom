@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.9-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.feilong.platform.data</groupId>
+	<artifactId>parent</artifactId>
+	<name>feilong-data-parent</name>
+
+	<description>${project.name} ${project.version} API</description>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>feilong-data-mongo</module>
+		<module>feilong-data-memcached</module>
+		<module>feilong-data-redis</module>
+		<module>feilong-data-solrj4</module>
+		<module>feilong-db-jdbc</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+	</dependencies>
+</project>
