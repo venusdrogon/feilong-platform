@@ -19,17 +19,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.converters.DateConverter;
-import org.apache.commons.beanutils.converters.DateTimeConverter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtil;
-import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.util.MapUtil;
 import com.feilong.commons.core.util.Validator;
@@ -124,14 +123,10 @@ public final class CSVUtil{
         String[] columnTitles = null;
         List<Object[]> dataList = new ArrayList<Object[]>(collection.size());
 
-        DateTimeConverter dateTimeConverter = new DateConverter();
-        dateTimeConverter.setPattern(DatePattern.COMMON_DATE_AND_TIME);
-        ConvertUtils.register(dateTimeConverter, java.util.Date.class);
-
         for (T t : collection){
 
             // Map<String, Object> fieldValueMap = FieldUtil.getFieldValueMap(t, excludeFields);
-            Map<String, String> propertyValueMap = BeanUtil.describe(t);
+            Map<String, Object> propertyValueMap = PropertyUtil.describe(t);
             propertyValueMap = MapUtil.getSubMapExcludeKeys(propertyValueMap, excludePropertyNames);
 
             int size = propertyValueMap.size();
@@ -144,13 +139,14 @@ public final class CSVUtil{
             }
 
             int i = 0;
-            for (Map.Entry<String, String> entry : propertyValueMap.entrySet()){
+            for (Map.Entry<String, Object> entry : propertyValueMap.entrySet()){
                 String key = entry.getKey();
                 Object value = entry.getValue();
 
                 if (Validator.isNullOrEmpty(value)){
                     rowData[i] = StringUtils.EMPTY;
                 }else{
+                    //rowData[i] = ConvertUtils.convert(value);
                     rowData[i] = ConvertUtils.convert(value, String.class);
                 }
 

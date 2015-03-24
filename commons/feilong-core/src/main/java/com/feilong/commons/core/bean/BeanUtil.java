@@ -21,6 +21,8 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,7 +138,11 @@ public final class BeanUtil{
         boolean defaultNull = true;
         int defaultArraySize = 10;
 
-        BeanUtilsBean.getInstance().getConvertUtils().register(throwException, defaultNull, defaultArraySize);
+        //XXX 
+        BeanUtilsBean beanUtilsBean = BeanUtilsBean.getInstance();
+        ConvertUtilsBean convertUtils = beanUtilsBean.getConvertUtils();
+
+        convertUtils.register(throwException, defaultNull, defaultArraySize);
     }
 
     // [start] cloneBean
@@ -191,6 +197,15 @@ public final class BeanUtil{
      * </p>
      * 
      * 另外还有一个名为class的属性，属性值是Object的类名，事实上class是java.lang.Object的一个属性.
+     * <p>
+     * <span style="color:red">缺陷:<br>
+     * 自己手工注册的ConvertUtils.register(dateTimeConverter, java.util.Date.class)不会生效</span><br>
+     * 
+     * 在赋值的时候,虽然调用了 {@link org.apache.commons.beanutils.BeanUtilsBean#getNestedProperty(Object, String)}, 虽然也调用了 ConvertUtilsBean来转换 <br>
+     * 但是 {@link org.apache.commons.beanutils.ConvertUtilsBean#ConvertUtilsBean()} 默认的构造函数 是使用标准的转换
+     * 
+     * 
+     * </p>
      * 
      * @param bean
      *            Bean whose properties are to be extracted
