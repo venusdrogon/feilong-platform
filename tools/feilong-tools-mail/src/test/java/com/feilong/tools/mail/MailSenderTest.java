@@ -17,7 +17,6 @@ package com.feilong.tools.mail;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,13 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.mail.MessagingException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.io.CharsetType;
@@ -43,31 +38,28 @@ import com.feilong.tools.mail.entity.MailSenderConfig;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
- * The Class MailSenderUtilTest.
- * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Dec 23, 2011 11:57:48 PM
+ * The Class MailSenderTest.
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.9 2015年3月26日 下午4:43:11
+ * @since 1.0.9
  */
-@SuppressWarnings("all")
-public class MailSenderUtilTest{
-
-    /** The Constant log. */
-    private static final Logger   log            = LoggerFactory.getLogger(MailSenderUtilTest.class);
+public class MailSenderTest{
 
     /** The resource bundle. */
     private static ResourceBundle resourceBundle = ResourceBundleUtil.getResourceBundleByFileName("E:\\DataCommon\\Files\\mail.properties");
 
     /** 发送. */
-    private String[]              tos            = { "xin.jin@baozun.com" };
+    private final String[]        tos            = { "xin.jin@baozun.com" };
 
     /** cc. */
-    private String[]              ccs            = { "venusdrogon@163.com" };
+    private final String[]        ccs            = { "venusdrogon@163.com" };
 
     /** bcc. */
-    private String[]              bccs           = { "190600641@qq.com", "1151889455@qq.com" };
+    private final String[]        bccs           = { "190600641@qq.com", "1151889455@qq.com" };
 
     /** The personal. */
-    private String                personal       = "三国徐晃";
+    private final String          personal       = "三国徐晃";
 
     /** The mail sender config. */
     private MailSenderConfig      mailSenderConfig;
@@ -175,7 +167,7 @@ public class MailSenderUtilTest{
 
         // ******************************************************************************************
         Map<String, Object> contextKeyValues = new HashMap<String, Object>();
-        contextKeyValues.put("PREFIX_CONTENTID", MailSenderUtil.PREFIX_CONTENTID);
+        contextKeyValues.put("PREFIX_CONTENTID", DefaultMailSender.PREFIX_CONTENTID);
         contextKeyValues.put("fileInfoEntityList", fileInfoEntityList);
         // ******************************************************************************************
 
@@ -193,15 +185,10 @@ public class MailSenderUtilTest{
 
     /**
      * After.
-     *
-     * @throws MessagingException
-     *             the messaging exception
-     * @throws UnsupportedEncodingException
-     *             the unsupported encoding exception
      */
     @After
-    public void after() throws MessagingException,UnsupportedEncodingException{
-        MailSenderUtil mailSenderUtil = new MailSenderUtil();
-        mailSenderUtil.sendMail(mailSenderConfig);
+    public void after(){
+        MailSender mailSender = new DefaultMailSender();
+        mailSender.sendMail(mailSenderConfig);
     }
 }

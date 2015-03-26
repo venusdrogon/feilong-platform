@@ -21,9 +21,6 @@ import java.util.Map;
 import javax.mail.Folder;
 import javax.mail.MessagingException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The Class FolderUtil.
  *
@@ -31,10 +28,14 @@ import org.slf4j.LoggerFactory;
  * @version 1.0.9 2015年2月2日 下午6:05:06
  * @since 1.0.9
  */
-public class FolderUtil{
+public final class FolderUtil{
 
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(FolderUtil.class);
+    /** Don't let anyone instantiate this class. */
+    private FolderUtil(){
+        //AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
 
     /**
      * 获得 map for log.

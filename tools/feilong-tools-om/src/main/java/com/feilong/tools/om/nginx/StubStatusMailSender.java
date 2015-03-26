@@ -36,7 +36,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.util.Validator;
-import com.feilong.tools.mail.MailSenderUtil;
+import com.feilong.tools.mail.DefaultMailSender;
+import com.feilong.tools.mail.MailSender;
 import com.feilong.tools.mail.entity.MailSenderConfig;
 import com.feilong.tools.om.nginx.command.StubStatusCommand;
 import com.feilong.tools.om.nginx.command.StubStatusVMCommand;
@@ -79,7 +80,7 @@ public class StubStatusMailSender{
         String userName = "sanguoxuhuang@163.com";
         String password = "521000";
 
-        MailSenderUtil mailSenderUtil = new MailSenderUtil();
+        MailSender mailSenderUtil = new DefaultMailSender();
 
         MailSenderConfig mailSenderConfig = new MailSenderConfig();
         mailSenderConfig.setMailServerHost("smtp.163.com");

@@ -934,6 +934,9 @@
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${v.maven-resources-plugin}</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
 				<executions>
 					<execution>
 						<id>default-resources</id>
