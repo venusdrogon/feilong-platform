@@ -30,6 +30,30 @@ import java.util.Map;
  * <li>{@link #isNotNullOrEmpty(Object)}判断对象是否不是null或者不是空</li>
  * </ol>
  * 
+ * 
+ * <h3>对于empty的判断,使用以下逻辑/语法/规则:</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 
+ * <ol>
+ * <li>{@link Collection},使用其 {@link Collection#isEmpty()};</li>
+ * <li>{@link Map},使用其 {@link Map#isEmpty()};</li>
+ * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高;</li>
+ * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()};</li>
+ * <li>{@link Iterator},使用 {@link Iterator#hasNext()};</li>
+ * <li><code>Object[]</code>,判断length==0;注:二维数组不管是primitive 还是包装类型,都instanceof Object[];</li>
+ * <li><code>byte[]</code>,判断length==0;</li>
+ * <li><code>boolean[]</code>,判断length==0;</li>
+ * <li><code>char[]</code>,判断length==0;</li>
+ * <li><code>int[]</code>,判断length==0;</li>
+ * <li><code>short[]</code>,判断length==0;</li>
+ * <li><code>float[]</code>,判断length==0;</li>
+ * <li><code>double[]</code>,判断length==0;</li>
+ * </ol>
+ * </p>
+ * </blockquote>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 Sep 2, 2010 8:35:28 PM
  * @version 1.0.1 2012-9-23 21:34 rename method,isNullOrEmpty替代isNull
@@ -53,25 +77,28 @@ public final class Validator{
     /**
      * 判断对象是否为Null或者Empty
      * 
+     * <h3>对于empty的判断,使用以下逻辑/语法/规则:</h3>
+     * 
+     * <blockquote>
      * <p>
-     * 对于empty的判断,使用以下逻辑/语法/规则:
-     * </p>
      * 
      * <ol>
-     * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
-     * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
-     * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高</li>
-     * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()}</li>
-     * <li>{@link Iterator},使用 {@link Iterator#hasNext()}</li>
-     * <li><code>Object[]</code>,判断length==0,注二维数组不管是primitive 还是包装类型,都instanceof Object[]</li>
-     * <li><code>byte[]</code>,判断length==0</li>
-     * <li><code>boolean[]</code>,判断length==0</li>
-     * <li><code>char[]</code>,判断length==0</li>
-     * <li><code>int[]</code>,判断length==0</li>
-     * <li><code>short[]</code>,判断length==0</li>
-     * <li><code>float[]</code>,判断length==0</li>
-     * <li><code>double[]</code>,判断length==0</li>
+     * <li>{@link Collection},使用其 {@link Collection#isEmpty()};</li>
+     * <li>{@link Map},使用其 {@link Map#isEmpty()};</li>
+     * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高;</li>
+     * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()};</li>
+     * <li>{@link Iterator},使用 {@link Iterator#hasNext()};</li>
+     * <li><code>Object[]</code>,判断length==0;注:二维数组不管是primitive 还是包装类型,都instanceof Object[];</li>
+     * <li><code>byte[]</code>,判断length==0;</li>
+     * <li><code>boolean[]</code>,判断length==0;</li>
+     * <li><code>char[]</code>,判断length==0;</li>
+     * <li><code>int[]</code>,判断length==0;</li>
+     * <li><code>short[]</code>,判断length==0;</li>
+     * <li><code>float[]</code>,判断length==0;</li>
+     * <li><code>double[]</code>,判断length==0;</li>
      * </ol>
+     * </p>
+     * </blockquote>
      * 
      * @param value
      *            可以是Collection,Map,String,Enumeration,Iterator,以及所有数组类型
@@ -137,25 +164,28 @@ public final class Validator{
     /**
      * 判断对象是否不为Null或者Empty,调用 !{@link #isNullOrEmpty(Object)} 方法 <br>
      * 
+     * <h3>对于empty的判断,使用以下逻辑/语法/规则:</h3>
+     * 
+     * <blockquote>
      * <p>
-     * 对于empty的判断,使用以下逻辑/语法/规则:
-     * </p>
      * 
      * <ol>
-     * <li>{@link Collection},使用其 {@link Collection#isEmpty()}</li>
-     * <li>{@link Map},使用其 {@link Map#isEmpty()}</li>
-     * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高</li>
-     * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()}</li>
-     * <li>{@link Iterator},使用 {@link Iterator#hasNext()}</li>
-     * <li><code>Object[]</code>,判断length==0</li>
-     * <li><code>byte[]</code>,判断length==0</li>
-     * <li><code>boolean[]</code>,判断length==0</li>
-     * <li><code>char[]</code>,判断length==0</li>
-     * <li><code>int[]</code>,判断length==0</li>
-     * <li><code>short[]</code>,判断length==0</li>
-     * <li><code>float[]</code>,判断length==0</li>
-     * <li><code>double[]</code>,判断length==0</li>
+     * <li>{@link Collection},使用其 {@link Collection#isEmpty()};</li>
+     * <li>{@link Map},使用其 {@link Map#isEmpty()};</li>
+     * <li>{@link String},使用 {@link String#trim()}{@code .length()<=0}效率高;</li>
+     * <li>{@link Enumeration},使用 {@link Enumeration#hasMoreElements()};</li>
+     * <li>{@link Iterator},使用 {@link Iterator#hasNext()};</li>
+     * <li><code>Object[]</code>,判断length==0;注:二维数组不管是primitive 还是包装类型,都instanceof Object[];</li>
+     * <li><code>byte[]</code>,判断length==0;</li>
+     * <li><code>boolean[]</code>,判断length==0;</li>
+     * <li><code>char[]</code>,判断length==0;</li>
+     * <li><code>int[]</code>,判断length==0;</li>
+     * <li><code>short[]</code>,判断length==0;</li>
+     * <li><code>float[]</code>,判断length==0;</li>
+     * <li><code>double[]</code>,判断length==0;</li>
      * </ol>
+     * </p>
+     * </blockquote>
      * 
      * @param value
      *            可以是Collection,Map,String,Enumeration,Iterator,以及所有数组类型
