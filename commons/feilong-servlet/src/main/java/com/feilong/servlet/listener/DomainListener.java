@@ -17,23 +17,57 @@ package com.feilong.servlet.listener;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.feilong.commons.core.configure.PropertiesUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.web.entity.domain.DomainAttributes;
-import com.feilong.web.entity.domain.DomainType;
-import com.feilong.web.entity.domain.DomainUtil;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * 初始化配置 监听器.
  * 
+ * <h3>关于配置文件</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * <ol>
+ * <li>读取 web.xml中配置的 domainConfigLocation context-param参数</li>
+ * <li>如果没有读取到文件，那么默认读取 domain.properties 默认地址</li>
+ * </ol>
+ * </p>
+ * </blockquote>
+ * 
+ * 
+ * <h3>关于 domain.properties</h3>
+ * 
+ * <blockquote>
+ * 
+ * <pre>
+ * domain.css={"variableName":"domainCSS","value":"http://rs.feilong.com:8888"}
+ * domain.js={"variableName":"domainJS","value":"http://rs.feilong.com:8888"}
+ * domain.image={"variableName":"domainImage","value":"http://rs.feilong.com:8888"}
+ * domain.resource={"variableName":"domainResource","value":"http://127.0.0.1:6666"}
+ * </pre>
+ * 
+ * 值，如果是 json格式，会自动转换，variableName参数会自动设置到 servletContext作用域中，值是value参数<br>
+ * 
+ * </blockquote>
+ * 
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Aug 19, 2013 10:28:05 AM
  */
-public class DomainListener implements ServletContextListener{
+public final class DomainListener implements ServletContextListener{
+
+    /** The Constant CONFIG_LOCATION_PARAM. */
+    private static final String CONFIG_LOCATION_PARAM      = "domainConfigLocation";
+
+    /** 默认的配置地址. */
+    private static final String DEFAULT_CONFIGURATION_FILE = "domain.properties";
 
     /*
      * (non-Javadoc)
@@ -53,32 +87,84 @@ public class DomainListener implements ServletContextListener{
      *            the servlet context
      */
     private void initDomain(ServletContext servletContext){
-        // ********************************domain****************************************
-        String domain_css = DomainUtil.getDomain(servletContext, DomainType.CSS);
-        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_CSS, domain_css);
-        // ******************
-        String domain_js = DomainUtil.getDomain(servletContext, DomainType.JS);
-        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_JS, domain_js);
-        // ******************
-        String domain_image = DomainUtil.getDomain(servletContext, DomainType.IMAGE);
-        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_IMAGE, domain_image);
-        // ******************
-        String domain_resource = DomainUtil.getDomain(servletContext, DomainType.RESOURCE);
-        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_RESOURCE, domain_resource);
-        // ******************
-        String domain_store = DomainUtil.getDomain(servletContext, DomainType.STORE);
-        servletContext.setAttribute(DomainAttributes.ATTRIBUTE_DOMAIN_STORE, domain_store);
-        // *******************************************************************
+        String domainConfigLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
 
-        Map<String, String> map = new LinkedHashMap<String, String>();
+        Map<String, DomainConfig> domainConfigMap = getDomainConfigMap(domainConfigLocation);
 
-        map.put("\n[domain_js]:", domain_js);
-        map.put("\n[domain_css]:", domain_css);
-        map.put("\n[domain_image]:", domain_image);
-        map.put("\n[domain_resource]:", domain_resource);
-        map.put("\n[domain_store]:", domain_store);
+        for (Map.Entry<String, DomainConfig> entry : domainConfigMap.entrySet()){
+            DomainConfig domainConfig = entry.getValue();
 
-        servletContext.log(JsonUtil.format(map));
+            String variableName = domainConfig.getVariableName();
+            if (Validator.isNotNullOrEmpty(variableName)){
+                servletContext.setAttribute(variableName, domainConfig.getValue());
+            }
+        }
+
+        servletContext.log(JsonUtil.format(domainConfigMap));
+    }
+
+    /**
+     * 将全部的配置转成map key就是properties中的key.
+     *
+     * @param domainConfigLocation
+     *            the domain config location
+     * @return the domain config map
+     * @since 1.0.9
+     */
+    private Map<String, DomainConfig> getDomainConfigMap(String domainConfigLocation){
+        Properties properties = getDomainProperties(domainConfigLocation);
+        return propertiesToMap(properties);
+    }
+
+    /**
+     * Properties to map.
+     *
+     * @param properties
+     *            the properties
+     * @return the map< string, domain config>
+     * @since 1.0.9
+     */
+    private Map<String, DomainConfig> propertiesToMap(Properties properties){
+        Map<String, String> map = PropertiesUtil.toMap(properties);
+        Map<String, DomainConfig> domainConfigMap = new LinkedHashMap<String, DomainConfig>();
+
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            DomainConfig domainConfig = new DomainConfig();
+            if (Validator.isNotNullOrEmpty(value)){
+                //json
+                if (value.startsWith("{")){
+                    domainConfig = JsonUtil.toBean(value, DomainConfig.class);
+                }else{
+                    domainConfig.setValue(value);
+                }
+            }else{
+                //nothing to do
+            }
+            domainConfigMap.put(key, domainConfig);
+        }
+        return domainConfigMap;
+    }
+
+    /**
+     * 获得 domain properties.
+     *
+     * @param domainConfigLocation
+     *            the domain config location
+     * @return the domain properties
+     * @since 1.0.9
+     */
+    //TODO 自动识别
+    private Properties getDomainProperties(String domainConfigLocation){
+        Class<? extends DomainListener> klass = this.getClass();
+        Properties domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, domainConfigLocation);
+
+        if (null == domainProperties){
+            domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, DEFAULT_CONFIGURATION_FILE);
+        }
+        return domainProperties;
     }
 
     /*

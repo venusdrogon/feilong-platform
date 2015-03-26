@@ -355,7 +355,6 @@ public final class ResponseUtil{
      * @see javax.servlet.ServletResponse#getWriter()
      * @see java.io.PrintWriter#print(Object)
      * @see java.io.PrintWriter#flush()
-     * @see java.io.UncheckedIOException
      * @see #write(HttpServletResponse, Object, String, String)
      */
     public static void write(HttpServletResponse response,Object content) throws UncheckedIOException{
@@ -380,7 +379,6 @@ public final class ResponseUtil{
      * @see javax.servlet.ServletResponse#getWriter()
      * @see java.io.PrintWriter#print(Object)
      * @see java.io.PrintWriter#flush()
-     * @see java.io.UncheckedIOException
      * @since 1.0.9
      */
     public static void write(HttpServletResponse response,Object content,String contentType,String characterEncoding)
