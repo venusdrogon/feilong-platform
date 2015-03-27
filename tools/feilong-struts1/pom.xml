@@ -7,9 +7,13 @@
 		<version>1.0.9-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	
+
 	<artifactId>feilong-struts1</artifactId>
 	<name>feilong-struts1</name>
+
+	<properties>
+		<version.struts1>1.3.10</version.struts1>
+	</properties>
 
 	<dependencies>
 		<dependency>

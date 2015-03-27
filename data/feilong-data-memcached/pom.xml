@@ -7,6 +7,11 @@
 	</parent>
 	<artifactId>feilong-data-memcached</artifactId>
 
+	<properties>
+		<version.memcached>2.5.3</version.memcached>
+		<version.spymemcached>2.11.0</version.spymemcached>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>net.spy</groupId>

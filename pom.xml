@@ -10,19 +10,6 @@
 
 	<packaging>pom</packaging>
 
-	<!-- 成立年份 -->
-	<inceptionYear>2008</inceptionYear>
-	<url>http://www.feilong.com</url>
-
-	<licenses>
-		<license>
-			<name>Apache 2</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
-
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<version.feilong-platform>${project.version}</version.feilong-platform>
@@ -31,43 +18,10 @@
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<developer.feilong.name>feilong</developer.feilong.name>
-		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
-
-		<native2ascii-maven-plugin.pattern>**/*.properties</native2ascii-maven-plugin.pattern>
-		<native2ascii-maven-plugin.encoding>utf-8</native2ascii-maven-plugin.encoding>
-
-		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
-		<maven-compiler-plugin.target>1.7</maven-compiler-plugin.target>
-		<maven-compiler-plugin.encoding>utf-8</maven-compiler-plugin.encoding>
-
-		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
-		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
-		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
-
-		<!-- 用来编译生成文档 -->
-		<maven-javadoc-plugin.encoding>UTF-8</maven-javadoc-plugin.encoding>
-		<maven-javadoc-plugin.docencoding>UTF-8</maven-javadoc-plugin.docencoding>
-
-		<!-- 用来显示页面 META 部分 content="text/html; charset=GBK" -->
-		<maven-javadoc-plugin.charset>UTF-8</maven-javadoc-plugin.charset>
-		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
-		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
-
-		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.outputDirectory>
-		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
-		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
-
-		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
-		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
-		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
-		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
-		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
-
 		<!--****************************第三方************************************ -->
-		<version.ant>1.9.4</version.ant>
+
+		<!--*********************begin dependency plugins version************************************ -->
 		<version.aspectjweaver>1.6.8</version.aspectjweaver>
-		<version.maven-ant-tasks>2.1.3</version.maven-ant-tasks>
 
 		<version.commons-beanutils>1.9.2</version.commons-beanutils>
 		<version.commons-codec>1.9</version.commons-codec>
@@ -103,7 +57,6 @@
 
 		<version.cxf>2.7.11</version.cxf>
 
-		<version.derby>10.7.1.1</version.derby>
 		<version.dom4j>1.6.1</version.dom4j>
 
 		<version.easymock>3.1</version.easymock>
@@ -127,7 +80,7 @@
 		<version.xom>1.2.5</version.xom>
 
 		<version.jsoup>1.7.3</version.jsoup>
-		<version.jfreechart>1.0.14</version.jfreechart>
+
 		<version.jsp-api>2.2</version.jsp-api>
 		<version.el-api>2.2</version.el-api>
 		<version.jstl>1.2</version.jstl>
@@ -143,17 +96,12 @@
 		<!-- 新版poi需要这个jar -->
 		<!-- <version.ooxml-schemas>1.1</version.ooxml-schemas> -->
 
-		<version.memcached>2.5.3</version.memcached>
-		<version.spymemcached>2.11.0</version.spymemcached>
 		<version.servlet-api>2.5</version.servlet-api>
 		<version.slf4j>1.7.7</version.slf4j>
-		<version.solr-solrj>4.10.2</version.solr-solrj>
+
 		<version.spring>3.2.12.RELEASE</version.spring>
 
-		<version.struts1>1.3.10</version.struts1>
-
 		<version.xercesImpl>2.11.0</version.xercesImpl>
-		<version.xfire>1.2.6</version.xfire>
 
 		<version.velocity>1.7</version.velocity>
 		<version.velocity-tools>2.0</version.velocity-tools>
@@ -171,7 +119,11 @@
 
 		<version.zookeeper>3.4.6</version.zookeeper>
 
-		<!--****************************plugin************************************ -->
+		<!--*********************end dependency plugins version************************************ -->
+
+
+
+		<!--*********************begin plugins version************************************ -->
 		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
 
 		<v.maven-clean-plugin>2.6.1</v.maven-clean-plugin>
@@ -200,6 +152,48 @@
 		<v.site-maven-plugin>0.10</v.site-maven-plugin>
 
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
+		<!-- **********************end plugins version******************************************* -->
+
+
+		<!-- **********************begin maven-compiler-plugin config******************************************* -->
+		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.7</maven-compiler-plugin.target>
+		<maven-compiler-plugin.encoding>${project.build.sourceEncoding}</maven-compiler-plugin.encoding>
+		<!-- **********************end maven-compiler-plugin config******************************************* -->
+
+		<!-- **********************begin native2ascii config******************************************* -->
+		<native2ascii-maven-plugin.pattern>**/*.properties</native2ascii-maven-plugin.pattern>
+		<native2ascii-maven-plugin.encoding>${project.build.sourceEncoding}</native2ascii-maven-plugin.encoding>
+		<!-- **********************end native2ascii config******************************************* -->
+
+		<!-- **********************begin site-maven-plugin config******************************************* -->
+		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
+		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
+		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
+		<!-- **********************end site-maven-plugin config******************************************* -->
+
+		<!-- **********************begin maven-javadoc-plugin config******************************************* -->
+		<!-- 用来编译生成文档 -->
+		<maven-javadoc-plugin.encoding>${project.build.sourceEncoding}</maven-javadoc-plugin.encoding>
+		<maven-javadoc-plugin.docencoding>${project.build.sourceEncoding}</maven-javadoc-plugin.docencoding>
+		<!-- 用来显示页面 META 部分 content="text/html; charset=GBK" -->
+		<maven-javadoc-plugin.charset>${project.build.sourceEncoding}</maven-javadoc-plugin.charset>
+		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
+		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
+		
+		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.outputDirectory>
+		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
+		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
+		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
+		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
+		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
+		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
+		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
+
+		<!-- **********************end maven-javadoc-plugin config******************************************* -->
+
+		<developer.feilong.name>feilong</developer.feilong.name>
+		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
 	</properties>
 
 	<!-- 软件配置管理，如cvs 和svn -->
@@ -585,13 +579,6 @@
 				<version>${version.commons-io}</version>
 			</dependency>
 
-			<!-- derby -->
-			<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId>
-				<version>${version.derby}</version>
-			</dependency>
-
 			<!-- velocity -->
 			<dependency>
 				<groupId>org.apache.velocity</groupId>
@@ -797,8 +784,6 @@
 				<version>${version.easymock}</version>
 				<scope>test</scope>
 			</dependency>
-
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -1272,17 +1257,14 @@
 							<title>Date package 日期</title>
 							<packages>com.feilong.commons.core.date</packages>
 						</group>
-
 						<group>
 							<title>IO package</title>
 							<packages>com.feilong.commons.core.io</packages>
 						</group>
-
 						<group>
 							<title>net package</title>
 							<packages>com.feilong.commons.core.net</packages>
 						</group>
-
 						<group>
 							<title>util package</title>
 							<packages>com.feilong.commons.core.util</packages>
@@ -1306,7 +1288,8 @@
 				<version>${v.maven-checkstyle-plugin}</version>
 			</plugin>
 
-			<!-- <plugin>
+			<!--
+				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>${v.maven-pmd-plugin}</version>
@@ -1330,25 +1313,31 @@
 				<range>30</range>
 				<headingDateFormat>dd MMM, yyyy</headingDateFormat>
 				</configuration>
-				</plugin> -->
+				</plugin>
+			-->
 		</plugins>
 	</reporting>
+
+
+	<!-- 成立年份 -->
+	<inceptionYear>2008</inceptionYear>
+	<url>http://venusdrogon.github.io/feilong-platform/</url>
 
 	<!-- 指定这个项目的组织机构信息 -->
 	<organization>
 		<name>feiLong</name>
-		<url>http://www.feilong.com</url>
+		<url>http://venusdrogon.github.io/feilong-platform/</url>
 	</organization>
 
 	<!-- 项目提交者信息 -->
 	<developers>
 		<developer>
-			<id>venusdrogn</id>
+			<id>feilong</id>
 			<name>金鑫</name>
 			<email>${developer.feilong.email}</email>
-			<url>http://www.feilong.com</url>
+			<url>http://venusdrogon.github.io/feilong-platform/</url>
 			<organization>feilong</organization>
-			<organizationUrl>http://www.feilong.com</organizationUrl>
+			<organizationUrl>http://venusdrogon.github.io/feilong-platform/</organizationUrl>
 			<roles>
 				<role>architect</role>
 				<role>developer</role>
@@ -1359,5 +1348,14 @@
 			</properties>
 		</developer>
 	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
 
 </project>

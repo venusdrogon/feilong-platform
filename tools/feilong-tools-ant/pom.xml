@@ -10,6 +10,11 @@
 	<name>feilong-tools-ant</name>
 	<description>feilong-tools-ant</description>
 
+	<properties>
+		<version.ant>1.9.4</version.ant>
+		<version.maven-ant-tasks>2.1.3</version.maven-ant-tasks>
+	</properties>
+
 	<dependencies>
 
 		<!-- ant -->

@@ -7,6 +7,10 @@
 	</parent>
 	<artifactId>feilong-data-solrj4</artifactId>
 
+	<properties>
+		<version.solr-solrj>4.10.2</version.solr-solrj>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.solr</groupId>
