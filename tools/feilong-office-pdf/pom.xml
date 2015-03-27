@@ -9,6 +9,12 @@
 	<artifactId>feilong-office-pdf</artifactId>
 	<name>feilong-office-pdf</name>
 	<description>feilong-office-pdf</description>
+
+	<properties>
+		<version.itext>2.1.7</version.itext>
+	</properties>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>com.feilong.platform.commons</groupId>

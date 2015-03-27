@@ -60,14 +60,9 @@
 		<version.esapi>2.1.0</version.esapi>
 
 		<version.hibernate>4.3.7.Final</version.hibernate>
-		<version.itext>2.1.7</version.itext>
 
 		<version.javamail>1.4.7</version.javamail>
-		<version.jacob>1.14.3</version.jacob>
 		<version.jsch>0.1.51</version.jsch>
-
-		<!-- 让控制台输出彩色字符 -->
-		<version.jansi>1.11</version.jansi>
 
 		<!-- org.json -->
 		<version.org.json>20140107</version.org.json>
@@ -88,10 +83,6 @@
 		<version.logbackExtSpring>0.1.1</version.logbackExtSpring>
 
 		<version.quartz>1.5.2</version.quartz>
-
-		<version.poi>3.11</version.poi>
-		<!-- 新版poi需要这个jar -->
-		<!-- <version.ooxml-schemas>1.1</version.ooxml-schemas> -->
 
 		<version.servlet-api>2.5</version.servlet-api>
 		<version.slf4j>1.7.7</version.slf4j>
@@ -581,12 +572,6 @@
 				</exclusions>
 			</dependency>
 
-			<dependency>
-				<groupId>org.fusesource.jansi</groupId>
-				<artifactId>jansi</artifactId>
-				<version>${version.jansi}</version>
-			</dependency>
-
 			<!-- *********************json******************************* -->
 
 			<!-- org.json -->
@@ -767,23 +752,6 @@
 
 	<!--********************************build****************************************** -->
 	<build>
-		<!-- <directory>${basedir}/target</directory>
-			<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-			<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
-			<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-			<outputDirectory>${basedir}/target/classes</outputDirectory>
-			<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
-			<resources>
-			<resource>
-			<directory>${basedir}/src/main/resources</directory>
-			</resource>
-			</resources>
-			<testResources>
-			<testResource>
-			<directory>${basedir}/src/test/resources</directory>
-			</testResource>
-			</testResources> -->
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -802,9 +770,7 @@
 					<noJekyll>true</noJekyll>
 
 					<!-- matches distribution management repository url above -->
-					<!---->
 					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-					<!-- <outputDirectory>file://${user.home}/feilong/repository</outputDirectory> -->
 
 					<merge>true</merge>
 

@@ -10,6 +10,10 @@
 	<name>feilong-office-word</name>
 	<description>feilong-office-word</description>
 
+	<properties>
+		<version.jacob>1.14.3</version.jacob>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.feilong.platform.commons</groupId>
