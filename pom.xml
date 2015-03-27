@@ -44,7 +44,6 @@
 			for
 			maintaining HttpClient with it. -->
 		<version.commons-httpclient>3.1</version.commons-httpclient>
-		<version.httpcomponents>4.3.3</version.httpcomponents>
 
 		<version.commons-lang>2.6</version.commons-lang>
 		<version.commons-lang3>3.3.2</version.commons-lang3>
@@ -54,8 +53,6 @@
 		<version.commons-io>2.4</version.commons-io>
 		<version.commons-net>3.2</version.commons-net>
 		<version.commons-jexl>2.1.1</version.commons-jexl>
-
-		<version.cxf>2.7.11</version.cxf>
 
 		<version.dom4j>1.6.1</version.dom4j>
 
@@ -180,7 +177,7 @@
 		<maven-javadoc-plugin.charset>${project.build.sourceEncoding}</maven-javadoc-plugin.charset>
 		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
 		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
-		
+
 		<maven-javadoc-plugin.outputDirectory>file://${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.outputDirectory>
 		<maven-javadoc-plugin.reportOutputDirectory>${user.home}/feilong/javadoc/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
@@ -502,25 +499,6 @@
 				<groupId>commons-httpclient</groupId>
 				<artifactId>commons-httpclient</artifactId>
 				<version>${version.commons-httpclient}</version>
-			</dependency>
-
-			<!-- httpcore -->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpcore</artifactId>
-				<version>${version.httpcomponents}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpmime</artifactId>
-				<version>${version.httpcomponents}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>${version.httpcomponents}</version>
 			</dependency>
 
 			<!-- commons-beanutils -->

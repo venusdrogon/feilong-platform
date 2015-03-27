@@ -10,9 +10,11 @@
 	<name>feilong-net-httpComponents</name>
 	<description>feilong-net-httpcomponents</description>
 
+	<properties>
+		<version.httpcomponents>4.3.3</version.httpcomponents>
+	</properties>
+
 	<dependencies>
-
-
 		<!--
 			HttpCore is a set of low level HTTP transport components that can be used to build custom client and server side HTTP services with a minimal footprint.
 
@@ -24,11 +26,13 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
+			<version>${version.httpcomponents}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
+			<version>${version.httpcomponents}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>httpclient</artifactId>
@@ -48,6 +52,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
+			<version>${version.httpcomponents}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>commons-logging</artifactId>

@@ -136,26 +136,11 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 
-
 		<!-- ********************************** -->
 		<dependency>
 			<groupId>soap</groupId>
 			<artifactId>soap</artifactId>
 			<version>2.3.1</version>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${version.cxf}</version>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>${version.cxf}</version>
 			<optional>true</optional>
 		</dependency>
 
