@@ -15,7 +15,6 @@
  */
 package com.feilong.framework.bind.parse;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
@@ -24,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
-import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.lang.reflect.TypeUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.bind.exception.BuildCommandException;
@@ -44,6 +42,8 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * {@link com.feilong.framework.bind.parse.varcommand.VarName} 标识,可以来处理 XML中字段可能全部是大写 比如BANK,但是javabean 中的字段却是 bank,可以使用下面的代码来实现隐射
  * 
  * <pre>
+ * 
+ * 
  * 
  * 
  * 
@@ -88,24 +88,20 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
         }
 
         if (log.isDebugEnabled()){
-            try{
-                // Writer writer = new StringWriter();
-                // log.info(Dom4jUtil.format(wddxPacketXML, CharsetType.UTF8, writer));
+            // Writer writer = new StringWriter();
+            // log.info(Dom4jUtil.format(wddxPacketXML, CharsetType.UTF8, writer));
 
-                // Dom4jUtil.getElementText(element, "TRANSACTIONSTATUS");
+            // Dom4jUtil.getElementText(element, "TRANSACTIONSTATUS");
 
-                // XStream xstream = new XStream();
-                // String xml = xstream.toXML(wddxPacketXML);
-                // log.info(xml);
+            // XStream xstream = new XStream();
+            // String xml = xstream.toXML(wddxPacketXML);
+            // log.info(xml);
 
-                // 不要和下面的log 合并, 下面的log 可能会有异常
-                log.debug("xml:{}", xml);
+            // 不要和下面的log 合并, 下面的log 可能会有异常
+            log.debug("xml:{}", xml);
 
-                Writer writer = new StringWriter();
-                log.debug("formatXML:{}", Dom4jUtil.format(xml, CharsetType.UTF8, writer));
-            }catch (IOException e){
-                throw new UncheckedIOException(e);
-            }
+            Writer writer = new StringWriter();
+            log.debug("formatXML:{}", Dom4jUtil.format(xml, CharsetType.UTF8, writer));
         }
 
         // 解析 wddxPacketXML ,获得我们需要的 var name 和值.

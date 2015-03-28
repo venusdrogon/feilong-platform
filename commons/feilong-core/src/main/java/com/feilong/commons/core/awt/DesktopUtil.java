@@ -30,9 +30,10 @@ import com.feilong.commons.core.net.URIUtil;
 
 /**
  * 允许 Java应用程序启动已在本机桌面上注册的关联应用程序，以及处理 URI 或文件 .
- * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2011-5-5 下午05:07:45
+ * @version 1.0.0 2011-5-5 下午05:07:45
+ * @see java.awt.Desktop
  * @since 1.0.0
  * @since jdk 1.6
  */
@@ -68,6 +69,35 @@ public final class DesktopUtil{
                 // 获取系统默认浏览器打开链接
                 try{
                     desktop.browse(uri);
+                }catch (IOException e){
+                    throw new UncheckedIOException(e);
+                }
+            }
+        }else{
+            log.error("don't Support Desktop");
+        }
+    }
+
+    /**
+     * 发送邮件.
+     *
+     * @param mail
+     *            the mail
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @see java.awt.Desktop#mail(URI)
+     */
+    public static void mail(String mail) throws UncheckedIOException{
+        // 判断当前系统是否支持Java AWT Desktop扩展
+        if (Desktop.isDesktopSupported()){
+            // 获取当前系统桌面扩展
+            Desktop desktop = Desktop.getDesktop();
+
+            if (desktop.isSupported(Desktop.Action.MAIL)){
+                // 创建一个URI实例
+                URI uri = URIUtil.create(mail, CharsetType.UTF8);
+                try{
+                    desktop.mail(uri);
                 }catch (IOException e){
                     throw new UncheckedIOException(e);
                 }

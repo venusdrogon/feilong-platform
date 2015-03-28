@@ -161,6 +161,10 @@ final class OnewayEncryption{
      * @see java.security.MessageDigest#digest()
      */
     public static String encodeFile(OnewayType onewayType,String filePath) throws IllegalArgumentException,EncryptionException{
+        if (Validator.isNullOrEmpty(filePath)){
+            throw new NullPointerException("filePath can't be null/empty!");
+        }
+
         File file = new File(filePath);
 
         if (!file.exists()){
@@ -176,11 +180,14 @@ final class OnewayEncryption{
             FileInputStream fileInputStream = new FileInputStream(file);
             byte buffer[] = new byte[1024];
             int len;
+
             while ((len = fileInputStream.read(buffer, 0, 1024)) != -1){
                 messageDigest.update(buffer, 0, len);
             }
             fileInputStream.close();
+
             byte[] bytes = messageDigest.digest();
+
             // 该数的正负号（-1 表示负，0 表示零，1 表示正）
             BigInteger bigInt = new BigInteger(1, bytes);
             return bigInt.toString(16);

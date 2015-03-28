@@ -54,7 +54,7 @@ public class URIUtilTest{
     public void down() throws IOException{
         String url = "http://www.kenwen.com/egbk/31/31186/4395342.txt";
         String directoryName = SpecialFolder.getDesktop();
-        URIUtil.down(url, directoryName);
+        URIUtil.download(url, directoryName);
     }
 
     /**

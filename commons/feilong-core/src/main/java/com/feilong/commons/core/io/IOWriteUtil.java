@@ -214,7 +214,9 @@ public final class IOWriteUtil{
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @since 1.0.8
+     * @deprecated use {@link #writeUseNIO(int, InputStream, OutputStream)}
      */
+    @Deprecated
     private static void writeUseIO(int bufferLength,InputStream inputStream,OutputStream outputStream) throws UncheckedIOException{
         int i = 0;
         int sumSize = 0;
@@ -294,7 +296,8 @@ public final class IOWriteUtil{
      * @see CharsetType
      */
     public static void write(String filePath,String content) throws UncheckedIOException,IllegalArgumentException{
-        write(filePath, content, null);
+        String encode = null;
+        write(filePath, content, encode);
     }
 
     /**

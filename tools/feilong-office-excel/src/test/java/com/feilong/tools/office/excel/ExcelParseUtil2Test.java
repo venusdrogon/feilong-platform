@@ -15,7 +15,6 @@
  */
 package com.feilong.tools.office.excel;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -29,6 +28,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
@@ -50,7 +50,7 @@ public class ExcelParseUtil2Test{
     @Test
     public void parse() throws IOException{
         String name = "E:\\Workspaces\\feilong\\feilong-platform\\tools\\feilong-office-excel\\src\\test\\resources\\Kota Surabaya.xlsx";
-        InputStream inputStream = new FileInputStream(name);
+        InputStream inputStream = FileUtil.getFileInputStream(name);
 
         // 2013
         Workbook workbook = new XSSFWorkbook(inputStream);

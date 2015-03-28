@@ -10,6 +10,10 @@
 	<name>feilong-net-filetransfer</name>
 	<description>feilong-net-filetransfer</description>
 
+	<properties>
+		<version.jsch>0.1.51</version.jsch>
+	</properties>
+
 	<dependencies>
 
 		<!-- commons-net -->
@@ -50,9 +54,9 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-				<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-vfs2</artifactId> <version>2.0</version> </dependency> -->
+
+		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-vfs2</artifactId> <version>2.0</version> </dependency> -->
 		<!-- <dependency> <groupId>commons-vfs</groupId> <artifactId>commons-vfs</artifactId> <version>1.0</version> </dependency> -->
-		
+
 	</dependencies>
 </project>

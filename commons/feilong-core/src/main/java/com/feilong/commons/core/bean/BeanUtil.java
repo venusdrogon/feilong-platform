@@ -174,8 +174,6 @@ public final class BeanUtil{
      */
     public static <T> T cloneBean(T bean) throws BeanUtilException{
         try{
-            //BeanUtils.createCache();
-
             //Clone a bean based on the available property getters and setters, even if the bean class itself does not implement Cloneable.
             @SuppressWarnings("unchecked")
             T cloneBean = (T) BeanUtils.cloneBean(bean);
@@ -202,7 +200,6 @@ public final class BeanUtil{
      * 
      * 在赋值的时候,虽然调用了 {@link org.apache.commons.beanutils.BeanUtilsBean#getNestedProperty(Object, String)}, 虽然也调用了 ConvertUtilsBean来转换 <br>
      * 但是 {@link org.apache.commons.beanutils.ConvertUtilsBean#ConvertUtilsBean()} 默认的构造函数 是使用标准的转换
-     * 
      * 
      * </p>
      * 

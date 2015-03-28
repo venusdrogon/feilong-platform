@@ -45,7 +45,9 @@ import com.feilong.commons.core.io.UncheckedIOException;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午10:08:30
  * @since 1.0.0
+ * @deprecated 类名可能定位不准确 需要重构
  */
+@Deprecated
 public final class XmlConfigure implements BaseConfigure{
 
     /** The Constant log. */

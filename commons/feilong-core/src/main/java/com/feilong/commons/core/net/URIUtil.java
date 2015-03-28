@@ -46,7 +46,7 @@ import com.feilong.commons.core.util.Validator;
  * 处理url uri 等.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-6-11 上午02:06:43
+ * @version 1.0.0 2010-6-11 上午02:06:43
  * @see java.net.URI
  * @see java.net.URL
  * @see URIComponents
@@ -65,7 +65,7 @@ public final class URIUtil{
     }
 
     /**
-     * 将网络文件 下载到文件夹.
+     * 将网络文件下载到文件夹.<br>
      * 取到网络文件的文件名 原样下载到目标文件夹.
      *
      * @param urlString
@@ -75,10 +75,20 @@ public final class URIUtil{
      *            目标文件夹
      * @throws IOException
      *             the IO exception
+     * @throws NullPointerException
+     *             if isNullOrEmpty(urlString) or isNullOrEmpty(directoryName)
      * @see IOWriteUtil#write(InputStream, String, String)
      */
-    public static void down(String urlString,String directoryName) throws IOException{
+    public static void download(String urlString,String directoryName) throws IOException,NullPointerException{
+        if (Validator.isNullOrEmpty(urlString)){
+            throw new NullPointerException("urlString can't be null/empty!");
+        }
+        if (Validator.isNullOrEmpty(directoryName)){
+            throw new NullPointerException("directoryName can't be null/empty!");
+        }
+
         log.info("begin download,urlString:{},directoryName:{}", urlString, directoryName);
+
         URL url = new URL(urlString);
         InputStream inputStream = url.openStream();
 
@@ -86,18 +96,19 @@ public final class URIUtil{
         String fileName = file.getName();
 
         IOWriteUtil.write(inputStream, directoryName, fileName);
+
         log.info("end download,url:{},directoryName:{}", urlString, directoryName);
     }
 
     /**
-     * 基于 url字符串和charset创建 {@link URI} <br>
+     * 基于 url字符串和charset创建 {@link URI}. <br>
      * 内部调用 {@link URI#create(String)}方法<br>
      * 
      * <p>
      * 如果url中不含?等参数,直接调用 {@link URI#create(String)}创建<br>
      * 如果如果url中含?等参数,那么内部会调用 {@link #getEncodedUrlByArrayMap(String, Map, String)}获得新的url,再调用 调用 {@link URI#create(String)}创建
      * </p>
-     * .
+     * 
      *
      * @param url
      *            url

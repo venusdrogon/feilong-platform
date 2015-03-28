@@ -16,7 +16,10 @@
 package com.feilong.framework.bind.parse;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.bind.parse.base.StandardXpathExpressionXmlParse;
 
 /**
@@ -27,6 +30,9 @@ import com.feilong.framework.bind.parse.base.StandardXpathExpressionXmlParse;
  * @since 1.0.8
  */
 public class ItemDtoStandardXpathExpressionXmlParseTest{
+
+    /** The Constant log. */
+    private static final Logger log = LoggerFactory.getLogger(ItemDtoStandardXpathExpressionXmlParseTest.class);
 
     /**
      * Test parse xml.
@@ -45,5 +51,10 @@ public class ItemDtoStandardXpathExpressionXmlParseTest{
         String xpathExpression = "/item/*";
         XmlParse<ItemDto> queryResultXmlParse = new StandardXpathExpressionXmlParse<ItemDto>(ItemDto.class, xpathExpression);
         ItemDto itemDto = queryResultXmlParse.parseXML(xml);
+
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(itemDto));
+        }
+
     }
 }

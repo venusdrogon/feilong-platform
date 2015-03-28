@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -48,19 +49,20 @@ public final class Dom4jUtil{
 
     /**
      * 将字符串转为Document.
-     * 
+     *
      * @param xmlString
      *            xml格式的字符串
      * @return the document
+     * @throws Dom4jException
+     *             the dom4j exception
      */
-    public static Document string2Document(String xmlString){
+    public static Document string2Document(String xmlString) throws Dom4jException{
         try{
             Document document = DocumentHelper.parseText(xmlString);
             return document;
         }catch (DocumentException e){
-            log.error(e.getClass().getName(), e);
+            throw new Dom4jException(e);
         }
-        return null;
     }
 
     /**
@@ -69,22 +71,26 @@ public final class Dom4jUtil{
      * @param file
      *            the file
      * @return the document
-     * @throws IOException
-     *             the IO exception
+     * @throws Dom4jException
+     *             the dom4j exception
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static Document getDocument(String file) throws IOException{
+    public static Document getDocument(String file) throws Dom4jException,UncheckedIOException{
         InputStream inputStream = FileUtil.getFileInputStream(file);
         return getDocument(inputStream);
     }
 
     /**
      * Gets the document.
-     * 
+     *
      * @param inputStream
      *            the input stream
      * @return the document
+     * @throws Dom4jException
+     *             the dom4j exception
      */
-    public static Document getDocument(InputStream inputStream){
+    public static Document getDocument(InputStream inputStream) throws Dom4jException{
         if (null == inputStream){
             throw new IllegalArgumentException("inputStream can't be null");
         }
@@ -93,9 +99,8 @@ public final class Dom4jUtil{
             Document document = reader.read(inputStream);
             return document;
         }catch (DocumentException e){
-            log.error(e.getClass().getName(), e);
+            throw new Dom4jException(e);
         }
-        return null;
     }
 
     /**
@@ -207,7 +212,7 @@ public final class Dom4jUtil{
 
     // [end]
     /**
-     * 格式化输出 xml<br>
+     * 格式化输出 xml.<br>
      * 
      * <pre>
      * {@code
@@ -277,7 +282,7 @@ public final class Dom4jUtil{
      * 
      * }
      * </pre>
-     * 
+     *
      * @param xmlString
      *            the xml string
      * @param encoding
@@ -285,10 +290,11 @@ public final class Dom4jUtil{
      * @param writer
      *            the writer
      * @return the string
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @throws Dom4jException
+     *             the dom4j exception
+     * @since 1.0.8
      */
-    public static String format(String xmlString,String encoding,Writer writer) throws IOException{
+    public static String format(String xmlString,String encoding,Writer writer) throws Dom4jException{
 
         OutputFormat outputFormat = OutputFormat.createPrettyPrint(); // 设置XML文档输出格式
         outputFormat.setEncoding(encoding); // 设置XML文档的编码类型
@@ -301,9 +307,13 @@ public final class Dom4jUtil{
         xmlWriter.setEscapeText(false);
 
         Document document = string2Document(xmlString);
-        xmlWriter.write(document);
-        xmlWriter.close();
+        try{
+            xmlWriter.write(document);
+            xmlWriter.close();
 
-        return writer.toString();
+            return writer.toString();
+        }catch (IOException e){
+            throw new Dom4jException(e);
+        }
     }
 }

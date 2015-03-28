@@ -15,8 +15,6 @@
  */
 package com.feilong.framework.bind.parse;
 
-import com.feilong.framework.bind.exception.BuildCommandException;
-
 /**
  * The Interface QueryResultXmlParse.
  *

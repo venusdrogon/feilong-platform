@@ -247,7 +247,7 @@ public class FeiLongJinBaoWangCrawler{
                 destination = directoryName + "/" + skuCode;
                 log.info("begin down sku:" + skuCode);
                 for (String image : images){
-                    URIUtil.down(image, destination);
+                    URIUtil.download(image, destination);
                 }
                 log.info(skuCode + " down over");
             }
