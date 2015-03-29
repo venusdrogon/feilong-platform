@@ -82,7 +82,7 @@
 		<version.logbackExtSpring>0.1.1</version.logbackExtSpring>
 
 		<version.servlet-api>2.5</version.servlet-api>
-		<version.slf4j>1.7.7</version.slf4j>
+		<version.slf4j>1.7.12</version.slf4j>
 
 		<version.spring>3.2.12.RELEASE</version.spring>
 

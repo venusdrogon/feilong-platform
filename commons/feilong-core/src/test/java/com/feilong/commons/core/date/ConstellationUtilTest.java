@@ -38,13 +38,13 @@ import org.slf4j.LoggerFactory;
 public class ConstellationUtilTest extends TestCase{
 
     /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(ConstellationUtilTest.class);
+    private static final Logger     log = LoggerFactory.getLogger(ConstellationUtilTest.class);
 
     /** The f expected. */
-    private ConstellationType   fExpected;
+    private final ConstellationType fExpected;
 
     /** The f input. */
-    private String              birthday;
+    private final String            birthday;
 
     /**
      * The Constructor.
@@ -65,7 +65,7 @@ public class ConstellationUtilTest extends TestCase{
      * @return the collection
      */
     @Parameters
-    public static Collection data(){
+    public static Collection<?> data(){
         return Arrays.asList(new Object[][] {
                 { ConstellationType.CAPRICORN, "1986-12-22" },
                 { ConstellationType.CAPRICORN, "1986-12-25" },
