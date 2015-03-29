@@ -47,8 +47,8 @@ public class DateUtilTest extends BaseDateUtilTest{
     public void testDateUtilTest(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(2014, Calendar.DECEMBER, 29);
-        log.info(DateUtil.date2String(calendar.getTime(), "yyyy-MM-dd"));
-        log.info(DateUtil.date2String(calendar.getTime(), "YYYY-MM-dd"));
+        log.debug(DateUtil.date2String(calendar.getTime(), "yyyy-MM-dd"));
+        log.debug(DateUtil.date2String(calendar.getTime(), "YYYY-MM-dd"));
     }
 
     /**
@@ -64,7 +64,7 @@ public class DateUtilTest extends BaseDateUtilTest{
 
         for (int i = 0; i < ihour; ++i){
             for (int j = 0; j < 60; ++j){
-                log.info("0" + i + ":" + StringUtil.format("%02d", j));
+                log.debug("0" + i + ":" + StringUtil.format("%02d", j));
             }
         }
     }
@@ -75,10 +75,10 @@ public class DateUtilTest extends BaseDateUtilTest{
     @Test
     public void test1(){
         Calendar calendar = DateUtil.toCalendar(TESTDATE_20141231013024);
-        log.info(calendar.getActualMaximum(Calendar.SECOND) + "");
-        log.info(calendar.getTimeInMillis() + "");
-        log.info(calendar.hashCode() + "");
-        log.info(DateUtil.getDayOfMonth(NOW) + "");
+        log.debug(calendar.getActualMaximum(Calendar.SECOND) + "");
+        log.debug(calendar.getTimeInMillis() + "");
+        log.debug(calendar.hashCode() + "");
+        log.debug(DateUtil.getDayOfMonth(NOW) + "");
     }
 
     /**
@@ -87,7 +87,7 @@ public class DateUtilTest extends BaseDateUtilTest{
      */
     @Test
     public void getSecondOfDay(){
-        log.info(DateUtil.getSecondOfDay(NOW) + "");
+        log.debug(DateUtil.getSecondOfDay(NOW) + "");
     }
 
     /**
@@ -96,7 +96,7 @@ public class DateUtilTest extends BaseDateUtilTest{
      */
     @Test
     public void getSecondOfHour(){
-        log.info(DateUtil.getSecondOfHour(NOW) + "");
+        log.debug(DateUtil.getSecondOfHour(NOW) + "");
     }
 
     /**
@@ -106,8 +106,8 @@ public class DateUtilTest extends BaseDateUtilTest{
     @Test
     public void getDayOfYear(){
         Date date1 = DateUtil.string2Date("2013-01-05", DatePattern.COMMON_DATE);
-        log.info(DateUtil.getDayOfYear(date1) + "");
-        log.info(DateUtil.getDayOfYear(NOW) + "");
+        log.debug(DateUtil.getDayOfYear(date1) + "");
+        log.debug(DateUtil.getDayOfYear(NOW) + "");
     }
 
     /**
@@ -117,10 +117,10 @@ public class DateUtilTest extends BaseDateUtilTest{
     @Test
     public void getHourOfYear(){
 
-        log.info(DateUtil.getHourOfYear(DateUtil.string2Date("2013-01-05 12:00:05", DatePattern.COMMON_DATE_AND_TIME)) + "");
-        log.info(DateUtil.getHourOfYear(DateUtil.string2Date("2013-01-01 00:00:05", DatePattern.COMMON_DATE_AND_TIME)) + "");
-        log.info(DateUtil.getHourOfYear(DateUtil.string2Date("2013-09-16 11:42:22", DatePattern.COMMON_DATE_AND_TIME)) + "");
-        log.info(DateUtil.getHourOfYear(NOW) + "");
+        log.debug(DateUtil.getHourOfYear(DateUtil.string2Date("2013-01-05 12:00:05", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getHourOfYear(DateUtil.string2Date("2013-01-01 00:00:05", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getHourOfYear(DateUtil.string2Date("2013-09-16 11:42:22", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getHourOfYear(NOW) + "");
     }
 
     /**
@@ -310,7 +310,7 @@ public class DateUtilTest extends BaseDateUtilTest{
     @Test
     public void testDate2String(){
         String dateToString = DateUtil.date2String(new Date(), DatePattern.TIMESTAMP_WITH_MILLISECOND);
-        log.info(dateToString);
+        log.debug(dateToString);
     }
 
     /**
@@ -321,11 +321,11 @@ public class DateUtilTest extends BaseDateUtilTest{
         Date date = DateUtil.string2Date(FROMSTRING, DatePattern.COMMON_DATE);
         log.debug(date.toString());
         String dateToString = DateUtil.date2String(date, DatePattern.COMMON_DATE_AND_TIME);
-        log.info(dateToString);
+        log.debug(dateToString);
 
         Date onlineTime = DateUtil.string2Date("20130102140806000", DatePattern.TIMESTAMP_WITH_MILLISECOND);// 商品上线时间
 
-        log.info(onlineTime.toString());
+        log.debug(onlineTime.toString());
     }
 
     /**
@@ -335,8 +335,8 @@ public class DateUtilTest extends BaseDateUtilTest{
     public void testGetIntervalSecond(){
         Date startDate = DateUtil.string2Date("2013-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME);
 
-        log.info(DateUtil.getIntervalSecond(startDate, NOW) + "");
-        log.info(DateUtil.getIntervalSecond(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getIntervalSecond(startDate, NOW) + "");
+        log.debug(DateUtil.getIntervalSecond(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
 
         log.debug(DateUtil.getIntervalSecond(161986) + "");
         log.debug(Integer.MAX_VALUE + "");
@@ -521,9 +521,9 @@ public class DateUtilTest extends BaseDateUtilTest{
     @Test
     public final void getIntervalHour(){
         Date startDate = DateUtil.string2Date("2013-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME);
-        log.info(DateUtil.getIntervalHour(startDate, NOW) + "");
-        log.info(DateUtil.getIntervalHour(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
-        log.info(DateUtil.getIntervalHour(startDate, DateUtil.string2Date("3113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getIntervalHour(startDate, NOW) + "");
+        log.debug(DateUtil.getIntervalHour(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getIntervalHour(startDate, DateUtil.string2Date("3113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
     }
 
     /**
@@ -532,8 +532,8 @@ public class DateUtilTest extends BaseDateUtilTest{
     @Test
     public final void testGetIntervalTime(){
         Date startDate = DateUtil.string2Date("2013-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME);
-        log.info(DateUtil.getIntervalTime(startDate, NOW) + "");
-        log.info(DateUtil.getIntervalTime(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
+        log.debug(DateUtil.getIntervalTime(startDate, NOW) + "");
+        log.debug(DateUtil.getIntervalTime(startDate, DateUtil.string2Date("2113-01-01 00:00:00", DatePattern.COMMON_DATE_AND_TIME)) + "");
 
     }
 
@@ -542,7 +542,7 @@ public class DateUtilTest extends BaseDateUtilTest{
      */
     @Test
     public final void testToCalendar1(){
-        log.info((new Date().getTime() + "").length() + "");
+        log.debug((new Date().getTime() + "").length() + "");
     }
 
     /**
@@ -550,6 +550,6 @@ public class DateUtilTest extends BaseDateUtilTest{
      */
     @Test
     public final void testGetIntervalDay2(){
-        log.info("" + DateUtil.getIntervalDay("2008-08-24", "2008-08-27", "yyyy-MM-dd"));
+        log.debug("" + DateUtil.getIntervalDay("2008-08-24", "2008-08-27", "yyyy-MM-dd"));
     }
 }

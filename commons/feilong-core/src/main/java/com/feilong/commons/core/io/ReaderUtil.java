@@ -22,8 +22,6 @@ import java.io.Reader;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 
-import com.feilong.commons.core.lang.SystemUtil;
-
 /**
  * {@link java.io.Reader} 工具类
  *

@@ -64,7 +64,7 @@
 		<version.javamail>1.4.7</version.javamail>
 
 		<!-- org.json -->
-		<version.org.json>20140107</version.org.json>
+		<version.org.json>20141113</version.org.json>
 
 		<!-- net.sf.json-lib -->
 		<version.json-lib>2.4</version.json-lib>
