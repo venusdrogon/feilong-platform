@@ -16,8 +16,6 @@
 	<description>${project.name} ${project.version} API</description>
 
 	<modules>
-		<module>feilong-application-taobao</module>
-		<module>feilong-application-weibo</module>
 		<module>feilong-struts1</module>
 		<module>feilong-office-excel</module>
 		<module>feilong-office-word</module>
@@ -36,7 +34,6 @@
 		<module>feilong-tools-om</module>
 		<module>feilong-tools-scm</module>
 		<module>feilong-tools-xstream</module>
-		<module>feilong-application-weather</module>
 		<module>feilong-tools-zookeeper</module>
 		<module>feilong-chart-core</module>
 		<module>feilong-chart-amcharts</module>
