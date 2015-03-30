@@ -26,7 +26,7 @@ Reduce development, Release ideas
 		<repositories>
 			<repository>
 				<id>feilong-repository</id>
-				<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
+				<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
 			</repository>
 		</repositories>
 		
