@@ -76,7 +76,7 @@ public class BeanUtilTest{
         member.setId(memberId);
         member.setLoginName("feilong");
 
-        Map<String, String> loveMap = new HashMap<>();
+        Map<String, String> loveMap = new HashMap<String, String>();
         loveMap.put("蜀国", "赵子龙");
         loveMap.put("魏国", "张文远");
         loveMap.put("吴国", "甘兴霸");

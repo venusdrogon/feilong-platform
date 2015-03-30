@@ -15,7 +15,6 @@
  */
 package com.feilong.commons.core.bean;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -74,7 +73,7 @@ public final class PropertyUtil{
             //Return the entire set of properties for which the specified bean provides a read method.
             Map<String, Object> propertyMap = PropertyUtils.describe(bean);
             return propertyMap;
-        }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -141,7 +140,7 @@ public final class PropertyUtil{
 
             // PropertyUtils的功能类似于BeanUtils,但在底层不会对传递的数据做转换处理
             PropertyUtils.setProperty(bean, name, value);
-        }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -215,7 +214,7 @@ public final class PropertyUtil{
             @SuppressWarnings("unchecked")
             T propertyValue = (T) PropertyUtils.getProperty(bean, name);
             return propertyValue;
-        }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }

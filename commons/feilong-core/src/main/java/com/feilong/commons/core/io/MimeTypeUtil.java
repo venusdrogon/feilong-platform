@@ -17,7 +17,6 @@ package com.feilong.commons.core.io;
 
 import java.net.FileNameMap;
 import java.net.URLConnection;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,7 +83,7 @@ public final class MimeTypeUtil{
      * @see org.apache.commons.io.FilenameUtils#getExtension(String)
      * @see java.net.URLConnection#guessContentTypeFromName(String)
      * @see java.net.URLConnection#guessContentTypeFromStream(java.io.InputStream)
-     * @see Files#probeContentType(java.nio.file.Path)
+     * @see java.nio.file.Files#probeContentType(java.nio.file.Path)
      */
     public static String getContentTypeByFileName(String fileName){
 

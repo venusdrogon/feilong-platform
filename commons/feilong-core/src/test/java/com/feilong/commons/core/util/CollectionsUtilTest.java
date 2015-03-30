@@ -203,7 +203,7 @@ public class CollectionsUtilTest{
      */
     @Test
     public void testCollectionsUtilTest2(){
-        Stack<Object> stack = new Stack<>();
+        Stack<Object> stack = new Stack<Object>();
 
         stack.add("1");
         stack.add("2");

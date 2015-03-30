@@ -16,7 +16,6 @@
 package com.feilong.commons.core.bean;
 
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -178,7 +177,7 @@ public final class BeanUtil{
             @SuppressWarnings("unchecked")
             T cloneBean = (T) BeanUtils.cloneBean(bean);
             return cloneBean;
-        }catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -221,7 +220,7 @@ public final class BeanUtil{
             //Return the entire set of properties for which the specified bean provides a read method.
             Map<String, String> propertyMap = BeanUtils.describe(bean);
             return propertyMap;
-        }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -247,7 +246,7 @@ public final class BeanUtil{
     public static void populate(Object bean,Map<String, ?> properties) throws BeanUtilException{
         try{
             BeanUtils.populate(bean, properties);
-        }catch (IllegalAccessException | InvocationTargetException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -292,7 +291,7 @@ public final class BeanUtil{
         }
         try{
             BeanUtils.copyProperties(toObj, fromObj);
-        }catch (IllegalAccessException | InvocationTargetException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -419,7 +418,7 @@ public final class BeanUtil{
     public static void copyProperty(Object bean,String propertyName,Object value) throws BeanUtilException{
         try{
             BeanUtils.copyProperty(bean, propertyName, value);
-        }catch (IllegalAccessException | InvocationTargetException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -489,7 +488,7 @@ public final class BeanUtil{
             // BeanUtils支持把所有类型的属性都作为字符串处理
             // 在后台自动进行类型转换(字符串和真实类型的转换)
             BeanUtils.setProperty(bean, name, value);
-        }catch (IllegalAccessException | InvocationTargetException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }
@@ -560,7 +559,7 @@ public final class BeanUtil{
         try{
             String propertyValue = BeanUtils.getProperty(bean, name);
             return propertyValue;
-        }catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+        }catch (Exception e){
             log.error(e.getClass().getName(), e);
             throw new BeanUtilException(e);
         }

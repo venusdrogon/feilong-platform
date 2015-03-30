@@ -16,9 +16,6 @@
 package com.feilong.commons.core.io;
 
 import java.io.IOException;
-import java.io.InvalidObjectException;
-import java.io.ObjectInputStream;
-import java.util.Objects;
 
 /**
  * Wraps an {@link IOException} with an unchecked exception.
@@ -43,7 +40,7 @@ public class UncheckedIOException extends RuntimeException{
      *            the {@code IOException}
      */
     public UncheckedIOException(String message, IOException cause){
-        super(message, Objects.requireNonNull(cause));
+        super(message, cause);
     }
 
     /**
@@ -53,7 +50,7 @@ public class UncheckedIOException extends RuntimeException{
      *            the {@code IOException}
      */
     public UncheckedIOException(IOException cause){
-        super(Objects.requireNonNull(cause));
+        super(cause);
     }
 
     /**
@@ -64,23 +61,5 @@ public class UncheckedIOException extends RuntimeException{
     @Override
     public IOException getCause(){
         return (IOException) super.getCause();
-    }
-
-    /**
-     * Called to read the object from a stream.
-     *
-     * @param s
-     *            the s
-     * @throws IOException
-     *             the IO exception
-     * @throws ClassNotFoundException
-     *             the class not found exception
-     */
-    private void readObject(ObjectInputStream s) throws IOException,ClassNotFoundException{
-        s.defaultReadObject();
-        Throwable cause = super.getCause();
-        if (!(cause instanceof IOException)){
-            throw new InvalidObjectException("Cause must be an IOException");
-        }
     }
 }

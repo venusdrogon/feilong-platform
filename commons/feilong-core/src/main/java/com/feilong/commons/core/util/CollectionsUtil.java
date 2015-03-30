@@ -458,7 +458,7 @@ public final class CollectionsUtil{
      * @see com.feilong.commons.core.util.ArrayUtil#isContain(V[], V)
      * @since 1.0.9
      */
-    @SafeVarargs
+    //@SafeVarargs
     private static <V> Predicate getArrayContainsPredicate(final String propertyName,final V...values){
         Predicate predicate = new Predicate(){
 

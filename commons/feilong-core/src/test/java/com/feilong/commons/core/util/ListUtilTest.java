@@ -69,7 +69,7 @@ public class ListUtilTest{
 
         String[] array2 = list.toArray(new String[list.size()]);
 
-        List<String> asList = new ArrayList<>(Arrays.asList(array2));
+        List<String> asList = new ArrayList<String>(Arrays.asList(array2));
         asList.add("小黑");
         if (log.isDebugEnabled()){
             log.debug(JsonUtil.format(asList));
@@ -108,7 +108,7 @@ public class ListUtilTest{
     public void testListUtilTest(){
         User student = null;
         long begin1 = System.currentTimeMillis();
-        List<User> list1 = new ArrayList<>();
+        List<User> list1 = new ArrayList<User>();
         for (Long i = 0L; i < 1000000; i++){
             student = new User(i);
             list1.add(student);
@@ -119,7 +119,7 @@ public class ListUtilTest{
         //*******************************************************
 
         long begin2 = System.currentTimeMillis();
-        List<User> list2 = new ArrayList<>(1000000);
+        List<User> list2 = new ArrayList<User>(1000000);
         for (Long i = 0L; i < 1000000; i++){
             student = new User(i);
             list2.add(student);

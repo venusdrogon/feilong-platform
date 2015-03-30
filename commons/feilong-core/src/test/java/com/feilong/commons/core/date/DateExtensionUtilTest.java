@@ -117,7 +117,7 @@ public class DateExtensionUtilTest extends BaseDateUtilTest{
      */
     @Test
     public void testDateUtilTest(){
-        List<Date> dateList = new ArrayList<>();
+        List<Date> dateList = new ArrayList<Date>();
         dateList.add(new Date());
         dateList.add(new Date());
         dateList.add(new Date());
