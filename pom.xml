@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.10-SNAPSHOT</version>
+	<version>1.1.0</version>
 
 	<name>feilong-platform</name>
 	<description>Reduce development, Release ideas</description>
