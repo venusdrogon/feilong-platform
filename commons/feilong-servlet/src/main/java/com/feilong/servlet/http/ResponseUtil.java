@@ -307,7 +307,10 @@ public final class ResponseUtil{
 
         // Cache-control值为“no-cache”时，访问此页面不会在Internet临时文章夹留下页面备份。
         response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
-        response.setDateHeader(HttpHeaders.EXPIRES, 0);
+
+        //In other words Expires: 0 not always leads to immediate resource expiration, 
+        //therefore should be avoided and Expires: -1 or Expires: [some valid date in the past] should be used instead.
+        response.setDateHeader(HttpHeaders.EXPIRES, -1);
     }
 
     //	 [start] PrintWriter
