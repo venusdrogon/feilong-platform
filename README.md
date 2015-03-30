@@ -7,8 +7,8 @@ Reduce development, Release ideas
 #Welcome to feilong-platform.
 
 1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;
-1. 基于maven2.2.1构建;
-1. 需要jdk1.5及以上环境;
+1. 基于maven3.2构建;
+1. 需要jdk1.6及以上环境;
 
 
 # 类和方法介绍: 
@@ -30,13 +30,19 @@ Reduce development, Release ideas
 			</repository>
 		</repositories>
 		
+		....
 		<dependencies>
+			....
 			<dependency>
 				<groupId>com.feilong.platform.commons</groupId>
 				<artifactId>feilong-core</artifactId>
-				<version>1.0.7</version>
+				<version>1.1.0</version>
 			</dependency>
+			....
 		</dependencies>
+		
+		....
+		
 	</project>
 ```
 
@@ -47,28 +53,28 @@ Reduce development, Release ideas
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.1</version>
+      <version>3.3.2</version>
       <scope>compile</scope>
     </dependency>
     
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.8.3</version>
+      <version>1.9.2</version>
       <scope>compile</scope>
     </dependency>
     
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.10</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.6</version>
+      <version>1.7.12</version>
       <scope>compile</scope>
     </dependency>
     
