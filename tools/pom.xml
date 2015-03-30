@@ -40,6 +40,7 @@
 		<module>feilong-chart-jfreechart</module>
 		<module>feilong-tools-log4j</module>
 		<module>feilong-tools-security</module>
+		<module>feilong-tools-quartz</module>
 	</modules>
 
 	<dependencies>
