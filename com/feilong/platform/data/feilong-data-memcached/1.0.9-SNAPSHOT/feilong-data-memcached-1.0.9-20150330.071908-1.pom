@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.data</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.9-SNAPSHOT</version>
+	</parent>
+	<artifactId>feilong-data-memcached</artifactId>
+
+	<properties>
+		<version.memcached>2.5.3</version.memcached>
+		<version.spymemcached>2.11.0</version.spymemcached>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+			<version>${version.spymemcached}</version>
+		</dependency>
+
+		<!-- memcached -->
+		<dependency>
+			<groupId>com.danga</groupId>
+			<artifactId>memcached</artifactId>
+			<version>${version.memcached}</version>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>
