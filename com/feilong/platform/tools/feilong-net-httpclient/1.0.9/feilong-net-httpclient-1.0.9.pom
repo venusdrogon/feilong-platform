@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>com.feilong.platform.tools</groupId>
+		<version>1.0.9</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>feilong-net-httpclient</artifactId>
+	<name>feilong-net-httpclient</name>
+	<description>feilong-net-httpclient</description>
+
+	<dependencies>
+
+		<!-- The Commons HttpClient project is now end of life, and is no longer being developed. It has been replaced by the Apache HttpComponents project in its HttpClient
+			and HttpCore modules, which offer better performance and more flexibility. -->
+
+
+		<!-- History
+			HttpClient was started in 2001 as a subproject of the Jakarta Commons, based on code developed by the Jakarta Slide project. It was promoted out of the Commons
+			in
+			2004, graduating to a separate Jakarta project. In 2005, the HttpComponents project at Jakarta was created, with the task of developing a successor to HttpClient
+			3.x and to maintain the existing codebase until the new one is ready to take over. The Commons project, cradle of HttpClient, left Jakarta in 2007 to become an
+			independent
+			Top Level Project. Later in the same year, the HttpComponents project also left Jakarta to become an independent Top Level Project, taking the responsibility
+			for
+			maintaining HttpClient with it. -->
+
+
+		<!-- commons-httpclient -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
