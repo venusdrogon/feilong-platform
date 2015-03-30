@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.9-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<groupId>com.feilong.platform.tools</groupId>
+	<artifactId>parent</artifactId>
+
+	<packaging>pom</packaging>
+
+	<name>feilong-tools-parent</name>
+	<description>${project.name} ${project.version} API</description>
+
+	<modules>
+		<module>feilong-struts1</module>
+		<module>feilong-office-excel</module>
+		<module>feilong-office-word</module>
+		<module>feilong-office-pdf</module>
+		<module>feilong-ssh</module>
+		<module>feilong-spring</module>
+		<module>feilong-net-filetransfer</module>
+		<module>feilong-net-httpclient</module>
+		<module>feilong-net-httpcomponents</module>
+		<module>feilong-tools-jsoup</module>
+		<module>feilong-tools-velocity</module>
+		<module>feilong-tools-dom4j</module>
+		<module>feilong-tools-ant</module>
+		<module>feilong-tools-middleware</module>
+		<module>feilong-tools-mail</module>
+		<module>feilong-tools-om</module>
+		<module>feilong-tools-scm</module>
+		<module>feilong-tools-xstream</module>
+		<module>feilong-tools-zookeeper</module>
+		<module>feilong-chart-core</module>
+		<module>feilong-chart-amcharts</module>
+		<module>feilong-chart-jfreechart</module>
+		<module>feilong-tools-log4j</module>
+		<module>feilong-tools-security</module>
+		<module>feilong-tools-quartz</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+	</dependencies>
+</project>
