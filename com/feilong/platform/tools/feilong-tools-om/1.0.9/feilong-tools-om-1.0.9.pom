@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.9</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>feilong-tools-om</artifactId>
+	<name>feilong-tools-om</name>
+	<description>feilong-tools-om</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-net-httpclient</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-mail</artifactId>
+			<version>${version.feilong-platform}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>velocity-tools</artifactId>
+					<groupId>org.apache.velocity</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${v.maven-shade-plugin}</version>
+				<executions>
+					<execution>
+						<!-- package -->
+						<phase>site-deploy</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/**</exclude>
+										<exclude>templates/**</exclude>
+									</excludes>
+								</filter>
+
+								<filter>
+									<artifact>com.feilong.platform.commons:feilong-core</artifact>
+									<excludes>
+										<exclude>com/feilong/commons/core/awt/**</exclude>
+										<exclude>com/feilong/commons/core/configure/**</exclude>
+									</excludes>
+								</filter>
+							</filters>
+
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.feilong.tools.om.nginx.StubStatusMain</mainClass>
+								</transformer>
+
+								<!-- <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"> </transformer> -->
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
