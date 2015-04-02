@@ -16,7 +16,7 @@
 package com.feilong.commons.core.lang;
 
 /**
- * 数学工具类.
+ * 数学 {@link java.lang.Math}工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 11, 2013 12:30:10 AM

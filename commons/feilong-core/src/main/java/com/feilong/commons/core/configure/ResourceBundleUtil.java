@@ -35,12 +35,13 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * ResourceBundle 工具类.
+ * {@link ResourceBundle} 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-11 上午10:24:25
  * @see MessageFormatUtil#format(String, Object...)
  * @see java.util.ResourceBundle
+ * @see java.util.PropertyResourceBundle
  * @since 1.0.0
  */
 public final class ResourceBundleUtil implements BaseConfigure{
