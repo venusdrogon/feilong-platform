@@ -7,9 +7,9 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>feilong-spring</artifactId>
-	<name>feilong-spring (will restructure)</name>
-	<description>feilong-spring</description>
+	<artifactId>feilong-spring-core</artifactId>
+	<name>feilong-spring-core (will restructure)</name>
+	<description>feilong-spring-core</description>
 
 	<dependencies>
 		<!-- *******************spring********************************* -->
