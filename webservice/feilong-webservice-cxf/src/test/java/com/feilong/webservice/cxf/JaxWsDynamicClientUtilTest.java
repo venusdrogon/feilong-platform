@@ -59,28 +59,28 @@ public class JaxWsDynamicClientUtilTest{
     private static final Logger log                   = LoggerFactory.getLogger(JaxWsDynamicClientUtilTest.class);
 
     /** The wsdl url. */
-    private String              wsdlUrl               = "https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl";
+    private final String        wsdlUrl               = "https://training.doappx.com/sprintAsia/api/advance.cfc?wsdl";
 
     /** The namespace. */
-    private String              namespace             = "http://api.sprintasia";
+    private final String        namespace             = "http://api.sprintasia";
 
     /** The operation name. */
     private String              operationName         = "transactionQuery";
 
     /** The merchant transaction id. */
-    private String              merchantTransactionID = "010003170001";
+    private final String        merchantTransactionID = "010003170001";
 
     /** The service version. */
-    private String              serviceVersion        = "2.0";
+    private final String        serviceVersion        = "2.0";
 
     /** The site id. */
-    private String              siteID                = "Blanja2";
+    private final String        siteID                = "Blanja2";
 
     /** The transaction id. */
-    private String              transactionID         = "";
+    private final String        transactionID         = "";
 
     /** The transaction type. */
-    private String              transactionType       = "AUTHORIZATION";
+    private final String        transactionType       = "AUTHORIZATION";
 
     /**
      * Call.
@@ -98,6 +98,16 @@ public class JaxWsDynamicClientUtilTest{
                         siteID,
                         transactionID,
                         transactionType);
+        log.info(wddxPacketXML);
+
+    }
+
+    @Test
+    public void call1() throws Exception{
+
+        String wsdlUrl = "http://ho.gymbomate.com/GymboreeHOServices/HOServices.asmx";
+        String operationName = "GetMemPoints";
+        String wddxPacketXML = JaxWsDynamicClientUtil.call(wsdlUrl, operationName, "15001841318");
         log.info(wddxPacketXML);
 
     }

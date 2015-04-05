@@ -40,7 +40,6 @@ public class BackWarnEntity implements Serializable{
      * Instantiates a new back warn entity.
      */
     public BackWarnEntity(){
-
     }
 
     /**

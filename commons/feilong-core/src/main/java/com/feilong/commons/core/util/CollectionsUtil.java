@@ -181,6 +181,7 @@ public final class CollectionsUtil{
 
         T firstT = iterator.next();
         //list.get(0);
+        //TODO 可能有更好的方式
         if (Validator.isNullOrEmpty(firstT)){
             throw new IllegalArgumentException("list's first item can't be null/empty!");
         }
@@ -190,13 +191,13 @@ public final class CollectionsUtil{
         int size = collection.size();
 
         @SuppressWarnings("unchecked")
-        T[] a = (T[]) Array.newInstance(compontType, size);
+        T[] tArray = (T[]) Array.newInstance(compontType, size);
 
         // 如果采用大家常用的把a的length设为0,就需要反射API来创建一个大小为size的数组,而这对性能有一定的影响.
         // 所以最好的方式就是直接把a的length设为Collection的size从而避免调用反射API来达到一定的性能优化.
 
         //注意，toArray(new Object[0]) 和 toArray() 在功能上是相同的. 
-        return collection.toArray(a);
+        return collection.toArray(tArray);
     }
 
     /**

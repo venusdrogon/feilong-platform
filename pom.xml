@@ -221,6 +221,7 @@
 		<module>framework</module>
 		<module>webservice</module>
 		<module>data</module>
+		<module>spring</module>
 	</modules>
 
 	<dependencies>

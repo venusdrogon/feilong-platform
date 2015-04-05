@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.1.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.feilong.platform.spring</groupId>
+	<artifactId>parent</artifactId>
+
+	<description>feilong-spring-parent</description>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>feilong-spring-aop</module>
+		<module>feilong-spring-jdbc</module>
+		<module>feilong-spring-web</module>
+		<module>feilong-spring-context</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.feilong.platform.spring</groupId>
+				<artifactId>feilong-spring-aop</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

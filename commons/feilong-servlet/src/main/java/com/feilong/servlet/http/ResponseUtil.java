@@ -40,10 +40,11 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.servlet.http.entity.HttpHeaders;
 
 /**
- * HttpServletResponse 工具类.
+ * {@link javax.servlet.http.HttpServletResponse} 工具类.
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:26:14
+ * @see javax.servlet.http.HttpServletResponse
  */
 public final class ResponseUtil{
 
@@ -236,7 +237,7 @@ public final class ResponseUtil{
                 //application/x-download
 
                 //.*（ 二进制流，不知道下载文件类型）	application/octet-stream
-                contentType = "application/octet-stream";
+                contentType = MimeType.BIN.getMime();
                 //The HTTP specification recommends setting the Content-Type to application/octet-stream. 
                 //Unfortunately, this causes problems with Opera 6 on Windows (which will display the raw bytes for any file whose extension it doesn't recognize) and on Internet Explorer 5.1 on the Mac (which will display inline content that would be downloaded if sent with an unrecognized type).
             }

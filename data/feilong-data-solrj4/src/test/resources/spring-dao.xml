@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:loxia="http://loxia.benjamin.cn/schema/core"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:loxia="http://loxia.benjamin.cn/schema/core" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://loxia.benjamin.cn/schema/core http://loxia.benjamin.cn/schema/core/loxia-spring-ext.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd		
 		">
-
+	<!--启用spring @AspectJ支持 -->
 	<aop:aspectj-autoproxy />
 	<context:annotation-config />
 
@@ -20,19 +20,18 @@
 	</bean>
 
 	<!-- parentSource -->
-	<bean id="parentSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="true"
-		p:driverClass="org.postgresql.Driver">
+	<bean id="parentSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="true" p:driverClass="org.postgresql.Driver">
 		<property name="user" value="user_nike"></property>
 		<property name="password">
 			<value><![CDATA[user_nike1234]]></value>
 		</property>
 		<property name="minPoolSize" value="5" />
-		<property name="maxPoolSize" value="50" />		
+		<property name="maxPoolSize" value="50" />
 		<property name="initialPoolSize" value="50" />
-		
+
 		<property name="maxIdleTime" value="60" />
-		
-		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 --> 		
+
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
 		<property name="acquireIncrement" value="2" />
 		<property name="idleConnectionTestPeriod" value="18000" />
 		<property name="preferredTestQuery">
