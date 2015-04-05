@@ -92,4 +92,6 @@
 	<!--
 		<alias name="" alias="" />
 	-->
+
+	<import resource="classpath:spring-DI-Array.xml" />
 </beans>
