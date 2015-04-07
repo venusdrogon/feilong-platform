@@ -7,6 +7,11 @@
 	</parent>
 	<artifactId>feilong-spring-jdbc</artifactId>
 
+	<properties>
+		<!-- 9.2-1004-jdbc3 -->
+		<version.postgresql>9.2-1004-jdbc4</version.postgresql>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.feilong.platform.spring</groupId>
@@ -31,6 +36,18 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${version.postgresql}</version>
+			<scope>test</scope>
+		</dependency>
 
+		<!--note: c3p0 放到每个 brandstore 便于各自调整版本,或者选用其他连接池 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>

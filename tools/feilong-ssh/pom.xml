@@ -22,9 +22,10 @@
 			<artifactId>feilong-servlet</artifactId>
 		</dependency>
 
+		<!-- spring-orm -->
 		<dependency>
-			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-spring</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
 		</dependency>
 
 		<!-- hibernate -->

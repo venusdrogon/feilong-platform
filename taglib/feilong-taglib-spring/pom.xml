@@ -14,9 +14,16 @@
 	<description>${project.name} ${project.version} API</description>
 
 	<dependencies>
+		<!-- spring-web -->
 		<dependency>
-			<groupId>com.feilong.platform.tools</groupId>
-			<artifactId>feilong-spring</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 	</dependencies>
 </project>
