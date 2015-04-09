@@ -15,7 +15,6 @@
  */
 package com.feilong.tools.mail;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +31,6 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.FileInfoEntity;
 import com.feilong.commons.core.io.FileType;
-import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.tools.mail.entity.MailSenderConfig;
 import com.feilong.tools.velocity.VelocityUtil;
@@ -174,13 +172,9 @@ public class MailSenderTest{
         String textContent = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, contextKeyValues);
         mailSenderConfig.setContent(textContent);
 
-        String fileString = "F:\\Picture 图片\\美女\\1.jpg";
-        String[] filenameString = { FileUtil.getFileName(fileString) };
-        mailSenderConfig.setAttachFileNames(filenameString);
-
-        List<byte[]> attachList = new ArrayList<byte[]>();
-        attachList.add(FileUtil.convertFileToByteArray(new File(fileString)));
-        mailSenderConfig.setAttachList(attachList);
+        String fileString = "E:\\DataFixed\\Material\\avatar\\飞龙.png";
+        fileString = "E:\\\\Workspaces\\\\baozun\\\\BaozunSql\\\\train\\\\20150417Spring事务\\\\ppt-contents.png";
+        mailSenderConfig.setAttachFilePaths(fileString);
     }
 
     /**

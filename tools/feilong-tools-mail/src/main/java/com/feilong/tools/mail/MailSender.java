@@ -30,7 +30,7 @@ import com.feilong.tools.mail.entity.MailSenderConfig;
 public interface MailSender{
 
     /**
-     * Send mail.
+     * 发送邮件.
      *
      * @param mailSenderConfig
      *            the mail sender config

@@ -15,8 +15,6 @@
  */
 package com.feilong.tools.mail.entity;
 
-import java.util.List;
-
 import com.feilong.tools.mail.Priority;
 
 /**
@@ -28,27 +26,27 @@ import com.feilong.tools.mail.Priority;
 public class MailSenderConfig{
 
     /** 是否debug 输出. */
-    private boolean      isDebug             = false;
+    private boolean  isDebug             = false;
 
     /** 是否需要回执, 默认不需要. */
-    private boolean      isNeedReturnReceipt = false;
+    private boolean  isNeedReturnReceipt = false;
 
     // *******************************************************************
     /**
      * 发送邮件的服务器的IP <br>
      * example:smtp.126.com
      */
-    private String       mailServerHost;
+    private String   mailServerHost;
 
     /** 邮件服务的端口 默认25. */
-    private String       mailServerPort      = "25";
+    private String   mailServerPort      = "25";
 
     // *******************************************************************
     /**
      * 邮件发送者的地址<br>
      * example:huanyuansp@126.com
      */
-    private String       fromAddress;
+    private String   fromAddress;
 
     // *******************************************************************
 
@@ -56,54 +54,51 @@ public class MailSenderConfig{
      * 登陆邮件发送服务器的用户名<br>
      * example: venusdrogon@163.com
      */
-    private String       userName;
+    private String   userName;
 
     /**
      * 登陆邮件发送服务器的密码<br>
      * example:******.
      */
-    private String       password;
+    private String   password;
 
     /** 个人名义. */
-    private String       personal            = "";
+    private String   personal            = "";
 
     /** 是否需要身份验证,默认 true. */
-    private boolean      isValidate          = true;
+    private boolean  isValidate          = true;
 
     // ***************************************************************
 
     /** 邮件多人接收地址. */
-    private String[]     tos;
+    private String[] tos;
 
     /** 邮件多人接收地址(抄送). */
-    private String[]     ccs;
+    private String[] ccs;
 
     /** 邮件多人接收地址. */
-    private String[]     bccs;
+    private String[] bccs;
 
     // ***************************************************************
     /** 优先级. */
-    private Priority     priority;
+    private Priority priority;
 
     // *******************************************************************
 
     /** 邮件主题. */
-    private String       subject;
+    private String   subject;
 
     /** 邮件的文本内容. */
     //TODO object 类型
-    private String       content;
+    private String   content;
 
     /** MIME type of this object. */
-    private String       contentMimeType     = "text/html; charset=gb2312";
+    private String   contentMimeType     = "text/html; charset=gb2312";
 
     // ****************附件***************************************************
 
-    /** 邮件附件的文件名. */
-    private String[]     attachFileNames;
-
-    /** 获取图片的二进制. */
-    private List<byte[]> attachList;
+    /** 邮件附件的文件全路径, 比如 E:\Workspaces\baozun\BaozunSql\train\20150417Spring事务\ppt-contents.png. */
+    private String[] attachFilePaths;
 
     /**
      * 获得 发送邮件的服务器的IP <br>
@@ -304,44 +299,6 @@ public class MailSenderConfig{
     }
 
     /**
-     * 获得 邮件附件的文件名.
-     *
-     * @return the attachFileNames
-     */
-    public String[] getAttachFileNames(){
-        return attachFileNames;
-    }
-
-    /**
-     * 设置 邮件附件的文件名.
-     *
-     * @param attachFileNames
-     *            the attachFileNames to set
-     */
-    public void setAttachFileNames(String[] attachFileNames){
-        this.attachFileNames = attachFileNames;
-    }
-
-    /**
-     * 获得 获取图片的二进制.
-     *
-     * @return the attachList
-     */
-    public List<byte[]> getAttachList(){
-        return attachList;
-    }
-
-    /**
-     * 设置 获取图片的二进制.
-     *
-     * @param attachList
-     *            the attachList to set
-     */
-    public void setAttachList(List<byte[]> attachList){
-        this.attachList = attachList;
-    }
-
-    /**
      * 获得 是否debug 输出.
      *
      * @return the isDebug
@@ -453,6 +410,25 @@ public class MailSenderConfig{
      */
     public void setIsValidate(boolean isValidate){
         this.isValidate = isValidate;
+    }
+
+    /**
+     * 获得 邮件附件的文件全路径, 比如 E:\Workspaces\baozun\BaozunSql\train\20150417Spring事务\ppt-contents.
+     *
+     * @return the attachFilePaths
+     */
+    public String[] getAttachFilePaths(){
+        return attachFilePaths;
+    }
+
+    /**
+     * 设置 邮件附件的文件全路径, 比如 E:\Workspaces\baozun\BaozunSql\train\20150417Spring事务\ppt-contents.
+     *
+     * @param attachFilePaths
+     *            the attachFilePaths to set
+     */
+    public void setAttachFilePaths(String...attachFilePaths){
+        this.attachFilePaths = attachFilePaths;
     }
 
     // *******************************************************************

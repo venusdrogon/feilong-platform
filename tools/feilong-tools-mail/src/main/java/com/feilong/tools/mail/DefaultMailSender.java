@@ -15,7 +15,9 @@
  */
 package com.feilong.tools.mail;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.activation.DataHandler;
@@ -36,6 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
+import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.MimeType;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
@@ -86,7 +89,7 @@ public final class DefaultMailSender extends AbstractMailSender{
         }
 
         if (log.isDebugEnabled()){
-            log.debug("mailSenderConfig:{}", JsonUtil.format(mailSenderConfig));
+            log.debug("mailSenderConfig:{}", JsonUtil.format(mailSenderConfig, new String[] { "attachList" }));
         }
 
         // *****************************************************************************************
@@ -104,7 +107,6 @@ public final class DefaultMailSender extends AbstractMailSender{
 
             super.setDefaultCommandMap();
 
-            // ***********************************************************************
             // 发送邮件
             Transport.send(message);
         }catch (UnsupportedEncodingException | MessagingException e){
@@ -142,51 +144,71 @@ public final class DefaultMailSender extends AbstractMailSender{
 
         mimeMultipart.addBodyPart(bodyPart);
 
-        //************************************************************************
+        //*********设置附件***************************************************************
+        this.setAttachment(mimeMultipart, mailSenderConfig);
 
-        String[] attachFileNames = mailSenderConfig.getAttachFileNames();
+        // 将MiniMultipart对象设置为邮件内容
+        message.setContent(mimeMultipart);
+    }
+
+    /**
+     * 设置附件.
+     *
+     * @param mimeMultipart
+     *            the mime multipart
+     * @param mailSenderConfig
+     *            the mail sender config
+     * @throws MessagingException
+     *             the messaging exception
+     * @since 1.1.1
+     */
+    private void setAttachment(MimeMultipart mimeMultipart,MailSenderConfig mailSenderConfig) throws MessagingException{
+        String[] attachFilePaths = mailSenderConfig.getAttachFilePaths();
+
         // html
-        if (Validator.isNullOrEmpty(attachFileNames)){
+        if (Validator.isNullOrEmpty(attachFilePaths)){
             // nothing to do
         }
         // ***************以HTML格式发送邮件 带附件的邮件图片********************************************************
         else{
-            // MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
-            // ************************************************
-            System.setProperty("mail.mime.encodefilename", "true");
 
-            // 用于组合文本和图片，"related"型的MimeMultipart对象  
-            mimeMultipart.setSubType("related");
+            List<byte[]> attachList = new ArrayList<byte[]>();
+            List<String> attachFileNames = new ArrayList<String>();
 
-            List<byte[]> attachList = mailSenderConfig.getAttachList();
+            for (String attachFilePath : attachFilePaths){
+                attachFileNames.add(FileUtil.getFileName(attachFilePath));
+                attachList.add(FileUtil.convertFileToByteArray(new File(attachFilePath)));
+            }
             if (Validator.isNotNullOrEmpty(attachList)){
 
-                String type = MimeType.BIN.getMime();
+                // MiniMultipart类是一个容器类，包含MimeBodyPart类型的对象
+                // ************************************************
+                System.setProperty("mail.mime.encodefilename", "true");
 
-                int size = attachList.size();
-                for (int i = 0; i < size; i++){
+                // 用于组合文本和图片，"related"型的MimeMultipart对象  
+                mimeMultipart.setSubType("related");
+
+                String mimeType = MimeType.BIN.getMime();
+
+                for (int i = 0, j = attachList.size(); i < j; i++){
                     // 新建一个存放附件的BodyPart
                     MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
                     byte[] data = attachList.get(i);
-                    ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(data, type);
+                    ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(data, mimeType);
                     DataHandler dataHandler = new DataHandler(byteArrayDataSource);
                     mimeBodyPart.setDataHandler(dataHandler);
 
                     // 加上这句将作为附件发送,否则将作为信件的文本内容
-                    mimeBodyPart.setFileName(attachFileNames[i]);
+                    mimeBodyPart.setFileName(attachFileNames.get(i));
 
                     mimeBodyPart.setContentID(PREFIX_CONTENTID + (i));
-                    // mimeBodyPart.setHeader("Content-ID", );
 
                     // 将含有附件的BodyPart加入到MimeMultipart对象中
                     mimeMultipart.addBodyPart(mimeBodyPart);
                 }
             }
         }
-        // ***********************************************************************
-        // 将MiniMultipart对象设置为邮件内容
-        message.setContent(mimeMultipart);
     }
 
     /**
