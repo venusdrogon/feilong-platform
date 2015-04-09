@@ -40,14 +40,16 @@ class SessionFactory{
      * @return Session
      */
     public static Session createSession(MailSenderConfig mailSenderConfig){
+        boolean isValidate = mailSenderConfig.getIsValidate();
+
         Properties properties = new Properties();
         properties.put("mail.smtp.host", mailSenderConfig.getMailServerHost());
         properties.put("mail.smtp.port", mailSenderConfig.getMailServerPort());
-        properties.put("mail.smtp.auth", mailSenderConfig.isValidate() ? "true" : "false");
+        properties.put("mail.smtp.auth", isValidate ? "true" : "false");
         // 判断是否需要身份认证
         Authenticator authenticator = null;
         // 如果需要身份认证，则创建一个密码验证器
-        if (mailSenderConfig.isValidate()){
+        if (isValidate){
             final String userName = mailSenderConfig.getUserName();
             final String password = mailSenderConfig.getPassword();
             authenticator = new Authenticator(){

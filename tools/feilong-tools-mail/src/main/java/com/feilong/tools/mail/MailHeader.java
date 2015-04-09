@@ -15,6 +15,8 @@
  */
 package com.feilong.tools.mail;
 
+import com.feilong.commons.core.FeiLongVersion;
+
 /**
  * The Class MailHeader.
  *
@@ -35,7 +37,7 @@ public final class MailHeader{
     public static final String X_MAILER                    = "X-mailer";
 
     /** 邮件客户端 版本. */
-    public static final String X_MAILER_VALUE              = "FeiLong MailSender Api 1.0.9";
+    public static final String X_MAILER_VALUE              = "FeiLong Mail Api " + FeiLongVersion.getVersion();
 
     /** Don't let anyone instantiate this class. */
     private MailHeader(){

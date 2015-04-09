@@ -16,20 +16,15 @@
 package com.feilong.tools.mail;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.List;
 
-import javax.activation.CommandMap;
 import javax.activation.DataHandler;
-import javax.activation.MailcapCommandMap;
 import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -62,7 +57,7 @@ import com.feilong.tools.mail.entity.MailSenderConfig;
  * @see "org.springframework.mail.javamail.JavaMailSenderImpl"
  * @since 1.0.0
  */
-public final class DefaultMailSender implements MailSender{
+public final class DefaultMailSender extends AbstractMailSender{
 
     /** The Constant log. */
     private static final Logger log              = LoggerFactory.getLogger(DefaultMailSender.class);
@@ -107,7 +102,7 @@ public final class DefaultMailSender implements MailSender{
 
             setBody(message, mailSenderConfig);
 
-            setDefaultCommandMap();
+            super.setDefaultCommandMap();
 
             // ***********************************************************************
             // 发送邮件
@@ -116,23 +111,6 @@ public final class DefaultMailSender implements MailSender{
             log.error("", e);
             throw new MailSenderException(e);
         }
-    }
-
-    /**
-     * 设置 default command map.<br>
-     * <p>
-     * 解决 bug javax.activation.UnsupportedDataTypeException: no object DCH for MIME type multipart/related;
-     * </p>
-     */
-    private void setDefaultCommandMap(){
-
-        MailcapCommandMap mailcapCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
-        mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
-        mailcapCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
-        mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
-        mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
-        mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
-        CommandMap.setDefaultCommandMap(mailcapCommandMap);
     }
 
     /**
@@ -163,6 +141,8 @@ public final class DefaultMailSender implements MailSender{
         bodyPart.setContent(mailSenderConfig.getContent(), mailSenderConfig.getContentMimeType());
 
         mimeMultipart.addBodyPart(bodyPart);
+
+        //************************************************************************
 
         String[] attachFileNames = mailSenderConfig.getAttachFileNames();
         // html
@@ -226,9 +206,15 @@ public final class DefaultMailSender implements MailSender{
     private void setMessageAttribute(Message message,MailSenderConfig mailSenderConfig) throws UnsupportedEncodingException,
                     MessagingException{
         String fromAddress = mailSenderConfig.getFromAddress();
-        // 设置邮件消息的发送者
 
-        String encodeText = MimeUtility.encodeText(mailSenderConfig.getPersonal(), CHARSET_PERSONAL, "b");
+        //the encoding to be used. Currently supported values are "B" and "Q". 
+        //If this parameter is null, then the "Q" encoding is used if most of characters to be encoded are in the ASCII charset, 
+        //otherwise "B" encoding is used.
+        //B为base64方式
+        String encoding = "b";
+
+        // 设置邮件消息的发送者
+        String encodeText = MimeUtility.encodeText(mailSenderConfig.getPersonal(), CHARSET_PERSONAL, encoding);
 
         Address addressFrom = new InternetAddress(fromAddress, encodeText);
         message.setFrom(addressFrom);
@@ -236,96 +222,12 @@ public final class DefaultMailSender implements MailSender{
         // ***************************************************************************
         // 设置邮件接受人群
         // 支持 to cc bcc
-        setRecipients(message, mailSenderConfig);
+        super.setRecipients(message, mailSenderConfig);
 
         // ***************************************************************************
         // 设置邮件消息的主题
         message.setSubject(mailSenderConfig.getSubject());
 
-        setHeaders(message, mailSenderConfig);
+        super.setHeaders(message, mailSenderConfig);
     }
-
-    /**
-     * 设置 header 信息.
-     *
-     * @param message
-     *            the message
-     * @param mailSenderConfig
-     *            the headers
-     * @throws MessagingException
-     *             the messaging exception
-     * @see javax.mail.Part#addHeader(String, String)
-     * @see javax.mail.Part#setHeader(String, String)
-     * @since 1.0.9
-     */
-    private void setHeaders(Message message,MailSenderConfig mailSenderConfig) throws MessagingException{
-        // ***************************************************************************
-        // 邮件的优先级
-        Priority priority = mailSenderConfig.getPriority();
-        if (null != priority){
-            message.addHeader(MailHeader.X_PRIORITY, priority.getLevelValue());
-        }
-        // ***************************************************************************
-        // 是否需要回执
-        if (mailSenderConfig.getIsNeedReturnReceipt()){
-            message.setHeader(MailHeader.DISPOSITION_NOTIFICATION_TO, "1");
-        }
-        // 邮件客户端
-        message.setHeader(MailHeader.X_MAILER, MailHeader.X_MAILER_VALUE);
-
-        // 设置邮件消息发送的时间
-        message.setSentDate(new Date());
-    }
-
-    /**
-     * 设置邮件接受人群<br>
-     * 支持 to cc bcc.
-     *
-     * @param message
-     *            the message
-     * @param mailSenderConfig
-     *            the new recipients
-     * @throws AddressException
-     *             the address exception
-     * @throws MessagingException
-     *             the messaging exception
-     */
-    private void setRecipients(Message message,MailSenderConfig mailSenderConfig) throws AddressException,MessagingException{
-        // *********************to******************************************************
-        // 创建邮件的接收者地址，并设置到邮件消息中
-        // Message.RecipientType.TO属性表示接收者的类型为TO
-        setRecipients(message, Message.RecipientType.TO, mailSenderConfig.getTos());
-        // ************************cc 抄送***************************************************
-        setRecipients(message, Message.RecipientType.CC, mailSenderConfig.getCcs());
-        // **********************bcc 密送*****************************************************
-        setRecipients(message, Message.RecipientType.BCC, mailSenderConfig.getBccs());
-    }
-
-    /**
-     * 设置 邮件接收人.
-     *
-     * @param message
-     *            the message
-     * @param recipientType
-     *            the recipient type
-     * @param addresseArray
-     *            the addresse array
-     * @throws AddressException
-     *             the address exception
-     * @throws MessagingException
-     *             the messaging exception
-     * @since 1.0.8
-     */
-    private void setRecipients(Message message,RecipientType recipientType,String[] addresseArray) throws AddressException,
-                    MessagingException{
-        if (Validator.isNotNullOrEmpty(addresseArray)){
-            final int length = addresseArray.length;
-            Address[] addresses = new InternetAddress[length];
-            for (int i = 0; i < length; ++i){
-                addresses[i] = new InternetAddress(addresseArray[i]);
-            }
-            message.setRecipients(recipientType, addresses);
-        }
-    }
-
 }

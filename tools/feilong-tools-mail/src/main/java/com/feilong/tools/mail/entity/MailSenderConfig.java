@@ -68,7 +68,7 @@ public class MailSenderConfig{
     private String       personal            = "";
 
     /** 是否需要身份验证,默认 true. */
-    private boolean      validate            = true;
+    private boolean      isValidate          = true;
 
     // ***************************************************************
 
@@ -94,7 +94,7 @@ public class MailSenderConfig{
     //TODO object 类型
     private String       content;
 
-    /** 邮件的文本内容. */
+    /** MIME type of this object. */
     private String       contentMimeType     = "text/html; charset=gb2312";
 
     // ****************附件***************************************************
@@ -105,211 +105,150 @@ public class MailSenderConfig{
     /** 获取图片的二进制. */
     private List<byte[]> attachList;
 
-    // *******************************************************************
-
     /**
-     * 邮件附件的文件名.
+     * 获得 发送邮件的服务器的IP <br>
+     * example:smtp.
      *
-     * @return attachFileNames
-     */
-    public String[] getAttachFileNames(){
-        return attachFileNames;
-    }
-
-    /**
-     * 邮件附件的文件名.
-     *
-     * @param fileNames
-     *            the new 邮件附件的文件名
-     */
-    public void setAttachFileNames(String[] fileNames){
-        this.attachFileNames = fileNames;
-    }
-
-    /**
-     * 发送邮件的服务器的IP <br>
-     * example:smtp.126.com
-     * 
-     * @return the 发送邮件的服务器的IP <br>
-     *         example:smtp
+     * @return the mailServerHost
      */
     public String getMailServerHost(){
         return mailServerHost;
     }
 
     /**
-     * 发送邮件的服务器的IP <br>
-     * example:smtp.126.com
-     * 
+     * 设置 发送邮件的服务器的IP <br>
+     * example:smtp.
+     *
      * @param mailServerHost
-     *            the new 发送邮件的服务器的IP <br>
-     *            example:smtp
+     *            the mailServerHost to set
      */
     public void setMailServerHost(String mailServerHost){
         this.mailServerHost = mailServerHost;
     }
 
     /**
-     * 邮件服务的端口 默认25.
+     * 获得 邮件发送者的地址<br>
+     * example:huanyuansp@126.
      *
-     * @return the 邮件服务的端口 默认25
-     */
-    public String getMailServerPort(){
-        return mailServerPort;
-    }
-
-    /**
-     * 邮件服务的端口 默认25.
-     *
-     * @param mailServerPort
-     *            the new 邮件服务的端口 默认25
-     */
-    public void setMailServerPort(String mailServerPort){
-        this.mailServerPort = mailServerPort;
-    }
-
-    /**
-     * 是否需要身份验证,默认 true.
-     *
-     * @return the 是否需要身份验证,默认 true
-     */
-    public boolean isValidate(){
-        return validate;
-    }
-
-    /**
-     * 是否需要身份验证,默认 true.
-     *
-     * @param validate
-     *            the new 是否需要身份验证,默认 true
-     */
-    public void setValidate(boolean validate){
-        this.validate = validate;
-    }
-
-    /**
-     * 邮件发送者的地址 example:huanyuansp@126.com
-     * 
-     * @return the 邮件发送者的地址<br>
-     *         example:huanyuansp@126
+     * @return the fromAddress
      */
     public String getFromAddress(){
         return fromAddress;
     }
 
     /**
-     * 邮件发送者的地址 example:huanyuansp@126.com
-     * 
+     * 设置 邮件发送者的地址<br>
+     * example:huanyuansp@126.
+     *
      * @param fromAddress
-     *            the new 邮件发送者的地址<br>
-     *            example:huanyuansp@126
+     *            the fromAddress to set
      */
     public void setFromAddress(String fromAddress){
         this.fromAddress = fromAddress;
     }
 
     /**
-     * 登陆邮件发送服务器的密码.
+     * 获得 登陆邮件发送服务器的用户名<br>
+     * example: venusdrogon@163.
      *
-     * @return the 登陆邮件发送服务器的密码<br>
-     *         example:******
-     */
-    public String getPassword(){
-        return password;
-    }
-
-    /**
-     * 登陆邮件发送服务器的密码.
-     *
-     * @param password
-     *            the new 登陆邮件发送服务器的密码<br>
-     *            example:******
-     */
-    public void setPassword(String password){
-        this.password = password;
-    }
-
-    /**
-     * 登陆邮件发送服务器的用户名 example:huanyuansp@126.com
-     * 
-     * @return the 登陆邮件发送服务器的用户名<br>
-     *         example:huanyuansp@126
+     * @return the userName
      */
     public String getUserName(){
         return userName;
     }
 
     /**
-     * 登陆邮件发送服务器的用户名 example:huanyuansp@126.com
-     * 
+     * 设置 登陆邮件发送服务器的用户名<br>
+     * example: venusdrogon@163.
+     *
      * @param userName
-     *            the new 登陆邮件发送服务器的用户名<br>
-     *            example:huanyuansp@126
+     *            the userName to set
      */
     public void setUserName(String userName){
         this.userName = userName;
     }
 
     /**
-     * 邮件主题.
+     * 获得 登陆邮件发送服务器的密码<br>
+     * example:******.
      *
-     * @return the 邮件主题
+     * @return the password
      */
-    public String getSubject(){
-        return subject;
+    public String getPassword(){
+        return password;
     }
 
     /**
-     * 邮件主题.
+     * 设置 登陆邮件发送服务器的密码<br>
+     * example:******.
      *
-     * @param subject
-     *            the new 邮件主题
+     * @param password
+     *            the password to set
      */
-    public void setSubject(String subject){
-        this.subject = subject;
+    public void setPassword(String password){
+        this.password = password;
     }
 
     /**
-     * 邮件的文本内容.
+     * 获得 邮件多人接收地址.
      *
-     * @return the 邮件的文本内容
+     * @return the tos
      */
-    public String getContent(){
-        return content;
+    public String[] getTos(){
+        return tos;
     }
 
     /**
-     * 邮件的文本内容.
+     * 设置 邮件多人接收地址.
      *
-     * @param textContent
-     *            the new 邮件的文本内容
+     * @param tos
+     *            the tos to set
      */
-    public void setContent(String textContent){
-        this.content = textContent;
+    public void setTos(String[] tos){
+        this.tos = tos;
     }
 
     /**
-     * 个人名义.
+     * 获得 邮件多人接收地址(抄送).
      *
-     * @return the personal
+     * @return the ccs
      */
-    public String getPersonal(){
-        return personal;
+    public String[] getCcs(){
+        return ccs;
     }
 
     /**
-     * 个人名义.
+     * 设置 邮件多人接收地址(抄送).
      *
-     * @param personal
-     *            the personal to set
+     * @param ccs
+     *            the ccs to set
      */
-    public void setPersonal(String personal){
-        this.personal = personal;
+    public void setCcs(String[] ccs){
+        this.ccs = ccs;
     }
 
     /**
-     * Gets the 优先级.
-     * 
+     * 获得 邮件多人接收地址.
+     *
+     * @return the bccs
+     */
+    public String[] getBccs(){
+        return bccs;
+    }
+
+    /**
+     * 设置 邮件多人接收地址.
+     *
+     * @param bccs
+     *            the bccs to set
+     */
+    public void setBccs(String[] bccs){
+        this.bccs = bccs;
+    }
+
+    /**
+     * 获得 优先级.
+     *
      * @return the priority
      */
     public Priority getPriority(){
@@ -317,8 +256,8 @@ public class MailSenderConfig{
     }
 
     /**
-     * Sets the 优先级.
-     * 
+     * 设置 优先级.
+     *
      * @param priority
      *            the priority to set
      */
@@ -327,98 +266,60 @@ public class MailSenderConfig{
     }
 
     /**
-     * Gets the 邮件多人接收地址.
-     * 
-     * @return the tos
+     * 获得 邮件主题.
+     *
+     * @return the subject
      */
-    public String[] getTos(){
-        return tos;
+    public String getSubject(){
+        return subject;
     }
 
     /**
-     * Sets the 邮件多人接收地址.
-     * 
-     * @param tos
-     *            the tos to set
+     * 设置 邮件主题.
+     *
+     * @param subject
+     *            the subject to set
      */
-    public void setTos(String...tos){
-        this.tos = tos;
+    public void setSubject(String subject){
+        this.subject = subject;
     }
 
     /**
-     * Gets the 邮件多人接收地址(抄送).
-     * 
-     * @return the ccs
+     * 获得 邮件的文本内容.
+     *
+     * @return the content
      */
-    public String[] getCcs(){
-        return ccs;
+    public String getContent(){
+        return content;
     }
 
     /**
-     * Sets the 邮件多人接收地址(抄送).
-     * 
-     * @param ccs
-     *            the ccs to set
+     * 设置 邮件的文本内容.
+     *
+     * @param content
+     *            the content to set
      */
-    public void setCcs(String...ccs){
-        this.ccs = ccs;
+    public void setContent(String content){
+        this.content = content;
     }
 
     /**
-     * Gets the 邮件多人接收地址.
-     * 
-     * @return the bccs
+     * 获得 邮件附件的文件名.
+     *
+     * @return the attachFileNames
      */
-    public String[] getBccs(){
-        return bccs;
+    public String[] getAttachFileNames(){
+        return attachFileNames;
     }
 
     /**
-     * Sets the 邮件多人接收地址.
-     * 
-     * @param bccs
-     *            the bccs to set
+     * 设置 邮件附件的文件名.
+     *
+     * @param attachFileNames
+     *            the attachFileNames to set
      */
-    public void setBccs(String...bccs){
-        this.bccs = bccs;
-    }
-
-    /**
-     * Gets the 是否debug 输出.
-     * 
-     * @return the isDebug
-     */
-    public boolean getIsDebug(){
-        return isDebug;
-    }
-
-    /**
-     * Sets the 是否debug 输出.
-     * 
-     * @param isDebug
-     *            the isDebug to set
-     */
-    public void setIsDebug(boolean isDebug){
-        this.isDebug = isDebug;
-    }
-
-    /**
-     * Gets the 是否需要回执, 默认不需要.
-     * 
-     * @return the isNeedReturnReceipt
-     */
-    public boolean getIsNeedReturnReceipt(){
-        return isNeedReturnReceipt;
-    }
-
-    /**
-     * Sets the 是否需要回执, 默认不需要.
-     * 
-     * @param isNeedReturnReceipt
-     *            the isNeedReturnReceipt to set
-     */
-    public void setIsNeedReturnReceipt(boolean isNeedReturnReceipt){
-        this.isNeedReturnReceipt = isNeedReturnReceipt;
+    public void setAttachFileNames(String[] attachFileNames){
+        this.attachFileNames = attachFileNames;
     }
 
     /**
@@ -441,7 +342,43 @@ public class MailSenderConfig{
     }
 
     /**
-     * 获得 邮件的文本内容.
+     * 获得 是否debug 输出.
+     *
+     * @return the isDebug
+     */
+    public boolean getIsDebug(){
+        return isDebug;
+    }
+
+    /**
+     * 获得 是否需要回执, 默认不需要.
+     *
+     * @return the isNeedReturnReceipt
+     */
+    public boolean getIsNeedReturnReceipt(){
+        return isNeedReturnReceipt;
+    }
+
+    /**
+     * 获得 邮件服务的端口 默认25.
+     *
+     * @return the mailServerPort
+     */
+    public String getMailServerPort(){
+        return mailServerPort;
+    }
+
+    /**
+     * 获得 个人名义.
+     *
+     * @return the personal
+     */
+    public String getPersonal(){
+        return personal;
+    }
+
+    /**
+     * 获得 mIME type of this object.
      *
      * @return the contentMimeType
      */
@@ -450,7 +387,47 @@ public class MailSenderConfig{
     }
 
     /**
-     * 设置 邮件的文本内容.
+     * 设置 是否debug 输出.
+     *
+     * @param isDebug
+     *            the isDebug to set
+     */
+    public void setIsDebug(boolean isDebug){
+        this.isDebug = isDebug;
+    }
+
+    /**
+     * 设置 是否需要回执, 默认不需要.
+     *
+     * @param isNeedReturnReceipt
+     *            the isNeedReturnReceipt to set
+     */
+    public void setIsNeedReturnReceipt(boolean isNeedReturnReceipt){
+        this.isNeedReturnReceipt = isNeedReturnReceipt;
+    }
+
+    /**
+     * 设置 邮件服务的端口 默认25.
+     *
+     * @param mailServerPort
+     *            the mailServerPort to set
+     */
+    public void setMailServerPort(String mailServerPort){
+        this.mailServerPort = mailServerPort;
+    }
+
+    /**
+     * 设置 个人名义.
+     *
+     * @param personal
+     *            the personal to set
+     */
+    public void setPersonal(String personal){
+        this.personal = personal;
+    }
+
+    /**
+     * 设置 mIME type of this object.
      *
      * @param contentMimeType
      *            the contentMimeType to set
@@ -458,4 +435,25 @@ public class MailSenderConfig{
     public void setContentMimeType(String contentMimeType){
         this.contentMimeType = contentMimeType;
     }
+
+    /**
+     * 获得 是否需要身份验证,默认 true.
+     *
+     * @return the isValidate
+     */
+    public boolean getIsValidate(){
+        return isValidate;
+    }
+
+    /**
+     * 设置 是否需要身份验证,默认 true.
+     *
+     * @param isValidate
+     *            the isValidate to set
+     */
+    public void setIsValidate(boolean isValidate){
+        this.isValidate = isValidate;
+    }
+
+    // *******************************************************************
 }

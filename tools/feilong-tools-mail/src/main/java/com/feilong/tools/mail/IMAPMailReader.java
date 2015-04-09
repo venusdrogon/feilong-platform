@@ -47,11 +47,9 @@ public class IMAPMailReader implements MailReader{
     /** The Constant log. */
     private static final Logger log        = LoggerFactory.getLogger(IMAPMailReader.class);
 
-    //imap pop3
-    /** The protocol. */
+    /** imap or pop3. */
     private final String        protocol   = "imap";
 
-    // Get folder
     /** The folder name. */
     private final String        folderName = "INBOX";
 
@@ -94,12 +92,11 @@ public class IMAPMailReader implements MailReader{
             //store.connect();
             store.connect(mailServerHost, userName, password);
 
-            folder = getFolder(store);
+            folder = this.getFolder(store);
             //******************************************************************************
-            Message[] messages = getMessages(folder, searchTerm, newstIndex);
+            Message[] messages = this.getMessages(folder, searchTerm, newstIndex);
             mailInfoList = MessageUtil.toMailInfoList(messages);
         }catch (MessagingException | IOException e){
-            log.error("", e);
             throw new MailReaderException(e);
         }finally{
             try{
@@ -107,8 +104,7 @@ public class IMAPMailReader implements MailReader{
                     store.close();
                 }
                 if (null != folder && folder.isOpen()){
-                    // Close connection 
-                    folder.close(false);
+                    folder.close(false); // Close connection 
                 }
             }catch (MessagingException e){
                 log.error("", e);
@@ -155,7 +151,6 @@ public class IMAPMailReader implements MailReader{
     private Message[] getMessages(Folder folder,SearchTerm searchTerm,Integer newstIndex) throws MessagingException{
         // Get directory
         Message[] messages = null;
-
         //最近的多少条
         if (Validator.isNotNullOrEmpty(newstIndex)){
             int messageCount = folder.getMessageCount();

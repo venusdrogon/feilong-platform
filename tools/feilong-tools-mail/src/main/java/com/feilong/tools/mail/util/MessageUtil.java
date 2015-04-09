@@ -16,19 +16,20 @@
 package com.feilong.tools.mail.util;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.mail.Address;
-import javax.mail.BodyPart;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +97,7 @@ public final class MessageUtil{
      *             the IO exception
      */
     public static final MailInfo toMailInfoList(Message message) throws MessagingException,IOException{
+
         MailInfo mailInfo = new MailInfo();
 
         String from = getFromAddress(message);
@@ -194,51 +196,6 @@ public final class MessageUtil{
      * 获得 content.
      *
      * @param part
-     *            the p
-     * @return the string
-     * @throws IOException
-     *             the IO exception
-     * @throws MessagingException
-     *             the messaging exception
-     * @see javax.mail.search.BodyTerm#matchPart(Part)
-     * @deprecated
-     */
-    //TODO
-    @Deprecated
-    public static String getContent1(Part part) throws IOException,MessagingException{
-        Object partContent = part.getContent();
-
-        //String
-        if (partContent instanceof String){
-            return (String) partContent;
-        }
-
-        //Multipart
-        else if (partContent instanceof Multipart){
-            Multipart multipart = (Multipart) partContent;
-            int count = multipart.getCount();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < count; i++){
-                BodyPart bodyPart = multipart.getBodyPart(i);
-                sb.append(getContent(bodyPart));
-            }
-            return sb.toString();
-        }
-
-        //InputStream
-        else if (partContent instanceof InputStream){
-            //return IOUtil.inputStream2String((InputStream) partContent);
-            //TODO not support
-            return null;
-        }else{
-            throw new UnsupportedOperationException("partContent not support!");
-        }
-    }
-
-    /**
-     * 获得 content.
-     *
-     * @param part
      *            the part
      * @return the content
      * @throws MessagingException
@@ -246,13 +203,30 @@ public final class MessageUtil{
      * @throws IOException
      *             the IO exception
      */
-    public static String getContent(Part part) throws MessagingException,IOException{
+    private static String getContent(Part part) throws MessagingException,IOException{
         // Using isMimeType to determine the content type 
         //avoids fetching the actual content data until we need it.
-        if (part.isMimeType("text/*")){
-            String s = (String) part.getContent();
+
+        String mimeType1 = "text/*";
+        String mimeType2 = "multipart/*";
+        String mimeType3 = "message/rfc822";
+
+        if (part.isMimeType(mimeType1)){
+            MimeBodyPart mimeBodyPart = (MimeBodyPart) part;
+            if (log.isDebugEnabled()){
+                Enumeration<Header> allHeaders = mimeBodyPart.getAllHeaders();
+                while (allHeaders.hasMoreElements()){
+                    Header header = allHeaders.nextElement();
+                    log.debug("header name:[{}]-->value:[{}]", header.getName(), header.getValue());
+                }
+            }
+
+            log.debug("content mimeType:[{}]", mimeType1);
+            Object object = mimeBodyPart.getContent();
+            String s = (String) object;
             return s;
-        }else if (part.isMimeType("multipart/*")){
+        }else if (part.isMimeType(mimeType2)){
+            log.debug("content mimeType:[{}]", mimeType2);
             StringBuilder sb = new StringBuilder();
 
             Multipart mp = (Multipart) part.getContent();
@@ -261,7 +235,8 @@ public final class MessageUtil{
                 sb.append(getContent(mp.getBodyPart(i)));
             }
             return sb.toString();
-        }else if (part.isMimeType("message/rfc822")){
+        }else if (part.isMimeType(mimeType3)){
+            log.debug("content mimeType:[{}]", mimeType3);
             return getContent((Part) part.getContent());
         }else{
             log.info("part getContentType:{}", part.getContentType());
