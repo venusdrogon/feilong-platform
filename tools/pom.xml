@@ -16,8 +16,6 @@
 	<description>${project.name} ${project.version} API</description>
 
 	<modules>
-		<module>feilong-struts1</module>
-		<module>feilong-ssh</module>
 		<module>feilong-net-filetransfer</module>
 		<module>feilong-net-httpclient</module>
 		<module>feilong-net-httpcomponents</module>
