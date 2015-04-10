@@ -19,8 +19,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import loxia.dao.ReadWriteSupport;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -178,7 +176,8 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
                 //神来之笔,这样才能兼容 嵌套
                 MultipleGroupReadWriteStatusHolder.setMultipleDataSourceGroupName(previousDataSourceNameHolder);
             }
-            //TODO
+
+            //TODO 可能还可以优化 现规则和loxia相同
             //不存在previousDataSourceNameHolder,则清空
             else{
                 log.info(
@@ -208,7 +207,7 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
             }
 
             int propagationBehavior = transactionAttribute.getPropagationBehavior();
-            //TODO
+            //TODO 可能还可以优化 现规则和loxia相同
             return propagationBehavior != TransactionDefinition.PROPAGATION_REQUIRES_NEW;
         }
     }
@@ -228,7 +227,7 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
         String readWriteSupport = "";
 
         if (null == transactionAttribute){
-            return ReadWriteSupport.READ;
+            return loxia.dao.ReadWriteSupport.READ;
         }
 
         boolean mustWrite = false;
@@ -272,11 +271,11 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
 
         if (mustWrite){
             log.info("New writable connection is required for new transaction.");
-            readWriteSupport = ReadWriteSupport.WRITE;
+            readWriteSupport = loxia.dao.ReadWriteSupport.WRITE;
         }else{
             //see "org.postgresql.jdbc2.AbstractJdbc2Connection#setReadOnly(boolean)"
             boolean readOnly = transactionAttribute.isReadOnly();
-            readWriteSupport = readOnly ? ReadWriteSupport.READ : ReadWriteSupport.WRITE;
+            readWriteSupport = readOnly ? loxia.dao.ReadWriteSupport.READ : loxia.dao.ReadWriteSupport.WRITE;
         }
         return readWriteSupport;
     }

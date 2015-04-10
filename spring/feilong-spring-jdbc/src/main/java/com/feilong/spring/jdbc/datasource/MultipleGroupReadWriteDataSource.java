@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import loxia.dao.ReadWriteSupport;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
@@ -72,8 +70,12 @@ public class MultipleGroupReadWriteDataSource extends AbstractRoutingDataSource{
                 defaultTargetDataSource = writeDataSource;
             }
 
-            targetDataSources.put(MultipleGroupReadWriteUtil.getTargetDataSourcesKey(groupName, ReadWriteSupport.WRITE), writeDataSource);
-            targetDataSources.put(MultipleGroupReadWriteUtil.getTargetDataSourcesKey(groupName, ReadWriteSupport.READ), readDataSource);
+            targetDataSources.put(
+                            MultipleGroupReadWriteUtil.getTargetDataSourcesKey(groupName, loxia.dao.ReadWriteSupport.WRITE),
+                            writeDataSource);
+            targetDataSources.put(
+                            MultipleGroupReadWriteUtil.getTargetDataSourcesKey(groupName, loxia.dao.ReadWriteSupport.READ),
+                            readDataSource);
         }
 
         this.setTargetDataSources(targetDataSources);

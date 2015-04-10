@@ -11,6 +11,8 @@
 		<!-- 9.2-1004-jdbc3 -->
 		<version.postgresql>9.2-1004-jdbc4</version.postgresql>
 
+		<version.loxia>2.5.2</version.loxia>
+
 		<maven-compiler-plugin.source>1.6</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.6</maven-compiler-plugin.target>
 	</properties>
@@ -37,6 +39,81 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
+		</dependency>
+
+		<!--******* loxia2******* -->
+		<dependency>
+			<groupId>loxia2</groupId>
+			<artifactId>loxia2-core</artifactId>
+			<version>${version.loxia}</version>
+			<optional>true</optional>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aspects</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-orm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context-support</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-entitymanager</artifactId>
+				</exclusion>
+				<!-- -->
+				<exclusion>
+					<groupId>velocity</groupId>
+					<artifactId>velocity-dep</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsr250-api</artifactId>
+					<groupId>javax.annotation</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>aspectjweaver</artifactId>
+					<groupId>org.aspectj</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-collections</artifactId>
+					<groupId>commons-collections</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>loxia2-api</artifactId>
+					<groupId>loxia2</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
