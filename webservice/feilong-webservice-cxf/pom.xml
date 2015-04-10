@@ -11,7 +11,7 @@
 	<description>${project.name} ${project.version} API</description>
 
 	<properties>
-		<version.cxf>2.7.11</version.cxf>
+		<version.cxf>2.7.15</version.cxf>
 	</properties>
 
 	<dependencies>

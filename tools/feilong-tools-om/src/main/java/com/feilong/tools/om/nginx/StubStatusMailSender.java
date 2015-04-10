@@ -15,17 +15,14 @@
  */
 package com.feilong.tools.om.nginx;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -99,12 +96,7 @@ public class StubStatusMailSender{
         String textContent = getTextContentForEmail(filePath);
         mailSenderConfig.setContent(textContent);
 
-        String[] filenameString = { FileUtil.getFileName(filePath) };
-        mailSenderConfig.setAttachFileNames(filenameString);
-
-        List<byte[]> attachList = new ArrayList<byte[]>();
-        attachList.add(FileUtil.convertFileToByteArray(new File(filePath)));
-        mailSenderConfig.setAttachList(attachList);
+        mailSenderConfig.setAttachFilePaths(filePath);
 
         mailSenderUtil.sendMail(mailSenderConfig);
     }
