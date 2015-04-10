@@ -124,7 +124,6 @@
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.3</v.maven-pmd-plugin>
 
-		<v.maven-shade-plugin>2.3</v.maven-shade-plugin>
 		<v.maven-site-plugin>3.4</v.maven-site-plugin>
 		<v.maven-source-plugin>2.4</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>

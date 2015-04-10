@@ -18,20 +18,15 @@
 	<modules>
 		<module>feilong-net-filetransfer</module>
 		<module>feilong-net-httpclient</module>
-		<module>feilong-net-httpcomponents</module>
 		<module>feilong-tools-jsoup</module>
 		<module>feilong-tools-velocity</module>
 		<module>feilong-tools-dom4j</module>
 		<module>feilong-tools-ant</module>
 		<module>feilong-tools-middleware</module>
 		<module>feilong-tools-mail</module>
-		<module>feilong-tools-om</module>
-		<module>feilong-tools-scm</module>
 		<module>feilong-tools-xstream</module>
-		<module>feilong-tools-zookeeper</module>
 		<module>feilong-tools-log4j</module>
 		<module>feilong-tools-security</module>
-		<module>feilong-tools-quartz</module>
 	</modules>
 
 	<dependencies>
