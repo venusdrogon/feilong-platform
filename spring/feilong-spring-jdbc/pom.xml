@@ -10,6 +10,9 @@
 	<properties>
 		<!-- 9.2-1004-jdbc3 -->
 		<version.postgresql>9.2-1004-jdbc4</version.postgresql>
+
+		<maven-compiler-plugin.source>1.6</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.6</maven-compiler-plugin.target>
 	</properties>
 
 	<dependencies>
