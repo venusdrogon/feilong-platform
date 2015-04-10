@@ -29,7 +29,7 @@ import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
- * 根据类的class文件位置来定位的方法..
+ * 根据类的class文件位置来定位的方法.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-27 上午12:40:08
@@ -51,16 +51,26 @@ public final class ClassLoaderUtil{
      * 查找具有给定名称的资源.<br>
      * "",表示classes 的根目录<br>
      * e.q:<br>
-     * <ul>
-     * <li>{@code getResource("")--->(maven)测试--->file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/}</li>
-     * <li>{@code getResource("com")--->(maven)测试--->file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/com}</li>
-     * </ul>
-     * <br>
-     * 在web环境中,(即使打成jar的情形):<br>
-     * <ul>
-     * <li>file:/E:/Workspaces/feilong/feilong-platform/feilong-spring-test-2.5/src/main/webapp/WEB-INF/classes/</li>
-     * <li>file:/E:/Workspaces/feilong/feilong-platform/feilong-spring-test-2.5/src/main/webapp/WEB-INF/classes/com/</li>
-     * </ul>
+     * 
+     * <blockquote>
+     * <table border="1" cellspacing="0" cellpadding="4">
+     * <tr style="background-color:#ccccff">
+     * <th align=left></th>
+     * <th align=left>(maven)测试</th>
+     * <th align=left>在web环境中,(即使打成jar的情形)</th>
+     * </tr>
+     * <tr valign=top>
+     * <td>{@code getResource("")}</td>
+     * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/</td>
+     * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-spring-test-2.5/src/main/webapp/WEB-INF/classes/</td>
+     * </tr>
+     * <tr valign=top style="background-color:#eeeeff">
+     * <td>{@code getResource("com")}</td>
+     * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/com</td>
+     * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-spring-test-2.5/src/main/webapp/WEB-INF/classes/com/</td>
+     * </tr>
+     * </table>
+     * </blockquote>
      * 
      * @param name
      *            资源名称
@@ -68,7 +78,6 @@ public final class ClassLoaderUtil{
      */
     public static URL getResource(String name){
         ClassLoader classLoader = ClassLoaderUtil.class.getClassLoader();
-        // 查找具有给定名称的资源.
         URL url = classLoader.getResource(name);
         return url;
     }
@@ -125,17 +134,21 @@ public final class ClassLoaderUtil{
         ClassLoader classLoader = getClassLoaderByCurrentThread();
         URL url = classLoader.getResource(resourceName);
         if (url == null){
+            log.warn("In ClassLoader:[{}],not found the resourceName:[{}]", classLoader.getResource(""), resourceName);
+
             classLoader = getClassLoaderByClass(ClassLoaderUtil.class);
             url = classLoader.getResource(resourceName);
             if (url == null){
+
+                log.warn("In ClassLoader:[{}],not found the resourceName:[{}]", classLoader.getResource(""), resourceName);
                 classLoader = getClassLoaderByClass(callingClass);
                 url = classLoader.getResource(resourceName);
             }
         }
         if (url == null){
-            log.warn("resourceName:\"" + resourceName + "\" in all ClassLoader is null");
+            log.warn("resourceName:[{}] in all ClassLoader is null", resourceName);
         }else{
-            log.debug("In ClassLoader " + classLoader.getResource("") + " found the resourceName:" + resourceName);
+            log.debug("found the resourceName:[{}],In ClassLoader :[{}] ", resourceName, classLoader.getResource(""));
         }
         return url;
     }
@@ -150,6 +163,7 @@ public final class ClassLoaderUtil{
      * @return the resources
      * @throws IOException
      *             Signals that an I/O exception has occurred.
+     * @see java.lang.ClassLoader#getResources(String)
      */
     public static Enumeration<URL> getResources(String resourceName,Class<?> callingClass) throws IOException{
         ClassLoader classLoader = getClassLoaderByCurrentThread();
@@ -163,9 +177,9 @@ public final class ClassLoaderUtil{
             }
         }
         if (urls == null){
-            log.warn("resourceName:\"" + resourceName + "\" in all ClassLoader is null");
+            log.warn("resourceName:[{}] in all ClassLoader is null", resourceName);
         }else{
-            log.debug("In ClassLoader " + classLoader.getResource("") + " found the resourceName:" + resourceName);
+            log.debug("In ClassLoader :[{}] found the resourceName:[{}]", classLoader.getResource(""), resourceName);
         }
         return urls;
     }
@@ -187,6 +201,7 @@ public final class ClassLoaderUtil{
      * @return the class
      * @throws ClassNotFoundException
      *             If the class cannot be found anywhere.
+     * @see java.lang.ClassLoader#loadClass(String)
      */
     public static Class<?> loadClass(String className,Class<?> callingClass) throws ClassNotFoundException{
         ClassLoader classLoader = null;
@@ -215,8 +230,11 @@ public final class ClassLoaderUtil{
      */
     public static ClassLoader getClassLoaderByCurrentThread(){
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        log.debug("classLoader" + classLoader);
-        log.debug("Thread.currentThread().getContextClassLoader() classpath is:" + classLoader.getResource(""));
+
+        if (log.isDebugEnabled()){
+            Map<String, Object> classLoaderInfoMap = getClassLoaderInfoMapForLog(classLoader);
+            log.debug("Thread.currentThread().getContextClassLoader:{}", JsonUtil.format(classLoaderInfoMap));
+        }
         return classLoader;
     }
 
@@ -226,47 +244,29 @@ public final class ClassLoaderUtil{
      * @param callingClass
      *            the calling class
      * @return the class loader by class
+     * @see java.lang.Class#getClassLoader()
      */
     public static ClassLoader getClassLoaderByClass(Class<?> callingClass){
         ClassLoader classLoader = callingClass.getClassLoader();
-
         if (log.isDebugEnabled()){
-            Map<String, Object> object = new LinkedHashMap<String, Object>();
-            object.put("classLoader", "" + classLoader);
-            object.put("callingClass", "" + callingClass.getName());
-            object.put(".class.getClassLoader() classpath", "" + classLoader.getResource(""));
-            log.debug(JsonUtil.format(object));
+            Map<String, Object> classLoaderInfoMap = getClassLoaderInfoMapForLog(classLoader);
+            log.debug("callingClass.getClassLoader():{}", JsonUtil.format(classLoaderInfoMap));
         }
-
         return classLoader;
     }
 
     /**
-     * Prints the current classloader hierarchy <br>
-     * useful for debugging.
-     */
-    // XXX 拆
-    private static void logClassLoader(){
-        log.info("use " + ClassLoaderUtil.class.getSimpleName() + ".printClassLoader");
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        logClassLoader(classLoader);
-    }
-
-    /**
-     * Prints the classloader hierarchy from a given classloader<br>
-     * useful for debugging.
-     * 
+     * 获得 class loader info map for log.
+     *
      * @param classLoader
      *            the class loader
+     * @return the class loader info map for log
+     * @since 1.1.1
      */
-    // XXX 拆
-    private static void logClassLoader(ClassLoader classLoader){
-        if (null != classLoader){
-            log.info(classLoader.toString());
-            ClassLoader parent = classLoader.getParent();
-            if (null != parent){
-                logClassLoader(parent);
-            }
-        }
+    private static Map<String, Object> getClassLoaderInfoMapForLog(ClassLoader classLoader){
+        Map<String, Object> classLoaderInfoMap = new LinkedHashMap<String, Object>();
+        classLoaderInfoMap.put("classLoader", "" + classLoader);
+        classLoaderInfoMap.put("classLoader root classpath", "" + classLoader.getResource(""));
+        return classLoaderInfoMap;
     }
 }

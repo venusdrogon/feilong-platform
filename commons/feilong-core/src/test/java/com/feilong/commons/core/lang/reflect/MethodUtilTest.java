@@ -43,12 +43,10 @@ public class MethodUtilTest{
      */
     @Test
     public final void testInvokeMethod(){
-        if (log.isInfoEnabled()){
-            BackWarnEntity backWarnEntity = new BackWarnEntity();
-            String methodName = "getIsSuccess";
-            Object[] params = new Object[0];
-            log.info("" + MethodUtil.invokeMethod(backWarnEntity, methodName, params));
-        }
+        BackWarnEntity backWarnEntity = new BackWarnEntity();
+        String methodName = "getIsSuccess";
+        Object[] params = new Object[0];
+        log.info("" + MethodUtil.invokeMethod(backWarnEntity, methodName, params));
     }
 
     /**
@@ -86,7 +84,6 @@ public class MethodUtilTest{
         //		Assert.assertEquals(
         //				"fjinxinlong",
         //				MethodUtil.invokeStaticMethod("com.feilong.commons.core.util.StringUtil", "replace", "feilong", "ei", "jinxin"));
-
         Assert.assertEquals("fjinxinlong", MethodUtils.invokeStaticMethod(StringUtil.class, "replace", "feilong", "ei", "jinxin"));
     }
 }

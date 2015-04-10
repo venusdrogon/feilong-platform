@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		">
-	<bean id="blowfishForPassword" class="com.feilong.commons.core.security.symmetric.SymmetricEncryption" lazy-init="true">
+	<bean id="blowfishForPassword" class="com.feilong.tools.security.symmetric.SymmetricEncryption" lazy-init="true">
 		<!-- 第1个参数是加密解密方式 -->
 		<constructor-arg index="0" value="Blowfish" />
 		<!-- 第2个参数是密钥字符串 -->

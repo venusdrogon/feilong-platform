@@ -180,4 +180,12 @@ public class ObjectUtilTest{
     public final void testToT(){
         log.info(ObjectUtil.toT(BigDecimal.ONE, Float.class) + "");
     }
+
+    @Test
+    public final void testToBigDecimal(){
+        log.info("" + ObjectUtil.toBigDecimal(1111));
+        log.info("" + ObjectUtil.toBigDecimal(0.1));
+        log.info("" + new BigDecimal(0.1));
+        log.info("" + new BigDecimal("" + 0.1));
+    }
 }

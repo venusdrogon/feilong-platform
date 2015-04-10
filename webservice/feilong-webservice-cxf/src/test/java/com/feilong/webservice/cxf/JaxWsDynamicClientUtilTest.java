@@ -105,10 +105,10 @@ public class JaxWsDynamicClientUtilTest{
     @Test
     public void call1() throws Exception{
 
-        String wsdlUrl = "http://ho.gymbomate.com/GymboreeHOServices/HOServices.asmx";
+        String wsdlUrl = "http://ho.gymbomate.com/GymboreeHOServices/HOServices.asmx?wsdl";
         String operationName = "GetMemPoints";
-        String wddxPacketXML = JaxWsDynamicClientUtil.call(wsdlUrl, operationName, "15001841318");
-        log.info(wddxPacketXML);
+        String result = JaxWsDynamicClientUtil.call(wsdlUrl, operationName, "15001841318");
+        log.info("{}", result);
 
     }
 

@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * The Class ClassUtilTest.
@@ -41,6 +42,17 @@ public class ClassUtilTest{
         if (log.isInfoEnabled()){
             log.info("" + ClassUtil.isInterface(this.getClass()));
             log.info("" + ClassUtil.isInterface(DatePattern.class));
+        }
+    }
+
+    /**
+     * Test get class info map for log.
+     */
+    @Test
+    public void testGetClassInfoMapForLog(){
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(ClassUtil.getClassInfoMapForLog(this.getClass())));
+            log.debug(JsonUtil.format(ClassUtil.getClassInfoMapForLog(DatePattern.class)));
         }
     }
 }

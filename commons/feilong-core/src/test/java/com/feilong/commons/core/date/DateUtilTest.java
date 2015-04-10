@@ -18,11 +18,14 @@ package com.feilong.commons.core.date;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.StringUtil;
 
 /**
@@ -271,37 +274,34 @@ public class DateUtilTest extends BaseDateUtilTest{
     }
 
     /**
-     * Test convert birthday to age.
-     */
-    @Test
-    public void testConvertBirthdayToAge(){
-        log.debug("convertBirthdayToAge:" + SelectHelper.convertBirthdayToAge("2000-05-41"));
-    }
-
-    /**
      * Test date pattern.
      */
     @Test
     public void testDatePattern(){
-        log.debug("commonWithMillisecond:" + DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
-        log.debug("commonWithoutAndYearSecond:" + DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_YEAR_AND_SECOND));
-        log.debug("commonWithoutSecond:" + DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_SECOND));
-        log.debug("commonWithTime:" + DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME));
-        log.debug("forToString:" + DateUtil.date2String(NOW, DatePattern.forToString));
-        log.debug("HH:" + DateUtil.date2String(NOW, DatePattern.HH));
-        log.debug("MM:" + DateUtil.date2String(NOW, DatePattern.MM));
-        log.debug("mmss:" + DateUtil.date2String(NOW, DatePattern.mmss));
-        log.debug("monthAndDay:" + DateUtil.date2String(NOW, DatePattern.MONTH_AND_DAY));
-        log.debug("monthAndDayWithWeek:" + DateUtil.date2String(NOW, DatePattern.MONTH_AND_DAY_WITH_WEEK));
-        log.debug("onlyDate:" + DateUtil.date2String(NOW, DatePattern.COMMON_DATE));
-        log.debug("onlyTime:" + DateUtil.date2String(NOW, DatePattern.COMMON_TIME));
-        log.debug("onlyTime_withoutSecond:" + DateUtil.date2String(NOW, DatePattern.COMMON_TIME_WITHOUT_SECOND));
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        map.put("commonWithMillisecond:", DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME_WITH_MILLISECOND));
+        map.put("commonWithoutAndYearSecond:", DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_YEAR_AND_SECOND));
+        map.put("commonWithoutSecond:", DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME_WITHOUT_SECOND));
+        map.put("commonWithTime:", DateUtil.date2String(NOW, DatePattern.COMMON_DATE_AND_TIME));
+        map.put("forToString:", DateUtil.date2String(NOW, DatePattern.forToString));
+        map.put("HH:", DateUtil.date2String(NOW, DatePattern.HH));
+        map.put("MM:", DateUtil.date2String(NOW, DatePattern.MM));
+        map.put("mmss:", DateUtil.date2String(NOW, DatePattern.mmss));
+        map.put("monthAndDay:", DateUtil.date2String(NOW, DatePattern.MONTH_AND_DAY));
+        map.put("monthAndDayWithWeek:", DateUtil.date2String(NOW, DatePattern.MONTH_AND_DAY_WITH_WEEK));
+        map.put("onlyDate:", DateUtil.date2String(NOW, DatePattern.COMMON_DATE));
+        map.put("onlyTime:", DateUtil.date2String(NOW, DatePattern.COMMON_TIME));
+        map.put("onlyTime_withoutSecond:", DateUtil.date2String(NOW, DatePattern.COMMON_TIME_WITHOUT_SECOND));
 
-        log.debug("timestamp:" + DateUtil.date2String(NOW, DatePattern.TIMESTAMP));
-        log.debug("timestampWithMillisecond:" + DateUtil.date2String(NOW, DatePattern.TIMESTAMP_WITH_MILLISECOND));
-        log.debug("yearAndMonth:" + DateUtil.date2String(NOW, DatePattern.YEAR_AND_MONTH));
-        log.debug("yy:" + DateUtil.date2String(NOW, DatePattern.yy));
-        log.debug("yyyyMMdd:" + DateUtil.date2String(NOW, DatePattern.yyyyMMdd));
+        map.put("timestamp:", DateUtil.date2String(NOW, DatePattern.TIMESTAMP));
+        map.put("timestampWithMillisecond:", DateUtil.date2String(NOW, DatePattern.TIMESTAMP_WITH_MILLISECOND));
+        map.put("yearAndMonth:", DateUtil.date2String(NOW, DatePattern.YEAR_AND_MONTH));
+        map.put("yy:", DateUtil.date2String(NOW, DatePattern.yy));
+        map.put("yyyyMMdd:", DateUtil.date2String(NOW, DatePattern.yyyyMMdd));
+
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(map));
+        }
     }
 
     /**
@@ -538,10 +538,10 @@ public class DateUtilTest extends BaseDateUtilTest{
     }
 
     /**
-     * Test to calendar1.
+     * Test get time length.
      */
     @Test
-    public final void testToCalendar1(){
+    public final void testGetTimeLength(){
         log.debug((new Date().getTime() + "").length() + "");
     }
 

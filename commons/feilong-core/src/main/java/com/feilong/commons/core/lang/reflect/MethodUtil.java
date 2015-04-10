@@ -26,11 +26,12 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 使用反射的方式请求bean中的方法..
- * 
+ * 使用反射的方式请求bean中的方法.
+ *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:08:15
  * @see org.apache.commons.lang3.reflect.MethodUtils
+ * @see org.apache.commons.lang3.ClassUtils#getPublicMethod(Class, String, Class...)
  * @since 1.0.7
  */
 public final class MethodUtil{
@@ -61,7 +62,7 @@ public final class MethodUtil{
      * @return 方法执行之后的结果值
      * @throws ReflectException
      *             如果在执行的过程中出现了异常
-     * @see MethodUtil#getMethod(Class, String, Object...)
+     * @see #getMethod(Class, String, Object...)
      * @see java.lang.reflect.Method#invoke(Object, Object...)
      */
     @SuppressWarnings("unchecked")
@@ -73,7 +74,6 @@ public final class MethodUtil{
             Object invoke = method.invoke(obj, params);
             return (T) invoke;
         }catch (Exception e){
-            log.error(e.getClass().getName(), e);
             throw new ReflectException(e);
         }
     }
@@ -160,6 +160,36 @@ public final class MethodUtil{
         }
 
         Class<?>[] parameterTypes = ClassUtil.toParameterTypes(paramValues);
+        return getMethod(ownerClass, methodName, parameterTypes);
+    }
+
+    /**
+     * 获得 method.
+     *
+     * @param ownerClass
+     *            the owner class
+     * @param methodName
+     *            the method name
+     * @param parameterTypes
+     *            the parameter types
+     * @return the method
+     * @see java.lang.Class#getMethod(String, Class...)
+     * @see org.apache.commons.lang3.ClassUtils#getPublicMethod(Class, String, Class...)
+     * @since 1.1.1
+     */
+    private static Method getMethod(Class<?> ownerClass,String methodName,Class<?>...parameterTypes){
+
+        if (Validator.isNullOrEmpty(ownerClass)){
+            throw new IllegalArgumentException("ownerClass can't be null/empty!");
+        }
+        if (Validator.isNullOrEmpty(methodName)){
+            throw new IllegalArgumentException("methodName can't be null/empty!");
+        }
+
+        if (log.isDebugEnabled()){
+            log.debug("ownerClass:[{}],methodName:[{}],parameterTypes:[{}]", ownerClass, methodName, parameterTypes);
+        }
+
         try{
             // 它反映此 Class 对象所表示的类或接口的指定公共成员方法.<br>
             //name 参数是一个 String，用于指定所需方法的简称.<br>

@@ -287,6 +287,14 @@ public final class ObjectUtil{
     /**
      * object类型转换成BigDecimal.
      * 
+     * 注意:
+     * 
+     * <pre>
+     * 对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
+     * new BigDecimal(0.1) ====&gt;   0.1000000000000000055511151231257827021181583404541015625
+     * BigDecimal.valueOf(0.1) ====&gt;  0.1
+     * </pre>
+     * 
      * @param value
      *            值
      * @return BigDecimal
@@ -300,6 +308,8 @@ public final class ObjectUtil{
                 //对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
                 //new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
                 //BigDecimal.valueOf(0.1) ====>  0.1
+
+                //先转成string 就可以了
                 returnValue = new BigDecimal(value.toString().trim());
             }
         }

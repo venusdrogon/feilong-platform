@@ -44,33 +44,44 @@ public final class ClassUtil{
     }
 
     /**
-     * debug.
-     * 
-     * @param clz
+     * 获得 class info map for log.
+     *
+     * @param klass
      *            the clz
      * @return the map for log
      */
-    public static Map<String, Object> getMapForLog(Class<? extends Object> clz){
+    public static Map<String, Object> getClassInfoMapForLog(Class<?> klass){
 
         Map<String, Object> map = new LinkedHashMap<String, Object>();
 
-        map.put("clz.getComponentType()", clz.getComponentType());
+        //"clz.getCanonicalName()": "com.feilong.commons.core.date.DatePattern",
+        //"clz.getName()": "com.feilong.commons.core.date.DatePattern",
+        //"clz.getSimpleName()": "DatePattern",
+
+        // getCanonicalName (返回 Java Language Specification 中所定义的底层类的规范化名称。) && getName
+        //其实这两个方法没有什么不同的，对于大部分class来说，但是对于array就显示出来了。
+        // getName返回的是[[Ljava.lang.String之类的表现形式，而getCanonicalName返回的就是跟我们声明类似的形式。
+        map.put("clz.getCanonicalName()", klass.getCanonicalName());
+        map.put("clz.getName()", klass.getName());
+        map.put("clz.getSimpleName()", klass.getSimpleName());
+
+        map.put("clz.getComponentType()", klass.getComponentType());
         // 类是不是“基本类型”。 基本类型，包括void和boolean、byte、char、short、int、long、float 和 double这几种类型。
-        map.put("clz.isPrimitive()", clz.isPrimitive());
+        map.put("clz.isPrimitive()", klass.isPrimitive());
 
         // 类是不是“本地类”。本地类,就是定义在方法内部的类。
-        map.put("clz.isLocalClass()", clz.isLocalClass());
+        map.put("clz.isLocalClass()", klass.isLocalClass());
         // 类是不是“成员类”。成员类,是内部类的一种，但是它不是“内部类”或“匿名类”。
-        map.put("clz.isMemberClass()", clz.isMemberClass());
+        map.put("clz.isMemberClass()", klass.isMemberClass());
 
         //isSynthetic()是用来判断Class是不是“复合类”。这在java应用程序中只会返回false，不会返回true。因为，JVM中才会产生复合类，在java应用程序中不存在“复合类”！
-        map.put("clz.isSynthetic()", clz.isSynthetic());
-        map.put("clz.isArray()", clz.isArray());
-        map.put("clz.isAnnotation()", clz.isAnnotation());
+        map.put("clz.isSynthetic()", klass.isSynthetic());
+        map.put("clz.isArray()", klass.isArray());
+        map.put("clz.isAnnotation()", klass.isAnnotation());
 
         //当且仅当这个类是匿名类此方法返回true。
-        map.put("clz.isAnonymousClass()", clz.isAnonymousClass());
-        map.put("clz.isEnum()", clz.isEnum());
+        map.put("clz.isAnonymousClass()", klass.isAnonymousClass());
+        map.put("clz.isEnum()", klass.isEnum());
 
         return map;
         //		Class<?> klass = this.getClass();
@@ -118,49 +129,6 @@ public final class ClassUtil{
     }
 
     /**
-     * 解析参数,获得参数类型,如果参数 paramValues 是null 返回 null.
-     * 
-     * @param paramValues
-     *            参数值
-     * @return 如果参数 paramValues 是null 返回 null
-     * @see org.apache.commons.lang3.ClassUtils#toClass(Object...)
-     * @since 1.0.7
-     * @deprecated pls use {@link org.apache.commons.lang3.ClassUtils#toClass(Object...)}
-     */
-    @Deprecated
-    public static Class<?>[] toParameterTypes(Object...paramValues){
-        if (Validator.isNullOrEmpty(paramValues)){
-            log.debug("paramValues is empty,will return null");
-            return null;
-        }
-        int len = paramValues.length;
-
-        Class<?>[] parameterTypes = new Class[len];
-        for (int i = 0; i < len; ++i){
-            Object param = paramValues[i];
-            if (ObjectUtil.isBoolean(param)){// 是否是boolean类型
-                parameterTypes[i] = boolean.class;
-            }else if (ObjectUtil.isInteger(param)){// 是不是Integer类型
-                parameterTypes[i] = int.class;
-            }else{
-                Class<?> clz = param.getClass();
-                //TODO
-                if ("org.jfree.data.category.DefaultCategoryDataset".equals(clz.getName())){
-                    try{
-                        parameterTypes[i] = loadClass("org.jfree.data.category.CategoryDataset");
-                    }catch (ClassNotFoundException e){
-                        log.error(e.getClass().getName(), e);
-                    }
-                }else{
-                    // XXX 待整理
-                    parameterTypes[i] = clz;
-                }
-            }
-        }
-        return parameterTypes;
-    }
-
-    /**
      * 是不是某个类的实例.
      * 
      * @param obj
@@ -188,5 +156,47 @@ public final class ClassUtil{
         int flag = ownerClass.getModifiers();
         // 对类和成员访问修饰符进行解码
         return Modifier.isInterface(flag);
+    }
+
+    /**
+     * 解析参数,获得参数类型,如果参数 paramValues 是null 返回 null.
+     * 
+     * @param paramValues
+     *            参数值
+     * @return 如果参数 paramValues 是null 返回 null
+     * @see org.apache.commons.lang3.ClassUtils#toClass(Object...)
+     * @since 1.0.7
+     * @deprecated pls use {@link org.apache.commons.lang3.ClassUtils#toClass(Object...)}
+     */
+    @Deprecated
+    public static Class<?>[] toParameterTypes(Object...paramValues){
+        if (Validator.isNullOrEmpty(paramValues)){
+            return null;
+        }
+        int len = paramValues.length;
+
+        Class<?>[] parameterTypes = new Class[len];
+        for (int i = 0; i < len; ++i){
+            Object param = paramValues[i];
+            if (ObjectUtil.isBoolean(param)){// 是否是boolean类型
+                parameterTypes[i] = boolean.class;
+            }else if (ObjectUtil.isInteger(param)){// 是不是Integer类型
+                parameterTypes[i] = int.class;
+            }else{
+                Class<?> clz = param.getClass();
+                //TODO
+                if ("org.jfree.data.category.DefaultCategoryDataset".equals(clz.getName())){
+                    try{
+                        parameterTypes[i] = loadClass("org.jfree.data.category.CategoryDataset");
+                    }catch (ClassNotFoundException e){
+                        log.error(e.getClass().getName(), e);
+                    }
+                }else{
+                    // XXX 待整理
+                    parameterTypes[i] = clz;
+                }
+            }
+        }
+        return parameterTypes;
     }
 }

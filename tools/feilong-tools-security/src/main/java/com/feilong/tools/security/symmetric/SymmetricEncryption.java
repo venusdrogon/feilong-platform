@@ -147,10 +147,10 @@ public final class SymmetricEncryption{
     private Key                   key;
 
     /** The key string. */
-    private String                keyString;
+    private final String          keyString;
 
     /** The algorithm. */
-    private String                algorithm;
+    private final String          algorithm;
 
     /**
      * 转换的名称，例如 DES/CBC/PKCS5Padding。<br>

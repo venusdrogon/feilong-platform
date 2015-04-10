@@ -1027,7 +1027,7 @@ public final class DateUtil{
     }
 
     /**
-     * 两个时间相差的的天数.
+     * 计算两个时间相差的的天数.
      * 
      * @param date1
      *            date1
@@ -1049,7 +1049,7 @@ public final class DateUtil{
     }
 
     /**
-     * 两个时间相差的的天数.
+     * 计算两个时间相差的的天数.
      * 
      * @param date1
      *            date1

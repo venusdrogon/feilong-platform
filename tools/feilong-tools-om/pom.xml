@@ -21,12 +21,12 @@
 			<groupId>com.feilong.platform.tools</groupId>
 			<artifactId>feilong-tools-mail</artifactId>
 			<version>${version.feilong-platform}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>velocity-tools</artifactId>
-					<groupId>org.apache.velocity</groupId>
-				</exclusion>
-			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-velocity</artifactId>
+			<version>${version.feilong-platform}</version>
 		</dependency>
 	</dependencies>
 

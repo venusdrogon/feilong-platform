@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		">
+
+	<!--
+		See org.springframework.context.config.ContextNamespaceHandler
+
+		隐式地向 Spring 容器注册4个BeanPostProcessor
+		org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor 、 
+		org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor 
+		org.springframework.context.annotation.CommonAnnotationBeanPostProcessor 、 
+		org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor 
+	-->
+	<!--
+		Activates various annotations to be detected in bean classes:
+		Spring's @Required and @Autowired,
+		as well as JSR 250's @PostConstruct, @PreDestroy and @Resource(if available),
+		JAX-WS's @WebServiceRef (if available),
+		EJB3's @EJB (if available),
+		and JPA's @PersistenceContext and @PersistenceUnit (if available).
+
+		Alternatively,you may choose to activate the individual BeanPostProcessors for those annotations.
+
+		Note: This tag does not activate processing of Spring's @Transactional or EJB3's @TransactionAttribute annotation.
+		Consider the use of the <tx:annotation-driven> tag for that purpose.
+
+		See javadoc for org.springframework.context.annotation.AnnotationConfigApplicationContext
+		for information on code-based alternatives to bootstrapping annotation-driven support.
+
+		from XML.
+	-->
+	<context:annotation-config />
+
+	<tx:annotation-driven order="10" />
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!--启用spring @AspectJ支持 打开自动代理 -->
+	<!--proxy-target-class默认"false"使用JDK代理,更改为"ture"使用CGLib动态代理。 -->
+	<aop:aspectj-autoproxy proxy-target-class="false" />
+
+	<import resource="spring/spring-dao.xml" />
+	<import resource="spring/spring-manager.xml" />
+</beans>

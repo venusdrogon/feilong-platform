@@ -83,7 +83,7 @@ public final class MimeTypeUtil{
      * @see org.apache.commons.io.FilenameUtils#getExtension(String)
      * @see java.net.URLConnection#guessContentTypeFromName(String)
      * @see java.net.URLConnection#guessContentTypeFromStream(java.io.InputStream)
-     * @see java.nio.file.Files#probeContentType(java.nio.file.Path)
+     * @see "java.nio.file.Files#probeContentType(java.nio.file.Path)"
      */
     public static String getContentTypeByFileName(String fileName){
 

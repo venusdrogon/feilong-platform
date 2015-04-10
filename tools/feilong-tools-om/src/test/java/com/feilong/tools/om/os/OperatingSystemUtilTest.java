@@ -38,7 +38,7 @@ public class OperatingSystemUtilTest{
      * 获得 thread group active count.
      */
     @Test
-    public void getThreadGroupActiveCount(){
+    public void testGetThreadGroupActiveCount(){
         log.info(ThreadUtil.getTopThreadGroupActiveCount() + "");
     }
 
@@ -46,7 +46,7 @@ public class OperatingSystemUtilTest{
      * Checks if is windows os.
      */
     @Test
-    public void isWindowsOS(){
+    public void testIsWindowsOS(){
         log.info(OperatingSystemUtil.isWindowsOS() + "");
     }
 
@@ -54,7 +54,7 @@ public class OperatingSystemUtilTest{
      * 获得 mac map.
      */
     @Test
-    public void getMacMap(){
+    public void testGetMacMap(){
         log.info(JsonUtil.format(OperatingSystemUtil.getMacAddressMap()));
     }
 
@@ -62,7 +62,7 @@ public class OperatingSystemUtilTest{
      * 获得 mac address by host.
      */
     @Test
-    public void getMacAddressByHost(){
+    public void testGetMacAddressByHost(){
         log.info(OperatingSystemUtil.getMacAddressByHost("10.8.17.84"));
         log.info(OperatingSystemUtil.getMacAddressByHost("10.8.12.194"));
 
@@ -73,7 +73,7 @@ public class OperatingSystemUtilTest{
      * 获得 mac address by name.
      */
     @Test
-    public void getMacAddressByName(){
+    public void testGetMacAddressByName(){
         log.info(OperatingSystemUtil.getMacAddressByName("eth3"));
     }
 
@@ -81,7 +81,7 @@ public class OperatingSystemUtilTest{
      * 获得 monitor info entity.
      */
     @Test
-    public void getMonitorInfoEntity(){
+    public void testGetMonitorInfoEntity(){
         MonitorInfoEntity monitorInfoEntity = OperatingSystemUtil.getMonitorInfoEntity();
         log.info(JsonUtil.format(monitorInfoEntity));
     }
@@ -90,7 +90,7 @@ public class OperatingSystemUtilTest{
      * 获得 system properties log.
      */
     @Test
-    public final void getSystemPropertiesLog(){
+    public final void testGetSystemPropertiesLog(){
         log.info(OperatingSystemUtil.getSystemPropertiesLog());
     }
 
@@ -98,7 +98,7 @@ public class OperatingSystemUtilTest{
      * 获得 disk info log.
      */
     @Test
-    public final void getDiskInfoLog(){
+    public final void testGetDiskInfoLog(){
         log.info(OperatingSystemUtil.getDiskInfoLog());
     }
 
@@ -106,7 +106,7 @@ public class OperatingSystemUtilTest{
      * 获取本机IP地址.
      */
     @Test
-    public final void getLocalIP(){
+    public final void testGetLocalIP(){
         log.debug(OperatingSystemUtil.getLocalHostAddress());
     }
 
@@ -114,7 +114,7 @@ public class OperatingSystemUtilTest{
      * 获取本机,计算机名.
      */
     @Test
-    public final void getLocalHostName(){
+    public final void testGetLocalHostName(){
         log.debug(OperatingSystemUtil.getLocalHostName());
     }
 }

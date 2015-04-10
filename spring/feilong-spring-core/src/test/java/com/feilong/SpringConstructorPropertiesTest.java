@@ -13,34 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.feilong;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * The Class DaoTest.
- * 
- * @author <a href="mailto:venusdrogon@163.com">feilong</a>
- * @version 1.0.7 2014-6-25 16:29:22
- */
-@ContextConfiguration(locations = { "classpath*:loxia-hibernate-context.xml",//
-                                   "classpath*:loxia-service-context.xml",//
-                                   "classpath*:spring/spring-dao.xml"//
-})
-public class DaoTest extends AbstractJUnit4SpringContextTests{
+import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.entity.ConstructorPropertiesEntity;
 
-    /** The session factory. */
+@ContextConfiguration(locations = { "classpath:spring-DI-ConstructorProperties.xml" })
+@RunWith(SpringJUnit4ClassRunner.class)
+public class SpringConstructorPropertiesTest{
+
+    /** The Constant log. */
+    private static final Logger         log = LoggerFactory.getLogger(SpringConstructorPropertiesTest.class);
+
     @Autowired
-    private LocalSessionFactoryBean sessionFactory;
+    private ConstructorPropertiesEntity constructorPropertiesEntity;
 
     /**
-     * Creates the tables.
+     * Test.
      */
     @Test
-    public void createTables(){
-        sessionFactory.updateDatabaseSchema();
+    public void testDIConstructorProperties(){
+        log.info(JsonUtil.format(constructorPropertiesEntity));
     }
 }

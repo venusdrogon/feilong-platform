@@ -13,10 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.feilong.entity;
+
+import java.beans.ConstructorProperties;
+
 /**
- *和数据源相关
- * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
- * @version 1.0.10 2015年3月31日 下午2:39:54 
- * @since 1.0.10
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.1.1 2015年4月10日 上午2:08:42
+ * @since 1.1.1
  */
-package com.feilong.spring.jdbc.datasource;
+public class ConstructorPropertiesEntity{
+
+    private final String  name;
+
+    private final Integer age;
+
+    /**
+     * 
+     */
+    @ConstructorProperties({ "name", "age" })
+    public ConstructorPropertiesEntity(String name, Integer age){
+        super();
+        this.name = name;
+        this.age = age;
+    }
+}

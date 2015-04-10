@@ -13,10 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.feilong.commons.core.date;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- *和数据源相关
- * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
- * @version 1.0.10 2015年3月31日 下午2:39:54 
- * @since 1.0.10
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.1.1 2015年4月10日 下午2:00:38
+ * @since 1.1.1
  */
-package com.feilong.spring.jdbc.datasource;
+public class SelectHelperTest{
+
+    private static final Logger log = LoggerFactory.getLogger(SelectHelperTest.class);
+
+    /**
+     * Test convert birthday to age.
+     */
+    @Test
+    public void testConvertBirthdayToAge(){
+        log.debug("convertBirthdayToAge:" + SelectHelper.convertBirthdayToAge("2000-05-41"));
+    }
+}
