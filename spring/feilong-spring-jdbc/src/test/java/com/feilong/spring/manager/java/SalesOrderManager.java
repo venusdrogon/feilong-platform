@@ -53,4 +53,12 @@ public interface SalesOrderManager extends ReadWriteSupport{
      *            the name
      */
     void addUser(String name);
+
+    /**
+     * Delete user.
+     *
+     * @param name
+     *            the name
+     */
+    void deleteUser(String name);
 }
