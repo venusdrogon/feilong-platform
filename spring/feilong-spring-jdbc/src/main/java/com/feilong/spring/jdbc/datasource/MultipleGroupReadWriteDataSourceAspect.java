@@ -15,6 +15,10 @@
  */
 package com.feilong.spring.jdbc.datasource;
 
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import loxia.dao.ReadWriteSupport;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,10 +33,13 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.interceptor.TransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionAttributeSource;
 
+import com.feilong.commons.core.date.DateExtensionUtil;
+import com.feilong.commons.core.lang.ThreadUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.spring.aop.AbstractAspect;
 import com.feilong.spring.aop.ProceedingJoinPointUtil;
+import com.feilong.spring.transaction.interceptor.TransactionAttributeUtil;
 
 /**
  * 使用拦截器,确定使用那个组/类型数据库,以及那种(读还是写)的数据库.
@@ -78,7 +85,7 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
     private static final Logger        log = LoggerFactory.getLogger(MultipleGroupReadWriteDataSourceAspect.class);
 
     /** The transaction attribute souce. */
-    @Autowired
+    @Autowired(required = false)
     private TransactionAttributeSource transactionAttributeSouce;
 
     /**
@@ -95,11 +102,12 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
 
         Signature signature = proceedingJoinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
-
         //事务
-        TransactionAttribute transactionAttribute = transactionAttributeSouce.getTransactionAttribute(
-                        methodSignature.getMethod(),
-                        proceedingJoinPoint.getTarget().getClass());
+        TransactionAttribute transactionAttribute = null;
+        if (null != transactionAttributeSouce){
+            transactionAttribute = transactionAttributeSouce.getTransactionAttribute(methodSignature.getMethod(), proceedingJoinPoint
+                            .getTarget().getClass());
+        }
 
         MultipleGroupDataSource multipleGroupDataSourceAnnotation = getAnnotation(proceedingJoinPoint, MultipleGroupDataSource.class);
         //组名
@@ -133,13 +141,17 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
                     throws Throwable{
         //当前的holder
         String previousDataSourceNameHolder = MultipleGroupReadWriteStatusHolder.getMultipleDataSourceGroupName();
+        Map<String, Object> mapForLog = new LinkedHashMap<String, Object>();
 
-        log.info(
-                        "determine datasource for query:[{}],Current groupName:[{}], transactionAttribute status:[{}],previousDataSourceNameHolder:[{}]",
-                        JsonUtil.format(ProceedingJoinPointUtil.getMapForLog(proceedingJoinPoint)),
-                        groupName,
-                        transactionAttribute == null ? "null" : JsonUtil.format(transactionAttribute),
-                        previousDataSourceNameHolder);
+        String currentThreadInfo = JsonUtil.format(ThreadUtil.getCurrentThreadMapForLog());
+        if (log.isInfoEnabled()){
+            mapForLog.put("groupName", groupName);
+            mapForLog.put("previousDataSourceNameHolder", previousDataSourceNameHolder);
+            mapForLog.put("transactionAttribute:", TransactionAttributeUtil.getMapForLog(transactionAttribute));
+            mapForLog.put("proceedingJoinPoint info", ProceedingJoinPointUtil.getMapForLog(proceedingJoinPoint));
+
+            log.info("before determine datasource :[{}],current thread info:[{}]", JsonUtil.format(mapForLog), currentThreadInfo);
+        }
 
         boolean isSetHolder = isSetHolder(transactionAttribute, groupName);
 
@@ -149,6 +161,7 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
             String readWriteSupport = this.getReadWriteSupport(transactionAttribute);
 
             String targetDataSourcesKey = MultipleGroupReadWriteUtil.getTargetDataSourcesKey(groupName, readWriteSupport);
+            log.info("set targetDataSourcesKey:[{}],current thread info:[{}]", targetDataSourcesKey, currentThreadInfo);
             MultipleGroupReadWriteStatusHolder.setMultipleDataSourceGroupName(targetDataSourcesKey);
         }
 
@@ -158,14 +171,20 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
             throw e;
         }finally{
             if (Validator.isNotNullOrEmpty(previousDataSourceNameHolder)){
-                log.info("Back to previous Read/Write Status:[{}]", previousDataSourceNameHolder);
+                log.info(
+                                "Back to previous Read/Write Status:[{}],current thread info:[{}]",
+                                previousDataSourceNameHolder,
+                                currentThreadInfo);
                 //神来之笔,这样才能兼容 嵌套
                 MultipleGroupReadWriteStatusHolder.setMultipleDataSourceGroupName(previousDataSourceNameHolder);
             }
             //TODO
             //不存在previousDataSourceNameHolder,则清空
             else{
-                log.info("Clear Read/Write Status,previousDataSourceNameHolder:[{}]", previousDataSourceNameHolder);
+                log.info(
+                                "previousDataSourceNameHolder is NullOrEmpty,Clear Read/Write Status:[{}],current thread info:[{}]",
+                                MultipleGroupReadWriteStatusHolder.getMultipleDataSourceGroupName(),
+                                currentThreadInfo);
                 MultipleGroupReadWriteStatusHolder.clearMultipleDataSourceGroupName();
             }
         }
@@ -183,6 +202,11 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
         if (Validator.isNotNullOrEmpty(groupName)){
             return true;
         }else{
+
+            if (null == transactionAttribute){
+                return true;
+            }
+
             int propagationBehavior = transactionAttribute.getPropagationBehavior();
             //TODO
             return propagationBehavior != TransactionDefinition.PROPAGATION_REQUIRES_NEW;
@@ -269,13 +293,31 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
      */
     private Object proceed(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         Object[] args = proceedingJoinPoint.getArgs();
-        log.info("proceedingJoinPoint begin:{}", args);
+        String format = JsonUtil.format(ProceedingJoinPointUtil.getMapForLog(proceedingJoinPoint));
+
+        if (log.isInfoEnabled()){
+            log.info(
+                            "begin proceed ,ProceedingJoinPoint info:[{}],Thread info:{}",
+                            format,
+                            JsonUtil.format(ThreadUtil.getCurrentThreadMapForLog()));
+        }
+        Date beginDate = new Date();
+
         //***********************************************************
 
         Object returnValue = proceedingJoinPoint.proceed(args);
 
         //***********************************************************
-        log.info("proceedingJoinPoint returnValue:{}", returnValue);
+        Date endDate = new Date();
+
+        if (log.isInfoEnabled()){
+            log.info(
+                            "end proceed:[{}],thread info:[{}],time:{},return:[{}]",
+                            format,
+                            JsonUtil.format(ThreadUtil.getCurrentThreadMapForLog()),
+                            DateExtensionUtil.getIntervalForView(beginDate, endDate),
+                            returnValue);
+        }
         return returnValue;
     }
 }

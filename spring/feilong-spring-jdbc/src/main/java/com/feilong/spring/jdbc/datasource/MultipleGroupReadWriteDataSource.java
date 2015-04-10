@@ -7,8 +7,12 @@ import javax.sql.DataSource;
 
 import loxia.dao.ReadWriteSupport;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
+import com.feilong.commons.core.lang.ThreadUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
@@ -36,6 +40,9 @@ import com.feilong.commons.core.util.Validator;
  * @since 1.1.1
  */
 public class MultipleGroupReadWriteDataSource extends AbstractRoutingDataSource{
+
+    /** The Constant log. */
+    private static final Logger                     log = LoggerFactory.getLogger(MultipleGroupReadWriteDataSource.class);
 
     /** key 是 dataSource group 名字;. */
     private Map<String, ReadWriteDataSourceCommand> readWriteDataSourceCommandMap;
@@ -86,12 +93,7 @@ public class MultipleGroupReadWriteDataSource extends AbstractRoutingDataSource{
     @Override
     protected Object determineCurrentLookupKey(){
         String dataSourceName = MultipleGroupReadWriteStatusHolder.getMultipleDataSourceGroupName();
-        logger.debug("Current LookupKey:" + dataSourceName);
-
-        // TODO
-        // if (dataSourceName == null){
-        // return ReadWriteSupport.WRITE;
-        // }
+        log.info("Current LookupKey:[{}],thread info:{}", dataSourceName, JsonUtil.format(ThreadUtil.getCurrentThreadMapForLog()));
         return dataSourceName;
     }
 
