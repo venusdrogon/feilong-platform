@@ -209,10 +209,10 @@
 		<module>commons</module>
 		<module>taglib</module>
 		<module>tools</module>
+		<module>spring</module>
 		<module>framework</module>
 		<module>webservice</module>
 		<module>data</module>
-		<module>spring</module>
 	</modules>
 
 	<dependencies>

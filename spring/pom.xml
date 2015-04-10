@@ -10,6 +10,7 @@
 	<artifactId>parent</artifactId>
 
 	<description>feilong-spring-parent</description>
+	<name>feilong-spring-parent</name>
 
 	<packaging>pom</packaging>
 
