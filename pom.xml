@@ -182,12 +182,6 @@
 	</properties>
 
 	<!-- 软件配置管理，如cvs 和svn -->
-	<!-- <scm>
-		<connection>scm:svn:https://feilong.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://feilong.googlecode.com/svn/trunk/</developerConnection>
-		<url>https://feilong.googlecode.com/svn/trunk/</url>
-		</scm> -->
-
 	<scm>
 		<url>https://github.com/venusdrogon/feilong-platform.git</url>
 		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
@@ -195,24 +189,21 @@
 	</scm>
 
 	<distributionManagement>
-		<!-- <repository>
-			<id>feilong.googlecode.com</id>
-			<url>svn:https://feilong.googlecode.com/svn/repository</url>
-			</repository> -->
+		<!-- <url>file://${user.home}/feilong/repository</url> -->
+		<!-- -->
 		<repository>
 			<id>internal.repo</id>
 			<name>Temporary Staging Repository</name>
-			<!-- <url>file://${user.home}/feilong/repository</url> -->
 			<url>file://${project.build.directory}/mvn-repo</url>
 		</repository>
-	</distributionManagement>
 
-	<!-- <repositories>
-		<repository>
-		<id>feilong-repository</id>
-		<url>https://raw.github.com/venusdrogon/feilong-platform/master</url>
-		</repository>
-		</repositories> -->
+		<!-- <snapshotRepository>
+			<id>baozun-nexus-snapshots</id>
+			<name>baozun-nexus-snapshots</name>
+			<url>http://10.8.12.100:8080/nexus/content/repositories/snapshots/</url>
+			<uniqueVersion>false</uniqueVersion>
+			</snapshotRepository> -->
+	</distributionManagement>
 
 	<modules>
 		<module>commons</module>
