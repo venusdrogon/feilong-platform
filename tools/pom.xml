@@ -17,9 +17,6 @@
 
 	<modules>
 		<module>feilong-struts1</module>
-		<module>feilong-office-excel</module>
-		<module>feilong-office-word</module>
-		<module>feilong-office-pdf</module>
 		<module>feilong-ssh</module>
 		<module>feilong-net-filetransfer</module>
 		<module>feilong-net-httpclient</module>
@@ -34,9 +31,6 @@
 		<module>feilong-tools-scm</module>
 		<module>feilong-tools-xstream</module>
 		<module>feilong-tools-zookeeper</module>
-		<module>feilong-chart-core</module>
-		<module>feilong-chart-amcharts</module>
-		<module>feilong-chart-jfreechart</module>
 		<module>feilong-tools-log4j</module>
 		<module>feilong-tools-security</module>
 		<module>feilong-tools-quartz</module>
