@@ -17,8 +17,8 @@ package com.feilong.commons.core.lang.annotation;
 
 import java.lang.reflect.Method;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

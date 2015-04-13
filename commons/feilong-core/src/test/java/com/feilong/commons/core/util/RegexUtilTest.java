@@ -89,6 +89,11 @@ public class RegexUtilTest{
         assertEquals(true, RegexUtil.matches(RegexPattern.EMAIL, "venusdrogon@163.com"));
     }
 
+    @Test
+    public final void testMOBILEPHONE(){
+        assertEquals(true, RegexUtil.matches(RegexPattern.MOBILEPHONE, "18501646315"));
+    }
+
     /**
      * Test is ip.
      */

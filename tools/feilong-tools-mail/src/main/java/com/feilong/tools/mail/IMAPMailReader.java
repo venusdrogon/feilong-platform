@@ -75,6 +75,11 @@ public class IMAPMailReader implements MailReader{
     public List<MailInfo> getMailInfoList(MailSenderConfig mailSenderConfig,Integer newstIndex,SearchTerm searchTerm)
                     throws MailReaderException{
 
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(mailSenderConfig));
+            log.debug(JsonUtil.format(searchTerm));
+        }
+
         List<MailInfo> mailInfoList = null;
 
         String mailServerHost = mailSenderConfig.getMailServerHost();

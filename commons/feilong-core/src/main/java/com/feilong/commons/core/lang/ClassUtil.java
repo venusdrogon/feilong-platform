@@ -19,22 +19,14 @@ import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.feilong.commons.core.util.Validator;
-
 /**
- * The Class ClassUtil.
+ * {@link java.lang.Class} 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-6-1 下午7:19:47
  * @since 1.0.0
  */
 public final class ClassUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(ClassUtil.class);
 
     /** Don't let anyone instantiate this class. */
     private ClassUtil(){
@@ -165,38 +157,9 @@ public final class ClassUtil{
      *            参数值
      * @return 如果参数 paramValues 是null 返回 null
      * @see org.apache.commons.lang3.ClassUtils#toClass(Object...)
-     * @since 1.0.7
-     * @deprecated pls use {@link org.apache.commons.lang3.ClassUtils#toClass(Object...)}
+     * @since 1.1.1
      */
-    @Deprecated
-    public static Class<?>[] toParameterTypes(Object...paramValues){
-        if (Validator.isNullOrEmpty(paramValues)){
-            return null;
-        }
-        int len = paramValues.length;
-
-        Class<?>[] parameterTypes = new Class[len];
-        for (int i = 0; i < len; ++i){
-            Object param = paramValues[i];
-            if (ObjectUtil.isBoolean(param)){// 是否是boolean类型
-                parameterTypes[i] = boolean.class;
-            }else if (ObjectUtil.isInteger(param)){// 是不是Integer类型
-                parameterTypes[i] = int.class;
-            }else{
-                Class<?> clz = param.getClass();
-                //TODO
-                if ("org.jfree.data.category.DefaultCategoryDataset".equals(clz.getName())){
-                    try{
-                        parameterTypes[i] = loadClass("org.jfree.data.category.CategoryDataset");
-                    }catch (ClassNotFoundException e){
-                        log.error(e.getClass().getName(), e);
-                    }
-                }else{
-                    // XXX 待整理
-                    parameterTypes[i] = clz;
-                }
-            }
-        }
-        return parameterTypes;
+    public static Class<?>[] toClass(Object...paramValues){
+        return org.apache.commons.lang3.ClassUtils.toClass(paramValues);
     }
 }

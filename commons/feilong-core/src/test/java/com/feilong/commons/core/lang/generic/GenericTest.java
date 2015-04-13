@@ -15,10 +15,7 @@
  */
 package com.feilong.commons.core.lang.generic;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 
 import org.junit.Test;
@@ -66,24 +63,6 @@ public class GenericTest{
             log.error(e.getClass().getName(), e);
         }
         return aT;
-    }
-
-    /**
-     * TestGenericTest1.
-     * 
-     * @throws NoSuchFieldException
-     *             the no such field exception
-     * @throws SecurityException
-     *             the security exception
-     */
-    @Test
-    public void testGenericTest1() throws NoSuchFieldException,SecurityException{
-        Field field = GenericTest.class.getField("list");
-        ParameterizedType pt = (ParameterizedType) field.getGenericType();
-        Type[] actualTypeArguments = pt.getActualTypeArguments();
-        log.info("" + actualTypeArguments.length);
-        log.info("" + actualTypeArguments[0]);
-
     }
 
     /**

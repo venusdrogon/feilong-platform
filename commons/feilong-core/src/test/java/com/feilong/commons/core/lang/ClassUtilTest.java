@@ -35,6 +35,17 @@ public class ClassUtilTest{
     private static final Logger log = LoggerFactory.getLogger(ClassUtilTest.class);
 
     /**
+     * Test to class.
+     */
+    @Test
+    public void testToClass(){
+        if (log.isInfoEnabled()){
+            log.info("" + JsonUtil.format(ClassUtil.toClass("a", "a")));
+            log.info("" + JsonUtil.format(ClassUtil.toClass(1, true)));
+        }
+    }
+
+    /**
      * Test is interface.
      */
     @Test
