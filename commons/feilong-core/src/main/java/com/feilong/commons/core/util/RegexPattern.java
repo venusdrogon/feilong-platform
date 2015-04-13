@@ -265,8 +265,18 @@ public final class RegexPattern{
     /** 电话号码 <code>{@value}</code>. */
     public static final String TELEPHONE         = "^(\\d{3,4}-)?\\d{6,8}$";
 
-    /** 手机号码 <code>{@value}</code>. */
-    public static final String MOBILEPHONE       = "^[1]+[3,5]+\\d{9}$";
+    /**
+     * 手机号码 <code>{@value}</code>.
+     * 
+     * <pre>
+     * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+     * 联通：130、131、132、152、155、156、185、186
+     * 电信：133、153、180、189、（1349卫通）
+     * </pre>
+     * 
+     * @see "http://liaojuncai.iteye.com/blog/1986310"
+     */
+    public static final String MOBILEPHONE       = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
 
     //******************************************************************************
 
