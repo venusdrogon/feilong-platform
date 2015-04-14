@@ -104,6 +104,7 @@ public final class FieldUtil{
                 log.debug("field name:[{}],modifiers:[{}],isPrivateAndStatic:[{}]", fieldName, modifiers, isPrivateAndStatic);
 
                 if (!isPrivateAndStatic){
+                    //TODO see org.apache.commons.lang3.reflect.MemberUtils.setAccessibleWorkaround(AccessibleObject)
                     field.setAccessible(true);
                     try{
                         map.put(fieldName, field.get(obj));

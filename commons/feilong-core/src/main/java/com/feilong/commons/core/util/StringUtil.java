@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.bean.BeanUtil;
+import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.lang.ObjectUtil;
 
@@ -353,8 +354,8 @@ public final class StringUtil{
     }
 
     /**
-     * 替换,将内容content 中的需要被替换的内容target 替换成bean里面的filedName属性值.
-     * 
+     * 将内容 <code>content</code> 中的需要被替换的内容 <code>target</code> 替换成 <code>bean</code>里面的 <code>filedName</code> 属性值.
+     *
      * @param content
      *            内容
      * @param target
@@ -364,8 +365,10 @@ public final class StringUtil{
      * @param filedName
      *            字段名称
      * @return 替换,将内容content 中的需要被替换的内容target 替换成bean里面的filedName属性值
+     * @throws BeanUtilException
+     *             the bean util exception
      */
-    public static final String replace(Object content,String target,Object bean,String filedName){
+    public static final String replace(Object content,String target,Object bean,String filedName) throws BeanUtilException{
         String replacement = "";
         // 替换序列是null
         if (Validator.isNotNullOrEmpty(bean)){

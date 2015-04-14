@@ -15,19 +15,71 @@
  */
 package com.feilong.commons.core.lang.reflect;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import com.feilong.commons.core.lang.ClassUtil;
 import com.feilong.commons.core.log.Slf4jUtil;
-import com.feilong.commons.core.util.Validator;
 
 /**
- * 使用反射的方式请求bean中的方法.
- *
+ * 使用反射的方式执行调用bean中的方法,原先是自己写的,但是发现未尽全面,因此调用 {@link org.apache.commons.lang3.reflect.MethodUtils}相关方法 .
+ * 
+ * <h3>方法介绍:</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 这两个是调用常规方法的
+ * <ol>
+ * <li>{@link #invokeMethod(Object, String, Object...)}</li>
+ * <li>{@link #invokeMethod(Object, String, Object[], Class[])}</li>
+ * </ol>
+ * <br>
+ * 注意,底层调用的是 {@link org.apache.commons.lang3.reflect.MethodUtils#invokeMethod(Object, String, Object[], Class[])},这个方法会调用
+ * {@link org.apache.commons.lang3.reflect.MethodUtils#getMatchingAccessibleMethod(Class, String, Class...)}获得最佳匹配方法
+ * <p>
+ * 下面两个是调用静态方法的:
+ * <ol>
+ * <li>{@link #invokeStaticMethod(Class, String, Object...)}</li>
+ * <li>{@link #invokeStaticMethod(Class, String, Object[], Class[])}</li>
+ * </ol>
+ * </p>
+ * 
+ * <p>
+ * 如果你要调用精准的方法,可以使用 {@link org.apache.commons.lang3.reflect.MethodUtils}原生方法:
+ * <ol>
+ * <li>{@link MethodUtils#invokeExactMethod(Object, String)}</li>
+ * <li>{@link MethodUtils#invokeExactMethod(Object, String, Object...)}</li>
+ * <li>{@link MethodUtils#invokeExactMethod(Object, String, Object[], Class[])}</li>
+ * <li>{@link MethodUtils#invokeExactStaticMethod(Class, String, Object...)}</li>
+ * <li>{@link MethodUtils#invokeExactStaticMethod(Class, String, Object[], Class[])}</li>
+ * </ol>
+ * </p>
+ * 
+ * <p>
+ * 当然,你还可以调用 {@link org.apache.commons.lang3.reflect.MethodUtils}其他方法:
+ * <ol>
+ * <li>{@link MethodUtils#getAccessibleMethod(java.lang.reflect.Method)}</li>
+ * <li>{@link MethodUtils#getAccessibleMethod(Class, String, Class...)}</li>
+ * <li>{@link MethodUtils#getMatchingAccessibleMethod(Class, String, Class...)}</li>
+ * <li>{@link MethodUtils#getMethodsListWithAnnotation(Class, Class)} 获得一个类中,指定泛型的方法(集合形式),比较实用</li>
+ * <li>{@link MethodUtils#getMethodsWithAnnotation(Class, Class)} 获得一个类中,指定泛型的方法(数组形式),比较实用</li>
+ * <li>{@link MethodUtils#getOverrideHierarchy(java.lang.reflect.Method, org.apache.commons.lang3.ClassUtils.Interfaces)}</li>
+ * </ol>
+ * </p>
+ * </p>
+ * </blockquote>
+ * 
+ * 
+ * <p>
+ * 
+ * 当然,您也可以调用 java 原生态, 需要注意的是:
+ * <ol>
+ * <li>{@link java.lang.Class#getMethods()} 获取全部的public的函数(包括从基类继承的、从接口实现的所有public函数) (return all the (public) member methods inherited from
+ * the Object class)</li>
+ * <li>{@link java.lang.Class#getDeclaredMethods()} 获得类的所有方法 (This includes public, protected, default (package) access, and private
+ * methods, but excludes inherited methods)</li>
+ * </ol>
+ * </p>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:08:15
  * @see org.apache.commons.lang3.reflect.MethodUtils
@@ -35,9 +87,6 @@ import com.feilong.commons.core.util.Validator;
  * @since 1.0.7
  */
 public final class MethodUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(MethodUtil.class);
 
     /** Don't let anyone instantiate this class. */
     private MethodUtil(){
@@ -51,6 +100,15 @@ public final class MethodUtil{
     /**
      * 执行某对象的某个方法.
      * 
+     * <h3>使用场景:</h3>
+     * 
+     * <blockquote>
+     * <p>
+     * 比如 上传下载 service 有很多相同类型的方法,比如 importXX1,importXX2,对于这种,可以使用调用此方法来快速调用方法
+     * </p>
+     * </blockquote>
+     * 
+     * 
      * @param <T>
      *            the generic type
      * @param obj
@@ -62,29 +120,57 @@ public final class MethodUtil{
      * @return 方法执行之后的结果值
      * @throws ReflectException
      *             如果在执行的过程中出现了异常
-     * @see #getMethod(Class, String, Object...)
      * @see java.lang.reflect.Method#invoke(Object, Object...)
+     * @see org.apache.commons.lang3.reflect.MethodUtils#invokeMethod(Object, String, Object...)
+     * @see com.feilong.commons.core.lang.ClassUtil#toClass(Object...)
      */
-    @SuppressWarnings("unchecked")
     public static <T> T invokeMethod(Object obj,String methodName,Object...params) throws ReflectException{
-        try{
-            Class<?> ownerClass = obj.getClass();
-            Method method = getMethod(ownerClass, methodName, params);
+        final Class<?>[] parameterTypes = ClassUtil.toClass(params);
+        return invokeMethod(obj, methodName, params, parameterTypes);
+    }
 
-            Object invoke = method.invoke(obj, params);
-            return (T) invoke;
+    /**
+     * Invoke method.
+     *
+     * @param <T>
+     *            the generic type
+     * @param object
+     *            the object
+     * @param methodName
+     *            the method name
+     * @param args
+     *            the args
+     * @param parameterTypes
+     *            the parameter types
+     * @return the t
+     * @throws ReflectException
+     *             the reflect exception
+     * @see org.apache.commons.lang3.reflect.MethodUtils#invokeMethod(Object, String, Object[], Class[])
+     * 
+     * @since 1.1.1
+     */
+    public static <T> T invokeMethod(final Object object,final String methodName,Object[] args,Class<?>[] parameterTypes)
+                    throws ReflectException{
+        try{
+            return (T) org.apache.commons.lang3.reflect.MethodUtils.invokeMethod(object, methodName, args, parameterTypes);
         }catch (Exception e){
-            throw new ReflectException(e);
+            String message = Slf4jUtil.formatMessage(
+                            "invokeMethod Exception,object:[{}],methodName:[{}],args:[{}],parameterTypes:[{}]",
+                            object,
+                            methodName,
+                            args,
+                            parameterTypes);
+            throw new ReflectException(message, e);
         }
     }
 
     /**
      * 执行静态方法.
-     * 
+     *
      * @param <T>
      *            the generic type
-     * @param className
-     *            类名
+     * @param klass
+     *            the klass
      * @param methodName
      *            方法名
      * @param params
@@ -92,115 +178,47 @@ public final class MethodUtil{
      * @return 方法执行之后的结果值
      * @throws ReflectException
      *             the reflect exception
-     * @see #getMethod(Class, String, Object...)
      * @see java.lang.reflect.Method#invoke(Object, Object...)
      * @see org.apache.commons.lang3.reflect.MethodUtils#invokeStaticMethod(Class, String, Object...)
      */
-    @SuppressWarnings("unchecked")
-    public static <T> T invokeStaticMethod(String className,String methodName,Object...params) throws ReflectException{
-        try{
-            Class<?> ownerClass = ClassUtil.loadClass(className);
-            Method method = getMethod(ownerClass, methodName, params);
-
-            int modifiers = method.getModifiers();
-            boolean isStatic = Modifier.isStatic(modifiers);
-
-            if (!isStatic){
-                throw new IllegalArgumentException(
-                                Slf4jUtil.formatMessage(
-                                                "className:[{}],methodName:[{}],params:[{}],modifiers:[{}],this method not a static method, you need use 'invokeMethod' instead of 'invokeStaticMethod'",
-                                                className,
-                                                methodName,
-                                                params,
-                                                modifiers));
-            }else{
-                //如果底层方法是静态的，那么可以忽略指定的 obj 参数.
-                //该参数可以为 null. 从中调用底层方法的对象
-                Object object = null;
-
-                // 如果底层方法所需的形参数为 0，
-                //则所提供的 args 数组长度可以为 0 或 null 用于方法调用的参数
-                Object invoke = method.invoke(object, params);
-                return (T) invoke;
-            }
-        }catch (Exception e){
-            log.error(e.getClass().getName(), e);
-            throw new ReflectException(e);
-        }
+    public static <T> T invokeStaticMethod(Class<?> klass,String methodName,Object...params) throws ReflectException{
+        final Class<?>[] parameterTypes = ClassUtil.toClass(params);
+        return invokeStaticMethod(klass, methodName, params, parameterTypes);
     }
 
     /**
-     * 获得方法.
-     * 
-     * @param ownerClass
-     *            类
-     * @param methodName
-     *            方法名
-     * @param paramValues
-     *            动态参数值,程序会基于参数值 转成参数类型
-     * @return 该方法
-     * @throws IllegalArgumentException
-     *             if Validator.isNullOrEmpty(ownerClass) or Validator.isNullOrEmpty(methodName)
-     * @throws ReflectException
-     *             the reflect exception
-     * @see ClassUtil#toParameterTypes(Object...)
-     * @see java.lang.Class#getMethod(String, Class...)
-     */
-    private static Method getMethod(Class<?> ownerClass,String methodName,Object...paramValues) throws IllegalArgumentException,
-                    ReflectException{
-        if (Validator.isNullOrEmpty(ownerClass)){
-            throw new IllegalArgumentException("ownerClass can't be null/empty!");
-        }
-        if (Validator.isNullOrEmpty(methodName)){
-            throw new IllegalArgumentException("methodName can't be null/empty!");
-        }
-
-        if (log.isDebugEnabled()){
-            log.debug("ownerClass:[{}],methodName:[{}],paramValues:[{}]", ownerClass, methodName, paramValues);
-        }
-
-        Class<?>[] parameterTypes = ClassUtil.toParameterTypes(paramValues);
-        return getMethod(ownerClass, methodName, parameterTypes);
-    }
-
-    /**
-     * 获得 method.
+     * Invoke static method.
      *
-     * @param ownerClass
-     *            the owner class
+     * @param <T>
+     *            the generic type
+     * @param cls
+     *            the cls
      * @param methodName
      *            the method name
+     * @param args
+     *            the args
      * @param parameterTypes
      *            the parameter types
-     * @return the method
-     * @see java.lang.Class#getMethod(String, Class...)
-     * @see org.apache.commons.lang3.ClassUtils#getPublicMethod(Class, String, Class...)
+     * @return the t
+     * @throws ReflectException
+     *             the reflect exception
+     * 
+     * @see org.apache.commons.lang3.reflect.MethodUtils#invokeStaticMethod(Class, String, Object[], Class[])
+     * 
      * @since 1.1.1
      */
-    private static Method getMethod(Class<?> ownerClass,String methodName,Class<?>...parameterTypes){
-
-        if (Validator.isNullOrEmpty(ownerClass)){
-            throw new IllegalArgumentException("ownerClass can't be null/empty!");
-        }
-        if (Validator.isNullOrEmpty(methodName)){
-            throw new IllegalArgumentException("methodName can't be null/empty!");
-        }
-
-        if (log.isDebugEnabled()){
-            log.debug("ownerClass:[{}],methodName:[{}],parameterTypes:[{}]", ownerClass, methodName, parameterTypes);
-        }
-
+    public static <T> T invokeStaticMethod(final Class<?> cls,final String methodName,Object[] args,Class<?>[] parameterTypes)
+                    throws ReflectException{
         try{
-            // 它反映此 Class 对象所表示的类或接口的指定公共成员方法.<br>
-            //name 参数是一个 String，用于指定所需方法的简称.<br>
-            //parameterTypes 参数是按声明顺序标识该方法形参类型的 Class 对象的一个数组.如果 parameterTypes 为 null，则按空数组处理.
-            Method method = ownerClass.getMethod(methodName, parameterTypes);
-            return method;
+            return (T) org.apache.commons.lang3.reflect.MethodUtils.invokeStaticMethod(cls, methodName, args, parameterTypes);
         }catch (Exception e){
-            log.error(e.getClass().getName(), e);
-            throw new ReflectException(e);
+            String message = Slf4jUtil.formatMessage(
+                            "invoke Static Method Exception,cls:[{}],methodName:[{}],args:[{}],parameterTypes:[{}]",
+                            cls.getName(),
+                            methodName,
+                            args,
+                            parameterTypes);
+            throw new ReflectException(message, e);
         }
     }
-
-    // [end]
 }

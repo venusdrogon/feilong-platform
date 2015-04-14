@@ -15,7 +15,6 @@
  */
 package com.feilong.commons.core.tools.json;
 
-import net.sf.json.JSONException;
 import net.sf.json.util.PropertySetStrategy;
 
 import org.slf4j.Logger;
@@ -34,10 +33,10 @@ import org.slf4j.LoggerFactory;
 public class PropertyStrategyWrapper extends PropertySetStrategy{
 
     /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(PropertyStrategyWrapper.class);
+    private static final Logger       log = LoggerFactory.getLogger(PropertyStrategyWrapper.class);
 
     /** The original. */
-    private PropertySetStrategy propertySetStrategy;
+    private final PropertySetStrategy propertySetStrategy;
 
     /**
      * Instantiates a new property strategy wrapper.
@@ -55,7 +54,7 @@ public class PropertyStrategyWrapper extends PropertySetStrategy{
      * @see net.sf.json.util.PropertySetStrategy#setProperty(java.lang.Object, java.lang.String, java.lang.Object)
      */
     @Override
-    public void setProperty(Object o,String string,Object o1) throws JSONException{
+    public void setProperty(Object o,String string,Object o1){
         try{
             propertySetStrategy.setProperty(o, string, o1);
         }catch (Exception e){
