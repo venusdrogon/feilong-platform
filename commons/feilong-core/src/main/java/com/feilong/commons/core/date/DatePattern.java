@@ -19,10 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * <p>
- * 常用的日期pattern (focus on date pattern)
- * </p>
+ * 常用的日期pattern (focus on date pattern).
+ * 
+ * <h3>以下是常用的字段说明:</h3>
+ * 
  * <blockquote>
+ * 
  * <table border=1 cellspacing=0 cellpadding=4 summary="Chart shows pattern letters, date/time component, presentation, and examples.">
  * <tr style="background-color:#ccccff">
  * <th align=left>Letter</th>

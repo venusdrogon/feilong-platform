@@ -24,7 +24,7 @@ import com.feilong.commons.core.util.Validator;
 
 /**
  * <p>
- * Date 操作工具类(feilong-core 核心类之一)
+ * Date 操作工具类(feilong-core 核心类之一).
  * </p>
  * 包括:
  * 

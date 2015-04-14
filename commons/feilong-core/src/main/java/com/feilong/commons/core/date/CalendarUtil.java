@@ -157,18 +157,6 @@ public final class CalendarUtil{
      */
     public static int getMaxDayOfMonth(Calendar calendar){
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        // if ((iMonth == 1) || (iMonth == 3) || (iMonth == 5) || (iMonth == 7) || (iMonth == 8) || (iMonth == 10) || (iMonth == 12)){
-        // return 31;
-        // }else if ((iMonth == 4) || (iMonth == 6) || (iMonth == 9) || (iMonth == 11)){
-        // return 30;
-        // }else if (iMonth == 2){
-        // if (DateUtil.isLeapYear(iYear)){
-        // return 29;
-        // }
-        // return 28;
-        // }else{
-        // return 0;
-        // }
     }
 
     /**
@@ -199,25 +187,15 @@ public final class CalendarUtil{
      */
     public static List<String> getWeekDateStringList(int week,String datePattern){
         List<String> list = new ArrayList<String>();
-        /**
-         * 当前日期
-         */
+        //当前日期
         Calendar calendarToday = Calendar.getInstance();
-        /**
-         * 当前年份
-         */
+        //当前年份
         int yearCurrent = calendarToday.get(Calendar.YEAR);
-        /**
-         * 下一个年份
-         */
-        int yearNext = 1 + calendarToday.get(Calendar.YEAR);
-        /**
-         * 开始的calendar
-         */
+        //下一个年份
+        int yearNext = 1 + yearCurrent;
+        //开始的calendar
         Calendar calendarBegin = Calendar.getInstance();
-        /**
-         * 结束的calendar
-         */
+        //结束的calendar
         Calendar calendarEnd = Calendar.getInstance();
         calendarBegin.set(yearCurrent, 0, 1);// 2010-1-1
         calendarEnd.set(yearNext, 0, 1);// 2011-1-1
