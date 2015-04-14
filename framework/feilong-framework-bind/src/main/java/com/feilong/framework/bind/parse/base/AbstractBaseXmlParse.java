@@ -17,13 +17,7 @@ package com.feilong.framework.bind.parse.base;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.feilong.commons.core.bean.BeanUtil;
-import com.feilong.commons.core.lang.reflect.ConstructorUtil;
-import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.framework.bind.exception.BuildCommandException;
 import com.feilong.framework.bind.parse.AbstractXmlParse;
 
 /**
@@ -37,35 +31,21 @@ import com.feilong.framework.bind.parse.AbstractXmlParse;
  */
 public abstract class AbstractBaseXmlParse<T> extends AbstractXmlParse<T>{
 
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(AbstractBaseXmlParse.class);
-
     /**
      * Builds the command.
-     * 
+     *
      * @param modelClass
      *            the model class
      * @param varNameAndValueMap
      *            the var name and value map
+     * @param t
+     *            the t
      * @return the t
-     * @throws BuildCommandException
-     *             the build command exception
+     * @since 1.1.1
      */
     @Override
-    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
-
-        try{
-            T t = ConstructorUtil.newInstance(modelClass);
-
-            BeanUtil.populate(t, varNameAndValueMap);
-
-            if (log.isInfoEnabled()){
-                log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
-            }
-            return t;
-        }catch (Exception e){
-            log.error(e.getClass().getName(), e);
-            throw new BuildCommandException(e);
-        }
+    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap,T t){
+        BeanUtil.populate(t, varNameAndValueMap);
+        return t;
     }
 }

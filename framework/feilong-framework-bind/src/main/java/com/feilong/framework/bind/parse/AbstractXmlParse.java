@@ -23,7 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
+import com.feilong.commons.core.lang.reflect.ConstructorUtil;
 import com.feilong.commons.core.lang.reflect.TypeUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.bind.exception.BuildCommandException;
 import com.feilong.tools.dom4j.Dom4jUtil;
@@ -42,16 +44,6 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * {@link com.feilong.framework.bind.parse.varcommand.VarName} 标识,可以来处理 XML中字段可能全部是大写 比如BANK,但是javabean 中的字段却是 bank,可以使用下面的代码来实现隐射
  * 
  * <pre>
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  * 
  * &#064;VarName(name = &quot;BANK&quot;,sampleValue = &quot;BRI&quot;)
@@ -98,16 +90,15 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
             // log.info(xml);
 
             // 不要和下面的log 合并, 下面的log 可能会有异常
-            log.debug("xml:{}", xml);
+            log.debug("input xml:[{}]", xml);
 
             Writer writer = new StringWriter();
+            //TODO 异常的处理
             log.debug("formatXML:{}", Dom4jUtil.format(xml, CharsetType.UTF8, writer));
         }
-
+        Class<T> modelClass = parseModelClass();
         // 解析 wddxPacketXML ,获得我们需要的 var name 和值.
         Map<String, String> varNameAndValueMap = getVarNameAndValueMap(xml);
-
-        Class<T> modelClass = parseModelClass();
 
         T t = buildCommand(modelClass, varNameAndValueMap);
         return t;
@@ -121,7 +112,8 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
     protected Class<T> parseModelClass(){
         Class<?> klass = this.getClass();
 
-        Class<T> modelClass = TypeUtil.getGenericModelClass(klass);
+        Class<T> modelClass = (Class<T>) TypeUtil.getGenericClassArray(klass)[0];
+
         return modelClass;
     }
 
@@ -135,8 +127,36 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
      * @return the t
      * @throws BuildCommandException
      *             the build command exception
+     * @since 1.1.1
      */
-    protected abstract T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException;
+    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
+        try{
+            T t = ConstructorUtil.newInstance(modelClass);
+            t = buildCommand(modelClass, varNameAndValueMap, t);
+
+            if (log.isInfoEnabled()){
+                log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
+            }
+            return t;
+        }catch (Exception e){
+            log.error(e.getClass().getName(), e);
+            throw new BuildCommandException(e);
+        }
+    }
+
+    /**
+     * Builds the command.
+     *
+     * @param modelClass
+     *            the model class
+     * @param varNameAndValueMap
+     *            the var name and value map
+     * @param t
+     *            the t
+     * @return the t
+     * @since 1.1.1
+     */
+    protected abstract T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap,T t);
 
     /**
      * Gets the var name and value map.

@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.lang.reflect.TypeUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.bind.parse.base.StandardXpathExpressionXmlParse;
 
@@ -54,6 +55,26 @@ public class ItemDtoStandardXpathExpressionXmlParseTest{
 
         if (log.isDebugEnabled()){
             log.debug(JsonUtil.format(itemDto));
+        }
+
+    }
+
+    @Test
+    public final void testParseXML1(){
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "<item>" + "<categoryId></categoryId>"
+                        + "<title><![CDATA[test pro<duct name]]></title>" + "<price>0</price>" + "<listPrice>200000</listPrice>"
+                        + "<state>10</state>" + "<city>1010</city>" + "<district>101004</district>" + "<weight>1.2</weight>"
+                        + "<length>23</length>" + "<width>56</width>" + "<height>5</height>" + "<buyerObtainPoint>20</buyerObtainPoint>"
+                        + "<freightPayer>buyer</freightPayer>" + "<postageId>-1</postageId>" + "<expressFee>5</expressFee>"
+                        + "<description>test product</description>" + "<properties>1004:2586,12536:15248,58746:2546</properties>"
+                        + "<supportPOD>false</supportPOD>" + "<podFee></podFee>" + "<timing></timing>" + "<listTime></listTime>"
+                        + "</item>";
+
+        String xpathExpression = "/item/*";
+        XmlParse<ItemDto> queryResultXmlParse = new StandardXpathExpressionXmlParse<ItemDto>(ItemDto.class, xpathExpression);
+        Class<ItemDto> genericModelClass = (Class<ItemDto>) TypeUtil.getGenericClassArray(queryResultXmlParse.getClass())[0];
+        if (log.isDebugEnabled()){
+            log.debug(genericModelClass.getCanonicalName());
         }
 
     }

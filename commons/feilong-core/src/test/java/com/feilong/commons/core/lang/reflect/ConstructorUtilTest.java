@@ -42,12 +42,9 @@ public class ConstructorUtilTest{
      */
     @Test
     public final void newInstance() throws ClassNotFoundException{
-
-        User user = ConstructorUtil.newInstance("com.feilong.test.User");
-        log.info(JsonUtil.format(user));
-
-        User user1 = ConstructorUtil.newInstance("com.feilong.test.User", 100L);
-        log.info(JsonUtil.format(user1));
+        log.info(JsonUtil.format(ConstructorUtil.newInstance("com.feilong.test.User")));
+        log.info(JsonUtil.format(ConstructorUtil.newInstance("com.feilong.test.User", 100L)));
+        log.info(JsonUtil.format(ConstructorUtil.newInstance(User.class, Long.parseLong("5"))));
+        log.info(JsonUtil.format(ConstructorUtil.newInstance(User.class, 5, 8)));
     }
-
 }

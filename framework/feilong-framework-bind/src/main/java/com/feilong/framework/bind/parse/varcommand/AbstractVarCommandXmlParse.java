@@ -21,8 +21,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.reflect.ConstructorUtil;
-import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.framework.bind.exception.BuildCommandException;
 import com.feilong.framework.bind.parse.AbstractXmlParse;
 
@@ -40,53 +38,41 @@ public abstract class AbstractVarCommandXmlParse<T extends VarCommand> extends A
     /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(AbstractVarCommandXmlParse.class);
 
-    /**
-     * Builds the command.
+    /*
+     * (non-Javadoc)
      * 
-     * @param modelClass
-     *            the model class
-     * @param varNameAndValueMap
-     *            the var name and value map
-     * @return the t
-     * @throws BuildCommandException
-     *             the build command exception
+     * @see com.feilong.framework.bind.parse.AbstractXmlParse#buildCommand(java.lang.Class, java.util.Map, java.lang.Object)
      */
     @Override
-    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap) throws BuildCommandException{
+    protected T buildCommand(Class<T> modelClass,Map<String, String> varNameAndValueMap,T t){
+        // 通过反射机制 省却一堆的 set
+        // DokuQueryResult dokuQueryResult = new DokuQueryResult();
 
-        try{
-            T t = ConstructorUtil.newInstance(modelClass);
+        Field[] fields = modelClass.getDeclaredFields();
+        for (Field field : fields){
+            if (field.isAnnotationPresent(VarName.class)){
+                VarName varName = field.getAnnotation(VarName.class);
+                String varNameName = varName.name();
 
-            // 通过反射机制 省却一堆的 set
-            // DokuQueryResult dokuQueryResult = new DokuQueryResult();
+                String value = varNameAndValueMap.get(varNameName);
 
-            Field[] fields = modelClass.getDeclaredFields();
-            for (Field field : fields){
-                if (field.isAnnotationPresent(VarName.class)){
-                    VarName varName = field.getAnnotation(VarName.class);
-                    if (log.isInfoEnabled()){
-                        String varNameName = varName.name();
+                if (log.isDebugEnabled()){
+                    String fieldName = field.getName();
+                    log.debug("fieldName:[{}],match name:[{}],value:[{}]", fieldName, varNameName, value);
+                }
+                //TODO 可以在property上做文章,而不是 field
+                field.setAccessible(true);
 
-                        if (log.isDebugEnabled()){
-                            String fieldName = field.getName();
-                            log.debug("{}:{}", fieldName, varNameName);
-                        }
+                try{
+                    // 将指定对象变量上此 Field 对象表示的字段设置为指定的新值。如果底层字段的类型为基本类型，则对新值进行自动解包
+                    field.set(t, value);
 
-                        String value = varNameAndValueMap.get(varNameName);
-                        field.setAccessible(true);
-
-                        // 将指定对象变量上此 Field 对象表示的字段设置为指定的新值。如果底层字段的类型为基本类型，则对新值进行自动解包
-                        field.set(t, value);
-                    }
+                }catch (Exception e){
+                    log.error(e.getClass().getName(), e);
+                    throw new BuildCommandException(e);
                 }
             }
-            if (log.isInfoEnabled()){
-                log.info("[{}]:{}", modelClass.getName(), JsonUtil.format(t));
-            }
-            return t;
-        }catch (Exception e){
-            log.error(e.getClass().getName(), e);
-            throw new BuildCommandException(e);
         }
+        return t;
     }
 }
