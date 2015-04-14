@@ -48,6 +48,10 @@
 					<artifactId>commons-beanutils</artifactId>
 					<groupId>commons-beanutils</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>sslext</artifactId>
+					<groupId>sslext</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 

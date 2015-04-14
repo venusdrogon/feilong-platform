@@ -102,6 +102,14 @@ public class VelocityUtilTest{
         log.info(parseVMTemplate);
     }
 
+    @Test
+    public void parseVMTemplateWithClasspathResourceLoader122(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        String templateInClassPath = "velocity/test1.vm";
+        String parseVMTemplate = VelocityUtil.parseTemplateWithClasspathResourceLoader(templateInClassPath, map);
+        log.info(parseVMTemplate);
+    }
+
     /**
      * Test null.
      */
