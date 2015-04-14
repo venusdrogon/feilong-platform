@@ -129,5 +129,6 @@
 			<artifactId>c3p0</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 </project>

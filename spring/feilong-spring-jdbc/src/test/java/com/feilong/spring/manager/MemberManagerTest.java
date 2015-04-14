@@ -15,9 +15,16 @@
  */
 package com.feilong.spring.manager;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -43,6 +50,16 @@ public class MemberManagerTest //extends AbstractJUnit4SpringContextTests
     /** The sales order manager. */
     @Autowired
     private SalesOrderManager salesOrderManager;
+
+    @Autowired()
+    @Qualifier("readSource")
+    private DataSource        dataSource;
+
+    @Test
+    public final void testGetUserExcludeJsonException() throws SQLException{
+        Connection object = DataSourceUtils.doGetConnection(dataSource);
+        memberManager.getUserExcludeJsonException(object);
+    }
 
     /**
      * Test method for {@link com.feilong.spring.manager.java.MemberManager#getUser(java.lang.String)}.

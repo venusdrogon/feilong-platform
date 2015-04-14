@@ -65,4 +65,15 @@ public class MemberManagerImpl implements MemberManager{
         // TODO Auto-generated method stub
         return null;
     }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.spring.manager.java.MemberManager#getUserExcludeJsonException(java.io.InputStream)
+     */
+    @Override
+    public User getUserExcludeJsonException(Object inputStream){
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

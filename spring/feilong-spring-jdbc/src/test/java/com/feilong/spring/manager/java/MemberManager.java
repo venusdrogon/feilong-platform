@@ -53,4 +53,6 @@ public interface MemberManager extends ReadWriteSupport{
      *            the name
      */
     void addUser(String name);
+
+    User getUserExcludeJsonException(Object inputStream);
 }

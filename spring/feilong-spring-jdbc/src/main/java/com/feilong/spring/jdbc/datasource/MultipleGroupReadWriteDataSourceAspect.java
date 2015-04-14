@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import net.sf.json.JSONException;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -139,16 +141,20 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
                     throws Throwable{
         //当前的holder
         String previousDataSourceNameHolder = MultipleGroupReadWriteStatusHolder.getMultipleDataSourceGroupName();
-        Map<String, Object> mapForLog = new LinkedHashMap<String, Object>();
 
         String currentThreadInfo = JsonUtil.format(ThreadUtil.getCurrentThreadMapForLog());
         if (log.isInfoEnabled()){
+
+            Map<String, Object> mapForLog = new LinkedHashMap<String, Object>();
             mapForLog.put("groupName", groupName);
             mapForLog.put("previousDataSourceNameHolder", previousDataSourceNameHolder);
             mapForLog.put("transactionAttribute:", TransactionAttributeUtil.getMapForLog(transactionAttribute));
-            mapForLog.put("proceedingJoinPoint info", ProceedingJoinPointUtil.getMapForLog(proceedingJoinPoint));
 
-            log.info("before determine datasource :[{}],current thread info:[{}]", JsonUtil.format(mapForLog), currentThreadInfo);
+            log.info(
+                            "before determine datasource :[{}],proceedingJoinPoint info:[{}],current thread info:[{}]",
+                            JsonUtil.format(mapForLog),
+                            getProceedingJoinPointJsonInfoExcludeJsonException(proceedingJoinPoint),
+                            currentThreadInfo);
         }
 
         boolean isSetHolder = isSetHolder(transactionAttribute, groupName);
@@ -190,11 +196,13 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
     }
 
     /**
-     * 判断是否要设置钩子
-     * 
+     * 判断是否要设置钩子.
+     *
      * @param transactionAttribute
+     *            the transaction attribute
      * @param groupName
-     * @return
+     *            the group name
+     * @return true, if checks if is set holder
      * @since 1.1.1
      */
     private boolean isSetHolder(TransactionAttribute transactionAttribute,String groupName){
@@ -292,7 +300,7 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
      */
     private Object proceed(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         Object[] args = proceedingJoinPoint.getArgs();
-        String format = JsonUtil.format(ProceedingJoinPointUtil.getMapForLog(proceedingJoinPoint));
+        String format = getProceedingJoinPointJsonInfoExcludeJsonException(proceedingJoinPoint);
 
         if (log.isInfoEnabled()){
             log.info(
@@ -318,5 +326,24 @@ public class MultipleGroupReadWriteDataSourceAspect extends AbstractAspect{
                             returnValue);
         }
         return returnValue;
+    }
+
+    /**
+     * 有些业务类可能不规范,把request这样的不能转成json的对象 当作参数传递, 如果不处理的话, 就会抛异常.
+     *
+     * @param proceedingJoinPoint
+     *            the proceeding join point
+     * @return the proceeding join point json info exclude json exception
+     * @since 1.1.1
+     */
+    private String getProceedingJoinPointJsonInfoExcludeJsonException(ProceedingJoinPoint proceedingJoinPoint){
+        String format = "";
+        try{
+            format = JsonUtil.format(ProceedingJoinPointUtil.getMapForLog(proceedingJoinPoint));
+        }catch (JSONException e){
+            format = e.getMessage();
+            log.error("", e);
+        }
+        return format;
     }
 }
