@@ -28,6 +28,7 @@ import net.sf.ezmorph.MorpherRegistry;
 import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
@@ -102,30 +103,34 @@ public final class JsonUtil{
 
     /**
      * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.
-     * 
+     *
      * @param obj
      *            任何对象
      * @return the string
+     * @throws JSONException
+     *             the JSON exception
      * @see #format(Object, String[])
      * @see #format(Object, JsonConfig)
      */
-    public static String format(Object obj){
+    public static String format(Object obj) throws JSONException{
         String[] excludes = null;
         return format(obj, excludes);
     }
 
     /**
      * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.
-     * 
+     *
      * @param obj
      *            对象
      * @param excludes
      *            排除需要序列化成json的属性,如果 excludes isNotNullOrEmpty,那么不会setExcludes
      * @return if null==obj will return {@code null}; {@link #format(Object, JsonConfig)}
+     * @throws JSONException
+     *             the JSON exception
      * @see #format(Object, JsonConfig)
      * @see <a href="http://feitianbenyue.iteye.com/blog/2046877">java.lang.ClassCastException: JSON keys must be strings</a>
      */
-    public static String format(Object obj,String[] excludes){
+    public static String format(Object obj,String[] excludes) throws JSONException{
         return format(obj, excludes, 4, 4);
     }
 
@@ -141,8 +146,10 @@ public final class JsonUtil{
      * @param indent
      *            the indent
      * @return the string
+     * @throws JSONException
+     *             the JSON exception
      */
-    public static String format(Object obj,String[] excludes,int indentFactor,int indent){
+    public static String format(Object obj,String[] excludes,int indentFactor,int indent) throws JSONException{
         if (null == obj){
             return null;
         }
@@ -165,9 +172,11 @@ public final class JsonUtil{
      * @param includes
      *            the includes
      * @return the string
+     * @throws JSONException
+     *             the JSON exception
      * @since 1.0.8
      */
-    public static String formatWithIncludes(Object obj,final String...includes){
+    public static String formatWithIncludes(Object obj,final String...includes) throws JSONException{
 
         if (null == obj){
             return null;
@@ -213,19 +222,21 @@ public final class JsonUtil{
 
     /**
      * 格式化输出,将对象转成toJSON,并且 toString(4, 4) 输出.<br>
-     * 
+     *
      * @param obj
      *            the obj
      * @param jsonConfig
      *            the json config
      * @return if null==obj will return {@code null}; else return toJSON(obj, jsonConfig).toString(4, 4)
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JsonConfig
      * @see #toJSON(Object, JsonConfig)
      * @see net.sf.json.JSON#toString(int, int)
      * @see #format(Object, JsonConfig, int, int)
      * @since 1.0.7
      */
-    public static String format(Object obj,JsonConfig jsonConfig){
+    public static String format(Object obj,JsonConfig jsonConfig) throws JSONException{
         return format(obj, jsonConfig, 4, 4);
     }
 
@@ -245,9 +256,11 @@ public final class JsonUtil{
      *            The indentation of the top level.
      * @return a printable, displayable, transmittable representation of the object, beginning with { (left brace) and ending with } (right
      *         brace).
+     * @throws JSONException
+     *             the JSON exception
      * @since 1.0.8
      */
-    public static String format(Object obj,JsonConfig jsonConfig,int indentFactor,int indent){
+    public static String format(Object obj,JsonConfig jsonConfig,int indentFactor,int indent) throws JSONException{
         if (null == obj){
             return null;
         }
@@ -262,7 +275,7 @@ public final class JsonUtil{
 
     /**
      * json串,转换成实体对象.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -273,14 +286,16 @@ public final class JsonUtil{
      * @param rootClass
      *            e.g. Person.class
      * @return the t
+     * @throws JSONException
+     *             the JSON exception
      */
-    public static <T> T toBean(Object json,Class<T> rootClass){
+    public static <T> T toBean(Object json,Class<T> rootClass) throws JSONException{
         return toBean(json, rootClass, null);
     }
 
     /**
      * 从json串转换成实体对象，并且实体集合属性存有另外实体Bean.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -290,11 +305,13 @@ public final class JsonUtil{
      * @param classMap
      *            e.g. classMap.put("data", Person.class)
      * @return Object
+     * @throws JSONException
+     *             the JSON exception
      * @see #toBean(Object, JsonConfig)
      */
     // TODO
     @SuppressWarnings("unchecked")
-    public static <T> T toBean(Object json,Class<T> rootClass,Map<String, Class<?>> classMap){
+    public static <T> T toBean(Object json,Class<T> rootClass,Map<String, Class<?>> classMap) throws JSONException{
         JSONObject jsonObject = JSONObject.fromObject(json);
 
         JsonConfig jsonConfig = getDefaultJsonConfig();
@@ -308,15 +325,17 @@ public final class JsonUtil{
 
     /**
      * json串,转换成对象.
-     * 
+     *
      * @param json
      *            the json
      * @param jsonConfig
      *            the json config
      * @return the object
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONObject#toBean(JSONObject, JsonConfig)
      */
-    public static Object toBean(Object json,JsonConfig jsonConfig){
+    public static Object toBean(Object json,JsonConfig jsonConfig) throws JSONException{
         JSONObject jsonObject = JSONObject.fromObject(json);
 
         // Ignore missing properties with Json-Lib
@@ -334,20 +353,22 @@ public final class JsonUtil{
 
     /**
      * 把一个json数组串转换成普通数组.
-     * 
+     *
      * @param json
      *            e.g. ['get',1,true,null]
      * @return Object[]
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONArray#fromObject(Object)
      * @see net.sf.json.JSONArray#toArray()
      */
-    public static Object[] toArray(String json){
+    public static Object[] toArray(String json) throws JSONException{
         return JSONArray.fromObject(json).toArray();
     }
 
     /**
      * 把一个json数组串,转换成实体数组.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -355,15 +376,17 @@ public final class JsonUtil{
      * @param clazz
      *            e.g. Person.class
      * @return Object[]
+     * @throws JSONException
+     *             the JSON exception
      * @see #toArray(String, Class, Map)
      */
-    public static <T> T[] toArray(String json,Class<T> clazz){
+    public static <T> T[] toArray(String json,Class<T> clazz) throws JSONException{
         return toArray(json, clazz, null);
     }
 
     /**
      * 把一个json数组串转换成实体数组，且数组元素的属性含有另外实例Bean.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -373,12 +396,14 @@ public final class JsonUtil{
      * @param classMap
      *            e.g. classMap.put("data", Person.class)
      * @return T[]
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONArray#fromObject(Object)
      * @see net.sf.json.JSONArray#getJSONObject(int)
      * @see #toBean(Object, Class, Map)
      * @see java.lang.reflect.Array#newInstance(Class, int)
      */
-    public static <T> T[] toArray(String json,Class<T> clazz,Map<String, Class<?>> classMap){
+    public static <T> T[] toArray(String json,Class<T> clazz,Map<String, Class<?>> classMap) throws JSONException{
         JSONArray jsonArray = JSONArray.fromObject(json);
         int size = jsonArray.size();
 
@@ -399,13 +424,15 @@ public final class JsonUtil{
 
     /**
      * 把一个json数组串转换成存放普通类型元素的集合.
-     * 
+     *
      * @param json
      *            e.g. ['get',1,true,null]
      * @return List
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONArray#get(int)
      */
-    public static List<Object> toList(String json){
+    public static List<Object> toList(String json) throws JSONException{
         JSONArray jsonArr = JSONArray.fromObject(json);
         int size = jsonArr.size();
 
@@ -419,7 +446,7 @@ public final class JsonUtil{
 
     /**
      * 把一个json数组串转换成集合，且集合里存放的为实例Bean.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -427,15 +454,17 @@ public final class JsonUtil{
      * @param clazz
      *            the clazz
      * @return List
+     * @throws JSONException
+     *             the JSON exception
      * @see #toList(String, Class, Map)
      */
-    public static <T> List<T> toList(String json,Class<T> clazz){
+    public static <T> List<T> toList(String json,Class<T> clazz) throws JSONException{
         return toList(json, clazz, null);
     }
 
     /**
      * 把一个json数组串转换成集合，且集合里的对象的属性含有另外实例Bean.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -445,12 +474,14 @@ public final class JsonUtil{
      * @param classMap
      *            e.g. classMap.put("data", Person.class)
      * @return List
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONArray#getJSONObject(int)
      * @see net.sf.json.JSONArray#fromObject(Object)
      * @see #toBean(Object, Class, Map)
      */
     // TODO
-    public static <T> List<T> toList(String json,Class<T> clazz,Map<String, Class<?>> classMap){
+    public static <T> List<T> toList(String json,Class<T> clazz,Map<String, Class<?>> classMap) throws JSONException{
         JSONArray jsonArray = JSONArray.fromObject(json);
         List<T> list = new ArrayList<T>();
 
@@ -470,14 +501,16 @@ public final class JsonUtil{
 
     /**
      * 把json对象串转换成map对象.
-     * 
+     *
      * @param json
      *            e.g. {'name':'get','int':1,'double',1.1,'null':null}
      * @return Map
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONObject#get(String)
      * @see net.sf.json.JSONObject#fromObject(Object)
      */
-    public static Map<String, Object> toMap(String json){
+    public static Map<String, Object> toMap(String json) throws JSONException{
         JSONObject jsonObject = JSONObject.fromObject(json);
 
         Map<String, Object> map = new HashMap<String, Object>();
@@ -495,7 +528,7 @@ public final class JsonUtil{
 
     /**
      * 把json对象串转换成map对象，且map对象里存放的为其他实体Bean.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -503,15 +536,17 @@ public final class JsonUtil{
      * @param clazz
      *            e.g. Person.class
      * @return Map
+     * @throws JSONException
+     *             the JSON exception
      * @see #toMap(String, Class, Map)
      */
-    public static <T> Map<String, T> toMap(String json,Class<T> clazz){
+    public static <T> Map<String, T> toMap(String json,Class<T> clazz) throws JSONException{
         return toMap(json, clazz, null);
     }
 
     /**
      * 把json对象串转换成map对象，且map对象里存放的其他实体Bean还含有另外实体Bean.
-     * 
+     *
      * @param <T>
      *            the generic type
      * @param json
@@ -521,11 +556,13 @@ public final class JsonUtil{
      * @param classMap
      *            e.g. classMap.put("data", Person.class)
      * @return Map
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONObject#keys()
      * @see #toBean(Object, Class, Map)
      */
     // TODO
-    public static <T> Map<String, T> toMap(String json,Class<T> clazz,Map<String, Class<?>> classMap){
+    public static <T> Map<String, T> toMap(String json,Class<T> clazz,Map<String, Class<?>> classMap) throws JSONException{
         if (log.isDebugEnabled()){
             log.debug("in json:{}", json);
         }
@@ -554,24 +591,28 @@ public final class JsonUtil{
 
     /**
      * 把实体Bean、Map对象、数组、列表集合转换成Json串.
-     * 
+     *
      * @param obj
      *            the obj
      * @return the jSON
+     * @throws JSONException
+     *             the JSON exception
      * @see #toJSON(Object, JsonConfig)
      */
-    public static JSON toJSON(Object obj){
+    public static JSON toJSON(Object obj) throws JSONException{
         return toJSON(obj, null);
     }
 
     /**
      * 把实体Bean、Map对象、数组、列表集合转换成Json串.
-     * 
+     *
      * @param obj
      *            the obj
      * @param jsonConfig
      *            the json config
      * @return the jSON
+     * @throws JSONException
+     *             the JSON exception
      * @see net.sf.json.JSONArray#fromObject(Object, JsonConfig)
      * @see net.sf.json.JSONObject#fromObject(Object, JsonConfig)
      * @see net.sf.json.util.JSONUtils#isArray(Object)
@@ -580,7 +621,7 @@ public final class JsonUtil{
      * @see org.apache.commons.collections.IteratorUtils#toList(Iterator)
      * @see org.apache.commons.collections.IteratorUtils#toList(Iterator, int)
      */
-    public static JSON toJSON(Object obj,JsonConfig jsonConfig){
+    public static JSON toJSON(Object obj,JsonConfig jsonConfig) throws JSONException{
         if (null == jsonConfig){
             jsonConfig = getDefaultJsonConfig();
             // 注册日期处理器

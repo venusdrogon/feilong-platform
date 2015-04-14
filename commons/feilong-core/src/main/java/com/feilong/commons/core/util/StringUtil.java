@@ -18,10 +18,12 @@ package com.feilong.commons.core.util;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,14 +87,14 @@ public final class StringUtil{
      *  return  2
      * 
      * </pre>
-     * 
+     *
      * @param source
      *            查找的源字符串
      * @param target
      *            目标子串
      * @return count of target string in source
-     * @since 1.0.2
      * @see org.apache.commons.lang3.StringUtils#countMatches(CharSequence, CharSequence)
+     * @since 1.0.2
      * @deprecated 使用 {@link org.apache.commons.lang3.StringUtils#countMatches(CharSequence, CharSequence)}
      */
     @Deprecated
@@ -375,6 +377,40 @@ public final class StringUtil{
         return replace(content, target, replacement);
     }
 
+    /**
+     * * The following example demonstrates this:
+     * 
+     * <pre>
+     * Map valuesMap = HashMap();
+     * valuesMap.put(&quot;animal&quot;, &quot;quick brown fox&quot;);
+     * valuesMap.put(&quot;target&quot;, &quot;lazy dog&quot;);
+     * String templateString = &quot;The ${animal} jumped over the ${target}.&quot;;
+     * StrSubstitutor sub = new StrSubstitutor(valuesMap);
+     * String resolvedString = sub.replace(templateString);
+     * </pre>
+     * 
+     * yielding:
+     * 
+     * <pre>
+     *      The quick brown fox jumped over the lazy dog.
+     * </pre>
+     *
+     * @param <V>
+     *            the value type
+     * @param templateString
+     *            the template string
+     * @param valuesMap
+     *            the values map
+     * @return the string
+     * @see org.apache.commons.lang3.text.StrSubstitutor
+     * @since 1.1.1
+     */
+    public static final <V> String replace(String templateString,Map<String, V> valuesMap){
+        StrSubstitutor strSubstitutor = new StrSubstitutor(valuesMap);
+        String resolvedString = strSubstitutor.replace(templateString);
+        return resolvedString;
+    }
+
     // [end]
 
     // [start]startsWith
@@ -402,6 +438,7 @@ public final class StringUtil{
      *            数字
      * @return 字符串和数字相加(一般生成流水号使用)
      */
+    //TODO 测试+javadoc
     public static final String stringAddInt(String str,int i){
         int length = str.length();
         String pattern = "";
