@@ -112,6 +112,8 @@ import com.feilong.commons.core.util.Validator;
  * @see org.apache.commons.beanutils.ConvertUtilsBean#registerOther(boolean)
  * @see org.apache.commons.beanutils.ConvertUtilsBean#registerArrays(boolean, int)
  * 
+ * @see "org.springframework.beans.BeanUtils"
+ * 
  * @since 1.0.0
  */
 public final class BeanUtil{

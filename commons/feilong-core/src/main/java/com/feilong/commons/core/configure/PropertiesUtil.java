@@ -26,9 +26,14 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
 
 /**
  * 操作properties配置文件.
- * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-3-22 上午10:05:19
+ * @see "org.apache.velocity.texen.util.PropertiesUtil"
+ * @see "org.apache.cxf.common.util.PropertiesLoaderUtils"
+ * @see "org.springframework.core.io.support.PropertiesLoaderUtils"
+ * @see "org.springframework.core.io.support.PropertiesLoaderSupport"
+ * @see "org.apache.commons.configuration.PropertiesConfiguration"
  * @since 1.0.0
  */
 public final class PropertiesUtil implements BaseConfigure{
@@ -166,6 +171,7 @@ public final class PropertiesUtil implements BaseConfigure{
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @see java.util.Properties#load(InputStream)
+     * @see "org.springframework.core.io.support.PropertiesLoaderUtils#loadProperties(Resource)"
      */
     public static Properties getProperties(InputStream inputStream) throws NullPointerException,UncheckedIOException{
         if (null == inputStream){

@@ -149,6 +149,7 @@ public final class MethodUtil{
      * 
      * @since 1.1.1
      */
+    @SuppressWarnings("unchecked")
     public static <T> T invokeMethod(final Object object,final String methodName,Object[] args,Class<?>[] parameterTypes)
                     throws ReflectException{
         try{
@@ -207,6 +208,7 @@ public final class MethodUtil{
      * 
      * @since 1.1.1
      */
+    @SuppressWarnings("unchecked")
     public static <T> T invokeStaticMethod(final Class<?> cls,final String methodName,Object[] args,Class<?>[] parameterTypes)
                     throws ReflectException{
         try{

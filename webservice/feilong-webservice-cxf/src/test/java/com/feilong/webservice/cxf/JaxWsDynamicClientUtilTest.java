@@ -102,6 +102,12 @@ public class JaxWsDynamicClientUtilTest{
 
     }
 
+    /**
+     * Call1.
+     *
+     * @throws Exception
+     *             the exception
+     */
     @Test
     public void call1() throws Exception{
 

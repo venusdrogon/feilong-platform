@@ -29,9 +29,14 @@ import com.feilong.commons.core.log.Slf4jUtil;
 /**
  * 使用 beanutil出现的异常.
  * 
+ * <p>
+ * Note that: this is a runtime (unchecked) exception. Beans exceptions are usually fatal; there is no reason for them to be checked.
+ * </p>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年7月21日 下午5:34:50
  * @since 1.0.8
+ * @see "org.springframework.beans.BeansException"
  */
 public final class BeanUtilException extends RuntimeException{
 

@@ -43,7 +43,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-23 下午5:00:54
  * @version 1.0.7 2014-5-23 20:27 add {@link #getFileFormatSize(File)}
- * @see File
+ * @see java.io.File
  * @since 1.0.0
  */
 public final class FileUtil{
