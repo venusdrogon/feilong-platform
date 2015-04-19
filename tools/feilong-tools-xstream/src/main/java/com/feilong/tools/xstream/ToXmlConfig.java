@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,7 @@
  */
 package com.feilong.tools.xstream;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,14 +27,14 @@ import java.util.Map;
 public final class ToXmlConfig{
 
     /** 别名. */
-    private Map<String, Class<?>> aliasMap;
+    private Map<String, Class<?>> aliasMap              = new HashMap<String, Class<?>>();
 
-    /** 隐式集合 隐藏,隐藏,比如下面有list. */
-    private Map<String, Class<?>> implicitCollectionMap;
+    /** 隐式集合 隐藏,隐藏,比如下面有list,泛型中的第二个参数 Class 是 ownerType. */
+    private Map<String, Class<?>> implicitCollectionMap = new HashMap<String, Class<?>>();
 
     /**
-     * Gets the 别名.
-     * 
+     * 获得 别名.
+     *
      * @return the aliasMap
      */
     public Map<String, Class<?>> getAliasMap(){
@@ -41,8 +42,8 @@ public final class ToXmlConfig{
     }
 
     /**
-     * Sets the 别名.
-     * 
+     * 设置 别名.
+     *
      * @param aliasMap
      *            the aliasMap to set
      */
@@ -51,8 +52,8 @@ public final class ToXmlConfig{
     }
 
     /**
-     * Gets the 隐式集合 隐藏,隐藏,比如下面有list.
-     * 
+     * 获得 隐式集合 隐藏,隐藏,比如下面有list,泛型中的第二个参数 Class 是 ownerType.
+     *
      * @return the implicitCollectionMap
      */
     public Map<String, Class<?>> getImplicitCollectionMap(){
@@ -60,8 +61,8 @@ public final class ToXmlConfig{
     }
 
     /**
-     * Sets the 隐式集合 隐藏,隐藏,比如下面有list.
-     * 
+     * 设置 隐式集合 隐藏,隐藏,比如下面有list,泛型中的第二个参数 Class 是 ownerType.
+     *
      * @param implicitCollectionMap
      *            the implicitCollectionMap to set
      */

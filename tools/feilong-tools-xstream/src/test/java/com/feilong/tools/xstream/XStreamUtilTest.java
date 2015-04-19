@@ -15,8 +15,6 @@
  */
 package com.feilong.tools.xstream;
 
-import java.io.Serializable;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +28,10 @@ import com.thoughtworks.xstream.XStream;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Oct 11, 2013 12:57:10 AM
  */
-public class XStreamUtilTest implements Serializable{
-
-    /** The Constant serialVersionUID. */
-    private static final long   serialVersionUID = 288232184048495608L;
+public class XStreamUtilTest{
 
     /** The Constant log. */
-    private static final Logger log              = LoggerFactory.getLogger(XStreamUtilTest.class);
+    private static final Logger log = LoggerFactory.getLogger(XStreamUtilTest.class);
 
     /**
      * Name.
@@ -48,5 +43,23 @@ public class XStreamUtilTest implements Serializable{
         XStream xStream = new XStream();
         xStream.alias("user", User.class);
         log.info(xStream.toXML(user));
+    }
+
+    @Test
+    public void testToXML(){
+        User user = new User(1L);
+        ToXmlConfig toXmlConfig = new ToXmlConfig();
+        toXmlConfig.getAliasMap().put("user", User.class);
+        log.info(XStreamUtil.toXML(user, toXmlConfig));
+        log.info(XStreamUtil.toXML(user, null));
+    }
+
+    @Test
+    public void testToXML2(){
+        User user = new User(1L);
+        ToXmlConfig toXmlConfig = new ToXmlConfig();
+        toXmlConfig.getAliasMap().put("user", User.class);
+        toXmlConfig.getImplicitCollectionMap().put("userAddresseList", User.class);
+        log.info(XStreamUtil.toXML(user, toXmlConfig));
     }
 }

@@ -6,7 +6,11 @@
 		<version>1.1.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	
+
+	<properties>
+		<version.xstream>1.4.8</version.xstream>
+	</properties>
+
 	<artifactId>feilong-tools-xstream</artifactId>
 	<name>feilong-tools-xstream</name>
 	<description>feilong-tools-xstream</description>
@@ -15,7 +19,7 @@
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>1.4.7</version>
+			<version>${version.xstream}</version>
 		</dependency>
 	</dependencies>
 </project>
