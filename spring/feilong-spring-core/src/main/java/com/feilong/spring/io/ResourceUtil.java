@@ -82,7 +82,7 @@ import org.springframework.core.io.UrlResource;
  * 它既可以作为File提供，也可以作为URL。</td>
  * </tr>
  * <tr valign=top style="background-color:#eeeeff">
- * <td>{@link org.springframework.web.context.support.ServletContextResource}</td>
+ * <td>{@link "org.springframework.web.context.support.ServletContextResource"}</td>
  * <td>这是为 ServletContext 资源提供的 Resource 实现，它负责解析相关web应用根目录中的相对路径。 <br>
  * 它始终支持以流和URL的方式访问。 但是只有当web应用包被解开并且资源在文件系统的物理路径上时，才允许以 java.io.File 方式访问。 <br>
  * 是否解开并且在文件系统中访问，还是直接从JAR包访问或以其它方式访问如DB(这是可以想象的)，仅取决于Servlet容器。</td>
@@ -112,7 +112,7 @@ import org.springframework.core.io.UrlResource;
  * @see org.springframework.core.io.UrlResource
  * @see org.springframework.core.io.ClassPathResource
  * @see org.springframework.util.ResourceUtils
- * @see org.springframework.web.context.support.ServletContextResource
+ * @see "org.springframework.web.context.support.ServletContextResource"
  * @since 1.0.9
  */
 public final class ResourceUtil{

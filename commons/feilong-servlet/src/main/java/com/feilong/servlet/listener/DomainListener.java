@@ -15,6 +15,7 @@
  */
 package com.feilong.servlet.listener;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -23,7 +24,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.configure.PropertiesUtil;
+import com.feilong.commons.core.date.DateExtensionUtil;
+import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
@@ -63,6 +69,9 @@ import com.feilong.commons.core.util.Validator;
  */
 public class DomainListener implements ServletContextListener{
 
+    /** The Constant log. */
+    private static final Logger log                        = LoggerFactory.getLogger(DomainListener.class);
+
     /** The Constant CONFIG_LOCATION_PARAM. */
     private static final String CONFIG_LOCATION_PARAM      = "domainConfigLocation";
 
@@ -76,8 +85,21 @@ public class DomainListener implements ServletContextListener{
      */
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent){
+
+        Date beginDate = new Date();
+
         ServletContext servletContext = servletContextEvent.getServletContext();
         initDomain(servletContext);
+
+        Date endDate = new Date();
+
+        String message = Slf4jUtil.formatMessage(
+                        "Domain Listener Initialized time:{}",
+                        DateExtensionUtil.getIntervalForView(beginDate, endDate));
+
+        if (log.isInfoEnabled()){
+            log.info(message);
+        }
     }
 
     /**
@@ -93,7 +115,9 @@ public class DomainListener implements ServletContextListener{
 
         setServletContextAttribute(servletContext, domainConfigMap);
 
-        servletContext.log(JsonUtil.format(domainConfigMap));
+        if (log.isInfoEnabled()){
+            log.info("domain config info:{}", JsonUtil.format(domainConfigMap));
+        }
     }
 
     /**
@@ -108,14 +132,12 @@ public class DomainListener implements ServletContextListener{
      * @since 1.0.9
      */
     //TODO 自动识别
-    protected Properties loadDomainProperties(ServletContext servletContext,String domainConfigLocation){
-
+    protected Properties loadDomainProperties(@SuppressWarnings("unused") ServletContext servletContext,String domainConfigLocation){
+        if (Validator.isNullOrEmpty(domainConfigLocation)){
+            domainConfigLocation = DEFAULT_CONFIGURATION_FILE;
+        }
         Class<? extends DomainListener> klass = this.getClass();
         Properties domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, domainConfigLocation);
-
-        if (null == domainProperties){
-            domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, DEFAULT_CONFIGURATION_FILE);
-        }
         return domainProperties;
     }
 
@@ -169,6 +191,8 @@ public class DomainListener implements ServletContextListener{
             String value = entry.getValue();
 
             DomainConfig domainConfig = new DomainConfig();
+            domainConfig.setKey(key);
+
             if (Validator.isNotNullOrEmpty(value)){
                 //json
                 if (value.startsWith("{")){
