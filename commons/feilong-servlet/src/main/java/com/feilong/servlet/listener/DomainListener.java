@@ -61,7 +61,7 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Aug 19, 2013 10:28:05 AM
  */
-public final class DomainListener implements ServletContextListener{
+public class DomainListener implements ServletContextListener{
 
     /** The Constant CONFIG_LOCATION_PARAM. */
     private static final String CONFIG_LOCATION_PARAM      = "domainConfigLocation";
@@ -87,10 +87,61 @@ public final class DomainListener implements ServletContextListener{
      *            the servlet context
      */
     private void initDomain(ServletContext servletContext){
+        String domainConfigLocation = getDomainConfigLocation(servletContext);
+        Properties properties = loadDomainProperties(servletContext, domainConfigLocation);
+        Map<String, DomainConfig> domainConfigMap = propertiesToMap(properties);
+
+        setServletContextAttribute(servletContext, domainConfigMap);
+
+        servletContext.log(JsonUtil.format(domainConfigMap));
+    }
+
+    /**
+     * 获得 domain properties.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @param domainConfigLocation
+     *            the domain config location
+     * @return the domain properties
+     * @see com.feilong.commons.core.configure.PropertiesUtil#getPropertiesWithClassLoader(Class, String)
+     * @since 1.0.9
+     */
+    //TODO 自动识别
+    protected Properties loadDomainProperties(ServletContext servletContext,String domainConfigLocation){
+
+        Class<? extends DomainListener> klass = this.getClass();
+        Properties domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, domainConfigLocation);
+
+        if (null == domainProperties){
+            domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, DEFAULT_CONFIGURATION_FILE);
+        }
+        return domainProperties;
+    }
+
+    /**
+     * 获得 domain config location.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @return the domain config location
+     * @since 1.1.1
+     */
+    protected String getDomainConfigLocation(ServletContext servletContext){
         String domainConfigLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
+        return domainConfigLocation;
+    }
 
-        Map<String, DomainConfig> domainConfigMap = getDomainConfigMap(domainConfigLocation);
-
+    /**
+     * 设置 servlet context attribute.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @param domainConfigMap
+     *            the domain config map
+     * @since 1.1.1
+     */
+    private void setServletContextAttribute(ServletContext servletContext,Map<String, DomainConfig> domainConfigMap){
         for (Map.Entry<String, DomainConfig> entry : domainConfigMap.entrySet()){
             DomainConfig domainConfig = entry.getValue();
 
@@ -99,25 +150,10 @@ public final class DomainListener implements ServletContextListener{
                 servletContext.setAttribute(variableName, domainConfig.getValue());
             }
         }
-
-        servletContext.log(JsonUtil.format(domainConfigMap));
     }
 
     /**
-     * 将全部的配置转成map key就是properties中的key.
-     *
-     * @param domainConfigLocation
-     *            the domain config location
-     * @return the domain config map
-     * @since 1.0.9
-     */
-    private Map<String, DomainConfig> getDomainConfigMap(String domainConfigLocation){
-        Properties properties = getDomainProperties(domainConfigLocation);
-        return propertiesToMap(properties);
-    }
-
-    /**
-     * Properties to map.
+     * Properties to map 将全部的配置转成map key就是properties中的key.
      *
      * @param properties
      *            the properties
@@ -146,25 +182,6 @@ public final class DomainListener implements ServletContextListener{
             domainConfigMap.put(key, domainConfig);
         }
         return domainConfigMap;
-    }
-
-    /**
-     * 获得 domain properties.
-     *
-     * @param domainConfigLocation
-     *            the domain config location
-     * @return the domain properties
-     * @since 1.0.9
-     */
-    //TODO 自动识别
-    private Properties getDomainProperties(String domainConfigLocation){
-        Class<? extends DomainListener> klass = this.getClass();
-        Properties domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, domainConfigLocation);
-
-        if (null == domainProperties){
-            domainProperties = PropertiesUtil.getPropertiesWithClassLoader(klass, DEFAULT_CONFIGURATION_FILE);
-        }
-        return domainProperties;
     }
 
     /*
