@@ -130,6 +130,8 @@ public final class CookieUtil{
      *            cookieEntity
      * @param response
      *            response
+     * 
+     * @see "org.apache.catalina.connector.Response#generateCookieString(Cookie, boolean)"
      */
     public static void addCookie(CookieEntity cookieEntity,HttpServletResponse response){
         Cookie cookie = new Cookie(cookieEntity.getName(), cookieEntity.getValue());
