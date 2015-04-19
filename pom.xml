@@ -86,7 +86,8 @@
 		<version.slf4j>1.7.12</version.slf4j>
 
 		<version.spring>3.2.12.RELEASE</version.spring>
-
+		
+		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
 
 		<version.velocity>1.7</version.velocity>
@@ -505,12 +506,22 @@
 				<version>${version.commons-email}</version>
 			</dependency>
 
+			<!--通用接口，它可以使应用程序通过多种途径读取配置信 -->
 			<dependency>
 				<groupId>commons-configuration</groupId>
 				<artifactId>commons-configuration</artifactId>
 				<version>${version.commons-configuration}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-lang</artifactId>
+						<groupId>commons-lang</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
-
 			<!-- commons-collections -->
 			<dependency>
 				<groupId>commons-collections</groupId>
@@ -568,6 +579,13 @@
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
 				<version>${version.xercesImpl}</version>
+			</dependency>
+
+			<!-- -->
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>${version.xml-apis}</version>
 			</dependency>
 
 			<!--******** slf4j******** -->

@@ -46,6 +46,12 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * <pre>
  * 
  * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * &#064;VarName(name = &quot;BANK&quot;,sampleValue = &quot;BRI&quot;)
  * private String bank;
  * </pre>
@@ -111,9 +117,8 @@ public abstract class AbstractXmlParse<T> implements XmlParse<T>{
      */
     protected Class<T> parseModelClass(){
         Class<?> klass = this.getClass();
-
-        Class<T> modelClass = (Class<T>) TypeUtil.getGenericClassArray(klass)[0];
-
+        Class<?>[] genericSuperclassParameterizedRawTypes = TypeUtil.getGenericSuperclassParameterizedRawTypes(klass);
+        Class<T> modelClass = (Class<T>) genericSuperclassParameterizedRawTypes[0];
         return modelClass;
     }
 

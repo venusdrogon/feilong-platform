@@ -72,7 +72,8 @@ public class ItemDtoStandardXpathExpressionXmlParseTest{
 
         String xpathExpression = "/item/*";
         XmlParse<ItemDto> queryResultXmlParse = new StandardXpathExpressionXmlParse<ItemDto>(ItemDto.class, xpathExpression);
-        Class<ItemDto> genericModelClass = (Class<ItemDto>) TypeUtil.getGenericClassArray(queryResultXmlParse.getClass())[0];
+        Class<ItemDto> genericModelClass = (Class<ItemDto>) TypeUtil.getGenericSuperclassParameterizedRawTypes(queryResultXmlParse
+                        .getClass())[0];
         if (log.isDebugEnabled()){
             log.debug(genericModelClass.getCanonicalName());
         }
