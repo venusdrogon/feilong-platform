@@ -37,9 +37,10 @@ import com.feilong.tools.security.EncryptionException;
  * @version 1.0.1 2011-10-18 16:49
  * @version 1.0.7 2014-7-10 14:28 update javadoc and remove extends
  * @see <a href="http://www.cmd5.com/">MD5解密网站</a>
- * @see OnewayEncryption
- * @see OnewayType
+ * @see com.feilong.tools.security.oneway.OnewayEncryption
+ * @see com.feilong.tools.security.oneway.OnewayType
  * @see org.apache.commons.codec.digest.Md5Crypt#md5Crypt(byte[])
+ * @see "org.springframework.util.DigestUtils"
  * @since 1.0.0
  */
 public final class MD5Util{

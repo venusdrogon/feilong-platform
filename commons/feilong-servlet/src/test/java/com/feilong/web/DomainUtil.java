@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.web.entity.domain;
+package com.feilong.web;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,9 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-8-9 下午4:53:55
+ * @deprecated
  */
+@Deprecated
 public final class DomainUtil{
 
     /** The Constant userHome. */

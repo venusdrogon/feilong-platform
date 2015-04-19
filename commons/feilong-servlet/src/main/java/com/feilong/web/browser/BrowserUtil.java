@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.web.entity.browser;
+package com.feilong.web.browser;
 
 import com.feilong.commons.core.util.StringUtil;
 

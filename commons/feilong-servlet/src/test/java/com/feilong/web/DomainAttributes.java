@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.web.entity.domain;
+package com.feilong.web;
 
 /**
  * The Interface DomainAttributes.
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Apr 27, 2014 1:09:51 AM
+ * @deprecated
  */
+@Deprecated
 public final class DomainAttributes{
 
     /** 样式表 域名的变量. */

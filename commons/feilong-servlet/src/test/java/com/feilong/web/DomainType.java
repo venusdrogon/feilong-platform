@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.web.entity.domain;
+package com.feilong.web;
 
 /**
  * 二级域名 类型.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-4-13 下午5:49:47
+ * @deprecated
  */
+@Deprecated
 public enum DomainType{
 
     /** 样式表. */

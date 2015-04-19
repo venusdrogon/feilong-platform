@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.feilong.web.entity.browser.Browser;
+import com.feilong.web.browser.Browser;
 
 /**
  * 浏览器拦截器<br/>

@@ -33,10 +33,15 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * jdbc Result的工具类.
+ * jdbc {@link javax.servlet.jsp.jstl.sql.Result}的工具类.
+ * 
+ * {@code need jstl}
  * 
  * @author 金鑫 2010-7-9 上午11:55:22
  * @since 1.0
+ * 
+ * @see javax.servlet.jsp.jstl.sql.Result
+ * @see javax.servlet.jsp.jstl.sql.ResultSupport
  */
 public final class ResultUtil{
 
@@ -90,14 +95,14 @@ public final class ResultUtil{
         if (rowCount > 1){
             throw new IllegalArgumentException("result 数据" + rowCount + "条");
         }
-        Object bean = null;
-        String className = clz.getName();
 
         @SuppressWarnings("unchecked")
         SortedMap<Object, Object>[] sortedMaps = result.getRows();
         SortedMap<Object, Object> sortedMap = sortedMaps[0];
+
+        String className = clz.getName();
         // 实例化
-        bean = ConstructorUtil.newInstance(className);
+        Object bean = ConstructorUtil.newInstance(className);
 
         // 是否取字段
         boolean isGetFileds = Validator.isNotNullOrEmpty(fieldNames);
@@ -214,13 +219,11 @@ public final class ResultUtil{
     }
 
     /**
-     * 将result 单个sortedMap 值取出赋予bean(fileds字段区分大小写,必须和bean 里面的字段一一对应)
+     * 将result 单个sortedMap 值取出赋予bean(fileds字段区分大小写,必须和bean 里面的字段一一对应).
      * 
      * <pre>
      * 自动转换类型
      * </pre>
-     * 
-     * .
      * 
      * @param sortedMap
      *            sortedMap
@@ -231,22 +234,19 @@ public final class ResultUtil{
      */
     public static void getSortedMapValueToBean(SortedMap<?, ?> sortedMap,Object bean,String...fileds){
         if (Validator.isNotNullOrEmpty(sortedMap) && Validator.isNotNullOrEmpty(bean) && Validator.isNotNullOrEmpty(fileds)){
-            String value = "";
             for (String filed : fileds){
-                value = getSortedMapValueByKeyWithTrim(sortedMap, filed);
+                String value = getSortedMapValueByKeyWithTrim(sortedMap, filed);
                 BeanUtil.setProperty(bean, filed, value);
             }
         }
     }
 
     /**
-     * 将result 单个sortedMap 值取出赋予bean(fileds字段不区分大小写,自动转换成规范化的字段)
+     * 将result 单个sortedMap 值取出赋予bean(fileds字段不区分大小写,自动转换成规范化的字段).
      * 
      * <pre>
      * 自动转换类型
      * </pre>
-     * 
-     * .
      * 
      * @param sortedMap
      *            sortedMap
@@ -265,7 +265,7 @@ public final class ResultUtil{
     }
 
     /**
-     * 将普通名称转成属性名称 首字母小写,第二个字母大写
+     * 将普通名称转成属性名称 首字母小写,第二个字母大写.
      * 
      * <pre>
      * jinxin----jinxin
@@ -273,8 +273,6 @@ public final class ResultUtil{
      * jin_xin----jin_Xin
      * jin_xin_xin----jin_Xin_Xin
      * </pre>
-     * 
-     * .
      * 
      * @param name
      *            普通名称

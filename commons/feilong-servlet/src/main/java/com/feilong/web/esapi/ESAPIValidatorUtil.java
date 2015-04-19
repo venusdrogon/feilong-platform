@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.web.entity.domain;
+package com.feilong.web.esapi;
 
 import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.Validator;
@@ -45,19 +45,22 @@ public final class ESAPIValidatorUtil{
 
     /**
      * 获得安全的html代码.
-     * 
+     *
      * @param input
      *            the input
      * @return the valid safe html
+     * @throws ESAPIException
+     *             the ESAPI exception
      */
-    public static String getValidSafeHTML(String input){
+    public static String getValidSafeHTML(String input) throws ESAPIException{
         try{
             return validator.getValidSafeHTML("html", input, Integer.MAX_VALUE, true);
         }catch (ValidationException e){
-            log.error(e.getClass().getName(), e);
+            log.error("", e);
+            throw new ESAPIException(e);
         }catch (IntrusionException e){
-            log.error(e.getClass().getName(), e);
+            log.error("", e);
+            throw new ESAPIException(e);
         }
-        return null;
     }
 }

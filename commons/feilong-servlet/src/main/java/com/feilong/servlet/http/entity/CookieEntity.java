@@ -18,6 +18,7 @@ package com.feilong.servlet.http.entity;
 import java.io.Serializable;
 
 import com.feilong.commons.core.date.TimeInterval;
+import com.feilong.servlet.http.CookieUtil;
 
 /**
  * cookie实体.
@@ -90,7 +91,10 @@ public class CookieEntity implements Serializable{
      */
     private int               version          = 0;
 
-    /** Not in cookie specs, but supported by browsers. */
+    /**
+     * Not in cookie specs, but supported by browsers.<br>
+     * 注：这个参数 只有servlet3.0+才支持，目前 {@link CookieUtil}不支持这个参数
+     */
     private boolean           httpOnly;
 
     /**
@@ -282,7 +286,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
-     * 获得 not in cookie specs, but supported by browsers.
+     * 获得 not in cookie specs, but supported by browsers.<br>
+     * 注：这个参数 只有servlet3.0+才支持，目前 {@link CookieUtil}不支持这个参数
      *
      * @return the httpOnly
      */
@@ -291,7 +296,8 @@ public class CookieEntity implements Serializable{
     }
 
     /**
-     * 设置 not in cookie specs, but supported by browsers.
+     * 设置 not in cookie specs, but supported by browsers.<br>
+     * 注：这个参数 只有servlet3.0+才支持，目前 {@link CookieUtil}不支持这个参数
      *
      * @param httpOnly
      *            the httpOnly to set
@@ -299,5 +305,4 @@ public class CookieEntity implements Serializable{
     public void setHttpOnly(boolean httpOnly){
         this.httpOnly = httpOnly;
     }
-
 }

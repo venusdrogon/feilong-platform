@@ -28,6 +28,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.feilong.commons.core.lang.SystemUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.servlet.ServletContextUtil;
@@ -42,7 +45,10 @@ import com.feilong.servlet.ServletContextUtil;
 public class ApplicationInfoServlet extends HttpServlet{
 
     /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 672020928153455796L;
+    private static final long   serialVersionUID = 672020928153455796L;
+
+    /** The Constant log. */
+    private static final Logger log              = LoggerFactory.getLogger(ApplicationInfoServlet.class);
 
     /*
      * (non-Javadoc)
@@ -62,10 +68,10 @@ public class ApplicationInfoServlet extends HttpServlet{
         map.put("System Env Map", SystemUtil.getEnvMapForLog());
         map.put("System Properties Map", SystemUtil.getPropertiesMapForLog());
 
-        //		if (log.isInfoEnabled()){
-        //			log.info("ServletInfoListener:{}", JsonUtil.format(map));
-        //		}
-        servletContext.log("ServletInfoListener" + JsonUtil.format(map));
+        if (log.isInfoEnabled()){
+            log.info("ApplicationInfoServlet:{}", JsonUtil.format(map));
+        }
+
         super.init();
     }
 

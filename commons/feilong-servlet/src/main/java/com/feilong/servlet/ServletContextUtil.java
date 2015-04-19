@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 
@@ -92,7 +93,7 @@ public final class ServletContextUtil{
      * @return the attribute string map for log
      */
     public static Map<String, String> getAttributeStringMapForLog(ServletContext servletContext){
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new TreeMap<String, String>();
         @SuppressWarnings("unchecked")
         Enumeration<String> attributeNames = servletContext.getAttributeNames();
         while (attributeNames.hasMoreElements()){
@@ -112,7 +113,7 @@ public final class ServletContextUtil{
      * @return the inits the parameter map
      */
     public static Map<String, String> getInitParameterMap(ServletContext servletContext){
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new TreeMap<String, String>();
         @SuppressWarnings("unchecked")
         Enumeration<String> initParameterNames = servletContext.getInitParameterNames();
         if (Validator.isNotNullOrEmpty(initParameterNames)){

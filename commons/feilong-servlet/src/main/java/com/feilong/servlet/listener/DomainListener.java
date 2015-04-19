@@ -190,16 +190,16 @@ public class DomainListener implements ServletContextListener{
             String key = entry.getKey();
             String value = entry.getValue();
 
-            DomainConfig domainConfig = new DomainConfig();
-            domainConfig.setKey(key);
-
+            DomainConfig domainConfig = null;
             if (Validator.isNotNullOrEmpty(value)){
                 //json
                 if (value.startsWith("{")){
                     domainConfig = JsonUtil.toBean(value, DomainConfig.class);
                 }else{
+                    domainConfig = new DomainConfig();
                     domainConfig.setValue(value);
                 }
+                domainConfig.setKey(key);
             }else{
                 //nothing to do
             }

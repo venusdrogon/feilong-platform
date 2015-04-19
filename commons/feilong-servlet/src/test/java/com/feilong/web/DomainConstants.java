@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.web.entity.domain;
+package com.feilong.web;
 
 import java.util.ResourceBundle;
 
@@ -24,7 +24,9 @@ import com.feilong.commons.core.configure.ResourceBundleUtil;
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-8-9 下午4:37:46
+ * @deprecated
  */
+@Deprecated
 public final class DomainConstants{
 
     /** 接口配置. */
