@@ -36,6 +36,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-31 下午06:08:20
+ * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
+ * @see org.springframework.web.context.support.WebApplicationContextUtils#getWebApplicationContext(ServletContext)
  */
 public final class WebSpringUtil{
 
@@ -134,12 +136,28 @@ public final class WebSpringUtil{
      * @param beanName
      *            xml文件中配置的bean beanName
      * @return 注入的bean
+     * @see #getWebApplicationContext(ServletContext)
      */
     @SuppressWarnings("unchecked")
     public static <T> T getBean(ServletContext servletContext,String beanName){
+        WebApplicationContext webApplicationContext = getWebApplicationContext(servletContext);
+        return (T) getBean(webApplicationContext, beanName);
+    }
+
+    /**
+     * 获得 web application context.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @return the web application context
+     * @since 1.1.1
+     * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
+     * @see org.springframework.web.context.support.WebApplicationContextUtils#getWebApplicationContext(ServletContext)
+     */
+    public static WebApplicationContext getWebApplicationContext(ServletContext servletContext){
         // getWebApplicationContext 如果是空,返回null
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-        return (T) getBean(webApplicationContext, beanName);
+        return webApplicationContext;
     }
 
     /**
@@ -154,8 +172,7 @@ public final class WebSpringUtil{
      * @return the bean
      */
     public static <T> T getBean(ServletContext servletContext,Class<T> requiredType){
-        // getWebApplicationContext 如果是空,返回null
-        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        WebApplicationContext webApplicationContext = getWebApplicationContext(servletContext);
         return getBean(webApplicationContext, requiredType);
     }
 
