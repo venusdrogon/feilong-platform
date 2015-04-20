@@ -111,7 +111,7 @@ public class DomainListener implements ServletContextListener{
     private void initDomain(ServletContext servletContext){
         String domainConfigLocation = getDomainConfigLocation(servletContext);
         Properties properties = loadDomainProperties(servletContext, domainConfigLocation);
-        Map<String, DomainConfig> domainConfigMap = propertiesToMap(properties);
+        Map<String, DomainConfig> domainConfigMap = propertiesToMap(servletContext, properties);
 
         setServletContextAttribute(servletContext, domainConfigMap);
 
@@ -177,31 +177,40 @@ public class DomainListener implements ServletContextListener{
     /**
      * Properties to map 将全部的配置转成map key就是properties中的key.
      *
+     * @param servletContext
+     *            the servlet context
      * @param properties
      *            the properties
      * @return the map< string, domain config>
      * @since 1.0.9
      */
-    private Map<String, DomainConfig> propertiesToMap(Properties properties){
+    private Map<String, DomainConfig> propertiesToMap(ServletContext servletContext,Properties properties){
         Map<String, String> map = PropertiesUtil.toMap(properties);
         Map<String, DomainConfig> domainConfigMap = new LinkedHashMap<String, DomainConfig>();
+
+        //如果 配置的value是空,则使用 contextPath
+        String defaultValue = servletContext.getContextPath();
 
         for (Map.Entry<String, String> entry : map.entrySet()){
             String key = entry.getKey();
             String value = entry.getValue();
 
-            DomainConfig domainConfig = null;
+            DomainConfig domainConfig = new DomainConfig();
             if (Validator.isNotNullOrEmpty(value)){
                 //json
                 if (value.startsWith("{")){
                     domainConfig = JsonUtil.toBean(value, DomainConfig.class);
                 }else{
-                    domainConfig = new DomainConfig();
+                    //不是 json 那么直接设置值
                     domainConfig.setValue(value);
                 }
-                domainConfig.setKey(key);
             }else{
                 //nothing to do
+            }
+            domainConfig.setKey(key);
+            if (Validator.isNullOrEmpty(domainConfig.getValue())){
+                log.debug("key:[{}] 's value isNullOrEmpty,use ContextPath:[{}]", key, defaultValue);
+                domainConfig.setValue(defaultValue);
             }
             domainConfigMap.put(key, domainConfig);
         }
