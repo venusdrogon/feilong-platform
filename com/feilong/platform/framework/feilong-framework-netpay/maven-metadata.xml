@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.framework</groupId>
   <artifactId>feilong-framework-netpay</artifactId>
   <versioning>
+    <release>1.1.1</release>
     <versions>
-      <version>1.1.1-SNAPSHOT</version>
+      <version>1.1.1</version>
     </versions>
-    <lastUpdated>20150420025112</lastUpdated>
+    <lastUpdated>20150420030502</lastUpdated>
   </versioning>
 </metadata>
