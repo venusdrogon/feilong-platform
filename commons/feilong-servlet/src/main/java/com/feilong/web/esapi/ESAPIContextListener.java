@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.servlet.listener;
+package com.feilong.web.esapi;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -28,22 +28,28 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.lang.ClassLoaderUtil;
 
 /**
- * 专门给esapi 设置的监听器<br>
- * 使用步骤:
+ * 专门给esapi 设置的监听器.
+ * 
+ * <h3>使用步骤:</h3>
+ * 
  * <ul>
  * <li>1.只需要将 esapi 目录copy 到项目中classpath下即可，</li>
- * <li>2.web.xml 配置 <code>
+ * <li>2.web.xml 配置
+ * 
+ * <pre>
+ * {@code
  *  <listener>
- * 		<listener-class>com.feilong.servlet.listener.ESAPIContextListener</listener-class>
- * 	</listener>
- * </code></li>
+ *      <listener-class>com.feilong.web.esapi.ESAPIContextListener</listener-class>
+ *  </listener>
+ * }
+ * </pre>
+ * 
+ * </li>
  * </ul>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 9, 2012 5:16:58 PM
- * @deprecated 将来可能会从该包中移走
  */
-@Deprecated
 public class ESAPIContextListener implements ServletContextListener{
 
     /** The Constant log. */
