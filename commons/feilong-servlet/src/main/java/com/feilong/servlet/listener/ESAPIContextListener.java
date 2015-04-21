@@ -41,7 +41,9 @@ import com.feilong.commons.core.lang.ClassLoaderUtil;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Nov 9, 2012 5:16:58 PM
+ * @deprecated 将来可能会从该包中移走
  */
+@Deprecated
 public class ESAPIContextListener implements ServletContextListener{
 
     /** The Constant log. */

@@ -42,7 +42,10 @@ import com.feilong.commons.core.util.Validator;
  * 
  * @see javax.servlet.jsp.jstl.sql.Result
  * @see javax.servlet.jsp.jstl.sql.ResultSupport
+ * 
+ * @deprecated 这个类使用场景不大 如有有需要, 可以使用 spring jdbcUtil等工具类
  */
+@Deprecated
 public final class ResultUtil{
 
     /** Don't let anyone instantiate this class. */
