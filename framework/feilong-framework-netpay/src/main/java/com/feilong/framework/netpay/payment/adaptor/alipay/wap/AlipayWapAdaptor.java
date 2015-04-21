@@ -224,7 +224,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
                     String notify_url,
                     Map<String, String> specialSignMap){
         Map<String, String> hiddenParamMap = new HashMap<String, String>();
-        StringBuffer regData = new StringBuffer();
+        StringBuilder regData = new StringBuilder();
         regData.append("<direct_trade_create_req>");
         regData.append("<subject>" + subject + "</subject>");
         regData.append("<out_trade_no>" + code + "</out_trade_no>");
@@ -300,7 +300,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
         conn.getOutputStream().write(params.getBytes());
         InputStream is = conn.getInputStream();
         BufferedReader in = new BufferedReader(new InputStreamReader(is));
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         String line = "";
         while ((line = in.readLine()) != null){
             buffer.append(line);

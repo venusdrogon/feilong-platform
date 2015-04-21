@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.lang.reflect.res.BaseSolrRepository;
-import com.feilong.commons.core.lang.reflect.res.SkuItemRepository;
 import com.feilong.commons.core.lang.reflect.res.SkuItemRepositoryImpl;
 import com.feilong.commons.core.lang.reflect.res.SkuItemRepositoryImpl2;
 import com.feilong.commons.core.lang.reflect.res.SkuItemRepositoryImpl3;
@@ -44,7 +43,7 @@ public class TypeUtilTest{
      */
     @Test
     public final void test(){
-        SkuItemRepository skuItemRepository = new SkuItemRepositoryImpl();
+        new SkuItemRepositoryImpl();
     }
 
     /**
@@ -52,12 +51,15 @@ public class TypeUtilTest{
      */
     @Test
     public final void test2(){
-        SkuItemRepositoryImpl2 skuItemRepository = new SkuItemRepositoryImpl2();
+        new SkuItemRepositoryImpl2();
     }
 
+    /**
+     * Test3.
+     */
     @Test
     public final void test3(){
-        SkuItemRepositoryImpl3 skuItemRepository = new SkuItemRepositoryImpl3();
+        new SkuItemRepositoryImpl3();
 
         Class<?>[] genericInterfacesParameterizedRawTypes = TypeUtil.getGenericInterfacesParameterizedRawTypes(
                         SkuItemRepositoryImpl3.class,
@@ -69,6 +71,9 @@ public class TypeUtilTest{
 
     }
 
+    /**
+     * Test4.
+     */
     @Test
     public final void test4(){
         SkuItemRepositoryImpl4<String> skuItemRepository = new SkuItemRepositoryImpl4<String>();

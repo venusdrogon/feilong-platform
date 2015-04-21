@@ -378,7 +378,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
                 // </alipay>
             }
 
-            StringBuffer result = new StringBuffer();
+            StringBuilder result = new StringBuilder();
             @SuppressWarnings("unchecked")
             List<Node> nodeList = document.selectNodes("//alipay/*");
             for (Node node : nodeList){

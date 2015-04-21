@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.lang.ObjectUtil;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.net.URIComponents;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
@@ -130,7 +131,7 @@ public final class RequestUtil{
         // Same as the value of the CGI variable REQUEST_METHOD.
         String method = request.getMethod();
 
-        if (method.toUpperCase().equals("POST")){
+        if (HttpMethodType.POST.getMethod().equalsIgnoreCase(method)){
             Map<String, String[]> map = getParameterMap(request);
             if (Validator.isNotNullOrEmpty(map)){
                 returnValue = URIUtil.combineQueryString(map, null);
@@ -512,9 +513,9 @@ public final class RequestUtil{
      * @return 获得请求的?部分前面的地址
      */
     public static final String getRequestURL(HttpServletRequest request){
-        String forward_request_uri = (String) request.getAttribute(RequestAttributes.FORWARD_REQUEST_URI);
-        if (Validator.isNotNullOrEmpty(forward_request_uri)){
-            return forward_request_uri;
+        String forwardRequestUri = (String) request.getAttribute(RequestAttributes.FORWARD_REQUEST_URI);
+        if (Validator.isNotNullOrEmpty(forwardRequestUri)){
+            return forwardRequestUri;
         }
         return request.getRequestURL().toString();
     }
@@ -569,12 +570,12 @@ public final class RequestUtil{
      */
     public static final String getServerRootWithContextPath(HttpServletRequest request){
 
-        StringBuffer url = new StringBuffer();
+        StringBuilder sbURL = new StringBuilder();
         String scheme = request.getScheme();
 
-        url.append(scheme);
-        url.append("://");
-        url.append(request.getServerName());
+        sbURL.append(scheme);
+        sbURL.append("://");
+        sbURL.append(request.getServerName());
 
         int port = request.getServerPort();
         if (port < 0){
@@ -582,12 +583,12 @@ public final class RequestUtil{
         }
 
         if ((scheme.equals(URIComponents.SCHEME_HTTP) && (port != 80)) || (scheme.equals(URIComponents.SCHEME_HTTPS) && (port != 443))){
-            url.append(':');
-            url.append(port);
+            sbURL.append(':');
+            sbURL.append(port);
         }
 
-        url.append(request.getContextPath());
-        return url.toString();
+        sbURL.append(request.getContextPath());
+        return sbURL.toString();
     }
 
     // [end]
@@ -837,6 +838,7 @@ public final class RequestUtil{
      * @param paramName
      *            the param name
      * @return 参数值去除井号,一般用于sendDirect 跳转中带有#标签,参数值取不准确的问题
+     * @deprecated 将来会重构
      */
     @Deprecated
     public static String getParameterWithoutSharp(HttpServletRequest request,String paramName){

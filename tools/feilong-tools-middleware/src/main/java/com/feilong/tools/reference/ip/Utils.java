@@ -81,7 +81,7 @@ public class Utils{
      * @return 字符串形式的ip
      */
     public static String getIpStringFromBytes(byte[] ip){
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(ip[0] & 0xFF);
         sb.append('.');
         sb.append(ip[1] & 0xFF);

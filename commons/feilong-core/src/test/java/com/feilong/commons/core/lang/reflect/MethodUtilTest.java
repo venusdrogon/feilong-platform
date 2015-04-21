@@ -39,6 +39,13 @@ public class MethodUtilTest{
     /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(MethodUtilTest.class);
 
+    /**
+     * Name.
+     *
+     * @param name
+     *            the name
+     * @return the string
+     */
     private String name(int name){
         return "name int";
     }
@@ -47,9 +54,11 @@ public class MethodUtilTest{
     //        return "name Integer";
     //    }
 
+    /**
+     * Test invoke method1.
+     */
     @Test
-    public final void testInvokeMethod1() throws NumberFormatException,ReflectException,NoSuchMethodException,IllegalAccessException,
-                    InvocationTargetException{
+    public final void testInvokeMethod1(){
         log.info("" + MethodUtil.invokeMethod(ConstructorUtil.newInstance(MethodUtilTest.class), "name", 5));
         log.info("" + MethodUtil.invokeMethod(new MethodUtilTest(), "name", Integer.parseInt("5")));
     }

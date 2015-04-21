@@ -17,6 +17,7 @@ package com.feilong.commons.core.util;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +54,7 @@ public class StringUtilTest{
         String source = "jiiiiiinxin.feilong";
         log.info(StringUtil.replace(source, null) + "");
 
-        HashMap<String, Object> valuesMap = new HashMap<String, Object>();
+        Map<String, Object> valuesMap = new HashMap<String, Object>();
         valuesMap.put("today", DateUtil.date2String(new Date(), DatePattern.COMMON_DATE));
         valuesMap.put("user", new User(1L));
         log.info(StringUtil.replace("${today}${today1}${user.id}${user}", valuesMap) + "");
