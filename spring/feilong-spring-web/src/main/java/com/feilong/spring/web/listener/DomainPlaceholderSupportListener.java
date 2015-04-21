@@ -115,9 +115,11 @@ public class DomainPlaceholderSupportListener extends com.feilong.web.domain.Dom
      */
     @Override
     protected String getDomainConfigLocation(ServletContext servletContext){
-        String domainConfigLocation = super.getDomainConfigLocation(servletContext);
-        WebApplicationContext webApplicationContext = WebSpringUtil.getWebApplicationContext(servletContext);
+        WebApplicationContext webApplicationContext = WebSpringUtil.getRequiredWebApplicationContext(servletContext);
+
         Environment environment = webApplicationContext.getEnvironment();
+
+        String domainConfigLocation = super.getDomainConfigLocation(servletContext);
         return environment.resolvePlaceholders(domainConfigLocation);
     }
 
@@ -129,7 +131,7 @@ public class DomainPlaceholderSupportListener extends com.feilong.web.domain.Dom
     @Override
     protected Properties loadDomainProperties(ServletContext servletContext,String domainConfigLocation){
         //org.springframework.web.context.support.XmlWebApplicationContext
-        WebApplicationContext webApplicationContext = WebSpringUtil.getWebApplicationContext(servletContext);
+        WebApplicationContext webApplicationContext = WebSpringUtil.getRequiredWebApplicationContext(servletContext);
 
         //org.springframework.web.context.support.ServletContextResource
         Resource resource = webApplicationContext.getResource(domainConfigLocation);

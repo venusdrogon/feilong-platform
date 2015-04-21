@@ -23,16 +23,20 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * spring 工具类<br>
- * 当 Web 应用集成 Spring 容器后，代表 Spring 容器的 WebApplicationContext 对象将以 WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE 为键存放在
- * ServletContext 属性列表中 <br>
- * <br>
- * 当 ServletContext 属性列表中不存在 WebApplicationContext 时，getWebApplicationContext() 方法不会抛出异常，它简单地返回 null。 <br>
- * 如果后续代码直接访问返回的结果将引发一个 NullPointerException 异常，<br>
- * 而 WebApplicationContextUtils 另一个 getRequiredWebApplicationContext(ServletContext sc) 方法要求 ServletContext 属性列表中一定要包含一个有效的
- * WebApplicationContext 对象，否则马上抛出一个
- * IllegalStateException 异常。<br>
+ * {@link org.springframework.web.context.support.WebApplicationContextUtils} 工具类.<br>
+ * 当 Web应用集成 Spring容器后，代表 Spring 容器的 {@link org.springframework.web.context.WebApplicationContext} 对象将以
+ * {@link org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}为键存放在
+ * {@link javax.servlet.ServletContext} 属性列表中 <br>
+ * <p>
+ * 当 ServletContext 属性列表中不存在 WebApplicationContext时:
+ * <ol>
+ * <li>{@link WebApplicationContextUtils#getWebApplicationContext(ServletContext)}方法不会抛出异常，它简单地返回 null, 如果后续代码直接访问返回的结果将引发一个
+ * NullPointerException 异常.</li>
+ * <li>而{@link WebApplicationContextUtils#getRequiredWebApplicationContext(ServletContext)}方法要求 ServletContext属性列表中一定要包含一个有效的
+ * WebApplicationContext对象，否则马上抛出一个 异常 {@link java.lang.IllegalStateException}.</li>
+ * </ol>
  * 我们推荐使用后者，因为它能提前发现错误的时间，强制开发者搭建好必备的基础设施。
+ * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-3-31 下午06:08:20
@@ -161,6 +165,22 @@ public final class WebSpringUtil{
     }
 
     /**
+     * 获得 web application context.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @return the web application context
+     * @since 1.1.2
+     * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
+     * @see org.springframework.web.context.support.WebApplicationContextUtils#getRequiredWebApplicationContext(ServletContext)
+     */
+    public static WebApplicationContext getRequiredWebApplicationContext(ServletContext servletContext){
+        // getWebApplicationContext 如果是空,返回null
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        return webApplicationContext;
+    }
+
+    /**
      * Gets the bean.
      * 
      * @param <T>
@@ -253,10 +273,10 @@ public final class WebSpringUtil{
      * @param beanName
      *            the bean name
      * @return the required bean
+     * @see #getRequiredWebApplicationContext(ServletContext)
      */
     public static <T> T getRequiredBean(ServletContext servletContext,String beanName){
-        // getRequiredWebApplicationContext 如果是空会抛出异常
-        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        WebApplicationContext webApplicationContext = getRequiredWebApplicationContext(servletContext);
         return getBean(webApplicationContext, beanName);
     }
 
@@ -270,10 +290,10 @@ public final class WebSpringUtil{
      * @param requiredType
      *            the required type
      * @return the required bean
+     * @see #getRequiredWebApplicationContext(ServletContext)
      */
     public static <T> T getRequiredBean(ServletContext servletContext,Class<T> requiredType){
-        // getRequiredWebApplicationContext 如果是空会抛出异常
-        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        WebApplicationContext webApplicationContext = getRequiredWebApplicationContext(servletContext);
         return getBean(webApplicationContext, requiredType);
     }
 

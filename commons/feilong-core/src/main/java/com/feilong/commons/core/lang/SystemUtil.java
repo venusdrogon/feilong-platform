@@ -317,6 +317,8 @@ import com.feilong.commons.core.configure.PropertiesUtil;
  * @see org.apache.commons.lang3.SystemUtils#FILE_ENCODING
  * @see org.apache.commons.lang3.SystemUtils#FILE_SEPARATOR
  * @see org.apache.commons.lang3.SystemUtils#JAVA_IO_TMPDIR
+ * 
+ * @see "org.springframework.util.SystemPropertyUtils"
  * @since 1.0.7
  */
 public final class SystemUtil{
