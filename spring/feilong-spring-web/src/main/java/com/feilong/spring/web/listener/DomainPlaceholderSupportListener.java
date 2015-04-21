@@ -95,7 +95,7 @@ import com.feilong.spring.web.util.WebSpringUtil;
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.1.1 2015年4月17日 下午9:35:03
- * @see com.feilong.servlet.listener.DomainListener#CONFIG_LOCATION_PARAM
+ * @see com.feilong.web.domain.DomainListener#CONFIG_LOCATION_PARAM
  * @see com.feilong.spring.web.util.WebSpringUtil#getWebApplicationContext(ServletContext)
  * @see org.springframework.core.env.EnvironmentCapable#getEnvironment()
  * @see org.springframework.core.io.ResourceLoader#getResource(String)
@@ -103,7 +103,7 @@ import com.feilong.spring.web.util.WebSpringUtil;
  * @see org.springframework.core.io.support.PropertiesLoaderUtils#loadProperties(Resource)
  * @since 1.1.1
  */
-public class DomainPlaceholderSupportListener extends com.feilong.servlet.listener.DomainListener{
+public class DomainPlaceholderSupportListener extends com.feilong.web.domain.DomainListener{
 
     /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(DomainPlaceholderSupportListener.class);
