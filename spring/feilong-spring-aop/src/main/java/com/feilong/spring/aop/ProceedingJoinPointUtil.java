@@ -22,20 +22,15 @@ import java.util.Map;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
- * The Class ProceedingJoinPointUtil.
+ * focus on {@link org.aspectj.lang.ProceedingJoinPoint}.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.1.1 2015年4月5日 下午7:58:10
  * @since 1.1.1
  */
 public class ProceedingJoinPointUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(ProceedingJoinPointUtil.class);
 
     /**
      * 获得 map for log.

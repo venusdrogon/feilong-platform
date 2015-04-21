@@ -61,6 +61,7 @@ import com.feilong.commons.core.util.Validator;
  * @see org.apache.commons.lang3.reflect.TypeUtils
  * @see "org.springframework.core.GenericTypeResolver"
  * @see "org.springframework.core.GenericTypeResolver#getTypeVariableMap(Class<?>)"
+ * @see "org.springframework.core.ParameterizedTypeReference<T>"
  * @see java.lang.reflect.Type
  * @see java.lang.reflect.ParameterizedType
  * @see java.lang.reflect.GenericArrayType

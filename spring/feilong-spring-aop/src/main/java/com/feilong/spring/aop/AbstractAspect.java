@@ -167,26 +167,6 @@ public abstract class AbstractAspect implements Ordered{
         return false;
     }
 
-    // private boolean hasLogAnnotation(MethodSignature signature){
-    // Method method = signature.getMethod();
-    // Class<?> declaringClass = method.getDeclaringClass();
-    // // log.info(declaringClass.getName());
-    // _log = declaringClass.getAnnotation(Log.class);
-    // if (null != _log){
-    // log.debug("method:{},declaringClass has @Log", method.getName());
-    // }else{
-    // _log = method.getAnnotation(Log.class);
-    // if (null != _log){
-    // log.debug("method:{},has @Log", method.getName());
-    // }
-    // }
-    // return null != _log;
-    // }
-    // @After(value = "pointcut()")
-    // public void after(JoinPoint joinPoint){
-    //
-    // }
-
     /*
      * (non-Javadoc)
      * 
