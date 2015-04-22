@@ -14,6 +14,12 @@
 				<entry key="3" value-ref="alipayOnlineNetpayAdaptor"></entry>
 				<entry key="6" value-ref="alipayOnlineAdaptor"></entry>
 				<entry key="14" value-ref="alipayOnlineCreditCardAdaptor"></entry>
+				
+				<!-- 21支付宝-境外收单(PC) -->
+				<entry key="21" value-ref="alipayOnlineAdaptor"></entry>
+				<!-- 22支付宝-境外收单(Mobile) -->
+				<entry key="22" value-ref="alipayOnlineCreditCardAdaptor"></entry>
+
 				<!-- 国际信用卡 -->
 				<entry key="131" value-ref="alipayOnlineInternationalCardAdaptor"></entry>
 				<entry key="141" value-ref="alipayOnlineScanCodeAdaptor"></entry>
@@ -29,34 +35,11 @@
 
 				<entry key="bca_klikpay" value-ref="sprintAsiaKlikPayAdaptor"></entry>
 				<entry key="bca_creditcard" value-ref="sprintAsiaCreditCardAdaptor"></entry>
-				
+
 				<entry key="bca_tcash" value-ref="tcashPayAdaptor"></entry>
 			</map>
 		</property>
 	</bean>
 
-	<!--********************* 有新的支付方式 ,请在下面扩展配置**************** -->
-	<!-- alipay相关 -->
-	<import resource="classpath:spring/payment/payment/adaptor-alipay-pconline.xml" />
-	<import resource="classpath:spring/payment/payment/adaptor-alipay-wap.xml" />
-
-	<!-- 汇付天下 -->
-	<import resource="classpath:spring/payment/payment/adaptor-chinapnr.xml" />
-
-	<!-- DOKU -->
-	<import resource="classpath:spring/payment/payment/adaptor-doku.xml" />
-
-	<!-- sprintasia 3个支付方式 参数都不一样没有共同性 -->
-
-	<!-- sprintasia-klikPay -->
-	<import resource="classpath:spring/payment/payment/adaptor-sprintasia-klikPay.xml" />
-
-	<!-- sprintasia-klikPayAdaptor -->
-	<import resource="classpath:spring/payment/payment/adaptor-sprintasia-klikBCA.xml" />
-
-	<!-- sprintasia-creditCard -->
-	<import resource="classpath:spring/payment/payment/adaptor-sprintasia-creditCard.xml" />
-
-	<!-- t-cash -->
-	<import resource="classpath:spring/payment/payment/adaptor-tcash.xml" />
+	<import resource="classpath:spring/payment/payment/adaptor*.xml" />
 </beans>

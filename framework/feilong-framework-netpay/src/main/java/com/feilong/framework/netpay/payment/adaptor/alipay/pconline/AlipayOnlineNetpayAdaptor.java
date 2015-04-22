@@ -19,6 +19,8 @@ import java.util.Map;
 
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.framework.netpay.payment.ValidateBankCodeable;
+import com.feilong.framework.netpay.payment.exception.BankCodeNotSupportedException;
 
 /**
  * alipay 版本(网银在线).
@@ -27,12 +29,12 @@ import com.feilong.commons.core.util.Validator;
  * @version 1.0 Mar 20, 2013 12:40:06 PM
  * @version 1.0.5 2014-5-6 20:38 change name
  */
-public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor{
+public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor implements ValidateBankCodeable{
 
     /*
      * (non-Javadoc)
      * 
-     * @see com.jumbo.brandstore.payment.adaptor.AlipayPayAdaptor#validatorSpecialSignMap(java.util.Map)
+     * @see com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor#validatorSpecialSignMap(java.util.Map)
      */
     @Override
     protected boolean validatorSpecialSignMap(Map<String, String> specialSignMap){
@@ -41,26 +43,41 @@ public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor{
         }
 
         String defaultbank = specialSignMap.get(PARAM_DEFAULT_BANK);
-        if (Validator.isNullOrEmpty(defaultbank)){
-            throw new NullPointerException("the defaultbank param is null or empty!");
-        }
-
-        if (!isSupportBank(defaultbank)){
-            throw new IllegalArgumentException("defaultbank:" + defaultbank + " don't support,please see document");
-        }
+        validatorBankCode(defaultbank);
 
         return super.validatorSpecialSignMap(specialSignMap);
     }
 
-    /**
-     * 判断传入的 银行code 是否 支持.
+    /*
+     * (non-Javadoc)
      * 
-     * @param defaultbank
-     *            the defaultbank
-     * @return true, if is support bank
+     * @see com.feilong.framework.netpay.payment.ValidateBankCodeable#validatorBankCode(java.lang.String)
      */
-    private boolean isSupportBank(String defaultbank){
-        return ArrayUtil.isContain(SUPPORT_BANKS, defaultbank);
+    @Override
+    public boolean validatorBankCode(String defaultbank) throws BankCodeNotSupportedException{
+        if (Validator.isNullOrEmpty(defaultbank)){
+            throw new NullPointerException("the 'defaultbank' param is null or empty!");
+        }
+
+        String[] supportBankCodes = getSupportBankCodes();
+        boolean bankCodeSupport = ArrayUtil.isContain(supportBankCodes, defaultbank);
+        if (!bankCodeSupport){
+            throw new BankCodeNotSupportedException(
+                            "input defaultbank value:[{}] not supported,just support:[{}],please check from document,may be need update?",
+                            defaultbank,
+                            supportBankCodes);
+        }
+        return bankCodeSupport;
+    }
+
+    /**
+     * 支持的银行code
+     * 
+     * @return
+     * @since 1.1.1
+     */
+    protected String[] getSupportBankCodes(){
+        return SUPPORT_BANKS;
     }
 
     /** 支持的银行code. */

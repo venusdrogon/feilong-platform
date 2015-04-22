@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,9 @@ import com.feilong.commons.core.util.Validator;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 2013-6-4 下午2:05:50
  * @version 1.0.5 2014-5-6 20:38 change name
+ * @deprecated 待重构
  */
+@Deprecated
 public class AlipayWapNetpayAdaptor extends AlipayWapAdaptor{
 
     /*

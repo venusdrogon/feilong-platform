@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -26,17 +28,19 @@ import com.feilong.framework.netpay.payment.BasePaymentTest;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
 
 /**
- * The Class AlipayOnlineCreditCardAdaptorTest.
- * 
- * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Jan 16, 2013 8:27:39 PM
+ *
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.1.2 2015年4月22日 下午5:37:51
+ * @since 1.1.2
  */
-public class AlipayOnlineCreditCardAdaptorTest extends BasePaymentTest{
+public class AlipayForexPayAdaptorTest extends BasePaymentTest{
+
+    private static final Logger log = LoggerFactory.getLogger(AlipayForexPayAdaptorTest.class);
 
     /** The payment adaptor. */
     @Autowired
-    @Qualifier("alipayOnlineCreditCardAdaptor")
-    private PaymentAdaptor paymentAdaptor;
+    @Qualifier("alipayForexPayAdaptor")
+    private PaymentAdaptor      paymentAdaptor;
 
     /**
      * Creates the payment form.
@@ -44,8 +48,6 @@ public class AlipayOnlineCreditCardAdaptorTest extends BasePaymentTest{
     @Test
     public final void createPaymentForm(){
         Map<String, String> specialSignMap = new HashMap<String, String>();
-
-        specialSignMap.put("defaultbank", "CMBC-EXPRESS-CREDIT");
         createPaymentForm(paymentAdaptor, specialSignMap);
     }
 }

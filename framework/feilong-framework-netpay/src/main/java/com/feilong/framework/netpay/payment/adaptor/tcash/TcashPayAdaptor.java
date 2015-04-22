@@ -252,12 +252,11 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
      * (non-Javadoc)
      * 
      * @see
-     * com.feilong.framework.netpay.payment.PaymentAdaptor#getPaymentFormEntity(com.feilong.framework.netpay.payment.command.PayRequest,
-     * java.util.Map)
+     * com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor#getCustomizePaymentFormEntity(com.feilong.framework.netpay.payment
+     * .command.PayRequest, java.util.Map)
      */
     @Override
-    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap){
-        doCommonValidate(payRequest);
+    public PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap){
 
         PublicTokenResponse publicTokenResponse = getPublicTokenResponse(payRequest);
         String pgpToken = publicTokenResponse.getPgpToken();

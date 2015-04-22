@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,24 +28,6 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineNetpayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineScanCodeAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapCreditCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapNetpayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.AbstractDokuPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.CreditCardPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.MandiriClickPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 
@@ -83,24 +65,24 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 20, 2013 12:29:49 PM
  * @version 1.0.5 2014-5-6 16:47
- * @see SprintAsiaCreditCardAdaptor
- * @see SprintAsiaKlikBCAAdaptor
- * @see SprintAsiaKlikPayAdaptor
- * @see AbstractDokuPayAdaptor
- * @see CreditCardPayAdaptor
- * @see MandiriClickPayAdaptor
- * @see BRIEPayAdaptor
- * @see PermataVALITEPayAdaptor
- * @see ChinapnrAdaptor
- * @see BaseAlipayAdaptor
- * @see AlipayOnlineAdaptor
- * @see AlipayOnlineCreditCardAdaptor
- * @see AlipayOnlineInternationalCardAdaptor
- * @see AlipayOnlineNetpayAdaptor
- * @see AlipayOnlineScanCodeAdaptor
- * @see AlipayWapAdaptor
- * @see AlipayWapCreditCardAdaptor
- * @see AlipayWapNetpayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.AbstractDokuPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.CreditCardPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.MandiriClickPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineNetpayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineScanCodeAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapCreditCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapNetpayAdaptor
  */
 public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 
@@ -109,16 +91,16 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
 
     // ****************所有Adaptor 都有的属性 ****************************************************
     /** 最小支付金额,比如 0.01. */
-    protected BigDecimal        minPriceForPay   = null;
+    private BigDecimal          minPriceForPay   = null;
 
     /** 最大支付金额,比如 999999999. */
-    protected BigDecimal        maxPriceForPay   = null;
+    private BigDecimal          maxPriceForPay   = null;
 
     /** 是否验证最大金额. */
-    protected Boolean           validateMaxPrice = false;
+    private Boolean             validateMaxPrice = false;
 
     /** 是否验证最小金额. */
-    protected Boolean           validateMinPrice = false;
+    private Boolean             validateMinPrice = false;
 
     // ************************************************************************************
     /**
@@ -132,15 +114,39 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
     @PostConstruct
     protected void postConstruct() throws IllegalArgumentException,IllegalAccessException{
         if (log.isInfoEnabled()){
-            // FieldCallback fc;
-            // ReflectionUtils.doWithFields(getClass(), fc);
-            // ReflectUtils.
-            //XXX
+            //XXX 待升级
             Map<String, Object> map = FieldUtil.getFieldValueMap(this);
             Class<? extends AbstractPaymentAdaptor> clz = getClass();
+
+            //TODO 优化 key这样的参数 显示成*****
             log.info("\n{} fieldValueMap: \n{}", clz.getCanonicalName(), JsonUtil.format(map));
         }
     }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.feilong.framework.netpay.payment.PaymentAdaptor#getPaymentFormEntity(com.feilong.framework.netpay.payment.command.PayRequest,
+     * java.util.Map)
+     */
+    @Override
+    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+        doCommonValidate(payRequest);
+        return getCustomizePaymentFormEntity(payRequest, specialSignMap);
+    }
+
+    /**
+     * 获得 自定义的 {@link PaymentFormEntity},在 {@link #doCommonValidate(PayRequest)}方法之后执行.
+     *
+     * @param payRequest
+     *            the pay request
+     * @param specialSignMap
+     *            the special sign map
+     * @return the customize payment form entity
+     * @since 1.1.2
+     */
+    protected abstract PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap);
 
     // **********************************************************************************
     /**
@@ -168,7 +174,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
      *             <li>isNullOrEmpty(totalFee)</li>
      *             </ul>
      */
-    protected void doCommonValidate(PayRequest payRequest) throws IllegalArgumentException,NullPointerException{
+    private void doCommonValidate(PayRequest payRequest) throws IllegalArgumentException,NullPointerException{
         if (Validator.isNullOrEmpty(payRequest)){
             throw new NullPointerException("payRequest can't be null/empty!");
         }

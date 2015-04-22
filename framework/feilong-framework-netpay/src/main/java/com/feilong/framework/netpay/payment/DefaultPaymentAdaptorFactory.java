@@ -21,13 +21,16 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.exception.PaymentAdaptorNotFoundException;
 
 /**
- * 支付对外的接口 {@link DefaultPaymentAdaptorFactory} 的实现是基于 map隐射决定的,可以定制.
+ * 支付对外的接口 {@link DefaultPaymentAdaptorFactory} 的实现是基于 map隐射决定的,可以定制.<br>
+ * 当然如有有需要, 也可以做 DatasourcePaymentAdaptorFactory诸如此类配置在数据中的PaymentAdaptor
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Feb 2, 2013 8:25:27 PM
+ * 
+ * @see com.feilong.framework.netpay.payment.PaymentAdaptorFactory
  */
 // 不走数据库
-// @Transactional
+// 不需要 @Transactional
 // 不以自动扫描的形式存在
 // @Service("paymentAdaptorManager")
 public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
@@ -35,6 +38,10 @@ public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
     // @Value("#{paymentAdaptorMap}")
     /** 商城支持的支付,单独配置 ,避免其他项目引用可能带来的错误.. */
     private Map<String, PaymentAdaptor> paymentAdaptorMap;
+
+    /** */
+    //TODO 是否可以去支付 做成配置的
+    //private Boolean                     eswitch;
 
     /*
      * (non-Javadoc)
@@ -47,10 +54,6 @@ public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
             throw new IllegalArgumentException("paymentAdaptorMap can't be null/empty!");
         }
 
-        // 全部 配置,测试环境不可以去付款
-
-        // if (Constants.pay_isCanGoToPay){
-
         if (!paymentAdaptorMap.containsKey(paymentType)){
             throw new PaymentAdaptorNotFoundException(
                             "paymentAdaptorMap not containsKey paymentType:[{}],paymentAdaptorMap info:{}",
@@ -59,10 +62,6 @@ public class DefaultPaymentAdaptorFactory implements PaymentAdaptorFactory{
         }
         PaymentAdaptor paymentAdaptor = paymentAdaptorMap.get(paymentType);
         return paymentAdaptor;
-        // }else{
-        // log.warn("Constants.pay_isCanGoToPay:{}", Constants.pay_isCanGoToPay);
-        // }
-
     }
 
     /**

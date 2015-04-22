@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +16,8 @@
 package com.feilong.framework.netpay.payment.adaptor.doku;
 
 /**
- * CreditCardPayAdaptor
- * 
+ * CreditCardPayAdaptor.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 11, 2014 5:05:30 PM
  */

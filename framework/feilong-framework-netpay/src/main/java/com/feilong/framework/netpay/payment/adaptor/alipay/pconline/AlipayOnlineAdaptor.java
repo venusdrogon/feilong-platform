@@ -39,6 +39,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.UncheckedIOException;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.net.ParamUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.command.PaymentResult;
@@ -84,12 +85,12 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
     /*
      * (non-Javadoc)
      * 
-     * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
+     * @see
+     * com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor#getCustomizePaymentFormEntity(com.feilong.framework.netpay.payment
+     * .command.PayRequest, java.util.Map)
      */
     @Override
-    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-
-        doCommonValidate(payRequest);
+    protected PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 
         String tradeNo = payRequest.getTradeNo();
         BigDecimal totalFee = payRequest.getTotalFee();
@@ -107,55 +108,64 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
         // *******************************************************************************************
         boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
 
-        if (isPassValidatorSpecialSignMap){
-
-            // *************************************************************************************************
-            // 需要被签名的 参数map
-            Map<String, String> signParamsMap = new HashMap<String, String>();
-
-            // 注入 或者设置的
-            if (Validator.isNotNullOrEmpty(signMap)){
-                signParamsMap.putAll(signMap);
-            }
-
-            // 特殊 传入
-            if (Validator.isNotNullOrEmpty(specialSignMap)){
-                signParamsMap.putAll(specialSignMap);
-            }
-
-            // 设置防钓鱼参数
-            setAntiPhishingParams(signParamsMap);
-
-            // 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
-            setCommonAlipayParams(tradeNo, totalFee, return_url, notify_url, signParamsMap);
-
-            // *************************************************************************************
-            // 待签名字符串
-            // 除去sign、sign_type 两个参数外，其他需要使用到的参数皆是要签名的参数
-            String toBeSignedString = ParamUtil.getToBeSignedString(signParamsMap);
-
-            // 在 MD5 签名时，需要私钥参与签名。
-            // 需要把私钥直接拼接到待签名字符串后面，形成新的字符串，利用MD5 的签名函数对这个新的字符串进行签名运算
-
-            String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
-
-            // *************************************************************************************
-            //2014-8-11 10:58 为了log看起来整齐 有序, 换成 TreeMap
-            Map<String, String> hiddenParamsMap = new TreeMap<String, String>();
-            hiddenParamsMap.putAll(signParamsMap);
-
-            hiddenParamsMap.put("sign", sign);
-
-            // #签名方式
-            // #DSA,RSA,MD5三值可选
-            // #必须大写
-            // #宝尊 暂时只支持MD5
-            hiddenParamsMap.put("sign_type", "MD5");
-
-            String method = "get";
-            return getPaymentFormEntity(gateway, method, hiddenParamsMap);
+        if (!isPassValidatorSpecialSignMap){
+            throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
         }
-        throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
+
+        // *************************************************************************************************
+        // 需要被签名的 参数map
+        Map<String, String> signParamsMap = new HashMap<String, String>();
+
+        // 注入 或者设置的
+        if (Validator.isNotNullOrEmpty(signMap)){
+            signParamsMap.putAll(signMap);
+        }
+
+        // 特殊 传入
+        if (Validator.isNotNullOrEmpty(specialSignMap)){
+            signParamsMap.putAll(specialSignMap);
+        }
+
+        setSpecialParams(signParamsMap);
+
+        // 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
+        setCommonAlipayParams(tradeNo, totalFee, return_url, notify_url, signParamsMap);
+
+        // *************************************************************************************
+        // 待签名字符串
+        // 除去sign、sign_type 两个参数外，其他需要使用到的参数皆是要签名的参数
+        String toBeSignedString = ParamUtil.getToBeSignedString(signParamsMap);
+
+        // 在 MD5 签名时，需要私钥参与签名。
+        // 需要把私钥直接拼接到待签名字符串后面，形成新的字符串，利用MD5 的签名函数对这个新的字符串进行签名运算
+        String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
+
+        // *************************************************************************************
+        //2014-8-11 10:58 为了log看起来整齐 有序, 换成 TreeMap
+        Map<String, String> hiddenParamsMap = new TreeMap<String, String>();
+        hiddenParamsMap.putAll(signParamsMap);
+
+        hiddenParamsMap.put("sign", sign);
+
+        // #签名方式
+        // #DSA,RSA,MD5三值可选
+        // #必须大写
+        // #宝尊 暂时只支持MD5
+        hiddenParamsMap.put("sign_type", "MD5");
+
+        String method = HttpMethodType.GET.getMethod().toLowerCase();
+        return getPaymentFormEntity(gateway, method, hiddenParamsMap);
+    }
+
+    /**
+     * 设置特殊的参数
+     * 
+     * @param signParamsMap
+     * @since 1.1.2
+     */
+    protected void setSpecialParams(Map<String, String> signParamsMap){
+        // 设置防钓鱼参数
+        setAntiPhishingParams(signParamsMap);
     }
 
     /**
@@ -418,6 +428,7 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
             }
         }
         // 内部 不控制,不能影响订单的创建
+        //TODO 修改成异常
         return "";
     }
 

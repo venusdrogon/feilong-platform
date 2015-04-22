@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +54,10 @@ import com.feilong.tools.security.oneway.MD5Util;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 2013-6-4 下午2:05:50
  * @version 1.0.5 2014-5-6 20:38 change name
+ * 
+ * @deprecated 待重构
  */
+@Deprecated
 public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /** The Constant log. */
@@ -87,8 +90,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
      */
     @Override
-    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-        doCommonValidate(payRequest);
+    public PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 
         String return_url = payRequest.getReturnUrl();
         String notify_url = payRequest.getNotifyUrl();
@@ -175,7 +177,8 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /**
      * 生成创建交易请求的url，并发送请求获得返回结果.
-     * 
+     *
+     * @author 冯明雷
      * @param payRequest
      *            the pay request
      * @param specialSignMap
@@ -183,7 +186,6 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * @return String
      * @throws Exception
      *             the exception
-     * @author 冯明雷
      * @time 2013-6-7上午11:17:51
      */
     private String getRequestToken(PayRequest payRequest,Map<String, String> specialSignMap) throws Exception{
@@ -279,13 +281,13 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /**
      * 获得发送创建交易的返回结果.
-     * 
+     *
+     * @author 冯明雷
      * @param reqUrl
      *            the req url
      * @return String
      * @throws Exception
      *             the exception
-     * @author 冯明雷
      * @time 2013-6-6下午5:12:38
      */
     private String getCreateTradeResult(String reqUrl) throws Exception{
@@ -381,11 +383,11 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /**
      * 判断是否交易成功.
-     * 
+     *
+     * @author 冯明雷
      * @param request
      *            the request
      * @return boolean
-     * @author 冯明雷
      * @time 2013-6-10下午2:22:42
      */
     private boolean isPaymentSuccess(HttpServletRequest request){
@@ -414,11 +416,11 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /**
      * 解析随浏览器跳转发回的消息参数.
-     * 
+     *
+     * @author 冯明雷
      * @param request
      *            the request
      * @return boolean
-     * @author 冯明雷
      * @time 2013-9-16上午10:22:17
      */
     private boolean isNotifySignOkForCallBack(HttpServletRequest request){
@@ -450,11 +452,11 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /**
      * 解析alipay推送的消息参数.
-     * 
+     *
+     * @author 冯明雷
      * @param request
      *            the request
      * @return boolean
-     * @author 冯明雷
      * @time 2013-9-16上午10:23:19
      */
     private boolean isNotifySignOkForNotifyUrl(HttpServletRequest request){
@@ -475,7 +477,8 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
     /**
      * 根据key获得xml类型字符串中对应的节点的值.
-     * 
+     *
+     * @author 冯明雷
      * @param xmlData
      *            the xml data
      * @param name
@@ -483,7 +486,6 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * @return String
      * @throws DocumentException
      *             the document exception
-     * @author 冯明雷
      * @time 2013-9-16上午10:16:39
      */
     private String getValueByKeyForXML(String xmlData,String name) throws DocumentException{

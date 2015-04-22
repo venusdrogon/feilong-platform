@@ -13,15 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
+package com.feilong.framework.netpay.payment.adaptor.alipay.wap;
+
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayForexPayAdaptor;
 
 /**
- * alipay境外支付接口(mobile).
+ * alipay境外支付接口(mobile)(目前参数和 {@link AlipayForexPayAdaptor} 一模一样的).
  *
  * @author 冯明雷
- * @version 1.0
- * @time 2014-9-28 下午3:00:33
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0 2014-9-28 下午3:00:33
+ * @version 1.1.2 2015年4月22日 下午5:59:33
+ * @since 1.1.2
  */
-public class AlipayForexPayMobileAdaptor extends AlipayForexPayAdaptor{
+public class AlipayWapForexAdaptor extends AlipayForexPayAdaptor{
 
 }

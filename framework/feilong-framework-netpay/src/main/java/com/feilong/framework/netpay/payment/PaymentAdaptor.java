@@ -60,6 +60,8 @@ public interface PaymentAdaptor{
      *            <ul>
      *            <li>可以为null</li>
      *            <li>也可以是,特殊签名参数设置,会覆盖配置的signMap,比如 某些 网关支持过期时间设置</li>
+     *            <li>理论上来说,这个map里面的key都是 银行需要的参数字段, 如果有不是银行需要的字段,但是需要做逻辑控制的,请想办法在 {@link PayRequest}中新增</li>
+     *            <li>如果 {@code specialParamMap}有key和 <code>signMap</code>相同, {@code specialParamMap}会覆盖 <code>signMap</code></li>
      *            </ul>
      * @return the payment form entity
      */

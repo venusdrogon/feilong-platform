@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -108,8 +108,7 @@ public abstract class AbstractDokuPayAdaptor extends AbstractPaymentAdaptor{
      * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
      */
     @Override
-    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-        doCommonValidate(payRequest);
+    public PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
 
         // ******************* 验证 code********************
         String tradeNo = payRequest.getTradeNo();

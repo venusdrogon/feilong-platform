@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:properties id="p_AlipayForex" local-override="true" location="classpath:config/payment/payment/adaptor-alipay-forex.properties"></util:properties>
+
+	<!-- alipayForexPayAdaptor -->
+	<bean id="alipayForexPayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayForexPayAdaptor" parent="baseAlipayOnlineAdaptor">
+
+		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
+		<property name="signMap">
+			<map>
+				<!-- #接口 名称 不可为空 -->
+				<entry key="service" value="#{p_AlipayForex['alipay.forex.service']}"></entry>
+
+				<entry key="subject" value="#{p_AlipayForex['alipay.forex.subject']}"></entry>
+				<entry key="body" value="#{p_AlipayForex['alipay.forex.body']}"></entry>
+
+				<entry key="currency" value="#{p_AlipayForex['alipay.forex.currency']}"></entry>
+
+				<!-- 参数不一样, 据明雷说,支付宝的技术说 PC最多12小时 mobile可以更长 但是文档中没有提这一点 -->
+				<entry key="timeout_rule" value="#{p_AlipayForex['alipay.forex.timeout_rule']}"></entry>
+			</map>
+		</property>
+
+		<!-- 下面参数 覆盖 父类 -->
+
+		<!-- 签名用的必须配置的参数 -->
+		<property name="partner" value="#{p_AlipayForex['alipay.forex.partner']}" />
+		<!-- <property name="_input_charset" value="#{p_AlipayForex['alipay.forex._input_charset']}" /> -->
+
+		<!--**************************** 不属于签名用的属性 ***************************** -->
+		<property name="key" value="#{p_AlipayForex['alipay.forex.key']}" />
+		<!--<property name="gateway" value="#{p_AlipayForex['alipay.forex.gateway']}" />
+		-->
+
+		<!-- 是否开通开通 防钓鱼认证 -->
+		<property name="isOpenAntiPhishing" value="#{p_AlipayForex['alipay.forex.isOpenAntiPhishing']}" />
+
+		<!-- <property name="service_notify_verify" value="#{p_AlipayForex['alipay.forex.service_notify_verify']}" /> -->
+		<!-- <property name="service_query_timestamp" value="#{p_AlipayForex['service.query_timestamp']}" /> -->
+
+		<!-- <property name="minPriceForPay" value="#{p_AlipayForex['minPriceForPay']}" />
+			<property name="maxPriceForPay" value="#{p_AlipayForex['maxPriceForPay']}" /> -->
+	</bean>
+
+</beans>

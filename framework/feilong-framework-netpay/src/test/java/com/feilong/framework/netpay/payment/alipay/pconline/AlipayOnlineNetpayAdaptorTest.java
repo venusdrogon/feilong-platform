@@ -45,7 +45,7 @@ public class AlipayOnlineNetpayAdaptorTest extends BasePaymentTest{
     public final void createPaymentForm(){
         Map<String, String> specialSignMap = new HashMap<String, String>();
 
-        specialSignMap.put("defaultbank", "CCB");
+        specialSignMap.put("defaultbank", "CCB1");
         createPaymentForm(paymentAdaptor, specialSignMap);
     }
 }

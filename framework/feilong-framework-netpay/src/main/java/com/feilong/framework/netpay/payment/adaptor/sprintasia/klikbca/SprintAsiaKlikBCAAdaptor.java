@@ -1,18 +1,3 @@
-/**
- * Copyright (C) 2008 feilong (venusdrogon@163.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca;
 
 import java.util.Map;
@@ -40,7 +25,7 @@ public class SprintAsiaKlikBCAAdaptor extends AbstractPaymentAdaptor{
      * @see com.feilong.netpay.adaptor.PaymentAdaptor#getPaymentFormEntity(com.feilong.netpay.command.PayRequest, java.util.Map)
      */
     @Override
-    public PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+    public PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
         // KlikBCA 的支付方式 是 网关主动在 inquery,和通用的不一样
         throw new UnsupportedOperationException("KlikBCAAdaptor not support getPaymentFormEntity");
     }
