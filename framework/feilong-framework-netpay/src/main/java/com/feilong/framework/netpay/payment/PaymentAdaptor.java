@@ -20,25 +20,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.feilong.framework.netpay.command.PaymentResult;
-import com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineNetpayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineScanCodeAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapCreditCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapNetpayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.AbstractDokuPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.CreditCardPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.MandiriClickPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor;
-import com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 
@@ -47,25 +28,25 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 21, 2013 11:13:51 AM
- * @see AbstractPaymentAdaptor
- * @see SprintAsiaCreditCardAdaptor
- * @see SprintAsiaKlikBCAAdaptor
- * @see SprintAsiaKlikPayAdaptor
- * @see AbstractDokuPayAdaptor
- * @see CreditCardPayAdaptor
- * @see MandiriClickPayAdaptor
- * @see BRIEPayAdaptor
- * @see PermataVALITEPayAdaptor
- * @see ChinapnrAdaptor
- * @see BaseAlipayAdaptor
- * @see AlipayOnlineAdaptor
- * @see AlipayOnlineCreditCardAdaptor
- * @see AlipayOnlineInternationalCardAdaptor
- * @see AlipayOnlineNetpayAdaptor
- * @see AlipayOnlineScanCodeAdaptor
- * @see AlipayWapAdaptor
- * @see AlipayWapCreditCardAdaptor
- * @see AlipayWapNetpayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.sprintasia.creditcard.SprintAsiaCreditCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.sprintasia.klikbca.SprintAsiaKlikBCAAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.sprintasia.klikpay.SprintAsiaKlikPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.AbstractDokuPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.CreditCardPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.MandiriClickPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineNetpayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineScanCodeAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapCreditCardAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.wap.AlipayWapNetpayAdaptor
  */
 public interface PaymentAdaptor{
 
