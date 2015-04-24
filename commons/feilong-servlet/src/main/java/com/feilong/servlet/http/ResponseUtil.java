@@ -219,7 +219,6 @@ public final class ResponseUtil{
         //**********************************************************************************************
         // 清空response
         //getResponse的getWriter()方法连续两次输出流到页面的时候，第二次的流会包括第一次的流，所以可以使用将response.reset或者resetBuffer的方法。
-
         //getOutputStream() has already been called for this response问题的解决
         //在jsp向页面输出图片的时候,使用response.getOutputStream()会有这样的提示：java.lang.IllegalStateException:getOutputStream() has already been called for this response,会抛出Exception
         response.reset();

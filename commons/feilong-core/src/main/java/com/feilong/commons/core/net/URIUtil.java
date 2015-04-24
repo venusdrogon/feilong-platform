@@ -113,7 +113,8 @@ public final class URIUtil{
      * @param url
      *            url
      * @param charsetType
-     *            decode/encode 编码
+     *            何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
+     *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return if isNullOrEmpty(url),return null;<br>
      *         if Exception,return null
      * @throws URIParseException
@@ -147,7 +148,8 @@ public final class URIUtil{
      * @param url
      *            url
      * @param charsetType
-     *            decode/encode 编码
+     *            何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
+     *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return the string
      * @throws URIParseException
      *             the URI parse exception
@@ -240,7 +242,8 @@ public final class URIUtil{
      * @param keyAndValueMap
      *            单值Map，会转成 数组值Map
      * @param charsetType
-     *            the charset type
+     *            何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
+     *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return the encoded url1
      * @throws URIParseException
      *             the URI parse exception
@@ -268,7 +271,8 @@ public final class URIUtil{
      * @param keyAndArrayMap
      *            参数map value支持数组，类似于 request.getParameterMap
      * @param charsetType
-     *            编码,如果为空 ,name 和value 不进行编码
+     *            何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
+     *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return if isNullOrEmpty(keyAndArrayMap) return beforeUrl;
      * @throws URIParseException
      *             the URI parse exception
@@ -319,7 +323,8 @@ public final class URIUtil{
      * @param appendMap
      *            类似于 request.getParamMap
      * @param charsetType
-     *            {@link CharsetType}
+     *            {@link CharsetType} 何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
+     *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return if isNullOrEmpty(appendMap) ,return ""
      * @throws URIParseException
      *             the URI parse exception
@@ -403,7 +408,8 @@ public final class URIUtil{
      * @param query
      *            the query
      * @param charsetType
-     *            the charset type
+     *            何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
+     *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return the {@code map<string, string>}
      * @throws URIParseException
      *             the URI parse exception
@@ -428,7 +434,7 @@ public final class URIUtil{
      * @param query
      *            {@code a=1&b=2}类型的数据,支持{@code a=1&a=1}的形式， 返回map的值是数组
      * @param charsetType
-     *            何种编码，如果是null或者 empty,那么不参数部分原样返回,自己去处理兼容性问题<br>
+     *            何种编码，如果是null或者 empty,那么参数部分原样返回,自己去处理兼容性问题<br>
      *            否则会先解码,再加码,因为ie浏览器和chrome 浏览器 url中访问路径 ,带有中文情况下 不一致
      * @return map value的处理 （{@link LinkedHashMap#LinkedHashMap(int, float)}
      *         <ul>

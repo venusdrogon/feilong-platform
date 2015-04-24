@@ -58,12 +58,14 @@ public final class URLConnectionUtil{
 
     /**
      * Read line with proxy.
-     * 
+     *
      * @param urlString
      *            the url string
      * @return 如果有异常返回 null,否则 读取一个文本行.通过下列字符之一即可认为某行已终止：换行 ('\n')、回车 ('\r') 或回车后直接跟着换行.
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static String readLine(String urlString){
+    public static String readLine(String urlString) throws UncheckedIOException{
         return readLine(urlString, null);
     }
 
@@ -91,13 +93,15 @@ public final class URLConnectionUtil{
     //********************************************************************************************
     /**
      * Gets the response body as string.
-     * 
+     *
      * @param urlString
      *            the url string
      * @return the response body as string
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      * @see HttpURLConnectionParam
      */
-    public static String getResponseBodyAsString(String urlString){
+    public static String getResponseBodyAsString(String urlString) throws UncheckedIOException{
         return getResponseBodyAsString(urlString, null);
     }
 
@@ -220,11 +224,10 @@ public final class URLConnectionUtil{
             // httpURLConnection.connect();
             return httpURLConnection;
         }catch (MalformedURLException e){
-            log.error(e.getClass().getName(), e);
+            throw new UncheckedIOException(e);
         }catch (IOException e){
             throw new UncheckedIOException(e);
         }
-        return null;
     }
 
     // ******************************************************************************************
