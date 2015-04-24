@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,8 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
 import com.feilong.commons.core.util.ArrayUtil;
 
 /**
- * alipay 信用卡支付<br>
- * 见 快捷支付网银前置文档<br>
+ * alipay 信用卡支付(快捷支付前置接口(create_direct_pay_by_user)).<br>
+ * 见 快捷支付前置接口 文档<br>
  * 
  * <pre>
  * 目前方法 完全和 alipay 支付一样

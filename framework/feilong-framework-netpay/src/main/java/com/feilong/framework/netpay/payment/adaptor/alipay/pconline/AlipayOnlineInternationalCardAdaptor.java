@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +16,8 @@
 package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
 
 /**
- * 国际卡信用卡支付 继承 alipay 纯网关接口
- * 
+ * 国际卡信用卡支付 继承 alipay 纯网关接口.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.5 2014-5-6 20:38 change name
  * @see AlipayOnlineAdaptor

@@ -33,9 +33,9 @@ import com.feilong.framework.netpay.payment.PaymentAdaptor;
  * @version 1.1.2 2015年4月22日 下午5:37:51
  * @since 1.1.2
  */
-public class AlipayForexPayAdaptorTest extends BasePaymentTest{
+public class AlipayOnlineForexPayAdaptorTest extends BasePaymentTest{
 
-    private static final Logger log = LoggerFactory.getLogger(AlipayForexPayAdaptorTest.class);
+    private static final Logger log = LoggerFactory.getLogger(AlipayOnlineForexPayAdaptorTest.class);
 
     /** The payment adaptor. */
     @Autowired

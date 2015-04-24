@@ -20,10 +20,10 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
  * 
  * <ol>
  * <li>账号(pid&key)和原来支付宝一样吗? ??</li>
- * <li>功能单独开通申请?</li>
- * <li>有测试账号?</li>
- * <li>是否有其他的不同的流程?</li>
- * <li>文档?</li>
+ * <li>功能单独开通申请?需要</li>
+ * <li>有测试账号?有</li>
+ * <li>是否有其他的不同的流程?配置不同 其他相同</li>
+ * <li>文档?有</li>
  * </ol>
  *
  * @author 冯明雷
@@ -32,6 +32,6 @@ package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
  * @version 1.1.2 2015年4月22日 下午5:58:15 删掉了实现代码,修改成 <code>extends AlipayOnlineAdaptor</code>
  * @since 1.1.2
  */
-public class AlipayForexPayAdaptor extends AlipayOnlineAdaptor{
+public class AlipayOnlineForexPayAdaptor extends AlipayOnlineAdaptor{
 
 }

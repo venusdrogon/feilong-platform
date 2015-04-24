@@ -56,7 +56,7 @@ public class PaymentTest{
         return_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
         String notify_url = "http://203.128.73.211/p/klikpayback/010002770003?s=cca0ca41b07759089b8a0c35a2b98a361d3016d8";
 
-        int per = 100;
+        int per = 1;
 
         BigDecimal total_fee = BigDecimal.valueOf(60.00f * per);
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,38 +15,26 @@
  */
 package com.feilong.framework.netpay.payment.adaptor.alipay.pconline;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Node;
-import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.UncheckedIOException;
-import com.feilong.commons.core.net.HttpMethodType;
-import com.feilong.commons.core.net.ParamUtil;
+import com.feilong.commons.core.net.URLConnectionUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
-import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
-import com.feilong.tools.security.oneway.MD5Util;
+import com.feilong.tools.dom4j.Dom4jException;
+import com.feilong.tools.dom4j.Dom4jUtil;
 
 /**
  * alipay 纯网关接口.
@@ -86,33 +74,11 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
      * (non-Javadoc)
      * 
      * @see
-     * com.feilong.framework.netpay.payment.adaptor.AbstractPaymentAdaptor#getCustomizePaymentFormEntity(com.feilong.framework.netpay.payment
-     * .command.PayRequest, java.util.Map)
+     * com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor#getSignParamsMapForPaymentFormEntity(com.feilong.framework.
+     * netpay.payment.command.PayRequest, java.util.Map)
      */
     @Override
-    protected PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-
-        String tradeNo = payRequest.getTradeNo();
-        BigDecimal totalFee = payRequest.getTotalFee();
-        String return_url = payRequest.getReturnUrl();
-        String notify_url = payRequest.getNotifyUrl();
-
-        if (Validator.isNullOrEmpty(return_url)){
-            throw new IllegalArgumentException("return_url can't be null/empty!");
-        }
-
-        if (Validator.isNullOrEmpty(notify_url)){
-            throw new IllegalArgumentException("notify_url can't be null/empty!");
-        }
-
-        // *******************************************************************************************
-        boolean isPassValidatorSpecialSignMap = validatorSpecialSignMap(specialSignMap);
-
-        if (!isPassValidatorSpecialSignMap){
-            throw new IllegalArgumentException("specialSignMap has IllegalArgument key");
-        }
-
-        // *************************************************************************************************
+    protected Map<String, String> getSignParamsMapForPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
         // 需要被签名的 参数map
         Map<String, String> signParamsMap = new HashMap<String, String>();
 
@@ -128,39 +94,21 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
 
         setSpecialParams(signParamsMap);
 
+        String tradeNo = payRequest.getTradeNo();
+        BigDecimal totalFee = payRequest.getTotalFee();
+        String return_url = payRequest.getReturnUrl();
+        String notify_url = payRequest.getNotifyUrl();
         // 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
         setCommonAlipayParams(tradeNo, totalFee, return_url, notify_url, signParamsMap);
 
-        // *************************************************************************************
-        // 待签名字符串
-        // 除去sign、sign_type 两个参数外，其他需要使用到的参数皆是要签名的参数
-        String toBeSignedString = ParamUtil.getToBeSignedString(signParamsMap);
-
-        // 在 MD5 签名时，需要私钥参与签名。
-        // 需要把私钥直接拼接到待签名字符串后面，形成新的字符串，利用MD5 的签名函数对这个新的字符串进行签名运算
-        String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
-
-        // *************************************************************************************
-        //2014-8-11 10:58 为了log看起来整齐 有序, 换成 TreeMap
-        Map<String, String> hiddenParamsMap = new TreeMap<String, String>();
-        hiddenParamsMap.putAll(signParamsMap);
-
-        hiddenParamsMap.put("sign", sign);
-
-        // #签名方式
-        // #DSA,RSA,MD5三值可选
-        // #必须大写
-        // #宝尊 暂时只支持MD5
-        hiddenParamsMap.put("sign_type", "MD5");
-
-        String method = HttpMethodType.GET.getMethod().toLowerCase();
-        return getPaymentFormEntity(gateway, method, hiddenParamsMap);
+        return signParamsMap;
     }
 
     /**
-     * 设置特殊的参数
-     * 
+     * 设置特殊的参数.
+     *
      * @param signParamsMap
+     *            the special params
      * @since 1.1.2
      */
     protected void setSpecialParams(Map<String, String> signParamsMap){
@@ -250,77 +198,15 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
             sb.append("&notify_id=" + notify_id);
             String alipayNotifyURL = sb.toString();
 
-            boolean isNotifyVerifySuccess = isNotifyVerifySuccess(alipayNotifyURL);
+            String notifyVerifyResult = URLConnectionUtil.readLine(alipayNotifyURL);
+            // 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
+            boolean isNotifyVerifySuccess = "true".equals(notifyVerifyResult);
 
             // 付款成功
             return isNotifyVerifySuccess ? PaymentResult.PAID : PaymentResult.FAIL;
         }
         log.error("isNotifySignOk error");
         return PaymentResult.FAIL;
-    }
-
-    /**
-     * 校验 返回的请求 <br>
-     * 还有没有必要再次 sign 来确认了? --alipay 伦奇说 都需要.
-     * 
-     * @param request
-     *            the request
-     * @return true, if is notify sign ok
-     */
-    private boolean isNotifySignOk(HttpServletRequest request){
-        // alipay 传过来的参数
-        String alipaySign = request.getParameter("sign");
-        if (Validator.isNullOrEmpty(alipaySign)){
-            throw new IllegalArgumentException("alipaySign can't be null/empty!");
-        }
-
-        // alipay 支付接口 里面所有的参数 都是单值的
-        @SuppressWarnings("unchecked")
-        Enumeration<String> parameterNames = request.getParameterNames();
-        Map<String, String> params = new HashMap<String, String>();
-        while (parameterNames.hasMoreElements()){
-            // String key = parameterNames.nextElement();
-
-            // 把参数里面的 sign 和 sign_type 去掉
-            if (key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("sign_type")){
-                continue;
-            }
-            String value = request.getParameter(key);
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(value);
-
-            // if (key.equals("body") || key.equals("subject")){
-            // valueStr = "Nike官方商城商品";
-            // }
-            params.put(key, stringBuilder.toString());
-
-        }
-        String toBeSignedString = ParamUtil.getToBeSignedString(params);
-        String mysign = MD5Util.encode(toBeSignedString + key, _input_charset);
-        boolean isSignOk = mysign.equals(alipaySign);
-        return isSignOk;
-    }
-
-    /**
-     * 使用 HttpURLConnection 去alipay 上面 验证 是否确实 校验成功.
-     * 
-     * @param notifyVerifyUrl
-     *            通知验证的url
-     * @return 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
-     */
-    private boolean isNotifyVerifySuccess(String notifyVerifyUrl){
-        try{
-            URL url = new URL(notifyVerifyUrl);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-            String notifyVerifyResult = bufferedReader.readLine();
-            // 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
-            return "true".equals(notifyVerifyResult);
-        }catch (Exception e){
-            log.error(e.getClass().getName(), e);
-        }
-        return false;
     }
 
     /*
@@ -348,11 +234,14 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
     /**
      * 用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数 <br>
      * 注意：远程解析XML出错，与服务器是否支持SSL等配置有关.
-     * 
+     *
      * @return 时间戳字符串
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @throws Dom4jException
+     *             the dom4j exception
      */
-    private final String getAnti_phishing_key(){
-
+    private final String getAnti_phishing_key() throws UncheckedIOException,Dom4jException{
         // 构造访问query_timestamp接口的URL串
         StringBuilder sb = new StringBuilder();
         sb.append(gateway);
@@ -360,76 +249,63 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
         sb.append("service=" + service_query_timestamp);
         sb.append("&");
         sb.append("partner=" + partner);
+        String url = sb.toString();
+        String responseBodyAsString = URLConnectionUtil.getResponseBodyAsString(url);
+        Document document = Dom4jUtil.string2Document(responseBodyAsString);
+        return getAnti_phishing_key(document);
+    }
 
-        InputStream inputStream = null;
-        try{
-            URL url = new URL(sb.toString());
-            inputStream = url.openStream();
+    /**
+     * 获得 anti_phishing_key.
+     *
+     * @param document
+     *            the document
+     * @return the anti_phishing_key
+     * @since 1.1.2
+     */
+    private String getAnti_phishing_key(Document document){
 
-            SAXReader saxReader = new SAXReader();
-            Document document = saxReader.read(inputStream);
+        if (log.isInfoEnabled()){
+            log.info("document:{}", document.toString());
 
-            if (log.isDebugEnabled()){
-                log.debug("document:{}", document.toString());
-
-                // <alipay>
-                // <is_success>T</is_success>
-                // <request>
-                // <param name="service">query_timestamp</param>
-                // <param name="partner">2088201564862550</param>
-                // </request>
-                // <response>
-                // <timestamp>
-                // <encrypt_key>KPr8DuZp5xc031OVxw==</encrypt_key>
-                // </timestamp>
-                // </response>
-                // <sign>1fc434a9045f5681736cd47ee2faa41a</sign>
-                // <sign_type>MD5</sign_type>
-                // </alipay>
-            }
-
-            StringBuilder result = new StringBuilder();
-            @SuppressWarnings("unchecked")
-            List<Node> nodeList = document.selectNodes("//alipay/*");
-            for (Node node : nodeList){
-                // 截取部分不需要解析的信息
-                String name = node.getName();
-                String text = node.getText();
-                if (name.equals("is_success") && text.equals("T")){
-                    // 判断是否有成功标示
-                    @SuppressWarnings("unchecked")
-                    List<Node> nodeList1 = document.selectNodes("//response/timestamp/*");
-                    for (Node node1 : nodeList1){
-                        result.append(node1.getText());
-                    }
+            // <alipay>
+            // <is_success>T</is_success>
+            // <request>
+            // <param name="service">query_timestamp</param>
+            // <param name="partner">2088201564862550</param>
+            // </request>
+            // <response>
+            // <timestamp>
+            // <encrypt_key>KPr8DuZp5xc031OVxw==</encrypt_key>
+            // </timestamp>
+            // </response>
+            // <sign>1fc434a9045f5681736cd47ee2faa41a</sign>
+            // <sign_type>MD5</sign_type>
+            // </alipay>
+        }
+        StringBuilder result = new StringBuilder();
+        @SuppressWarnings("unchecked")
+        List<Node> nodeList = document.selectNodes("//alipay/*");
+        for (Node node : nodeList){
+            // 截取部分不需要解析的信息
+            String name = node.getName();
+            String text = node.getText();
+            if (name.equals("is_success") && text.equals("T")){
+                // 判断是否有成功标示
+                @SuppressWarnings("unchecked")
+                List<Node> nodeList1 = document.selectNodes("//response/timestamp/*");
+                for (Node node1 : nodeList1){
+                    result.append(node1.getText());
                 }
-            }
-
-            String anti_phishing_key = result.toString();
-
-            if (log.isDebugEnabled()){
-                log.debug("anti_phishing_key value:[{}]", anti_phishing_key);
-            }
-
-            return anti_phishing_key;
-        }catch (MalformedURLException e){
-            log.error(e.getClass().getName(), e);
-        }catch (IOException e){
-            throw new UncheckedIOException(e);
-        }catch (DocumentException e){
-            log.error(e.getClass().getName(), e);
-        }finally{
-            try{
-                if (null != inputStream){
-                    inputStream.close();
-                }
-            }catch (IOException e){
-                throw new UncheckedIOException(e);
             }
         }
-        // 内部 不控制,不能影响订单的创建
-        //TODO 修改成异常
-        return "";
+
+        String anti_phishing_key = result.toString();
+
+        if (log.isDebugEnabled()){
+            log.debug("anti_phishing_key value:[{}]", anti_phishing_key);
+        }
+        return anti_phishing_key;
     }
 
     /*

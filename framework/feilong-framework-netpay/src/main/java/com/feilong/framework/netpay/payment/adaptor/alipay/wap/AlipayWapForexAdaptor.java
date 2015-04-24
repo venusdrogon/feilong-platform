@@ -15,10 +15,10 @@
  */
 package com.feilong.framework.netpay.payment.adaptor.alipay.wap;
 
-import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayForexPayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineForexPayAdaptor;
 
 /**
- * alipay境外支付接口(mobile)(目前参数和 {@link AlipayForexPayAdaptor} 一模一样的).
+ * alipay境外支付接口(mobile)(目前参数和 {@link AlipayOnlineForexPayAdaptor} 一模一样的).
  *
  * @author 冯明雷
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
@@ -26,6 +26,6 @@ import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayForexP
  * @version 1.1.2 2015年4月22日 下午5:59:33
  * @since 1.1.2
  */
-public class AlipayWapForexAdaptor extends AlipayForexPayAdaptor{
+public class AlipayWapForexAdaptor extends AlipayOnlineForexPayAdaptor{
 
 }

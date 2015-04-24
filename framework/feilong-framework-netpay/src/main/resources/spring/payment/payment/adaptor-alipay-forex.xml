@@ -10,7 +10,7 @@
 	<util:properties id="p_AlipayForex" local-override="true" location="classpath:config/payment/payment/adaptor-alipay-forex.properties"></util:properties>
 
 	<!-- alipayForexPayAdaptor -->
-	<bean id="alipayForexPayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayForexPayAdaptor" parent="baseAlipayOnlineAdaptor">
+	<bean id="alipayForexPayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineForexPayAdaptor" parent="baseAlipayOnlineAdaptor">
 
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
 		<property name="signMap">

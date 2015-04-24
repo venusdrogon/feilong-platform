@@ -45,7 +45,7 @@ public class AlipayOnlineCreditCardAdaptorTest extends BasePaymentTest{
     public final void createPaymentForm(){
         Map<String, String> specialSignMap = new HashMap<String, String>();
 
-        specialSignMap.put("defaultbank", "CMBC-EXPRESS-CREDIT");
+        specialSignMap.put("defaultbank", "CEB-EXPRESS-CREDIT");
         createPaymentForm(paymentAdaptor, specialSignMap);
     }
 }
