@@ -250,7 +250,9 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
         sb.append("&");
         sb.append("partner=" + partner);
         String url = sb.toString();
+
         String responseBodyAsString = URLConnectionUtil.getResponseBodyAsString(url);
+
         Document document = Dom4jUtil.string2Document(responseBodyAsString);
         return getAnti_phishing_key(document);
     }

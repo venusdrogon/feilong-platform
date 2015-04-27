@@ -36,7 +36,8 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
-import com.feilong.commons.core.lang.ObjectUtil;
+import com.feilong.commons.core.util.predicate.ArrayContainsPredicate;
+import com.feilong.commons.core.util.predicate.ObjectPropertyEqualsPredicate;
 
 /**
  * {@link Collection} 工具类,是 {@link Collections} 的扩展和补充.<br>
@@ -385,7 +386,7 @@ public final class CollectionsUtil{
      */
     @SuppressWarnings("unchecked")
     public static <O, V> O find(Collection<O> objectCollection,String propertyName,V value) throws NullPointerException{
-        Predicate predicate = getObjectEqualsPredicate(propertyName, value);
+        Predicate predicate = new ObjectPropertyEqualsPredicate(propertyName, value);
         return (O) org.apache.commons.collections.CollectionUtils.find(objectCollection, predicate);
     }
 
@@ -440,60 +441,9 @@ public final class CollectionsUtil{
         if (Validator.isNullOrEmpty(propertyName)){
             throw new NullPointerException("propertyName is null or empty!");
         }
-        Predicate predicate = getArrayContainsPredicate(propertyName, values);
+
+        Predicate predicate = new ArrayContainsPredicate(propertyName, values);
         return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
-    }
-
-    /**
-     * 调用 {@link PropertyUtil#getProperty(Object, String)} 获得 <code>propertyName</code>的值，判断是否 {@link ArrayUtil#isContain(V[], V)} 在
-     * <code>values</code>数组中.
-     *
-     * @param <V>
-     *            the value type
-     * @param propertyName
-     *            the property name
-     * @param values
-     *            the values
-     * @return the array predicate
-     * @see com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)
-     * @see com.feilong.commons.core.util.ArrayUtil#isContain(V[], V)
-     * @since 1.0.9
-     */
-    //@SafeVarargs
-    private static <V> Predicate getArrayContainsPredicate(final String propertyName,final V...values){
-        Predicate predicate = new Predicate(){
-
-            @Override
-            public boolean evaluate(Object object){
-                V property = PropertyUtil.getProperty(object, propertyName);
-                return ArrayUtil.isContain(values, property);
-            }
-        };
-        return predicate;
-    }
-
-    /**
-     * 获得 object equals predicate.
-     *
-     * @param <V>
-     *            the value type
-     * @param propertyName
-     *            the property name
-     * @param value
-     *            the value
-     * @return the object equals predicate
-     * @since 1.0.9
-     */
-    private static <V> Predicate getObjectEqualsPredicate(final String propertyName,final V value){
-        Predicate predicate = new Predicate(){
-
-            @Override
-            public boolean evaluate(Object object){
-                V property = PropertyUtil.getProperty(object, propertyName);
-                return ObjectUtil.equals(property, value, true);
-            }
-        };
-        return predicate;
     }
 
     /**
@@ -567,7 +517,7 @@ public final class CollectionsUtil{
         if (Validator.isNullOrEmpty(propertyName)){
             throw new NullPointerException("propertyName is null or empty!");
         }
-        Predicate predicate = getArrayContainsPredicate(propertyName, values);
+        Predicate predicate = new ArrayContainsPredicate(propertyName, values);
         return (List<O>) org.apache.commons.collections.CollectionUtils.selectRejected(objectCollection, predicate);
     }
 
