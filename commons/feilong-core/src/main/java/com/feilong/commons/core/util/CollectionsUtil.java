@@ -572,8 +572,11 @@ public final class CollectionsUtil{
     }
 
     /**
-     * 解析对象集合,以 <code>keyPropertyName</code>属性值为key， <code>valuePropertyName</code>属性值为值，组成map返回
+     * 解析对象集合,以 <code>keyPropertyName</code>属性值为key， <code>valuePropertyName</code>属性值为值，组成map返回<br>
      * 
+     * <p>
+     * 注意:返回的是 {@link LinkedHashMap}
+     * </p>
      * <br>
      * 使用 {@link com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)}取到对象特殊属性. <br>
      * 支持属性级联获取,支付获取数组,集合,map,自定义bean等属性
@@ -598,6 +601,7 @@ public final class CollectionsUtil{
      * </pre>
      * 
      * </blockquote>
+     * 
      *
      * @param <K>
      *            the key type
@@ -615,12 +619,14 @@ public final class CollectionsUtil{
      * @throws NullPointerException
      *             if Validator.isNullOrEmpty(objectCollection) or Validator.isNullOrEmpty(propertyName) or
      *             Validator.isNullOrEmpty(valuePropertyName)
+     * @throws BeanUtilException
+     *             the bean util exception
      * @see com.feilong.commons.core.bean.BeanUtil#getProperty(Object, String)
      * @see org.apache.commons.beanutils.PropertyUtils#getProperty(Object, String)
      * @since jdk1.5
      */
     public static <K, V, O> Map<K, V> getPropertyValueMap(Collection<O> objectCollection,String keyPropertyName,String valuePropertyName)
-                    throws NullPointerException{
+                    throws NullPointerException,BeanUtilException{
         if (Validator.isNullOrEmpty(objectCollection)){
             throw new NullPointerException("objectCollection is null or empty!");
         }
@@ -635,17 +641,13 @@ public final class CollectionsUtil{
 
         Map<K, V> map = new LinkedHashMap<K, V>();
 
-        try{
-            for (O bean : objectCollection){
-                @SuppressWarnings("unchecked")
-                K key = (K) PropertyUtil.getProperty(bean, keyPropertyName);
-                @SuppressWarnings("unchecked")
-                V value = (V) PropertyUtil.getProperty(bean, valuePropertyName);
+        for (O bean : objectCollection){
+            @SuppressWarnings("unchecked")
+            K key = (K) PropertyUtil.getProperty(bean, keyPropertyName);
+            @SuppressWarnings("unchecked")
+            V value = (V) PropertyUtil.getProperty(bean, valuePropertyName);
 
-                map.put(key, value);
-            }
-        }catch (BeanUtilException e){
-            log.error(e.getClass().getName(), e);
+            map.put(key, value);
         }
         return map;
     }
@@ -708,7 +710,7 @@ public final class CollectionsUtil{
      *            the object collection
      * @param propertyName
      *            the property name
-     * @return the map< t, integer>
+     * @return 返回的是 {@link LinkedHashMap}
      * @throws BeanUtilException
      *             the bean util exception
      * @throws NullPointerException
