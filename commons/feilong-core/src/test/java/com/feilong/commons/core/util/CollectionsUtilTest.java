@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.entity.JoinStringEntity;
 import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.commons.core.util.predicate.ObjectPropertyEqualsPredicate;
 import com.feilong.test.User;
 import com.feilong.test.UserAddress;
 import com.feilong.test.UserInfo;
@@ -50,6 +51,20 @@ public class CollectionsUtilTest{
 
     /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(CollectionsUtilTest.class);
+
+    @Test
+    public final void testGroupCount(){
+        List<User> testList = new ArrayList<User>();
+        testList.add(new User("张飞", 23));
+        testList.add(new User("关羽", 24));
+        testList.add(new User("刘备", 25));
+
+        Map<String, Integer> map = CollectionsUtil.groupCount(testList, null, "name");
+        log.info(JsonUtil.format(map));
+
+        map = CollectionsUtil.groupCount(testList, new ObjectPropertyEqualsPredicate("name", "刘备"), "name");
+        log.info(JsonUtil.format(map));
+    }
 
     /**
      * To array.

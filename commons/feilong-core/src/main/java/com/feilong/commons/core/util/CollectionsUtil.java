@@ -650,7 +650,7 @@ public final class CollectionsUtil{
     }
 
     /**
-     * Group count.
+     * 循环 <code>objectCollection</code>，统计 {@code propertyName}出现的次数.
      *
      * @param <T>
      *            the generic type
@@ -668,6 +668,31 @@ public final class CollectionsUtil{
      */
     public static <T, O> Map<T, Integer> groupCount(Collection<O> objectCollection,String propertyName) throws BeanUtilException,
                     NullPointerException{
+        return groupCount(objectCollection, null, propertyName);
+    }
+
+    /**
+     * 循环 <code>objectCollection</code>,只选择 符合 <code>includePredicate</code>的对象，统计 {@code propertyName}出现的次数.
+     *
+     * @param <T>
+     *            the generic type
+     * @param <O>
+     *            the generic type
+     * @param objectCollection
+     *            the object collection
+     * @param includePredicate
+     *            只选择 符合 <code>includePredicate</code>的对象，如果是null 则统计集合中全部的Object
+     * @param propertyName
+     *            the property name
+     * @return the map< t, integer>
+     * @throws BeanUtilException
+     *             the bean util exception
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @since 1.1.2
+     */
+    public static <T, O> Map<T, Integer> groupCount(Collection<O> objectCollection,Predicate includePredicate,String propertyName)
+                    throws BeanUtilException,NullPointerException{
 
         if (Validator.isNullOrEmpty(objectCollection)){
             throw new NullPointerException("objectCollection can't be null/empty!");
@@ -680,12 +705,22 @@ public final class CollectionsUtil{
         Map<T, Integer> map = new LinkedHashMap<T, Integer>();
 
         for (O o : objectCollection){
+            if (null != includePredicate){
+                //跳出循环标记
+                boolean continueFlag = !includePredicate.evaluate(o);
+
+                if (continueFlag){
+                    continue;
+                }
+            }
+
             T t = PropertyUtil.getProperty(o, propertyName);
             Integer count = map.get(t);
             if (null == count){
                 count = 0;
             }
             count = count + 1;
+
             map.put(t, count);
         }
         return map;
