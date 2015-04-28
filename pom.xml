@@ -13,7 +13,7 @@
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<version.feilong-platform>${project.version}</version.feilong-platform>
-		<version.feilong-common-test>1.0.7</version.feilong-common-test>
+		<version.feilong-common-test>1.1.2-SNAPSHOT</version.feilong-common-test>
 
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
