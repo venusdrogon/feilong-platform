@@ -78,17 +78,19 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * </blockquote>
  * </p>
  * 
- * <h3>double转BigDecimal</h3>
+ * <h3>double转BigDecimal:</h3>
  * 
  * <blockquote>
  * <p>
  * 对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf(double)，不建议使用new BigDecimal(double)，参见 JDK API
+ * </p>
  * 
  * <ol>
- * <li>new BigDecimal(0.1) ==> 0.1000000000000000055511151231257827021181583404541015625</li>
- * <li>BigDecimal.valueOf(0.1) ==> 0.1</li>
+ * <li>new BigDecimal(0.1) {@code ==>} 0.1000000000000000055511151231257827021181583404541015625</li>
+ * <li>BigDecimal.valueOf(0.1) {@code ==>} 0.1</li>
  * </ol>
  * 
+ * <p>
  * 在《Effective Java 》这本书中也提到这个原则，float 和double 只能用来做科学计算或者是工程计算，在商业计算中我们要用java.math.BigDecimal。
  * </p>
  * </blockquote>

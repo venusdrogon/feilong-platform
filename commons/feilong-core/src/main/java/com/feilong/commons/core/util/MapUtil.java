@@ -205,7 +205,7 @@ public final class MapUtil{
      *            the map
      * @param comparator
      *            the comparator
-     * @return the map< k, v>
+     * @return the map
      * @throws NullPointerException
      *             the null pointer exception
      */

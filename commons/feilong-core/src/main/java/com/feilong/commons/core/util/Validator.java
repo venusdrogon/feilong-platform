@@ -30,12 +30,9 @@ import java.util.Map;
  * <li>{@link #isNotNullOrEmpty(Object)}判断对象是否不是null或者不是空</li>
  * </ol>
  * 
- * 
  * <h3>对于empty的判断,使用以下逻辑/语法/规则:</h3>
  * 
  * <blockquote>
- * <p>
- * 
  * <ol>
  * <li>{@link Collection},使用其 {@link Collection#isEmpty()};</li>
  * <li>{@link Map},使用其 {@link Map#isEmpty()};</li>
@@ -51,7 +48,6 @@ import java.util.Map;
  * <li><code>float[]</code>,判断length==0;</li>
  * <li><code>double[]</code>,判断length==0;</li>
  * </ol>
- * </p>
  * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -80,8 +76,6 @@ public final class Validator{
      * <h3>对于empty的判断,使用以下逻辑/语法/规则:</h3>
      * 
      * <blockquote>
-     * <p>
-     * 
      * <ol>
      * <li>{@link Collection},使用其 {@link Collection#isEmpty()};</li>
      * <li>{@link Map},使用其 {@link Map#isEmpty()};</li>
@@ -97,7 +91,6 @@ public final class Validator{
      * <li><code>float[]</code>,判断length==0;</li>
      * <li><code>double[]</code>,判断length==0;</li>
      * </ol>
-     * </p>
      * </blockquote>
      * 
      * @param value
@@ -167,8 +160,6 @@ public final class Validator{
      * <h3>对于empty的判断,使用以下逻辑/语法/规则:</h3>
      * 
      * <blockquote>
-     * <p>
-     * 
      * <ol>
      * <li>{@link Collection},使用其 {@link Collection#isEmpty()};</li>
      * <li>{@link Map},使用其 {@link Map#isEmpty()};</li>
@@ -184,7 +175,6 @@ public final class Validator{
      * <li><code>float[]</code>,判断length==0;</li>
      * <li><code>double[]</code>,判断length==0;</li>
      * </ol>
-     * </p>
      * </blockquote>
      * 
      * @param value

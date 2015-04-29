@@ -863,7 +863,7 @@ public final class StringUtil{
      * @param trimTokens
      *            是否使用 {@link String#trim()}操作token
      * @param ignoreEmptyTokens
-     *            是否忽视空白的token,如果为true,那么token必须长度>0;如果为false会包含长度=0 空白的字符<br>
+     *            是否忽视空白的token,如果为true,那么token必须长度 {@code >} 0;如果为false会包含长度=0 空白的字符<br>
      *            omit empty tokens from the result array
      *            (only applies to tokens that are empty after trimming; StringTokenizer
      *            will not consider subsequent delimiters as token in the first place).
