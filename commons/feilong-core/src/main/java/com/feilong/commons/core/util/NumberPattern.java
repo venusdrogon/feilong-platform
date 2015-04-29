@@ -24,68 +24,68 @@ import java.text.DecimalFormat;
  * <blockquote>
  * <table border=1 cellspacing=0 cellpadding=4 summary="Chart showing symbol, * location, localized, and meaning.">
  * <tr style="background-color:#ccccff">
- * <th align=left>Symbol</th>
- * <th align=left>Location</th>
- * <th align=left>Localized?</th>
- * <th align=left>Meaning</th>
+ * <th align="left">Symbol</th>
+ * <th align="left">Location</th>
+ * <th align="left">Localized?</th>
+ * <th align="left">Meaning</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td><code>0</code></td>
  * <td>Number</td>
  * <td>Yes</td>
  * <td>代表阿拉伯数字，每一个0表示一位阿拉伯数字， 如果该位不存在则显示0<br>
  * 如果对应位置上没有数字，则用零代替</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td><code>#</code></td>
  * <td>Number</td>
  * <td>Yes</td>
  * <td>代表阿拉伯数字，每一个#表示一位阿拉伯数字， 如果该位不存在则不显示<br>
  * 如果对应位置上没有数字，则保持原样（不用补）；如果最前、后为0，则保持为空.</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td><code>.</code></td>
  * <td>Number</td>
  * <td>Yes</td>
  * <td>小数点分隔符或货币的小数分隔符</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td><code>-</code></td>
  * <td>Number</td>
  * <td>Yes</td>
  * <td>Minus sign 代表负号</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td><code>,</code></td>
  * <td>Number</td>
  * <td>Yes</td>
  * <td>Grouping separator分组分隔符</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td><code>E</code></td>
  * <td>Number</td>
  * <td>Yes</td>
  * <td>Separates mantissa and exponent in scientific notation. <em>Need not be quoted in prefix or suffix.</em> 分隔科学计数法中的尾数和指数</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td><code>;</code></td>
  * <td>Subpattern boundary</td>
  * <td>Yes</td>
  * <td>Separates positive and negative subpatterns</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td><code>%</code></td>
  * <td>Prefix or suffix</td>
  * <td>Yes</td>
  * <td>Multiply by 100 and show as percentage数字乘以100并显示为百分数</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td><code>&#92;u2030</code></td>
  * <td>Prefix or suffix</td>
  * <td>Yes</td>
  * <td>Multiply by 1000 and show as per mille value乘以1000并显示为千分数</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td><code>&#164;</code> (<code>&#92;u00A4</code>)</td>
  * <td>Prefix or suffix</td>
  * <td>No</td>
@@ -94,7 +94,7 @@ import java.text.DecimalFormat;
  * 货币记号，由货币号替换.<br>
  * 如果两个同时出现，则用国际货币符号替换； 如果出现在某个模式中，则使用货币小数分隔符，而不使用小数分隔符</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td><code>'</code></td>
  * <td>Prefix or suffix</td>
  * <td>No</td>

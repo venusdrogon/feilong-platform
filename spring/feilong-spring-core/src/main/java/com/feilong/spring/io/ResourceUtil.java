@@ -54,10 +54,10 @@ import org.springframework.core.io.UrlResource;
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>实现</th>
- * <th align=left>说明</th>
+ * <th align="left">实现</th>
+ * <th align="left">说明</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>{@link UrlResource}</td>
  * <td>封装了java.net.URL，它能够被用来访问任何通过URL可以获得的对象，例如：文件、HTTP对象、FTP对象等。<br>
  *   所有的URL都有个标准的 String表示，这些标准前缀可以标识不同的URL类型， 包括 file:访问文件系统路径， http: 通过HTTP协议访问的资源， ftp: 通过FTP访问的资源等等。<br>
@@ -67,7 +67,7 @@ import org.springframework.core.io.UrlResource;
  * 如果这个字符串包含一些众所周知的前缀，比如 classpath:，它就会创建一个对应的已串行化的 Resource。 <br>
  * 然而，如果不能分辨出这个前缀，就会假定它是个标准的URL字符串，然后创建{@link UrlResource}。</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>{@link ClassPathResource}</td>
  * <td>这个类标识从classpath获得的资源。 它会使用线程context的类加载器(class loader)、给定的类加载器或者用来载入资源的给定类。 <br>
  * 如果类路径上的资源存在于文件系统里，这个 Resource 的实现会提供类似于java.io.File的功能。 <br>
@@ -76,25 +76,25 @@ import org.springframework.core.io.UrlResource;
  * 但更多的是通过调用带表示路径的String参数的API函数隐式地创建。<br>
  * 在后一种情况下，JavaBeans的 PropertyEditor 会分辨字符串中 classpath: 前缀，然后相应创建 {@link ClassPathResource}。</td>
  * </tr>
- * <tr valign=top >
+ * <tr valign="top" >
  * <td>{@link FileSystemResource}</td>
  * <td>这是为处理 java.io.File 而准备的Resource实现。 <br>
  * 它既可以作为File提供，也可以作为URL。</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>{@link "org.springframework.web.context.support.ServletContextResource"}</td>
  * <td>这是为 ServletContext 资源提供的 Resource 实现，它负责解析相关web应用根目录中的相对路径。 <br>
  * 它始终支持以流和URL的方式访问。 但是只有当web应用包被解开并且资源在文件系统的物理路径上时，才允许以 java.io.File 方式访问。 <br>
  * 是否解开并且在文件系统中访问，还是直接从JAR包访问或以其它方式访问如DB(这是可以想象的)，仅取决于Servlet容器。</td>
  * </tr>
- * <tr valign=top >
+ * <tr valign="top" >
  * <td>{@link InputStreamResource}</td>
  * <td>这是为给定的 InputStream 而准备的 Resource 实现。 它只有在没有其它合适的 Resource 实现时才使用。<br>
  * 而且，只要有可能就尽量使用{@link ByteArrayResource} 或者其它基于文件的Resource 实现。 <br>
  * 与其它 Resource 实现不同的是，这是个 已经 打开资源的描述符-因此 isOpen() 函数返回 true。<br>
  * 如果你需要在其它位置保持这个资源的描述符或者多次读取一个流，请不要使用它。</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>{@link ByteArrayResource}</td>
  * <td>这是为给定的byte数组准备的 Resource 实现。 它会为给定的byte数组构造一个 {@link ByteArrayResource}。 <br>
  * 它在从任何给定的byte数组读取内容时很有用，因为不用转换成单一作用的 InputStreamResource。</td>

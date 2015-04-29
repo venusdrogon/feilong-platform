@@ -67,26 +67,26 @@ import com.feilong.commons.core.util.Validator;
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>Character</th>
- * <th align=left>Escape Code</th>
+ * <th align="left">Character</th>
+ * <th align="left">Escape Code</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Ampersand &</td>
  * <td>&amp;</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>Single Quote '</td>
  * <td>&apos;</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Double Quote "</td>
  * <td>&quot;</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>Greater Than {@code >}</td>
  * <td>&gt;</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Less Than {@code <}</td>
  * <td>&lt;</td>
  * </tr>

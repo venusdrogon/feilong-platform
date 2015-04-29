@@ -30,47 +30,47 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * <h3><a name="RoundingMode">JAVA 8种舍入法</a></h3> <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>字段</th>
- * <th align=left>说明</th>
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>ROUND_UP</td>
  * <td>远离零的方向舍入    远离零方向舍入. 向绝对值最大的方向舍入，只要舍弃位非0即进位.</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>ROUND_DOWN</td>
  * <td>靠近零的方向舍入  趋向零方向舍入 向绝对值最小的方向输入，所有的位都要舍弃，不存在进位情况.</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>ROUND_CEILING</td>
  * <td>靠近正无穷方向舍入  向正无穷方向舍入 向正最大方向靠拢.<br>
  * 若是正数，舍入行为类似于ROUND_UP，<br>
  * 若为负数，舍入行为类似于ROUND_DOWN.<br>
  * Math.round()方法就是使用的此模式.</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>ROUND_FLOOR</td>
  * <td>靠近负无穷方向舍入  向负无穷方向舍入 向负无穷方向靠拢.<br>
  * 若是正数，舍入行为类似于ROUND_DOWN；<br>
  * 若为负数，舍入行为类似于ROUND_UP.</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>ROUND_HALF_UP</td>
  * <td>四舍五入，生活中的舍入方法. <br>
  * 最近数字舍入(5进). 这是我们最经典的四舍五入.</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>ROUND_HALF_DOWN</td>
  * <td>五舍六入  最近数字舍入(5舍). 在这里5是要舍弃的.</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>ROUND_HALF_EVEN</td>
  * <td>精确舍入,银行家舍入法. <br>
  * 四舍六入;五分两种情况,如果前一位为奇数，则入位，否则舍去. <br>
  * 以下例子为保留小数点1位，那么这种舍入方式下的结果:  <br>
  *   {@code 1.15 return 1.2} {@code 1.25 return 1.2}</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>ROUND_UNNECESSARY</td>
  * <td>无需舍入</td>
  * </tr>

@@ -55,16 +55,16 @@ public final class ClassLoaderUtil{
      * <blockquote>
      * <table border="1" cellspacing="0" cellpadding="4">
      * <tr style="background-color:#ccccff">
-     * <th align=left></th>
-     * <th align=left>(maven)测试</th>
-     * <th align=left>在web环境中,(即使打成jar的情形)</th>
+     * <th align="left"></th>
+     * <th align="left">(maven)测试</th>
+     * <th align="left">在web环境中,(即使打成jar的情形)</th>
      * </tr>
-     * <tr valign=top>
+     * <tr valign="top">
      * <td>{@code getResource("")}</td>
      * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/</td>
      * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-spring-test-2.5/src/main/webapp/WEB-INF/classes/</td>
      * </tr>
-     * <tr valign=top style="background-color:#eeeeff">
+     * <tr valign="top" style="background-color:#eeeeff">
      * <td>{@code getResource("com")}</td>
      * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-common/target/test-classes/com</td>
      * <td>file:/E:/Workspaces/feilong/feilong-platform/feilong-spring-test-2.5/src/main/webapp/WEB-INF/classes/com/</td>

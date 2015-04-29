@@ -34,44 +34,44 @@ import com.feilong.commons.core.util.Validator;
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>字段</th>
- * <th align=left>说明</th>
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>file.encoding <br>
  * {@link SystemUtils#FILE_ENCODING}</td>
  * <td>utf-8</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>file.separator <br>
  * {@link SystemUtils#FILE_SEPARATOR}</td>
  * <td>\\</td>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.home <br>
  * {@link SystemUtils#JAVA_HOME}</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.io.tmpdir <br>
  * {@link SystemUtils#JAVA_IO_TMPDIR}</td>
  * <td>C:\\Users\\feilong\\AppData\\Local\\Temp\\</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.version <br>
  * {@link SystemUtils#JAVA_VERSION}</td>
  * <td>1.6.0_37</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>line.separator <br>
  * {@link SystemUtils#LINE_SEPARATOR}</td>
  * <td>\r\n</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>user.dir <br>
  * {@link SystemUtils#USER_DIR}</td>
  * <td>E:\\Workspaces\\feilong\\feilong-platform\\commons\\feilong-core</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>user.home<br>
  * {@link SystemUtils#USER_HOME}</td>
  * <td>C:\\Users\\feilong</td>
@@ -85,27 +85,27 @@ import com.feilong.commons.core.util.Validator;
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>字段</th>
- * <th align=left>说明</th>
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>awt.toolkit</td>
  * <td>sun.awt.windows.WToolkit</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>file.encoding.pkg</td>
  * <td>sun.io</td>
  * </tr>
  * 
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.awt.graphicsenv</td>
  * <td>sun.awt.Win32GraphicsEnvironment</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.awt.printerjob</td>
  * <td>sun.awt.windows.WPrinterJob</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.class.path</td>
  * <td>E:\\Workspaces\\feilong\\feilong-platform\\commons\\feilong-core\\target\\test-classes;E:\\Workspaces\\feilong\\feilong-platform\\
  * commons\\feilong-core\\target\\classes;D:\\FeiLong
@@ -132,21 +132,21 @@ import com.feilong.commons.core.util.Validator;
  * Soft/Essential/Development/eclipse-jee-kepler-SR2-win32/configuration/org.eclipse.osgi/bundles/378/1/.cp/;/D:/FeiLong
  * Soft/Essential/Development/eclipse-jee-kepler-SR2-win32/configuration/org.eclipse.osgi/bundles/377/1/.cp/</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.class.version</td>
  * <td>50.0</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.endorsed.dirs</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\endorsed</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.ext.dirs</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\ext;C:\\Windows\\Sun\\Java\\lib\\ext</td>
  * </tr>
  * 
  * 
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.library.path</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\bin;C:\\Windows\\Sun\\Java\\bin;C:\\Windows\\system32;C:\\Windows;D:/Program
  * Files/Java/jre6/bin/client;D:/Program Files/Java/jre6/bin;D:/Program Files/Java/jre6/lib/i386;C:\\Program Files (x86)\\NVIDIA
@@ -159,151 +159,151 @@ import com.feilong.commons.core.util.Validator;
  * Soft\\Datebase\\postgresql\\postgresql-9.2.4-1-windows-x64-binaries\\bin;;D:\\FeiLong
  * Soft\\Essential\\Development\\eclipse-jee-kepler-SR2-win32;;.</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.runtime.name</td>
  * <td>Java(TM) SE Runtime Environment</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.runtime.version</td>
  * <td>1.6.0_37-b06</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.specification.name</td>
  * <td>Java Platform API Specification</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.specification.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.specification.version</td>
  * <td>1.6</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.vendor.url</td>
  * <td>http://java.sun.com/</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.vendor.url.bug</td>
  * <td>http://java.sun.com/cgi-bin/bugreport.cgi</td>
  * </tr>
  * 
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.vm.info</td>
  * <td>mixed mode</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.vm.name</td>
  * <td>Java HotSpot(TM) Client VM</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.vm.specification.name</td>
  * <td>Java Virtual Machine Specification</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.vm.specification.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.vm.specification.version</td>
  * <td>1.0</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>java.vm.vendor</td>
  * <td>Sun Microsystems Inc.</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>java.vm.version</td>
  * <td>20.12-b01</td>
  * </tr>
  * 
- * <tr valign=top>
+ * <tr valign="top">
  * <td>os.arch</td>
  * <td>x86</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>os.name</td>
  * <td>Windows 7</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>os.version</td>
  * <td>6.1</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>path.separator</td>
  * <td>;</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>sun.arch.data.model</td>
  * <td>32</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>sun.boot.class.path</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\resources.jar;D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\rt.jar;D:\\Program
  * Files\\Java\\jdk1.6.0_37\\jre\\lib\\sunrsasign.jar;D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\jsse.jar;D:\\Program
  * Files\\Java\\jdk1.6.0_37\\jre\\lib\\jce.jar;D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\lib\\charsets.jar;D:\\Program
  * Files\\Java\\jdk1.6.0_37\\jre\\lib\\modules\\jdk.boot.jar;D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\classes</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>sun.boot.library.path</td>
  * <td>D:\\Program Files\\Java\\jdk1.6.0_37\\jre\\bin</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>sun.cpu.endian</td>
  * <td>little</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>sun.cpu.isalist</td>
  * <td>pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>sun.desktop</td>
  * <td>windows</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>sun.io.unicode.encoding</td>
  * <td>UnicodeLittle</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>sun.java.command</td>
  * <td>org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 60401 -testLoaderClass
  * org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -test
  * com.feilong.commons.core.lang.SystemUtilTest:getPropertiesMapForLog</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>sun.java.launcher</td>
  * <td>SUN_STANDARD</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>sun.jnu.encoding</td>
  * <td>GBK</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>sun.management.compiler</td>
  * <td>HotSpot Client Compiler</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>sun.os.patch.level</td>
  * <td>Service Pack 1</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>user.country</td>
  * <td>CN</td>
  * </tr>
  * 
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>user.language</td>
  * <td>zh</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>user.name</td>
  * <td>feilong</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>user.timezone</td>
  * <td>Asia/Bangkok</td>
  * </tr>

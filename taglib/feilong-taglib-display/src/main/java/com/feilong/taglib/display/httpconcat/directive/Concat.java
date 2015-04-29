@@ -62,21 +62,21 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * <blockquote>
  * <table border='1' cellspacing='0' cellpadding='4' summary="Chart showing symbol,  location, localized, and meaning.">
  * <tr style="background-color:#ccccff">
- * <th align=left>字段</th>
- * <th align=left>说明</th>
- * <th align=left>示例</th>
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
+ * <th align="left">示例</th>
  * </tr>
  * <tr valign='top'>
  * <td>type</td>
  * <td>标识 类型, 可用值 js或者css, 忽视大小写</td>
  * <td>js</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>version</td>
  * <td>版本号 不建议直接使用时间戳,容易被黑客CDN攻击 建议使用md5参数或者随机数</td>
  * <td>16b3adc77c0d3e9df617d3178fe43445</td>
  * </tr>
- * <tr valign=top >
+ * <tr valign="top" >
  * <td>domain</td>
  * <td>域名,某些商城有子域名</td>
  * <td>http://image.nikestore.com.cn ,也可以写成 http://image.nikestore.com.cn/ (最后带/)</td>
@@ -98,7 +98,7 @@ import com.feilong.tools.velocity.directive.AbstractDirective;
  * 
  * <h5>样本</h5> <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
- * <tr valign=top>
+ * <tr valign="top">
  * <td>
  * 
  * <pre>

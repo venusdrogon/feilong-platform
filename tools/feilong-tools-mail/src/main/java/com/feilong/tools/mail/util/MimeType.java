@@ -40,34 +40,34 @@ package com.feilong.tools.mail.util;
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>字段</th>
- * <th align=left>说明</th>
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Text</td>
  * <td>用于标准化地表示的文本信息，文本消息可以是多种字符集和或者多种格式的;</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>Multipart</td>
  * <td>用于连接消息体的多个部分构成一个消息，这些部分可以是不同类型的数据;</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Application</td>
  * <td>用于传输应用程序数据或者二进制数据;</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>Message</td>
  * <td>用于包装一个E-mail消息;</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Image</td>
  * <td>用于传输静态图片数据;</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>Audio</td>
  * <td>用于传输音频或者音声数据;</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>Video</td>
  * <td>用于传输动态影像数据，可以是与音频编辑在一起的视频数据格式。</td>
  * </tr>
@@ -92,70 +92,71 @@ package com.feilong.tools.mail.util;
  * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
- * <th align=left>字段</th>
- * <th align=left>说明</th>
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>text/plain</td>
  * <td>纯文本</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>text/html</td>
  * <td>HTML文档</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>application/xhtml+xml</td>
  * <td>XHTML文档</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>image/gif</td>
  * <td>GIF图像</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>image/jpeg</td>
  * <td>JPEG图像【PHP中为：image/pjpeg】</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>image/png</td>
  * <td>PNG图像【PHP中为：image/x-png】</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>video/mpeg</td>
  * <td>MPEG动画</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>application/octet-stream</td>
  * <td>任意的二进制数据</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>application/pdf</td>
  * <td>PDF文档</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>application/msword</td>
  * <td>Microsoft Word文件</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>application/vnd.wap.xhtml+xml</td>
  * <td>wap1.0+</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>application/xhtml+xml</td>
  * <td>wap2.0+</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>message/rfc822</td>
  * <td>RFC 822形式</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>multipart/alternative</td>
- * <td>HTML邮件的HTML形式和纯文本形式，相同内容使用不同形式表示</td>
+ * <td>HTML邮件的HTML形式和纯文本形式，相同内容使用不同形式表示,alternative content, such as a message sent in both plain text and another format such as HTML
+ * (multipart/alternative with the same content in text/plain and text/html forms)</td>
  * </tr>
- * <tr valign=top>
+ * <tr valign="top">
  * <td>application/x-www-form-urlencoded</td>
  * <td>使用HTTP的POST方法提交的表单</td>
  * </tr>
- * <tr valign=top style="background-color:#eeeeff">
+ * <tr valign="top" style="background-color:#eeeeff">
  * <td>multipart/form-data</td>
  * <td>同上，但主要用于表单提交时伴随文件上传的场合</td>
  * </tr>
