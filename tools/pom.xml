@@ -27,6 +27,7 @@
 		<module>feilong-tools-xstream</module>
 		<module>feilong-tools-log4j</module>
 		<module>feilong-tools-security</module>
+		<module>feilong-tools-logback</module>
 	</modules>
 
 	<dependencies>
