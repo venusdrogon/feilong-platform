@@ -76,8 +76,8 @@ public class IMAPMailReader implements MailReader{
                     throws MailReaderException{
 
         if (log.isDebugEnabled()){
-            log.debug(JsonUtil.format(mailSenderConfig));
-            log.debug(JsonUtil.format(searchTerm));
+            log.debug("input mailSenderConfig:[{}]", JsonUtil.format(mailSenderConfig));
+            log.debug("input searchTerm:[{}]", JsonUtil.format(searchTerm));
         }
 
         List<MailInfo> mailInfoList = null;

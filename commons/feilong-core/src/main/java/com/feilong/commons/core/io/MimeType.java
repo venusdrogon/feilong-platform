@@ -25,13 +25,13 @@ package com.feilong.commons.core.io;
  */
 public enum MimeType{
 
-    /** The json. */
+    /** The json . */
     JSON("json","application/json"),
 
     //****************   @see org.apache.catalina.startup.Tomcat#DEFAULT_MIME_MAPPINGS**********************************************************************
 
     /** The abs. */
-    ABS("abs","audio/x-mpeg "),
+    ABS("abs","audio/x-mpeg"),
 
     /** The ai. */
     AI("ai","application/postscript"),

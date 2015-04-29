@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.mail.Address;
+import javax.mail.BodyPart;
 import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -35,6 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.FileUtil;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.mail.entity.MailInfo;
 
@@ -207,36 +209,48 @@ public final class MessageUtil{
         // Using isMimeType to determine the content type 
         //avoids fetching the actual content data until we need it.
 
-        String mimeType1 = "text/*";
-        String mimeType2 = "multipart/*";
-        String mimeType3 = "message/rfc822";
-
-        if (part.isMimeType(mimeType1)){
+        if (part.isMimeType(MimeType.TEXT_ALL)){//用于标准化地表示的文本信息，文本消息可以是多种字符集和或者多种格式的；
             MimeBodyPart mimeBodyPart = (MimeBodyPart) part;
             if (log.isDebugEnabled()){
+
+                Map<String, String> map = new LinkedHashMap<String, String>();
+
                 Enumeration<Header> allHeaders = mimeBodyPart.getAllHeaders();
                 while (allHeaders.hasMoreElements()){
                     Header header = allHeaders.nextElement();
-                    log.debug("header name:[{}]-->value:[{}]", header.getName(), header.getValue());
+                    map.put(header.getName(), header.getValue());
                 }
+                log.debug("mimeBodyPart AllHeaders:{}", JsonUtil.format(map));
             }
-
-            log.debug("content mimeType:[{}]", mimeType1);
             Object object = mimeBodyPart.getContent();
             String s = (String) object;
+
+            log.debug(
+                            "content mimeType:[{}],mathch with:--->[{}],getContent value:[{}]",
+                            mimeBodyPart.getContentType(),
+                            MimeType.TEXT_ALL,
+                            object);
             return s;
-        }else if (part.isMimeType(mimeType2)){
-            log.debug("content mimeType:[{}]", mimeType2);
+        }else if (part.isMimeType(MimeType.MULTIPART_ALL)){//用于连接消息体的多个部分构成一个消息，这些部分可以是不同类型的数据；
             StringBuilder sb = new StringBuilder();
 
             Multipart mp = (Multipart) part.getContent();
             int count = mp.getCount();
+            log.debug("content mimeType:[{}],mathch with:--->[{}],count:[{}]", mp.getContentType(), MimeType.MULTIPART_ALL, count);
+
+            boolean alternativeFlag = part.isMimeType(MimeType.MULTIPART_ALTERNATIVE);
             for (int i = 0; i < count; i++){
-                sb.append(getContent(mp.getBodyPart(i)));
+                BodyPart bodyPart = mp.getBodyPart(i);
+
+                //不是 alternative 或者(是 alternative且是html)
+                boolean isAppend = !alternativeFlag || (alternativeFlag && bodyPart.isMimeType(MimeType.TEXT_HTML));
+                if (isAppend){
+                    sb.append(getContent(bodyPart));
+                }
             }
             return sb.toString();
-        }else if (part.isMimeType(mimeType3)){
-            log.debug("content mimeType:[{}]", mimeType3);
+        }else if (part.isMimeType(MimeType.MESSAGE_RFC822)){//用于包装一个E-mail消息；
+            log.debug("content mimeType:[{}],mathch with:--->[{}]", part.getContentType(), MimeType.MESSAGE_RFC822);
             return getContent((Part) part.getContent());
         }else{
             log.info("part getContentType:{}", part.getContentType());
