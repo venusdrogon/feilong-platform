@@ -16,6 +16,7 @@
 package com.feilong.tools.logback.listener;
 
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -25,7 +26,11 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.util.ServletContextPropertyUtils;
 import org.springframework.web.util.WebUtils;
 
+import ch.qos.logback.core.joran.spi.JoranException;
+
+import com.feilong.commons.core.lang.SystemUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.servlet.ServletContextUtil;
 
 /**
  * <p style="color:red">
@@ -74,33 +79,78 @@ public class LogbackConfigListener implements ServletContextListener{
      */
     @Override
     public void contextInitialized(ServletContextEvent sce){
-
         ServletContext servletContext = sce.getServletContext();
 
+        //设置初始化参数,以便logback.xml中使用
+        setPropertiesFromInitParameterMap(servletContext);
+
         String location = servletContext.getInitParameter(ch.qos.logback.ext.spring.web.WebLogbackConfigurer.CONFIG_LOCATION_PARAM);
+        try{
+            initLogging(servletContext, location);
+        }catch (FileNotFoundException ex){
+            throw new LogbackInitializationException("Invalid '" + ch.qos.logback.ext.spring.web.WebLogbackConfigurer.CONFIG_LOCATION_PARAM
+                            + "' parameter", ex);
+        }catch (JoranException e){
+            throw new LogbackInitializationException("Unexpected error while configuring logback", e);
+        }
+    }
 
+    /**
+     * 初始化log.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @param location
+     *            the location
+     * @throws FileNotFoundException
+     *             the file not found exception
+     * @throws JoranException
+     *             the joran exception
+     * @since 1.1.2
+     */
+    protected void initLogging(ServletContext servletContext,String location) throws FileNotFoundException,JoranException{
+        location = getFinalLocation(servletContext, location);
+
+        servletContext.log("System.setProperty [" + ch.qos.logback.classic.util.ContextInitializer.CONFIG_FILE_PROPERTY
+                        + "] Logback from [" + location + "]");
+        //System.setProperty(ch.qos.logback.classic.util.ContextInitializer.CONFIG_FILE_PROPERTY, location);
+
+        ch.qos.logback.ext.spring.LogbackConfigurer.initLogging(location);
+    }
+
+    /**
+     * 获得 final location.
+     *
+     * @param servletContext
+     *            the servlet context
+     * @param location
+     *            the location
+     * @return the final location
+     * @throws FileNotFoundException
+     *             the file not found exception
+     * @since 1.1.2
+     */
+    private String getFinalLocation(ServletContext servletContext,String location) throws FileNotFoundException{
         if (Validator.isNotNullOrEmpty(location)){
-            try{
-                location = resolveLocation(servletContext, location);
-
-                servletContext.log("System.setProperty [" + ch.qos.logback.classic.util.ContextInitializer.CONFIG_FILE_PROPERTY
-                                + "] Logback from [" + location + "]");
-                System.setProperty(ch.qos.logback.classic.util.ContextInitializer.CONFIG_FILE_PROPERTY, location);
-
-                //ch.qos.logback.ext.spring.LogbackConfigurer.initLogging(location);
-            }catch (FileNotFoundException ex){
-                throw new LogbackInitializationException("Invalid '"
-                                + ch.qos.logback.ext.spring.web.WebLogbackConfigurer.CONFIG_LOCATION_PARAM + "' parameter", ex);
-            }
-
-            //            catch (JoranException e){
-            //                throw new LogbackInitializationException("Unexpected error while configuring logback", e);
-            //            }
+            location = resolveLocation(servletContext, location);
         }else{
             String message = "servletContext initParameter:[" + ch.qos.logback.ext.spring.web.WebLogbackConfigurer.CONFIG_LOCATION_PARAM
                             + "] value is null or empty";
             servletContext.log(message, new LogbackInitializationException(message));
         }
+        return location;
+    }
+
+    /**
+     * 设置初始化参数,以便logback.xml中使用
+     *
+     * @param servletContext
+     *            the properties from init parameter map
+     * @since 1.1.2
+     */
+    protected void setPropertiesFromInitParameterMap(ServletContext servletContext){
+        Map<String, String> initParameterMap = ServletContextUtil.getInitParameterMap(servletContext);
+        SystemUtil.setPropertiesFromMap(initParameterMap);
     }
 
     /**

@@ -22,6 +22,7 @@ import java.util.TreeMap;
 import org.apache.commons.lang3.SystemUtils;
 
 import com.feilong.commons.core.configure.PropertiesUtil;
+import com.feilong.commons.core.util.Validator;
 
 /**
  * System工具类.
@@ -359,5 +360,43 @@ public final class SystemUtil{
         Map<String, String> envMap = System.getenv();
         Map<String, String> map = new TreeMap<String, String>(envMap);
         return map;
+    }
+
+    /**
+     * 设置 properties from map.
+     *
+     * @param map
+     *            the properties from map
+     * @since 1.1.2
+     * @see java.lang.System#setProperty(String, String)
+     */
+    public static final void setPropertiesFromMap(Map<String, String> map){
+        if (Validator.isNullOrEmpty(map)){
+            throw new NullPointerException("map can't be null/empty!");
+        }
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.setProperty(key, value);
+        }
+    }
+
+    /**
+     * 设置 properties from properties.
+     *
+     * @param properties
+     *            the properties from properties
+     * @since 1.1.2
+     * @see com.feilong.commons.core.configure.PropertiesUtil#toMap(Properties)
+     * @see com.feilong.commons.core.lang.SystemUtil#setPropertiesFromMap(Map)
+     * @see java.lang.System#setProperty(String, String)
+     */
+    public static final void setPropertiesFromProperties(Properties properties){
+        if (Validator.isNullOrEmpty(properties)){
+            throw new NullPointerException("properties can't be null/empty!");
+        }
+
+        Map<String, String> map = PropertiesUtil.toMap(properties);
+        setPropertiesFromMap(map);
     }
 }

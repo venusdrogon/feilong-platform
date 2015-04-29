@@ -142,6 +142,7 @@ public final class ServletContextUtil{
      * @return 读取文件内容
      * @throws IOException
      *             the IO exception
+     * @see "org.springframework.web.util.WebUtils#getRealPath(ServletContext, String)"
      * @deprecated 待重构
      */
     @Deprecated

@@ -9,6 +9,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.feilong.platform.commons</groupId>
+			<artifactId>feilong-servlet</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
 			<optional>true</optional>
