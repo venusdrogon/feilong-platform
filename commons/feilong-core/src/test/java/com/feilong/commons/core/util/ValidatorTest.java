@@ -104,8 +104,6 @@ public class ValidatorTest{
 
             @Override
             public void remove(){
-                // TODO Auto-generated method stub
-
             }
         }));
     }

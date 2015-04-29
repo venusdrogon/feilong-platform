@@ -43,7 +43,7 @@ public class TypeUtilTest{
      */
     @Test
     public final void test(){
-        new SkuItemRepositoryImpl();
+        log.info("" + new SkuItemRepositoryImpl());
     }
 
     /**
@@ -51,7 +51,7 @@ public class TypeUtilTest{
      */
     @Test
     public final void test2(){
-        new SkuItemRepositoryImpl2();
+        log.info("" + new SkuItemRepositoryImpl2());
     }
 
     /**
@@ -59,7 +59,7 @@ public class TypeUtilTest{
      */
     @Test
     public final void test3(){
-        new SkuItemRepositoryImpl3();
+        log.info("" + new SkuItemRepositoryImpl3());
 
         Class<?>[] genericInterfacesParameterizedRawTypes = TypeUtil.getGenericInterfacesParameterizedRawTypes(
                         SkuItemRepositoryImpl3.class,
@@ -68,7 +68,6 @@ public class TypeUtilTest{
         if (log.isDebugEnabled()){
             log.debug(JsonUtil.format(genericInterfacesParameterizedRawTypes));
         }
-
     }
 
     /**
@@ -84,6 +83,5 @@ public class TypeUtilTest{
         if (log.isDebugEnabled()){
             log.debug(JsonUtil.format(genericInterfacesParameterizedRawTypes));
         }
-
     }
 }

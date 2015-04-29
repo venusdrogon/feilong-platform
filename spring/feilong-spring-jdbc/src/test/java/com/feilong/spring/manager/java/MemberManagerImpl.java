@@ -39,7 +39,6 @@ public class MemberManagerImpl implements MemberManager{
      */
     @Override
     public User getUser(String name){
-        // TODO Auto-generated method stub
         return new User(name);
     }
 
@@ -62,7 +61,6 @@ public class MemberManagerImpl implements MemberManager{
     @Transactional(readOnly = true)
     @Override
     public User getUserReadOnly(String name){
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -73,7 +71,6 @@ public class MemberManagerImpl implements MemberManager{
      */
     @Override
     public User getUserExcludeJsonException(Object inputStream){
-        // TODO Auto-generated method stub
         return null;
     }
 }

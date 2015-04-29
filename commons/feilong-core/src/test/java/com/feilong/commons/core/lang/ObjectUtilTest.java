@@ -191,9 +191,7 @@ public class ObjectUtilTest{
 
     @Test
     public final void testToBigDecimal(){
-        log.info("" + ObjectUtil.toBigDecimal(1111));
-        log.info("" + ObjectUtil.toBigDecimal(0.1));
-        log.info("" + new BigDecimal(0.1));
-        log.info("" + new BigDecimal("" + 0.1));
+        assertEquals(BigDecimal.valueOf(1111), ObjectUtil.toBigDecimal(1111));
+        assertEquals(BigDecimal.valueOf(0.1), ObjectUtil.toBigDecimal(0.1));
     }
 }
