@@ -23,7 +23,7 @@ import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
- * The Class ObjectPropertyEqualsPredicate.
+ * 调用 {@link com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)} 匹配属性值.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.1.2 2015年4月27日 下午1:52:29

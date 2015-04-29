@@ -161,6 +161,7 @@ public final class IOWriteUtil{
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @since 1.0.8
+     * @since jdk1.4
      */
     private static void writeUseNIO(int bufferLength,InputStream inputStream,OutputStream outputStream) throws UncheckedIOException{
         int i = 0;

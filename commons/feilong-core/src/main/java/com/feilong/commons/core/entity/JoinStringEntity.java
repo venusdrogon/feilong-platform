@@ -73,5 +73,4 @@ public final class JoinStringEntity implements Serializable{
     public void setConnector(String connector){
         this.connector = connector;
     }
-
 }
