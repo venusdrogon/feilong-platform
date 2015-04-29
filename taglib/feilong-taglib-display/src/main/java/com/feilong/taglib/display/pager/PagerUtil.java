@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.configure.ResourceBundleUtil;
 import com.feilong.commons.core.entity.Pager;
+import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
@@ -244,7 +245,7 @@ public final class PagerUtil{
         Integer currentPageNo = null;
 
         try{
-            currentPageNo = RequestUtil.getParameterToInteger(request, pageParamName);
+            currentPageNo = ObjectUtil.toInteger(RequestUtil.getParameter(request, pageParamName));
         }catch (Exception e){
             // 抛出异常, 但是不给 currentPageNo 赋值
             log.error(e.getClass().getName(), e);

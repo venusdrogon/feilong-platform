@@ -15,6 +15,8 @@
  */
 package com.feilong.commons.core.lang;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,7 +30,6 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,21 +66,28 @@ public class ObjectUtilTest{
      */
     @Test
     public final void testEqualsNotNull(){
-        Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, 2));
-        Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, null));
-        Assert.assertEquals(false, ObjectUtil.equalsNotNull(null, 2));
-        Assert.assertEquals(false, ObjectUtil.equalsNotNull(null, null));
+        assertEquals(false, ObjectUtil.equalsNotNull(1, 2));
+        assertEquals(false, ObjectUtil.equalsNotNull(1, null));
+        assertEquals(false, ObjectUtil.equalsNotNull(null, 2));
+        assertEquals(false, ObjectUtil.equalsNotNull(null, null));
 
-        Assert.assertEquals(false, ObjectUtil.equalsNotNull(1, "1"));
-        Assert.assertEquals(true, ObjectUtil.equalsNotNull(1, 1));
-        Assert.assertEquals(true, ObjectUtil.equalsNotNull("1", "1"));
+        assertEquals(false, ObjectUtil.equalsNotNull(1, "1"));
+        assertEquals(true, ObjectUtil.equalsNotNull(1, 1));
+        assertEquals(true, ObjectUtil.equalsNotNull("1", "1"));
+    }
+
+    @Test
+    public final void testEquals(){
+        assertEquals(true, ObjectUtil.equals(1, 1, false));
+        assertEquals(true, ObjectUtil.equals(null, null, false));
+        assertEquals(true, ObjectUtil.equals("", " ", false));
     }
 
     /**
      * Assert equals.
      */
     @Test
-    public final void assertEquals(){
+    public final void assertEquals2(){
 
         Long a = new Long(1L);
         Long b = new Long(1L);
@@ -160,8 +168,8 @@ public class ObjectUtilTest{
      */
     @Test
     public final void testToInteger(){
-        Assert.assertEquals(8, ObjectUtil.toInteger(8L).intValue());
-        Assert.assertEquals(8, ObjectUtil.toInteger("8").intValue());
+        assertEquals(8, ObjectUtil.toInteger(8L).intValue());
+        assertEquals(8, ObjectUtil.toInteger("8").intValue());
     }
 
     /**

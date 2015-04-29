@@ -15,7 +15,6 @@
  */
 package com.feilong.servlet.http;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -31,7 +30,6 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.date.DateExtensionUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.lang.ObjectUtil;
 import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
 
@@ -110,8 +108,8 @@ public final class SessionUtil{
             // 返回服务器创建的一个SESSION,客户端是否已经加入 
             map.put("session.isNew()", session.isNew());
 
-            @SuppressWarnings({ "cast", "unchecked" })
-            Enumeration<String> attributeNames = (Enumeration<String>) session.getAttributeNames();
+            @SuppressWarnings({ "unchecked" })
+            Enumeration<String> attributeNames = session.getAttributeNames();
             map.put("session.getAttributeNames()", CollectionsUtil.toList(attributeNames));
         }
 
@@ -174,80 +172,6 @@ public final class SessionUtil{
             session = request.getSession();
         }
         return session;
-    }
-
-    // [end]
-
-    // [start] getAttribute
-
-    /**
-     * 获取属性值Integer类型.
-     * 
-     * @param attributeName
-     *            session里面的 属性名称
-     * @param object
-     *            request or session
-     * @return 获取属性值Integer类型
-     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-     */
-    @Deprecated
-    public static Integer getAttributeToInteger(String attributeName,Object object){
-        Object value = getAttribute(attributeName, object);
-        return ObjectUtil.toInteger(value);
-    }
-
-    /**
-     * 获取属性值BigDecimal类型.
-     * 
-     * @param attributeName
-     *            session里面的 属性名称
-     * @param object
-     *            request or session
-     * @return 获取属性值BigDecimal类型
-     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-     */
-    @Deprecated
-    public static BigDecimal getAttributeToBigDecimal(String attributeName,Object object){
-        Object value = getAttribute(attributeName, object);
-        return ObjectUtil.toBigDecimal(value);
-    }
-
-    /**
-     * 将属性值转换成字符串.
-     * 
-     * @param attributeName
-     *            属性名称
-     * @param object
-     *            request or session
-     * @return 将属性值转换成字符串
-     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-     */
-    @Deprecated
-    public static String getAttributeToString(String attributeName,Object object){
-        return ObjectUtil.toString(getAttribute(attributeName, object));
-    }
-
-    /**
-     * 直接获取属性值.
-     * 
-     * @param attributeName
-     *            属性名称
-     * @param object
-     *            request or session
-     * @return 直接获取属性值
-     * @deprecated 待重构, spring mvc有自动转换的功能, 届时可以参考
-     */
-    @Deprecated
-    public static Object getAttribute(String attributeName,Object object){
-        HttpSession session = null;
-        if (object instanceof HttpServletRequest){
-            session = ((HttpServletRequest) object).getSession();
-        }else if (object instanceof HttpSession){
-            session = (HttpSession) object;
-        }else{
-            throw new IllegalArgumentException("object must instanceof HttpServletRequest/HttpSession");
-        }
-        return session.getAttribute(attributeName);
     }
     // [end]
 }

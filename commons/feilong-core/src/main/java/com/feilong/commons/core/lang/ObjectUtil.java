@@ -179,19 +179,19 @@ public final class ObjectUtil{
         if (null == object){
             // 标识null和""相比的情况
             if (nullTypeFlag){
-                if ("".equals(object2.toString().trim())){
+                if ("".equals(trim(object2))){
                     return true;
                 }
             }
         }else{
             // 标识null和""相比的情况
-            if ("".equals(object.toString().trim())){
+            if ("".equals(trim(object))){
                 if (null == object2){
                     if (nullTypeFlag){
                         return true;
                     }
                 }else{
-                    if ("".equals(object2.toString().trim())){
+                    if ("".equals(trim(object2))){
                         return true;
                     }
                 }
@@ -257,7 +257,7 @@ public final class ObjectUtil{
 
     /**
      * object转成integer类型.
-     * 
+     *
      * @param value
      *            值
      * @return <ul>
@@ -266,16 +266,17 @@ public final class ObjectUtil{
      *         <li>否则 new Integer(value.toString().trim())</li>
      *         <li>如果value不能转成integer 会抛出 IllegalArgumentException异常</li>
      *         </ul>
+     * @throws IllegalArgumentException
+     *             如果 参数不能转成 Integer
      */
-    public static final Integer toInteger(Object value){
+    public static final Integer toInteger(Object value) throws IllegalArgumentException{
         Integer returnValue = null;
         if (Validator.isNotNullOrEmpty(value)){
-            // Integer
             if (value instanceof Integer){
                 returnValue = (Integer) value;
             }else{
                 try{
-                    returnValue = new Integer(value.toString().trim());
+                    returnValue = new Integer(trim(value));
                 }catch (Exception e){
                     throw new IllegalArgumentException("Input param:\"" + value + "\", convert to integer exception", e);
                 }

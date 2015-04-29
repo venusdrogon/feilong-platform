@@ -15,7 +15,6 @@
  */
 package com.feilong.servlet.http;
 
-import java.math.BigDecimal;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -789,33 +788,6 @@ public final class RequestUtil{
     }
 
     // *********************************获取值**************************************************
-    /**
-     * 将参数值转换成int类型.
-     *
-     * @param request
-     *            请求
-     * @param paramName
-     *            参数名称
-     * @return 将参数值转换成int类型
-     */
-    public static Integer getParameterToInteger(HttpServletRequest request,String paramName){
-        String value = getParameter(request, paramName);
-        return ObjectUtil.toInteger(value);
-    }
-
-    /**
-     * 将参数值转换成BigDecimal类型.
-     * 
-     * @param request
-     *            请求
-     * @param paramName
-     *            参数名称
-     * @return 将参数值转换成BigDecimal类型
-     */
-    public static BigDecimal getParameterToBigDecimal(HttpServletRequest request,String paramName){
-        String value = getParameter(request, paramName);
-        return ObjectUtil.toBigDecimal(value);
-    }
 
     /**
      * 获得request中的请求参数值.
