@@ -60,9 +60,9 @@ public final class RandomUtil{
      * @param number
      *            随机数最大值
      * @return 创建0-最大值之间的随机数
+     * @see java.lang.Math#random()
      */
     public static long createRandom(Number number){
-        // double random = Math.random();
         double random = JVM_RANDOM.nextDouble();
         return (long) Math.floor(random * number.longValue());
     }
@@ -102,7 +102,6 @@ public final class RandomUtil{
      */
     public static long createRandomWithLength(int length){
         // 该值大于等于 0.0 且小于 1.0 正号的 double 值
-        // double random = Math.random();
         double random = JVM_RANDOM.nextDouble();
         if (random < 0.1){// 可能出现 0.09346924349151808
             random = random + 0.1;
@@ -179,7 +178,6 @@ public final class RandomUtil{
         char[] ch = new char[length];
         int j = str.length();
         for (int i = 0; i < length; ++i){
-            // Random random = new Random();
             int index = JVM_RANDOM.nextInt(j);// 随机取个字符
             ch[i] = str.charAt(index);
         }

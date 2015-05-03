@@ -123,7 +123,6 @@ public final class CSVUtil{
 
         for (T t : collection){
 
-            // Map<String, Object> fieldValueMap = FieldUtil.getFieldValueMap(t, excludeFields);
             Map<String, Object> propertyValueMap = PropertyUtil.describe(t);
             propertyValueMap = MapUtil.getSubMapExcludeKeys(propertyValueMap, excludePropertyNames);
 
@@ -144,7 +143,6 @@ public final class CSVUtil{
                 if (Validator.isNullOrEmpty(value)){
                     rowData[i] = StringUtils.EMPTY;
                 }else{
-                    //rowData[i] = ConvertUtils.convert(value);
                     rowData[i] = ConvertUtils.convert(value, String.class);
                 }
 

@@ -34,10 +34,11 @@ import com.feilong.commons.core.io.ImageType;
 import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
- * 图片工具类.
- * 
+ * 和awt package相关的图片工具类.
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-11-30 下午03:24:45
+ * @see javax.imageio.ImageIO
  * @since 1.0.0
  */
 public final class ImageUtil{
@@ -55,24 +56,27 @@ public final class ImageUtil{
     /**
      * Write.
      *
-     * @param outputStream
-     *            outputStream will close
      * @param renderedImage
      *            renderedImage
+     * @param outputStream
+     *            outputStream will close
      * @param formatName
      *            a String containg the informal name of the format {@link ImageType}.
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @see javax.imageio.ImageIO#write(RenderedImage, String, OutputStream)
      */
-    public static void write(OutputStream outputStream,RenderedImage renderedImage,String formatName) throws UncheckedIOException{
+    public static void write(RenderedImage renderedImage,OutputStream outputStream,String formatName) throws UncheckedIOException{
         try{
-            // JPEGImageEncoder jpegImageEncoder = JPEGCodec.createJPEGEncoder(outputStream);
-            // jpegImageEncoder.encode(bufferedImage);
             ImageIO.write(renderedImage, formatName, outputStream);
-            outputStream.close();
         }catch (IOException e){
             throw new UncheckedIOException(e);
+        }finally{
+            try{
+                outputStream.close();
+            }catch (IOException e){
+                throw new UncheckedIOException(e);
+            }
         }
     }
 
@@ -84,6 +88,7 @@ public final class ImageUtil{
      * @param oldBufferedImage
      *            oldBufferedImage
      * @return new BufferedImage
+     * @see java.awt.image.BufferedImage
      */
     public static BufferedImage getNewBufferedImageFromFile(BufferedImage oldBufferedImage){
         int width = oldBufferedImage.getWidth();
@@ -101,18 +106,16 @@ public final class ImageUtil{
      * @param imagePath
      *            图片
      * @return new BufferedImage
+     * @see #getNewBufferedImageFromFile(BufferedImage)
+     * @see java.awt.image.BufferedImage
      */
     public static BufferedImage getNewBufferedImageFromFile(String imagePath){
-        BufferedImage bufferedImage = getBufferedImage(imagePath);
-        int width = bufferedImage.getWidth();
-        int height = bufferedImage.getHeight();
-
-        BufferedImage newBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        return newBufferedImage;
+        BufferedImage oldBufferedImage = getBufferedImage(imagePath);
+        return getNewBufferedImageFromFile(oldBufferedImage);
     }
 
     /**
-     * 基于原始图片,获得一个Graphics2D,大小和原图相等<br>
+     * 基于原始图片,获得一个Graphics2D,大小和原图相等.<br>
      * 并 drawImage原始图.
      * 
      * @param newBufferedImage
@@ -120,11 +123,14 @@ public final class ImageUtil{
      * @param bufferedImageOld
      *            bufferedImageOld
      * @return the graphics2 d by image
+     * @see java.awt.Graphics2D
+     * @see java.awt.image.BufferedImage
      */
     public static Graphics2D getGraphics2DByImage(BufferedImage newBufferedImage,BufferedImage bufferedImageOld){
-        Graphics2D graphics2D = newBufferedImage.createGraphics();
         int width = bufferedImageOld.getWidth();
         int height = bufferedImageOld.getHeight();
+
+        Graphics2D graphics2D = newBufferedImage.createGraphics();
         graphics2D.drawImage(bufferedImageOld, 0, 0, width, height, null);
         return graphics2D;
     }
@@ -138,6 +144,7 @@ public final class ImageUtil{
      * @return the buffered image
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see javax.imageio.ImageIO#read(File)
      */
     public static BufferedImage getBufferedImage(String filePath) throws UncheckedIOException{
         File file = new File(filePath);
@@ -146,8 +153,6 @@ public final class ImageUtil{
             log.debug("image filePath:{}", filePath);
             log.debug("image width:{}", bufferedImage.getWidth());
             log.debug("image height:{}", bufferedImage.getHeight());
-
-            // log.debug("getPropertyNames:{}", bufferedImage.getData());
             return bufferedImage;
         }catch (IOException e){
             throw new UncheckedIOException(e);
@@ -170,7 +175,6 @@ public final class ImageUtil{
         try{
             ImageInputStream imageInputStream = ImageIO.createImageInputStream(file);
             BufferedImage bufferedImage = ImageIO.read(imageInputStream);
-            // bufferedImage = ImageIO.read(file);
             if (bufferedImage != null){
                 ColorModel colorModel = bufferedImage.getColorModel();
                 ColorSpace colorSpace = colorModel.getColorSpace();
@@ -178,7 +182,6 @@ public final class ImageUtil{
 
                 return colorSpaceType == ColorSpace.TYPE_CMYK;
             }
-
             return false;
         }catch (IOException e){
             throw new UncheckedIOException(e);

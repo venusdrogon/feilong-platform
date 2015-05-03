@@ -52,34 +52,6 @@ public final class ByteUtil{
         return sb.toString();
     }
 
-    // XXX UpperCase
-    // XXX LowerCase
-    /**
-     * Byte to hex string lower case.
-     * 
-     * @param b
-     *            the b
-     * @return the string
-     */
-    public static final String byteToHexStringLowerCase(byte b){
-        int i = b;
-        if (i < 0){
-            i += 256;
-        }
-        int d1 = i / 16;
-        int d2 = i % 16;
-        return HEX_DIGITS[d1] + HEX_DIGITS[d2];
-
-        // 下面的处理不了显示 00， 00显示的是0
-        // int intValue = 0;
-        // if (b >= 0){
-        // intValue = b;
-        // }else{
-        // intValue = 256 + b;
-        // }
-        // return Integer.toHexString(intValue);
-    }
-
     /**
      * 字节数组,转成大写的16进制字符串 <br>
      * 网友gdpglc的思路.
@@ -102,35 +74,33 @@ public final class ByteUtil{
         return new String(tmpData);
     }
 
-    // @formatter:off
-
-//	/**
-//	 * 字节数组转换成16进制字符串.
-//	 * 
-//	 * @param bytes
-//	 *            byte[]
-//	 * @return 16进制字符串
-//	 * @deprecated ("该方法性能不高,请使用ByteUtil.bytesToHexStringUpperCase(byte[] bytes)")
-//	 */
-//	public static final String bytesToHexString_old(byte[] bytes){
-//		if (null == bytes){
-//			throw new IllegalArgumentException("bytes不能为空");
-//		}
-//		String returnValue = "";
-//		String hex = "";
-//		int length = bytes.length;
-//		for (int i = 0; i < length; ++i){
-//			hex = Integer.toHexString(bytes[i] & 0xFF);// 整数转成十六进制表示
-//			if (hex.length() == 1){
-//				hex = '0' + hex;
-//			}
-//			returnValue += hex;
-//		}
-//		// 转成大写
-//		return returnValue.toUpperCase();
-//	}
-	
-	// @formatter:on
+    // XXX UpperCase
+    // XXX LowerCase
+    /**
+     * 字节转成16进制小写字符串.<br>
+     * 
+     * <pre>
+     * {@code
+     * Example:
+     *  byteToHexStringLowerCase(new Byte(1))====> 01
+     *  byteToHexStringLowerCase(new Byte(32))====> 20
+     *  byteToHexStringLowerCase(new Byte(127))====> 7f
+     * }
+     * </pre>
+     * 
+     * @param b
+     *            the b
+     * @return the string
+     */
+    public static final String byteToHexStringLowerCase(byte b){
+        int i = b;
+        if (i < 0){
+            i += 256;
+        }
+        int d1 = i / 16;
+        int d2 = i % 16;
+        return HEX_DIGITS[d1] + HEX_DIGITS[d2];
+    }
 
     // *****************************************************************************************************
     /**
@@ -175,9 +145,8 @@ public final class ByteUtil{
         return null;
     }
 
-    // 将指定字符串hexString，以每两个字符分割转换为16进制形式 如："2B44EFD9" --> byte[]{0x2B, 0x44, 0xEF, 0xD9}
     /**
-     * Hex bytes to bytes2.
+     * 将指定字符串hexString，以每两个字符分割转换为16进制形式 如："2B44EFD9" --> byte[]{0x2B, 0x44, 0xEF, 0xD9}.
      * 
      * @param bytes
      *            the bytes
@@ -185,6 +154,7 @@ public final class ByteUtil{
      */
     public static final byte[] hexBytesToBytes2(byte[] bytes){
         int size = bytes.length / 2;
+
         byte[] ret = new byte[size];
         for (int i = 0; i < size; ++i){
             ret[i] = ByteUtil.uniteBytes(bytes[i * 2], bytes[i * 2 + 1]);

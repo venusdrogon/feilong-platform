@@ -575,7 +575,6 @@ public final class JsonUtil{
 
         while (keys.hasNext()){
             String key = keys.next();
-            // JSONObject jsonObject2 = jsonObject.getJSONObject(key);
             Object value = jsonObject.get(key);
             if (log.isDebugEnabled()){
                 log.debug("key:{} value:{}", key, value);

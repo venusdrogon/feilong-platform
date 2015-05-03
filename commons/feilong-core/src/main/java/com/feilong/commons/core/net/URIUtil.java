@@ -369,9 +369,7 @@ public final class URIUtil{
                             // 而ie 原封不动的发送
 
                             // 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
-                            // 此处不能先转 ,参数就是想传 =是转义符
-                            // query = decode(query, charsetType);
-
+                            // 此处不能先转 decode(query, charsetType)   ,参数就是想传 =是转义符
                             paramValueList.add(encode(decode(value.toString(), charsetType), charsetType));
                         }else{
                             paramValueList.add("");
@@ -470,8 +468,7 @@ public final class URIUtil{
                             // 而ie 原封不动的发送
 
                             // 由于暂时不能辨别是否encoded过,所以 先强制decode 再 encode
-                            // 此处不能先转 ,参数就是想传 =是转义符
-                            // query = decode(query, charsetType);
+                            // 此处不能先转  decode(query, charsetType) ,参数就是想传 =是转义符
 
                             // 统统先强制 decode 再 encode
                             // 浏览器兼容问题

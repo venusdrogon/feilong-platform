@@ -1251,7 +1251,8 @@ public final class DateUtil{
     // [start]isLeapYear 闰年
 
     /**
-     * 判断某年是否为闰年
+     * 判断某年是否为闰年 .<br>
+     * 规则:(year % 4 == 0 && year % 100 != 0) || year % 400 == 0
      * 
      * <h3>闰年原因:</h3>
      * 
@@ -1276,10 +1277,7 @@ public final class DateUtil{
      * @since 1.0
      */
     public static final boolean isLeapYear(int year){
-        // GregorianCalendar calendar = new GregorianCalendar();
-        // calendar.isLeapYear(year);
-
-        return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+        return new GregorianCalendar().isLeapYear(year);
     }
 
     // [end]

@@ -92,10 +92,11 @@ public final class InputStreamUtil{
      * @return the buffered reader
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see java.io.BufferedReader
      */
     public static BufferedReader toBufferedReader(InputStream inputStream,String charsetName) throws UncheckedIOException{
         try{
-            // bufferedReader 缓冲 高效读取 ;
+            // 缓冲 高效读取  bufferedReader 
             // 包装所有其 read() 操作可能开销很高的 Reader（如 FileReader 和 InputStreamReader）.
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, charsetName));
             return bufferedReader;

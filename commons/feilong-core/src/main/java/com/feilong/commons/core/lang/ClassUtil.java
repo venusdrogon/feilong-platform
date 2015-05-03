@@ -76,21 +76,6 @@ public final class ClassUtil{
         map.put("clz.isEnum()", klass.isEnum());
 
         return map;
-        //		Class<?> klass = this.getClass();
-        //
-        //		TypeVariable<?>[] typeParameters = klass.getTypeParameters();
-        //		TypeVariable<?> typeVariable = typeParameters[0];
-        //
-        //		Type[] bounds = typeVariable.getBounds();
-        //
-        //		Type bound = bounds[0];
-        //
-        //		if (log.isDebugEnabled()){
-        //			log.debug("" + (bound instanceof ParameterizedType));
-        //		}
-        //
-        //		Class<T> modelClass = ReflectUtil.getGenericModelClass(klass);
-        //		return modelClass;
     }
 
     /**

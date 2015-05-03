@@ -263,9 +263,10 @@ public final class NumberUtil{
      * @return 当two 是空或者是0的时候,直接返回one<br>
      *         否则返回除法结果one/two,四舍五入 {@link RoundingMode#HALF_UP},小数位数指定
      * @see <a href="#RoundingMode">JAVA 8种舍入法</a>
+     * @see java.math.RoundingMode#HALF_UP
+     * @see java.math.BigDecimal#ROUND_HALF_UP
      */
     public static final BigDecimal getDivideValue(BigDecimal one,Serializable two,int scale){
-        // int roundingMode = BigDecimal.ROUND_HALF_UP;
         RoundingMode roundingMode = RoundingMode.HALF_UP;
         return getDivideValue(one, two, scale, roundingMode);
     }
@@ -521,9 +522,10 @@ public final class NumberUtil{
      *            小数点位数
      * @return the big decimal
      * @see <a href="#RoundingMode">JAVA 8种舍入法</a>
+     * @see java.math.RoundingMode#HALF_UP
+     * @see java.math.BigDecimal#ROUND_HALF_UP
      */
     private static final BigDecimal setScale(BigDecimal number,int scale){
-        // int roundingMode = BigDecimal.ROUND_HALF_UP;
         RoundingMode roundingMode = RoundingMode.HALF_UP;
         return setScale(number, scale, roundingMode);
     }

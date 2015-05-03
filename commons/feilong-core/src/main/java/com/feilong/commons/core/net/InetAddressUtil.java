@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-12 上午09:57:10
  * @since 1.0.0
+ * @see java.net.InetAddress
  */
 public final class InetAddressUtil{
 
@@ -92,7 +93,7 @@ public final class InetAddressUtil{
      */
     public static InetAddress getInetAddress(String host){
         // byte的范围是－128～127，所以0，1不用
-        // byte[] ips = new byte[] { (byte) 127, (byte) 0, 0, 1 };
+        // @ byte[] ips = new byte[] { (byte) 127, (byte) 0, 0, 1 };
         try{
             InetAddress inetAddress = InetAddress.getByName(host);
             return inetAddress;

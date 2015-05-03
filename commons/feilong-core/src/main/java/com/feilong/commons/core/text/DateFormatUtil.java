@@ -128,8 +128,6 @@ public class DateFormatUtil{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, locale);
         ParsePosition parsePosition = new ParsePosition(0);
         Date date = simpleDateFormat.parse(dateString, parsePosition);
-        // Object[] objects = { dateString, pattern, parsePosition };
-        // log.debug("dateString:[{}], pattern:[{}], parsePosition:[{}]", objects);
         return date;
     }
 

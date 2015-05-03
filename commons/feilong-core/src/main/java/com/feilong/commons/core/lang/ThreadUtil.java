@@ -325,10 +325,9 @@ public final class ThreadUtil{
 
             for (StackTraceElement stackTraceElement : stackTraceElements){
 
-                //                String messagePattern = "(%F:%L) [%M()]";
-                String messagePattern = "({}:{}) [{}()]";
-                //                map.put("", stackTraceElement.getClassName()); //com.feilong.commons.core.lang.ThreadUtil
-                //                map.put("", stackTraceElement.isNativeMethod());
+                String messagePattern = "({}:{}) [{}()]";//"(%F:%L) [%M()]"
+                //stackTraceElement.getClassName()); //com.feilong.commons.core.lang.ThreadUtil
+                //stackTraceElement.isNativeMethod());
                 String fileName = stackTraceElement.getFileName();
                 list.add(Slf4jUtil.formatMessage(
                                 messagePattern,

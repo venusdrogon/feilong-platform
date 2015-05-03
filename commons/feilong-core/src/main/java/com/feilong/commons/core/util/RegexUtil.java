@@ -70,9 +70,7 @@ public final class RegexUtil{
      * @since 1.0.7
      */
     public static boolean matches(String regexPattern,CharSequence input) throws PatternSyntaxException{
-        //		Matcher matcher = getMatcher(regexPattern, input);
-        //		return matcher.matches();
-        //这里是等价的
+        //这里是等价的 getMatcher(regexPattern, input).matches();
         return Pattern.matches(regexPattern, input);
     }
 
@@ -266,17 +264,4 @@ public final class RegexUtil{
         Matcher matcher = pattern.matcher(input);
         return matcher;
     }
-
-    // /**
-    // * 验证输入汉字.
-    // *
-    // * @param str
-    // * 待验证的字符串
-    // * @return 如果是符合格式的字符串,返回 <b>true </b>,否则为 <b>false </b>
-    // */
-    // public static boolean isChinese(String str){
-    // String regex = "^[\u4e00-\u9fa5],{0,}$";
-    // return match(regex, str);
-    // }
-
 }
