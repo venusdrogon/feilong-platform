@@ -451,19 +451,20 @@ public final class FileUtil{
     }
 
     /**
-     * 获得 parent.
+     * 返回此抽象路径名父目录的路径名字符串；如果此路径名没有指定父目录，则返回 null。 .
      *
-     * @param pathname
-     *            the pathname
+     * @param path
+     *            the path
      * @return the parent
      * @throws NullPointerException
      *             the null pointer exception
+     * @see java.io.File#getParent()
      */
-    public static String getParent(String pathname) throws NullPointerException{
-        if (Validator.isNullOrEmpty(pathname)){
+    public static String getParent(String path) throws NullPointerException{
+        if (Validator.isNullOrEmpty(path)){
             throw new NullPointerException("pathname can't be null/empty!");
         }
-        File file = new File(pathname);
+        File file = new File(path);
         String parent = file.getParent();
         return parent;
     }

@@ -20,6 +20,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -84,12 +85,13 @@ public final class VelocityUtil{
         if (Validator.isNullOrEmpty(properties)){
             String messagePattern = "can't load [{}],this properties is use for init velocityEngine,Please make sure that the location of the file path";
             String formatMessage = Slf4jUtil.formatMessage(messagePattern, PROPERTIES_PATH);
+
             log.error(formatMessage);
             throw new IllegalArgumentException(formatMessage);
         }
 
         if (log.isInfoEnabled()){
-            log.info("velocity init, properties:{}", JsonUtil.format(properties));
+            log.info("velocity init, properties:{}", JsonUtil.format(new TreeMap<String, String>(PropertiesUtil.toMap(properties))));
         }
 
         // log.info(RuntimeSingleton.isInitialized() + "");
