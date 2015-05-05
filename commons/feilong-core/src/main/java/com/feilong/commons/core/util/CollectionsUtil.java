@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.bean.BeanUtilException;
 import com.feilong.commons.core.bean.PropertyUtil;
 import com.feilong.commons.core.entity.JoinStringEntity;
+import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.predicate.ArrayContainsPredicate;
 import com.feilong.commons.core.util.predicate.ObjectPropertyEqualsPredicate;
 
@@ -760,13 +761,13 @@ public final class CollectionsUtil{
         Map<T, O> map = new LinkedHashMap<T, O>(objectCollection.size());
 
         for (O o : objectCollection){
-            T t = PropertyUtil.getProperty(o, propertyName);
-            O valueList = map.get(t);
-            if (null == valueList){
-                map.put(t, o);
+            T key = PropertyUtil.getProperty(o, propertyName);
+
+            if (!map.containsKey(key)){
+                map.put(key, o);
             }else{
                 if (log.isDebugEnabled()){
-                    log.debug("when propertyName:{},multiple value:{},Abandoned except the first value outside.", propertyName, valueList);
+                    log.debug("Abandoned except the first value outside,map:{},containsKey key:[{}],", JsonUtil.format(map.keySet()), key);
                 }
             }
         }

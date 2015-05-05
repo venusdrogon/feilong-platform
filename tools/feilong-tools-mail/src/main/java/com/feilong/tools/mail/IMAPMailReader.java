@@ -76,8 +76,7 @@ public class IMAPMailReader implements MailReader{
                     throws MailReaderException{
 
         if (log.isDebugEnabled()){
-            log.debug("input mailSenderConfig:[{}]", JsonUtil.format(mailSenderConfig));
-            log.debug("input searchTerm:[{}]", JsonUtil.format(searchTerm));
+            log.debug("input mailSenderConfig:[{}],searchTerm:[{}]", JsonUtil.format(mailSenderConfig), JsonUtil.format(searchTerm));
         }
 
         List<MailInfo> mailInfoList = null;
@@ -134,7 +133,7 @@ public class IMAPMailReader implements MailReader{
         folder.open(Folder.READ_ONLY);
 
         if (log.isDebugEnabled()){
-            log.debug(JsonUtil.format(FolderUtil.getMapForLog(folder)));
+            log.debug("folder info :{}", JsonUtil.format(FolderUtil.getMapForLog(folder)));
         }
         return folder;
     }
