@@ -18,7 +18,7 @@
 		</filter>
 	</appender>
 	<!-- ******************loxia****************** -->
-	
+
 	<category name="org.apache.commons.beanutils">
 		<priority value="info" />
 	</category>
@@ -75,6 +75,16 @@
 	<category name="org.apache.commons.beanutils.converters.AbstractConverter">
 		<priority value="warn" />
 	</category>
+
+	<logger name="com.feilong.tools.velocity.log.SLF4JLogChute">
+		<level value="info"></level>
+	</logger>
+	<logger name="com.feilong.tools.velocity.VelocityUtil">
+		<level value="warn"></level>
+	</logger>
+	<logger name="feilongVelocityLogger">
+		<level value="info"></level>
+	</logger>
 
 	<!-- 设置接收所有输出的通道 -->
 	<root>

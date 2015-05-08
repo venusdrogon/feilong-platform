@@ -33,6 +33,7 @@ import com.feilong.tools.security.oneway.MD5Util;
 import com.feilong.tools.velocity.VelocityUtil;
 
 /**
+ * The Class AlipayJiShiDaoZhangTest.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.1.2 2015年5月6日 下午2:52:09
@@ -40,10 +41,15 @@ import com.feilong.tools.velocity.VelocityUtil;
  */
 public class AlipayJiShiDaoZhangTest{
 
+    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(AlipayJiShiDaoZhangTest.class);
 
+    /** The key. */
     private final String        key = "58hzej199qjzoielqpblrehuv1x1lwqr";
 
+    /**
+     * Test.
+     */
     @Test
     public final void test(){
 
@@ -72,13 +78,12 @@ public class AlipayJiShiDaoZhangTest{
 
         //        map.put("anti_phishing_key", "");
         map.put("it_b_pay", "15m");
+        //        map.put("notify_url", "http://168.25.21.25");
+        //        map.put("return_url", "");
 
         String sign = getSign(map);
         map.put("sign", sign);
         map.put("sign_type", "MD5");
-
-        map.put("notify_url", "http://168.25.21.25");
-        map.put("return_url", "");
 
         //String url = URIUtil.getEncodedUrlByValueMap(gateway, map, CharsetType.UTF8);
 
@@ -86,8 +91,6 @@ public class AlipayJiShiDaoZhangTest{
             //log.debug(url);
             log.debug(sign);
         }
-
-        //  ClipboardUtil.setClipboardContent(url);
 
         Map<String, Object> contextKeyValues = new HashMap<>();
 
@@ -112,7 +115,11 @@ public class AlipayJiShiDaoZhangTest{
     }
 
     /**
-     * @return
+     * 获得 sign.
+     *
+     * @param map
+     *            the map
+     * @return the sign
      * @since 1.1.2
      */
     private String getSign(Map<String, String> map){

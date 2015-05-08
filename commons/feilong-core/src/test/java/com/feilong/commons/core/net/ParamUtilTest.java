@@ -41,10 +41,10 @@ public class ParamUtilTest{
     private String              uri = "http://www.feilong.com:8888/esprit-frontend/search.htm?keyword=%E6%81%A4&page=";
 
     /**
-     * Name.
+     * Test to natural ordering string.
      */
     @Test
-    public void name(){
+    public void testToNaturalOrderingString(){
         String[] parameters = {
                 "service=create_salesorder",
                 "partner=3088101011913539",
