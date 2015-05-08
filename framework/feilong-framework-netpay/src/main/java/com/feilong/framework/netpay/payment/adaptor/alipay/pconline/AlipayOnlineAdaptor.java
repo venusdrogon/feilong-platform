@@ -180,6 +180,8 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
             throw new NullPointerException("the key is null or empty!");
         }
 
+        //验证此次通知信息是否是支付宝服务器发来的信息，以帮助校验反馈回来的数据的真假性
+
         boolean isNotifySignOk = isNotifySignOk(request);
 
         if (isNotifySignOk){

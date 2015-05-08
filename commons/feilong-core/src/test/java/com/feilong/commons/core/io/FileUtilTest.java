@@ -44,7 +44,7 @@ public class FileUtilTest{
     private String              fileName1 = "F:/pie2.png";
 
     /** The string. */
-    private String              fString   = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
+    private final String        fString   = "/home/webuser/nike_int/johnData/${date}/nikeid_pix_${typeName}.csv";
 
     /**
      * Test get content length.
@@ -138,8 +138,18 @@ public class FileUtilTest{
      * Creates the directory.
      */
     @Test
-    public void createDirectory(){
-        FileUtil.createDirectory("E:\\test\\1\\2011-07-07\\test\\1\\2011-07-07");
+    public void testCreateDirectory(){
+        String folderPath = "E:\\test\\1\\2011-07-07\\test\\1\\2011-07-07";
+        FileUtil.createDirectory(folderPath);
+    }
+
+    /**
+     * Test create directory by file path.
+     */
+    @Test
+    public void testCreateDirectoryByFilePath(){
+        FileUtil.createDirectoryByFilePath("E:\\test\\1\\2011-07-07\\test\\1\\2011-07-07");
+        FileUtil.createDirectoryByFilePath("E:\\test\\1\\2011-07-07\\test\\2\\2011-07-07");
     }
 
     /**

@@ -164,19 +164,17 @@ public abstract class FileTransfer{
         String filePath = localAbsoluteDirectoryPath + "/" + remoteFileName;
         // 文件夹
         if (isDirectory(remotePath)){
-            log.info("In [{}] will be create directory:[{}]", localAbsoluteDirectoryPath, remoteFileName);
+            log.info("In [{}] will be create directory:[{}]", remoteFileName, localAbsoluteDirectoryPath);
 
-            success = FileUtil.createDirectory(filePath);
+            FileUtil.createDirectory(localAbsoluteDirectoryPath);
 
-            if (success){
-                Map<String, FileInfoEntity> lsFileMap = getLsFileMap(remotePath);
-                for (Map.Entry<String, FileInfoEntity> entry : lsFileMap.entrySet()){
-                    String key = entry.getKey();
-                    // Boolean value = entry.getValue();
+            Map<String, FileInfoEntity> lsFileMap = getLsFileMap(remotePath);
+            for (Map.Entry<String, FileInfoEntity> entry : lsFileMap.entrySet()){
+                String key = entry.getKey();
+                // Boolean value = entry.getValue();
 
-                    // 级联下载
-                    success = _downloadDontClose(remotePath + "/" + key, filePath);
-                }
+                // 级联下载
+                success = _downloadDontClose(remotePath + "/" + key, filePath);
             }
         }else{
             // 下载到本地的文件 路径

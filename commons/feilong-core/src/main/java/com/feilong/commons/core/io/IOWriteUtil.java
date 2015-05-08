@@ -16,7 +16,6 @@
 package com.feilong.commons.core.io;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -58,13 +57,6 @@ public final class IOWriteUtil{
     /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(IOWriteUtil.class);
 
-    /** Don't let anyone instantiate this class. */
-    private IOWriteUtil(){
-        //AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.
-        //see 《Effective Java》 2nd
-        throw new AssertionError("No " + getClass().getName() + " instances for you!");
-    }
-
     /**
      * 将inputStream 写到 某个文件夹(文件夹路径 最后不带"/"),名字为fileName.
      * 
@@ -91,14 +83,11 @@ public final class IOWriteUtil{
      * @see com.feilong.commons.core.io.IOWriteUtil#write(InputStream, OutputStream)
      */
     public static void write(InputStream inputStream,String directoryName,String fileName) throws UncheckedIOException{
-        String fileAllName = directoryName + "/" + fileName;
-        // 拼接文件路径.如果拼接完的文件路径 父路径不存在,则自动创建
-        File file = new File(fileAllName);
-        File fileParent = file.getParentFile();
-        if (!fileParent.exists()){
-            fileParent.mkdirs();
-        }
-        OutputStream outputStream = FileUtil.getFileOutputStream(fileAllName);
+        String filePath = directoryName + "/" + fileName;
+
+        FileUtil.createDirectory(directoryName);
+
+        OutputStream outputStream = FileUtil.getFileOutputStream(filePath);
         write(inputStream, outputStream);
     }
 
@@ -260,7 +249,8 @@ public final class IOWriteUtil{
      * @see #write(String, String, String, FileWriteMode)
      */
     public static void write(String filePath,String content,String encode) throws UncheckedIOException,IllegalArgumentException{
-        write(filePath, content, encode, FileWriteMode.COVER);
+        FileWriteMode default_fileWriteMode = FileWriteMode.COVER;
+        write(filePath, content, encode, default_fileWriteMode);
     }
 
     /**
@@ -288,23 +278,24 @@ public final class IOWriteUtil{
      *             </ul>
      * @see FileWriteMode
      * @see CharsetType
-     * @see com.feilong.commons.core.io.FileUtil#cascadeMkdirs(String)
      * @see java.io.FileOutputStream#FileOutputStream(File, boolean)
      */
     public static void write(String filePath,String content,String encode,FileWriteMode fileWriteMode) throws UncheckedIOException,
                     IllegalArgumentException{
 
+        //TODO 如果不传 将来可能会改成读取 系统默认语言
         if (Validator.isNullOrEmpty(encode)){
             encode = CharsetType.GBK;
         }
 
         // **************************************************************************8
-        File file = FileUtil.cascadeMkdirs(filePath);
+        File file = new File(filePath);
 
-        boolean append = (fileWriteMode == FileWriteMode.APPEND);
+        FileUtil.createDirectoryByFilePath(filePath);
 
+        OutputStream outputStream = null;
         try{
-            OutputStream outputStream = new FileOutputStream(file, append);
+            outputStream = FileUtil.getFileOutputStream(filePath, fileWriteMode);
             Writer outputStreamWriter = new OutputStreamWriter(outputStream, encode);
 
             Writer writer = new PrintWriter(outputStreamWriter);
@@ -313,15 +304,31 @@ public final class IOWriteUtil{
 
             if (log.isInfoEnabled()){
                 log.info(
-                                "fileWriteMode:[{}],contentLength:[{}],encode:[{}],fileSize:[{}],absolutePath:[{}]",
+                                "fileWriteMode:[{}],encode:[{}],contentLength:[{}],fileSize:[{}],absolutePath:[{}]",
                                 fileWriteMode,
-                                content.length(),
                                 encode,
+                                content.length(),
                                 FileUtil.getFileFormatSize(file),
                                 file.getAbsolutePath());
             }
+            outputStream.close();
         }catch (IOException e){
             throw new UncheckedIOException(e);
+        }finally{
+            if (null != outputStream){
+                try{
+                    outputStream.close();
+                }catch (IOException e){
+                    throw new UncheckedIOException(e);
+                }
+            }
         }
+    }
+
+    /** Don't let anyone instantiate this class. */
+    private IOWriteUtil(){
+        //AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.
+        //see 《Effective Java》 2nd
+        throw new AssertionError("No " + getClass().getName() + " instances for you!");
     }
 }

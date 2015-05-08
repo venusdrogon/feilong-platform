@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,10 +68,12 @@ public interface PaymentAdaptor{
     PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap);
 
     // ********************************************************************************************
-
+    //TODO待重构
     /**
      * 拿到订单号返回支付服务器重新验证这笔订单到底有没有支付成功<br>
      * 验证此次通知信息是否是支付(宝)服务器发来的信息,以帮助校验反馈回来的数据的真假性。.
+     * 
+     *
      * 
      * @param request
      *            the request

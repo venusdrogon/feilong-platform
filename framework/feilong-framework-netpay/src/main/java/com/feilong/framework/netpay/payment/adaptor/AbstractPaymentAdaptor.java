@@ -119,7 +119,7 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
             Class<? extends AbstractPaymentAdaptor> clz = getClass();
 
             //TODO 优化 key这样的参数 显示成*****
-            log.info("\n{} fieldValueMap: \n{}", clz.getCanonicalName(), JsonUtil.format(map));
+            log.info("\n[{}] fieldValueMap: \n[{}]", clz.getCanonicalName(), JsonUtil.format(map));
         }
     }
 

@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -100,23 +101,69 @@ public final class FileUtil{
     //*******************************************************************************
 
     /**
-     * 获得FileOutputStream文件输出流 FileOutputStream（或其他文件写入对象）打开文件进行写入 <br>
-     * FileOutputStream 用于写入诸如图像数据之类的原始字节的流.要写入字符流，请考虑使用 FileWriter..
+     * 获得 {@link java.io.FileOutputStream} 文件输出流 （或其他文件写入对象）打开文件进行写入 .<br>
+     * {@link java.io.FileOutputStream} 用于写入诸如图像数据之类的原始字节的流.<br>
+     * 如果要写入字符流，请考虑使用 {@link FileWriter}.
      *
-     * @param fileName
-     *            文件名称
+     * @param filePath
+     *            文件路径
      * @return FileOutputStream
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see java.io.FileOutputStream#FileOutputStream(String)
+     * @see #getFileOutputStream(String, boolean)
      */
-    public static final FileOutputStream getFileOutputStream(String fileName) throws UncheckedIOException{
+    public static final FileOutputStream getFileOutputStream(String filePath) throws UncheckedIOException{
+        //默认 append 是 false
+        return getFileOutputStream(filePath, false);
+    }
+
+    /**
+     * 获得 {@link java.io.FileOutputStream} 文件输出流 （或其他文件写入对象）打开文件进行写入 .<br>
+     * {@link java.io.FileOutputStream} 用于写入诸如图像数据之类的原始字节的流.<br>
+     * 如果要写入字符流，请考虑使用 {@link FileWriter}.
+     *
+     * @param filePath
+     *            the file path
+     * @param fileWriteMode
+     *            the file write mode
+     * @return the file output stream
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @see #getFileOutputStream(String, boolean)
+     * @since 1.1.2
+     */
+    public static final FileOutputStream getFileOutputStream(String filePath,FileWriteMode fileWriteMode) throws UncheckedIOException{
+        boolean append = (fileWriteMode == FileWriteMode.APPEND);
+        return getFileOutputStream(filePath, append);
+    }
+
+    /**
+     * 获得 {@link java.io.FileOutputStream} 文件输出流 （或其他文件写入对象）打开文件进行写入 .<br>
+     * {@link java.io.FileOutputStream} 用于写入诸如图像数据之类的原始字节的流.<br>
+     * 如果要写入字符流，请考虑使用 {@link FileWriter}.
+     *
+     * @param filePath
+     *            the file path
+     * @param append
+     *            if true, then bytes will be written to the end of the file rather than the beginning
+     * @return the file output stream
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @see java.io.FileOutputStream#FileOutputStream(String, boolean)
+     * @since 1.1.2
+     */
+    //默认 Access Modifiers 权限修饰符
+    static final FileOutputStream getFileOutputStream(String filePath,boolean append) throws UncheckedIOException{
         try{
-            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath, append);
             return fileOutputStream;
         }catch (FileNotFoundException e){
             throw new UncheckedIOException(e);
         }
     }
+
+    //********************************************************************************************
 
     /**
      * FileInputStream 从文件系统中的某个文件中获得输入字节.哪些文件可用取决于主机环境.<br>
@@ -155,7 +202,7 @@ public final class FileUtil{
 
     /**
      * 判断一个目录 是否是空目录(里面没有文件).
-     * 
+     *
      * @param directory
      *            指定一个存在的文件夹
      * @return <ul>
@@ -164,10 +211,14 @@ public final class FileUtil{
      *         <li>如果directory is not Directory,throw IllegalArgumentException</li>
      *         <li>return file.list() ==0</li>
      *         </ul>
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
      */
-    public static boolean isEmptyDirectory(String directory){
+    public static boolean isEmptyDirectory(String directory) throws NullPointerException,IllegalArgumentException{
         if (Validator.isNullOrEmpty(directory)){
-            throw new IllegalArgumentException("directory param " + directory + " can't be null/empty!");
+            throw new NullPointerException("directory param " + directory + " can't be null/empty!");
         }
         File file = new File(directory);
         if (!file.exists()){
@@ -182,49 +233,114 @@ public final class FileUtil{
         // 如果此抽象路径名不表示一个目录，那么此方法将返回 null
 
         // ubuntu 已经 测试ok
-        String[] list = file.list();
+        String[] fileList = file.list();
 
-        int length = list.length;
+        int fileListLength = fileList.length;
 
         if (log.isDebugEnabled()){
-
-            log.debug("file :[{}] list length:[{}]", directory, length);
-
-            for (String fileName : list){
+            log.debug("file :[{}] list length:[{}]", directory, fileListLength);
+            for (String fileName : fileList){
                 log.debug(fileName);
             }
         }
-
-        boolean flag = (length == 0);
+        boolean flag = (fileListLength == 0);
         return flag;
     }
 
     // [start] 文件夹操作(createDirectory/deleteFileOrDirectory/deleteFileOrDirectory)
+    /**
+     * 创建文件夹by文件路径,支持级联创建.<br>
+     * 
+     * 注意:
+     * <ol>
+     * <li>此处<span style="color:red">参数是文件路径</span>,如果需要传递文件夹路径自动创建文件夹,那么请调用 {@link #createDirectory(String)}</li>
+     * <li>对于不存在的文件夹/文件夹: "E:\\test\\1\\2011-07-07" 这么一个路径, 没有办法自动区别到底你是要创建文件还是文件夹</li>
+     * <li>{@link File#isDirectory()} 这个方法,必须文件存在 才能判断</li>
+     * </ol>
+     * 
+     * <h3>代码流程:</h3>
+     * 
+     * <blockquote>
+     * <ol>
+     * <li>{@code if isNullOrEmpty(filePath)---->NullPointerException}</li>
+     * <li>{@link #getParent(String) getParent}(filePath)</li>
+     * <li>{@link #createDirectory(String) createDirectory}(directory)</li>
+     * </ol>
+     * </blockquote>
+     *
+     * @param filePath
+     *            <span style="color:red">文件路径</span>
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @since 1.1.2
+     * @see #getParent(String)
+     * @see #createDirectory(String)
+     */
+    public static void createDirectoryByFilePath(String filePath) throws NullPointerException,IllegalArgumentException{
+        if (Validator.isNullOrEmpty(filePath)){
+            throw new NullPointerException("filePath can't be null/empty!");
+        }
+        String directory = getParent(filePath);
+        createDirectory(directory);
+    }
 
     /**
-     * 创建文件夹<br>
-     * 支持级联创建.
+     * 创建文件夹,支持级联创建.<br>
+     * 注意:
+     * <ol>
+     * <li>此处<span style="color:red">参数是文件夹</span>,如果需要传递文件路径自动创建父文件夹,那么请调用 {@link #createDirectoryByFilePath(String)}</li>
+     * <li>对于不存在的文件夹/文件夹: "E:\\test\\1\\2011-07-07" 这么一个路径, 没有办法自动区别到底你是要创建文件还是文件夹</li>
+     * <li>{@link File#isDirectory()} 这个方法,必须文件存在 才能判断</li>
+     * </ol>
      * 
-     * @param folderPath
-     *            文件夹路径, 支持级联创建
-     * @return 如果创建失败 返回false,<br>
-     *         创建成功返回true,<br>
-     *         如果文件夹已经存在返回true
+     * <h3>代码流程:</h3> <blockquote>
+     * <ol>
+     * <li>{@code if Validator.isNullOrEmpty(directory)---->NullPointerException}</li>
+     * <li>{@code if directory exists---->log debug and return}</li>
+     * <li>{@link java.io.File#mkdirs()}</li>
+     * <li>{@code if mkdirs's result is false ---> return IllegalArgumentException}</li>
+     * <li>{@code if mkdirs's result is true ---> log debug}</li>
+     * </ol>
+     * </blockquote>
+     * 
+     * @param directory
+     *            <span style="color:red">文件夹路径</span>
+     * @throws NullPointerException
+     *             the null pointer exception
+     * @throws IllegalArgumentException
+     *             the illegal argument exception
+     * @see #createDirectoryByFilePath(String)
      */
-    public static boolean createDirectory(String folderPath){
-        // 文件和目录路径名的抽象表示形式
-        File folder = new File(folderPath);
-        if (!folder.exists()){
-            // mkdir 如果 parent 目录不存在 会返回false 不会报错
-            boolean flag = folder.mkdirs();
-            if (!flag){
-                log.warn("folder:[{}] make [faild]", folder);
-            }
-            return flag;
-        }else{
-            log.debug("the folder:[{}] exists,don't need mkdirs", folder);
+    public static void createDirectory(String directory) throws NullPointerException,IllegalArgumentException{
+        if (Validator.isNullOrEmpty(directory)){
+            throw new NullPointerException("filePath can't be null/empty!");
         }
-        return true;
+        File directoryFile = new File(directory);
+
+        boolean isExists = directoryFile.exists();
+
+        //***********do with 存在******************
+        if (isExists){//存在
+            log.debug("exists directoryFile:[{}],don't need mkdirs,nothing to do~", directoryFile);
+            return;
+        }
+
+        //***********do with 不存在******************
+        String absolutePath = directoryFile.getAbsolutePath();
+
+        // mkdir 如果 parent 目录不存在 会返回false 不会报错
+        boolean flag = directoryFile.mkdirs();
+        // 级联创建 父级文件夹
+        if (!flag){
+            String msg = "File [" + absolutePath + "] could not be created";
+            log.error(msg);
+            throw new IllegalArgumentException(msg);
+        }else{
+            //创建成功 记录下日志
+            log.debug("success mkdirs:[{}]~~", absolutePath);
+        }
     }
 
     /**
@@ -451,7 +567,7 @@ public final class FileUtil{
     }
 
     /**
-     * 返回此抽象路径名父目录的路径名字符串；如果此路径名没有指定父目录，则返回 null。 .
+     * 返回此抽象路径名父目录的路径名字符串；如果此路径名没有指定父目录，则返回 null.
      *
      * @param path
      *            the path
@@ -657,51 +773,6 @@ public final class FileUtil{
      */
     public static long getFileSize(File file){
         return file.length();
-    }
-
-    /**
-     * 级联创建文件夹和file.
-     *
-     * @param filePath
-     *            必须是file
-     * @return the file
-     * @throws IllegalArgumentException
-     *             if Validator.isNullOrEmpty(filePath)
-     * @see #getFormatFileName(String)
-     * @since 1.0.7
-     */
-    static final File cascadeMkdirs(final String filePath) throws IllegalArgumentException{
-        if (Validator.isNullOrEmpty(filePath)){
-            throw new IllegalArgumentException("filePath can't be null/empty!");
-        }
-
-        File file = new File(filePath);
-
-        if (file.exists()){
-            // 文件夹
-            if (file.isDirectory()){
-                log.error("File '" + file + "' exists but is a directory");
-                throw new IllegalArgumentException("File '" + file + "' exists but is a directory");
-            }
-            // 不能写
-            else if (!file.canWrite()){
-                log.error("File '" + file + "' cannot be written to");
-                throw new IllegalArgumentException("File '" + file + "' cannot be written to");
-            }
-        }
-        // 文件不存在
-        else{
-            File parent = file.getParentFile();
-            if (parent != null && !parent.exists()){
-                boolean flag = parent.mkdirs();
-                // 级联创建 父级文件夹
-                if (!flag){
-                    log.error("File '" + file + "' could not be created");
-                    throw new IllegalArgumentException("File '" + file + "' could not be created");
-                }
-            }
-        }
-        return file;
     }
 
     /**
