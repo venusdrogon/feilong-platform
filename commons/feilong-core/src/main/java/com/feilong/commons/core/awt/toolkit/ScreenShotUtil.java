@@ -17,19 +17,12 @@ package com.feilong.commons.core.awt.toolkit;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.feilong.commons.core.awt.ImageUtil;
 import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
@@ -40,9 +33,6 @@ import com.feilong.commons.core.io.UncheckedIOException;
  * @since 1.0.0
  */
 public final class ScreenShotUtil{
-
-    /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(ScreenShotUtil.class);
 
     /** Don't let anyone instantiate this class. */
     private ScreenShotUtil(){
@@ -61,14 +51,16 @@ public final class ScreenShotUtil{
      */
     public static void screenshot(String fileName,String formatName){
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
         int width = (int) dimension.getWidth();
         int height = (int) dimension.getHeight();
+
         screenshot(fileName, formatName, 0, 0, width, height);
     }
 
     /**
      * 区域截图.
-     * 
+     *
      * @param fileName
      *            文件名称
      * @param formatName
@@ -81,20 +73,33 @@ public final class ScreenShotUtil{
      *            高度
      * @param height
      *            宽度
+     * @throws UncheckedIOException
+     *             the unchecked io exception
      */
-    public static void screenshot(String fileName,String formatName,int x,int y,int width,int height){
+    public static void screenshot(String fileName,String formatName,int x,int y,int width,int height) throws UncheckedIOException{
+        Robot robot = getRobot();
+
+        Rectangle rectangle = new Rectangle(x, y, width, height);
+        BufferedImage bufferedImage = robot.createScreenCapture(rectangle);
+
+        ImageUtil.write(bufferedImage, fileName, formatName);
+    }
+
+    /**
+     * 获得 robot.
+     *
+     * @return the robot
+     * @throws RuntimeException
+     *             the runtime exception
+     * @since 1.1.2
+     */
+    private static Robot getRobot() throws RuntimeException{
+        Robot robot = null;
         try{
-            Robot robot = new Robot();
-            Rectangle rectangle = new Rectangle(x, y, width, height);
-            BufferedImage bufferedImage = robot.createScreenCapture(rectangle);
-            File file = new File(fileName);
-            ImageIO.write(bufferedImage, formatName, file);
-        }catch (HeadlessException e){
-            log.error("", e);
+            robot = new Robot();
         }catch (AWTException e){
-            log.error("", e);
-        }catch (IOException e){
-            throw new UncheckedIOException(e);
+            throw new RuntimeException(e);
         }
+        return robot;
     }
 }

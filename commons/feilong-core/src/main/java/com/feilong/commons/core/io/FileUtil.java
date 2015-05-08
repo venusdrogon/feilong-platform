@@ -274,9 +274,9 @@ public final class FileUtil{
      *             the null pointer exception
      * @throws IllegalArgumentException
      *             the illegal argument exception
-     * @since 1.1.2
      * @see #getParent(String)
      * @see #createDirectory(String)
+     * @since 1.1.2
      */
     public static void createDirectoryByFilePath(String filePath) throws NullPointerException,IllegalArgumentException{
         if (Validator.isNullOrEmpty(filePath)){
@@ -345,17 +345,18 @@ public final class FileUtil{
 
     /**
      * 删除某个文件或者文件夹.
-     * 
+     *
      * @param fileName
      *            文件或者文件夹名称
+     * @throws IllegalArgumentException
+     *             if file not exists
      */
-    public static void deleteFileOrDirectory(String fileName){
+    public static void deleteFileOrDirectory(String fileName) throws IllegalArgumentException{
         File file = new File(fileName);
         if (file.exists()){
             deleteFileOrDirectory(file);
-        }else{
-            log.error(fileName + "不存在");
         }
+        throw new IllegalArgumentException("file:[" + fileName + "] not exists,please check it!");
     }
 
     /**

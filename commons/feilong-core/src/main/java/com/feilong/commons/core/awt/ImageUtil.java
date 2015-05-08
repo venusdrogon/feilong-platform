@@ -23,18 +23,36 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
+import javax.imageio.ImageTypeSpecifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.io.FileUtil;
 import com.feilong.commons.core.io.ImageType;
 import com.feilong.commons.core.io.UncheckedIOException;
+import com.feilong.commons.core.tools.json.JsonUtil;
 
 /**
  * 和awt package相关的图片工具类.
+ * 
+ * <h3>关于图片格式 <code>formatName</code>:</h3>
+ * 
+ * <blockquote>
+ * 
+ * 用于 {@link javax.imageio.ImageIO.CanEncodeImageAndFormatFilter#CanEncodeImageAndFormatFilter(ImageTypeSpecifier, String)}
+ * <ul>
+ * <li> {@link com.sun.imageio.plugins.bmp.BMPImageWriterSpi}</li>
+ * <li> {@link com.sun.imageio.plugins.gif.GIFImageWriterSpi}</li>
+ * <li> {@link com.sun.imageio.plugins.jpeg.JPEGImageWriterSpi}</li>
+ * <li> {@link com.sun.imageio.plugins.png.PNGImageWriterSpi}</li>
+ * <li> {@link com.sun.imageio.plugins.wbmp.WBMPImageWriterSpi}</li>
+ * </ul>
+ * </blockquote>
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-11-30 下午03:24:45
@@ -51,6 +69,28 @@ public final class ImageUtil{
         //AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.
         //see 《Effective Java》 2nd
         throw new AssertionError("No " + getClass().getName() + " instances for you!");
+    }
+
+    /**
+     * Write.
+     *
+     * @param renderedImage
+     *            the rendered image
+     * @param outputFilePath
+     *            the output file path
+     * @param formatName
+     *            the format name
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @see FileUtil#getFileOutputStream(String)
+     * @see #write(RenderedImage, OutputStream, String)
+     * @since 1.1.2
+     */
+    public static void write(RenderedImage renderedImage,String outputFilePath,String formatName) throws UncheckedIOException{
+        OutputStream outputStream = FileUtil.getFileOutputStream(outputFilePath);
+        write(renderedImage, outputStream, formatName);
+
+        log.info("write image success:[{}]", outputFilePath);
     }
 
     /**
@@ -139,22 +179,66 @@ public final class ImageUtil{
      * 获得image/BufferedImage 对象<br>
      * BufferedImage 子类描述具有 可访问图像数据缓冲区的 Image.
      *
-     * @param filePath
+     * @param imageFilePath
      *            图像路径
      * @return the buffered image
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @see javax.imageio.ImageIO#read(File)
+     * @see #getBufferedImage(File)
      */
-    public static BufferedImage getBufferedImage(String filePath) throws UncheckedIOException{
-        File file = new File(filePath);
+    public static BufferedImage getBufferedImage(String imageFilePath) throws UncheckedIOException{
+        File file = new File(imageFilePath);
+        return getBufferedImage(file);
+    }
+
+    /**
+     * 获得image/BufferedImage 对象<br>
+     * BufferedImage 子类描述具有 可访问图像数据缓冲区的 Image.
+     *
+     * @param imageFile
+     *            the file
+     * @return the buffered image
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @see javax.imageio.ImageIO#read(File)
+     * @since 1.1.2
+     */
+    public static BufferedImage getBufferedImage(File imageFile) throws UncheckedIOException{
         try{
-            BufferedImage bufferedImage = ImageIO.read(file);
-            log.debug("image filePath:{}", filePath);
-            log.debug("image width:{}", bufferedImage.getWidth());
-            log.debug("image height:{}", bufferedImage.getHeight());
+            BufferedImage bufferedImage = ImageIO.read(imageFile);
+
+            if (log.isDebugEnabled()){
+                log.debug("image filePath:[{}]", imageFile.getAbsolutePath());
+
+                Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+                map.put("getWidth()", bufferedImage.getWidth());
+                map.put("getHeight()", bufferedImage.getHeight());
+                map.put("getPropertyNames()", bufferedImage.getPropertyNames());
+                map.put("isAlphaPremultiplied()", bufferedImage.isAlphaPremultiplied());
+                map.put("toString()", bufferedImage.toString());
+                map.put("getType()", bufferedImage.getType());
+                map.put("getMinTileX()", bufferedImage.getMinTileX());
+                map.put("getMinTileY()", bufferedImage.getMinTileY());
+                map.put("getMinX()", bufferedImage.getMinX());
+                map.put("getMinY()", bufferedImage.getMinY());
+                map.put("getColorModel()", bufferedImage.getColorModel());
+                map.put("getNumXTiles()", bufferedImage.getNumXTiles());
+                map.put("getNumYTiles()", bufferedImage.getNumYTiles());
+                map.put("getSampleModel()", bufferedImage.getSampleModel());
+                map.put("getTileGridXOffset()", bufferedImage.getTileGridXOffset());
+                map.put("getTileGridYOffset()", bufferedImage.getTileGridYOffset());
+                map.put("getTileHeight()", bufferedImage.getTileHeight());
+                map.put("getTileWidth()", bufferedImage.getTileWidth());
+                map.put("getTransparency()", bufferedImage.getTransparency());
+                map.put("getWritableTileIndices()", bufferedImage.getWritableTileIndices());
+                log.debug("bufferedImage info:{}", JsonUtil.format(map, new String[] { "data", "matrix" }));
+            }
+
             return bufferedImage;
         }catch (IOException e){
+            log.error("", e);
             throw new UncheckedIOException(e);
         }
     }
@@ -162,29 +246,35 @@ public final class ImageUtil{
     /**
      * 是否是cmyk类型.
      *
-     * @param filename
+     * @param imageFilename
      *            文件
      * @return 是否是cmyk类型,是返回true
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see java.awt.color.ColorSpace
+     * @see java.awt.color.ColorSpace#TYPE_CMYK
+     * @see #getBufferedImage(String)
      * @deprecated 未成功验证,暂时不要调用
      */
     @Deprecated
-    public static boolean isCMYKType(String filename) throws UncheckedIOException{
-        File file = new File(filename);
-        try{
-            ImageInputStream imageInputStream = ImageIO.createImageInputStream(file);
-            BufferedImage bufferedImage = ImageIO.read(imageInputStream);
-            if (bufferedImage != null){
-                ColorModel colorModel = bufferedImage.getColorModel();
-                ColorSpace colorSpace = colorModel.getColorSpace();
-                int colorSpaceType = colorSpace.getType();
+    public static boolean isCMYKType(String imageFilename) throws UncheckedIOException{
+        BufferedImage bufferedImage = getBufferedImage(imageFilename);
+        ColorSpace colorSpace = getColorSpace(bufferedImage);
+        int colorSpaceType = colorSpace.getType();
+        return colorSpaceType == ColorSpace.TYPE_CMYK;
+    }
 
-                return colorSpaceType == ColorSpace.TYPE_CMYK;
-            }
-            return false;
-        }catch (IOException e){
-            throw new UncheckedIOException(e);
-        }
+    /**
+     * 获得 color space.
+     *
+     * @param bufferedImage
+     *            the buffered image
+     * @return the color space
+     * @since 1.1.2
+     */
+    private static ColorSpace getColorSpace(BufferedImage bufferedImage){
+        ColorModel colorModel = bufferedImage.getColorModel();
+        ColorSpace colorSpace = colorModel.getColorSpace();
+        return colorSpace;
     }
 }

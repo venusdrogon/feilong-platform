@@ -208,7 +208,7 @@ public class FileUtilTest{
     @Test
     @Ignore
     public void testDeleteFileOrDirectory(){
-        FileUtil.deleteFileOrDirectory("E:\\test");
+        FileUtil.deleteFileOrDirectory("D:\\test");
     }
 
     /**
