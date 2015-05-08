@@ -84,7 +84,7 @@ public abstract class BaseAlipayAdaptor extends AbstractPaymentAdaptor{
         // *************************************************************************************
         // 待签名字符串
         // 除去sign、sign_type 两个参数外，其他需要使用到的参数皆是要签名的参数
-        String toBeSignedString = ParamUtil.getToBeSignedString(signParamsMap);
+        String toBeSignedString = ParamUtil.toNaturalOrderingString(signParamsMap);
 
         // 在 MD5 签名时，需要私钥参与签名。
         // 需要把私钥直接拼接到待签名字符串后面，形成新的字符串，利用MD5 的签名函数对这个新的字符串进行签名运算
@@ -151,7 +151,7 @@ public abstract class BaseAlipayAdaptor extends AbstractPaymentAdaptor{
             params.put(key, stringBuilder.toString());
 
         }
-        String toBeSignedString = ParamUtil.getToBeSignedString(params);
+        String toBeSignedString = ParamUtil.toNaturalOrderingString(params);
         String mysign = MD5Util.encode(toBeSignedString + key, _input_charset);
         boolean isSignOk = mysign.equals(alipaySign);
         return isSignOk;

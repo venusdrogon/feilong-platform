@@ -209,7 +209,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
         hiddenParamMap.put("format", format);
         hiddenParamMap.put("v", v);
 
-        String toBeSignedString = ParamUtil.getToBeSignedString(hiddenParamMap);
+        String toBeSignedString = ParamUtil.toNaturalOrderingString(hiddenParamMap);
         String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
         hiddenParamMap.put("sign", sign);
         String url = URIUtil.getEncodedUrlByValueMap(gateway, hiddenParamMap, _input_charset);
@@ -260,7 +260,7 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
         String res_data = returnParamMap.get("res_data");
         resMap.put("res_data", res_data);
         // 验证签名数据
-        String verifyData = ParamUtil.getToBeSignedString(resMap);
+        String verifyData = ParamUtil.toNaturalOrderingString(resMap);
         String sign1 = MD5Util.encode(verifyData + key, _input_charset);
         if (sign1.equals(reutrnSign)){
             businessResult = getValueByKeyForXML(res_data, "request_token");

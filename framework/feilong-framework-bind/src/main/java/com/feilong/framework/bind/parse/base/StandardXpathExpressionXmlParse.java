@@ -29,7 +29,7 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.tools.dom4j.Dom4jUtil;
 
 /**
- * The Class StandardXpathExpressionXmlParse. <br>
+ * 标准的Xpath表达式 xml 解析器. <br>
  * key /value 取自 每个 {@link org.dom4j.Node} 的 {@link Node#getName()} / {@link Node#getStringValue()} ;<br>
  * 
  * <h3>about xpathExpression</h3>
@@ -82,10 +82,10 @@ public class StandardXpathExpressionXmlParse<T> extends AbstractBaseXmlParse<T>{
     private static final Logger log = LoggerFactory.getLogger(StandardXpathExpressionXmlParse.class);
 
     /** The xpath expression . */
-    private String              xpathExpression;
+    private final String        xpathExpression;
 
     /** The t class. */
-    private Class<T>            tClass;
+    private final Class<T>      tClass;
 
     /**
      * Instantiates a new standard xpath expression xml parse.

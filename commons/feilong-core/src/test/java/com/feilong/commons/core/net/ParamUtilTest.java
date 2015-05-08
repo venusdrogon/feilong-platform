@@ -72,7 +72,7 @@ public class ParamUtilTest{
             object.put(keyAndValue[0], keyAndValue[1]);
         }
 
-        log.info(ParamUtil.getToBeSignedString(object));
+        log.info(ParamUtil.toNaturalOrderingString(object));
     }
 
     /**

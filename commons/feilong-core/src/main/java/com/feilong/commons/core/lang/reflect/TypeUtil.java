@@ -213,7 +213,6 @@ public final class TypeUtil{
             Class<?>[] klasses = new Class<?>[length];
             for (int i = 0, j = length; i < j; ++i){
                 klasses[i] = (Class<?>) actualTypeArguments[i];
-
             }
             return klasses;
         }

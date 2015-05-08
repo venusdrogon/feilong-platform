@@ -16,15 +16,17 @@
 package com.feilong.framework.netpay.advance.command;
 
 /**
- * 交易角色
+ * 交易角色.目前已知用途有,关闭支付宝交易
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Mar 2, 2013 5:09:03 PM
+ * @see com.feilong.framework.netpay.advance.adaptor.alipay.AlipayAdvanceAdaptor#toTrade_roleParamValue(TradeRole)
  */
 public enum TradeRole{
-    /** 买家 */
+
+    /** 买家. */
     BUYER,
 
-    /** 卖家 */
+    /** 卖家. */
     SELLER;
 }
