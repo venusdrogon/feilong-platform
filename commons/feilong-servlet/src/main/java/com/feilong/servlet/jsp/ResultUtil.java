@@ -33,9 +33,11 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * jdbc {@link javax.servlet.jsp.jstl.sql.Result}的工具类.
+ * jstl {@link javax.servlet.jsp.jstl.sql.Result}的工具类.
  * 
+ * <p>
  * {@code need jstl}
+ * </p>
  * 
  * @author 金鑫 2010-7-9 上午11:55:22
  * @since 1.0

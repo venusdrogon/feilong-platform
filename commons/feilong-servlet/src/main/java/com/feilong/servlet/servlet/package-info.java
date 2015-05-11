@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- *
+ *常用的servlet.
  * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
  * @version 1.0.8 2014年11月23日 上午2:46:51 
  * @since 1.0.8

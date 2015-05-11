@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 设置 servlet context path 到servletContext attribute {@link #APPLICATIONATTRIBUTE_BASE}
+ * 设置 servlet context path 到 {@link javax.servlet.ServletContext} attribute {@link #APPLICATIONATTRIBUTE_BASE}
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.9 2015年1月3日 上午5:00:38

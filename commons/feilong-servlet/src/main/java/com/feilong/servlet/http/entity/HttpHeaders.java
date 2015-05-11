@@ -239,7 +239,7 @@ public final class HttpHeaders{
     /** <code>{@value}</code> 这个应该是WebLogic前置HttpClusterServlet提供的属性，一般不需要自己处理，在WebLogic控制台中已经可以指定使用这个属性来覆盖. */
     public static final String WL_PROXY_CLIENT_IP          = "WL-Proxy-Client-IP";
 
-    /** <code>{@value}</code> . */
+    /** <code>{@value}</code>. */
     public static final String X_REQUESTED_WITH            = "X-Requested-With";
 
     /** <code>{@value}</code>. */

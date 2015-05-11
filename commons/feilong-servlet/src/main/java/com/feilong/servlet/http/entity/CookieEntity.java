@@ -24,8 +24,8 @@ import com.feilong.servlet.http.CookieUtil;
  * cookie实体.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-6-24 上午08:07:11
- * @since 1.0
+ * @version 1.0.0 2010-6-24 上午08:07:11
+ * @since 1.0.0
  */
 public class CookieEntity implements Serializable{
 

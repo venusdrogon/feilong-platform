@@ -45,6 +45,7 @@ import com.feilong.servlet.http.entity.HttpHeaders;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:26:14
  * @see javax.servlet.http.HttpServletResponse
+ * @since 1.0.0
  */
 public final class ResponseUtil{
 

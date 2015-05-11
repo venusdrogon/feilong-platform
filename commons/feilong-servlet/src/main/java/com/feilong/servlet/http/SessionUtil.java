@@ -34,7 +34,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.util.CollectionsUtil;
 
 /**
- * SessionUtil 操作session.
+ * {@link javax.servlet.http.HttpSession} 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 2010-7-6 下午02:10:33

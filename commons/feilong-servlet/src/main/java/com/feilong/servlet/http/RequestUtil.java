@@ -39,13 +39,14 @@ import com.feilong.servlet.http.entity.RequestAttributes;
 import com.feilong.servlet.http.entity.RequestLogSwitch;
 
 /**
- * HttpServletRequest工具类.
+ * {@link javax.servlet.http.HttpServletRequest}工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-11-3 下午02:24:55
  * @version 1.0.4 2014-3-27 14:38
  * @see RequestAttributes
  * @see RequestLogSwitch
+ * @since 1.0.0
  */
 public final class RequestUtil{
 

@@ -27,10 +27,11 @@ import com.feilong.commons.core.io.IOReaderUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * ServletContextUtil.
+ * {@link javax.servlet.ServletContext} 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2012-5-31 下午12:53:01
+ * @version 1.0.2 2012-5-31 下午12:53:01
+ * @since 1.0.2
  */
 public final class ServletContextUtil{
 
