@@ -3,6 +3,26 @@ feilong-platform
 
 Reduce development, Release ideas
 
+            .--.
+           /    \
+          ## a  a
+          (   '._)
+           |'-- |
+         _.\___/_   ___feilong___
+       ."\> \Y/|<'.  '._.-'
+      /  \ \_\/ /  '-' /
+      | --'\_/|/ |   _/
+      |___.-' |  |`'`
+        |     |  |
+        |    / './
+       /__./` | |
+          \   | |
+           \  | |
+           ;  | |
+           /  | |
+     jgs  |___\_.\_
+          `-"--'---'
+
 
 #Welcome to feilong-platform.
 
@@ -45,6 +65,13 @@ Reduce development, Release ideas
 		
 	</project>
 ```
+
+##### feilong-platform module:
+
+name | description | compiler version
+----|---------|------------
+`commons/feilong-core` | core | 1.6
+`commons/feilong-servlet` | servlet | 1.6
 
 # 项目依赖
 
