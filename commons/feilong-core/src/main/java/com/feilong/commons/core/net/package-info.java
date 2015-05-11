@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * 网络操作 {@code java.net}相关工具类,包括URI解析
+ * 网络操作 {@code java.net}相关工具类封装,包括URI解析.
  * @since 1.0.0
  */
 package com.feilong.commons.core.net;

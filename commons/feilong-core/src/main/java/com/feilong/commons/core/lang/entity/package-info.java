@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- *
+ *lang包要用的实体类
  * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
  * @version 1.1.1 2015年4月10日 下午3:47:17 
  * @since 1.1.1

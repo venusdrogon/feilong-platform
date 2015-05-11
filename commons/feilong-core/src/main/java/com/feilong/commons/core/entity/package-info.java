@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * 实体包,数据传输的载体
+ * 通用的数据传输的载体,实体包.
  * @since 1.0.0
  */
 package com.feilong.commons.core.entity;

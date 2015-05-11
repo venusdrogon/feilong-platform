@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * 日期操作,核心包,可以解析Date,Calendar,星座,农历,公历等
+ * <b>核心包</b>,日期操作,可以解析Date {@link com.feilong.commons.core.date.DateUtil DateUtil},Calendar {@link com.feilong.commons.core.date.CalendarUtil CalendarUtil},星座 {@link com.feilong.commons.core.date.ConstellationType ConstellationType},农历 {@link com.feilong.commons.core.date.LunarDateUtil LunarDateUtil},公历 {@link com.feilong.commons.core.date.SolarDateUtil SolarDateUtil}等.
  * @since 1.0.0
  */
 package com.feilong.commons.core.date;

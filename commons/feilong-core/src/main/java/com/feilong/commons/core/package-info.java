@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * 对J2SE core常见类的封装,如果您需要查看对J2EE常见类的封装,您可以使用feilong-servlet jar.
+ * 对J2SE core常见类的封装(以及常用第三方工具类的封装),如果您需要查看对J2EE常见类的封装,您可以使用feilong-servlet jar.
  */
 package com.feilong.commons.core;
