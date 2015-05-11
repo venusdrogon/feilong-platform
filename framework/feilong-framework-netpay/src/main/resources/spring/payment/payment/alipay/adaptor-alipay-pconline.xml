@@ -10,7 +10,7 @@
 	<!-- alipay 支付 -->
 	<bean id="alipayOnlineAdaptor" parent="baseAlipayOnlineAdaptor">
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
-		<property name="signMap">
+		<property name="needSignParamMap">
 			<map>
 				<!-- #接口 名称 不可为空 -->
 				<entry key="service" value="#{p_AlipayOnlineAdaptor['service.create_direct_pay_by_user']}"></entry>
@@ -31,7 +31,7 @@
 	<!-- alipay 扫描支付 -->
 	<bean id="alipayOnlineScanCodeAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineScanCodeAdaptor" parent="baseAlipayOnlineAdaptor">
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
-		<property name="signMap">
+		<property name="needSignParamMap">
 			<map>
 				<!-- #接口 名称 不可为空 -->
 				<entry key="service" value="#{p_AlipayOnlineAdaptor['service.create_direct_pay_by_user']}"></entry>
@@ -52,7 +52,7 @@
 	<!-- alipay 网银在线 -->
 	<bean id="alipayOnlineNetpayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineNetpayAdaptor" parent="baseAlipayOnlineAdaptor">
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
-		<property name="signMap">
+		<property name="needSignParamMap">
 			<map>
 				<!-- #接口 名称 不可为空 -->
 				<entry key="service" value="#{p_AlipayOnlineAdaptor['service.create_direct_pay_by_user']}"></entry>
@@ -71,7 +71,7 @@
 	<!-- alipay 信用卡支付 -->
 	<bean id="alipayOnlineCreditCardAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor" parent="baseAlipayOnlineAdaptor">
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
-		<property name="signMap">
+		<property name="needSignParamMap">
 			<map>
 				<!-- #接口 名称 不可为空 -->
 				<entry key="service" value="#{p_AlipayOnlineAdaptor['service.create_direct_pay_by_user']}"></entry>
@@ -103,7 +103,7 @@
 		<property name="key" value="#{p_AlipayOnlineAdaptor['international_key']}" />
 
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
-		<property name="signMap">
+		<property name="needSignParamMap">
 			<map>
 				<!-- #接口 名称 不可为空 -->
 				<entry key="service" value="#{p_AlipayOnlineAdaptor['service.alipay.trade.direct.forcard.pay']}"></entry>

@@ -19,12 +19,20 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.feilong.framework.netpay.advance.PaymentAdvanceAdaptor;
 import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 
 /**
  * PaymentAdaptor 接口.
+ * <p>
+ * focus on gotopay {@link #getPaymentFormEntity(PayRequest, Map)} && validate notify {@link #verifyNotify(HttpServletRequest)} && validate
+ * redirect {@link #verifyRedirect(HttpServletRequest)}.
+ * </p>
+ * <p>
+ * 如果需要实现 <code>关闭支付交易</code>, <code>查询</code>, <code>退款</code>等 功能,请参考使用 {@link PaymentAdvanceAdaptor}
+ * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 21, 2013 11:13:51 AM
@@ -38,7 +46,7 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * @see com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor
- * @see com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.AbstractAlipayAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor
@@ -65,10 +73,11 @@ public interface PaymentAdaptor{
      *            </ul>
      * @return the payment form entity
      */
+    //TODO specialParamMap放开的权限可能太大了,将来可能使用 对象来约束
     PaymentFormEntity getPaymentFormEntity(PayRequest payRequest,Map<String, String> specialParamMap);
 
     // ********************************************************************************************
-    //TODO待重构
+    //TODO 待重构
     /**
      * 拿到订单号返回支付服务器重新验证这笔订单到底有没有支付成功<br>
      * 验证此次通知信息是否是支付(宝)服务器发来的信息,以帮助校验反馈回来的数据的真假性。.
@@ -101,16 +110,20 @@ public interface PaymentAdaptor{
      * @param request
      *            request
      * @return the string
+     * @deprecated 将来会以 verifyNotify/verifyRedirect 对象结果属性的形式返回
      */
+    @Deprecated
     String getFeedbackTradeNo(HttpServletRequest request);
 
     /**
-     * feedback 回来 ,通过request取到得到 交易金额<br>
+     * feedback 回来 ,通过request取到得到 交易金额.<br>
      * 某些商城需要显示 用户实际支付的金额,可以从这里取 不用再次计算了.
      * 
      * @param request
      *            request
      * @return the string
+     * @deprecated 将来会以 verifyNotify/verifyRedirect 对象结果属性的形式返回
      */
+    @Deprecated
     String getFeedbackTotalFee(HttpServletRequest request);
 }

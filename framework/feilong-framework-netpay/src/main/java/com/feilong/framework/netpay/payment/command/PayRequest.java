@@ -33,10 +33,10 @@ public class PayRequest implements Serializable{
     private static final long serialVersionUID = 288232184048495608L;
 
     // **********************required******************************************************
-    /** (required)交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code. */
+    /** <span style="color:red">(required)</span> 交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code. */
     private String            tradeNo;
 
-    /** (required)需要在线支付的总金额(含运费),订单行总价加起来总和+运费transferFee 必须＝totalFee. */
+    /** <span style="color:red">(required)</span> 需要在线支付的总金额(含运费),<span style="color:red">订单行总价加起来总和+运费transferFee 必须＝totalFee</span>. */
     private BigDecimal        totalFee         = new BigDecimal(0);
 
     // ***********************optional*****************************************************
@@ -65,18 +65,23 @@ public class PayRequest implements Serializable{
      */
     private String            returnFailUrl;
 
-    /** (optional)买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
-    private String            buyerName;
+    // *******买家信息************************************
 
     /** (optional)买家,定义为 Serializable ,兼容 Long,String等,某些查询需要传递该值,不同商城的实现不同,可能是 id,也可能是 code,视情况而定. */
     private Serializable      buyer;
 
+    /** (optional)买家的姓名,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
+    private String            buyerName;
+
     /** (optional)买家的邮箱,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
     private String            buyerEmail;
+
+    //*********运费信息**************************************
 
     /** (optional)需要在线支付的运费,一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
     private BigDecimal        transferFee      = new BigDecimal(0);
 
+    // ********支付明细行信息**********************************
     /** (optional)支付的订单明细行, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证. */
     private List<PaySoLine>   paySoLineList    = new ArrayList<PaySoLine>();
 
@@ -86,6 +91,8 @@ public class PayRequest implements Serializable{
      * (optional) 交易创建时间, 一般的支付网关不需要这个参数,但是个别的支付网关是需要的,需要这个参数的适配器 自行验证.
      */
     private Date              createDate;
+
+    // ***************************************************************************************
 
     /**
      * Gets the (required)交易号码,必须唯一,可以是 订单code,也可以是自定义的交易code.

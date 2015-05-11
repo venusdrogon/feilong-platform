@@ -14,7 +14,7 @@
 				<entry key="3" value-ref="alipayOnlineNetpayAdaptor"></entry>
 				<entry key="6" value-ref="alipayOnlineAdaptor"></entry>
 				<entry key="14" value-ref="alipayOnlineCreditCardAdaptor"></entry>
-				
+
 				<!-- 21支付宝-境外收单(PC) -->
 				<entry key="21" value-ref="alipayOnlineAdaptor"></entry>
 				<!-- 22支付宝-境外收单(Mobile) -->
@@ -41,5 +41,5 @@
 		</property>
 	</bean>
 
-	<import resource="classpath:spring/payment/payment/adaptor*.xml" />
+	<import resource="classpath:spring/payment/payment/**/adaptor*.xml" />
 </beans>

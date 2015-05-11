@@ -121,7 +121,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
         closeTradeRequestMap.put("_input_charset", _input_charset);
 
         //业务参数
-        closeTradeRequestMap.put("out_order_no", orderNo);//TODO 建议以后 使用trade_no去关闭, 使用订单号关闭交易速度会比较慢  see 交易关闭接口(close_trade)接入与使用规则.pdf
+        closeTradeRequestMap.put("out_order_no", orderNo);//XXX 建议以后 使用trade_no去关闭, 使用订单号关闭交易速度会比较慢  see 交易关闭接口(close_trade)接入与使用规则.pdf
         closeTradeRequestMap.put("trade_role", toTrade_roleParamValue(tradeRole));
 
         //ip  ip地址  String交易操作者卖家或是买家的客户端ip地址。 可空  10.5.41.76 
@@ -129,6 +129,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
         //trade_no 支付宝交易号 String(64) 支付宝根据商户请求，创建订 单生成的支付宝交易号。        最短16位，最长64位。 
         //trade_no和out_order_no不可同时为空。         可空  2011031700597827 
 
+        //TODO 设置成统一方法
         String toBeSignedString = ParamUtil.toNaturalOrderingString(closeTradeRequestMap);
         String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
 

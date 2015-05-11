@@ -13,7 +13,7 @@
 	<bean id="alipayForexPayAdaptor" class="com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineForexPayAdaptor" parent="baseAlipayOnlineAdaptor">
 
 		<!-- 其他需要被签名的 属性 sign、sign_type 不要配置在里面 -->
-		<property name="signMap">
+		<property name="needSignParamMap">
 			<map>
 				<!-- #接口 名称 不可为空 -->
 				<entry key="service" value="#{p_AlipayForex['alipay.forex.service']}"></entry>

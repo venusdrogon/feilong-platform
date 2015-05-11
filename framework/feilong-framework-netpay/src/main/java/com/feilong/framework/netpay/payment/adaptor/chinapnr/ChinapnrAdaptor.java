@@ -34,7 +34,10 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
 
 /**
  * 汇付天下支付方式 .
+ * 
+ * @deprecated 待重构
  */
+@Deprecated
 public class ChinapnrAdaptor extends AbstractPaymentAdaptor{
 
     /** The Constant log. */

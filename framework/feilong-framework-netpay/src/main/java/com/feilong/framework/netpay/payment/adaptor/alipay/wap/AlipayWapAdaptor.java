@@ -15,36 +15,46 @@
  */
 package com.feilong.framework.netpay.payment.adaptor.alipay.wap;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.net.ParamUtil;
+import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.commons.core.net.HttpMethodType;
 import com.feilong.commons.core.net.URIUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.framework.netpay.AlipayRequestParamConstants;
 import com.feilong.framework.netpay.command.PaymentResult;
-import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.AbstractAlipayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
+import com.feilong.framework.netpay.payment.exception.ConstructPaymentRequestParametersException;
 import com.feilong.servlet.http.RequestUtil;
 import com.feilong.tools.dom4j.Dom4jUtil;
+import com.feilong.tools.net.httpclient3.HttpClientConfig;
+import com.feilong.tools.net.httpclient3.HttpClientUtil;
 import com.feilong.tools.security.oneway.MD5Util;
 
 /**
  * 手机版alipay支付.
+ * 
+ * <h3>手机网页即时到账授权接口(alipay.wap.trade.create.direct)”和“手机网页即时到账交易接口(alipay.wap.auth.authAndExecute)”</h3>
+ * 
+ * <blockquote>
+ * <ul>
+ * <li>两者配套使用，共同完成即时到账交易。</li>
+ * <li>授权接口,用于存储商户创建交易所需信息，并返回一个授权令牌（request_token）；</li>
+ * <li>交易接口,使用授权接口返回的授权令牌（request_token）值，将页面重定向到支付宝支付页面，使得付款者可以直接汇款给另一个拥有支付宝账号的收款者。</li>
+ * <li>授权接口,并未实际创建即时到账交易，创建即时到账交易并且完成支付的过程由交易接口完成。</li>
+ * </ul>
+ * </blockquote>
  * 
  * @author 冯明雷
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
@@ -54,31 +64,16 @@ import com.feilong.tools.security.oneway.MD5Util;
  * @deprecated 待重构
  */
 @Deprecated
-public class AlipayWapAdaptor extends BaseAlipayAdaptor{
+public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
 
     /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(AlipayWapAdaptor.class);
 
-    /** 商品名称. */
-    private String              subject;
+    /** 用来获得授权令牌 token的 Map. */
+    private Map<String, String> tokenSignParamMap;
 
-    /** 商城支付宝账户. */
-    private String              seller;
-
-    /** 创建交易接口名称. */
-    private String              service_create;
-
-    /** 授权接口名称. */
-    private String              service_auth;
-
-    /** 算法名称，商城只支持MD5. */
-    private String              sec_id;
-
-    /** 请求参数格式. */
-    private String              format;
-
-    /** 接口版本号. */
-    private String              v;
+    /** 构造token req_data参数，程序会自动转成xml字符串. */
+    private Map<String, String> reqDataForTokenMap;
 
     /*
      * (non-Javadoc)
@@ -88,31 +83,275 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * .PayRequest, java.util.Map)
      */
     @Override
-    protected Map<String, String> getSignParamsMapForPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
-        try{
-            String requestToken = getRequestToken(payRequest, specialSignMap);
-            if (Validator.isNotNullOrEmpty(requestToken)){
+    protected Map<String, String> constructSignParamsMap(PayRequest payRequest,Map<String, String> specialSignMap)
+                    throws ConstructPaymentRequestParametersException{
+        //准备alipay.wap.auth.authAndExecute服务的参数
+        Map<String, String> signParamsMap = new HashMap<String, String>();
 
-                //准备alipay.wap.auth.authAndExecute服务的参数
-                Map<String, String> requestParams = new HashMap<String, String>();
-                StringBuilder reqData = new StringBuilder();
-                requestParams.put("service", service_auth);
-                reqData.append("<auth_and_execute_req><request_token>" + requestToken + "</request_token></auth_and_execute_req>");
-                requestParams.put("req_data", reqData.toString());
-                requestParams.put("sec_id", sec_id);
-                requestParams.put("partner", partner);
-                requestParams.put("format", format);
-                requestParams.put("v", v);
-                return requestParams;
-            }
-        }catch (Exception e){
-            log.error(e.getClass().getName(), e);
+        //step1: 设置spring 注入
+        if (Validator.isNotNullOrEmpty(needSignParamMap)){
+            signParamsMap.putAll(needSignParamMap);
         }
 
-        //TODO
-        return null;
+        //TODO 有点冲突
+        //step2: 设置传递过来的参数
+        //        if (Validator.isNotNullOrEmpty(specialSignMap)){
+        //            signParamsMap.putAll(specialSignMap);
+        //        }
 
+        //step3:设置特殊的参数  
+        //注意 这一步放 上面两步的下面， 可以在这里拿到上面融合的参数
+        setSpecialParams(payRequest, specialSignMap, signParamsMap);
+
+        //不需要 sign type参数
+
+        return signParamsMap;
     }
+
+    /**
+     * 设置特殊的参数.
+     *
+     * @param payRequest
+     *            the pay request
+     * @param specialSignMap
+     *            the special sign map
+     * @param signParamsMap
+     *            the sign params map
+     * @throws ConstructPaymentRequestParametersException
+     *             the construct payment request parameters exception
+     * @since 1.1.2
+     */
+    protected void setSpecialParams(PayRequest payRequest,Map<String, String> specialSignMap,Map<String, String> signParamsMap)
+                    throws ConstructPaymentRequestParametersException{
+        setReqDataParams(payRequest, specialSignMap, signParamsMap);
+    }
+
+    /**
+     * 设置 req data params.
+     *
+     * @param payRequest
+     *            the pay request
+     * @param specialSignMap
+     *            the special sign map
+     * @param signParamsMap
+     *            the sign params map
+     * @throws ConstructPaymentRequestParametersException
+     *             the construct payment request parameters exception
+     * @since 1.1.2
+     */
+    private void setReqDataParams(PayRequest payRequest,Map<String, String> specialSignMap,Map<String, String> signParamsMap)
+                    throws ConstructPaymentRequestParametersException{
+        String requestToken = getRequestToken(payRequest, specialSignMap);
+        signParamsMap.put("req_data", "<auth_and_execute_req><request_token>" + requestToken + "</request_token></auth_and_execute_req>");
+    }
+
+    /**
+     * (授权)拿到 授权令牌.
+     *
+     * @author 冯明雷
+     * @param payRequest
+     *            the pay request
+     * @param specialSignMap
+     *            the special sign map
+     * @return String
+     * @throws ConstructPaymentRequestParametersException
+     *             the construct payment request parameters exception
+     * @time 2013-6-7上午11:17:51
+     */
+    private String getRequestToken(PayRequest payRequest,Map<String, String> specialSignMap)
+                    throws ConstructPaymentRequestParametersException{
+
+        Map<String, String> tokenRequestMap = constructTokenRequestMap(payRequest, specialSignMap);
+
+        String sign = getSignString(tokenRequestMap);
+        tokenRequestMap.put(AlipayRequestParamConstants.SIGN, sign);
+
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
+        httpClientConfig.setHttpMethodType(HttpMethodType.POST);
+        httpClientConfig.setParams(tokenRequestMap);
+
+        String alipayTokenResponseResult = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+        //TODO 要编码吗？
+        //String createResult = URLDecoder.decode(result, _input_charset);
+
+        return extractRequestTokenValue(alipayTokenResponseResult);
+    }
+
+    /**
+     * 提取结果中的token值.
+     * 
+     * <h3>返回情况示例:</h3>
+     * 
+     * <blockquote>
+     * 
+     * <ul>
+     * <li>z 正常输出： <br>
+     * {@code partner=2088101000137799&req_id=1282889689836&res_data=<?xml version="1.0" encoding="utf-8"?><direct_trade_create_res><request_token>20100830e8085e3e0868a466b822350ede5886e8</request_token></direct_trade_create_res>&sec_id=MD5&service=alipay.wap.trade.create.direct&v=2.0&sign=72a64fb63f0b54f96b10cefb69319e8a}
+     * </li>
+     * <li>z 发生错误时输出：<br>
+     * {@code partner=208810100013779&req_id=1282889689836&res_error=<?xml version="1.0" encoding="utf-8"?><err><code>0005</code>
+     * <sub_code>0005</sub_code><msg>partner illegal</msg><detail>合作伙伴没有开通接口访问权限</detail></err>&sec_id=0001&service=alipay.wap.trade.create.direct&v=2.0}
+     * </li>
+     * </ul>
+     * 
+     * </blockquote>
+     *
+     * @param alipayTokenResponseResult
+     *            the create result
+     * @return the string
+     * @throws ConstructPaymentRequestParametersException
+     *             the construct payment request parameters exception
+     * @since 1.1.2
+     */
+    private String extractRequestTokenValue(String alipayTokenResponseResult) throws ConstructPaymentRequestParametersException{
+        Map<String, String> returnParamMap = URIUtil.parseQueryToValueMap(alipayTokenResponseResult, null);
+
+        //请求失败后才会返回该值
+        String res_error = returnParamMap.get("res_error");
+        if (Validator.isNotNullOrEmpty(res_error)){
+            String logMessage = Slf4jUtil.formatMessage("alipay request_token get error,return res_error's value is:[{}]", res_error);
+            log.error(logMessage);
+            throw new ConstructPaymentRequestParametersException(logMessage);
+        }
+
+        //对请求或响应中参数签名后的 值。      
+        //请求失败的请况下，不签名，  无此参数。 
+        String reutrnSign = returnParamMap.get("sign");
+
+        //TODO 这里是否还有验证签名的必要， 发起请求是自己发起的，接收方也是支付宝
+        assertAlipaySignLegal(reutrnSign, returnParamMap);
+
+        //授权令牌，请求成功后才会返回该值
+        String res_data = returnParamMap.get("res_data");
+        return getValueByKeyForXML(res_data, "request_token");
+    }
+
+    /**
+     * Construct token request map.
+     *
+     * @param payRequest
+     *            the pay request
+     * @param specialSignMap
+     *            the special sign map
+     * @return the map< string, string>
+     * @since 1.1.2
+     */
+    private Map<String, String> constructTokenRequestMap(PayRequest payRequest,Map<String, String> specialSignMap){
+
+        Map<String, String> tokenRequestMap = new HashMap<String, String>();
+        tokenRequestMap.putAll(tokenSignParamMap);
+
+        //req_data 参数的值不能包含半角或全角的“&”符号；
+        tokenRequestMap.put("req_data", constructReqDataParam(payRequest, specialSignMap));
+
+        //用于关联请求与响应，防止 请求重播。      支付宝限制来自同一个partner的请求号必须唯 一。 样例:1282889689836
+        //TODO 这时嘛东东
+        tokenRequestMap.put("req_id", "" + System.currentTimeMillis());
+
+        return tokenRequestMap;
+    }
+
+    /**
+     * Construct req data param.
+     * 
+     * <p>
+     * <span style="color:red">注意:req_data 参数的值不能包含半角或全角的“&”符号；</span>
+     * </p>
+     * 
+     * 
+     * <h3>元素说明:</h3>
+     * 
+     * <pre>
+     * {@code
+     * <direct_trade_create_req>：根节点 
+     * z  <subject>：商品名称 
+     * z  <out_trade_no>：商户网站唯一订单号 
+     * z  <total_fee>：交易金额
+     * z  <seller_account_name>：卖家支付宝账号 
+     * z  <call_back_url>：支付成功跳转页面路径 
+     * z  <notify_url>：服务器异步通知页面路径 
+     * z  <out_user>：商户系统用户唯一标识   买家在商户系统的唯一标识。 当该买家支付成功一次后，再次支付金额在30元内时，不需要再次输入密码,比如 123456789
+     * z  <merchant_url>：操作中断返回地址  用户付款中途退出返回商户的地址,如 http://www.yoursite.com
+     * z  <pay_expire>：交易自动关闭时间  交易自动关闭时间，单位为分钟。 默认值21600（即15天）。 如 3600
+     * z  <agent_id>： 代理人ID，用于需要给代理分佣的情况下传入。  如 11397568a1
+     * }
+     * </pre>
+     * 
+     * </blockquote>
+     * 
+     *
+     * @param payRequest
+     *            the pay request
+     * @param specialSignMap
+     *            the special sign map
+     * @return the string
+     * @since 1.1.2
+     */
+    private String constructReqDataParam(PayRequest payRequest,Map<String, String> specialSignMap){
+        String tradeNo = payRequest.getTradeNo();
+        BigDecimal totalFee = payRequest.getTotalFee();
+        String return_url = payRequest.getReturnUrl();
+        String notify_url = payRequest.getNotifyUrl();
+
+        Map<String, String> map = new HashMap<String, String>();
+
+        //        String cashier_code = specialSignMap.get("cashier_code");
+        //        //String cashier_code = specialSignMap.get(AlipayRequestParamConstants.DEFAULT_BANK);
+        // if (Validator.isNotNullOrEmpty(cashier_code)){
+        ////FIXME 咦 文档好像没有这个参数
+        //            map.put("cashier_code", cashier_code);
+        //        }
+
+        map.putAll(reqDataForTokenMap);
+        map.putAll(specialSignMap);
+
+        //***************放下面 确保 不会被配置或者注入 影响
+        map.put("out_trade_no", tradeNo);
+        map.put("total_fee", "" + totalFee.setScale(2, BigDecimal.ROUND_HALF_UP));
+
+        //call_back_url=alipay 的return_url
+        //支付成功后的跳转页面链 接。      支付成功才会跳转。
+        map.put("call_back_url", return_url);
+
+        //支付宝服务器主动通知商 户网站里指定的页面http路径。
+        map.put("notify_url", notify_url);
+
+        //只有支付成功时才会跳转到 call_back_url，支付失败时跳转到 merchant_url （不返回任何参数），跳转地址都在“手机网页即时到账授权接口  (alipay.wap.trade.create.direct)”中设置
+
+        //***************************************
+
+        // 准备alipay.wap.trade.create.direct服务的参数
+        //TODO 做成对象转
+        StringBuilder sb = new StringBuilder();
+        sb.append("<direct_trade_create_req>");
+        sb.append(mapToXML(map));
+        sb.append("</direct_trade_create_req>");
+
+        String req_data = sb.toString();
+        return req_data;
+    }
+
+    /**
+     * map装成xml字符串，key将是 xml的 element,value是 element的text.
+     *
+     * @param map
+     *            the map
+     * @return the string
+     * @since 1.1.2
+     */
+    //TODO will test ,and may 提取成公共的方法
+    private String mapToXML(Map<String, String> map){
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            String key = entry.getKey();
+            String value = entry.getValue();
+            sb.append("<").append(key).append(">").append(value).append("</").append(key).append(">");
+        }
+        return sb.toString();
+    }
+
+    //*********************************************************************************************
 
     /*
      * (non-Javadoc)
@@ -124,21 +363,23 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
 
         log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
 
-        boolean isNotifySignOk;
+        boolean isNotifySignOk = false;
 
         String notify_data = request.getParameter("notify_data");
+
         if (Validator.isNotNullOrEmpty(notify_data)){
             isNotifySignOk = isNotifySignOkForNotifyUrl(request);
         }else{
             //解析随浏览器跳转发回的消息参数.
-            isNotifySignOk = isNotifySignOk(request);
+            //isNotifySignOk = isNotifySignOk(request);
+            assertAlipaySignLegal(request);
         }
-
         if (isNotifySignOk){
             boolean isPaymentSuccess = isPaymentSuccess(request);
             // 付款成功
             return isPaymentSuccess ? PaymentResult.PAID : PaymentResult.FAIL;
         }
+        //TODO
         return PaymentResult.FAIL;
     }
 
@@ -149,126 +390,17 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      */
     @Override
     public String getFeedbackTradeNo(HttpServletRequest request){
-        log.info("getQueryStringLog:{}" + RequestUtil.getQueryStringLog(request));
-        String soCode = null;
-        soCode = request.getParameter("out_trade_no");
+
+        String soCode = request.getParameter("out_trade_no");
         if (Validator.isNotNullOrEmpty(soCode)){
             return soCode;
         }
         String notify_data = request.getParameter("notify_data");
-        log.info("notify--------" + notify_data);
         if (Validator.isNotNullOrEmpty(notify_data)){
             soCode = getValueByKeyForXML(notify_data, "out_trade_no");
 
         }
         return soCode;
-    }
-
-    /**
-     * 生成创建交易请求的url，并发送请求获得返回结果.
-     *
-     * @author 冯明雷
-     * @param payRequest
-     *            the pay request
-     * @param specialSignMap
-     *            the special sign map
-     * @return String
-     * @throws Exception
-     *             the exception
-     * @time 2013-6-7上午11:17:51
-     */
-    private String getRequestToken(PayRequest payRequest,Map<String, String> specialSignMap) throws Exception{
-        String tradeNo = payRequest.getTradeNo();
-        BigDecimal totalFee = payRequest.getTotalFee();
-        String return_url = payRequest.getReturnUrl();
-        String notify_url = payRequest.getNotifyUrl();
-
-        // 准备alipay.wap.trade.create.direct服务的参数
-        StringBuilder sb = new StringBuilder();
-        sb.append("<direct_trade_create_req>");
-        sb.append("<subject>" + subject + "</subject>");
-        sb.append("<out_trade_no>" + tradeNo + "</out_trade_no>");
-        sb.append("<total_fee>" + totalFee + "</total_fee>");
-        sb.append("<seller_account_name>" + seller + "</seller_account_name>");
-        sb.append("<call_back_url>" + return_url + "</call_back_url>");
-        sb.append("<notify_url>" + notify_url + "</notify_url>");
-        String bankCode = specialSignMap.get(PARAM_DEFAULT_BANK);
-        if (Validator.isNotNullOrEmpty(bankCode)){
-            sb.append("<cashier_code>" + bankCode + "</cashier_code>");
-        }
-        // regData.append("<pay_expire>" + pay_expire + "</pay_expire>");
-        sb.append("</direct_trade_create_req>");
-
-        Map<String, String> hiddenParamMap = new HashMap<String, String>();
-        hiddenParamMap.put("req_data", sb.toString());
-        hiddenParamMap.put("service", service_create);
-        hiddenParamMap.put("req_id", "" + System.currentTimeMillis());
-
-        hiddenParamMap.put("sec_id", sec_id);
-        hiddenParamMap.put("partner", partner);
-        hiddenParamMap.put("format", format);
-        hiddenParamMap.put("v", v);
-
-        String toBeSignedString = ParamUtil.toNaturalOrderingString(hiddenParamMap);
-        String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
-        hiddenParamMap.put("sign", sign);
-        String url = URIUtil.getEncodedUrlByValueMap(gateway, hiddenParamMap, _input_charset);
-
-        String invokeUrl = URIUtil.getBeforePath(url) + "?";
-        URL serverUrl = new URL(invokeUrl);
-        HttpURLConnection httpURLConnection = (HttpURLConnection) serverUrl.openConnection();
-        httpURLConnection.setRequestMethod("POST");
-        httpURLConnection.setDoOutput(true);
-        httpURLConnection.connect();
-
-        String params = url.replace(invokeUrl, "");
-
-        httpURLConnection.getOutputStream().write(params.getBytes());
-        InputStream is = httpURLConnection.getInputStream();
-        BufferedReader in = new BufferedReader(new InputStreamReader(is));
-        StringBuilder buffer = new StringBuilder();
-        String line = "";
-        while ((line = in.readLine()) != null){
-            buffer.append(line);
-        }
-
-        //URLConnectionUtil.getResponseBodyAsString(urlString);
-        String createResult = URLDecoder.decode(buffer.toString(), _input_charset);
-        httpURLConnection.disconnect();
-
-        HashMap<String, String> resMap = new HashMap<String, String>();
-
-        Map<String, String> returnParamMap = URIUtil.parseQueryToValueMap(createResult, null);
-
-        String returnV = returnParamMap.get("v");
-        String returnService = returnParamMap.get("service");
-        String returnPartner = returnParamMap.get("partner");
-        String reutrnSign = returnParamMap.get("sign");
-        String returnReqId = returnParamMap.get("req_id");
-        String returnSecId = returnParamMap.get("sec_id");
-        resMap.put("v", returnV);
-        resMap.put("service", returnService);
-        resMap.put("partner", returnPartner);
-        resMap.put("sec_id", returnSecId);
-        resMap.put("req_id", returnReqId);
-        String businessResult = "";
-        if (createResult.contains("<err>")){
-            String error = returnParamMap.get("res_error");
-            log.error("创建支付宝交易失败：" + error);
-            throw new Exception("创建支付宝交易失败：" + error);
-        }
-        String res_data = returnParamMap.get("res_data");
-        resMap.put("res_data", res_data);
-        // 验证签名数据
-        String verifyData = ParamUtil.toNaturalOrderingString(resMap);
-        String sign1 = MD5Util.encode(verifyData + key, _input_charset);
-        if (sign1.equals(reutrnSign)){
-            businessResult = getValueByKeyForXML(res_data, "request_token");
-        }else{
-            log.error("MD5验证签名失败");
-            throw new Exception("MD5验证签名失败");
-        }
-        return businessResult;
     }
 
     /**
@@ -281,18 +413,20 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * @time 2013-6-10下午2:22:42
      */
     private boolean isPaymentSuccess(HttpServletRequest request){
-        boolean isSuccess = false;
+
         String result = request.getParameter("result");
+
         if (Validator.isNotNullOrEmpty(result)){
-            isSuccess = "success".equals(result);
+            return "success".equals(result);
         }else{
+            //TODO 是否还要判断下面的了？
             String notify_data = request.getParameter("notify_data");
             if (Validator.isNotNullOrEmpty(notify_data)){
                 String status = getValueByKeyForXML(notify_data, "trade_status");
-                isSuccess = "TRADE_FINISHED".equals(status) || "TRADE_SUCCESS".equals(status);
+                return "TRADE_FINISHED".equals(status) || "TRADE_SUCCESS".equals(status);
             }
         }
-        return isSuccess;
+        return false;
     }
 
     /**
@@ -305,15 +439,26 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * @time 2013-9-16上午10:23:19
      */
     private boolean isNotifySignOkForNotifyUrl(HttpServletRequest request){
+        //FIXME 应该和上面 加密逻辑一样的
         // alipay 传过来的参数
         String alipaySign = request.getParameter("sign");
 
-        String service = request.getParameter("service");
-        String _v = request.getParameter("v");
-        String _sec_id = request.getParameter("sec_id");
-        String notify_data = request.getParameter("notify_data");
+        //FIXME 这里不要保证顺序？
 
-        String verifyData = "service=" + service + "&v=" + _v + "&sec_id=" + _sec_id + "&notify_data=" + notify_data;
+        //notify_url 接受到的参数验签不要排序，只需要按照支付宝返回的参数顺序，组装字符串，然后验签，
+        //如支付宝异步通知 POST 方式返回的参数顺序如下：
+        //service=alipay.wap.trade.create.direct&v=1.0&sec_id=0001&notify_data=<notify>…</notify> 
+
+        //没有值的参数无需传递，也无需包含到待签名数据中
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("service=").append(request.getParameter("service"));
+        sb.append("&v=").append(request.getParameter("v"));
+        sb.append("&sec_id=").append(request.getParameter("sec_id"));
+        sb.append("&notify_data=").append(request.getParameter("notify_data"));
+
+        String verifyData = sb.toString();
+
         String mysign = MD5Util.encode(verifyData + key, _input_charset);
         boolean isSignOk = mysign.equals(alipaySign);
         return isSignOk;
@@ -329,16 +474,17 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      * @param name
      *            the name
      * @return String
-     * @throws DocumentException
-     *             the document exception
      * @time 2013-9-16上午10:16:39
      */
+    //TODO 统一调用 Dom4jUtil
     private String getValueByKeyForXML(String xmlData,String name){
         Document document = Dom4jUtil.string2Document(xmlData);
         Element root = document.getRootElement();
         String value = root.elementText(name);
         return value;
     }
+
+    //**********************************************************************************
 
     /*
      * (non-Javadoc)
@@ -347,8 +493,8 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      */
     @Override
     public PaymentResult verifyRedirect(HttpServletRequest request){
-        // TODO
-        return PaymentResult.PAID;
+        //TODO
+        throw new NotImplementedException("verifyRedirect is not implemented!");
     }
 
     /*
@@ -358,78 +504,28 @@ public class AlipayWapAdaptor extends BaseAlipayAdaptor{
      */
     @Override
     public String getFeedbackTotalFee(HttpServletRequest request){
-        // TODO
-        return null;
+        //TODO
+        throw new NotImplementedException("getFeedbackTotalFee is not implemented!");
     }
 
     /**
-     * 设置 商品名称.
-     * 
-     * @param subject
-     *            the subject to set
+     * 设置 用来获得授权令牌 token的 Map.
+     *
+     * @param tokenSignParamMap
+     *            the tokenSignParamMap to set
      */
-    public void setSubject(String subject){
-        this.subject = subject;
+    public void setTokenSignParamMap(Map<String, String> tokenSignParamMap){
+        this.tokenSignParamMap = tokenSignParamMap;
     }
 
     /**
-     * 设置 商城支付宝账户.
-     * 
-     * @param seller
-     *            the seller to set
+     * 设置 构造token req_data参数，程序会自动转成xml字符串.
+     *
+     * @param reqDataForTokenMap
+     *            the reqDataForTokenMap to set
      */
-    public void setSeller(String seller){
-        this.seller = seller;
-    }
-
-    /**
-     * 设置 创建交易接口名称.
-     * 
-     * @param service_create
-     *            the service_create to set
-     */
-    public void setService_create(String service_create){
-        this.service_create = service_create;
-    }
-
-    /**
-     * 设置 授权接口名称.
-     * 
-     * @param service_auth
-     *            the service_auth to set
-     */
-    public void setService_auth(String service_auth){
-        this.service_auth = service_auth;
-    }
-
-    /**
-     * 设置 算法名称，商城只支持MD5.
-     * 
-     * @param sec_id
-     *            the sec_id to set
-     */
-    public void setSec_id(String sec_id){
-        this.sec_id = sec_id;
-    }
-
-    /**
-     * 设置 请求参数格式.
-     * 
-     * @param format
-     *            the format to set
-     */
-    public void setFormat(String format){
-        this.format = format;
-    }
-
-    /**
-     * 设置 接口版本号.
-     * 
-     * @param v
-     *            the v to set
-     */
-    public void setV(String v){
-        this.v = v;
+    public void setReqDataForTokenMap(Map<String, String> reqDataForTokenMap){
+        this.reqDataForTokenMap = reqDataForTokenMap;
     }
 
 }

@@ -19,6 +19,7 @@ import java.util.Map;
 
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.framework.netpay.AlipayRequestParamConstants;
 import com.feilong.framework.netpay.payment.ValidateBankCodeable;
 import com.feilong.framework.netpay.payment.exception.BankCodeNotSupportedException;
 
@@ -42,7 +43,7 @@ public class AlipayOnlineNetpayAdaptor extends AlipayOnlineAdaptor implements Va
             throw new NullPointerException("the specialSignMap is null or empty!");
         }
 
-        String defaultbank = specialSignMap.get(PARAM_DEFAULT_BANK);
+        String defaultbank = specialSignMap.get(AlipayRequestParamConstants.DEFAULT_BANK);
         validatorBankCode(defaultbank);
 
         return super.validatorSpecialSignMap(specialSignMap);

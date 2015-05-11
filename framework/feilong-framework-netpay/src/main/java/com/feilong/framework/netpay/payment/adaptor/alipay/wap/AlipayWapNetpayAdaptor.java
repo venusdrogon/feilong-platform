@@ -19,6 +19,7 @@ import java.util.Map;
 
 import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
+import com.feilong.framework.netpay.AlipayRequestParamConstants;
 
 /**
  * 手机版alipay支付(网银在线).
@@ -43,7 +44,7 @@ public class AlipayWapNetpayAdaptor extends AlipayWapAdaptor{
             throw new NullPointerException("the specialSignMap is null or empty!");
         }
 
-        String bankCode = specialSignMap.get(PARAM_DEFAULT_BANK);
+        String bankCode = specialSignMap.get(AlipayRequestParamConstants.DEFAULT_BANK);
         if (Validator.isNullOrEmpty(bankCode)){
             throw new NullPointerException("the defaultbank param is null or empty!");
         }

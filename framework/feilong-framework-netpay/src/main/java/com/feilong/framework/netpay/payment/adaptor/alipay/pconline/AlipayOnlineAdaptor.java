@@ -31,7 +31,7 @@ import com.feilong.commons.core.io.UncheckedIOException;
 import com.feilong.commons.core.net.URLConnectionUtil;
 import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.command.PaymentResult;
-import com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor;
+import com.feilong.framework.netpay.payment.adaptor.alipay.AbstractAlipayAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.tools.dom4j.Dom4jException;
 import com.feilong.tools.dom4j.Dom4jUtil;
@@ -49,13 +49,10 @@ import com.feilong.tools.dom4j.Dom4jUtil;
  * @version 1.0 Jan 15, 2013 8:41:39 PM
  * @version 1.0.5 2014-5-6 20:38 change name
  */
-public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
+public class AlipayOnlineAdaptor extends AbstractAlipayAdaptor{
 
     /** The Constant log. */
     private static final Logger log                = LoggerFactory.getLogger(AlipayOnlineAdaptor.class);
-
-    /** 其他需要被签名的 Map. */
-    private Map<String, String> signMap;
 
     // **********************************************************************************************
     /** 验证通知的 service. */
@@ -78,28 +75,27 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
      * netpay.payment.command.PayRequest, java.util.Map)
      */
     @Override
-    protected Map<String, String> getSignParamsMapForPaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap){
+    protected Map<String, String> constructSignParamsMap(PayRequest payRequest,Map<String, String> specialSignMap){
         // 需要被签名的 参数map
         Map<String, String> signParamsMap = new HashMap<String, String>();
 
-        // 注入 或者设置的
-        if (Validator.isNotNullOrEmpty(signMap)){
-            signParamsMap.putAll(signMap);
+        //step1: 设置spring 注入
+        if (Validator.isNotNullOrEmpty(needSignParamMap)){
+            signParamsMap.putAll(needSignParamMap);
         }
 
-        // 特殊 传入
+        //step2: 设置传递过来的参数
         if (Validator.isNotNullOrEmpty(specialSignMap)){
             signParamsMap.putAll(specialSignMap);
         }
 
+        //step3:设置特殊的参数
         setSpecialParams(signParamsMap);
 
-        String tradeNo = payRequest.getTradeNo();
-        BigDecimal totalFee = payRequest.getTotalFee();
-        String return_url = payRequest.getReturnUrl();
-        String notify_url = payRequest.getNotifyUrl();
-        // 放在 所有设置的 最下面,保证 核心参数不会被 子类修改
-        setCommonAlipayParams(tradeNo, totalFee, return_url, notify_url, signParamsMap);
+        //step4:设置公共的
+        //放在 所有设置的 最下面,保证 核心参数不会被 子类修改
+        //TODO 可以可以加上注入的参数 校验，比如 不能在spring 注入 out_trade_no,total_fee等参数
+        setCommonAlipayParams(payRequest, signParamsMap);
 
         return signParamsMap;
     }
@@ -130,19 +126,19 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
      * @param signParamsMap
      *            签名参数map
      */
-    private void setCommonAlipayParams(
-                    String code,
-                    BigDecimal total_fee,
-                    String return_url,
-                    String notify_url,
-                    Map<String, String> signParamsMap){
+    private void setCommonAlipayParams(PayRequest payRequest,Map<String, String> signParamsMap){
+        String tradeNo = payRequest.getTradeNo();
+        BigDecimal totalFee = payRequest.getTotalFee();
+        String return_url = payRequest.getReturnUrl();
+        String notify_url = payRequest.getNotifyUrl();
+
         // 支付宝合作商户网站,唯一订单号 （确保在商户系统中唯一） String(64)
-        signParamsMap.put("out_trade_no", code);
+        signParamsMap.put("out_trade_no", tradeNo);
 
         // 交易金额 该笔订单的资金总额，单位为 RMB-Yuan。
         // 取值范围为[0.01， 100000000.00]，
         // 精确到小数点后 两位。
-        signParamsMap.put("total_fee", total_fee.setScale(2, BigDecimal.ROUND_HALF_UP) + "");
+        signParamsMap.put("total_fee", "" + totalFee.setScale(2, BigDecimal.ROUND_HALF_UP));
 
         // 页面跳转同步通知页面路径String(200)
         // 支付宝处理完请求后，当前页面自 动跳转到商户网站里指定页面的 http 路径。
@@ -180,35 +176,29 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
             throw new NullPointerException("the key is null or empty!");
         }
 
+        assertAlipaySignLegal(request);
+
+        // 获取支付宝返回数据之一的通知校验ID（notify_id），按照支付宝要求的格式拼接成要请求的链接
+        // 示例https://mapi.alipay.com/gateway.do?service=notify_verify&partner=2088002396712354&notify_id=RqPnCoPT3K9%252Fvwbh3I%252BFioE227%252BPfNMl8jwyZqMIiXQWxhOCmQ5MQO%252FWd93rvCB%252BaiGg
+
         //验证此次通知信息是否是支付宝服务器发来的信息，以帮助校验反馈回来的数据的真假性
+        // 通过访问这个请求链接，利用编程方法来模拟http请求与支付宝服务器进行交互，获得支付宝服务器上处理的结果。 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
+        String notify_id = request.getParameter("notify_id");
 
-        boolean isNotifySignOk = isNotifySignOk(request);
+        StringBuilder sb = new StringBuilder();
+        sb.append(gateway);
+        sb.append("?");
+        sb.append("service=" + service_notify_verify);
+        sb.append("&partner=" + partner);
+        sb.append("&notify_id=" + notify_id);
+        String alipayNotifyURL = sb.toString();
 
-        if (isNotifySignOk){
-            // 获取支付宝返回数据之一的通知校验ID（notify_id），按照支付宝要求的格式拼接成要请求的链接
-            // 示例https://mapi.alipay.com/gateway.do?service=notify_verify&partner=2088002396712354&notify_id=RqPnCoPT3K9%252Fvwbh3I%252BFioE227%252BPfNMl8jwyZqMIiXQWxhOCmQ5MQO%252FWd93rvCB%252BaiGg
+        String notifyVerifyResult = URLConnectionUtil.readLine(alipayNotifyURL);
+        // 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
+        boolean isNotifyVerifySuccess = "true".equals(notifyVerifyResult);
 
-            // 通过访问这个请求链接，利用编程方法来模拟http请求与支付宝服务器进行交互，
-            // 获得支付宝服务器上处理的结果。 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
-            String notify_id = request.getParameter("notify_id");
-
-            StringBuilder sb = new StringBuilder();
-            sb.append(gateway);
-            sb.append("?");
-            sb.append("service=" + service_notify_verify);
-            sb.append("&partner=" + partner);
-            sb.append("&notify_id=" + notify_id);
-            String alipayNotifyURL = sb.toString();
-
-            String notifyVerifyResult = URLConnectionUtil.readLine(alipayNotifyURL);
-            // 如果获得的信息是true，则校验成功；如果获得的信息是其他，则校验失败。
-            boolean isNotifyVerifySuccess = "true".equals(notifyVerifyResult);
-
-            // 付款成功
-            return isNotifyVerifySuccess ? PaymentResult.PAID : PaymentResult.FAIL;
-        }
-        log.error("isNotifySignOk error");
-        return PaymentResult.FAIL;
+        // 付款成功
+        return isNotifyVerifySuccess ? PaymentResult.PAID : PaymentResult.FAIL;
     }
 
     /*
@@ -324,16 +314,6 @@ public class AlipayOnlineAdaptor extends BaseAlipayAdaptor{
     }
 
     // ****************************************************************************************************************************
-
-    /**
-     * 设置 其他需要被签名的 Map.
-     * 
-     * @param signMap
-     *            the signMap to set
-     */
-    public void setSignMap(Map<String, String> signMap){
-        this.signMap = signMap;
-    }
 
     /**
      * 设置 验证通知的 service.

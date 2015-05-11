@@ -30,11 +30,12 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.netpay.payment.PaymentAdaptor;
 import com.feilong.framework.netpay.payment.command.PayRequest;
 import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
+import com.feilong.framework.netpay.payment.exception.ConstructPaymentRequestParametersException;
 
 /**
  * 所有 {@link PaymentAdaptor} 的 基础类,包括了 公共属性/通用的验证等方法.
  * 
- * <h3>4个公共属性</h3>
+ * <h3>4个公共属性:</h3>
  * 
  * <blockquote>
  * <p>
@@ -48,7 +49,7 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * </blockquote>
  * 
  * 
- * <h3>金额验证规则</h3>
+ * <h3>金额验证规则:</h3>
  * 
  * <blockquote>
  * <p>
@@ -74,7 +75,7 @@ import com.feilong.framework.netpay.payment.command.PaymentFormEntity;
  * @see com.feilong.framework.netpay.payment.adaptor.doku.BRIEPayAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.doku.PermataVALITEPayAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.chinapnr.ChinapnrAdaptor
- * @see com.feilong.framework.netpay.payment.adaptor.alipay.BaseAlipayAdaptor
+ * @see com.feilong.framework.netpay.payment.adaptor.alipay.AbstractAlipayAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineCreditCardAdaptor
  * @see com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnlineInternationalCardAdaptor
@@ -144,9 +145,12 @@ public abstract class AbstractPaymentAdaptor implements PaymentAdaptor{
      * @param specialSignMap
      *            the special sign map
      * @return the customize payment form entity
+     * @throws ConstructPaymentRequestParametersException
+     *             the construct payment request parameters exception
      * @since 1.1.2
      */
-    protected abstract PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap);
+    protected abstract PaymentFormEntity getCustomizePaymentFormEntity(PayRequest payRequest,Map<String, String> specialSignMap)
+                    throws ConstructPaymentRequestParametersException;
 
     // **********************************************************************************
     /**
