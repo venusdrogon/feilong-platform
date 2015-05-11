@@ -216,6 +216,8 @@ public final class URLConnectionUtil{
 
             httpURLConnection.setReadTimeout(readTimeout);
 
+            // httpURLConnection.setDoOutput(true);
+
             //  此处getOutputStream会隐含的进行connect(即：如同调用上面的connect()方法，  
             //  所以在开发中不调用上述的connect()也可以). 
 

@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -103,7 +102,7 @@ public final class FileUtil{
     /**
      * 获得 {@link java.io.FileOutputStream} 文件输出流 （或其他文件写入对象）打开文件进行写入 .<br>
      * {@link java.io.FileOutputStream} 用于写入诸如图像数据之类的原始字节的流.<br>
-     * 如果要写入字符流，请考虑使用 {@link FileWriter}.
+     * 如果要写入字符流，请考虑使用 {@link java.io.FileWriter}.
      *
      * @param filePath
      *            文件路径
@@ -121,7 +120,7 @@ public final class FileUtil{
     /**
      * 获得 {@link java.io.FileOutputStream} 文件输出流 （或其他文件写入对象）打开文件进行写入 .<br>
      * {@link java.io.FileOutputStream} 用于写入诸如图像数据之类的原始字节的流.<br>
-     * 如果要写入字符流，请考虑使用 {@link FileWriter}.
+     * 如果要写入字符流，请考虑使用 {@link java.io.FileWriter}.
      *
      * @param filePath
      *            the file path
@@ -141,7 +140,7 @@ public final class FileUtil{
     /**
      * 获得 {@link java.io.FileOutputStream} 文件输出流 （或其他文件写入对象）打开文件进行写入 .<br>
      * {@link java.io.FileOutputStream} 用于写入诸如图像数据之类的原始字节的流.<br>
-     * 如果要写入字符流，请考虑使用 {@link FileWriter}.
+     * 如果要写入字符流，请考虑使用 {@link java.io.FileWriter}.
      *
      * @param filePath
      *            the file path

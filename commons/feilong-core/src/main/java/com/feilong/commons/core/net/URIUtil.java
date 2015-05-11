@@ -500,7 +500,10 @@ public final class URIUtil{
      * @param url
      *            the url
      * @return if isNullOrEmpty(url),renturn ""
+     * @deprecated will rename 名字不好
      */
+    //TODO will rename
+    @Deprecated
     public static String getBeforePath(String url){
         if (Validator.isNullOrEmpty(url)){
             return "";

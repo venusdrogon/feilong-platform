@@ -96,9 +96,11 @@ public final class InputStreamUtil{
      */
     public static BufferedReader toBufferedReader(InputStream inputStream,String charsetName) throws UncheckedIOException{
         try{
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charsetName);
+
             // 缓冲 高效读取  bufferedReader 
             // 包装所有其 read() 操作可能开销很高的 Reader（如 FileReader 和 InputStreamReader）.
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, charsetName));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             return bufferedReader;
         }catch (UnsupportedEncodingException e){
             throw new UncheckedIOException(e);

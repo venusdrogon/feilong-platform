@@ -32,7 +32,9 @@ import com.feilong.commons.core.date.DateUtil;
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-11-19 下午04:59:04
  * @since 1.0.0
+ * @deprecated 将来会重命名
  */
+@Deprecated
 public class XmlUtil{
 
     /**

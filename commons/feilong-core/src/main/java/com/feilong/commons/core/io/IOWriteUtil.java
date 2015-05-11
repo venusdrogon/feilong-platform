@@ -296,6 +296,8 @@ public final class IOWriteUtil{
         OutputStream outputStream = null;
         try{
             outputStream = FileUtil.getFileOutputStream(filePath, fileWriteMode);
+            //TODO 看看能否调用 write(inputStream, outputStream);
+
             Writer outputStreamWriter = new OutputStreamWriter(outputStream, encode);
 
             Writer writer = new PrintWriter(outputStreamWriter);

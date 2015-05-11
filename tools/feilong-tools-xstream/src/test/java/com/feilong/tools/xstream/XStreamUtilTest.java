@@ -15,6 +15,9 @@
  */
 package com.feilong.tools.xstream;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +48,9 @@ public class XStreamUtilTest{
         log.info(xStream.toXML(user));
     }
 
+    /**
+     * Test to xml.
+     */
     @Test
     public void testToXML(){
         User user = new User(1L);
@@ -54,6 +60,9 @@ public class XStreamUtilTest{
         log.info(XStreamUtil.toXML(user, null));
     }
 
+    /**
+     * Test to xm l2.
+     */
     @Test
     public void testToXML2(){
         User user = new User(1L);
@@ -61,5 +70,20 @@ public class XStreamUtilTest{
         toXmlConfig.getAliasMap().put("user", User.class);
         toXmlConfig.getImplicitCollectionMap().put("userAddresseList", User.class);
         log.info(XStreamUtil.toXML(user, toXmlConfig));
+    }
+
+    /**
+     * Test to xm l3.
+     */
+    @Test
+    public void testToXML3(){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("out_trade_no", "112122212");
+        map.put("total_fee", "125.00");
+
+        //call_back_url=alipay 的return_url
+        map.put("call_back_url", "");
+        map.put("notify_url", "");
+        log.info(XStreamUtil.toXML(map, null));
     }
 }

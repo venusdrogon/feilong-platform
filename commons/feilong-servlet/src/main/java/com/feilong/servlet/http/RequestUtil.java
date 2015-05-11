@@ -61,57 +61,122 @@ public final class RequestUtil{
 
     // ******************************是否包含******************************************
     /**
-     * 请求路径中是否包含某个参数名称 (注意:这是判断是否包含参数,而不是判断参数值是否为空)
-     * 
-     * <pre>
-     * 如果传递来的param为null或者&quot;&quot;.则返回false
-     * 
-     * </pre>
-     * 
-     * @param request
-     *            请求
-     * @param param
-     *            参数名称
-     * @return 包含该参数返回true,不包含返回false
-     */
-    public static boolean isContainsParam(HttpServletRequest request,String param){
-        if (Validator.isNotNullOrEmpty(param)){
-            Map<String, ?> map = getParameterMap(request);
-            return map.containsKey(param);
-        }
-        return false;
-    }
-
-    /**
      * 请求路径中是否包含某个参数名称 (注意:这是判断是否包含参数,而不是判断参数值是否为空).
      * 
      * @param request
      *            请求
      * @param param
      *            参数名称
-     * @return 不包含该参数返回true
+     * @return 包含该参数返回true,不包含返回false
+     * @throws NullPointerException
+     *             isNullOrEmpty(param)
      */
-    public static boolean isNotContainsParam(HttpServletRequest request,String param){
+    public static boolean isContainsParam(HttpServletRequest request,String param) throws NullPointerException{
+        if (Validator.isNullOrEmpty(param)){
+            throw new NullPointerException("param can't be null/empty!");
+        }
+        @SuppressWarnings("unchecked")
+        Enumeration<String> parameterNames = request.getParameterNames();
+
+        while (parameterNames.hasMoreElements()){
+            String parameterName = parameterNames.nextElement();
+
+            if (param.equals(parameterName)){
+                return true;
+            }
+        }
+
+        //感觉要比下面好些
+        //Map<String, ?> map = getParameterMap(request);
+        //return map.containsKey(param);
+
+        return false;
+    }
+
+    /**
+     * 请求路径中是否包含某个参数名称 (注意:这是判断是否包含参数,而不是判断参数值是否为空).
+     *
+     * @param request
+     *            请求
+     * @param param
+     *            参数名称
+     * @return 不包含该参数返回true
+     * @throws NullPointerException
+     *             the null pointer exception
+     */
+    public static boolean isNotContainsParam(HttpServletRequest request,String param) throws NullPointerException{
         return !isContainsParam(request, param);
     }
 
     /**
-     * 获得参数 map(结果转成了 TreeMap).
+     * 获得参数 map(结果转成了 TreeMap).<br>
+     * 
+     * <p>
+     * 此方式会将tomcat返回的map 转成TreeMap 处理返回，便于log;也可以<span style="color:red">对这个map进行操作</span>
+     * </p>
+     * 
+     * <h3>tomcat getParameterMap() <span style="color:red">locked</span>(只能读):</h3>
+     * 
+     * <blockquote>
+     * 注意:tomcat 默认实现，返回的是 {@link "org.apache.catalina.util#ParameterMap<K, V>"},tomcat返回之前，会将此map的状态设置为locked,<br>
+     * <p>
+     * 不像普通的map数据一样可以修改。这是因为服务器为了实现一定的安全规范，所作的限制，WebLogic，Tomcat，Resin，JBoss等服务器均实现了此规范。
+     * </p>
+     * 此时，不能做以下的map操作：
+     * 
+     * <ul>
+     * <li>{@link Map#clear()}</li>
+     * <li>{@link Map#put(Object, Object)}</li>
+     * <li>{@link Map#putAll(Map)}</li>
+     * <li>{@link Map#remove(Object)}</li>
+     * </ul>
+     * 
+     * </blockquote>
      * 
      * @param request
      *            the request
      * @return the parameter map
+     * @see "org.apache.catalina.connector.Request#getParameterMap()"
      */
     public static Map<String, String[]> getParameterMap(HttpServletRequest request){
         @SuppressWarnings("unchecked")
         // http://localhost:8888/s.htm?keyword&a=
-        // 这种链接
-        // map key 会是 keyword,a 值都是空
+        // 这种链接  map key 会是 keyword,a 值都是空
         // servlet 3.0 此处返回类型的是 泛型数组 Map<String, String[]>
         Map<String, String[]> map = request.getParameterMap();
 
         // 转成TreeMap ,这样log出现的key 是有顺序的
         Map<String, String[]> returnMap = new TreeMap<String, String[]>(map);
+        return returnMap;
+    }
+
+    /**
+     * 获得参数&单值map.<br>
+     * 由于 j2ee {@link javax.servlet.ServletRequest#getParameterMap()}返回的map 值是数组形式,对于一些确认是单值的请求时(比如支付宝notify/return request)，不便于后续处理
+     *
+     * @param request
+     *            the request
+     * @return the parameter single value map
+     * @see #getParameterMap(HttpServletRequest)
+     * @since 1.1.2
+     */
+    public static Map<String, String> getParameterSingleValueMap(HttpServletRequest request){
+
+        Map<String, String> returnMap = new TreeMap<String, String>();
+
+        //拿到结果， 将多值转成单值， 当然也可以 循环 getParameterNames来处理
+        Map<String, String[]> parameterMap = getParameterMap(request);
+        for (Map.Entry<String, String[]> entry : parameterMap.entrySet()){
+            String key = entry.getKey();
+            String[] values = entry.getValue();
+
+            String value = "";
+            if (Validator.isNotNullOrEmpty(values)){
+                value = values[0];
+            }
+
+            returnMap.put(key, value);
+        }
         return returnMap;
     }
 
@@ -406,8 +471,6 @@ public final class RequestUtil{
      *
      * @param request
      *            the request
-     * @param map
-     *            the map
      * @return the about url map
      * @since 1.0.9
      */
