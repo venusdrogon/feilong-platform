@@ -21,9 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * <p>
- * 判断对象是否为null或者Empty,feilong-core核心类之一.
- * </p>
+ * <b>核心类</b>,判断对象是否为null或者Empty.
  * 
  * <ol>
  * <li>{@link #isNullOrEmpty(Object)} 判断对象是否是null或者空</li>

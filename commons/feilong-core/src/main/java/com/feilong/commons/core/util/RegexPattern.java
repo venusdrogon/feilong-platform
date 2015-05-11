@@ -18,8 +18,7 @@ package com.feilong.commons.core.util;
 import java.util.regex.Pattern;
 
 /**
- * 正则表达式格式,内置常用正则表达式
- * 
+ * 正则表达式格式,内置常用正则表达式.
  * 
  * <h3>开始结束</h3>
  * 
@@ -45,7 +44,6 @@ import java.util.regex.Pattern;
  * 
  * </table>
  * </blockquote>
- * 
  * 
  * 
  * <h3>次数</h3>
@@ -74,7 +72,6 @@ import java.util.regex.Pattern;
  * 
  * </table>
  * </blockquote>
- * 
  * 
  * 
  * <h3>简写</h3>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * 日志相关工具类.
+ * 日志相关工具类,常用的方法是 {@link com.feilong.commons.core.log.Slf4jUtil#formatMessage(String, Object...)}.
  *@since 1.0.0
  */
 package com.feilong.commons.core.log;

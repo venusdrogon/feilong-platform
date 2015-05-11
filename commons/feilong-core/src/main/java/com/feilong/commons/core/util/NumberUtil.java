@@ -25,9 +25,9 @@ import com.feilong.commons.core.text.NumberFormatUtil;
 /**
  * 处理int,Integer,long,BigDecimal等数据类型.
  * 
- * <p>
+ * <h3><a name="RoundingMode">JAVA 8种舍入法:</a></h3>
  * 
- * <h3><a name="RoundingMode">JAVA 8种舍入法</a></h3> <blockquote>
+ * <blockquote>
  * <table border="1" cellspacing="0" cellpadding="4">
  * <tr style="background-color:#ccccff">
  * <th align="left">字段</th>
@@ -76,7 +76,6 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * </tr>
  * </table>
  * </blockquote>
- * </p>
  * 
  * <h3>double转BigDecimal:</h3>
  * 

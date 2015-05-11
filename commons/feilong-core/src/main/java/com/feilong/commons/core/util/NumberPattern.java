@@ -18,9 +18,11 @@ package com.feilong.commons.core.util;
 import java.text.DecimalFormat;
 
 /**
- * <p>
- * 数字格式,内置常用数字格式
- * </p>
+ * 数字格式,内置常用数字格式.
+ * 
+ * 
+ * <h3>常用数字格式:</h3>
+ * 
  * <blockquote>
  * <table border=1 cellspacing=0 cellpadding=4 summary="Chart showing symbol, * location, localized, and meaning.">
  * <tr style="background-color:#ccccff">

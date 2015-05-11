@@ -19,11 +19,11 @@ import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
 
 /**
- * slf4j util.
+ * 对 slf4j 的封装提取.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Dec 30, 2013 2:24:01 AM
- * @since 1.0.0
+ * @version 1.0.4 Dec 30, 2013 2:24:01 AM
+ * @since 1.0.4
  */
 public final class Slf4jUtil{
 
