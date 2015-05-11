@@ -33,14 +33,240 @@
 
 <p>Reduce development, Release ideas</p>
 
+<pre><code>        .--.
+       /    \
+      ## a  a
+      (   '._)
+       |'-- |
+     _.\___/_   ___feilong___
+   ."\&gt; \Y/|&lt;'.  '._.-'
+  /  \ \_\/ /  '-' /
+  | --'\_/|/ |   _/
+  |___.-' |  |`'`
+    |     |  |
+    |    / './
+   /__./` | |
+      \   | |
+       \  | |
+       ;  | |
+       /  | |
+ jgs  |___\_.\_
+      `-"--'---'
+</code></pre>
+
 <h1>
 <a id="welcome-to-feilong-platform" class="anchor" href="#welcome-to-feilong-platform" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to feilong-platform.</h1>
 
 <ol>
 <li>基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;</li>
-<li>基于maven2.2.1构建;</li>
-<li>需要jdk1.5及以上环境;</li>
+<li>基于maven3.2构建;</li>
+<li>需要jdk1.6及以上环境;</li>
 </ol>
+
+<h1>
+<a id="maven使用配置" class="anchor" href="#maven%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven使用配置</h1>
+
+<div class="highlight highlight-XML"><pre>    &lt;<span class="pl-ent">project</span>&gt;
+        ....
+        &lt;<span class="pl-ent">repositories</span>&gt;
+            &lt;<span class="pl-ent">repository</span>&gt;
+                &lt;<span class="pl-ent">id</span>&gt;feilong-repository&lt;/<span class="pl-ent">id</span>&gt;
+                &lt;<span class="pl-ent">url</span>&gt;https://raw.github.com/venusdrogon/feilong-platform/repository&lt;/<span class="pl-ent">url</span>&gt;
+            &lt;/<span class="pl-ent">repository</span>&gt;
+        &lt;/<span class="pl-ent">repositories</span>&gt;
+
+        ....
+        &lt;<span class="pl-ent">dependencies</span>&gt;
+            ....
+            &lt;<span class="pl-ent">dependency</span>&gt;
+                &lt;<span class="pl-ent">groupId</span>&gt;com.feilong.platform.commons&lt;/<span class="pl-ent">groupId</span>&gt;
+                &lt;<span class="pl-ent">artifactId</span>&gt;feilong-core&lt;/<span class="pl-ent">artifactId</span>&gt;
+                &lt;<span class="pl-ent">version</span>&gt;1.1.1&lt;/<span class="pl-ent">version</span>&gt;
+            &lt;/<span class="pl-ent">dependency</span>&gt;
+            ....
+        &lt;/<span class="pl-ent">dependencies</span>&gt;
+
+        ....
+
+    &lt;/<span class="pl-ent">project</span>&gt;</pre></div>
+
+<h1>
+<a id="feilong-platform-module" class="anchor" href="#feilong-platform-module" aria-hidden="true"><span class="octicon octicon-link"></span></a>feilong-platform module:</h1>
+
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Name</th>
+<th>Description</th>
+<th>JDK编译版本(将来会统一)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commons</td>
+<td><code>feilong-core</code></td>
+<td>核心jar,所有feilong-platform的基础</td>
+<td>1.6</td>
+</tr>
+<tr>
+<td>commons</td>
+<td><code>feilong-servlet</code></td>
+<td>封装了j2ee常用类,是feilong-platform web相关jar 的基础</td>
+<td>1.6</td>
+</tr>
+<tr>
+<td>taglib</td>
+<td><code>feilong-taglib-common</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>taglib</td>
+<td><code>feilong-taglib-display</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>taglib</td>
+<td><code>feilong-taglib-spring</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>webservice</td>
+<td><code>feilong-webservice-cxf</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>webservice</td>
+<td><code>feilong-webservice-jws</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>framework</td>
+<td><code>feilong-framework-bind</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>framework</td>
+<td><code>feilong-framework-code</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>framework</td>
+<td><code>feilong-framework-netpay</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>spring</td>
+<td><code>feilong-spring-aop</code></td>
+<td></td>
+<td>1.6</td>
+</tr>
+<tr>
+<td>spring</td>
+<td><code>feilong-spring-context</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>spring</td>
+<td><code>feilong-spring-core</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>spring</td>
+<td><code>feilong-spring-jdbc</code></td>
+<td></td>
+<td>1.6</td>
+</tr>
+<tr>
+<td>spring</td>
+<td><code>feilong-spring-web</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-net-filetransfer</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-net-httpclient</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-ant</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-dom4j</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-jsoup</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-log4j</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-logback</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-mail</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-middleware</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-security</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-velocity</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>tools</td>
+<td><code>feilong-tools-xstream</code></td>
+<td></td>
+<td>1.7</td>
+</tr>
+</tbody>
+</table>
 
 <h1>
 <a id="类和方法介绍" class="anchor" href="#%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>类和方法介绍:</h1>
@@ -54,55 +280,34 @@
 </ul>
 
 <h1>
-<a id="maven使用配置" class="anchor" href="#maven%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven使用配置</h1>
-
-<div class="highlight highlight-XML"><pre>    &lt;<span class="pl-ent">project</span>&gt;
-        ....
-        &lt;<span class="pl-ent">repositories</span>&gt;
-            &lt;<span class="pl-ent">repository</span>&gt;
-                &lt;<span class="pl-ent">id</span>&gt;feilong-repository&lt;/<span class="pl-ent">id</span>&gt;
-                &lt;<span class="pl-ent">url</span>&gt;https://raw.github.com/venusdrogon/feilong-platform/master&lt;/<span class="pl-ent">url</span>&gt;
-            &lt;/<span class="pl-ent">repository</span>&gt;
-        &lt;/<span class="pl-ent">repositories</span>&gt;
-
-        &lt;<span class="pl-ent">dependencies</span>&gt;
-            &lt;<span class="pl-ent">dependency</span>&gt;
-                &lt;<span class="pl-ent">groupId</span>&gt;com.feilong.platform.commons&lt;/<span class="pl-ent">groupId</span>&gt;
-                &lt;<span class="pl-ent">artifactId</span>&gt;feilong-core&lt;/<span class="pl-ent">artifactId</span>&gt;
-                &lt;<span class="pl-ent">version</span>&gt;1.0.7&lt;/<span class="pl-ent">version</span>&gt;
-            &lt;/<span class="pl-ent">dependency</span>&gt;
-        &lt;/<span class="pl-ent">dependencies</span>&gt;
-    &lt;/<span class="pl-ent">project</span>&gt;</pre></div>
-
-<h1>
 <a id="项目依赖" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96" aria-hidden="true"><span class="octicon octicon-link"></span></a>项目依赖</h1>
 
 <div class="highlight highlight-XML"><pre>&lt;<span class="pl-ent">dependencies</span>&gt;
     &lt;<span class="pl-ent">dependency</span>&gt;
       &lt;<span class="pl-ent">groupId</span>&gt;org.apache.commons&lt;/<span class="pl-ent">groupId</span>&gt;
       &lt;<span class="pl-ent">artifactId</span>&gt;commons-lang3&lt;/<span class="pl-ent">artifactId</span>&gt;
-      &lt;<span class="pl-ent">version</span>&gt;3.1&lt;/<span class="pl-ent">version</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;3.3.2&lt;/<span class="pl-ent">version</span>&gt;
       &lt;<span class="pl-ent">scope</span>&gt;compile&lt;/<span class="pl-ent">scope</span>&gt;
     &lt;/<span class="pl-ent">dependency</span>&gt;
 
     &lt;<span class="pl-ent">dependency</span>&gt;
       &lt;<span class="pl-ent">groupId</span>&gt;commons-beanutils&lt;/<span class="pl-ent">groupId</span>&gt;
       &lt;<span class="pl-ent">artifactId</span>&gt;commons-beanutils&lt;/<span class="pl-ent">artifactId</span>&gt;
-      &lt;<span class="pl-ent">version</span>&gt;1.8.3&lt;/<span class="pl-ent">version</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;1.9.2&lt;/<span class="pl-ent">version</span>&gt;
       &lt;<span class="pl-ent">scope</span>&gt;compile&lt;/<span class="pl-ent">scope</span>&gt;
     &lt;/<span class="pl-ent">dependency</span>&gt;
 
     &lt;<span class="pl-ent">dependency</span>&gt;
       &lt;<span class="pl-ent">groupId</span>&gt;junit&lt;/<span class="pl-ent">groupId</span>&gt;
       &lt;<span class="pl-ent">artifactId</span>&gt;junit&lt;/<span class="pl-ent">artifactId</span>&gt;
-      &lt;<span class="pl-ent">version</span>&gt;4.10&lt;/<span class="pl-ent">version</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;4.12&lt;/<span class="pl-ent">version</span>&gt;
       &lt;<span class="pl-ent">scope</span>&gt;test&lt;/<span class="pl-ent">scope</span>&gt;
     &lt;/<span class="pl-ent">dependency</span>&gt;
 
     &lt;<span class="pl-ent">dependency</span>&gt;
       &lt;<span class="pl-ent">groupId</span>&gt;org.slf4j&lt;/<span class="pl-ent">groupId</span>&gt;
       &lt;<span class="pl-ent">artifactId</span>&gt;slf4j-log4j12&lt;/<span class="pl-ent">artifactId</span>&gt;
-      &lt;<span class="pl-ent">version</span>&gt;1.7.6&lt;/<span class="pl-ent">version</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;1.7.12&lt;/<span class="pl-ent">version</span>&gt;
       &lt;<span class="pl-ent">scope</span>&gt;compile&lt;/<span class="pl-ent">scope</span>&gt;
     &lt;/<span class="pl-ent">dependency</span>&gt;
 
