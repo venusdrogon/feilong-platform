@@ -171,7 +171,7 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
         httpClientConfig.setParams(tokenRequestMap);
 
         String alipayTokenResponseResult = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
-        //TODO 要编码吗？
+        //TODO 要编码吗？--->Demo里面有 (明雷)
         //String createResult = URLDecoder.decode(result, _input_charset);
 
         return extractRequestTokenValue(alipayTokenResponseResult);
@@ -218,7 +218,7 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
         //请求失败的请况下，不签名，  无此参数。 
         String reutrnSign = returnParamMap.get("sign");
 
-        //TODO 这里是否还有验证签名的必要， 发起请求是自己发起的，接收方也是支付宝
+        //XXX 这里是否还有验证签名的必要， 发起请求是自己发起的，接收方也是支付宝
         assertAlipaySignLegal(reutrnSign, returnParamMap);
 
         //授权令牌，请求成功后才会返回该值
@@ -245,7 +245,7 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
         tokenRequestMap.put("req_data", constructReqDataParam(payRequest, specialSignMap));
 
         //用于关联请求与响应，防止 请求重播。      支付宝限制来自同一个partner的请求号必须唯 一。 样例:1282889689836
-        //TODO 这时嘛东东
+        //TODO 这时嘛东东--->忘记了(明)
         tokenRequestMap.put("req_id", "" + System.currentTimeMillis());
 
         return tokenRequestMap;
@@ -298,7 +298,7 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
         //        String cashier_code = specialSignMap.get("cashier_code");
         //        //String cashier_code = specialSignMap.get(AlipayRequestParamConstants.DEFAULT_BANK);
         // if (Validator.isNotNullOrEmpty(cashier_code)){
-        ////FIXME 咦 文档好像没有这个参数
+        ////FIXME 咦 文档好像没有这个参数  ----> 信用卡文档中
         //            map.put("cashier_code", cashier_code);
         //        }
 
@@ -321,7 +321,7 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
         //***************************************
 
         // 准备alipay.wap.trade.create.direct服务的参数
-        //TODO 做成对象转
+        //XXX 做成对象转
         StringBuilder sb = new StringBuilder();
         sb.append("<direct_trade_create_req>");
         sb.append(mapToXML(map));
@@ -369,10 +369,6 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
 
         if (Validator.isNotNullOrEmpty(notify_data)){
             isNotifySignOk = isNotifySignOkForNotifyUrl(request);
-        }else{
-            //解析随浏览器跳转发回的消息参数.
-            //isNotifySignOk = isNotifySignOk(request);
-            assertAlipaySignLegal(request);
         }
         if (isNotifySignOk){
             boolean isPaymentSuccess = isPaymentSuccess(request);
@@ -416,10 +412,11 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
 
         String result = request.getParameter("result");
 
+        //TODO result会是空吗
         if (Validator.isNotNullOrEmpty(result)){
             return "success".equals(result);
         }else{
-            //TODO 是否还要判断下面的了？
+            //TODO 是否还要判断下面的了？ 
             String notify_data = request.getParameter("notify_data");
             if (Validator.isNotNullOrEmpty(notify_data)){
                 String status = getValueByKeyForXML(notify_data, "trade_status");
@@ -439,11 +436,10 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
      * @time 2013-9-16上午10:23:19
      */
     private boolean isNotifySignOkForNotifyUrl(HttpServletRequest request){
-        //FIXME 应该和上面 加密逻辑一样的
         // alipay 传过来的参数
         String alipaySign = request.getParameter("sign");
 
-        //FIXME 这里不要保证顺序？
+        //注意: 这里不要保证顺序？
 
         //notify_url 接受到的参数验签不要排序，只需要按照支付宝返回的参数顺序，组装字符串，然后验签，
         //如支付宝异步通知 POST 方式返回的参数顺序如下：
@@ -493,6 +489,10 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
      */
     @Override
     public PaymentResult verifyRedirect(HttpServletRequest request){
+        //解析随浏览器跳转发回的消息参数.
+        //isNotifySignOk = isNotifySignOk(request);
+        assertAlipaySignLegal(request);
+
         //TODO
         throw new NotImplementedException("verifyRedirect is not implemented!");
     }

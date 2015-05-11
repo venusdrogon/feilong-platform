@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.awt.toolkit;
+package com.feilong.commons.core.awt;
 
 import java.util.Date;
 
 import org.junit.Test;
 
+import com.feilong.commons.core.awt.ScreenShotUtil;
 import com.feilong.commons.core.date.DatePattern;
 import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.ImageType;
@@ -33,7 +34,7 @@ import com.feilong.commons.core.io.ImageType;
 public class ScreenShotUtilTest{
 
     /**
-     * {@link com.feilong.commons.core.awt.toolkit.ScreenShotUtil#screenshot(java.lang.String, java.lang.String)} 的测试方法。
+     * {@link com.feilong.commons.core.awt.ScreenShotUtil#screenshot(java.lang.String, java.lang.String)} 的测试方法。
      */
     @Test
     public final void testScreenshot(){

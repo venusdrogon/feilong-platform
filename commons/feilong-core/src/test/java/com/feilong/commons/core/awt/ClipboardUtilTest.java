@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.awt.toolkit;
+package com.feilong.commons.core.awt;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
@@ -21,6 +21,8 @@ import java.io.IOException;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.feilong.commons.core.awt.ClipboardUtil;
 
 /**
  * The Class ClipboardUtilTest.
@@ -35,7 +37,7 @@ public class ClipboardUtilTest{
     private static final Logger log = LoggerFactory.getLogger(ClipboardUtilTest.class);
 
     /**
-     * {@link com.feilong.commons.core.awt.toolkit.ClipboardUtil#setClipboardContent(java.lang.String)} 的测试方法。
+     * {@link com.feilong.commons.core.awt.ClipboardUtil#setClipboardContent(java.lang.String)} 的测试方法。
      *
      * @throws UnsupportedFlavorException
      *             the unsupported flavor exception

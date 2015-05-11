@@ -32,14 +32,17 @@ import com.feilong.commons.core.MessageConstants;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 日期扩展工具类,和 DateUtil 的区别在于, DateUtil是纯 操作Date API的工具类,而DateExtensionUtil类 用于个性化 输出结果,针对业务个性化显示<br>
+ * 日期扩展工具类,和 DateUtil 的区别在于, DateUtil是纯 操作Date API的工具类,而DateExtensionUtil类 用于个性化 输出结果,针对业务个性化显示.<br>
  * 
- * 获得两个日期间隔
+ * <h3>获得两个日期间隔</h3>
+ * 
+ * <blockquote>
  * <ul>
  * <li>{@link #getIntervalDayList(String, String, String)}</li>
  * <li>{@link #getIntervalForView(long)}</li>
  * <li>{@link #getIntervalForView(Date, Date)}</li>
  * </ul>
+ * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.8 2014年7月31日 下午2:34:33

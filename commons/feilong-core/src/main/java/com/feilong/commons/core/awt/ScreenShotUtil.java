@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.commons.core.awt.toolkit;
+package com.feilong.commons.core.awt;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
@@ -22,7 +22,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
-import com.feilong.commons.core.awt.ImageUtil;
 import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
