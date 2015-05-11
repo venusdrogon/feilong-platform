@@ -31,13 +31,6 @@ Reduce development, Release ideas
 1. 需要jdk1.6及以上环境;
 
 
-# 类和方法介绍: 
-
-## com.feilong.commons.core.date 包,时间日期操作核心类:
-
-* DateUtil时间工具类  
-
-
 # Maven使用配置
 
 ```XML
@@ -68,7 +61,7 @@ Reduce development, Release ideas
 
 # feilong-platform module:
 
-category |name | description | JDK编译版本(将来会统一)
+Category |Name | Description | JDK编译版本(将来会统一)
 ----|------------ | ---------|------------
 commons |`feilong-core` | 核心jar,所有feilong-platform的基础 | 1.6
 commons |`feilong-servlet` | 封装了j2ee常用类,是feilong-platform web相关jar 的基础 | 1.6
@@ -80,10 +73,10 @@ webservice|`feilong-webservice-jws` |  | 1.7
 framework|`feilong-framework-bind` |  | 1.7
 framework|`feilong-framework-code` |  | 1.7
 framework|`feilong-framework-netpay` |  | 1.7
-spring|`feilong-spring-aop` |  | 1.7
+spring|`feilong-spring-aop` |  | 1.6
 spring|`feilong-spring-context` |  | 1.7
 spring|`feilong-spring-core` |  | 1.7
-spring|`feilong-spring-jdbc` |  | 1.7
+spring|`feilong-spring-jdbc` |  | 1.6
 spring|`feilong-spring-web` |  | 1.7
 tools|`feilong-net-filetransfer` |  | 1.7
 tools|`feilong-net-httpclient` |  | 1.7
@@ -97,6 +90,13 @@ tools|`feilong-tools-middleware` |  | 1.7
 tools|`feilong-tools-security` |  | 1.7
 tools|`feilong-tools-velocity` |  | 1.7
 tools|`feilong-tools-xstream` |  | 1.7
+
+# 类和方法介绍: 
+
+## com.feilong.commons.core.date 包,时间日期操作核心类:
+
+* DateUtil时间工具类  
+
 
 # 项目依赖
 
