@@ -51,8 +51,8 @@ public class AlipayAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
      */
     @Test
     public final void testCloseTrade() throws TradeCloseException{
-        String orderNo = "20150508151218";
-        TradeRole tradeRole = TradeRole.BUYER;
+        String orderNo = "20150515105531";
+        TradeRole tradeRole = TradeRole.SELLER;
         paymentAdvanceAdaptor.closeTrade(orderNo, tradeRole);
     }
 }

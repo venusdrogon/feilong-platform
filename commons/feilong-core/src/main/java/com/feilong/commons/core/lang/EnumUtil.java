@@ -169,10 +169,10 @@ public final class EnumUtil{
         // 如果此 Class 对象不表示枚举类型，则返回枚举类的元素或 null.
         E[] enumConstants = enumClass.getEnumConstants();
 
+        if (log.isDebugEnabled()){
+            log.debug("enumClass:[{}],enumConstants:{}", enumClass.getCanonicalName(), JsonUtil.format(enumConstants));
+        }
         for (E e : enumConstants){
-            if (log.isDebugEnabled()){
-                log.debug("e:{}", JsonUtil.format(e));
-            }
 
             Object propertyValue = PropertyUtil.getProperty(e, propertyName);
 

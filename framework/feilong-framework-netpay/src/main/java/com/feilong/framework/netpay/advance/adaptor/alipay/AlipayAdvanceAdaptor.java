@@ -17,6 +17,7 @@ package com.feilong.framework.netpay.advance.adaptor.alipay;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
@@ -181,7 +182,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
         HttpClientConfig httpClientConfig = new HttpClientConfig();
 
         httpClientConfig.setUri(gateway);
-        httpClientConfig.setParams(closeTradeRequestMap);
+        httpClientConfig.setParams(new TreeMap<String, String>(closeTradeRequestMap));
         httpClientConfig.setHttpMethodType(HttpMethodType.GET);
 
         String returnXML = HttpClientUtil.getResponseBodyAsString(httpClientConfig);

@@ -19,7 +19,25 @@ import com.feilong.framework.netpay.payment.adaptor.alipay.pconline.AlipayOnline
 
 /**
  * alipay境外支付接口(mobile)(目前参数和 {@link AlipayOnlineForexPayAdaptor} 一模一样的).
- *
+ * 
+ * 
+ * <h3>{@link AlipayWapForexAdaptor} VS {@link AlipayOnlineForexPayAdaptor}</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 目前区别是,交易超时时间max值,mobile是 3d,pc是12h,pc上如果写3d就直接报错
+ * </p>
+ * </blockquote>
+ * 
+ * <h3>境外支付 VS 普通支付宝</h3>
+ * 
+ * <blockquote>
+ * <ul>
+ * <li>和 普通的支付宝的区别是, 虽然境外支付也有return_url,但是 这不能作为交易成功的判断依据, 里面参数是不签名的;并且只要交易状态发生改变都会跳转回来, 比如 交易失败等</li>
+ * <li>没有防钓鱼时间戳</li>
+ * </ul>
+ * </blockquote>
+ * 
  * @author 冯明雷
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0 2014-9-28 下午3:00:33
