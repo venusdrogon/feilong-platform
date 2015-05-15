@@ -309,7 +309,7 @@ public final class WebSpringUtil{
      * @return the bean
      */
     @SuppressWarnings("unchecked")
-    private static <T> T getBean(WebApplicationContext webApplicationContext,String beanName){
+    public static <T> T getBean(WebApplicationContext webApplicationContext,String beanName){
         return (T) webApplicationContext.getBean(beanName);
     }
 
@@ -324,7 +324,7 @@ public final class WebSpringUtil{
      *            the required type
      * @return the bean
      */
-    private static <T> T getBean(WebApplicationContext webApplicationContext,Class<T> requiredType){
+    public static <T> T getBean(WebApplicationContext webApplicationContext,Class<T> requiredType){
         return webApplicationContext.getBean(requiredType);
     }
 }
