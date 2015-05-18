@@ -18,10 +18,13 @@ package com.feilong.spring.context;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
+
+import com.feilong.commons.core.util.Validator;
 
 /**
  * The Class ApplicationContextUtil.
@@ -40,6 +43,11 @@ public final class ApplicationContextUtil{
      * @return the application context for log map
      */
     public static Map<String, Object> getApplicationContextForLogMap(ApplicationContext applicationContext){
+
+        if (Validator.isNullOrEmpty(applicationContext)){
+            return null;
+        }
+
         Map<String, Object> applicationContextForLogMap = new LinkedHashMap<String, Object>();
 
         applicationContextForLogMap.put("applicationContext.getBeanDefinitionCount()", applicationContext.getBeanDefinitionCount());
@@ -47,19 +55,24 @@ public final class ApplicationContextUtil{
         applicationContextForLogMap.put("applicationContext.getApplicationName()", applicationContext.getApplicationName());
         applicationContextForLogMap.put("applicationContext.getDisplayName()", applicationContext.getDisplayName());
 
+        applicationContextForLogMap.put("applicationContext.getClass()", applicationContext.getClass());
+
         applicationContextForLogMap.put("applicationContext.getId()", applicationContext.getId());
         applicationContextForLogMap.put("applicationContext.getStartupDate()", applicationContext.getStartupDate());
 
         applicationContextForLogMap.put("ApplicationContext.CLASSPATH_ALL_URL_PREFIX", ApplicationContext.CLASSPATH_ALL_URL_PREFIX);
         applicationContextForLogMap.put("ApplicationContext.CLASSPATH_URL_PREFIX", ApplicationContext.CLASSPATH_URL_PREFIX);
         applicationContextForLogMap.put("ApplicationContext.FACTORY_BEAN_PREFIX", ApplicationContext.FACTORY_BEAN_PREFIX);
+        applicationContextForLogMap.put(
+                        "applicationContext.getParent() info",
+                        getApplicationContextForLogMap(applicationContext.getParent()));
 
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         Arrays.sort(beanDefinitionNames);
 
-        //applicationContextForLogMap.put("applicationContext.getBeanDefinitionNames()", beanDefinitionNames);
+        applicationContextForLogMap.put("applicationContext.getBeanDefinitionNames()", beanDefinitionNames);
 
-        Map<String, Object> beanDefinitionNamesAndClassMap = new LinkedHashMap<String, Object>();
+        Map<String, Object> beanDefinitionNamesAndClassMap = new TreeMap<String, Object>();
         for (String beanDefinitionName : beanDefinitionNames){
             try{
                 Object bean = applicationContext.getBean(beanDefinitionName);

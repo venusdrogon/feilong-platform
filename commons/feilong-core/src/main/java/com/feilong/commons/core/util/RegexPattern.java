@@ -295,7 +295,7 @@ public final class RegexPattern{
      * 
      * @see <a href="http://liaojuncai.iteye.com/blog/1986310">严格的手机号码正则表达式写法</a>
      */
-    public static final String MOBILEPHONE       = "^((13[0-9])|(15[^4,\\D])|(17[0-9]))|(18[0-9]))\\d{8}$";
+    public static final String MOBILEPHONE       = "^((13[0-9])|(15[^4,\\D])|(17[0-9])|(18[0-9]))\\d{8}$";
 
     //******************************************************************************
 
