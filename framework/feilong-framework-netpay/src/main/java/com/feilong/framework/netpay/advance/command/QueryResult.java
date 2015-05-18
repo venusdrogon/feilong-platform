@@ -42,7 +42,7 @@ public class QueryResult implements Serializable{
     /** 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo. */
     private String             tradeNo;
 
-    /** (optional) 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU. */
+    /** <span style="color:red">(optional)</span> 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU. */
     private String             gatewayTradeNo;
 
     /** 支付网关返回的原生结果. */
@@ -51,12 +51,12 @@ public class QueryResult implements Serializable{
     /** 支付网关返回的支付金额. */
     private BigDecimal         gatewayAmount;
 
-    /** (optional)支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date. */
+    /** <span style="color:red">(optional)</span> 支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date. */
     private Date               gatewayPaymentTime;
 
     /**
      * 获得 支付结果.
-     * 
+     *
      * @return the paymentResult
      */
     public PaymentResult getPaymentResult(){
@@ -65,7 +65,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 设置 支付结果.
-     * 
+     *
      * @param paymentResult
      *            the paymentResult to set
      */
@@ -75,7 +75,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 获得 转换成的对象.
-     * 
+     *
      * @return the queryResultCommand
      */
     public QueryResultCommand getQueryResultCommand(){
@@ -84,7 +84,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 设置 转换成的对象.
-     * 
+     *
      * @param queryResultCommand
      *            the queryResultCommand to set
      */
@@ -94,7 +94,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 获得 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
-     * 
+     *
      * @return the tradeNo
      */
     public String getTradeNo(){
@@ -103,7 +103,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 设置 我们的交易号码,可以是 订单code,也可以是自定义的交易code,每个商城规则可能不一样,the same as PayRequest tradeNo.
-     * 
+     *
      * @param tradeNo
      *            the tradeNo to set
      */
@@ -112,8 +112,8 @@ public class QueryResult implements Serializable{
     }
 
     /**
-     * 获得 (optional) 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU.
-     * 
+     * 获得 <span style="color:red">(optional)</span> 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU.
+     *
      * @return the gatewayTradeNo
      */
     public String getGatewayTradeNo(){
@@ -121,8 +121,8 @@ public class QueryResult implements Serializable{
     }
 
     /**
-     * 设置 (optional) 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU.
-     * 
+     * 设置 <span style="color:red">(optional)</span> 支付网关交易号,某些支付网关不会返回这个值,比如 DOKU.
+     *
      * @param gatewayTradeNo
      *            the gatewayTradeNo to set
      */
@@ -132,7 +132,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 获得 支付网关返回的原生结果.
-     * 
+     *
      * @return the gatewayResult
      */
     public String getGatewayResult(){
@@ -141,7 +141,7 @@ public class QueryResult implements Serializable{
 
     /**
      * 设置 支付网关返回的原生结果.
-     * 
+     *
      * @param gatewayResult
      *            the gatewayResult to set
      */
@@ -150,27 +150,8 @@ public class QueryResult implements Serializable{
     }
 
     /**
-     * 获得 (optional)支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date.
-     * 
-     * @return the gatewayPaymentTime
-     */
-    public Date getGatewayPaymentTime(){
-        return gatewayPaymentTime;
-    }
-
-    /**
-     * 设置 (optional)支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date.
-     * 
-     * @param gatewayPaymentTime
-     *            the gatewayPaymentTime to set
-     */
-    public void setGatewayPaymentTime(Date gatewayPaymentTime){
-        this.gatewayPaymentTime = gatewayPaymentTime;
-    }
-
-    /**
      * 获得 支付网关返回的支付金额.
-     * 
+     *
      * @return the gatewayAmount
      */
     public BigDecimal getGatewayAmount(){
@@ -179,12 +160,31 @@ public class QueryResult implements Serializable{
 
     /**
      * 设置 支付网关返回的支付金额.
-     * 
+     *
      * @param gatewayAmount
      *            the gatewayAmount to set
      */
     public void setGatewayAmount(BigDecimal gatewayAmount){
         this.gatewayAmount = gatewayAmount;
+    }
+
+    /**
+     * 获得 <span style="color:red">(optional)</span> 支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date.
+     *
+     * @return the gatewayPaymentTime
+     */
+    public Date getGatewayPaymentTime(){
+        return gatewayPaymentTime;
+    }
+
+    /**
+     * 设置 <span style="color:red">(optional)</span> 支付网关支付的时间,支付网关可能取到的是字符串格式 转换成date.
+     *
+     * @param gatewayPaymentTime
+     *            the gatewayPaymentTime to set
+     */
+    public void setGatewayPaymentTime(Date gatewayPaymentTime){
+        this.gatewayPaymentTime = gatewayPaymentTime;
     }
 
 }

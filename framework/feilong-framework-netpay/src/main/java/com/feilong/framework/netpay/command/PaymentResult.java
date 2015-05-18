@@ -19,7 +19,7 @@ package com.feilong.framework.netpay.command;
  * 支付结果.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 2014年5月5日 下午11:01:24
+ * @version 1.0.6 2014年5月5日 下午11:01:24
  */
 public enum PaymentResult{
 
@@ -34,7 +34,14 @@ public enum PaymentResult{
 
     /**
      * PENDING transaction still in process<br>
-     * (极少数的支付方式会有这样的状态),目前只有 bca credit card有这个状态
+     * (极少数的支付方式会有这样的状态),目前只有 bca credit card有这个状态.
      */
-    PENDING
+    PENDING,
+
+    /**
+     * 交易关闭.
+     * 
+     * @since 1.1.2
+     * */
+    CLOSED
 }

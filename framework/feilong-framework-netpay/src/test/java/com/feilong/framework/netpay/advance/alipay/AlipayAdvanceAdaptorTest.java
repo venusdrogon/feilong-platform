@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.feilong.framework.netpay.advance.BaseAdvanceAdaptorTest;
 import com.feilong.framework.netpay.advance.PaymentAdvanceAdaptor;
+import com.feilong.framework.netpay.advance.command.QueryRequest;
+import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.advance.command.TradeRole;
 import com.feilong.framework.netpay.advance.exception.TradeCloseException;
 
@@ -46,13 +48,27 @@ public class AlipayAdvanceAdaptorTest extends BaseAdvanceAdaptorTest{
     /**
      * Test method for
      * {@link com.feilong.framework.netpay.advance.adaptor.alipay.AlipayAdvanceAdaptor#closeTrade(java.lang.String, com.feilong.framework.netpay.advance.command.TradeRole)}
-     * 
+     *
      * @throws TradeCloseException
+     *             the trade close exception
      */
     @Test
     public final void testCloseTrade() throws TradeCloseException{
-        String orderNo = "20150515105531";
+        String orderNo = "5251548784";
         TradeRole tradeRole = TradeRole.SELLER;
         paymentAdvanceAdaptor.closeTrade(orderNo, tradeRole);
+    }
+
+    /**
+     * Test get query result.
+     */
+    @Test
+    public final void testGetQueryResult(){
+        String tradeNo = "5251548784";
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setTradeNo(tradeNo);
+
+        QueryResult queryResult = paymentAdvanceAdaptor.getQueryResult(queryRequest);
+
     }
 }

@@ -31,8 +31,11 @@ import com.feilong.commons.core.util.Validator;
 import com.feilong.framework.bind.parse.XmlParse;
 import com.feilong.framework.bind.parse.base.StandardXpathExpressionXmlParse;
 import com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor;
+import com.feilong.framework.netpay.advance.command.QueryRequest;
+import com.feilong.framework.netpay.advance.command.QueryResult;
 import com.feilong.framework.netpay.advance.command.TradeRole;
 import com.feilong.framework.netpay.advance.exception.TradeCloseException;
+import com.feilong.framework.netpay.command.PaymentResult;
 import com.feilong.tools.net.httpclient3.HttpClientConfig;
 import com.feilong.tools.net.httpclient3.HttpClientException;
 import com.feilong.tools.net.httpclient3.HttpClientUtil;
@@ -83,6 +86,9 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
     /** 关闭交易. */
     private String              service_close_trade;
+
+    /** single_trade_query单笔查询. */
+    private String              service_single_trade_query;
 
     /**
      * 参数编码字符集 不可为空 <br>
@@ -262,6 +268,80 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
         return true;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.feilong.framework.netpay.advance.AbstractPaymentAdvanceAdaptor#getQueryResult(com.feilong.framework.netpay.advance.command.
+     * QueryRequest)
+     */
+    @Override
+    public QueryResult getQueryResult(QueryRequest queryRequest){
+        String orderNo = queryRequest.getTradeNo();
+        Map<String, String> constructSingleTradeQueryRequestMap = constructSingleTradeQueryRequestMap(orderNo);
+
+        HttpClientConfig httpClientConfig = new HttpClientConfig();
+
+        httpClientConfig.setUri(gateway);
+        httpClientConfig.setParams(new TreeMap<String, String>(constructSingleTradeQueryRequestMap));
+        httpClientConfig.setHttpMethodType(HttpMethodType.GET);
+
+        String returnXML = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
+
+        QueryResult queryResult = new QueryResult();
+
+        //FIXME
+        //        queryResult.setGatewayAmount(gatewayAmount);
+        //        queryResult.setGatewayPaymentTime(gatewayAmount);
+        queryResult.setGatewayResult(returnXML);
+        //        queryResult.setGatewayTradeNo(gatewayAmount);
+        queryResult.setPaymentResult(PaymentResult.PENDING);
+        //        queryResult.setQueryResultCommand(gatewayAmount);
+        //        queryResult.setTradeNo(gatewayAmount);
+
+        if (log.isDebugEnabled()){
+            log.debug(JsonUtil.format(queryResult));
+        }
+        return queryResult;
+    }
+
+    /**
+     * 构造单笔查询接口需要的参数.
+     * 
+     * <p>
+     * 和 调用关闭接口相比,少了 trade_role 参数
+     * </p>
+     *
+     * @param orderNo
+     *            the order no
+     * @return the map< string, string>
+     * @since 1.1.2
+     */
+    private Map<String, String> constructSingleTradeQueryRequestMap(String orderNo){
+        Map<String, String> singleTradeQueryRequestMap = new HashMap<String, String>();
+
+        //基本参数
+        //TODO
+        singleTradeQueryRequestMap.put("service", service_single_trade_query);
+        singleTradeQueryRequestMap.put("partner", partner);
+        singleTradeQueryRequestMap.put("_input_charset", _input_charset);
+
+        //业务参数
+        singleTradeQueryRequestMap.put("out_order_no", orderNo);//XXX 建议以后 使用trade_no去查询, 建议使用支付宝交易号进行 查询，用商户网站唯一订单号 查询的效率比较低  see 单笔交易查询接口(single_trade_query) v1.2.pdf
+
+        //和 调用关闭接口相比, 少了 trade_role 参数
+
+        //trade_no 支付宝交易号 String(64) 支付宝根据商户请求，创建订 单生成的支付宝交易号。        最短16位，最长64位。 
+        //trade_no和out_order_no不可同时为空。         可空  2011031700597827 
+
+        //TODO 设置成统一方法
+        String toBeSignedString = ParamUtil.toNaturalOrderingString(singleTradeQueryRequestMap);
+        String sign = MD5Util.encode(toBeSignedString + key, _input_charset);
+
+        singleTradeQueryRequestMap.put("sign", sign);
+        singleTradeQueryRequestMap.put("sign_type", "MD5");
+        return singleTradeQueryRequestMap;
+    }
+
     /**
      * 设置 mD5 的私钥是以英文字母和数字组成的 32位字符串。<br>
      * 商户可登录到商户服务中心（https://b.
@@ -313,5 +393,15 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
      */
     public void set_input_charset(String _input_charset){
         this._input_charset = _input_charset;
+    }
+
+    /**
+     * 设置 single_trade_query单笔查询.
+     *
+     * @param service_single_trade_query
+     *            the service_single_trade_query to set
+     */
+    public void setService_single_trade_query(String service_single_trade_query){
+        this.service_single_trade_query = service_single_trade_query;
     }
 }

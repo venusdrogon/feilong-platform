@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2008 feilong (venusdrogon@163.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -207,6 +207,8 @@ public class SprintAsiaCreditCardAdvanceAdaptor extends AbstractPaymentAdvanceAd
                 String formatMessage = Slf4jUtil.formatMessage(messagePattern, JsonUtil.format(creditCardQueryResult), wddxPacketXML);
                 throw new RuntimeException(formatMessage);
             }
+
+            //*******************构造 QueryResult******************************************************
 
             QueryResult queryResult = new QueryResult();
             PaymentResult paymentResult = toPaymentResult(transactionStatus);

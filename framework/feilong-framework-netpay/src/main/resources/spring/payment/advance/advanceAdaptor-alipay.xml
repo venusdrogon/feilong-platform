@@ -14,7 +14,9 @@
 		<property name="partner" value="#{p_AlipayAdvance['partner']}" />
 		<property name="key" value="#{p_AlipayAdvance['key']}" />
 		<property name="gateway" value="#{p_AlipayAdvance['gateway']}" />
-		<property name="service_close_trade" value="#{p_AlipayAdvance['service.close_trade']}" />
 		<property name="_input_charset" value="#{p_AlipayAdvance['_input_charset']}" />
+
+		<property name="service_close_trade" value="#{p_AlipayAdvance['service.close_trade']}" />
+		<property name="service_single_trade_query" value="#{p_AlipayAdvance['service.single_trade_query']}" />
 	</bean>
 </beans>
