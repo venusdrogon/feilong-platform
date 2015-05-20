@@ -86,7 +86,7 @@
 		<version.slf4j>1.7.12</version.slf4j>
 
 		<version.spring>3.2.12.RELEASE</version.spring>
-		
+
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
 
@@ -136,6 +136,7 @@
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 		<v.site-maven-plugin>0.11</v.site-maven-plugin>
+		<v.sonar-maven-plugin>2.6</v.sonar-maven-plugin>
 
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
@@ -622,12 +623,6 @@
 				<version>${version.logback}</version>
 			</dependency>
 
-<!-- 			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-access</artifactId>
-				<version>${version.logback}</version>
-			</dependency> -->
-
 			<dependency>
 				<groupId>org.logback-extensions</groupId>
 				<artifactId>logback-ext-spring</artifactId>
@@ -757,6 +752,12 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>${v.maven-site-plugin}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>${v.sonar-maven-plugin}</version>
 			</plugin>
 
 			<plugin>
