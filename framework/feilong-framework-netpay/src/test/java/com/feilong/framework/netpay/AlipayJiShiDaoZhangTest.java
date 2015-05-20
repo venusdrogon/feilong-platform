@@ -15,6 +15,7 @@
  */
 package com.feilong.framework.netpay;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -24,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.awt.DesktopUtil;
+import com.feilong.commons.core.date.DatePattern;
+import com.feilong.commons.core.date.DateUtil;
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.IOWriteUtil;
 import com.feilong.commons.core.net.HttpMethodType;
@@ -42,10 +45,14 @@ import com.feilong.tools.velocity.VelocityUtil;
 public class AlipayJiShiDaoZhangTest{
 
     /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(AlipayJiShiDaoZhangTest.class);
+    private static final Logger log          = LoggerFactory.getLogger(AlipayJiShiDaoZhangTest.class);
 
     /** The key. */
-    private final String        key = "58hzej199qjzoielqpblrehuv1x1lwqr";
+    private final String        key          = "hyth4sb2c1wh27ksz27kgiq2e78oif4q";
+
+    private final String        seller_email = "alipay-test17@alipay.com";
+
+    private final String        partner      = "2088201564895543";
 
     /**
      * Test.
@@ -58,21 +65,21 @@ public class AlipayJiShiDaoZhangTest{
         Map<String, String> map = new HashMap<String, String>();
 
         //不同的商城, 基本上值一样
-        map.put("service", "create_direct_pay_by_user");
         map.put("_input_charset", CharsetType.UTF8);
+        map.put("service", "create_direct_pay_by_user");
         map.put("payment_type", "1");
         map.put("paymethod", "directPay");
 
         //*************************************************
         //这里的参数 每个订单都一样
-        map.put("seller_email", "alipay-test14@alipay.com");
-        map.put("partner", "2088201564862550");
+        map.put("seller_email", seller_email);
+        map.put("partner", partner);
 
         //**************************************
         //每个商城值每笔订单都不一样
-        map.put("out_trade_no", "5251548784");
-        map.put("subject", "25484-021女鞋+254844-256跑步++++");
-        map.put("body", "nike的新产品,非常好");
+        map.put("out_trade_no", DateUtil.date2String(new Date(), DatePattern.TIMESTAMP));
+        map.put("subject", "25484-021");
+        map.put("body", "nikegood");
         map.put("total_fee", "300.00");
         map.put("show_url", "http://www.nikestore.com.hk/product/644715-812/detail.htm");
 
