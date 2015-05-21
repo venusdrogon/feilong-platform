@@ -151,6 +151,19 @@ public final class PropertyUtil{
     /**
      * 使用 {@link PropertyUtils#getProperty(Object, String)} 类从对象中取得属性值.
      * 
+     * <h3>{@link BeanUtils#getProperty(Object, String) BeanUtils.getProperty}& {@link PropertyUtils#getProperty(Object, String)
+     * PropertyUtils.getProperty}的区别:</h3>
+     * 
+     * <blockquote>
+     * <p>
+     * {@link BeanUtils#getProperty(Object, String)} 会将结果转成String返回,<br>
+     * {@link PropertyUtils#getProperty(Object, String)} 结果是Object类型,不会做类型转换
+     * </p>
+     * </blockquote>
+     * 
+     * 
+     * <h3>具体实现:</h3>
+     * 
      * <pre>
      * {@code
      * getProperty和setProperty,它们都只有2个参数，第一个是JavaBean对象，第二个是要操作的属性名.
@@ -182,15 +195,6 @@ public final class PropertyUtil{
      * 
      * }
      * </pre>
-     * 
-     * <h3>{@link BeanUtils#getProperty(Object, String)}&{@link PropertyUtils#getProperty(Object, String)}的区别</h3>
-     * 
-     * <blockquote>
-     * <p>
-     * {@link BeanUtils#getProperty(Object, String)} 会将结果转成String返回,<br>
-     * {@link PropertyUtils#getProperty(Object, String)} 结果是Object类型,不会做类型转换
-     * </p>
-     * </blockquote>
      * 
      * @param <T>
      *            the generic type

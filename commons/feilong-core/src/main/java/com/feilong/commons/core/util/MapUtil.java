@@ -23,15 +23,20 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
+import org.apache.commons.collections.comparators.ReverseComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.util.comparator.PropertyComparator;
+
 /**
  * MapUtil {@link Map}工具类.
- * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
- * @version 1.0 Sep 8, 2012 8:02:44 PM
+ * @version 1.0.0 Sep 8, 2012 8:02:44 PM
+ * @see org.apache.commons.collections.MapUtils
  * @since 1.0.0
  */
 public final class MapUtil{
@@ -123,7 +128,6 @@ public final class MapUtil{
      *         if (Validator.isNullOrEmpty(keys)) 返回map<br>
      * @throws NullPointerException
      *             if (Validator.isNullOrEmpty(map))
-     * 
      * @since 1.0.9
      */
     public static <K, T> Map<K, T> getSubMapExcludeKeys(Map<K, T> map,K[] excludeKeys) throws NullPointerException{
@@ -146,32 +150,9 @@ public final class MapUtil{
         return returnMap;
     }
 
+    //*******************************排序****************************************************
     /**
-     * 根据value 来排序（asc）.
-     *
-     * @param <K>
-     *            the key type
-     * @param <V>
-     *            the value type
-     * @param map
-     *            the map
-     * @return the map< k, v>
-     * @throws NullPointerException
-     *             if Validator.isNullOrEmpty(map)
-     */
-    public static <K, V extends Comparable<V>> Map<K, V> sortByValueASC(Map<K, V> map) throws NullPointerException{
-
-        return sortByValue(map, new Comparator<Map.Entry<K, V>>(){
-
-            @Override
-            public int compare(Map.Entry<K, V> entry1,Map.Entry<K, V> entry2){
-                return entry1.getValue().compareTo(entry2.getValue());
-            }
-        });
-    }
-
-    /**
-     * 根据value 来排序（desc）.
+     * Sort by key asc.
      *
      * @param <K>
      *            the key type
@@ -182,20 +163,18 @@ public final class MapUtil{
      * @return the map< k, v>
      * @throws NullPointerException
      *             the null pointer exception
+     * @see java.util.TreeMap#TreeMap(Map)
+     * @since 1.1.2
      */
-    public static <K, V extends Comparable<V>> Map<K, V> sortByValueDESC(Map<K, V> map) throws NullPointerException{
-
-        return sortByValue(map, new Comparator<Map.Entry<K, V>>(){
-
-            @Override
-            public int compare(Map.Entry<K, V> entry1,Map.Entry<K, V> entry2){
-                return -(entry1.getValue().compareTo(entry2.getValue()));
-            }
-        });
+    public static <K, V> Map<K, V> sortByKeyAsc(Map<K, V> map) throws NullPointerException{
+        if (Validator.isNullOrEmpty(map)){
+            throw new NullPointerException("map can't be null/empty!");
+        }
+        return new TreeMap<K, V>(map);
     }
 
     /**
-     * Sort by value.
+     * Sort by key desc.
      *
      * @param <K>
      *            the key type
@@ -203,34 +182,110 @@ public final class MapUtil{
      *            the value type
      * @param map
      *            the map
-     * @param comparator
-     *            the comparator
-     * @return the map
+     * @return the map< k, v>
      * @throws NullPointerException
      *             the null pointer exception
+     * @see org.apache.commons.collections.comparators.ReverseComparator#ReverseComparator(Comparator)
+     * @see PropertyComparator#PropertyComparator(String)
+     * @since 1.1.2
      */
-    public static <K, V extends Comparable<V>> Map<K, V> sortByValue(Map<K, V> map,Comparator<Map.Entry<K, V>> comparator)
-                    throws NullPointerException{
+    @SuppressWarnings("unchecked")
+    public static <K, V> Map<K, V> sortByKeyDesc(Map<K, V> map) throws NullPointerException{
+        if (Validator.isNullOrEmpty(map)){
+            throw new NullPointerException("map can't be null/empty!");
+        }
+        return sort(map, new ReverseComparator(new PropertyComparator<Map.Entry<K, V>>("key")));
+    }
+
+    /**
+     * 根据value 来顺序排序（asc）.
+     *
+     * @param <K>
+     *            the key type
+     * @param <V>
+     *            the value type
+     * @param map
+     *            the map
+     * @return the map< k, v>
+     * @throws NullPointerException
+     *             if Validator.isNullOrEmpty(map) or if Validator.isNullOrEmpty(mapEntryComparator)
+     * @see PropertyComparator#PropertyComparator(String)
+     * @see java.util.Map.Entry
+     * @see #sortByValueDesc(Map)
+     * @since 1.1.2
+     */
+    public static <K, V extends Comparable<V>> Map<K, V> sortByValueAsc(Map<K, V> map) throws NullPointerException{
+        return sort(map, new PropertyComparator<Map.Entry<K, V>>("value"));
+    }
+
+    /**
+     * 根据value 来倒序排序（desc）.
+     *
+     * @param <K>
+     *            the key type
+     * @param <V>
+     *            the value type
+     * @param map
+     *            the map
+     * @return the map< k, v>
+     * @throws NullPointerException
+     *             if Validator.isNullOrEmpty(map) or if Validator.isNullOrEmpty(mapEntryComparator)
+     * @see org.apache.commons.collections.comparators.ReverseComparator#ReverseComparator(Comparator)
+     * @see PropertyComparator#PropertyComparator(String)
+     * @see java.util.Map.Entry
+     * @see #sortByValueAsc(Map)
+     * @since 1.1.2
+     */
+    @SuppressWarnings("unchecked")
+    public static <K, V extends Comparable<V>> Map<K, V> sortByValueDesc(Map<K, V> map) throws NullPointerException{
+        return sort(map, new ReverseComparator(new PropertyComparator<Map.Entry<K, V>>("value")));
+    }
+
+    /**
+     * 使用 基于 {@link java.util.Map.Entry} 的 <code>mapEntryComparator</code> 来对 <code>map</code>进行排序.
+     * 
+     * <p>
+     * 由于是对{@link java.util.Map.Entry}排序的, 既可以按照key来排序,也可以按照value来排序哦
+     * </p>
+     *
+     * @param <K>
+     *            the key type
+     * @param <V>
+     *            the value type
+     * @param map
+     *            the map
+     * @param mapEntryComparator
+     *            基于 {@link java.util.Map.Entry} 的 {@link Comparator}
+     * @return 排序之后的map
+     * @throws NullPointerException
+     *             if Validator.isNullOrEmpty(map) or if Validator.isNullOrEmpty(mapEntryComparator)
+     * @since 1.1.2
+     */
+    public static <K, V> Map<K, V> sort(Map<K, V> map,Comparator<Map.Entry<K, V>> mapEntryComparator) throws NullPointerException{
 
         if (Validator.isNullOrEmpty(map)){
             throw new NullPointerException("the map is null or empty!");
         }
 
+        if (Validator.isNullOrEmpty(mapEntryComparator)){
+            throw new NullPointerException("mapEntryComparator is null or empty!");
+        }
+
         //**********************************************************
 
         final int size = map.size();
-        List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(size);
+        List<Map.Entry<K, V>> mapEntryList = new ArrayList<Map.Entry<K, V>>(size);
         for (Map.Entry<K, V> entry : map.entrySet()){
-            list.add(entry);
+            mapEntryList.add(entry);
         }
 
         //**********************排序************************************
-        Collections.sort(list, comparator);
+        Collections.sort(mapEntryList, mapEntryComparator);
 
         //**********************************************************
         Map<K, V> returnMap = new LinkedHashMap<K, V>(size);
 
-        for (Map.Entry<K, V> entry : list){
+        for (Map.Entry<K, V> entry : mapEntryList){
             K key = entry.getKey();
             V value = entry.getValue();
             returnMap.put(key, value);

@@ -55,9 +55,7 @@ public class MapUtilTest{
         String[] keys = { "a", "g", "m" };
         Map<String, Integer> subMapExcludeKeys = MapUtil.getSubMapExcludeKeys(map, keys);
 
-        if (log.isDebugEnabled()){
-            log.debug(JsonUtil.format(subMapExcludeKeys));
-        }
+        log.debug(JsonUtil.format(subMapExcludeKeys));
     }
 
     /**
@@ -98,10 +96,7 @@ public class MapUtilTest{
         object.put("3", "6");
         object.put("4", "8");
 
-        if (log.isDebugEnabled()){
-            log.debug(JsonUtil.format(object));
-        }
-
+        log.debug(JsonUtil.format(object));
     }
 
     /**
@@ -125,9 +120,60 @@ public class MapUtilTest{
         //a
         //b 8910
         //c
+        log.debug(JsonUtil.format(object));
+    }
 
-        if (log.isDebugEnabled()){
-            log.debug(JsonUtil.format(object));
-        }
+    /**
+     * Test sort by value asc.
+     */
+    @Test
+    public void testSortByValueASC(){
+        Map<String, Comparable> map = new LinkedHashMap<String, Comparable>();
+        map.put("a", 123);
+        map.put("c", 345);
+        map.put("b", 8);
+        log.debug(JsonUtil.format(MapUtil.sortByValueAsc(map)));
+    }
+
+    /**
+     * Test sort by value desc.
+     */
+    @Test
+    public void testSortByValueDESC(){
+        Map<String, Comparable> map = new LinkedHashMap<String, Comparable>();
+
+        map.put("a", 123);
+        map.put("c", 345);
+        map.put("b", 8);
+
+        log.debug(JsonUtil.format(MapUtil.sortByValueDesc(map)));
+    }
+
+    /**
+     * Test sort by key asc.
+     */
+    @Test
+    public void testSortByKeyAsc(){
+        Map<String, Comparable> map = new LinkedHashMap<String, Comparable>();
+
+        map.put("a", 123);
+        map.put("c", 345);
+        map.put("b", 8);
+
+        log.debug(JsonUtil.format(MapUtil.sortByKeyAsc(map)));
+    }
+
+    /**
+     * Test sort by key desc.
+     */
+    @Test
+    public void testSortByKeyDesc(){
+        Map<String, Comparable> map = new LinkedHashMap<String, Comparable>();
+
+        map.put("a", 123);
+        map.put("c", 345);
+        map.put("b", 8);
+
+        log.debug(JsonUtil.format(MapUtil.sortByKeyDesc(map)));
     }
 }
