@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.feilong.commons.core.io.CharsetType;
 import com.feilong.commons.core.io.UncheckedIOException;
+import com.feilong.commons.core.log.Slf4jUtil;
 import com.feilong.commons.core.net.URIUtil;
 
 /**
@@ -40,7 +41,10 @@ import com.feilong.commons.core.net.URIUtil;
 public final class DesktopUtil{
 
     /** The Constant log. */
-    private static final Logger log = LoggerFactory.getLogger(DesktopUtil.class);
+    private static final Logger  log               = LoggerFactory.getLogger(DesktopUtil.class);
+
+    /** 判断当前系统是否支持Java AWT Desktop扩展. */
+    private final static boolean DESKTOP_SUPPORTED = Desktop.isDesktopSupported();
 
     /** Don't let anyone instantiate this class. */
     private DesktopUtil(){
@@ -56,55 +60,24 @@ public final class DesktopUtil{
      *            url地址
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see #desktopAction(String, Action)
      */
     public static void browse(String url) throws UncheckedIOException{
-        // 判断当前系统是否支持Java AWT Desktop扩展
-        if (Desktop.isDesktopSupported()){
-            // 创建一个URI实例
-            URI uri = URIUtil.create(url, CharsetType.UTF8);
-            // 获取当前系统桌面扩展
-            Desktop desktop = Desktop.getDesktop();
-            // 判断系统桌面是否支持要执行的功能
-            if (desktop.isSupported(Action.BROWSE)){
-                // 获取系统默认浏览器打开链接
-                try{
-                    desktop.browse(uri);
-                }catch (IOException e){
-                    throw new UncheckedIOException(e);
-                }
-            }
-        }else{
-            log.error("don't Support Desktop");
-        }
+        desktopAction(url, Desktop.Action.BROWSE);
     }
 
     /**
      * 发送邮件.
      *
-     * @param mail
+     * @param mailtoURL
      *            the mail
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @see java.awt.Desktop#mail(URI)
+     * @see #desktopAction(String, Action)
      */
-    public static void mail(String mail) throws UncheckedIOException{
-        // 判断当前系统是否支持Java AWT Desktop扩展
-        if (Desktop.isDesktopSupported()){
-            // 获取当前系统桌面扩展
-            Desktop desktop = Desktop.getDesktop();
-
-            if (desktop.isSupported(Desktop.Action.MAIL)){
-                // 创建一个URI实例
-                URI uri = URIUtil.create(mail, CharsetType.UTF8);
-                try{
-                    desktop.mail(uri);
-                }catch (IOException e){
-                    throw new UncheckedIOException(e);
-                }
-            }
-        }else{
-            log.error("don't Support Desktop");
-        }
+    public static void mail(String mailtoURL) throws UncheckedIOException{
+        desktopAction(mailtoURL, Desktop.Action.MAIL);
     }
 
     /**
@@ -114,26 +87,85 @@ public final class DesktopUtil{
      *            url地址
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see #desktopAction(String, Action)
      */
     public static void open(String url) throws UncheckedIOException{
-        // 判断当前系统是否支持Java AWT Desktop扩展
-        if (Desktop.isDesktopSupported()){
+        desktopAction(url, Desktop.Action.OPEN);
+    }
 
+    /**
+     * 打印.
+     *
+     * @param url
+     *            the url
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     */
+    public static void print(String url) throws UncheckedIOException{
+        desktopAction(url, Desktop.Action.PRINT);
+    }
+
+    /**
+     * Edits the.
+     *
+     * @param url
+     *            the url
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     */
+    public static void edit(String url) throws UncheckedIOException{
+        desktopAction(url, Desktop.Action.EDIT);
+    }
+
+    /**
+     * Desktop action.
+     *
+     * @param url
+     *            the url
+     * @param action
+     *            the action
+     * @throws UncheckedIOException
+     *             the unchecked io exception
+     * @throws RuntimeException
+     *             the runtime exception
+     * @throws UnsupportedOperationException
+     *             the unsupported operation exception
+     * @since 1.1.2
+     */
+    private static void desktopAction(String url,Action action) throws UncheckedIOException,RuntimeException,UnsupportedOperationException{
+        if (DESKTOP_SUPPORTED){
             // 获取当前系统桌面扩展
             Desktop desktop = Desktop.getDesktop();
-
             // 判断系统桌面是否支持要执行的功能
-            if (desktop.isSupported(Action.OPEN)){
-                // 启动关联应用程序来打开文件
-                File file = new File(url);
+            if (desktop.isSupported(action)){
                 try{
-                    desktop.open(file);
+                    switch (action) {
+                        case MAIL:
+                            desktop.mail(URIUtil.create(url, CharsetType.UTF8));
+                            break;
+                        case BROWSE: // 获取系统默认浏览器打开链接
+                            desktop.browse(URIUtil.create(url, CharsetType.UTF8));
+                            break;
+                        case OPEN: // 启动关联应用程序来打开文件
+                            desktop.open(new File(url));
+                            break;
+                        case EDIT:
+                            desktop.edit(new File(url));
+                            break;
+                        case PRINT:
+                            desktop.print(new File(url));
+                            break;
+                        default:
+                            String messagePattern = "{} not support!";
+                            throw new UnsupportedOperationException(Slf4jUtil.formatMessage(messagePattern, action));
+                    }
                 }catch (IOException e){
                     throw new UncheckedIOException(e);
                 }
             }
         }else{
             log.error("don't Support Desktop");
+            throw new RuntimeException("don't Support Desktop");
         }
     }
 }

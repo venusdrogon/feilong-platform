@@ -26,6 +26,9 @@ import org.junit.Test;
  */
 public class DesktopUtilTest{
 
+    /** The test file. */
+    private final String testFile = "E:\\DataCommon\\test\\test.txt";
+
     /**
      * Test browse1.
      */
@@ -34,6 +37,38 @@ public class DesktopUtilTest{
         int id = 14;
         String s = "";
         DesktopUtil.browse("http://101.95.128.146/payment/paymentChannel?s=" + s + "&id=" + id);
+    }
+
+    /**
+     * Test print.
+     */
+    @Test
+    public final void testPrint(){
+        DesktopUtil.print(testFile);
+    }
+
+    /**
+     * Test edit.
+     */
+    @Test
+    public final void testEdit(){
+        DesktopUtil.edit(testFile);
+    }
+
+    /**
+     * Test open.
+     */
+    @Test
+    public final void testOpen(){
+        DesktopUtil.open(testFile);
+    }
+
+    /**
+     * Test mail.
+     */
+    @Test
+    public final void testMail(){
+        DesktopUtil.mail("mailto:venusdrogon@163.com");
     }
 
     /**
