@@ -58,7 +58,7 @@ public final class ResultUtil{
     }
 
     /**
-     * 将result 转成任意的单个的 java bean
+     * 将result 转成任意的单个的 java bean.
      * 
      * <pre>
      * result 数据必须只有一个.

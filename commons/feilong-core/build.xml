@@ -36,19 +36,14 @@
 		<echo>feilong.YEAR:[${feilong.YEAR}]</echo>
 		<echo>feilong.MONTH:[${feilong.MONTH}]</echo>
 
-
-
 		<echo>[env._FeilongSoft]:${env._FeilongSoft}</echo>
 		<echo>[env._FeilongTaglib]:${env._FeilongTaglib}</echo>
 
 		<echo>[java.class.path]:${java.class.path}</echo>
 
-
 		<property name="java5.boot.classpath" value="${env.JAVA5_BOOTCLASSES}" />
 		<echo>[compile.classpath]:${sun.boot.class.path}</echo>
 	</target>
-
-
 
 	<!--javadoc -->
 	<target name="javadoc">
@@ -107,8 +102,6 @@
 		<javadoc destdir="${destdir}" windowtitle="${windowtitle}" locale="${locale}" encoding="${encoding}" docencoding="${docencoding}" charset="${charset}"
 			access="${access}" version="${version}" author="${author}" use="${use}" nodeprecated="${nodeprecated}" nodeprecatedlist="${nodeprecatedlist}" noindex="${noindex}"
 			nonavbar="${nonavbar}" notree="${notree}" splitindex="${splitindex}" source="${source}" overview="${overview}" verbose="${verbose}" stylesheetfile="${stylesheetfile}"
-
-
 
 			defaultexcludes="${defaultexcludes}" description="生成javadoc">
 			<!-- Include title for the package index(first) page (html-code) -->

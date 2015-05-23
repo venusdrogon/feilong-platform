@@ -419,16 +419,12 @@ public final class RequestUtil{
      * <h3>关于从request中获得相关路径和url：</h3>
      * 
      * <blockquote>
-     * <p>
      * 
      * <ol>
      * <li>getServletContext().getRealPath("/") 后包含当前系统的文件夹分隔符（windows系统是"\"，linux系统是"/"），而getPathInfo()以"/"开头。</li>
      * <li>getPathInfo()与getPathTranslated()在servlet的url-pattern被设置为/*或/aa/*之类的pattern时才有值，其他时候都返回null。</li>
      * <li>在servlet的url-pattern被设置为*.xx之类的pattern时，getServletPath()返回的是getRequestURI()去掉前面ContextPath的剩余部分。</li>
      * </ol>
-     * 
-     * </p>
-     * 
      * 
      * <table border="1" cellspacing="0" cellpadding="4">
      * <tr style="background-color:#ccccff">
@@ -533,17 +529,8 @@ public final class RequestUtil{
         return map;
     }
 
-    /**
-     * ******************************* url参数相关 getAttribute*****************************************************.
-     * 
-     * @param request
-     *            the request
-     * @param name
-     *            the name
-     * @return the attribute to int
-     */
+    // ******************************* url参数相关 getAttribute*****************************************************.
     // [start] url参数相关
-
     /**
      * 取到request里面的属性值.
      * 
@@ -618,13 +605,12 @@ public final class RequestUtil{
         if (Validator.isNullOrEmpty(queryString)){
             return requestURL;
         }
-
         // XXX 处理乱码
         return requestURL + URIComponents.QUESTIONMARK + URIUtil.decodeLuanMaISO8859(queryString, charsetType);
     }
 
     /**
-     * scheme+port+getContextPath <br>
+     * scheme+port+getContextPath. <br>
      * 区分 http 和https.<br>
      * 
      * @param request
@@ -655,7 +641,7 @@ public final class RequestUtil{
     }
 
     // [end]
-    // ***************************************LocalAddr******************************************************************************
+    // ****************************LocalAddr*****************************************
 
     /**
      * 获得项目本地ip地址.
@@ -668,7 +654,7 @@ public final class RequestUtil{
         return request.getLocalAddr();
     }
 
-    // ***************************************Header******************************************************************************
+    // **************************Header*******************************************
 
     /**
      * 获得客户端ip地址.
@@ -722,7 +708,7 @@ public final class RequestUtil{
         return ipAddress;
     }
 
-    // *****************************Header区域******************************************************
+    // *****************************Header区域**************************************
 
     /**
      * 　User Agent中文名为用户代理，简称 UA，<br>
@@ -737,7 +723,7 @@ public final class RequestUtil{
     }
 
     /**
-     * 获得上上个请求的URL
+     * 获得上个请求的URL.
      * 
      * <pre>
      * 请用于常规请求,必须走http协议才有值,javascript跳转无效
@@ -748,24 +734,20 @@ public final class RequestUtil{
      * referer是浏览器在用户提交请求当前页面中的一个链接时,将当前页面的URL放在头域中提交给服务端的,如当前页面为a.html,
      * 它里面有一个b.html的链接,当用户要访问b.html时浏览器就会把a.html作为referer发给服务端.
      * 
-     * <ul><li>
-     * 有嵌入iframe
-     * </li></ul>
-     * 
      * </pre>
      * 
      * @param request
      *            the request
-     * @return 上上个请求的URL
+     * @return 上个请求的URL
      */
     public static final String getHeaderReferer(HttpServletRequest request){
         return request.getHeader(HttpHeaders.REFERER);
     }
 
     /**
-     * 1、Origin字段里只包含是谁发起的请求，并没有其他信息 (通常情况下是方案，主机和活动文档URL的端口)。 <br>
-     * 跟Referer不一样的是，Origin字段并没有包含涉及到用户隐私的URL路径和请求内容，这个尤其重要。 <br>
-     * 2、Origin字段只存在于POST请求，而Referer则存在于所有类型的请求。.
+     * 1、Origin字段里只包含是谁发起的请求，并没有其他信息 (通常情况下是方案，主机和活动文档URL的端口). <br>
+     * 跟Referer不一样的是，Origin字段并没有包含涉及到用户隐私的URL路径和请求内容，这个尤其重要. <br>
+     * 2、Origin字段只存在于POST请求，而Referer则存在于所有类型的请求.
      * 
      * @param request
      *            the request
@@ -776,7 +758,7 @@ public final class RequestUtil{
     }
 
     /**
-     * 判断一个请求 是否是ajax 请求.<br>
+     * 判断一个请求是否是ajax请求.<br>
      * 注:x-requested-with这个头是某些JS类库给加上去的，直接写AJAX是没有这个头的,<br>
      * jquery/ext 确定添加,暂时可以使用这个来判断<br>
      * 
@@ -809,7 +791,7 @@ public final class RequestUtil{
         return !isAjaxRequest(request);
     }
 
-    // ****************************************************************************************************
+    // *********************************************************************
 
     /**
      * 遍历显示request的attribute,将 name /attributeValue 存入到map.
@@ -851,7 +833,7 @@ public final class RequestUtil{
         return map;
     }
 
-    // *********************************获取值**************************************************
+    // *********************************获取值********************************
 
     /**
      * 获得request中的请求参数值.
@@ -924,7 +906,7 @@ public final class RequestUtil{
     public static String getParameterWithTrim(HttpServletRequest request,String paramName){
         String returnValue = getParameter(request, paramName);
         if (Validator.isNotNullOrEmpty(returnValue)){
-            returnValue = returnValue.trim();
+            return returnValue.trim();
         }
         return returnValue;
     }
