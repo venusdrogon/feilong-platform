@@ -26,6 +26,10 @@ Reduce development, Release ideas
 
 #Welcome to feilong-platform.
 
+feilong项目,封装了常用的java工具方法,提供快速使用工具的功能,自己知识积累的同时，方便大家使用
+
+#说明.
+
 1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;
 1. 基于maven3.2构建;
 1. 需要jdk1.6及以上环境;
