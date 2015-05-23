@@ -18,7 +18,7 @@ package com.feilong.commons.core.awt;
 import java.awt.Color;
 
 /**
- * 颜色工具类.
+ * 颜色 {@link java.awt.Color}工具类.
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-15 上午01:09:40
