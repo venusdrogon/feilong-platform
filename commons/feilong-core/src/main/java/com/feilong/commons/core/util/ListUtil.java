@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.lang.ObjectUtil;
 
 /**
- * ListUtil {@link List}工具类.
+ * {@link List}工具类.
  * 
  * @author 金鑫 2010-3-2 下午03:20:12
  * @since 1.0.0

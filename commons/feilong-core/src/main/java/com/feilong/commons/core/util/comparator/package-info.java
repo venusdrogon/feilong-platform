@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
+/**比较器.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a> 
  * @version 1.1.2 2015年5月21日 上午11:01:34 

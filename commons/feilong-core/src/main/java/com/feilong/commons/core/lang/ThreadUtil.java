@@ -30,7 +30,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 线程解析.
+ * 线程 {@link java.lang.Thread}解析.
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 Dec 17, 2011 2:00:35 AM

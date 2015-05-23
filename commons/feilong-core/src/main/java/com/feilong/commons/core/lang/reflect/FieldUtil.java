@@ -149,7 +149,7 @@ public final class FieldUtil{
     }
 
     /**
-     * 返回 Field 对象的一个数组，这些对象反映此 Class对象所表示的类或接口,声明的所有字段..
+     * 返回 Field 对象的一个数组，这些对象反映此 Class对象所表示的类或接口,声明的所有字段.
      * 
      * <pre>
      * 包括public,protected,默认,private字段，
@@ -171,12 +171,11 @@ public final class FieldUtil{
     }
 
     /**
-     * 反映此 Class 对象所表示的类或接口的所有可访问公共字段(public属性)<br>
+     * 反映此 Class 对象所表示的类或接口的所有可访问公共字段(public属性).<br>
      * 元素没有排序，也没有任何特定的顺序<br>
      * 如果类或接口没有可访问的公共字段，或者表示一个数组类、一个基本类型或 void，则此方法返回长度为 0 的数组. <br>
      * 特别地，如果该 Class 对象表示一个类，则此方法返回该类及其所有超类的公共字段.<br>
      * 如果该 Class 对象表示一个接口，则此方法返回该接口及其所有超接口的公共字段. <br>
-     * .
      * 
      * @param clz
      *            the clz

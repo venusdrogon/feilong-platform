@@ -31,7 +31,7 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * {@link File}文件操作<br>
+ * {@link File}文件操作.<br>
  * 
  * File的几个属性:
  * <ul>

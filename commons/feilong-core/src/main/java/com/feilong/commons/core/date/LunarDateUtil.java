@@ -23,6 +23,71 @@ import org.slf4j.LoggerFactory;
 /**
  * 阴历(农历)日期.
  * 
+ * <h3>农历月份的别称:</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 
+ * <blockquote>
+ * <table border="1" cellspacing="0" cellpadding="4">
+ * <tr style="background-color:#ccccff">
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
+ * </tr>
+ * <tr valign="top">
+ * <td>一月</td>
+ * <td>正月、端月、征月、开岁、华岁、早春、孟春、新正</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>二月</td>
+ * <td>命月、如月、丽月、杏月、酣香、仲春</td>
+ * </tr>
+ * <tr valign="top">
+ * <td>三月</td>
+ * <td>蚕月、桃月、桐月、季春、晓春、鸢时、桃良、樱笋时</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>四月</td>
+ * <td>余月、阴月、梅月、清和月、初夏、孟夏、正阳、朱明</td>
+ * </tr>
+ * <tr valign="top">
+ * <td>五月</td>
+ * <td>皋月、榴月、蒲月、仲夏、郁蒸、天中</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>六月</td>
+ * <td>且月、焦月、荷月、暑月、伏月、精阳、季夏</td>
+ * </tr>
+ * <tr valign="top">
+ * <td>七月</td>
+ * <td>相月、兰月、凉月、瓜月、巧月、孟秋、初秋、早秋</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>八月</td>
+ * <td>壮月、桂月、仲秋、中秋、正秋、仲商</td>
+ * </tr>
+ * <tr valign="top">
+ * <td>九月</td>
+ * <td>玄月、菊月、青女月、季秋、穷秋、抄秋</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>十月</td>
+ * <td>阴月、良月、正阴月、小阳春、初冬、开冬、孟冬；</td>
+ * </tr>
+ * <tr valign="top">
+ * <td>十一月</td>
+ * <td>幸月、畅月、仲冬</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>十二月</td>
+ * <td>涂月、蜡月、腊月、季冬、暮冬、残冬、末冬、嘉平月</td>
+ * </tr>
+ * </table>
+ * </blockquote>
+ * 
+ * </p>
+ * </blockquote>
+ * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2010-2-8 下午04:59:32
  * @see SolarDateUtil
@@ -148,20 +213,6 @@ public final class LunarDateUtil{
         if (lunarMonth == 12){
             stringBuilder.append("腊月");
         }else if (lunarMonth == 11){
-            // 农历月份的别称
-            //
-            // 一月：正月、端月、征月、开岁、华岁、早春、孟春、新正；
-            // 二月：命月、如月、丽月、杏月、酣香、仲春；
-            // 三月：蚕月、桃月、桐月、季春、晓春、鸢时、桃良、樱笋时；
-            // 四月：余月、阴月、梅月、清和月、初夏、孟夏、正阳、朱明；
-            // 五月：皋月、榴月、蒲月、仲夏、郁蒸、天中；
-            // 六月：且月、焦月、荷月、暑月、伏月、精阳、季夏；
-            // 七月：相月、兰月、凉月、瓜月、巧月、孟秋、初秋、早秋；
-            // 八月：壮月、桂月、仲秋、中秋、正秋、仲商；
-            // 九月：玄月、菊月、青女月、季秋、穷秋、抄秋；
-            // 十月：阴月、良月、正阴月、小阳春、初冬、开冬、孟冬；
-            // 十一月：幸月、畅月、仲冬；
-            // 十二月：涂月、蜡月、腊月、季冬、暮冬、残冬、末冬、嘉平月.
             stringBuilder.append("十一月");// 冬月
         }else if (lunarMonth == 1){
             stringBuilder.append("正月");

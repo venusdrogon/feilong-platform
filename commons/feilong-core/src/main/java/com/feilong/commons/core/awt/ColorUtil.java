@@ -19,9 +19,10 @@ import java.awt.Color;
 
 /**
  * 颜色工具类.
- * 
+ *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-4-15 上午01:09:40
+ * @see java.awt.Color
  * @since 1.0.0
  */
 public final class ColorUtil{
@@ -37,8 +38,7 @@ public final class ColorUtil{
      * 通过16进制颜色字符串 获得颜色.
      * 
      * @param hex
-     *            16进制颜色字符串 <br>
-     *            比如:FF00FF
+     *            16进制颜色字符串 ,比如:FF00FF
      * @return the color
      */
     public static Color getColor(String hex){

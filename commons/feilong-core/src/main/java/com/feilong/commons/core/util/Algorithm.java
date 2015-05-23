@@ -15,8 +15,15 @@
  */
 package com.feilong.commons.core.util;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * 常用的算法,包括二分搜索法,直接插入排序,快速排序,选择排序,冒泡排序等.
+ * 
+ * <p>
+ * 注：使用场景不高，一般需要用到排序的时候，会调用 {@link Arrays#sort(Object[], java.util.Comparator)}, {@link Collections#sort(java.util.List)}
+ * </p>
  * 
  * @author 金鑫 2010-4-15 下午01:51:24
  * @since 1.0.0
@@ -60,17 +67,13 @@ public final class Algorithm{
     }
 
     /**
-     * 直接插入排序
+     * 直接插入排序.
      * 
      * <pre>
-     * 
      * 是<b>稳定的排序方法</b>.
      * 将一个数据插入到已经排好序的有序数据中,从而得到一个新的、个数加一的有序数据
      * 算法适用于少量数据的排序，时间复杂度为O(n^2).
-     * 
      * </pre>
-     * 
-     * .
      * 
      * @param sort
      *            the sort
@@ -167,7 +170,7 @@ public final class Algorithm{
     }
 
     /**
-     * 冒泡排序算法
+     * 冒泡排序算法.
      * 
      * <pre>
      * 冒泡排序，具有稳定性

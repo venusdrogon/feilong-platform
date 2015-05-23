@@ -16,7 +16,7 @@
 package com.feilong.commons.core.date;
 
 /**
- * 日期字典(focus on date config)
+ * 日期字典(focus on date config).
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 Jan 9, 2013 12:01:50 AM
@@ -27,7 +27,7 @@ package com.feilong.commons.core.date;
 final class DateDictionary{
 
     /**
-     * 英文星期<br>
+     * 英文星期.<br>
      * { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
      */
     public static final String[] WEEK_ENGLISHS                = {
@@ -40,37 +40,37 @@ final class DateDictionary{
             "Saturday"                                       };
 
     /**
-     * 中文星期<br>
+     * 中文星期.<br>
      * { "日", "一", "二", "三", "四", "五", "六" }
      */
     public static final String[] WEEK_CHINESES                = { "日", "一", "二", "三", "四", "五", "六" };
 
     /**
-     * 生肖<br>
+     * 生肖.<br>
      * ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
      */
     public static final String[] ZODIACS                      = { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" };
 
     /**
-     * 天干<br>
+     * 天干.<br>
      * ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
      */
     public static final String[] HEAVENLY_STEMS               = { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸" };
 
     /**
-     * 地支<br>
+     * 地支.<br>
      * ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
      */
     public static final String[] EARTHLY_BRANCHES             = { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" };
 
     /**
-     * 中文数字<br>
+     * 中文数字.<br>
      * ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
      */
     public static final String[] CHINSES_NUMBERS              = { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十" };
 
     /**
-     * 1901-2050每年阴历和农历相差量
+     * 1901-2050每年阴历和农历相差量.
      * 
      * <pre>
      * Array iSolarLunarTable stored the offset days
@@ -235,7 +235,7 @@ final class DateDictionary{
                                                               };
 
     /**
-     * 农历闰月表 1901-2050
+     * 农历闰月表 1901-2050.
      * 
      * <pre>
      *   Array iLunarLeapMonthTable preserves the lunar calendar leap month from 1901 to 2050,
@@ -316,7 +316,7 @@ final class DateDictionary{
                                                               };
 
     /**
-     * 农历日期表 1901-2100农历表
+     * 农历日期表 1901-2100农历表.
      * 
      * <pre>
      * Array lIntLunarDay is stored in the monthly day information in every year from 1901 to 2100 of the lunar calendar,

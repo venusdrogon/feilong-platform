@@ -16,12 +16,12 @@
 package com.feilong.commons.core.date;
 
 /**
+ * 常用时间间隔(一般以秒为单位).
  * <p>
- * 常用时间间隔(一般以秒为单位)
+ * 注意:{@link Integer#MAX_VALUE}:2147483647<br>
+ * {@link Integer#MIN_VALUE}:-2147483648<br>
+ * 一年数据为 31536000,所以 {@link Integer#MAX_VALUE} 为 68.096259734906 年
  * </p>
- * 注意:Integer.MAX_VALUE:2147483647<br>
- * Integer.MIN_VALUE:-2147483648<br>
- * 一年数据为 31536000,所以 Integer 最大为 68.096259734906 年
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-5-18 下午2:57:14

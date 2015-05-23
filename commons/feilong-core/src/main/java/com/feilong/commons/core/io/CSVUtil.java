@@ -32,7 +32,7 @@ import com.feilong.commons.core.util.MapUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 飞龙cvs工具类.
+ * cvs工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-5-26 上午01:26:47

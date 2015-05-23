@@ -465,7 +465,6 @@ public final class CollectionsUtil{
         if (Validator.isNullOrEmpty(objectCollection)){
             throw new NullPointerException("objectCollection is null or empty!");
         }
-
         return (List<O>) org.apache.commons.collections.CollectionUtils.select(objectCollection, predicate);
     }
 
@@ -626,11 +625,9 @@ public final class CollectionsUtil{
      */
     public static <T, O> Map<T, List<O>> group(Collection<O> objectCollection,String propertyName) throws BeanUtilException,
                     NullPointerException{
-
         if (Validator.isNullOrEmpty(objectCollection)){
             throw new NullPointerException("objectCollection can't be null/empty!");
         }
-
         if (Validator.isNullOrEmpty(propertyName)){
             throw new NullPointerException("the propertyName is null or empty!");
         }
@@ -694,7 +691,6 @@ public final class CollectionsUtil{
      */
     public static <T, O> Map<T, Integer> groupCount(Collection<O> objectCollection,Predicate includePredicate,String propertyName)
                     throws BeanUtilException,NullPointerException{
-
         if (Validator.isNullOrEmpty(objectCollection)){
             throw new NullPointerException("objectCollection can't be null/empty!");
         }

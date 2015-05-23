@@ -23,10 +23,11 @@ import com.feilong.commons.core.text.DateFormatUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * <p>
+ * 
  * Date 操作工具类(feilong-core 核心类之一).
- * </p>
+ * <p>
  * 包括:
+ * </p>
  * 
  * <ul>
  * 

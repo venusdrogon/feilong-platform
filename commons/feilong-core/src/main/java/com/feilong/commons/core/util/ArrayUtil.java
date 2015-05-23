@@ -76,7 +76,7 @@ public final class ArrayUtil{
     }
 
     /**
-     * 将数组转成转成Iterator<br>
+     * 将数组转成转成 {@link java.util.Iterator}.<br>
      * 如果我们幸运的话，它是一个对象数组,我们可以遍历并with no copying<br>
      * 否则,异常 ClassCastException 中 ,Rats -- 它是一个基本类型数组,循环放入arrayList 转成arrayList.iterator()
      * 
@@ -84,7 +84,6 @@ public final class ArrayUtil{
      * <b>注:</b>{@link Arrays#asList(Object...)} 转的list是 {@link Array} 的内部类 ArrayList,这个类没有实现
      * {@link java.util.AbstractList#add(int, Object)} 这个方法, 如果拿这个list进行add操作,会出现 {@link java.lang.UnsupportedOperationException}
      * </p>
-     * 
      * 
      * @param <T>
      *            the generic type
@@ -110,11 +109,9 @@ public final class ArrayUtil{
             List<T> list = (List<T>) Arrays.asList(objArrays);
             return list.iterator();
         }catch (ClassCastException e){
-
             if (log.isDebugEnabled()){
                 log.debug("arrays can not cast to Object[],maybe primitive type,values is:{},{}", arrays, e.getMessage());
             }
-
             // Rats -- 它是一个基本类型数组
             int length = Array.getLength(arrays);
             List<T> list = new ArrayList<T>(length);
@@ -127,7 +124,7 @@ public final class ArrayUtil{
     }
 
     /**
-     * 数组转成 List(ArrayList)，此方法返回的list可以进行add操作
+     * 数组转成 List({@link java.util.ArrayList})，此方法返回的list可以进行add等操作.
      * <p>
      * 注意 :{@link java.util.Arrays#asList(Object...)}返回的list,没有实现 {@link java.util.Collection#add(Object)}方法<br>
      * 因此,会使用 {@link ArrayList#ArrayList(java.util.Collection)} 来进行重新封装返回
@@ -145,7 +142,7 @@ public final class ArrayUtil{
         if (Validator.isNullOrEmpty(arrays)){
             return null;
         }
-        // Arrays.asList(arrays)方法 返回的是Arrays类的内部类的对象，
+        //Arrays.asList(arrays)方法 返回的是Arrays类的内部类的对象，
         //而Arrays类里的内部类ArrayList没有实现AbstractList类的add方法，导致抛异常! strList.add("c");
 
         List<T> list = new ArrayList<T>(Arrays.asList(arrays));
@@ -164,15 +161,16 @@ public final class ArrayUtil{
     //TODO 转成泛型
     @Deprecated
     public static Integer[] toIntegers(Object[] objects){
-        if (Validator.isNotNullOrEmpty(objects)){
-            int length = objects.length;
-            Integer[] integers = new Integer[length];
-            for (int i = 0; i < length; i++){
-                integers[i] = ObjectUtil.toInteger(objects[i]);
-            }
-            return integers;
+        if (Validator.isNullOrEmpty(objects)){
+            return null;
         }
-        return null;
+
+        int length = objects.length;
+        Integer[] integers = new Integer[length];
+        for (int i = 0; i < length; i++){
+            integers[i] = ObjectUtil.toInteger(objects[i]);
+        }
+        return integers;
     }
 
     /**
@@ -191,11 +189,13 @@ public final class ArrayUtil{
      * @see ObjectUtil#equals(Object, Object, boolean)
      */
     public static <T> boolean isContain(T[] arrays,T value){
-        if (Validator.isNotNullOrEmpty(arrays)){
-            for (T arr : arrays){
-                if (ObjectUtil.equals(arr, value, true)){
-                    return true;
-                }
+        if (Validator.isNullOrEmpty(arrays)){
+            return false;
+        }
+
+        for (T arr : arrays){
+            if (ObjectUtil.equals(arr, value, true)){
+                return true;
             }
         }
         return false;
@@ -216,21 +216,21 @@ public final class ArrayUtil{
      *         </ul>
      */
     public static <T> String toString(T[] arrays,JoinStringEntity joinStringEntity){
-        if (Validator.isNotNullOrEmpty(arrays)){
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0, j = arrays.length; i < j; ++i){
-                T t = arrays[i];
-
-                sb.append(t);
-                // 不是最后一个 拼接
-                if (i != j - 1){
-                    sb.append(joinStringEntity.getConnector());
-                }
-            }
-            return sb.toString();
+        if (Validator.isNullOrEmpty(arrays)){
+            return null;
         }
-        return null;
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, j = arrays.length; i < j; ++i){
+            T t = arrays[i];
+
+            sb.append(t);
+            // 不是最后一个 拼接
+            if (i != j - 1){
+                sb.append(joinStringEntity.getConnector());
+            }
+        }
+        return sb.toString();
     }
 
     /**
@@ -244,7 +244,7 @@ public final class ArrayUtil{
      * will return 
      * 
      * {@code
-     * {
+     *      {
      *         "1":         [
      *             1,
      *             1,

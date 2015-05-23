@@ -48,7 +48,7 @@ import com.feilong.commons.core.util.ArrayUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * json 工具类
+ * json 工具类.
  * 
  * <h3>依赖于下面的jar:</h3>
  * 
@@ -59,7 +59,7 @@ import com.feilong.commons.core.util.Validator;
  * <groupId>net.sf.json-lib</groupId>
  * <artifactId>json-lib</artifactId>
  * 
- * 如果要使用xml 部分功能,需要
+ * 如果要使用xml部分功能,需要
  * <groupId>xom</groupId> 
  * <artifactId>xom</artifactId>
  * }

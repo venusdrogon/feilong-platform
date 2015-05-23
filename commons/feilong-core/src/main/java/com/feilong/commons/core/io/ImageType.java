@@ -27,36 +27,31 @@ package com.feilong.commons.core.io;
 public final class ImageType{
 
     /**
-     * <code>{@value}</code><br>
      * JPG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
      */
-    public static final String JPG  = "JPG";
+    public static final String JPG  = MimeType.JPG.getExtension();
 
     /**
-     * <code>{@value}</code><br>
      * JPEG Joint Photograhic Experts Group（联合图像专家组）,JPEG的文件格式一般有两种文件扩展名：.jpg和.jpeg，这两种扩展名的实质是相同的
      */
-    public static final String JPEG = "JPEG";
+    public static final String JPEG = MimeType.JPEG.getExtension();
 
     /**
-     * <code>{@value}</code><br>
-     * PNG (Portable Network Graphic Format，PNG) 流式网络图形格式.
+     * PNG (Portable Network Graphic Format) 流式网络图形格式.
      */
-    public static final String PNG  = "PNG";
+    public static final String PNG  = MimeType.PNG.getExtension();
 
     /**
-     * <code>{@value}</code><br>
-     * GIF Graphics Interchange format（图形交换格式） .
+     * GIF (Graphics Interchange format)（图形交换格式） .
      */
-    public static final String GIF  = "GIF";
+    public static final String GIF  = MimeType.GIF.getExtension();
 
     /**
-     * <code>{@value}</code><br>
-     * BMP Windows 位图<br>
+     * BMP Windows 位图.<br>
      * 为了保证照片图像的质量，请使用 PNG 、JPEG、TIFF 文件.<br>
-     * BMP 文件适用于 Windows 中的墙纸 .
+     * BMP文件适用于 Windows 中的墙纸 .
      */
-    public static final String BMP  = "BMP";
+    public static final String BMP  = MimeType.BMP.getExtension();
 
     /** Don't let anyone instantiate this class. */
     private ImageType(){

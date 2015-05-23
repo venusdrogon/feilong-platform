@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.util.predicate;
 
-import java.io.Serializable;
-
 import org.apache.commons.collections.Predicate;
 
 import com.feilong.commons.core.bean.PropertyUtil;
@@ -27,19 +25,15 @@ import com.feilong.commons.core.lang.ObjectUtil;
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.1.2 2015年4月27日 下午1:52:29
- * 
  * @since 1.1.2
  */
-public class ObjectPropertyEqualsPredicate implements Predicate,Serializable{
-
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 288232184048495608L;
+public class ObjectPropertyEqualsPredicate implements Predicate{
 
     /** The property name. */
-    private final String      propertyName;
+    private final String propertyName;
 
     /** The value. */
-    private final Object      value;
+    private final Object value;
 
     /**
      * The Constructor.

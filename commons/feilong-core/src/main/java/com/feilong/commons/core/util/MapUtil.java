@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import com.feilong.commons.core.util.comparator.PropertyComparator;
 
 /**
- * MapUtil {@link Map}工具类.
+ * {@link Map}工具类.
  *
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 Sep 8, 2012 8:02:44 PM

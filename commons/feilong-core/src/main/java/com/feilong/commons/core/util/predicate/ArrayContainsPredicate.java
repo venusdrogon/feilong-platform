@@ -15,8 +15,6 @@
  */
 package com.feilong.commons.core.util.predicate;
 
-import java.io.Serializable;
-
 import org.apache.commons.collections.Predicate;
 
 import com.feilong.commons.core.bean.PropertyUtil;
@@ -32,16 +30,13 @@ import com.feilong.commons.core.util.ArrayUtil;
  * @see com.feilong.commons.core.bean.PropertyUtil#getProperty(Object, String)
  * @see com.feilong.commons.core.util.ArrayUtil#isContain(Object[], Object)
  */
-public class ArrayContainsPredicate implements Predicate,Serializable{
-
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 288232184048495608L;
+public class ArrayContainsPredicate implements Predicate{
 
     /** The value. */
-    private final Object[]    values;
+    private final Object[] values;
 
     /** The property name. */
-    private final String      propertyName;
+    private final String   propertyName;
 
     /**
      * The Constructor.

@@ -16,7 +16,7 @@
 package com.feilong.commons.core.util;
 
 /**
- * Byte 工具类.
+ * {@link java.lang.Byte} 工具类.
  * 
  * @author 金鑫 2010-3-11 下午02:58:49
  * @since 1.0.0
@@ -37,7 +37,7 @@ public final class ByteUtil{
     }
 
     /**
-     * 字节数组,转成小写的16进制字符串<br>
+     * 字节数组,转成小写的16进制字符串.<br>
      * md5加密 使用这个.
      * 
      * @param b
@@ -53,7 +53,7 @@ public final class ByteUtil{
     }
 
     /**
-     * 字节数组,转成大写的16进制字符串 <br>
+     * 字节数组,转成大写的16进制字符串 .<br>
      * 网友gdpglc的思路.
      * 
      * @param bytes
@@ -104,7 +104,7 @@ public final class ByteUtil{
 
     // *****************************************************************************************************
     /**
-     * 将两个ASCII字符合成一个字节； 如：{@code "EF"--> 0xEF} .
+     * 将两个ASCII字符合成一个字节,如：{@code "EF"--> 0xEF}.
      * 
      * @param byte1
      *            the byte1
@@ -128,25 +128,22 @@ public final class ByteUtil{
      * @return 16进制字符串转成字节数组
      */
     public static final byte[] hexBytesToBytes(byte[] bytes){
-        if (null != bytes){
-            int length = bytes.length;
-            if ((length % 2) != 0){
-                throw new IllegalArgumentException("长度不是偶数,length is:" + length);
-            }
-            byte[] bytes2 = new byte[length / 2];
-            String item = "";
-            for (int n = 0; n < length; n += 2){
-                item = new String(bytes, n, 2);
-                // 两位一组，表示一个字节,把这样表示的16进制字符串，还原成一个进制字节
-                bytes2[n / 2] = (byte) Integer.parseInt(item, 16);
-            }
-            return bytes2;
+        int length = bytes.length;
+        if ((length % 2) != 0){
+            throw new IllegalArgumentException("长度不是偶数,length is:" + length);
         }
-        return null;
+        byte[] bytes2 = new byte[length / 2];
+        String item = "";
+        for (int n = 0; n < length; n += 2){
+            item = new String(bytes, n, 2);
+            // 两位一组，表示一个字节,把这样表示的16进制字符串，还原成一个进制字节
+            bytes2[n / 2] = (byte) Integer.parseInt(item, 16);
+        }
+        return bytes2;
     }
 
     /**
-     * 将指定字符串hexString，以每两个字符分割转换为16进制形式 如："2B44EFD9" --> byte[]{0x2B, 0x44, 0xEF, 0xD9}.
+     * 将指定字符串hexString,以每两个字符分割转换为16进制形式 如："2B44EFD9" --> byte[]{0x2B, 0x44, 0xEF, 0xD9}.
      * 
      * @param bytes
      *            the bytes

@@ -28,6 +28,7 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * <blockquote>
  * <p>
  * 这两个是调用常规方法的
+ * </p>
  * <ol>
  * <li>{@link #invokeMethod(Object, String, Object...)}</li>
  * <li>{@link #invokeMethod(Object, String, Object[], Class[])}</li>
@@ -37,14 +38,16 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * {@link org.apache.commons.lang3.reflect.MethodUtils#getMatchingAccessibleMethod(Class, String, Class...)}获得最佳匹配方法
  * <p>
  * 下面两个是调用静态方法的:
+ * </p>
  * <ol>
  * <li>{@link #invokeStaticMethod(Class, String, Object...)}</li>
  * <li>{@link #invokeStaticMethod(Class, String, Object[], Class[])}</li>
  * </ol>
- * </p>
+ * 
  * 
  * <p>
  * 如果你要调用精准的方法,可以使用 {@link org.apache.commons.lang3.reflect.MethodUtils}原生方法:
+ * </p>
  * <ol>
  * <li>{@link MethodUtils#invokeExactMethod(Object, String)}</li>
  * <li>{@link MethodUtils#invokeExactMethod(Object, String, Object...)}</li>
@@ -52,10 +55,10 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * <li>{@link MethodUtils#invokeExactStaticMethod(Class, String, Object...)}</li>
  * <li>{@link MethodUtils#invokeExactStaticMethod(Class, String, Object[], Class[])}</li>
  * </ol>
- * </p>
  * 
  * <p>
  * 当然,你还可以调用 {@link org.apache.commons.lang3.reflect.MethodUtils}其他方法:
+ * </p>
  * <ol>
  * <li>{@link MethodUtils#getAccessibleMethod(java.lang.reflect.Method)}</li>
  * <li>{@link MethodUtils#getAccessibleMethod(Class, String, Class...)}</li>
@@ -64,21 +67,17 @@ import com.feilong.commons.core.log.Slf4jUtil;
  * <li>{@link MethodUtils#getMethodsWithAnnotation(Class, Class)} 获得一个类中,指定泛型的方法(数组形式),比较实用</li>
  * <li>{@link MethodUtils#getOverrideHierarchy(java.lang.reflect.Method, org.apache.commons.lang3.ClassUtils.Interfaces)}</li>
  * </ol>
- * </p>
- * </p>
  * </blockquote>
  * 
- * 
  * <p>
- * 
  * 当然,您也可以调用 java 原生态, 需要注意的是:
+ * </p>
  * <ol>
  * <li>{@link java.lang.Class#getMethods()} 获取全部的public的函数(包括从基类继承的、从接口实现的所有public函数) (return all the (public) member methods inherited from
  * the Object class)</li>
  * <li>{@link java.lang.Class#getDeclaredMethods()} 获得类的所有方法 (This includes public, protected, default (package) access, and private
  * methods, but excludes inherited methods)</li>
  * </ol>
- * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.7 2014年7月15日 下午1:08:15

@@ -32,7 +32,6 @@ public class DoubleJsonValueProcessor implements JsonValueProcessor{
      * Instantiates a new double json value processor.
      */
     public DoubleJsonValueProcessor(){
-
     }
 
     /*

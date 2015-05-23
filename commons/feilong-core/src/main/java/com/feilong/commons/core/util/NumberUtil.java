@@ -25,6 +25,21 @@ import com.feilong.commons.core.text.NumberFormatUtil;
 /**
  * 处理int,Integer,long,BigDecimal等数据类型.
  * 
+ * <h3>double转BigDecimal:</h3>
+ * 
+ * <blockquote>
+ * <p>
+ * 对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf(double)，不建议使用new BigDecimal(double)，参见 JDK API
+ * </p>
+ * <ol>
+ * <li>new BigDecimal(0.1) {@code ==>} 0.1000000000000000055511151231257827021181583404541015625</li>
+ * <li>BigDecimal.valueOf(0.1) {@code ==>} 0.1</li>
+ * </ol>
+ * <p>
+ * 在《Effective Java 》这本书中也提到这个原则,float和double只能用来做科学计算或者是工程计算,在商业计算中我们要用 {@link java.math.BigDecimal}。
+ * </p>
+ * </blockquote>
+ * 
  * <h3><a name="RoundingMode">JAVA 8种舍入法:</a></h3>
  * 
  * <blockquote>
@@ -77,24 +92,6 @@ import com.feilong.commons.core.text.NumberFormatUtil;
  * </table>
  * </blockquote>
  * 
- * <h3>double转BigDecimal:</h3>
- * 
- * <blockquote>
- * <p>
- * 对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf(double)，不建议使用new BigDecimal(double)，参见 JDK API
- * </p>
- * 
- * <ol>
- * <li>new BigDecimal(0.1) {@code ==>} 0.1000000000000000055511151231257827021181583404541015625</li>
- * <li>BigDecimal.valueOf(0.1) {@code ==>} 0.1</li>
- * </ol>
- * 
- * <p>
- * 在《Effective Java 》这本书中也提到这个原则，float 和double 只能用来做科学计算或者是工程计算，在商业计算中我们要用java.math.BigDecimal。
- * </p>
- * </blockquote>
- * 
- * 
  * @author 金鑫 2010-3-11 下午02:27:59
  * @see Integer
  * @see Long
@@ -114,7 +111,7 @@ public final class NumberUtil{
     }
 
     /**
-     * 四舍五入 {@link RoundingMode#HALF_UP},取整,无小数<br>
+     * 四舍五入 {@link RoundingMode#HALF_UP},取整,无小数.<br>
      * 注意RoundingMode.HALF_UP -2.5 会变成-3,如果是 Math.round(-2.5) 会是-2
      * 
      * @param number
@@ -156,7 +153,7 @@ public final class NumberUtil{
     // [start]Divide
 
     /**
-     * 获得 除法结果one/two,四舍五入 取整,不需要再次toNoScale转换了
+     * 获得 除法结果one/two,四舍五入 取整,不需要再次toNoScale转换了.
      * <p>
      * 当two 是空或者是0的时候,直接返回one<br>
      * 否则返回除法结果one/two,四舍五入取整.
@@ -248,10 +245,11 @@ public final class NumberUtil{
     }
 
     /**
-     * 获得 除法结果one/two,四舍五入 {@link RoundingMode#HALF_UP},小数位数指定
+     * 获得 除法结果one/two,四舍五入 {@link RoundingMode#HALF_UP},小数位数指定.
      * <p>
-     * 当two 是空或者是0的时候,直接返回one<br>
+     * 当two是空或者是0的时候,直接返回one<br>
      * 否则返回除法结果one/two,四舍五入,小数位数指定.
+     * </p>
      * 
      * @param one
      *            除数
@@ -271,14 +269,16 @@ public final class NumberUtil{
     }
 
     /**
-     * 获得 除法结果one/two,四舍五入,小数位数指定
+     * 获得 除法结果one/two,四舍五入,小数位数指定.
      * <p>
      * 当two 是空或者是0的时候,直接返回one<br>
      * 否则返回除法结果one/two,四舍五入,小数位数指定.
+     * </p>
      * 
      * <p>
      * <b>注意:</b>不能直接one.divide(two), 避免 exception:Non-terminating decimal expansion; no exact representable decimal result<br>
      * 应该指定scale和roundingMode，保证对于无限小数有足够的范围来表示结果.
+     * </p>
      * 
      * @param one
      *            除数
@@ -412,9 +412,6 @@ public final class NumberUtil{
         }
         long avgRankLong = Math.round(Double.parseDouble(value.toString()) * 2);
 
-        //对于 double 转成 BigDecimal，推荐使用 BigDecimal.valueOf，不建议使用new BigDecimal(double)，参见 JDK API
-        //new BigDecimal(0.1) ====>   0.1000000000000000055511151231257827021181583404541015625
-        //BigDecimal.valueOf(0.1) ====>  0.1
         BigDecimal avgBigDecimal = BigDecimal.valueOf((double) (avgRankLong) / 2);
         String avgRank = setScale(avgBigDecimal, 1).toString();
         return avgRank;
@@ -511,7 +508,7 @@ public final class NumberUtil{
     }
 
     /**
-     * 小学学的 四舍五入的方式四舍五入 {@link RoundingMode#HALF_UP} 设置小数点位数<br>
+     * 小学学的 四舍五入的方式四舍五入 {@link RoundingMode#HALF_UP} 设置小数点位数.<br>
      * 被舍入部分>=0.5向上 否则向下<br>
      * 注意RoundingMode.HALF_UP -2.5 会变成-3,如果是 Math.round(-2.5) 会是-2
      * 

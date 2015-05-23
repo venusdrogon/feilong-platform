@@ -35,20 +35,21 @@ import com.feilong.commons.core.util.Validator;
  * 
  * <blockquote>
  * <p>
- * 这里使用偷懒的做法,调用了 {@link org.apache.commons.beanutils.ConvertUtilsBean#register(boolean, boolean, int)}方法<br>
+ * 这里使用偷懒的做法,调用了 {@link org.apache.commons.beanutils.ConvertUtilsBean#register(boolean, boolean, int) ConvertUtilsBean.register(boolean,
+ * boolean, int)}方法<br>
  * 但是有后遗症,这是beanUtils核心公共的方法,可能会影响其他框架或者其他作者开发的代码<br>
  * 最正确的做法, 自定义的类,自己单独写 {@link org.apache.commons.beanutils.Converter},<br>
  * 而 公共的类 比如 下面方法里面的类型:
  * </p>
  * 
  * <ul>
- * <li>registerPrimitives(throwException);</li>
- * <li>registerStandard(throwException, defaultNull);</li>
- * <li>registerOther(throwException);</li>
- * <li>registerArrays(throwException, defaultArraySize);</li>
+ * <li>{@link ConvertUtilsBean#registerPrimitives(boolean) registerPrimitives(boolean throwException)}</li>
+ * <li>{@link ConvertUtilsBean#registerStandard(boolean,boolean) registerStandard(boolean throwException, boolean defaultNull);}</li>
+ * <li>{@link ConvertUtilsBean#registerOther(boolean) registerOther(boolean throwException);}</li>
+ * <li>{@link ConvertUtilsBean#registerArrays(boolean,int) registerArrays(boolean throwException, int defaultArraySize);}</li>
  * </ul>
  * 
- * 最好在用的时候 自行register,{@link org.apache.commons.beanutils.ConvertUtilsBean#deregister(Class)}
+ * 最好在用的时候 自行register,{@link org.apache.commons.beanutils.ConvertUtilsBean#deregister(Class) ConvertUtilsBean.deregister(Class)}
  * 
  * <p>
  * Example 1:

@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * NullObject 专门为缓存设计
+ * NullObject 专门为缓存设计.
  * <p>
  * 缓存的核心数据结构是Map,如果存放时候,value是 null,取的时候,没有办法通过{@link Map#get(Object)}区分{@link Map}中是否含有指定的key<br>
  * 如果先使用 {@link Map#containsKey(Object)}来判断的话,{@link Map#containsKey(Object)}内部原理也是for循环来判断,如果Map key比较多,对性能也会有影响<br>

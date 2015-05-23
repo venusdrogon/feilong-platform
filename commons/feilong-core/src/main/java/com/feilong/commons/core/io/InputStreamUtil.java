@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@link java.io.InputStream} 工具类
+ * {@link java.io.InputStream} 工具类.
  *
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.9 2015年3月6日 上午10:28:58

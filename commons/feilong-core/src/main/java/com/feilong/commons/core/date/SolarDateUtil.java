@@ -35,7 +35,7 @@ public final class SolarDateUtil{
     }
 
     /**
-     * 阳历日期转成农历<br>
+     * 阳历日期转成农历.<br>
      * 如 SolarDateUtil.toLundar(2013, 1, 8) 返回20121126
      * 
      * @param date
@@ -50,7 +50,7 @@ public final class SolarDateUtil{
     }
 
     /**
-     * 阳历日期转成农历<br>
+     * 阳历日期转成农历.<br>
      * 如 SolarDateUtil.toLundar(2013, 1, 8) 返回20121126
      * 
      * @param year

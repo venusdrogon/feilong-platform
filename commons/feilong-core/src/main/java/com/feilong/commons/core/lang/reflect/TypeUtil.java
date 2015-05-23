@@ -31,7 +31,6 @@ import com.feilong.commons.core.util.Validator;
  * <h3>关于获取Class泛型说明:</h3>
  * 
  * <blockquote>
- * <p>
  * <ol>
  * <li>{@link Class#getGenericSuperclass()} 返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type。
  * <ol>
@@ -42,7 +41,6 @@ import com.feilong.commons.core.util.Validator;
  * </ol>
  * </li>
  * <li>{@link Class#getGenericInterfaces()}
- * 
  * <ol>
  * <li>返回表示某些接口的 Type，这些接口由此对象所表示的类或接口直接实现。</li>
  * <li>如果超接口是参数化类型，则为它返回的 Type 对象必须准确反映源代码中所使用的实际类型参数。如果以前未曾创建表示每个超接口的参数化类型，则创建这个类型。有关参数化类型创建过程的语义，请参阅 {@link ParameterizedType} 声明。</li>
@@ -53,7 +51,6 @@ import com.feilong.commons.core.util.Validator;
  * </ol>
  * </li>
  * </ol>
- * </p>
  * </blockquote>
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>

@@ -19,9 +19,13 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 分页 实体<br>
- * 可用于 数据库的分页封装,也可用于前端分页的封装.<br>
+ * 分页 实体.<br>
+ * 
+ * <p>
+ * 可用于 数据库的分页封装,也可用于前端分页的封装.
+ * </p>
  * 通过简单的构造方法示例, 你可以得到下面的数据:
+ * 
  * <ul>
  * <li>{@link #getAllPageNo()} 得到总页码</li>
  * <li>{@link #getOriginatingAllPageNo()} 获得原始的总页数(不经过 {@link #maxShowPageNo}) 修饰过的,(通过这个值 可以实现一些特殊的功能,一般用不到)</li>

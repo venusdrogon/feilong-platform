@@ -18,7 +18,7 @@ package com.feilong.commons.core.date;
 import java.util.Date;
 
 /**
- * 星座util
+ * 星座util.
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2011-1-5 上午11:28:07
@@ -26,9 +26,7 @@ import java.util.Date;
  */
 public final class ConstellationUtil{
 
-    /**
-     * 飞龙星座枚举
-     */
+    /** 飞龙星座枚举. */
     private static final ConstellationType[] CONSTELLATION_TYPES = {
                                                                  // 水瓶座 1月20日-2月18日
             ConstellationType.AQUARIUS,
@@ -55,9 +53,7 @@ public final class ConstellationUtil{
             // 摩羯座 12月22日-1月19日
             ConstellationType.CAPRICORN                         };
 
-    /**
-     * 星座边界日期
-     */
+    /** 星座边界日期. */
     private static final int[]               EDGE_DAYS           = { 20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22 };
 
     /** Don't let anyone instantiate this class. */
@@ -69,8 +65,8 @@ public final class ConstellationUtil{
 
     // *************************************************************************************************
     /**
-     * 通过生日 获得星座信息
-     * 
+     * 通过生日 获得星座信息.
+     *
      * @param birthday
      *            出生日期
      * @param pattern

@@ -16,7 +16,10 @@
 package com.feilong.commons.core.io;
 
 /**
- * 常用编码的枚举.建议不要自己硬编码,直接调用这里预声明的常量
+ * 常用编码的枚举.
+ * <p>
+ * 建议不要自己硬编码,直接调用这里预声明的常量.
+ * </p>
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0 2012-4-5 下午4:51:08

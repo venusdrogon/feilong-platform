@@ -25,7 +25,7 @@ import com.feilong.commons.core.tools.json.JsonUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * enum工具类.
+ * {@link java.lang.Enum} 工具类.
  * 
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.6 2014年5月8日 上午3:30:51

@@ -210,37 +210,48 @@ public final class ImageUtil{
 
             if (log.isDebugEnabled()){
                 log.debug("image filePath:[{}]", imageFile.getAbsolutePath());
-
-                Map<String, Object> map = new LinkedHashMap<String, Object>();
-
-                map.put("getWidth()", bufferedImage.getWidth());
-                map.put("getHeight()", bufferedImage.getHeight());
-                map.put("getPropertyNames()", bufferedImage.getPropertyNames());
-                map.put("isAlphaPremultiplied()", bufferedImage.isAlphaPremultiplied());
-                map.put("toString()", bufferedImage.toString());
-                map.put("getType()", bufferedImage.getType());
-                map.put("getMinTileX()", bufferedImage.getMinTileX());
-                map.put("getMinTileY()", bufferedImage.getMinTileY());
-                map.put("getMinX()", bufferedImage.getMinX());
-                map.put("getMinY()", bufferedImage.getMinY());
-                map.put("getColorModel()", bufferedImage.getColorModel());
-                map.put("getNumXTiles()", bufferedImage.getNumXTiles());
-                map.put("getNumYTiles()", bufferedImage.getNumYTiles());
-                map.put("getSampleModel()", bufferedImage.getSampleModel());
-                map.put("getTileGridXOffset()", bufferedImage.getTileGridXOffset());
-                map.put("getTileGridYOffset()", bufferedImage.getTileGridYOffset());
-                map.put("getTileHeight()", bufferedImage.getTileHeight());
-                map.put("getTileWidth()", bufferedImage.getTileWidth());
-                map.put("getTransparency()", bufferedImage.getTransparency());
-                map.put("getWritableTileIndices()", bufferedImage.getWritableTileIndices());
+                Map<String, Object> map = getBufferedImageInfoMapForLog(bufferedImage);
                 log.debug("bufferedImage info:{}", JsonUtil.format(map, new String[] { "data", "matrix" }));
             }
-
             return bufferedImage;
         }catch (IOException e){
             log.error("", e);
             throw new UncheckedIOException(e);
         }
+    }
+
+    /**
+     * 获得 buffered image info map for log.
+     *
+     * @param bufferedImage
+     *            the buffered image
+     * @return the buffered image info map for log
+     * @since 1.1.2
+     */
+    private static Map<String, Object> getBufferedImageInfoMapForLog(BufferedImage bufferedImage){
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+        map.put("getWidth()", bufferedImage.getWidth());
+        map.put("getHeight()", bufferedImage.getHeight());
+        map.put("getPropertyNames()", bufferedImage.getPropertyNames());
+        map.put("isAlphaPremultiplied()", bufferedImage.isAlphaPremultiplied());
+        map.put("toString()", bufferedImage.toString());
+        map.put("getType()", bufferedImage.getType());
+        map.put("getMinTileX()", bufferedImage.getMinTileX());
+        map.put("getMinTileY()", bufferedImage.getMinTileY());
+        map.put("getMinX()", bufferedImage.getMinX());
+        map.put("getMinY()", bufferedImage.getMinY());
+        map.put("getColorModel()", bufferedImage.getColorModel());
+        map.put("getNumXTiles()", bufferedImage.getNumXTiles());
+        map.put("getNumYTiles()", bufferedImage.getNumYTiles());
+        map.put("getSampleModel()", bufferedImage.getSampleModel());
+        map.put("getTileGridXOffset()", bufferedImage.getTileGridXOffset());
+        map.put("getTileGridYOffset()", bufferedImage.getTileGridYOffset());
+        map.put("getTileHeight()", bufferedImage.getTileHeight());
+        map.put("getTileWidth()", bufferedImage.getTileWidth());
+        map.put("getTransparency()", bufferedImage.getTransparency());
+        map.put("getWritableTileIndices()", bufferedImage.getWritableTileIndices());
+        return map;
     }
 
     /**
