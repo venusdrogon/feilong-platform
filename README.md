@@ -24,11 +24,11 @@ Reduce development, Release ideas
           `-"--'---'
 
 
-#Welcome to feilong-platform.
+#Welcome to feilong-platform
 
-feilong项目,封装了常用的java工具方法,提供快速使用工具的功能,自己知识积累的同时，方便大家使用
+feilong platform,封装了常用的java工具方法,提供快速使用工具的功能,自己知识积累的同时，方便大家使用
 
-#说明.
+#说明
 
 1. 基于Apache2 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;
 1. 基于maven3.2构建;
@@ -138,6 +138,8 @@ tools|`feilong-tools-xstream` |  | 1.7
 ```
 
 # About
+
+如果您对feilong platform 有任何建议，可以使用下面的联系方式：
 
 * 新浪微博:http://weibo.com/venusdrogon 
 * iteye博客:http://feitianbenyue.iteye.com/

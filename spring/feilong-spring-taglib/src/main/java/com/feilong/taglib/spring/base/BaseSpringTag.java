@@ -38,9 +38,6 @@ public class BaseSpringTag extends RequestContextAwareTag{
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 5289127954140428690L;
 
-    /** The string builder. */
-    protected StringBuilder   stringBuilder;
-
     /**
      * 标签开始.
      *
