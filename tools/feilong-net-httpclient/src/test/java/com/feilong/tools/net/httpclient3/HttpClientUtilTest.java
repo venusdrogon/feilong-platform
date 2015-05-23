@@ -124,7 +124,7 @@ public class HttpClientUtilTest{
 
         httpClientConfig.setUri(uri);
         httpClientConfig.setHttpMethodType(HttpMethodType.POST);
-        httpClientConfig.setParams(params);
+        httpClientConfig.setParamMap(params);
 
         String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
         if (log.isInfoEnabled()){
@@ -154,7 +154,7 @@ public class HttpClientUtilTest{
 
         httpClientConfig.setUri(uri);
         httpClientConfig.setHttpMethodType(HttpMethodType.GET);
-        httpClientConfig.setParams(params);
+        httpClientConfig.setParamMap(params);
 
         String responseBodyAsString = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
         if (log.isInfoEnabled()){

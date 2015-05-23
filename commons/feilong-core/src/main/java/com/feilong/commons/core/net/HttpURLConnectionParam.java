@@ -15,6 +15,9 @@
  */
 package com.feilong.commons.core.net;
 
+import com.feilong.commons.core.date.TimeInterval;
+import com.feilong.commons.core.io.CharsetType;
+
 /**
  * HttpURLConnectionParam.
  *
@@ -22,10 +25,12 @@ package com.feilong.commons.core.net;
  * @version 1.0 Sep 27, 2013 4:54:08 PM
  * @version 1.0.9 2015年3月5日 下午5:49:15 add proxyAddress&&proxyPort
  * @since 1.0.2
+ * @deprecated 将来会使用 {@link com.feilong.commons.core.net.HttpRequest}
  */
-public final class HttpURLConnectionParam extends URLConnectionParam{
+@Deprecated
+public final class HttpURLConnectionParam{
 
-    /** The proxy address. */
+    /** 代理地址. */
     private String  proxyAddress;
 
     /**
@@ -34,6 +39,88 @@ public final class HttpURLConnectionParam extends URLConnectionParam{
      * A port number of zero will let the system pick up an ephemeral port in a bind operation.
      */
     private Integer proxyPort;
+
+    /**
+     * 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在建立连接之前超时期满，则会引发一个 {@link java.net.SocketTimeoutException}.
+     */
+    private int     connectTimeout = TimeInterval.SECONDS_PER_MINUTE * 1000;
+
+    /**
+     * 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在数据可读取之前超时期满，则会引发一个 {@link java.net.SocketTimeoutException}.
+     */
+    private int     readTimeout    = TimeInterval.SECONDS_PER_MINUTE * 1000;
+
+    /** 内容的字符集. */
+    private String  contentCharset = CharsetType.UTF8;
+
+    /**
+     * Gets the 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在建立连接之前超时期满，则会引发一个 java.
+     * 
+     * @return the connectTimeout
+     */
+    public int getConnectTimeout(){
+        return connectTimeout;
+    }
+
+    /**
+     * Sets the 设置一个指定的超时值（以毫秒为单位），该值将在打开到此 URLConnection 引用的资源的通信链接时使用.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在建立连接之前超时期满，则会引发一个 java.
+     * 
+     * @param connectTimeout
+     *            the connectTimeout to set
+     */
+    public void setConnectTimeout(int connectTimeout){
+        this.connectTimeout = connectTimeout;
+    }
+
+    /**
+     * Gets the 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在数据可读取之前超时期满，则会引发一个 java.
+     * 
+     * @return the readTimeout
+     */
+    public int getReadTimeout(){
+        return readTimeout;
+    }
+
+    /**
+     * Sets the 将读超时设置为指定的超时值，以毫秒为单位.用一个非零值指定在建立到资源的连接后从 Input 流读入时的超时时间.<br>
+     * 超时时间为零表示无穷大超时.<br>
+     * 如果在数据可读取之前超时期满，则会引发一个 java.
+     * 
+     * @param readTimeout
+     *            the readTimeout to set
+     */
+    public void setReadTimeout(int readTimeout){
+        this.readTimeout = readTimeout;
+    }
+
+    /**
+     * 获得 内容的字符集.
+     *
+     * @return the contentCharset
+     */
+    public String getContentCharset(){
+        return contentCharset;
+    }
+
+    /**
+     * 设置 内容的字符集.
+     *
+     * @param contentCharset
+     *            the contentCharset to set
+     */
+    public void setContentCharset(String contentCharset){
+        this.contentCharset = contentCharset;
+    }
 
     /**
      * 获得 the proxy address.

@@ -43,7 +43,36 @@ import com.feilong.commons.core.util.StringUtil;
 import com.feilong.commons.core.util.Validator;
 
 /**
- * 处理url uri 等.
+ * 处理{@link java.net.URI}(Uniform Resource Locator) {@link java.net.URL}(Uniform Resource Identifier) 等.
+ * 
+ * <h3>{@link java.net.URI}和 {@link java.net.URL}的区别:</h3>
+ * 
+ * <blockquote>
+ * <table border="1" cellspacing="0" cellpadding="4">
+ * <tr style="background-color:#ccccff">
+ * <th align="left">字段</th>
+ * <th align="left">说明</th>
+ * </tr>
+ * <tr valign="top">
+ * <td>{@link java.net.URL URL}<br>
+ * (Uniform Resource Locator)</td>
+ * <td>统一资源标识符，用来唯一的标识一个资源<br>
+ * 统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。 <br>
+ * See RFC 1738: Uniform Resource Locators (URL)</td>
+ * </tr>
+ * <tr valign="top" style="background-color:#eeeeff">
+ * <td>{@link java.net.URI URI}<br>
+ * (Uniform Resource Identifier)</td>
+ * <td>
+ * There are two types of URIs: URLs and URNs. <br>
+ * See RFC 1630: Universal Resource Identifiers in WWW: A Unifying Syntax for the Expression of Names and Addresses of Objects on the
+ * Network as used in the WWW.</td>
+ * </tr>
+ * </table>
+ * 
+ * 一个URI实例可以代表绝对的，也可以是相对的，只要它符合URI的语法规则;而URL类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的，schema必须被指定。
+ * </blockquote>
+ * 
  * 
  * @author <a href="mailto:venusdrogon@163.com">金鑫</a>
  * @version 1.0.0 2010-6-11 上午02:06:43
@@ -87,7 +116,7 @@ public final class URIUtil{
             throw new NullPointerException("directoryName can't be null/empty!");
         }
 
-        log.info("begin download,urlString:{},directoryName:{}", urlString, directoryName);
+        log.info("begin download,urlString:[{}],directoryName:[{}]", urlString, directoryName);
 
         URL url = new URL(urlString);
         InputStream inputStream = url.openStream();
@@ -97,7 +126,7 @@ public final class URIUtil{
 
         IOWriteUtil.write(inputStream, directoryName, fileName);
 
-        log.info("end download,url:{},directoryName:{}", urlString, directoryName);
+        log.info("end download,url:[{}],directoryName:[{}]", urlString, directoryName);
     }
 
     /**

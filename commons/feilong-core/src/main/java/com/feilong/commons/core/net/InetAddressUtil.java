@@ -24,6 +24,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.feilong.commons.core.util.Validator;
+
 /**
  * 互联网协议 (ip) 地址相关操作.
  * 
@@ -112,71 +114,72 @@ public final class InetAddressUtil{
      */
     public static Map<String, Object> getInetAddressObjectLog(InetAddress inetAddress){
 
-        if (null != inetAddress){
-            Map<String, Object> object = new HashMap<String, Object>();
-
-            // 返回此 InetAddress 对象的原始 IP 地址.
-            // 结果按网络字节顺序：地址的高位字节位于 getAddress()[0] 中.
-            object.put("getAddress", inetAddress.getAddress());
-
-            // 获取此 IP 地址的完全限定域名.最大努力方法，意味着根据底层系统配置可能不能返回 FQDN.
-            // 如果有安全管理器，则此方法首先使用主机名和 -1 作为参数调用其 checkConnect 方法，来查看是否允许调用代码知道此 IP 地址的主机名（即是否允许连接到该主机）.如果不允许该操作，则其返回 IP 地址的文本表示形式.
-            object.put("getCanonicalHostName", inetAddress.getCanonicalHostName());
-
-            // 返回 IP 地址字符串（以文本表现形式）.
-            object.put("getHostAddress", inetAddress.getHostAddress());
-
-            // 获取此 IP 地址的主机名.
-            // 如果此 InetAddress 是用主机名创建的，则记忆并返回主机名；否则，将执行反向名称查找并基于系统配置的名称查找服务返回结果.如果需要查找名称服务，则调用 getCanonicalHostName.
-
-            // 如果有安全管理器，则首先使用主机名和 -1 作为参数来调用其 checkConnect 方法，以查看是否允许该操作.
-            // 如果不允许该操作，则其返回 IP 地址的文本表示形式.
-            object.put("getHostName", inetAddress.getHostName());
-
-            // 检查 InetAddress 是否是通配符地址的实用例行程序.
-            object.put("isAnyLocalAddress", inetAddress.isAnyLocalAddress());
-
-            // 检查 InetAddress 是否是链接本地地址的实用例行程序.
-            object.put("isLinkLocalAddress", inetAddress.isLinkLocalAddress());
-
-            // 检查 InetAddress 是否是回送地址的实用例行程序.
-            object.put("isLoopbackAddress", inetAddress.isLoopbackAddress());
-
-            // 检查多播地址是否具有全局域的实用例行程序.
-            object.put("isMCGlobal", inetAddress.isMCGlobal());
-
-            // 检查多播地址是否具有链接范围的实用例行程序.
-            object.put("isMCLinkLocal", inetAddress.isMCLinkLocal());
-
-            // 检查多播地址是否具有节点范围的实用例行程序.
-            object.put("isMCNodeLocal", inetAddress.isMCNodeLocal());
-
-            // 检查多播地址是否具有组织范围的实用例行程序.
-            object.put("isMCOrgLocal", inetAddress.isMCOrgLocal());
-
-            // 检查多播地址是否具有站点范围的实用例行程序.
-            object.put("isMCSiteLocal", inetAddress.isMCSiteLocal());
-
-            // 检查 InetAddress 是否是 IP 多播地址的实用例行程序.
-            object.put("isMulticastAddress", inetAddress.isMulticastAddress());
-
-            // 检查 InetAddress 是否是站点本地地址的实用例行程序.
-            object.put("isSiteLocalAddress", inetAddress.isSiteLocalAddress());
-            object.put("toString", inetAddress.toString());
-            try{
-
-                // 测试是否可以达到该地址.实现尽最大努力试图到达主机，但防火墙和服务器配置可能阻塞请求，使其在某些特定的端口可以访问时处于不可到达状态.
-                // 如果可以获得权限，则典型实现将使用 ICMP ECHO REQUEST；否则它将试图在目标主机的端口 7 (Echo) 上建立 TCP 连接.
-                // 超时值（以毫秒为单位）指示尝试应该使用的最大时间量.如果在获取应答前操作超时了，则视为主机不可到达.负值将导致抛出 IllegalArgumentException.
-
-                // timeout - 调用中止前的时间（以毫秒为单位）
-                object.put("isReachable(1000)", inetAddress.isReachable(1000));
-            }catch (IOException e){
-                log.error(e.getClass().getName(), e);
-            }
-
-            return object;
+        if (Validator.isNullOrEmpty(inetAddress)){
+            return null;
         }
-        return null;
+
+        Map<String, Object> object = new HashMap<String, Object>();
+
+        // 返回此 InetAddress 对象的原始 IP 地址.
+        // 结果按网络字节顺序：地址的高位字节位于 getAddress()[0] 中.
+        object.put("getAddress", inetAddress.getAddress());
+
+        // 获取此 IP 地址的完全限定域名.最大努力方法，意味着根据底层系统配置可能不能返回 FQDN.
+        // 如果有安全管理器，则此方法首先使用主机名和 -1 作为参数调用其 checkConnect 方法，来查看是否允许调用代码知道此 IP 地址的主机名（即是否允许连接到该主机）.如果不允许该操作，则其返回 IP 地址的文本表示形式.
+        object.put("getCanonicalHostName", inetAddress.getCanonicalHostName());
+
+        // 返回 IP 地址字符串（以文本表现形式）.
+        object.put("getHostAddress", inetAddress.getHostAddress());
+
+        // 获取此 IP 地址的主机名.
+        // 如果此 InetAddress 是用主机名创建的，则记忆并返回主机名；否则，将执行反向名称查找并基于系统配置的名称查找服务返回结果.如果需要查找名称服务，则调用 getCanonicalHostName.
+
+        // 如果有安全管理器，则首先使用主机名和 -1 作为参数来调用其 checkConnect 方法，以查看是否允许该操作.
+        // 如果不允许该操作，则其返回 IP 地址的文本表示形式.
+        object.put("getHostName", inetAddress.getHostName());
+
+        // 检查 InetAddress 是否是通配符地址的实用例行程序.
+        object.put("isAnyLocalAddress", inetAddress.isAnyLocalAddress());
+
+        // 检查 InetAddress 是否是链接本地地址的实用例行程序.
+        object.put("isLinkLocalAddress", inetAddress.isLinkLocalAddress());
+
+        // 检查 InetAddress 是否是回送地址的实用例行程序.
+        object.put("isLoopbackAddress", inetAddress.isLoopbackAddress());
+
+        // 检查多播地址是否具有全局域的实用例行程序.
+        object.put("isMCGlobal", inetAddress.isMCGlobal());
+
+        // 检查多播地址是否具有链接范围的实用例行程序.
+        object.put("isMCLinkLocal", inetAddress.isMCLinkLocal());
+
+        // 检查多播地址是否具有节点范围的实用例行程序.
+        object.put("isMCNodeLocal", inetAddress.isMCNodeLocal());
+
+        // 检查多播地址是否具有组织范围的实用例行程序.
+        object.put("isMCOrgLocal", inetAddress.isMCOrgLocal());
+
+        // 检查多播地址是否具有站点范围的实用例行程序.
+        object.put("isMCSiteLocal", inetAddress.isMCSiteLocal());
+
+        // 检查 InetAddress 是否是 IP 多播地址的实用例行程序.
+        object.put("isMulticastAddress", inetAddress.isMulticastAddress());
+
+        // 检查 InetAddress 是否是站点本地地址的实用例行程序.
+        object.put("isSiteLocalAddress", inetAddress.isSiteLocalAddress());
+        object.put("toString", inetAddress.toString());
+        try{
+
+            // 测试是否可以达到该地址.实现尽最大努力试图到达主机，但防火墙和服务器配置可能阻塞请求，使其在某些特定的端口可以访问时处于不可到达状态.
+            // 如果可以获得权限，则典型实现将使用 ICMP ECHO REQUEST；否则它将试图在目标主机的端口 7 (Echo) 上建立 TCP 连接.
+            // 超时值（以毫秒为单位）指示尝试应该使用的最大时间量.如果在获取应答前操作超时了，则视为主机不可到达.负值将导致抛出 IllegalArgumentException.
+
+            // timeout - 调用中止前的时间（以毫秒为单位）
+            object.put("isReachable(1000)", inetAddress.isReachable(1000));
+        }catch (IOException e){
+            log.error(e.getClass().getName(), e);
+        }
+
+        return object;
     }
 }

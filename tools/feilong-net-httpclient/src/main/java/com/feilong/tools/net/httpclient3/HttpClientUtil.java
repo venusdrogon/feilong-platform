@@ -109,7 +109,7 @@ public final class HttpClientUtil{
 
         String uri = httpClientConfig.getUri();
 
-        Map<String, String> params = httpClientConfig.getParams();
+        Map<String, String> params = httpClientConfig.getParamMap();
 
         NameValuePair[] nameValuePairs = null;
         if (Validator.isNotNullOrEmpty(params)){

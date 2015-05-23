@@ -32,11 +32,10 @@ import com.feilong.commons.core.bean.PropertyUtil;
  * @version 1.1.2 2015年5月21日 上午11:02:42
  * @param <T>
  *            the generic type
- * @since 1.1.2
- * 
  * @see "org.springframework.beans.support.PropertyComparator"
  * @see org.apache.commons.collections.comparators.BooleanComparator
  * @see org.apache.commons.collections.comparators.ReverseComparator
+ * @since 1.1.2
  */
 public class PropertyComparator<T> implements Comparator<T>{
 

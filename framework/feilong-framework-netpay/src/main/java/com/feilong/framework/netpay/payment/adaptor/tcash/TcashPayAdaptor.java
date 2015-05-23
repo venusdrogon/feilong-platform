@@ -165,7 +165,7 @@ public class TcashPayAdaptor extends AbstractPaymentAdaptor{
         HttpClientConfig httpClientConfig = new HttpClientConfig();
         httpClientConfig.setHttpMethodType(HttpMethodType.POST);
 
-        httpClientConfig.setParams(params);
+        httpClientConfig.setParamMap(params);
         httpClientConfig.setUri(publicTokenURL);
 
         //********************************************************************************

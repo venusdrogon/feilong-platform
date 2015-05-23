@@ -119,7 +119,7 @@ public class TcashAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
 
         HttpClientConfig httpClientConfig = new HttpClientConfig();
         httpClientConfig.setUri(checkTransactionStatusURL);
-        httpClientConfig.setParams(params);
+        httpClientConfig.setParamMap(params);
         HttpMethodType byMethodValueIgnoreCase = null;
 
         try{

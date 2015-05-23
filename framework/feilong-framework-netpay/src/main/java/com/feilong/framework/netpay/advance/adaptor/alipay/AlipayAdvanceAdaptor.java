@@ -188,7 +188,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
         HttpClientConfig httpClientConfig = new HttpClientConfig();
 
         httpClientConfig.setUri(gateway);
-        httpClientConfig.setParams(new TreeMap<String, String>(closeTradeRequestMap));
+        httpClientConfig.setParamMap(new TreeMap<String, String>(closeTradeRequestMap));
         httpClientConfig.setHttpMethodType(HttpMethodType.GET);
 
         String returnXML = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
@@ -282,7 +282,7 @@ public class AlipayAdvanceAdaptor extends AbstractPaymentAdvanceAdaptor{
         HttpClientConfig httpClientConfig = new HttpClientConfig();
 
         httpClientConfig.setUri(gateway);
-        httpClientConfig.setParams(new TreeMap<String, String>(constructSingleTradeQueryRequestMap));
+        httpClientConfig.setParamMap(new TreeMap<String, String>(constructSingleTradeQueryRequestMap));
         httpClientConfig.setHttpMethodType(HttpMethodType.GET);
 
         String returnXML = HttpClientUtil.getResponseBodyAsString(httpClientConfig);

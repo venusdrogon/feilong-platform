@@ -168,7 +168,7 @@ public class AlipayWapAdaptor extends AbstractAlipayAdaptor{
 
         HttpClientConfig httpClientConfig = new HttpClientConfig();
         httpClientConfig.setHttpMethodType(HttpMethodType.POST);
-        httpClientConfig.setParams(tokenRequestMap);
+        httpClientConfig.setParamMap(tokenRequestMap);
 
         String alipayTokenResponseResult = HttpClientUtil.getResponseBodyAsString(httpClientConfig);
         //TODO 要编码吗？--->Demo里面有 (明雷)

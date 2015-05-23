@@ -18,6 +18,7 @@ package com.feilong.commons.core.io;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
@@ -30,6 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:venusdrogon@163.com">feilong</a>
  * @version 1.0.9 2015年3月6日 上午10:28:58
  * @see ReaderUtil
+ * @see java.io.InputStream
  * @since 1.0.9
  */
 public final class InputStreamUtil{
@@ -45,13 +47,12 @@ public final class InputStreamUtil{
     }
 
     /**
-     * 将 InputStream 转成string(该方法会将 inputStream 关闭)<br>
-     * 使用 Charset.defaultCharset()
+     * 将 {@link java.io.InputStream} 转成string.<br>
+     * 使用默认的编码集 {@link Charset#defaultCharset()}
      *
      * @param inputStream
      *            the input stream
-     * @return 将 InputStream 转成string，如果出现异常， 返回null<br>
-     *         已经处理了 inputStream 的关闭
+     * @return 将 {@link java.io.InputStream} 转成string
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @see #inputStream2String(InputStream, String)
@@ -60,22 +61,22 @@ public final class InputStreamUtil{
         Charset defaultCharset = Charset.defaultCharset();
         String charsetName = defaultCharset.name();
         log.debug("the param defaultCharset:[{}]", charsetName);
-
         return inputStream2String(inputStream, charsetName);
     }
 
     /**
-     * 将 InputStream 转成string(该方法会将 inputStream 关闭)<br>
-     * 读取cmd命令结果时候， 有时候读取的是乱码，需要传递charset字符集.
+     * 将 {@link java.io.InputStream} 转成string.<br>
+     * 读取cmd命令结果时候， 有时候读取的是乱码，需要传递 <code>charsetName</code>字符集.
      *
      * @param inputStream
      *            the input stream
      * @param charsetName
      *            指定受支持的 charset 的名称
-     * @return 将 InputStream 转成string，如果出现异常， 返回null<br>
-     *         已经处理了 inputStream 的关闭
+     * @return 将 {@link java.io.InputStream} 转成string
      * @throws UncheckedIOException
      *             the unchecked io exception
+     * @see #toBufferedReader(InputStream, String)
+     * @see ReaderUtil#toString(Reader)
      */
     public static String inputStream2String(InputStream inputStream,String charsetName) throws UncheckedIOException{
         BufferedReader bufferedReader = toBufferedReader(inputStream, charsetName);
@@ -83,7 +84,7 @@ public final class InputStreamUtil{
     }
 
     /**
-     * 将inputStream 转成BufferedReader (bufferedReader 缓冲 高效读取).
+     * 将 {@link java.io.InputStream} 转成 {@link java.io.BufferedReader} ({@link java.io.BufferedReader} 缓冲 高效读取).
      *
      * @param inputStream
      *            the input stream
@@ -93,14 +94,15 @@ public final class InputStreamUtil{
      * @throws UncheckedIOException
      *             the unchecked io exception
      * @see java.io.BufferedReader
+     * @see java.io.InputStreamReader#InputStreamReader(InputStream, String)
      */
     public static BufferedReader toBufferedReader(InputStream inputStream,String charsetName) throws UncheckedIOException{
         try{
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charsetName);
+            Reader reader = new InputStreamReader(inputStream, charsetName);
 
             // 缓冲 高效读取  bufferedReader 
             // 包装所有其 read() 操作可能开销很高的 Reader（如 FileReader 和 InputStreamReader）.
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            BufferedReader bufferedReader = new BufferedReader(reader);
             return bufferedReader;
         }catch (UnsupportedEncodingException e){
             throw new UncheckedIOException(e);
