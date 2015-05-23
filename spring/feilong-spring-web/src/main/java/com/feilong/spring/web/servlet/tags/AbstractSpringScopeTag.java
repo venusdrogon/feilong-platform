@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.taglib.spring.base;
+package com.feilong.spring.web.servlet.tags;
 
 /**
  * 需要和spring控制的业务层交互,且仅仅设置作用域,请使用这个基类.
@@ -21,9 +21,12 @@ package com.feilong.taglib.spring.base;
  * <pre>
  * 只需要重写doExecute()方法即可
  * </pre>
- *
- * @author <a href="venusdrogon@163.com">金鑫</a>
- * @version 1.0 2010-8-27 下午01:33:05
+ * 
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.0 2010-8-27 下午01:33:05
+ * @version 1.1.2 2015年5月24日 上午4:20:05
+ * @see org.springframework.web.servlet.tags.RequestContextAwareTag
+ * @since 1.1.2
  */
 public abstract class AbstractSpringScopeTag extends BaseSpringTag{
 

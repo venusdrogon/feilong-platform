@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.taglib.spring.base;
+package com.feilong.spring.web.servlet.tags;
 
 import java.io.IOException;
 
@@ -31,7 +31,11 @@ import com.feilong.commons.core.io.UncheckedIOException;
 /**
  * 自定义标签的父类,需要和spring控制的业务层交互的请使用这个基类.
  *
- * @author 金鑫 时间:2009年10月28日 10:50:06
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.0 2009年10月28日 10:50:06
+ * @version 1.1.2 2015年5月24日 上午4:20:05
+ * @see org.springframework.web.servlet.tags.RequestContextAwareTag
+ * @since 1.1.2
  */
 public class BaseSpringTag extends RequestContextAwareTag{
 

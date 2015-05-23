@@ -20,7 +20,6 @@
 		<module>feilong-spring-jdbc</module>
 		<module>feilong-spring-web</module>
 		<module>feilong-spring-context</module>
-		<module>feilong-spring-taglib</module>
 	</modules>
 
 	<dependencies>

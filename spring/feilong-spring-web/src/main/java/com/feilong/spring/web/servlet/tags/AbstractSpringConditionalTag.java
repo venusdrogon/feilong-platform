@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.feilong.taglib.spring.base;
+package com.feilong.spring.web.servlet.tags;
 
 /**
  * 条件父类标签,需要条件控制的(需要和业务层打交道).
  *
- * @author 金鑫 2010-3-31 上午11:21:51
+ * @author <a href="mailto:venusdrogon@163.com">feilong</a>
+ * @version 1.0.0 2010-3-31 上午11:21:51
+ * @version 1.1.2 2015年5月24日 上午4:20:05
+ * @see org.springframework.web.servlet.tags.RequestContextAwareTag
+ * @since 1.1.2
  */
 public abstract class AbstractSpringConditionalTag extends BaseSpringTag{
 
