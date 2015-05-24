@@ -29,17 +29,18 @@ import com.feilong.taglib.display.pager.command.PagerParams;
 /**
  * 飞龙分页标签.<br>
  * <h3>特点:</h3>
- * <ul>
- * <li>1.1.支持皮肤切换</li>
- * <li>1.2.支持velocity模版,支持自定义velocity模版</li>
- * <li>1.3.自动识别是否是forwoad 页面分页连接</li>
- * <li>1.4.分页页码,当前页码永远居中</li>
- * <li>1.5.分页 页码 支持 根据页码数字 自动显示 分页码个数,见参数说明里面的 maxIndexPages参数</li>
- * <li>1.6.经过大型项目检验,通用安全扫描</li>
- * <li>1.7.支持国际化(1.0.5 new feature)</li>
- * <li>1.8.内置文本框页码输入快速跳转(1.0.5 new feature)</li>
- * <li>1.9.支持类似于淘宝最大分页码100 这样的控制 ,见参数 {@link #maxShowPageNo} (1.0.5 new feature)</li>
- * </ul>
+ * <ol>
+ * <li>支持皮肤切换</li>
+ * <li>支持velocity模版,支持自定义velocity模版</li>
+ * <li>自动识别是否是forwoad 页面分页连接</li>
+ * <li>分页页码,当前页码永远居中</li>
+ * <li>分页 页码 支持 根据页码数字 自动显示 分页码个数,见参数说明里面的 maxIndexPages参数</li>
+ * <li>经过大型项目检验,通用安全扫描</li>
+ * <li>支持国际化(1.0.5 new feature)</li>
+ * <li>内置文本框页码输入快速跳转(1.0.5 new feature)</li>
+ * <li>支持类似于淘宝最大分页码100 这样的控制 ,见参数 {@link #maxShowPageNo} (1.0.5 new feature)</li>
+ * </ol>
+ * 
  * <h3>使用方式:</h3>
  * 
  * <pre>
@@ -76,7 +77,7 @@ import com.feilong.taglib.display.pager.command.PagerParams;
 public class PagerTag extends AbstractCommonTag{
 
     /** The Constant serialVersionUID. */
-    private static final long serialVersionUID       = 1L;
+    private static final long serialVersionUID       = -3523064037264688170L;
 
     /** 数据总数. */
     private Integer           count;
