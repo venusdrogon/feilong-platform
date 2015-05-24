@@ -69,8 +69,7 @@ Category |Name | Description | JDK编译版本(将来会统一)
 ----|------------ | ---------|------------
 commons |`feilong-core` | 核心jar,所有feilong-platform的基础 | 1.6
 commons |`feilong-servlet` | 封装了j2ee常用类,是feilong-platform web相关jar 的基础 | 1.6
-taglib  |`feilong-taglib-common` |  | 1.7
-taglib  |`feilong-taglib-display` |  | 1.7
+
 
 
 # 类和方法介绍: 
