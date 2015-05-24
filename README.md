@@ -71,29 +71,7 @@ commons |`feilong-core` | 核心jar,所有feilong-platform的基础 | 1.6
 commons |`feilong-servlet` | 封装了j2ee常用类,是feilong-platform web相关jar 的基础 | 1.6
 taglib  |`feilong-taglib-common` |  | 1.7
 taglib  |`feilong-taglib-display` |  | 1.7
-webservice|`feilong-webservice-cxf` |  | 1.7
-webservice|`feilong-webservice-jws` |  | 1.7
-framework|`feilong-framework-bind` |  | 1.7
-framework|`feilong-framework-code` |  | 1.7
-framework|`feilong-framework-netpay` |  | 1.7
-spring|`feilong-spring-aop` |  | 1.6
-spring|`feilong-spring-context` |  | 1.7
-spring|`feilong-spring-core` |  | 1.7
-spring|`feilong-spring-jdbc` |  | 1.6
-spring|`feilong-spring-web` |  | 1.7
-spring|`feilong-spring-taglib` |  | 1.7
-tools|`feilong-net-filetransfer` |  | 1.7
-tools|`feilong-net-httpclient` |  | 1.7
-tools|`feilong-tools-ant` |  | 1.7
-tools|`feilong-tools-dom4j` |  | 1.7
-tools|`feilong-tools-jsoup` |  | 1.7
-tools|`feilong-tools-log4j` |  | 1.7
-tools|`feilong-tools-logback` |  | 1.7
-tools|`feilong-tools-mail` |  | 1.7
-tools|`feilong-tools-middleware` |  | 1.7
-tools|`feilong-tools-security` |  | 1.7
-tools|`feilong-tools-velocity` |  | 1.7
-tools|`feilong-tools-xstream` |  | 1.7
+
 
 # 类和方法介绍: 
 
@@ -143,4 +121,3 @@ tools|`feilong-tools-xstream` |  | 1.7
 
 * 新浪微博:http://weibo.com/venusdrogon 
 * iteye博客:http://feitianbenyue.iteye.com/
-
