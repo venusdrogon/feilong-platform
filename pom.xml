@@ -209,7 +209,6 @@
 
 	<modules>
 		<module>commons</module>
-		<module>taglib</module>
 	</modules>
 
 	<dependencies>
