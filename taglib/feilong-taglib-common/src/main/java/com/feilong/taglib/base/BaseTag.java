@@ -27,7 +27,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import com.feilong.commons.core.io.UncheckedIOException;
 
 /**
- * 飞龙自定义标签的父类,所有飞龙自定义标签的基类,包含通用的方法 <br>
+ * 飞龙自定义标签的父类,所有飞龙自定义标签的基类,包含通用的方法.
  * <ul>
  * <li>EVAL_BODY_AGAIN 对标签体循环处理</li>
  * <li>EVAL_PAGE (6)：处理标签后，继续处理JSP后面的内容</li>

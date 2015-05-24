@@ -16,7 +16,7 @@
 package com.feilong.taglib.base;
 
 /**
- * 条件父类标签,需要条件控制的 例如logic equal请使用这个 <br>
+ * 条件父类标签,需要条件控制的 例如logic equal请使用这个. <br>
  * 用法:简单条件标签,仅需实现condition()方法即可.
  *
  * @author 金鑫 2009-11-7下午05:39:08
