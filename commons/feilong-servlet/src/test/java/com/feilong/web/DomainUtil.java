@@ -18,7 +18,7 @@ package com.feilong.web;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.feilong.commons.core.util.Validator;
+import com.feilong.core.util.Validator;
 
 /**
  * 二级域名 工具类.

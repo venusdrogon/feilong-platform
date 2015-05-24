@@ -23,8 +23,8 @@ import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 
-import com.feilong.commons.core.io.IOReaderUtil;
-import com.feilong.commons.core.util.Validator;
+import com.feilong.core.io.IOReaderUtil;
+import com.feilong.core.util.Validator;
 
 /**
  * {@link javax.servlet.ServletContext} 工具类.

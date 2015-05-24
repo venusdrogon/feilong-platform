@@ -15,7 +15,7 @@
  */
 package com.feilong.web.esapi;
 
-import com.feilong.commons.core.log.Slf4jUtil;
+import com.feilong.core.log.Slf4jUtil;
 
 //Exception又分为两类：一种是CheckedException，一种是UncheckedException.
 //

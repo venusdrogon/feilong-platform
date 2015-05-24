@@ -27,16 +27,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DateExtensionUtil;
-import com.feilong.commons.core.io.CharsetType;
-import com.feilong.commons.core.io.FileUtil;
-import com.feilong.commons.core.io.IOWriteUtil;
-import com.feilong.commons.core.io.MimeType;
-import com.feilong.commons.core.io.MimeTypeUtil;
-import com.feilong.commons.core.io.UncheckedIOException;
-import com.feilong.commons.core.net.URIUtil;
-import com.feilong.commons.core.util.StringUtil;
-import com.feilong.commons.core.util.Validator;
+import com.feilong.core.date.DateExtensionUtil;
+import com.feilong.core.io.CharsetType;
+import com.feilong.core.io.FileUtil;
+import com.feilong.core.io.IOWriteUtil;
+import com.feilong.core.io.MimeType;
+import com.feilong.core.io.MimeTypeUtil;
+import com.feilong.core.io.UncheckedIOException;
+import com.feilong.core.net.URIUtil;
+import com.feilong.core.util.StringUtil;
+import com.feilong.core.util.Validator;
 import com.feilong.servlet.http.entity.HttpHeaders;
 
 /**
@@ -112,7 +112,7 @@ public final class ResponseUtil{
      * @see "org.springframework.http.MediaType"
      * @see "org.apache.http.HttpHeaders"
      * @see "org.springframework.http.HttpHeaders"
-     * @see com.feilong.commons.core.io.MimeTypeUtil#getContentTypeByFileName(String)
+     * @see com.feilong.core.io.MimeTypeUtil#getContentTypeByFileName(String)
      * @see javax.servlet.ServletContext#getMimeType(String)
      */
     public static void download(

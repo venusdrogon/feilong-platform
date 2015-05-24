@@ -25,7 +25,7 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.ClassLoaderUtil;
+import com.feilong.core.lang.ClassLoaderUtil;
 
 /**
  * 专门给esapi 设置的监听器.

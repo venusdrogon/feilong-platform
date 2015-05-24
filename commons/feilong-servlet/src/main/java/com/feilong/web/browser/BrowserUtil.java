@@ -15,7 +15,7 @@
  */
 package com.feilong.web.browser;
 
-import com.feilong.commons.core.util.StringUtil;
+import com.feilong.core.util.StringUtil;
 
 /**
  * 浏览器.<br>

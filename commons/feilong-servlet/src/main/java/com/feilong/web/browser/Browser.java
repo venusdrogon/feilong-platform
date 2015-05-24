@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.util.StringUtil;
+import com.feilong.core.util.StringUtil;
 import com.feilong.servlet.http.RequestUtil;
 
 /**

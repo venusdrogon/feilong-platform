@@ -24,13 +24,13 @@ import java.util.SortedMap;
 
 import javax.servlet.jsp.jstl.sql.Result;
 
-import com.feilong.commons.core.bean.BeanUtil;
-import com.feilong.commons.core.bean.PropertyUtil;
-import com.feilong.commons.core.lang.ObjectUtil;
-import com.feilong.commons.core.lang.reflect.ConstructorUtil;
-import com.feilong.commons.core.lang.reflect.FieldUtil;
-import com.feilong.commons.core.util.StringUtil;
-import com.feilong.commons.core.util.Validator;
+import com.feilong.core.bean.BeanUtil;
+import com.feilong.core.bean.PropertyUtil;
+import com.feilong.core.lang.ObjectUtil;
+import com.feilong.core.lang.reflect.ConstructorUtil;
+import com.feilong.core.lang.reflect.FieldUtil;
+import com.feilong.core.util.StringUtil;
+import com.feilong.core.util.Validator;
 
 /**
  * jstl {@link javax.servlet.jsp.jstl.sql.Result}的工具类.

@@ -27,11 +27,11 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.configure.PropertiesUtil;
-import com.feilong.commons.core.date.DateExtensionUtil;
-import com.feilong.commons.core.log.Slf4jUtil;
-import com.feilong.commons.core.tools.json.JsonUtil;
-import com.feilong.commons.core.util.Validator;
+import com.feilong.core.configure.PropertiesUtil;
+import com.feilong.core.date.DateExtensionUtil;
+import com.feilong.core.log.Slf4jUtil;
+import com.feilong.core.tools.json.JsonUtil;
+import com.feilong.core.util.Validator;
 
 /**
  * 初始化配置 监听器.
@@ -128,7 +128,7 @@ public class DomainListener implements ServletContextListener{
      * @param domainConfigLocation
      *            the domain config location
      * @return the domain properties
-     * @see com.feilong.commons.core.configure.PropertiesUtil#getPropertiesWithClassLoader(Class, String)
+     * @see com.feilong.core.configure.PropertiesUtil#getPropertiesWithClassLoader(Class, String)
      * @since 1.0.9
      */
     //TODO 自动识别

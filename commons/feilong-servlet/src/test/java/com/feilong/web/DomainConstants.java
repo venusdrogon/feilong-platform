@@ -17,7 +17,7 @@ package com.feilong.web;
 
 import java.util.ResourceBundle;
 
-import com.feilong.commons.core.configure.ResourceBundleUtil;
+import com.feilong.core.configure.ResourceBundleUtil;
 
 /**
  * 相关二级域名 配置.

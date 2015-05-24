@@ -31,8 +31,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.lang.SystemUtil;
-import com.feilong.commons.core.tools.json.JsonUtil;
+import com.feilong.core.lang.SystemUtil;
+import com.feilong.core.tools.json.JsonUtil;
 import com.feilong.servlet.ServletContextUtil;
 
 /**

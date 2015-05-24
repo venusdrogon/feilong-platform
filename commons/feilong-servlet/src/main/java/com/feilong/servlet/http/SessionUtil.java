@@ -27,11 +27,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.feilong.commons.core.date.DateExtensionUtil;
-import com.feilong.commons.core.date.DatePattern;
-import com.feilong.commons.core.date.DateUtil;
-import com.feilong.commons.core.log.Slf4jUtil;
-import com.feilong.commons.core.util.CollectionsUtil;
+import com.feilong.core.date.DateExtensionUtil;
+import com.feilong.core.date.DatePattern;
+import com.feilong.core.date.DateUtil;
+import com.feilong.core.log.Slf4jUtil;
+import com.feilong.core.util.CollectionsUtil;
 
 /**
  * {@link javax.servlet.http.HttpSession} 工具类.
