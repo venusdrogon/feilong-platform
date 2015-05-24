@@ -1,5 +1,0 @@
-#if("$!code" == "")
-	jinxin
-#else
-	xiaohuan
-#end
