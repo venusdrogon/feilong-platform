@@ -207,10 +207,6 @@
 			</snapshotRepository> -->
 	</distributionManagement>
 
-	<modules>
-		<module>commons</module>
-	</modules>
-
 	<dependencies>
 		<!--******** slf4j******** -->
 		<dependency>
