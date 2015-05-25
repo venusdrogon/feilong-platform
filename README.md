@@ -1,3 +1,11 @@
+#说明
+	在即将到来的 feilong-platform(v 1.2.0) module 进行了调整
+	
+	feilong-core 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-core
+	feilong-servlet 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-servlet
+
+
+
 feilong-platform
 ================
 
