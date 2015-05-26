@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform</groupId>
+  <artifactId>feilong-core</artifactId>
+  <versioning>
+    <versions>
+      <version>1.2.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20150526024505</lastUpdated>
+  </versioning>
+</metadata>
