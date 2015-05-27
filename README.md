@@ -1,9 +1,10 @@
 #说明
-	在即将到来的 feilong-platform(v 1.2.0) module 进行了调整
-	
-	feilong-core 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-core
-	feilong-servlet 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-servlet
-
+	feilong-platform(V 1.2.0) module 进行了调整:
+		feilong-core 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-core
+		feilong-servlet 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-servlet
+		feilong-spring 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-spring
+		feilong-taglib 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-taglib
+		feilong-webservice 成为顶级项目, 地址变更为 :https://github.com/venusdrogon/feilong-webservice
 
 feilong-platform
 ================
@@ -41,85 +42,6 @@ feilong platform,封装了常用的java工具方法,提供快速使用工具的�
 1. 基于maven3.2构建;
 1. 需要jdk1.6及以上环境;
 
-
-# Maven使用配置
-
-```XML
-	<project>
-		....
-		<repositories>
-			<repository>
-				<id>feilong-repository</id>
-				<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
-			</repository>
-		</repositories>
-		
-		....
-		<dependencies>
-			....
-			<dependency>
-				<groupId>com.feilong.platform.commons</groupId>
-				<artifactId>feilong-core</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			....
-		</dependencies>
-		
-		....
-		
-	</project>
-```
-
-# feilong-platform module:
-
-Category |Name | Description | JDK编译版本(将来会统一)
-----|------------ | ---------|------------
-commons |`feilong-core` | 核心jar,所有feilong-platform的基础 | 1.6
-commons |`feilong-servlet` | 封装了j2ee常用类,是feilong-platform web相关jar 的基础 | 1.6
-
-
-
-# 类和方法介绍: 
-
-## com.feilong.commons.core.date 包,时间日期操作核心类:
-
-* DateUtil时间工具类  
-
-
-# 项目依赖
-
-```XML
-<dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.2</version>
-      <scope>compile</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>1.9.2</version>
-      <scope>compile</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.12</version>
-      <scope>compile</scope>
-    </dependency>
-    
-  </dependencies>
-```
 
 # About
 
