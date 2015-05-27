@@ -973,22 +973,22 @@
 					<groups>
 						<group>
 							<title>Date package 日期</title>
-							<packages>com.feilong.commons.core.date</packages>
+							<packages>com.feilong.core.date</packages>
 						</group>
 
 						<group>
 							<title>IO package</title>
-							<packages>com.feilong.commons.core.io</packages>
+							<packages>com.feilong.core.io</packages>
 						</group>
 
 						<group>
 							<title>net package</title>
-							<packages>com.feilong.commons.core.net</packages>
+							<packages>com.feilong.core.net</packages>
 						</group>
 
 						<group>
 							<title>util package</title>
-							<packages>com.feilong.commons.core.util</packages>
+							<packages>com.feilong.core.util</packages>
 						</group>
 					</groups>
 				</configuration>
@@ -1187,19 +1187,19 @@
 					<groups>
 						<group>
 							<title>Date package 日期</title>
-							<packages>com.feilong.commons.core.date</packages>
+							<packages>com.feilong.core.date</packages>
 						</group>
 						<group>
 							<title>IO package</title>
-							<packages>com.feilong.commons.core.io</packages>
+							<packages>com.feilong.core.io</packages>
 						</group>
 						<group>
 							<title>net package</title>
-							<packages>com.feilong.commons.core.net</packages>
+							<packages>com.feilong.core.net</packages>
 						</group>
 						<group>
 							<title>util package</title>
-							<packages>com.feilong.commons.core.util</packages>
+							<packages>com.feilong.core.util</packages>
 						</group>
 					</groups>
 				</configuration>
