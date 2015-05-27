@@ -113,6 +113,7 @@
 
 		<v.maven-clean-plugin>2.6.1</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.2</v.maven-compiler-plugin>
+		<v.maven-changelog-plugin>2.3</v.maven-changelog-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.13</v.maven-checkstyle-plugin>
@@ -1234,18 +1235,18 @@
 
 
 			<!-- [ERROR] 'git' 不是内部或外部命令，也不是可运行的程序 或批处理文件。 -->
-			<!--
-				<plugin>
+			<!---->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.3</version>
+				<version>${v.maven-changelog-plugin}</version>
 				<configuration>
-				<type>range</type>
-				<range>30</range>
-				<headingDateFormat>dd MMM, yyyy</headingDateFormat>
+					<type>range</type>
+					<range>30</range>
+					<headingDateFormat>yyyy-MM-dd</headingDateFormat>
+					<dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
 				</configuration>
-				</plugin>
-			-->
+			</plugin>
 		</plugins>
 	</reporting>
 
