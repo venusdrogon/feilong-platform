@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.spring</groupId>
   <artifactId>feilong-spring-jdbc</artifactId>
   <versioning>
-    <release>1.2.0</release>
     <versions>
-      <version>1.2.0</version>
+      <version>1.2.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150527085528</lastUpdated>
+    <lastUpdated>20150528030320</lastUpdated>
   </versioning>
 </metadata>
