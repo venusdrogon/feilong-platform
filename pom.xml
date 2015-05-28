@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1-SNAPSHOT</version>
 
 	<name>feilong-platform</name>
 	<description>Reduce development, Release ideas</description>
@@ -13,7 +13,7 @@
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<version.feilong-platform>${project.version}</version.feilong-platform>
-		<version.feilong-common-test>1.2.0</version.feilong-common-test>
+		<version.feilong-common-test>${project.version}</version.feilong-common-test>
 
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
