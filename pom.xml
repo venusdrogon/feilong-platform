@@ -766,22 +766,24 @@
 				<artifactId>native2ascii-maven-plugin</artifactId>
 				<version>${v.native2ascii-maven-plugin}</version>
 
+				<configuration>
+					<encoding>${native2ascii-maven-plugin.encoding}</encoding>
+					<includes>
+						<include>classes\${native2ascii-maven-plugin.pattern}</include>
+						<include>test-classes\${native2ascii-maven-plugin.pattern}</include>
+					</includes>
+					<workDir>${project.build.directory}</workDir>
+					<tempDir>${project.build.directory}</tempDir>
+				</configuration>
+
 				<executions>
 					<execution>
 						<id>native2ascii</id>
-						<phase>compile</phase>
+						<!-- 默认是 phase process-classes -->
+						<!-- <phase>compile</phase> -->
 						<goals>
 							<goal>native2ascii</goal>
 						</goals>
-						<configuration>
-							<encoding>${native2ascii-maven-plugin.encoding}</encoding>
-							<includes>
-								<include>classes\${native2ascii-maven-plugin.pattern}</include>
-								<include>test-classes\${native2ascii-maven-plugin.pattern}</include>
-							</includes>
-							<workDir>${project.build.directory}</workDir>
-							<tempDir>${project.build.directory}</tempDir>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -842,6 +844,7 @@
 							<detail>true</detail>
 						</configuration>
 					</execution>
+					<!-- -->
 					<execution>
 						<id>default-testResources</id>
 						<phase>process-test-resources</phase>
