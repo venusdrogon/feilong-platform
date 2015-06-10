@@ -112,29 +112,29 @@
 		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
 
 		<v.maven-clean-plugin>2.6.1</v.maven-clean-plugin>
-		<v.maven-compiler-plugin>3.2</v.maven-compiler-plugin>
+		<v.maven-compiler-plugin>3.3</v.maven-compiler-plugin>
 		<v.maven-changelog-plugin>2.3</v.maven-changelog-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.13</v.maven-checkstyle-plugin>
-		<v.maven-deploy-plugin>2.8.1</v.maven-deploy-plugin>
+		<v.maven-deploy-plugin>2.8.2</v.maven-deploy-plugin>
 
-		<v.maven-install-plugin>2.5.1</v.maven-install-plugin>
+		<v.maven-install-plugin>2.5.2</v.maven-install-plugin>
 		<v.maven-javadoc-plugin>2.10.3</v.maven-javadoc-plugin>
-		<v.maven-jar-plugin>2.4</v.maven-jar-plugin>
+		<v.maven-jar-plugin>2.6</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.3</v.maven-pmd-plugin>
 
 		<v.maven-site-plugin>3.4</v.maven-site-plugin>
 		<v.maven-source-plugin>2.4</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
-		<v.maven-release-plugin>2.5</v.maven-release-plugin>
+		<v.maven-release-plugin>2.5.2</v.maven-release-plugin>
 		<v.maven-resources-plugin>2.7</v.maven-resources-plugin>
 
-		<v.maven-war-plugin>2.4</v.maven-war-plugin>
+		<v.maven-war-plugin>2.6</v.maven-war-plugin>
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
-		<v.site-maven-plugin>0.11</v.site-maven-plugin>
+		<v.site-maven-plugin>0.12</v.site-maven-plugin>
 		<v.sonar-maven-plugin>2.6</v.sonar-maven-plugin>
 
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
