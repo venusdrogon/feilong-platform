@@ -2,9 +2,10 @@
 feilong-platform(V 1.2.0) module 进行了调整:
 * `feilong-core`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-core
 * `feilong-servlet`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-servlet
-* `feilong-spring`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-spring
-* `feilong-taglib`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-taglib
-* `feilong-webservice`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-webservice
+* `feilong-spring`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-spring
+* `feilong-taglib`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-taglib
+* `feilong-webservice`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-webservice
+* `feilong-framework`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-framework
 
 feilong-platform
 ================
