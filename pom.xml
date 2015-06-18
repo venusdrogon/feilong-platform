@@ -15,15 +15,14 @@
 		<version.feilong-platform>${project.version}</version.feilong-platform>
 		<version.feilong-common-test>${project.version}</version.feilong-common-test>
 
+		<!-- 让整个项目统一字符集编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<!-- **********************begin maven-compiler-plugin config******************************************* -->
 		<maven-compiler-plugin.source>1.6</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.6</maven-compiler-plugin.target>
 		<maven-compiler-plugin.encoding>${project.build.sourceEncoding}</maven-compiler-plugin.encoding>
 		<!-- **********************end maven-compiler-plugin config******************************************* -->
-
-
-		<!-- 让整个项目统一字符集编码 -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!--****************************第三方************************************ -->
 
