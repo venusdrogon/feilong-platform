@@ -1055,6 +1055,13 @@
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
+
+			<!-- maven-dependency-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${v.maven-dependency-plugin}</version>
+			</plugin>
 		</plugins>
 
 		<!-- pluginManagement -->
