@@ -115,7 +115,7 @@
 		<!--*********************end dependency plugins version************************************ -->
 
 		<!--*********************begin plugins version************************************ -->
-		<v.maven-antrun-plugin>1.7</v.maven-antrun-plugin>
+		<v.maven-antrun-plugin>1.8</v.maven-antrun-plugin>
 
 		<v.maven-clean-plugin>2.6.1</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.3</v.maven-compiler-plugin>
