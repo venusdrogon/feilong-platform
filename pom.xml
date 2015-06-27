@@ -4,11 +4,21 @@
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
 	<version>1.2.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
 	<name>feilong-platform</name>
-	<description>Reduce development, Release ideas</description>
+	<!-- 成立年份 -->
+	<inceptionYear>2008</inceptionYear>
 
-	<packaging>pom</packaging>
+	<description>Reduce development, Release ideas</description>
+	<url>http://venusdrogon.github.io/feilong-platform/</url>
+
+	<!-- 软件配置管理，如cvs 和svn -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-platform.git</url>
+		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:venusdrogon/feilong-platform.git</developerConnection>
+	</scm>
 
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
@@ -50,7 +60,9 @@
 			maintaining HttpClient with it. -->
 		<version.commons-httpclient>3.1</version.commons-httpclient>
 
+		<!-- base on jdk1.2 legacy(won't update) -->
 		<version.commons-lang>2.6</version.commons-lang>
+		<!-- base on jdk1.6 -->
 		<version.commons-lang3>3.4</version.commons-lang3>
 
 		<version.commons-logging>1.2</version.commons-logging>
@@ -183,13 +195,7 @@
 		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
 	</properties>
 
-	<!-- 软件配置管理，如cvs 和svn -->
-	<scm>
-		<url>https://github.com/venusdrogon/feilong-platform.git</url>
-		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:venusdrogon/feilong-platform.git</developerConnection>
-	</scm>
-
+	<!-- 项目发布管理 -->
 	<distributionManagement>
 		<!-- <url>file://${user.home}/feilong/repository</url> -->
 		<!-- -->
@@ -1242,11 +1248,6 @@
 			</plugin>
 		</plugins>
 	</reporting>
-
-
-	<!-- 成立年份 -->
-	<inceptionYear>2008</inceptionYear>
-	<url>http://venusdrogon.github.io/feilong-platform/</url>
 
 	<!-- 指定这个项目的组织机构信息 -->
 	<organization>
