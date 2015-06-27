@@ -71,8 +71,6 @@
 		<version.commons-net>3.2</version.commons-net>
 		<version.commons-jexl>2.1.1</version.commons-jexl>
 
-		<version.c3p0>0.9.1.2</version.c3p0>
-
 		<version.dom4j>1.6.1</version.dom4j>
 
 		<version.easymock>3.1</version.easymock>
@@ -280,13 +278,6 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>${version.jstl}</version>
-			</dependency>
-
-			<!--note: c3p0 放到每个 brandstore 便于各自调整版本,或者选用其他连接池 -->
-			<dependency>
-				<groupId>c3p0</groupId>
-				<artifactId>c3p0</artifactId>
-				<version>${version.c3p0}</version>
 			</dependency>
 
 			<!-- *******************spring********************************* -->
