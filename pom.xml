@@ -76,9 +76,6 @@
 		<version.dom4j>1.6.1</version.dom4j>
 
 		<version.easymock>3.1</version.easymock>
-		<version.esapi>2.1.0</version.esapi>
-
-		<version.hibernate>4.3.7.Final</version.hibernate>
 
 		<version.javamail>1.4.7</version.javamail>
 
@@ -89,8 +86,6 @@
 		<version.json-lib>2.4</version.json-lib>
 		<version.xom>1.2.5</version.xom>
 
-		<version.jsoup>1.7.3</version.jsoup>
-
 		<version.jsp-api>2.2</version.jsp-api>
 		<version.el-api>2.2</version.el-api>
 		<version.jstl>1.2</version.jstl>
@@ -98,7 +93,6 @@
 
 		<version.log4j>1.2.17</version.log4j>
 		<version.logback>1.1.3</version.logback>
-		<version.logbackExtSpring>0.1.2</version.logbackExtSpring>
 
 		<version.servlet-api>2.5</version.servlet-api>
 		<version.slf4j>1.7.12</version.slf4j>
@@ -121,8 +115,6 @@
 			Dropped the parameter based configuration that was deprecated in 2.2.
 		-->
 		<version.tiles>3.0.5</version.tiles>
-
-		<version.zookeeper>3.4.6</version.zookeeper>
 
 		<!--*********************end dependency plugins version************************************ -->
 
@@ -397,20 +389,6 @@
 				<version>${version.javamail}</version>
 			</dependency>
 
-			<!-- hibernate -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>${version.hibernate}</version>
-			</dependency>
-
-			<!-- jsoup -->
-			<dependency>
-				<groupId>org.jsoup</groupId>
-				<artifactId>jsoup</artifactId>
-				<version>${version.jsoup}</version>
-			</dependency>
-
 			<!-- *********************apache******************************* -->
 			<dependency>
 				<groupId>commons-logging</groupId>
@@ -519,23 +497,6 @@
 				<version>${version.velocity}</version>
 			</dependency>
 
-			<!-- esapi -->
-			<dependency>
-				<groupId>org.owasp.esapi</groupId>
-				<artifactId>esapi</artifactId>
-				<version>${version.esapi}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>log4j</artifactId>
-						<groupId>log4j</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>commons-beanutils-core</artifactId>
-						<groupId>commons-beanutils</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-
 			<!-- *********************json******************************* -->
 
 			<!-- org.json -->
@@ -593,12 +554,6 @@
 				<version>${version.logback}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.logback-extensions</groupId>
-				<artifactId>logback-ext-spring</artifactId>
-				<version>${version.logbackExtSpring}</version>
-			</dependency>
-
 			<!--jul桥接 用来输出 Java Logging Framework (JUL) java.util.logging.* -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -634,27 +589,6 @@
 				<groupId>org.apache.tiles</groupId>
 				<artifactId>tiles-jsp</artifactId>
 				<version>${version.tiles}</version>
-			</dependency>
-
-			<!-- apache zookeeper -->
-			<dependency>
-				<groupId>org.apache.zookeeper</groupId>
-				<artifactId>zookeeper</artifactId>
-				<version>${version.zookeeper}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 
 			<!--********************************provided******************************** -->
