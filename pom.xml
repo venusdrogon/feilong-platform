@@ -281,88 +281,12 @@
 			</dependency>
 
 			<!-- *******************spring********************************* -->
-			<!-- spring-core -->
 			<dependency>
 				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
+				<artifactId>spring-framework-bom</artifactId>
 				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-beans -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-beans</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-context -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-context-support -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-expression -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-expression</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-aop -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-web -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-webmvc -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-tx -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-tx</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-jdbc -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-orm -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-orm</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-
-			<!-- spring-aspects -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aspects</artifactId>
-				<version>${version.spring}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<!-- aspectjweaver -->
@@ -559,6 +483,13 @@
 				<version>${version.slf4j}</version>
 			</dependency>
 
+			<!-- log4j桥接 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
 			<!--************************* tiles******************* -->
 			<dependency>
 				<groupId>org.apache.tiles</groupId>
@@ -620,14 +551,6 @@
 				<groupId>com.feilong.test</groupId>
 				<artifactId>feilong-common-test</artifactId>
 				<version>${version.feilong-common-test}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<!-- spring-test -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-test</artifactId>
-				<version>${version.spring}</version>
 				<scope>test</scope>
 			</dependency>
 
@@ -744,7 +667,6 @@
 					</includes>
 
 					<headerDefinitions>
-						<!-- _FeilongTaglib会环境变量 -->
 						<headerDefinition>${env._FEILONGTAGLIB}\Apache Maven\javadoc_style.xml</headerDefinition>
 					</headerDefinitions>
 				</configuration>
