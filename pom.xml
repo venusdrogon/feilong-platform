@@ -159,6 +159,9 @@
 		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
 		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
 		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
+
+		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
+		<github.global.server>github</github.global.server>
 		<!-- **********************end site-maven-plugin config******************************************* -->
 
 		<!-- **********************begin maven-javadoc-plugin config******************************************* -->
