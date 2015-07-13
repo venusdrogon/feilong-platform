@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform.spring</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.2.2-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20150713.062810</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20150713062810</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.2.2-20150713.062810-1</value>
+        <updated>20150713062810</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
