@@ -43,6 +43,7 @@
 		<version.commons-beanutils>1.9.2</version.commons-beanutils>
 		<version.commons-codec>1.9</version.commons-codec>
 		<version.commons-collections>3.2.1</version.commons-collections>
+		<version.commons-collections4>4.0</version.commons-collections4>
 		<version.commons-configuration>1.10</version.commons-configuration>
 		<version.commons-digester>2.1</version.commons-digester>
 
@@ -309,13 +310,23 @@
 			</dependency>
 
 			<!-- *********************apache******************************* -->
+
+			<!--
+				commons-logging
+				仅仅 统一下版本
+				feilong platform 不直接使用这个jar
+			-->
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
 				<version>${version.commons-logging}</version>
 			</dependency>
 
-			<!-- commons-lang -->
+			<!--
+				commons-lang
+				仅仅 统一下版本
+				feilong platform 不直接使用这个jar
+			-->
 			<dependency>
 				<artifactId>commons-lang</artifactId>
 				<groupId>commons-lang</groupId>
@@ -390,11 +401,26 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<!-- commons-collections -->
+
+			<!--
+				commons-collections Requires Java 1.2+
+				仅仅 统一下版本
+				feilong platform 不直接使用这个jar
+			-->
 			<dependency>
 				<groupId>commons-collections</groupId>
 				<artifactId>commons-collections</artifactId>
 				<version>${version.commons-collections}</version>
+			</dependency>
+
+			<!--
+				commons-collections4
+				Requires Java 5.0+
+			-->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${version.commons-collections4}</version>
 			</dependency>
 
 			<dependency>
