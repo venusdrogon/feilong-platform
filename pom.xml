@@ -377,6 +377,20 @@
 				<groupId>commons-digester</groupId>
 				<artifactId>commons-digester</artifactId>
 				<version>${version.commons-digester}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-collections</artifactId>
+						<groupId>commons-collections</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-beanutils</artifactId>
+						<groupId>commons-beanutils</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<dependency>
