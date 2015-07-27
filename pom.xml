@@ -97,7 +97,7 @@
 		<version.servlet-api>2.5</version.servlet-api>
 		<version.slf4j>1.7.12</version.slf4j>
 
-		<version.spring>3.2.13.RELEASE</version.spring>
+		<version.spring>3.2.14.RELEASE</version.spring>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
