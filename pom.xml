@@ -115,7 +115,6 @@
 			Dropped the parameter based configuration that was deprecated in 2.2.
 		-->
 		<version.tiles>3.0.5</version.tiles>
-
 		<!--*********************end dependency plugins version************************************ -->
 
 		<!--*********************begin plugins version************************************ -->
@@ -123,6 +122,7 @@
 
 		<v.maven-clean-plugin>2.6.1</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.3</v.maven-compiler-plugin>
+		<v.maven-changes-plugin>2.11</v.maven-changes-plugin>
 		<v.maven-changelog-plugin>2.3</v.maven-changelog-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
@@ -146,8 +146,11 @@
 		<v.maven-war-plugin>2.6</v.maven-war-plugin>
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
+
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
 		<v.sonar-maven-plugin>2.6</v.sonar-maven-plugin>
+		<!-- TODO检查报告 -->
+		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
 		<v.license-maven-plugin>2.6</v.license-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
@@ -748,7 +751,6 @@
 							<detail>true</detail>
 						</configuration>
 					</execution>
-					<!-- -->
 					<execution>
 						<id>default-testResources</id>
 						<phase>process-test-resources</phase>
@@ -1023,7 +1025,7 @@
 		</pluginManagement>
 	</build>
 
-
+	<!-- *******************reporting***************************** -->
 	<reporting>
 		<plugins>
 			<!-- maven-javadoc-plugin -->
@@ -1095,6 +1097,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- 生成java代码交叉引用和源代码的html格式 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
@@ -1104,6 +1107,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- 代码格式检查 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -1116,19 +1120,19 @@
 				<version>${v.maven-dependency-plugin}</version>
 			</plugin>
 
-			<!--
-				<plugin>
+			<!--源码分析 -->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>${v.maven-pmd-plugin}</version>
-				</plugin>
-			-->
+			</plugin>
+
+			<!-- TODO检查报告 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>taglist-maven-plugin</artifactId>
-				<version>2.4</version>
+				<version>${v.taglist-maven-plugin}</version>
 			</plugin>
-
 
 			<!-- [ERROR] 'git' 不是内部或外部命令，也不是可运行的程序 或批处理文件。 -->
 			<!---->
@@ -1142,6 +1146,19 @@
 					<headingDateFormat>yyyy-MM-dd</headingDateFormat>
 					<dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>${v.maven-changes-plugin}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 			</plugin>
 		</plugins>
 	</reporting>
