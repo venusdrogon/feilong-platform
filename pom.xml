@@ -1132,6 +1132,48 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>taglist-maven-plugin</artifactId>
 				<version>${v.taglist-maven-plugin}</version>
+				<configuration>
+					<tagListOptions>
+						<tagClasses>
+							<tagClass>
+								<displayName>XXX</displayName>
+								<tags>
+									<tag>
+										<matchString>XXX</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+							<tagClass>
+								<displayName>TODO</displayName>
+								<tags>
+									<tag>
+										<matchString>TODO</matchString>
+										<matchType>ignoreCase</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+							<tagClass>
+								<displayName>FIXME</displayName>
+								<tags>
+									<tag>
+										<matchString>FIXME</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+							<tagClass>
+								<displayName>@deprecated</displayName>
+								<tags>
+									<tag>
+										<matchString>@deprecated</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+						</tagClasses>
+					</tagListOptions>
+				</configuration>
 			</plugin>
 
 			<!-- [ERROR] 'git' 不是内部或外部命令，也不是可运行的程序 或批处理文件。 -->
@@ -1143,7 +1185,7 @@
 				<configuration>
 					<type>range</type>
 					<range>30</range>
-					<headingDateFormat>yyyy-MM-dd</headingDateFormat>
+					<headingDateFormat>MM-dd</headingDateFormat>
 					<dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
 				</configuration>
 			</plugin>
