@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform.taglib</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.4.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20150804.054951</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20150804054951</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.4.0-20150804.054951-1</value>
+        <updated>20150804054951</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
