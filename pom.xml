@@ -41,7 +41,7 @@
 		<version.aspectjweaver>1.6.8</version.aspectjweaver>
 
 		<version.commons-beanutils>1.9.2</version.commons-beanutils>
-		<version.commons-codec>1.9</version.commons-codec>
+		<version.commons-codec>1.10</version.commons-codec>
 		<version.commons-collections>3.2.1</version.commons-collections>
 		<version.commons-collections4>4.0</version.commons-collections4>
 		<version.commons-configuration>1.10</version.commons-configuration>
