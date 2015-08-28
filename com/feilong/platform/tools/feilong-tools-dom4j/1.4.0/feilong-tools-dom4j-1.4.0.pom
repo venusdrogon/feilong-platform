@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>com.feilong.platform.tools</groupId>
+		<version>1.4.0</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>feilong-tools-dom4j</artifactId>
+	<name>feilong-tools-dom4j (The dom4j API is non-compliant and unmaintained)</name>
+
+	<properties>
+		<version.jaxen>1.1.6</version.jaxen>
+	</properties>
+
+	<dependencies>
+		<!-- dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<!-- java.lang.NoClassDefFoundError: org/jaxen/JaxenException -->
+		<!-- 用于解析XPath表达式 -->
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>${version.jaxen}</version>
+		</dependency>
+
+	</dependencies>
+</project>
