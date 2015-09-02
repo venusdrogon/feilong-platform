@@ -49,5 +49,5 @@ feilong platform,封装了常用的java工具方法,提供快速使用工具的�
 
 如果您对feilong platform 有任何建议，可以使用下面的联系方式：
 
-* 新浪微博:http://weibo.com/venusdrogon 
+* 新浪微博:http://weibo.com/venusdrogon
 * iteye博客:http://feitianbenyue.iteye.com/
