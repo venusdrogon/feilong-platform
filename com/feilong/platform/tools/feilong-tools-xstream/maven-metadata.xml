@@ -4,8 +4,8 @@
   <artifactId>feilong-tools-xstream</artifactId>
   <versioning>
     <versions>
-      <version>1.4.0-SNAPSHOT</version>
+      <version>1.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150807054954</lastUpdated>
+    <lastUpdated>20150906071152</lastUpdated>
   </versioning>
 </metadata>
