@@ -4,8 +4,8 @@
   <artifactId>feilong-servlet</artifactId>
   <versioning>
     <versions>
-      <version>1.4.0-SNAPSHOT</version>
+      <version>1.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150824042743</lastUpdated>
+    <lastUpdated>20150906065142</lastUpdated>
   </versioning>
 </metadata>
