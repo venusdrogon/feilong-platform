@@ -4,8 +4,8 @@
   <artifactId>feilong-tools-log4j</artifactId>
   <versioning>
     <versions>
-      <version>1.4.0-SNAPSHOT</version>
+      <version>1.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150807055049</lastUpdated>
+    <lastUpdated>20150906071247</lastUpdated>
   </versioning>
 </metadata>
