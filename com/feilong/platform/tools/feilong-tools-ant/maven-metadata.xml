@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-tools-ant</artifactId>
   <versioning>
-    <release>1.4.0</release>
     <versions>
-      <version>1.4.0</version>
+      <version>1.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150828150110</lastUpdated>
+    <lastUpdated>20150906070907</lastUpdated>
   </versioning>
 </metadata>
