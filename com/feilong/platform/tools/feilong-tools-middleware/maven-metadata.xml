@@ -4,8 +4,8 @@
   <artifactId>feilong-tools-middleware</artifactId>
   <versioning>
     <versions>
-      <version>1.4.0-SNAPSHOT</version>
+      <version>1.4.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150807054804</lastUpdated>
+    <lastUpdated>20150906071002</lastUpdated>
   </versioning>
 </metadata>
