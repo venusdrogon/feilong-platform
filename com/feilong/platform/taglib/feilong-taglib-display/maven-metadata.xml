@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.taglib</groupId>
   <artifactId>feilong-taglib-display</artifactId>
   <versioning>
+    <release>1.4.1</release>
     <versions>
-      <version>1.4.1-SNAPSHOT</version>
+      <version>1.4.1</version>
     </versions>
-    <lastUpdated>20150906065512</lastUpdated>
+    <lastUpdated>20150923103951</lastUpdated>
   </versioning>
 </metadata>
