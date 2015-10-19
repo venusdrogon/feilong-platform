@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-tools-barcode</artifactId>
+  <versioning>
+    <versions>
+      <version>1.5.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20151019040421</lastUpdated>
+  </versioning>
+</metadata>
