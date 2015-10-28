@@ -73,8 +73,6 @@
 		<version.commons-net>3.3</version.commons-net>
 		<version.commons-jexl>2.1.1</version.commons-jexl>
 
-		<version.dom4j>1.6.1</version.dom4j>
-
 		<version.easymock>3.1</version.easymock>
 
 		<version.javamail>1.4.7</version.javamail>
@@ -281,13 +279,6 @@
 				<groupId>com.feilong.platform.tools</groupId>
 				<artifactId>feilong-tools-velocity</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-
-			<!-- dom4j -->
-			<dependency>
-				<groupId>dom4j</groupId>
-				<artifactId>dom4j</artifactId>
-				<version>${version.dom4j}</version>
 			</dependency>
 
 			<!-- *******************spring********************************* -->
