@@ -98,7 +98,7 @@
 
 		<version.slf4j>1.7.12</version.slf4j>
 
-		<version.spring>3.2.14.RELEASE</version.spring>
+		<version.spring>3.2.15.RELEASE</version.spring>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
@@ -121,7 +121,7 @@
 		<!--*********************begin plugins version************************************ -->
 		<v.maven-antrun-plugin>1.8</v.maven-antrun-plugin>
 
-		<v.maven-clean-plugin>2.6.1</v.maven-clean-plugin>
+		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.3</v.maven-compiler-plugin>
 		<v.maven-changes-plugin>2.11</v.maven-changes-plugin>
 		<v.maven-changelog-plugin>2.3</v.maven-changelog-plugin>
@@ -140,7 +140,7 @@
 
 		<v.maven-site-plugin>3.4</v.maven-site-plugin>
 		<v.maven-source-plugin>2.4</v.maven-source-plugin>
-		<v.maven-surefire-plugin>2.17</v.maven-surefire-plugin>
+		<v.maven-surefire-plugin>2.19</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
 		<v.maven-resources-plugin>2.7</v.maven-resources-plugin>
 
@@ -149,7 +149,7 @@
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
-		<v.sonar-maven-plugin>2.6</v.sonar-maven-plugin>
+		<v.sonar-maven-plugin>2.7.1</v.sonar-maven-plugin>
 		<!-- taglist 检查报告 -->
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
