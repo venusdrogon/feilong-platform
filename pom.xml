@@ -139,7 +139,7 @@
 
 		<v.maven-site-plugin>3.4</v.maven-site-plugin>
 		<v.maven-source-plugin>2.4</v.maven-source-plugin>
-		<v.maven-surefire-plugin>2.19</v.maven-surefire-plugin>
+		<v.maven-surefire-plugin>2.19.1</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
 		<v.maven-resources-plugin>2.7</v.maven-resources-plugin>
 
