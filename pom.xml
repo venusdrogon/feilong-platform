@@ -121,7 +121,7 @@
 		<v.maven-antrun-plugin>1.8</v.maven-antrun-plugin>
 
 		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
-		<v.maven-compiler-plugin>3.3</v.maven-compiler-plugin>
+		<v.maven-compiler-plugin>3.5</v.maven-compiler-plugin>
 		<v.maven-changes-plugin>2.11</v.maven-changes-plugin>
 		<v.maven-changelog-plugin>2.3</v.maven-changelog-plugin>
 
