@@ -72,7 +72,7 @@
 		<version.commons-io>2.4</version.commons-io>
 		<version.commons-net>3.4</version.commons-net>
 
-		<version.easymock>3.1</version.easymock>
+		<version.easymock>3.4</version.easymock>
 
 		<version.javamail>1.4.7</version.javamail>
 
@@ -152,7 +152,7 @@
 		<!-- taglist 检查报告 -->
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
-		<v.license-maven-plugin>2.6</v.license-maven-plugin>
+		<v.license-maven-plugin>2.11</v.license-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
 
 		<!-- **********************begin native2ascii config******************************************* -->
