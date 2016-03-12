@@ -178,7 +178,7 @@
 		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
 		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
 
-		<maven-javadoc-plugin.outputDirectory>file://E:/Workspaces/feilong-platform gh-pages/javadocs/${project.version}</maven-javadoc-plugin.outputDirectory>
+		<maven-javadoc-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs/${project.version}</maven-javadoc-plugin.outputDirectory>
 		<maven-javadoc-plugin.reportOutputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
 		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
