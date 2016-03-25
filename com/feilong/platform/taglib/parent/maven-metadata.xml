@@ -4,8 +4,8 @@
   <artifactId>parent</artifactId>
   <versioning>
     <versions>
-      <version>1.5.0-SNAPSHOT</version>
+      <version>1.5.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160325143305</lastUpdated>
+    <lastUpdated>20160325162248</lastUpdated>
   </versioning>
 </metadata>
