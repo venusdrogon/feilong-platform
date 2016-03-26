@@ -842,16 +842,6 @@
 						</group>
 
 						<group>
-							<title>IO package</title>
-							<packages>com.feilong.core.io</packages>
-						</group>
-
-						<group>
-							<title>net package</title>
-							<packages>com.feilong.core.net</packages>
-						</group>
-
-						<group>
 							<title>util package</title>
 							<packages>com.feilong.core.util</packages>
 						</group>
@@ -1060,14 +1050,6 @@
 						<group>
 							<title>Date package 日期</title>
 							<packages>com.feilong.core.date</packages>
-						</group>
-						<group>
-							<title>IO package</title>
-							<packages>com.feilong.core.io</packages>
-						</group>
-						<group>
-							<title>net package</title>
-							<packages>com.feilong.core.net</packages>
 						</group>
 						<group>
 							<title>util package</title>
