@@ -1,7 +1,5 @@
 #重要说明
 
-所有feilong jar 你可以在这里 https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform 浏览 
-
 feilong-platform(V 1.2.0) module 进行了调整:
 * `feilong-core`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-core
 * `feilong-servlet`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-servlet
@@ -40,6 +38,38 @@ Reduce development, Release ideas
 #Welcome to feilong-platform
 
 feilong platform,封装了常用的java工具方法,提供快速使用工具的功能,自己知识积累的同时，方便大家使用
+
+
+# Maven使用配置
+
+所有feilong jar 你可以在这里 https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform 浏览 
+
+在maven 中,您可以通过以下方式来配置:
+
+```XML
+	<project>
+		....
+		<repositories>
+			<repository>
+				<id>feilong-repository</id>
+				<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
+			</repository>
+		</repositories>
+		
+		....
+		<dependencies>
+			....
+			<dependency>
+				<groupId>com.feilong.platform</groupId>
+				<artifactId>feilong-core</artifactId>
+				<version>1.5.1</version>
+			</dependency>
+			....
+		</dependencies>
+		....
+	</project>
+```
+
 
 #说明
 
