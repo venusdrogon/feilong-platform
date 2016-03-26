@@ -72,8 +72,6 @@
 		<version.commons-io>2.4</version.commons-io>
 		<version.commons-net>3.4</version.commons-net>
 
-		<version.easymock>3.4</version.easymock>
-
 		<version.javamail>1.4.7</version.javamail>
 
 		<!-- org.json -->
@@ -595,12 +593,6 @@
 				<scope>test</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.easymock</groupId>
-				<artifactId>easymock</artifactId>
-				<version>${version.easymock}</version>
-				<scope>test</scope>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
