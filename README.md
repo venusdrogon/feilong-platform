@@ -62,7 +62,7 @@ feilong platform,封装了常用的java工具方法,提供快速使用工具的�
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
 				<artifactId>feilong-core</artifactId>
-				<version>1.5.1</version>
+				<version>1.5.2</version>
 			</dependency>
 			....
 		</dependencies>
