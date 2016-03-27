@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.5.2</version>
+	</parent>
+
+	<artifactId>feilong-tools-jsoup</artifactId>
+	<name>feilong-tools-jsoup</name>
+
+	<properties>
+		<version.jsoup>1.8.3</version.jsoup>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-io</artifactId>
+			<version>${version.feilong-platform}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>${version.jsoup}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-net</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+	</dependencies>
+</project>
