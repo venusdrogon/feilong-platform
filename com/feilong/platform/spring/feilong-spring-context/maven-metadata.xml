@@ -4,8 +4,8 @@
   <artifactId>feilong-spring-context</artifactId>
   <versioning>
     <versions>
-      <version>1.5.2-SNAPSHOT</version>
+      <version>1.5.3-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160326144928</lastUpdated>
+    <lastUpdated>20160330180635</lastUpdated>
   </versioning>
 </metadata>
