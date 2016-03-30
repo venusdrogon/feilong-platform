@@ -4,8 +4,8 @@
   <artifactId>feilong-spring-web</artifactId>
   <versioning>
     <versions>
-      <version>1.5.2-SNAPSHOT</version>
+      <version>1.5.3-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160326144833</lastUpdated>
+    <lastUpdated>20160330180540</lastUpdated>
   </versioning>
 </metadata>
