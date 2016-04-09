@@ -141,7 +141,7 @@
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
-		<v.sonar-maven-plugin>2.7.1</v.sonar-maven-plugin>
+		<v.sonar-maven-plugin>3.0.1</v.sonar-maven-plugin>
 		<!-- taglist 检查报告 -->
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
@@ -181,7 +181,6 @@
 		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
 
 		<!-- **********************end maven-javadoc-plugin config******************************************* -->
-
 		<developer.feilong.name>feilong</developer.feilong.name>
 		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
 	</properties>
@@ -189,7 +188,6 @@
 	<!-- 项目发布管理 -->
 	<distributionManagement>
 		<!-- <url>file://${user.home}/feilong/repository</url> -->
-		<!-- -->
 		<repository>
 			<id>internal.repo</id>
 			<name>Temporary Staging Repository</name>
@@ -298,23 +296,14 @@
 			</dependency>
 
 			<!-- *********************apache******************************* -->
-
-			<!--
-				commons-logging
-				仅仅 统一下版本
-				feilong platform 不直接使用这个jar
-			-->
+			<!-- commons-logging 仅仅 统一下版本 feilong platform 不直接使用这个jar -->
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
 				<version>${version.commons-logging}</version>
 			</dependency>
 
-			<!--
-				commons-lang
-				仅仅 统一下版本
-				feilong platform 不直接使用这个jar
-			-->
+			<!-- commons-lang 仅仅 统一下版本 feilong platform 不直接使用这个jar -->
 			<dependency>
 				<artifactId>commons-lang</artifactId>
 				<groupId>commons-lang</groupId>
@@ -398,21 +387,14 @@
 				</exclusions>
 			</dependency>
 
-			<!--
-				commons-collections Requires Java 1.2+
-				仅仅 统一下版本
-				feilong platform 不直接使用这个jar
-			-->
+			<!-- commons-collections Requires Java 1.2+ 仅仅 统一下版本 feilong platform 不直接使用这个jar -->
 			<dependency>
 				<groupId>commons-collections</groupId>
 				<artifactId>commons-collections</artifactId>
 				<version>${version.commons-collections}</version>
 			</dependency>
 
-			<!--
-				commons-collections4
-				Requires Java 5.0+
-			-->
+			<!-- commons-collections4 Requires Java 5.0+ -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-collections4</artifactId>
@@ -439,7 +421,6 @@
 			</dependency>
 
 			<!-- *********************json******************************* -->
-
 			<!-- 解决This parser does not support specification "null" version "null" -->
 			<dependency>
 				<groupId>xerces</groupId>
@@ -447,7 +428,6 @@
 				<version>${version.xercesImpl}</version>
 			</dependency>
 
-			<!-- -->
 			<dependency>
 				<groupId>xml-apis</groupId>
 				<artifactId>xml-apis</artifactId>
@@ -540,7 +520,6 @@
 			</dependency>
 
 			<!--********************************provided******************************** -->
-
 			<!-- servlet-api -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -564,7 +543,6 @@
 				<scope>provided</scope>
 			</dependency>
 
-
 			<!--***************************** test************************** -->
 			<!-- junit -->
 			<dependency>
@@ -580,7 +558,6 @@
 				<version>${version.feilong-common-test}</version>
 				<scope>test</scope>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -609,21 +586,21 @@
 					<!-- disable webpage processing -->
 					<noJekyll>true</noJekyll>
 
-					<!-- matches distribution management repository url above -->
-					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-
 					<merge>true</merge>
 
 					<!-- remote branch name -->
 					<branch>${site-maven-plugin.branch}</branch>
-					<includes>
-						<include>**/*</include>
-					</includes>
+
 					<!-- github repo name -->
 					<repositoryName>${site-maven-plugin.repositoryName}</repositoryName>
 					<!-- github username -->
 					<repositoryOwner>${site-maven-plugin.repositoryOwner}</repositoryOwner>
 
+					<!-- matches distribution management repository url above -->
+					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+					<includes>
+						<include>**/*</include>
+					</includes>
 				</configuration>
 				<executions>
 					<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
@@ -794,7 +771,6 @@
 
 					<overview>src/main/java/overview.html</overview>
 
-					<!-- -->
 					<docfilessubdirs>true</docfilessubdirs>
 					<!-- <javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory> -->
 					<javadocVersion>${maven-javadoc-plugin.javadocVersion}</javadocVersion>
@@ -843,8 +819,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${v.maven-surefire-plugin}</version>
 				<configuration>
-					<!-- 跳过测试 -->
-					<skip>true</skip>
+					<skip>true</skip><!-- 跳过测试 -->
 				</configuration>
 			</plugin>
 
@@ -1002,10 +977,8 @@
 					<!-- <stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet> -->
 
 					<!-- <stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile> -->
-
 					<overview>src/main/java/overview.html</overview>
 
-					<!-- -->
 					<docfilessubdirs>true</docfilessubdirs>
 					<!-- <javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory> -->
 					<javadocVersion>${maven-javadoc-plugin.javadocVersion}</javadocVersion>
@@ -1126,7 +1099,6 @@
 			</plugin>
 
 			<!-- [ERROR] 'git' 不是内部或外部命令，也不是可运行的程序 或批处理文件。 -->
-			<!---->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-changelog-plugin</artifactId>
@@ -1185,5 +1157,4 @@
 			<comments>A business-friendly OSS license</comments>
 		</license>
 	</licenses>
-
 </project>
