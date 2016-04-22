@@ -1,13 +1,14 @@
 #重要说明
 
-feilong-platform(V 1.2.0) module 进行了调整:
-* `feilong-core`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-core
-* `feilong-servlet`成为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-servlet
-* `feilong-spring`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-spring
-* `feilong-taglib`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-taglib
-* `feilong-webservice`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-webservice
-* `feilong-framework`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-framework
-* `feilong-netpay`为顶级项目,地址变更为 :https://github.com/venusdrogon/feilong-netpay
+Package | Description |Since
+:---- | :---------| :---------:
+feilong-core  | https://github.com/venusdrogon/feilong-core |1.2.0
+feilong-servlet  | https://github.com/venusdrogon/feilong-servlet |1.2.0
+feilong-spring  | https://github.com/venusdrogon/feilong-spring |1.2.0
+feilong-taglib  | https://github.com/venusdrogon/feilong-taglib |1.2.0
+feilong-webservice  | https://github.com/venusdrogon/feilong-webservice |1.2.0
+feilong-framework  | https://github.com/venusdrogon/feilong-framework |1.2.0
+feilong-netpay  | https://github.com/venusdrogon/feilong-netpay |1.5.4
 
 
 feilong-platform
