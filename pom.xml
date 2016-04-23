@@ -69,7 +69,8 @@
 
 		<version.commons-logging>1.2</version.commons-logging>
 
-		<version.commons-io>2.4</version.commons-io>
+		<!-- see in http://commons.apache.org/proper/commons-io/index.html -->
+		<version.commons-io>2.5</version.commons-io>
 		<version.commons-net>3.4</version.commons-net>
 
 		<version.javamail>1.4.7</version.javamail>
