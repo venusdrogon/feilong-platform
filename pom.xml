@@ -178,9 +178,19 @@
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
 		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
 		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
+
 		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
-		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
-		<!-- <maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet> -->
+
+		<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter,
+			the <stylesheet/> parameter will indicate which stylesheet will be used
+
+			the stylesheet included in the maven javadoc plugin or the default stylesheet used by the javadoc tool.
+			maven value indicates the maven javadoc plugin stylesheet,
+			while java value indicates the default javadoc tool stylesheet.
+
+			The default is java value if not specified.
+		-->
+		<maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet>
 
 		<!-- **********************end maven-javadoc-plugin config******************************************* -->
 		<developer.feilong.name>feilong</developer.feilong.name>
@@ -766,15 +776,14 @@
 					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
 					<reportOutputDirectory>${maven-javadoc-plugin.reportOutputDirectory}</reportOutputDirectory>
 
-					<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
-					<!-- <stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet> -->
-
-					<!-- <stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile> -->
+					<stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet>
+					<stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile>
 
 					<overview>src/main/java/overview.html</overview>
 
 					<docfilessubdirs>true</docfilessubdirs>
-					<!-- <javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory> -->
+					<!---->
+					<javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory>
 					<javadocVersion>${maven-javadoc-plugin.javadocVersion}</javadocVersion>
 
 					<!-- Specifies the title to be placed in the HTML title tag.  -->
@@ -975,14 +984,14 @@
 					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
 					<reportOutputDirectory>${maven-javadoc-plugin.reportOutputDirectory}</reportOutputDirectory>
 
-					<!-- If no custom stylesheet is specified in the <stylesheetfile/> parameter, the <stylesheet/> parameter will indicate which stylesheet will be used -->
-					<!-- <stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet> -->
+					<stylesheet>${maven-javadoc-plugin.stylesheet}</stylesheet>
+					<stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile>
 
-					<!-- <stylesheetfile>${maven-javadoc-plugin.stylesheetfile}</stylesheetfile> -->
 					<overview>src/main/java/overview.html</overview>
 
 					<docfilessubdirs>true</docfilessubdirs>
-					<!-- <javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory> -->
+					<!---->
+					<javadocDirectory>${maven-javadoc-plugin.javadocDirectory}</javadocDirectory>
 					<javadocVersion>${maven-javadoc-plugin.javadocVersion}</javadocVersion>
 
 					<!-- Specifies the title to be placed in the HTML title tag.  -->
