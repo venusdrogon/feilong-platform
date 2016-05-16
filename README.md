@@ -67,7 +67,7 @@ feilong-netpay  | https://github.com/venusdrogon/feilong-netpay |1.5.4
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
 				<artifactId>feilong-core</artifactId>
-				<version>1.5.3</version>
+				<version>1.5.4</version>
 			</dependency>
 			....
 		</dependencies>
