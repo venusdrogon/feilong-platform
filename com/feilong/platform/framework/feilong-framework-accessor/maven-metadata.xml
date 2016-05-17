@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.framework</groupId>
+  <artifactId>feilong-framework-accessor</artifactId>
+  <versioning>
+    <versions>
+      <version>1.5.5-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20160517042541</lastUpdated>
+  </versioning>
+</metadata>
