@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.netpay</groupId>
   <artifactId>feilong-netpay-chinapnr</artifactId>
   <versioning>
-    <release>1.5.4</release>
     <versions>
-      <version>1.5.4</version>
+      <version>1.5.5-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160516074648</lastUpdated>
+    <lastUpdated>20160517025404</lastUpdated>
   </versioning>
 </metadata>
