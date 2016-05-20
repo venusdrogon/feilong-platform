@@ -205,13 +205,6 @@
 			<name>Temporary Staging Repository</name>
 			<url>file://${project.build.directory}/mvn-repo</url>
 		</repository>
-
-		<!-- <snapshotRepository>
-			<id>baozun-nexus-snapshots</id>
-			<name>baozun-nexus-snapshots</name>
-			<url>http://10.8.12.100:8080/nexus/content/repositories/snapshots/</url>
-			<uniqueVersion>false</uniqueVersion>
-			</snapshotRepository> -->
 	</distributionManagement>
 
 	<dependencies>
