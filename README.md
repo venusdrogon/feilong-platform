@@ -42,7 +42,6 @@ feilong-taglib  | https://github.com/venusdrogon/feilong-taglib |1.2.0
 feilong-webservice  | https://github.com/venusdrogon/feilong-webservice |1.2.0
 feilong-framework  | https://github.com/venusdrogon/feilong-framework |1.2.0
 feilong-io  | https://github.com/venusdrogon/feilong-io |1.5.4
-feilong-netpay  | https://github.com/venusdrogon/feilong-netpay |1.5.4
 
 
 # Maven使用配置
