@@ -51,7 +51,15 @@ feilong-io  | https://github.com/venusdrogon/feilong-io |1.5.4
 在maven 中,您可以通过以下方式来配置:
 
 ```XML
+
 	<project>
+	
+		....
+		<properties>
+			<version.feilong-platform>1.5.4</version.feilong-platform>
+			....
+		</properties>
+		
 		....
 		<repositories>
 			<repository>
@@ -60,16 +68,6 @@ feilong-io  | https://github.com/venusdrogon/feilong-io |1.5.4
 			</repository>
 		</repositories>
 		
-		....
-		<dependencies>
-			....
-			<dependency>
-				<groupId>com.feilong.platform</groupId>
-				<artifactId>feilong-core</artifactId>
-				<version>1.5.4</version>
-			</dependency>
-			....
-		</dependencies>
 		....
 	</project>
 ```
