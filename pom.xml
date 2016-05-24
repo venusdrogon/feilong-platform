@@ -159,6 +159,8 @@
 		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
 		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
 		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
+		<!-- git commit message -->
+		<site-maven-plugin.message>deploy ${project.groupId}:${project.artifactId}:${project.version}</site-maven-plugin.message>
 
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
 		<github.global.server>github</github.global.server>
@@ -587,7 +589,7 @@
 				<version>${v.site-maven-plugin}</version>
 				<configuration>
 					<!-- git commit message -->
-					<message>Maven artifacts for ${project.version}</message>
+					<message>${site-maven-plugin.message}</message>
 					<!-- disable webpage processing -->
 					<noJekyll>true</noJekyll>
 
