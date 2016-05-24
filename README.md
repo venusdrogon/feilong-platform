@@ -33,18 +33,15 @@ feilong platform,封装了常用的java工具方法,提供快速使用工具的�
 
 #子项目地址
 
-
 child 			| Description 										|Since
 :---- 				| :---------										| :---------:
-feilong-core  		| https://github.com/venusdrogon/feilong-core		|1.2.0
-feilong-servlet		| https://github.com/venusdrogon/feilong-servlet	|1.2.0
-feilong-io			| https://github.com/venusdrogon/feilong-io			|1.5.4
-feilong-taglib		| https://github.com/venusdrogon/feilong-taglib		|1.2.0
-feilong-spring		| https://github.com/venusdrogon/feilong-spring		|1.2.0
-feilong-framework	| https://github.com/venusdrogon/feilong-framework	|1.2.0
+[feilong-core](https://github.com/venusdrogon/feilong-core)  		| 		|1.2.0
+[feilong-servlet](https://github.com/venusdrogon/feilong-servlet)		| 	|1.2.0
+[feilong-io](https://github.com/venusdrogon/feilong-io)			| 			|1.5.4
+[feilong-taglib](https://github.com/venusdrogon/feilong-taglib)		| 		|1.2.0
+[feilong-spring](https://github.com/venusdrogon/feilong-spring)		| 		|1.2.0
+[feilong-framework](https://github.com/venusdrogon/feilong-framework)	| 	|1.2.0
 
-
-[feilong-core](https://github.com/venusdrogon/feilong-core) 
 
 # Maven使用配置
 
