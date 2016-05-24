@@ -33,7 +33,8 @@ feilong platform,封装了常用的java工具方法,提供快速使用工具的�
 
 #子项目地址
 
-Package 			| Description 										|Since
+[feilong-core](/venusdrogon/feilong-core "feilong-core") 
+child 			| Description 										|Since
 :---- 				| :---------										| :---------:
 feilong-core  		| https://github.com/venusdrogon/feilong-core		|1.2.0
 feilong-servlet		| https://github.com/venusdrogon/feilong-servlet	|1.2.0
