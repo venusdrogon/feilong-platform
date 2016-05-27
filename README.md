@@ -40,7 +40,6 @@ child 			| Description 										|Since
 [feilong-io](https://github.com/venusdrogon/feilong-io)			| 	封装了io操作的常用类		|1.5.4
 [feilong-taglib](https://github.com/venusdrogon/feilong-taglib)		| 封装了常用的自定义标签		|1.2.0
 [feilong-spring](https://github.com/venusdrogon/feilong-spring)		| 对spring相关类的快速封装,以便快速使用		|1.2.0
-[feilong-framework](https://github.com/venusdrogon/feilong-framework)	| 	|1.2.0
 
 
 # Maven使用配置
