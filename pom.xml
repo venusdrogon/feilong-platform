@@ -815,6 +815,27 @@
 							<packages>com.feilong.core.util</packages>
 						</group>
 					</groups>
+
+					<!-- Detect the Javadoc links for all dependencies defined in the project. -->
+					<detectLinks>true</detectLinks>
+					<detectOfflineLinks>true</detectOfflineLinks>
+
+					<!-- By default, the goal detects the Javadoc API link depending the value of the source parameter in theorg.apache.maven.plugins:maven-compiler-plugin (defined 
+						in ${project.build.plugins} or in${project.build.pluginManagement}),
+					-->
+					<detectJavaApiLink>true</detectJavaApiLink>
+					<links>
+						<link>http://commons.apache.org/proper/commons-lang/javadocs/api-release/</link>
+						<link>http://commons.apache.org/proper/commons-collections/javadocs/api-release/</link>
+						<link>http://commons.apache.org/proper/commons-io/javadocs/api-release/</link>
+						<link>http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.2/apidocs/</link>
+						<link>http://ezmorph.sourceforge.net/apidocs/</link>
+						<link>http://docs.spring.io/spring/docs/3.2.17.RELEASE/javadoc-api/</link>
+
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.5/feilong-core/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.5/feilong-servlet/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.5/feilong-io/</link>
+					</links>
 				</configuration>
 			</plugin>
 
@@ -1022,6 +1043,28 @@
 							<packages>com.feilong.core.util</packages>
 						</group>
 					</groups>
+
+					<!-- Detect the Javadoc links for all dependencies defined in the project. -->
+					<detectLinks>true</detectLinks>
+					<detectOfflineLinks>true</detectOfflineLinks>
+
+					<!-- By default, the goal detects the Javadoc API link depending the value of the source parameter in theorg.apache.maven.plugins:maven-compiler-plugin (defined 
+						in ${project.build.plugins} or in${project.build.pluginManagement}),
+					-->
+					<detectJavaApiLink>true</detectJavaApiLink>
+					<links>
+						<!-- <link>http://docs.oracle.com/javase/7/docs/api/</link> -->
+						<link>http://commons.apache.org/proper/commons-lang/javadocs/api-release/</link>
+						<link>http://commons.apache.org/proper/commons-collections/javadocs/api-release/</link>
+						<link>http://commons.apache.org/proper/commons-io/javadocs/api-release/</link>
+						<link>http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.2/apidocs/</link>
+						<link>http://ezmorph.sourceforge.net/apidocs/</link>
+						<link>http://docs.spring.io/spring/docs/3.2.17.RELEASE/javadoc-api/</link>
+
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.5/feilong-core/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.5/feilong-servlet/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.5/feilong-io/</link>
+					</links>
 				</configuration>
 			</plugin>
 
