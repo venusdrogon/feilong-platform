@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.framework</groupId>
   <artifactId>feilong-framework-bind</artifactId>
   <versioning>
-    <release>1.5.6</release>
     <versions>
-      <version>1.5.6</version>
+      <version>1.5.7-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160531054239</lastUpdated>
+    <lastUpdated>20160601094915</lastUpdated>
   </versioning>
 </metadata>
