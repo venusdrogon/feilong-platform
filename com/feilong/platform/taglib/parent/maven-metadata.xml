@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.taglib</groupId>
   <artifactId>parent</artifactId>
   <versioning>
-    <release>1.5.6</release>
     <versions>
-      <version>1.5.6</version>
+      <version>1.5.7-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160531053539</lastUpdated>
+    <lastUpdated>20160601093946</lastUpdated>
   </versioning>
 </metadata>
