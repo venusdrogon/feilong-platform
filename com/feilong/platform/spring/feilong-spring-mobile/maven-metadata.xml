@@ -4,8 +4,8 @@
   <artifactId>feilong-spring-mobile</artifactId>
   <versioning>
     <versions>
-      <version>1.5.0-SNAPSHOT</version>
+      <version>1.5.7-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160324150309</lastUpdated>
+    <lastUpdated>20160602050205</lastUpdated>
   </versioning>
 </metadata>
