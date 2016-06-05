@@ -835,9 +835,9 @@
 						<link>http://ezmorph.sourceforge.net/apidocs/</link>
 						<link>http://docs.spring.io/spring/docs/${version.spring}/javadoc-api/</link>
 
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.6/feilong-core/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.6/feilong-servlet/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.6/feilong-io/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.6.0/feilong-core/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.6.0/feilong-servlet/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.6.0/feilong-io/</link>
 					</links>
 				</configuration>
 			</plugin>
@@ -1066,9 +1066,9 @@
 						<link>http://ezmorph.sourceforge.net/apidocs/</link>
 						<link>http://docs.spring.io/spring/docs/${version.spring}/javadoc-api/</link>
 
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.6/feilong-core/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.6/feilong-servlet/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.5.6/feilong-io/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.6.0/feilong-core/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.6.0/feilong-servlet/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.6.0/feilong-io/</link>
 					</links>
 				</configuration>
 			</plugin>
