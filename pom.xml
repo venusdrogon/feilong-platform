@@ -143,7 +143,7 @@
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
-		<v.sonar-maven-plugin>3.0.1</v.sonar-maven-plugin>
+		<v.sonar-maven-plugin>3.0.2</v.sonar-maven-plugin>
 		<!-- taglist 检查报告 -->
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
