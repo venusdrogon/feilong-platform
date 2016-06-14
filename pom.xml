@@ -175,8 +175,8 @@
 		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
 		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
 
-		<maven-javadoc-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs/${project.version}</maven-javadoc-plugin.outputDirectory>
-		<maven-javadoc-plugin.reportOutputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs/${project.version}</maven-javadoc-plugin.reportOutputDirectory>
+		<maven-javadoc-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs</maven-javadoc-plugin.outputDirectory>
+		<maven-javadoc-plugin.reportOutputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
 		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
 		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
@@ -835,9 +835,9 @@
 						<link>http://ezmorph.sourceforge.net/apidocs/</link>
 						<link>http://docs.spring.io/spring/docs/${version.spring}/javadoc-api/</link>
 
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.7.0/feilong-core/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.7.0/feilong-servlet/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.7.0/feilong-io/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-core/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-servlet/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-io/</link>
 					</links>
 				</configuration>
 			</plugin>
@@ -1066,9 +1066,9 @@
 						<link>http://ezmorph.sourceforge.net/apidocs/</link>
 						<link>http://docs.spring.io/spring/docs/${version.spring}/javadoc-api/</link>
 
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.7.0/feilong-core/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.7.0/feilong-servlet/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/1.7.0/feilong-io/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-core/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-servlet/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-io/</link>
 					</links>
 				</configuration>
 			</plugin>
