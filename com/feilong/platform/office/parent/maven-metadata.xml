@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.office</groupId>
+  <artifactId>parent</artifactId>
+  <versioning>
+    <versions>
+      <version>1.7.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20160615065935</lastUpdated>
+  </versioning>
+</metadata>
