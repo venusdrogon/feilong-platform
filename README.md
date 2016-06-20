@@ -4,7 +4,7 @@ feilong-platform
 Reduce development, Release ideas
 
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-![build](https://img.shields.io/wercker/ci/wercker/docs.svg "build")
+![build](https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/precise-desktop-amd64_default.svg "build")
 
 #Welcome to feilong-platform
 
