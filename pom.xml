@@ -134,7 +134,7 @@
 		<v.maven-pmd-plugin>3.6</v.maven-pmd-plugin>
 
 		<v.maven-site-plugin>3.5.1</v.maven-site-plugin>
-		<v.maven-source-plugin>3.0.0</v.maven-source-plugin>
+		<v.maven-source-plugin>3.0.1</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.19.1</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
 		<v.maven-resources-plugin>3.0.1</v.maven-resources-plugin>
