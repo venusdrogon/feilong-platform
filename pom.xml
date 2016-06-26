@@ -925,12 +925,14 @@
 			</plugin>
 
 			<!-- maven-site-plugin -->
+			<!-- http://maven.apache.org/plugins/maven-site-plugin/ -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>${v.maven-site-plugin}</version>
 				<configuration>
 					<locales>en</locales><!-- zh_CN -->
+					<generateSitemap>true</generateSitemap>
 				</configuration>
 			</plugin>
 
