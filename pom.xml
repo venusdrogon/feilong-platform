@@ -4,7 +4,7 @@
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
 	<version>1.7.3-SNAPSHOT</version>
-	
+
 	<packaging>pom</packaging>
 
 	<name>feilong-platform</name>
@@ -12,7 +12,7 @@
 	<inceptionYear>2008</inceptionYear>
 
 	<description>Reduce development, Release ideas</description>
-	
+
 	<url>http://venusdrogon.github.io/feilong-platform/</url>
 
 	<!-- 软件配置管理，如cvs 和svn -->
@@ -119,7 +119,6 @@
 		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.5.1</v.maven-compiler-plugin>
 		<v.maven-changes-plugin>2.12</v.maven-changes-plugin>
-		<v.maven-changelog-plugin>2.3</v.maven-changelog-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.17</v.maven-checkstyle-plugin>
@@ -197,7 +196,7 @@
 
 		<!-- **********************end maven-javadoc-plugin config******************************************* -->
 		<developer.feilong.name>feilong</developer.feilong.name>
-		<developer.feilong.email>venusdrogon@163.com</developer.feilong.email>
+		<!-- <developer.feilong.email>venusdrogon@163.com</developer.feilong.email> -->
 	</properties>
 
 	<!-- 项目发布管理 -->
@@ -573,12 +572,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${v.maven-site-plugin}</version>
-			</plugin>
-
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>${v.sonar-maven-plugin}</version>
@@ -659,7 +652,7 @@
 					<properties>
 						<owner>${developer.feilong.name}</owner>
 						<year>${project.inceptionYear}</year>
-						<email>${developer.feilong.email}</email>
+						<!-- <email>${developer.feilong.email}</email> -->
 					</properties>
 					<!-- -->
 					<excludes>
@@ -828,7 +821,7 @@
 					<links>
 						<!-- <link>http://docs.oracle.com/javase/7/docs/api/</link> -->
 						<link>https://docs.oracle.com/javaee/7/api/</link>
-						
+
 						<link>http://commons.apache.org/proper/commons-lang/javadocs/api-release/</link>
 						<link>http://commons.apache.org/proper/commons-collections/javadocs/api-release/</link>
 						<link>http://commons.apache.org/proper/commons-io/javadocs/api-release/</link>
@@ -930,6 +923,17 @@
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>${v.maven-dependency-plugin}</version>
 			</plugin>
+
+			<!-- maven-site-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${v.maven-site-plugin}</version>
+				<configuration>
+					<locales>en</locales><!-- zh_CN -->
+				</configuration>
+			</plugin>
+
 		</plugins>
 
 		<!-- pluginManagement -->
@@ -1059,7 +1063,7 @@
 					<links>
 						<!-- <link>http://docs.oracle.com/javase/7/docs/api/</link> -->
 						<link>https://docs.oracle.com/javaee/7/api/</link>
-						
+
 						<link>http://commons.apache.org/proper/commons-lang/javadocs/api-release/</link>
 						<link>http://commons.apache.org/proper/commons-collections/javadocs/api-release/</link>
 						<link>http://commons.apache.org/proper/commons-io/javadocs/api-release/</link>
@@ -1085,11 +1089,11 @@
 			</plugin>
 
 			<!-- 代码格式检查 -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>${v.maven-checkstyle-plugin}</version>
-			</plugin>
+				</plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -1153,19 +1157,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- [ERROR] 'git' 不是内部或外部命令，也不是可运行的程序 或批处理文件。 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>${v.maven-changelog-plugin}</version>
-				<configuration>
-					<type>range</type>
-					<range>30</range>
-					<headingDateFormat>MM-dd</headingDateFormat>
-					<dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-changes-plugin</artifactId>
@@ -1192,10 +1183,10 @@
 		<developer>
 			<id>feilong</id>
 			<name>金鑫</name>
-			<email>${developer.feilong.email}</email>
+			<!-- <email>${developer.feilong.email}</email> -->
 			<url>http://venusdrogon.github.io/feilong-platform/</url>
 			<organization>feilong</organization>
-			<organizationUrl>http://venusdrogon.github.io/feilong-platform/</organizationUrl>
+			<!-- <organizationUrl>http://venusdrogon.github.io/feilong-platform/</organizationUrl> -->
 			<roles>
 				<role>architect</role>
 				<role>developer</role>
