@@ -759,7 +759,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
-					<verbose>true</verbose>
+					<!-- <verbose>true</verbose> -->
 					<destDir>${maven-javadoc-plugin.destDir}</destDir>
 
 					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
@@ -1004,7 +1004,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
-					<verbose>true</verbose>
+					<!-- <verbose>true</verbose> -->
 					<destDir>${maven-javadoc-plugin.destDir}</destDir>
 
 					<outputDirectory>${maven-javadoc-plugin.outputDirectory}</outputDirectory>
