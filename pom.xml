@@ -193,6 +193,8 @@
 			The default is java value if not specified.
 		-->
 		<maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet>
+		
+		<maven-site-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/site/${project.name}</maven-site-plugin.outputDirectory>
 
 		<!-- **********************end maven-javadoc-plugin config******************************************* -->
 		<developer.feilong.name>feilong</developer.feilong.name>
@@ -933,6 +935,7 @@
 				<configuration>
 					<locales>en</locales><!-- zh_CN -->
 					<generateSitemap>true</generateSitemap>
+					<outputDirectory>${maven-site-plugin.outputDirectory}</outputDirectory>
 				</configuration>
 			</plugin>
 
