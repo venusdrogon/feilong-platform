@@ -1,0 +1,26 @@
+{
+    "name": "releasenotes",
+    "title": "Automatic release notes creator",
+    "description": "This plugin creates release notes automatically from your github milestones project. It also integrates issues, labels & comments",
+    "keywords": [
+        "notes",
+        "github",
+        "release"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "Cedric Dugas",
+        "url": "http://www.position-relative.net"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "bugs": "https://github.com/posabsolute/releasenotes/issues",
+    "homepage": "https://github.com/posabsolute/releasenotes",
+    "dependencies": {
+        "jquery": ">=1.7"
+    }
+}
