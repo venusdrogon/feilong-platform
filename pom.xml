@@ -132,6 +132,7 @@
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.6</v.maven-pmd-plugin>
 
+		<v.maven-scm-plugin>1.9.5</v.maven-scm-plugin>
 		<v.maven-site-plugin>3.5.1</v.maven-site-plugin>
 		<v.maven-source-plugin>3.0.1</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.19.1</v.maven-surefire-plugin>
@@ -578,7 +579,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-plugin</artifactId>
-				<version>1.9.5</version>
+				<version>${v.maven-scm-plugin}</version>
 			</plugin>
 
 			<plugin>
