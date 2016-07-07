@@ -17,9 +17,9 @@
 
 	<!-- 软件配置管理，如cvs 和svn -->
 	<scm>
-		<url>https://github.com/venusdrogon/feilong-platform.git</url>
-		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:venusdrogon/feilong-platform.git</developerConnection>
+		<url>https://github.com/venusdrogon/feilong-platform/trunk</url>
+		<connection>scm:svn:https://github.com/venusdrogon/feilong-platform/trunk</connection>
+		<developerConnection>scm:svn:https://github.com/venusdrogon/feilong-platform/trunk</developerConnection>
 	</scm>
 
 	<!--****************************定义属性 properties************************************* -->
@@ -193,7 +193,7 @@
 			The default is java value if not specified.
 		-->
 		<maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet>
-		
+
 		<maven-site-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/site/${project.name}</maven-site-plugin.outputDirectory>
 
 		<!-- **********************end maven-javadoc-plugin config******************************************* -->
@@ -573,6 +573,14 @@
 	<!--********************************build****************************************** -->
 	<build>
 		<plugins>
+
+			<!-- maven-scm-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9.5</version>
+			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
