@@ -7,6 +7,7 @@ Reduce development, Release ideas
 ![build](https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/precise-desktop-amd64_default.svg "build")
 
 
+
 #Welcome to feilong-platform
 
 这是所有feilong 项目的 parent pom项目,定义常用的 jar以及 plugins
