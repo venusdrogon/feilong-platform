@@ -8,7 +8,7 @@ Reduce development, Release ideas
 
 #Welcome to feilong-platform
 
-feilong platform,封装了常用的java工具方法,提供快速使用工具的功能,自己知识积累的同时，方便大家使用
+这是所有feilong 项目的 parent pom项目,定义常用的 jar以及 plugins
 
 
 #子项目地址
