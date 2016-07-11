@@ -570,7 +570,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 
 	<!--********************************build****************************************** -->
 	<build>
@@ -771,6 +771,8 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
+					<!-- <additionalparam>-Xdoclint:none</additionalparam> -->
+
 					<!-- <verbose>true</verbose> -->
 					<destDir>${maven-javadoc-plugin.destDir}</destDir>
 
@@ -1017,6 +1019,9 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${v.maven-javadoc-plugin}</version>
 				<configuration>
+
+					<!-- <additionalparam>-Xdoclint:none</additionalparam> -->
+
 					<!-- <verbose>true</verbose> -->
 					<destDir>${maven-javadoc-plugin.destDir}</destDir>
 
