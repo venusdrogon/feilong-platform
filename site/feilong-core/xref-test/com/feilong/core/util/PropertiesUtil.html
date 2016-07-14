@@ -137,68 +137,70 @@
 <a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Properties getPropertiesWithClassLoader(Class&lt;?&gt; klass,String propertiesPath){
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>         Validate.notBlank(propertiesPath, <span class="jxr_string">"propertiesPath can't be blank!"</span>);
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>         ClassLoader classLoader = ClassLoaderUtil.getClassLoaderByClass(klass);
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">return</strong> getProperties(classLoader.getResourceAsStream(propertiesPath));
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>     }
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> <em class="jxr_javadoccomment">     * 通过{@link Class#getResourceAsStream(String)} 方法获得 InputStream,再调用 {@link #getProperties(InputStream)}.</em>
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;关于路径 &lt;code&gt;propertiesPath&lt;/code&gt;:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         ClassLoader classLoader = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> 
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <em class="jxr_comment">//ClassLoaderUtil.getClassLoaderByClass(klass);</em>
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>         <strong class="jxr_keyword">return</strong> getProperties(classLoader.getResourceAsStream(propertiesPath));
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>     }
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">     * 通过{@link Class#getResourceAsStream(String)} 方法获得 InputStream,再调用 {@link #getProperties(InputStream)}.</em>
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * 假设 class是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     * 需要写作 &lt;code&gt;getProperties(PropertiesUtil.class,&lt;b&gt;"/messages/feilong-core-message_en_US.properties"&lt;/b&gt;)&lt;/code&gt; &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">     * 注意此处要写成 &lt;b&gt;"/messages/feilong-core-message_en_US.properties"&lt;/b&gt;, 路径可以写成相对路径或者绝对路径</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     * 注意和 {@link #getPropertiesWithClassLoader(Class, String)} 的区别</em>
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">     * @param klass</em>
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">     *            类,会通过 klass 调用</em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">     * @param propertiesPath</em>
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">     *            the properties path</em>
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;klass&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertiesPath&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertiesPath&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">     * @see java.lang.Class#getResourceAsStream(String)</em>
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">     * @see #getProperties(InputStream)</em>
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">     * @see #getPropertiesWithClassLoader(Class, String)</em>
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Properties getProperties(Class&lt;?&gt; klass,String propertiesPath){
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>         Validate.notNull(klass, <span class="jxr_string">"klass can't be null!"</span>);
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>         Validate.notBlank(propertiesPath, <span class="jxr_string">"propertiesPath can't be blank!"</span>);
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>         <em class="jxr_comment">// klass.getResourceAsStream方法 内部会调用classLoader.getResourceAsStream</em>
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>         <em class="jxr_comment">// 之所以这样做无疑还是方便客户端的调用,省的每次获取ClassLoader才能加载资源文件的麻烦.</em>
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>         <strong class="jxr_keyword">return</strong> getProperties(klass.getResourceAsStream(propertiesPath));
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>     }
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> <em class="jxr_javadoccomment">     * 获取{@link Properties}.</em>
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> <em class="jxr_javadoccomment">     * @param inputStream</em>
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_javadoccomment">     *            inputStream</em>
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;inputStream&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_javadoccomment">     *         正常情况,返回 {@link java.util.Properties#load(InputStream)}</em>
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> <em class="jxr_javadoccomment">     * @see java.util.Properties#load(InputStream)</em>
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> <em class="jxr_javadoccomment">     * @see "org.springframework.core.io.support.PropertiesLoaderUtils#loadProperties(Resource)"</em>
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Properties getProperties(InputStream inputStream){
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>         Validate.notNull(inputStream, <span class="jxr_string">"inputStream can't be null!"</span>);
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>         Properties properties = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>         <strong class="jxr_keyword">try</strong>{
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>             properties.load(inputStream);
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>             <strong class="jxr_keyword">return</strong> properties;
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>         }<strong class="jxr_keyword">catch</strong> (IOException e){
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UncheckedIOException(e);
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>         }
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>     }
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>     <em class="jxr_comment">// [end]</em>
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> }
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;关于路径 &lt;code&gt;propertiesPath&lt;/code&gt;:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     * 假设 class是 {@link PropertiesUtil},而配置文件在 src/main/resources下面,比如 messages/feilong-core-message_en_US.properties&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * 需要写作 &lt;code&gt;getProperties(PropertiesUtil.class,&lt;b&gt;"/messages/feilong-core-message_en_US.properties"&lt;/b&gt;)&lt;/code&gt; &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     * 注意此处要写成 &lt;b&gt;"/messages/feilong-core-message_en_US.properties"&lt;/b&gt;, 路径可以写成相对路径或者绝对路径</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     * 注意和 {@link #getPropertiesWithClassLoader(Class, String)} 的区别</em>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">     * @param klass</em>
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">     *            类,会通过 klass 调用</em>
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">     * @param propertiesPath</em>
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">     *            the properties path</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;klass&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertiesPath&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertiesPath&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">     * @see java.lang.Class#getResourceAsStream(String)</em>
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> <em class="jxr_javadoccomment">     * @see #getProperties(InputStream)</em>
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> <em class="jxr_javadoccomment">     * @see #getPropertiesWithClassLoader(Class, String)</em>
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Properties getProperties(Class&lt;?&gt; klass,String propertiesPath){
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>         Validate.notNull(klass, <span class="jxr_string">"klass can't be null!"</span>);
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>         Validate.notBlank(propertiesPath, <span class="jxr_string">"propertiesPath can't be blank!"</span>);
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>         <em class="jxr_comment">// klass.getResourceAsStream方法 内部会调用classLoader.getResourceAsStream</em>
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>         <em class="jxr_comment">// 之所以这样做无疑还是方便客户端的调用,省的每次获取ClassLoader才能加载资源文件的麻烦.</em>
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>         <strong class="jxr_keyword">return</strong> getProperties(klass.getResourceAsStream(propertiesPath));
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>     }
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> <em class="jxr_javadoccomment">     * 获取{@link Properties}.</em>
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">     * @param inputStream</em>
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_javadoccomment">     *            inputStream</em>
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;inputStream&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> <em class="jxr_javadoccomment">     *         正常情况,返回 {@link java.util.Properties#load(InputStream)}</em>
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> <em class="jxr_javadoccomment">     * @see java.util.Properties#load(InputStream)</em>
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> <em class="jxr_javadoccomment">     * @see "org.springframework.core.io.support.PropertiesLoaderUtils#loadProperties(Resource)"</em>
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Properties getProperties(InputStream inputStream){
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>         Validate.notNull(inputStream, <span class="jxr_string">"inputStream can't be null!"</span>);
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>         Properties properties = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>         <strong class="jxr_keyword">try</strong>{
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>             properties.load(inputStream);
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>             <strong class="jxr_keyword">return</strong> properties;
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>         }<strong class="jxr_keyword">catch</strong> (IOException e){
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UncheckedIOException(e);
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>         }
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>     }
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

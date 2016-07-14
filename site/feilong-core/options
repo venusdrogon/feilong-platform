@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-core 1.8.0-SNAPSHOT API'
+'feilong-core 1.8.0 API'
 -footer
-'feilong-core 1.8.0-SNAPSHOT API'
+'feilong-core 1.8.0 API'
 -group
 'Date package ÈÕÆÚ' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util'
 -header
-'feilong-core 1.8.0-SNAPSHOT API'
+'feilong-core 1.8.0 API'
 -link
 'https://docs.oracle.com/javaee/7/api'
 -link
@@ -60,8 +60,6 @@
 -link
 'http://www.slf4j.org/apidocs'
 -link
-'http://logging.apache.org/log4j/1.2/apidocs'
--link
 'http://commons.apache.org/lang/apidocs'
 -link
 'http://commons.apache.org/proper/commons-logging/apidocs'
@@ -76,4 +74,4 @@
 -use
 -version
 -windowtitle
-'feilong-core 1.8.0-SNAPSHOT API create by feilong'
+'feilong-core 1.8.0 API create by feilong'

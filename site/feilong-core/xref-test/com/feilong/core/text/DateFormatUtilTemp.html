@@ -111,7 +111,7 @@
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>         Validate.notBlank(pattern, <span class="jxr_string">"pattern can't be null/empty!"</span>);
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         SimpleDateFormat simpleDateFormat = <strong class="jxr_keyword">new</strong> SimpleDateFormat(pattern, ObjectUtils.defaultIfNull(locale, Locale.getDefault()));
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>         <em class="jxr_comment">//虽然可以直接调用 java.text.DateFormat#parse(String) 但是他会抛出 ParseException 是checked Exception</em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">return</strong> simpleDateFormat.parse(dateString, <strong class="jxr_keyword">new</strong> ParsePosition(0));<em class="jxr_comment">//如果发生错误，则返回 null</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">return</strong> simpleDateFormat.parse(dateString, <strong class="jxr_keyword">new</strong> ParsePosition(0));<em class="jxr_comment">//如果发生错误,则返回 null</em>
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>     }
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> }
 </pre>
