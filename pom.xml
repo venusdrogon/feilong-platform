@@ -706,7 +706,18 @@
 				<version>${v.maven-resources-plugin}</version>
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
+
+					<!-- Copy any empty directories included in the Resources. -->
 					<includeEmptyDirs>true</includeEmptyDirs>
+
+					<!-- Additional file extensions to not apply filtering (already defined are : jpg, jpeg, gif, bmp, png) -->
+					<nonFilteredFileExtensions>
+						<!-- see https://maven.apache.org/plugins/maven-resources-plugin/examples/binaries-filtering.html -->
+						<nonFilteredFileExtension>xls</nonFilteredFileExtension>
+						<nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+						<nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+						<nonFilteredFileExtension>swf</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
 				</configuration>
 				<executions>
 					<execution>
