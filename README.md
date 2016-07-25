@@ -5,6 +5,7 @@ Reduce development, Release ideas
 
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 ![build](https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/precise-desktop-amd64_default.svg "build")
+![JDK](https://img.shields.io/badge/JDK-1.7-green.svg "JDK")
 
 
 
