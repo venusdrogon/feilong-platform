@@ -23,9 +23,9 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">package</strong> com.feilong.tools.jsonlib.processor;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.math.BigDecimal;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.lang3.StringUtils.EMPTY;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.StringUtils;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.math.BigDecimal;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.NumberPattern;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.lang.NumberUtil;
@@ -70,10 +70,9 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_comment">     */</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      @Override
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      <strong class="jxr_keyword">protected</strong> Object processValue(Object value,JsonConfig jsonConfig){
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <strong class="jxr_keyword">return</strong> value == <strong class="jxr_keyword">null</strong> ? StringUtils.EMPTY
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>                          : (value instanceof BigDecimal ? NumberUtil.toString((Number) value, numberPattern) : value);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      }
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  }
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <strong class="jxr_keyword">return</strong> value == <strong class="jxr_keyword">null</strong> ? EMPTY : (value instanceof BigDecimal ? NumberUtil.toString((Number) value, numberPattern) : value);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

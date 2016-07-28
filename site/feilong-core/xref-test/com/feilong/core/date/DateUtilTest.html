@@ -263,7 +263,7 @@
 <a class="jxr_linenumber" name="L255" href="#L255">255</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>     @Test
 <a class="jxr_linenumber" name="L257" href="#L257">257</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddMonth(){
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>         Date beginDate = DateUtil.toDate(<span class="jxr_string">"2013-10-28"</span>, COMMON_DATE);
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>         Date beginDate = toDate(<span class="jxr_string">"2013-10-28"</span>, COMMON_DATE);
 <a class="jxr_linenumber" name="L259" href="#L259">259</a>         logDate(addMonth(beginDate, 6));
 <a class="jxr_linenumber" name="L260" href="#L260">260</a>         logDate(addMonth(NOW, 3));
 <a class="jxr_linenumber" name="L261" href="#L261">261</a>         logDate(addMonth(NOW, -3));
@@ -307,13 +307,13 @@
 <a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L300" href="#L300">300</a>     @Test
 <a class="jxr_linenumber" name="L301" href="#L301">301</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testToDate(){
-<a class="jxr_linenumber" name="L302" href="#L302">302</a>         logDate(DateUtil.toDate(<span class="jxr_string">"2016-06-28T01:21:12-0800"</span>, <span class="jxr_string">"yyyy-MM-dd'T'HH:mm:ssZ"</span>));
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>         logDate(DateUtil.toDate(<span class="jxr_string">"2016-06-28T01:21:12+0800"</span>, <span class="jxr_string">"yyyy-MM-dd'T'HH:mm:ssZ"</span>));
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>         logDate(toDate(<span class="jxr_string">"2016-06-28T01:21:12-0800"</span>, <span class="jxr_string">"yyyy-MM-dd'T'HH:mm:ssZ"</span>));
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>         logDate(toDate(<span class="jxr_string">"2016-06-28T01:21:12+0800"</span>, <span class="jxr_string">"yyyy-MM-dd'T'HH:mm:ssZ"</span>));
 <a class="jxr_linenumber" name="L304" href="#L304">304</a> 
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>         logDate(DateUtil.toDate(<span class="jxr_string">"2016-02-33"</span>, COMMON_DATE));
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>         logDate(toDate(<span class="jxr_string">"2016-02-33"</span>, COMMON_DATE));
 <a class="jxr_linenumber" name="L306" href="#L306">306</a> 
 <a class="jxr_linenumber" name="L307" href="#L307">307</a>         <em class="jxr_comment">// 商品上线时间</em>
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>         logDate(DateUtil.toDate(<span class="jxr_string">"20130102140806000"</span>, TIMESTAMP_WITH_MILLISECOND));
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>         logDate(toDate(<span class="jxr_string">"20130102140806000"</span>, TIMESTAMP_WITH_MILLISECOND));
 <a class="jxr_linenumber" name="L309" href="#L309">309</a>     }
 <a class="jxr_linenumber" name="L310" href="#L310">310</a> 
 <a class="jxr_linenumber" name="L311" href="#L311">311</a>     @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
@@ -321,7 +321,7 @@
 <a class="jxr_linenumber" name="L313" href="#L313">313</a>         DateUtil.toDate(<span class="jxr_string">"2016-06-30 15:36 "</span>, COMMON_DATE_AND_TIME_WITHOUT_SECOND);
 <a class="jxr_linenumber" name="L314" href="#L314">314</a>     }
 <a class="jxr_linenumber" name="L315" href="#L315">315</a> 
-<a class="jxr_linenumber" name="L316" href="#L316">316</a>     @Test()
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>     @Test
 <a class="jxr_linenumber" name="L317" href="#L317">317</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testToDate2(){
 <a class="jxr_linenumber" name="L318" href="#L318">318</a>         DateUtil.toDate(StringUtils.trimToEmpty(<span class="jxr_string">"2016-06-30 15:36 "</span>), COMMON_DATE_AND_TIME_WITHOUT_SECOND);
 <a class="jxr_linenumber" name="L319" href="#L319">319</a>     }
@@ -373,154 +373,162 @@
 <a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L366" href="#L366">366</a>     @Test
 <a class="jxr_linenumber" name="L367" href="#L367">367</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetYear(){
-<a class="jxr_linenumber" name="L368" href="#L368">368</a>         LOGGER.debug(DateUtil.getYear(NOW) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L369" href="#L369">369</a>     }
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> 
-<a class="jxr_linenumber" name="L371" href="#L371">371</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     * Gets the hour of day.</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>     @Test
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetHourOfDay(){
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>         LOGGER.debug(DateUtil.getHourOfDay(NOW) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>     }
-<a class="jxr_linenumber" name="L379" href="#L379">379</a> 
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">     * Gets the minute.</em>
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>     @Test
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetMinute(){
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>         LOGGER.debug(DateUtil.getMinute(NOW) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>     }
-<a class="jxr_linenumber" name="L388" href="#L388">388</a> 
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">     * Gets the second.</em>
-<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>     @Test
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetSecond(){
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>         LOGGER.debug(DateUtil.getSecond(NOW) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>     }
-<a class="jxr_linenumber" name="L397" href="#L397">397</a> 
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * Gets the time.</em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>     @Test
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetTime(){
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>         LOGGER.debug(DateUtil.getTime(NOW) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>     }
-<a class="jxr_linenumber" name="L406" href="#L406">406</a> 
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * Test is leap year.</em>
+<a class="jxr_linenumber" name="L368" href="#L368">368</a>         assertEquals(2012, DateUtil.getYear(toDate(<span class="jxr_string">"2012-06-29 00:26:53"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>         assertEquals(2016, DateUtil.getYear(toDate(<span class="jxr_string">"2016-07-16"</span>, COMMON_DATE)));
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>         assertEquals(2017, DateUtil.getYear(toDate(<span class="jxr_string">"2016-13-16"</span>, COMMON_DATE)));
+<a class="jxr_linenumber" name="L371" href="#L371">371</a>     }
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> 
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetYear1(){
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>         DateUtil.getYear(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>     }
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> 
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">     * Gets the hour of day.</em>
+<a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>     @Test
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetHourOfDay(){
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>         assertEquals(0, DateUtil.getHourOfDay(toDate(<span class="jxr_string">"2012-06-29 00:26:53"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>         assertEquals(22, DateUtil.getHourOfDay(toDate(<span class="jxr_string">"2016-07-16 22:34:00"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>         assertEquals(0, DateUtil.getHourOfDay(toDate(<span class="jxr_string">"2016-07-16 24:34:00"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>     }
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> 
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L389" href="#L389">389</a> <em class="jxr_javadoccomment">     * Gets the minute.</em>
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>     @Test
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetMinute(){
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>         LOGGER.debug(DateUtil.getMinute(NOW) + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>     }
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> 
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     * Gets the second.</em>
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>     @Test
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetSecond(){
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>         LOGGER.debug(DateUtil.getSecond(NOW) + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>     }
+<a class="jxr_linenumber" name="L405" href="#L405">405</a> 
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">     * Gets the time.</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L410" href="#L410">410</a>     @Test
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsLeapYear(){
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>         <strong class="jxr_keyword">int</strong> year = -3;
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>         LOGGER.debug(<strong class="jxr_keyword">new</strong> GregorianCalendar(-3, 1, 1).isLeapYear(year) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>         LOGGER.debug(DateUtil.isLeapYear(year) + <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L415" href="#L415">415</a>     }
-<a class="jxr_linenumber" name="L416" href="#L416">416</a> 
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * Adds the year.</em>
-<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a>     @Test
-<a class="jxr_linenumber" name="L421" href="#L421">421</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddYear(){
-<a class="jxr_linenumber" name="L422" href="#L422">422</a>         logDate(DateUtil.addYear(NOW, 5));
-<a class="jxr_linenumber" name="L423" href="#L423">423</a>         logDate(NOW);
-<a class="jxr_linenumber" name="L424" href="#L424">424</a>         logDate(DateUtils.addYears(NOW, 5));
-<a class="jxr_linenumber" name="L425" href="#L425">425</a>         logDate(NOW);
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>         logDate(DateUtil.addYear(NOW, -5));
-<a class="jxr_linenumber" name="L427" href="#L427">427</a>         logDate(NOW);
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>     }
-<a class="jxr_linenumber" name="L429" href="#L429">429</a> 
-<a class="jxr_linenumber" name="L430" href="#L430">430</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">     * Adds the day.</em>
-<a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>     @Test
-<a class="jxr_linenumber" name="L434" href="#L434">434</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddDay(){
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>         logDate(DateUtil.addDay(NOW, 5));
-<a class="jxr_linenumber" name="L436" href="#L436">436</a>         logDate(DateUtil.addDay(NOW, -5));
-<a class="jxr_linenumber" name="L437" href="#L437">437</a>         logDate(DateUtil.addDay(toDate(<span class="jxr_string">"2014-12-31 02:10:05"</span>, COMMON_DATE_AND_TIME), 5));
-<a class="jxr_linenumber" name="L438" href="#L438">438</a>         logDate(DateUtil.addDay(toDate(<span class="jxr_string">"2014-01-01 02:10:05"</span>, COMMON_DATE_AND_TIME), -5));
-<a class="jxr_linenumber" name="L439" href="#L439">439</a>     }
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> 
-<a class="jxr_linenumber" name="L441" href="#L441">441</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * Adds the week.</em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a>     @Test
-<a class="jxr_linenumber" name="L445" href="#L445">445</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddWeek(){
-<a class="jxr_linenumber" name="L446" href="#L446">446</a>         logDate(DateUtil.addWeek(NOW, 1));
-<a class="jxr_linenumber" name="L447" href="#L447">447</a>         logDate(DateUtil.addWeek(NOW, -1));
-<a class="jxr_linenumber" name="L448" href="#L448">448</a>     }
-<a class="jxr_linenumber" name="L449" href="#L449">449</a> 
-<a class="jxr_linenumber" name="L450" href="#L450">450</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     * Test add hour.</em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a>     @Test
-<a class="jxr_linenumber" name="L454" href="#L454">454</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddHour(){
-<a class="jxr_linenumber" name="L455" href="#L455">455</a>         logDate(DateUtil.addHour(NOW, 5));
-<a class="jxr_linenumber" name="L456" href="#L456">456</a>         logDate(DateUtil.addHour(NOW, -5));
-<a class="jxr_linenumber" name="L457" href="#L457">457</a>     }
-<a class="jxr_linenumber" name="L458" href="#L458">458</a> 
-<a class="jxr_linenumber" name="L459" href="#L459">459</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     * Test is in time.</em>
-<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L462" href="#L462">462</a>     @Test
-<a class="jxr_linenumber" name="L463" href="#L463">463</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime(){
-<a class="jxr_linenumber" name="L464" href="#L464">464</a>         assertSame(
-<a class="jxr_linenumber" name="L465" href="#L465">465</a>                         false,
-<a class="jxr_linenumber" name="L466" href="#L466">466</a>                         isInTime(
-<a class="jxr_linenumber" name="L467" href="#L467">467</a>                                         NOW,
-<a class="jxr_linenumber" name="L468" href="#L468">468</a>                                         toDate(<span class="jxr_string">"2012-10-10 22:59:00"</span>, COMMON_DATE_AND_TIME),
-<a class="jxr_linenumber" name="L469" href="#L469">469</a>                                         toDate(<span class="jxr_string">"2012-10-16 22:59:00"</span>, COMMON_DATE_AND_TIME)));
-<a class="jxr_linenumber" name="L470" href="#L470">470</a>         assertSame(
-<a class="jxr_linenumber" name="L471" href="#L471">471</a>                         <strong class="jxr_keyword">true</strong>,
-<a class="jxr_linenumber" name="L472" href="#L472">472</a>                         isInTime(
-<a class="jxr_linenumber" name="L473" href="#L473">473</a>                                         toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE),
-<a class="jxr_linenumber" name="L474" href="#L474">474</a>                                         toDate(<span class="jxr_string">"2016-06-11 22:59:00"</span>, COMMON_DATE_AND_TIME),
-<a class="jxr_linenumber" name="L475" href="#L475">475</a>                                         toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME)));
-<a class="jxr_linenumber" name="L476" href="#L476">476</a> 
-<a class="jxr_linenumber" name="L477" href="#L477">477</a>     }
-<a class="jxr_linenumber" name="L478" href="#L478">478</a> 
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     * Test is in time2.</em>
-<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L482" href="#L482">482</a>     @Test
-<a class="jxr_linenumber" name="L483" href="#L483">483</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime2(){
-<a class="jxr_linenumber" name="L484" href="#L484">484</a>         assertSame(
-<a class="jxr_linenumber" name="L485" href="#L485">485</a>                         false,
-<a class="jxr_linenumber" name="L486" href="#L486">486</a>                         isInTime(
-<a class="jxr_linenumber" name="L487" href="#L487">487</a>                                         toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE),
-<a class="jxr_linenumber" name="L488" href="#L488">488</a>                                         toDate(<span class="jxr_string">"2016-06-12 00:00:00"</span>, COMMON_DATE_AND_TIME),
-<a class="jxr_linenumber" name="L489" href="#L489">489</a>                                         toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME)));
-<a class="jxr_linenumber" name="L490" href="#L490">490</a>     }
-<a class="jxr_linenumber" name="L491" href="#L491">491</a> 
-<a class="jxr_linenumber" name="L492" href="#L492">492</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L493" href="#L493">493</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime3(){
-<a class="jxr_linenumber" name="L494" href="#L494">494</a>         isInTime(<strong class="jxr_keyword">null</strong>, toDate(<span class="jxr_string">"2016-06-12 00:00:00"</span>, COMMON_DATE_AND_TIME), toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME));
-<a class="jxr_linenumber" name="L495" href="#L495">495</a>     }
-<a class="jxr_linenumber" name="L496" href="#L496">496</a> 
-<a class="jxr_linenumber" name="L497" href="#L497">497</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L498" href="#L498">498</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime4(){
-<a class="jxr_linenumber" name="L499" href="#L499">499</a>         isInTime(toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE), <strong class="jxr_keyword">null</strong>, toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME));
-<a class="jxr_linenumber" name="L500" href="#L500">500</a>     }
-<a class="jxr_linenumber" name="L501" href="#L501">501</a> 
-<a class="jxr_linenumber" name="L502" href="#L502">502</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L503" href="#L503">503</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime5(){
-<a class="jxr_linenumber" name="L504" href="#L504">504</a>         isInTime(toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE), toDate(<span class="jxr_string">"2016-06-12 00:00:00"</span>, COMMON_DATE_AND_TIME), <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L505" href="#L505">505</a>     }
-<a class="jxr_linenumber" name="L506" href="#L506">506</a> 
-<a class="jxr_linenumber" name="L507" href="#L507">507</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L508" href="#L508">508</a> <em class="jxr_javadoccomment">     * Test get time length.</em>
-<a class="jxr_linenumber" name="L509" href="#L509">509</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L510" href="#L510">510</a>     @Test
-<a class="jxr_linenumber" name="L511" href="#L511">511</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetTimeLength(){
-<a class="jxr_linenumber" name="L512" href="#L512">512</a>         LOGGER.debug((NOW.getTime() + <span class="jxr_string">""</span>).length() + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetTime(){
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>         LOGGER.debug(DateUtil.getTime(NOW) + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>     }
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> 
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">     * Test is leap year.</em>
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>     @Test
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsLeapYear(){
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>         <strong class="jxr_keyword">int</strong> year = -3;
+<a class="jxr_linenumber" name="L421" href="#L421">421</a>         LOGGER.debug(<strong class="jxr_keyword">new</strong> GregorianCalendar(-3, 1, 1).isLeapYear(year) + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L422" href="#L422">422</a>         LOGGER.debug(DateUtil.isLeapYear(year) + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L423" href="#L423">423</a>     }
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> 
+<a class="jxr_linenumber" name="L425" href="#L425">425</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">     * Adds the year.</em>
+<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>     @Test
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddYear(){
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>         logDate(DateUtil.addYear(NOW, 5));
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>         logDate(NOW);
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>         logDate(DateUtils.addYears(NOW, 5));
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>         logDate(NOW);
+<a class="jxr_linenumber" name="L434" href="#L434">434</a>         logDate(DateUtil.addYear(NOW, -5));
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>         logDate(NOW);
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>     }
+<a class="jxr_linenumber" name="L437" href="#L437">437</a> 
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">     * Adds the day.</em>
+<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>     @Test
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddDay(){
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>         logDate(DateUtil.addDay(NOW, 5));
+<a class="jxr_linenumber" name="L444" href="#L444">444</a>         logDate(DateUtil.addDay(NOW, -5));
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>         logDate(DateUtil.addDay(toDate(<span class="jxr_string">"2014-12-31 02:10:05"</span>, COMMON_DATE_AND_TIME), 5));
+<a class="jxr_linenumber" name="L446" href="#L446">446</a>         logDate(DateUtil.addDay(toDate(<span class="jxr_string">"2014-01-01 02:10:05"</span>, COMMON_DATE_AND_TIME), -5));
+<a class="jxr_linenumber" name="L447" href="#L447">447</a>     }
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> 
+<a class="jxr_linenumber" name="L449" href="#L449">449</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * Adds the week.</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a>     @Test
+<a class="jxr_linenumber" name="L453" href="#L453">453</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddWeek(){
+<a class="jxr_linenumber" name="L454" href="#L454">454</a>         logDate(DateUtil.addWeek(NOW, 1));
+<a class="jxr_linenumber" name="L455" href="#L455">455</a>         logDate(DateUtil.addWeek(NOW, -1));
+<a class="jxr_linenumber" name="L456" href="#L456">456</a>     }
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> 
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     * Test add hour.</em>
+<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a>     @Test
+<a class="jxr_linenumber" name="L462" href="#L462">462</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testAddHour(){
+<a class="jxr_linenumber" name="L463" href="#L463">463</a>         logDate(DateUtil.addHour(NOW, 5));
+<a class="jxr_linenumber" name="L464" href="#L464">464</a>         logDate(DateUtil.addHour(NOW, -5));
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     }
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> 
+<a class="jxr_linenumber" name="L467" href="#L467">467</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * Test is in time.</em>
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a>     @Test
+<a class="jxr_linenumber" name="L471" href="#L471">471</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime(){
+<a class="jxr_linenumber" name="L472" href="#L472">472</a>         assertSame(
+<a class="jxr_linenumber" name="L473" href="#L473">473</a>                         false,
+<a class="jxr_linenumber" name="L474" href="#L474">474</a>                         isInTime(
+<a class="jxr_linenumber" name="L475" href="#L475">475</a>                                         NOW,
+<a class="jxr_linenumber" name="L476" href="#L476">476</a>                                         toDate(<span class="jxr_string">"2012-10-10 22:59:00"</span>, COMMON_DATE_AND_TIME),
+<a class="jxr_linenumber" name="L477" href="#L477">477</a>                                         toDate(<span class="jxr_string">"2012-10-16 22:59:00"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L478" href="#L478">478</a>         assertSame(
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>                         <strong class="jxr_keyword">true</strong>,
+<a class="jxr_linenumber" name="L480" href="#L480">480</a>                         isInTime(
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>                                         toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE),
+<a class="jxr_linenumber" name="L482" href="#L482">482</a>                                         toDate(<span class="jxr_string">"2016-06-11 22:59:00"</span>, COMMON_DATE_AND_TIME),
+<a class="jxr_linenumber" name="L483" href="#L483">483</a>                                         toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> 
+<a class="jxr_linenumber" name="L485" href="#L485">485</a>     }
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> 
+<a class="jxr_linenumber" name="L487" href="#L487">487</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">     * Test is in time2.</em>
+<a class="jxr_linenumber" name="L489" href="#L489">489</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L490" href="#L490">490</a>     @Test
+<a class="jxr_linenumber" name="L491" href="#L491">491</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime2(){
+<a class="jxr_linenumber" name="L492" href="#L492">492</a>         assertSame(
+<a class="jxr_linenumber" name="L493" href="#L493">493</a>                         false,
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>                         isInTime(
+<a class="jxr_linenumber" name="L495" href="#L495">495</a>                                         toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE),
+<a class="jxr_linenumber" name="L496" href="#L496">496</a>                                         toDate(<span class="jxr_string">"2016-06-12 00:00:00"</span>, COMMON_DATE_AND_TIME),
+<a class="jxr_linenumber" name="L497" href="#L497">497</a>                                         toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME)));
+<a class="jxr_linenumber" name="L498" href="#L498">498</a>     }
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> 
+<a class="jxr_linenumber" name="L500" href="#L500">500</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L501" href="#L501">501</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime3(){
+<a class="jxr_linenumber" name="L502" href="#L502">502</a>         isInTime(<strong class="jxr_keyword">null</strong>, toDate(<span class="jxr_string">"2016-06-12 00:00:00"</span>, COMMON_DATE_AND_TIME), toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME));
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>     }
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> 
+<a class="jxr_linenumber" name="L505" href="#L505">505</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L506" href="#L506">506</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime4(){
+<a class="jxr_linenumber" name="L507" href="#L507">507</a>         isInTime(toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE), <strong class="jxr_keyword">null</strong>, toDate(<span class="jxr_string">"2016-06-16 22:59:00"</span>, COMMON_DATE_AND_TIME));
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>     }
+<a class="jxr_linenumber" name="L509" href="#L509">509</a> 
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testIsInTime5(){
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>         isInTime(toDate(<span class="jxr_string">"2016-06-12"</span>, COMMON_DATE), toDate(<span class="jxr_string">"2016-06-12 00:00:00"</span>, COMMON_DATE_AND_TIME), <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L513" href="#L513">513</a>     }
 <a class="jxr_linenumber" name="L514" href="#L514">514</a> 
-<a class="jxr_linenumber" name="L515" href="#L515">515</a> }
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L516" href="#L516">516</a> <em class="jxr_javadoccomment">     * Test get time length.</em>
+<a class="jxr_linenumber" name="L517" href="#L517">517</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L518" href="#L518">518</a>     @Test
+<a class="jxr_linenumber" name="L519" href="#L519">519</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetTimeLength(){
+<a class="jxr_linenumber" name="L520" href="#L520">520</a>         LOGGER.debug((NOW.getTime() + <span class="jxr_string">""</span>).length() + <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L521" href="#L521">521</a>     }
+<a class="jxr_linenumber" name="L522" href="#L522">522</a> 
+<a class="jxr_linenumber" name="L523" href="#L523">523</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

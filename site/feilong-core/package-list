@@ -8,6 +8,10 @@ com.feilong.core.text
 com.feilong.core.util
 com.feilong.core.util.comparator
 com.feilong.core.util.predicate
+com.feilong.tools.formatter
+com.feilong.tools.formatter.entity
+com.feilong.tools.formatter.table
+com.feilong.tools.formatter.util
 com.feilong.tools.jsonlib
 com.feilong.tools.jsonlib.filters
 com.feilong.tools.jsonlib.processor

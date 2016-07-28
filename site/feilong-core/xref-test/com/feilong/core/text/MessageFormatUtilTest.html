@@ -35,7 +35,7 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.date.DateUtil;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.date.DateUtil.toDate;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.DatePattern.yyyy;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
@@ -56,7 +56,7 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> format(){
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          assertEquals(<span class="jxr_string">"name=张三jinaxin"</span>, MessageFormatUtil.format(<span class="jxr_string">"name=张三{0}a{1}"</span>, <span class="jxr_string">"jin"</span>, <span class="jxr_string">"xin"</span>));
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>          assertEquals(<span class="jxr_string">"name=张三5axin"</span>, MessageFormatUtil.format(<span class="jxr_string">"name=张三{0,number}a{1}"</span>, 5, <span class="jxr_string">"xin"</span>));
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          assertEquals(<span class="jxr_string">"name=张三2000-1-1axin"</span>, MessageFormatUtil.format(<span class="jxr_string">"name=张三{0,date}a{1}"</span>, DateUtil.toDate(<span class="jxr_string">"2000"</span>, yyyy), <span class="jxr_string">"xin"</span>));
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          assertEquals(<span class="jxr_string">"name=张三2000-1-1axin"</span>, MessageFormatUtil.format(<span class="jxr_string">"name=张三{0,date}a{1}"</span>, toDate(<span class="jxr_string">"2000"</span>, yyyy), <span class="jxr_string">"xin"</span>));
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      }
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      <em class="jxr_javadoccomment">/**</em>
