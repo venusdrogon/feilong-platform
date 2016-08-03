@@ -26,58 +26,55 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.junit.runner.RunWith;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.junit.runners.Parameterized;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.junit.runners.Parameterized.Parameter;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * The Class AbstractBooleanParameterizedTest.</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * @param &lt;I&gt;</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> *            the generic type</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * @param &lt;E&gt;</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> *            the element type</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * @since 1.6.4</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  @RunWith(Parameterized.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> AbstractBooleanParameterizedTest&lt;I, E&gt; {
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <em class="jxr_comment">//java.lang.IllegalAccessException: </em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <em class="jxr_comment">//Class org.junit.runners.parameterized.BlockJUnit4ClassRunnerWithParameters can not access a member of class </em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <em class="jxr_comment">//com.feilong.core.BaseParameterizedTest with modifiers "protected"</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <em class="jxr_comment">//必须是 public 访问修饰符</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <em class="jxr_javadoccomment">/** The f input. */</em>
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      @Parameter
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <em class="jxr_comment">// first data value (0) is default</em>
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>      <strong class="jxr_keyword">public</strong> I input;
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>      <em class="jxr_javadoccomment">/** The f expected. */</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>      @Parameter(value = 1)
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">public</strong> E expectedValue;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     * To list.</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     * @param valids</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     *            the valids</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     * @param invalids</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     *            the invalids</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     * @return the list</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">     * @since 1.6.4</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> List&lt;Object[]&gt; toList(Object[] valids,Object[] invalids){
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          List&lt;Object[]&gt; list = <strong class="jxr_keyword">new</strong> ArrayList&lt;Object[]&gt;();
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">for</strong> (Object valid : valids){
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>              list.add(<strong class="jxr_keyword">new</strong> Object[] { valid, <strong class="jxr_keyword">true</strong> });
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.junit.runners.Parameterized.Parameter;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * The Class AbstractBooleanParameterizedTest.</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * @param &lt;I&gt;</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> *            the generic type</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * @param &lt;E&gt;</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> *            the element type</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * @since 1.6.4</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> AbstractBooleanParameterizedTest&lt;I, E&gt; <strong class="jxr_keyword">extends</strong> <a href="../../../com/feilong/core/AbstractParameterizedTest.html">AbstractParameterizedTest</a>{
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <em class="jxr_comment">//java.lang.IllegalAccessException: </em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_comment">//Class org.junit.runners.parameterized.BlockJUnit4ClassRunnerWithParameters can not access a member of class </em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <em class="jxr_comment">//com.feilong.core.BaseParameterizedTest with modifiers "protected"</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <em class="jxr_comment">//必须是 public 访问修饰符</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <em class="jxr_javadoccomment">/** The f input. */</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      @Parameter
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <em class="jxr_comment">// first data value (0) is default</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">public</strong> I input;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <em class="jxr_javadoccomment">/** The f expected. */</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>      @Parameter(value = 1)
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">public</strong> E expectedValue;
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">     * To list.</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * @param valids</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     *            the valids</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * @param invalids</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     *            the invalids</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     * @return the list</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     * @since 1.6.4</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> List&lt;Object[]&gt; toList(Object[] valids,Object[] invalids){
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          List&lt;Object[]&gt; list = <strong class="jxr_keyword">new</strong> ArrayList&lt;Object[]&gt;();
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">for</strong> (Object valid : valids){
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>              list.add(<strong class="jxr_keyword">new</strong> Object[] { valid, <strong class="jxr_keyword">true</strong> });
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>          }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">for</strong> (Object invalid : invalids){
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>              list.add(<strong class="jxr_keyword">new</strong> Object[] { invalid, false });
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>          }
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">for</strong> (Object invalid : invalids){
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>              list.add(<strong class="jxr_keyword">new</strong> Object[] { invalid, false });
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          }
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">return</strong> list;
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      }
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">return</strong> list;
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

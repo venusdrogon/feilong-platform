@@ -448,7 +448,91 @@
 <a class="jxr_linenumber" name="L440" href="#L440">440</a>         <strong class="jxr_keyword">return</strong> inDay == currentDayOfMonth ? spaceHour + HOUR + <span class="jxr_string">"前"</span>
 <a class="jxr_linenumber" name="L441" href="#L441">441</a>                         : YESTERDAY + <span class="jxr_string">" "</span> + DateUtil.toString(inDate, COMMON_TIME_WITHOUT_SECOND);
 <a class="jxr_linenumber" name="L442" href="#L442">442</a>     }
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> }
+<a class="jxr_linenumber" name="L443" href="#L443">443</a> 
+<a class="jxr_linenumber" name="L444" href="#L444">444</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     * 获得两个日期时间的日期间隔时间集合(包含最小和最大值),用于统计日报表.</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     * Date fromDate = DateUtil.toDate("2011-03-5 23:31:25.456", DatePattern.COMMON_DATE_AND_TIME);</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     * Date toDate = DateUtil.toDate("2011-03-10 01:30:24.895", DatePattern.COMMON_DATE_AND_TIME);</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(DateExtensionUtil.getIntervalDayList(fromDate, toDate)));</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     * ["2011-03-05 00:00:00",</em>
+<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     * "2011-03-06 00:00:00",</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     * "2011-03-07 00:00:00",</em>
+<a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">     * "2011-03-08 00:00:00",</em>
+<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     * "2011-03-09 00:00:00",</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     * "2011-03-10 00:00:00"</em>
+<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     * ]</em>
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L471" href="#L471">471</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L472" href="#L472">472</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L473" href="#L473">473</a> <em class="jxr_javadoccomment">     * &lt;li&gt;每天的日期会被重置清零 &lt;code&gt;00:00:00.000&lt;/code&gt;&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">     * &lt;li&gt;方法自动辨识 &lt;code&gt;fromDate&lt;/code&gt;和 &lt;code&gt;toDate&lt;/code&gt;哪个是开始时间&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     * @param fromDate</em>
+<a class="jxr_linenumber" name="L479" href="#L479">479</a> <em class="jxr_javadoccomment">     *            the from date</em>
+<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     * @param toDate</em>
+<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     *            the to date</em>
+<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;fromDate&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toDate&lt;/code&gt; 是null,抛出 {@link NullPointerException}</em>
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * @see #getIntervalDay(Date, Date)</em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.time.DateUtils#iterator(Calendar, int)</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     * @since 1.5.4</em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;Date&gt; getIntervalDayList(Date fromDate,Date toDate){
+<a class="jxr_linenumber" name="L489" href="#L489">489</a>         Validate.notNull(fromDate, <span class="jxr_string">"fromDate can't be null!"</span>);
+<a class="jxr_linenumber" name="L490" href="#L490">490</a>         Validate.notNull(toDate, <span class="jxr_string">"toDate can't be null!"</span>);
+<a class="jxr_linenumber" name="L491" href="#L491">491</a> 
+<a class="jxr_linenumber" name="L492" href="#L492">492</a>         Date minDate = fromDate.before(toDate) ? fromDate : toDate;
+<a class="jxr_linenumber" name="L493" href="#L493">493</a>         Date maxDate = fromDate.before(toDate) ? toDate : fromDate;
+<a class="jxr_linenumber" name="L494" href="#L494">494</a> 
+<a class="jxr_linenumber" name="L495" href="#L495">495</a>         <em class="jxr_comment">// ******重置时间********</em>
+<a class="jxr_linenumber" name="L496" href="#L496">496</a>         Date beginDateReset = DateUtil.getFirstDateOfThisDay(minDate);
+<a class="jxr_linenumber" name="L497" href="#L497">497</a>         Date endDateReset = DateUtil.getLastDateOfThisDay(maxDate);
+<a class="jxr_linenumber" name="L498" href="#L498">498</a> 
+<a class="jxr_linenumber" name="L499" href="#L499">499</a>         List&lt;Date&gt; list = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L500" href="#L500">500</a>         list.add(beginDateReset);
+<a class="jxr_linenumber" name="L501" href="#L501">501</a> 
+<a class="jxr_linenumber" name="L502" href="#L502">502</a>         <em class="jxr_comment">// 相隔的天数</em>
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>         <strong class="jxr_keyword">int</strong> intervalDay = DateExtensionUtil.getIntervalDay(beginDateReset, endDateReset);
+<a class="jxr_linenumber" name="L504" href="#L504">504</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; intervalDay; ++i){
+<a class="jxr_linenumber" name="L505" href="#L505">505</a>             list.add(DateUtil.addDay(beginDateReset, i + 1));
+<a class="jxr_linenumber" name="L506" href="#L506">506</a>         }
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> 
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>         <strong class="jxr_keyword">return</strong> list;
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>     }
+<a class="jxr_linenumber" name="L510" href="#L510">510</a> 
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L512" href="#L512">512</a> <em class="jxr_javadoccomment">     * Test get interval day list.</em>
+<a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L514" href="#L514">514</a>     @Test
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetIntervalDayList(){
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>         String pattern = COMMON_DATE_AND_TIME_WITH_MILLISECOND;
+<a class="jxr_linenumber" name="L517" href="#L517">517</a>         String begin = <span class="jxr_string">"2011-03-05 23:31:25.456"</span>;
+<a class="jxr_linenumber" name="L518" href="#L518">518</a>         String end = <span class="jxr_string">"2011-03-10 01:30:24.895"</span>;
+<a class="jxr_linenumber" name="L519" href="#L519">519</a> 
+<a class="jxr_linenumber" name="L520" href="#L520">520</a>         List&lt;Date&gt; intervalDayList = getIntervalDayList(toDate(begin, pattern), toDate(end, pattern));
+<a class="jxr_linenumber" name="L521" href="#L521">521</a>         LOGGER.debug(JsonUtil.format(intervalDayList));
+<a class="jxr_linenumber" name="L522" href="#L522">522</a> 
+<a class="jxr_linenumber" name="L523" href="#L523">523</a>         List&lt;Date&gt; intervalDayList2 = getIntervalDayList(toDate(end, pattern), toDate(begin, pattern));
+<a class="jxr_linenumber" name="L524" href="#L524">524</a>         LOGGER.debug(JsonUtil.format(intervalDayList2));
+<a class="jxr_linenumber" name="L525" href="#L525">525</a>     }
+<a class="jxr_linenumber" name="L526" href="#L526">526</a> 
+<a class="jxr_linenumber" name="L527" href="#L527">527</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
