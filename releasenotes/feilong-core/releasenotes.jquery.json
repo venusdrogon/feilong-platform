@@ -1,6 +1,7 @@
 {
     "name": "releasenotes",
     "title": "Automatic release notes creator",
+    
     "description": "This plugin creates release notes automatically from your github milestones project. It also integrates issues, labels & comments",
     "keywords": [
         "notes",
