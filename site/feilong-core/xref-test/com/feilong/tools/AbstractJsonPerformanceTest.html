@@ -32,7 +32,7 @@
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> com.feilong.test.User;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.toList;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.date.DateExtensionUtil.getIntervalForView;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.date.DateExtensionUtil.formatDuration;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * </em>
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; times; ++i){
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>              performanceMethod(user);
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>          }
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          LOGGER.debug(<span class="jxr_string">"[{}]{},use time:{}"</span>, getType(), times, getIntervalForView(beginDate));
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          LOGGER.debug(<span class="jxr_string">"[{}]{},use time:{}"</span>, getType(), times, formatDuration(beginDate));
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      <em class="jxr_javadoccomment">/**</em>
