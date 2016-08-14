@@ -842,7 +842,7 @@
 
 						<group>
 							<title>util package</title>
-							<packages>com.feilong.core.util</packages>
+							<packages>com.feilong.core.util*</packages>
 						</group>
 					</groups>
 
