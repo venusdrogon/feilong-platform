@@ -28,23 +28,23 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.junit.runners.Parameterized.Parameters;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.AbstractBooleanParameterizedTest;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * The Class ObjectUtilIsPrimitiveArrayParameterizedTest.</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/feilong/core/lang/ObjectUtilIsPrimitiveArrayParameterizedTest.html">ObjectUtilIsPrimitiveArrayParameterizedTest</a> <strong class="jxr_keyword">extends</strong> AbstractBooleanParameterizedTest&lt;Object, Boolean&gt;{
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">     * Data.</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">     * @return the iterable</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>      @Parameters(name = <span class="jxr_string">"index:{index}: ObjectUtil.isPrimitiveArray({0})={1}"</span>)
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Iterable&lt;Object[]&gt; data(){
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">int</strong>[] i = {};
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.test.AbstractBooleanParameterizedTest;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> com.feilong.test.TestUtil;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * The Class ObjectUtilIsPrimitiveArrayParameterizedTest.</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/feilong/core/lang/ObjectUtilIsPrimitiveArrayParameterizedTest.html">ObjectUtilIsPrimitiveArrayParameterizedTest</a> <strong class="jxr_keyword">extends</strong> AbstractBooleanParameterizedTest&lt;Object, Boolean&gt;{
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">     * Data.</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     * @return the iterable</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      @Parameters(name = <span class="jxr_string">"index:{index}: ObjectUtil.isPrimitiveArray({0})={1}"</span>)
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Iterable&lt;Object[]&gt; data(){
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>          Object[] valids = {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>                              <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[] {}, <em class="jxr_comment">//</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>                              <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[] { 1, 2 },
@@ -55,7 +55,7 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>                                1L,
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>                                <span class="jxr_string">"1"</span>,
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>                                <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"1"</span>, <span class="jxr_string">"2"</span> } };
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">return</strong> toList(valids, invalids);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">return</strong> TestUtil.toDataList(valids, invalids);
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      }
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      <em class="jxr_javadoccomment">/**</em>
