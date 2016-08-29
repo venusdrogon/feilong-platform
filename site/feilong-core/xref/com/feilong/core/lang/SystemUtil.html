@@ -31,7 +31,7 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.ConvertUtil;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.toMap;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.SortUtil.sortByKeyAsc;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.SortUtil.sortMapByKeyAsc;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * {@link java.lang.System}工具类.</em>
@@ -474,7 +474,7 @@
 <a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * @since 1.8.0 change name</em>
 <a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L468" href="#L468">468</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Map&lt;String, String&gt; getEnvMap(){
-<a class="jxr_linenumber" name="L469" href="#L469">469</a>         <strong class="jxr_keyword">return</strong> sortByKeyAsc(System.getenv());
+<a class="jxr_linenumber" name="L469" href="#L469">469</a>         <strong class="jxr_keyword">return</strong> sortMapByKeyAsc(System.getenv());
 <a class="jxr_linenumber" name="L470" href="#L470">470</a>     }
 <a class="jxr_linenumber" name="L471" href="#L471">471</a> 
 <a class="jxr_linenumber" name="L472" href="#L472">472</a>     <em class="jxr_javadoccomment">/**</em>

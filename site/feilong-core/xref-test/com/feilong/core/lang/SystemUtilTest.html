@@ -29,7 +29,7 @@
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> com.feilong.tools.jsonlib.JsonUtil;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.SortUtil.sort;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.SortUtil.sortArray;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * The Class SystemUtilTest.</em>
@@ -58,7 +58,7 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> path(){
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          String path = System.getenv(<span class="jxr_string">"Path"</span>);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>          String[] strings = path.split(<span class="jxr_string">";"</span>);
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>          LOGGER.debug(JsonUtil.format(sort(strings)));
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          LOGGER.debug(JsonUtil.format(sortArray(strings)));
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      }
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      <em class="jxr_javadoccomment">/**</em>
