@@ -849,68 +849,71 @@
 <a class="jxr_linenumber" name="L841" href="#L841">841</a>     }
 <a class="jxr_linenumber" name="L842" href="#L842">842</a> 
 <a class="jxr_linenumber" name="L843" href="#L843">843</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L844" href="#L844">844</a> <em class="jxr_javadoccomment">     * 浏览器传递queryString()参数差别(浏览器兼容问题);chrome会将query进行 encoded再发送请求;而ie原封不动的发送.</em>
+<a class="jxr_linenumber" name="L844" href="#L844">844</a> <em class="jxr_javadoccomment">     * 浏览器传递queryString()参数差别;</em>
 <a class="jxr_linenumber" name="L845" href="#L845">845</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L846" href="#L846">846</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L847" href="#L847">847</a> <em class="jxr_javadoccomment">     * 由于暂时不能辨别是否encoded过,所以先强制decode再encode;</em>
-<a class="jxr_linenumber" name="L848" href="#L848">848</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L849" href="#L849">849</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L850" href="#L850">850</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L851" href="#L851">851</a> <em class="jxr_javadoccomment">     * 此处不能先转decode(query,charsetType),参数就是想传 =是转义符</em>
-<a class="jxr_linenumber" name="L852" href="#L852">852</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L853" href="#L853">853</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L854" href="#L854">854</a> <em class="jxr_javadoccomment">     * @param value</em>
-<a class="jxr_linenumber" name="L855" href="#L855">855</a> <em class="jxr_javadoccomment">     *            the value</em>
-<a class="jxr_linenumber" name="L856" href="#L856">856</a> <em class="jxr_javadoccomment">     * @param charsetType</em>
-<a class="jxr_linenumber" name="L857" href="#L857">857</a> <em class="jxr_javadoccomment">     *            何种编码, {@link CharsetType}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L858" href="#L858">858</a> <em class="jxr_javadoccomment">     *            &lt;span style="color:green"&gt;如果是null或者 empty,那么参数部分原样返回,自行处理兼容性问题&lt;/span&gt;&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L859" href="#L859">859</a> <em class="jxr_javadoccomment">     *            否则会先解码,再加码,因为ie浏览器和chrome浏览器 url中访问路径 ,带有中文情况下不一致</em>
-<a class="jxr_linenumber" name="L860" href="#L860">860</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt;是 null或者empty,返回 {@link StringUtils#EMPTY}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L861" href="#L861">861</a> <em class="jxr_javadoccomment">     *         如果&lt;code&gt;charsetType&lt;/code&gt;是 null或者empty,直接返回 &lt;code&gt;value&lt;/code&gt;&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L862" href="#L862">862</a> <em class="jxr_javadoccomment">     *         否则先 {@link URIUtil#decode(String, String)} 再 {@link URIUtil#encode(String, String)}值</em>
-<a class="jxr_linenumber" name="L863" href="#L863">863</a> <em class="jxr_javadoccomment">     * @see &lt;a</em>
-<a class="jxr_linenumber" name="L864" href="#L864">864</a> <em class="jxr_javadoccomment">     *      href="<a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser" target="alexandria_uri">http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>"&gt;</em>
-<a class="jxr_linenumber" name="L865" href="#L865">865</a> <em class="jxr_javadoccomment">     *      java-request-getquerystring-value-different-between-chrome-and-ie-browser&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L866" href="#L866">866</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
-<a class="jxr_linenumber" name="L867" href="#L867">867</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L868" href="#L868">868</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String decodeAndEncode(String value,String charsetType){
-<a class="jxr_linenumber" name="L869" href="#L869">869</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(value)){
-<a class="jxr_linenumber" name="L870" href="#L870">870</a>             <strong class="jxr_keyword">return</strong> EMPTY;
-<a class="jxr_linenumber" name="L871" href="#L871">871</a>         }
-<a class="jxr_linenumber" name="L872" href="#L872">872</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(charsetType) ? value : URIUtil.encode(URIUtil.decode(value, charsetType), charsetType);
-<a class="jxr_linenumber" name="L873" href="#L873">873</a>     }
-<a class="jxr_linenumber" name="L874" href="#L874">874</a> 
-<a class="jxr_linenumber" name="L875" href="#L875">875</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L876" href="#L876">876</a> <em class="jxr_javadoccomment">     * 拼接url.</em>
-<a class="jxr_linenumber" name="L877" href="#L877">877</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L878" href="#L878">878</a> <em class="jxr_javadoccomment">     * @param beforePathWithoutQueryString</em>
-<a class="jxr_linenumber" name="L879" href="#L879">879</a> <em class="jxr_javadoccomment">     *            the before path without query string</em>
-<a class="jxr_linenumber" name="L880" href="#L880">880</a> <em class="jxr_javadoccomment">     * @param arrayValueMap</em>
-<a class="jxr_linenumber" name="L881" href="#L881">881</a> <em class="jxr_javadoccomment">     *            the array value map</em>
-<a class="jxr_linenumber" name="L882" href="#L882">882</a> <em class="jxr_javadoccomment">     * @param charsetType</em>
-<a class="jxr_linenumber" name="L883" href="#L883">883</a> <em class="jxr_javadoccomment">     *            何种编码, {@link CharsetType}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L884" href="#L884">884</a> <em class="jxr_javadoccomment">     *            &lt;span style="color:green"&gt;如果是null或者 empty,那么参数部分原样返回,自行处理兼容性问题&lt;/span&gt;&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L885" href="#L885">885</a> <em class="jxr_javadoccomment">     *            否则会先解码,再加码,因为ie浏览器和chrome浏览器 url中访问路径 ,带有中文情况下不一致</em>
-<a class="jxr_linenumber" name="L886" href="#L886">886</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;beforePathWithoutQueryString&lt;/code&gt; 是null或者empty,返回 {@link StringUtils#EMPTY}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L887" href="#L887">887</a> <em class="jxr_javadoccomment">     *         如果&lt;code&gt;arrayValueMap&lt;/code&gt; 是null或者empty,返回 &lt;code&gt;beforePathWithoutQueryString&lt;/code&gt;</em>
-<a class="jxr_linenumber" name="L888" href="#L888">888</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
-<a class="jxr_linenumber" name="L889" href="#L889">889</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L890" href="#L890">890</a>     <strong class="jxr_keyword">static</strong> String combineUrl(String beforePathWithoutQueryString,Map&lt;String, String[]&gt; arrayValueMap,String charsetType){
-<a class="jxr_linenumber" name="L891" href="#L891">891</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(beforePathWithoutQueryString)){
-<a class="jxr_linenumber" name="L892" href="#L892">892</a>             <strong class="jxr_keyword">return</strong> EMPTY;
-<a class="jxr_linenumber" name="L893" href="#L893">893</a>         }
-<a class="jxr_linenumber" name="L894" href="#L894">894</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(arrayValueMap)){<em class="jxr_comment">//没有参数 直接return</em>
-<a class="jxr_linenumber" name="L895" href="#L895">895</a>             <strong class="jxr_keyword">return</strong> beforePathWithoutQueryString;
+<a class="jxr_linenumber" name="L846" href="#L846">846</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L847" href="#L847">847</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L848" href="#L848">848</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L849" href="#L849">849</a> <em class="jxr_javadoccomment">     * &lt;li&gt;主要是为了处理浏览器兼容问题,参见</em>
+<a class="jxr_linenumber" name="L850" href="#L850">850</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser" target="alexandria_uri">http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>"&gt;</em>
+<a class="jxr_linenumber" name="L851" href="#L851">851</a> <em class="jxr_javadoccomment">     * java-request-getquerystring-value-different-between-chrome-and-ie-browser&lt;/a&gt;,chrome会将query进行 encoded再发送请求;而ie原封不动的发送.&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L852" href="#L852">852</a> <em class="jxr_javadoccomment">     * &lt;li&gt;由于暂时不能辨别是否encoded过,所以先强制decode再encode;&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L853" href="#L853">853</a> <em class="jxr_javadoccomment">     * &lt;li&gt;此处不能先转decode(query,charsetType),参数就是想传 =是转义符&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L854" href="#L854">854</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L855" href="#L855">855</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L856" href="#L856">856</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L857" href="#L857">857</a> <em class="jxr_javadoccomment">     * @param value</em>
+<a class="jxr_linenumber" name="L858" href="#L858">858</a> <em class="jxr_javadoccomment">     *            the value</em>
+<a class="jxr_linenumber" name="L859" href="#L859">859</a> <em class="jxr_javadoccomment">     * @param charsetType</em>
+<a class="jxr_linenumber" name="L860" href="#L860">860</a> <em class="jxr_javadoccomment">     *            何种编码, {@link CharsetType}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L861" href="#L861">861</a> <em class="jxr_javadoccomment">     *            &lt;span style="color:green"&gt;如果是null或者 empty,那么参数部分原样返回,自行处理兼容性问题&lt;/span&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L862" href="#L862">862</a> <em class="jxr_javadoccomment">     *            否则会先解码,再加码,因为ie浏览器和chrome浏览器 url中访问路径 ,带有中文情况下不一致</em>
+<a class="jxr_linenumber" name="L863" href="#L863">863</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt;是 null或者empty,返回 {@link StringUtils#EMPTY}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L864" href="#L864">864</a> <em class="jxr_javadoccomment">     *         如果&lt;code&gt;charsetType&lt;/code&gt;是 null或者empty,直接返回 &lt;code&gt;value&lt;/code&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L865" href="#L865">865</a> <em class="jxr_javadoccomment">     *         否则先 {@link URIUtil#decode(String, String)} 再 {@link URIUtil#encode(String, String)}值</em>
+<a class="jxr_linenumber" name="L866" href="#L866">866</a> <em class="jxr_javadoccomment">     * @see &lt;a</em>
+<a class="jxr_linenumber" name="L867" href="#L867">867</a> <em class="jxr_javadoccomment">     *      href="<a href="http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser" target="alexandria_uri">http://stackoverflow.com/questions/15004593/java-request-getquerystring-value-different-between-chrome-and-ie-browser</a>"&gt;</em>
+<a class="jxr_linenumber" name="L868" href="#L868">868</a> <em class="jxr_javadoccomment">     *      java-request-getquerystring-value-different-between-chrome-and-ie-browser&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L869" href="#L869">869</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
+<a class="jxr_linenumber" name="L870" href="#L870">870</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L871" href="#L871">871</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String decodeAndEncode(String value,String charsetType){
+<a class="jxr_linenumber" name="L872" href="#L872">872</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(value)){
+<a class="jxr_linenumber" name="L873" href="#L873">873</a>             <strong class="jxr_keyword">return</strong> EMPTY;
+<a class="jxr_linenumber" name="L874" href="#L874">874</a>         }
+<a class="jxr_linenumber" name="L875" href="#L875">875</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(charsetType) ? value : URIUtil.encode(URIUtil.decode(value, charsetType), charsetType);
+<a class="jxr_linenumber" name="L876" href="#L876">876</a>     }
+<a class="jxr_linenumber" name="L877" href="#L877">877</a> 
+<a class="jxr_linenumber" name="L878" href="#L878">878</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L879" href="#L879">879</a> <em class="jxr_javadoccomment">     * 拼接url.</em>
+<a class="jxr_linenumber" name="L880" href="#L880">880</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L881" href="#L881">881</a> <em class="jxr_javadoccomment">     * @param beforePathWithoutQueryString</em>
+<a class="jxr_linenumber" name="L882" href="#L882">882</a> <em class="jxr_javadoccomment">     *            the before path without query string</em>
+<a class="jxr_linenumber" name="L883" href="#L883">883</a> <em class="jxr_javadoccomment">     * @param arrayValueMap</em>
+<a class="jxr_linenumber" name="L884" href="#L884">884</a> <em class="jxr_javadoccomment">     *            the array value map</em>
+<a class="jxr_linenumber" name="L885" href="#L885">885</a> <em class="jxr_javadoccomment">     * @param charsetType</em>
+<a class="jxr_linenumber" name="L886" href="#L886">886</a> <em class="jxr_javadoccomment">     *            何种编码, {@link CharsetType}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L887" href="#L887">887</a> <em class="jxr_javadoccomment">     *            &lt;span style="color:green"&gt;如果是null或者 empty,那么参数部分原样返回,自行处理兼容性问题&lt;/span&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L888" href="#L888">888</a> <em class="jxr_javadoccomment">     *            否则会先解码,再加码,因为ie浏览器和chrome浏览器 url中访问路径 ,带有中文情况下不一致</em>
+<a class="jxr_linenumber" name="L889" href="#L889">889</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;beforePathWithoutQueryString&lt;/code&gt; 是null或者empty,返回 {@link StringUtils#EMPTY}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L890" href="#L890">890</a> <em class="jxr_javadoccomment">     *         如果&lt;code&gt;arrayValueMap&lt;/code&gt; 是null或者empty,返回 &lt;code&gt;beforePathWithoutQueryString&lt;/code&gt;</em>
+<a class="jxr_linenumber" name="L891" href="#L891">891</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
+<a class="jxr_linenumber" name="L892" href="#L892">892</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L893" href="#L893">893</a>     <strong class="jxr_keyword">static</strong> String combineUrl(String beforePathWithoutQueryString,Map&lt;String, String[]&gt; arrayValueMap,String charsetType){
+<a class="jxr_linenumber" name="L894" href="#L894">894</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(beforePathWithoutQueryString)){
+<a class="jxr_linenumber" name="L895" href="#L895">895</a>             <strong class="jxr_keyword">return</strong> EMPTY;
 <a class="jxr_linenumber" name="L896" href="#L896">896</a>         }
-<a class="jxr_linenumber" name="L897" href="#L897">897</a> 
-<a class="jxr_linenumber" name="L898" href="#L898">898</a>         StringBuilder sb = <strong class="jxr_keyword">new</strong> StringBuilder();
-<a class="jxr_linenumber" name="L899" href="#L899">899</a>         sb.append(beforePathWithoutQueryString);
-<a class="jxr_linenumber" name="L900" href="#L900">900</a>         sb.append(QUESTIONMARK);
-<a class="jxr_linenumber" name="L901" href="#L901">901</a>         sb.append(toSafeQueryString(arrayValueMap, charsetType));
-<a class="jxr_linenumber" name="L902" href="#L902">902</a> 
-<a class="jxr_linenumber" name="L903" href="#L903">903</a>         <strong class="jxr_keyword">return</strong> sb.toString();
-<a class="jxr_linenumber" name="L904" href="#L904">904</a>     }
-<a class="jxr_linenumber" name="L905" href="#L905">905</a> }
+<a class="jxr_linenumber" name="L897" href="#L897">897</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(arrayValueMap)){<em class="jxr_comment">//没有参数 直接return</em>
+<a class="jxr_linenumber" name="L898" href="#L898">898</a>             <strong class="jxr_keyword">return</strong> beforePathWithoutQueryString;
+<a class="jxr_linenumber" name="L899" href="#L899">899</a>         }
+<a class="jxr_linenumber" name="L900" href="#L900">900</a> 
+<a class="jxr_linenumber" name="L901" href="#L901">901</a>         StringBuilder sb = <strong class="jxr_keyword">new</strong> StringBuilder();
+<a class="jxr_linenumber" name="L902" href="#L902">902</a>         sb.append(beforePathWithoutQueryString);
+<a class="jxr_linenumber" name="L903" href="#L903">903</a>         sb.append(QUESTIONMARK);
+<a class="jxr_linenumber" name="L904" href="#L904">904</a>         sb.append(toSafeQueryString(arrayValueMap, charsetType));
+<a class="jxr_linenumber" name="L905" href="#L905">905</a> 
+<a class="jxr_linenumber" name="L906" href="#L906">906</a>         <strong class="jxr_keyword">return</strong> sb.toString();
+<a class="jxr_linenumber" name="L907" href="#L907">907</a>     }
+<a class="jxr_linenumber" name="L908" href="#L908">908</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
