@@ -2050,234 +2050,236 @@
 <a class="jxr_linenumber" name="L2042" href="#L2042">2042</a> <em class="jxr_javadoccomment">     *            返回的map,key转换器</em>
 <a class="jxr_linenumber" name="L2043" href="#L2043">2043</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;objectCollection&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptyMap()}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L2044" href="#L2044">2044</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;keyTransformer&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2045" href="#L2045">2045</a> <em class="jxr_javadoccomment">     * @since 1.8.8</em>
-<a class="jxr_linenumber" name="L2046" href="#L2046">2046</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2047" href="#L2047">2047</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T, O&gt; Map&lt;T, List&lt;O&gt;&gt; group(Collection&lt;O&gt; objectCollection,Transformer&lt;O, T&gt; keyTransformer){
-<a class="jxr_linenumber" name="L2048" href="#L2048">2048</a>         <strong class="jxr_keyword">return</strong> group(objectCollection, <strong class="jxr_keyword">null</strong>, keyTransformer);
-<a class="jxr_linenumber" name="L2049" href="#L2049">2049</a>     }
-<a class="jxr_linenumber" name="L2050" href="#L2050">2050</a> 
-<a class="jxr_linenumber" name="L2051" href="#L2051">2051</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2052" href="#L2052">2052</a> <em class="jxr_javadoccomment">     * 循环 &lt;code&gt;objectCollection&lt;/code&gt;,找到符合条件的 &lt;code&gt;includePredicate&lt;/code&gt;的元素,将元素使用&lt;code&gt;keyTransformer&lt;/code&gt;转成key</em>
-<a class="jxr_linenumber" name="L2053" href="#L2053">2053</a> <em class="jxr_javadoccomment">     * ,相同值的元素组成list作为value,封装成map返回.</em>
-<a class="jxr_linenumber" name="L2054" href="#L2054">2054</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2055" href="#L2055">2055</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2056" href="#L2056">2056</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2057" href="#L2057">2057</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L2058" href="#L2058">2058</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
-<a class="jxr_linenumber" name="L2059" href="#L2059">2059</a> <em class="jxr_javadoccomment">     * 返回的{@link LinkedHashMap},key是 &lt;code&gt;objectCollection&lt;/code&gt;中的元素 使用&lt;code&gt;keyTransformer&lt;/code&gt;转换的值,value是</em>
-<a class="jxr_linenumber" name="L2060" href="#L2060">2060</a> <em class="jxr_javadoccomment">     * &lt;code&gt;objectCollection&lt;/code&gt;中的元素对象(相同key值,组成list);</em>
-<a class="jxr_linenumber" name="L2061" href="#L2061">2061</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2062" href="#L2062">2062</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2063" href="#L2063">2063</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
-<a class="jxr_linenumber" name="L2064" href="#L2064">2064</a> <em class="jxr_javadoccomment">     * 返回的{@link LinkedHashMap}顺序,是 &lt;code&gt;objectCollection&lt;/code&gt; 元素顺序,如果需要排序,可自行调用 {@link SortUtil#sortMapByKeyAsc(Map)},</em>
-<a class="jxr_linenumber" name="L2065" href="#L2065">2065</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMapByKeyDesc(Map)}, {@link SortUtil#sortMapByValueAsc(Map)}, {@link SortUtil#sortMapByValueDesc(Map)}或者,</em>
-<a class="jxr_linenumber" name="L2066" href="#L2066">2066</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMap(Map, java.util.Comparator)}</em>
-<a class="jxr_linenumber" name="L2067" href="#L2067">2067</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2068" href="#L2068">2068</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2069" href="#L2069">2069</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L2070" href="#L2070">2070</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2071" href="#L2071">2071</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2045" href="#L2045">2045</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://github.com/venusdrogon/feilong-core/issues/270"&gt;List to Map 实现类似矩阵的逻辑 by ananbeike&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L2046" href="#L2046">2046</a> <em class="jxr_javadoccomment">     * @since 1.8.8</em>
+<a class="jxr_linenumber" name="L2047" href="#L2047">2047</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2048" href="#L2048">2048</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T, O&gt; Map&lt;T, List&lt;O&gt;&gt; group(Collection&lt;O&gt; objectCollection,Transformer&lt;O, T&gt; keyTransformer){
+<a class="jxr_linenumber" name="L2049" href="#L2049">2049</a>         <strong class="jxr_keyword">return</strong> group(objectCollection, <strong class="jxr_keyword">null</strong>, keyTransformer);
+<a class="jxr_linenumber" name="L2050" href="#L2050">2050</a>     }
+<a class="jxr_linenumber" name="L2051" href="#L2051">2051</a> 
+<a class="jxr_linenumber" name="L2052" href="#L2052">2052</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2053" href="#L2053">2053</a> <em class="jxr_javadoccomment">     * 循环 &lt;code&gt;objectCollection&lt;/code&gt;,找到符合条件的 &lt;code&gt;includePredicate&lt;/code&gt;的元素,将元素使用&lt;code&gt;keyTransformer&lt;/code&gt;转成key</em>
+<a class="jxr_linenumber" name="L2054" href="#L2054">2054</a> <em class="jxr_javadoccomment">     * ,相同值的元素组成list作为value,封装成map返回.</em>
+<a class="jxr_linenumber" name="L2055" href="#L2055">2055</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2056" href="#L2056">2056</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2057" href="#L2057">2057</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2058" href="#L2058">2058</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L2059" href="#L2059">2059</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
+<a class="jxr_linenumber" name="L2060" href="#L2060">2060</a> <em class="jxr_javadoccomment">     * 返回的{@link LinkedHashMap},key是 &lt;code&gt;objectCollection&lt;/code&gt;中的元素 使用&lt;code&gt;keyTransformer&lt;/code&gt;转换的值,value是</em>
+<a class="jxr_linenumber" name="L2061" href="#L2061">2061</a> <em class="jxr_javadoccomment">     * &lt;code&gt;objectCollection&lt;/code&gt;中的元素对象(相同key值,组成list);</em>
+<a class="jxr_linenumber" name="L2062" href="#L2062">2062</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2063" href="#L2063">2063</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2064" href="#L2064">2064</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
+<a class="jxr_linenumber" name="L2065" href="#L2065">2065</a> <em class="jxr_javadoccomment">     * 返回的{@link LinkedHashMap}顺序,是 &lt;code&gt;objectCollection&lt;/code&gt; 元素顺序,如果需要排序,可自行调用 {@link SortUtil#sortMapByKeyAsc(Map)},</em>
+<a class="jxr_linenumber" name="L2066" href="#L2066">2066</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMapByKeyDesc(Map)}, {@link SortUtil#sortMapByValueAsc(Map)}, {@link SortUtil#sortMapByValueDesc(Map)}或者,</em>
+<a class="jxr_linenumber" name="L2067" href="#L2067">2067</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMap(Map, java.util.Comparator)}</em>
+<a class="jxr_linenumber" name="L2068" href="#L2068">2068</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2069" href="#L2069">2069</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2070" href="#L2070">2070</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L2071" href="#L2071">2071</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L2072" href="#L2072">2072</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2073" href="#L2073">2073</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2074" href="#L2074">2074</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2075" href="#L2075">2075</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2076" href="#L2076">2076</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2077" href="#L2077">2077</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2078" href="#L2078">2078</a> <em class="jxr_javadoccomment">     * &lt;b&gt;场景:&lt;/b&gt; 从user list中,提取 年龄 大于20的user,user的姓名的姓为key,user组成list,返回map</em>
-<a class="jxr_linenumber" name="L2079" href="#L2079">2079</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2080" href="#L2080">2080</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2081" href="#L2081">2081</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2082" href="#L2082">2082</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2083" href="#L2083">2083</a> <em class="jxr_javadoccomment">     * User mateng55 = new User("马腾", 55);</em>
-<a class="jxr_linenumber" name="L2084" href="#L2084">2084</a> <em class="jxr_javadoccomment">     * User machao28 = new User("马超", 28);</em>
-<a class="jxr_linenumber" name="L2085" href="#L2085">2085</a> <em class="jxr_javadoccomment">     * User madai27 = new User("马岱", 27);</em>
-<a class="jxr_linenumber" name="L2086" href="#L2086">2086</a> <em class="jxr_javadoccomment">     * User maxiu25 = new User("马休", 25);</em>
-<a class="jxr_linenumber" name="L2087" href="#L2087">2087</a> <em class="jxr_javadoccomment">     * User zhangfei28 = new User("张飞", 28);</em>
-<a class="jxr_linenumber" name="L2088" href="#L2088">2088</a> <em class="jxr_javadoccomment">     * User liubei32 = new User("刘备", 32);</em>
-<a class="jxr_linenumber" name="L2089" href="#L2089">2089</a> <em class="jxr_javadoccomment">     * User guanyu50 = new User("关羽", 50);</em>
-<a class="jxr_linenumber" name="L2090" href="#L2090">2090</a> <em class="jxr_javadoccomment">     * User guanping32 = new User("关平", 32);</em>
-<a class="jxr_linenumber" name="L2091" href="#L2091">2091</a> <em class="jxr_javadoccomment">     * User guansuo31 = new User("关索", 31);</em>
-<a class="jxr_linenumber" name="L2092" href="#L2092">2092</a> <em class="jxr_javadoccomment">     * User guanxing20 = new User("关兴", 18);</em>
-<a class="jxr_linenumber" name="L2093" href="#L2093">2093</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2094" href="#L2094">2094</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//************************************************************************&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2095" href="#L2095">2095</a> <em class="jxr_javadoccomment">     * List{@code &lt;User&gt;} list = toList(mateng55, machao28, madai27, maxiu25, zhangfei28, liubei32, guanyu50, guanping32, guansuo31, guanxing20);</em>
-<a class="jxr_linenumber" name="L2096" href="#L2096">2096</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2097" href="#L2097">2097</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//************************************************************************&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2098" href="#L2098">2098</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2099" href="#L2099">2099</a> <em class="jxr_javadoccomment">     * Predicate{@code &lt;User&gt;} comparatorPredicate = BeanPredicateUtil.comparatorPredicate("age", 20, Criterion.LESS);</em>
-<a class="jxr_linenumber" name="L2100" href="#L2100">2100</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, List&lt;User&gt;&gt;} map = CollectionsUtil.group(list, comparatorPredicate, new Transformer{@code &lt;User, String&gt;}(){</em>
-<a class="jxr_linenumber" name="L2101" href="#L2101">2101</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2102" href="#L2102">2102</a> <em class="jxr_javadoccomment">     *     &amp;#64;Override</em>
-<a class="jxr_linenumber" name="L2103" href="#L2103">2103</a> <em class="jxr_javadoccomment">     *     public String transform(User user){</em>
-<a class="jxr_linenumber" name="L2104" href="#L2104">2104</a> <em class="jxr_javadoccomment">     *         &lt;span style="color:green"&gt;//提取名字 的姓&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2105" href="#L2105">2105</a> <em class="jxr_javadoccomment">     *         return user.getName().substring(0, 1);</em>
-<a class="jxr_linenumber" name="L2106" href="#L2106">2106</a> <em class="jxr_javadoccomment">     *     }</em>
-<a class="jxr_linenumber" name="L2107" href="#L2107">2107</a> <em class="jxr_javadoccomment">     * });</em>
-<a class="jxr_linenumber" name="L2108" href="#L2108">2108</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2109" href="#L2109">2109</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(map));</em>
-<a class="jxr_linenumber" name="L2110" href="#L2110">2110</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2111" href="#L2111">2111</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2112" href="#L2112">2112</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2113" href="#L2113">2113</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
-<a class="jxr_linenumber" name="L2114" href="#L2114">2114</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2115" href="#L2115">2115</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2116" href="#L2116">2116</a> <em class="jxr_javadoccomment">    {</em>
-<a class="jxr_linenumber" name="L2117" href="#L2117">2117</a> <em class="jxr_javadoccomment">            "马":[{</em>
-<a class="jxr_linenumber" name="L2118" href="#L2118">2118</a> <em class="jxr_javadoccomment">                    "age": 55,</em>
-<a class="jxr_linenumber" name="L2119" href="#L2119">2119</a> <em class="jxr_javadoccomment">                    "name": "马腾",</em>
-<a class="jxr_linenumber" name="L2120" href="#L2120">2120</a> <em class="jxr_javadoccomment">                },{</em>
-<a class="jxr_linenumber" name="L2121" href="#L2121">2121</a> <em class="jxr_javadoccomment">                    "age": 28,</em>
-<a class="jxr_linenumber" name="L2122" href="#L2122">2122</a> <em class="jxr_javadoccomment">                    "name": "马超",</em>
-<a class="jxr_linenumber" name="L2123" href="#L2123">2123</a> <em class="jxr_javadoccomment">                },{</em>
-<a class="jxr_linenumber" name="L2124" href="#L2124">2124</a> <em class="jxr_javadoccomment">                    "age": 27,</em>
-<a class="jxr_linenumber" name="L2125" href="#L2125">2125</a> <em class="jxr_javadoccomment">                    "name": "马岱",</em>
-<a class="jxr_linenumber" name="L2126" href="#L2126">2126</a> <em class="jxr_javadoccomment">                },{</em>
-<a class="jxr_linenumber" name="L2127" href="#L2127">2127</a> <em class="jxr_javadoccomment">                    "age": 25,</em>
-<a class="jxr_linenumber" name="L2128" href="#L2128">2128</a> <em class="jxr_javadoccomment">                    "name": "马休"</em>
-<a class="jxr_linenumber" name="L2129" href="#L2129">2129</a> <em class="jxr_javadoccomment">                }],</em>
-<a class="jxr_linenumber" name="L2130" href="#L2130">2130</a> <em class="jxr_javadoccomment">            "张": [{</em>
-<a class="jxr_linenumber" name="L2131" href="#L2131">2131</a> <em class="jxr_javadoccomment">                "age": 28,</em>
-<a class="jxr_linenumber" name="L2132" href="#L2132">2132</a> <em class="jxr_javadoccomment">                "name": "张飞"</em>
-<a class="jxr_linenumber" name="L2133" href="#L2133">2133</a> <em class="jxr_javadoccomment">            }],</em>
-<a class="jxr_linenumber" name="L2134" href="#L2134">2134</a> <em class="jxr_javadoccomment">            "刘": [{</em>
-<a class="jxr_linenumber" name="L2135" href="#L2135">2135</a> <em class="jxr_javadoccomment">                "age": 32,</em>
-<a class="jxr_linenumber" name="L2136" href="#L2136">2136</a> <em class="jxr_javadoccomment">                "name": "刘备"</em>
-<a class="jxr_linenumber" name="L2137" href="#L2137">2137</a> <em class="jxr_javadoccomment">            }],</em>
-<a class="jxr_linenumber" name="L2138" href="#L2138">2138</a> <em class="jxr_javadoccomment">            "关": [{</em>
-<a class="jxr_linenumber" name="L2139" href="#L2139">2139</a> <em class="jxr_javadoccomment">                    "age": 50,</em>
-<a class="jxr_linenumber" name="L2140" href="#L2140">2140</a> <em class="jxr_javadoccomment">                    "name": "关羽"</em>
-<a class="jxr_linenumber" name="L2141" href="#L2141">2141</a> <em class="jxr_javadoccomment">                },{</em>
-<a class="jxr_linenumber" name="L2142" href="#L2142">2142</a> <em class="jxr_javadoccomment">                    "age": 32,</em>
-<a class="jxr_linenumber" name="L2143" href="#L2143">2143</a> <em class="jxr_javadoccomment">                    "name": "关平"</em>
-<a class="jxr_linenumber" name="L2144" href="#L2144">2144</a> <em class="jxr_javadoccomment">                },{</em>
-<a class="jxr_linenumber" name="L2145" href="#L2145">2145</a> <em class="jxr_javadoccomment">                    "age": 31,</em>
-<a class="jxr_linenumber" name="L2146" href="#L2146">2146</a> <em class="jxr_javadoccomment">                    "name": "关索"</em>
-<a class="jxr_linenumber" name="L2147" href="#L2147">2147</a> <em class="jxr_javadoccomment">                }]</em>
-<a class="jxr_linenumber" name="L2148" href="#L2148">2148</a> <em class="jxr_javadoccomment">        }</em>
-<a class="jxr_linenumber" name="L2149" href="#L2149">2149</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2150" href="#L2150">2150</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2151" href="#L2151">2151</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2152" href="#L2152">2152</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2153" href="#L2153">2153</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2154" href="#L2154">2154</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2155" href="#L2155">2155</a> <em class="jxr_javadoccomment">     * @param &lt;O&gt;</em>
-<a class="jxr_linenumber" name="L2156" href="#L2156">2156</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2157" href="#L2157">2157</a> <em class="jxr_javadoccomment">     * @param objectCollection</em>
-<a class="jxr_linenumber" name="L2158" href="#L2158">2158</a> <em class="jxr_javadoccomment">     *            the object list</em>
-<a class="jxr_linenumber" name="L2159" href="#L2159">2159</a> <em class="jxr_javadoccomment">     * @param includePredicate</em>
-<a class="jxr_linenumber" name="L2160" href="#L2160">2160</a> <em class="jxr_javadoccomment">     *            the include predicate</em>
-<a class="jxr_linenumber" name="L2161" href="#L2161">2161</a> <em class="jxr_javadoccomment">     * @param keyTransformer</em>
-<a class="jxr_linenumber" name="L2162" href="#L2162">2162</a> <em class="jxr_javadoccomment">     *            返回的map,key转换器</em>
-<a class="jxr_linenumber" name="L2163" href="#L2163">2163</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;objectCollection&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptyMap()}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2164" href="#L2164">2164</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;keyTransformer&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2165" href="#L2165">2165</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;includePredicate&lt;/code&gt; 是null,那么以所有的元素进行分组&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2166" href="#L2166">2166</a> <em class="jxr_javadoccomment">     *         如果没有任何element match &lt;code&gt;includePredicate&lt;/code&gt;,返回 empty {@link LinkedHashMap}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2167" href="#L2167">2167</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.collections4.Transformer#transform(Object)</em>
-<a class="jxr_linenumber" name="L2168" href="#L2168">2168</a> <em class="jxr_javadoccomment">     * @since 1.8.8</em>
-<a class="jxr_linenumber" name="L2169" href="#L2169">2169</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2170" href="#L2170">2170</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T, O&gt; Map&lt;T, List&lt;O&gt;&gt; group(
-<a class="jxr_linenumber" name="L2171" href="#L2171">2171</a>                     Collection&lt;O&gt; objectCollection,
-<a class="jxr_linenumber" name="L2172" href="#L2172">2172</a>                     Predicate&lt;O&gt; includePredicate,
-<a class="jxr_linenumber" name="L2173" href="#L2173">2173</a>                     Transformer&lt;O, T&gt; keyTransformer){
-<a class="jxr_linenumber" name="L2174" href="#L2174">2174</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(objectCollection)){
-<a class="jxr_linenumber" name="L2175" href="#L2175">2175</a>             <strong class="jxr_keyword">return</strong> emptyMap();
-<a class="jxr_linenumber" name="L2176" href="#L2176">2176</a>         }
-<a class="jxr_linenumber" name="L2177" href="#L2177">2177</a>         Validate.notNull(keyTransformer, <span class="jxr_string">"keyTransformer can't be null!"</span>);
-<a class="jxr_linenumber" name="L2178" href="#L2178">2178</a> 
-<a class="jxr_linenumber" name="L2179" href="#L2179">2179</a>         Map&lt;T, List&lt;O&gt;&gt; map = newLinkedHashMap(objectCollection.size());
-<a class="jxr_linenumber" name="L2180" href="#L2180">2180</a>         <strong class="jxr_keyword">for</strong> (O obj : objectCollection){
-<a class="jxr_linenumber" name="L2181" href="#L2181">2181</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != includePredicate &amp;&amp; !includePredicate.evaluate(obj)){
-<a class="jxr_linenumber" name="L2182" href="#L2182">2182</a>                 <strong class="jxr_keyword">continue</strong>;
-<a class="jxr_linenumber" name="L2183" href="#L2183">2183</a>             }
-<a class="jxr_linenumber" name="L2184" href="#L2184">2184</a>             MapUtil.putMultiValue(map, keyTransformer.transform(obj), obj);
-<a class="jxr_linenumber" name="L2185" href="#L2185">2185</a>         }
-<a class="jxr_linenumber" name="L2186" href="#L2186">2186</a>         <strong class="jxr_keyword">return</strong> map;
-<a class="jxr_linenumber" name="L2187" href="#L2187">2187</a>     }
-<a class="jxr_linenumber" name="L2188" href="#L2188">2188</a> 
-<a class="jxr_linenumber" name="L2189" href="#L2189">2189</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2190" href="#L2190">2190</a> <em class="jxr_javadoccomment">     * 循环 &lt;code&gt;objectCollection&lt;/code&gt;,以元素的 &lt;code&gt;propertyName&lt;/code&gt;属性值为key,元素为value,封装成map返回(map只put第一个匹配的元素,&lt;b&gt;后面出现相同的元素将会忽略&lt;/b&gt;).</em>
-<a class="jxr_linenumber" name="L2191" href="#L2191">2191</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2192" href="#L2192">2192</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2193" href="#L2193">2193</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2194" href="#L2194">2194</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L2195" href="#L2195">2195</a> <em class="jxr_javadoccomment">     * &lt;li&gt;返回的{@link LinkedHashMap},key是 &lt;code&gt;objectCollection&lt;/code&gt;中的元素对象中 &lt;code&gt;propertyName&lt;/code&gt;的值,value是</em>
-<a class="jxr_linenumber" name="L2196" href="#L2196">2196</a> <em class="jxr_javadoccomment">     * &lt;code&gt;objectCollection&lt;/code&gt;中的元素对象;&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2197" href="#L2197">2197</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2198" href="#L2198">2198</a> <em class="jxr_javadoccomment">     * &lt;li&gt;顺序是 &lt;code&gt;objectCollection&lt;/code&gt; &lt;code&gt;propertyName&lt;/code&gt;的值 顺序,如果需要排序,可自行调用 {@link SortUtil#sortMapByKeyAsc(Map)},</em>
-<a class="jxr_linenumber" name="L2199" href="#L2199">2199</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMapByKeyDesc(Map)}, {@link SortUtil#sortMapByValueAsc(Map)}, {@link SortUtil#sortMapByValueDesc(Map)}或者,</em>
-<a class="jxr_linenumber" name="L2200" href="#L2200">2200</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMap(Map, java.util.Comparator)}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2201" href="#L2201">2201</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2202" href="#L2202">2202</a> <em class="jxr_javadoccomment">     * &lt;li&gt;间接的可以做到基于某个属性值去重的效果&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2203" href="#L2203">2203</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果value需要是集合的话,可以调用 {@link #group(Collection, String)}方法&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2204" href="#L2204">2204</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L2205" href="#L2205">2205</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2206" href="#L2206">2206</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2207" href="#L2207">2207</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2208" href="#L2208">2208</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2209" href="#L2209">2209</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2210" href="#L2210">2210</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2211" href="#L2211">2211</a> <em class="jxr_javadoccomment">     * List{@code &lt;User&gt;} list = new ArrayList{@code &lt;&gt;}();</em>
-<a class="jxr_linenumber" name="L2212" href="#L2212">2212</a> <em class="jxr_javadoccomment">     * list.add(new User("张飞", 23));</em>
-<a class="jxr_linenumber" name="L2213" href="#L2213">2213</a> <em class="jxr_javadoccomment">     * list.add(new User("刘备", 25));</em>
-<a class="jxr_linenumber" name="L2214" href="#L2214">2214</a> <em class="jxr_javadoccomment">     * list.add(new User("刘备", 30));</em>
-<a class="jxr_linenumber" name="L2215" href="#L2215">2215</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2216" href="#L2216">2216</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, User&gt;} map = CollectionsUtil.groupOne(list, "name");</em>
-<a class="jxr_linenumber" name="L2217" href="#L2217">2217</a> <em class="jxr_javadoccomment">     * LOGGER.info(JsonUtil.format(map));</em>
-<a class="jxr_linenumber" name="L2218" href="#L2218">2218</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2219" href="#L2219">2219</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2220" href="#L2220">2220</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L2073" href="#L2073">2073</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2074" href="#L2074">2074</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2075" href="#L2075">2075</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2076" href="#L2076">2076</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2077" href="#L2077">2077</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2078" href="#L2078">2078</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2079" href="#L2079">2079</a> <em class="jxr_javadoccomment">     * &lt;b&gt;场景:&lt;/b&gt; 从user list中,提取 年龄 大于20的user,user的姓名的姓为key,user组成list,返回map</em>
+<a class="jxr_linenumber" name="L2080" href="#L2080">2080</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2081" href="#L2081">2081</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2082" href="#L2082">2082</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2083" href="#L2083">2083</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2084" href="#L2084">2084</a> <em class="jxr_javadoccomment">     * User mateng55 = new User("马腾", 55);</em>
+<a class="jxr_linenumber" name="L2085" href="#L2085">2085</a> <em class="jxr_javadoccomment">     * User machao28 = new User("马超", 28);</em>
+<a class="jxr_linenumber" name="L2086" href="#L2086">2086</a> <em class="jxr_javadoccomment">     * User madai27 = new User("马岱", 27);</em>
+<a class="jxr_linenumber" name="L2087" href="#L2087">2087</a> <em class="jxr_javadoccomment">     * User maxiu25 = new User("马休", 25);</em>
+<a class="jxr_linenumber" name="L2088" href="#L2088">2088</a> <em class="jxr_javadoccomment">     * User zhangfei28 = new User("张飞", 28);</em>
+<a class="jxr_linenumber" name="L2089" href="#L2089">2089</a> <em class="jxr_javadoccomment">     * User liubei32 = new User("刘备", 32);</em>
+<a class="jxr_linenumber" name="L2090" href="#L2090">2090</a> <em class="jxr_javadoccomment">     * User guanyu50 = new User("关羽", 50);</em>
+<a class="jxr_linenumber" name="L2091" href="#L2091">2091</a> <em class="jxr_javadoccomment">     * User guanping32 = new User("关平", 32);</em>
+<a class="jxr_linenumber" name="L2092" href="#L2092">2092</a> <em class="jxr_javadoccomment">     * User guansuo31 = new User("关索", 31);</em>
+<a class="jxr_linenumber" name="L2093" href="#L2093">2093</a> <em class="jxr_javadoccomment">     * User guanxing20 = new User("关兴", 18);</em>
+<a class="jxr_linenumber" name="L2094" href="#L2094">2094</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2095" href="#L2095">2095</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//************************************************************************&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2096" href="#L2096">2096</a> <em class="jxr_javadoccomment">     * List{@code &lt;User&gt;} list = toList(mateng55, machao28, madai27, maxiu25, zhangfei28, liubei32, guanyu50, guanping32, guansuo31, guanxing20);</em>
+<a class="jxr_linenumber" name="L2097" href="#L2097">2097</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2098" href="#L2098">2098</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//************************************************************************&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2099" href="#L2099">2099</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2100" href="#L2100">2100</a> <em class="jxr_javadoccomment">     * Predicate{@code &lt;User&gt;} comparatorPredicate = BeanPredicateUtil.comparatorPredicate("age", 20, Criterion.LESS);</em>
+<a class="jxr_linenumber" name="L2101" href="#L2101">2101</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, List&lt;User&gt;&gt;} map = CollectionsUtil.group(list, comparatorPredicate, new Transformer{@code &lt;User, String&gt;}(){</em>
+<a class="jxr_linenumber" name="L2102" href="#L2102">2102</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2103" href="#L2103">2103</a> <em class="jxr_javadoccomment">     *     &amp;#64;Override</em>
+<a class="jxr_linenumber" name="L2104" href="#L2104">2104</a> <em class="jxr_javadoccomment">     *     public String transform(User user){</em>
+<a class="jxr_linenumber" name="L2105" href="#L2105">2105</a> <em class="jxr_javadoccomment">     *         &lt;span style="color:green"&gt;//提取名字 的姓&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2106" href="#L2106">2106</a> <em class="jxr_javadoccomment">     *         return user.getName().substring(0, 1);</em>
+<a class="jxr_linenumber" name="L2107" href="#L2107">2107</a> <em class="jxr_javadoccomment">     *     }</em>
+<a class="jxr_linenumber" name="L2108" href="#L2108">2108</a> <em class="jxr_javadoccomment">     * });</em>
+<a class="jxr_linenumber" name="L2109" href="#L2109">2109</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2110" href="#L2110">2110</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(map));</em>
+<a class="jxr_linenumber" name="L2111" href="#L2111">2111</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2112" href="#L2112">2112</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2113" href="#L2113">2113</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2114" href="#L2114">2114</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L2115" href="#L2115">2115</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2116" href="#L2116">2116</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2117" href="#L2117">2117</a> <em class="jxr_javadoccomment">    {</em>
+<a class="jxr_linenumber" name="L2118" href="#L2118">2118</a> <em class="jxr_javadoccomment">            "马":[{</em>
+<a class="jxr_linenumber" name="L2119" href="#L2119">2119</a> <em class="jxr_javadoccomment">                    "age": 55,</em>
+<a class="jxr_linenumber" name="L2120" href="#L2120">2120</a> <em class="jxr_javadoccomment">                    "name": "马腾",</em>
+<a class="jxr_linenumber" name="L2121" href="#L2121">2121</a> <em class="jxr_javadoccomment">                },{</em>
+<a class="jxr_linenumber" name="L2122" href="#L2122">2122</a> <em class="jxr_javadoccomment">                    "age": 28,</em>
+<a class="jxr_linenumber" name="L2123" href="#L2123">2123</a> <em class="jxr_javadoccomment">                    "name": "马超",</em>
+<a class="jxr_linenumber" name="L2124" href="#L2124">2124</a> <em class="jxr_javadoccomment">                },{</em>
+<a class="jxr_linenumber" name="L2125" href="#L2125">2125</a> <em class="jxr_javadoccomment">                    "age": 27,</em>
+<a class="jxr_linenumber" name="L2126" href="#L2126">2126</a> <em class="jxr_javadoccomment">                    "name": "马岱",</em>
+<a class="jxr_linenumber" name="L2127" href="#L2127">2127</a> <em class="jxr_javadoccomment">                },{</em>
+<a class="jxr_linenumber" name="L2128" href="#L2128">2128</a> <em class="jxr_javadoccomment">                    "age": 25,</em>
+<a class="jxr_linenumber" name="L2129" href="#L2129">2129</a> <em class="jxr_javadoccomment">                    "name": "马休"</em>
+<a class="jxr_linenumber" name="L2130" href="#L2130">2130</a> <em class="jxr_javadoccomment">                }],</em>
+<a class="jxr_linenumber" name="L2131" href="#L2131">2131</a> <em class="jxr_javadoccomment">            "张": [{</em>
+<a class="jxr_linenumber" name="L2132" href="#L2132">2132</a> <em class="jxr_javadoccomment">                "age": 28,</em>
+<a class="jxr_linenumber" name="L2133" href="#L2133">2133</a> <em class="jxr_javadoccomment">                "name": "张飞"</em>
+<a class="jxr_linenumber" name="L2134" href="#L2134">2134</a> <em class="jxr_javadoccomment">            }],</em>
+<a class="jxr_linenumber" name="L2135" href="#L2135">2135</a> <em class="jxr_javadoccomment">            "刘": [{</em>
+<a class="jxr_linenumber" name="L2136" href="#L2136">2136</a> <em class="jxr_javadoccomment">                "age": 32,</em>
+<a class="jxr_linenumber" name="L2137" href="#L2137">2137</a> <em class="jxr_javadoccomment">                "name": "刘备"</em>
+<a class="jxr_linenumber" name="L2138" href="#L2138">2138</a> <em class="jxr_javadoccomment">            }],</em>
+<a class="jxr_linenumber" name="L2139" href="#L2139">2139</a> <em class="jxr_javadoccomment">            "关": [{</em>
+<a class="jxr_linenumber" name="L2140" href="#L2140">2140</a> <em class="jxr_javadoccomment">                    "age": 50,</em>
+<a class="jxr_linenumber" name="L2141" href="#L2141">2141</a> <em class="jxr_javadoccomment">                    "name": "关羽"</em>
+<a class="jxr_linenumber" name="L2142" href="#L2142">2142</a> <em class="jxr_javadoccomment">                },{</em>
+<a class="jxr_linenumber" name="L2143" href="#L2143">2143</a> <em class="jxr_javadoccomment">                    "age": 32,</em>
+<a class="jxr_linenumber" name="L2144" href="#L2144">2144</a> <em class="jxr_javadoccomment">                    "name": "关平"</em>
+<a class="jxr_linenumber" name="L2145" href="#L2145">2145</a> <em class="jxr_javadoccomment">                },{</em>
+<a class="jxr_linenumber" name="L2146" href="#L2146">2146</a> <em class="jxr_javadoccomment">                    "age": 31,</em>
+<a class="jxr_linenumber" name="L2147" href="#L2147">2147</a> <em class="jxr_javadoccomment">                    "name": "关索"</em>
+<a class="jxr_linenumber" name="L2148" href="#L2148">2148</a> <em class="jxr_javadoccomment">                }]</em>
+<a class="jxr_linenumber" name="L2149" href="#L2149">2149</a> <em class="jxr_javadoccomment">        }</em>
+<a class="jxr_linenumber" name="L2150" href="#L2150">2150</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2151" href="#L2151">2151</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2152" href="#L2152">2152</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2153" href="#L2153">2153</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2154" href="#L2154">2154</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L2155" href="#L2155">2155</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2156" href="#L2156">2156</a> <em class="jxr_javadoccomment">     * @param &lt;O&gt;</em>
+<a class="jxr_linenumber" name="L2157" href="#L2157">2157</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2158" href="#L2158">2158</a> <em class="jxr_javadoccomment">     * @param objectCollection</em>
+<a class="jxr_linenumber" name="L2159" href="#L2159">2159</a> <em class="jxr_javadoccomment">     *            the object list</em>
+<a class="jxr_linenumber" name="L2160" href="#L2160">2160</a> <em class="jxr_javadoccomment">     * @param includePredicate</em>
+<a class="jxr_linenumber" name="L2161" href="#L2161">2161</a> <em class="jxr_javadoccomment">     *            the include predicate</em>
+<a class="jxr_linenumber" name="L2162" href="#L2162">2162</a> <em class="jxr_javadoccomment">     * @param keyTransformer</em>
+<a class="jxr_linenumber" name="L2163" href="#L2163">2163</a> <em class="jxr_javadoccomment">     *            返回的map,key转换器</em>
+<a class="jxr_linenumber" name="L2164" href="#L2164">2164</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;objectCollection&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptyMap()}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2165" href="#L2165">2165</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;keyTransformer&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2166" href="#L2166">2166</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;includePredicate&lt;/code&gt; 是null,那么以所有的元素进行分组&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2167" href="#L2167">2167</a> <em class="jxr_javadoccomment">     *         如果没有任何element match &lt;code&gt;includePredicate&lt;/code&gt;,返回 empty {@link LinkedHashMap}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2168" href="#L2168">2168</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.collections4.Transformer#transform(Object)</em>
+<a class="jxr_linenumber" name="L2169" href="#L2169">2169</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://github.com/venusdrogon/feilong-core/issues/270"&gt;List to Map 实现类似矩阵的逻辑 by ananbeike&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L2170" href="#L2170">2170</a> <em class="jxr_javadoccomment">     * @since 1.8.8</em>
+<a class="jxr_linenumber" name="L2171" href="#L2171">2171</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2172" href="#L2172">2172</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T, O&gt; Map&lt;T, List&lt;O&gt;&gt; group(
+<a class="jxr_linenumber" name="L2173" href="#L2173">2173</a>                     Collection&lt;O&gt; objectCollection,
+<a class="jxr_linenumber" name="L2174" href="#L2174">2174</a>                     Predicate&lt;O&gt; includePredicate,
+<a class="jxr_linenumber" name="L2175" href="#L2175">2175</a>                     Transformer&lt;O, T&gt; keyTransformer){
+<a class="jxr_linenumber" name="L2176" href="#L2176">2176</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(objectCollection)){
+<a class="jxr_linenumber" name="L2177" href="#L2177">2177</a>             <strong class="jxr_keyword">return</strong> emptyMap();
+<a class="jxr_linenumber" name="L2178" href="#L2178">2178</a>         }
+<a class="jxr_linenumber" name="L2179" href="#L2179">2179</a>         Validate.notNull(keyTransformer, <span class="jxr_string">"keyTransformer can't be null!"</span>);
+<a class="jxr_linenumber" name="L2180" href="#L2180">2180</a> 
+<a class="jxr_linenumber" name="L2181" href="#L2181">2181</a>         Map&lt;T, List&lt;O&gt;&gt; map = newLinkedHashMap(objectCollection.size());
+<a class="jxr_linenumber" name="L2182" href="#L2182">2182</a>         <strong class="jxr_keyword">for</strong> (O obj : objectCollection){
+<a class="jxr_linenumber" name="L2183" href="#L2183">2183</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != includePredicate &amp;&amp; !includePredicate.evaluate(obj)){
+<a class="jxr_linenumber" name="L2184" href="#L2184">2184</a>                 <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L2185" href="#L2185">2185</a>             }
+<a class="jxr_linenumber" name="L2186" href="#L2186">2186</a>             MapUtil.putMultiValue(map, keyTransformer.transform(obj), obj);
+<a class="jxr_linenumber" name="L2187" href="#L2187">2187</a>         }
+<a class="jxr_linenumber" name="L2188" href="#L2188">2188</a>         <strong class="jxr_keyword">return</strong> map;
+<a class="jxr_linenumber" name="L2189" href="#L2189">2189</a>     }
+<a class="jxr_linenumber" name="L2190" href="#L2190">2190</a> 
+<a class="jxr_linenumber" name="L2191" href="#L2191">2191</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2192" href="#L2192">2192</a> <em class="jxr_javadoccomment">     * 循环 &lt;code&gt;objectCollection&lt;/code&gt;,以元素的 &lt;code&gt;propertyName&lt;/code&gt;属性值为key,元素为value,封装成map返回(map只put第一个匹配的元素,&lt;b&gt;后面出现相同的元素将会忽略&lt;/b&gt;).</em>
+<a class="jxr_linenumber" name="L2193" href="#L2193">2193</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2194" href="#L2194">2194</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2195" href="#L2195">2195</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2196" href="#L2196">2196</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L2197" href="#L2197">2197</a> <em class="jxr_javadoccomment">     * &lt;li&gt;返回的{@link LinkedHashMap},key是 &lt;code&gt;objectCollection&lt;/code&gt;中的元素对象中 &lt;code&gt;propertyName&lt;/code&gt;的值,value是</em>
+<a class="jxr_linenumber" name="L2198" href="#L2198">2198</a> <em class="jxr_javadoccomment">     * &lt;code&gt;objectCollection&lt;/code&gt;中的元素对象;&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2199" href="#L2199">2199</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2200" href="#L2200">2200</a> <em class="jxr_javadoccomment">     * &lt;li&gt;顺序是 &lt;code&gt;objectCollection&lt;/code&gt; &lt;code&gt;propertyName&lt;/code&gt;的值 顺序,如果需要排序,可自行调用 {@link SortUtil#sortMapByKeyAsc(Map)},</em>
+<a class="jxr_linenumber" name="L2201" href="#L2201">2201</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMapByKeyDesc(Map)}, {@link SortUtil#sortMapByValueAsc(Map)}, {@link SortUtil#sortMapByValueDesc(Map)}或者,</em>
+<a class="jxr_linenumber" name="L2202" href="#L2202">2202</a> <em class="jxr_javadoccomment">     * {@link SortUtil#sortMap(Map, java.util.Comparator)}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2203" href="#L2203">2203</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2204" href="#L2204">2204</a> <em class="jxr_javadoccomment">     * &lt;li&gt;间接的可以做到基于某个属性值去重的效果&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2205" href="#L2205">2205</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果value需要是集合的话,可以调用 {@link #group(Collection, String)}方法&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2206" href="#L2206">2206</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L2207" href="#L2207">2207</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2208" href="#L2208">2208</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2209" href="#L2209">2209</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2210" href="#L2210">2210</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2211" href="#L2211">2211</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2212" href="#L2212">2212</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2213" href="#L2213">2213</a> <em class="jxr_javadoccomment">     * List{@code &lt;User&gt;} list = new ArrayList{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L2214" href="#L2214">2214</a> <em class="jxr_javadoccomment">     * list.add(new User("张飞", 23));</em>
+<a class="jxr_linenumber" name="L2215" href="#L2215">2215</a> <em class="jxr_javadoccomment">     * list.add(new User("刘备", 25));</em>
+<a class="jxr_linenumber" name="L2216" href="#L2216">2216</a> <em class="jxr_javadoccomment">     * list.add(new User("刘备", 30));</em>
+<a class="jxr_linenumber" name="L2217" href="#L2217">2217</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2218" href="#L2218">2218</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, User&gt;} map = CollectionsUtil.groupOne(list, "name");</em>
+<a class="jxr_linenumber" name="L2219" href="#L2219">2219</a> <em class="jxr_javadoccomment">     * LOGGER.info(JsonUtil.format(map));</em>
+<a class="jxr_linenumber" name="L2220" href="#L2220">2220</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L2221" href="#L2221">2221</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2222" href="#L2222">2222</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2223" href="#L2223">2223</a> <em class="jxr_javadoccomment">     * {</em>
-<a class="jxr_linenumber" name="L2224" href="#L2224">2224</a> <em class="jxr_javadoccomment">        "张飞":         {</em>
-<a class="jxr_linenumber" name="L2225" href="#L2225">2225</a> <em class="jxr_javadoccomment">            "age": 23,</em>
-<a class="jxr_linenumber" name="L2226" href="#L2226">2226</a> <em class="jxr_javadoccomment">            "name": "张飞"</em>
-<a class="jxr_linenumber" name="L2227" href="#L2227">2227</a> <em class="jxr_javadoccomment">        },</em>
-<a class="jxr_linenumber" name="L2228" href="#L2228">2228</a> <em class="jxr_javadoccomment">        "刘备":         {</em>
-<a class="jxr_linenumber" name="L2229" href="#L2229">2229</a> <em class="jxr_javadoccomment">            "age": 25,</em>
-<a class="jxr_linenumber" name="L2230" href="#L2230">2230</a> <em class="jxr_javadoccomment">            "name": "刘备"</em>
-<a class="jxr_linenumber" name="L2231" href="#L2231">2231</a> <em class="jxr_javadoccomment">        }</em>
-<a class="jxr_linenumber" name="L2232" href="#L2232">2232</a> <em class="jxr_javadoccomment">    }</em>
-<a class="jxr_linenumber" name="L2233" href="#L2233">2233</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2234" href="#L2234">2234</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2235" href="#L2235">2235</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2222" href="#L2222">2222</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L2223" href="#L2223">2223</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2224" href="#L2224">2224</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2225" href="#L2225">2225</a> <em class="jxr_javadoccomment">     * {</em>
+<a class="jxr_linenumber" name="L2226" href="#L2226">2226</a> <em class="jxr_javadoccomment">        "张飞":         {</em>
+<a class="jxr_linenumber" name="L2227" href="#L2227">2227</a> <em class="jxr_javadoccomment">            "age": 23,</em>
+<a class="jxr_linenumber" name="L2228" href="#L2228">2228</a> <em class="jxr_javadoccomment">            "name": "张飞"</em>
+<a class="jxr_linenumber" name="L2229" href="#L2229">2229</a> <em class="jxr_javadoccomment">        },</em>
+<a class="jxr_linenumber" name="L2230" href="#L2230">2230</a> <em class="jxr_javadoccomment">        "刘备":         {</em>
+<a class="jxr_linenumber" name="L2231" href="#L2231">2231</a> <em class="jxr_javadoccomment">            "age": 25,</em>
+<a class="jxr_linenumber" name="L2232" href="#L2232">2232</a> <em class="jxr_javadoccomment">            "name": "刘备"</em>
+<a class="jxr_linenumber" name="L2233" href="#L2233">2233</a> <em class="jxr_javadoccomment">        }</em>
+<a class="jxr_linenumber" name="L2234" href="#L2234">2234</a> <em class="jxr_javadoccomment">    }</em>
+<a class="jxr_linenumber" name="L2235" href="#L2235">2235</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L2236" href="#L2236">2236</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2237" href="#L2237">2237</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2238" href="#L2238">2238</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2239" href="#L2239">2239</a> <em class="jxr_javadoccomment">     * @param &lt;O&gt;</em>
+<a class="jxr_linenumber" name="L2237" href="#L2237">2237</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2238" href="#L2238">2238</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2239" href="#L2239">2239</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
 <a class="jxr_linenumber" name="L2240" href="#L2240">2240</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2241" href="#L2241">2241</a> <em class="jxr_javadoccomment">     * @param objectCollection</em>
-<a class="jxr_linenumber" name="L2242" href="#L2242">2242</a> <em class="jxr_javadoccomment">     *            the object collection</em>
-<a class="jxr_linenumber" name="L2243" href="#L2243">2243</a> <em class="jxr_javadoccomment">     * @param propertyName</em>
-<a class="jxr_linenumber" name="L2244" href="#L2244">2244</a> <em class="jxr_javadoccomment">     *            泛型O对象指定的属性名称,Possibly indexed and/or nested name of the property to be modified,参见</em>
-<a class="jxr_linenumber" name="L2245" href="#L2245">2245</a> <em class="jxr_javadoccomment">     *            &lt;a href="../bean/BeanUtil.html#propertyName"&gt;propertyName&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L2246" href="#L2246">2246</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;objectCollection&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptyMap()}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2247" href="#L2247">2247</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertyName&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2248" href="#L2248">2248</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertyName&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}</em>
-<a class="jxr_linenumber" name="L2249" href="#L2249">2249</a> <em class="jxr_javadoccomment">     * @see #group(Collection, String)</em>
-<a class="jxr_linenumber" name="L2250" href="#L2250">2250</a> <em class="jxr_javadoccomment">     * @since 1.0.8</em>
-<a class="jxr_linenumber" name="L2251" href="#L2251">2251</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2252" href="#L2252">2252</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T, O&gt; Map&lt;T, O&gt; groupOne(Collection&lt;O&gt; objectCollection,String propertyName){
-<a class="jxr_linenumber" name="L2253" href="#L2253">2253</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(objectCollection)){
-<a class="jxr_linenumber" name="L2254" href="#L2254">2254</a>             <strong class="jxr_keyword">return</strong> emptyMap();
-<a class="jxr_linenumber" name="L2255" href="#L2255">2255</a>         }
-<a class="jxr_linenumber" name="L2256" href="#L2256">2256</a>         Validate.notBlank(propertyName, <span class="jxr_string">"propertyName can't be null/empty!"</span>);
-<a class="jxr_linenumber" name="L2257" href="#L2257">2257</a> 
-<a class="jxr_linenumber" name="L2258" href="#L2258">2258</a>         Map&lt;T, O&gt; map = newLinkedHashMap(objectCollection.size());
-<a class="jxr_linenumber" name="L2259" href="#L2259">2259</a>         <strong class="jxr_keyword">for</strong> (O o : objectCollection){
-<a class="jxr_linenumber" name="L2260" href="#L2260">2260</a>             T key = PropertyUtil.getProperty(o, propertyName);
-<a class="jxr_linenumber" name="L2261" href="#L2261">2261</a>             <strong class="jxr_keyword">if</strong> (!map.containsKey(key)){
-<a class="jxr_linenumber" name="L2262" href="#L2262">2262</a>                 map.put(key, o);
-<a class="jxr_linenumber" name="L2263" href="#L2263">2263</a>             }<strong class="jxr_keyword">else</strong>{
-<a class="jxr_linenumber" name="L2264" href="#L2264">2264</a>                 <strong class="jxr_keyword">if</strong> (LOGGER.isTraceEnabled()){
-<a class="jxr_linenumber" name="L2265" href="#L2265">2265</a>                     LOGGER.trace(<span class="jxr_string">"map:{} already has the key:[{}],ignore!"</span>, JsonUtil.format(map.keySet()), key);
-<a class="jxr_linenumber" name="L2266" href="#L2266">2266</a>                 }
-<a class="jxr_linenumber" name="L2267" href="#L2267">2267</a>             }
-<a class="jxr_linenumber" name="L2268" href="#L2268">2268</a>         }
-<a class="jxr_linenumber" name="L2269" href="#L2269">2269</a>         <strong class="jxr_keyword">return</strong> map;
-<a class="jxr_linenumber" name="L2270" href="#L2270">2270</a>     }
-<a class="jxr_linenumber" name="L2271" href="#L2271">2271</a> 
-<a class="jxr_linenumber" name="L2272" href="#L2272">2272</a> }
+<a class="jxr_linenumber" name="L2241" href="#L2241">2241</a> <em class="jxr_javadoccomment">     * @param &lt;O&gt;</em>
+<a class="jxr_linenumber" name="L2242" href="#L2242">2242</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2243" href="#L2243">2243</a> <em class="jxr_javadoccomment">     * @param objectCollection</em>
+<a class="jxr_linenumber" name="L2244" href="#L2244">2244</a> <em class="jxr_javadoccomment">     *            the object collection</em>
+<a class="jxr_linenumber" name="L2245" href="#L2245">2245</a> <em class="jxr_javadoccomment">     * @param propertyName</em>
+<a class="jxr_linenumber" name="L2246" href="#L2246">2246</a> <em class="jxr_javadoccomment">     *            泛型O对象指定的属性名称,Possibly indexed and/or nested name of the property to be modified,参见</em>
+<a class="jxr_linenumber" name="L2247" href="#L2247">2247</a> <em class="jxr_javadoccomment">     *            &lt;a href="../bean/BeanUtil.html#propertyName"&gt;propertyName&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L2248" href="#L2248">2248</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;objectCollection&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptyMap()}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2249" href="#L2249">2249</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertyName&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2250" href="#L2250">2250</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;propertyName&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}</em>
+<a class="jxr_linenumber" name="L2251" href="#L2251">2251</a> <em class="jxr_javadoccomment">     * @see #group(Collection, String)</em>
+<a class="jxr_linenumber" name="L2252" href="#L2252">2252</a> <em class="jxr_javadoccomment">     * @since 1.0.8</em>
+<a class="jxr_linenumber" name="L2253" href="#L2253">2253</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2254" href="#L2254">2254</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T, O&gt; Map&lt;T, O&gt; groupOne(Collection&lt;O&gt; objectCollection,String propertyName){
+<a class="jxr_linenumber" name="L2255" href="#L2255">2255</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(objectCollection)){
+<a class="jxr_linenumber" name="L2256" href="#L2256">2256</a>             <strong class="jxr_keyword">return</strong> emptyMap();
+<a class="jxr_linenumber" name="L2257" href="#L2257">2257</a>         }
+<a class="jxr_linenumber" name="L2258" href="#L2258">2258</a>         Validate.notBlank(propertyName, <span class="jxr_string">"propertyName can't be null/empty!"</span>);
+<a class="jxr_linenumber" name="L2259" href="#L2259">2259</a> 
+<a class="jxr_linenumber" name="L2260" href="#L2260">2260</a>         Map&lt;T, O&gt; map = newLinkedHashMap(objectCollection.size());
+<a class="jxr_linenumber" name="L2261" href="#L2261">2261</a>         <strong class="jxr_keyword">for</strong> (O o : objectCollection){
+<a class="jxr_linenumber" name="L2262" href="#L2262">2262</a>             T key = PropertyUtil.getProperty(o, propertyName);
+<a class="jxr_linenumber" name="L2263" href="#L2263">2263</a>             <strong class="jxr_keyword">if</strong> (!map.containsKey(key)){
+<a class="jxr_linenumber" name="L2264" href="#L2264">2264</a>                 map.put(key, o);
+<a class="jxr_linenumber" name="L2265" href="#L2265">2265</a>             }<strong class="jxr_keyword">else</strong>{
+<a class="jxr_linenumber" name="L2266" href="#L2266">2266</a>                 <strong class="jxr_keyword">if</strong> (LOGGER.isTraceEnabled()){
+<a class="jxr_linenumber" name="L2267" href="#L2267">2267</a>                     LOGGER.trace(<span class="jxr_string">"map:{} already has the key:[{}],ignore!"</span>, JsonUtil.format(map.keySet()), key);
+<a class="jxr_linenumber" name="L2268" href="#L2268">2268</a>                 }
+<a class="jxr_linenumber" name="L2269" href="#L2269">2269</a>             }
+<a class="jxr_linenumber" name="L2270" href="#L2270">2270</a>         }
+<a class="jxr_linenumber" name="L2271" href="#L2271">2271</a>         <strong class="jxr_keyword">return</strong> map;
+<a class="jxr_linenumber" name="L2272" href="#L2272">2272</a>     }
+<a class="jxr_linenumber" name="L2273" href="#L2273">2273</a> 
+<a class="jxr_linenumber" name="L2274" href="#L2274">2274</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

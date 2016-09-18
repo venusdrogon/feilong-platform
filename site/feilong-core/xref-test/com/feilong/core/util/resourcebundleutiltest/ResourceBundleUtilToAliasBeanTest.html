@@ -29,11 +29,11 @@
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.is;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.Assert.assertThat;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.beanutils.converters.ArrayConverter;
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.beanutils.converters.StringConverter;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.BeanUtil;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.beanutils.ConvertUtils;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.beanutils.converters.ArrayConverter;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.beanutils.converters.StringConverter;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.entity.DangaMemCachedConfig;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.ResourceBundleUtil.getResourceBundle;
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">char</strong>[] allowedChars = { ':' };
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          arrayConverter.setAllowedChars(allowedChars);
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          BeanUtil.register(arrayConverter, String[].<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          ConvertUtils.register(arrayConverter, String[].<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>          <a href="../../../../../com/feilong/core/entity/DangaMemCachedConfig.html">DangaMemCachedConfig</a> dangaMemCachedConfig = toAliasBean(getResourceBundle(<span class="jxr_string">"messages.memcached"</span>), DangaMemCachedConfig.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>          assertThat(dangaMemCachedConfig, allOf(<em class="jxr_comment">//</em>

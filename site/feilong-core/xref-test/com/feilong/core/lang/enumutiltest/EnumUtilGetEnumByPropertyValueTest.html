@@ -25,7 +25,7 @@
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.BeanUtilException;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.BeanOperationException;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.entity.HttpMethodTestType;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.lang.EnumUtil;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
@@ -73,7 +73,7 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * Test get http method type 4.</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <em class="jxr_comment">//*********************************************************************</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      @Test(expected = BeanUtilException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      @Test(expected = BeanOperationException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetHttpMethodType4(){
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          EnumUtil.getEnumByPropertyValue(HttpMethodTestType.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"method2222"</span>, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      }

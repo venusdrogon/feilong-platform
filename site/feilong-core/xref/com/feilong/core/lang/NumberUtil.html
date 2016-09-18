@@ -131,13 +131,13 @@
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment"> * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment"> * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment"> * 该算法是由美国银行家提出了，主要用于修正采用上面四舍五入规则而产生的误差。如下：</em>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment"> * 该算法是由美国银行家提出了,主要用于修正采用上面四舍五入规则而产生的误差。如下：</em>
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment"> * </em>
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment"> * 舍去位的数值小于5时，直接舍去。</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment"> * 舍去位的数值大于5时，进位后舍去。</em>
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment"> * 当舍去位的数值等于5时，</em>
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment"> *          若5后面还有其他非0数值，则进位后舍去，</em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment"> *          若5后面是0时，则根据5前一位数的奇偶性来判断，奇数进位，偶数舍去。</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment"> * 舍去位的数值小于5时,直接舍去。</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment"> * 舍去位的数值大于5时,进位后舍去。</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment"> * 当舍去位的数值等于5时,</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment"> *          若5后面还有其他非0数值,则进位后舍去,</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment"> *          若5后面是0时,则根据5前一位数的奇偶性来判断,奇数进位,偶数舍去。</em>
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment"> * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment"> * &lt;b&gt;对于上面的规则我们举例说明:&lt;/b&gt;</em>
@@ -148,8 +148,8 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment"> * 11.5551 = 11.56 -----五后有数进位</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment"> * </em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment"> * 11.545 = 11.54 -----五后无数，若前位为偶数应舍去</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment"> * 11.555 = 11.56 -----五后无数，若前位为奇数应进位</em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment"> * 11.545 = 11.54 -----五后无数,若前位为偶数应舍去</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment"> * 11.555 = 11.56 -----五后无数,若前位为奇数应进位</em>
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment"> * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment"> * &lt;/blockquote&gt;</em>
@@ -199,8 +199,8 @@
 <a class="jxr_linenumber" name="L191" href="#L191">191</a> <em class="jxr_javadoccomment">     *            被除数,自动转成{@link BigDecimal}做除法运算</em>
 <a class="jxr_linenumber" name="L192" href="#L192">192</a> <em class="jxr_javadoccomment">     * @param scale</em>
 <a class="jxr_linenumber" name="L193" href="#L193">193</a> <em class="jxr_javadoccomment">     *            标度,小数的位数,四舍五入,用于 {@link java.math.BigDecimal#setScale(int, RoundingMode)}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> <em class="jxr_javadoccomment">     *            如果为零或正数，则标度是小数点后的位数。&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">     *            如果为负数，则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> <em class="jxr_javadoccomment">     *            如果为零或正数,则标度是小数点后的位数。&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">     *            如果为负数,则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;one&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;two&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;two&lt;/code&gt; 是 0,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
@@ -237,8 +237,8 @@
 <a class="jxr_linenumber" name="L229" href="#L229">229</a> <em class="jxr_javadoccomment">     *            被除数,自动转成{@link BigDecimal}做除法运算</em>
 <a class="jxr_linenumber" name="L230" href="#L230">230</a> <em class="jxr_javadoccomment">     * @param scale</em>
 <a class="jxr_linenumber" name="L231" href="#L231">231</a> <em class="jxr_javadoccomment">     *            标度,小数的位数,四舍五入,用于 {@link java.math.BigDecimal#setScale(int, RoundingMode)}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L232" href="#L232">232</a> <em class="jxr_javadoccomment">     *            如果为零或正数，则标度是小数点后的位数。&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L233" href="#L233">233</a> <em class="jxr_javadoccomment">     *            如果为负数，则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
+<a class="jxr_linenumber" name="L232" href="#L232">232</a> <em class="jxr_javadoccomment">     *            如果为零或正数,则标度是小数点后的位数。&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> <em class="jxr_javadoccomment">     *            如果为负数,则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
 <a class="jxr_linenumber" name="L234" href="#L234">234</a> <em class="jxr_javadoccomment">     * @param roundingMode</em>
 <a class="jxr_linenumber" name="L235" href="#L235">235</a> <em class="jxr_javadoccomment">     *            舍入法 {@link RoundingMode}</em>
 <a class="jxr_linenumber" name="L236" href="#L236">236</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;one&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
@@ -286,8 +286,8 @@
 <a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     *            被乘数</em>
 <a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">     * @param scale</em>
 <a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">     *            标度,小数的位数,四舍五入,用于 {@link java.math.BigDecimal#setScale(int, RoundingMode)}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">     *            如果为零或正数，则标度是小数点后的位数。&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     *            如果为负数，则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">     *            如果为零或正数,则标度是小数点后的位数。&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     *            如果为负数,则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
 <a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;one&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;two&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L285" href="#L285">285</a> <em class="jxr_javadoccomment">     *         否则 convert to {@link BigDecimal} and multiply each other</em>
@@ -470,8 +470,8 @@
 <a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">     *            number</em>
 <a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     * @param scale</em>
 <a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     *            标度,小数的位数,四舍五入,用于 {@link java.math.BigDecimal#setScale(int, RoundingMode)}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     *            如果为零或正数，则标度是小数点后的位数。&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     *            如果为负数，则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
+<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     *            如果为零或正数,则标度是小数点后的位数。&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     *            如果为负数,则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
 <a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * @see &lt;a href="#RoundingMode"&gt;JAVA 8种舍入法&lt;/a&gt;</em>
 <a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     * @see java.math.RoundingMode#HALF_UP</em>
@@ -517,8 +517,8 @@
 <a class="jxr_linenumber" name="L509" href="#L509">509</a> <em class="jxr_javadoccomment">     *            number</em>
 <a class="jxr_linenumber" name="L510" href="#L510">510</a> <em class="jxr_javadoccomment">     * @param scale</em>
 <a class="jxr_linenumber" name="L511" href="#L511">511</a> <em class="jxr_javadoccomment">     *            标度,小数的位数,四舍五入,用于 {@link java.math.BigDecimal#setScale(int, RoundingMode)}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L512" href="#L512">512</a> <em class="jxr_javadoccomment">     *            如果为零或正数，则标度是小数点后的位数。&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">     *            如果为负数，则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
+<a class="jxr_linenumber" name="L512" href="#L512">512</a> <em class="jxr_javadoccomment">     *            如果为零或正数,则标度是小数点后的位数。&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">     *            如果为负数,则将该数的非标度值乘以 10 的负 scale 次幂 (通常情况用不到负数的情况)</em>
 <a class="jxr_linenumber" name="L514" href="#L514">514</a> <em class="jxr_javadoccomment">     * @param roundingMode</em>
 <a class="jxr_linenumber" name="L515" href="#L515">515</a> <em class="jxr_javadoccomment">     *            舍入模式{@link RoundingMode},如果 为null,使用常用的 {@link RoundingMode#HALF_UP}</em>
 <a class="jxr_linenumber" name="L516" href="#L516">516</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
