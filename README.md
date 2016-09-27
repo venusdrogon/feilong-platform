@@ -30,9 +30,9 @@ child 			| Description 										|Since
 
 # :dragon: Maven使用配置
 
-所有feilong jar 你可以在 [仓库](https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform "仓库") 浏览 
+所有feilong jar 你可以直接在 [仓库](https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform "仓库") 浏览 
 
-在maven `pom.xml` 中,您可以通过以下方式来配置:
+如果你使用 `maven`, 您可以通过以下方式来配置 `pom.xml`:
 
 ```XML
 
