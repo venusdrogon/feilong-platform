@@ -24,33 +24,14 @@
 
 <p>Reduce development, Release ideas</p>
 
-<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License"></a></p>
-
-<pre><code>        .--.
-       /    \
-      ## a  a
-      (   '._)
-       |'-- |
-     _.\___/_   ___feilong___
-   ."\&gt; \Y/|&lt;'.  '._.-'
-  /  \ \_\/ /  '-' /
-  | --'\_/|/ |   _/
-  |___.-' |  |`'`
-    |     |  |
-    |    / './
-   /__./` | |
-      \   | |
-       \  | |
-       ;  | |
-       /  | |
- jgs  |___\_.\_
-      `-"--'---'
-</code></pre>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License"></a>
+<img src="https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/precise-desktop-amd64_default.svg" alt="build" title="build"> 
+<img src="https://img.shields.io/badge/JDK-1.7-green.svg" alt="JDK 1.7" title="JDK 1.7"></p>
 
 <h1>
 <a id="welcome-to-feilong-platform" class="anchor" href="#welcome-to-feilong-platform" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to feilong-platform</h1>
 
-<p>feilong platform,封装了常用的java工具方法,提供快速使用工具的功能,自己知识积累的同时，方便大家使用</p>
+<p>这是所有feilong 项目的 parent pom项目,定义常用的 jar以及 plugins</p>
 
 <h1>
 <a id="子项目地址" class="anchor" href="#%E5%AD%90%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>子项目地址</h1>
@@ -58,63 +39,58 @@
 <table>
 <thead>
 <tr>
-<th align="left">Package</th>
+<th align="left">child</th>
 <th align="left">Description</th>
 <th align="center">Since</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">feilong-core</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-core">https://github.com/venusdrogon/feilong-core</a></td>
+<td align="left"><a href="https://github.com/venusdrogon/feilong-core">feilong-core</a></td>
+<td align="left">核心jar,所有feilong-platform的基础</td>
 <td align="center">1.2.0</td>
 </tr>
 <tr>
-<td align="left">feilong-servlet</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-servlet">https://github.com/venusdrogon/feilong-servlet</a></td>
+<td align="left"><a href="https://github.com/venusdrogon/feilong-servlet">feilong-servlet</a></td>
+<td align="left">封装了j2ee常用类,是feilong-platform web相关jar 的基础</td>
 <td align="center">1.2.0</td>
 </tr>
 <tr>
-<td align="left">feilong-spring</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-spring">https://github.com/venusdrogon/feilong-spring</a></td>
-<td align="center">1.2.0</td>
-</tr>
-<tr>
-<td align="left">feilong-taglib</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-taglib">https://github.com/venusdrogon/feilong-taglib</a></td>
-<td align="center">1.2.0</td>
-</tr>
-<tr>
-<td align="left">feilong-webservice</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-webservice">https://github.com/venusdrogon/feilong-webservice</a></td>
-<td align="center">1.2.0</td>
-</tr>
-<tr>
-<td align="left">feilong-framework</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-framework">https://github.com/venusdrogon/feilong-framework</a></td>
-<td align="center">1.2.0</td>
-</tr>
-<tr>
-<td align="left">feilong-io</td>
-<td align="left"><a href="https://github.com/venusdrogon/feilong-io">https://github.com/venusdrogon/feilong-io</a></td>
+<td align="left"><a href="https://github.com/venusdrogon/feilong-io">feilong-io</a></td>
+<td align="left">封装了io操作的常用类</td>
 <td align="center">1.5.4</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/venusdrogon/feilong-taglib">feilong-taglib</a></td>
+<td align="left">封装了常用的自定义标签</td>
+<td align="center">1.2.0</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/venusdrogon/feilong-spring">feilong-spring</a></td>
+<td align="left">对spring相关类的快速封装,以便快速使用</td>
+<td align="center">1.2.0</td>
 </tr>
 </tbody>
 </table>
 
 <h1>
-<a id="maven使用配置" class="anchor" href="#maven%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven使用配置</h1>
+<a id="一图概述" class="anchor" href="#%E4%B8%80%E5%9B%BE%E6%A6%82%E8%BF%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>一图概述:</h1>
 
-<p>所有feilong jar 你可以在这里 <a href="https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform">https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform</a> 浏览 </p>
+<p><img src="http://venusdrogon.github.io/feilong-platform/mysource/one-feilong-platform.png" alt="one-feilong-platform"> </p>
 
-<p>在maven 中,您可以通过以下方式来配置:</p>
+<h1>
+<a id="dragon-maven使用配置" class="anchor" href="#dragon-maven%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="dragon" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f409.png">🐉</g-emoji> Maven使用配置</h1>
+
+<p>所有feilong jar 你可以在 <a href="https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform" title="仓库">仓库</a> 浏览 </p>
+
+<p>在maven <code>pom.xml</code> 中,您可以通过以下方式来配置:</p>
 
 <div class="highlight highlight-text-xml"><pre>
     &lt;<span class="pl-ent">project</span>&gt;
 
         ....
         &lt;<span class="pl-ent">properties</span>&gt;
-            &lt;<span class="pl-ent">version</span>.feilong-platform&gt;1.5.4&lt;/<span class="pl-ent">version</span>.feilong-platform&gt;
+            &lt;<span class="pl-ent">version</span>.feilong-platform&gt;1.9.1&lt;/<span class="pl-ent">version</span>.feilong-platform&gt;
             ....
         &lt;/<span class="pl-ent">properties</span>&gt;
 
@@ -130,7 +106,7 @@
     &lt;/<span class="pl-ent">project</span>&gt;</pre></div>
 
 <h1>
-<a id="说明" class="anchor" href="#%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>说明</h1>
+<a id="memo-说明" class="anchor" href="#memo-%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="memo" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4dd.png">📝</g-emoji> 说明</h1>
 
 <ol>
 <li>基于<code>Apache2</code> 协议,您可以下载,代码用于闭源项目,但每个修改的过的文件必须放置版权说明;</li>
@@ -139,13 +115,11 @@
 </ol>
 
 <h1>
-<a id="about" class="anchor" href="#about" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About</h1>
+<a id="panda_face-about" class="anchor" href="#panda_face-about" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><g-emoji alias="panda_face" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f43c.png">🐼</g-emoji> About</h1>
 
-<p>如果您对feilong platform 有任何建议，可以使用下面的联系方式：</p>
+<p>如果您对feilong core 有任何建议和批评,可以使用下面的联系方式：</p>
 
 <ul>
-<li>新浪微博:<a href="http://weibo.com/venusdrogon">http://weibo.com/venusdrogon</a>
-</li>
 <li>iteye博客:<a href="http://feitianbenyue.iteye.com/">http://feitianbenyue.iteye.com/</a>
 </li>
 </ul>
