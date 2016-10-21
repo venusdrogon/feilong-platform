@@ -72,7 +72,7 @@
 		<!-- base on jdk1.2 legacy(won't update) -->
 		<version.commons-lang>2.6</version.commons-lang>
 		<!-- base on jdk1.6 -->
-		<version.commons-lang3>3.4</version.commons-lang3>
+		<version.commons-lang3>3.5</version.commons-lang3>
 
 		<version.commons-logging>1.2</version.commons-logging>
 
