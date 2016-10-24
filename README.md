@@ -40,7 +40,7 @@ child 			| Description 										|Since
 	
 		....
 		<properties>
-			<version.feilong-platform>1.9.1</version.feilong-platform>
+			<version.feilong-platform>1.9.2</version.feilong-platform>
 			....
 		</properties>
 		
