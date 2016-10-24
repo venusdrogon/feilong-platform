@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.9.2</version>
+	</parent>
+
+	<artifactId>feilong-tools-barcode</artifactId>
+	<name>feilong-tools-barcode</name>
+	<description>feilong-tools-barcode</description>
+
+	<properties>
+		<version.zxing>3.2.1</version.zxing>
+	</properties>
+
+	<dependencies>
+
+		<!-- **************************************** -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${version.zxing}</version>
+		</dependency>
+
+		<!-- 用于 decode -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${version.zxing}</version>
+			<!--通常用不到decode功能, 如果需要decode功能 自行引用这个jar -->
+			<optional>true</optional>
+		</dependency>
+
+		<!-- **************************************** -->
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-io</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!--需要 ImageUtil.write -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core-extension</artifactId>
+		</dependency>
+	</dependencies>
+</project>
