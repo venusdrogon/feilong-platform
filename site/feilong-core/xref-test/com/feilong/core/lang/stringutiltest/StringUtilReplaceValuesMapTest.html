@@ -56,7 +56,7 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      @Test
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testReplace(){
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          Map&lt;String, Object&gt; valuesMap = <strong class="jxr_keyword">new</strong> HashMap&lt;String, Object&gt;();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          Map&lt;String, Object&gt; valuesMap = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>          valuesMap.put(<span class="jxr_string">"today"</span>, DateUtil.toString(<strong class="jxr_keyword">new</strong> Date(), COMMON_DATE));
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>          valuesMap.put(<span class="jxr_string">"user"</span>, <strong class="jxr_keyword">new</strong> User(1L));
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          LOGGER.debug(StringUtil.replace(<span class="jxr_string">"${today}${today1}${user.id}${user}"</span>, valuesMap) + <span class="jxr_string">""</span>);
@@ -67,7 +67,7 @@
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      @Test
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testReplace3(){
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          Map&lt;String, Object&gt; valuesMap = <strong class="jxr_keyword">new</strong> HashMap&lt;String, Object&gt;();
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          Map&lt;String, Object&gt; valuesMap = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>          valuesMap.put(<span class="jxr_string">"today"</span>, DateUtil.toString(<strong class="jxr_keyword">new</strong> Date(), COMMON_DATE));
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          valuesMap.put(<span class="jxr_string">"user"</span>, 1L);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>          LOGGER.debug(StringUtil.replace(<span class="jxr_string">"${today}${today1}${user.id}${user}"</span>, valuesMap) + <span class="jxr_string">""</span>);
@@ -98,7 +98,7 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>          String template = <span class="jxr_string">"/home/webuser/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log"</span>;
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>          Date date = <strong class="jxr_keyword">new</strong> Date();
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>          Map&lt;String, String&gt; valuesMap = <strong class="jxr_keyword">new</strong> HashMap&lt;String, String&gt;();
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          Map&lt;String, String&gt; valuesMap = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>          valuesMap.put(<span class="jxr_string">"yearMonth"</span>, DateUtil.toString(date, YEAR_AND_MONTH));
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>          valuesMap.put(<span class="jxr_string">"expressDeliveryType"</span>, <span class="jxr_string">"sf"</span>);
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>          valuesMap.put(<span class="jxr_string">"fileName"</span>, DateUtil.toString(date, TIMESTAMP));

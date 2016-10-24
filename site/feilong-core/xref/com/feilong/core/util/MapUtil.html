@@ -766,7 +766,7 @@
 <a class="jxr_linenumber" name="L758" href="#L758">758</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(map)){
 <a class="jxr_linenumber" name="L759" href="#L759">759</a>             <strong class="jxr_keyword">return</strong> emptyMap();
 <a class="jxr_linenumber" name="L760" href="#L760">760</a>         }
-<a class="jxr_linenumber" name="L761" href="#L761">761</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(excludeKeys) ? map : removeKeys(<strong class="jxr_keyword">new</strong> LinkedHashMap&lt;K, T&gt;(map), excludeKeys); <em class="jxr_comment">//保证元素的顺序 </em>
+<a class="jxr_linenumber" name="L761" href="#L761">761</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(excludeKeys) ? map : removeKeys(<strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;(map), excludeKeys); <em class="jxr_comment">//保证元素的顺序 </em>
 <a class="jxr_linenumber" name="L762" href="#L762">762</a>     }
 <a class="jxr_linenumber" name="L763" href="#L763">763</a> 
 <a class="jxr_linenumber" name="L764" href="#L764">764</a>     <em class="jxr_javadoccomment">/**</em>
@@ -1151,7 +1151,7 @@
 <a class="jxr_linenumber" name="L1143" href="#L1143">1143</a> <em class="jxr_javadoccomment">     * @since 1.7.1</em>
 <a class="jxr_linenumber" name="L1144" href="#L1144">1144</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L1145" href="#L1145">1145</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;K, V&gt; HashMap&lt;K, V&gt; newHashMap(<strong class="jxr_keyword">int</strong> expectedSize){
-<a class="jxr_linenumber" name="L1146" href="#L1146">1146</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> HashMap&lt;K, V&gt;(toInitialCapacity(expectedSize));
+<a class="jxr_linenumber" name="L1146" href="#L1146">1146</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;(toInitialCapacity(expectedSize));
 <a class="jxr_linenumber" name="L1147" href="#L1147">1147</a>     }
 <a class="jxr_linenumber" name="L1148" href="#L1148">1148</a> 
 <a class="jxr_linenumber" name="L1149" href="#L1149">1149</a>     <em class="jxr_javadoccomment">/**</em>
@@ -1251,7 +1251,7 @@
 <a class="jxr_linenumber" name="L1243" href="#L1243">1243</a> <em class="jxr_javadoccomment">     * @since 1.7.1</em>
 <a class="jxr_linenumber" name="L1244" href="#L1244">1244</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L1245" href="#L1245">1245</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;K, V&gt; LinkedHashMap&lt;K, V&gt; newLinkedHashMap(<strong class="jxr_keyword">int</strong> expectedSize){
-<a class="jxr_linenumber" name="L1246" href="#L1246">1246</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;K, V&gt;(toInitialCapacity(expectedSize));
+<a class="jxr_linenumber" name="L1246" href="#L1246">1246</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;(toInitialCapacity(expectedSize));
 <a class="jxr_linenumber" name="L1247" href="#L1247">1247</a>     }
 <a class="jxr_linenumber" name="L1248" href="#L1248">1248</a> 
 <a class="jxr_linenumber" name="L1249" href="#L1249">1249</a>     <em class="jxr_javadoccomment">/**</em>

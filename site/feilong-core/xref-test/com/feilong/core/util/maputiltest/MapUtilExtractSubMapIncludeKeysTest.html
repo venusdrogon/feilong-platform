@@ -53,7 +53,7 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      @Test
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtractSubMap2(){
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>          Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;Long, User&gt;();
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          map.put(1L, <strong class="jxr_keyword">new</strong> User(100L));
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>          map.put(2L, <strong class="jxr_keyword">new</strong> User(200L));
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          map.put(53L, <strong class="jxr_keyword">new</strong> User(300L));
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <em class="jxr_comment">//*********************************************************************************************</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      @Test
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtractSubMapNullIncludeKeys(){
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;Long, User&gt;();
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>          map.put(5L, <strong class="jxr_keyword">new</strong> User(500L));
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          map.put(4L, <strong class="jxr_keyword">new</strong> User(400L));
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
@@ -88,7 +88,7 @@
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      @Test
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtractSubMapEmptyIncludeKeys(){
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>          Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;Long, User&gt;();
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>          Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>          map.put(5L, <strong class="jxr_keyword">new</strong> User(500L));
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          map.put(4L, <strong class="jxr_keyword">new</strong> User(400L));
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
@@ -120,7 +120,7 @@
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>     @Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtractSubMapNullExtractPropertyName(){
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>         Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;Long, User&gt;();
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>         map.put(1L, <strong class="jxr_keyword">new</strong> User(1L));
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>         map.put(2L, <strong class="jxr_keyword">new</strong> User(2L));
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>         MapUtil.extractSubMap(map, toArray(5L, 4L), <strong class="jxr_keyword">null</strong>);
@@ -131,7 +131,7 @@
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>     @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtractSubMapEmptyExtractPropertyName(){
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>         Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;Long, User&gt;();
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>         Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L127" href="#L127">127</a>         map.put(1L, <strong class="jxr_keyword">new</strong> User(1L));
 <a class="jxr_linenumber" name="L128" href="#L128">128</a>         map.put(2L, <strong class="jxr_keyword">new</strong> User(2L));
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>         MapUtil.extractSubMap(map, toArray(5L, 4L), <span class="jxr_string">""</span>);
@@ -142,7 +142,7 @@
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>     @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtractSubMapEmptyExtractPropertyName1(){
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>         Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;Long, User&gt;();
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>         Map&lt;Long, User&gt; map = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>         map.put(1L, <strong class="jxr_keyword">new</strong> User(1L));
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>         map.put(2L, <strong class="jxr_keyword">new</strong> User(2L));
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>         MapUtil.extractSubMap(map, toArray(5L, 4L), <span class="jxr_string">" "</span>);
