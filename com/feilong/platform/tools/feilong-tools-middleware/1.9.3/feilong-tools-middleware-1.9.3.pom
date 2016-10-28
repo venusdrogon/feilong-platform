@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.9.3</version>
+	</parent>
+
+	<artifactId>feilong-tools-middleware</artifactId>
+	<name>feilong-tools-middleware</name>
+	<description>feilong-tools-middleware</description>
+
+	<dependencies>
+		<!-- 目前用于 com.feilong.tools.middleware.EarthUtil -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core-extension</artifactId>
+		</dependency>
+	</dependencies>
+</project>
