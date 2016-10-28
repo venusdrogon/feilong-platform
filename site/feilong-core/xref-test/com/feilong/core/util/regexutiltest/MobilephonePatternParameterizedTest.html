@@ -49,19 +49,31 @@
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>      @Parameters(name = <span class="jxr_string">"RegexUtil.matches(RegexPattern.MOBILEPHONE, {0})={1}"</span>)
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Iterable&lt;Object[]&gt; data(){
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          String[] valids = { <span class="jxr_string">"18501646315"</span> };
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          String[] invalids = {};
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">return</strong> TestUtil.toDataList(valids, invalids);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">     * Matches.</em>
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>      @Test
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> matches(){
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          assertEquals(expectedValue, RegexUtil.matches(MOBILEPHONE, input));
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  }
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          String[] valids = { <span class="jxr_string">"18501646315"</span>, <span class="jxr_string">"15001841317"</span>, <span class="jxr_string">"14701841318"</span> };
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          String[] invalids = { <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>                                <span class="jxr_string">""</span>,
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>                                <span class="jxr_string">" "</span>,
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>                                <span class="jxr_string">"1500184131"</span>, <em class="jxr_comment">// count not match</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>                                <span class="jxr_string">" 18501646315"</span>, <em class="jxr_comment">// count not match</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>                                <span class="jxr_string">"18501646315 "</span>, <em class="jxr_comment">// count not match</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>                                <span class="jxr_string">"10201841318"</span>, <em class="jxr_comment">//no 10</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>                                <span class="jxr_string">"11201841318"</span>, <em class="jxr_comment">//no 11</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>                                <span class="jxr_string">"12201841318"</span>, <em class="jxr_comment">//no 12</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>                                <span class="jxr_string">"16201841318"</span>, <em class="jxr_comment">//no 16</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>                                <span class="jxr_string">"19201841318"</span> <em class="jxr_comment">//no 19</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>          };
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">return</strong> TestUtil.toDataList(valids, invalids);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      }
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">     * Matches.</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      @Test
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> matches(){
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>          assertEquals(expectedValue, RegexUtil.matches(MOBILEPHONE, input));
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>      }
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

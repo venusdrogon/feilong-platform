@@ -365,152 +365,165 @@
 <a class="jxr_linenumber" name="L357" href="#L357">357</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">     * 手机号码 &lt;code&gt;{@value}&lt;/code&gt;.</em>
 <a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">     * 移动:1340-1348、135、136、137、138、139、147、150、151、152、157、158、159、182、183、184、187、188　</em>
-<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">     * 联通:130、131、132、145、155、156、185、186</em>
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">     * 电信:133、1349、153、180、181、189、(1349卫通)</em>
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">     * 目前严格校验的话,有 &lt;a href="<a href="http://blog.csdn.net/skychenjh/article/details/49923345" target="alexandria_uri">http://blog.csdn.net/skychenjh/article/details/49923345</a>"&gt;2015年最新手机号码正则表达式&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;182段&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">     * 北京移动正式启用182新号段 昨天,记者从北京移动获悉,从今年1月开始,北京移动启动了182新号段.&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">     * 其中动感地带号段为18210000000到18210369999,数量为37万,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     * 神州行畅听卡号段为18210370000到18210649999,数量为25万,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * 神州行家园卡号段为18210650000到18210899999,数量为25万.</em>
-<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;&lt;a href="<a href="http://www.dvbcn.com/2014/09/23-113699.html" target="alexandria_uri">http://www.dvbcn.com/2014/09/23-113699.html</a>"&gt;176、177、178段&lt;/a&gt;&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">     * 家工信部为了鼓励民间资本进去电信行业,专门发放电信拍照.然后第三方电信上商又从三大运营商买的号码 &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">     * 据了解,按照工信部的批复,三大运营商4G新用户均将使用17开头的号段. &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     * 中国电信称177号段为中国电信4G专属号段,并在7月15日向在上海、深圳、南京等16个城市实行177号段放号.&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">     * 中国移动则在今年已使用178号段并对多个城市进行放号.至此也就意味着三大运营商的4G号段已全面商用. &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">     * @see &lt;a href="<a href="http://liaojuncai.iteye.com/blog/1986310" target="alexandria_uri">http://liaojuncai.iteye.com/blog/1986310</a>"&gt;严格的手机号码正则表达式写法&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L389" href="#L389">389</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String MOBILEPHONE             = <span class="jxr_string">"^((13[0-9])|(15[^4,&#92;&#92;D])|(17[0-9])|(18[0-9]))&#92;&#92;d{8}$"</span>;
-<a class="jxr_linenumber" name="L391" href="#L391">391</a> 
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>     <em class="jxr_comment">//******************************************************************************</em>
-<a class="jxr_linenumber" name="L393" href="#L393">393</a> 
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>     <em class="jxr_javadoccomment">/** 邮政编码 &lt;code&gt;{@value}&lt;/code&gt;. */</em>
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ZIPCODE                 = <span class="jxr_string">"^&#92;&#92;d{6}$"</span>;
-<a class="jxr_linenumber" name="L396" href="#L396">396</a> 
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>     <em class="jxr_comment">//******************************************************************************</em>
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * 两位数小数 &lt;code&gt;{@value}&lt;/code&gt;</em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> <em class="jxr_javadoccomment">     * 可以是200 也可以是200.00 不可以是 200.0</em>
-<a class="jxr_linenumber" name="L403" href="#L403">403</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L404" href="#L404">404</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DECIMAL_TWO_DIGIT       = <span class="jxr_string">"^[0-9]+(.[0-9]{2})?$"</span>;
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">     * 13[0-9], 14[5,7], 15[0, 1, 2, 3, 5, 6, 7, 8, 9], 17[6, 7, 8], 18[0-9], 170[0-9] </em>
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">     * 移动号段: 134,135,136,137,138,139,150,151,152,157,158,159,182,183,184,187,188,147,178,1705 </em>
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">     * 联通号段: 130,131,132,155,156,185,186,145,176,1709 </em>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">     * 电信号段: 133,153,180,181,189,177,1700</em>
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     * 最近逐渐出现的145 147段,以后会不会有148 149段?不好说,难道每次都需要更新?&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">     * 所以这里使用稍微宽松的写法,&lt;span style="color:red"&gt;只严格校验前两位&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;182段&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">     * 北京移动正式启用182新号段 昨天,记者从北京移动获悉,从今年1月开始,北京移动启动了182新号段.&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * 其中动感地带号段为18210000000到18210369999,数量为37万,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     * 神州行畅听卡号段为18210370000到18210649999,数量为25万,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">     * 神州行家园卡号段为18210650000到18210899999,数量为25万.</em>
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L389" href="#L389">389</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;&lt;a href="<a href="http://www.dvbcn.com/2014/09/23-113699.html" target="alexandria_uri">http://www.dvbcn.com/2014/09/23-113699.html</a>"&gt;176、177、178段&lt;/a&gt;&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L394" href="#L394">394</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L395" href="#L395">395</a> <em class="jxr_javadoccomment">     * 家工信部为了鼓励民间资本进去电信行业,专门发放电信拍照.然后第三方电信上商又从三大运营商买的号码 &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">     * 据了解,按照工信部的批复,三大运营商4G新用户均将使用17开头的号段. &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">     * 中国电信称177号段为中国电信4G专属号段,并在7月15日向在上海、深圳、南京等16个城市实行177号段放号.&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     * 中国移动则在今年已使用178号段并对多个城市进行放号.至此也就意味着三大运营商的4G号段已全面商用. &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L402" href="#L402">402</a> <em class="jxr_javadoccomment">     * @see &lt;a href="<a href="http://blog.csdn.net/skychenjh/article/details/49923345" target="alexandria_uri">http://blog.csdn.net/skychenjh/article/details/49923345</a>"&gt;2015年最新手机号码正则表达式&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String MOBILEPHONE             = <span class="jxr_string">"^1[34578]&#92;&#92;d{9}$"</span>;
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>     <em class="jxr_comment">//******************************************************************************</em>
 <a class="jxr_linenumber" name="L406" href="#L406">406</a> 
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * 纯数字 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isDigit(char)</em>
-<a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isNumeric(CharSequence)}</em>
-<a class="jxr_linenumber" name="L412" href="#L412">412</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>     @Deprecated
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NUMBER                  = <span class="jxr_string">"^[0-9]*$"</span>;
-<a class="jxr_linenumber" name="L415" href="#L415">415</a> 
-<a class="jxr_linenumber" name="L416" href="#L416">416</a>     <em class="jxr_comment">//**************************************************************************************</em>
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * 字母和数字 (alpha numeric) &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLetterOrDigit(int)</em>
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAlphanumeric(CharSequence)}</em>
-<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a>     @Deprecated
-<a class="jxr_linenumber" name="L424" href="#L424">424</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String AN                      = <span class="jxr_string">"^[0-9a-zA-Z]+$"</span>;
-<a class="jxr_linenumber" name="L425" href="#L425">425</a> 
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">     * 字母和数字和空格(alpha numeric space)&lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L428" href="#L428">428</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L429" href="#L429">429</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLetterOrDigit(int)</em>
-<a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAlphanumericSpace(CharSequence)}</em>
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>     @Deprecated
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ANS                     = <span class="jxr_string">"^[0-9a-zA-Z ]+$"</span>;
-<a class="jxr_linenumber" name="L434" href="#L434">434</a> 
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>     <em class="jxr_comment">//******************************************************************************</em>
-<a class="jxr_linenumber" name="L436" href="#L436">436</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L437" href="#L437">437</a> <em class="jxr_javadoccomment">     * email 的正则表达式 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L438" href="#L438">438</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">     * @see "org.apache.commons.validator.routines.EmailValidator"</em>
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     * @see &lt;a href="<a href="http://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/" target="alexandria_uri">http://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/</a>"&gt;how-to-validate-email</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     *      -address-with-regular-expression&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://en.wikipedia.org/wiki/Email_address"&gt;Email_address&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用apache commons-validator&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     *             "org.apache.commons.validator.routines.EmailValidator.getInstance().isValid(emailString)"</em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     *             ,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     *             验证更加完善,分别会对user 和domain再次校验</em>
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L448" href="#L448">448</a>     @Deprecated
-<a class="jxr_linenumber" name="L449" href="#L449">449</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String EMAIL                   = <span class="jxr_string">"^([&#92;&#92;w-&#92;&#92;.]+)@((&#92;&#92;[[0-9]{1,3}&#92;&#92;.[0-9]{1,3}&#92;&#92;.[0-9]{1,3}&#92;&#92;.)|(([&#92;&#92;w-]+&#92;&#92;.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(&#92;&#92;]?)$"</span>;
-<a class="jxr_linenumber" name="L450" href="#L450">450</a>     <em class="jxr_comment">//"^[_A-Za-z0-9-&#92;&#92;+]+(&#92;&#92;.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(&#92;&#92;.[A-Za-z0-9]+)*(&#92;&#92;.[A-Za-z]{2,})$",</em>
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> 
-<a class="jxr_linenumber" name="L452" href="#L452">452</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * IP 的正则表达式 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用apache commons-validator &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     *             "org.apache.commons.validator.routines.InetAddressValidator.getInstance().isValid(emailString)"</em>
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L458" href="#L458">458</a>     @Deprecated
-<a class="jxr_linenumber" name="L459" href="#L459">459</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String IP                      = <span class="jxr_string">"^(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)&#92;&#92;.(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)&#92;&#92;.(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)&#92;&#92;.(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)$"</span>;
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> 
-<a class="jxr_linenumber" name="L461" href="#L461">461</a>     <em class="jxr_comment">//******************************************************************************</em>
-<a class="jxr_linenumber" name="L462" href="#L462">462</a> 
-<a class="jxr_linenumber" name="L463" href="#L463">463</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     * 所有都是字母 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLetter(char)</em>
-<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAlpha(CharSequence)}</em>
-<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L469" href="#L469">469</a>     @Deprecated
-<a class="jxr_linenumber" name="L470" href="#L470">470</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LETTER                  = <span class="jxr_string">"^[A-Za-z]+$"</span>;
-<a class="jxr_linenumber" name="L471" href="#L471">471</a> 
-<a class="jxr_linenumber" name="L472" href="#L472">472</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L473" href="#L473">473</a> <em class="jxr_javadoccomment">     * 小写字母 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLowerCase(char)</em>
-<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAllLowerCase(CharSequence)}</em>
-<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L478" href="#L478">478</a>     @Deprecated
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LETTER_LOWERCASE        = <span class="jxr_string">"^[a-z]+$"</span>;
-<a class="jxr_linenumber" name="L480" href="#L480">480</a> 
-<a class="jxr_linenumber" name="L481" href="#L481">481</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * 大写字母 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isUpperCase(char)</em>
-<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAllUpperCase(CharSequence)}</em>
-<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L487" href="#L487">487</a>     @Deprecated
-<a class="jxr_linenumber" name="L488" href="#L488">488</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LETTER_UPPERCASE        = <span class="jxr_string">"^[A-Z]+$"</span>;
-<a class="jxr_linenumber" name="L489" href="#L489">489</a> 
-<a class="jxr_linenumber" name="L490" href="#L490">490</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L491" href="#L491">491</a> <em class="jxr_javadoccomment">     * 网址Url 链接 &lt;code&gt;{@value}&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用apache commons-validator &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L494" href="#L494">494</a> <em class="jxr_javadoccomment">     *             "org.apache.commons.validator.routines.DomainValidator.getInstance().isValid(emailString)"</em>
-<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L496" href="#L496">496</a>     @Deprecated
-<a class="jxr_linenumber" name="L497" href="#L497">497</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String URLLINK                 = <span class="jxr_string">"http(s)?://([&#92;&#92;w-]+&#92;&#92;.)+[&#92;&#92;w-]+(/[&#92;&#92;w- ./?%&amp;=]*)?"</span>;
-<a class="jxr_linenumber" name="L498" href="#L498">498</a> 
-<a class="jxr_linenumber" name="L499" href="#L499">499</a>     <em class="jxr_javadoccomment">/** Don't let anyone instantiate this class. */</em>
-<a class="jxr_linenumber" name="L500" href="#L500">500</a>     <strong class="jxr_keyword">private</strong> <a href="../../../com/feilong/core/RegexPattern.html">RegexPattern</a>(){
-<a class="jxr_linenumber" name="L501" href="#L501">501</a>         <em class="jxr_comment">//AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.</em>
-<a class="jxr_linenumber" name="L502" href="#L502">502</a>         <em class="jxr_comment">//see 《Effective Java》 2nd</em>
-<a class="jxr_linenumber" name="L503" href="#L503">503</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
-<a class="jxr_linenumber" name="L504" href="#L504">504</a>     }
-<a class="jxr_linenumber" name="L505" href="#L505">505</a> }
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>     <em class="jxr_javadoccomment">/** 邮政编码 &lt;code&gt;{@value}&lt;/code&gt;. */</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ZIPCODE                 = <span class="jxr_string">"^&#92;&#92;d{6}$"</span>;
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> 
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>     <em class="jxr_comment">//******************************************************************************</em>
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L412" href="#L412">412</a> <em class="jxr_javadoccomment">     * 两位数小数 &lt;code&gt;{@value}&lt;/code&gt;</em>
+<a class="jxr_linenumber" name="L413" href="#L413">413</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L415" href="#L415">415</a> <em class="jxr_javadoccomment">     * 可以是200 也可以是200.00 不可以是 200.0</em>
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DECIMAL_TWO_DIGIT       = <span class="jxr_string">"^[0-9]+(.[0-9]{2})?$"</span>;
+<a class="jxr_linenumber" name="L419" href="#L419">419</a> 
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     * 纯数字 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isDigit(char)</em>
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isNumeric(CharSequence)}</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>     @Deprecated
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NUMBER                  = <span class="jxr_string">"^[0-9]*$"</span>;
+<a class="jxr_linenumber" name="L428" href="#L428">428</a> 
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>     <em class="jxr_comment">//**************************************************************************************</em>
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">     * 字母和数字 (alpha numeric) &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLetterOrDigit(int)</em>
+<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAlphanumeric(CharSequence)}</em>
+<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>     @Deprecated
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String AN                      = <span class="jxr_string">"^[0-9a-zA-Z]+$"</span>;
+<a class="jxr_linenumber" name="L438" href="#L438">438</a> 
+<a class="jxr_linenumber" name="L439" href="#L439">439</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     * 字母和数字和空格(alpha numeric space)&lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLetterOrDigit(int)</em>
+<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAlphanumericSpace(CharSequence)}</em>
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>     @Deprecated
+<a class="jxr_linenumber" name="L446" href="#L446">446</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ANS                     = <span class="jxr_string">"^[0-9a-zA-Z ]+$"</span>;
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> 
+<a class="jxr_linenumber" name="L448" href="#L448">448</a>     <em class="jxr_comment">//******************************************************************************</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * email 的正则表达式 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     * @see "org.apache.commons.validator.routines.EmailValidator"</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * @see &lt;a href="<a href="http://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/" target="alexandria_uri">http://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/</a>"&gt;how-to-validate-email</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     *      -address-with-regular-expression&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://en.wikipedia.org/wiki/Email_address"&gt;Email_address&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用apache commons-validator&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     *             "org.apache.commons.validator.routines.EmailValidator.getInstance().isValid(emailString)"</em>
+<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">     *             ,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     *             验证更加完善,分别会对user 和domain再次校验</em>
+<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a>     @Deprecated
+<a class="jxr_linenumber" name="L462" href="#L462">462</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String EMAIL                   = <span class="jxr_string">"^([&#92;&#92;w-&#92;&#92;.]+)@((&#92;&#92;[[0-9]{1,3}&#92;&#92;.[0-9]{1,3}&#92;&#92;.[0-9]{1,3}&#92;&#92;.)|(([&#92;&#92;w-]+&#92;&#92;.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(&#92;&#92;]?)$"</span>;
+<a class="jxr_linenumber" name="L463" href="#L463">463</a>     <em class="jxr_comment">//"^[_A-Za-z0-9-&#92;&#92;+]+(&#92;&#92;.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(&#92;&#92;.[A-Za-z0-9]+)*(&#92;&#92;.[A-Za-z]{2,})$",</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> 
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * IP 的正则表达式 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用apache commons-validator &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     *             "org.apache.commons.validator.routines.InetAddressValidator.getInstance().isValid(emailString)"</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L471" href="#L471">471</a>     @Deprecated
+<a class="jxr_linenumber" name="L472" href="#L472">472</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String IP                      = <span class="jxr_string">"^(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)&#92;&#92;.(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)&#92;&#92;.(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)&#92;&#92;.(25[0-5]|2[0-4]&#92;&#92;d|[0-1]&#92;&#92;d{2}|[1-9]?&#92;&#92;d)$"</span>;
+<a class="jxr_linenumber" name="L473" href="#L473">473</a> 
+<a class="jxr_linenumber" name="L474" href="#L474">474</a>     <em class="jxr_comment">//******************************************************************************</em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a> 
+<a class="jxr_linenumber" name="L476" href="#L476">476</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * 所有都是字母 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L479" href="#L479">479</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLetter(char)</em>
+<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAlpha(CharSequence)}</em>
+<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L482" href="#L482">482</a>     @Deprecated
+<a class="jxr_linenumber" name="L483" href="#L483">483</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LETTER                  = <span class="jxr_string">"^[A-Za-z]+$"</span>;
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> 
+<a class="jxr_linenumber" name="L485" href="#L485">485</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     * 小写字母 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isLowerCase(char)</em>
+<a class="jxr_linenumber" name="L489" href="#L489">489</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAllLowerCase(CharSequence)}</em>
+<a class="jxr_linenumber" name="L490" href="#L490">490</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L491" href="#L491">491</a>     @Deprecated
+<a class="jxr_linenumber" name="L492" href="#L492">492</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LETTER_LOWERCASE        = <span class="jxr_string">"^[a-z]+$"</span>;
+<a class="jxr_linenumber" name="L493" href="#L493">493</a> 
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     * 大写字母 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     * @see java.lang.Character#isUpperCase(char)</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用 {@link org.apache.commons.lang3.StringUtils#isAllUpperCase(CharSequence)}</em>
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L500" href="#L500">500</a>     @Deprecated
+<a class="jxr_linenumber" name="L501" href="#L501">501</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LETTER_UPPERCASE        = <span class="jxr_string">"^[A-Z]+$"</span>;
+<a class="jxr_linenumber" name="L502" href="#L502">502</a> 
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     * 网址Url 链接 &lt;code&gt;{@value}&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> <em class="jxr_javadoccomment">     * @deprecated 建议使用apache commons-validator &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> <em class="jxr_javadoccomment">     *             "org.apache.commons.validator.routines.DomainValidator.getInstance().isValid(emailString)"</em>
+<a class="jxr_linenumber" name="L508" href="#L508">508</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>     @Deprecated
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String URLLINK                 = <span class="jxr_string">"http(s)?://([&#92;&#92;w-]+&#92;&#92;.)+[&#92;&#92;w-]+(/[&#92;&#92;w- ./?%&amp;=]*)?"</span>;
+<a class="jxr_linenumber" name="L511" href="#L511">511</a> 
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>     <em class="jxr_javadoccomment">/** Don't let anyone instantiate this class. */</em>
+<a class="jxr_linenumber" name="L513" href="#L513">513</a>     <strong class="jxr_keyword">private</strong> <a href="../../../com/feilong/core/RegexPattern.html">RegexPattern</a>(){
+<a class="jxr_linenumber" name="L514" href="#L514">514</a>         <em class="jxr_comment">//AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.</em>
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>         <em class="jxr_comment">//see 《Effective Java》 2nd</em>
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
+<a class="jxr_linenumber" name="L517" href="#L517">517</a>     }
+<a class="jxr_linenumber" name="L518" href="#L518">518</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
