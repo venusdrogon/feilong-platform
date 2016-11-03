@@ -3,10 +3,10 @@
   <groupId>com.feilong.platform</groupId>
   <artifactId>feilong-core</artifactId>
   <versioning>
-    <release>1.9.3</release>
+    <release>1.9.4</release>
     <versions>
-      <version>1.9.3</version>
+      <version>1.9.4</version>
     </versions>
-    <lastUpdated>20161028074150</lastUpdated>
+    <lastUpdated>20161103065158</lastUpdated>
   </versioning>
 </metadata>
