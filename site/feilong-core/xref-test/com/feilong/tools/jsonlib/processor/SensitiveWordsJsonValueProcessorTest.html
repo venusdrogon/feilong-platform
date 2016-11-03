@@ -31,7 +31,7 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.feilong.test.User;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.feilong.tools.jsonlib.JsonFormatConfig;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.feilong.tools.jsonlib.JavaToJsonConfig;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.feilong.tools.jsonlib.JsonUtil;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> net.sf.json.processors.JsonValueProcessor;
@@ -61,7 +61,7 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>          propertyNameAndJsonValueProcessorMap.put(<span class="jxr_string">"password"</span>, jsonValueProcessor);
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          propertyNameAndJsonValueProcessorMap.put(<span class="jxr_string">"age"</span>, jsonValueProcessor);
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          JsonFormatConfig jsonFormatConfig = <strong class="jxr_keyword">new</strong> JsonFormatConfig();
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>          JavaToJsonConfig jsonFormatConfig = <strong class="jxr_keyword">new</strong> JavaToJsonConfig();
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>          jsonFormatConfig.setPropertyNameAndJsonValueProcessorMap(propertyNameAndJsonValueProcessorMap);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>          jsonFormatConfig.setIncludes(<span class="jxr_string">"name"</span>, <span class="jxr_string">"age"</span>, <span class="jxr_string">"password"</span>);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
