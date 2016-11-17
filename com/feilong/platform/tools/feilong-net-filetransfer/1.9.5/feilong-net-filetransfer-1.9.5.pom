@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.9.5</version>
+	</parent>
+
+	<artifactId>feilong-net-filetransfer</artifactId>
+	<name>feilong-net-filetransfer</name>
+	<description>feilong-net-filetransfer</description>
+
+	<properties>
+		<version.jsch>0.1.54</version.jsch>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-io</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!-- commons-net -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+		</dependency>
+
+		<!-- jsch 用于sftp 传输 -->
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>${version.jsch}</version>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-vfs2</artifactId> <version>2.0</version> </dependency> -->
+		<!-- <dependency> <groupId>commons-vfs</groupId> <artifactId>commons-vfs</artifactId> <version>1.0</version> </dependency> -->
+
+	</dependencies>
+</project>
