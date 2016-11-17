@@ -95,7 +95,7 @@
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment"> * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment"> * {@link String#String(byte[] )} 其实调用了{@link String#String(byte[], Charset)};&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment"> * 先使用 {@link Charset#defaultCharset()},如果有异常再用 ISO-8859-1, 具体参见 {@link java.lang.StringCoding#decode(byte[], int, int) }</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment"> * 先使用 {@link Charset#defaultCharset()},如果有异常再用 ISO-8859-1, 具体参见 java.lang.StringCoding#decode(byte[], int, int)</em>
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment"> * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment"> * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment"> * </em>
@@ -422,7 +422,7 @@
 <a class="jxr_linenumber" name="L414" href="#L414">414</a> <em class="jxr_javadoccomment">     * String template = "/home/webuser/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log";</em>
 <a class="jxr_linenumber" name="L415" href="#L415">415</a> <em class="jxr_javadoccomment">     * Date date = new Date();</em>
 <a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} valuesMap = new HashMap{@code &lt;String, String&gt;}();</em>
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} valuesMap = new HashMap{@code &lt;&gt;}();</em>
 <a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * valuesMap.put("yearMonth", DateUtil.toString(date, DatePattern.YEAR_AND_MONTH));</em>
 <a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     * valuesMap.put("expressDeliveryType", "sf");</em>
 <a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * valuesMap.put("fileName", DateUtil.toString(date, DatePattern.TIMESTAMP));</em>
@@ -446,7 +446,7 @@
 <a class="jxr_linenumber" name="L438" href="#L438">438</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} valuesMap = new HashMap{@code &lt;String, Object&gt;}();</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} valuesMap = new HashMap{@code &lt;&gt;}();</em>
 <a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * valuesMap.put("today", DateUtil.toString(new Date(), COMMON_DATE));</em>
 <a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     * valuesMap.put("user", new User(1L));</em>
 <a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     * LOGGER.debug(StringUtil.replace("${today}${today1}${user.id}${user}", valuesMap) + "");</em>
@@ -790,7 +790,7 @@
 <a class="jxr_linenumber" name="L782" href="#L782">782</a>     <em class="jxr_comment">// [start]format</em>
 <a class="jxr_linenumber" name="L783" href="#L783">783</a> 
 <a class="jxr_linenumber" name="L784" href="#L784">784</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L785" href="#L785">785</a> <em class="jxr_javadoccomment">     * 将各类数据,格式化为字符串.</em>
+<a class="jxr_linenumber" name="L785" href="#L785">785</a> <em class="jxr_javadoccomment">     * 将各类数据,使用{@link String#format(String, Object...)}格式化为字符串.</em>
 <a class="jxr_linenumber" name="L786" href="#L786">786</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L787" href="#L787">787</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;规则:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L788" href="#L788">788</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>

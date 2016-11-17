@@ -540,102 +540,101 @@
 <a class="jxr_linenumber" name="L532" href="#L532">532</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果 &lt;code&gt;ClassUtil.isInstance(obj, toBeFindedClassType)&lt;/code&gt; 直接返回 findValue&lt;/li&gt;</em>
 <a class="jxr_linenumber" name="L533" href="#L533">533</a> <em class="jxr_javadoccomment">     * &lt;li&gt;不支持obj是&lt;code&gt;isPrimitiveOrWrapper&lt;/code&gt;,&lt;code&gt;CharSequence&lt;/code&gt;,&lt;code&gt;Collection&lt;/code&gt;,&lt;code&gt;Map&lt;/code&gt;类型,自动过滤&lt;/li&gt;</em>
 <a class="jxr_linenumber" name="L534" href="#L534">534</a> <em class="jxr_javadoccomment">     * &lt;li&gt;调用 {@link PropertyUtil#describe(Object, String...)} 再递归查找&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L535" href="#L535">535</a> <em class="jxr_javadoccomment">     * &lt;li&gt;目前暂不支持从集合里面找到指定类型的值,参见 {@link #isDonotSupportFindType(Object)},如果你有相关需求,可以调用 {@link</em>
-<a class="jxr_linenumber" name="L536" href="#L536">536</a> <em class="jxr_javadoccomment">     * "org.springframework.util.CollectionUtils#findValueOfType(Collection, Class)"}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L537" href="#L537">537</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L538" href="#L538">538</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L539" href="#L539">539</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L540" href="#L540">540</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L541" href="#L541">541</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L542" href="#L542">542</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L543" href="#L543">543</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L544" href="#L544">544</a> <em class="jxr_javadoccomment">     * &lt;b&gt;场景:&lt;/b&gt; 从User中找到UserInfo类型的值</em>
-<a class="jxr_linenumber" name="L545" href="#L545">545</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L546" href="#L546">546</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L547" href="#L547">547</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L548" href="#L548">548</a> <em class="jxr_javadoccomment">     * User user = new User();</em>
-<a class="jxr_linenumber" name="L549" href="#L549">549</a> <em class="jxr_javadoccomment">     * user.setId(5L);</em>
-<a class="jxr_linenumber" name="L550" href="#L550">550</a> <em class="jxr_javadoccomment">     * user.setDate(new Date());</em>
-<a class="jxr_linenumber" name="L551" href="#L551">551</a> <em class="jxr_javadoccomment">     * user.getUserInfo().setAge(28);</em>
-<a class="jxr_linenumber" name="L552" href="#L552">552</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L553" href="#L553">553</a> <em class="jxr_javadoccomment">     * LOGGER.info(JsonUtil.format(PropertyUtil.findValueOfType(user, UserInfo.class)));</em>
-<a class="jxr_linenumber" name="L554" href="#L554">554</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L555" href="#L555">555</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L556" href="#L556">556</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
-<a class="jxr_linenumber" name="L557" href="#L557">557</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L558" href="#L558">558</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L559" href="#L559">559</a> <em class="jxr_javadoccomment">     * {"age": 28}</em>
-<a class="jxr_linenumber" name="L560" href="#L560">560</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L561" href="#L561">561</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L562" href="#L562">562</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L563" href="#L563">563</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L564" href="#L564">564</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L565" href="#L565">565</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L566" href="#L566">566</a> <em class="jxr_javadoccomment">     * @param obj</em>
-<a class="jxr_linenumber" name="L567" href="#L567">567</a> <em class="jxr_javadoccomment">     *            要被查找的对象</em>
-<a class="jxr_linenumber" name="L568" href="#L568">568</a> <em class="jxr_javadoccomment">     * @param toBeFindedClassType</em>
-<a class="jxr_linenumber" name="L569" href="#L569">569</a> <em class="jxr_javadoccomment">     *            the to be finded class type</em>
-<a class="jxr_linenumber" name="L570" href="#L570">570</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;obj&lt;/code&gt; 是null或者是empty,返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L571" href="#L571">571</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toBeFindedClassType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L572" href="#L572">572</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;ClassUtil.isInstance(obj, toBeFindedClassType)&lt;/code&gt;,直接返回 &lt;code&gt;obj&lt;/code&gt;&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L573" href="#L573">573</a> <em class="jxr_javadoccomment">     *         从对象中查找匹配的类型,如果找不到返回 &lt;code&gt;null&lt;/code&gt;&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L574" href="#L574">574</a> <em class="jxr_javadoccomment">     * @see "org.springframework.util.CollectionUtils#findValueOfType(Collection, Class)"</em>
-<a class="jxr_linenumber" name="L575" href="#L575">575</a> <em class="jxr_javadoccomment">     * @since 1.4.1</em>
-<a class="jxr_linenumber" name="L576" href="#L576">576</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L577" href="#L577">577</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L578" href="#L578">578</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T findValueOfType(Object obj,Class&lt;T&gt; toBeFindedClassType){
-<a class="jxr_linenumber" name="L579" href="#L579">579</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(obj)){
-<a class="jxr_linenumber" name="L580" href="#L580">580</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L581" href="#L581">581</a>         }
-<a class="jxr_linenumber" name="L582" href="#L582">582</a> 
-<a class="jxr_linenumber" name="L583" href="#L583">583</a>         Validate.notNull(toBeFindedClassType, <span class="jxr_string">"toBeFindedClassType can't be null/empty!"</span>);
-<a class="jxr_linenumber" name="L584" href="#L584">584</a> 
-<a class="jxr_linenumber" name="L585" href="#L585">585</a>         <strong class="jxr_keyword">if</strong> (ClassUtil.isInstance(obj, toBeFindedClassType)){
-<a class="jxr_linenumber" name="L586" href="#L586">586</a>             <strong class="jxr_keyword">return</strong> (T) obj;
-<a class="jxr_linenumber" name="L587" href="#L587">587</a>         }
-<a class="jxr_linenumber" name="L588" href="#L588">588</a> 
-<a class="jxr_linenumber" name="L589" href="#L589">589</a>         <strong class="jxr_keyword">if</strong> (isDonotSupportFindType(obj)){
-<a class="jxr_linenumber" name="L590" href="#L590">590</a>             LOGGER.trace(<span class="jxr_string">"obj:[{}] not support find toBeFindedClassType:[{}]"</span>, obj.getClass().getName(), toBeFindedClassType.getName());
-<a class="jxr_linenumber" name="L591" href="#L591">591</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L592" href="#L592">592</a>         }
-<a class="jxr_linenumber" name="L593" href="#L593">593</a> 
-<a class="jxr_linenumber" name="L594" href="#L594">594</a>         <em class="jxr_comment">//******************************************************************************</em>
-<a class="jxr_linenumber" name="L595" href="#L595">595</a>         Map&lt;String, Object&gt; describe = describe(obj);
-<a class="jxr_linenumber" name="L596" href="#L596">596</a> 
-<a class="jxr_linenumber" name="L597" href="#L597">597</a>         <strong class="jxr_keyword">for</strong> (Map.Entry&lt;String, Object&gt; entry : describe.entrySet()){
-<a class="jxr_linenumber" name="L598" href="#L598">598</a>             String key = entry.getKey();
-<a class="jxr_linenumber" name="L599" href="#L599">599</a>             Object value = entry.getValue();
-<a class="jxr_linenumber" name="L600" href="#L600">600</a> 
-<a class="jxr_linenumber" name="L601" href="#L601">601</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != value &amp;&amp; !<span class="jxr_string">"class"</span>.equals(key)){
-<a class="jxr_linenumber" name="L602" href="#L602">602</a>                 <em class="jxr_comment">//级联查询</em>
-<a class="jxr_linenumber" name="L603" href="#L603">603</a>                 T t = findValueOfType(value, toBeFindedClassType);
-<a class="jxr_linenumber" name="L604" href="#L604">604</a>                 <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != t){
-<a class="jxr_linenumber" name="L605" href="#L605">605</a>                     <strong class="jxr_keyword">return</strong> t;
-<a class="jxr_linenumber" name="L606" href="#L606">606</a>                 }
-<a class="jxr_linenumber" name="L607" href="#L607">607</a>             }
-<a class="jxr_linenumber" name="L608" href="#L608">608</a>         }
-<a class="jxr_linenumber" name="L609" href="#L609">609</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L610" href="#L610">610</a>     }
-<a class="jxr_linenumber" name="L611" href="#L611">611</a> 
-<a class="jxr_linenumber" name="L612" href="#L612">612</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L613" href="#L613">613</a> <em class="jxr_javadoccomment">     * 一般自定义的command 里面 就是些 string int,list map等对象.</em>
-<a class="jxr_linenumber" name="L614" href="#L614">614</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L615" href="#L615">615</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L616" href="#L616">616</a> <em class="jxr_javadoccomment">     * 这些我们过滤掉,只取类型是 findedClassType的</em>
-<a class="jxr_linenumber" name="L617" href="#L617">617</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L618" href="#L618">618</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L619" href="#L619">619</a> <em class="jxr_javadoccomment">     * @param obj</em>
-<a class="jxr_linenumber" name="L620" href="#L620">620</a> <em class="jxr_javadoccomment">     *            the obj</em>
-<a class="jxr_linenumber" name="L621" href="#L621">621</a> <em class="jxr_javadoccomment">     * @return true, if checks if is can find type</em>
-<a class="jxr_linenumber" name="L622" href="#L622">622</a> <em class="jxr_javadoccomment">     * @since 1.6.3</em>
-<a class="jxr_linenumber" name="L623" href="#L623">623</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L624" href="#L624">624</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isDonotSupportFindType(Object obj){
-<a class="jxr_linenumber" name="L625" href="#L625">625</a>         <em class="jxr_comment">//一般自定义的command 里面 就是些 string int,list map等对象</em>
-<a class="jxr_linenumber" name="L626" href="#L626">626</a>         <em class="jxr_comment">//这些我们过滤掉,只取类型是 findedClassType的</em>
-<a class="jxr_linenumber" name="L627" href="#L627">627</a>         <strong class="jxr_keyword">return</strong> ClassUtils.isPrimitiveOrWrapper(obj.getClass())<em class="jxr_comment">//</em>
-<a class="jxr_linenumber" name="L628" href="#L628">628</a>                         || ClassUtil.isInstanceAnyClass(obj, CharSequence.<strong class="jxr_keyword">class</strong>, Collection.<strong class="jxr_keyword">class</strong>, Map.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L629" href="#L629">629</a>     }
-<a class="jxr_linenumber" name="L630" href="#L630">630</a> }
+<a class="jxr_linenumber" name="L535" href="#L535">535</a> <em class="jxr_javadoccomment">     * &lt;li&gt;目前暂不支持从集合里面找到指定类型的值,如果你有相关需求,可以调用 "org.springframework.util.CollectionUtils#findValueOfType(Collection, Class)"&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L536" href="#L536">536</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L537" href="#L537">537</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L538" href="#L538">538</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L539" href="#L539">539</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L540" href="#L540">540</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L541" href="#L541">541</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L542" href="#L542">542</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L543" href="#L543">543</a> <em class="jxr_javadoccomment">     * &lt;b&gt;场景:&lt;/b&gt; 从User中找到UserInfo类型的值</em>
+<a class="jxr_linenumber" name="L544" href="#L544">544</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L545" href="#L545">545</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L546" href="#L546">546</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L547" href="#L547">547</a> <em class="jxr_javadoccomment">     * User user = new User();</em>
+<a class="jxr_linenumber" name="L548" href="#L548">548</a> <em class="jxr_javadoccomment">     * user.setId(5L);</em>
+<a class="jxr_linenumber" name="L549" href="#L549">549</a> <em class="jxr_javadoccomment">     * user.setDate(new Date());</em>
+<a class="jxr_linenumber" name="L550" href="#L550">550</a> <em class="jxr_javadoccomment">     * user.getUserInfo().setAge(28);</em>
+<a class="jxr_linenumber" name="L551" href="#L551">551</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L552" href="#L552">552</a> <em class="jxr_javadoccomment">     * LOGGER.info(JsonUtil.format(PropertyUtil.findValueOfType(user, UserInfo.class)));</em>
+<a class="jxr_linenumber" name="L553" href="#L553">553</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L554" href="#L554">554</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L555" href="#L555">555</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L556" href="#L556">556</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L557" href="#L557">557</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L558" href="#L558">558</a> <em class="jxr_javadoccomment">     * {"age": 28}</em>
+<a class="jxr_linenumber" name="L559" href="#L559">559</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L560" href="#L560">560</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L561" href="#L561">561</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L562" href="#L562">562</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L563" href="#L563">563</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L564" href="#L564">564</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L565" href="#L565">565</a> <em class="jxr_javadoccomment">     * @param obj</em>
+<a class="jxr_linenumber" name="L566" href="#L566">566</a> <em class="jxr_javadoccomment">     *            要被查找的对象</em>
+<a class="jxr_linenumber" name="L567" href="#L567">567</a> <em class="jxr_javadoccomment">     * @param toBeFindedClassType</em>
+<a class="jxr_linenumber" name="L568" href="#L568">568</a> <em class="jxr_javadoccomment">     *            the to be finded class type</em>
+<a class="jxr_linenumber" name="L569" href="#L569">569</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;obj&lt;/code&gt; 是null或者是empty,返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L570" href="#L570">570</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toBeFindedClassType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L571" href="#L571">571</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;ClassUtil.isInstance(obj, toBeFindedClassType)&lt;/code&gt;,直接返回 &lt;code&gt;obj&lt;/code&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L572" href="#L572">572</a> <em class="jxr_javadoccomment">     *         从对象中查找匹配的类型,如果找不到返回 &lt;code&gt;null&lt;/code&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L573" href="#L573">573</a> <em class="jxr_javadoccomment">     * @see "org.springframework.util.CollectionUtils#findValueOfType(Collection, Class)"</em>
+<a class="jxr_linenumber" name="L574" href="#L574">574</a> <em class="jxr_javadoccomment">     * @since 1.4.1</em>
+<a class="jxr_linenumber" name="L575" href="#L575">575</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L576" href="#L576">576</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L577" href="#L577">577</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T findValueOfType(Object obj,Class&lt;T&gt; toBeFindedClassType){
+<a class="jxr_linenumber" name="L578" href="#L578">578</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(obj)){
+<a class="jxr_linenumber" name="L579" href="#L579">579</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L580" href="#L580">580</a>         }
+<a class="jxr_linenumber" name="L581" href="#L581">581</a> 
+<a class="jxr_linenumber" name="L582" href="#L582">582</a>         Validate.notNull(toBeFindedClassType, <span class="jxr_string">"toBeFindedClassType can't be null/empty!"</span>);
+<a class="jxr_linenumber" name="L583" href="#L583">583</a> 
+<a class="jxr_linenumber" name="L584" href="#L584">584</a>         <strong class="jxr_keyword">if</strong> (ClassUtil.isInstance(obj, toBeFindedClassType)){
+<a class="jxr_linenumber" name="L585" href="#L585">585</a>             <strong class="jxr_keyword">return</strong> (T) obj;
+<a class="jxr_linenumber" name="L586" href="#L586">586</a>         }
+<a class="jxr_linenumber" name="L587" href="#L587">587</a> 
+<a class="jxr_linenumber" name="L588" href="#L588">588</a>         <strong class="jxr_keyword">if</strong> (isDonotSupportFindType(obj)){
+<a class="jxr_linenumber" name="L589" href="#L589">589</a>             LOGGER.trace(<span class="jxr_string">"obj:[{}] not support find toBeFindedClassType:[{}]"</span>, obj.getClass().getName(), toBeFindedClassType.getName());
+<a class="jxr_linenumber" name="L590" href="#L590">590</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L591" href="#L591">591</a>         }
+<a class="jxr_linenumber" name="L592" href="#L592">592</a> 
+<a class="jxr_linenumber" name="L593" href="#L593">593</a>         <em class="jxr_comment">//******************************************************************************</em>
+<a class="jxr_linenumber" name="L594" href="#L594">594</a>         Map&lt;String, Object&gt; describe = describe(obj);
+<a class="jxr_linenumber" name="L595" href="#L595">595</a> 
+<a class="jxr_linenumber" name="L596" href="#L596">596</a>         <strong class="jxr_keyword">for</strong> (Map.Entry&lt;String, Object&gt; entry : describe.entrySet()){
+<a class="jxr_linenumber" name="L597" href="#L597">597</a>             String key = entry.getKey();
+<a class="jxr_linenumber" name="L598" href="#L598">598</a>             Object value = entry.getValue();
+<a class="jxr_linenumber" name="L599" href="#L599">599</a> 
+<a class="jxr_linenumber" name="L600" href="#L600">600</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != value &amp;&amp; !<span class="jxr_string">"class"</span>.equals(key)){
+<a class="jxr_linenumber" name="L601" href="#L601">601</a>                 <em class="jxr_comment">//级联查询</em>
+<a class="jxr_linenumber" name="L602" href="#L602">602</a>                 T t = findValueOfType(value, toBeFindedClassType);
+<a class="jxr_linenumber" name="L603" href="#L603">603</a>                 <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != t){
+<a class="jxr_linenumber" name="L604" href="#L604">604</a>                     <strong class="jxr_keyword">return</strong> t;
+<a class="jxr_linenumber" name="L605" href="#L605">605</a>                 }
+<a class="jxr_linenumber" name="L606" href="#L606">606</a>             }
+<a class="jxr_linenumber" name="L607" href="#L607">607</a>         }
+<a class="jxr_linenumber" name="L608" href="#L608">608</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L609" href="#L609">609</a>     }
+<a class="jxr_linenumber" name="L610" href="#L610">610</a> 
+<a class="jxr_linenumber" name="L611" href="#L611">611</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L612" href="#L612">612</a> <em class="jxr_javadoccomment">     * 一般自定义的command 里面 就是些 string int,list map等对象.</em>
+<a class="jxr_linenumber" name="L613" href="#L613">613</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L614" href="#L614">614</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L615" href="#L615">615</a> <em class="jxr_javadoccomment">     * 这些我们过滤掉,只取类型是 findedClassType的</em>
+<a class="jxr_linenumber" name="L616" href="#L616">616</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L617" href="#L617">617</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L618" href="#L618">618</a> <em class="jxr_javadoccomment">     * @param obj</em>
+<a class="jxr_linenumber" name="L619" href="#L619">619</a> <em class="jxr_javadoccomment">     *            the obj</em>
+<a class="jxr_linenumber" name="L620" href="#L620">620</a> <em class="jxr_javadoccomment">     * @return true, if checks if is can find type</em>
+<a class="jxr_linenumber" name="L621" href="#L621">621</a> <em class="jxr_javadoccomment">     * @since 1.6.3</em>
+<a class="jxr_linenumber" name="L622" href="#L622">622</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L623" href="#L623">623</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isDonotSupportFindType(Object obj){
+<a class="jxr_linenumber" name="L624" href="#L624">624</a>         <em class="jxr_comment">//一般自定义的command 里面 就是些 string int,list map等对象</em>
+<a class="jxr_linenumber" name="L625" href="#L625">625</a>         <em class="jxr_comment">//这些我们过滤掉,只取类型是 findedClassType的</em>
+<a class="jxr_linenumber" name="L626" href="#L626">626</a>         <strong class="jxr_keyword">return</strong> ClassUtils.isPrimitiveOrWrapper(obj.getClass())<em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L627" href="#L627">627</a>                         || ClassUtil.isInstanceAnyClass(obj, CharSequence.<strong class="jxr_keyword">class</strong>, Collection.<strong class="jxr_keyword">class</strong>, Map.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L628" href="#L628">628</a>     }
+<a class="jxr_linenumber" name="L629" href="#L629">629</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

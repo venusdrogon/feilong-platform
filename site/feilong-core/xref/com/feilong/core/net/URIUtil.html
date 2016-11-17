@@ -280,8 +280,8 @@
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">     * 适合于一些后台传递url参数需要encode的场景,比如支付宝 &lt;b&gt;show_url&lt;/b&gt;(收银台页面上,商品展示的超链接),</em>
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     * 支付宝目前不直接支持中文参数链接,比如 &lt;code&gt;<a href="http://www.underarmour.cn/s.htm?keyword=鞋" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=鞋</a>{@code &amp;}pageNo=2&lt;/code&gt; ,在支付宝页面源码会显示成</em>
-<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     * &lt;code&gt;<a href="http://www.underarmour.cn/s.htm?keyword=鞋" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=鞋</a>{@code &amp;amp;}pageNo=2&lt;/code&gt;</em>
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     * 支付宝目前不直接支持中文参数链接,比如 {@code <a href="http://www.underarmour.cn/s.htm?keyword=鞋&amp;pageNo=2" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=鞋&amp;pageNo=2</a>} ,在支付宝页面源码会显示成</em>
+<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     * {@code <a href="http://www.underarmour.cn/s.htm?keyword=鞋&amp;amp;pageNo=2" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=鞋&amp;amp;pageNo=2</a>}</em>
 <a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">     * &lt;br&gt;</em>
@@ -291,7 +291,7 @@
 <a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">     * URIUtil.encodeUri("<a href="http://www.underarmour.cn/s.htm?keyword=鞋" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=鞋</a>{@code &amp;}pageNo=2", UTF8)</em>
 <a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L285" href="#L285">285</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">     * 传递 &lt;code&gt;<a href="http://www.underarmour.cn/s.htm?keyword=%E9%9E%8B" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=%E9%9E%8B</a>{@code &amp;}pageNo=2&lt;/code&gt;</em>
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">     * 传递 {@code <a href="http://www.underarmour.cn/s.htm?keyword=%E9%9E%8B&amp;pageNo=2" target="alexandria_uri">http://www.underarmour.cn/s.htm?keyword=%E9%9E%8B&amp;pageNo=2</a>}</em>
 <a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
 <a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
 <a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>

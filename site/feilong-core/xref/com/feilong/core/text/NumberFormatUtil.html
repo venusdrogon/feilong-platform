@@ -66,136 +66,82 @@
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      }
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     * 将 {@link Number} 使用 numberPattern格式化.</em>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     * 将 {@link Number} 使用 {@link RoundingMode} &lt;code&gt;numberPattern&lt;/code&gt;格式化.</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     * &lt;p style="color:red"&gt;</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * 不建议直接调用此方法,建议使用 {@link com.feilong.core.lang.NumberUtil#toString(Number, String) NumberUtil.toString(Number, String)}替代</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">     * 该方法使用 {@link java.math.RoundingMode#HALF_UP}</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     * &lt;h3&gt;关于参数 &lt;code&gt;value&lt;/code&gt;:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     * &lt;b&gt;请尽量传递Integer,Long,BigDecimal,而不要使用 float,double等浮点类型&lt;/b&gt;,否则可能结果不准确,特别是jdk8以下的版本,具体参见</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">     * &lt;a href="https://github.com/venusdrogon/feilong-core/issues/165"&gt;NumberFormatUtilTest 在 jdk8 下面测试不通过&lt;/a&gt;</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">     * &lt;h3&gt;关于参数 &lt;code&gt;value&lt;/code&gt;:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     * &lt;b&gt;请尽量传递Integer,Long,BigDecimal,而不要使用 float,double等浮点类型&lt;/b&gt;,否则可能结果不准确,特别是jdk8以下的版本,具体参见</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * &lt;a href="https://github.com/venusdrogon/feilong-core/issues/165"&gt;NumberFormatUtilTest 在 jdk8 下面测试不通过&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * &lt;h3&gt;关于参数 &lt;code&gt;roundingMode&lt;/code&gt;&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * 虽然{@link DecimalFormat},默认使用的是银行家舍入法 {@link RoundingMode#HALF_EVEN},参见</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     * &lt;a href="../util/NumberUtil.html#RoundingMode_HALF_EVEN"&gt;关于 RoundingMode#HALF_EVEN&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.15), "#####.#")     =   1.2</em>
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.25), "#####.#")     =   1.3</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.251), "#####.#")    =   1.3</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.15), "#####.#")    =   -1.2</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.25), "#####.#")    =   -1.3</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.251), "#####.#")   =   -1.3</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(25.5), "RP #####")    =   RP 26</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * @param value</em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     *            the value</em>
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">     * @param numberPattern</em>
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">     *            格式化数字格式,可以参见或者使用{@link NumberPattern}</em>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;numberPattern&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;numberPattern&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">     * @see NumberPattern</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * @see DecimalFormat</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     * @see RoundingMode#HALF_UP</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * @see #format(Number, String, RoundingMode)</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String format(Number value,String numberPattern){
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">return</strong> format(value, numberPattern, HALF_UP);
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     }
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * 将 {@link Number} 使用 {@link RoundingMode} &lt;code&gt;numberPattern&lt;/code&gt;格式化.</em>
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;关于参数 &lt;code&gt;value&lt;/code&gt;:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * &lt;b&gt;请尽量传递Integer,Long,BigDecimal,而不要使用 float,double等浮点类型&lt;/b&gt;,否则可能结果不准确,特别是jdk8以下的版本,具体参见</em>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     * &lt;a href="https://github.com/venusdrogon/feilong-core/issues/165"&gt;NumberFormatUtilTest 在 jdk8 下面测试不通过&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;关于参数 &lt;code&gt;roundingMode&lt;/code&gt;&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">     * 虽然{@link DecimalFormat},默认使用的是银行家舍入法 {@link RoundingMode#HALF_EVEN},参见</em>
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     * &lt;a href="../util/NumberUtil.html#RoundingMode_HALF_EVEN"&gt;关于 RoundingMode#HALF_EVEN&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> <em class="jxr_javadoccomment">     * 但是我们常用标准的四舍五入,为了保持和 {@link #format(Number, String)}一致性,如果 roundingMode 为null,使用常用的 {@link RoundingMode#HALF_UP}来进行格式化</em>
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.15), "#####.#",null)     =   1.2</em>
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.25), "#####.#",null)     =   1.3</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.251), "#####.#",null)    =   1.3</em>
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.15), "#####.#",null)    =   -1.2</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.25), "#####.#",null)    =   -1.3</em>
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.251), "#####.#",null)   =   -1.3</em>
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.15), "#####.#", RoundingMode.HALF_EVEN)     =   1.2</em>
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.25), "#####.#", RoundingMode.HALF_EVEN)     =   1.2</em>
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.251), "#####.#", RoundingMode.HALF_EVEN)    =   1.3</em>
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.15), "#####.#", RoundingMode.HALF_EVEN)    =   -1.2</em>
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.25), "#####.#", RoundingMode.HALF_EVEN)    =   -1.2</em>
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.251), "#####.#", RoundingMode.HALF_EVEN)   =   -1.3</em>
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">     * @param value</em>
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">     *            the value</em>
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">     * @param numberPattern</em>
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">     *            格式化数字格式,可以参见或者使用{@link NumberPattern}</em>
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">     * @param roundingMode</em>
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">     *            舍入模式{@link RoundingMode},如果 为null,使用常用的 {@link RoundingMode#HALF_UP}</em>
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;numberPattern&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;numberPattern&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> <em class="jxr_javadoccomment">     * @see DecimalFormat</em>
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_javadoccomment">     * @see &lt;a href="../util/NumberUtil.html#RoundingMode"&gt;JAVA 8种舍入法&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String format(Number value,String numberPattern,RoundingMode roundingMode){
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>         Validate.notNull(value, <span class="jxr_string">"value can't be null!"</span>);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>         Validate.notBlank(numberPattern, <span class="jxr_string">"numberPattern can't be null!"</span>);
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>         <em class="jxr_comment">//该构造方法内部 调用了applyPattern(pattern, false)</em>
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>         DecimalFormat decimalFormat = <strong class="jxr_keyword">new</strong> DecimalFormat(numberPattern);
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>         decimalFormat.setRoundingMode(defaultIfNull(roundingMode, HALF_UP));
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>         String result = decimalFormat.format(value);
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>         LOGGER.trace(<span class="jxr_string">"input:[{}],with:[{}]=[{}],localizedPattern:[{}]"</span>, value, numberPattern, result, decimalFormat.toLocalizedPattern());
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>         <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>     }
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> }
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">     * 但是我们常用标准的四舍五入,为了保持和 {@link com.feilong.core.lang.NumberUtil#toString(Number, String)}一致性,如果 roundingMode 为null,使用常用的</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">     * {@link RoundingMode#HALF_UP}来进行格式化</em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.15), "#####.#",null)     =   1.2</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.25), "#####.#",null)     =   1.3</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.251), "#####.#",null)    =   1.3</em>
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.15), "#####.#",null)    =   -1.2</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.25), "#####.#",null)    =   -1.3</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.251), "#####.#",null)   =   -1.3</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.15), "#####.#", RoundingMode.HALF_EVEN)     =   1.2</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.25), "#####.#", RoundingMode.HALF_EVEN)     =   1.2</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(1.251), "#####.#", RoundingMode.HALF_EVEN)    =   1.3</em>
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.15), "#####.#", RoundingMode.HALF_EVEN)    =   -1.2</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.25), "#####.#", RoundingMode.HALF_EVEN)    =   -1.2</em>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * NumberFormatUtil.format(toBigDecimal(-1.251), "#####.#", RoundingMode.HALF_EVEN)   =   -1.3</em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">     * @param value</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">     *            the value</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">     * @param numberPattern</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">     *            格式化数字格式,可以参见或者使用{@link NumberPattern}</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * @param roundingMode</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     *            舍入模式{@link RoundingMode},如果 为null,使用常用的 {@link RoundingMode#HALF_UP}</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;value&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;numberPattern&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;numberPattern&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * @see DecimalFormat</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * @see &lt;a href="../util/NumberUtil.html#RoundingMode"&gt;JAVA 8种舍入法&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String format(Number value,String numberPattern,RoundingMode roundingMode){
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>         Validate.notNull(value, <span class="jxr_string">"value can't be null!"</span>);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>         Validate.notBlank(numberPattern, <span class="jxr_string">"numberPattern can't be null!"</span>);
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>         <em class="jxr_comment">//该构造方法内部 调用了applyPattern(pattern, false)</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         DecimalFormat decimalFormat = <strong class="jxr_keyword">new</strong> DecimalFormat(numberPattern);
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>         decimalFormat.setRoundingMode(defaultIfNull(roundingMode, HALF_UP));
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         String result = decimalFormat.format(value);
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         LOGGER.trace(<span class="jxr_string">"input:[{}],with:[{}]=[{}],localizedPattern:[{}]"</span>, value, numberPattern, result, decimalFormat.toLocalizedPattern());
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>     }
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
