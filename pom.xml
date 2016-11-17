@@ -124,7 +124,7 @@
 
 		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.6.0</v.maven-compiler-plugin>
-		<v.maven-changes-plugin>2.12</v.maven-changes-plugin>
+		<v.maven-changes-plugin>2.12.1</v.maven-changes-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.17</v.maven-checkstyle-plugin>
@@ -136,7 +136,7 @@
 		<v.maven-javadoc-plugin>2.10.4</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.6</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
-		<v.maven-pmd-plugin>3.6</v.maven-pmd-plugin>
+		<v.maven-pmd-plugin>3.7</v.maven-pmd-plugin>
 
 		<v.maven-scm-plugin>1.9.5</v.maven-scm-plugin>
 		<v.maven-site-plugin>3.5.1</v.maven-site-plugin>
@@ -150,11 +150,11 @@
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
-		<v.sonar-maven-plugin>3.0.2</v.sonar-maven-plugin>
+		<v.sonar-maven-plugin>3.2</v.sonar-maven-plugin>
 		<!-- taglist 检查报告 -->
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
-		<v.license-maven-plugin>2.11</v.license-maven-plugin>
+		<v.license-maven-plugin>3.0</v.license-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
 
 		<!-- **********************begin native2ascii config******************************************* -->
