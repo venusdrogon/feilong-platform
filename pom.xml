@@ -123,7 +123,7 @@
 		<v.maven-antrun-plugin>1.8</v.maven-antrun-plugin>
 
 		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
-		<v.maven-compiler-plugin>3.5.1</v.maven-compiler-plugin>
+		<v.maven-compiler-plugin>3.6.0</v.maven-compiler-plugin>
 		<v.maven-changes-plugin>2.12</v.maven-changes-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
