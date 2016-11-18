@@ -8,13 +8,13 @@ feilong-platform parent pom项目,定义常用jar及 plugins
 
 #子项目地址
 
-child 				| Description 									|Since
-:---- 				| :---------									| :---------:
-[feilong-core](https://github.com/venusdrogon/feilong-core)  		| focus on J2SE,核心项目		|1.2.0
-[feilong-servlet](https://github.com/venusdrogon/feilong-servlet)	| focus on J2EE,是 platform 重要组成部分,web相关项目的基础	|1.2.0
-[feilong-io](https://github.com/venusdrogon/feilong-io)				| 封装了io操作的常用类		|1.5.4
-[feilong-taglib](https://github.com/venusdrogon/feilong-taglib)		| 封装了常用的自定义标签		|1.2.0
-[feilong-spring](https://github.com/venusdrogon/feilong-spring)		| 对spring相关类的快速封装,以便快速使用		|1.2.0
+child 				| Description 									
+:---- 				| :---------									
+[feilong-core](https://github.com/venusdrogon/feilong-core)  		| focus on J2SE,核心项目		
+[feilong-servlet](https://github.com/venusdrogon/feilong-servlet)	| focus on J2EE,是 platform 重要组成部分,web相关项目的基础	
+[feilong-io](https://github.com/venusdrogon/feilong-io)				| 封装了io操作的常用类		
+[feilong-taglib](https://github.com/venusdrogon/feilong-taglib)		| 封装了常用的自定义标签		
+[feilong-spring](https://github.com/venusdrogon/feilong-spring)		| 对spring相关类的快速封装,以便快速使用		
 
 # 一图概述:
 
