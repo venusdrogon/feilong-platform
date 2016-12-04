@@ -1,7 +1,7 @@
 -locale
 'en_US'
 -classpath
-'D:/FeiLong Soft/Essential/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar;D:/FeiLong Soft/Essential/Development/repository/org/slf4j/slf4j-log4j12/1.7.21/slf4j-log4j12-1.7.21.jar;D:/FeiLong Soft/Essential/Development/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar;D:/FeiLong Soft/Essential/Development/repository/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar;D:/FeiLong Soft/Essential/Development/repository/javax/el/el-api/2.2/el-api-2.2.jar;D:/FeiLong Soft/Essential/Development/repository/commons-io/commons-io/2.5/commons-io-2.5.jar;D:/FeiLong Soft/Essential/Development/repository/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar;D:/FeiLong Soft/Essential/Development/repository/javax/servlet/jstl/1.2/jstl-1.2.jar;D:/FeiLong Soft/Essential/Development/repository/com/feilong/platform/feilong-io/1.9.5/feilong-io-1.9.5.jar;D:/FeiLong Soft/Essential/Development/repository/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar;D:/FeiLong Soft/Essential/Development/repository/com/feilong/platform/feilong-core/1.9.5/feilong-core-1.9.5.jar;D:/FeiLong Soft/Essential/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar;D:/FeiLong Soft/Essential/Development/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar;D:/FeiLong Soft/Essential/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar;D:/FeiLong Soft/Essential/Development/repository/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar;D:/FeiLong Soft/Essential/Development/repository/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar;D:/FeiLong Soft/Essential/Development/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar;D:/FeiLong Soft/Essential/Development/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar'
+'D:/FeiLong Soft/Essential/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar;D:/FeiLong Soft/Essential/Development/repository/org/slf4j/slf4j-log4j12/1.7.21/slf4j-log4j12-1.7.21.jar;D:/FeiLong Soft/Essential/Development/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar;D:/FeiLong Soft/Essential/Development/repository/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar;D:/FeiLong Soft/Essential/Development/repository/javax/el/el-api/2.2/el-api-2.2.jar;D:/FeiLong Soft/Essential/Development/repository/commons-io/commons-io/2.5/commons-io-2.5.jar;D:/FeiLong Soft/Essential/Development/repository/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar;D:/FeiLong Soft/Essential/Development/repository/javax/servlet/jstl/1.2/jstl-1.2.jar;D:/FeiLong Soft/Essential/Development/repository/com/feilong/platform/feilong-io/1.9.6/feilong-io-1.9.6.jar;D:/FeiLong Soft/Essential/Development/repository/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar;D:/FeiLong Soft/Essential/Development/repository/com/feilong/platform/feilong-core/1.9.6/feilong-core-1.9.6.jar;D:/FeiLong Soft/Essential/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar;D:/FeiLong Soft/Essential/Development/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar;D:/FeiLong Soft/Essential/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar;D:/FeiLong Soft/Essential/Development/repository/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar;D:/FeiLong Soft/Essential/Development/repository/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar;D:/FeiLong Soft/Essential/Development/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar;D:/FeiLong Soft/Essential/Development/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar'
 -encoding
 'UTF-8'
 -overview
@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-servlet 1.9.5 API'
+'feilong-servlet 1.9.6 API'
 -footer
-'feilong-servlet 1.9.5 API'
+'feilong-servlet 1.9.6 API'
 -group
 'Date package ÈÕÆÚ' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-servlet 1.9.5 API'
+'feilong-servlet 1.9.6 API'
 -link
 'https://docs.oracle.com/javaee/7/api'
 -link
@@ -60,4 +60,4 @@
 -use
 -version
 -windowtitle
-'feilong-servlet 1.9.5 API create by feilong'
+'feilong-servlet 1.9.6 API create by feilong'
