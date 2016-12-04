@@ -32,7 +32,7 @@ child 				| Description
 	
 		....
 		<properties>
-			<version.feilong-platform>1.9.5</version.feilong-platform>
+			<version.feilong-platform>1.9.6</version.feilong-platform>
 			....
 		</properties>
 		
