@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform</groupId>
+  <artifactId>feilong-accessor</artifactId>
+  <version>1.9.7-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20161207.113515</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20161207113515</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.9.7-20161207.113515-1</value>
+        <updated>20161207113515</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.9.7-20161207.113515-1</value>
+        <updated>20161207113515</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>1.9.7-20161207.113515-1</value>
+        <updated>20161207113515</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
