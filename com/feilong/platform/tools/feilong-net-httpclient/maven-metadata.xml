@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-net-httpclient</artifactId>
   <versioning>
-    <release>1.9.6</release>
     <versions>
-      <version>1.9.6</version>
+      <version>1.9.7-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20161205042701</lastUpdated>
+    <lastUpdated>20161207114557</lastUpdated>
   </versioning>
 </metadata>
