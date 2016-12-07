@@ -885,7 +885,7 @@
 						<link>http://commons.apache.org/proper/commons-lang/javadocs/api-release/</link>
 						<link>http://commons.apache.org/proper/commons-collections/javadocs/api-release/</link>
 						<link>http://commons.apache.org/proper/commons-io/javadocs/api-release/</link>
-						<link>http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.2/apidocs/</link>
+						<link>http://commons.apache.org/proper/commons-beanutils/javadocs/v${version.commons-beanutils}/apidocs/</link>
 						<link>http://ezmorph.sourceforge.net/apidocs/</link>
 						<link>http://docs.spring.io/spring/docs/${version.spring}/javadoc-api/</link>
 
