@@ -171,7 +171,7 @@
 		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
 		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
 		<!-- git commit message -->
-		<site-maven-plugin.message>deploy ${project.name} ${project.version}</site-maven-plugin.message>
+		<site-maven-plugin.message>:rocket: deploy ${project.name} ${project.version}</site-maven-plugin.message>
 
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
 		<github.global.server>github</github.global.server>
