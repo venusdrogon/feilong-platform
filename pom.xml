@@ -16,11 +16,6 @@
 	<url>http://venusdrogon.github.io/feilong-platform/</url>
 
 	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
-	<!-- <scm>
-		<url>https://github.com/venusdrogon/feilong-platform/trunk</url>
-		<connection>scm:svn:https://github.com/venusdrogon/feilong-platform/trunk</connection>
-		<developerConnection>scm:svn:https://github.com/venusdrogon/feilong-platform/trunk</developerConnection>
-		</scm> -->
 	<scm>
 		<url>https://github.com/venusdrogon/feilong-platform</url>
 		<connection>scm:git:https://github.com/venusdrogon/feilong-platform</connection>
