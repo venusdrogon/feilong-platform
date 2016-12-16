@@ -4,8 +4,8 @@
   <artifactId>feilong-common-test</artifactId>
   <versioning>
     <versions>
-      <version>1.9.7-SNAPSHOT</version>
+      <version>1.10.0-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20161207112732</lastUpdated>
+    <lastUpdated>20161216052712</lastUpdated>
   </versioning>
 </metadata>

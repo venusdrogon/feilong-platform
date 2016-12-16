@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.test</groupId>
+  <artifactId>feilong-common-test</artifactId>
+  <version>1.10.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20161216.052712</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20161216052712</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.10.0-20161216.052712-1</value>
+        <updated>20161216052712</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.10.0-20161216.052712-1</value>
+        <updated>20161216052712</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
