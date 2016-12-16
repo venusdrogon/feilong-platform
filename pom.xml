@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.9.7-SNAPSHOT</version>
+	<version>1.10.0-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
@@ -30,7 +30,7 @@
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<!-- 不要使用${project.version}, 因为如果真实项目生成的版本不是1.7.0的时候,比如是 0.0.1版本,那么就引用不到feilong包 -->
-		<version.feilong-platform>1.9.7-SNAPSHOT</version.feilong-platform>
+		<version.feilong-platform>1.10.0-SNAPSHOT</version.feilong-platform>
 
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,8 +44,6 @@
 		<!--****************************第三方************************************ -->
 
 		<!--*********************begin dependency plugins version************************************ -->
-		<version.aspectjweaver>1.6.8</version.aspectjweaver>
-
 		<version.commons-beanutils>1.9.3</version.commons-beanutils>
 		<version.commons-codec>1.10</version.commons-codec>
 		<version.commons-collections>3.2.2</version.commons-collections>
@@ -83,21 +81,17 @@
 
 		<version.javamail>1.4.7</version.javamail>
 
-
-		<!-- net.sf.json-lib -->
-		<version.json-lib>2.4</version.json-lib>
-		<version.xom>1.2.5</version.xom>
-
 		<version.servlet-api>3.0.1</version.servlet-api>
 		<version.jsp-api>2.2</version.jsp-api>
 		<version.el-api>2.2</version.el-api>
 		<version.jstl>1.2</version.jstl>
 
 		<version.junit>4.12</version.junit>
+		<version.hamcrest-library>1.3</version.hamcrest-library>
 
 		<version.log4j>1.2.17</version.log4j>
 		<version.logback>1.1.8</version.logback>
-		
+
 		<!-- http://www.slf4j.org/news.html -->
 		<version.slf4j>1.7.22</version.slf4j>
 
@@ -123,6 +117,7 @@
 
 		<!--*********************begin plugins version************************************ -->
 		<v.maven-antrun-plugin>1.8</v.maven-antrun-plugin>
+		<v.maven-assembly-plugin>3.0.0</v.maven-assembly-plugin>
 
 		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.6.0</v.maven-compiler-plugin>
@@ -148,7 +143,7 @@
 		<v.maven-source-plugin>3.0.1</v.maven-source-plugin>
 		<v.maven-surefire-plugin>2.19.1</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
-		
+
 		<!-- https://issues.apache.org/jira/browse/MRESOURCES/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
 		<v.maven-resources-plugin>3.0.2</v.maven-resources-plugin>
 
@@ -241,13 +236,15 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- hamcrest-library -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
-			<version>1.3</version>
+			<version>${version.hamcrest-library}</version>
 			<scope>test</scope>
 		</dependency>
 
+		<!-- feilong-common-test -->
 		<dependency>
 			<groupId>com.feilong.test</groupId>
 			<artifactId>feilong-common-test</artifactId>
@@ -259,41 +256,61 @@
 	<dependencyManagement>
 		<dependencies>
 			<!--*******************feilong************************* -->
+			<!-- feilong-core -->
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
 				<artifactId>feilong-core</artifactId>
-				<version>${project.version}</version>
+				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!-- feilong-core-extension -->
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
 				<artifactId>feilong-core-extension</artifactId>
-				<version>${project.version}</version>
+				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!-- feilong-tools-jsonlib -->
+			<dependency>
+				<groupId>com.feilong.platform.tools</groupId>
+				<artifactId>feilong-tools-jsonlib</artifactId>
+				<version>${version.feilong-platform}</version>
+			</dependency>
+
+			<!-- feilong-tools-jsonlib -->
+			<dependency>
+				<groupId>com.feilong.platform.tools</groupId>
+				<artifactId>feilong-tools-jsonlib</artifactId>
+				<version>${version.feilong-platform}</version>
+				<classifier>tests</classifier>
+			</dependency>
+
+			<!-- feilong-servlet -->
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
 				<artifactId>feilong-servlet</artifactId>
-				<version>${project.version}</version>
+				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!-- feilong-taglib -->
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
 				<artifactId>feilong-taglib</artifactId>
-				<version>${project.version}</version>
+				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!-- feilong-tools-security -->
 			<dependency>
 				<groupId>com.feilong.platform.tools</groupId>
 				<artifactId>feilong-tools-security</artifactId>
-				<version>${project.version}</version>
+				<version>${version.feilong-platform}</version>
 			</dependency>
 
 			<!--feilong-tools-velocity -->
 			<dependency>
 				<groupId>com.feilong.platform.tools</groupId>
 				<artifactId>feilong-tools-velocity</artifactId>
-				<version>${project.version}</version>
+				<version>${version.feilong-platform}</version>
 			</dependency>
 
 			<!-- *******************spring********************************* -->
@@ -303,13 +320,6 @@
 				<version>${version.spring}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-
-			<!-- aspectjweaver -->
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>${version.aspectjweaver}</version>
 			</dependency>
 
 			<!-- **************************************************** -->
@@ -363,12 +373,14 @@
 				<version>${version.commons-beanutils}</version>
 			</dependency>
 
+			<!-- commons-codec -->
 			<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
 				<version>${version.commons-codec}</version>
 			</dependency>
 
+			<!-- commons-digester -->
 			<dependency>
 				<groupId>commons-digester</groupId>
 				<artifactId>commons-digester</artifactId>
@@ -389,13 +401,14 @@
 				</exclusions>
 			</dependency>
 
+			<!-- commons-email -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-email</artifactId>
 				<version>${version.commons-email}</version>
 			</dependency>
 
-			<!--通用接口，它可以使应用程序通过多种途径读取配置信 -->
+			<!-- commons-configuration 通用接口，它可以使应用程序通过多种途径读取配置信 -->
 			<dependency>
 				<groupId>commons-configuration</groupId>
 				<artifactId>commons-configuration</artifactId>
@@ -412,7 +425,7 @@
 				</exclusions>
 			</dependency>
 
-			<!-- -->
+			<!-- commons-configuration2 -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-configuration2</artifactId>
@@ -433,12 +446,14 @@
 				<version>${version.commons-collections4}</version>
 			</dependency>
 
+			<!-- commons-fileupload -->
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
 				<version>${version.commons-fileupload}</version>
 			</dependency>
 
+			<!-- commons-io -->
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
@@ -453,13 +468,14 @@
 			</dependency>
 
 			<!-- *********************json******************************* -->
-			<!-- 解决This parser does not support specification "null" version "null" -->
+			<!-- xercesImpl 解决This parser does not support specification "null" version "null" -->
 			<dependency>
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
 				<version>${version.xercesImpl}</version>
 			</dependency>
 
+			<!-- xml-apis -->
 			<dependency>
 				<groupId>xml-apis</groupId>
 				<artifactId>xml-apis</artifactId>
@@ -511,21 +527,21 @@
 				<version>${version.logback}</version>
 			</dependency>
 
-			<!--jul桥接 用来输出 Java Logging Framework (JUL) java.util.logging.* -->
+			<!--jul-to-slf4j 桥接 用来输出 Java Logging Framework (JUL) java.util.logging.* -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jul-to-slf4j</artifactId>
 				<version>${version.slf4j}</version>
 			</dependency>
 
-			<!-- jcl桥接，用来输出 第三方Jakarta Commons Logging (JCL) -->
+			<!-- jcl-over-slf4j 桥接，用来输出 第三方Jakarta Commons Logging (JCL) -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
 				<version>${version.slf4j}</version>
 			</dependency>
 
-			<!-- log4j桥接 -->
+			<!-- log4j-over-slf4j桥接 -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>log4j-over-slf4j</artifactId>
@@ -608,7 +624,7 @@
 	<!--********************************build****************************************** -->
 	<build>
 		<plugins>
-
+			<!-- versions-maven-plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
@@ -622,12 +638,14 @@
 				<version>${v.maven-scm-plugin}</version>
 			</plugin>
 
+			<!-- sonar-maven-plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>${v.sonar-maven-plugin}</version>
 			</plugin>
 
+			<!-- site-maven-plugin -->
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
@@ -665,7 +683,7 @@
 				</executions>
 			</plugin>
 
-			<!-- 国际化插件 -->
+			<!-- native2ascii-maven-plugin 国际化插件 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>native2ascii-maven-plugin</artifactId>
@@ -693,7 +711,7 @@
 				</executions>
 			</plugin>
 
-			<!-- license插件 -->
+			<!-- license-maven-plugin license插件 -->
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
@@ -1009,6 +1027,11 @@
 				<plugin>
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>${v.maven-antrun-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${v.maven-assembly-plugin}</version>
 				</plugin>
 
 				<plugin>
