@@ -222,7 +222,6 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${version.slf4j}</version>
 		</dependency>
 
 		<!--******************** test************************* -->
@@ -230,7 +229,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${version.junit}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -238,7 +236,6 @@
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
-			<version>${version.hamcrest-library}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -246,7 +243,6 @@
 		<dependency>
 			<groupId>com.feilong.test</groupId>
 			<artifactId>feilong-common-test</artifactId>
-			<version>${version.feilong-common-test}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -254,6 +250,7 @@
 	<!--*********************dependencyManagement****************************** -->
 	<dependencyManagement>
 		<dependencies>
+
 			<!--*******************feilong************************* -->
 			<!-- feilong-core -->
 			<dependency>
@@ -481,6 +478,13 @@
 				<version>${version.xml-apis}</version>
 			</dependency>
 
+			<!--******** slf4j******** -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
 			<!-- ***********log4j *************** -->
 
 			<!-- slf4j-log4j12 -->
@@ -592,6 +596,31 @@
 				<artifactId>el-api</artifactId>
 				<version>${version.el-api}</version>
 				<scope>provided</scope>
+			</dependency>
+
+
+			<!-- junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- hamcrest-library -->
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-library</artifactId>
+				<version>${version.hamcrest-library}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- feilong-common-test -->
+			<dependency>
+				<groupId>com.feilong.test</groupId>
+				<artifactId>feilong-common-test</artifactId>
+				<version>${version.feilong-common-test}</version>
+				<scope>test</scope>
 			</dependency>
 
 		</dependencies>
