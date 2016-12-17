@@ -222,9 +222,10 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<version>${version.slf4j}</version>
 		</dependency>
 
-		<!--***************************** test************************** -->
+		<!--******************** test************************* -->
 		<!-- junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -478,13 +479,6 @@
 				<groupId>xml-apis</groupId>
 				<artifactId>xml-apis</artifactId>
 				<version>${version.xml-apis}</version>
-			</dependency>
-
-			<!--******** slf4j******** -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${version.slf4j}</version>
 			</dependency>
 
 			<!-- ***********log4j *************** -->
