@@ -932,6 +932,9 @@
 				<version>${v.maven-surefire-plugin}</version>
 				<configuration>
 					<skip>true</skip><!-- 跳过测试 -->
+
+					<!-- Option to print summary of test suites or just print the test cases that have errors. Default value is: true. -->
+					<printSummary>true</printSummary>
 				</configuration>
 			</plugin>
 
