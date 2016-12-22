@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.feilong.test</groupId>
+	<artifactId>feilong-common-test</artifactId>
+	<version>1.10.0-SNAPSHOT</version>
+
+	<name>feilong-common-test</name>
+	<description>feilong-common-test</description>
+
+	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-platform.git</url>
+		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:venusdrogon/feilong-platform.git</developerConnection>
+	</scm>
+
+	<properties>
+		<!-- 让整个项目统一字符集编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<version.commons-lang3>3.5</version.commons-lang3>
+		<version.junit>4.12</version.junit>
+
+		<v.maven-compiler-plugin>3.6.0</v.maven-compiler-plugin>
+		<v.maven-surefire-plugin>2.19.1</v.maven-surefire-plugin>
+
+		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
+		<maven-compiler-plugin.target>1.7</maven-compiler-plugin.target>
+		<maven-compiler-plugin.encoding>${project.build.sourceEncoding}</maven-compiler-plugin.encoding>
+
+		<v.site-maven-plugin>0.12</v.site-maven-plugin>
+
+		<!-- **********************begin site-maven-plugin config******************************************* -->
+		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
+		<site-maven-plugin.repositoryOwner>venusdrogon</site-maven-plugin.repositoryOwner>
+		<site-maven-plugin.branch>refs/heads/repository</site-maven-plugin.branch>
+		<!-- git commit message -->
+		<site-maven-plugin.message>:rocket: deploy ${project.name} ${project.version}</site-maven-plugin.message>
+
+		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
+		<github.global.server>github</github.global.server>
+		<!-- **********************end site-maven-plugin config******************************************* -->
+	</properties>
+
+
+	<!-- 项目发布管理 -->
+	<distributionManagement>
+		<!-- <url>file://${user.home}/feilong/repository</url> -->
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/mvn-repo</url>
+		</repository>
+	</distributionManagement>
+
+	<dependencies>
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${version.commons-lang3}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!--***************************** test************************** -->
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- maven-compiler-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${v.maven-compiler-plugin}</version>
+				<configuration>
+					<!-- 指定高版本的源码和编译后的字节码文件 -->
+					<source>${maven-compiler-plugin.source}</source>
+					<target>${maven-compiler-plugin.target}</target>
+					<encoding>${maven-compiler-plugin.encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- maven-surefire-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${v.maven-surefire-plugin}</version>
+				<configuration>
+					<!-- 跳过测试 -->
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>${v.site-maven-plugin}</version>
+				<configuration>
+					<!-- git commit message -->
+					<message>${site-maven-plugin.message}</message>
+					<!-- disable webpage processing -->
+					<noJekyll>true</noJekyll>
+
+					<merge>true</merge>
+
+					<!-- remote branch name -->
+					<branch>${site-maven-plugin.branch}</branch>
+
+					<!-- github repo name -->
+					<repositoryName>${site-maven-plugin.repositoryName}</repositoryName>
+					<!-- github username -->
+					<repositoryOwner>${site-maven-plugin.repositoryOwner}</repositoryOwner>
+
+					<!-- matches distribution management repository url above -->
+					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+					<includes>
+						<include>**/*</include>
+					</includes>
+				</configuration>
+				<executions>
+					<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
