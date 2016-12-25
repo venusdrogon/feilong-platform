@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.office</groupId>
   <artifactId>feilong-office-excel</artifactId>
   <versioning>
+    <release>1.10.0</release>
     <versions>
-      <version>1.9.7-SNAPSHOT</version>
+      <version>1.10.0</version>
     </versions>
-    <lastUpdated>20161207115548</lastUpdated>
+    <lastUpdated>20161225192415</lastUpdated>
   </versioning>
 </metadata>
