@@ -9,6 +9,4 @@ com.feilong.core.util
 com.feilong.core.util.comparator
 com.feilong.core.util.predicate
 com.feilong.core.util.transformer
-com.feilong.tools.jsonlib
-com.feilong.tools.jsonlib.processor
 com.feilong.tools.slf4j

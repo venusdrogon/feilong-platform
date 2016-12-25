@@ -30,7 +30,7 @@
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.feilong.tools.jsonlib.JsonUtil;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.ConvertUtil;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.convert;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
@@ -253,13 +253,13 @@
 <a class="jxr_linenumber" name="L245" href="#L245">245</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Class&lt;?&gt;[] extractActualTypeArgumentClassArray(ParameterizedType parameterizedType){
 <a class="jxr_linenumber" name="L246" href="#L246">246</a>         Validate.notNull(parameterizedType, <span class="jxr_string">"parameterizedType can't be null/empty!"</span>);
 <a class="jxr_linenumber" name="L247" href="#L247">247</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isTraceEnabled()){
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>             LOGGER.trace(<span class="jxr_string">"parameterizedType info:{}"</span>, JsonUtil.format(parameterizedType));
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>             LOGGER.trace(<span class="jxr_string">"parameterizedType info:[{}]"</span>, parameterizedType);
 <a class="jxr_linenumber" name="L249" href="#L249">249</a>         }
 <a class="jxr_linenumber" name="L250" href="#L250">250</a>         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
 <a class="jxr_linenumber" name="L251" href="#L251">251</a>         Validate.notNull(actualTypeArguments, <span class="jxr_string">"actualTypeArguments can't be null/empty!"</span>);
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> 
 <a class="jxr_linenumber" name="L253" href="#L253">253</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isTraceEnabled()){
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>             LOGGER.trace(<span class="jxr_string">"actualTypeArguments:[{}]"</span>, JsonUtil.format(actualTypeArguments));
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>             LOGGER.trace(<span class="jxr_string">"actualTypeArguments:[{}]"</span>, ConvertUtil.toString(actualTypeArguments, <strong class="jxr_keyword">null</strong>));
 <a class="jxr_linenumber" name="L255" href="#L255">255</a>         }
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>         <strong class="jxr_keyword">return</strong> convert(actualTypeArguments, Class[].<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L257" href="#L257">257</a>     }
