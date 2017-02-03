@@ -116,7 +116,7 @@
 		<v.maven-assembly-plugin>3.0.0</v.maven-assembly-plugin>
 
 		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
-		<v.maven-compiler-plugin>3.6.0</v.maven-compiler-plugin>
+		<v.maven-compiler-plugin>3.6.1</v.maven-compiler-plugin>
 		<v.maven-changes-plugin>2.12.1</v.maven-changes-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
