@@ -45,7 +45,7 @@
 		<version.commons-collections>3.2.2</version.commons-collections>
 		<version.commons-collections4>4.1</version.commons-collections4>
 		<version.commons-configuration>1.10</version.commons-configuration>
-		<version.commons-configuration2>2.1</version.commons-configuration2>
+		<version.commons-configuration2>2.1.1</version.commons-configuration2>
 		<version.commons-digester>2.1</version.commons-digester>
 
 		<version.commons-email>1.4</version.commons-email>
