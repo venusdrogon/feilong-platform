@@ -91,6 +91,8 @@
 		<!-- http://www.slf4j.org/news.html -->
 		<version.slf4j>1.7.23</version.slf4j>
 
+		<version.spring>3.2.18.RELEASE</version.spring>
+
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
 
@@ -305,6 +307,15 @@
 				<groupId>com.feilong.platform.tools</groupId>
 				<artifactId>feilong-tools-velocity</artifactId>
 				<version>${version.feilong-platform}</version>
+			</dependency>
+
+			<!-- *******************spring********************************* -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${version.spring}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<!-- **************************************************** -->
