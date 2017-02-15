@@ -89,7 +89,7 @@
 		<version.logback>1.2.1</version.logback>
 
 		<!-- http://www.slf4j.org/news.html -->
-		<version.slf4j>1.7.22</version.slf4j>
+		<version.slf4j>1.7.23</version.slf4j>
 
 		<version.spring>3.2.18.RELEASE</version.spring>
 
