@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.office</groupId>
   <artifactId>feilong-office-word</artifactId>
   <versioning>
+    <release>1.10.1</release>
     <versions>
-      <version>1.10.1-SNAPSHOT</version>
+      <version>1.10.1</version>
     </versions>
-    <lastUpdated>20170308185409</lastUpdated>
+    <lastUpdated>20170309044108</lastUpdated>
   </versioning>
 </metadata>

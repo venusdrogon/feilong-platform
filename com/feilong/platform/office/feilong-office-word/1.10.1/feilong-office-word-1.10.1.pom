@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.office</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.1</version>
+	</parent>
+
+	<artifactId>feilong-office-word</artifactId>
+	<name>feilong-office-word</name>
+	<description>feilong-office-word</description>
+
+	<properties>
+		<version.jacob>1.14.3</version.jacob>
+	</properties>
+
+	<dependencies>
+		<!-- jacob 1.14.3 -->
+		<dependency>
+			<groupId>net.sf.jacob-project</groupId>
+			<artifactId>jacob</artifactId>
+			<version>${version.jacob}</version>
+		</dependency>
+	</dependencies>
+</project>
