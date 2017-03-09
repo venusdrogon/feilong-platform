@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.tools</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.1</version>
+	</parent>
+
+	<artifactId>feilong-tools-xstream</artifactId>
+	<name>feilong-tools-xstream</name>
+	<description>feilong-tools-xstream</description>
+
+	<properties>
+		<version.xstream>1.4.9</version.xstream>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${version.xstream}</version>
+		</dependency>
+
+		<!-- feilong-tools-jsonlib -->
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-jsonlib</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
