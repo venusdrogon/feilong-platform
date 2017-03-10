@@ -30,6 +30,10 @@
 
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		
+		<!-- javadoc 和site 的生成目录 -->
+		<folder.gh-pages>/Users/feilong/workspace/feilong/else/feilong-platform-gh-pages</folder.gh-pages>
 
 		<!-- **********************begin maven-compiler-plugin config******************************************* -->
 		<maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
@@ -181,8 +185,8 @@
 		<!-- 用于读取javadoc 内部使用的 配置文件, 比如 描述文字为 描述,英文环境为description -->
 		<maven-javadoc-plugin.locale>en_US</maven-javadoc-plugin.locale>
 
-		<maven-javadoc-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs</maven-javadoc-plugin.outputDirectory>
-		<maven-javadoc-plugin.reportOutputDirectory>E:/Workspaces/feilong-platform gh-pages/javadocs</maven-javadoc-plugin.reportOutputDirectory>
+		<maven-javadoc-plugin.outputDirectory>${folder.gh-pages}/javadocs</maven-javadoc-plugin.outputDirectory>
+		<maven-javadoc-plugin.reportOutputDirectory>${folder.gh-pages}/javadocs</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
 		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
 		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
@@ -200,7 +204,7 @@
 		-->
 		<maven-javadoc-plugin.stylesheet>java</maven-javadoc-plugin.stylesheet>
 
-		<maven-site-plugin.outputDirectory>E:/Workspaces/feilong-platform gh-pages/site/${project.name}</maven-site-plugin.outputDirectory>
+		<maven-site-plugin.outputDirectory>${folder.gh-pages}/site/${project.name}</maven-site-plugin.outputDirectory>
 
 		<!-- **********************end maven-javadoc-plugin config******************************************* -->
 		<developer.feilong.name>feilong</developer.feilong.name>
