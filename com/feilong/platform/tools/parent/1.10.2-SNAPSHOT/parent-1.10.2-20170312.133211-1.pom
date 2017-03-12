@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.2-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.feilong.platform.tools</groupId>
+	<artifactId>parent</artifactId>
+
+	<packaging>pom</packaging>
+
+	<name>feilong-tools-parent</name>
+	<description>${project.name} ${project.version} API</description>
+
+	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-platform.git</url>
+		<connection>scm:git:git@github.com:venusdrogon/feilong-platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:venusdrogon/feilong-platform.git</developerConnection>
+	</scm>
+
+	<modules>
+		<module>feilong-net-filetransfer</module>
+		<module>feilong-net-httpclient</module>
+		<module>feilong-tools-jsoup</module>
+
+		<module>feilong-tools-velocity</module>
+
+		<module>feilong-tools-middleware</module>
+		<module>feilong-tools-mail</module>
+		<module>feilong-tools-xstream</module>
+		<module>feilong-tools-security</module>
+
+		<module>feilong-tools-barcode</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+
+		<!-- slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+	</dependencies>
+</project>
