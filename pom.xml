@@ -90,10 +90,12 @@
 		<version.hamcrest-library>1.3</version.hamcrest-library>
 
 		<version.log4j>1.2.17</version.log4j>
-		<version.logback>1.2.1</version.logback>
+		
+		<!-- https://logback.qos.ch/news.html -->
+		<version.logback>1.2.2</version.logback>
 
 		<!-- http://www.slf4j.org/news.html -->
-		<version.slf4j>1.7.24</version.slf4j>
+		<version.slf4j>1.7.25</version.slf4j>
 
 		<version.spring>3.2.18.RELEASE</version.spring>
 
