@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../feilong/feilong-core/target/site/apidocs/com/feilong/core/date/DateUtil.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../feilong-core/target/site/apidocs/com/feilong/core/date/DateUtil.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (C) 2008 feilong</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -1453,19 +1453,30 @@
 <a class="jxr_linenumber" name="L1445" href="#L1445">1445</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L1446" href="#L1446">1446</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L1447" href="#L1447">1447</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1448" href="#L1448">1448</a> <em class="jxr_javadoccomment">     * @param year</em>
-<a class="jxr_linenumber" name="L1449" href="#L1449">1449</a> <em class="jxr_javadoccomment">     *            年份</em>
-<a class="jxr_linenumber" name="L1450" href="#L1450">1450</a> <em class="jxr_javadoccomment">     * @return 四年一闰,百年不闰,四百年再闰</em>
-<a class="jxr_linenumber" name="L1451" href="#L1451">1451</a> <em class="jxr_javadoccomment">     * @see GregorianCalendar#isLeapYear(int)</em>
-<a class="jxr_linenumber" name="L1452" href="#L1452">1452</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1453" href="#L1453">1453</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isLeapYear(<strong class="jxr_keyword">int</strong> year){
-<a class="jxr_linenumber" name="L1454" href="#L1454">1454</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> GregorianCalendar().isLeapYear(year);
-<a class="jxr_linenumber" name="L1455" href="#L1455">1455</a>     }
-<a class="jxr_linenumber" name="L1456" href="#L1456">1456</a> 
-<a class="jxr_linenumber" name="L1457" href="#L1457">1457</a>     <em class="jxr_comment">// [end]</em>
-<a class="jxr_linenumber" name="L1458" href="#L1458">1458</a> }
+<a class="jxr_linenumber" name="L1448" href="#L1448">1448</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1449" href="#L1449">1449</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1450" href="#L1450">1450</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L1451" href="#L1451">1451</a> <em class="jxr_javadoccomment">     * &lt;li&gt;需要注意的是,有些文章说3200 是平年, 参见&lt;a href="<a href="http://baike.baidu.com/item/闰年/27098" target="alexandria_uri">http://baike.baidu.com/item/闰年/27098</a>#6"&gt;精确计算方法&lt;/a&gt;,但是 jdk中 判定3200 依然是闰年,并且</em>
+<a class="jxr_linenumber" name="L1452" href="#L1452">1452</a> <em class="jxr_javadoccomment">     * &lt;a href="https://en.wikipedia.org/wiki/Leap_year"&gt;wiki&lt;/a&gt; 也没有提及3200是平年的故事&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1453" href="#L1453">1453</a> <em class="jxr_javadoccomment">     * &lt;li&gt;在 {@link java.util.GregorianCalendar#gregorianCutoverYearJulian 1582}年之前是四年一闰,</em>
+<a class="jxr_linenumber" name="L1454" href="#L1454">1454</a> <em class="jxr_javadoccomment">     * {@link java.util.GregorianCalendar#gregorianCutoverYearJulian 1582}年之后 四年一闰,百年不闰,四百年再闰&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1455" href="#L1455">1455</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L1456" href="#L1456">1456</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1457" href="#L1457">1457</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1458" href="#L1458">1458</a> <em class="jxr_javadoccomment">     * @param year</em>
+<a class="jxr_linenumber" name="L1459" href="#L1459">1459</a> <em class="jxr_javadoccomment">     *            年份</em>
+<a class="jxr_linenumber" name="L1460" href="#L1460">1460</a> <em class="jxr_javadoccomment">     * @return 四年一闰,百年不闰,四百年再闰</em>
+<a class="jxr_linenumber" name="L1461" href="#L1461">1461</a> <em class="jxr_javadoccomment">     * @see GregorianCalendar#isLeapYear(int)</em>
+<a class="jxr_linenumber" name="L1462" href="#L1462">1462</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://en.wikipedia.org/wiki/Leap_year"&gt;Leap_year&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L1463" href="#L1463">1463</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1464" href="#L1464">1464</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isLeapYear(<strong class="jxr_keyword">int</strong> year){
+<a class="jxr_linenumber" name="L1465" href="#L1465">1465</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> GregorianCalendar().isLeapYear(year);
+<a class="jxr_linenumber" name="L1466" href="#L1466">1466</a>     }
+<a class="jxr_linenumber" name="L1467" href="#L1467">1467</a> 
+<a class="jxr_linenumber" name="L1468" href="#L1468">1468</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1469" href="#L1469">1469</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2016 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>
