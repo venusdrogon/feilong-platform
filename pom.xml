@@ -31,7 +31,6 @@
 		<!-- 让整个项目统一字符集编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		
 		<!-- javadoc 和site 的生成目录 -->
 		<folder.gh-pages>/Users/feilong/workspace/feilong/else/feilong-platform-gh-pages</folder.gh-pages>
 
