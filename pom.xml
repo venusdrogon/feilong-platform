@@ -76,7 +76,7 @@
 		<!-- see in http://commons.apache.org/proper/commons-io/index.html -->
 		<version.commons-io>2.5</version.commons-io>
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
-		<version.commons-net>3.5</version.commons-net>
+		<version.commons-net>3.6</version.commons-net>
 
 		<version.javamail>1.4.7</version.javamail>
 
@@ -127,7 +127,7 @@
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.17</v.maven-checkstyle-plugin>
 
-		<v.maven-dependency-plugin>3.0.0</v.maven-dependency-plugin>
+		<v.maven-dependency-plugin>3.0.1</v.maven-dependency-plugin>
 		<v.maven-deploy-plugin>2.8.2</v.maven-deploy-plugin>
 
 		<v.maven-install-plugin>2.5.2</v.maven-install-plugin>
