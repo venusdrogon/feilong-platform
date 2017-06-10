@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform</groupId>
+  <artifactId>feilong-taglib</artifactId>
+  <version>1.10.3-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20170610.074202</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20170610074202</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.10.3-20170610.074202-1</value>
+        <updated>20170610074202</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.10.3-20170610.074202-1</value>
+        <updated>20170610074202</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>1.10.3-20170610.074202-1</value>
+        <updated>20170610074202</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
