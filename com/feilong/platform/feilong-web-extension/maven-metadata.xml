@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform</groupId>
   <artifactId>feilong-web-extension</artifactId>
   <versioning>
+    <release>1.10.3</release>
     <versions>
-      <version>1.10.3-SNAPSHOT</version>
+      <version>1.10.3</version>
     </versions>
-    <lastUpdated>20170610075915</lastUpdated>
+    <lastUpdated>20170611192451</lastUpdated>
   </versioning>
 </metadata>
