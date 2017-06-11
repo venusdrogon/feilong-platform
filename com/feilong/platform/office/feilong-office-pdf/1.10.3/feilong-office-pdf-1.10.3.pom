@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.platform.office</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.3</version>
+	</parent>
+	
+	<artifactId>feilong-office-pdf</artifactId>
+	<name>feilong-office-pdf</name>
+	<description>feilong-office-pdf</description>
+
+	<properties>
+		<version.itext>2.1.7</version.itext>
+	</properties>
+
+	<dependencies>
+		<!-- itext  -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>${version.itext}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcprov-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bctsp-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- itext 中文问题 -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>iTextAsian</artifactId>
+			<version>1.4.2_12-b03</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/iTextAsian.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>iTextAsianCmaps</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/iTextAsianCmaps.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>
