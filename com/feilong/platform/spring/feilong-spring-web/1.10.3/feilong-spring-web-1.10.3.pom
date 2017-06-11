@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.spring</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.3</version>
+	</parent>
+	<artifactId>feilong-spring-web</artifactId>
+
+	<dependencies>
+
+		<!--目前用于 MultipartFileUtil -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-io</artifactId>
+			<version>${version.feilong-platform}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!--*******************feilong************************* -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-servlet</artifactId>
+		</dependency>
+
+		<!-- 目前用于 seo viewCommandFound 以及 DomainPlaceHolderSupport -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-web-extension</artifactId>
+			<version>${version.feilong-platform}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- 目前用于 历史浏览记录 加密 -->
+		<dependency>
+			<groupId>com.feilong.platform.tools</groupId>
+			<artifactId>feilong-tools-security</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!--用于 com.feilong.spring.web.servlet.interceptor.browsinghistory.BrowsingHistoryCookieResolver<O, T> -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-accessor</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!--*******************spring************************* -->
+		<!-- spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!--*******************servlet-api && jsp-api************************* -->
+		<!-- servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
