@@ -190,7 +190,7 @@
 		<maven-javadoc-plugin.reportOutputDirectory>${folder.gh-pages}/javadocs</maven-javadoc-plugin.reportOutputDirectory>
 		<maven-javadoc-plugin.destDir>${project.name}</maven-javadoc-plugin.destDir>
 		<maven-javadoc-plugin.javadocVersion>1.8</maven-javadoc-plugin.javadocVersion>
-		<maven-javadoc-plugin.javadocDirectory>${env._FEILONGTAGLIB}/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
+		<maven-javadoc-plugin.javadocDirectory>/Users/feilong/Development/DataCommon/Files/Java/Apache Maven/javadoc/springframework</maven-javadoc-plugin.javadocDirectory>
 
 		<maven-javadoc-plugin.stylesheetfile>${maven-javadoc-plugin.javadocDirectory}/stylesheet.css</maven-javadoc-plugin.stylesheetfile>
 
@@ -922,9 +922,9 @@
 						<link>http://ezmorph.sourceforge.net/apidocs/</link>
 						<link>http://docs.spring.io/spring/docs/${version.spring}/javadoc-api/</link>
 
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-core/</link>
+						<!-- <link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-core/</link>
 						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-servlet/</link>
-						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-io/</link>
+						<link>http://venusdrogon.github.io/feilong-platform/javadocs/feilong-io/</link> -->
 					</links>
 				</configuration>
 			</plugin>
