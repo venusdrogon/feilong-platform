@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.4-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.feilong.platform.spring</groupId>
+	<artifactId>parent</artifactId>
+
+	<description>feilong-spring-parent</description>
+	<name>feilong-spring-parent</name>
+
+	<url>https://github.com/venusdrogon/feilong-spring</url>
+
+	<packaging>pom</packaging>
+
+	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-spring</url>
+		<connection>scm:git:https://github.com/venusdrogon/feilong-spring</connection>
+		<developerConnection>scm:git:git@github.com:venusdrogon/feilong-spring.git</developerConnection>
+	</scm>
+
+	<modules>
+		<module>feilong-spring-core</module>
+		<module>feilong-spring-aop</module>
+		<module>feilong-spring-jdbc</module>
+		<module>feilong-spring-web</module>
+		<module>feilong-spring-context</module>
+		<module>feilong-spring-mobile</module>
+		<module>feilong-spring-all</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+	</dependencies>
+</project>
