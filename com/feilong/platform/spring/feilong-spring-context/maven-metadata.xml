@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.spring</groupId>
   <artifactId>feilong-spring-context</artifactId>
   <versioning>
-    <release>1.10.3</release>
     <versions>
-      <version>1.10.3</version>
+      <version>1.10.4-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170611194716</lastUpdated>
+    <lastUpdated>20170620062444</lastUpdated>
   </versioning>
 </metadata>
