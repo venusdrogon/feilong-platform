@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-tools-jsonlib</artifactId>
   <versioning>
-    <release>1.10.3</release>
     <versions>
-      <version>1.10.3</version>
+      <version>1.10.4-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170611191851</lastUpdated>
+    <lastUpdated>20170620055438</lastUpdated>
   </versioning>
 </metadata>
