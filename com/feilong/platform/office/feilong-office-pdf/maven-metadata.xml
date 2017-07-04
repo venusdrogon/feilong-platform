@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.office</groupId>
   <artifactId>feilong-office-pdf</artifactId>
   <versioning>
-    <release>1.10.3</release>
     <versions>
-      <version>1.10.3</version>
+      <version>1.10.4-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170611195955</lastUpdated>
+    <lastUpdated>20170704191558</lastUpdated>
   </versioning>
 </metadata>
