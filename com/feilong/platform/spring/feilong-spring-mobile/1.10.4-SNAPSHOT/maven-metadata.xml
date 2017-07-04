@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform.spring</groupId>
+  <artifactId>feilong-spring-mobile</artifactId>
+  <version>1.10.4-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20170704.202352</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20170704202352</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.10.4-20170704.202352-1</value>
+        <updated>20170704202352</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.10.4-20170704.202352-1</value>
+        <updated>20170704202352</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>1.10.4-20170704.202352-1</value>
+        <updated>20170704202352</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
