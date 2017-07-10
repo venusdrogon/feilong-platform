@@ -137,7 +137,7 @@
 		<v.maven-javadoc-plugin>2.10.4</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.6</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
-		<v.maven-pmd-plugin>3.7</v.maven-pmd-plugin>
+		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
 
 		<v.maven-scm-plugin>1.9.5</v.maven-scm-plugin>
 
