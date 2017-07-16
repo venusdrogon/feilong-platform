@@ -23,15 +23,15 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">package</strong> com.feilong.core.lang;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.toMap;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.SortUtil.sortMapByKeyAsc;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.Validate;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.ConvertUtil;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.toMap;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.SortUtil.sortMapByKeyAsc;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.Validate;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.bean.ConvertUtil;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * {@link java.lang.System}工具类.</em>
@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment"> * &lt;/tr&gt;</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment"> * &lt;tr valign="top" style="background-color:#eeeeff"&gt;</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment"> * &lt;td&gt;line.separator &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment"> * {@link org.apache.commons.lang3.SystemUtils#LINE_SEPARATOR}&lt;/td&gt;</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment"> * {@link System#lineSeparator()}&lt;/td&gt;</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment"> * &lt;td&gt;\r\n&lt;/td&gt;</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment"> * &lt;/tr&gt;</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment"> * &lt;tr valign="top" style="background-color:#eeeeff"&gt;</em>
@@ -337,184 +337,189 @@
 <a class="jxr_linenumber" name="L329" href="#L329">329</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
 <a class="jxr_linenumber" name="L330" href="#L330">330</a>     }
 <a class="jxr_linenumber" name="L331" href="#L331">331</a> 
-<a class="jxr_linenumber" name="L332" href="#L332">332</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L333" href="#L333">333</a> <em class="jxr_javadoccomment">     * 取到 {@link System#getProperty(String)},转成 {@link java.util.TreeMap},以遍输出log的时候,会顺序显示.</em>
-<a class="jxr_linenumber" name="L334" href="#L334">334</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L335" href="#L335">335</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L332" href="#L332">332</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L333" href="#L333">333</a> 
+<a class="jxr_linenumber" name="L334" href="#L334">334</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L335" href="#L335">335</a> <em class="jxr_javadoccomment">     * 取到 {@link System#getProperty(String)},转成 {@link java.util.TreeMap},以遍输出log的时候,会顺序显示.</em>
 <a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L338" href="#L338">338</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L339" href="#L339">339</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L340" href="#L340">340</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(SystemUtil.getPropertiesMap()));</em>
-<a class="jxr_linenumber" name="L341" href="#L341">341</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L342" href="#L342">342</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L343" href="#L343">343</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L339" href="#L339">339</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L340" href="#L340">340</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L342" href="#L342">342</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(SystemUtil.getPropertiesMap()));</em>
+<a class="jxr_linenumber" name="L343" href="#L343">343</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L344" href="#L344">344</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L345" href="#L345">345</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L346" href="#L346">346</a> <em class="jxr_javadoccomment">     * {</em>
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> <em class="jxr_javadoccomment">        "file.encoding": "UTF-8",</em>
-<a class="jxr_linenumber" name="L348" href="#L348">348</a> <em class="jxr_javadoccomment">        "file.encoding.pkg": "sun.io",</em>
-<a class="jxr_linenumber" name="L349" href="#L349">349</a> <em class="jxr_javadoccomment">        "file.separator": "&#92;&#92;",</em>
-<a class="jxr_linenumber" name="L350" href="#L350">350</a> <em class="jxr_javadoccomment">        "java.class.path": "E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-core&#92;&#92;target&#92;&#92;test-classes;E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-core&#92;&#92;target&#92;&#92;classes;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;apache&#92;&#92;commons&#92;&#92;commons-lang3&#92;&#92;3.4&#92;&#92;commons-lang3-3.4.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;apache&#92;&#92;commons&#92;&#92;commons-collections4&#92;&#92;4.1&#92;&#92;commons-collections4-4.1.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-beanutils&#92;&#92;commons-beanutils&#92;&#92;1.9.2&#92;&#92;commons-beanutils-1.9.2.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;net&#92;&#92;sf&#92;&#92;json-lib&#92;&#92;json-lib&#92;&#92;2.4&#92;&#92;json-lib-2.4-jdk15.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;net&#92;&#92;sf&#92;&#92;ezmorph&#92;&#92;ezmorph&#92;&#92;1.0.6&#92;&#92;ezmorph-1.0.6.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;slf4j&#92;&#92;slf4j-log4j12&#92;&#92;1.7.21&#92;&#92;slf4j-log4j12-1.7.21.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;log4j&#92;&#92;log4j&#92;&#92;1.2.17&#92;&#92;log4j-1.2.17.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-lang&#92;&#92;commons-lang&#92;&#92;2.6&#92;&#92;commons-lang-2.6.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-logging&#92;&#92;commons-logging&#92;&#92;1.2&#92;&#92;commons-logging-1.2.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-collections&#92;&#92;commons-collections&#92;&#92;3.2.2&#92;&#92;commons-collections-3.2.2.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;hamcrest&#92;&#92;hamcrest-library&#92;&#92;1.3&#92;&#92;hamcrest-library-1.3.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;hamcrest&#92;&#92;hamcrest-core&#92;&#92;1.3&#92;&#92;hamcrest-core-1.3.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;xom&#92;&#92;xom&#92;&#92;1.2.5&#92;&#92;xom-1.2.5.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;xalan&#92;&#92;xalan&#92;&#92;2.7.0&#92;&#92;xalan-2.7.0.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;slf4j&#92;&#92;slf4j-api&#92;&#92;1.7.21&#92;&#92;slf4j-api-1.7.21.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;junit&#92;&#92;junit&#92;&#92;4.12&#92;&#92;junit-4.12.jar;E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-resource&#92;&#92;feilong-common-test&#92;&#92;target&#92;&#92;classes;/D:/FeiLong Soft/Essential/Development/eclipse-jee-mars-2-win32/configuration/org.eclipse.osgi/425/0/.cp/;/D:/FeiLong Soft/Essential/Development/eclipse-jee-mars-2-win32/configuration/org.eclipse.osgi/424/0/.cp/",</em>
-<a class="jxr_linenumber" name="L351" href="#L351">351</a> <em class="jxr_javadoccomment">        "java.class.version": "51.0",</em>
-<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">        "java.endorsed.dirs": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;jre&#92;&#92;lib&#92;&#92;endorsed",</em>
-<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">        "java.ext.dirs": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;jre&#92;&#92;lib&#92;&#92;ext;C:&#92;&#92;Windows&#92;&#92;Sun&#92;&#92;Java&#92;&#92;lib&#92;&#92;ext",</em>
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">        "java.home": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;jre",</em>
-<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">        "java.io.tmpdir": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Temp&#92;&#92;",</em>
-<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">        "java.library.path": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;bin;C:&#92;&#92;Windows&#92;&#92;Sun&#92;&#92;Java&#92;&#92;bin;C:&#92;&#92;Windows&#92;&#92;system32;C:&#92;&#92;Windows;D:/Program Files/Java/jre1.8.0_45/bin/client;D:/Program Files/Java/jre1.8.0_45/bin;D:/Program Files/Java/jre1.8.0_45/lib/i386;C:&#92;&#92;ProgramData&#92;&#92;Oracle&#92;&#92;Java&#92;&#92;javapath;D:&#92;&#92;Goto;C:&#92;&#92;Program Files (x86)&#92;&#92;NVIDIA Corporation&#92;&#92;PhysX&#92;&#92;Common;C:&#92;&#92;Program Files (x86)&#92;&#92;Common Files&#92;&#92;NetSarang;C:&#92;&#92;Windows&#92;&#92;system32;C:&#92;&#92;Windows;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;Wbem;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;WindowsPowerShell&#92;&#92;v1.0&#92;&#92;;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x86;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x64;C:&#92;&#92;Program Files (x86)&#92;&#92;ATI Technologies&#92;&#92;ATI.ACE&#92;&#92;Core-Static;C:&#92;&#92;Program Files&#92;&#92;TortoiseSVN&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Skype&#92;&#92;Phone&#92;&#92;;C:&#92;&#92;Program Files&#92;&#92;TortoiseGit&#92;&#92;bin;D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.8.0_45&#92;&#92;bin;D:&#92;&#92;FeiLong Soft;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;run;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-ant-1.9.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-maven-3.3.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;Datebase&#92;&#92;postgresql&#92;&#92;postgresql-9.4.0-1-windows-x64-binaries&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;libexec&#92;&#92;git-core;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;redis-2.8.19;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;eclipse-jee-mars-2-win32;;.",</em>
-<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">        "java.runtime.name": "Java(TM) SE Runtime Environment",</em>
-<a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">        "java.runtime.version": "1.7.0_60-b19",</em>
-<a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">        "java.specification.name": "Java Platform API Specification",</em>
-<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">        "java.specification.vendor": "Oracle Corporation",</em>
-<a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">        "java.specification.version": "1.7",</em>
-<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">        "java.vendor": "Oracle Corporation",</em>
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">        "java.vendor.url": "<a href="http://java.oracle.com/" target="alexandria_uri">http://java.oracle.com/</a>",</em>
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">        "java.vendor.url.bug": "<a href="http://bugreport.sun.com/bugreport/" target="alexandria_uri">http://bugreport.sun.com/bugreport/</a>",</em>
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">        "java.version": "1.7.0_60",</em>
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">        "java.vm.info": "mixed mode, sharing",</em>
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">        "java.vm.name": "Java HotSpot(TM) Client VM",</em>
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">        "java.vm.specification.name": "Java Virtual Machine Specification",</em>
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">        "java.vm.specification.vendor": "Oracle Corporation",</em>
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">        "java.vm.specification.version": "1.7",</em>
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">        "java.vm.vendor": "Oracle Corporation",</em>
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">        "java.vm.version": "24.60-b09",</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">        "line.separator": "\r\n",</em>
-<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">        "os.arch": "x86",</em>
-<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">        "os.name": "Windows 7",</em>
-<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">        "os.version": "6.1",</em>
-<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">        "path.separator": ";",</em>
-<a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">        "sun.desktop": "windows",</em>
-<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">        "user.country": "CN",</em>
-<a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">        "user.dir": "E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-core",</em>
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">        "user.home": "C:&#92;&#92;Users&#92;&#92;feilong",</em>
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">        "user.language": "zh",</em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">        "user.name": "feilong",</em>
-<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">        "user.script": "",</em>
-<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">        "user.timezone": "Asia/Shanghai",</em>
-<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">        "user.variant": ""</em>
-<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">    }</em>
-<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L389" href="#L389">389</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L345" href="#L345">345</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L346" href="#L346">346</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L347" href="#L347">347</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> <em class="jxr_javadoccomment">     * {</em>
+<a class="jxr_linenumber" name="L349" href="#L349">349</a> <em class="jxr_javadoccomment">        "file.encoding": "UTF-8",</em>
+<a class="jxr_linenumber" name="L350" href="#L350">350</a> <em class="jxr_javadoccomment">        "file.encoding.pkg": "sun.io",</em>
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> <em class="jxr_javadoccomment">        "file.separator": "&#92;&#92;",</em>
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">        "java.class.path": "E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-core&#92;&#92;target&#92;&#92;test-classes;E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-core&#92;&#92;target&#92;&#92;classes;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;apache&#92;&#92;commons&#92;&#92;commons-lang3&#92;&#92;3.4&#92;&#92;commons-lang3-3.4.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;apache&#92;&#92;commons&#92;&#92;commons-collections4&#92;&#92;4.1&#92;&#92;commons-collections4-4.1.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-beanutils&#92;&#92;commons-beanutils&#92;&#92;1.9.2&#92;&#92;commons-beanutils-1.9.2.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;net&#92;&#92;sf&#92;&#92;json-lib&#92;&#92;json-lib&#92;&#92;2.4&#92;&#92;json-lib-2.4-jdk15.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;net&#92;&#92;sf&#92;&#92;ezmorph&#92;&#92;ezmorph&#92;&#92;1.0.6&#92;&#92;ezmorph-1.0.6.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;slf4j&#92;&#92;slf4j-log4j12&#92;&#92;1.7.21&#92;&#92;slf4j-log4j12-1.7.21.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;log4j&#92;&#92;log4j&#92;&#92;1.2.17&#92;&#92;log4j-1.2.17.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-lang&#92;&#92;commons-lang&#92;&#92;2.6&#92;&#92;commons-lang-2.6.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-logging&#92;&#92;commons-logging&#92;&#92;1.2&#92;&#92;commons-logging-1.2.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;commons-collections&#92;&#92;commons-collections&#92;&#92;3.2.2&#92;&#92;commons-collections-3.2.2.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;hamcrest&#92;&#92;hamcrest-library&#92;&#92;1.3&#92;&#92;hamcrest-library-1.3.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;hamcrest&#92;&#92;hamcrest-core&#92;&#92;1.3&#92;&#92;hamcrest-core-1.3.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;xom&#92;&#92;xom&#92;&#92;1.2.5&#92;&#92;xom-1.2.5.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;xalan&#92;&#92;xalan&#92;&#92;2.7.0&#92;&#92;xalan-2.7.0.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;org&#92;&#92;slf4j&#92;&#92;slf4j-api&#92;&#92;1.7.21&#92;&#92;slf4j-api-1.7.21.jar;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;repository&#92;&#92;junit&#92;&#92;junit&#92;&#92;4.12&#92;&#92;junit-4.12.jar;E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-resource&#92;&#92;feilong-common-test&#92;&#92;target&#92;&#92;classes;/D:/FeiLong Soft/Essential/Development/eclipse-jee-mars-2-win32/configuration/org.eclipse.osgi/425/0/.cp/;/D:/FeiLong Soft/Essential/Development/eclipse-jee-mars-2-win32/configuration/org.eclipse.osgi/424/0/.cp/",</em>
+<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">        "java.class.version": "51.0",</em>
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">        "java.endorsed.dirs": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;jre&#92;&#92;lib&#92;&#92;endorsed",</em>
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">        "java.ext.dirs": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;jre&#92;&#92;lib&#92;&#92;ext;C:&#92;&#92;Windows&#92;&#92;Sun&#92;&#92;Java&#92;&#92;lib&#92;&#92;ext",</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">        "java.home": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;jre",</em>
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">        "java.io.tmpdir": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Temp&#92;&#92;",</em>
+<a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">        "java.library.path": "D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.7.0_60&#92;&#92;bin;C:&#92;&#92;Windows&#92;&#92;Sun&#92;&#92;Java&#92;&#92;bin;C:&#92;&#92;Windows&#92;&#92;system32;C:&#92;&#92;Windows;D:/Program Files/Java/jre1.8.0_45/bin/client;D:/Program Files/Java/jre1.8.0_45/bin;D:/Program Files/Java/jre1.8.0_45/lib/i386;C:&#92;&#92;ProgramData&#92;&#92;Oracle&#92;&#92;Java&#92;&#92;javapath;D:&#92;&#92;Goto;C:&#92;&#92;Program Files (x86)&#92;&#92;NVIDIA Corporation&#92;&#92;PhysX&#92;&#92;Common;C:&#92;&#92;Program Files (x86)&#92;&#92;Common Files&#92;&#92;NetSarang;C:&#92;&#92;Windows&#92;&#92;system32;C:&#92;&#92;Windows;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;Wbem;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;WindowsPowerShell&#92;&#92;v1.0&#92;&#92;;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x86;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x64;C:&#92;&#92;Program Files (x86)&#92;&#92;ATI Technologies&#92;&#92;ATI.ACE&#92;&#92;Core-Static;C:&#92;&#92;Program Files&#92;&#92;TortoiseSVN&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Skype&#92;&#92;Phone&#92;&#92;;C:&#92;&#92;Program Files&#92;&#92;TortoiseGit&#92;&#92;bin;D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.8.0_45&#92;&#92;bin;D:&#92;&#92;FeiLong Soft;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;run;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-ant-1.9.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-maven-3.3.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;Datebase&#92;&#92;postgresql&#92;&#92;postgresql-9.4.0-1-windows-x64-binaries&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;libexec&#92;&#92;git-core;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;redis-2.8.19;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;eclipse-jee-mars-2-win32;;.",</em>
+<a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">        "java.runtime.name": "Java(TM) SE Runtime Environment",</em>
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">        "java.runtime.version": "1.7.0_60-b19",</em>
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">        "java.specification.name": "Java Platform API Specification",</em>
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">        "java.specification.vendor": "Oracle Corporation",</em>
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">        "java.specification.version": "1.7",</em>
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">        "java.vendor": "Oracle Corporation",</em>
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">        "java.vendor.url": "<a href="http://java.oracle.com/" target="alexandria_uri">http://java.oracle.com/</a>",</em>
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">        "java.vendor.url.bug": "<a href="http://bugreport.sun.com/bugreport/" target="alexandria_uri">http://bugreport.sun.com/bugreport/</a>",</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">        "java.version": "1.7.0_60",</em>
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">        "java.vm.info": "mixed mode, sharing",</em>
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">        "java.vm.name": "Java HotSpot(TM) Client VM",</em>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">        "java.vm.specification.name": "Java Virtual Machine Specification",</em>
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">        "java.vm.specification.vendor": "Oracle Corporation",</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">        "java.vm.specification.version": "1.7",</em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">        "java.vm.vendor": "Oracle Corporation",</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">        "java.vm.version": "24.60-b09",</em>
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">        "line.separator": "\r\n",</em>
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">        "os.arch": "x86",</em>
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">        "os.name": "Windows 7",</em>
+<a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">        "os.version": "6.1",</em>
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">        "path.separator": ";",</em>
+<a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">        "sun.desktop": "windows",</em>
+<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">        "user.country": "CN",</em>
+<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">        "user.dir": "E:&#92;&#92;Workspaces&#92;&#92;feilong&#92;&#92;feilong-core",</em>
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">        "user.home": "C:&#92;&#92;Users&#92;&#92;feilong",</em>
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">        "user.language": "zh",</em>
+<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">        "user.name": "feilong",</em>
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">        "user.script": "",</em>
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">        "user.timezone": "Asia/Shanghai",</em>
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">        "user.variant": ""</em>
+<a class="jxr_linenumber" name="L389" href="#L389">389</a> <em class="jxr_javadoccomment">    }</em>
 <a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">     * @return the properties map for log</em>
-<a class="jxr_linenumber" name="L394" href="#L394">394</a> <em class="jxr_javadoccomment">     * @see System#getProperties()</em>
-<a class="jxr_linenumber" name="L395" href="#L395">395</a> <em class="jxr_javadoccomment">     * @see ConvertUtil#toMap(Properties)</em>
-<a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">     * @see "org.springframework.core.env.AbstractEnvironment#getSystemProperties()"</em>
-<a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">     * @since 1.8.0 change name</em>
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Map&lt;String, String&gt; getPropertiesMap(){
-<a class="jxr_linenumber" name="L400" href="#L400">400</a>         <strong class="jxr_keyword">return</strong> toMap(System.getProperties());
-<a class="jxr_linenumber" name="L401" href="#L401">401</a>     }
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> 
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L404" href="#L404">404</a> <em class="jxr_javadoccomment">     * 取到 {@link System#getenv()},转成 {@link java.util.TreeMap},以遍输出log的时候,会顺序显示.</em>
-<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L394" href="#L394">394</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L395" href="#L395">395</a> <em class="jxr_javadoccomment">     * @return the properties map for log</em>
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">     * @see System#getProperties()</em>
+<a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">     * @see ConvertUtil#toMap(Properties)</em>
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     * @see "org.springframework.core.env.AbstractEnvironment#getSystemProperties()"</em>
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * @since 1.8.0 change name</em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Map&lt;String, String&gt; getPropertiesMap(){
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>         <strong class="jxr_keyword">return</strong> toMap(System.getProperties());
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>     }
+<a class="jxr_linenumber" name="L404" href="#L404">404</a> 
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">     * 取到 {@link System#getenv()},转成 {@link java.util.TreeMap},以遍输出log的时候,会顺序显示.</em>
 <a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L412" href="#L412">412</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(SystemUtil.getEnvMap()));</em>
+<a class="jxr_linenumber" name="L412" href="#L412">412</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
 <a class="jxr_linenumber" name="L413" href="#L413">413</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L414" href="#L414">414</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(SystemUtil.getEnvMap()));</em>
 <a class="jxr_linenumber" name="L415" href="#L415">415</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     * {</em>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">        "=::": "::&#92;&#92;",</em>
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">        "ALLUSERSPROFILE": "C:&#92;&#92;ProgramData",</em>
-<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">        "ANT_HOME": "D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-ant-1.9.3",</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">        "APPDATA": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Roaming",</em>
-<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">        "APP_ENCRYPTION_PASSWORD_SPEEDO": "speedodev",</em>
-<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">        "COMPUTERNAME": "FEILONG-PC",</em>
-<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">        "ComSpec": "C:&#92;&#92;Windows&#92;&#92;system32&#92;&#92;cmd.exe",</em>
-<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">        "FP_NO_HOST_CHECK": "NO",</em>
-<a class="jxr_linenumber" name="L428" href="#L428">428</a> <em class="jxr_javadoccomment">        "HOME": "C:&#92;&#92;Users&#92;&#92;feilong",</em>
-<a class="jxr_linenumber" name="L429" href="#L429">429</a> <em class="jxr_javadoccomment">        "HOMEDRIVE": "C:",</em>
-<a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">        "HOMEPATH": "&#92;&#92;Users&#92;&#92;feilong",</em>
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">        "LOCALAPPDATA": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local",</em>
-<a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">        "LOGONSERVER": "&#92;&#92;&#92;&#92;FEILONG-PC",</em>
-<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">        "NUMBER_OF_PROCESSORS": "4",</em>
-<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">        "OS": "Windows_NT",</em>
-<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">        "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",</em>
-<a class="jxr_linenumber" name="L436" href="#L436">436</a> <em class="jxr_javadoccomment">        "PROCESSOR_ARCHITECTURE": "x86",</em>
-<a class="jxr_linenumber" name="L437" href="#L437">437</a> <em class="jxr_javadoccomment">        "PROCESSOR_ARCHITEW6432": "AMD64",</em>
-<a class="jxr_linenumber" name="L438" href="#L438">438</a> <em class="jxr_javadoccomment">        "PROCESSOR_LEVEL": "6",</em>
-<a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">        "PROCESSOR_REVISION": "3a09",</em>
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">        "PSModulePath": "C:&#92;&#92;Windows&#92;&#92;system32&#92;&#92;WindowsPowerShell&#92;&#92;v1.0&#92;&#92;Modules&#92;&#92;",</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">        "PUBLIC": "C:&#92;&#92;Users&#92;&#92;Public",</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">        "Path": "D:/Program Files/Java/jre1.8.0_45/bin/client;D:/Program Files/Java/jre1.8.0_45/bin;D:/Program Files/Java/jre1.8.0_45/lib/i386;C:&#92;&#92;ProgramData&#92;&#92;Oracle&#92;&#92;Java&#92;&#92;javapath;D:&#92;&#92;Goto;C:&#92;&#92;Program Files (x86)&#92;&#92;NVIDIA Corporation&#92;&#92;PhysX&#92;&#92;Common;C:&#92;&#92;Program Files (x86)&#92;&#92;Common Files&#92;&#92;NetSarang;C:&#92;&#92;Windows&#92;&#92;system32;C:&#92;&#92;Windows;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;Wbem;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;WindowsPowerShell&#92;&#92;v1.0&#92;&#92;;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x86;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x64;C:&#92;&#92;Program Files (x86)&#92;&#92;ATI Technologies&#92;&#92;ATI.ACE&#92;&#92;Core-Static;C:&#92;&#92;Program Files&#92;&#92;TortoiseSVN&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Skype&#92;&#92;Phone&#92;&#92;;C:&#92;&#92;Program Files&#92;&#92;TortoiseGit&#92;&#92;bin;D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.8.0_45&#92;&#92;bin;D:&#92;&#92;FeiLong Soft;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;run;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-ant-1.9.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-maven-3.3.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;Datebase&#92;&#92;postgresql&#92;&#92;postgresql-9.4.0-1-windows-x64-binaries&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;libexec&#92;&#92;git-core;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;redis-2.8.19;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;eclipse-jee-mars-2-win32;",</em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">        "ProgramData": "C:&#92;&#92;ProgramData",</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">        "ProgramFiles": "C:&#92;&#92;Program Files (x86)",</em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">        "ProgramFiles(x86)": "C:&#92;&#92;Program Files (x86)",</em>
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">        "SESSIONNAME": "Console",</em>
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">        "SystemDrive": "C:",</em>
-<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">        "SystemRoot": "C:&#92;&#92;Windows",</em>
-<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">        "TEMP": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Temp",</em>
-<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">        "TMP": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Temp",</em>
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">        "USERDOMAIN": "feilong-PC",</em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">        "USERNAME": "feilong",</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">        "USERPROFILE": "C:&#92;&#92;Users&#92;&#92;feilong",</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">        "windir": "C:&#92;&#92;Windows",</em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">        "windows_tracing_flags": "3",</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">        "windows_tracing_logfile": "C:&#92;&#92;BVTBin&#92;&#92;Tests&#92;&#92;installpackage&#92;&#92;csilogfile.log"</em>
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">    }</em>
-<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     * {</em>
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">        "=::": "::&#92;&#92;",</em>
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">        "ALLUSERSPROFILE": "C:&#92;&#92;ProgramData",</em>
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">        "ANT_HOME": "D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-ant-1.9.3",</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">        "APPDATA": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Roaming",</em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">        "APP_ENCRYPTION_PASSWORD_SPEEDO": "speedodev",</em>
+<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">        "COMPUTERNAME": "FEILONG-PC",</em>
+<a class="jxr_linenumber" name="L428" href="#L428">428</a> <em class="jxr_javadoccomment">        "ComSpec": "C:&#92;&#92;Windows&#92;&#92;system32&#92;&#92;cmd.exe",</em>
+<a class="jxr_linenumber" name="L429" href="#L429">429</a> <em class="jxr_javadoccomment">        "FP_NO_HOST_CHECK": "NO",</em>
+<a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">        "HOME": "C:&#92;&#92;Users&#92;&#92;feilong",</em>
+<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">        "HOMEDRIVE": "C:",</em>
+<a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">        "HOMEPATH": "&#92;&#92;Users&#92;&#92;feilong",</em>
+<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">        "LOCALAPPDATA": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local",</em>
+<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">        "LOGONSERVER": "&#92;&#92;&#92;&#92;FEILONG-PC",</em>
+<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">        "NUMBER_OF_PROCESSORS": "4",</em>
+<a class="jxr_linenumber" name="L436" href="#L436">436</a> <em class="jxr_javadoccomment">        "OS": "Windows_NT",</em>
+<a class="jxr_linenumber" name="L437" href="#L437">437</a> <em class="jxr_javadoccomment">        "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",</em>
+<a class="jxr_linenumber" name="L438" href="#L438">438</a> <em class="jxr_javadoccomment">        "PROCESSOR_ARCHITECTURE": "x86",</em>
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">        "PROCESSOR_ARCHITEW6432": "AMD64",</em>
+<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">        "PROCESSOR_LEVEL": "6",</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">        "PROCESSOR_REVISION": "3a09",</em>
+<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">        "PSModulePath": "C:&#92;&#92;Windows&#92;&#92;system32&#92;&#92;WindowsPowerShell&#92;&#92;v1.0&#92;&#92;Modules&#92;&#92;",</em>
+<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">        "PUBLIC": "C:&#92;&#92;Users&#92;&#92;Public",</em>
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">        "Path": "D:/Program Files/Java/jre1.8.0_45/bin/client;D:/Program Files/Java/jre1.8.0_45/bin;D:/Program Files/Java/jre1.8.0_45/lib/i386;C:&#92;&#92;ProgramData&#92;&#92;Oracle&#92;&#92;Java&#92;&#92;javapath;D:&#92;&#92;Goto;C:&#92;&#92;Program Files (x86)&#92;&#92;NVIDIA Corporation&#92;&#92;PhysX&#92;&#92;Common;C:&#92;&#92;Program Files (x86)&#92;&#92;Common Files&#92;&#92;NetSarang;C:&#92;&#92;Windows&#92;&#92;system32;C:&#92;&#92;Windows;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;Wbem;C:&#92;&#92;Windows&#92;&#92;System32&#92;&#92;WindowsPowerShell&#92;&#92;v1.0&#92;&#92;;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x86;C:&#92;&#92;Program Files (x86)&#92;&#92;Intel&#92;&#92;OpenCL SDK&#92;&#92;2.0&#92;&#92;bin&#92;&#92;x64;C:&#92;&#92;Program Files (x86)&#92;&#92;ATI Technologies&#92;&#92;ATI.ACE&#92;&#92;Core-Static;C:&#92;&#92;Program Files&#92;&#92;TortoiseSVN&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Skype&#92;&#92;Phone&#92;&#92;;C:&#92;&#92;Program Files&#92;&#92;TortoiseGit&#92;&#92;bin;D:&#92;&#92;Program Files&#92;&#92;Java&#92;&#92;jdk1.8.0_45&#92;&#92;bin;D:&#92;&#92;FeiLong Soft;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;run;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-ant-1.9.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;StaticDevelopment&#92;&#92;apache-maven-3.3.3&#92;&#92;bin;D:&#92;&#92;FeiLong Soft&#92;&#92;Datebase&#92;&#92;postgresql&#92;&#92;postgresql-9.4.0-1-windows-x64-binaries&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;bin;C:&#92;&#92;Program Files (x86)&#92;&#92;Git&#92;&#92;libexec&#92;&#92;git-core;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;redis-2.8.19;D:&#92;&#92;FeiLong Soft&#92;&#92;Essential&#92;&#92;Development&#92;&#92;eclipse-jee-mars-2-win32;",</em>
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">        "ProgramData": "C:&#92;&#92;ProgramData",</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">        "ProgramFiles": "C:&#92;&#92;Program Files (x86)",</em>
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">        "ProgramFiles(x86)": "C:&#92;&#92;Program Files (x86)",</em>
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">        "SESSIONNAME": "Console",</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">        "SystemDrive": "C:",</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">        "SystemRoot": "C:&#92;&#92;Windows",</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">        "TEMP": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Temp",</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">        "TMP": "C:&#92;&#92;Users&#92;&#92;feilong&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Temp",</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">        "USERDOMAIN": "feilong-PC",</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">        "USERNAME": "feilong",</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">        "USERPROFILE": "C:&#92;&#92;Users&#92;&#92;feilong",</em>
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">        "windir": "C:&#92;&#92;Windows",</em>
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">        "windows_tracing_flags": "3",</em>
+<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">        "windows_tracing_logfile": "C:&#92;&#92;BVTBin&#92;&#92;Tests&#92;&#92;installpackage&#92;&#92;csilogfile.log"</em>
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">    }</em>
 <a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     * @return the env map for log</em>
-<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     * @see System#getenv()</em>
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     * @see "org.springframework.core.env.AbstractEnvironment#getSystemEnvironment()"</em>
-<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * @since 1.8.0 change name</em>
-<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L468" href="#L468">468</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Map&lt;String, String&gt; getEnvMap(){
-<a class="jxr_linenumber" name="L469" href="#L469">469</a>         <strong class="jxr_keyword">return</strong> sortMapByKeyAsc(System.getenv());
-<a class="jxr_linenumber" name="L470" href="#L470">470</a>     }
-<a class="jxr_linenumber" name="L471" href="#L471">471</a> 
-<a class="jxr_linenumber" name="L472" href="#L472">472</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L473" href="#L473">473</a> <em class="jxr_javadoccomment">     * 设置 properties from map.</em>
-<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;map&lt;/code&gt; 是null或者empty,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L479" href="#L479">479</a> <em class="jxr_javadoccomment">     * @param map</em>
-<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     *            the properties from map</em>
-<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     * @see java.lang.System#setProperty(String, String)</em>
-<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * @since 1.2.0</em>
-<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L484" href="#L484">484</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> setPropertiesFromMap(Map&lt;String, String&gt; map){
-<a class="jxr_linenumber" name="L485" href="#L485">485</a>         Validate.notEmpty(map, <span class="jxr_string">"map can't be null/empty!"</span>);
-<a class="jxr_linenumber" name="L486" href="#L486">486</a>         <strong class="jxr_keyword">for</strong> (Map.Entry&lt;String, String&gt; entry : map.entrySet()){
-<a class="jxr_linenumber" name="L487" href="#L487">487</a>             System.setProperty(entry.getKey(), entry.getValue());
-<a class="jxr_linenumber" name="L488" href="#L488">488</a>         }
-<a class="jxr_linenumber" name="L489" href="#L489">489</a>     }
-<a class="jxr_linenumber" name="L490" href="#L490">490</a> 
-<a class="jxr_linenumber" name="L491" href="#L491">491</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     * 设置 properties from properties.</em>
-<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L494" href="#L494">494</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;properties&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * @param properties</em>
-<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     *            the properties from properties</em>
-<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     * @see ConvertUtil#toMap(Properties)</em>
-<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     * @see #setPropertiesFromMap(Map)</em>
-<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     * @see java.lang.System#setProperties(Properties)</em>
-<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     * @since 1.2.0</em>
-<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L505" href="#L505">505</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> setPropertiesFromProperties(Properties properties){
-<a class="jxr_linenumber" name="L506" href="#L506">506</a>         Validate.notNull(properties, <span class="jxr_string">"properties can't be null!"</span>);
-<a class="jxr_linenumber" name="L507" href="#L507">507</a>         setPropertiesFromMap(toMap(properties));
-<a class="jxr_linenumber" name="L508" href="#L508">508</a>     }
-<a class="jxr_linenumber" name="L509" href="#L509">509</a> }
+<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     * @return the env map for log</em>
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * @see System#getenv()</em>
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * @see "org.springframework.core.env.AbstractEnvironment#getSystemEnvironment()"</em>
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * @since 1.8.0 change name</em>
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Map&lt;String, String&gt; getEnvMap(){
+<a class="jxr_linenumber" name="L471" href="#L471">471</a>         <strong class="jxr_keyword">return</strong> sortMapByKeyAsc(System.getenv());
+<a class="jxr_linenumber" name="L472" href="#L472">472</a>     }
+<a class="jxr_linenumber" name="L473" href="#L473">473</a> 
+<a class="jxr_linenumber" name="L474" href="#L474">474</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a> 
+<a class="jxr_linenumber" name="L476" href="#L476">476</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * 循环 &lt;code&gt;map&lt;/code&gt; ,设置到系统属性 {@link java.lang.System#setProperty(String, String)}.</em>
+<a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L479" href="#L479">479</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;map&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;map&lt;/code&gt; 是empty,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * @param map</em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     *            the properties from map</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     * @see java.lang.System#setProperty(String, String)</em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">     * @since 1.2.0</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L489" href="#L489">489</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> setPropertiesFromMap(Map&lt;String, String&gt; map){
+<a class="jxr_linenumber" name="L490" href="#L490">490</a>         Validate.notEmpty(map, <span class="jxr_string">"map can't be null/empty!"</span>);
+<a class="jxr_linenumber" name="L491" href="#L491">491</a>         <strong class="jxr_keyword">for</strong> (Map.Entry&lt;String, String&gt; entry : map.entrySet()){
+<a class="jxr_linenumber" name="L492" href="#L492">492</a>             System.setProperty(entry.getKey(), entry.getValue());
+<a class="jxr_linenumber" name="L493" href="#L493">493</a>         }
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>     }
+<a class="jxr_linenumber" name="L495" href="#L495">495</a> 
+<a class="jxr_linenumber" name="L496" href="#L496">496</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     * 设置 properties from properties.</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;properties&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     * @param properties</em>
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     *            the properties from properties</em>
+<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     * @see ConvertUtil#toMap(Properties)</em>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> <em class="jxr_javadoccomment">     * @see #setPropertiesFromMap(Map)</em>
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> <em class="jxr_javadoccomment">     * @see java.lang.System#setProperties(Properties)</em>
+<a class="jxr_linenumber" name="L508" href="#L508">508</a> <em class="jxr_javadoccomment">     * @since 1.2.0</em>
+<a class="jxr_linenumber" name="L509" href="#L509">509</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> setPropertiesFromProperties(Properties properties){
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>         Validate.notNull(properties, <span class="jxr_string">"properties can't be null!"</span>);
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>         setPropertiesFromMap(toMap(properties));
+<a class="jxr_linenumber" name="L513" href="#L513">513</a>     }
+<a class="jxr_linenumber" name="L514" href="#L514">514</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

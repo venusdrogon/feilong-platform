@@ -227,14 +227,18 @@
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> <em class="jxr_javadoccomment">     * @since 1.5.2</em>
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L221" href="#L221">221</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isCollectionsSupportType(Object value){
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>         <strong class="jxr_keyword">return</strong> value instanceof Collection <em class="jxr_comment">// 集合</em>
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>                         || value instanceof Map<em class="jxr_comment">// map</em>
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>                         || value instanceof Enumeration <em class="jxr_comment">// 枚举</em>
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>                         || value instanceof Iterator<em class="jxr_comment">// Iterator迭代器</em>
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>                         || value.getClass().isArray()<em class="jxr_comment">//判断数组</em>
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>         ;
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>     }
-<a class="jxr_linenumber" name="L229" href="#L229">229</a> }
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>         <em class="jxr_comment">// 集合或者map</em>
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>         <strong class="jxr_keyword">boolean</strong> isCollectionOrMap = value instanceof Collection || value instanceof Map;
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> 
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <em class="jxr_comment">// 枚举 或者是 Iterator迭代器</em>
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>         <strong class="jxr_keyword">boolean</strong> isEnumerationOrIterator = value instanceof Enumeration || value instanceof Iterator;
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> 
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>         <strong class="jxr_keyword">return</strong> isCollectionOrMap<em class="jxr_comment">//集合或者map</em>
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>                         || isEnumerationOrIterator<em class="jxr_comment">//枚举 或者是 Iterator迭代器</em>
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>                         || value.getClass().isArray()<em class="jxr_comment">//判断数组</em>
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>         ;
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>     }
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

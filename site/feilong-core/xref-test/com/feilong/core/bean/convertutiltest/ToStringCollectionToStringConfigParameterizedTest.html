@@ -26,8 +26,8 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.toList;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ToStringConfig.DEFAULT_CONFIG;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ToStringConfig.IGNORE_NULL_OR_EMPTY_CONFIG;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.lang3.StringUtils.EMPTY;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.lang3.SystemUtils.LINE_SEPARATOR;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> java.lang.System.lineSeparator;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.lang3.StringUtils.EMPTY;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.Assert.assertEquals;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
@@ -86,8 +86,8 @@
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>                                  { toList(<span class="jxr_string">"feilong"</span>, <span class="jxr_string">""</span>, <span class="jxr_string">"xinge"</span>, <strong class="jxr_keyword">null</strong>), <strong class="jxr_keyword">new</strong> ToStringConfig(<span class="jxr_string">"@"</span>), <span class="jxr_string">"feilong@@xinge@"</span> },
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>                                  {
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>                                    toList(<span class="jxr_string">"飞龙"</span>, <span class="jxr_string">"小金"</span>, <span class="jxr_string">"四金"</span>, <span class="jxr_string">"金金金金"</span>),
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                                    <strong class="jxr_keyword">new</strong> ToStringConfig(LINE_SEPARATOR),
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>                                    <span class="jxr_string">"飞龙"</span> + LINE_SEPARATOR + <span class="jxr_string">"小金"</span> + LINE_SEPARATOR + <span class="jxr_string">"四金"</span> + LINE_SEPARATOR + <span class="jxr_string">"金金金金"</span> }, };
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                                    <strong class="jxr_keyword">new</strong> ToStringConfig(lineSeparator()),
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                                    <span class="jxr_string">"飞龙"</span> + lineSeparator() + <span class="jxr_string">"小金"</span> + lineSeparator() + <span class="jxr_string">"四金"</span> + lineSeparator() + <span class="jxr_string">"金金金金"</span> }, };
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>      }
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>      <em class="jxr_javadoccomment">/**</em>

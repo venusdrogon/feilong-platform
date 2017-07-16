@@ -2,6 +2,7 @@ com.feilong.core
 com.feilong.core.bean
 com.feilong.core.date
 com.feilong.core.lang
+com.feilong.core.lang.annotation
 com.feilong.core.lang.reflect
 com.feilong.core.net
 com.feilong.core.text
