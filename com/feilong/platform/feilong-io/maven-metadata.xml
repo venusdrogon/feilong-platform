@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform</groupId>
   <artifactId>feilong-io</artifactId>
   <versioning>
-    <release>1.10.4</release>
     <versions>
-      <version>1.10.4</version>
+      <version>1.10.5-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170716165107</lastUpdated>
+    <lastUpdated>20170717133607</lastUpdated>
   </versioning>
 </metadata>
