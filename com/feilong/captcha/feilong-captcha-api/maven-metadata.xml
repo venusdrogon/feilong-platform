@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.captcha</groupId>
+  <artifactId>feilong-captcha-api</artifactId>
+  <versioning>
+    <versions>
+      <version>1.10.5-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20170727190001</lastUpdated>
+  </versioning>
+</metadata>
