@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-tools-middleware</artifactId>
   <versioning>
-    <release>1.10.4</release>
     <versions>
-      <version>1.10.4</version>
+      <version>1.10.5-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170716173747</lastUpdated>
+    <lastUpdated>20170730104226</lastUpdated>
   </versioning>
 </metadata>
