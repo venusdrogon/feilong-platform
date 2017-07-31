@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-core 1.10.4 API'
+'feilong-core 1.10.5 API'
 -footer
-'feilong-core 1.10.4 API'
+'feilong-core 1.10.5 API'
 -group
 'Date package 日期' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-core 1.10.4 API'
+'feilong-core 1.10.5 API'
 -link
 'https://docs.oracle.com/javaee/7/api'
 -link
@@ -51,8 +51,6 @@
 'http://logging.apache.org/log4j/1.2/apidocs'
 -link
 'http://commons.apache.org/proper/commons-logging/apidocs'
--link
-'http://commons.apache.org/collections/apidocs'
 -linkoffline
 'http://docs.oracle.com/javase/7/docs/api' '/Users/feilong/workspace/feilong/feilong-core/target/javadoc-bundle-options'
 -stylesheetfile
@@ -60,4 +58,4 @@
 -use
 -version
 -windowtitle
-'feilong-core 1.10.4 API create by feilong'
+'feilong-core 1.10.5 API create by feilong'
