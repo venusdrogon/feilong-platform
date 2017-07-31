@@ -31,7 +31,7 @@ child 				| Description
 
 	....
 	<properties>
-		<version.feilong-platform>1.10.4</version.feilong-platform>
+		<version.feilong-platform>1.10.5</version.feilong-platform>
 		....
 	</properties>
 	
