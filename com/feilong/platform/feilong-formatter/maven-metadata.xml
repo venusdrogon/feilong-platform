@@ -3,10 +3,9 @@
   <groupId>com.feilong.platform</groupId>
   <artifactId>feilong-formatter</artifactId>
   <versioning>
-    <release>1.10.5</release>
     <versions>
-      <version>1.10.5</version>
+      <version>1.10.6-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170731134507</lastUpdated>
+    <lastUpdated>20170801161606</lastUpdated>
   </versioning>
 </metadata>
