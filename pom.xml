@@ -102,9 +102,6 @@
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
 
-		<version.velocity>1.7</version.velocity>
-		<version.velocity-tools>2.0</version.velocity-tools>
-
 		<!--
 			http://tiles.apache.org/framework/whats-new.html
 
@@ -453,13 +450,6 @@
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 				<version>${version.commons-io}</version>
-			</dependency>
-
-			<!-- velocity -->
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity</artifactId>
-				<version>${version.velocity}</version>
 			</dependency>
 
 			<!-- *********************json******************************* -->
