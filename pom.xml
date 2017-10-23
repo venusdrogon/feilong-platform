@@ -156,7 +156,7 @@
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
 		<v.license-maven-plugin>3.0</v.license-maven-plugin>
-		<v.versions-maven-plugin>2.4</v.versions-maven-plugin>
+		<v.versions-maven-plugin>2.5</v.versions-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
 
 		<!-- **********************begin native2ascii config******************************************* -->
