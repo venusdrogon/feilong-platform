@@ -146,7 +146,7 @@
 		<!-- https://issues.apache.org/jira/browse/MRESOURCES/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
 		<v.maven-resources-plugin>3.0.2</v.maven-resources-plugin>
 
-		<v.maven-war-plugin>3.1.0</v.maven-war-plugin>
+		<v.maven-war-plugin>3.2.0</v.maven-war-plugin>
 
 		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
 
