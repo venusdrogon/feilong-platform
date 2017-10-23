@@ -75,7 +75,13 @@
 		<version.commons-logging>1.2</version.commons-logging>
 
 		<!-- see in http://commons.apache.org/proper/commons-io/index.html -->
-		<version.commons-io>2.5</version.commons-io>
+		<!--
+			Commons IO 2.6 (requires JDK 1.7+)
+			Commons IO 2.5 (requires JDK 1.6+)
+		-->
+		<version.commons-io>2.6</version.commons-io>
+
+
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
 		<version.commons-net>3.6</version.commons-net>
 
