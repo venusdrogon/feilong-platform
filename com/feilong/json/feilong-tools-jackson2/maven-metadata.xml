@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.json</groupId>
+  <artifactId>feilong-tools-jackson2</artifactId>
+  <versioning>
+    <versions>
+      <version>1.10.6-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20171117183127</lastUpdated>
+  </versioning>
+</metadata>
