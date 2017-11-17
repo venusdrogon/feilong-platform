@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.net</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.10.6-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20171117.183521</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20171117183521</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.10.6-20171117.183521-1</value>
+        <updated>20171117183521</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
