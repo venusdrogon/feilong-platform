@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.net</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.6-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>feilong-net-httpclient4</artifactId>
+	<name>feilong-net-httpclient4</name>
+	<description>feilong-net-httpclient4</description>
+
+	<properties>
+		<!-- http://hc.apache.org/downloads.cgi -->
+		<version.httpcomponents>4.5.3</version.httpcomponents>
+		<version.httpcore>4.5.3</version.httpcore>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.net</groupId>
+			<artifactId>feilong-net-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!--
+			HttpCore is a set of low level HTTP transport components that can be used to build custom client and server side HTTP services with a minimal footprint.
+
+			HttpCore supports two I/O models: blocking I/O model based on the classic Java I/O and non-blocking, event driven I/O model based on Java NIO.
+			The blocking I/O model may be more appropriate for data intensive, low latency scenarios, whereas the non-blocking model may be more appropriate for high latency
+			scenarios where raw data throughput is less important than the ability to handle thousands of simultaneous HTTP connections in a resource efficient manner.
+		-->
+		<!-- 4.5.3 没有 httpcore -->
+		<!-- httpcore
+			<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${version.httpcore}</version>
+			</dependency> -->
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>${version.httpcomponents}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<!-- HttpClient is a HTTP/1.1 compliant HTTP agent implementation based on HttpCore.
+			It also provides reusable components for client-side authentication,
+			HTTP state management, and HTTP connection management.
+
+			HttpComponents Client is a successor of and replacement for Commons HttpClient 3.x.
+
+			Users of Commons HttpClient are strongly encouraged to upgrade. -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${version.httpcomponents}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+</project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.net</groupId>
+  <artifactId>feilong-net-httpclient4</artifactId>
+  <version>1.10.6-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20171117.183655</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20171117183655</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.10.6-20171117.183655-1</value>
+        <updated>20171117183655</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.10.6-20171117.183655-1</value>
+        <updated>20171117183655</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>1.10.6-20171117.183655-1</value>
+        <updated>20171117183655</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
