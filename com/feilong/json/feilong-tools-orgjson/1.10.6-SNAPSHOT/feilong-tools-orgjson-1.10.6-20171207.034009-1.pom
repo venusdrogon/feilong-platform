@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.json</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.6-SNAPSHOT</version>
+	</parent>
+	<artifactId>feilong-tools-orgjson</artifactId>
+
+
+	<properties>
+		<!-- org.json -->
+		<version.org.json>20141113</version.org.json>
+		<!-- <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+			<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target> -->
+	</properties>
+
+	<dependencies>
+
+		<!-- org.json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${version.org.json}</version>
+		</dependency>
+
+	</dependencies>
+</project>
