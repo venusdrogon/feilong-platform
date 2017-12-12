@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.captcha</groupId>
+  <artifactId>feilong-captcha-netease</artifactId>
+  <versioning>
+    <versions>
+      <version>1.10.6-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20171212081224</lastUpdated>
+  </versioning>
+</metadata>
