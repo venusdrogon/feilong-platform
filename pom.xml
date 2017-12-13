@@ -70,7 +70,7 @@
 			Commons Lang 3.6 at least requires Java 7.0.
 			Note that this has changed from Commons Lang 3.5, which only required Java 1.6
 		-->
-		<version.commons-lang3>3.6</version.commons-lang3>
+		<version.commons-lang3>3.7</version.commons-lang3>
 
 		<version.commons-logging>1.2</version.commons-logging>
 
