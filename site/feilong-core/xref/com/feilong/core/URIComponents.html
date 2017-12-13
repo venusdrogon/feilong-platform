@@ -74,13 +74,15 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SCHEME_HTTPS = <span class="jxr_string">"https"</span>;
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <em class="jxr_javadoccomment">/** Don't let anyone instantiate this class. */</em>
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/feilong/core/URIComponents.html">URIComponents</a>(){
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>          <em class="jxr_comment">//AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.</em>
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          <em class="jxr_comment">//see 《Effective Java》 2nd</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>      }
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  }
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <em class="jxr_javadoccomment">/** Don't let anyone instantiate this class. */</em>
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/feilong/core/URIComponents.html">URIComponents</a>(){
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <em class="jxr_comment">//AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <em class="jxr_comment">//see 《Effective Java》 2nd</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>          <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>      }
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

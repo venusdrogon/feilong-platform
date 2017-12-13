@@ -52,41 +52,43 @@
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      @SuppressWarnings(<span class="jxr_string">"rawtypes"</span>)
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Predicate valuePredicate;
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">     * The Constructor.</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;propertyName&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;propertyName&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;valuePredicate&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     * @param propertyName</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     *            泛型T对象指定的属性名称,Possibly indexed and/or nested name of the property to be modified,参见</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     *            &lt;a href="../../bean/BeanUtil.html#propertyName"&gt;propertyName&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     * @param valuePredicate</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">     *            the predicate</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../com/feilong/core/util/predicate/BeanPredicate.html">BeanPredicate</a>(String propertyName, @SuppressWarnings(<span class="jxr_string">"rawtypes"</span>) Predicate valuePredicate){
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          Validate.notBlank(propertyName, <span class="jxr_string">"propertyName can't be blank!"</span>);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          Validate.notNull(valuePredicate, <span class="jxr_string">"predicate can't be null!"</span>);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>          <strong class="jxr_keyword">this</strong>.propertyName = propertyName;
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">this</strong>.valuePredicate = valuePredicate;
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_comment">     * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_comment">     * </em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_comment">     * @see org.apache.commons.collections4.Predicate#evaluate(java.lang.Object)</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_comment">     */</em>
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>      @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>      @Override
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> evaluate(T object){
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>          Object currentPropertyValue = PropertyUtil.getProperty(object, propertyName);
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">return</strong> valuePredicate.evaluate(currentPropertyValue);
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>      }
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  }
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">     * The Constructor.</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;propertyName&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;propertyName&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     * 如果 &lt;code&gt;valuePredicate&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     * @param propertyName</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     *            泛型T对象指定的属性名称,Possibly indexed and/or nested name of the property to be modified,参见</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">     *            &lt;a href="../../bean/BeanUtil.html#propertyName"&gt;propertyName&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     * @param valuePredicate</em>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">     *            the predicate</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../com/feilong/core/util/predicate/BeanPredicate.html">BeanPredicate</a>(String propertyName, @SuppressWarnings(<span class="jxr_string">"rawtypes"</span>) Predicate valuePredicate){
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          Validate.notBlank(propertyName, <span class="jxr_string">"propertyName can't be blank!"</span>);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>          Validate.notNull(valuePredicate, <span class="jxr_string">"predicate can't be null!"</span>);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">this</strong>.propertyName = propertyName;
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <strong class="jxr_keyword">this</strong>.valuePredicate = valuePredicate;
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      }
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_comment">     * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_comment">     * </em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_comment">     * @see org.apache.commons.collections4.Predicate#evaluate(java.lang.Object)</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_comment">     */</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>      @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      @Override
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> evaluate(T object){
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          Object currentPropertyValue = PropertyUtil.getProperty(object, propertyName);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">return</strong> valuePredicate.evaluate(currentPropertyValue);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

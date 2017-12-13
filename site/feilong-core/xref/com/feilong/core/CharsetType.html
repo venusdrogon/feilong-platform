@@ -90,7 +90,7 @@
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String UTF8       = StandardCharsets.UTF_8.name();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>      <em class="jxr_comment">//******************************************************************************************</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * &lt;code&gt;{@value}&lt;/code&gt;,&lt;span style="color:red"&gt;只能表示简体中文&lt;/span&gt; .</em>
@@ -158,7 +158,7 @@
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GB18030    = <span class="jxr_string">"GB18030"</span>;
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>     <em class="jxr_comment">// *********************************************************************************************</em>
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">     * &lt;code&gt;ISO-8859-1&lt;/code&gt;,ISO/IEC 8859-1,又称Latin-1或"西欧语言",是国际标准化组织内ISO/IEC 8859的第一个8位字符集 &lt;code&gt;{@value}&lt;/code&gt;.</em>
@@ -185,13 +185,15 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ISO_8859_1 = StandardCharsets.ISO_8859_1.name();
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>     <em class="jxr_javadoccomment">/** Don't let anyone instantiate this class. */</em>
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     <strong class="jxr_keyword">private</strong> <a href="../../../com/feilong/core/CharsetType.html">CharsetType</a>(){
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>         <em class="jxr_comment">//AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.</em>
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>         <em class="jxr_comment">//see 《Effective Java》 2nd</em>
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>     }
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> }
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     <em class="jxr_javadoccomment">/** Don't let anyone instantiate this class. */</em>
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>     <strong class="jxr_keyword">private</strong> <a href="../../../com/feilong/core/CharsetType.html">CharsetType</a>(){
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>         <em class="jxr_comment">//AssertionError不是必须的. 但它可以避免不小心在类的内部调用构造器. 保证该类在任何情况下都不会被实例化.</em>
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>         <em class="jxr_comment">//see 《Effective Java》 2nd</em>
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> AssertionError(<span class="jxr_string">"No "</span> + getClass().getName() + <span class="jxr_string">" instances for you!"</span>);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>     }
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
