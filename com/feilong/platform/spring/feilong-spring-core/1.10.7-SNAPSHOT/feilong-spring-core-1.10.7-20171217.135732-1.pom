@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.spring</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.10.7-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>feilong-spring-core</artifactId>
+	<name>feilong-spring-core</name>
+	<description>feilong-spring-core</description>
+
+	<dependencies>
+		<!-- *******************spring********************************* -->
+		<!-- spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+
+		<!-- spring-beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+
+		<!-- spring-expression -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<!--feilong-core-extension -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core-extension</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
