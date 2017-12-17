@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.json</groupId>
+  <artifactId>feilong-json-gson</artifactId>
+  <versioning>
+    <versions>
+      <version>1.10.7-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20171217134501</lastUpdated>
+  </versioning>
+</metadata>
