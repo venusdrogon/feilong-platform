@@ -117,7 +117,7 @@
 			Changed the Java API to adopt the Request API. The XML files and taglibs are compatible with tiles 2.2.
 			Dropped the parameter based configuration that was deprecated in 2.2.
 		-->
-		<version.tiles>3.0.7</version.tiles>
+		<version.tiles>3.0.8</version.tiles>
 		<!--*********************end dependency plugins version************************************ -->
 
 		<!--*********************begin plugins version************************************ -->
