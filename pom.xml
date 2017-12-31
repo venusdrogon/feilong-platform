@@ -304,10 +304,10 @@
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
-			<!-- feilong-tools-security -->
+			<!-- feilong-security -->
 			<dependency>
-				<groupId>com.feilong.platform.tools</groupId>
-				<artifactId>feilong-tools-security</artifactId>
+				<groupId>com.feilong.platform</groupId>
+				<artifactId>feilong-security</artifactId>
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
