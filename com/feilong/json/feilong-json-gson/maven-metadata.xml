@@ -3,9 +3,10 @@
   <groupId>com.feilong.json</groupId>
   <artifactId>feilong-json-gson</artifactId>
   <versioning>
+    <release>1.10.7</release>
     <versions>
-      <version>1.10.7-SNAPSHOT</version>
+      <version>1.10.7</version>
     </versions>
-    <lastUpdated>20171217134501</lastUpdated>
+    <lastUpdated>20180102033849</lastUpdated>
   </versioning>
 </metadata>
