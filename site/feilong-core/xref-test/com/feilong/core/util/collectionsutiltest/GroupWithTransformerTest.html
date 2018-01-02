@@ -69,11 +69,11 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>          User guansuo31 = <strong class="jxr_keyword">new</strong> User(<span class="jxr_string">"关索"</span>, 31);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          User guanxing20 = <strong class="jxr_keyword">new</strong> User(<span class="jxr_string">"关兴"</span>, 18);
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <em class="jxr_comment">//************************************************************************</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          List&lt;User&gt; list = toList(mateng55, machao28, madai27, maxiu25, zhangfei28, liubei32, guanyu50, guanping32, guansuo31, guanxing20);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <em class="jxr_comment">//************************************************************************</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>          List&lt;User&gt; list = toList(mateng55, machao28, madai27, maxiu25, zhangfei28, liubei32, guanyu50, guanping32, guansuo31, guanxing20);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          Map&lt;String, List&lt;User&gt;&gt; map = CollectionsUtil.group(list, <strong class="jxr_keyword">new</strong> Transformer&lt;User, String&gt;(){
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>              @Override
@@ -85,16 +85,16 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>          assertSame(4, map.size());
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>          assertThat(map.keySet(), contains(<span class="jxr_string">"马"</span>, <span class="jxr_string">"张"</span>, <span class="jxr_string">"刘"</span>, <span class="jxr_string">"关"</span>));
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          assertThat(map, allOf(<em class="jxr_comment">//</em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                          hasEntry(is(<span class="jxr_string">"马"</span>), hasItems(mateng55, machao28, madai27, maxiu25)),
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>                          hasEntry(is(<span class="jxr_string">"张"</span>), hasItems(zhangfei28)),
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>                          hasEntry(is(<span class="jxr_string">"刘"</span>), hasItems(liubei32)),
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>                          hasEntry(is(<span class="jxr_string">"关"</span>), hasItems(guanping32, guansuo31, guanxing20))
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>          <em class="jxr_comment">//</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>          ));
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>      }
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <em class="jxr_comment">//********************************************************************</em>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          assertThat(
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                          map,
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                          allOf(<em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                                          hasEntry(is(<span class="jxr_string">"马"</span>), hasItems(mateng55, machao28, madai27, maxiu25)),
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                                          hasEntry(is(<span class="jxr_string">"张"</span>), hasItems(zhangfei28)),
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>                                          hasEntry(is(<span class="jxr_string">"刘"</span>), hasItems(liubei32)),
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>                                          hasEntry(is(<span class="jxr_string">"关"</span>), hasItems(guanping32, guansuo31, guanxing20))
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>                          <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>                          ));
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      }
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * Test group null collection.</em>
@@ -124,6 +124,6 @@
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

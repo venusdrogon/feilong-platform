@@ -27,24 +27,40 @@
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.junit.runners.Suite;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.junit.runners.Suite.SuiteClasses;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * The Class FeiLongBeanPredicateUtilSuiteTests.</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  @RunWith(Suite.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  @SuiteClasses({ <em class="jxr_comment">//</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>                  EqualPredicateTest.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>                  EqualIgnoreCasePredicateTest.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>                  EqualMapPredicateTest.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>                  EqualBeanPredicateTest.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>          <em class="jxr_comment">//</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  })
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/feilong/core/util/predicate/FeiLongBeanPredicateUtilSuiteTests.html">FeiLongBeanPredicateUtilSuiteTests</a>{
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  }
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.ComparatorPredicateComparatorTest;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.ComparatorPredicateTest;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.ContainsPredicateListTest;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.ContainsPredicateTest;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.EqualBeanPredicateTest;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.EqualIgnoreCasePredicateTest;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.EqualMapPredicateTest;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.predicate.beanpredicateutil.EqualPredicateTest;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * The Class FeiLongBeanPredicateUtilSuiteTests.</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  @RunWith(Suite.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  @SuiteClasses({ <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>                  BeanPredicateTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>                  EqualPredicateTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>                  EqualIgnoreCasePredicateTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>                  EqualMapPredicateTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>                  EqualBeanPredicateTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>                  ComparatorPredicateComparatorTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>                  ComparatorPredicateTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>                  ContainsPredicateListTest.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>                  ContainsPredicateTest.<strong class="jxr_keyword">class</strong>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>          <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  })
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/feilong/core/util/predicate/FeiLongBeanPredicateUtilSuiteTests.html">FeiLongBeanPredicateUtilSuiteTests</a>{
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

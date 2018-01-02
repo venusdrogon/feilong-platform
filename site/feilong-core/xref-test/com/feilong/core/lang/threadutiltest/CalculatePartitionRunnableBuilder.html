@@ -27,38 +27,53 @@
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.atomic.AtomicInteger;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.lang.PartitionRunnableBuilder;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.lang.PartitionThreadEntity;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * </em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * @since 1.10.4</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/feilong/core/lang/threadutiltest/CalculatePartitionRunnableBuilder.html">CalculatePartitionRunnableBuilder</a> <strong class="jxr_keyword">implements</strong> PartitionRunnableBuilder&lt;Integer&gt;{
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_comment">     * (non-Javadoc)</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_comment">     * </em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_comment">     * @see com.feilong.core.lang.PartitionRunnableBuilder#build(java.util.List, com.feilong.core.lang.PartitionThreadEntity, java.util.Map)</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_comment">     */</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>      @Override
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">public</strong> Runnable build(<strong class="jxr_keyword">final</strong> List&lt;Integer&gt; perBatchList,PartitionThreadEntity partitionThreadEntity,Map&lt;String, ?&gt; paramsMap){
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">final</strong> AtomicInteger atomicInteger = (AtomicInteger) paramsMap.get(<span class="jxr_string">"result"</span>);
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Runnable(){
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>              @Override
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>              <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(){
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>                  <strong class="jxr_keyword">for</strong> (Integer value : perBatchList){
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>                      atomicInteger.addAndGet(value);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>                  }
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>              }
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          };
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      }
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  }
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.lang.PartitionRunnableBuilder;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.lang.PartitionThreadEntity;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * @since 1.10.4</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/feilong/core/lang/threadutiltest/CalculatePartitionRunnableBuilder.html">CalculatePartitionRunnableBuilder</a> <strong class="jxr_keyword">implements</strong> PartitionRunnableBuilder&lt;Integer&gt;{
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_javadoccomment">/** The Constant log. */</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger LOGGER = LoggerFactory.getLogger(CalculatePartitionRunnableBuilder.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_comment">     * (non-Javadoc)</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_comment">     * </em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_comment">     * @see com.feilong.core.lang.PartitionRunnableBuilder#build(java.util.List, com.feilong.core.lang.PartitionThreadEntity, java.util.Map)</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_comment">     */</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      @Override
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">public</strong> Runnable build(<strong class="jxr_keyword">final</strong> List&lt;Integer&gt; perBatchList,<strong class="jxr_keyword">final</strong> PartitionThreadEntity partitionThreadEntity,Map&lt;String, ?&gt; paramsMap){
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">final</strong> AtomicInteger atomicInteger = (AtomicInteger) paramsMap.get(<span class="jxr_string">"result"</span>);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Runnable(){
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>              @Override
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>              <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(){
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>                  <strong class="jxr_keyword">for</strong> (Integer value : perBatchList){
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>                      LOGGER.trace(
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>                                      <span class="jxr_string">"{},BatchNumber:[{}],CurrentListSize:[{}],EachSize:[{}],Name:[{}],TotalListCount:[{}]"</span>,
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>                                      partitionThreadEntity.toString(),
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>                                      partitionThreadEntity.getBatchNumber(),
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>                                      partitionThreadEntity.getCurrentListSize(),
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>                                      partitionThreadEntity.getEachSize(),
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>                                      partitionThreadEntity.getName(),
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>                                      partitionThreadEntity.getTotalListCount());
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>                      atomicInteger.addAndGet(value);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  }
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>              }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          };
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

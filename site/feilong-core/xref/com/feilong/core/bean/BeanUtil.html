@@ -121,7 +121,7 @@
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment"> * &lt;pre class="code"&gt;</em>
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment"> * LOGGER.debug(BeanUtils.getProperty(c, "address (A2)"));</em>
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment"> * </em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment"> * Map{@code &lt;String,String&gt;} am = new HashMap{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment"> * Map{@code &lt;String,String&gt;} am = newHashMap();</em>
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment"> * am.put("1", "234-222-1222211");</em>
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment"> * am.put("2", "021-086-1232323");</em>
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment"> * </em>
@@ -298,7 +298,7 @@
 <a class="jxr_linenumber" name="L290" href="#L290">290</a>                 BeanUtils.copyProperties(toObj, fromObj);
 <a class="jxr_linenumber" name="L291" href="#L291">291</a>                 <strong class="jxr_keyword">return</strong>;
 <a class="jxr_linenumber" name="L292" href="#L292">292</a>             }<strong class="jxr_keyword">catch</strong> (Exception e){
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(e);
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(<span class="jxr_string">"copyProperties exception"</span>, e);
 <a class="jxr_linenumber" name="L294" href="#L294">294</a>             }
 <a class="jxr_linenumber" name="L295" href="#L295">295</a>         }
 <a class="jxr_linenumber" name="L296" href="#L296">296</a>         <strong class="jxr_keyword">for</strong> (String propertyName : includePropertyNames){
@@ -335,7 +335,7 @@
 <a class="jxr_linenumber" name="L327" href="#L327">327</a>         <strong class="jxr_keyword">try</strong>{
 <a class="jxr_linenumber" name="L328" href="#L328">328</a>             BeanUtils.setProperty(bean, propertyName, value);
 <a class="jxr_linenumber" name="L329" href="#L329">329</a>         }<strong class="jxr_keyword">catch</strong> (Exception e){
-<a class="jxr_linenumber" name="L330" href="#L330">330</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(e);
+<a class="jxr_linenumber" name="L330" href="#L330">330</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(<span class="jxr_string">"setProperty exception"</span>, e);
 <a class="jxr_linenumber" name="L331" href="#L331">331</a>         }
 <a class="jxr_linenumber" name="L332" href="#L332">332</a>     }
 <a class="jxr_linenumber" name="L333" href="#L333">333</a> 
@@ -372,7 +372,7 @@
 <a class="jxr_linenumber" name="L364" href="#L364">364</a>         <strong class="jxr_keyword">try</strong>{
 <a class="jxr_linenumber" name="L365" href="#L365">365</a>             <strong class="jxr_keyword">return</strong> BeanUtils.getProperty(bean, propertyName);
 <a class="jxr_linenumber" name="L366" href="#L366">366</a>         }<strong class="jxr_keyword">catch</strong> (Exception e){
-<a class="jxr_linenumber" name="L367" href="#L367">367</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(e);
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(<span class="jxr_string">"getProperty exception"</span>, e);
 <a class="jxr_linenumber" name="L368" href="#L368">368</a>         }
 <a class="jxr_linenumber" name="L369" href="#L369">369</a>     }
 <a class="jxr_linenumber" name="L370" href="#L370">370</a> 
@@ -425,7 +425,7 @@
 <a class="jxr_linenumber" name="L417" href="#L417">417</a>         <strong class="jxr_keyword">try</strong>{
 <a class="jxr_linenumber" name="L418" href="#L418">418</a>             <strong class="jxr_keyword">return</strong> (T) BeanUtils.cloneBean(bean);
 <a class="jxr_linenumber" name="L419" href="#L419">419</a>         }<strong class="jxr_keyword">catch</strong> (Exception e){
-<a class="jxr_linenumber" name="L420" href="#L420">420</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(e);
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(<span class="jxr_string">"cloneBean exception"</span>, e);
 <a class="jxr_linenumber" name="L421" href="#L421">421</a>         }
 <a class="jxr_linenumber" name="L422" href="#L422">422</a>     }
 <a class="jxr_linenumber" name="L423" href="#L423">423</a> 
@@ -457,7 +457,7 @@
 <a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     * User user = new User();</em>
 <a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * user.setId(5L);</em>
 <a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} properties = new HashMap{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} properties = newHashMap();</em>
 <a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * properties.put("id", 8L);</em>
 <a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * BeanUtil.populate(user, properties);</em>
@@ -681,7 +681,7 @@
 <a class="jxr_linenumber" name="L673" href="#L673">673</a>             BeanUtils.populate(bean, properties);
 <a class="jxr_linenumber" name="L674" href="#L674">674</a>             <strong class="jxr_keyword">return</strong> bean;
 <a class="jxr_linenumber" name="L675" href="#L675">675</a>         }<strong class="jxr_keyword">catch</strong> (Exception e){
-<a class="jxr_linenumber" name="L676" href="#L676">676</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(e);
+<a class="jxr_linenumber" name="L676" href="#L676">676</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/bean/BeanOperationException.html">BeanOperationException</a>(<span class="jxr_string">"populate exception"</span>, e);
 <a class="jxr_linenumber" name="L677" href="#L677">677</a>         }
 <a class="jxr_linenumber" name="L678" href="#L678">678</a>     }
 <a class="jxr_linenumber" name="L679" href="#L679">679</a> 
@@ -943,7 +943,7 @@
 <a class="jxr_linenumber" name="L935" href="#L935">935</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
 <a class="jxr_linenumber" name="L936" href="#L936">936</a> <em class="jxr_javadoccomment">     * DynaBean newDynaBean = BeanUtil.newDynaBean(</em>
 <a class="jxr_linenumber" name="L937" href="#L937">937</a> <em class="jxr_javadoccomment">     *                 toMap(//</em>
-<a class="jxr_linenumber" name="L938" href="#L938">938</a> <em class="jxr_javadoccomment">     *                                 Pair.of("address", (Object) new HashMap()),</em>
+<a class="jxr_linenumber" name="L938" href="#L938">938</a> <em class="jxr_javadoccomment">     *                                 Pair.of("address", (Object) newHashMap()),</em>
 <a class="jxr_linenumber" name="L939" href="#L939">939</a> <em class="jxr_javadoccomment">     *                                 Pair.of("firstName", (Object) "Fred"),</em>
 <a class="jxr_linenumber" name="L940" href="#L940">940</a> <em class="jxr_javadoccomment">     *                                 Pair.of("lastName", (Object) "Flintstone")));</em>
 <a class="jxr_linenumber" name="L941" href="#L941">941</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(newDynaBean));</em>
@@ -984,6 +984,6 @@
 <a class="jxr_linenumber" name="L976" href="#L976">976</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

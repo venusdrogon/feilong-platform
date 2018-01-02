@@ -25,11 +25,11 @@
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.Validator.isNullOrEmpty;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.bean.ConvertUtil.toArray;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.lang3.StringUtils.EMPTY;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.io.UnsupportedEncodingException;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> java.nio.charset.Charset;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.util.CollectionsUtil.newArrayList;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.lang3.StringUtils.EMPTY;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> java.io.UnsupportedEncodingException;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> java.nio.charset.Charset;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> java.util.StringTokenizer;
@@ -209,7 +209,7 @@
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>     }
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>     <em class="jxr_comment">// [start]toBytes</em>
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <em class="jxr_comment">// ********************************************************************************</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L205" href="#L205">205</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     * 字符串转换成byte数组.</em>
 <a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     *</em>
@@ -247,7 +247,7 @@
 <a class="jxr_linenumber" name="L239" href="#L239">239</a>     <em class="jxr_comment">// [end]</em>
 <a class="jxr_linenumber" name="L240" href="#L240">240</a>     <em class="jxr_comment">// [start]replace</em>
 <a class="jxr_linenumber" name="L241" href="#L241">241</a> 
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>     <em class="jxr_comment">// ********************************replace************************************************</em>
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L243" href="#L243">243</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;text&lt;/code&gt; 中的 &lt;code&gt;searchString&lt;/code&gt; 替换成 &lt;code&gt;replacement&lt;/code&gt;.</em>
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     * </em>
@@ -398,7 +398,7 @@
 <a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">     * @param content</em>
 <a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     *            需要被替换的字符串</em>
 <a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">     * @param regex</em>
-<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">     *            用来匹配此字符串的正则表达式,规则参见 {@link RegexPattern}注释</em>
+<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">     *            用来匹配此字符串的正则表达式,规则参见 {@link "RegexPattern"}注释</em>
 <a class="jxr_linenumber" name="L394" href="#L394">394</a> <em class="jxr_javadoccomment">     * @param replacement</em>
 <a class="jxr_linenumber" name="L395" href="#L395">395</a> <em class="jxr_javadoccomment">     *            用来替换每个匹配项的字符串</em>
 <a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;content&lt;/code&gt; 是null,返回 {@link StringUtils#EMPTY}&lt;br&gt;</em>
@@ -422,7 +422,7 @@
 <a class="jxr_linenumber" name="L414" href="#L414">414</a> <em class="jxr_javadoccomment">     * String template = "/home/webuser/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log";</em>
 <a class="jxr_linenumber" name="L415" href="#L415">415</a> <em class="jxr_javadoccomment">     * Date date = new Date();</em>
 <a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} valuesMap = new HashMap{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} valuesMap = newHashMap();</em>
 <a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * valuesMap.put("yearMonth", DateUtil.toString(date, DatePattern.YEAR_AND_MONTH));</em>
 <a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     * valuesMap.put("expressDeliveryType", "sf");</em>
 <a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * valuesMap.put("fileName", DateUtil.toString(date, DatePattern.TIMESTAMP));</em>
@@ -446,7 +446,7 @@
 <a class="jxr_linenumber" name="L438" href="#L438">438</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} valuesMap = new HashMap{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} valuesMap = newHashMap();</em>
 <a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * valuesMap.put("today", DateUtil.toString(new Date(), COMMON_DATE));</em>
 <a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     * valuesMap.put("user", new User(1L));</em>
 <a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     * LOGGER.debug(StringUtil.replace("${today}${today1}${user.id}${user}", valuesMap) + "");</em>
@@ -480,7 +480,7 @@
 <a class="jxr_linenumber" name="L472" href="#L472">472</a> 
 <a class="jxr_linenumber" name="L473" href="#L473">473</a>     <em class="jxr_comment">// [start]substring</em>
 <a class="jxr_linenumber" name="L474" href="#L474">474</a> 
-<a class="jxr_linenumber" name="L475" href="#L475">475</a>     <em class="jxr_comment">// ********************************substring************************************************</em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L476" href="#L476">476</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * [截取]从指定索引处(&lt;code&gt;beginIndex&lt;/code&gt;)的字符开始,直到此字符串末尾.</em>
 <a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     * </em>
@@ -771,7 +771,7 @@
 <a class="jxr_linenumber" name="L763" href="#L763">763</a>             <strong class="jxr_keyword">return</strong> ArrayUtils.EMPTY_STRING_ARRAY;
 <a class="jxr_linenumber" name="L764" href="#L764">764</a>         }
 <a class="jxr_linenumber" name="L765" href="#L765">765</a> 
-<a class="jxr_linenumber" name="L766" href="#L766">766</a>         List&lt;String&gt; tokens = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L766" href="#L766">766</a>         List&lt;String&gt; tokens = newArrayList();
 <a class="jxr_linenumber" name="L767" href="#L767">767</a> 
 <a class="jxr_linenumber" name="L768" href="#L768">768</a>         StringTokenizer stringTokenizer = <strong class="jxr_keyword">new</strong> StringTokenizer(str, delimiters);
 <a class="jxr_linenumber" name="L769" href="#L769">769</a>         <strong class="jxr_keyword">while</strong> (stringTokenizer.hasMoreTokens()){
@@ -1027,6 +1027,6 @@
 <a class="jxr_linenumber" name="L1019" href="#L1019">1019</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

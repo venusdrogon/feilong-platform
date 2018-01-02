@@ -225,7 +225,7 @@
 <a class="jxr_linenumber" name="L217" href="#L217">217</a>         Validate.notNull(enumClass, <span class="jxr_string">"enumClass can't be null!"</span>);
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>         Validate.notBlank(propertyName, <span class="jxr_string">"propertyName can't be null/empty!"</span>);
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>         <em class="jxr_comment">//*************************************************************************</em>
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 
 <a class="jxr_linenumber" name="L222" href="#L222">222</a>         <em class="jxr_comment">// An enum is a kind of class</em>
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>         <em class="jxr_comment">// An annotation is a kind of interface</em>
@@ -237,7 +237,7 @@
 <a class="jxr_linenumber" name="L229" href="#L229">229</a>             LOGGER.trace(<span class="jxr_string">"enumClass:[{}],enumConstants:[{}]"</span>, enumClass.getCanonicalName(), enumConstants);
 <a class="jxr_linenumber" name="L230" href="#L230">230</a>         }
 <a class="jxr_linenumber" name="L231" href="#L231">231</a> 
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>         <em class="jxr_comment">//*************************************************************************</em>
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L233" href="#L233">233</a>         <strong class="jxr_keyword">for</strong> (E e : enumConstants){
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>             Object propertyValue = PropertyUtil.getProperty(e, propertyName);
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>             <strong class="jxr_keyword">if</strong> (isEquals(propertyValue, specifiedValue, ignoreCase)){
@@ -245,7 +245,7 @@
 <a class="jxr_linenumber" name="L237" href="#L237">237</a>             }
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>         }
 <a class="jxr_linenumber" name="L239" href="#L239">239</a> 
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>         <em class="jxr_comment">//*************************************************************************</em>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L241" href="#L241">241</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()){
 <a class="jxr_linenumber" name="L242" href="#L242">242</a>             String messagePattern = <span class="jxr_string">"[{}],propertyName:[{}],value:[{}],ignoreCase:[{}],constants not found"</span>;
 <a class="jxr_linenumber" name="L243" href="#L243">243</a>             LOGGER.debug(Slf4jUtil.format(messagePattern, enumClass, propertyName, specifiedValue, ignoreCase));
@@ -282,6 +282,6 @@
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

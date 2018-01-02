@@ -209,7 +209,7 @@
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>         }
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>     }
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <em class="jxr_comment">//******************************************************************************************************</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     * 将 {@link URL}转成 {@link URI}.</em>
@@ -255,11 +255,11 @@
 <a class="jxr_linenumber" name="L247" href="#L247">247</a>             <strong class="jxr_keyword">return</strong> url == <strong class="jxr_keyword">null</strong> ? <strong class="jxr_keyword">null</strong> : url.openStream();
 <a class="jxr_linenumber" name="L248" href="#L248">248</a>         }<strong class="jxr_keyword">catch</strong> (IOException e){
 <a class="jxr_linenumber" name="L249" href="#L249">249</a>             String message = Slf4jUtil.format(<span class="jxr_string">"can not open url:[{}]"</span>, url.toString());
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>             LOGGER.error(message, e);
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/UncheckedIOException.html">UncheckedIOException</a>(message, e);
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>         }
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>     }
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>     <em class="jxr_comment">//******************************************************************************************************</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/core/UncheckedIOException.html">UncheckedIOException</a>(message, e);
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>         }
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>     }
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L255" href="#L255">255</a> 
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">     * 获取联合url,通过在指定的上下文中对给定的 spec 进行解析创建 URL,新的 URL 从给定的上下文 URL 和 spec 参数创建.</em>
@@ -299,6 +299,6 @@
 <a class="jxr_linenumber" name="L291" href="#L291">291</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2017 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
 </body>
 </html>
