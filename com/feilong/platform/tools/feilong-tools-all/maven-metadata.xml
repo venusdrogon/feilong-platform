@@ -3,10 +3,10 @@
   <groupId>com.feilong.platform.tools</groupId>
   <artifactId>feilong-tools-all</artifactId>
   <versioning>
-    <release>1.10.6</release>
+    <release>1.10.7</release>
     <versions>
-      <version>1.10.6</version>
+      <version>1.10.7</version>
     </versions>
-    <lastUpdated>20171213212025</lastUpdated>
+    <lastUpdated>20180102041317</lastUpdated>
   </versioning>
 </metadata>
