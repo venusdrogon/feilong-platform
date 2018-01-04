@@ -135,7 +135,7 @@
 		<v.maven-deploy-plugin>2.8.2</v.maven-deploy-plugin>
 
 		<v.maven-install-plugin>2.5.2</v.maven-install-plugin>
-		<v.maven-javadoc-plugin>2.10.4</v.maven-javadoc-plugin>
+		<v.maven-javadoc-plugin>3.0.0</v.maven-javadoc-plugin>
 		<v.maven-jar-plugin>2.6</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
