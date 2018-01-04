@@ -138,7 +138,8 @@
 
 		<!-- https://issues.apache.org/jira/projects/MJAVADOC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
 		<v.maven-javadoc-plugin>3.0.0</v.maven-javadoc-plugin>
-		<v.maven-jar-plugin>2.6</v.maven-jar-plugin>
+		<!-- https://issues.apache.org/jira/projects/MJAR?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
+		<v.maven-jar-plugin>3.0.2</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
 
