@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.net</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.11.0-SNAPSHOT</version>
+	</parent>
+
+
+	<artifactId>feilong-net-httpclient3</artifactId>
+	<name>feilong-net-httpclient3</name>
+
+	<description>httpclient3 util,Deprecated,pls use feilong-net-httpclient4</description>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.net</groupId>
+			<artifactId>feilong-net-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-io</artifactId>
+			<version>${version.feilong-platform}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core-extension</artifactId>
+		</dependency>
+
+		<!-- The Commons HttpClient project is now end of life, and is no longer being developed. It has been replaced by the Apache HttpComponents project in its HttpClient
+			and HttpCore modules, which offer better performance and more flexibility. -->
+
+
+		<!-- History
+			HttpClient was started in 2001 as a subproject of the Jakarta Commons, based on code developed by the Jakarta Slide project. It was promoted out of the Commons
+			in
+			2004, graduating to a separate Jakarta project. In 2005, the HttpComponents project at Jakarta was created, with the task of developing a successor to HttpClient
+			3.x and to maintain the existing codebase until the new one is ready to take over. The Commons project, cradle of HttpClient, left Jakarta in 2007 to become an
+			independent
+			Top Level Project. Later in the same year, the HttpComponents project also left Jakarta to become an independent Top Level Project, taking the responsibility
+			for
+			maintaining HttpClient with it. -->
+
+
+		<!-- commons-httpclient -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
