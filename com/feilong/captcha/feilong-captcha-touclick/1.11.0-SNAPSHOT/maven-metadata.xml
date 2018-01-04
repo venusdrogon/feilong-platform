@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.captcha</groupId>
+  <artifactId>feilong-captcha-touclick</artifactId>
+  <version>1.11.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20180104.173558</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20180104173558</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.11.0-20180104.173558-1</value>
+        <updated>20180104173558</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.11.0-20180104.173558-1</value>
+        <updated>20180104173558</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>1.11.0-20180104.173558-1</value>
+        <updated>20180104173558</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
