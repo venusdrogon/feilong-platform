@@ -3,10 +3,9 @@
   <groupId>com.feilong.json</groupId>
   <artifactId>parent</artifactId>
   <versioning>
-    <release>1.10.7</release>
     <versions>
-      <version>1.10.7</version>
+      <version>1.11.0-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20180102033734</lastUpdated>
+    <lastUpdated>20180104165833</lastUpdated>
   </versioning>
 </metadata>
