@@ -163,6 +163,8 @@
 
 		<v.license-maven-plugin>3.0</v.license-maven-plugin>
 		<v.versions-maven-plugin>2.5</v.versions-maven-plugin>
+
+		<v.jacoco-maven-plugin>0.8.0</v.jacoco-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
 
 		<!-- **********************begin native2ascii config******************************************* -->
