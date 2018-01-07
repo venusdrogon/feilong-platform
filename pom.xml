@@ -327,6 +327,13 @@
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!--feilong-formatter -->
+			<dependency>
+				<groupId>com.feilong.platform</groupId>
+				<artifactId>feilong-formatter</artifactId>
+				<version>${version.feilong-platform}</version>
+			</dependency>
+
 			<!-- *******************spring********************************* -->
 			<dependency>
 				<groupId>org.springframework</groupId>
