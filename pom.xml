@@ -320,10 +320,10 @@
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
-			<!--feilong-tools-velocity -->
+			<!--feilong-velocity -->
 			<dependency>
-				<groupId>com.feilong.platform.tools</groupId>
-				<artifactId>feilong-tools-velocity</artifactId>
+				<groupId>com.feilong.platform</groupId>
+				<artifactId>feilong-velocity</artifactId>
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
