@@ -157,7 +157,8 @@
 
 		<v.maven-war-plugin>3.2.0</v.maven-war-plugin>
 
-		<v.native2ascii-maven-plugin>1.0-beta-1</v.native2ascii-maven-plugin>
+		<!-- https://github.com/mojohaus/native2ascii-maven-plugin/wiki -->
+		<v.native2ascii-maven-plugin>2.0.0</v.native2ascii-maven-plugin>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
 		<v.sonar-maven-plugin>3.4.0.905</v.sonar-maven-plugin>
@@ -706,24 +707,39 @@
 				<artifactId>native2ascii-maven-plugin</artifactId>
 				<version>${v.native2ascii-maven-plugin}</version>
 
-				<configuration>
-					<encoding>${native2ascii-maven-plugin.encoding}</encoding>
-					<includes>
-						<include>classes\${native2ascii-maven-plugin.pattern}</include>
-						<include>test-classes\${native2ascii-maven-plugin.pattern}</include>
-					</includes>
-					<workDir>${project.build.directory}</workDir>
-					<tempDir>${project.build.directory}</tempDir>
-				</configuration>
-
 				<executions>
 					<execution>
-						<id>native2ascii</id>
-						<!-- 默认是 phase process-classes -->
-						<!-- <phase>compile</phase> -->
+						<id>native2ascii-resources</id>
 						<goals>
-							<goal>native2ascii</goal>
+							<goal>resources</goal>
 						</goals>
+						<phase>process-resources</phase><!-- default -->
+						<configuration>
+							<srcDir>src/main/resources</srcDir><!-- default -->
+							<targetDir>${project.build.outputDirectory}</targetDir>
+
+							<encoding>${native2ascii-maven-plugin.encoding}</encoding>
+							<includes>
+								<include>${native2ascii-maven-plugin.pattern}</include>
+							</includes>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>native2ascii-testResources</id>
+						<goals>
+							<goal>testResources</goal>
+						</goals>
+						<phase>process-test-resources</phase><!-- default -->
+						<configuration>
+							<srcDir>src/test/resources</srcDir><!-- default -->
+							<targetDir>${project.build.testOutputDirectory}</targetDir>
+
+							<encoding>${native2ascii-maven-plugin.encoding}</encoding>
+							<includes>
+								<include>${native2ascii-maven-plugin.pattern}</include>
+							</includes>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -1092,19 +1108,6 @@
 										<goals>
 											<goal>run</goal>
 											<goal>help</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>native2ascii-maven-plugin</artifactId>
-										<versionRange>[1.0-beta-1,)</versionRange>
-										<goals>
-											<goal>native2ascii</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
