@@ -6,6 +6,8 @@ feilong-platform parent pom项目,定义常用jar及 plugins
 
 > Reduce development, Release ideas (减少开发,释放思想)
 
+feilong parent pom项目,定义常用jar及 plugins
+
 ## 子项目地址
 
 child 				| Description 									
@@ -21,37 +23,9 @@ child 				| Description
 
 ![one-feilong-platform](http://venusdrogon.github.io/feilong-platform/mysource/one-feilong-platform.png) 
 
-## :dragon: Maven使用配置
-
-所有feilong jar 你可以直接在 [仓库](https://github.com/venusdrogon/feilong-platform/tree/repository/com/feilong/platform "仓库") 浏览 
-
-如果你使用 `maven`, 您可以通过以下方式来配置 `pom.xml`:
-
-```XML
-<project>
-
-	....
-	<properties>
-		<version.feilong-platform>1.10.7</version.feilong-platform>
-		....
-	</properties>
-	
-	....
-	<repositories>
-		<repository>
-			<id>feilong-repository</id>
-			<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
-		</repository>
-	</repositories>
-	
-	....
-</project>
-```
-
 ## :memo: 说明
 
 1. 基于 [Apache2](https://www.apache.org/licenses/LICENSE-2.0) 协议,您可以下载代码用于闭源项目,但每个修改的过的文件必须放置版权说明;
-1. 1.5.0及以上版本需要`jdk1.7`及以上环境(1.5.0以下版本需要`jdk1.6`及以上环境);
 
 ## :cyclone: feilong 即时交流
 
