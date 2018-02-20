@@ -18,6 +18,7 @@ child 				| Description
 [feilong-taglib](https://github.com/venusdrogon/feilong-taglib)		| 封装了常用的自定义标签		
 [feilong-spring](https://github.com/venusdrogon/feilong-spring)		| 对spring相关类的快速封装,以便快速使用		
 [feilong-net](https://github.com/venusdrogon/feilong-net)		| 封装了网络访问操作的常用类
+[feilong-json](https://github.com/venusdrogon/feilong-json)		| 封装了json操作的常用类
 
 ## 一图概述:
 
