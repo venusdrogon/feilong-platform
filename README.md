@@ -1,4 +1,4 @@
-feilong-platform parent pom项目,定义常用jar及 plugins
+feilong-platform parent pom
 ================
 
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
