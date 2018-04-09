@@ -131,7 +131,7 @@
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.17</v.maven-checkstyle-plugin>
 
-		<v.maven-dependency-plugin>3.0.2</v.maven-dependency-plugin>
+		<v.maven-dependency-plugin>3.1.0</v.maven-dependency-plugin>
 		<v.maven-deploy-plugin>2.8.2</v.maven-deploy-plugin>
 
 		<v.maven-install-plugin>2.5.2</v.maven-install-plugin>
@@ -156,6 +156,8 @@
 		<v.maven-resources-plugin>3.0.2</v.maven-resources-plugin>
 
 		<v.maven-war-plugin>3.2.0</v.maven-war-plugin>
+		
+		<v.maven-shade-plugin>3.1.1</v.maven-shade-plugin>
 
 		<!-- https://github.com/mojohaus/native2ascii-maven-plugin/wiki -->
 		<v.native2ascii-maven-plugin>2.0.1</v.native2ascii-maven-plugin>
@@ -168,7 +170,7 @@
 		<v.license-maven-plugin>3.0</v.license-maven-plugin>
 		<v.versions-maven-plugin>2.5</v.versions-maven-plugin>
 
-		<v.jacoco-maven-plugin>0.8.0</v.jacoco-maven-plugin>
+		<v.jacoco-maven-plugin>0.8.1</v.jacoco-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
 
 		<!-- **********************begin native2ascii config******************************************* -->
