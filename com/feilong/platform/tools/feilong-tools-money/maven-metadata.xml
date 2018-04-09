@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-tools-money</artifactId>
+  <versioning>
+    <versions>
+      <version>1.11.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20180409073859</lastUpdated>
+  </versioning>
+</metadata>
