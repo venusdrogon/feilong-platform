@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform.tools</groupId>
+  <artifactId>feilong-tools-emailaddress</artifactId>
+  <version>1.11.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20180409.073803</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20180409073803</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.11.0-20180409.073803-1</value>
+        <updated>20180409073803</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.11.0-20180409.073803-1</value>
+        <updated>20180409073803</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>1.11.0-20180409.073803-1</value>
+        <updated>20180409073803</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
