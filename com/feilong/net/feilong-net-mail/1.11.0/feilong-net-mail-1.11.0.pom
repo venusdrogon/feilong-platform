@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.net</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.11.0</version>
+	</parent>
+
+	<artifactId>feilong-net-mail</artifactId>
+	<name>feilong-net-mail</name>
+	<description>feilong-net-mail</description>
+
+	<properties>
+		<version.commons-email>1.5</version.commons-email>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-io</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+
+		<!-- <dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.0</version>
+			</dependency> -->
+
+
+		<!-- commons-email -->
+		<!-- <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>${version.commons-email}</version>
+			</dependency> -->
+
+		<!--feilong-velocity -->
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-velocity</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- feilong-json-jsonlib -->
+		<dependency>
+			<groupId>com.feilong.json</groupId>
+			<artifactId>feilong-json-jsonlib</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
