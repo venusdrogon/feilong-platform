@@ -125,7 +125,7 @@
 		<v.maven-antrun-plugin>1.8</v.maven-antrun-plugin>
 		<v.maven-assembly-plugin>3.1.0</v.maven-assembly-plugin>
 
-		<v.maven-clean-plugin>3.0.0</v.maven-clean-plugin>
+		<v.maven-clean-plugin>3.1.0</v.maven-clean-plugin>
 		<v.maven-compiler-plugin>3.7.0</v.maven-compiler-plugin>
 		<v.maven-changes-plugin>2.12.1</v.maven-changes-plugin>
 
@@ -140,7 +140,7 @@
 		<!-- https://issues.apache.org/jira/projects/MJAVADOC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
 		<v.maven-javadoc-plugin>3.0.0</v.maven-javadoc-plugin>
 		<!-- https://issues.apache.org/jira/projects/MJAR?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
-		<v.maven-jar-plugin>3.0.2</v.maven-jar-plugin>
+		<v.maven-jar-plugin>3.1.0</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
 
