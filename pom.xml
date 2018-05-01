@@ -154,7 +154,7 @@
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
 
 		<!-- https://issues.apache.org/jira/browse/MRESOURCES/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
-		<v.maven-resources-plugin>3.0.2</v.maven-resources-plugin>
+		<v.maven-resources-plugin>3.1.0</v.maven-resources-plugin>
 
 		<v.maven-war-plugin>3.2.0</v.maven-war-plugin>
 
