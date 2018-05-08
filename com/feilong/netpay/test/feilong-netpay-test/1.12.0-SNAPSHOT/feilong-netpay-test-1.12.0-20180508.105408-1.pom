@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.netpay.test</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.12.0-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>feilong-netpay-test</artifactId>
+
+	<dependencies>
+		<!-- *********************netpay****************************** -->
+		<dependency>
+			<groupId>com.feilong.netpay</groupId>
+			<artifactId>feilong-netpay-all</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+		<!-- *********************test****************************** -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>
