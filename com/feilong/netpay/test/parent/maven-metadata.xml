@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.feilong.netpay.test</groupId>
+  <artifactId>parent</artifactId>
+  <versioning>
+    <versions>
+      <version>1.12.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20180508105328</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.11.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.feilong.netpay.test</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.12.0-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<properties>
+		<version.feilong-spring>1.11.2</version.feilong-spring>
+		<version.feilong-netpay>1.12.0-SNAPSHOT</version.feilong-netpay>
+	</properties>
+
+	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-platform</url>
+		<connection>scm:git:https://github.com/venusdrogon/feilong-platform</connection>
+		<developerConnection>scm:git:git@github.com:venusdrogon/feilong-platform.git</developerConnection>
+	</scm>
+
+	<dependencies>
+
+		<!--*******************servlet-api && jsp-api************************* -->
+		<!-- servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+
+		<!-- ********************************** -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>feilong-netpay-test</module>
+		<module>feilong-test-payment</module>
+	</modules>
+
+	<repositories>
+
+		<repository>
+			<!-- A unique identifier for a repository. -->
+			<id>feilong-platform-repository</id>
+
+			<!--Human readable name of the repository. -->
+			<name>feilong platform repository</name>
+
+			<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+
+	</repositories>
+
+</project>
