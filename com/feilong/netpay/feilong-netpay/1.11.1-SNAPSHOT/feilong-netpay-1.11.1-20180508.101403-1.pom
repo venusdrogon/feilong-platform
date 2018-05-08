@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.11.0</version>
+	</parent>
+
+	<groupId>com.feilong.netpay</groupId>
+	<artifactId>feilong-netpay</artifactId>
+	<!---->
+	<version>1.11.1-SNAPSHOT</version>
+
+	<name>feilong-netpay</name>
+
+	<description>${project.name} ${project.version} API</description>
+
+	<packaging>pom</packaging>
+
+	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-platform</url>
+		<connection>scm:git:https://github.com/venusdrogon/feilong-platform</connection>
+		<developerConnection>scm:git:git@github.com:venusdrogon/feilong-platform.git</developerConnection>
+	</scm>
+
+	<modules>
+		<module>feilong-netpay-api</module>
+		<module>feilong-netpay-tcash</module>
+		<module>feilong-netpay-doku</module>
+		<module>feilong-netpay-chinapnr</module>
+		<module>feilong-netpay-sprintasia</module>
+		<module>feilong-netpay-alipay</module>
+		<module>feilong-netpay-unionpay</module>
+		<module>feilong-netpay-wechat</module>
+		<module>feilong-netpay-all</module>
+		<module>feilong-netpay-alipaywap</module>
+		<module>feilong-netpay-alipaymobile</module>
+		<module>feilong-netpay-all-china</module>
+		<module>feilong-netpay-all-indonesia</module>
+	</modules>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-util-all</artifactId>
+			<version>${version.feilong-platform}</version>
+			<!-- <optional>true</optional> -->
+		</dependency>
+
+		<!-- slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+
+		<!--*******************servlet-api && jsp-api************************* -->
+		<!-- servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>nexus-releases</name>
+			<url>http://itcentral.baozun.cn/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>nexus-snapshots</name>
+			<url>http://itcentral.baozun.cn/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+
+		<repository>
+			<!-- A unique identifier for a repository. -->
+			<id>feilong-platform-repository</id>
+
+			<!--Human readable name of the repository. -->
+			<name>feilong platform repository</name>
+
+			<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+
+	</repositories>
+
+</project>
