@@ -280,6 +280,13 @@
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!-- feilong-util-all -->
+			<dependency>
+				<groupId>com.feilong.platform</groupId>
+				<artifactId>feilong-util-all</artifactId>
+				<version>${version.feilong-platform}</version>
+			</dependency>
+
 			<!-- feilong-core-extension -->
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
@@ -294,7 +301,7 @@
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
-			<!-- feilong-json-jsonlib -->
+			<!-- feilong-json-jsonlib tests -->
 			<dependency>
 				<groupId>com.feilong.json</groupId>
 				<artifactId>feilong-json-jsonlib</artifactId>
