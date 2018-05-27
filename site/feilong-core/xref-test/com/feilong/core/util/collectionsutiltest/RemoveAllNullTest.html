@@ -37,11 +37,11 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      @Test
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testRemoveAllCollection(){
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>          List&lt;String&gt; list = toList(<span class="jxr_string">"xinge"</span>, <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"feilong2"</span>, <span class="jxr_string">"feilong2"</span>);
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          List&lt;String&gt; list = toList(<span class="jxr_string">"xinge"</span>, <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"feilong2"</span>, <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"feilong2"</span>);
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>          List&lt;String&gt; removeList = CollectionsUtil.removeAllNull(list);
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>          assertThat(removeList, contains(<span class="jxr_string">"xinge"</span>, <span class="jxr_string">"feilong2"</span>, <span class="jxr_string">"feilong2"</span>));
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>          assertThat(list, contains(<span class="jxr_string">"xinge"</span>, <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"feilong2"</span>, <span class="jxr_string">"feilong2"</span>));
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          assertThat(list, contains(<span class="jxr_string">"xinge"</span>, <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"feilong2"</span>, <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"feilong2"</span>));
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>      }
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>

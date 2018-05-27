@@ -32,44 +32,40 @@
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.feilong.core.util.MapUtil;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * The Class MapUtilNewLinkedHashMapTest.</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="http://feitianbenyue.iteye.com/" target="alexandria_uri">http://feitianbenyue.iteye.com/</a>"&gt;feilong&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/feilong/core/util/maputiltest/NewLinkedHashMapTest.html">NewLinkedHashMapTest</a>{
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <em class="jxr_comment">//**************com.feilong.core.util.MapUtil.newLinkedHashMap(int)**************************************</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     * Test new linked hash map.</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      @Test
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testNewLinkedHashMap(){
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          Map&lt;Object, Object&gt; map = MapUtil.newLinkedHashMap(100);
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>          assertThat(map.size(), is(0));
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>      }
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">     * Test new linked hash map 2.</em>
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      @Test
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testNewLinkedHashMap2(){
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          Map&lt;String, String&gt; map = MapUtil.newLinkedHashMap(3);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          map.put(<span class="jxr_string">"name"</span>, <span class="jxr_string">"feilong"</span>);
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          map.put(<span class="jxr_string">"age"</span>, <span class="jxr_string">"18"</span>);
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          map.put(<span class="jxr_string">"address"</span>, <span class="jxr_string">"shanghai"</span>);
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          assertThat(map.size(), is(3));
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     * Test new linked hash map 1.</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testNewLinkedHashMap1(){
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          MapUtil.newLinkedHashMap(-1);
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      }
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  }
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/feilong/core/util/maputiltest/NewLinkedHashMapTest.html">NewLinkedHashMapTest</a>{
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">     * Test new linked hash map.</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>      @Test
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testNewLinkedHashMap(){
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          Map&lt;Object, Object&gt; map = MapUtil.newLinkedHashMap(100);
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          assertThat(map.size(), is(0));
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      }
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">     * Test new linked hash map 2.</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      @Test
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testNewLinkedHashMap2(){
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          Map&lt;String, String&gt; map = MapUtil.newLinkedHashMap(3);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          map.put(<span class="jxr_string">"name"</span>, <span class="jxr_string">"feilong"</span>);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          map.put(<span class="jxr_string">"age"</span>, <span class="jxr_string">"18"</span>);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          map.put(<span class="jxr_string">"address"</span>, <span class="jxr_string">"shanghai"</span>);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          assertThat(map.size(), is(3));
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * Test new linked hash map 1.</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testNewLinkedHashMap1(){
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          MapUtil.newLinkedHashMap(-1);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      }
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
