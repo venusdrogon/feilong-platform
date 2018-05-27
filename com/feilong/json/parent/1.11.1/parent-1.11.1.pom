@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.feilong.platform</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.11.1</version>
+	</parent>
+
+	<groupId>com.feilong.json</groupId>
+	<artifactId>parent</artifactId>
+
+	<name>feilong-json</name>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>feilong-json-api</module>
+		<module>feilong-json-jsonlib</module>
+		<module>feilong-json-fastjson</module>
+		<module>feilong-json-jackson2</module>
+		<module>feilong-json-gson</module>
+		<module>feilong-json-orgjson</module>
+	</modules>
+
+
+	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
+	<scm>
+		<url>https://github.com/venusdrogon/feilong-json</url>
+		<connection>scm:git:https://github.com/venusdrogon/feilong-json</connection>
+		<developerConnection>scm:git:git@github.com:venusdrogon/feilong-json.git</developerConnection>
+	</scm>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- **********************log日志************************************ -->
+
+		<!-- slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<optional>true</optional><!-- 日志系统根据每个项目 决定 -->
+		</dependency>
+	</dependencies>
+</project>
