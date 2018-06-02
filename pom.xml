@@ -143,6 +143,9 @@
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
 
+		<!-- 用来做maven 插件的 -->
+		<v.maven-plugin-plugin>3.5.2</v.maven-plugin-plugin>
+
 		<v.maven-scm-plugin>1.9.5</v.maven-scm-plugin>
 
 		<!-- http://maven.apache.org/plugins/maven-site-plugin/ -->
@@ -1127,6 +1130,17 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-plugin-plugin</artifactId>
+					<version>${v.maven-plugin-plugin}</version>
+					<configuration>
+						<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+						<helpPackageName>org.apache.maven.plugins.help</helpPackageName>
+					</configuration>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
