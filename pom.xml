@@ -146,7 +146,8 @@
 		<!-- 用来做maven 插件的 -->
 		<v.maven-plugin-plugin>3.5.2</v.maven-plugin-plugin>
 
-		<v.maven-scm-plugin>1.9.5</v.maven-scm-plugin>
+		<!-- where each SCM command is implemented as a plugin goal, -->
+		<v.maven-scm-plugin>1.10.0</v.maven-scm-plugin>
 
 		<!-- http://maven.apache.org/plugins/maven-site-plugin/ -->
 		<!-- https://issues.apache.org/jira/browse/MSITE/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
@@ -666,6 +667,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-plugin</artifactId>
 				<version>${v.maven-scm-plugin}</version>
+				<configuration>
+					<connectionType>developerConnection</connectionType>
+				</configuration>
 			</plugin>
 
 			<!-- sonar-maven-plugin -->
