@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.captcha</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.11.3</version>
+	</parent>
+
+	<artifactId>feilong-captcha-netease</artifactId>
+	<name>feilong-captcha-netease</name>
+	<description>基于网易易盾验证码</description>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.captcha</groupId>
+			<artifactId>feilong-captcha-api</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.net</groupId>
+			<artifactId>feilong-net-httpclient4</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-security</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>
