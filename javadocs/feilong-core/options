@@ -20,29 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-core 1.11.1 API'
+'feilong-core 1.11.3 API'
 -footer
-'feilong-core 1.11.1 API'
+'feilong-core 1.11.3 API'
 -group
 'Date package 日期' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-core 1.11.1 API'
--link
-'https://docs.oracle.com/javaee/7/api'
--link
-'http://commons.apache.org/proper/commons-lang/javadocs/api-release'
--link
-'http://commons.apache.org/proper/commons-collections/javadocs/api-release'
--link
-'http://commons.apache.org/proper/commons-io/javadocs/api-release'
--link
-'http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.3/apidocs'
--link
-'http://ezmorph.sourceforge.net/apidocs'
--link
-'http://docs.spring.io/spring/docs/3.2.18.RELEASE/javadoc-api'
+'feilong-core 1.11.3 API'
 -link
 'http://commons.apache.org/proper/commons-lang/apidocs'
 -link
@@ -51,8 +37,6 @@
 'http://logging.apache.org/log4j/1.2/apidocs'
 -link
 'http://commons.apache.org/proper/commons-logging/apidocs'
--link
-'http://commons.apache.org/collections/apidocs'
 -linkoffline
 'https://docs.oracle.com/javase/7/docs/api' '/Users/feilong/workspace/feilong/feilong-core/target/javadoc-bundle-options'
 -stylesheetfile
@@ -60,4 +44,4 @@
 -use
 -version
 -windowtitle
-'feilong-core 1.11.1 API create by feilong'
+'feilong-core 1.11.3 API create by feilong'

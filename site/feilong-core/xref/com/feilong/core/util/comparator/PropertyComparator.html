@@ -484,40 +484,42 @@
 <a class="jxr_linenumber" name="L476" href="#L476">476</a>         <strong class="jxr_keyword">return</strong> compareWithSameValue(t1, t2);
 <a class="jxr_linenumber" name="L477" href="#L477">477</a>     }
 <a class="jxr_linenumber" name="L478" href="#L478">478</a> 
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     * 处理值相等的情况.</em>
-<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     * 如果用于 {@link TreeSet}/{@link TreeMap},那么建议 bean 对象需要实现 {@link Comparable} 接口&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     * 避免过滤掉同sort字段但是对象不相同的情况</em>
-<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L489" href="#L489">489</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L490" href="#L490">490</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L491" href="#L491">491</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果对象实现了 {@link Comparable} 接口, 那么直接比较&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果对象没有实现 {@link Comparable} 接口, 那么比较两个对象的hashCode&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L494" href="#L494">494</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">     * @param t1</em>
-<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     *            the t 1</em>
-<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * @param t2</em>
-<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     *            the t 2</em>
-<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     * @return 如果对象实现了 {@link Comparable} 接口, 那么直接强转比较&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     *         如果对象没有实现 {@link Comparable} 接口, 那么比较两个对象的hashCode</em>
-<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://github.com/venusdrogon/feilong-core/issues/631"&gt;PropertyComparator hash判断两个对象是否相等是否太草率？&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://github.com/venusdrogon/feilong-core/issues/643"&gt;SortUtil.sortMapByValueDesc(Map&lt;String, Integer&gt;) 会报异常&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     * @since 1.10.3</em>
-<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L506" href="#L506">506</a>     @SuppressWarnings({ <span class="jxr_string">"rawtypes"</span>, <span class="jxr_string">"unchecked"</span> })
-<a class="jxr_linenumber" name="L507" href="#L507">507</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> compareWithSameValue(T t1,T t2){
-<a class="jxr_linenumber" name="L508" href="#L508">508</a>         <em class="jxr_comment">//如果对象实现了 Comparable 接口, 那么直接强转比较</em>
-<a class="jxr_linenumber" name="L509" href="#L509">509</a>         <strong class="jxr_keyword">return</strong> isInstance(t1, Comparable.<strong class="jxr_keyword">class</strong>) ? ObjectUtils.compare((Comparable) t1, (Comparable) t2)
-<a class="jxr_linenumber" name="L510" href="#L510">510</a>                         : ObjectUtils.compare(t1.hashCode(), t2.hashCode());
-<a class="jxr_linenumber" name="L511" href="#L511">511</a>     }
-<a class="jxr_linenumber" name="L512" href="#L512">512</a> }
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L480" href="#L480">480</a> 
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * 处理值相等的情况.</em>
+<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     * 如果用于 {@link TreeSet}/{@link TreeMap},那么建议 bean 对象需要实现 {@link Comparable} 接口&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">     * 避免过滤掉同sort字段但是对象不相同的情况</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L489" href="#L489">489</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L490" href="#L490">490</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L491" href="#L491">491</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果对象实现了 {@link Comparable} 接口, 那么直接比较&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L494" href="#L494">494</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果对象没有实现 {@link Comparable} 接口, 那么比较两个对象的hashCode&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * @param t1</em>
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     *            the t 1</em>
+<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     * @param t2</em>
+<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     *            the t 2</em>
+<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     * @return 如果对象实现了 {@link Comparable} 接口, 那么直接强转比较&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     *         如果对象没有实现 {@link Comparable} 接口, 那么比较两个对象的hashCode</em>
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://github.com/venusdrogon/feilong-core/issues/631"&gt;PropertyComparator hash判断两个对象是否相等是否太草率？&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://github.com/venusdrogon/feilong-core/issues/643"&gt;SortUtil.sortMapByValueDesc(Map&lt;String, Integer&gt;) 会报异常&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> <em class="jxr_javadoccomment">     * @since 1.10.3</em>
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>     @SuppressWarnings({ <span class="jxr_string">"rawtypes"</span>, <span class="jxr_string">"unchecked"</span> })
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> compareWithSameValue(T t1,T t2){
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>         <em class="jxr_comment">//如果对象实现了 Comparable 接口, 那么直接强转比较</em>
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>         <strong class="jxr_keyword">return</strong> isInstance(t1, Comparable.<strong class="jxr_keyword">class</strong>) ? ObjectUtils.compare((Comparable) t1, (Comparable) t2)
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>                         : ObjectUtils.compare(t1.hashCode(), t2.hashCode());
+<a class="jxr_linenumber" name="L513" href="#L513">513</a>     }
+<a class="jxr_linenumber" name="L514" href="#L514">514</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
