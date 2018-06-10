@@ -161,7 +161,7 @@
 		<!-- https://issues.apache.org/jira/browse/MRESOURCES/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
 		<v.maven-resources-plugin>3.1.0</v.maven-resources-plugin>
 
-		<v.maven-war-plugin>3.2.1</v.maven-war-plugin>
+		<v.maven-war-plugin>3.2.2</v.maven-war-plugin>
 
 		<v.maven-shade-plugin>3.1.1</v.maven-shade-plugin>
 
