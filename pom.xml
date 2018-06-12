@@ -64,6 +64,9 @@
 			maintaining HttpClient with it. -->
 		<version.commons-httpclient>3.1</version.commons-httpclient>
 
+		<!-- http://hc.apache.org/downloads.cgi -->
+		<version.httpcomponents>4.5.5</version.httpcomponents>
+
 		<!-- base on jdk1.2 legacy(won't update) -->
 		<version.commons-lang>2.6</version.commons-lang>
 		<!--
@@ -84,6 +87,7 @@
 
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
 		<version.commons-net>3.6</version.commons-net>
+
 
 		<version.javamail>1.4.7</version.javamail>
 
@@ -401,6 +405,51 @@
 				<groupId>commons-httpclient</groupId>
 				<artifactId>commons-httpclient</artifactId>
 				<version>${version.commons-httpclient}</version>
+			</dependency>
+
+			<!--
+				HttpCore is a set of low level HTTP transport components that can be used to build custom client and server side HTTP services with a minimal footprint.
+
+				HttpCore supports two I/O models: blocking I/O model based on the classic Java I/O and non-blocking, event driven I/O model based on Java NIO.
+				The blocking I/O model may be more appropriate for data intensive, low latency scenarios, whereas the non-blocking model may be more appropriate for high latency
+				scenarios where raw data throughput is less important than the ability to handle thousands of simultaneous HTTP connections in a resource efficient manner.
+			-->
+			<!-- 4.5.3 没有 httpcore -->
+			<!-- httpcore
+				<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${version.httpcore}</version>
+				</dependency> -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${version.httpcomponents}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpclient</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- HttpClient is a HTTP/1.1 compliant HTTP agent implementation based on HttpCore.
+				It also provides reusable components for client-side authentication,
+				HTTP state management, and HTTP connection management.
+
+				HttpComponents Client is a successor of and replacement for Commons HttpClient 3.x.
+
+				Users of Commons HttpClient are strongly encouraged to upgrade. -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${version.httpcomponents}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<!-- commons-beanutils -->
