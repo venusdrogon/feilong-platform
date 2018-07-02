@@ -197,6 +197,8 @@
 
 		<v.license-maven-plugin>3.0</v.license-maven-plugin>
 		<v.versions-maven-plugin>2.5</v.versions-maven-plugin>
+		<!-- http://maven.apache.org/plugins/maven-project-info-reports-plugin/ -->
+		<v.maven-project-info-reports-plugin>3.0.0</v.maven-project-info-reports-plugin>
 
 		<v.jacoco-maven-plugin>0.8.1</v.jacoco-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
@@ -738,6 +740,14 @@
 	<!--********************************build****************************************** -->
 	<build>
 		<plugins>
+
+			<!-- maven-project-info-reports-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${v.maven-project-info-reports-plugin}</version>
+			</plugin>
+
 			<!-- versions-maven-plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
