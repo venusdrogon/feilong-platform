@@ -3,10 +3,10 @@
   <groupId>com.feilong.platform.spring</groupId>
   <artifactId>feilong-spring-aop</artifactId>
   <versioning>
-    <release>1.12.4</release>
+    <release>1.12.5</release>
     <versions>
-      <version>1.12.4</version>
+      <version>1.12.5</version>
     </versions>
-    <lastUpdated>20180622073446</lastUpdated>
+    <lastUpdated>20180703113946</lastUpdated>
   </versioning>
 </metadata>
