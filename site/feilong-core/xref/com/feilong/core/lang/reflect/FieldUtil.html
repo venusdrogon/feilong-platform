@@ -252,18 +252,18 @@
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;owner&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;fieldName&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
 <a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;fieldName&lt;/code&gt; 是blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.reflect.FieldUtils#readField(Object, String, boolean)</em>
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     * @since 1.9.2 change to private</em>
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T getFieldValue(Object obj,String fieldName){
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>         <strong class="jxr_keyword">try</strong>{
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>             <strong class="jxr_keyword">return</strong> (T) FieldUtils.readField(obj, fieldName, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L255" href="#L255">255</a>         }<strong class="jxr_keyword">catch</strong> (IllegalAccessException e){
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>             String message = Slf4jUtil.format(<span class="jxr_string">"ownerClass:[{}],fieldName:[{}],ownerObj:[{}]"</span>, obj.getClass().getName(), fieldName, obj);
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>             LOGGER.error(message, e);
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../com/feilong/core/lang/reflect/ReflectException.html">ReflectException</a>(message, e);
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;obj&lt;/code&gt; 中没有 &lt;code&gt;fieldName&lt;/code&gt;,抛出 {@link ReflectException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.reflect.FieldUtils#readField(Object, String, boolean)</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     * @since 1.9.2 change to private</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T getFieldValue(Object obj,String fieldName){
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>         <strong class="jxr_keyword">try</strong>{
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>             <strong class="jxr_keyword">return</strong> (T) FieldUtils.readField(obj, fieldName, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>         }<strong class="jxr_keyword">catch</strong> (Exception e){
+<a class="jxr_linenumber" name="L257" href="#L257">257</a>             String pattern = <span class="jxr_string">"getFieldValue exception,ownerObj:[{}],fieldName:[{}]"</span>;
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../com/feilong/core/lang/reflect/ReflectException.html">ReflectException</a>(Slf4jUtil.format(pattern, obj, fieldName), e);
 <a class="jxr_linenumber" name="L259" href="#L259">259</a>         }
 <a class="jxr_linenumber" name="L260" href="#L260">260</a>     }
 <a class="jxr_linenumber" name="L261" href="#L261">261</a> }

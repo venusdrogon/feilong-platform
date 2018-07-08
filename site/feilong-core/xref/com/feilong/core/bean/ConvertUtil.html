@@ -323,8 +323,8 @@
 <a class="jxr_linenumber" name="L315" href="#L315">315</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L316" href="#L316">316</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L317" href="#L317">317</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果 "true", "yes", "y", "on", "1", 返回 true&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果 "false", "no", "n", "off", "0", 返回 false&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L318" href="#L318">318</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果 "true", "yes", "y", "on", "1" &lt;span style="color:green"&gt;(忽视大小写)&lt;/span&gt;, 返回 true&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果 "false", "no", "n", "off", "0" &lt;span style="color:green"&gt;(忽视大小写)&lt;/span&gt;, 返回 false&lt;/li&gt;</em>
 <a class="jxr_linenumber" name="L320" href="#L320">320</a> <em class="jxr_javadoccomment">     * &lt;li&gt;其他抛出 conversionException, 但是在</em>
 <a class="jxr_linenumber" name="L321" href="#L321">321</a> <em class="jxr_javadoccomment">     * {@link org.apache.commons.beanutils.converters.AbstractConverter#handleError(Class, Object, Throwable) handleError(Class, Object,</em>
 <a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">     * Throwable)} 方法里面返回默认值 是 null</em>
@@ -3049,15 +3049,19 @@
 <a class="jxr_linenumber" name="L3041" href="#L3041">3041</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == locale){
 <a class="jxr_linenumber" name="L3042" href="#L3042">3042</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L3043" href="#L3043">3043</a>         }
-<a class="jxr_linenumber" name="L3044" href="#L3044">3044</a>         <strong class="jxr_keyword">if</strong> (locale instanceof Locale){
-<a class="jxr_linenumber" name="L3045" href="#L3045">3045</a>             <strong class="jxr_keyword">return</strong> (Locale) locale;
-<a class="jxr_linenumber" name="L3046" href="#L3046">3046</a>         }
-<a class="jxr_linenumber" name="L3047" href="#L3047">3047</a>         <strong class="jxr_keyword">if</strong> (locale instanceof String){
-<a class="jxr_linenumber" name="L3048" href="#L3048">3048</a>             <strong class="jxr_keyword">return</strong> LocaleUtils.toLocale((String) locale);
-<a class="jxr_linenumber" name="L3049" href="#L3049">3049</a>         }
-<a class="jxr_linenumber" name="L3050" href="#L3050">3050</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UnsupportedOperationException(<span class="jxr_string">"input param [locale] type is:["</span> + locale.getClass().getName() + <span class="jxr_string">"] not support!"</span>);
-<a class="jxr_linenumber" name="L3051" href="#L3051">3051</a>     }
-<a class="jxr_linenumber" name="L3052" href="#L3052">3052</a> }
+<a class="jxr_linenumber" name="L3044" href="#L3044">3044</a> 
+<a class="jxr_linenumber" name="L3045" href="#L3045">3045</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L3046" href="#L3046">3046</a>         <strong class="jxr_keyword">if</strong> (locale instanceof Locale){
+<a class="jxr_linenumber" name="L3047" href="#L3047">3047</a>             <strong class="jxr_keyword">return</strong> (Locale) locale;
+<a class="jxr_linenumber" name="L3048" href="#L3048">3048</a>         }
+<a class="jxr_linenumber" name="L3049" href="#L3049">3049</a>         <strong class="jxr_keyword">if</strong> (locale instanceof String){
+<a class="jxr_linenumber" name="L3050" href="#L3050">3050</a>             <strong class="jxr_keyword">return</strong> LocaleUtils.toLocale((String) locale);
+<a class="jxr_linenumber" name="L3051" href="#L3051">3051</a>         }
+<a class="jxr_linenumber" name="L3052" href="#L3052">3052</a> 
+<a class="jxr_linenumber" name="L3053" href="#L3053">3053</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L3054" href="#L3054">3054</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UnsupportedOperationException(<span class="jxr_string">"input param [locale] type is:["</span> + locale.getClass().getName() + <span class="jxr_string">"] not support!"</span>);
+<a class="jxr_linenumber" name="L3055" href="#L3055">3055</a>     }
+<a class="jxr_linenumber" name="L3056" href="#L3056">3056</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

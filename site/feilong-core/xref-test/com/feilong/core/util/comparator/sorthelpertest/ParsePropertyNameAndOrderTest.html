@@ -97,19 +97,21 @@
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * Test parse property name and order array length more than 2.</em>
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>      @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testParsePropertyNameAndOrderArrayLengthMoreThan2(){
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>          SortHelper.parsePropertyNameAndOrder(<span class="jxr_string">"name desc desc"</span>);
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      }
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     * Test parse property name and order array length eqals 2 but not asc.</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>     @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testParsePropertyNameAndOrderArrayLengthEqals2ButNotAsc(){
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>         SortHelper.parsePropertyNameAndOrder(<span class="jxr_string">"name des"</span>);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>     }
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>      <em class="jxr_comment">//@Test()</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testParsePropertyNameAndOrderArrayLengthMoreThan2(){
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>          SortHelper.parsePropertyNameAndOrder(<span class="jxr_string">"name desc desc"</span>);
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>      }
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * Test parse property name and order array length eqals 2 but not asc.</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>     @Test(expected = IllegalArgumentException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>     <em class="jxr_comment">//@Test</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testParsePropertyNameAndOrderArrayLengthEqals2ButNotAsc(){
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>         SortHelper.parsePropertyNameAndOrder(<span class="jxr_string">"name des"</span>);
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>     }
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>

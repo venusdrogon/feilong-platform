@@ -1233,291 +1233,293 @@
 <a class="jxr_linenumber" name="L1225" href="#L1225">1225</a>         Validate.notEmpty(datePatterns, <span class="jxr_string">"datePatterns can't be null!"</span>);
 <a class="jxr_linenumber" name="L1226" href="#L1226">1226</a>         Validate.noNullElements(datePatterns, <span class="jxr_string">"datePatterns can't has null datePattern"</span>);
 <a class="jxr_linenumber" name="L1227" href="#L1227">1227</a> 
-<a class="jxr_linenumber" name="L1228" href="#L1228">1228</a>         <strong class="jxr_keyword">try</strong>{
-<a class="jxr_linenumber" name="L1229" href="#L1229">1229</a>             <strong class="jxr_keyword">return</strong> DateUtils.parseDate(dateString, datePatterns);
-<a class="jxr_linenumber" name="L1230" href="#L1230">1230</a>         }<strong class="jxr_keyword">catch</strong> (ParseException e){
-<a class="jxr_linenumber" name="L1231" href="#L1231">1231</a>             String pattern = <span class="jxr_string">"parse dateString [{}] use patterns:[{}] to date exception,message:[{}]"</span>;
-<a class="jxr_linenumber" name="L1232" href="#L1232">1232</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(Slf4jUtil.format(pattern, dateString, datePatterns, e.getMessage()), e);
-<a class="jxr_linenumber" name="L1233" href="#L1233">1233</a>         }
-<a class="jxr_linenumber" name="L1234" href="#L1234">1234</a>     }
-<a class="jxr_linenumber" name="L1235" href="#L1235">1235</a> 
-<a class="jxr_linenumber" name="L1236" href="#L1236">1236</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1228" href="#L1228">1228</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L1229" href="#L1229">1229</a> 
+<a class="jxr_linenumber" name="L1230" href="#L1230">1230</a>         <strong class="jxr_keyword">try</strong>{
+<a class="jxr_linenumber" name="L1231" href="#L1231">1231</a>             <strong class="jxr_keyword">return</strong> DateUtils.parseDate(dateString, datePatterns);
+<a class="jxr_linenumber" name="L1232" href="#L1232">1232</a>         }<strong class="jxr_keyword">catch</strong> (ParseException e){
+<a class="jxr_linenumber" name="L1233" href="#L1233">1233</a>             String pattern = <span class="jxr_string">"dateString:[{}],use patterns:[{}],parse to date exception,message:[{}]"</span>;
+<a class="jxr_linenumber" name="L1234" href="#L1234">1234</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(Slf4jUtil.format(pattern, dateString, datePatterns, e.getMessage()), e);
+<a class="jxr_linenumber" name="L1235" href="#L1235">1235</a>         }
+<a class="jxr_linenumber" name="L1236" href="#L1236">1236</a>     }
 <a class="jxr_linenumber" name="L1237" href="#L1237">1237</a> 
-<a class="jxr_linenumber" name="L1238" href="#L1238">1238</a>     <em class="jxr_comment">// [start]toCalendar</em>
+<a class="jxr_linenumber" name="L1238" href="#L1238">1238</a>     <em class="jxr_comment">// [end]</em>
 <a class="jxr_linenumber" name="L1239" href="#L1239">1239</a> 
-<a class="jxr_linenumber" name="L1240" href="#L1240">1240</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1241" href="#L1241">1241</a> <em class="jxr_javadoccomment">     * 将 {@link Date} 转成 {@link Calendar},调用 {@link GregorianCalendar}.</em>
-<a class="jxr_linenumber" name="L1242" href="#L1242">1242</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1243" href="#L1243">1243</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L1244" href="#L1244">1244</a> <em class="jxr_javadoccomment">     * {@link Calendar#getInstance()}方法,返回用默认的地区和时区的当前日期和当前时间所初始化的GregorianCalendar(标准日历),&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1245" href="#L1245">1245</a> <em class="jxr_javadoccomment">     * 最终会调用 java.util.Calendar.createCalendar(TimeZone, Locale) 方法,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1246" href="#L1246">1246</a> <em class="jxr_javadoccomment">     * 该方法会判断Locale(日本和泰国),其他国家最终会调用 {@link GregorianCalendar#GregorianCalendar(java.util.TimeZone, java.util.Locale)} 方法</em>
-<a class="jxr_linenumber" name="L1247" href="#L1247">1247</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L1248" href="#L1248">1248</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1249" href="#L1249">1249</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;{@link GregorianCalendar}&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1240" href="#L1240">1240</a>     <em class="jxr_comment">// [start]toCalendar</em>
+<a class="jxr_linenumber" name="L1241" href="#L1241">1241</a> 
+<a class="jxr_linenumber" name="L1242" href="#L1242">1242</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1243" href="#L1243">1243</a> <em class="jxr_javadoccomment">     * 将 {@link Date} 转成 {@link Calendar},调用 {@link GregorianCalendar}.</em>
+<a class="jxr_linenumber" name="L1244" href="#L1244">1244</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1245" href="#L1245">1245</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L1246" href="#L1246">1246</a> <em class="jxr_javadoccomment">     * {@link Calendar#getInstance()}方法,返回用默认的地区和时区的当前日期和当前时间所初始化的GregorianCalendar(标准日历),&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1247" href="#L1247">1247</a> <em class="jxr_javadoccomment">     * 最终会调用 java.util.Calendar.createCalendar(TimeZone, Locale) 方法,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1248" href="#L1248">1248</a> <em class="jxr_javadoccomment">     * 该方法会判断Locale(日本和泰国),其他国家最终会调用 {@link GregorianCalendar#GregorianCalendar(java.util.TimeZone, java.util.Locale)} 方法</em>
+<a class="jxr_linenumber" name="L1249" href="#L1249">1249</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L1250" href="#L1250">1250</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1251" href="#L1251">1251</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1252" href="#L1252">1252</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L1253" href="#L1253">1253</a> <em class="jxr_javadoccomment">     * 标准阳历格列高利历/公历,现在的公历是根据罗马人的"儒略历"改编而</em>
-<a class="jxr_linenumber" name="L1254" href="#L1254">1254</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L1255" href="#L1255">1255</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1256" href="#L1256">1256</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L1257" href="#L1257">1257</a> <em class="jxr_javadoccomment">     * @param date</em>
-<a class="jxr_linenumber" name="L1258" href="#L1258">1258</a> <em class="jxr_javadoccomment">     *            任意时间</em>
-<a class="jxr_linenumber" name="L1259" href="#L1259">1259</a> <em class="jxr_javadoccomment">     * @return 如果date 是null,抛出 {@link NullPointerException}</em>
-<a class="jxr_linenumber" name="L1260" href="#L1260">1260</a> <em class="jxr_javadoccomment">     * @see Calendar#getInstance()</em>
-<a class="jxr_linenumber" name="L1261" href="#L1261">1261</a> <em class="jxr_javadoccomment">     * @see GregorianCalendar</em>
-<a class="jxr_linenumber" name="L1262" href="#L1262">1262</a> <em class="jxr_javadoccomment">     * @see Calendar#setTime(Date)</em>
-<a class="jxr_linenumber" name="L1263" href="#L1263">1263</a> <em class="jxr_javadoccomment">     * @see Calendar#setTimeInMillis(long)</em>
-<a class="jxr_linenumber" name="L1264" href="#L1264">1264</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.time.DateUtils#toCalendar(Date)</em>
-<a class="jxr_linenumber" name="L1265" href="#L1265">1265</a> <em class="jxr_javadoccomment">     * @since 1.8.3 remove public</em>
-<a class="jxr_linenumber" name="L1266" href="#L1266">1266</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1267" href="#L1267">1267</a>     <strong class="jxr_keyword">static</strong> Calendar toCalendar(Date date){
-<a class="jxr_linenumber" name="L1268" href="#L1268">1268</a>         Validate.notNull(date, <span class="jxr_string">"date can't be null!"</span>);
-<a class="jxr_linenumber" name="L1269" href="#L1269">1269</a>         <strong class="jxr_keyword">return</strong> DateUtils.toCalendar(date);
-<a class="jxr_linenumber" name="L1270" href="#L1270">1270</a>     }
-<a class="jxr_linenumber" name="L1271" href="#L1271">1271</a> 
-<a class="jxr_linenumber" name="L1272" href="#L1272">1272</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1251" href="#L1251">1251</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;{@link GregorianCalendar}&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1252" href="#L1252">1252</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1253" href="#L1253">1253</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1254" href="#L1254">1254</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L1255" href="#L1255">1255</a> <em class="jxr_javadoccomment">     * 标准阳历格列高利历/公历,现在的公历是根据罗马人的"儒略历"改编而</em>
+<a class="jxr_linenumber" name="L1256" href="#L1256">1256</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L1257" href="#L1257">1257</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1258" href="#L1258">1258</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L1259" href="#L1259">1259</a> <em class="jxr_javadoccomment">     * @param date</em>
+<a class="jxr_linenumber" name="L1260" href="#L1260">1260</a> <em class="jxr_javadoccomment">     *            任意时间</em>
+<a class="jxr_linenumber" name="L1261" href="#L1261">1261</a> <em class="jxr_javadoccomment">     * @return 如果date 是null,抛出 {@link NullPointerException}</em>
+<a class="jxr_linenumber" name="L1262" href="#L1262">1262</a> <em class="jxr_javadoccomment">     * @see Calendar#getInstance()</em>
+<a class="jxr_linenumber" name="L1263" href="#L1263">1263</a> <em class="jxr_javadoccomment">     * @see GregorianCalendar</em>
+<a class="jxr_linenumber" name="L1264" href="#L1264">1264</a> <em class="jxr_javadoccomment">     * @see Calendar#setTime(Date)</em>
+<a class="jxr_linenumber" name="L1265" href="#L1265">1265</a> <em class="jxr_javadoccomment">     * @see Calendar#setTimeInMillis(long)</em>
+<a class="jxr_linenumber" name="L1266" href="#L1266">1266</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.time.DateUtils#toCalendar(Date)</em>
+<a class="jxr_linenumber" name="L1267" href="#L1267">1267</a> <em class="jxr_javadoccomment">     * @since 1.8.3 remove public</em>
+<a class="jxr_linenumber" name="L1268" href="#L1268">1268</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1269" href="#L1269">1269</a>     <strong class="jxr_keyword">static</strong> Calendar toCalendar(Date date){
+<a class="jxr_linenumber" name="L1270" href="#L1270">1270</a>         Validate.notNull(date, <span class="jxr_string">"date can't be null!"</span>);
+<a class="jxr_linenumber" name="L1271" href="#L1271">1271</a>         <strong class="jxr_keyword">return</strong> DateUtils.toCalendar(date);
+<a class="jxr_linenumber" name="L1272" href="#L1272">1272</a>     }
 <a class="jxr_linenumber" name="L1273" href="#L1273">1273</a> 
-<a class="jxr_linenumber" name="L1274" href="#L1274">1274</a>     <em class="jxr_comment">// [start]isBefore 时间早晚</em>
+<a class="jxr_linenumber" name="L1274" href="#L1274">1274</a>     <em class="jxr_comment">// [end]</em>
 <a class="jxr_linenumber" name="L1275" href="#L1275">1275</a> 
-<a class="jxr_linenumber" name="L1276" href="#L1276">1276</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1277" href="#L1277">1277</a> <em class="jxr_javadoccomment">     * 判断指定日期 &lt;code&gt;date&lt;/code&gt;是否 在 &lt;code&gt;whenDate&lt;/code&gt;时间之前.</em>
-<a class="jxr_linenumber" name="L1278" href="#L1278">1278</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1279" href="#L1279">1279</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1276" href="#L1276">1276</a>     <em class="jxr_comment">// [start]isBefore 时间早晚</em>
+<a class="jxr_linenumber" name="L1277" href="#L1277">1277</a> 
+<a class="jxr_linenumber" name="L1278" href="#L1278">1278</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1279" href="#L1279">1279</a> <em class="jxr_javadoccomment">     * 判断指定日期 &lt;code&gt;date&lt;/code&gt;是否 在 &lt;code&gt;whenDate&lt;/code&gt;时间之前.</em>
 <a class="jxr_linenumber" name="L1280" href="#L1280">1280</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1281" href="#L1281">1281</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1281" href="#L1281">1281</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L1282" href="#L1282">1282</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1283" href="#L1283">1283</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L1284" href="#L1284">1284</a> <em class="jxr_javadoccomment">     * isBefore(null, toDate("2011-03-10", COMMON_DATE))                                =   false</em>
-<a class="jxr_linenumber" name="L1285" href="#L1285">1285</a> <em class="jxr_javadoccomment">     * isBefore(toDate("2011-05-01", COMMON_DATE), toDate("2011-04-01", COMMON_DATE))   =   false</em>
-<a class="jxr_linenumber" name="L1286" href="#L1286">1286</a> <em class="jxr_javadoccomment">     * isBefore(toDate("2011-03-05", COMMON_DATE), toDate("2011-03-10", COMMON_DATE))   =   true</em>
-<a class="jxr_linenumber" name="L1287" href="#L1287">1287</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L1288" href="#L1288">1288</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1289" href="#L1289">1289</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1290" href="#L1290">1290</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L1291" href="#L1291">1291</a> <em class="jxr_javadoccomment">     * @param date</em>
-<a class="jxr_linenumber" name="L1292" href="#L1292">1292</a> <em class="jxr_javadoccomment">     *            指定日期</em>
-<a class="jxr_linenumber" name="L1293" href="#L1293">1293</a> <em class="jxr_javadoccomment">     * @param whenDate</em>
-<a class="jxr_linenumber" name="L1294" href="#L1294">1294</a> <em class="jxr_javadoccomment">     *            比照日期</em>
-<a class="jxr_linenumber" name="L1295" href="#L1295">1295</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;whenDate&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1296" href="#L1296">1296</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date&lt;/code&gt; 是null,返回false&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1297" href="#L1297">1297</a> <em class="jxr_javadoccomment">     *         否则返回 &lt;code&gt;date.before(whenDate)&lt;/code&gt;</em>
-<a class="jxr_linenumber" name="L1298" href="#L1298">1298</a> <em class="jxr_javadoccomment">     * @see java.util.Date#before(Date)</em>
-<a class="jxr_linenumber" name="L1299" href="#L1299">1299</a> <em class="jxr_javadoccomment">     * @since 1.2.2</em>
-<a class="jxr_linenumber" name="L1300" href="#L1300">1300</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1301" href="#L1301">1301</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isBefore(Date date,Date whenDate){
-<a class="jxr_linenumber" name="L1302" href="#L1302">1302</a>         Validate.notNull(whenDate, <span class="jxr_string">"whenDate can't be null!"</span>);
-<a class="jxr_linenumber" name="L1303" href="#L1303">1303</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == date ? false : date.before(whenDate);
-<a class="jxr_linenumber" name="L1304" href="#L1304">1304</a>     }
-<a class="jxr_linenumber" name="L1305" href="#L1305">1305</a> 
-<a class="jxr_linenumber" name="L1306" href="#L1306">1306</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1307" href="#L1307">1307</a> <em class="jxr_javadoccomment">     * 判断指定日期 &lt;code&gt;date&lt;/code&gt;是否在 &lt;code&gt;whenDate&lt;/code&gt;时间之后.</em>
-<a class="jxr_linenumber" name="L1308" href="#L1308">1308</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1309" href="#L1309">1309</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1283" href="#L1283">1283</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1284" href="#L1284">1284</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1285" href="#L1285">1285</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L1286" href="#L1286">1286</a> <em class="jxr_javadoccomment">     * isBefore(null, toDate("2011-03-10", COMMON_DATE))                                =   false</em>
+<a class="jxr_linenumber" name="L1287" href="#L1287">1287</a> <em class="jxr_javadoccomment">     * isBefore(toDate("2011-05-01", COMMON_DATE), toDate("2011-04-01", COMMON_DATE))   =   false</em>
+<a class="jxr_linenumber" name="L1288" href="#L1288">1288</a> <em class="jxr_javadoccomment">     * isBefore(toDate("2011-03-05", COMMON_DATE), toDate("2011-03-10", COMMON_DATE))   =   true</em>
+<a class="jxr_linenumber" name="L1289" href="#L1289">1289</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L1290" href="#L1290">1290</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1291" href="#L1291">1291</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1292" href="#L1292">1292</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L1293" href="#L1293">1293</a> <em class="jxr_javadoccomment">     * @param date</em>
+<a class="jxr_linenumber" name="L1294" href="#L1294">1294</a> <em class="jxr_javadoccomment">     *            指定日期</em>
+<a class="jxr_linenumber" name="L1295" href="#L1295">1295</a> <em class="jxr_javadoccomment">     * @param whenDate</em>
+<a class="jxr_linenumber" name="L1296" href="#L1296">1296</a> <em class="jxr_javadoccomment">     *            比照日期</em>
+<a class="jxr_linenumber" name="L1297" href="#L1297">1297</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;whenDate&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1298" href="#L1298">1298</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date&lt;/code&gt; 是null,返回false&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1299" href="#L1299">1299</a> <em class="jxr_javadoccomment">     *         否则返回 &lt;code&gt;date.before(whenDate)&lt;/code&gt;</em>
+<a class="jxr_linenumber" name="L1300" href="#L1300">1300</a> <em class="jxr_javadoccomment">     * @see java.util.Date#before(Date)</em>
+<a class="jxr_linenumber" name="L1301" href="#L1301">1301</a> <em class="jxr_javadoccomment">     * @since 1.2.2</em>
+<a class="jxr_linenumber" name="L1302" href="#L1302">1302</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1303" href="#L1303">1303</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isBefore(Date date,Date whenDate){
+<a class="jxr_linenumber" name="L1304" href="#L1304">1304</a>         Validate.notNull(whenDate, <span class="jxr_string">"whenDate can't be null!"</span>);
+<a class="jxr_linenumber" name="L1305" href="#L1305">1305</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == date ? false : date.before(whenDate);
+<a class="jxr_linenumber" name="L1306" href="#L1306">1306</a>     }
+<a class="jxr_linenumber" name="L1307" href="#L1307">1307</a> 
+<a class="jxr_linenumber" name="L1308" href="#L1308">1308</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1309" href="#L1309">1309</a> <em class="jxr_javadoccomment">     * 判断指定日期 &lt;code&gt;date&lt;/code&gt;是否在 &lt;code&gt;whenDate&lt;/code&gt;时间之后.</em>
 <a class="jxr_linenumber" name="L1310" href="#L1310">1310</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1311" href="#L1311">1311</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1311" href="#L1311">1311</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L1312" href="#L1312">1312</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1313" href="#L1313">1313</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L1314" href="#L1314">1314</a> <em class="jxr_javadoccomment">     * isAfter(null,toDate("2011-05-01", COMMON_DATE))                                 =   false</em>
-<a class="jxr_linenumber" name="L1315" href="#L1315">1315</a> <em class="jxr_javadoccomment">     * isAfter(toDate("2011-04-01", COMMON_DATE),toDate("2011-05-01", COMMON_DATE))    =   false</em>
-<a class="jxr_linenumber" name="L1316" href="#L1316">1316</a> <em class="jxr_javadoccomment">     * isAfter(toDate("2011-03-10", COMMON_DATE),toDate("2011-03-05", COMMON_DATE))    =   true</em>
-<a class="jxr_linenumber" name="L1317" href="#L1317">1317</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L1318" href="#L1318">1318</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1319" href="#L1319">1319</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1313" href="#L1313">1313</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1314" href="#L1314">1314</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1315" href="#L1315">1315</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L1316" href="#L1316">1316</a> <em class="jxr_javadoccomment">     * isAfter(null,toDate("2011-05-01", COMMON_DATE))                                 =   false</em>
+<a class="jxr_linenumber" name="L1317" href="#L1317">1317</a> <em class="jxr_javadoccomment">     * isAfter(toDate("2011-04-01", COMMON_DATE),toDate("2011-05-01", COMMON_DATE))    =   false</em>
+<a class="jxr_linenumber" name="L1318" href="#L1318">1318</a> <em class="jxr_javadoccomment">     * isAfter(toDate("2011-03-10", COMMON_DATE),toDate("2011-03-05", COMMON_DATE))    =   true</em>
+<a class="jxr_linenumber" name="L1319" href="#L1319">1319</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L1320" href="#L1320">1320</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1321" href="#L1321">1321</a> <em class="jxr_javadoccomment">     * @param date</em>
-<a class="jxr_linenumber" name="L1322" href="#L1322">1322</a> <em class="jxr_javadoccomment">     *            指定的日期</em>
-<a class="jxr_linenumber" name="L1323" href="#L1323">1323</a> <em class="jxr_javadoccomment">     * @param whenDate</em>
-<a class="jxr_linenumber" name="L1324" href="#L1324">1324</a> <em class="jxr_javadoccomment">     *            比照日期</em>
-<a class="jxr_linenumber" name="L1325" href="#L1325">1325</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;whenDate&lt;/code&gt; 是null,抛出 {@link NullPointerException} &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1326" href="#L1326">1326</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date&lt;/code&gt; 是null,返回false&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1327" href="#L1327">1327</a> <em class="jxr_javadoccomment">     *         否则返回 &lt;code&gt;date.after(whenDate)&lt;/code&gt;</em>
-<a class="jxr_linenumber" name="L1328" href="#L1328">1328</a> <em class="jxr_javadoccomment">     * @see java.util.Date#after(Date)</em>
-<a class="jxr_linenumber" name="L1329" href="#L1329">1329</a> <em class="jxr_javadoccomment">     * @since 1.2.2</em>
-<a class="jxr_linenumber" name="L1330" href="#L1330">1330</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1331" href="#L1331">1331</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isAfter(Date date,Date whenDate){
-<a class="jxr_linenumber" name="L1332" href="#L1332">1332</a>         Validate.notNull(whenDate, <span class="jxr_string">"whenDate can't be null!"</span>);
-<a class="jxr_linenumber" name="L1333" href="#L1333">1333</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == date ? false : date.after(whenDate);
-<a class="jxr_linenumber" name="L1334" href="#L1334">1334</a>     }
-<a class="jxr_linenumber" name="L1335" href="#L1335">1335</a> 
-<a class="jxr_linenumber" name="L1336" href="#L1336">1336</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1321" href="#L1321">1321</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1322" href="#L1322">1322</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1323" href="#L1323">1323</a> <em class="jxr_javadoccomment">     * @param date</em>
+<a class="jxr_linenumber" name="L1324" href="#L1324">1324</a> <em class="jxr_javadoccomment">     *            指定的日期</em>
+<a class="jxr_linenumber" name="L1325" href="#L1325">1325</a> <em class="jxr_javadoccomment">     * @param whenDate</em>
+<a class="jxr_linenumber" name="L1326" href="#L1326">1326</a> <em class="jxr_javadoccomment">     *            比照日期</em>
+<a class="jxr_linenumber" name="L1327" href="#L1327">1327</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;whenDate&lt;/code&gt; 是null,抛出 {@link NullPointerException} &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1328" href="#L1328">1328</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date&lt;/code&gt; 是null,返回false&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1329" href="#L1329">1329</a> <em class="jxr_javadoccomment">     *         否则返回 &lt;code&gt;date.after(whenDate)&lt;/code&gt;</em>
+<a class="jxr_linenumber" name="L1330" href="#L1330">1330</a> <em class="jxr_javadoccomment">     * @see java.util.Date#after(Date)</em>
+<a class="jxr_linenumber" name="L1331" href="#L1331">1331</a> <em class="jxr_javadoccomment">     * @since 1.2.2</em>
+<a class="jxr_linenumber" name="L1332" href="#L1332">1332</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1333" href="#L1333">1333</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isAfter(Date date,Date whenDate){
+<a class="jxr_linenumber" name="L1334" href="#L1334">1334</a>         Validate.notNull(whenDate, <span class="jxr_string">"whenDate can't be null!"</span>);
+<a class="jxr_linenumber" name="L1335" href="#L1335">1335</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == date ? false : date.after(whenDate);
+<a class="jxr_linenumber" name="L1336" href="#L1336">1336</a>     }
 <a class="jxr_linenumber" name="L1337" href="#L1337">1337</a> 
-<a class="jxr_linenumber" name="L1338" href="#L1338">1338</a>     <em class="jxr_comment">// [start]isInTime 时间区间内</em>
+<a class="jxr_linenumber" name="L1338" href="#L1338">1338</a>     <em class="jxr_comment">// [end]</em>
 <a class="jxr_linenumber" name="L1339" href="#L1339">1339</a> 
-<a class="jxr_linenumber" name="L1340" href="#L1340">1340</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1341" href="#L1341">1341</a> <em class="jxr_javadoccomment">     * 判断指定日期 &lt;code&gt;date&lt;/code&gt; 是否在 &lt;code&gt;beginDate&lt;/code&gt; 和 &lt;code&gt;endDate&lt;/code&gt;两个时间之间.</em>
-<a class="jxr_linenumber" name="L1342" href="#L1342">1342</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1343" href="#L1343">1343</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L1344" href="#L1344">1344</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1345" href="#L1345">1345</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1346" href="#L1346">1346</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L1347" href="#L1347">1347</a> <em class="jxr_javadoccomment">     * DateUtil.isInTime("2012-10-16 23:00:02", "2012-10-10 22:59:00", "2012-10-18 22:59:00") = true</em>
-<a class="jxr_linenumber" name="L1348" href="#L1348">1348</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L1349" href="#L1349">1349</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1350" href="#L1350">1350</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1340" href="#L1340">1340</a>     <em class="jxr_comment">// [start]isInTime 时间区间内</em>
+<a class="jxr_linenumber" name="L1341" href="#L1341">1341</a> 
+<a class="jxr_linenumber" name="L1342" href="#L1342">1342</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1343" href="#L1343">1343</a> <em class="jxr_javadoccomment">     * 判断指定日期 &lt;code&gt;date&lt;/code&gt; 是否在 &lt;code&gt;beginDate&lt;/code&gt; 和 &lt;code&gt;endDate&lt;/code&gt;两个时间之间.</em>
+<a class="jxr_linenumber" name="L1344" href="#L1344">1344</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1345" href="#L1345">1345</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1346" href="#L1346">1346</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1347" href="#L1347">1347</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1348" href="#L1348">1348</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L1349" href="#L1349">1349</a> <em class="jxr_javadoccomment">     * DateUtil.isInTime("2012-10-16 23:00:02", "2012-10-10 22:59:00", "2012-10-18 22:59:00") = true</em>
+<a class="jxr_linenumber" name="L1350" href="#L1350">1350</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L1351" href="#L1351">1351</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1352" href="#L1352">1352</a> <em class="jxr_javadoccomment">     * @param date</em>
-<a class="jxr_linenumber" name="L1353" href="#L1353">1353</a> <em class="jxr_javadoccomment">     *            指定日期</em>
-<a class="jxr_linenumber" name="L1354" href="#L1354">1354</a> <em class="jxr_javadoccomment">     * @param beginDate</em>
-<a class="jxr_linenumber" name="L1355" href="#L1355">1355</a> <em class="jxr_javadoccomment">     *            开始时间</em>
-<a class="jxr_linenumber" name="L1356" href="#L1356">1356</a> <em class="jxr_javadoccomment">     * @param endDate</em>
-<a class="jxr_linenumber" name="L1357" href="#L1357">1357</a> <em class="jxr_javadoccomment">     *            结束时间</em>
-<a class="jxr_linenumber" name="L1358" href="#L1358">1358</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;date&lt;/code&gt; 在 &lt;code&gt;beginDate&lt;/code&gt;之后, 并且指定日期 &lt;code&gt;date&lt;/code&gt; 在 &lt;code&gt;endDate&lt;/code&gt;之前,返回true&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1359" href="#L1359">1359</a> <em class="jxr_javadoccomment">     * @throws NullPointerException</em>
-<a class="jxr_linenumber" name="L1360" href="#L1360">1360</a> <em class="jxr_javadoccomment">     *             如果 &lt;code&gt;date&lt;/code&gt; 是null,或者 &lt;code&gt;beginDate&lt;/code&gt; 是null 或者 &lt;code&gt;endDate&lt;/code&gt; 是null</em>
-<a class="jxr_linenumber" name="L1361" href="#L1361">1361</a> <em class="jxr_javadoccomment">     * @see Date#after(Date)</em>
-<a class="jxr_linenumber" name="L1362" href="#L1362">1362</a> <em class="jxr_javadoccomment">     * @see Date#before(Date)</em>
-<a class="jxr_linenumber" name="L1363" href="#L1363">1363</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1364" href="#L1364">1364</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isInTime(Date date,Date beginDate,Date endDate){
-<a class="jxr_linenumber" name="L1365" href="#L1365">1365</a>         Validate.notNull(date, <span class="jxr_string">"date can't be null!"</span>);
-<a class="jxr_linenumber" name="L1366" href="#L1366">1366</a>         Validate.notNull(beginDate, <span class="jxr_string">"beginDate can't be null!"</span>);
-<a class="jxr_linenumber" name="L1367" href="#L1367">1367</a>         Validate.notNull(endDate, <span class="jxr_string">"endDate can't be null!"</span>);
-<a class="jxr_linenumber" name="L1368" href="#L1368">1368</a>         <strong class="jxr_keyword">return</strong> date.after(beginDate) &amp;&amp; date.before(endDate);
-<a class="jxr_linenumber" name="L1369" href="#L1369">1369</a>     }
-<a class="jxr_linenumber" name="L1370" href="#L1370">1370</a> 
-<a class="jxr_linenumber" name="L1371" href="#L1371">1371</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1372" href="#L1372">1372</a> <em class="jxr_javadoccomment">     * 判断指定的日期 &lt;code&gt;date&lt;/code&gt;,是不是今天的日期.</em>
-<a class="jxr_linenumber" name="L1373" href="#L1373">1373</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1374" href="#L1374">1374</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L1375" href="#L1375">1375</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1376" href="#L1376">1376</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1377" href="#L1377">1377</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L1378" href="#L1378">1378</a> <em class="jxr_javadoccomment">     * DateUtil.isToday(new Date()) = true</em>
-<a class="jxr_linenumber" name="L1379" href="#L1379">1379</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1380" href="#L1380">1380</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;// 如果今天 是2017年12月14日&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L1381" href="#L1381">1381</a> <em class="jxr_javadoccomment">     * DateUtil.isToday(toDate("2016-06-16 22:59:00", COMMON_DATE_AND_TIME)) = false</em>
-<a class="jxr_linenumber" name="L1382" href="#L1382">1382</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L1383" href="#L1383">1383</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1384" href="#L1384">1384</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1352" href="#L1352">1352</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1353" href="#L1353">1353</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1354" href="#L1354">1354</a> <em class="jxr_javadoccomment">     * @param date</em>
+<a class="jxr_linenumber" name="L1355" href="#L1355">1355</a> <em class="jxr_javadoccomment">     *            指定日期</em>
+<a class="jxr_linenumber" name="L1356" href="#L1356">1356</a> <em class="jxr_javadoccomment">     * @param beginDate</em>
+<a class="jxr_linenumber" name="L1357" href="#L1357">1357</a> <em class="jxr_javadoccomment">     *            开始时间</em>
+<a class="jxr_linenumber" name="L1358" href="#L1358">1358</a> <em class="jxr_javadoccomment">     * @param endDate</em>
+<a class="jxr_linenumber" name="L1359" href="#L1359">1359</a> <em class="jxr_javadoccomment">     *            结束时间</em>
+<a class="jxr_linenumber" name="L1360" href="#L1360">1360</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;date&lt;/code&gt; 在 &lt;code&gt;beginDate&lt;/code&gt;之后, 并且指定日期 &lt;code&gt;date&lt;/code&gt; 在 &lt;code&gt;endDate&lt;/code&gt;之前,返回true&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1361" href="#L1361">1361</a> <em class="jxr_javadoccomment">     * @throws NullPointerException</em>
+<a class="jxr_linenumber" name="L1362" href="#L1362">1362</a> <em class="jxr_javadoccomment">     *             如果 &lt;code&gt;date&lt;/code&gt; 是null,或者 &lt;code&gt;beginDate&lt;/code&gt; 是null 或者 &lt;code&gt;endDate&lt;/code&gt; 是null</em>
+<a class="jxr_linenumber" name="L1363" href="#L1363">1363</a> <em class="jxr_javadoccomment">     * @see Date#after(Date)</em>
+<a class="jxr_linenumber" name="L1364" href="#L1364">1364</a> <em class="jxr_javadoccomment">     * @see Date#before(Date)</em>
+<a class="jxr_linenumber" name="L1365" href="#L1365">1365</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1366" href="#L1366">1366</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isInTime(Date date,Date beginDate,Date endDate){
+<a class="jxr_linenumber" name="L1367" href="#L1367">1367</a>         Validate.notNull(date, <span class="jxr_string">"date can't be null!"</span>);
+<a class="jxr_linenumber" name="L1368" href="#L1368">1368</a>         Validate.notNull(beginDate, <span class="jxr_string">"beginDate can't be null!"</span>);
+<a class="jxr_linenumber" name="L1369" href="#L1369">1369</a>         Validate.notNull(endDate, <span class="jxr_string">"endDate can't be null!"</span>);
+<a class="jxr_linenumber" name="L1370" href="#L1370">1370</a>         <strong class="jxr_keyword">return</strong> date.after(beginDate) &amp;&amp; date.before(endDate);
+<a class="jxr_linenumber" name="L1371" href="#L1371">1371</a>     }
+<a class="jxr_linenumber" name="L1372" href="#L1372">1372</a> 
+<a class="jxr_linenumber" name="L1373" href="#L1373">1373</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1374" href="#L1374">1374</a> <em class="jxr_javadoccomment">     * 判断指定的日期 &lt;code&gt;date&lt;/code&gt;,是不是今天的日期.</em>
+<a class="jxr_linenumber" name="L1375" href="#L1375">1375</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1376" href="#L1376">1376</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1377" href="#L1377">1377</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1378" href="#L1378">1378</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1379" href="#L1379">1379</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L1380" href="#L1380">1380</a> <em class="jxr_javadoccomment">     * DateUtil.isToday(new Date()) = true</em>
+<a class="jxr_linenumber" name="L1381" href="#L1381">1381</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1382" href="#L1382">1382</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;// 如果今天 是2017年12月14日&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L1383" href="#L1383">1383</a> <em class="jxr_javadoccomment">     * DateUtil.isToday(toDate("2016-06-16 22:59:00", COMMON_DATE_AND_TIME)) = false</em>
+<a class="jxr_linenumber" name="L1384" href="#L1384">1384</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L1385" href="#L1385">1385</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1386" href="#L1386">1386</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;性能对比:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1386" href="#L1386">1386</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L1387" href="#L1387">1387</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1388" href="#L1388">1388</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1388" href="#L1388">1388</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;性能对比:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L1389" href="#L1389">1389</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1390" href="#L1390">1390</a> <em class="jxr_javadoccomment">     * 1000000 循环,</em>
+<a class="jxr_linenumber" name="L1390" href="#L1390">1390</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L1391" href="#L1391">1391</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1392" href="#L1392">1392</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
-<a class="jxr_linenumber" name="L1393" href="#L1393">1393</a> <em class="jxr_javadoccomment">     * &lt;li&gt;DateUtils#isSameDay(Date, Date) ,893毫秒;&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L1394" href="#L1394">1394</a> <em class="jxr_javadoccomment">     * &lt;li&gt;isEquals(date, new Date(), DatePattern.COMMON_DATE),1秒335毫秒&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L1395" href="#L1395">1395</a> <em class="jxr_javadoccomment">     * &lt;li&gt;DateExtensionUtil.getDayStartAndEndPair 1秒185毫秒&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L1396" href="#L1396">1396</a> <em class="jxr_javadoccomment">     * &lt;/ul&gt;</em>
-<a class="jxr_linenumber" name="L1397" href="#L1397">1397</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1398" href="#L1398">1398</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L1399" href="#L1399">1399</a> <em class="jxr_javadoccomment">     * @param date</em>
-<a class="jxr_linenumber" name="L1400" href="#L1400">1400</a> <em class="jxr_javadoccomment">     *            指定的日期</em>
-<a class="jxr_linenumber" name="L1401" href="#L1401">1401</a> <em class="jxr_javadoccomment">     * @return 如果指定的日期是今天,那么返回true,否则返回false &lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1402" href="#L1402">1402</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1403" href="#L1403">1403</a> <em class="jxr_javadoccomment">     * @see DateUtils#isSameDay(Date, Date)</em>
-<a class="jxr_linenumber" name="L1404" href="#L1404">1404</a> <em class="jxr_javadoccomment">     * @since 1.10.6</em>
-<a class="jxr_linenumber" name="L1405" href="#L1405">1405</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1406" href="#L1406">1406</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isToday(Date date){
-<a class="jxr_linenumber" name="L1407" href="#L1407">1407</a>         Validate.notNull(date, <span class="jxr_string">"date can't be null!"</span>);
-<a class="jxr_linenumber" name="L1408" href="#L1408">1408</a>         <strong class="jxr_keyword">return</strong> DateUtils.isSameDay(date, <strong class="jxr_keyword">new</strong> Date());
-<a class="jxr_linenumber" name="L1409" href="#L1409">1409</a>     }
-<a class="jxr_linenumber" name="L1410" href="#L1410">1410</a> 
-<a class="jxr_linenumber" name="L1411" href="#L1411">1411</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1392" href="#L1392">1392</a> <em class="jxr_javadoccomment">     * 1000000 循环,</em>
+<a class="jxr_linenumber" name="L1393" href="#L1393">1393</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1394" href="#L1394">1394</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
+<a class="jxr_linenumber" name="L1395" href="#L1395">1395</a> <em class="jxr_javadoccomment">     * &lt;li&gt;DateUtils#isSameDay(Date, Date) ,893毫秒;&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1396" href="#L1396">1396</a> <em class="jxr_javadoccomment">     * &lt;li&gt;isEquals(date, new Date(), DatePattern.COMMON_DATE),1秒335毫秒&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1397" href="#L1397">1397</a> <em class="jxr_javadoccomment">     * &lt;li&gt;DateExtensionUtil.getDayStartAndEndPair 1秒185毫秒&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1398" href="#L1398">1398</a> <em class="jxr_javadoccomment">     * &lt;/ul&gt;</em>
+<a class="jxr_linenumber" name="L1399" href="#L1399">1399</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1400" href="#L1400">1400</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L1401" href="#L1401">1401</a> <em class="jxr_javadoccomment">     * @param date</em>
+<a class="jxr_linenumber" name="L1402" href="#L1402">1402</a> <em class="jxr_javadoccomment">     *            指定的日期</em>
+<a class="jxr_linenumber" name="L1403" href="#L1403">1403</a> <em class="jxr_javadoccomment">     * @return 如果指定的日期是今天,那么返回true,否则返回false &lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1404" href="#L1404">1404</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1405" href="#L1405">1405</a> <em class="jxr_javadoccomment">     * @see DateUtils#isSameDay(Date, Date)</em>
+<a class="jxr_linenumber" name="L1406" href="#L1406">1406</a> <em class="jxr_javadoccomment">     * @since 1.10.6</em>
+<a class="jxr_linenumber" name="L1407" href="#L1407">1407</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1408" href="#L1408">1408</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isToday(Date date){
+<a class="jxr_linenumber" name="L1409" href="#L1409">1409</a>         Validate.notNull(date, <span class="jxr_string">"date can't be null!"</span>);
+<a class="jxr_linenumber" name="L1410" href="#L1410">1410</a>         <strong class="jxr_keyword">return</strong> DateUtils.isSameDay(date, <strong class="jxr_keyword">new</strong> Date());
+<a class="jxr_linenumber" name="L1411" href="#L1411">1411</a>     }
 <a class="jxr_linenumber" name="L1412" href="#L1412">1412</a> 
-<a class="jxr_linenumber" name="L1413" href="#L1413">1413</a>     <em class="jxr_comment">// [start]isEquals</em>
-<a class="jxr_linenumber" name="L1414" href="#L1414">1414</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1415" href="#L1415">1415</a> <em class="jxr_javadoccomment">     * 在相同格式下 &lt;code&gt;datePattern&lt;/code&gt;,将两个日期转成字符串判断是否相等.</em>
-<a class="jxr_linenumber" name="L1416" href="#L1416">1416</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1417" href="#L1417">1417</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L1418" href="#L1418">1418</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1419" href="#L1419">1419</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1420" href="#L1420">1420</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L1421" href="#L1421">1421</a> <em class="jxr_javadoccomment">     * DateUtil.isEquals(toDate("2016-06-16 22:59:00", COMMON_DATE_AND_TIME), toDate("2016-06-16", COMMON_DATE), COMMON_DATE) = true</em>
-<a class="jxr_linenumber" name="L1422" href="#L1422">1422</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L1423" href="#L1423">1423</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1424" href="#L1424">1424</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1413" href="#L1413">1413</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1414" href="#L1414">1414</a> 
+<a class="jxr_linenumber" name="L1415" href="#L1415">1415</a>     <em class="jxr_comment">// [start]isEquals</em>
+<a class="jxr_linenumber" name="L1416" href="#L1416">1416</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1417" href="#L1417">1417</a> <em class="jxr_javadoccomment">     * 在相同格式下 &lt;code&gt;datePattern&lt;/code&gt;,将两个日期转成字符串判断是否相等.</em>
+<a class="jxr_linenumber" name="L1418" href="#L1418">1418</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1419" href="#L1419">1419</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1420" href="#L1420">1420</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1421" href="#L1421">1421</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1422" href="#L1422">1422</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L1423" href="#L1423">1423</a> <em class="jxr_javadoccomment">     * DateUtil.isEquals(toDate("2016-06-16 22:59:00", COMMON_DATE_AND_TIME), toDate("2016-06-16", COMMON_DATE), COMMON_DATE) = true</em>
+<a class="jxr_linenumber" name="L1424" href="#L1424">1424</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L1425" href="#L1425">1425</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1426" href="#L1426">1426</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L1427" href="#L1427">1427</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1428" href="#L1428">1428</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L1429" href="#L1429">1429</a> <em class="jxr_javadoccomment">     * &lt;li&gt;常用于判断两个时间是否是同一个时间段,比如相同day,相同小时,相同年等等&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L1430" href="#L1430">1430</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L1431" href="#L1431">1431</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1432" href="#L1432">1432</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1433" href="#L1433">1433</a> <em class="jxr_javadoccomment">     * @param date1</em>
-<a class="jxr_linenumber" name="L1434" href="#L1434">1434</a> <em class="jxr_javadoccomment">     *            日期1</em>
-<a class="jxr_linenumber" name="L1435" href="#L1435">1435</a> <em class="jxr_javadoccomment">     * @param date2</em>
-<a class="jxr_linenumber" name="L1436" href="#L1436">1436</a> <em class="jxr_javadoccomment">     *            日期2</em>
-<a class="jxr_linenumber" name="L1437" href="#L1437">1437</a> <em class="jxr_javadoccomment">     * @param datePattern</em>
-<a class="jxr_linenumber" name="L1438" href="#L1438">1438</a> <em class="jxr_javadoccomment">     *            格式 {@link DatePattern}</em>
-<a class="jxr_linenumber" name="L1439" href="#L1439">1439</a> <em class="jxr_javadoccomment">     * @return 相等返回true,不相等则为false&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1440" href="#L1440">1440</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date1 == date2&lt;/code&gt; 直接返回true&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1441" href="#L1441">1441</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date1&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1442" href="#L1442">1442</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date2&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1443" href="#L1443">1443</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;pattern&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1444" href="#L1444">1444</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;pattern&lt;/code&gt; 是 blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1445" href="#L1445">1445</a> <em class="jxr_javadoccomment">     * @see #toString(Date, String)</em>
-<a class="jxr_linenumber" name="L1446" href="#L1446">1446</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.time.DateUtils#isSameDay(Date, Date)</em>
-<a class="jxr_linenumber" name="L1447" href="#L1447">1447</a> <em class="jxr_javadoccomment">     * @since 1.0.5 change name from isEqual to isEquals</em>
-<a class="jxr_linenumber" name="L1448" href="#L1448">1448</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1449" href="#L1449">1449</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isEquals(Date date1,Date date2,String datePattern){
-<a class="jxr_linenumber" name="L1450" href="#L1450">1450</a>         Validate.notNull(date1, <span class="jxr_string">"date1 can't be null!"</span>);
-<a class="jxr_linenumber" name="L1451" href="#L1451">1451</a>         Validate.notNull(date2, <span class="jxr_string">"date2 can't be null!"</span>);
-<a class="jxr_linenumber" name="L1452" href="#L1452">1452</a> 
-<a class="jxr_linenumber" name="L1453" href="#L1453">1453</a>         Validate.notBlank(datePattern, <span class="jxr_string">"datePattern can't be blank!"</span>);
+<a class="jxr_linenumber" name="L1426" href="#L1426">1426</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1427" href="#L1427">1427</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1428" href="#L1428">1428</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1429" href="#L1429">1429</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1430" href="#L1430">1430</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L1431" href="#L1431">1431</a> <em class="jxr_javadoccomment">     * &lt;li&gt;常用于判断两个时间是否是同一个时间段,比如相同day,相同小时,相同年等等&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1432" href="#L1432">1432</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L1433" href="#L1433">1433</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1434" href="#L1434">1434</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1435" href="#L1435">1435</a> <em class="jxr_javadoccomment">     * @param date1</em>
+<a class="jxr_linenumber" name="L1436" href="#L1436">1436</a> <em class="jxr_javadoccomment">     *            日期1</em>
+<a class="jxr_linenumber" name="L1437" href="#L1437">1437</a> <em class="jxr_javadoccomment">     * @param date2</em>
+<a class="jxr_linenumber" name="L1438" href="#L1438">1438</a> <em class="jxr_javadoccomment">     *            日期2</em>
+<a class="jxr_linenumber" name="L1439" href="#L1439">1439</a> <em class="jxr_javadoccomment">     * @param datePattern</em>
+<a class="jxr_linenumber" name="L1440" href="#L1440">1440</a> <em class="jxr_javadoccomment">     *            格式 {@link DatePattern}</em>
+<a class="jxr_linenumber" name="L1441" href="#L1441">1441</a> <em class="jxr_javadoccomment">     * @return 相等返回true,不相等则为false&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1442" href="#L1442">1442</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date1 == date2&lt;/code&gt; 直接返回true&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1443" href="#L1443">1443</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date1&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1444" href="#L1444">1444</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;date2&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1445" href="#L1445">1445</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;pattern&lt;/code&gt; 是 null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1446" href="#L1446">1446</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;pattern&lt;/code&gt; 是 blank,抛出 {@link IllegalArgumentException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1447" href="#L1447">1447</a> <em class="jxr_javadoccomment">     * @see #toString(Date, String)</em>
+<a class="jxr_linenumber" name="L1448" href="#L1448">1448</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.time.DateUtils#isSameDay(Date, Date)</em>
+<a class="jxr_linenumber" name="L1449" href="#L1449">1449</a> <em class="jxr_javadoccomment">     * @since 1.0.5 change name from isEqual to isEquals</em>
+<a class="jxr_linenumber" name="L1450" href="#L1450">1450</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1451" href="#L1451">1451</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isEquals(Date date1,Date date2,String datePattern){
+<a class="jxr_linenumber" name="L1452" href="#L1452">1452</a>         Validate.notNull(date1, <span class="jxr_string">"date1 can't be null!"</span>);
+<a class="jxr_linenumber" name="L1453" href="#L1453">1453</a>         Validate.notNull(date2, <span class="jxr_string">"date2 can't be null!"</span>);
 <a class="jxr_linenumber" name="L1454" href="#L1454">1454</a> 
-<a class="jxr_linenumber" name="L1455" href="#L1455">1455</a>         <strong class="jxr_keyword">return</strong> date1 == date2 ? <strong class="jxr_keyword">true</strong> : toString(date1, datePattern).equals(toString(date2, datePattern));
-<a class="jxr_linenumber" name="L1456" href="#L1456">1456</a>     }
-<a class="jxr_linenumber" name="L1457" href="#L1457">1457</a> 
-<a class="jxr_linenumber" name="L1458" href="#L1458">1458</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1455" href="#L1455">1455</a>         Validate.notBlank(datePattern, <span class="jxr_string">"datePattern can't be blank!"</span>);
+<a class="jxr_linenumber" name="L1456" href="#L1456">1456</a> 
+<a class="jxr_linenumber" name="L1457" href="#L1457">1457</a>         <strong class="jxr_keyword">return</strong> date1 == date2 ? <strong class="jxr_keyword">true</strong> : toString(date1, datePattern).equals(toString(date2, datePattern));
+<a class="jxr_linenumber" name="L1458" href="#L1458">1458</a>     }
 <a class="jxr_linenumber" name="L1459" href="#L1459">1459</a> 
-<a class="jxr_linenumber" name="L1460" href="#L1460">1460</a>     <em class="jxr_comment">// [start]isLeapYear 闰年</em>
+<a class="jxr_linenumber" name="L1460" href="#L1460">1460</a>     <em class="jxr_comment">// [end]</em>
 <a class="jxr_linenumber" name="L1461" href="#L1461">1461</a> 
-<a class="jxr_linenumber" name="L1462" href="#L1462">1462</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L1463" href="#L1463">1463</a> <em class="jxr_javadoccomment">     * 判断指定年 &lt;code&gt;year&lt;/code&gt; 是否为闰年 .</em>
-<a class="jxr_linenumber" name="L1464" href="#L1464">1464</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1465" href="#L1465">1465</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L1466" href="#L1466">1466</a> <em class="jxr_javadoccomment">     * 规则: {@code (year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0}</em>
-<a class="jxr_linenumber" name="L1467" href="#L1467">1467</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L1468" href="#L1468">1468</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1469" href="#L1469">1469</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;闰年原因:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1462" href="#L1462">1462</a>     <em class="jxr_comment">// [start]isLeapYear 闰年</em>
+<a class="jxr_linenumber" name="L1463" href="#L1463">1463</a> 
+<a class="jxr_linenumber" name="L1464" href="#L1464">1464</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1465" href="#L1465">1465</a> <em class="jxr_javadoccomment">     * 判断指定年 &lt;code&gt;year&lt;/code&gt; 是否为闰年 .</em>
+<a class="jxr_linenumber" name="L1466" href="#L1466">1466</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1467" href="#L1467">1467</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L1468" href="#L1468">1468</a> <em class="jxr_javadoccomment">     * 规则: {@code (year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0}</em>
+<a class="jxr_linenumber" name="L1469" href="#L1469">1469</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L1470" href="#L1470">1470</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1471" href="#L1471">1471</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1471" href="#L1471">1471</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;闰年原因:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L1472" href="#L1472">1472</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1473" href="#L1473">1473</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L1474" href="#L1474">1474</a> <em class="jxr_javadoccomment">     * 地球绕太阳运行周期为&lt;b&gt;365天5小时48分46秒&lt;/b&gt;(合365.24219天)即一回归年(tropical year).&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1475" href="#L1475">1475</a> <em class="jxr_javadoccomment">     * 公历的平年只有365日,比回归年短约0.2422日,所余下的时间约为四年累计一天,故四年于2月加1天,使当年的历年长度为366日,这一年就为闰年.&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1476" href="#L1476">1476</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L1477" href="#L1477">1477</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1478" href="#L1478">1478</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L1479" href="#L1479">1479</a> <em class="jxr_javadoccomment">     * 现行公历中每400年有97个闰年.按照每四年一个闰年计算,平均每年就要多算出0.0078天,这样经过四百年就会多算出大约3天来,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1480" href="#L1480">1480</a> <em class="jxr_javadoccomment">     * 因此,每四百年中要减少三个闰年.</em>
-<a class="jxr_linenumber" name="L1481" href="#L1481">1481</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L1482" href="#L1482">1482</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1483" href="#L1483">1483</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L1484" href="#L1484">1484</a> <em class="jxr_javadoccomment">     * 所以规定,公历年份是整百数的,必须是400的倍数的才是闰年,不是400的倍数的,虽然是100的倍数,也是平年,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1485" href="#L1485">1485</a> <em class="jxr_javadoccomment">     * 这就是通常所说的:&lt;b&gt;四年一闰,百年不闰,四百年再闰&lt;/b&gt;.&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1486" href="#L1486">1486</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1487" href="#L1487">1487</a> <em class="jxr_javadoccomment">     * 例如,2000年是闰年,1900年则是平年.&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L1488" href="#L1488">1488</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L1489" href="#L1489">1489</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1490" href="#L1490">1490</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1491" href="#L1491">1491</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L1492" href="#L1492">1492</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1493" href="#L1493">1493</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L1494" href="#L1494">1494</a> <em class="jxr_javadoccomment">     * &lt;li&gt;需要注意的是,有些文章说3200 是平年, 参见&lt;a href="<a href="http://baike.baidu.com/item/闰年/27098" target="alexandria_uri">http://baike.baidu.com/item/闰年/27098</a>#6"&gt;精确计算方法&lt;/a&gt;,但是 jdk中 判定3200 依然是闰年,并且</em>
-<a class="jxr_linenumber" name="L1495" href="#L1495">1495</a> <em class="jxr_javadoccomment">     * &lt;a href="https://en.wikipedia.org/wiki/Leap_year"&gt;wiki&lt;/a&gt; 也没有提及3200是平年的故事&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L1496" href="#L1496">1496</a> <em class="jxr_javadoccomment">     * &lt;li&gt;在 {@link java.util.GregorianCalendar#gregorianCutoverYearJulian 1582}年之前是四年一闰,</em>
-<a class="jxr_linenumber" name="L1497" href="#L1497">1497</a> <em class="jxr_javadoccomment">     * {@link java.util.GregorianCalendar#gregorianCutoverYearJulian 1582}年之后 四年一闰,百年不闰,四百年再闰&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L1498" href="#L1498">1498</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L1499" href="#L1499">1499</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L1500" href="#L1500">1500</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L1501" href="#L1501">1501</a> <em class="jxr_javadoccomment">     * @param year</em>
-<a class="jxr_linenumber" name="L1502" href="#L1502">1502</a> <em class="jxr_javadoccomment">     *            年份</em>
-<a class="jxr_linenumber" name="L1503" href="#L1503">1503</a> <em class="jxr_javadoccomment">     * @return 四年一闰,百年不闰,四百年再闰</em>
-<a class="jxr_linenumber" name="L1504" href="#L1504">1504</a> <em class="jxr_javadoccomment">     * @see GregorianCalendar#isLeapYear(int)</em>
-<a class="jxr_linenumber" name="L1505" href="#L1505">1505</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://en.wikipedia.org/wiki/Leap_year"&gt;Leap_year&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L1506" href="#L1506">1506</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L1507" href="#L1507">1507</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isLeapYear(<strong class="jxr_keyword">int</strong> year){
-<a class="jxr_linenumber" name="L1508" href="#L1508">1508</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> GregorianCalendar().isLeapYear(year);
-<a class="jxr_linenumber" name="L1509" href="#L1509">1509</a>     }
-<a class="jxr_linenumber" name="L1510" href="#L1510">1510</a> 
-<a class="jxr_linenumber" name="L1511" href="#L1511">1511</a>     <em class="jxr_comment">// [end]</em>
-<a class="jxr_linenumber" name="L1512" href="#L1512">1512</a> }
+<a class="jxr_linenumber" name="L1473" href="#L1473">1473</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1474" href="#L1474">1474</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1475" href="#L1475">1475</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L1476" href="#L1476">1476</a> <em class="jxr_javadoccomment">     * 地球绕太阳运行周期为&lt;b&gt;365天5小时48分46秒&lt;/b&gt;(合365.24219天)即一回归年(tropical year).&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1477" href="#L1477">1477</a> <em class="jxr_javadoccomment">     * 公历的平年只有365日,比回归年短约0.2422日,所余下的时间约为四年累计一天,故四年于2月加1天,使当年的历年长度为366日,这一年就为闰年.&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1478" href="#L1478">1478</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L1479" href="#L1479">1479</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1480" href="#L1480">1480</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L1481" href="#L1481">1481</a> <em class="jxr_javadoccomment">     * 现行公历中每400年有97个闰年.按照每四年一个闰年计算,平均每年就要多算出0.0078天,这样经过四百年就会多算出大约3天来,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1482" href="#L1482">1482</a> <em class="jxr_javadoccomment">     * 因此,每四百年中要减少三个闰年.</em>
+<a class="jxr_linenumber" name="L1483" href="#L1483">1483</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L1484" href="#L1484">1484</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1485" href="#L1485">1485</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L1486" href="#L1486">1486</a> <em class="jxr_javadoccomment">     * 所以规定,公历年份是整百数的,必须是400的倍数的才是闰年,不是400的倍数的,虽然是100的倍数,也是平年,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1487" href="#L1487">1487</a> <em class="jxr_javadoccomment">     * 这就是通常所说的:&lt;b&gt;四年一闰,百年不闰,四百年再闰&lt;/b&gt;.&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1488" href="#L1488">1488</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1489" href="#L1489">1489</a> <em class="jxr_javadoccomment">     * 例如,2000年是闰年,1900年则是平年.&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L1490" href="#L1490">1490</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L1491" href="#L1491">1491</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1492" href="#L1492">1492</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1493" href="#L1493">1493</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L1494" href="#L1494">1494</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1495" href="#L1495">1495</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L1496" href="#L1496">1496</a> <em class="jxr_javadoccomment">     * &lt;li&gt;需要注意的是,有些文章说3200 是平年, 参见&lt;a href="<a href="http://baike.baidu.com/item/闰年/27098" target="alexandria_uri">http://baike.baidu.com/item/闰年/27098</a>#6"&gt;精确计算方法&lt;/a&gt;,但是 jdk中 判定3200 依然是闰年,并且</em>
+<a class="jxr_linenumber" name="L1497" href="#L1497">1497</a> <em class="jxr_javadoccomment">     * &lt;a href="https://en.wikipedia.org/wiki/Leap_year"&gt;wiki&lt;/a&gt; 也没有提及3200是平年的故事&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1498" href="#L1498">1498</a> <em class="jxr_javadoccomment">     * &lt;li&gt;在 {@link java.util.GregorianCalendar#gregorianCutoverYearJulian 1582}年之前是四年一闰,</em>
+<a class="jxr_linenumber" name="L1499" href="#L1499">1499</a> <em class="jxr_javadoccomment">     * {@link java.util.GregorianCalendar#gregorianCutoverYearJulian 1582}年之后 四年一闰,百年不闰,四百年再闰&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L1500" href="#L1500">1500</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L1501" href="#L1501">1501</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L1502" href="#L1502">1502</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L1503" href="#L1503">1503</a> <em class="jxr_javadoccomment">     * @param year</em>
+<a class="jxr_linenumber" name="L1504" href="#L1504">1504</a> <em class="jxr_javadoccomment">     *            年份</em>
+<a class="jxr_linenumber" name="L1505" href="#L1505">1505</a> <em class="jxr_javadoccomment">     * @return 四年一闰,百年不闰,四百年再闰</em>
+<a class="jxr_linenumber" name="L1506" href="#L1506">1506</a> <em class="jxr_javadoccomment">     * @see GregorianCalendar#isLeapYear(int)</em>
+<a class="jxr_linenumber" name="L1507" href="#L1507">1507</a> <em class="jxr_javadoccomment">     * @see &lt;a href="https://en.wikipedia.org/wiki/Leap_year"&gt;Leap_year&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L1508" href="#L1508">1508</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L1509" href="#L1509">1509</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isLeapYear(<strong class="jxr_keyword">int</strong> year){
+<a class="jxr_linenumber" name="L1510" href="#L1510">1510</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> GregorianCalendar().isLeapYear(year);
+<a class="jxr_linenumber" name="L1511" href="#L1511">1511</a>     }
+<a class="jxr_linenumber" name="L1512" href="#L1512">1512</a> 
+<a class="jxr_linenumber" name="L1513" href="#L1513">1513</a>     <em class="jxr_comment">// [end]</em>
+<a class="jxr_linenumber" name="L1514" href="#L1514">1514</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
