@@ -21,7 +21,7 @@
 	</modules>
 
 	<properties>
-		<version.feilong-spring>1.12.3</version.feilong-spring>
+		<version.feilong-spring>1.12.5</version.feilong-spring>
 	</properties>
 
 	<!-- 软件配置管理SCM (Software Configuration Management), 如cvs ,svn ,git -->
