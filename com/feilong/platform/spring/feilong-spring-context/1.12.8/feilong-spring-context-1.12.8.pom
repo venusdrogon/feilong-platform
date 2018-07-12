@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.feilong.platform.spring</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.12.8</version>
+	</parent>
+
+	<artifactId>feilong-spring-context</artifactId>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.feilong.platform.spring</groupId>
+			<artifactId>feilong-spring-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<!-- spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- java mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+
+			<!--
+				表明是可选依赖，它们只会对当前项目产生影响，其他项目依赖于B时候，这两个依赖不会被传递。
+				如果真要使用这个依赖，需要在项目中直接声明。
+
+				理想情况下，是不应该使用可选依赖的，
+
+				使用可靠依赖的原因是:某一个项目实现了多个特性，依据单一职责原则，更好的做法是他建多个Maven项目，用户根据需要选择使用哪个Maven项目。
+			-->
+			<optional>true</optional>
+		</dependency>
+
+	</dependencies>
+</project>
