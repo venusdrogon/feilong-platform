@@ -102,10 +102,11 @@
 		-->
 		<version.commons-io>2.6</version.commons-io>
 
-
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
 		<version.commons-net>3.6</version.commons-net>
 
+		<version.jsch>0.1.54</version.jsch>
+		<version.jsoup>1.11.2</version.jsoup>
 
 		<version.javamail>1.4.7</version.javamail>
 
@@ -425,6 +426,20 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-compress</artifactId>
 				<version>${version.commons-compress}</version>
+			</dependency>
+
+			<!-- jsch 用于sftp 传输 -->
+			<dependency>
+				<groupId>com.jcraft</groupId>
+				<artifactId>jsch</artifactId>
+				<version>${version.jsch}</version>
+			</dependency>
+
+			<!-- jsoup -->
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${version.jsoup}</version>
 			</dependency>
 
 			<!-- commons-net -->
