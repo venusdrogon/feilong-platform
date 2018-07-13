@@ -105,6 +105,8 @@
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
 		<version.commons-net>3.6</version.commons-net>
 
+		<version.commons-validator>1.6</version.commons-validator>
+
 		<!-- net.sf.json-lib -->
 		<version.json-lib>2.4</version.json-lib>
 
@@ -431,6 +433,13 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-compress</artifactId>
 				<version>${version.commons-compress}</version>
+			</dependency>
+
+			<!-- commons-validator -->
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${version.commons-validator}</version>
 			</dependency>
 
 			<!-- net.sf.json-lib -->
