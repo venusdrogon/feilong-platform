@@ -105,6 +105,9 @@
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
 		<version.commons-net>3.6</version.commons-net>
 
+		<!-- net.sf.json-lib -->
+		<version.json-lib>2.4</version.json-lib>
+
 		<version.jsch>0.1.54</version.jsch>
 		<version.jsoup>1.11.2</version.jsoup>
 
@@ -127,6 +130,8 @@
 		<version.slf4j>1.7.25</version.slf4j>
 
 		<version.spring>3.2.18.RELEASE</version.spring>
+
+		<version.xstream>1.4.10</version.xstream>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<version.xercesImpl>2.11.0</version.xercesImpl>
@@ -428,6 +433,34 @@
 				<version>${version.commons-compress}</version>
 			</dependency>
 
+			<!-- net.sf.json-lib -->
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>${version.json-lib}</version>
+				<classifier>jdk15</classifier>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-beanutils</artifactId>
+						<groupId>commons-beanutils</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-collections</artifactId>
+						<groupId>commons-collections</groupId>
+					</exclusion>
+					<!-- 2.5 -->
+					<exclusion>
+						<artifactId>commons-lang</artifactId>
+						<groupId>commons-lang</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+
 			<!-- jsch 用于sftp 传输 -->
 			<dependency>
 				<groupId>com.jcraft</groupId>
@@ -601,6 +634,13 @@
 				<groupId>xml-apis</groupId>
 				<artifactId>xml-apis</artifactId>
 				<version>${version.xml-apis}</version>
+			</dependency>
+
+			<!-- xstream -->
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>${version.xstream}</version>
 			</dependency>
 
 			<!--******** slf4j******** -->
