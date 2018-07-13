@@ -109,7 +109,7 @@
 		<version.json-lib>2.4</version.json-lib>
 
 		<version.jsch>0.1.54</version.jsch>
-		<version.jsoup>1.11.2</version.jsoup>
+		<version.jsoup>1.11.3</version.jsoup>
 
 		<version.javamail>1.4.7</version.javamail>
 
