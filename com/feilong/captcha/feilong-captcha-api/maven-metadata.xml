@@ -3,10 +3,10 @@
   <groupId>com.feilong.captcha</groupId>
   <artifactId>feilong-captcha-api</artifactId>
   <versioning>
-    <release>1.12.0</release>
+    <release>1.12.1</release>
     <versions>
-      <version>1.12.0</version>
+      <version>1.12.1</version>
     </versions>
-    <lastUpdated>20180715175402</lastUpdated>
+    <lastUpdated>20180718154832</lastUpdated>
   </versioning>
 </metadata>
