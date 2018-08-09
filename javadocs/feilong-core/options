@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-core 1.12.5 API'
+'feilong-core 1.12.6 API'
 -footer
-'feilong-core 1.12.5 API'
+'feilong-core 1.12.6 API'
 -group
 'Date package 日期' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-core 1.12.5 API'
+'feilong-core 1.12.6 API'
 -link
 'http://commons.apache.org/proper/commons-lang/apidocs'
 -link
@@ -44,4 +44,4 @@
 -use
 -version
 -windowtitle
-'feilong-core 1.12.5 API create by feilong'
+'feilong-core 1.12.6 API create by feilong'

@@ -1,7 +1,7 @@
 -locale
 'en_US'
 -classpath
-'/Users/feilong/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/feilong/Development/repository/com/feilong/platform/feilong-core/1.12.5/feilong-core-1.12.5.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar:/Users/feilong/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/feilong/Development/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar:/Users/feilong/Development/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar:/Users/feilong/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/feilong/Development/repository/commons-io/commons-io/2.6/commons-io-2.6.jar:/Users/feilong/Development/repository/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar'
+'/Users/feilong/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/feilong/Development/repository/com/feilong/platform/feilong-core/1.12.6/feilong-core-1.12.6.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar:/Users/feilong/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/feilong/Development/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar:/Users/feilong/Development/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar:/Users/feilong/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/feilong/Development/repository/commons-io/commons-io/2.6/commons-io-2.6.jar:/Users/feilong/Development/repository/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar'
 -encoding
 'UTF-8'
 -overview
@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-io 1.12.5 API'
+'feilong-io 1.12.6 API'
 -footer
-'feilong-io 1.12.5 API'
+'feilong-io 1.12.6 API'
 -group
 'Date package 日期' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-io 1.12.5 API'
+'feilong-io 1.12.6 API'
 -link
 'http://commons.apache.org/proper/commons-io/apidocs'
 -link
@@ -40,4 +40,4 @@
 -use
 -version
 -windowtitle
-'feilong-io 1.12.5 API create by feilong'
+'feilong-io 1.12.6 API create by feilong'
