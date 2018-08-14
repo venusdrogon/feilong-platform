@@ -138,7 +138,8 @@
 		<version.xstream>1.4.10</version.xstream>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
-		<version.xercesImpl>2.11.0</version.xercesImpl>
+		<!-- https://xerces.apache.org/xerces2-j/releases.html -->
+		<version.xercesImpl>2.12.0</version.xercesImpl>
 
 		<!--
 			http://tiles.apache.org/framework/whats-new.html
@@ -1550,4 +1551,27 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
+	<!-- 项目的贡献者,但不属于开发小组 -->
+	<contributors>
+		<contributor>
+			<name>benjamin.liu</name>
+			<url>https://github.com/benjaliu</url>
+		</contributor>
+
+		<contributor>
+			<name>yi.huang</name>
+			<url>https://github.com/ananbeike</url>
+		</contributor>
+
+		<contributor>
+			<name>minglei.feng</name>
+			<url>https://github.com/shade41-code</url>
+		</contributor>
+
+		<contributor>
+			<name>ijiangtao</name>
+			<url>https://github.com/ijiangtao</url>
+		</contributor>
+	</contributors>
 </project>
