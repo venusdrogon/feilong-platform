@@ -67,7 +67,7 @@
 		-->
 
 		<!-- http://commons.apache.org/proper/commons-compress/ -->
-		<version.commons-compress>1.17</version.commons-compress>
+		<version.commons-compress>1.18</version.commons-compress>
 
 		<version.commons-digester>2.1</version.commons-digester>
 
@@ -89,11 +89,14 @@
 
 		<!-- base on jdk1.2 legacy(won't update) -->
 		<version.commons-lang>2.6</version.commons-lang>
+
+		<!-- http://commons.apache.org/proper/commons-lang/ -->
+		<!-- https://github.com/apache/commons-lang/blob/master/RELEASE-NOTES.txt -->
 		<!--
 			Commons Lang 3.6 at least requires Java 7.0.
 			Note that this has changed from Commons Lang 3.5, which only required Java 1.6
 		-->
-		<version.commons-lang3>3.7</version.commons-lang3>
+		<version.commons-lang3>3.8</version.commons-lang3>
 
 		<version.commons-logging>1.2</version.commons-logging>
 
@@ -211,7 +214,9 @@
 		<!-- http://maven.apache.org/plugins/maven-project-info-reports-plugin/ -->
 		<v.maven-project-info-reports-plugin>3.0.0</v.maven-project-info-reports-plugin>
 
-		<v.jacoco-maven-plugin>0.8.1</v.jacoco-maven-plugin>
+		<!-- https://github.com/jacoco/jacoco -->
+		<!-- https://github.com/jacoco/jacoco/releases -->
+		<v.jacoco-maven-plugin>0.8.2</v.jacoco-maven-plugin>
 		<!-- **********************end plugins version******************************************* -->
 
 		<!-- **********************begin native2ascii config******************************************* -->
