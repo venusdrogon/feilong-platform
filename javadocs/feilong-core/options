@@ -1,7 +1,7 @@
 -locale
 'en_US'
 -classpath
-'/Users/feilong/Development/repository/org/springframework/spring-beans/3.2.18.RELEASE/spring-beans-3.2.18.RELEASE.jar:/Users/feilong/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar:/Users/feilong/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/feilong/Development/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar:/Users/feilong/Development/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar:/Users/feilong/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/feilong/Development/repository/org/springframework/spring-core/3.2.18.RELEASE/spring-core-3.2.18.RELEASE.jar:/Users/feilong/Development/repository/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar'
+'/Users/feilong/Development/repository/org/springframework/spring-beans/3.2.18.RELEASE/spring-beans-3.2.18.RELEASE.jar:/Users/feilong/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar:/Users/feilong/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/feilong/Development/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar:/Users/feilong/Development/repository/org/apache/commons/commons-lang3/3.8/commons-lang3-3.8.jar:/Users/feilong/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/feilong/Development/repository/org/springframework/spring-core/3.2.18.RELEASE/spring-core-3.2.18.RELEASE.jar:/Users/feilong/Development/repository/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar'
 -encoding
 'UTF-8'
 -overview
@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-core 1.12.8 API'
+'feilong-core 1.12.9 API'
 -footer
-'feilong-core 1.12.8 API'
+'feilong-core 1.12.9 API'
 -group
 'Date package 日期' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-core 1.12.8 API'
+'feilong-core 1.12.9 API'
 -link
 'https://docs.spring.io/spring/docs/3.2.18.RELEASE/javadoc-api'
 -link
@@ -46,4 +46,4 @@
 -use
 -version
 -windowtitle
-'feilong-core 1.12.8 API create by feilong'
+'feilong-core 1.12.9 API create by feilong'
