@@ -96,7 +96,7 @@
 			Commons Lang 3.6 at least requires Java 7.0.
 			Note that this has changed from Commons Lang 3.5, which only required Java 1.6
 		-->
-		<version.commons-lang3>3.8</version.commons-lang3>
+		<version.commons-lang3>3.8.1</version.commons-lang3>
 
 		<version.commons-logging>1.2</version.commons-logging>
 
@@ -185,7 +185,7 @@
 		<!-- https://maven.apache.org/scm/ where each SCM command is implemented as a plugin goal -->
 		<!-- SCM Software Configuration Management 软件配置管理 -->
 		<!-- 目前主要用于 scm-checkin-all.sh 一键push脚本 -->
-		<v.maven-scm-plugin>1.10.0</v.maven-scm-plugin>
+		<v.maven-scm-plugin>1.11.1</v.maven-scm-plugin>
 
 		<!-- http://maven.apache.org/plugins/maven-site-plugin/ -->
 		<!-- https://issues.apache.org/jira/browse/MSITE/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
@@ -199,7 +199,7 @@
 
 		<v.maven-war-plugin>3.2.2</v.maven-war-plugin>
 
-		<v.maven-shade-plugin>3.1.1</v.maven-shade-plugin>
+		<v.maven-shade-plugin>3.2.0</v.maven-shade-plugin>
 
 		<!-- https://github.com/mojohaus/native2ascii-maven-plugin/wiki -->
 		<v.native2ascii-maven-plugin>2.0.1</v.native2ascii-maven-plugin>
