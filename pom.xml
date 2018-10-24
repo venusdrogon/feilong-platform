@@ -138,7 +138,7 @@
 
 		<version.spring>3.2.18.RELEASE</version.spring>
 
-		<version.xstream>1.4.10</version.xstream>
+		<version.xstream>1.4.11</version.xstream>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<!-- https://xerces.apache.org/xerces2-j/releases.html -->
