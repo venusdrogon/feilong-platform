@@ -331,6 +331,13 @@
 				<version>${version.feilong-platform}</version>
 			</dependency>
 
+			<!-- feilong-validator -->
+			<dependency>
+				<groupId>com.feilong.platform</groupId>
+				<artifactId>feilong-validator</artifactId>
+				<version>${version.feilong-platform}</version>
+			</dependency>
+
 			<!-- feilong-util-all -->
 			<dependency>
 				<groupId>com.feilong.platform</groupId>
