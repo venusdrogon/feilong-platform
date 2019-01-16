@@ -11,7 +11,7 @@
 '/Users/feilong/workspace/feilong/feilong-core/src/main/java:/Users/feilong/Development/DataCommon/Files/Java/Apache Maven/javadoc/springframework'
 -author
 -bottom
-'Copyright &copy; 2008-2018 by feilong'
+'Copyright &copy; 2008-2019 by feilong'
 -charset
 'UTF-8'
 -d
@@ -20,15 +20,15 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'feilong-core 1.12.10 API'
+'feilong-core 1.13.0 API'
 -footer
-'feilong-core 1.12.10 API'
+'feilong-core 1.13.0 API'
 -group
 'Date package 日期' 'com.feilong.core.date'
 -group
 'util package' 'com.feilong.core.util*'
 -header
-'feilong-core 1.12.10 API'
+'feilong-core 1.13.0 API'
 -link
 'https://docs.spring.io/spring/docs/3.2.18.RELEASE/javadoc-api'
 -link
@@ -46,4 +46,4 @@
 -use
 -version
 -windowtitle
-'feilong-core 1.12.10 API create by feilong'
+'feilong-core 1.13.0 API create by feilong'
