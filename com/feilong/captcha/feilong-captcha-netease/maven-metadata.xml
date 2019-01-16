@@ -3,9 +3,10 @@
   <groupId>com.feilong.captcha</groupId>
   <artifactId>feilong-captcha-netease</artifactId>
   <versioning>
+    <release>1.13.0</release>
     <versions>
-      <version>1.13.0-SNAPSHOT</version>
+      <version>1.13.0</version>
     </versions>
-    <lastUpdated>20190113154756</lastUpdated>
+    <lastUpdated>20190116085200</lastUpdated>
   </versioning>
 </metadata>
