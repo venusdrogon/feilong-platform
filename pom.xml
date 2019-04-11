@@ -134,7 +134,7 @@
 		<version.logback>1.2.3</version.logback>
 
 		<!-- http://www.slf4j.org/news.html -->
-		<version.slf4j>1.7.25</version.slf4j>
+		<version.slf4j>1.7.26</version.slf4j>
 
 		<version.spring>3.2.18.RELEASE</version.spring>
 
