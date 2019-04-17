@@ -221,9 +221,8 @@
 		<!-- http://maven.apache.org/plugins/maven-project-info-reports-plugin/ -->
 		<v.maven-project-info-reports-plugin>3.0.0</v.maven-project-info-reports-plugin>
 
-		<!-- https://github.com/jacoco/jacoco -->
 		<!-- https://github.com/jacoco/jacoco/releases -->
-		<v.jacoco-maven-plugin>0.8.2</v.jacoco-maven-plugin>
+		<v.jacoco-maven-plugin>0.8.3</v.jacoco-maven-plugin>
 
 		<!-- https://github.com/git-commit-id/maven-git-commit-id-plugin -->
 		<v.git-commit-id-plugin>2.2.6</v.git-commit-id-plugin>
