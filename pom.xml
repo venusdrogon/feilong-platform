@@ -46,6 +46,8 @@
 		<version.commons-beanutils>1.9.3</version.commons-beanutils>
 		<version.commons-codec>1.11</version.commons-codec>
 		<version.commons-collections>3.2.2</version.commons-collections>
+		<!-- http://commons.apache.org/proper/commons-collections/index.html -->
+		<!-- 4.3 需要 jdk1.8 -->
 		<version.commons-collections4>4.2</version.commons-collections4>
 
 		<version.commons-configuration>1.10</version.commons-configuration>
@@ -175,7 +177,7 @@
 		<!-- https://issues.apache.org/jira/projects/MJAVADOC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
 		<v.maven-javadoc-plugin>3.1.0</v.maven-javadoc-plugin>
 		<!-- https://issues.apache.org/jira/projects/MJAR?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
-		<v.maven-jar-plugin>3.1.0</v.maven-jar-plugin>
+		<v.maven-jar-plugin>3.1.1</v.maven-jar-plugin>
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
 
