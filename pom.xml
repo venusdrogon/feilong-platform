@@ -87,7 +87,7 @@
 		<version.commons-httpclient>3.1</version.commons-httpclient>
 
 		<!-- http://hc.apache.org/downloads.cgi -->
-		<version.httpcomponents>4.5.6</version.httpcomponents>
+		<version.httpcomponents>4.5.8</version.httpcomponents>
 
 		<!-- base on jdk1.2 legacy(won't update) -->
 		<version.commons-lang>2.6</version.commons-lang>
