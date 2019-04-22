@@ -73,7 +73,8 @@
 
 		<version.commons-digester>2.1</version.commons-digester>
 
-		<version.commons-fileupload>1.3.3</version.commons-fileupload>
+		<!--http://commons.apache.org/proper/commons-fileupload/changes-report.html#a1.4 -->
+		<version.commons-fileupload>1.3.4</version.commons-fileupload>
 
 		<!-- The Commons HttpClient project is now end of life, and is no longer being developed. It has been replaced by the Apache HttpComponents project in its HttpClient
 			and HttpCore modules, which offer better performance and more flexibility. -->
