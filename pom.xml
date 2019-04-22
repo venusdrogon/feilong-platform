@@ -117,7 +117,9 @@
 		<!-- net.sf.json-lib -->
 		<version.json-lib>2.4</version.json-lib>
 
-		<version.jsch>0.1.54</version.jsch>
+		<!-- http://www.jcraft.com/jsch/ -->
+		<!-- http://www.jcraft.com/jsch/ChangeLog -->
+		<version.jsch>0.1.55</version.jsch>
 		<version.jsoup>1.11.3</version.jsoup>
 
 		<version.javamail>1.4.7</version.javamail>
@@ -186,7 +188,7 @@
 		<v.maven-plugin-plugin>3.6.0</v.maven-plugin-plugin>
 
 		<!-- https://maven.apache.org/scm/ -->
-		<!-- SCM Software Configuration Management 软件配置管理  where each SCM command is implemented as a plugin goal -->
+		<!-- SCM Software Configuration Management 软件配置管理 where each SCM command is implemented as a plugin goal -->
 		<!-- 目前主要用于 scm-checkin-all.sh 一键push脚本 -->
 		<v.maven-scm-plugin>1.11.2</v.maven-scm-plugin>
 
