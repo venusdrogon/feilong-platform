@@ -44,14 +44,18 @@
 
 		<!--*********************begin dependency plugins version************************************ -->
 		<version.commons-beanutils>1.9.3</version.commons-beanutils>
-		<version.commons-codec>1.11</version.commons-codec>
+
+		<!-- http://commons.apache.org/proper/commons-codec/changes-report.html#a1.12 -->
+		<version.commons-codec>1.12</version.commons-codec>
 		<version.commons-collections>3.2.2</version.commons-collections>
 		<!-- http://commons.apache.org/proper/commons-collections/index.html -->
 		<!-- 4.3 需要 jdk1.8 -->
 		<version.commons-collections4>4.2</version.commons-collections4>
 
 		<version.commons-configuration>1.10</version.commons-configuration>
+
 		<!-- http://commons.apache.org/proper/commons-configuration/index.html -->
+		<!-- http://commons.apache.org/proper/commons-configuration/changes-report.html#a2.4 -->
 		<version.commons-configuration2>2.3</version.commons-configuration2>
 
 		<!--
