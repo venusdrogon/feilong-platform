@@ -3,10 +3,10 @@
   <groupId>com.feilong.platform.spring</groupId>
   <artifactId>feilong-spring-security</artifactId>
   <versioning>
-    <release>4.0.4</release>
+    <release>4.0.5</release>
     <versions>
-      <version>4.0.4</version>
+      <version>4.0.5</version>
     </versions>
-    <lastUpdated>20190311083436</lastUpdated>
+    <lastUpdated>20190429154934</lastUpdated>
   </versioning>
 </metadata>
