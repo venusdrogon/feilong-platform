@@ -3,10 +3,10 @@
   <groupId>com.feilong.platform.spring</groupId>
   <artifactId>feilong-spring-context-support-quartz</artifactId>
   <versioning>
-    <release>4.0.4</release>
+    <release>4.0.5</release>
     <versions>
-      <version>4.0.4</version>
+      <version>4.0.5</version>
     </versions>
-    <lastUpdated>20190311083239</lastUpdated>
+    <lastUpdated>20190429154738</lastUpdated>
   </versioning>
 </metadata>
