@@ -172,7 +172,8 @@
 		<v.maven-clean-plugin>3.1.0</v.maven-clean-plugin>
 
 		<!-- http://maven.apache.org/plugins/maven-compiler-plugin/download.cgi -->
-		<v.maven-compiler-plugin>3.8.0</v.maven-compiler-plugin>
+		<!-- https://issues.apache.org/jira/projects/MCOMPILER?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
+		<v.maven-compiler-plugin>3.8.1</v.maven-compiler-plugin>
 
 		<v.maven-changes-plugin>2.12.1</v.maven-changes-plugin>
 
@@ -207,7 +208,8 @@
 		<v.maven-site-plugin>3.7.1</v.maven-site-plugin>
 
 		<!-- http://maven.apache.org/plugins/maven-source-plugin/download.cgi -->
-		<v.maven-source-plugin>3.0.1</v.maven-source-plugin>
+		<!-- https://issues.apache.org/jira/projects/MSOURCES?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
+		<v.maven-source-plugin>3.1.0</v.maven-source-plugin>
 
 		<v.maven-surefire-plugin>2.22.1</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
