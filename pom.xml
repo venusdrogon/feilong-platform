@@ -170,7 +170,10 @@
 		<v.maven-assembly-plugin>3.1.1</v.maven-assembly-plugin>
 
 		<v.maven-clean-plugin>3.1.0</v.maven-clean-plugin>
+
+		<!-- http://maven.apache.org/plugins/maven-compiler-plugin/download.cgi -->
 		<v.maven-compiler-plugin>3.8.0</v.maven-compiler-plugin>
+
 		<v.maven-changes-plugin>2.12.1</v.maven-changes-plugin>
 
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
@@ -183,8 +186,10 @@
 
 		<!-- https://issues.apache.org/jira/projects/MJAVADOC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
 		<v.maven-javadoc-plugin>3.1.0</v.maven-javadoc-plugin>
+
 		<!-- https://issues.apache.org/jira/projects/MJAR?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
-		<v.maven-jar-plugin>3.1.1</v.maven-jar-plugin>
+		<v.maven-jar-plugin>3.1.2</v.maven-jar-plugin>
+
 		<v.maven-jxr-plugin>2.5</v.maven-jxr-plugin>
 		<v.maven-pmd-plugin>3.8</v.maven-pmd-plugin>
 
@@ -200,14 +205,19 @@
 		<!-- http://maven.apache.org/plugins/maven-site-plugin/ -->
 		<!-- https://issues.apache.org/jira/browse/MSITE/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
 		<v.maven-site-plugin>3.7.1</v.maven-site-plugin>
+
+		<!-- http://maven.apache.org/plugins/maven-source-plugin/download.cgi -->
 		<v.maven-source-plugin>3.0.1</v.maven-source-plugin>
+
 		<v.maven-surefire-plugin>2.22.1</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
 
 		<!-- https://issues.apache.org/jira/browse/MRESOURCES/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel -->
 		<v.maven-resources-plugin>3.1.0</v.maven-resources-plugin>
 
-		<v.maven-war-plugin>3.2.2</v.maven-war-plugin>
+		<!-- http://maven.apache.org/plugins/maven-war-plugin/index.html -->
+		<!-- https://issues.apache.org/jira/projects/MWAR?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=all -->
+		<v.maven-war-plugin>3.2.3</v.maven-war-plugin>
 
 		<v.maven-shade-plugin>3.2.0</v.maven-shade-plugin>
 
