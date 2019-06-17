@@ -56,33 +56,45 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      }
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      @Test
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASCSameValue(){
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          Map&lt;String, Integer&gt; map = newLinkedHashMap();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASC2(){
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          Map&lt;String, Integer&gt; map = newHashMap();
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>          map.put(<span class="jxr_string">"a"</span>, 123);
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          map.put(<span class="jxr_string">"c"</span>, 345);
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          map.put(<span class="jxr_string">"b"</span>, 8);
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          map.put(<span class="jxr_string">"d"</span>, 123);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>          map.put(<span class="jxr_string">"m"</span>, 3450);
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>          map.put(<span class="jxr_string">"b"</span>, 8);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>          Map&lt;String, Integer&gt; sortByValueAsc = sortMapByValueAsc(map);
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>          assertThat(sortByValueAsc.keySet(), contains(<span class="jxr_string">"b"</span>, <span class="jxr_string">"a"</span>, <span class="jxr_string">"d"</span>, <span class="jxr_string">"c"</span>));
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      }
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * Test sort by value ASC null map.</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      @Test
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASCNullMap(){
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          assertEquals(emptyMap(), sortMapByValueAsc(<strong class="jxr_keyword">null</strong>));
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      }
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      @Test
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASCEmptyMap(){
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          Map&lt;String, Integer&gt; map = emptyMap();
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          assertEquals(emptyMap(), sortMapByValueAsc(map));
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  }
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          assertThat(sortByValueAsc.keySet(), contains(<span class="jxr_string">"b"</span>, <span class="jxr_string">"a"</span>, <span class="jxr_string">"c"</span>, <span class="jxr_string">"m"</span>));
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          <em class="jxr_comment">// assertThat(sortByValueAsc.keySet(), contains("m", "b", "a", "c", "m"));</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      }
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>      @Test
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASCSameValue(){
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          Map&lt;String, Integer&gt; map = newLinkedHashMap();
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          map.put(<span class="jxr_string">"a"</span>, 123);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>          map.put(<span class="jxr_string">"c"</span>, 345);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          map.put(<span class="jxr_string">"b"</span>, 8);
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          map.put(<span class="jxr_string">"d"</span>, 123);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          Map&lt;String, Integer&gt; sortByValueAsc = sortMapByValueAsc(map);
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          assertThat(sortByValueAsc.keySet(), contains(<span class="jxr_string">"b"</span>, <span class="jxr_string">"a"</span>, <span class="jxr_string">"d"</span>, <span class="jxr_string">"c"</span>));
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      }
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * Test sort by value ASC null map.</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      @Test
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASCNullMap(){
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          assertEquals(emptyMap(), sortMapByValueAsc(<strong class="jxr_keyword">null</strong>));
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>      @Test
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testSortByValueASCEmptyMap(){
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>          Map&lt;String, Integer&gt; map = emptyMap();
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          assertEquals(emptyMap(), sortMapByValueAsc(map));
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      }
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
