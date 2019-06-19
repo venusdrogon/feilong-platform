@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.feilong.platform.spring</groupId>
+  <artifactId>parent</artifactId>
+  <version>4.0.6-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190619.174048</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20190619174048</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>4.0.6-20190619.174048-1</value>
+        <updated>20190619174048</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>tests</classifier>
+        <extension>jar</extension>
+        <value>4.0.6-20190619.174048-1</value>
+        <updated>20190619174048</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
