@@ -3,10 +3,10 @@
   <groupId>com.feilong.platform</groupId>
   <artifactId>feilong-taglib</artifactId>
   <versioning>
-    <release>1.13.2</release>
+    <release>1.14.0</release>
     <versions>
-      <version>1.13.2</version>
+      <version>1.14.0</version>
     </versions>
-    <lastUpdated>20190430042412</lastUpdated>
+    <lastUpdated>20190619192440</lastUpdated>
   </versioning>
 </metadata>
