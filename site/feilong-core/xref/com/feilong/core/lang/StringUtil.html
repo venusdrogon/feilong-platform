@@ -428,7 +428,7 @@
 <a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
 <a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">     * String template = "/home/webuser/expressdelivery/${yearMonth}/${expressDeliveryType}/vipQuery_${fileName}.log";</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">     * Date date = new Date();</em>
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">     * Date date = now();</em>
 <a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} valuesMap = newHashMap();</em>
 <a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">     * valuesMap.put("yearMonth", DateUtil.toString(date, DatePattern.YEAR_AND_MONTH));</em>
@@ -455,7 +455,7 @@
 <a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
 <a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, Object&gt;} valuesMap = newHashMap();</em>
-<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * valuesMap.put("today", DateUtil.toString(new Date(), COMMON_DATE));</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * valuesMap.put("today", DateUtil.toString(now(), COMMON_DATE));</em>
 <a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     * valuesMap.put("user", new User(1L));</em>
 <a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     * LOGGER.debug(StringUtil.replace("${today}${today1}${user.id}${user}", valuesMap) + "");</em>
 <a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>

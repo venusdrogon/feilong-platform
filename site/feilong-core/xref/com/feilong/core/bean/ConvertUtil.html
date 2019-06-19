@@ -2508,611 +2508,639 @@
 <a class="jxr_linenumber" name="L2500" href="#L2500">2500</a> <em class="jxr_javadoccomment">     * @param arrays</em>
 <a class="jxr_linenumber" name="L2501" href="#L2501">2501</a> <em class="jxr_javadoccomment">     *            T数组</em>
 <a class="jxr_linenumber" name="L2502" href="#L2502">2502</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;arrays&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptyList()}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2503" href="#L2503">2503</a> <em class="jxr_javadoccomment">     *         否则返回 {@code new ArrayList&lt;T&gt;(Arrays.asList(arrays));}</em>
-<a class="jxr_linenumber" name="L2504" href="#L2504">2504</a> <em class="jxr_javadoccomment">     * @see java.util.Arrays#asList(Object...)</em>
-<a class="jxr_linenumber" name="L2505" href="#L2505">2505</a> <em class="jxr_javadoccomment">     * @see java.util.Collections#singleton(Object)</em>
-<a class="jxr_linenumber" name="L2506" href="#L2506">2506</a> <em class="jxr_javadoccomment">     * @see java.util.Collections#addAll(Collection, Object...)</em>
-<a class="jxr_linenumber" name="L2507" href="#L2507">2507</a> <em class="jxr_javadoccomment">     * @see java.util.Collections#singletonList(Object)</em>
-<a class="jxr_linenumber" name="L2508" href="#L2508">2508</a> <em class="jxr_javadoccomment">     * @see "org.springframework.util.CollectionUtils#arrayToList(Object)"</em>
-<a class="jxr_linenumber" name="L2509" href="#L2509">2509</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2510" href="#L2510">2510</a>     @SafeVarargs
-<a class="jxr_linenumber" name="L2511" href="#L2511">2511</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; List&lt;T&gt; toList(T...arrays){
-<a class="jxr_linenumber" name="L2512" href="#L2512">2512</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(arrays) ? Collections.&lt;T&gt; emptyList() : <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(Arrays.asList(arrays));
-<a class="jxr_linenumber" name="L2513" href="#L2513">2513</a>     }
-<a class="jxr_linenumber" name="L2514" href="#L2514">2514</a> 
-<a class="jxr_linenumber" name="L2515" href="#L2515">2515</a>     <em class="jxr_comment">//---------------------------toSet------------------------------------</em>
-<a class="jxr_linenumber" name="L2516" href="#L2516">2516</a> 
-<a class="jxr_linenumber" name="L2517" href="#L2517">2517</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2518" href="#L2518">2518</a> <em class="jxr_javadoccomment">     * 数组转成 Set ({@link java.util.LinkedHashSet LinkedHashSet}).</em>
-<a class="jxr_linenumber" name="L2519" href="#L2519">2519</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2520" href="#L2520">2520</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2521" href="#L2521">2521</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2522" href="#L2522">2522</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L2523" href="#L2523">2523</a> <em class="jxr_javadoccomment">     * &lt;li&gt;此方法返回的是{@link java.util.LinkedHashSet LinkedHashSet}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2524" href="#L2524">2524</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L2525" href="#L2525">2525</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2526" href="#L2526">2526</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2527" href="#L2527">2527</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;特别适合:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2528" href="#L2528">2528</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2529" href="#L2529">2529</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2530" href="#L2530">2530</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2531" href="#L2531">2531</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2532" href="#L2532">2532</a> <em class="jxr_javadoccomment">     * 如果你要通过以下方式来构造Set:</em>
-<a class="jxr_linenumber" name="L2533" href="#L2533">2533</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2534" href="#L2534">2534</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2535" href="#L2535">2535</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2536" href="#L2536">2536</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2537" href="#L2537">2537</a> <em class="jxr_javadoccomment">     * Set{@code &lt;String&gt;} set = new LinkedHashSet{@code &lt;&gt;}();</em>
-<a class="jxr_linenumber" name="L2538" href="#L2538">2538</a> <em class="jxr_javadoccomment">     * set.add("feilong1");</em>
-<a class="jxr_linenumber" name="L2539" href="#L2539">2539</a> <em class="jxr_javadoccomment">     * set.add("feilong2");</em>
-<a class="jxr_linenumber" name="L2540" href="#L2540">2540</a> <em class="jxr_javadoccomment">     * set.add("feilong2");</em>
-<a class="jxr_linenumber" name="L2541" href="#L2541">2541</a> <em class="jxr_javadoccomment">     * set.add("feilong3");</em>
+<a class="jxr_linenumber" name="L2503" href="#L2503">2503</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2504" href="#L2504">2504</a> <em class="jxr_javadoccomment">     *         &lt;span style="color:red"&gt;提别提醒:注意动态数组(Varargs)的陷阱:&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2505" href="#L2505">2505</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2506" href="#L2506">2506</a> <em class="jxr_javadoccomment">     *         &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2507" href="#L2507">2507</a> <em class="jxr_javadoccomment">     *         assertEquals(emptyList(), &lt;span style="color:red"&gt;toList((User[]) null)&lt;/span&gt;);</em>
+<a class="jxr_linenumber" name="L2508" href="#L2508">2508</a> <em class="jxr_javadoccomment">     *         </em>
+<a class="jxr_linenumber" name="L2509" href="#L2509">2509</a> <em class="jxr_javadoccomment">     *         &lt;span style="color:green"&gt;//-------------------------------------------------&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2510" href="#L2510">2510</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2511" href="#L2511">2511</a> <em class="jxr_javadoccomment">     *         List{@code &lt;User&gt;} list = newArrayList();</em>
+<a class="jxr_linenumber" name="L2512" href="#L2512">2512</a> <em class="jxr_javadoccomment">     *         list.add(null);</em>
+<a class="jxr_linenumber" name="L2513" href="#L2513">2513</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2514" href="#L2514">2514</a> <em class="jxr_javadoccomment">     *         assertEquals(list, &lt;span style="color:red"&gt;toList((User) null)&lt;/span&gt;);</em>
+<a class="jxr_linenumber" name="L2515" href="#L2515">2515</a> <em class="jxr_javadoccomment">     *         &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2516" href="#L2516">2516</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2517" href="#L2517">2517</a> <em class="jxr_javadoccomment">     *         否则返回 {@code new ArrayList&lt;T&gt;(Arrays.asList(arrays));}</em>
+<a class="jxr_linenumber" name="L2518" href="#L2518">2518</a> <em class="jxr_javadoccomment">     * @see java.util.Arrays#asList(Object...)</em>
+<a class="jxr_linenumber" name="L2519" href="#L2519">2519</a> <em class="jxr_javadoccomment">     * @see java.util.Collections#singleton(Object)</em>
+<a class="jxr_linenumber" name="L2520" href="#L2520">2520</a> <em class="jxr_javadoccomment">     * @see java.util.Collections#addAll(Collection, Object...)</em>
+<a class="jxr_linenumber" name="L2521" href="#L2521">2521</a> <em class="jxr_javadoccomment">     * @see java.util.Collections#singletonList(Object)</em>
+<a class="jxr_linenumber" name="L2522" href="#L2522">2522</a> <em class="jxr_javadoccomment">     * @see "org.springframework.util.CollectionUtils#arrayToList(Object)"</em>
+<a class="jxr_linenumber" name="L2523" href="#L2523">2523</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2524" href="#L2524">2524</a>     @SafeVarargs
+<a class="jxr_linenumber" name="L2525" href="#L2525">2525</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; List&lt;T&gt; toList(T...arrays){
+<a class="jxr_linenumber" name="L2526" href="#L2526">2526</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(arrays) ? Collections.&lt;T&gt; emptyList() : <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(Arrays.asList(arrays));
+<a class="jxr_linenumber" name="L2527" href="#L2527">2527</a>     }
+<a class="jxr_linenumber" name="L2528" href="#L2528">2528</a> 
+<a class="jxr_linenumber" name="L2529" href="#L2529">2529</a>     <em class="jxr_comment">//---------------------------toSet------------------------------------</em>
+<a class="jxr_linenumber" name="L2530" href="#L2530">2530</a> 
+<a class="jxr_linenumber" name="L2531" href="#L2531">2531</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2532" href="#L2532">2532</a> <em class="jxr_javadoccomment">     * 数组转成 Set ({@link java.util.LinkedHashSet LinkedHashSet}).</em>
+<a class="jxr_linenumber" name="L2533" href="#L2533">2533</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2534" href="#L2534">2534</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2535" href="#L2535">2535</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2536" href="#L2536">2536</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L2537" href="#L2537">2537</a> <em class="jxr_javadoccomment">     * &lt;li&gt;此方法返回的是{@link java.util.LinkedHashSet LinkedHashSet}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2538" href="#L2538">2538</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L2539" href="#L2539">2539</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2540" href="#L2540">2540</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2541" href="#L2541">2541</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;特别适合:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L2542" href="#L2542">2542</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2543" href="#L2543">2543</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2543" href="#L2543">2543</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L2544" href="#L2544">2544</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2545" href="#L2545">2545</a> <em class="jxr_javadoccomment">     * 此时你可以使用:</em>
-<a class="jxr_linenumber" name="L2546" href="#L2546">2546</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2547" href="#L2547">2547</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2548" href="#L2548">2548</a> <em class="jxr_javadoccomment">     * Set{@code &lt;String&gt;} set = toSet("feilong1", "feilong2", "feilong2", "feilong3");</em>
-<a class="jxr_linenumber" name="L2549" href="#L2549">2549</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2545" href="#L2545">2545</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2546" href="#L2546">2546</a> <em class="jxr_javadoccomment">     * 如果你要通过以下方式来构造Set:</em>
+<a class="jxr_linenumber" name="L2547" href="#L2547">2547</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2548" href="#L2548">2548</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2549" href="#L2549">2549</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
 <a class="jxr_linenumber" name="L2550" href="#L2550">2550</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2551" href="#L2551">2551</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2552" href="#L2552">2552</a> <em class="jxr_javadoccomment">     * 代码会更简洁</em>
-<a class="jxr_linenumber" name="L2553" href="#L2553">2553</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2554" href="#L2554">2554</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2555" href="#L2555">2555</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2556" href="#L2556">2556</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;甚至于:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2557" href="#L2557">2557</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2558" href="#L2558">2558</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2559" href="#L2559">2559</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2560" href="#L2560">2560</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2561" href="#L2561">2561</a> <em class="jxr_javadoccomment">     * 有很多时候,参数需要一个对象Set,构造的时候,你需要这样</em>
-<a class="jxr_linenumber" name="L2562" href="#L2562">2562</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2563" href="#L2563">2563</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2564" href="#L2564">2564</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2565" href="#L2565">2565</a> <em class="jxr_javadoccomment">     * Set{@code &lt;UserAddress&gt;} userAddresseSet = new LinkedHashSet{@code &lt;&gt;}();</em>
-<a class="jxr_linenumber" name="L2566" href="#L2566">2566</a> <em class="jxr_javadoccomment">     * UserAddress userAddress = new UserAddress();</em>
-<a class="jxr_linenumber" name="L2567" href="#L2567">2567</a> <em class="jxr_javadoccomment">     * userAddress.setAddress("上海");</em>
-<a class="jxr_linenumber" name="L2568" href="#L2568">2568</a> <em class="jxr_javadoccomment">     * userAddresseSet.add(userAddress);</em>
-<a class="jxr_linenumber" name="L2569" href="#L2569">2569</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2570" href="#L2570">2570</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2571" href="#L2571">2571</a> <em class="jxr_javadoccomment">     * 你可以重构成:</em>
-<a class="jxr_linenumber" name="L2572" href="#L2572">2572</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2573" href="#L2573">2573</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2574" href="#L2574">2574</a> <em class="jxr_javadoccomment">     * UserAddress userAddress = new UserAddress();</em>
-<a class="jxr_linenumber" name="L2575" href="#L2575">2575</a> <em class="jxr_javadoccomment">     * userAddress.setAddress("上海");</em>
-<a class="jxr_linenumber" name="L2576" href="#L2576">2576</a> <em class="jxr_javadoccomment">     * Set{@code &lt;UserAddress&gt;} userAddresseSet = toSet(userAddress);</em>
-<a class="jxr_linenumber" name="L2577" href="#L2577">2577</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2578" href="#L2578">2578</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2579" href="#L2579">2579</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2580" href="#L2580">2580</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2581" href="#L2581">2581</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2582" href="#L2582">2582</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2583" href="#L2583">2583</a> <em class="jxr_javadoccomment">     * @param arrays</em>
-<a class="jxr_linenumber" name="L2584" href="#L2584">2584</a> <em class="jxr_javadoccomment">     *            the arrays</em>
-<a class="jxr_linenumber" name="L2585" href="#L2585">2585</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;arrays&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptySet()}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2586" href="#L2586">2586</a> <em class="jxr_javadoccomment">     *         否则返回 {@code new LinkedHashSet&lt;T&gt;(Arrays.asList(arrays));}</em>
-<a class="jxr_linenumber" name="L2587" href="#L2587">2587</a> <em class="jxr_javadoccomment">     * @see "com.google.common.collect.Sets#newHashSet(E...)"</em>
-<a class="jxr_linenumber" name="L2588" href="#L2588">2588</a> <em class="jxr_javadoccomment">     * @since 1.9.6</em>
-<a class="jxr_linenumber" name="L2589" href="#L2589">2589</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2590" href="#L2590">2590</a>     @SafeVarargs
-<a class="jxr_linenumber" name="L2591" href="#L2591">2591</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; Set&lt;T&gt; toSet(T...arrays){
-<a class="jxr_linenumber" name="L2592" href="#L2592">2592</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(arrays) ? Collections.&lt;T&gt; emptySet() : <strong class="jxr_keyword">new</strong> LinkedHashSet&lt;&gt;(Arrays.asList(arrays));
-<a class="jxr_linenumber" name="L2593" href="#L2593">2593</a>     }
-<a class="jxr_linenumber" name="L2594" href="#L2594">2594</a> 
-<a class="jxr_linenumber" name="L2595" href="#L2595">2595</a>     <em class="jxr_comment">//----------------------------toArray-----------------------------------</em>
-<a class="jxr_linenumber" name="L2596" href="#L2596">2596</a> 
-<a class="jxr_linenumber" name="L2597" href="#L2597">2597</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2598" href="#L2598">2598</a> <em class="jxr_javadoccomment">     * 将动态数组转成数组.</em>
-<a class="jxr_linenumber" name="L2599" href="#L2599">2599</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2600" href="#L2600">2600</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2601" href="#L2601">2601</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2602" href="#L2602">2602</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2603" href="#L2603">2603</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2604" href="#L2604">2604</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2605" href="#L2605">2605</a> <em class="jxr_javadoccomment">     * String[] array = ConvertUtil.toArray("1", "2");                  =   ["1", "2"];</em>
-<a class="jxr_linenumber" name="L2606" href="#L2606">2606</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2607" href="#L2607">2607</a> <em class="jxr_javadoccomment">     * String[] emptyArray = ConvertUtil.{@code &lt;String&gt;}toArray();     =   [] ; //= new String[] {};</em>
-<a class="jxr_linenumber" name="L2608" href="#L2608">2608</a> <em class="jxr_javadoccomment">     * Integer[] emptyArray = ConvertUtil.{@code &lt;Integer&gt;}toArray();   =   [] ; //= new Integer[] {};</em>
-<a class="jxr_linenumber" name="L2609" href="#L2609">2609</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2610" href="#L2610">2610</a> <em class="jxr_javadoccomment">     * &lt;span style="color:red"&gt;//注意&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2611" href="#L2611">2611</a> <em class="jxr_javadoccomment">     * String[] nullArray = ConvertUtil.toArray(null)                   =   null;</em>
-<a class="jxr_linenumber" name="L2612" href="#L2612">2612</a> <em class="jxr_javadoccomment">     * ConvertUtil.toArray((String) null)                               =   new String[] { null }</em>
-<a class="jxr_linenumber" name="L2613" href="#L2613">2613</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2614" href="#L2614">2614</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2615" href="#L2615">2615</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2616" href="#L2616">2616</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2617" href="#L2617">2617</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;注意:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2618" href="#L2618">2618</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2619" href="#L2619">2619</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2620" href="#L2620">2620</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2621" href="#L2621">2621</a> <em class="jxr_javadoccomment">     * 数组是具体化的(reified),而泛型在运行时是被擦除的(erasure)。&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2622" href="#L2622">2622</a> <em class="jxr_javadoccomment">     * 数组是在运行时才去判断数组元素的类型约束,而泛型正好相反,在运行时,泛型的类型信息是会被擦除的,只有编译的时候才会对类型进行强化。</em>
-<a class="jxr_linenumber" name="L2623" href="#L2623">2623</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2624" href="#L2624">2624</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2625" href="#L2625">2625</a> <em class="jxr_javadoccomment">     * &lt;b&gt;泛型擦除的规则:&lt;/b&gt;</em>
-<a class="jxr_linenumber" name="L2626" href="#L2626">2626</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2627" href="#L2627">2627</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L2628" href="#L2628">2628</a> <em class="jxr_javadoccomment">     * &lt;li&gt;所有参数化容器类都被擦除成非参数化的(raw type); 如 List{@code &lt;E&gt;}、List{@code &lt;List&lt;E&gt;&gt;}都被擦除成 List&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2629" href="#L2629">2629</a> <em class="jxr_javadoccomment">     * &lt;li&gt;所有参数化数组都被擦除成非参数化的数组;如 List{@code &lt;E&gt;}[],被擦除成 List[]&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2630" href="#L2630">2630</a> <em class="jxr_javadoccomment">     * &lt;li&gt;Raw type 的容器类,被擦除成其自身,如 List{@code &lt;E&gt;}被擦 除成 List&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2631" href="#L2631">2631</a> <em class="jxr_javadoccomment">     * &lt;li&gt;原生类型(int,String 还有 wrapper 类)都擦除成他们的自身&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2632" href="#L2632">2632</a> <em class="jxr_javadoccomment">     * &lt;li&gt;参数类型 E,如果没有上限,则被擦除成 Object&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2633" href="#L2633">2633</a> <em class="jxr_javadoccomment">     * &lt;li&gt;所有约束参数如{@code &lt;? Extends E&gt;}、{@code &lt;X extends E&gt;}都被擦 除成 E&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2634" href="#L2634">2634</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果有多个约束,擦除成第一个,如{@code &lt;T extends Object &amp; E&gt;},则擦除成 Object&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2635" href="#L2635">2635</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L2636" href="#L2636">2636</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2637" href="#L2637">2637</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2638" href="#L2638">2638</a> <em class="jxr_javadoccomment">     * 这将会导致下面的代码:</em>
-<a class="jxr_linenumber" name="L2639" href="#L2639">2639</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2640" href="#L2640">2640</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2641" href="#L2641">2641</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2551" href="#L2551">2551</a> <em class="jxr_javadoccomment">     * Set{@code &lt;String&gt;} set = new LinkedHashSet{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L2552" href="#L2552">2552</a> <em class="jxr_javadoccomment">     * set.add("feilong1");</em>
+<a class="jxr_linenumber" name="L2553" href="#L2553">2553</a> <em class="jxr_javadoccomment">     * set.add("feilong2");</em>
+<a class="jxr_linenumber" name="L2554" href="#L2554">2554</a> <em class="jxr_javadoccomment">     * set.add("feilong2");</em>
+<a class="jxr_linenumber" name="L2555" href="#L2555">2555</a> <em class="jxr_javadoccomment">     * set.add("feilong3");</em>
+<a class="jxr_linenumber" name="L2556" href="#L2556">2556</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2557" href="#L2557">2557</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2558" href="#L2558">2558</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2559" href="#L2559">2559</a> <em class="jxr_javadoccomment">     * 此时你可以使用:</em>
+<a class="jxr_linenumber" name="L2560" href="#L2560">2560</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2561" href="#L2561">2561</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2562" href="#L2562">2562</a> <em class="jxr_javadoccomment">     * Set{@code &lt;String&gt;} set = toSet("feilong1", "feilong2", "feilong2", "feilong3");</em>
+<a class="jxr_linenumber" name="L2563" href="#L2563">2563</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2564" href="#L2564">2564</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2565" href="#L2565">2565</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2566" href="#L2566">2566</a> <em class="jxr_javadoccomment">     * 代码会更简洁</em>
+<a class="jxr_linenumber" name="L2567" href="#L2567">2567</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2568" href="#L2568">2568</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2569" href="#L2569">2569</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2570" href="#L2570">2570</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;甚至于:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2571" href="#L2571">2571</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2572" href="#L2572">2572</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2573" href="#L2573">2573</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2574" href="#L2574">2574</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2575" href="#L2575">2575</a> <em class="jxr_javadoccomment">     * 有很多时候,参数需要一个对象Set,构造的时候,你需要这样</em>
+<a class="jxr_linenumber" name="L2576" href="#L2576">2576</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2577" href="#L2577">2577</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2578" href="#L2578">2578</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2579" href="#L2579">2579</a> <em class="jxr_javadoccomment">     * Set{@code &lt;UserAddress&gt;} userAddresseSet = new LinkedHashSet{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L2580" href="#L2580">2580</a> <em class="jxr_javadoccomment">     * UserAddress userAddress = new UserAddress();</em>
+<a class="jxr_linenumber" name="L2581" href="#L2581">2581</a> <em class="jxr_javadoccomment">     * userAddress.setAddress("上海");</em>
+<a class="jxr_linenumber" name="L2582" href="#L2582">2582</a> <em class="jxr_javadoccomment">     * userAddresseSet.add(userAddress);</em>
+<a class="jxr_linenumber" name="L2583" href="#L2583">2583</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2584" href="#L2584">2584</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2585" href="#L2585">2585</a> <em class="jxr_javadoccomment">     * 你可以重构成:</em>
+<a class="jxr_linenumber" name="L2586" href="#L2586">2586</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2587" href="#L2587">2587</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2588" href="#L2588">2588</a> <em class="jxr_javadoccomment">     * UserAddress userAddress = new UserAddress();</em>
+<a class="jxr_linenumber" name="L2589" href="#L2589">2589</a> <em class="jxr_javadoccomment">     * userAddress.setAddress("上海");</em>
+<a class="jxr_linenumber" name="L2590" href="#L2590">2590</a> <em class="jxr_javadoccomment">     * Set{@code &lt;UserAddress&gt;} userAddresseSet = toSet(userAddress);</em>
+<a class="jxr_linenumber" name="L2591" href="#L2591">2591</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2592" href="#L2592">2592</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2593" href="#L2593">2593</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2594" href="#L2594">2594</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2595" href="#L2595">2595</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L2596" href="#L2596">2596</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2597" href="#L2597">2597</a> <em class="jxr_javadoccomment">     * @param arrays</em>
+<a class="jxr_linenumber" name="L2598" href="#L2598">2598</a> <em class="jxr_javadoccomment">     *            the arrays</em>
+<a class="jxr_linenumber" name="L2599" href="#L2599">2599</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;arrays&lt;/code&gt; 是null或者empty,返回 {@link Collections#emptySet()}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2600" href="#L2600">2600</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2601" href="#L2601">2601</a> <em class="jxr_javadoccomment">     *         &lt;span style="color:red"&gt;提别提醒:注意动态数组(Varargs)的陷阱:&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2602" href="#L2602">2602</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2603" href="#L2603">2603</a> <em class="jxr_javadoccomment">     *         &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2604" href="#L2604">2604</a> <em class="jxr_javadoccomment">     *         assertEquals(emptySet(), toSet(&lt;span style="color:red"&gt;(User[]) null&lt;/span&gt;));</em>
+<a class="jxr_linenumber" name="L2605" href="#L2605">2605</a> <em class="jxr_javadoccomment">     *         </em>
+<a class="jxr_linenumber" name="L2606" href="#L2606">2606</a> <em class="jxr_javadoccomment">     *         &lt;span style="color:green"&gt;//-------------------------------------------------&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2607" href="#L2607">2607</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2608" href="#L2608">2608</a> <em class="jxr_javadoccomment">     *         Set{@code &lt;User&gt;} set = new LinkedHashSet&lt;&gt;();</em>
+<a class="jxr_linenumber" name="L2609" href="#L2609">2609</a> <em class="jxr_javadoccomment">     *         set.add(null);</em>
+<a class="jxr_linenumber" name="L2610" href="#L2610">2610</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2611" href="#L2611">2611</a> <em class="jxr_javadoccomment">     *         assertEquals(list, toSet(&lt;span style="color:red"&gt;(User) null&lt;/span&gt;));</em>
+<a class="jxr_linenumber" name="L2612" href="#L2612">2612</a> <em class="jxr_javadoccomment">     *         &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2613" href="#L2613">2613</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2614" href="#L2614">2614</a> <em class="jxr_javadoccomment">     *         否则返回 {@code new LinkedHashSet&lt;T&gt;(Arrays.asList(arrays));}</em>
+<a class="jxr_linenumber" name="L2615" href="#L2615">2615</a> <em class="jxr_javadoccomment">     * @see "com.google.common.collect.Sets#newHashSet(E...)"</em>
+<a class="jxr_linenumber" name="L2616" href="#L2616">2616</a> <em class="jxr_javadoccomment">     * @since 1.9.6</em>
+<a class="jxr_linenumber" name="L2617" href="#L2617">2617</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2618" href="#L2618">2618</a>     @SafeVarargs
+<a class="jxr_linenumber" name="L2619" href="#L2619">2619</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; Set&lt;T&gt; toSet(T...arrays){
+<a class="jxr_linenumber" name="L2620" href="#L2620">2620</a>         <strong class="jxr_keyword">return</strong> isNullOrEmpty(arrays) ? Collections.&lt;T&gt; emptySet() : <strong class="jxr_keyword">new</strong> LinkedHashSet&lt;&gt;(Arrays.asList(arrays));
+<a class="jxr_linenumber" name="L2621" href="#L2621">2621</a>     }
+<a class="jxr_linenumber" name="L2622" href="#L2622">2622</a> 
+<a class="jxr_linenumber" name="L2623" href="#L2623">2623</a>     <em class="jxr_comment">//----------------------------toArray-----------------------------------</em>
+<a class="jxr_linenumber" name="L2624" href="#L2624">2624</a> 
+<a class="jxr_linenumber" name="L2625" href="#L2625">2625</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2626" href="#L2626">2626</a> <em class="jxr_javadoccomment">     * 将动态数组转成数组.</em>
+<a class="jxr_linenumber" name="L2627" href="#L2627">2627</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2628" href="#L2628">2628</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2629" href="#L2629">2629</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2630" href="#L2630">2630</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2631" href="#L2631">2631</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2632" href="#L2632">2632</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2633" href="#L2633">2633</a> <em class="jxr_javadoccomment">     * String[] array = ConvertUtil.toArray("1", "2");                  =   ["1", "2"];</em>
+<a class="jxr_linenumber" name="L2634" href="#L2634">2634</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2635" href="#L2635">2635</a> <em class="jxr_javadoccomment">     * String[] emptyArray = ConvertUtil.{@code &lt;String&gt;}toArray();     =   [] ; //= new String[] {};</em>
+<a class="jxr_linenumber" name="L2636" href="#L2636">2636</a> <em class="jxr_javadoccomment">     * Integer[] emptyArray = ConvertUtil.{@code &lt;Integer&gt;}toArray();   =   [] ; //= new Integer[] {};</em>
+<a class="jxr_linenumber" name="L2637" href="#L2637">2637</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2638" href="#L2638">2638</a> <em class="jxr_javadoccomment">     * &lt;span style="color:red"&gt;//注意&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2639" href="#L2639">2639</a> <em class="jxr_javadoccomment">     * String[] nullArray = ConvertUtil.toArray(null)                   =   null;</em>
+<a class="jxr_linenumber" name="L2640" href="#L2640">2640</a> <em class="jxr_javadoccomment">     * ConvertUtil.toArray((String) null)                               =   new String[] { null }</em>
+<a class="jxr_linenumber" name="L2641" href="#L2641">2641</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L2642" href="#L2642">2642</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2643" href="#L2643">2643</a> <em class="jxr_javadoccomment">     * public static {@code &lt;K, V&gt;} Map{@code &lt;K, V[]&gt;} toArrayValueMap(Map{@code &lt;K, V&gt;} singleValueMap){</em>
-<a class="jxr_linenumber" name="L2644" href="#L2644">2644</a> <em class="jxr_javadoccomment">     *     Map{@code &lt;K, V[]&gt;} arrayValueMap = newLinkedHashMap(singleValueMap.size());//保证顺序和参数singleValueMap顺序相同</em>
-<a class="jxr_linenumber" name="L2645" href="#L2645">2645</a> <em class="jxr_javadoccomment">     *     for (Map.Entry{@code &lt;K, V&gt;} entry : singleValueMap.entrySet()){</em>
-<a class="jxr_linenumber" name="L2646" href="#L2646">2646</a> <em class="jxr_javadoccomment">     *         arrayValueMap.put(entry.getKey(), toArray(entry.getValue()));//注意此处的Value不要声明成V,否则会变成Object数组</em>
-<a class="jxr_linenumber" name="L2647" href="#L2647">2647</a> <em class="jxr_javadoccomment">     *     }</em>
-<a class="jxr_linenumber" name="L2648" href="#L2648">2648</a> <em class="jxr_javadoccomment">     *     return arrayValueMap;</em>
-<a class="jxr_linenumber" name="L2649" href="#L2649">2649</a> <em class="jxr_javadoccomment">     * }</em>
-<a class="jxr_linenumber" name="L2650" href="#L2650">2650</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2651" href="#L2651">2651</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2652" href="#L2652">2652</a> <em class="jxr_javadoccomment">     * 调用的时候,</em>
-<a class="jxr_linenumber" name="L2653" href="#L2653">2653</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2654" href="#L2654">2654</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2655" href="#L2655">2655</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} singleValueMap = MapUtil.newLinkedHashMap(2);</em>
-<a class="jxr_linenumber" name="L2656" href="#L2656">2656</a> <em class="jxr_javadoccomment">     * singleValueMap.put("province", "江苏省");</em>
-<a class="jxr_linenumber" name="L2657" href="#L2657">2657</a> <em class="jxr_javadoccomment">     * singleValueMap.put("city", "南通市");</em>
-<a class="jxr_linenumber" name="L2658" href="#L2658">2658</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2659" href="#L2659">2659</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String[]&gt;} arrayValueMap = MapUtil.toArrayValueMap(singleValueMap);</em>
-<a class="jxr_linenumber" name="L2660" href="#L2660">2660</a> <em class="jxr_javadoccomment">     * String[] strings = arrayValueMap.get("province");//此时返回的是 Object[]</em>
-<a class="jxr_linenumber" name="L2661" href="#L2661">2661</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2662" href="#L2662">2662</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2663" href="#L2663">2663</a> <em class="jxr_javadoccomment">     * 会出现异常</em>
+<a class="jxr_linenumber" name="L2643" href="#L2643">2643</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2644" href="#L2644">2644</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2645" href="#L2645">2645</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;注意:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2646" href="#L2646">2646</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2647" href="#L2647">2647</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2648" href="#L2648">2648</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2649" href="#L2649">2649</a> <em class="jxr_javadoccomment">     * 数组是具体化的(reified),而泛型在运行时是被擦除的(erasure)。&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2650" href="#L2650">2650</a> <em class="jxr_javadoccomment">     * 数组是在运行时才去判断数组元素的类型约束,而泛型正好相反,在运行时,泛型的类型信息是会被擦除的,只有编译的时候才会对类型进行强化。</em>
+<a class="jxr_linenumber" name="L2651" href="#L2651">2651</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2652" href="#L2652">2652</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2653" href="#L2653">2653</a> <em class="jxr_javadoccomment">     * &lt;b&gt;泛型擦除的规则:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L2654" href="#L2654">2654</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2655" href="#L2655">2655</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L2656" href="#L2656">2656</a> <em class="jxr_javadoccomment">     * &lt;li&gt;所有参数化容器类都被擦除成非参数化的(raw type); 如 List{@code &lt;E&gt;}、List{@code &lt;List&lt;E&gt;&gt;}都被擦除成 List&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2657" href="#L2657">2657</a> <em class="jxr_javadoccomment">     * &lt;li&gt;所有参数化数组都被擦除成非参数化的数组;如 List{@code &lt;E&gt;}[],被擦除成 List[]&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2658" href="#L2658">2658</a> <em class="jxr_javadoccomment">     * &lt;li&gt;Raw type 的容器类,被擦除成其自身,如 List{@code &lt;E&gt;}被擦 除成 List&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2659" href="#L2659">2659</a> <em class="jxr_javadoccomment">     * &lt;li&gt;原生类型(int,String 还有 wrapper 类)都擦除成他们的自身&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2660" href="#L2660">2660</a> <em class="jxr_javadoccomment">     * &lt;li&gt;参数类型 E,如果没有上限,则被擦除成 Object&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2661" href="#L2661">2661</a> <em class="jxr_javadoccomment">     * &lt;li&gt;所有约束参数如{@code &lt;? Extends E&gt;}、{@code &lt;X extends E&gt;}都被擦 除成 E&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2662" href="#L2662">2662</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果有多个约束,擦除成第一个,如{@code &lt;T extends Object &amp; E&gt;},则擦除成 Object&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2663" href="#L2663">2663</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
 <a class="jxr_linenumber" name="L2664" href="#L2664">2664</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2665" href="#L2665">2665</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2666" href="#L2666">2666</a> <em class="jxr_javadoccomment">     * java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.String;</em>
-<a class="jxr_linenumber" name="L2667" href="#L2667">2667</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2665" href="#L2665">2665</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2666" href="#L2666">2666</a> <em class="jxr_javadoccomment">     * 这将会导致下面的代码:</em>
+<a class="jxr_linenumber" name="L2667" href="#L2667">2667</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L2668" href="#L2668">2668</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2669" href="#L2669">2669</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2670" href="#L2670">2670</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2671" href="#L2671">2671</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2672" href="#L2672">2672</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2673" href="#L2673">2673</a> <em class="jxr_javadoccomment">     * @param arrays</em>
-<a class="jxr_linenumber" name="L2674" href="#L2674">2674</a> <em class="jxr_javadoccomment">     *            the arrays</em>
-<a class="jxr_linenumber" name="L2675" href="#L2675">2675</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;arrays&lt;/code&gt; 是null,返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2676" href="#L2676">2676</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.ArrayUtils#toArray(Object...)</em>
-<a class="jxr_linenumber" name="L2677" href="#L2677">2677</a> <em class="jxr_javadoccomment">     * @since commons-lang 3</em>
-<a class="jxr_linenumber" name="L2678" href="#L2678">2678</a> <em class="jxr_javadoccomment">     * @since 1.6.0</em>
-<a class="jxr_linenumber" name="L2679" href="#L2679">2679</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2680" href="#L2680">2680</a>     @SafeVarargs
-<a class="jxr_linenumber" name="L2681" href="#L2681">2681</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T[] toArray(T...arrays){
-<a class="jxr_linenumber" name="L2682" href="#L2682">2682</a>         <strong class="jxr_keyword">return</strong> ArrayUtils.toArray(arrays);
-<a class="jxr_linenumber" name="L2683" href="#L2683">2683</a>     }
-<a class="jxr_linenumber" name="L2684" href="#L2684">2684</a> 
-<a class="jxr_linenumber" name="L2685" href="#L2685">2685</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2686" href="#L2686">2686</a> <em class="jxr_javadoccomment">     * 将集合 &lt;code&gt;collection&lt;/code&gt; 转成数组.</em>
-<a class="jxr_linenumber" name="L2687" href="#L2687">2687</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2688" href="#L2688">2688</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2689" href="#L2689">2689</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2690" href="#L2690">2690</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2691" href="#L2691">2691</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2692" href="#L2692">2692</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2693" href="#L2693">2693</a> <em class="jxr_javadoccomment">     * List{@code &lt;String&gt;} list = new ArrayList{@code &lt;&gt;}();</em>
-<a class="jxr_linenumber" name="L2694" href="#L2694">2694</a> <em class="jxr_javadoccomment">     * list.add("xinge");</em>
-<a class="jxr_linenumber" name="L2695" href="#L2695">2695</a> <em class="jxr_javadoccomment">     * list.add("feilong");</em>
-<a class="jxr_linenumber" name="L2696" href="#L2696">2696</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2697" href="#L2697">2697</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2698" href="#L2698">2698</a> <em class="jxr_javadoccomment">     * 以前你需要写成:</em>
-<a class="jxr_linenumber" name="L2699" href="#L2699">2699</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2700" href="#L2700">2700</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2701" href="#L2701">2701</a> <em class="jxr_javadoccomment">     * list.toArray(new String[list.size()]);</em>
-<a class="jxr_linenumber" name="L2702" href="#L2702">2702</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2703" href="#L2703">2703</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2704" href="#L2704">2704</a> <em class="jxr_javadoccomment">     * 现在你只需要写成:</em>
-<a class="jxr_linenumber" name="L2705" href="#L2705">2705</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2706" href="#L2706">2706</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2707" href="#L2707">2707</a> <em class="jxr_javadoccomment">     * String[] array = ConvertUtil.toArray(list, String.class);</em>
-<a class="jxr_linenumber" name="L2708" href="#L2708">2708</a> <em class="jxr_javadoccomment">     * LOGGER.info(JsonUtil.format(array));</em>
-<a class="jxr_linenumber" name="L2709" href="#L2709">2709</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2710" href="#L2710">2710</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2711" href="#L2711">2711</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
-<a class="jxr_linenumber" name="L2712" href="#L2712">2712</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2713" href="#L2713">2713</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2714" href="#L2714">2714</a> <em class="jxr_javadoccomment">     * ["xinge","feilong"]</em>
-<a class="jxr_linenumber" name="L2715" href="#L2715">2715</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2716" href="#L2716">2716</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2717" href="#L2717">2717</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2718" href="#L2718">2718</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2719" href="#L2719">2719</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2720" href="#L2720">2720</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2721" href="#L2721">2721</a> <em class="jxr_javadoccomment">     * @param collection</em>
-<a class="jxr_linenumber" name="L2722" href="#L2722">2722</a> <em class="jxr_javadoccomment">     *            collection</em>
-<a class="jxr_linenumber" name="L2723" href="#L2723">2723</a> <em class="jxr_javadoccomment">     * @param arrayComponentType</em>
-<a class="jxr_linenumber" name="L2724" href="#L2724">2724</a> <em class="jxr_javadoccomment">     *            数组组件类型的 Class</em>
-<a class="jxr_linenumber" name="L2725" href="#L2725">2725</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;collection&lt;/code&gt; 是null,直接返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2726" href="#L2726">2726</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;arrayComponentType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2727" href="#L2727">2727</a> <em class="jxr_javadoccomment">     * @see java.lang.reflect.Array#newInstance(Class, int)</em>
-<a class="jxr_linenumber" name="L2728" href="#L2728">2728</a> <em class="jxr_javadoccomment">     * @see java.lang.reflect.Array#newInstance(Class, int...)</em>
-<a class="jxr_linenumber" name="L2729" href="#L2729">2729</a> <em class="jxr_javadoccomment">     * @see java.util.Collection#toArray()</em>
-<a class="jxr_linenumber" name="L2730" href="#L2730">2730</a> <em class="jxr_javadoccomment">     * @see java.util.Collection#toArray(Object[])</em>
-<a class="jxr_linenumber" name="L2731" href="#L2731">2731</a> <em class="jxr_javadoccomment">     * @see java.util.List#toArray()</em>
-<a class="jxr_linenumber" name="L2732" href="#L2732">2732</a> <em class="jxr_javadoccomment">     * @see java.util.List#toArray(Object[])</em>
-<a class="jxr_linenumber" name="L2733" href="#L2733">2733</a> <em class="jxr_javadoccomment">     * @see java.util.Vector#toArray()</em>
-<a class="jxr_linenumber" name="L2734" href="#L2734">2734</a> <em class="jxr_javadoccomment">     * @see java.util.Vector#toArray(Object[])</em>
-<a class="jxr_linenumber" name="L2735" href="#L2735">2735</a> <em class="jxr_javadoccomment">     * @see java.util.LinkedList#toArray()</em>
-<a class="jxr_linenumber" name="L2736" href="#L2736">2736</a> <em class="jxr_javadoccomment">     * @see java.util.LinkedList#toArray(Object[])</em>
-<a class="jxr_linenumber" name="L2737" href="#L2737">2737</a> <em class="jxr_javadoccomment">     * @see java.util.ArrayList#toArray()</em>
-<a class="jxr_linenumber" name="L2738" href="#L2738">2738</a> <em class="jxr_javadoccomment">     * @see java.util.ArrayList#toArray(Object[])</em>
-<a class="jxr_linenumber" name="L2739" href="#L2739">2739</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2740" href="#L2740">2740</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.collections4.IteratorUtils#toArray(Iterator,Class)</em>
-<a class="jxr_linenumber" name="L2741" href="#L2741">2741</a> <em class="jxr_javadoccomment">     * @see "org.springframework.util.StringUtils#toStringArray(Collection)"</em>
-<a class="jxr_linenumber" name="L2742" href="#L2742">2742</a> <em class="jxr_javadoccomment">     * @since 1.2.2</em>
-<a class="jxr_linenumber" name="L2743" href="#L2743">2743</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2744" href="#L2744">2744</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T[] toArray(Collection&lt;T&gt; collection,Class&lt;T&gt; arrayComponentType){
-<a class="jxr_linenumber" name="L2745" href="#L2745">2745</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == collection){ <em class="jxr_comment">// since 1.8.6</em>
-<a class="jxr_linenumber" name="L2746" href="#L2746">2746</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L2747" href="#L2747">2747</a>         }
-<a class="jxr_linenumber" name="L2748" href="#L2748">2748</a> 
-<a class="jxr_linenumber" name="L2749" href="#L2749">2749</a>         Validate.notNull(arrayComponentType, <span class="jxr_string">"arrayComponentType must not be null"</span>);
-<a class="jxr_linenumber" name="L2750" href="#L2750">2750</a> 
-<a class="jxr_linenumber" name="L2751" href="#L2751">2751</a>         <em class="jxr_comment">// 如果采用大家常用的把a的length设为0,就需要反射API来创建一个大小为size的数组,而这对性能有一定的影响.</em>
-<a class="jxr_linenumber" name="L2752" href="#L2752">2752</a>         <em class="jxr_comment">// 所以最好的方式就是直接把a的length设为Collection的size从而避免调用反射API来达到一定的性能优化.</em>
-<a class="jxr_linenumber" name="L2753" href="#L2753">2753</a>         T[] array = ArrayUtil.newArray(arrayComponentType, collection.size());
-<a class="jxr_linenumber" name="L2754" href="#L2754">2754</a> 
-<a class="jxr_linenumber" name="L2755" href="#L2755">2755</a>         <em class="jxr_comment">//注意,toArray(new Object[0]) 和 toArray() 在功能上是相同的. </em>
-<a class="jxr_linenumber" name="L2756" href="#L2756">2756</a>         <strong class="jxr_keyword">return</strong> collection.toArray(array);
-<a class="jxr_linenumber" name="L2757" href="#L2757">2757</a>     }
-<a class="jxr_linenumber" name="L2758" href="#L2758">2758</a> 
-<a class="jxr_linenumber" name="L2759" href="#L2759">2759</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2760" href="#L2760">2760</a> <em class="jxr_javadoccomment">     * 将字符串数组 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 转成指定类型 &lt;code&gt;targetType&lt;/code&gt; 的数组.</em>
-<a class="jxr_linenumber" name="L2761" href="#L2761">2761</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2762" href="#L2762">2762</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2763" href="#L2763">2763</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2764" href="#L2764">2764</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2765" href="#L2765">2765</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2766" href="#L2766">2766</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2767" href="#L2767">2767</a> <em class="jxr_javadoccomment">     * String[] ss = { "2", "1" };</em>
-<a class="jxr_linenumber" name="L2768" href="#L2768">2768</a> <em class="jxr_javadoccomment">     * toArray(ss, Long.class);                                     =   new Long[] { 2L, 1L }</em>
-<a class="jxr_linenumber" name="L2769" href="#L2769">2769</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2770" href="#L2770">2770</a> <em class="jxr_javadoccomment">     * ConvertUtil.toArray((String[]) null, Serializable.class)     =   null</em>
-<a class="jxr_linenumber" name="L2771" href="#L2771">2771</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2772" href="#L2772">2772</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2773" href="#L2773">2773</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2774" href="#L2774">2774</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2775" href="#L2775">2775</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2776" href="#L2776">2776</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2777" href="#L2777">2777</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
-<a class="jxr_linenumber" name="L2778" href="#L2778">2778</a> <em class="jxr_javadoccomment">     *            the values</em>
-<a class="jxr_linenumber" name="L2779" href="#L2779">2779</a> <em class="jxr_javadoccomment">     * @param targetType</em>
-<a class="jxr_linenumber" name="L2780" href="#L2780">2780</a> <em class="jxr_javadoccomment">     *            要被转换的目标类型</em>
-<a class="jxr_linenumber" name="L2781" href="#L2781">2781</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,那么返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2782" href="#L2782">2782</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;targetType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2783" href="#L2783">2783</a> <em class="jxr_javadoccomment">     *         否则调用 {@link ConvertUtils#convert(String[], Class)}</em>
-<a class="jxr_linenumber" name="L2784" href="#L2784">2784</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.ConvertUtils#convert(String[], Class)</em>
-<a class="jxr_linenumber" name="L2785" href="#L2785">2785</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.ConvertUtilsBean#convert(String[], Class)</em>
-<a class="jxr_linenumber" name="L2786" href="#L2786">2786</a> <em class="jxr_javadoccomment">     * @since 1.6.0</em>
-<a class="jxr_linenumber" name="L2787" href="#L2787">2787</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2788" href="#L2788">2788</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L2789" href="#L2789">2789</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T[] toArray(String[] toBeConvertedValue,Class&lt;T&gt; targetType){
-<a class="jxr_linenumber" name="L2790" href="#L2790">2790</a>         <em class="jxr_comment">//如果指定的类型 本身就是数组类型的class,那么返回的类型就是该数组类型,否则将基于指定类型构造数组.</em>
-<a class="jxr_linenumber" name="L2791" href="#L2791">2791</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == toBeConvertedValue ? <strong class="jxr_keyword">null</strong> : (T[]) ConvertUtils.convert(toBeConvertedValue, targetType);
-<a class="jxr_linenumber" name="L2792" href="#L2792">2792</a>     }
-<a class="jxr_linenumber" name="L2793" href="#L2793">2793</a> 
-<a class="jxr_linenumber" name="L2794" href="#L2794">2794</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
-<a class="jxr_linenumber" name="L2795" href="#L2795">2795</a> 
-<a class="jxr_linenumber" name="L2796" href="#L2796">2796</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2797" href="#L2797">2797</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 转成{@link String}数组.</em>
-<a class="jxr_linenumber" name="L2798" href="#L2798">2798</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2799" href="#L2799">2799</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2669" href="#L2669">2669</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2670" href="#L2670">2670</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2671" href="#L2671">2671</a> <em class="jxr_javadoccomment">     * public static {@code &lt;K, V&gt;} Map{@code &lt;K, V[]&gt;} toArrayValueMap(Map{@code &lt;K, V&gt;} singleValueMap){</em>
+<a class="jxr_linenumber" name="L2672" href="#L2672">2672</a> <em class="jxr_javadoccomment">     *     Map{@code &lt;K, V[]&gt;} arrayValueMap = newLinkedHashMap(singleValueMap.size());//保证顺序和参数singleValueMap顺序相同</em>
+<a class="jxr_linenumber" name="L2673" href="#L2673">2673</a> <em class="jxr_javadoccomment">     *     for (Map.Entry{@code &lt;K, V&gt;} entry : singleValueMap.entrySet()){</em>
+<a class="jxr_linenumber" name="L2674" href="#L2674">2674</a> <em class="jxr_javadoccomment">     *         arrayValueMap.put(entry.getKey(), toArray(entry.getValue()));//注意此处的Value不要声明成V,否则会变成Object数组</em>
+<a class="jxr_linenumber" name="L2675" href="#L2675">2675</a> <em class="jxr_javadoccomment">     *     }</em>
+<a class="jxr_linenumber" name="L2676" href="#L2676">2676</a> <em class="jxr_javadoccomment">     *     return arrayValueMap;</em>
+<a class="jxr_linenumber" name="L2677" href="#L2677">2677</a> <em class="jxr_javadoccomment">     * }</em>
+<a class="jxr_linenumber" name="L2678" href="#L2678">2678</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2679" href="#L2679">2679</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2680" href="#L2680">2680</a> <em class="jxr_javadoccomment">     * 调用的时候,</em>
+<a class="jxr_linenumber" name="L2681" href="#L2681">2681</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2682" href="#L2682">2682</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2683" href="#L2683">2683</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String&gt;} singleValueMap = MapUtil.newLinkedHashMap(2);</em>
+<a class="jxr_linenumber" name="L2684" href="#L2684">2684</a> <em class="jxr_javadoccomment">     * singleValueMap.put("province", "江苏省");</em>
+<a class="jxr_linenumber" name="L2685" href="#L2685">2685</a> <em class="jxr_javadoccomment">     * singleValueMap.put("city", "南通市");</em>
+<a class="jxr_linenumber" name="L2686" href="#L2686">2686</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2687" href="#L2687">2687</a> <em class="jxr_javadoccomment">     * Map{@code &lt;String, String[]&gt;} arrayValueMap = MapUtil.toArrayValueMap(singleValueMap);</em>
+<a class="jxr_linenumber" name="L2688" href="#L2688">2688</a> <em class="jxr_javadoccomment">     * String[] strings = arrayValueMap.get("province");//此时返回的是 Object[]</em>
+<a class="jxr_linenumber" name="L2689" href="#L2689">2689</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2690" href="#L2690">2690</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2691" href="#L2691">2691</a> <em class="jxr_javadoccomment">     * 会出现异常</em>
+<a class="jxr_linenumber" name="L2692" href="#L2692">2692</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2693" href="#L2693">2693</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2694" href="#L2694">2694</a> <em class="jxr_javadoccomment">     * java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.String;</em>
+<a class="jxr_linenumber" name="L2695" href="#L2695">2695</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2696" href="#L2696">2696</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2697" href="#L2697">2697</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2698" href="#L2698">2698</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2699" href="#L2699">2699</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L2700" href="#L2700">2700</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2701" href="#L2701">2701</a> <em class="jxr_javadoccomment">     * @param arrays</em>
+<a class="jxr_linenumber" name="L2702" href="#L2702">2702</a> <em class="jxr_javadoccomment">     *            the arrays</em>
+<a class="jxr_linenumber" name="L2703" href="#L2703">2703</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;arrays&lt;/code&gt; 是null,返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2704" href="#L2704">2704</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.ArrayUtils#toArray(Object...)</em>
+<a class="jxr_linenumber" name="L2705" href="#L2705">2705</a> <em class="jxr_javadoccomment">     * @since commons-lang 3</em>
+<a class="jxr_linenumber" name="L2706" href="#L2706">2706</a> <em class="jxr_javadoccomment">     * @since 1.6.0</em>
+<a class="jxr_linenumber" name="L2707" href="#L2707">2707</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2708" href="#L2708">2708</a>     @SafeVarargs
+<a class="jxr_linenumber" name="L2709" href="#L2709">2709</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T[] toArray(T...arrays){
+<a class="jxr_linenumber" name="L2710" href="#L2710">2710</a>         <strong class="jxr_keyword">return</strong> ArrayUtils.toArray(arrays);
+<a class="jxr_linenumber" name="L2711" href="#L2711">2711</a>     }
+<a class="jxr_linenumber" name="L2712" href="#L2712">2712</a> 
+<a class="jxr_linenumber" name="L2713" href="#L2713">2713</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2714" href="#L2714">2714</a> <em class="jxr_javadoccomment">     * 将集合 &lt;code&gt;collection&lt;/code&gt; 转成数组.</em>
+<a class="jxr_linenumber" name="L2715" href="#L2715">2715</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2716" href="#L2716">2716</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2717" href="#L2717">2717</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2718" href="#L2718">2718</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2719" href="#L2719">2719</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2720" href="#L2720">2720</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2721" href="#L2721">2721</a> <em class="jxr_javadoccomment">     * List{@code &lt;String&gt;} list = new ArrayList{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L2722" href="#L2722">2722</a> <em class="jxr_javadoccomment">     * list.add("xinge");</em>
+<a class="jxr_linenumber" name="L2723" href="#L2723">2723</a> <em class="jxr_javadoccomment">     * list.add("feilong");</em>
+<a class="jxr_linenumber" name="L2724" href="#L2724">2724</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2725" href="#L2725">2725</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2726" href="#L2726">2726</a> <em class="jxr_javadoccomment">     * 以前你需要写成:</em>
+<a class="jxr_linenumber" name="L2727" href="#L2727">2727</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2728" href="#L2728">2728</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2729" href="#L2729">2729</a> <em class="jxr_javadoccomment">     * list.toArray(new String[list.size()]);</em>
+<a class="jxr_linenumber" name="L2730" href="#L2730">2730</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2731" href="#L2731">2731</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2732" href="#L2732">2732</a> <em class="jxr_javadoccomment">     * 现在你只需要写成:</em>
+<a class="jxr_linenumber" name="L2733" href="#L2733">2733</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2734" href="#L2734">2734</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2735" href="#L2735">2735</a> <em class="jxr_javadoccomment">     * String[] array = ConvertUtil.toArray(list, String.class);</em>
+<a class="jxr_linenumber" name="L2736" href="#L2736">2736</a> <em class="jxr_javadoccomment">     * LOGGER.info(JsonUtil.format(array));</em>
+<a class="jxr_linenumber" name="L2737" href="#L2737">2737</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2738" href="#L2738">2738</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2739" href="#L2739">2739</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L2740" href="#L2740">2740</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2741" href="#L2741">2741</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2742" href="#L2742">2742</a> <em class="jxr_javadoccomment">     * ["xinge","feilong"]</em>
+<a class="jxr_linenumber" name="L2743" href="#L2743">2743</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2744" href="#L2744">2744</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2745" href="#L2745">2745</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2746" href="#L2746">2746</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2747" href="#L2747">2747</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L2748" href="#L2748">2748</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2749" href="#L2749">2749</a> <em class="jxr_javadoccomment">     * @param collection</em>
+<a class="jxr_linenumber" name="L2750" href="#L2750">2750</a> <em class="jxr_javadoccomment">     *            collection</em>
+<a class="jxr_linenumber" name="L2751" href="#L2751">2751</a> <em class="jxr_javadoccomment">     * @param arrayComponentType</em>
+<a class="jxr_linenumber" name="L2752" href="#L2752">2752</a> <em class="jxr_javadoccomment">     *            数组组件类型的 Class</em>
+<a class="jxr_linenumber" name="L2753" href="#L2753">2753</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;collection&lt;/code&gt; 是null,直接返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2754" href="#L2754">2754</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;arrayComponentType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2755" href="#L2755">2755</a> <em class="jxr_javadoccomment">     * @see java.lang.reflect.Array#newInstance(Class, int)</em>
+<a class="jxr_linenumber" name="L2756" href="#L2756">2756</a> <em class="jxr_javadoccomment">     * @see java.lang.reflect.Array#newInstance(Class, int...)</em>
+<a class="jxr_linenumber" name="L2757" href="#L2757">2757</a> <em class="jxr_javadoccomment">     * @see java.util.Collection#toArray()</em>
+<a class="jxr_linenumber" name="L2758" href="#L2758">2758</a> <em class="jxr_javadoccomment">     * @see java.util.Collection#toArray(Object[])</em>
+<a class="jxr_linenumber" name="L2759" href="#L2759">2759</a> <em class="jxr_javadoccomment">     * @see java.util.List#toArray()</em>
+<a class="jxr_linenumber" name="L2760" href="#L2760">2760</a> <em class="jxr_javadoccomment">     * @see java.util.List#toArray(Object[])</em>
+<a class="jxr_linenumber" name="L2761" href="#L2761">2761</a> <em class="jxr_javadoccomment">     * @see java.util.Vector#toArray()</em>
+<a class="jxr_linenumber" name="L2762" href="#L2762">2762</a> <em class="jxr_javadoccomment">     * @see java.util.Vector#toArray(Object[])</em>
+<a class="jxr_linenumber" name="L2763" href="#L2763">2763</a> <em class="jxr_javadoccomment">     * @see java.util.LinkedList#toArray()</em>
+<a class="jxr_linenumber" name="L2764" href="#L2764">2764</a> <em class="jxr_javadoccomment">     * @see java.util.LinkedList#toArray(Object[])</em>
+<a class="jxr_linenumber" name="L2765" href="#L2765">2765</a> <em class="jxr_javadoccomment">     * @see java.util.ArrayList#toArray()</em>
+<a class="jxr_linenumber" name="L2766" href="#L2766">2766</a> <em class="jxr_javadoccomment">     * @see java.util.ArrayList#toArray(Object[])</em>
+<a class="jxr_linenumber" name="L2767" href="#L2767">2767</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2768" href="#L2768">2768</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.collections4.IteratorUtils#toArray(Iterator,Class)</em>
+<a class="jxr_linenumber" name="L2769" href="#L2769">2769</a> <em class="jxr_javadoccomment">     * @see "org.springframework.util.StringUtils#toStringArray(Collection)"</em>
+<a class="jxr_linenumber" name="L2770" href="#L2770">2770</a> <em class="jxr_javadoccomment">     * @since 1.2.2</em>
+<a class="jxr_linenumber" name="L2771" href="#L2771">2771</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2772" href="#L2772">2772</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T[] toArray(Collection&lt;T&gt; collection,Class&lt;T&gt; arrayComponentType){
+<a class="jxr_linenumber" name="L2773" href="#L2773">2773</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == collection){ <em class="jxr_comment">// since 1.8.6</em>
+<a class="jxr_linenumber" name="L2774" href="#L2774">2774</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L2775" href="#L2775">2775</a>         }
+<a class="jxr_linenumber" name="L2776" href="#L2776">2776</a> 
+<a class="jxr_linenumber" name="L2777" href="#L2777">2777</a>         Validate.notNull(arrayComponentType, <span class="jxr_string">"arrayComponentType must not be null"</span>);
+<a class="jxr_linenumber" name="L2778" href="#L2778">2778</a> 
+<a class="jxr_linenumber" name="L2779" href="#L2779">2779</a>         <em class="jxr_comment">// 如果采用大家常用的把a的length设为0,就需要反射API来创建一个大小为size的数组,而这对性能有一定的影响.</em>
+<a class="jxr_linenumber" name="L2780" href="#L2780">2780</a>         <em class="jxr_comment">// 所以最好的方式就是直接把a的length设为Collection的size从而避免调用反射API来达到一定的性能优化.</em>
+<a class="jxr_linenumber" name="L2781" href="#L2781">2781</a>         T[] array = ArrayUtil.newArray(arrayComponentType, collection.size());
+<a class="jxr_linenumber" name="L2782" href="#L2782">2782</a> 
+<a class="jxr_linenumber" name="L2783" href="#L2783">2783</a>         <em class="jxr_comment">//注意,toArray(new Object[0]) 和 toArray() 在功能上是相同的. </em>
+<a class="jxr_linenumber" name="L2784" href="#L2784">2784</a>         <strong class="jxr_keyword">return</strong> collection.toArray(array);
+<a class="jxr_linenumber" name="L2785" href="#L2785">2785</a>     }
+<a class="jxr_linenumber" name="L2786" href="#L2786">2786</a> 
+<a class="jxr_linenumber" name="L2787" href="#L2787">2787</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2788" href="#L2788">2788</a> <em class="jxr_javadoccomment">     * 将字符串数组 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 转成指定类型 &lt;code&gt;targetType&lt;/code&gt; 的数组.</em>
+<a class="jxr_linenumber" name="L2789" href="#L2789">2789</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2790" href="#L2790">2790</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2791" href="#L2791">2791</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2792" href="#L2792">2792</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2793" href="#L2793">2793</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2794" href="#L2794">2794</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2795" href="#L2795">2795</a> <em class="jxr_javadoccomment">     * String[] ss = { "2", "1" };</em>
+<a class="jxr_linenumber" name="L2796" href="#L2796">2796</a> <em class="jxr_javadoccomment">     * toArray(ss, Long.class);                                     =   new Long[] { 2L, 1L }</em>
+<a class="jxr_linenumber" name="L2797" href="#L2797">2797</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2798" href="#L2798">2798</a> <em class="jxr_javadoccomment">     * ConvertUtil.toArray((String[]) null, Serializable.class)     =   null</em>
+<a class="jxr_linenumber" name="L2799" href="#L2799">2799</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L2800" href="#L2800">2800</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2801" href="#L2801">2801</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2802" href="#L2802">2802</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2803" href="#L2803">2803</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L2804" href="#L2804">2804</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2805" href="#L2805">2805</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
-<a class="jxr_linenumber" name="L2806" href="#L2806">2806</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2807" href="#L2807">2807</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2808" href="#L2808">2808</a> <em class="jxr_javadoccomment">     * 该方法很适合将 &lt;b&gt;非字符串数组的数组&lt;/b&gt; 转换成 &lt;b&gt;字符串数组&lt;/b&gt;,比如</em>
-<a class="jxr_linenumber" name="L2809" href="#L2809">2809</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2810" href="#L2810">2810</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2811" href="#L2811">2811</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2812" href="#L2812">2812</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2813" href="#L2813">2813</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2814" href="#L2814">2814</a> <em class="jxr_javadoccomment">     * URL[] urls = {</em>
-<a class="jxr_linenumber" name="L2815" href="#L2815">2815</a> <em class="jxr_javadoccomment">     *                URLUtil.newURL("<a href="http://www.exiaoshuo.com/jinyiyexing0/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing0/</a>"),</em>
-<a class="jxr_linenumber" name="L2816" href="#L2816">2816</a> <em class="jxr_javadoccomment">     *                URLUtil.newURL("<a href="http://www.exiaoshuo.com/jinyiyexing1/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing1/</a>"),</em>
-<a class="jxr_linenumber" name="L2817" href="#L2817">2817</a> <em class="jxr_javadoccomment">     *                URLUtil.newURL("<a href="http://www.exiaoshuo.com/jinyiyexing2/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing2/</a>"),</em>
-<a class="jxr_linenumber" name="L2818" href="#L2818">2818</a> <em class="jxr_javadoccomment">     *                null };</em>
-<a class="jxr_linenumber" name="L2819" href="#L2819">2819</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2820" href="#L2820">2820</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(ConvertUtil.toStrings(urls)));</em>
-<a class="jxr_linenumber" name="L2821" href="#L2821">2821</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2822" href="#L2822">2822</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2823" href="#L2823">2823</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
-<a class="jxr_linenumber" name="L2824" href="#L2824">2824</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2825" href="#L2825">2825</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2826" href="#L2826">2826</a> <em class="jxr_javadoccomment">     * [</em>
-<a class="jxr_linenumber" name="L2827" href="#L2827">2827</a> <em class="jxr_javadoccomment">     * "<a href="http://www.exiaoshuo.com/jinyiyexing0/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing0/</a>",</em>
-<a class="jxr_linenumber" name="L2828" href="#L2828">2828</a> <em class="jxr_javadoccomment">     * "<a href="http://www.exiaoshuo.com/jinyiyexing1/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing1/</a>",</em>
-<a class="jxr_linenumber" name="L2829" href="#L2829">2829</a> <em class="jxr_javadoccomment">     * "<a href="http://www.exiaoshuo.com/jinyiyexing2/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing2/</a>",</em>
-<a class="jxr_linenumber" name="L2830" href="#L2830">2830</a> <em class="jxr_javadoccomment">     * null</em>
-<a class="jxr_linenumber" name="L2831" href="#L2831">2831</a> <em class="jxr_javadoccomment">     * ]</em>
-<a class="jxr_linenumber" name="L2832" href="#L2832">2832</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2833" href="#L2833">2833</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2834" href="#L2834">2834</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2835" href="#L2835">2835</a> <em class="jxr_javadoccomment">     * 还有诸如 Integer[] 转成 String[]</em>
-<a class="jxr_linenumber" name="L2836" href="#L2836">2836</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2837" href="#L2837">2837</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2838" href="#L2838">2838</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2839" href="#L2839">2839</a> <em class="jxr_javadoccomment">     * ConvertUtil.toStrings(new Integer[] { 1, 2, 5 })     =   [ "1", "2", "5" ]</em>
-<a class="jxr_linenumber" name="L2840" href="#L2840">2840</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2841" href="#L2841">2841</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2842" href="#L2842">2842</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2843" href="#L2843">2843</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2844" href="#L2844">2844</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2845" href="#L2845">2845</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2846" href="#L2846">2846</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
-<a class="jxr_linenumber" name="L2847" href="#L2847">2847</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2848" href="#L2848">2848</a> <em class="jxr_javadoccomment">     * 也可以将字符串 解析成数组 in the Java language into a &lt;code&gt;List&lt;/code&gt; individual Strings for each element, 根据以下规则:</em>
-<a class="jxr_linenumber" name="L2849" href="#L2849">2849</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2801" href="#L2801">2801</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2802" href="#L2802">2802</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2803" href="#L2803">2803</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L2804" href="#L2804">2804</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2805" href="#L2805">2805</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
+<a class="jxr_linenumber" name="L2806" href="#L2806">2806</a> <em class="jxr_javadoccomment">     *            the values</em>
+<a class="jxr_linenumber" name="L2807" href="#L2807">2807</a> <em class="jxr_javadoccomment">     * @param targetType</em>
+<a class="jxr_linenumber" name="L2808" href="#L2808">2808</a> <em class="jxr_javadoccomment">     *            要被转换的目标类型</em>
+<a class="jxr_linenumber" name="L2809" href="#L2809">2809</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,那么返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2810" href="#L2810">2810</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;targetType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2811" href="#L2811">2811</a> <em class="jxr_javadoccomment">     *         否则调用 {@link ConvertUtils#convert(String[], Class)}</em>
+<a class="jxr_linenumber" name="L2812" href="#L2812">2812</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.ConvertUtils#convert(String[], Class)</em>
+<a class="jxr_linenumber" name="L2813" href="#L2813">2813</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.ConvertUtilsBean#convert(String[], Class)</em>
+<a class="jxr_linenumber" name="L2814" href="#L2814">2814</a> <em class="jxr_javadoccomment">     * @since 1.6.0</em>
+<a class="jxr_linenumber" name="L2815" href="#L2815">2815</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2816" href="#L2816">2816</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L2817" href="#L2817">2817</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T[] toArray(String[] toBeConvertedValue,Class&lt;T&gt; targetType){
+<a class="jxr_linenumber" name="L2818" href="#L2818">2818</a>         <em class="jxr_comment">//如果指定的类型 本身就是数组类型的class,那么返回的类型就是该数组类型,否则将基于指定类型构造数组.</em>
+<a class="jxr_linenumber" name="L2819" href="#L2819">2819</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == toBeConvertedValue ? <strong class="jxr_keyword">null</strong> : (T[]) ConvertUtils.convert(toBeConvertedValue, targetType);
+<a class="jxr_linenumber" name="L2820" href="#L2820">2820</a>     }
+<a class="jxr_linenumber" name="L2821" href="#L2821">2821</a> 
+<a class="jxr_linenumber" name="L2822" href="#L2822">2822</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L2823" href="#L2823">2823</a> 
+<a class="jxr_linenumber" name="L2824" href="#L2824">2824</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2825" href="#L2825">2825</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 转成{@link String}数组.</em>
+<a class="jxr_linenumber" name="L2826" href="#L2826">2826</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2827" href="#L2827">2827</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;说明:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2828" href="#L2828">2828</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2829" href="#L2829">2829</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2830" href="#L2830">2830</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2831" href="#L2831">2831</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L2832" href="#L2832">2832</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2833" href="#L2833">2833</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
+<a class="jxr_linenumber" name="L2834" href="#L2834">2834</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2835" href="#L2835">2835</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2836" href="#L2836">2836</a> <em class="jxr_javadoccomment">     * 该方法很适合将 &lt;b&gt;非字符串数组的数组&lt;/b&gt; 转换成 &lt;b&gt;字符串数组&lt;/b&gt;,比如</em>
+<a class="jxr_linenumber" name="L2837" href="#L2837">2837</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2838" href="#L2838">2838</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2839" href="#L2839">2839</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2840" href="#L2840">2840</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2841" href="#L2841">2841</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2842" href="#L2842">2842</a> <em class="jxr_javadoccomment">     * URL[] urls = {</em>
+<a class="jxr_linenumber" name="L2843" href="#L2843">2843</a> <em class="jxr_javadoccomment">     *                URLUtil.newURL("<a href="http://www.exiaoshuo.com/jinyiyexing0/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing0/</a>"),</em>
+<a class="jxr_linenumber" name="L2844" href="#L2844">2844</a> <em class="jxr_javadoccomment">     *                URLUtil.newURL("<a href="http://www.exiaoshuo.com/jinyiyexing1/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing1/</a>"),</em>
+<a class="jxr_linenumber" name="L2845" href="#L2845">2845</a> <em class="jxr_javadoccomment">     *                URLUtil.newURL("<a href="http://www.exiaoshuo.com/jinyiyexing2/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing2/</a>"),</em>
+<a class="jxr_linenumber" name="L2846" href="#L2846">2846</a> <em class="jxr_javadoccomment">     *                null };</em>
+<a class="jxr_linenumber" name="L2847" href="#L2847">2847</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2848" href="#L2848">2848</a> <em class="jxr_javadoccomment">     * LOGGER.debug(JsonUtil.format(ConvertUtil.toStrings(urls)));</em>
+<a class="jxr_linenumber" name="L2849" href="#L2849">2849</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L2850" href="#L2850">2850</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2851" href="#L2851">2851</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;字符串转成数组的规则:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2851" href="#L2851">2851</a> <em class="jxr_javadoccomment">     * &lt;b&gt;返回:&lt;/b&gt;</em>
 <a class="jxr_linenumber" name="L2852" href="#L2852">2852</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2853" href="#L2853">2853</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2854" href="#L2854">2854</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2855" href="#L2855">2855</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2856" href="#L2856">2856</a> <em class="jxr_javadoccomment">     * 参见 {@link org.apache.commons.beanutils.converters.AbstractArrayConverter#parseElements(String) parseElements}</em>
-<a class="jxr_linenumber" name="L2857" href="#L2857">2857</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2858" href="#L2858">2858</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2859" href="#L2859">2859</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
-<a class="jxr_linenumber" name="L2860" href="#L2860">2860</a> <em class="jxr_javadoccomment">     * &lt;li&gt;The string is expected to be a comma-separated list of values.&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2861" href="#L2861">2861</a> <em class="jxr_javadoccomment">     * &lt;li&gt;自动去除开头的 &lt;b&gt;'{'&lt;/b&gt; 和 结束的&lt;b&gt;'}'&lt;/b&gt;.&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2862" href="#L2862">2862</a> <em class="jxr_javadoccomment">     * &lt;li&gt;每个元素前后的&lt;b&gt;空格将会去除&lt;/b&gt;.&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2863" href="#L2863">2863</a> <em class="jxr_javadoccomment">     * &lt;li&gt;Elements in the list may be delimited by single or double quotes.</em>
-<a class="jxr_linenumber" name="L2864" href="#L2864">2864</a> <em class="jxr_javadoccomment">     * Within a quoted elements, the normal Java escape sequences are valid.&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2865" href="#L2865">2865</a> <em class="jxr_javadoccomment">     * &lt;/ul&gt;</em>
-<a class="jxr_linenumber" name="L2866" href="#L2866">2866</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2867" href="#L2867">2867</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L2868" href="#L2868">2868</a> <em class="jxr_javadoccomment">     * 示例:</em>
-<a class="jxr_linenumber" name="L2869" href="#L2869">2869</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L2870" href="#L2870">2870</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2871" href="#L2871">2871</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2872" href="#L2872">2872</a> <em class="jxr_javadoccomment">     * ConvertUtil.toStrings("{5,4, 8,2;8 9_5@3`a}"); =  ["5","4","8","2","8","9","5","3","a"]</em>
-<a class="jxr_linenumber" name="L2873" href="#L2873">2873</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2874" href="#L2874">2874</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2875" href="#L2875">2875</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2876" href="#L2876">2876</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2877" href="#L2877">2877</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2878" href="#L2878">2878</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L2879" href="#L2879">2879</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2880" href="#L2880">2880</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2881" href="#L2881">2881</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2882" href="#L2882">2882</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
-<a class="jxr_linenumber" name="L2883" href="#L2883">2883</a> <em class="jxr_javadoccomment">     *            the to be converted value</em>
-<a class="jxr_linenumber" name="L2884" href="#L2884">2884</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2885" href="#L2885">2885</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.ArrayConverter#convertToType(Class, Object)</em>
-<a class="jxr_linenumber" name="L2886" href="#L2886">2886</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.ArrayConverter#parseElements(Class, String)</em>
-<a class="jxr_linenumber" name="L2887" href="#L2887">2887</a> <em class="jxr_javadoccomment">     * @see #convert(Object, Class)</em>
-<a class="jxr_linenumber" name="L2888" href="#L2888">2888</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
-<a class="jxr_linenumber" name="L2889" href="#L2889">2889</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2890" href="#L2890">2890</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String[] toStrings(Object toBeConvertedValue){
-<a class="jxr_linenumber" name="L2891" href="#L2891">2891</a>         <strong class="jxr_keyword">return</strong> convert(toBeConvertedValue, String[].<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L2892" href="#L2892">2892</a>     }
-<a class="jxr_linenumber" name="L2893" href="#L2893">2893</a> 
-<a class="jxr_linenumber" name="L2894" href="#L2894">2894</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2895" href="#L2895">2895</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;toBeConvertedValue&lt;/code&gt;转成{@link Iterator}类型.</em>
-<a class="jxr_linenumber" name="L2896" href="#L2896">2896</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2897" href="#L2897">2897</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2853" href="#L2853">2853</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2854" href="#L2854">2854</a> <em class="jxr_javadoccomment">     * [</em>
+<a class="jxr_linenumber" name="L2855" href="#L2855">2855</a> <em class="jxr_javadoccomment">     * "<a href="http://www.exiaoshuo.com/jinyiyexing0/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing0/</a>",</em>
+<a class="jxr_linenumber" name="L2856" href="#L2856">2856</a> <em class="jxr_javadoccomment">     * "<a href="http://www.exiaoshuo.com/jinyiyexing1/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing1/</a>",</em>
+<a class="jxr_linenumber" name="L2857" href="#L2857">2857</a> <em class="jxr_javadoccomment">     * "<a href="http://www.exiaoshuo.com/jinyiyexing2/" target="alexandria_uri">http://www.exiaoshuo.com/jinyiyexing2/</a>",</em>
+<a class="jxr_linenumber" name="L2858" href="#L2858">2858</a> <em class="jxr_javadoccomment">     * null</em>
+<a class="jxr_linenumber" name="L2859" href="#L2859">2859</a> <em class="jxr_javadoccomment">     * ]</em>
+<a class="jxr_linenumber" name="L2860" href="#L2860">2860</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2861" href="#L2861">2861</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2862" href="#L2862">2862</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2863" href="#L2863">2863</a> <em class="jxr_javadoccomment">     * 还有诸如 Integer[] 转成 String[]</em>
+<a class="jxr_linenumber" name="L2864" href="#L2864">2864</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2865" href="#L2865">2865</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2866" href="#L2866">2866</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2867" href="#L2867">2867</a> <em class="jxr_javadoccomment">     * ConvertUtil.toStrings(new Integer[] { 1, 2, 5 })     =   [ "1", "2", "5" ]</em>
+<a class="jxr_linenumber" name="L2868" href="#L2868">2868</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2869" href="#L2869">2869</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2870" href="#L2870">2870</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2871" href="#L2871">2871</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2872" href="#L2872">2872</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2873" href="#L2873">2873</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2874" href="#L2874">2874</a> <em class="jxr_javadoccomment">     * &lt;li&gt;</em>
+<a class="jxr_linenumber" name="L2875" href="#L2875">2875</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2876" href="#L2876">2876</a> <em class="jxr_javadoccomment">     * 也可以将字符串 解析成数组 in the Java language into a &lt;code&gt;List&lt;/code&gt; individual Strings for each element, 根据以下规则:</em>
+<a class="jxr_linenumber" name="L2877" href="#L2877">2877</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2878" href="#L2878">2878</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2879" href="#L2879">2879</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;字符串转成数组的规则:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2880" href="#L2880">2880</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2881" href="#L2881">2881</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2882" href="#L2882">2882</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2883" href="#L2883">2883</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2884" href="#L2884">2884</a> <em class="jxr_javadoccomment">     * 参见 {@link org.apache.commons.beanutils.converters.AbstractArrayConverter#parseElements(String) parseElements}</em>
+<a class="jxr_linenumber" name="L2885" href="#L2885">2885</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L2886" href="#L2886">2886</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2887" href="#L2887">2887</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
+<a class="jxr_linenumber" name="L2888" href="#L2888">2888</a> <em class="jxr_javadoccomment">     * &lt;li&gt;The string is expected to be a comma-separated list of values.&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2889" href="#L2889">2889</a> <em class="jxr_javadoccomment">     * &lt;li&gt;自动去除开头的 &lt;b&gt;'{'&lt;/b&gt; 和 结束的&lt;b&gt;'}'&lt;/b&gt;.&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2890" href="#L2890">2890</a> <em class="jxr_javadoccomment">     * &lt;li&gt;每个元素前后的&lt;b&gt;空格将会去除&lt;/b&gt;.&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2891" href="#L2891">2891</a> <em class="jxr_javadoccomment">     * &lt;li&gt;Elements in the list may be delimited by single or double quotes.</em>
+<a class="jxr_linenumber" name="L2892" href="#L2892">2892</a> <em class="jxr_javadoccomment">     * Within a quoted elements, the normal Java escape sequences are valid.&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2893" href="#L2893">2893</a> <em class="jxr_javadoccomment">     * &lt;/ul&gt;</em>
+<a class="jxr_linenumber" name="L2894" href="#L2894">2894</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2895" href="#L2895">2895</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L2896" href="#L2896">2896</a> <em class="jxr_javadoccomment">     * 示例:</em>
+<a class="jxr_linenumber" name="L2897" href="#L2897">2897</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L2898" href="#L2898">2898</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2899" href="#L2899">2899</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2900" href="#L2900">2900</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2901" href="#L2901">2901</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2902" href="#L2902">2902</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;// null&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2903" href="#L2903">2903</a> <em class="jxr_javadoccomment">     * toIterator(null) = null</em>
+<a class="jxr_linenumber" name="L2899" href="#L2899">2899</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2900" href="#L2900">2900</a> <em class="jxr_javadoccomment">     * ConvertUtil.toStrings("{5,4, 8,2;8 9_5@3`a}"); =  ["5","4","8","2","8","9","5","3","a"]</em>
+<a class="jxr_linenumber" name="L2901" href="#L2901">2901</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2902" href="#L2902">2902</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2903" href="#L2903">2903</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L2904" href="#L2904">2904</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2905" href="#L2905">2905</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//PrimitiveArray&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2906" href="#L2906">2906</a> <em class="jxr_javadoccomment">     * int[] i2 = { 1, 2 };</em>
-<a class="jxr_linenumber" name="L2907" href="#L2907">2907</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;Integer&gt;} iterator = toIterator(i2);</em>
-<a class="jxr_linenumber" name="L2908" href="#L2908">2908</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2909" href="#L2909">2909</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//逗号分隔的字符串&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2910" href="#L2910">2910</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;String&gt;} iterator = toIterator("1,2");</em>
-<a class="jxr_linenumber" name="L2911" href="#L2911">2911</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2912" href="#L2912">2912</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//collection&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2913" href="#L2913">2913</a> <em class="jxr_javadoccomment">     * List{@code &lt;String&gt;} list = new ArrayList{@code &lt;&gt;}();</em>
-<a class="jxr_linenumber" name="L2914" href="#L2914">2914</a> <em class="jxr_javadoccomment">     * list.add("aaaa");</em>
-<a class="jxr_linenumber" name="L2915" href="#L2915">2915</a> <em class="jxr_javadoccomment">     * list.add("nnnnn");</em>
-<a class="jxr_linenumber" name="L2916" href="#L2916">2916</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2917" href="#L2917">2917</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;String&gt;} iterator = toIterator(list);</em>
-<a class="jxr_linenumber" name="L2918" href="#L2918">2918</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2919" href="#L2919">2919</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//Enumeration&lt;/span&gt;</em>
-<a class="jxr_linenumber" name="L2920" href="#L2920">2920</a> <em class="jxr_javadoccomment">     * Enumeration{@code &lt;Object&gt;} enumeration = new StringTokenizer("this is a test");</em>
-<a class="jxr_linenumber" name="L2921" href="#L2921">2921</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;String&gt;} iterator = toIterator(enumeration);</em>
-<a class="jxr_linenumber" name="L2922" href="#L2922">2922</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2923" href="#L2923">2923</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2905" href="#L2905">2905</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2906" href="#L2906">2906</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L2907" href="#L2907">2907</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2908" href="#L2908">2908</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2909" href="#L2909">2909</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2910" href="#L2910">2910</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
+<a class="jxr_linenumber" name="L2911" href="#L2911">2911</a> <em class="jxr_javadoccomment">     *            the to be converted value</em>
+<a class="jxr_linenumber" name="L2912" href="#L2912">2912</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2913" href="#L2913">2913</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.ArrayConverter#convertToType(Class, Object)</em>
+<a class="jxr_linenumber" name="L2914" href="#L2914">2914</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.ArrayConverter#parseElements(Class, String)</em>
+<a class="jxr_linenumber" name="L2915" href="#L2915">2915</a> <em class="jxr_javadoccomment">     * @see #convert(Object, Class)</em>
+<a class="jxr_linenumber" name="L2916" href="#L2916">2916</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
+<a class="jxr_linenumber" name="L2917" href="#L2917">2917</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2918" href="#L2918">2918</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String[] toStrings(Object toBeConvertedValue){
+<a class="jxr_linenumber" name="L2919" href="#L2919">2919</a>         <strong class="jxr_keyword">return</strong> convert(toBeConvertedValue, String[].<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L2920" href="#L2920">2920</a>     }
+<a class="jxr_linenumber" name="L2921" href="#L2921">2921</a> 
+<a class="jxr_linenumber" name="L2922" href="#L2922">2922</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2923" href="#L2923">2923</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;toBeConvertedValue&lt;/code&gt;转成{@link Iterator}类型.</em>
 <a class="jxr_linenumber" name="L2924" href="#L2924">2924</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2925" href="#L2925">2925</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2925" href="#L2925">2925</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L2926" href="#L2926">2926</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2927" href="#L2927">2927</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;支持以下类型:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2927" href="#L2927">2927</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L2928" href="#L2928">2928</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2929" href="#L2929">2929</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2930" href="#L2930">2930</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
-<a class="jxr_linenumber" name="L2931" href="#L2931">2931</a> <em class="jxr_javadoccomment">     * &lt;li&gt;逗号分隔的字符串,先使用{@link ConvertUtil#toStrings(Object)} 转成数组&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2932" href="#L2932">2932</a> <em class="jxr_javadoccomment">     * &lt;li&gt;数组(包括 包装类型数组 以及 原始类型数组)&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2933" href="#L2933">2933</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果是{@link java.util.Map},将 {@link java.util.Map#values()} 转成{@link java.util.Iterator}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2934" href="#L2934">2934</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Collection}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2935" href="#L2935">2935</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Iterator}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2936" href="#L2936">2936</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Enumeration}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2937" href="#L2937">2937</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Dictionary}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2938" href="#L2938">2938</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link org.w3c.dom.Node}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2939" href="#L2939">2939</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link org.w3c.dom.NodeList}&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L2940" href="#L2940">2940</a> <em class="jxr_javadoccomment">     * &lt;/ul&gt;</em>
-<a class="jxr_linenumber" name="L2941" href="#L2941">2941</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2942" href="#L2942">2942</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2943" href="#L2943">2943</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L2944" href="#L2944">2944</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L2945" href="#L2945">2945</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
-<a class="jxr_linenumber" name="L2946" href="#L2946">2946</a> <em class="jxr_javadoccomment">     *            the to be converted value</em>
-<a class="jxr_linenumber" name="L2947" href="#L2947">2947</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2948" href="#L2948">2948</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是字符串,先转成数组,再转成迭代器&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L2949" href="#L2949">2949</a> <em class="jxr_javadoccomment">     *         否则转成 {@link IteratorUtils#getIterator(Object)}</em>
-<a class="jxr_linenumber" name="L2950" href="#L2950">2950</a> <em class="jxr_javadoccomment">     * @see Collection#iterator()</em>
-<a class="jxr_linenumber" name="L2951" href="#L2951">2951</a> <em class="jxr_javadoccomment">     * @see EnumerationIterator#EnumerationIterator(Enumeration)</em>
-<a class="jxr_linenumber" name="L2952" href="#L2952">2952</a> <em class="jxr_javadoccomment">     * @see IteratorUtils#asIterator(Enumeration)</em>
-<a class="jxr_linenumber" name="L2953" href="#L2953">2953</a> <em class="jxr_javadoccomment">     * @see IteratorUtils#getIterator(Object)</em>
-<a class="jxr_linenumber" name="L2954" href="#L2954">2954</a> <em class="jxr_javadoccomment">     * @see "org.apache.taglibs.standard.tag.common.core.ForEachSupport#supportedTypeForEachIterator(Object)"</em>
-<a class="jxr_linenumber" name="L2955" href="#L2955">2955</a> <em class="jxr_javadoccomment">     * @since Commons Collections4.0</em>
-<a class="jxr_linenumber" name="L2956" href="#L2956">2956</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2957" href="#L2957">2957</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L2958" href="#L2958">2958</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; Iterator&lt;T&gt; toIterator(Object toBeConvertedValue){
-<a class="jxr_linenumber" name="L2959" href="#L2959">2959</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == toBeConvertedValue){
-<a class="jxr_linenumber" name="L2960" href="#L2960">2960</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L2961" href="#L2961">2961</a>         }
-<a class="jxr_linenumber" name="L2962" href="#L2962">2962</a>         <em class="jxr_comment">// 逗号分隔的字符串</em>
-<a class="jxr_linenumber" name="L2963" href="#L2963">2963</a>         <strong class="jxr_keyword">if</strong> (toBeConvertedValue instanceof String){
-<a class="jxr_linenumber" name="L2964" href="#L2964">2964</a>             <strong class="jxr_keyword">return</strong> toIterator(toStrings(toBeConvertedValue));
-<a class="jxr_linenumber" name="L2965" href="#L2965">2965</a>         }
-<a class="jxr_linenumber" name="L2966" href="#L2966">2966</a>         <strong class="jxr_keyword">return</strong> (Iterator&lt;T&gt;) IteratorUtils.getIterator(toBeConvertedValue);
-<a class="jxr_linenumber" name="L2967" href="#L2967">2967</a>     }
-<a class="jxr_linenumber" name="L2968" href="#L2968">2968</a> 
-<a class="jxr_linenumber" name="L2969" href="#L2969">2969</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2970" href="#L2970">2970</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 转成指定 &lt;code&gt;targetType&lt;/code&gt; 类型的对象.</em>
-<a class="jxr_linenumber" name="L2971" href="#L2971">2971</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2972" href="#L2972">2972</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2973" href="#L2973">2973</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2974" href="#L2974">2974</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2975" href="#L2975">2975</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2976" href="#L2976">2976</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2977" href="#L2977">2977</a> <em class="jxr_javadoccomment">     * ConvertUtil.convert("1", Integer.class)      =1</em>
-<a class="jxr_linenumber" name="L2978" href="#L2978">2978</a> <em class="jxr_javadoccomment">     * ConvertUtil.convert("", Integer.class)       =0</em>
-<a class="jxr_linenumber" name="L2979" href="#L2979">2979</a> <em class="jxr_javadoccomment">     * ConvertUtil.convert("1", Long.class)         =1</em>
-<a class="jxr_linenumber" name="L2980" href="#L2980">2980</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L2981" href="#L2981">2981</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2982" href="#L2982">2982</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2983" href="#L2983">2983</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2984" href="#L2984">2984</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;此外,该方法特别适合数组类型的转换,比如 Type[] 转成 Class []:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L2985" href="#L2985">2985</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2986" href="#L2986">2986</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L2987" href="#L2987">2987</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2988" href="#L2988">2988</a> <em class="jxr_javadoccomment">     * 原来的写法:</em>
-<a class="jxr_linenumber" name="L2989" href="#L2989">2989</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2990" href="#L2990">2990</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L2991" href="#L2991">2991</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2992" href="#L2992">2992</a> <em class="jxr_javadoccomment">     * Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();</em>
-<a class="jxr_linenumber" name="L2993" href="#L2993">2993</a> <em class="jxr_javadoccomment">     * int length = actualTypeArguments.length;</em>
-<a class="jxr_linenumber" name="L2994" href="#L2994">2994</a> <em class="jxr_javadoccomment">     * Class{@code &lt;?&gt;}[] klasses = new Class{@code &lt;?&gt;}[length];</em>
-<a class="jxr_linenumber" name="L2995" href="#L2995">2995</a> <em class="jxr_javadoccomment">     * for (int i = 0, j = length; i {@code &lt;} j; ++i){</em>
-<a class="jxr_linenumber" name="L2996" href="#L2996">2996</a> <em class="jxr_javadoccomment">     *     klasses[i] = (Class{@code &lt;?&gt;}) actualTypeArguments[i];</em>
-<a class="jxr_linenumber" name="L2997" href="#L2997">2997</a> <em class="jxr_javadoccomment">     * }</em>
-<a class="jxr_linenumber" name="L2998" href="#L2998">2998</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L2999" href="#L2999">2999</a> <em class="jxr_javadoccomment">     * return klasses;</em>
-<a class="jxr_linenumber" name="L3000" href="#L3000">3000</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3001" href="#L3001">3001</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L3002" href="#L3002">3002</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3003" href="#L3003">3003</a> <em class="jxr_javadoccomment">     * 现在可以重构成:</em>
-<a class="jxr_linenumber" name="L3004" href="#L3004">3004</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3005" href="#L3005">3005</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L3006" href="#L3006">3006</a> <em class="jxr_javadoccomment">     * Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();</em>
-<a class="jxr_linenumber" name="L3007" href="#L3007">3007</a> <em class="jxr_javadoccomment">     * return convert(actualTypeArguments, Class[].class);</em>
+<a class="jxr_linenumber" name="L2929" href="#L2929">2929</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L2930" href="#L2930">2930</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;// null&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2931" href="#L2931">2931</a> <em class="jxr_javadoccomment">     * toIterator(null) = null</em>
+<a class="jxr_linenumber" name="L2932" href="#L2932">2932</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2933" href="#L2933">2933</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//PrimitiveArray&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2934" href="#L2934">2934</a> <em class="jxr_javadoccomment">     * int[] i2 = { 1, 2 };</em>
+<a class="jxr_linenumber" name="L2935" href="#L2935">2935</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;Integer&gt;} iterator = toIterator(i2);</em>
+<a class="jxr_linenumber" name="L2936" href="#L2936">2936</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2937" href="#L2937">2937</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//逗号分隔的字符串&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2938" href="#L2938">2938</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;String&gt;} iterator = toIterator("1,2");</em>
+<a class="jxr_linenumber" name="L2939" href="#L2939">2939</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2940" href="#L2940">2940</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//collection&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2941" href="#L2941">2941</a> <em class="jxr_javadoccomment">     * List{@code &lt;String&gt;} list = new ArrayList{@code &lt;&gt;}();</em>
+<a class="jxr_linenumber" name="L2942" href="#L2942">2942</a> <em class="jxr_javadoccomment">     * list.add("aaaa");</em>
+<a class="jxr_linenumber" name="L2943" href="#L2943">2943</a> <em class="jxr_javadoccomment">     * list.add("nnnnn");</em>
+<a class="jxr_linenumber" name="L2944" href="#L2944">2944</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2945" href="#L2945">2945</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;String&gt;} iterator = toIterator(list);</em>
+<a class="jxr_linenumber" name="L2946" href="#L2946">2946</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2947" href="#L2947">2947</a> <em class="jxr_javadoccomment">     * &lt;span style="color:green"&gt;//Enumeration&lt;/span&gt;</em>
+<a class="jxr_linenumber" name="L2948" href="#L2948">2948</a> <em class="jxr_javadoccomment">     * Enumeration{@code &lt;Object&gt;} enumeration = new StringTokenizer("this is a test");</em>
+<a class="jxr_linenumber" name="L2949" href="#L2949">2949</a> <em class="jxr_javadoccomment">     * Iterator{@code &lt;String&gt;} iterator = toIterator(enumeration);</em>
+<a class="jxr_linenumber" name="L2950" href="#L2950">2950</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2951" href="#L2951">2951</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L2952" href="#L2952">2952</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2953" href="#L2953">2953</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2954" href="#L2954">2954</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2955" href="#L2955">2955</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;支持以下类型:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L2956" href="#L2956">2956</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L2957" href="#L2957">2957</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2958" href="#L2958">2958</a> <em class="jxr_javadoccomment">     * &lt;ul&gt;</em>
+<a class="jxr_linenumber" name="L2959" href="#L2959">2959</a> <em class="jxr_javadoccomment">     * &lt;li&gt;逗号分隔的字符串,先使用{@link ConvertUtil#toStrings(Object)} 转成数组&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2960" href="#L2960">2960</a> <em class="jxr_javadoccomment">     * &lt;li&gt;数组(包括 包装类型数组 以及 原始类型数组)&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2961" href="#L2961">2961</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果是{@link java.util.Map},将 {@link java.util.Map#values()} 转成{@link java.util.Iterator}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2962" href="#L2962">2962</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Collection}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2963" href="#L2963">2963</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Iterator}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2964" href="#L2964">2964</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Enumeration}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2965" href="#L2965">2965</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link java.util.Dictionary}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2966" href="#L2966">2966</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link org.w3c.dom.Node}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2967" href="#L2967">2967</a> <em class="jxr_javadoccomment">     * &lt;li&gt;{@link org.w3c.dom.NodeList}&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L2968" href="#L2968">2968</a> <em class="jxr_javadoccomment">     * &lt;/ul&gt;</em>
+<a class="jxr_linenumber" name="L2969" href="#L2969">2969</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L2970" href="#L2970">2970</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2971" href="#L2971">2971</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L2972" href="#L2972">2972</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L2973" href="#L2973">2973</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
+<a class="jxr_linenumber" name="L2974" href="#L2974">2974</a> <em class="jxr_javadoccomment">     *            the to be converted value</em>
+<a class="jxr_linenumber" name="L2975" href="#L2975">2975</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2976" href="#L2976">2976</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是字符串,先转成数组,再转成迭代器&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L2977" href="#L2977">2977</a> <em class="jxr_javadoccomment">     *         否则转成 {@link IteratorUtils#getIterator(Object)}</em>
+<a class="jxr_linenumber" name="L2978" href="#L2978">2978</a> <em class="jxr_javadoccomment">     * @see Collection#iterator()</em>
+<a class="jxr_linenumber" name="L2979" href="#L2979">2979</a> <em class="jxr_javadoccomment">     * @see EnumerationIterator#EnumerationIterator(Enumeration)</em>
+<a class="jxr_linenumber" name="L2980" href="#L2980">2980</a> <em class="jxr_javadoccomment">     * @see IteratorUtils#asIterator(Enumeration)</em>
+<a class="jxr_linenumber" name="L2981" href="#L2981">2981</a> <em class="jxr_javadoccomment">     * @see IteratorUtils#getIterator(Object)</em>
+<a class="jxr_linenumber" name="L2982" href="#L2982">2982</a> <em class="jxr_javadoccomment">     * @see "org.apache.taglibs.standard.tag.common.core.ForEachSupport#supportedTypeForEachIterator(Object)"</em>
+<a class="jxr_linenumber" name="L2983" href="#L2983">2983</a> <em class="jxr_javadoccomment">     * @since Commons Collections4.0</em>
+<a class="jxr_linenumber" name="L2984" href="#L2984">2984</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2985" href="#L2985">2985</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L2986" href="#L2986">2986</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; Iterator&lt;T&gt; toIterator(Object toBeConvertedValue){
+<a class="jxr_linenumber" name="L2987" href="#L2987">2987</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == toBeConvertedValue){
+<a class="jxr_linenumber" name="L2988" href="#L2988">2988</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L2989" href="#L2989">2989</a>         }
+<a class="jxr_linenumber" name="L2990" href="#L2990">2990</a>         <em class="jxr_comment">// 逗号分隔的字符串</em>
+<a class="jxr_linenumber" name="L2991" href="#L2991">2991</a>         <strong class="jxr_keyword">if</strong> (toBeConvertedValue instanceof String){
+<a class="jxr_linenumber" name="L2992" href="#L2992">2992</a>             <strong class="jxr_keyword">return</strong> toIterator(toStrings(toBeConvertedValue));
+<a class="jxr_linenumber" name="L2993" href="#L2993">2993</a>         }
+<a class="jxr_linenumber" name="L2994" href="#L2994">2994</a>         <strong class="jxr_keyword">return</strong> (Iterator&lt;T&gt;) IteratorUtils.getIterator(toBeConvertedValue);
+<a class="jxr_linenumber" name="L2995" href="#L2995">2995</a>     }
+<a class="jxr_linenumber" name="L2996" href="#L2996">2996</a> 
+<a class="jxr_linenumber" name="L2997" href="#L2997">2997</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2998" href="#L2998">2998</a> <em class="jxr_javadoccomment">     * 将 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 转成指定 &lt;code&gt;targetType&lt;/code&gt; 类型的对象.</em>
+<a class="jxr_linenumber" name="L2999" href="#L2999">2999</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3000" href="#L3000">3000</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L3001" href="#L3001">3001</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3002" href="#L3002">3002</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3003" href="#L3003">3003</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3004" href="#L3004">3004</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L3005" href="#L3005">3005</a> <em class="jxr_javadoccomment">     * ConvertUtil.convert("1", Integer.class)      =1</em>
+<a class="jxr_linenumber" name="L3006" href="#L3006">3006</a> <em class="jxr_javadoccomment">     * ConvertUtil.convert("", Integer.class)       =0</em>
+<a class="jxr_linenumber" name="L3007" href="#L3007">3007</a> <em class="jxr_javadoccomment">     * ConvertUtil.convert("1", Long.class)         =1</em>
 <a class="jxr_linenumber" name="L3008" href="#L3008">3008</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L3009" href="#L3009">3009</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L3010" href="#L3010">3010</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L3011" href="#L3011">3011</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3012" href="#L3012">3012</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;注意:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L3012" href="#L3012">3012</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;此外,该方法特别适合数组类型的转换,比如 Type[] 转成 Class []:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L3013" href="#L3013">3013</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L3014" href="#L3014">3014</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
 <a class="jxr_linenumber" name="L3015" href="#L3015">3015</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3016" href="#L3016">3016</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L3016" href="#L3016">3016</a> <em class="jxr_javadoccomment">     * 原来的写法:</em>
 <a class="jxr_linenumber" name="L3017" href="#L3017">3017</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3018" href="#L3018">3018</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果&lt;code&gt;targetType&lt;/code&gt;的转换器没有注册,&lt;b&gt;那么传入的value原样返回&lt;/b&gt;,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3019" href="#L3019">3019</a> <em class="jxr_javadoccomment">     * 比如&lt;code&gt;ConvertUtil.convert("zh_CN", Locale.class)&lt;/code&gt; 由于找不到converter,那么返回"zh_CN".</em>
-<a class="jxr_linenumber" name="L3020" href="#L3020">3020</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L3021" href="#L3021">3021</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3022" href="#L3022">3022</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果转换不了,会使用默认值&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L3023" href="#L3023">3023</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3024" href="#L3024">3024</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果传的 &lt;code&gt;toBeConvertedValue&lt;/code&gt;是 &lt;code&gt;toBeConvertedValue.getClass().isArray()&lt;/code&gt; 或者 {@link Collection}</em>
-<a class="jxr_linenumber" name="L3025" href="#L3025">3025</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3018" href="#L3018">3018</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L3019" href="#L3019">3019</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3020" href="#L3020">3020</a> <em class="jxr_javadoccomment">     * Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();</em>
+<a class="jxr_linenumber" name="L3021" href="#L3021">3021</a> <em class="jxr_javadoccomment">     * int length = actualTypeArguments.length;</em>
+<a class="jxr_linenumber" name="L3022" href="#L3022">3022</a> <em class="jxr_javadoccomment">     * Class{@code &lt;?&gt;}[] klasses = new Class{@code &lt;?&gt;}[length];</em>
+<a class="jxr_linenumber" name="L3023" href="#L3023">3023</a> <em class="jxr_javadoccomment">     * for (int i = 0, j = length; i {@code &lt;} j; ++i){</em>
+<a class="jxr_linenumber" name="L3024" href="#L3024">3024</a> <em class="jxr_javadoccomment">     *     klasses[i] = (Class{@code &lt;?&gt;}) actualTypeArguments[i];</em>
+<a class="jxr_linenumber" name="L3025" href="#L3025">3025</a> <em class="jxr_javadoccomment">     * }</em>
 <a class="jxr_linenumber" name="L3026" href="#L3026">3026</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3027" href="#L3027">3027</a> <em class="jxr_javadoccomment">     * &lt;dl&gt;</em>
-<a class="jxr_linenumber" name="L3028" href="#L3028">3028</a> <em class="jxr_javadoccomment">     * &lt;dt&gt;如果 &lt;code&gt;targetType&lt;/code&gt; 不是数组&lt;/dt&gt;</em>
-<a class="jxr_linenumber" name="L3029" href="#L3029">3029</a> <em class="jxr_javadoccomment">     * &lt;dd&gt;</em>
-<a class="jxr_linenumber" name="L3030" href="#L3030">3030</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L3031" href="#L3031">3031</a> <em class="jxr_javadoccomment">     * 那么&lt;span style="color:red"&gt;会取第一个元素&lt;/span&gt;进行转换,&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3032" href="#L3032">3032</a> <em class="jxr_javadoccomment">     * 参见{@link AbstractConverter#convert(Class, Object)},调用的 {@link AbstractConverter#convertArray(Object)} 方法</em>
-<a class="jxr_linenumber" name="L3033" href="#L3033">3033</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L3034" href="#L3034">3034</a> <em class="jxr_javadoccomment">     * &lt;/dd&gt;</em>
-<a class="jxr_linenumber" name="L3035" href="#L3035">3035</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3036" href="#L3036">3036</a> <em class="jxr_javadoccomment">     * &lt;dt&gt;如果 &lt;code&gt;targetType&lt;/code&gt; 是数组&lt;/dt&gt;</em>
-<a class="jxr_linenumber" name="L3037" href="#L3037">3037</a> <em class="jxr_javadoccomment">     * &lt;dd&gt;参见 {@link org.apache.commons.beanutils.converters.ArrayConverter#convertToType(Class, Object) ArrayConverter#convertToType(Class,</em>
-<a class="jxr_linenumber" name="L3038" href="#L3038">3038</a> <em class="jxr_javadoccomment">     * Object)} 会基于targetType 构造一个数组对象,大小长度就是 &lt;code&gt;toBeConvertedValue&lt;/code&gt;的大小或者长度, 然后迭代 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 依次进行转换&lt;/dd&gt;</em>
+<a class="jxr_linenumber" name="L3027" href="#L3027">3027</a> <em class="jxr_javadoccomment">     * return klasses;</em>
+<a class="jxr_linenumber" name="L3028" href="#L3028">3028</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3029" href="#L3029">3029</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L3030" href="#L3030">3030</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3031" href="#L3031">3031</a> <em class="jxr_javadoccomment">     * 现在可以重构成:</em>
+<a class="jxr_linenumber" name="L3032" href="#L3032">3032</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3033" href="#L3033">3033</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L3034" href="#L3034">3034</a> <em class="jxr_javadoccomment">     * Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();</em>
+<a class="jxr_linenumber" name="L3035" href="#L3035">3035</a> <em class="jxr_javadoccomment">     * return convert(actualTypeArguments, Class[].class);</em>
+<a class="jxr_linenumber" name="L3036" href="#L3036">3036</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L3037" href="#L3037">3037</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3038" href="#L3038">3038</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
 <a class="jxr_linenumber" name="L3039" href="#L3039">3039</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3040" href="#L3040">3040</a> <em class="jxr_javadoccomment">     * &lt;/dl&gt;</em>
+<a class="jxr_linenumber" name="L3040" href="#L3040">3040</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;注意:&lt;/h3&gt;</em>
 <a class="jxr_linenumber" name="L3041" href="#L3041">3041</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3042" href="#L3042">3042</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L3043" href="#L3043">3043</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L3044" href="#L3044">3044</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L3045" href="#L3045">3045</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L3046" href="#L3046">3046</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L3047" href="#L3047">3047</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L3048" href="#L3048">3048</a> <em class="jxr_javadoccomment">     *            the generic type</em>
-<a class="jxr_linenumber" name="L3049" href="#L3049">3049</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
-<a class="jxr_linenumber" name="L3050" href="#L3050">3050</a> <em class="jxr_javadoccomment">     *            需要被转换的对象/值</em>
-<a class="jxr_linenumber" name="L3051" href="#L3051">3051</a> <em class="jxr_javadoccomment">     * @param targetType</em>
-<a class="jxr_linenumber" name="L3052" href="#L3052">3052</a> <em class="jxr_javadoccomment">     *            要转成什么类型</em>
-<a class="jxr_linenumber" name="L3053" href="#L3053">3053</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;targetType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3054" href="#L3054">3054</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,那么直接返回null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3055" href="#L3055">3055</a> <em class="jxr_javadoccomment">     *         否则返回 {@link org.apache.commons.beanutils.ConvertUtils#convert(Object, Class)}</em>
-<a class="jxr_linenumber" name="L3056" href="#L3056">3056</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.ConvertUtils#convert(Object, Class)</em>
-<a class="jxr_linenumber" name="L3057" href="#L3057">3057</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(Class, Object)</em>
-<a class="jxr_linenumber" name="L3058" href="#L3058">3058</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.ArrayConverter#convertToType(Class, Object)</em>
-<a class="jxr_linenumber" name="L3059" href="#L3059">3059</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L3060" href="#L3060">3060</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L3061" href="#L3061">3061</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T convert(Object toBeConvertedValue,Class&lt;T&gt; targetType){
-<a class="jxr_linenumber" name="L3062" href="#L3062">3062</a>         Validate.notNull(targetType, <span class="jxr_string">"targetType can't be null!"</span>);
-<a class="jxr_linenumber" name="L3063" href="#L3063">3063</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == toBeConvertedValue ? <strong class="jxr_keyword">null</strong> : (T) ConvertUtils.convert(toBeConvertedValue, targetType);
-<a class="jxr_linenumber" name="L3064" href="#L3064">3064</a>     }
-<a class="jxr_linenumber" name="L3065" href="#L3065">3065</a> 
-<a class="jxr_linenumber" name="L3066" href="#L3066">3066</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
-<a class="jxr_linenumber" name="L3067" href="#L3067">3067</a> 
-<a class="jxr_linenumber" name="L3068" href="#L3068">3068</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L3069" href="#L3069">3069</a> <em class="jxr_javadoccomment">     * 将对象转成 {@link Locale}.</em>
-<a class="jxr_linenumber" name="L3070" href="#L3070">3070</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3071" href="#L3071">3071</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
-<a class="jxr_linenumber" name="L3072" href="#L3072">3072</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3073" href="#L3073">3073</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
-<a class="jxr_linenumber" name="L3074" href="#L3074">3074</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3075" href="#L3075">3075</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
-<a class="jxr_linenumber" name="L3076" href="#L3076">3076</a> <em class="jxr_javadoccomment">     * ConvertUtil.toLocale(null)       = null</em>
-<a class="jxr_linenumber" name="L3077" href="#L3077">3077</a> <em class="jxr_javadoccomment">     * ConvertUtil.toLocale("zh_CN")    = Locale.CHINA</em>
-<a class="jxr_linenumber" name="L3078" href="#L3078">3078</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
-<a class="jxr_linenumber" name="L3079" href="#L3079">3079</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L3080" href="#L3080">3080</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
-<a class="jxr_linenumber" name="L3081" href="#L3081">3081</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L3082" href="#L3082">3082</a> <em class="jxr_javadoccomment">     * @param locale</em>
-<a class="jxr_linenumber" name="L3083" href="#L3083">3083</a> <em class="jxr_javadoccomment">     *            可以是 &lt;b&gt;null&lt;/b&gt; ,&lt;b&gt;字符串&lt;/b&gt; 或者 直接的 {@link Locale}对象</em>
-<a class="jxr_linenumber" name="L3084" href="#L3084">3084</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;locale&lt;/code&gt; 是null,返回 null&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3085" href="#L3085">3085</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;locale instanceof &lt;span style="color:green"&gt;Locale&lt;/span&gt;&lt;/code&gt;,返回 &lt;code&gt;(Locale) locale&lt;/code&gt;&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3086" href="#L3086">3086</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;locale instanceof &lt;span style="color:green"&gt;String&lt;/span&gt;&lt;/code&gt;,返回 {@link LocaleUtils#toLocale(String)}&lt;br&gt;</em>
-<a class="jxr_linenumber" name="L3087" href="#L3087">3087</a> <em class="jxr_javadoccomment">     *         其他的类型,将抛出 {@link UnsupportedOperationException}</em>
-<a class="jxr_linenumber" name="L3088" href="#L3088">3088</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.LocaleUtils#toLocale(String)</em>
-<a class="jxr_linenumber" name="L3089" href="#L3089">3089</a> <em class="jxr_javadoccomment">     * @since 1.7.2</em>
-<a class="jxr_linenumber" name="L3090" href="#L3090">3090</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L3091" href="#L3091">3091</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Locale toLocale(Object locale){
-<a class="jxr_linenumber" name="L3092" href="#L3092">3092</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == locale){
-<a class="jxr_linenumber" name="L3093" href="#L3093">3093</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L3094" href="#L3094">3094</a>         }
+<a class="jxr_linenumber" name="L3042" href="#L3042">3042</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3043" href="#L3043">3043</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3044" href="#L3044">3044</a> <em class="jxr_javadoccomment">     * &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L3045" href="#L3045">3045</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3046" href="#L3046">3046</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果&lt;code&gt;targetType&lt;/code&gt;的转换器没有注册,&lt;b&gt;那么传入的value原样返回&lt;/b&gt;,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3047" href="#L3047">3047</a> <em class="jxr_javadoccomment">     * 比如&lt;code&gt;ConvertUtil.convert("zh_CN", Locale.class)&lt;/code&gt; 由于找不到converter,那么返回"zh_CN".</em>
+<a class="jxr_linenumber" name="L3048" href="#L3048">3048</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L3049" href="#L3049">3049</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3050" href="#L3050">3050</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果转换不了,会使用默认值&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L3051" href="#L3051">3051</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3052" href="#L3052">3052</a> <em class="jxr_javadoccomment">     * &lt;li&gt;如果传的 &lt;code&gt;toBeConvertedValue&lt;/code&gt;是 &lt;code&gt;toBeConvertedValue.getClass().isArray()&lt;/code&gt; 或者 {@link Collection}</em>
+<a class="jxr_linenumber" name="L3053" href="#L3053">3053</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3054" href="#L3054">3054</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3055" href="#L3055">3055</a> <em class="jxr_javadoccomment">     * &lt;dl&gt;</em>
+<a class="jxr_linenumber" name="L3056" href="#L3056">3056</a> <em class="jxr_javadoccomment">     * &lt;dt&gt;如果 &lt;code&gt;targetType&lt;/code&gt; 不是数组&lt;/dt&gt;</em>
+<a class="jxr_linenumber" name="L3057" href="#L3057">3057</a> <em class="jxr_javadoccomment">     * &lt;dd&gt;</em>
+<a class="jxr_linenumber" name="L3058" href="#L3058">3058</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L3059" href="#L3059">3059</a> <em class="jxr_javadoccomment">     * 那么&lt;span style="color:red"&gt;会取第一个元素&lt;/span&gt;进行转换,&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3060" href="#L3060">3060</a> <em class="jxr_javadoccomment">     * 参见{@link AbstractConverter#convert(Class, Object)},调用的 {@link AbstractConverter#convertArray(Object)} 方法</em>
+<a class="jxr_linenumber" name="L3061" href="#L3061">3061</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L3062" href="#L3062">3062</a> <em class="jxr_javadoccomment">     * &lt;/dd&gt;</em>
+<a class="jxr_linenumber" name="L3063" href="#L3063">3063</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3064" href="#L3064">3064</a> <em class="jxr_javadoccomment">     * &lt;dt&gt;如果 &lt;code&gt;targetType&lt;/code&gt; 是数组&lt;/dt&gt;</em>
+<a class="jxr_linenumber" name="L3065" href="#L3065">3065</a> <em class="jxr_javadoccomment">     * &lt;dd&gt;参见 {@link org.apache.commons.beanutils.converters.ArrayConverter#convertToType(Class, Object) ArrayConverter#convertToType(Class,</em>
+<a class="jxr_linenumber" name="L3066" href="#L3066">3066</a> <em class="jxr_javadoccomment">     * Object)} 会基于targetType 构造一个数组对象,大小长度就是 &lt;code&gt;toBeConvertedValue&lt;/code&gt;的大小或者长度, 然后迭代 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 依次进行转换&lt;/dd&gt;</em>
+<a class="jxr_linenumber" name="L3067" href="#L3067">3067</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3068" href="#L3068">3068</a> <em class="jxr_javadoccomment">     * &lt;/dl&gt;</em>
+<a class="jxr_linenumber" name="L3069" href="#L3069">3069</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3070" href="#L3070">3070</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3071" href="#L3071">3071</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L3072" href="#L3072">3072</a> <em class="jxr_javadoccomment">     * &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L3073" href="#L3073">3073</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3074" href="#L3074">3074</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L3075" href="#L3075">3075</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L3076" href="#L3076">3076</a> <em class="jxr_javadoccomment">     *            the generic type</em>
+<a class="jxr_linenumber" name="L3077" href="#L3077">3077</a> <em class="jxr_javadoccomment">     * @param toBeConvertedValue</em>
+<a class="jxr_linenumber" name="L3078" href="#L3078">3078</a> <em class="jxr_javadoccomment">     *            需要被转换的对象/值</em>
+<a class="jxr_linenumber" name="L3079" href="#L3079">3079</a> <em class="jxr_javadoccomment">     * @param targetType</em>
+<a class="jxr_linenumber" name="L3080" href="#L3080">3080</a> <em class="jxr_javadoccomment">     *            要转成什么类型</em>
+<a class="jxr_linenumber" name="L3081" href="#L3081">3081</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;targetType&lt;/code&gt; 是null,抛出 {@link NullPointerException}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3082" href="#L3082">3082</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;toBeConvertedValue&lt;/code&gt; 是null,那么直接返回null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3083" href="#L3083">3083</a> <em class="jxr_javadoccomment">     *         否则返回 {@link org.apache.commons.beanutils.ConvertUtils#convert(Object, Class)}</em>
+<a class="jxr_linenumber" name="L3084" href="#L3084">3084</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.ConvertUtils#convert(Object, Class)</em>
+<a class="jxr_linenumber" name="L3085" href="#L3085">3085</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.AbstractConverter#convert(Class, Object)</em>
+<a class="jxr_linenumber" name="L3086" href="#L3086">3086</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.beanutils.converters.ArrayConverter#convertToType(Class, Object)</em>
+<a class="jxr_linenumber" name="L3087" href="#L3087">3087</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L3088" href="#L3088">3088</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L3089" href="#L3089">3089</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T convert(Object toBeConvertedValue,Class&lt;T&gt; targetType){
+<a class="jxr_linenumber" name="L3090" href="#L3090">3090</a>         Validate.notNull(targetType, <span class="jxr_string">"targetType can't be null!"</span>);
+<a class="jxr_linenumber" name="L3091" href="#L3091">3091</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == toBeConvertedValue ? <strong class="jxr_keyword">null</strong> : (T) ConvertUtils.convert(toBeConvertedValue, targetType);
+<a class="jxr_linenumber" name="L3092" href="#L3092">3092</a>     }
+<a class="jxr_linenumber" name="L3093" href="#L3093">3093</a> 
+<a class="jxr_linenumber" name="L3094" href="#L3094">3094</a>     <em class="jxr_comment">//---------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L3095" href="#L3095">3095</a> 
-<a class="jxr_linenumber" name="L3096" href="#L3096">3096</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
-<a class="jxr_linenumber" name="L3097" href="#L3097">3097</a>         <strong class="jxr_keyword">if</strong> (locale instanceof Locale){
-<a class="jxr_linenumber" name="L3098" href="#L3098">3098</a>             <strong class="jxr_keyword">return</strong> (Locale) locale;
-<a class="jxr_linenumber" name="L3099" href="#L3099">3099</a>         }
-<a class="jxr_linenumber" name="L3100" href="#L3100">3100</a>         <strong class="jxr_keyword">if</strong> (locale instanceof String){
-<a class="jxr_linenumber" name="L3101" href="#L3101">3101</a>             <strong class="jxr_keyword">return</strong> LocaleUtils.toLocale((String) locale);
-<a class="jxr_linenumber" name="L3102" href="#L3102">3102</a>         }
-<a class="jxr_linenumber" name="L3103" href="#L3103">3103</a> 
-<a class="jxr_linenumber" name="L3104" href="#L3104">3104</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
-<a class="jxr_linenumber" name="L3105" href="#L3105">3105</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UnsupportedOperationException(<span class="jxr_string">"input param [locale] type is:["</span> + locale.getClass().getName() + <span class="jxr_string">"] not support!"</span>);
-<a class="jxr_linenumber" name="L3106" href="#L3106">3106</a>     }
-<a class="jxr_linenumber" name="L3107" href="#L3107">3107</a> }
+<a class="jxr_linenumber" name="L3096" href="#L3096">3096</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3097" href="#L3097">3097</a> <em class="jxr_javadoccomment">     * 将对象转成 {@link Locale}.</em>
+<a class="jxr_linenumber" name="L3098" href="#L3098">3098</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3099" href="#L3099">3099</a> <em class="jxr_javadoccomment">     * &lt;h3&gt;示例:&lt;/h3&gt;</em>
+<a class="jxr_linenumber" name="L3100" href="#L3100">3100</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3101" href="#L3101">3101</a> <em class="jxr_javadoccomment">     * &lt;blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3102" href="#L3102">3102</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3103" href="#L3103">3103</a> <em class="jxr_javadoccomment">     * &lt;pre class="code"&gt;</em>
+<a class="jxr_linenumber" name="L3104" href="#L3104">3104</a> <em class="jxr_javadoccomment">     * ConvertUtil.toLocale(null)       = null</em>
+<a class="jxr_linenumber" name="L3105" href="#L3105">3105</a> <em class="jxr_javadoccomment">     * ConvertUtil.toLocale("zh_CN")    = Locale.CHINA</em>
+<a class="jxr_linenumber" name="L3106" href="#L3106">3106</a> <em class="jxr_javadoccomment">     * &lt;/pre&gt;</em>
+<a class="jxr_linenumber" name="L3107" href="#L3107">3107</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L3108" href="#L3108">3108</a> <em class="jxr_javadoccomment">     * &lt;/blockquote&gt;</em>
+<a class="jxr_linenumber" name="L3109" href="#L3109">3109</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L3110" href="#L3110">3110</a> <em class="jxr_javadoccomment">     * @param locale</em>
+<a class="jxr_linenumber" name="L3111" href="#L3111">3111</a> <em class="jxr_javadoccomment">     *            可以是 &lt;b&gt;null&lt;/b&gt; ,&lt;b&gt;字符串&lt;/b&gt; 或者 直接的 {@link Locale}对象</em>
+<a class="jxr_linenumber" name="L3112" href="#L3112">3112</a> <em class="jxr_javadoccomment">     * @return 如果 &lt;code&gt;locale&lt;/code&gt; 是null,返回 null&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3113" href="#L3113">3113</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;locale instanceof &lt;span style="color:green"&gt;Locale&lt;/span&gt;&lt;/code&gt;,返回 &lt;code&gt;(Locale) locale&lt;/code&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3114" href="#L3114">3114</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;locale instanceof &lt;span style="color:green"&gt;String&lt;/span&gt;&lt;/code&gt;,返回 {@link LocaleUtils#toLocale(String)}&lt;br&gt;</em>
+<a class="jxr_linenumber" name="L3115" href="#L3115">3115</a> <em class="jxr_javadoccomment">     *         其他的类型,将抛出 {@link UnsupportedOperationException}</em>
+<a class="jxr_linenumber" name="L3116" href="#L3116">3116</a> <em class="jxr_javadoccomment">     * @see org.apache.commons.lang3.LocaleUtils#toLocale(String)</em>
+<a class="jxr_linenumber" name="L3117" href="#L3117">3117</a> <em class="jxr_javadoccomment">     * @since 1.7.2</em>
+<a class="jxr_linenumber" name="L3118" href="#L3118">3118</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L3119" href="#L3119">3119</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Locale toLocale(Object locale){
+<a class="jxr_linenumber" name="L3120" href="#L3120">3120</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> == locale){
+<a class="jxr_linenumber" name="L3121" href="#L3121">3121</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L3122" href="#L3122">3122</a>         }
+<a class="jxr_linenumber" name="L3123" href="#L3123">3123</a> 
+<a class="jxr_linenumber" name="L3124" href="#L3124">3124</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L3125" href="#L3125">3125</a>         <strong class="jxr_keyword">if</strong> (locale instanceof Locale){
+<a class="jxr_linenumber" name="L3126" href="#L3126">3126</a>             <strong class="jxr_keyword">return</strong> (Locale) locale;
+<a class="jxr_linenumber" name="L3127" href="#L3127">3127</a>         }
+<a class="jxr_linenumber" name="L3128" href="#L3128">3128</a>         <strong class="jxr_keyword">if</strong> (locale instanceof String){
+<a class="jxr_linenumber" name="L3129" href="#L3129">3129</a>             <strong class="jxr_keyword">return</strong> LocaleUtils.toLocale((String) locale);
+<a class="jxr_linenumber" name="L3130" href="#L3130">3130</a>         }
+<a class="jxr_linenumber" name="L3131" href="#L3131">3131</a> 
+<a class="jxr_linenumber" name="L3132" href="#L3132">3132</a>         <em class="jxr_comment">//---------------------------------------------------------------</em>
+<a class="jxr_linenumber" name="L3133" href="#L3133">3133</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UnsupportedOperationException(<span class="jxr_string">"input param [locale] type is:["</span> + locale.getClass().getName() + <span class="jxr_string">"] not support!"</span>);
+<a class="jxr_linenumber" name="L3134" href="#L3134">3134</a>     }
+<a class="jxr_linenumber" name="L3135" href="#L3135">3135</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
