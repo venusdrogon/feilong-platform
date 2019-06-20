@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>com.feilong.test</groupId>
 	<artifactId>feilong-common-test</artifactId>
 	<version>1.10.4</version>
@@ -30,6 +30,10 @@
 		<maven-compiler-plugin.encoding>${project.build.sourceEncoding}</maven-compiler-plugin.encoding>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
+
+		<!-- http://maven.apache.org/plugins/maven-source-plugin/download.cgi -->
+		<!-- https://issues.apache.org/jira/projects/MSOURCES?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
+		<v.maven-source-plugin>3.1.0</v.maven-source-plugin>
 
 		<!-- **********************begin site-maven-plugin config******************************************* -->
 		<site-maven-plugin.repositoryName>feilong-platform</site-maven-plugin.repositoryName>
@@ -99,6 +103,22 @@
 					<!-- 跳过测试 -->
 					<skip>true</skip>
 				</configuration>
+			</plugin>
+
+			<!-- maven-source-plugin -->
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${v.maven-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
