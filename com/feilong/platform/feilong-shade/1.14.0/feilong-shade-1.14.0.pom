@@ -12,6 +12,7 @@
 
 	<modules>
 		<module>feilong-util-all</module>
+		<module>feilong-store-util-all</module>
 	</modules>
 
 	<build>
