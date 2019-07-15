@@ -3,9 +3,10 @@
   <groupId>com.feilong.platform.spring</groupId>
   <artifactId>parent</artifactId>
   <versioning>
+    <release>4.0.6</release>
     <versions>
-      <version>4.0.6-SNAPSHOT</version>
+      <version>4.0.6</version>
     </versions>
-    <lastUpdated>20190619174048</lastUpdated>
+    <lastUpdated>20190715065425</lastUpdated>
   </versioning>
 </metadata>
