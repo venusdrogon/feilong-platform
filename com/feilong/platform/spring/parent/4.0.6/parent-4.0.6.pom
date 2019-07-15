@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.feilong.platform</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.14.0</version>
+		<version>1.14.1</version>
 	</parent>
 
 	<groupId>com.feilong.platform.spring</groupId>
