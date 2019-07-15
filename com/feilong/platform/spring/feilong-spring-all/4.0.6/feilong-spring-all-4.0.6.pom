@@ -129,7 +129,7 @@
     <dependency>
       <groupId>com.feilong.platform</groupId>
       <artifactId>feilong-util-all</artifactId>
-      <version>1.14.0</version>
+      <version>1.14.1</version>
       <scope>compile</scope>
       <optional>true</optional>
     </dependency>
@@ -320,41 +320,6 @@
       <groupId>com.belerweb</groupId>
       <artifactId>pinyin4j</artifactId>
       <version>2.5.1</version>
-      <scope>compile</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.sensorsdata.analytics.javasdk</groupId>
-      <artifactId>SensorsAnalyticsSDK</artifactId>
-      <version>3.1.11</version>
-      <scope>compile</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.8.11.3</version>
-      <scope>compile</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>2.8.0</version>
-      <scope>compile</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.8.10</version>
-      <scope>compile</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>aopalliance</groupId>
-      <artifactId>aopalliance</artifactId>
-      <version>1.0</version>
       <scope>compile</scope>
       <optional>true</optional>
     </dependency>
