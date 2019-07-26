@@ -3,7 +3,7 @@
 
 	<groupId>com.feilong.platform</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.14.1</version>
+	<version>1.14.2</version>
 
 	<packaging>pom</packaging>
 
@@ -25,7 +25,7 @@
 	<!--****************************定义属性 properties************************************* -->
 	<properties>
 		<!-- 不要使用${project.version}, 因为如果真实项目生成的版本不是1.7.0的时候,比如是 0.0.1版本,那么就引用不到feilong包 -->
-		<version.feilong-platform>1.14.1</version.feilong-platform>
+		<version.feilong-platform>1.14.2</version.feilong-platform>
 		<version.feilong-common-test>1.10.4</version.feilong-common-test>
 
 		<!-- 让整个项目统一字符集编码 -->
@@ -147,7 +147,10 @@
 
 		<version.spring>3.2.18.RELEASE</version.spring>
 
-		<version.xstream>1.4.11</version.xstream>
+		<!-- http://x-stream.github.io/ -->
+		<!-- https://github.com/x-stream/xstream/releases -->
+		<!-- #133: XStream 1.4.11 fails to run on a Java Runtime < 8. -->
+		<version.xstream>1.4.11.1</version.xstream>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<!-- https://xerces.apache.org/xerces2-j/releases.html -->
