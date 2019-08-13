@@ -125,6 +125,8 @@
 		<!-- http://www.jcraft.com/jsch/ -->
 		<!-- http://www.jcraft.com/jsch/ChangeLog -->
 		<version.jsch>0.1.55</version.jsch>
+
+		<!-- https://jsoup.org/news/ -->
 		<version.jsoup>1.11.3</version.jsoup>
 
 		<version.javamail>1.4.7</version.javamail>
@@ -143,7 +145,7 @@
 		<version.logback>1.2.3</version.logback>
 
 		<!-- http://www.slf4j.org/news.html -->
-		<version.slf4j>1.7.27</version.slf4j>
+		<version.slf4j>1.7.28</version.slf4j>
 
 		<version.spring>3.2.18.RELEASE</version.spring>
 
