@@ -43,7 +43,9 @@
 		<!--****************************第三方************************************ -->
 
 		<!--*********************begin dependency plugins version************************************ -->
-		<version.commons-beanutils>1.9.3</version.commons-beanutils>
+		
+		<!-- http://commons.apache.org/proper/commons-beanutils/changes-report.html -->
+		<version.commons-beanutils>1.9.4</version.commons-beanutils>
 
 		<!-- http://commons.apache.org/proper/commons-codec/changes-report.html#a1.12 -->
 		<version.commons-codec>1.12</version.commons-codec>
