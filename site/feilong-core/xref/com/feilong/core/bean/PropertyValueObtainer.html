@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * @return the data use spring</em>
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T getDataUseSpring(Object bean,String propertyName){
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>         LOGGER.trace(<span class="jxr_string">"will use spring beanutils to excute:[{}],propertyName:[{}]"</span>, bean, propertyName);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>         LOGGER.trace(<span class="jxr_string">"will use spring beanutils to execute:[{}],propertyName:[{}]"</span>, bean, propertyName);
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>         <strong class="jxr_keyword">try</strong>{
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>             PropertyDescriptor propertyDescriptor = PropertyDescriptorUtil.getSpringPropertyDescriptor(bean.getClass(), propertyName);
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>             <strong class="jxr_keyword">return</strong> getValue(bean, propertyDescriptor);
