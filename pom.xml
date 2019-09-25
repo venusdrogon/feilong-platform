@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.feilong.platform</groupId>
@@ -43,7 +44,7 @@
 		<!--****************************第三方************************************ -->
 
 		<!--*********************begin dependency plugins version************************************ -->
-		
+
 		<!-- http://commons.apache.org/proper/commons-beanutils/changes-report.html -->
 		<version.commons-beanutils>1.9.4</version.commons-beanutils>
 
@@ -218,6 +219,7 @@
 		<!-- https://issues.apache.org/jira/projects/MSOURCES?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
 		<v.maven-source-plugin>3.1.0</v.maven-source-plugin>
 
+		<!--http://maven.apache.org/surefire/maven-surefire-plugin/ -->
 		<v.maven-surefire-plugin>2.22.1</v.maven-surefire-plugin>
 		<v.maven-release-plugin>2.5.3</v.maven-release-plugin>
 
