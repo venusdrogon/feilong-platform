@@ -219,7 +219,7 @@
 
 		<!-- http://maven.apache.org/plugins/maven-source-plugin/download.cgi -->
 		<!-- https://issues.apache.org/jira/projects/MSOURCES?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
-		<v.maven-source-plugin>3.1.0</v.maven-source-plugin>
+		<v.maven-source-plugin>3.2.0</v.maven-source-plugin>
 
 		<!--http://maven.apache.org/surefire/maven-surefire-plugin/ -->
 		<v.maven-surefire-plugin>2.22.1</v.maven-surefire-plugin>
