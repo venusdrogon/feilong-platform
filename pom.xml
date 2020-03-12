@@ -108,6 +108,8 @@
 		-->
 		<version.commons-lang3>3.8.1</version.commons-lang3>
 
+		<!-- http://commons.apache.org/proper/commons-logging/download_logging.cgi -->
+		<!-- commons-logging 仅仅 统一下版本 feilong platform 不直接使用这个jar -->
 		<version.commons-logging>1.2</version.commons-logging>
 
 		<!-- see in http://commons.apache.org/proper/commons-io/index.html -->
@@ -142,6 +144,7 @@
 		<version.junit>4.12</version.junit>
 		<version.hamcrest-library>1.3</version.hamcrest-library>
 
+		<!-- http://logging.apache.org/log4j/1.2/download.html -->
 		<version.log4j>1.2.17</version.log4j>
 
 		<!-- https://logback.qos.ch/news.html -->
