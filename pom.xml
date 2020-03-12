@@ -141,7 +141,8 @@
 		<version.el-api>2.2</version.el-api>
 		<version.jstl>1.2</version.jstl>
 
-		<version.junit>4.12</version.junit>
+		<!-- https://junit.org/junit4/ -->
+		<version.junit>4.13</version.junit>
 		<version.hamcrest-library>1.3</version.hamcrest-library>
 
 		<!-- http://logging.apache.org/log4j/1.2/download.html -->
@@ -193,7 +194,8 @@
 		<!-- CheckStyle能够帮助Java开发人员准守某些编码规范的工具。它能够自动检查代码。 -->
 		<v.maven-checkstyle-plugin>2.17</v.maven-checkstyle-plugin>
 
-		<v.maven-dependency-plugin>3.1.1</v.maven-dependency-plugin>
+		<!-- http://maven.apache.org/plugins/maven-dependency-plugin/index.html -->
+		<v.maven-dependency-plugin>3.1.2</v.maven-dependency-plugin>
 		<v.maven-deploy-plugin>2.8.2</v.maven-deploy-plugin>
 
 		<v.maven-install-plugin>2.5.2</v.maven-install-plugin>
@@ -218,11 +220,11 @@
 
 		<!-- http://maven.apache.org/plugins/maven-site-plugin/ -->
 		<!-- https://issues.apache.org/jira/projects/MSITE?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
-		<v.maven-site-plugin>3.8.2</v.maven-site-plugin>
+		<v.maven-site-plugin>3.9.0</v.maven-site-plugin>
 
 		<!-- http://maven.apache.org/plugins/maven-source-plugin/download.cgi -->
 		<!-- https://issues.apache.org/jira/projects/MSOURCES?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
-		<v.maven-source-plugin>3.2.0</v.maven-source-plugin>
+		<v.maven-source-plugin>3.2.1</v.maven-source-plugin>
 
 		<!--http://maven.apache.org/surefire/maven-surefire-plugin/ -->
 		<!--https://issues.apache.org/jira/projects/SUREFIRE?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased -->
