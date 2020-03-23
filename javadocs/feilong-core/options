@@ -1,0 +1,63 @@
+-locale
+'en_US'
+-classpath
+'/Users/feilong/Development/repository/org/springframework/spring-beans/3.2.18.RELEASE/spring-beans-3.2.18.RELEASE.jar:/Users/feilong/Development/repository/org/springframework/spring-core/3.2.18.RELEASE/spring-core-3.2.18.RELEASE.jar:/Users/feilong/Development/repository/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar:/Users/feilong/Development/repository/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar:/Users/feilong/Development/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-log4j12/1.7.30/slf4j-log4j12-1.7.30.jar:/Users/feilong/Development/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/feilong/Development/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/feilong/Development/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/feilong/Development/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar'
+-encoding
+'UTF-8'
+-overview
+'/Users/feilong/workspace/feilong/feilong-core/src/main/java/overview.html'
+-protected
+-sourcepath
+'/Users/feilong/workspace/feilong/feilong-core/src/main/java:/Users/feilong/Development/DataCommon/Files/Java/Apache Maven/javadoc/springframework'
+-author
+-bottom
+'Copyright &copy; 2008-2020 by feilong'
+-charset
+'UTF-8'
+-d
+'/Users/feilong/workspace/feilong/else/feilong-platform-gh-pages/javadocs/feilong-core'
+-docencoding
+'UTF-8'
+-docfilessubdirs
+-doctitle
+'feilong-core 2.0.3 API'
+-footer
+'feilong-core 2.0.3 API'
+-group
+'Date package ÈÕÆÚ' 'com.feilong.core.date'
+-group
+'util package' 'com.feilong.core.util*'
+-header
+'feilong-core 2.0.3 API'
+-link
+'https://docs.oracle.com/javaee/7/api'
+-link
+'http://commons.apache.org/proper/commons-lang/javadocs/api-release'
+-link
+'http://commons.apache.org/proper/commons-collections/javadocs/api-release'
+-link
+'http://commons.apache.org/proper/commons-io/javadocs/api-release'
+-link
+'http://commons.apache.org/proper/commons-beanutils/javadocs/v1.9.4/apidocs'
+-link
+'http://10.88.3.32/disable/disable.htm?url_type=%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8/%53%6F%75%72%63%65%46%6F%72%67%65%5B%E6%B5%8F%E8%A7%88%5D&plc_name=%E5%85%A8%E5%B1%80%E7%AD%96%E7%95%A5'
+-link
+'https://docs.spring.io/spring/docs/3.2.18.RELEASE/javadoc-api'
+-link
+'http://commons.apache.org/proper/commons-lang/apidocs'
+-link
+'http://commons.apache.org/proper/commons-collections/apidocs'
+-link
+'http://www.slf4j.org/apidocs'
+-link
+'http://logging.apache.org/log4j/1.2/apidocs'
+-link
+'http://commons.apache.org/proper/commons-logging/apidocs'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' '/Users/feilong/workspace/feilong/feilong-core/target/javadoc-bundle-options'
+-stylesheetfile
+'/Users/feilong/Development/DataCommon/Files/Java/Apache Maven/javadoc/springframework/stylesheet.css'
+-use
+-version
+-windowtitle
+'feilong-core 2.0.3 API create by feilong'

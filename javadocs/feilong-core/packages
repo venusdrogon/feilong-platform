@@ -1,0 +1,16 @@
+com.feilong.tools.slf4j
+com.feilong.core.net
+com.feilong.core.util.closure
+com.feilong.core.util.comparator
+com.feilong.core.util.predicate
+com.feilong.core.util
+com.feilong.core.util.transformer
+com.feilong.core.util.equator
+com.feilong.core.bean
+com.feilong.core
+com.feilong.core.date
+com.feilong.core.lang
+com.feilong.core.lang.reflect
+com.feilong.core.lang.annotation
+com.feilong.core.lang.thread
+com.feilong.core.text
