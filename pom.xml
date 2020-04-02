@@ -244,7 +244,7 @@
 		<v.native2ascii-maven-plugin>2.0.1</v.native2ascii-maven-plugin>
 
 		<v.site-maven-plugin>0.12</v.site-maven-plugin>
-		<v.sonar-maven-plugin>3.5.0.1254</v.sonar-maven-plugin>
+		<v.sonar-maven-plugin>3.6.0.1398</v.sonar-maven-plugin>
 		<!-- taglist 检查报告 -->
 		<v.taglist-maven-plugin>2.4</v.taglist-maven-plugin>
 
