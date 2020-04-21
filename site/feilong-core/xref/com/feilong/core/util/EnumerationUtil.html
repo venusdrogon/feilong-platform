@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../../feilong-core/target/site/apidocs/com/feilong/core/util/EnumerationUtil.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../feilong/feilong-core/target/site/apidocs/com/feilong/core/util/EnumerationUtil.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (C) 2008 feilong</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">package</strong> com.feilong.core.util;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.Validator.isNullOrEmpty;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.Validator.isNotNullOrEmpty;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.util.Enumeration;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  
@@ -101,11 +101,11 @@
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @see org.apache.commons.collections4.IteratorUtils#contains(java.util.Iterator, Object)</em>
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;O&gt; <strong class="jxr_keyword">boolean</strong> contains(Enumeration&lt;O&gt; enumeration,O value){
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">return</strong> isNullOrEmpty(enumeration) ? false : IteratorUtils.contains(<strong class="jxr_keyword">new</strong> EnumerationIterator&lt;O&gt;(enumeration), value);
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">return</strong> isNotNullOrEmpty(enumeration) &amp;&amp; IteratorUtils.contains(<strong class="jxr_keyword">new</strong> EnumerationIterator&lt;O&gt;(enumeration), value);
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>      }
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="https://github.com/venusdrogon/feilong">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

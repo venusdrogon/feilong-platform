@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../../feilong-core/target/site/apidocs/com/feilong/core/util/CollectionsUtil.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../feilong/feilong-core/target/site/apidocs/com/feilong/core/util/CollectionsUtil.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (C) 2008 feilong</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -438,7 +438,7 @@
 <a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L431" href="#L431">431</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;O&gt; <strong class="jxr_keyword">boolean</strong> addAllIgnoreNull(<strong class="jxr_keyword">final</strong> Collection&lt;O&gt; objectCollection,<strong class="jxr_keyword">final</strong> Iterable&lt;? <strong class="jxr_keyword">extends</strong> O&gt; iterable){
 <a class="jxr_linenumber" name="L432" href="#L432">432</a>         Validate.notNull(objectCollection, <span class="jxr_string">"objectCollection can't be null!"</span>);
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == iterable ? false : CollectionUtils.addAll(objectCollection, iterable);
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> != iterable &amp;&amp; CollectionUtils.addAll(objectCollection, iterable);
 <a class="jxr_linenumber" name="L434" href="#L434">434</a>     }
 <a class="jxr_linenumber" name="L435" href="#L435">435</a> 
 <a class="jxr_linenumber" name="L436" href="#L436">436</a>     <em class="jxr_javadoccomment">/**</em>
@@ -814,7 +814,7 @@
 <a class="jxr_linenumber" name="L806" href="#L806">806</a> <em class="jxr_javadoccomment">     * @see &lt;a</em>
 <a class="jxr_linenumber" name="L807" href="#L807">807</a> <em class="jxr_javadoccomment">     *      href="<a href="http://www.oschina.net/code/snippet_117714_2991?p=2" target="alexandria_uri">http://www.oschina.net/code/snippet_117714_2991?p=2</a>#comments"&gt;<a href="http://www.oschina.net/code/snippet_117714_2991?p=2" target="alexandria_uri">http://www.oschina.net/code/snippet_117714_2991?p=2</a>#comments</em>
 <a class="jxr_linenumber" name="L808" href="#L808">808</a> <em class="jxr_javadoccomment">     *      &lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L809" href="#L809">809</a> <em class="jxr_javadoccomment">     * @since 2.0.3</em>
+<a class="jxr_linenumber" name="L809" href="#L809">809</a> <em class="jxr_javadoccomment">     * @since 2.1.0</em>
 <a class="jxr_linenumber" name="L810" href="#L810">810</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L811" href="#L811">811</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;O&gt; List&lt;O&gt; removeDuplicate(Collection&lt;O&gt; objectCollection,String propertyName){
 <a class="jxr_linenumber" name="L812" href="#L812">812</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(propertyName)){
@@ -879,7 +879,7 @@
 <a class="jxr_linenumber" name="L871" href="#L871">871</a> <em class="jxr_javadoccomment">     * @see &lt;a</em>
 <a class="jxr_linenumber" name="L872" href="#L872">872</a> <em class="jxr_javadoccomment">     *      href="<a href="http://www.oschina.net/code/snippet_117714_2991?p=2" target="alexandria_uri">http://www.oschina.net/code/snippet_117714_2991?p=2</a>#comments"&gt;<a href="http://www.oschina.net/code/snippet_117714_2991?p=2" target="alexandria_uri">http://www.oschina.net/code/snippet_117714_2991?p=2</a>#comments</em>
 <a class="jxr_linenumber" name="L873" href="#L873">873</a> <em class="jxr_javadoccomment">     *      &lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L874" href="#L874">874</a> <em class="jxr_javadoccomment">     * @since 2.0.3</em>
+<a class="jxr_linenumber" name="L874" href="#L874">874</a> <em class="jxr_javadoccomment">     * @since 2.1.0</em>
 <a class="jxr_linenumber" name="L875" href="#L875">875</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L876" href="#L876">876</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;O&gt; List&lt;O&gt; removeDuplicate(Collection&lt;O&gt; objectCollection,String...propertyNames){
 <a class="jxr_linenumber" name="L877" href="#L877">877</a>         <strong class="jxr_keyword">if</strong> (isNullOrEmpty(propertyNames)){
@@ -916,7 +916,7 @@
 <a class="jxr_linenumber" name="L908" href="#L908">908</a> <em class="jxr_javadoccomment">     * @param keys</em>
 <a class="jxr_linenumber" name="L909" href="#L909">909</a> <em class="jxr_javadoccomment">     *            the keys</em>
 <a class="jxr_linenumber" name="L910" href="#L910">910</a> <em class="jxr_javadoccomment">     * @return 存在,返回true</em>
-<a class="jxr_linenumber" name="L911" href="#L911">911</a> <em class="jxr_javadoccomment">     * @since 2.0.3</em>
+<a class="jxr_linenumber" name="L911" href="#L911">911</a> <em class="jxr_javadoccomment">     * @since 2.1.0</em>
 <a class="jxr_linenumber" name="L912" href="#L912">912</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L913" href="#L913">913</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isExist(List&lt;Map&lt;String, Object&gt;&gt; mapList,Map&lt;String, Object&gt; propertyNameAndValueMap,String...keys){
 <a class="jxr_linenumber" name="L914" href="#L914">914</a>         <strong class="jxr_keyword">for</strong> (Map&lt;String, Object&gt; map : mapList){
@@ -937,7 +937,7 @@
 <a class="jxr_linenumber" name="L929" href="#L929">929</a> <em class="jxr_javadoccomment">     * @param keys</em>
 <a class="jxr_linenumber" name="L930" href="#L930">930</a> <em class="jxr_javadoccomment">     *            the property names</em>
 <a class="jxr_linenumber" name="L931" href="#L931">931</a> <em class="jxr_javadoccomment">     * @return true, if successful</em>
-<a class="jxr_linenumber" name="L932" href="#L932">932</a> <em class="jxr_javadoccomment">     * @since 2.0.3</em>
+<a class="jxr_linenumber" name="L932" href="#L932">932</a> <em class="jxr_javadoccomment">     * @since 2.1.0</em>
 <a class="jxr_linenumber" name="L933" href="#L933">933</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L934" href="#L934">934</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> eqauls(Map&lt;String, Object&gt; map,Map&lt;String, Object&gt; propertyNameAndValueMap,String...keys){
 <a class="jxr_linenumber" name="L935" href="#L935">935</a>         <strong class="jxr_keyword">for</strong> (String propertyName : keys){
@@ -1413,7 +1413,7 @@
 <a class="jxr_linenumber" name="L1405" href="#L1405">1405</a> <em class="jxr_javadoccomment">     *         如果 &lt;code&gt;iterable&lt;/code&gt;中没有相关元素的属性&lt;code&gt;propertyName&lt;/code&gt; 值是&lt;code&gt;propertyValue&lt;/code&gt;,返回null</em>
 <a class="jxr_linenumber" name="L1406" href="#L1406">1406</a> <em class="jxr_javadoccomment">     * @see #find(Iterable, Predicate)</em>
 <a class="jxr_linenumber" name="L1407" href="#L1407">1407</a> <em class="jxr_javadoccomment">     * @see com.feilong.core.util.predicate.BeanPredicateUtil#equalPredicate(String, Object)</em>
-<a class="jxr_linenumber" name="L1408" href="#L1408">1408</a> <em class="jxr_javadoccomment">     * @since 2.0.3</em>
+<a class="jxr_linenumber" name="L1408" href="#L1408">1408</a> <em class="jxr_javadoccomment">     * @since 2.1.0</em>
 <a class="jxr_linenumber" name="L1409" href="#L1409">1409</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L1410" href="#L1410">1410</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;O&gt; O find(Iterable&lt;O&gt; beanIterable,Map&lt;String, ?&gt; propertyNameAndPropertyValueMap){
 <a class="jxr_linenumber" name="L1411" href="#L1411">1411</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == beanIterable ? <strong class="jxr_keyword">null</strong> : find(beanIterable, BeanPredicateUtil.&lt;O&gt; equalPredicate(propertyNameAndPropertyValueMap));
@@ -2800,6 +2800,6 @@
 <a class="jxr_linenumber" name="L2792" href="#L2792">2792</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="https://github.com/venusdrogon/feilong">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

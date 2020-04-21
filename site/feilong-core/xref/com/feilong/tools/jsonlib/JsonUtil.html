@@ -1314,7 +1314,7 @@
 <a class="jxr_linenumber" name="L1306" href="#L1306">1306</a>         <em class="jxr_comment">// Ignore missing properties with Json-Lib</em>
 <a class="jxr_linenumber" name="L1307" href="#L1307">1307</a> 
 <a class="jxr_linenumber" name="L1308" href="#L1308">1308</a>         <em class="jxr_comment">// 避免出现 Unknown property 'orderIdAndCodeMap' on class 'class</em>
-<a class="jxr_linenumber" name="L1309" href="#L1309">1309</a>         <em class="jxr_comment">// com.baozun.trade.web.controller.payment.result.command.PaymentResultEntity' 异常</em>
+<a class="jxr_linenumber" name="L1309" href="#L1309">1309</a>         <em class="jxr_comment">// com.**.trade.web.controller.payment.result.command.PaymentResultEntity' 异常</em>
 <a class="jxr_linenumber" name="L1310" href="#L1310">1310</a>         jsonConfig.setPropertySetStrategy(<strong class="jxr_keyword">new</strong> <a href="../../../../com/feilong/tools/jsonlib/PropertyStrategyWrapper.html">PropertyStrategyWrapper</a>(PropertySetStrategy.DEFAULT));
 <a class="jxr_linenumber" name="L1311" href="#L1311">1311</a>         <strong class="jxr_keyword">return</strong> (T) JSONObject.toBean(jsonObject, jsonConfig);
 <a class="jxr_linenumber" name="L1312" href="#L1312">1312</a>     }

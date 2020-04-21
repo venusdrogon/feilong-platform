@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../../feilong-core/target/site/apidocs/com/feilong/core/lang/ClassUtil.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../feilong/feilong-core/target/site/apidocs/com/feilong/core/lang/ClassUtil.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (C) 2008 feilong</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -230,7 +230,7 @@
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">     * @see java.lang.Class#isInstance(Object)</em>
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isInstance(Object obj,Class&lt;?&gt; klass){
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == klass ? false : klass.isInstance(obj);
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> != klass &amp;&amp; klass.isInstance(obj);
 <a class="jxr_linenumber" name="L226" href="#L226">226</a>     }
 <a class="jxr_linenumber" name="L227" href="#L227">227</a> 
 <a class="jxr_linenumber" name="L228" href="#L228">228</a>     <em class="jxr_javadoccomment">/**</em>
@@ -304,7 +304,7 @@
 <a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">     * @since 1.4.0</em>
 <a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L298" href="#L298">298</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isAssignableFrom(Class&lt;?&gt; klass,Class&lt;?&gt; cls){
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>         <strong class="jxr_keyword">return</strong> (<strong class="jxr_keyword">null</strong> == klass || <strong class="jxr_keyword">null</strong> == cls) ? false : klass.isAssignableFrom(cls);
+<a class="jxr_linenumber" name="L299" href="#L299">299</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> != klass &amp;&amp; <strong class="jxr_keyword">null</strong> != cls &amp;&amp; klass.isAssignableFrom(cls);
 <a class="jxr_linenumber" name="L300" href="#L300">300</a>     }
 <a class="jxr_linenumber" name="L301" href="#L301">301</a> 
 <a class="jxr_linenumber" name="L302" href="#L302">302</a>     <em class="jxr_javadoccomment">/**</em>
@@ -333,7 +333,7 @@
 <a class="jxr_linenumber" name="L325" href="#L325">325</a> <em class="jxr_javadoccomment">     * @see java.lang.reflect.Modifier#isInterface(int)</em>
 <a class="jxr_linenumber" name="L326" href="#L326">326</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L327" href="#L327">327</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isInterface(Class&lt;?&gt; ownerClass){
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> == ownerClass ? false : Modifier.isInterface(ownerClass.getModifiers());<em class="jxr_comment">// 对类和成员访问修饰符进行解码</em>
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong> != ownerClass &amp;&amp; Modifier.isInterface(ownerClass.getModifiers());<em class="jxr_comment">// 对类和成员访问修饰符进行解码</em>
 <a class="jxr_linenumber" name="L329" href="#L329">329</a>     }
 <a class="jxr_linenumber" name="L330" href="#L330">330</a> 
 <a class="jxr_linenumber" name="L331" href="#L331">331</a>     <em class="jxr_javadoccomment">/**</em>
@@ -462,6 +462,6 @@
 <a class="jxr_linenumber" name="L454" href="#L454">454</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="https://github.com/venusdrogon/feilong">feiLong</a>. All rights reserved.</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../../../feilong-core/target/site/apidocs/com/feilong/core/util/predicate/BeanPredicateUtil.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../../feilong/feilong-core/target/site/apidocs/com/feilong/core/util/predicate/BeanPredicateUtil.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (C) 2008 feilong</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">package</strong> com.feilong.core.util.predicate;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.Validator.isNullOrEmpty;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.feilong.core.Validator.isNotNullOrEmpty;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.lang.reflect.Array;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
@@ -437,7 +437,7 @@
 <a class="jxr_linenumber" name="L429" href="#L429">429</a> 
 <a class="jxr_linenumber" name="L430" href="#L430">430</a>             @Override
 <a class="jxr_linenumber" name="L431" href="#L431">431</a>             <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> evaluate(V propertyValue){
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>                 <strong class="jxr_keyword">return</strong> isNullOrEmpty(propertyValueList) ? false : propertyValueList.contains(propertyValue);
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>                 <strong class="jxr_keyword">return</strong> isNotNullOrEmpty(propertyValueList) &amp;&amp; propertyValueList.contains(propertyValue);
 <a class="jxr_linenumber" name="L433" href="#L433">433</a>             }
 <a class="jxr_linenumber" name="L434" href="#L434">434</a>         });
 <a class="jxr_linenumber" name="L435" href="#L435">435</a>     }
@@ -659,6 +659,6 @@
 <a class="jxr_linenumber" name="L651" href="#L651">651</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="http://venusdrogon.github.io/feilong-platform/">feiLong</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="https://github.com/venusdrogon/feilong">feiLong</a>. All rights reserved.</div>
 </body>
 </html>
