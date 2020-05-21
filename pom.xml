@@ -59,7 +59,7 @@
 
 		<!-- http://commons.apache.org/proper/commons-configuration/index.html -->
 		<!-- http://commons.apache.org/proper/commons-configuration/changes-report.html#a2.4 -->
-		<version.commons-configuration2>2.3</version.commons-configuration2>
+		<version.commons-configuration2>2.7</version.commons-configuration2>
 
 		<!--
 			The Apache Commons Compress library defines an API for working with ar, cpio, Unix dump, tar, zip, gzip, XZ, Pack200, bzip2, 7z, arj, lzma, snappy, DEFLATE,
