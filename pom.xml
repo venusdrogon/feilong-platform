@@ -142,7 +142,7 @@
 		<version.jstl>1.2</version.jstl>
 
 		<!-- https://junit.org/junit4/ -->
-		<version.junit>4.13</version.junit>
+		<version.junit>4.13.1</version.junit>
 		<version.hamcrest-library>1.3</version.hamcrest-library>
 
 		<!-- http://logging.apache.org/log4j/1.2/download.html -->
