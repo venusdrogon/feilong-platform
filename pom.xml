@@ -159,7 +159,7 @@
 		<!-- http://x-stream.github.io/ -->
 		<!-- https://github.com/x-stream/xstream/releases -->
 		<!-- #133: XStream 1.4.11 fails to run on a Java Runtime < 8. -->
-		<version.xstream>1.4.11.1</version.xstream>
+		<version.xstream>1.4.16</version.xstream>
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<!-- https://xerces.apache.org/xerces2-j/releases.html -->
