@@ -117,7 +117,7 @@
 			Commons IO 2.6 (requires JDK 1.7+)
 			Commons IO 2.5 (requires JDK 1.6+)
 		-->
-		<version.commons-io>2.6</version.commons-io>
+		<version.commons-io>2.7</version.commons-io>
 
 		<!-- see in http://commons.apache.org/proper/commons-net/index.html -->
 		<version.commons-net>3.6</version.commons-net>
