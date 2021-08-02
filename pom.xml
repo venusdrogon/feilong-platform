@@ -76,7 +76,7 @@
 		-->
 
 		<!-- http://commons.apache.org/proper/commons-compress/ -->
-		<version.commons-compress>1.19</version.commons-compress>
+		<version.commons-compress>1.21</version.commons-compress>
 
 		<version.commons-digester>2.1</version.commons-digester>
 
