@@ -132,7 +132,7 @@
 		<version.jsch>0.1.55</version.jsch>
 
 		<!-- https://jsoup.org/news/ -->
-		<version.jsoup>1.11.3</version.jsoup>
+		<version.jsoup>1.14.2</version.jsoup>
 
 		<version.javamail>1.4.7</version.javamail>
 
