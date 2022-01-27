@@ -163,7 +163,7 @@
 
 		<version.xml-apis>1.4.01</version.xml-apis>
 		<!-- https://xerces.apache.org/xerces2-j/releases.html -->
-		<version.xercesImpl>2.12.0</version.xercesImpl>
+		<version.xercesImpl>2.12.2</version.xercesImpl>
 
 		<!--
 			http://tiles.apache.org/framework/whats-new.html
